@@ -280,7 +280,7 @@ void MovieWidget::updateMovieInfo()
     ui->trailer->setText(m_movie->trailer().toString());
     ui->playcount->setText(QString::number(m_movie->playcount()));
     ui->lastPlayed->setDateTime(m_movie->lastPlayed());
-    ui->overview->setPlainText(m_movie->overview());
+    ui->overview->setHtml(m_movie->overview());
 
     QStringList certifications;
     QStringList sets;

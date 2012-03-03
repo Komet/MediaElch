@@ -7,6 +7,7 @@ Manager::Manager(QObject *parent) :
 {
     m_mediaCenters.append(new XbmcXml(this));
     m_scrapers.append(new TMDb(this));
+    m_scrapers.append(new VideoBuster(this));
     m_movieFileSearcher = new MovieFileSearcher(this);
     m_movieModel = new MovieModel(this);
 }

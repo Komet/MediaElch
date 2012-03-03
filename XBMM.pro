@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     data/MovieProxyModel.cpp \
     AboutDialog.cpp \
     MyTableView.cpp \
-    MyGroupBox.cpp
+    MyGroupBox.cpp \
+    scrapers/VideoBuster.cpp
 
 HEADERS  += MainWindow.h \
     SettingsDialog.h \
@@ -52,7 +53,8 @@ HEADERS  += MainWindow.h \
     data/MovieProxyModel.h \
     AboutDialog.h \
     MyTableView.h \
-    MyGroupBox.h
+    MyGroupBox.h \
+    scrapers/VideoBuster.h
 
 FORMS    += MainWindow.ui \
     SettingsDialog.ui \
