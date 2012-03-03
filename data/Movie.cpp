@@ -48,7 +48,10 @@ void Movie::clear()
 
 bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
 {
-    return mediaCenterInterface->saveData(this);
+    bool saved = mediaCenterInterface->saveData(this);
+    if (!m_infoLoaded)
+        m_infoLoaded = saved;
+    return saved;
 }
 
 bool Movie::loadData(MediaCenterInterface *mediaCenterInterface)
