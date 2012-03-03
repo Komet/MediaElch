@@ -1,0 +1,69 @@
+#-------------------------------------------------
+#
+# Project created by QtCreator 2012-02-16T11:13:07
+#
+#-------------------------------------------------
+
+QT       += core gui network script xml
+
+TARGET = XBMM
+TEMPLATE = app
+
+
+SOURCES += main.cpp\
+        MainWindow.cpp \
+    SettingsDialog.cpp \
+    data/Movie.cpp \
+    data/MovieFileSearcher.cpp \
+    mediaCenterPlugins/XbmcXml.cpp \
+    scrapers/TMDb.cpp \
+    Manager.cpp \
+    MovieSearch.cpp \
+    MyLineEdit.cpp \
+    MovieWidget.cpp \
+    MyLabel.cpp \
+    MovieImageDialog.cpp \
+    DownloadManager.cpp \
+    FilesWidget.cpp \
+    data/MovieModel.cpp \
+    data/MovieProxyModel.cpp \
+    AboutDialog.cpp \
+    MyTableView.cpp \
+    MyGroupBox.cpp
+
+HEADERS  += MainWindow.h \
+    SettingsDialog.h \
+    data/Movie.h \
+    Globals.h \
+    data/MediaCenterInterface.h \
+    data/MovieFileSearcher.h \
+    mediaCenterPlugins/XbmcXml.h \
+    scrapers/TMDb.h \
+    data/ScraperInterface.h \
+    Manager.h \
+    MovieSearch.h \
+    MyLineEdit.h \
+    MovieWidget.h \
+    MyLabel.h \
+    MovieImageDialog.h \
+    DownloadManager.h \
+    FilesWidget.h \
+    data/MovieModel.h \
+    data/MovieProxyModel.h \
+    AboutDialog.h \
+    MyTableView.h \
+    MyGroupBox.h
+
+FORMS    += MainWindow.ui \
+    SettingsDialog.ui \
+    MovieSearch.ui \
+    MovieWidget.ui \
+    MovieImageDialog.ui \
+    FilesWidget.ui \
+    AboutDialog.ui
+
+RESOURCES += \
+    XBMM.qrc
+
+TRANSLATIONS += \
+    i18n/XBMM_de.ts

@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/spinner.gif</file>
+        <file>img/film_reel.png</file>
+        <file>img/pattern.png</file>
+        <file>img/pictures_alt.png</file>
+        <file>img/delete.png</file>
+        <file>img/stop.png</file>
+        <file>img/reload.png</file>
+        <file>img/magnifier.png</file>
+        <file>img/pattern_dark.png</file>
+        <file>img/minus.png</file>
+        <file>img/plus.png</file>
+        <file>img/save.png</file>
+        <file>img/arrow_circle_right.png</file>
+        <file>img/text_start_files_de.png</file>
+        <file>img/text_start_files_en.png</file>
+        <file>img/text_start_movieWidget_de.png</file>
+        <file>img/text_start_movieWidget_en.png</file>
+        <file>i18n/XBMM_de.qm</file>
+    </qresource>
+</RCC>
