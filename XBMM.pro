@@ -73,3 +73,6 @@ RESOURCES += \
 
 TRANSLATIONS += \
     i18n/XBMM_de.ts
+
+ICON = XBMM.icns
+RC_FILE = XBMM.rc
