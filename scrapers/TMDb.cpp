@@ -168,15 +168,24 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie)
             if (v.property("id").toString().isEmpty()) {
                 continue;
             }
-            movie->setName(v.property("name").toString());
-            movie->setOriginalName(v.property("original_name").toString());
-            movie->setOverview(v.property("overview").toString());
-            movie->setRating(v.property("rating").toNumber());
-            movie->setTagline(v.property("tagline").toString());
-            movie->setCertification(v.property("certification").toString());
-            movie->setReleased(QDate::fromString(v.property("released").toString(), "yyyy-MM-dd"));
-            movie->setRuntime(v.property("runtime").toInteger());
-            movie->setTrailer(QUrl(v.property("trailer").toString()));
+            if (!v.property("name").isNull())
+                movie->setName(v.property("name").toString());
+            if (!v.property("original_name").isNull())
+                movie->setOriginalName(v.property("original_name").toString());
+            if (!v.property("overview").isNull())
+                movie->setOverview(v.property("overview").toString());
+            if (!v.property("rating").isNull())
+                movie->setRating(v.property("rating").toNumber());
+            if (!v.property("tagline").isNull())
+               movie->setTagline(v.property("tagline").toString());
+            if (!v.property("certification").isNull())
+                movie->setCertification(v.property("certification").toString());
+            if (!v.property("released").isNull())
+                movie->setReleased(QDate::fromString(v.property("released").toString(), "yyyy-MM-dd"));
+            if (!v.property("runtime").isNull())
+                movie->setRuntime(v.property("runtime").toInteger());
+            if (!v.property("trailer").isNull())
+                movie->setTrailer(QUrl(v.property("trailer").toString()));
             if (v.property("categories").isArray()) {
                 QScriptValueIterator itC(v.property("categories"));
                 while (itC.hasNext()) {
