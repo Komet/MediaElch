@@ -65,8 +65,6 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->buttonRemoveStudio, SIGNAL(clicked()), this, SLOT(removeStudio()));
     connect(ui->groupBox_3, SIGNAL(resized(QSize)), this, SLOT(groupBoxResized(QSize)));
 
-    MovieImageDialog::instance(this);
-
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
 
@@ -241,7 +239,7 @@ void MovieWidget::startScraperSearch()
 {
     if (m_movie == 0)
         return;
-    MovieSearch::instance(this)->exec(m_movie->name());
+    MovieSearch::instance()->exec(m_movie->name());
     if (MovieSearch::instance()->result() == QDialog::Accepted) {
         this->setDisabledTrue();
         m_movie->loadData(MovieSearch::instance()->scraperId(), Manager::instance()->scrapers().at(MovieSearch::instance()->scraperNo()));

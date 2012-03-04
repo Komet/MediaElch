@@ -13,7 +13,7 @@ MovieSearch::MovieSearch(QWidget *parent) :
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
     Qt::WindowFlags flags = windowFlags();
-    flags |= Qt::Tool;
+    flags |= Qt::SplashScreen;
     setWindowFlags(flags);
 
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
@@ -43,6 +43,15 @@ MovieSearch* MovieSearch::instance(QWidget *parent)
 
 int MovieSearch::exec(QString searchString)
 {
+    QSize newSize;
+    newSize.setHeight(parentWidget()->size().height()-200);
+    newSize.setWidth(qMin(600, parentWidget()->size().width()-400));
+    resize(newSize);
+
+    int xMove = (parentWidget()->size().width()-size().width())/2;
+    QPoint globalPos = parentWidget()->mapToGlobal(parentWidget()->pos());
+    move(globalPos.x()+xMove, globalPos.y());
+
     ui->searchString->setText(searchString);
     this->search();
     return QDialog::exec();

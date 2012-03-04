@@ -32,6 +32,7 @@ public:
 public slots:
     void accept();
     void reject();
+    int exec();
 
 protected:
     void resizeEvent(QResizeEvent *event);

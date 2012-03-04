@@ -7,6 +7,7 @@
 #include "data/MediaCenterInterface.h"
 #include "data/ScraperInterface.h"
 #include "Manager.h"
+#include "MovieImageDialog.h"
 #include "MovieSearch.h"
 #include "SettingsDialog.h"
 
@@ -51,6 +52,8 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     Manager::instance()->movieFileSearcher()->start();
+    MovieSearch::instance(ui->centralWidget);
+    MovieImageDialog::instance(ui->centralWidget);
 }
 
 MainWindow::~MainWindow()
@@ -73,7 +76,6 @@ void MainWindow::execSettingsDialog()
         Manager::instance()->movieFileSearcher()->start();
     }
 }
-
 
 void MainWindow::progressStarted()
 {

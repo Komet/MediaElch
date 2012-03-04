@@ -16,7 +16,7 @@ MovieImageDialog::MovieImageDialog(QWidget *parent) :
     ui->setupUi(this);
 
     Qt::WindowFlags flags = windowFlags();
-    flags |= Qt::Tool;
+    flags |= Qt::SplashScreen;
     setWindowFlags(flags);
 
     QSettings settings;
@@ -35,6 +35,20 @@ MovieImageDialog::MovieImageDialog(QWidget *parent) :
 MovieImageDialog::~MovieImageDialog()
 {
     delete ui;
+}
+
+int MovieImageDialog::exec()
+{
+    QSize newSize;
+    newSize.setHeight(parentWidget()->size().height()-200);
+    newSize.setWidth(qMin(1000, parentWidget()->size().width()-200));
+    resize(newSize);
+
+    int xMove = (parentWidget()->size().width()-size().width())/2;
+    QPoint globalPos = parentWidget()->mapToGlobal(parentWidget()->pos());
+    move(globalPos.x()+xMove, globalPos.y());
+
+    return QDialog::exec();
 }
 
 void MovieImageDialog::accept()
