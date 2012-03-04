@@ -67,7 +67,7 @@ bool Movie::loadData(MediaCenterInterface *mediaCenterInterface)
                 if (pathElements.size() > 0)
                     this->setName(pathElements.last());
             } else {
-                this->setName(fi.completeBaseName());
+                this->setName(fi.completeBaseName().replace(".", " ").replace("_", " "));
             }
         }
     }
