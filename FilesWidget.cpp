@@ -3,6 +3,7 @@
 
 #include <QLocale>
 #include <QTableWidget>
+#include <QTimer>
 #include "Manager.h"
 
 FilesWidget::FilesWidget(QWidget *parent) :
@@ -28,7 +29,7 @@ FilesWidget::FilesWidget(QWidget *parent) :
     connect(ui->buttonRefresh, SIGNAL(clicked()), this, SLOT(startSearch()));
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(finished()), this, SLOT(searchFinished()));
     connect(ui->filter, SIGNAL(textChanged(QString)), this, SLOT(filter(QString)));
-    connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex)));
+    connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
     connect(ui->files, SIGNAL(resized(QSize)), this, SLOT(tableViewResized(QSize)));
 
     QString language = QLocale::system().name().left(2);
@@ -42,6 +43,7 @@ FilesWidget::FilesWidget(QWidget *parent) :
     m_firstTimeLabel->setPixmap(firstTimePixmap);
     m_firstTimeLabel->resize(firstTimePixmap.width()+40, firstTimePixmap.height()+40);
     m_firstTimeLabel->hide();
+    m_emitMovieSelected = true;
 }
 
 FilesWidget::~FilesWidget()
@@ -75,15 +77,25 @@ void FilesWidget::searchFinished()
     ui->buttonRefresh->setEnabled(true);
 }
 
-void FilesWidget::itemActivated(QModelIndex index)
+void FilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
 {
     if (!index.isValid()) {
         emit noMovieSelected();
         return;
     }
+    m_lastModelIndex = previous;
     int row = index.model()->data(index, Qt::UserRole).toInt();
-    Movie *movie = Manager::instance()->movieModel()->movie(row);
-    emit movieSelected(movie);
+    m_lastMovie = Manager::instance()->movieModel()->movie(row);
+    if (m_emitMovieSelected) {
+        QTimer::singleShot(0, this, SLOT(movieSelectedEmitter()));
+    } else {
+        m_emitMovieSelected = true;
+    }
+}
+
+void FilesWidget::movieSelectedEmitter()
+{
+    emit movieSelected(m_lastMovie);
 }
 
 void FilesWidget::filter(QString filter)
@@ -99,4 +111,10 @@ void FilesWidget::enableRefresh()
 void FilesWidget::disableRefresh()
 {
     ui->buttonRefresh->setEnabled(false);
+}
+
+void FilesWidget::restoreLastSelection()
+{
+    m_emitMovieSelected = false;
+    ui->files->setCurrentIndex(m_lastModelIndex);
 }

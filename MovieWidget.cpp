@@ -9,6 +9,7 @@
 #include "Manager.h"
 #include "MovieImageDialog.h"
 #include "MovieSearch.h"
+#include "QuestionDialog.h"
 
 MovieWidget::MovieWidget(QWidget *parent) :
     QWidget(parent),
@@ -65,6 +66,25 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->buttonRemoveStudio, SIGNAL(clicked()), this, SLOT(removeStudio()));
     connect(ui->groupBox_3, SIGNAL(resized(QSize)), this, SLOT(groupBoxResized(QSize)));
 
+    connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(markHasChanged()));
+    connect(ui->originalName, SIGNAL(textEdited(QString)), this, SLOT(markHasChanged()));
+    connect(ui->set, SIGNAL(currentIndexChanged(int)), this, SLOT(markHasChanged()));
+    connect(ui->set, SIGNAL(editTextChanged(QString)), this, SLOT(markHasChanged()));
+    connect(ui->tagline, SIGNAL(textEdited(QString)), this, SLOT(markHasChanged()));
+    connect(ui->rating, SIGNAL(textEdited(QString)), this, SLOT(markHasChanged()));
+    connect(ui->released, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(markHasChanged()));
+    connect(ui->runtime, SIGNAL(textEdited(QString)), this, SLOT(markHasChanged()));
+    connect(ui->certification, SIGNAL(editTextChanged(QString)), this, SLOT(markHasChanged()));
+    connect(ui->certification, SIGNAL(currentIndexChanged(int)), this, SLOT(markHasChanged()));
+    connect(ui->trailer, SIGNAL(textEdited(QString)), this, SLOT(markHasChanged()));
+    connect(ui->playcount, SIGNAL(textEdited(QString)), this, SLOT(markHasChanged()));
+    connect(ui->lastPlayed, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(markHasChanged()));
+    connect(ui->overview, SIGNAL(textChanged()), this, SLOT(markHasChanged()));
+    connect(ui->actors, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(markHasChanged()));
+    connect(ui->genres, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(markHasChanged()));
+    connect(ui->countries, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(markHasChanged()));
+    connect(ui->studios, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(markHasChanged()));
+
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
 
@@ -86,6 +106,8 @@ MovieWidget::MovieWidget(QWidget *parent) :
     m_firstTimeLabel->setPixmap(firstTimePixmap);
     m_firstTimeLabel->resize(firstTimePixmap.width()+40, firstTimePixmap.height()+40);
     m_firstTimeLabel->hide();
+
+    m_hasChanged = false;
 }
 
 MovieWidget::~MovieWidget()
@@ -121,6 +143,7 @@ void MovieWidget::addActor()
     ui->actors->setItem(row, 0, new QTableWidgetItem(tr("Unknown Actor")));
     ui->actors->setItem(row, 1, new QTableWidgetItem(tr("Unkown Role")));
     ui->actors->scrollToBottom();
+    m_hasChanged = true;
 }
 
 void MovieWidget::removeActor()
@@ -129,6 +152,7 @@ void MovieWidget::removeActor()
     if (row < 0 || row >= ui->actors->rowCount() || !ui->actors->currentItem()->isSelected())
         return;
     ui->actors->removeRow(row);
+    m_hasChanged = true;
 }
 
 void MovieWidget::addGenre()
@@ -137,6 +161,7 @@ void MovieWidget::addGenre()
     ui->genres->insertRow(row);
     ui->genres->setItem(row, 0, new QTableWidgetItem(tr("Unkown Genre")));
     ui->genres->scrollToBottom();
+    m_hasChanged = true;
 }
 
 void MovieWidget::removeGenre()
@@ -145,6 +170,7 @@ void MovieWidget::removeGenre()
     if (row < 0 || row >= ui->genres->rowCount() || !ui->genres->currentItem()->isSelected())
         return;
     ui->genres->removeRow(row);
+    m_hasChanged = true;
 }
 
 void MovieWidget::addStudio()
@@ -153,6 +179,7 @@ void MovieWidget::addStudio()
     ui->studios->insertRow(row);
     ui->studios->setItem(row, 0, new QTableWidgetItem(tr("Unknown Studio")));
     ui->studios->scrollToBottom();
+    m_hasChanged = true;
 }
 
 void MovieWidget::removeStudio()
@@ -161,6 +188,7 @@ void MovieWidget::removeStudio()
     if (row < 0 || row >= ui->studios->rowCount() || !ui->studios->currentItem()->isSelected())
         return;
     ui->studios->removeRow(row);
+    m_hasChanged = true;
 }
 
 void MovieWidget::addCountry()
@@ -169,6 +197,7 @@ void MovieWidget::addCountry()
     ui->countries->insertRow(row);
     ui->countries->setItem(row, 0, new QTableWidgetItem(tr("Unkown Country")));
     ui->countries->scrollToBottom();
+    m_hasChanged = true;
 }
 
 void MovieWidget::removeCountry()
@@ -177,6 +206,7 @@ void MovieWidget::removeCountry()
     if (row < 0 || row >= ui->countries->rowCount() || !ui->countries->currentItem()->isSelected())
         return;
     ui->countries->removeRow(row);
+    m_hasChanged = true;
 }
 
 void MovieWidget::clear()
@@ -228,11 +258,18 @@ void MovieWidget::setDisabledTrue()
 
 void MovieWidget::setMovie(Movie *movie)
 {
+    if (m_hasChanged) {
+        if (QuestionDialog::instance()->exec() != QDialog::Accepted) {
+            emit movieChangeCanceled();
+            return;
+        }
+    }
     hideFirstTime();
     m_posterDownloadManager->abortDownloads();
     m_movie = movie;
     movie->loadImages(Manager::instance()->mediaCenterInterface());
     this->updateMovieInfo();
+    m_hasChanged = false;
 }
 
 void MovieWidget::startScraperSearch()
@@ -244,6 +281,7 @@ void MovieWidget::startScraperSearch()
         this->setDisabledTrue();
         m_movie->loadData(MovieSearch::instance()->scraperId(), Manager::instance()->scrapers().at(MovieSearch::instance()->scraperNo()));
         connect(this->m_movie, SIGNAL(loaded()), this, SLOT(loadDone()), Qt::UniqueConnection);
+        m_hasChanged = true;
     }
 }
 
@@ -370,6 +408,7 @@ void MovieWidget::chooseMoviePoster()
         m_posterDownloadManager->addDownload(d);
         ui->poster->setPixmap(QPixmap());
         ui->poster->setMovie(m_loadingMovie);
+        m_hasChanged = true;
     }
 }
 
@@ -391,6 +430,7 @@ void MovieWidget::chooseMovieBackdrop()
         m_posterDownloadManager->addDownload(d);
         ui->backdrop->setPixmap(QPixmap());
         ui->backdrop->setMovie(m_loadingMovie);
+        m_hasChanged = true;
     }
 }
 
@@ -491,9 +531,15 @@ void MovieWidget::downloadActorsFinished()
     m_movie->saveData(Manager::instance()->mediaCenterInterface());
     this->setEnabled(true);
     m_savingWidget->hide();
+    m_hasChanged = false;
 }
 
 void MovieWidget::actorDownloadsLeft(int left)
 {
     emit actorDownloadProgress(m_movie->actors().size()-left, m_movie->actors().size());
+}
+
+void MovieWidget::markHasChanged()
+{
+    m_hasChanged = true;
 }

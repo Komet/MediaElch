@@ -22,7 +22,10 @@ public:
     void disableRefresh();
     void showFirstTime();
     void hideFirstTime();
-    
+
+public slots:
+    void restoreLastSelection();
+
 signals:
     void noMovieSelected();
     void movieSelected(Movie*);
@@ -30,14 +33,18 @@ signals:
 private slots:
     void startSearch();
     void searchFinished();
-    void itemActivated(QModelIndex index);
+    void itemActivated(QModelIndex index, QModelIndex previous);
     void filter(QString filter);
     void tableViewResized(QSize size);
+    void movieSelectedEmitter();
 
 private:
     Ui::FilesWidget *ui;
     MovieProxyModel *m_movieProxyModel;
+    Movie *m_lastMovie;
     QLabel *m_firstTimeLabel;
+    QModelIndex m_lastModelIndex;
+    bool m_emitMovieSelected;
 };
 
 #endif // FILESWIDGET_H

@@ -37,6 +37,7 @@ signals:
     void actorDownloadStarted();
     void actorDownloadProgress(int, int);
     void actorDownloadFinished();
+    void movieChangeCanceled();
 
 private slots:
     void startScraperSearch();
@@ -58,6 +59,7 @@ private slots:
     void addCountry();
     void removeCountry();
     void groupBoxResized(QSize size);
+    void markHasChanged();
 
 private:
     Ui::MovieWidget *ui;
@@ -69,6 +71,7 @@ private:
     QLabel *m_savingWidget;
     QLabel *m_firstTimeLabel;
     bool m_loadedFromScraper;
+    bool m_hasChanged;
     void updateMovieInfo();
 };
 

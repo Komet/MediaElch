@@ -32,7 +32,8 @@ SOURCES += main.cpp\
     MyGroupBox.cpp \
     scrapers/VideoBuster.cpp \
     scrapers/OFDb.cpp \
-    scrapers/Cinefacts.cpp
+    scrapers/Cinefacts.cpp \
+    QuestionDialog.cpp
 
 HEADERS  += MainWindow.h \
     SettingsDialog.h \
@@ -58,7 +59,8 @@ HEADERS  += MainWindow.h \
     MyGroupBox.h \
     scrapers/VideoBuster.h \
     scrapers/OFDb.h \
-    scrapers/Cinefacts.h
+    scrapers/Cinefacts.h \
+    QuestionDialog.h
 
 FORMS    += MainWindow.ui \
     SettingsDialog.ui \
@@ -66,7 +68,8 @@ FORMS    += MainWindow.ui \
     MovieWidget.ui \
     MovieImageDialog.ui \
     FilesWidget.ui \
-    AboutDialog.ui
+    AboutDialog.ui \
+    QuestionDialog.ui
 
 RESOURCES += \
     XBMM.qrc

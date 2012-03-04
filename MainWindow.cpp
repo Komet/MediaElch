@@ -9,6 +9,7 @@
 #include "Manager.h"
 #include "MovieImageDialog.h"
 #include "MovieSearch.h"
+#include "QuestionDialog.h"
 #include "SettingsDialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -45,6 +46,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->movieWidget, SIGNAL(actorDownloadProgress(int,int)), this, SLOT(progressProgress(int,int)));
     connect(ui->movieWidget, SIGNAL(actorDownloadStarted()), this, SLOT(progressStarted()));
     connect(ui->movieWidget, SIGNAL(actorDownloadFinished()), this, SLOT(progressFinished()));
+    connect(ui->movieWidget, SIGNAL(movieChangeCanceled()), ui->filesWidget, SLOT(restoreLastSelection()));
 
     if (SettingsDialog::instance()->firstTime()) {
         ui->filesWidget->showFirstTime();
@@ -54,6 +56,7 @@ MainWindow::MainWindow(QWidget *parent) :
     Manager::instance()->movieFileSearcher()->start();
     MovieSearch::instance(ui->centralWidget);
     MovieImageDialog::instance(ui->centralWidget);
+    QuestionDialog::instance(ui->centralWidget);
 }
 
 MainWindow::~MainWindow()

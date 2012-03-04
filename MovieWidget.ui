@@ -297,6 +297,9 @@
                     <height>100</height>
                    </size>
                   </property>
+                  <property name="editTriggers">
+                   <set>QAbstractItemView::DoubleClicked</set>
+                  </property>
                   <property name="showGrid">
                    <bool>false</bool>
                   </property>
@@ -392,6 +395,9 @@
                     <width>300</width>
                     <height>100</height>
                    </size>
+                  </property>
+                  <property name="editTriggers">
+                   <set>QAbstractItemView::DoubleClicked</set>
                   </property>
                   <property name="showGrid">
                    <bool>false</bool>
@@ -489,6 +495,9 @@
                     <height>100</height>
                    </size>
                   </property>
+                  <property name="editTriggers">
+                   <set>QAbstractItemView::DoubleClicked</set>
+                  </property>
                   <property name="showGrid">
                    <bool>false</bool>
                   </property>
@@ -579,6 +588,9 @@
                <layout class="QHBoxLayout" name="horizontalLayout_3">
                 <item>
                  <widget class="QTableWidget" name="actors">
+                  <property name="editTriggers">
+                   <set>QAbstractItemView::DoubleClicked</set>
+                  </property>
                   <property name="showGrid">
                    <bool>false</bool>
                   </property>

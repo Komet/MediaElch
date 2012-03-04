@@ -18,5 +18,6 @@
         <file>img/text_start_movieWidget_de.png</file>
         <file>img/text_start_movieWidget_en.png</file>
         <file>i18n/XBMM_de.qm</file>
+        <file>img/warning1.png</file>
     </qresource>
 </RCC>
