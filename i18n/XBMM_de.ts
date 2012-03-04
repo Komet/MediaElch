@@ -106,23 +106,38 @@ p, li { white-space: pre-wrap; }
         <translation>Wähle ein Bild aus</translation>
     </message>
     <message>
-        <location filename="../MovieImageDialog.ui" line="54"/>
-        <location filename="../MovieImageDialog.ui" line="59"/>
-        <location filename="../MovieImageDialog.ui" line="64"/>
-        <location filename="../MovieImageDialog.ui" line="69"/>
-        <location filename="../MovieImageDialog.ui" line="74"/>
+        <location filename="../MovieImageDialog.ui" line="53"/>
+        <location filename="../MovieImageDialog.ui" line="58"/>
+        <location filename="../MovieImageDialog.ui" line="63"/>
+        <location filename="../MovieImageDialog.ui" line="68"/>
+        <location filename="../MovieImageDialog.ui" line="73"/>
         <source>Neue Spalte</source>
         <translation>Neue Spalte</translation>
     </message>
     <message>
-        <location filename="../MovieImageDialog.ui" line="91"/>
+        <location filename="../MovieImageDialog.ui" line="83"/>
+        <source>Choose Local Image</source>
+        <translation>Lokales Bild auswählen</translation>
+    </message>
+    <message>
+        <location filename="../MovieImageDialog.ui" line="100"/>
         <source>Loading...</source>
         <translation>Lade...</translation>
     </message>
     <message>
-        <location filename="../MovieImageDialog.ui" line="111"/>
+        <location filename="../MovieImageDialog.ui" line="120"/>
         <source>Close</source>
         <translation>Schließen</translation>
+    </message>
+    <message>
+        <location filename="../MovieImageDialog.cpp" line="237"/>
+        <source>Choose Image</source>
+        <translation>Bild auswählen</translation>
+    </message>
+    <message>
+        <location filename="../MovieImageDialog.cpp" line="237"/>
+        <source>Images (*.jpg *.png)</source>
+        <translation>Bilder (*.jpg *.png)</translation>
     </message>
 </context>
 <context>
@@ -133,17 +148,17 @@ p, li { white-space: pre-wrap; }
         <translation>Suchergebnis</translation>
     </message>
     <message>
-        <location filename="../MovieSearch.ui" line="34"/>
+        <location filename="../MovieSearch.ui" line="33"/>
         <source>Scraper</source>
         <translation>Scraper</translation>
     </message>
     <message>
-        <location filename="../MovieSearch.ui" line="90"/>
+        <location filename="../MovieSearch.ui" line="89"/>
         <source>Result</source>
         <translation>Ergebnis</translation>
     </message>
     <message>
-        <location filename="../MovieSearch.ui" line="113"/>
+        <location filename="../MovieSearch.ui" line="112"/>
         <source>Close</source>
         <translation>Schließen</translation>
     </message>
@@ -181,62 +196,62 @@ p, li { white-space: pre-wrap; }
         <translation>Dateien</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="114"/>
+        <location filename="../MovieWidget.ui" line="121"/>
         <source>Name</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="124"/>
+        <location filename="../MovieWidget.ui" line="131"/>
         <source>Original Name</source>
         <translation>Original Titel</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="134"/>
+        <location filename="../MovieWidget.ui" line="141"/>
         <source>Set</source>
         <translation>Set</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="151"/>
+        <location filename="../MovieWidget.ui" line="158"/>
         <source>Tagline</source>
         <translation>Tagline</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="161"/>
+        <location filename="../MovieWidget.ui" line="168"/>
         <source>Rating</source>
         <translation>Bewertung</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="178"/>
+        <location filename="../MovieWidget.ui" line="185"/>
         <source>Released</source>
         <translation>Erschienen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="188"/>
+        <location filename="../MovieWidget.ui" line="195"/>
         <source>Runtime</source>
         <translation>Laufzeit</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="205"/>
+        <location filename="../MovieWidget.ui" line="212"/>
         <source>Certification</source>
         <translation>Freigabe</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="222"/>
+        <location filename="../MovieWidget.ui" line="229"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="232"/>
+        <location filename="../MovieWidget.ui" line="239"/>
         <source>Play Count</source>
         <translation>Wiedergaben</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="249"/>
+        <location filename="../MovieWidget.ui" line="256"/>
         <source>Last Played</source>
         <translation>Letzte Wiedergabe</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="259"/>
+        <location filename="../MovieWidget.ui" line="266"/>
         <source>Overview</source>
         <translation>Inhalt</translation>
     </message>
@@ -347,27 +362,27 @@ p, li { white-space: pre-wrap; }
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="123"/>
+        <location filename="../MovieWidget.cpp" line="121"/>
         <source>Unknown Actor</source>
         <translation>Unbekannter Schauspieler</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="124"/>
+        <location filename="../MovieWidget.cpp" line="122"/>
         <source>Unkown Role</source>
         <translation>Unbekannte Rolle</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="140"/>
+        <location filename="../MovieWidget.cpp" line="138"/>
         <source>Unkown Genre</source>
         <translation>Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="156"/>
+        <location filename="../MovieWidget.cpp" line="154"/>
         <source>Unknown Studio</source>
         <translation>Unbekanntes Studio</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="172"/>
+        <location filename="../MovieWidget.cpp" line="170"/>
         <source>Unkown Country</source>
         <translation>Unbekanntes Land</translation>
     </message>

@@ -2,6 +2,7 @@
 #include "ui_MovieImageDialog.h"
 
 #include <QDebug>
+#include <QFileDialog>
 #include <QSettings>
 #include <QtCore/qmath.h>
 #include <QLabel>
@@ -29,6 +30,7 @@ MovieImageDialog::MovieImageDialog(QWidget *parent) :
 
     connect(ui->table, SIGNAL(cellClicked(int,int)), this, SLOT(imageClicked(int, int)));
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
+    connect(ui->buttonChoose, SIGNAL(clicked()), this, SLOT(chooseLocalImage()));
     QMovie *movie = new QMovie(":/img/spinner.gif");
     movie->start();
     ui->labelSpinner->setMovie(movie);
@@ -228,4 +230,25 @@ void MovieImageDialog::cancelDownloads()
     m_elements.clear();
     if (running)
         m_currentDownloadReply->abort();
+}
+
+void MovieImageDialog::chooseLocalImage()
+{
+    QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), QDir::homePath(), tr("Images (*.jpg *.png)"));
+    if (!fileName.isNull()) {
+        int index = m_elements.size();
+        DownloadElement d;
+        d.originalUrl = fileName;
+        d.thumbUrl = fileName;
+        d.downloaded = false;
+        m_elements.append(d);
+        this->renderTable();
+        m_elements[index].pixmap = QPixmap(fileName);
+        m_elements[index].pixmap = m_elements[index].pixmap.scaledToWidth(this->getColumnWidth()-10, Qt::SmoothTransformation);
+        m_elements[index].cellWidget->setPixmap(m_elements[index].pixmap);
+        ui->table->resizeRowsToContents();
+        m_elements[index].downloaded = true;
+        m_imageUrl = QUrl(fileName);
+        accept();
+    }
 }
