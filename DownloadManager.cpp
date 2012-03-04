@@ -83,3 +83,13 @@ void DownloadManager::abortDownloads()
         m_currentReply->abort();
     }
 }
+
+bool DownloadManager::isDownloading()
+{
+    return m_downloading;
+}
+
+int DownloadManager::downloadQueueSize()
+{
+    return m_queue.size();
+}

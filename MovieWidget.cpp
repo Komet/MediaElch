@@ -255,6 +255,26 @@ void MovieWidget::loadDone()
     this->updateMovieInfo();
     this->setEnabledTrue();
     m_loadedFromScraper = true;
+
+    if (m_movie->posters().size() > 0) {
+        ui->buttonSave->setDisabled(true);
+        DownloadManagerElement d;
+        d.imageType = TypePoster;
+        d.url = m_movie->posters().at(0).originalUrl;
+        m_posterDownloadManager->addDownload(d);
+        ui->poster->setPixmap(QPixmap());
+        ui->poster->setMovie(m_loadingMovie);
+    }
+
+    if (m_movie->backdrops().size() > 0) {
+        ui->buttonSave->setDisabled(true);
+        DownloadManagerElement d;
+        d.imageType = TypeBackdrop;
+        d.url = m_movie->backdrops().at(0).originalUrl;
+        m_posterDownloadManager->addDownload(d);
+        ui->backdrop->setPixmap(QPixmap());
+        ui->backdrop->setMovie(m_loadingMovie);
+    }
 }
 
 void MovieWidget::updateMovieInfo()
@@ -394,7 +414,8 @@ void MovieWidget::posterDownloadFinished(DownloadManagerElement elem)
         m_chosenBackdrop = elem.image;
         ui->backdrop->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     }
-    ui->buttonSave->setEnabled(true);
+    if (m_posterDownloadManager->downloadQueueSize() == 0)
+        ui->buttonSave->setEnabled(true);
 }
 
 void MovieWidget::saveInformation()

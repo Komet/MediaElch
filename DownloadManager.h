@@ -16,6 +16,8 @@ public:
     void addDownload(DownloadManagerElement elem);
     void setDownloads(QList<DownloadManagerElement> elements);
     void abortDownloads();
+    bool isDownloading();
+    int downloadQueueSize();
     
 signals:
     void downloadProgress(DownloadManagerElement);
