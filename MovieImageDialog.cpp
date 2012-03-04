@@ -16,7 +16,12 @@ MovieImageDialog::MovieImageDialog(QWidget *parent) :
     ui->setupUi(this);
 
     Qt::WindowFlags flags = windowFlags();
+#ifdef Q_WS_WIN
+    flags |= Qt::Dialog;
+#else
     flags |= Qt::SplashScreen;
+    setStyleSheet(styleSheet() + " #MovieImageDialog { border: 1px solid rgba(0, 0, 0, 100); border-top: none; }");
+#endif
     setWindowFlags(flags);
 
     QSettings settings;

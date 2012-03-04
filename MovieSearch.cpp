@@ -13,7 +13,12 @@ MovieSearch::MovieSearch(QWidget *parent) :
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
     Qt::WindowFlags flags = windowFlags();
+#ifdef Q_WS_WIN
+    flags |= Qt::Dialog;
+#else
     flags |= Qt::SplashScreen;
+    setStyleSheet(styleSheet() + " #MovieSearch { border: 1px solid rgba(0, 0, 0, 100); border-top: none; }");
+#endif
     setWindowFlags(flags);
 
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {

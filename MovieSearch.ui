@@ -19,8 +19,6 @@
   <property name="styleSheet">
    <string notr="true">#MovieSearch {
 	background-image: url(:/img/pattern_dark.png);
-	border: 1px solid rgba(0, 0, 0, 100);
-	border-top: none;
 }</string>
   </property>
   <property name="modal">
