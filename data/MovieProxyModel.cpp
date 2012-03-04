@@ -22,5 +22,6 @@ bool MovieProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right
         return true;
     if (!sourceModel()->data(left, Qt::UserRole+1).toBool() && sourceModel()->data(right, Qt::UserRole+1).toBool() )
         return false;
-    return !QString::compare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString());
+    int cmp = QString::compare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString());
+    return !(cmp < 0);
 }
