@@ -30,7 +30,9 @@ SOURCES += main.cpp\
     AboutDialog.cpp \
     MyTableView.cpp \
     MyGroupBox.cpp \
-    scrapers/VideoBuster.cpp
+    scrapers/VideoBuster.cpp \
+    scrapers/OFDb.cpp \
+    scrapers/Cinefacts.cpp
 
 HEADERS  += MainWindow.h \
     SettingsDialog.h \
@@ -54,7 +56,9 @@ HEADERS  += MainWindow.h \
     AboutDialog.h \
     MyTableView.h \
     MyGroupBox.h \
-    scrapers/VideoBuster.h
+    scrapers/VideoBuster.h \
+    scrapers/OFDb.h \
+    scrapers/Cinefacts.h
 
 FORMS    += MainWindow.ui \
     SettingsDialog.ui \

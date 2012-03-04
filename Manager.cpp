@@ -1,12 +1,19 @@
 #include "Manager.h"
 
 #include <QApplication>
+#include "mediaCenterPlugins/XbmcXml.h"
+#include "scrapers/Cinefacts.h"
+#include "scrapers/OFDb.h"
+#include "scrapers/TMDb.h"
+#include "scrapers/VideoBuster.h"
 
 Manager::Manager(QObject *parent) :
     QObject(parent)
 {
     m_mediaCenters.append(new XbmcXml(this));
     m_scrapers.append(new TMDb(this));
+    m_scrapers.append(new Cinefacts(this));
+    m_scrapers.append(new OFDb(this));
     m_scrapers.append(new VideoBuster(this));
     m_movieFileSearcher = new MovieFileSearcher(this);
     m_movieModel = new MovieModel(this);

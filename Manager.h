@@ -6,9 +6,6 @@
 #include "data/MovieFileSearcher.h"
 #include "data/ScraperInterface.h"
 #include "data/MovieModel.h"
-#include "mediaCenterPlugins/XbmcXml.h"
-#include "scrapers/TMDb.h"
-#include "scrapers/VideoBuster.h"
 
 class Manager : public QObject
 {
