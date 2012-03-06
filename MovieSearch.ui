@@ -3,7 +3,7 @@
  <class>MovieSearch</class>
  <widget class="QDialog" name="MovieSearch">
   <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::WindowModal</enum>
   </property>
   <property name="geometry">
    <rect>

@@ -16,14 +16,12 @@ MovieImageDialog::MovieImageDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    Qt::WindowFlags flags = windowFlags();
-#ifdef Q_WS_WIN
-    flags |= Qt::Dialog;
-#else
-    flags |= Qt::SplashScreen;
+#ifdef Q_WS_MAC
+    setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
     setStyleSheet(styleSheet() + " #MovieImageDialog { border: 1px solid rgba(0, 0, 0, 100); border-top: none; }");
+#else
+    setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
-    setWindowFlags(flags);
 
     QSettings settings;
     resize(settings.value("MovieImageDialog/Size").toSize());

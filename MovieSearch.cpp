@@ -12,14 +12,12 @@ MovieSearch::MovieSearch(QWidget *parent) :
     ui->results->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
-    Qt::WindowFlags flags = windowFlags();
-#ifdef Q_WS_WIN
-    flags |= Qt::Dialog;
-#else
-    flags |= Qt::SplashScreen;
+#ifdef Q_WS_MAC
+    setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
     setStyleSheet(styleSheet() + " #MovieSearch { border: 1px solid rgba(0, 0, 0, 100); border-top: none; }");
+#else
+    setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
-    setWindowFlags(flags);
 
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
         ui->comboScraper->addItem(scraper->name(), Manager::instance()->scrapers().indexOf(scraper));
@@ -52,10 +50,6 @@ int MovieSearch::exec(QString searchString)
     newSize.setHeight(parentWidget()->size().height()-200);
     newSize.setWidth(qMin(600, parentWidget()->size().width()-400));
     resize(newSize);
-
-    int xMove = (parentWidget()->size().width()-size().width())/2;
-    QPoint globalPos = parentWidget()->mapToGlobal(parentWidget()->pos());
-    move(globalPos.x()+xMove, globalPos.y());
 
     ui->searchString->setText(searchString);
     this->search();
