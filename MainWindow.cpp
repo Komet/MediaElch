@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include <QDir>
+#include <QPainter>
 
 #include "data/MediaCenterInterface.h"
 #include "data/ScraperInterface.h"
@@ -17,12 +18,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->mainToolBar->setVisible(false);
     m_progressBar = new QProgressBar(ui->statusBar);
     m_progressBar->hide();
-    m_aboutDialog = new AboutDialog(this);
+    m_aboutDialog = new AboutDialog(ui->centralWidget);
+    setupToolbar();
 
     Manager::instance();
+    SettingsDialog::instance(ui->centralWidget);
 
     if (SettingsDialog::instance()->mainWindowSize().isValid()) {
         resize(SettingsDialog::instance()->mainWindowSize());
@@ -33,9 +35,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     Manager::instance()->movieFileSearcher()->setMovieDirectories(SettingsDialog::instance()->movieDirectories());
 
-    connect(ui->actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
-    connect(ui->actionSettings, SIGNAL(triggered()), this, SLOT(execSettingsDialog()));
-    connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(execAboutDialog()));
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded()), this, SLOT(progressFinished()));
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(progress(int,int)), this, SLOT(progressProgress(int,int)));
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(started()), this, SLOT(progressStarted()));
@@ -47,16 +46,18 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->movieWidget, SIGNAL(actorDownloadStarted()), this, SLOT(progressStarted()));
     connect(ui->movieWidget, SIGNAL(actorDownloadFinished()), this, SLOT(progressFinished()));
     connect(ui->movieWidget, SIGNAL(movieChangeCanceled()), ui->filesWidget, SLOT(restoreLastSelection()));
+    connect(ui->movieWidget, SIGNAL(setActionSaveEnabled(bool)), this, SLOT(setActionSaveEnabled(bool)));
+    connect(ui->movieWidget, SIGNAL(setActionSearchEnabled(bool)), this, SLOT(setActionSearchEnabled(bool)));
 
     if (SettingsDialog::instance()->firstTime()) {
         ui->filesWidget->showFirstTime();
         ui->movieWidget->showFirstTime();
     }
 
-    Manager::instance()->movieFileSearcher()->start();
     MovieSearch::instance(ui->centralWidget);
     MovieImageDialog::instance(ui->centralWidget);
     QuestionDialog::instance(ui->centralWidget);
+    Manager::instance()->movieFileSearcher()->start();
 }
 
 MainWindow::~MainWindow()
@@ -67,9 +68,66 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::execAboutDialog()
+void MainWindow::setupToolbar()
 {
-    m_aboutDialog->exec();
+    setUnifiedTitleAndToolBarOnMac(true);
+
+    QPixmap spanner(":/img/spanner.png");
+    QPixmap info(":/img/info.png");
+    QPixmap quit(":/img/stop.png");
+    QPixmap search(":/img/magnifier.png");
+    QPixmap save(":/img/save.png");
+    QPainter p;
+    p.begin(&search);
+    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    p.fillRect(search.rect(), QColor(0, 0, 0, 100));
+    p.end();
+    p.begin(&save);
+    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    p.fillRect(save.rect(), QColor(0, 0, 0, 100));
+    p.end();
+    p.begin(&spanner);
+    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    p.fillRect(spanner.rect(), QColor(0, 0, 0, 100));
+    p.end();
+    p.begin(&info);
+    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    p.fillRect(info.rect(), QColor(0, 0, 0, 100));
+    p.end();
+    p.begin(&quit);
+    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    p.fillRect(quit.rect(), QColor(0, 0, 0, 100));
+    p.end();
+
+    m_actionSearch = new QAction(QIcon(search), tr("Search"), this);
+    m_actionSave = new QAction(QIcon(save), tr("Save"), this);
+    m_actionSettings = new QAction(QIcon(spanner), tr("Preferences"), this);
+    m_actionAbout = new QAction(QIcon(info), tr("About"), this);
+    m_actionQuit = new QAction(QIcon(quit), tr("Quit"), this);
+    ui->mainToolBar->addAction(m_actionSearch);
+    ui->mainToolBar->addAction(m_actionSave);
+    ui->mainToolBar->addAction(m_actionSettings);
+    ui->mainToolBar->addAction(m_actionAbout);
+    ui->mainToolBar->addAction(m_actionQuit);
+
+    connect(m_actionSearch, SIGNAL(triggered()), ui->movieWidget, SLOT(startScraperSearch()));
+    connect(m_actionSave, SIGNAL(triggered()), ui->movieWidget, SLOT(saveInformation()));
+    connect(m_actionSettings, SIGNAL(triggered()), this, SLOT(execSettingsDialog()));
+    connect(m_actionAbout, SIGNAL(triggered()), m_aboutDialog, SLOT(exec()));
+    connect(m_actionQuit, SIGNAL(triggered()), QApplication::instance(), SLOT(quit()));
+
+    setActionSearchEnabled(false);
+    setActionSaveEnabled(false);
+}
+
+void MainWindow::setActionSaveEnabled(bool enabled)
+{
+    m_actionSave->setEnabled(enabled);
+}
+
+void MainWindow::setActionSearchEnabled(bool enabled)
+{
+    m_actionSearch->setEnabled(enabled);
 }
 
 void MainWindow::execSettingsDialog()

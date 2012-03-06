@@ -12,6 +12,12 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
+#ifdef Q_WS_MAC
+    setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
+#else
+    setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
+#endif
+
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
         if (scraper->hasSettings()) {
             QWidget *scraperSettings = scraper->settingsWidget();
@@ -40,11 +46,11 @@ SettingsDialog::~SettingsDialog()
     delete ui;
 }
 
-SettingsDialog *SettingsDialog::instance()
+SettingsDialog *SettingsDialog::instance(QWidget *parent)
 {
     static SettingsDialog *m_instance = 0;
     if (m_instance == 0) {
-        m_instance = new SettingsDialog;
+        m_instance = new SettingsDialog(parent);
     }
     return m_instance;
 }

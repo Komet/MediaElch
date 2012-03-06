@@ -16,7 +16,7 @@ public:
     explicit SettingsDialog(QWidget *parent = 0);
     ~SettingsDialog();
 
-    static SettingsDialog* instance();
+    static SettingsDialog* instance(QWidget *parent = 0);
     void accept();
 
     QSize mainWindowSize();

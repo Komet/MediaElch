@@ -29,6 +29,8 @@ public slots:
     void setDisabledTrue();
     void showFirstTime();
     void hideFirstTime();
+    void startScraperSearch();
+    void saveInformation();
 
 protected:
     void resizeEvent(QResizeEvent *event);
@@ -38,10 +40,10 @@ signals:
     void actorDownloadProgress(int, int);
     void actorDownloadFinished();
     void movieChangeCanceled();
+    void setActionSearchEnabled(bool);
+    void setActionSaveEnabled(bool);
 
 private slots:
-    void startScraperSearch();
-    void saveInformation();
     void downloadActorsFinished();
     void actorDownloadsLeft(int left);
     void loadDone();

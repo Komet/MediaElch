@@ -4,17 +4,39 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../AboutDialog.ui" line="14"/>
+        <location filename="../AboutDialog.ui" line="17"/>
         <source>About XBMM</source>
         <translation>Über XBMM</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="27"/>
+        <location filename="../AboutDialog.ui" line="33"/>
         <source>XBMM</source>
         <translation>XBMM</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="34"/>
+        <location filename="../AboutDialog.ui" line="40"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;XBMM was built using &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Icon Sets used are &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; and &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Always have a look at &lt;a href=&quot;http://xbmm.kvibes.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://xbmm.kvibes.net&lt;/span&gt;&lt;/a&gt; to get the latest version.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;XBMM wurde mit dem &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt Framework&lt;/span&gt;&lt;/a&gt; erstellt.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Benutzte Icon Sets sind &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; von &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; und &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; von &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Schau auf &lt;a href=&quot;http://xbmm.kvibes.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://xbmm.kvibes.net&lt;/span&gt;&lt;/a&gt; vorbei, um die aktuellste Version zu bekommen.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -25,7 +47,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Always have a look at &lt;a href=&quot;http://xbmm.kvibes.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://xbmm.kvibes.net&lt;/span&gt;&lt;/a&gt; to get the latest version.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -68,34 +90,48 @@ p, li { white-space: pre-wrap; }
         <translation>XBMM</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="46"/>
         <source>File</source>
-        <translation>Datei</translation>
+        <translation type="obsolete">Datei</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="52"/>
         <source>Edit</source>
-        <translation>Bearbeiten</translation>
+        <translation type="obsolete">Bearbeiten</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="58"/>
         <source>Help</source>
-        <translation>Hilfe</translation>
+        <translation type="obsolete">Hilfe</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="84"/>
+        <location filename="../MainWindow.ui" line="65"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="89"/>
+        <location filename="../MainWindow.ui" line="70"/>
+        <location filename="../MainWindow.cpp" line="106"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="94"/>
+        <location filename="../MainWindow.ui" line="75"/>
+        <location filename="../MainWindow.cpp" line="105"/>
         <source>About</source>
         <translation>Über</translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="102"/>
+        <source>Search</source>
+        <translation>Suche</translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="103"/>
+        <source>Save</source>
+        <translation>Speichern</translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="104"/>
+        <source>Preferences</source>
+        <translation>Einstellungen</translation>
     </message>
 </context>
 <context>
@@ -130,12 +166,12 @@ p, li { white-space: pre-wrap; }
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../MovieImageDialog.cpp" line="237"/>
+        <location filename="../MovieImageDialog.cpp" line="235"/>
         <source>Choose Image</source>
         <translation>Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../MovieImageDialog.cpp" line="237"/>
+        <location filename="../MovieImageDialog.cpp" line="235"/>
         <source>Images (*.jpg *.png)</source>
         <translation>Bilder (*.jpg *.png)</translation>
     </message>
@@ -171,218 +207,216 @@ p, li { white-space: pre-wrap; }
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="31"/>
+        <location filename="../MovieWidget.ui" line="29"/>
         <source>Movie Name</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="41"/>
         <source>Load Information from Scraper</source>
-        <translation>Lade Informationen von einem Scraper</translation>
+        <translation type="obsolete">Lade Informationen von einem Scraper</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="55"/>
         <source>Save</source>
-        <translation>Speichern</translation>
+        <translation type="obsolete">Speichern</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="93"/>
+        <location filename="../MovieWidget.ui" line="61"/>
         <source>Information</source>
         <translation>Informationen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="107"/>
+        <location filename="../MovieWidget.ui" line="75"/>
         <source>Files</source>
         <translation>Dateien</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="121"/>
+        <location filename="../MovieWidget.ui" line="89"/>
         <source>Name</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="131"/>
+        <location filename="../MovieWidget.ui" line="99"/>
         <source>Original Name</source>
         <translation>Original Titel</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="141"/>
+        <location filename="../MovieWidget.ui" line="109"/>
         <source>Set</source>
         <translation>Set</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="158"/>
+        <location filename="../MovieWidget.ui" line="126"/>
         <source>Tagline</source>
         <translation>Tagline</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="168"/>
+        <location filename="../MovieWidget.ui" line="136"/>
         <source>Rating</source>
         <translation>Bewertung</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="185"/>
+        <location filename="../MovieWidget.ui" line="153"/>
         <source>Released</source>
         <translation>Erschienen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="195"/>
+        <location filename="../MovieWidget.ui" line="163"/>
         <source>Runtime</source>
         <translation>Laufzeit</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="212"/>
+        <location filename="../MovieWidget.ui" line="180"/>
         <source>Certification</source>
         <translation>Freigabe</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="229"/>
+        <location filename="../MovieWidget.ui" line="197"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="239"/>
+        <location filename="../MovieWidget.ui" line="207"/>
         <source>Play Count</source>
         <translation>Wiedergaben</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="256"/>
+        <location filename="../MovieWidget.ui" line="224"/>
         <source>Last Played</source>
         <translation>Letzte Wiedergabe</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="266"/>
+        <location filename="../MovieWidget.ui" line="234"/>
         <source>Overview</source>
         <translation>Inhalt</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="279"/>
+        <location filename="../MovieWidget.ui" line="247"/>
         <source>Extended</source>
         <translation>Erweitert</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="317"/>
+        <location filename="../MovieWidget.ui" line="285"/>
         <source>Genre</source>
         <translation>Genre</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="327"/>
+        <location filename="../MovieWidget.ui" line="295"/>
         <source>Add Genre</source>
         <translation>Genre hinzufügen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="341"/>
+        <location filename="../MovieWidget.ui" line="309"/>
         <source>Remove Genre</source>
         <translation>Genre entfernen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="385"/>
+        <location filename="../MovieWidget.ui" line="353"/>
         <source>Genres</source>
         <translation>Genres</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="416"/>
+        <location filename="../MovieWidget.ui" line="384"/>
         <source>Studio</source>
         <translation>Studio</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="426"/>
+        <location filename="../MovieWidget.ui" line="394"/>
         <source>Add Studio</source>
         <translation>Studio hinzufügen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="440"/>
+        <location filename="../MovieWidget.ui" line="408"/>
         <source>Remove Studio</source>
         <translation>Studio entfernen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="484"/>
+        <location filename="../MovieWidget.ui" line="452"/>
         <source>Studios</source>
         <translation>Studios</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="515"/>
+        <location filename="../MovieWidget.ui" line="483"/>
         <source>Country</source>
         <translation>Land</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="525"/>
+        <location filename="../MovieWidget.ui" line="493"/>
         <source>Add Country</source>
         <translation>Land hinzufügen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="539"/>
+        <location filename="../MovieWidget.ui" line="507"/>
         <source>Remove Country</source>
         <translation>Land entfernen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="583"/>
+        <location filename="../MovieWidget.ui" line="551"/>
         <source>Countries</source>
         <translation>Länder</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="602"/>
+        <location filename="../MovieWidget.ui" line="570"/>
         <source>Actor</source>
         <translation>Schauspieler</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="607"/>
+        <location filename="../MovieWidget.ui" line="575"/>
         <source>Role</source>
         <translation>Rolle</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="617"/>
+        <location filename="../MovieWidget.ui" line="585"/>
         <source>Add Actor</source>
         <translation>Schauspieler hinzufügen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="631"/>
+        <location filename="../MovieWidget.ui" line="599"/>
         <source>Remove Actor</source>
         <translation>Schauspieler entfernen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="662"/>
+        <location filename="../MovieWidget.ui" line="630"/>
         <source>Actors</source>
         <translation>Schauspieler</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="689"/>
+        <location filename="../MovieWidget.ui" line="657"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="711"/>
-        <location filename="../MovieWidget.ui" line="755"/>
+        <location filename="../MovieWidget.ui" line="679"/>
+        <location filename="../MovieWidget.ui" line="723"/>
         <source>Click to Change</source>
         <translation>Zum Ändern klicken</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="733"/>
+        <location filename="../MovieWidget.ui" line="701"/>
         <source>Backdrop</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="143"/>
+        <location filename="../MovieWidget.cpp" line="126"/>
         <source>Unknown Actor</source>
         <translation>Unbekannter Schauspieler</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="144"/>
+        <location filename="../MovieWidget.cpp" line="127"/>
         <source>Unkown Role</source>
         <translation>Unbekannte Rolle</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="162"/>
+        <location filename="../MovieWidget.cpp" line="145"/>
         <source>Unkown Genre</source>
         <translation>Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="180"/>
+        <location filename="../MovieWidget.cpp" line="163"/>
         <source>Unknown Studio</source>
         <translation>Unbekanntes Studio</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="198"/>
+        <location filename="../MovieWidget.cpp" line="181"/>
         <source>Unkown Country</source>
         <translation>Unbekanntes Land</translation>
     </message>
@@ -456,7 +490,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../SettingsDialog.cpp" line="94"/>
+        <location filename="../SettingsDialog.cpp" line="100"/>
         <source>Choose a directory containing your movies</source>
         <translation>Wähle ein Verzeichnis aus, das deine Filme enthält</translation>
     </message>

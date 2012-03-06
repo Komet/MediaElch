@@ -30,26 +30,9 @@ MovieWidget::MovieWidget(QWidget *parent) :
     font.setPointSize(font.pointSize()+4);
     ui->movieName->setFont(font);
 
-    QPainter p;
-    QImage iconSearch(":/img/magnifier.png");
-    QImage iconSave(":/img/save.png");
-    p.begin(&iconSave);
-    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    p.fillRect(iconSave.rect(), QColor(0, 0, 0, 170));
-    p.end();
-    p.begin(&iconSearch);
-    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    p.fillRect(iconSearch.rect(), QColor(0, 0, 0, 170));
-    p.end();
-
-    ui->buttonSave->setIcon(QIcon(QPixmap::fromImage(iconSave)));
-    ui->buttonLoadFromScraper->setIcon(QIcon(QPixmap::fromImage(iconSearch)));
-
     m_movie = 0;
     m_posterDownloadManager = new DownloadManager(this);
 
-    connect(ui->buttonLoadFromScraper, SIGNAL(clicked()), this, SLOT(startScraperSearch()));
-    connect(ui->buttonSave, SIGNAL(clicked()), this, SLOT(saveInformation()));
     connect(ui->poster, SIGNAL(clicked()), this, SLOT(chooseMoviePoster()));
     connect(ui->backdrop, SIGNAL(clicked()), this, SLOT(chooseMovieBackdrop()));
     connect(m_posterDownloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(posterDownloadFinished(DownloadManagerElement)));
@@ -245,15 +228,15 @@ void MovieWidget::movieNameChanged(QString text)
 void MovieWidget::setEnabledTrue()
 {
     ui->groupBox_3->setEnabled(true);
-    ui->buttonSave->setEnabled(true);
-    ui->buttonLoadFromScraper->setEnabled(true);
+    emit setActionSaveEnabled(true);
+    emit setActionSearchEnabled(true);
 }
 
 void MovieWidget::setDisabledTrue()
 {
     ui->groupBox_3->setDisabled(true);
-    ui->buttonSave->setDisabled(true);
-    ui->buttonLoadFromScraper->setDisabled(true);
+    emit setActionSaveEnabled(false);
+    emit setActionSearchEnabled(false);
 }
 
 void MovieWidget::setMovie(Movie *movie)
@@ -276,12 +259,17 @@ void MovieWidget::startScraperSearch()
 {
     if (m_movie == 0)
         return;
+    emit setActionSearchEnabled(false);
+    emit setActionSaveEnabled(false);
     MovieSearch::instance()->exec(m_movie->name());
     if (MovieSearch::instance()->result() == QDialog::Accepted) {
         this->setDisabledTrue();
         m_movie->loadData(MovieSearch::instance()->scraperId(), Manager::instance()->scrapers().at(MovieSearch::instance()->scraperNo()));
         connect(this->m_movie, SIGNAL(loaded()), this, SLOT(loadDone()), Qt::UniqueConnection);
         m_hasChanged = true;
+    } else {
+        emit setActionSearchEnabled(true);
+        emit setActionSaveEnabled(true);
     }
 }
 
@@ -295,7 +283,7 @@ void MovieWidget::loadDone()
     m_loadedFromScraper = true;
 
     if (m_movie->posters().size() > 0) {
-        ui->buttonSave->setDisabled(true);
+        emit setActionSaveEnabled(false);
         DownloadManagerElement d;
         d.imageType = TypePoster;
         d.url = m_movie->posters().at(0).originalUrl;
@@ -305,7 +293,7 @@ void MovieWidget::loadDone()
     }
 
     if (m_movie->backdrops().size() > 0) {
-        ui->buttonSave->setDisabled(true);
+        emit setActionSaveEnabled(false);
         DownloadManagerElement d;
         d.imageType = TypeBackdrop;
         d.url = m_movie->backdrops().at(0).originalUrl;
@@ -387,7 +375,7 @@ void MovieWidget::updateMovieInfo()
     else
         ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
-    ui->buttonSave->setEnabled(true);
+    emit setActionSaveEnabled(true);
 }
 
 void MovieWidget::chooseMoviePoster()
@@ -401,7 +389,7 @@ void MovieWidget::chooseMoviePoster()
     MovieImageDialog::instance()->exec();
 
     if (MovieImageDialog::instance()->result() == QDialog::Accepted) {
-        ui->buttonSave->setEnabled(false);
+        emit setActionSaveEnabled(false);
         DownloadManagerElement d;
         d.imageType = TypePoster;
         d.url = MovieImageDialog::instance()->imageUrl();
@@ -423,7 +411,7 @@ void MovieWidget::chooseMovieBackdrop()
     MovieImageDialog::instance()->exec();
 
     if (MovieImageDialog::instance()->result() == QDialog::Accepted) {
-        ui->buttonSave->setEnabled(false);
+        emit setActionSaveEnabled(false);
         DownloadManagerElement d;
         d.imageType = TypeBackdrop;
         d.url = MovieImageDialog::instance()->imageUrl();
@@ -455,12 +443,13 @@ void MovieWidget::posterDownloadFinished(DownloadManagerElement elem)
         ui->backdrop->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     }
     if (m_posterDownloadManager->downloadQueueSize() == 0)
-        ui->buttonSave->setEnabled(true);
+        emit setActionSaveEnabled(true);
+
 }
 
 void MovieWidget::saveInformation()
 {
-    this->setDisabled(true);
+    this->setDisabledTrue();
     m_savingWidget->show();
     m_movie->setName(ui->name->text());
     m_movie->setOriginalName(ui->originalName->text());
@@ -529,7 +518,7 @@ void MovieWidget::downloadActorsFinished()
 {
     emit actorDownloadFinished();
     m_movie->saveData(Manager::instance()->mediaCenterInterface());
-    this->setEnabled(true);
+    this->setEnabledTrue();
     m_savingWidget->hide();
     m_hasChanged = false;
 }
