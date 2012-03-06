@@ -114,7 +114,7 @@ void MainWindow::setupToolbar()
     connect(m_actionSave, SIGNAL(triggered()), ui->movieWidget, SLOT(saveInformation()));
     connect(m_actionSettings, SIGNAL(triggered()), this, SLOT(execSettingsDialog()));
     connect(m_actionAbout, SIGNAL(triggered()), m_aboutDialog, SLOT(exec()));
-    connect(m_actionQuit, SIGNAL(triggered()), QApplication::instance(), SLOT(quit()));
+    connect(m_actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
 
     setActionSearchEnabled(false);
     setActionSaveEnabled(false);
