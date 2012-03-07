@@ -14,7 +14,7 @@
    <string>XBMM</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#centralWidget, #statusBar {
+   <string notr="true">#centralWidget {
 	background-image: url(:/img/pattern.png);
 }
 </string>

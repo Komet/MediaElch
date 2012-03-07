@@ -58,6 +58,10 @@ MainWindow::MainWindow(QWidget *parent) :
     MovieImageDialog::instance(ui->centralWidget);
     QuestionDialog::instance(ui->centralWidget);
     Manager::instance()->movieFileSearcher()->start();
+
+#ifdef Q_WS_WIN
+    setStyleSheet(styleSheet() + " #centralWidget { border-bottom: 1px solid rgba(0, 0, 0, 100); } ");
+#endif
 }
 
 MainWindow::~MainWindow()
@@ -118,6 +122,10 @@ void MainWindow::setupToolbar()
 
     setActionSearchEnabled(false);
     setActionSaveEnabled(false);
+
+#ifdef Q_WS_WIN
+    ui->mainToolBar->setStyleSheet("QToolButton {border: 0;} QToolBar { border-bottom: 1px solid rgba(0, 0, 0, 100); }");
+#endif
 }
 
 void MainWindow::setActionSaveEnabled(bool enabled)
