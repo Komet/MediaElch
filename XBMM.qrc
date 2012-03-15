@@ -22,5 +22,6 @@
         <file>img/gear.png</file>
         <file>img/info.png</file>
         <file>img/spanner.png</file>
+        <file>img/pattern2.png</file>
     </qresource>
 </RCC>

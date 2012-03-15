@@ -15,7 +15,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#centralWidget {
-	background-image: url(:/img/pattern.png);
+	background-image: url(:/img/pattern2.png);
 }
 </string>
   </property>
