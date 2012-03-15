@@ -87,6 +87,11 @@ p, li { white-space: pre-wrap; }
         <translatorcomment>Form</translatorcomment>
         <translation>Form</translation>
     </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.ui" line="45"/>
+        <source>Filter</source>
+        <translation>Filter</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>

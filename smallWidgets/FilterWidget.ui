@@ -41,6 +41,9 @@
        <height>16777215</height>
       </size>
      </property>
+     <property name="placeholderText">
+      <string>Filter</string>
+     </property>
     </widget>
    </item>
   </layout>

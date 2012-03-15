@@ -27,8 +27,8 @@ public:
 private:
     QList<Movie*> m_movies;
 
-    QIcon m_movieIconRed;
-    QIcon m_movieIconGreen;
+    QIcon m_movieIconTodo;
+    QIcon m_movieIconDone;
 };
 
 #endif // MOVIEMODEL_H
