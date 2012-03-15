@@ -17,7 +17,7 @@ public:
     void setMovieDirectories(QStringList directories);
 
 signals:
-    void searchStarted();
+    void searchStarted(QString);
     void progress(int, int);
     void moviesLoaded();
 

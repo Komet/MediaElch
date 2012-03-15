@@ -38,14 +38,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded()), this, SLOT(progressFinished()));
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(progress(int,int)), this, SLOT(progressProgress(int,int)));
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(started()), this, SLOT(progressStarted()));
+    connect(Manager::instance()->movieFileSearcher(), SIGNAL(searchStarted(QString)), this, SLOT(progressStarted(QString)));
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setMovie(Movie*)));
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setEnabledTrue()));
     connect(ui->filesWidget, SIGNAL(noMovieSelected()), ui->movieWidget, SLOT(clear()));
     connect(ui->filesWidget, SIGNAL(noMovieSelected()), ui->movieWidget, SLOT(setDisabledTrue()));
     connect(ui->filesWidget, SIGNAL(setRefreshButtonEnabled(bool)), m_actionRefreshFiles, SLOT(setEnabled(bool)));
     connect(ui->movieWidget, SIGNAL(actorDownloadProgress(int,int)), this, SLOT(progressProgress(int,int)));
-    connect(ui->movieWidget, SIGNAL(actorDownloadStarted()), this, SLOT(progressStarted()));
+    connect(ui->movieWidget, SIGNAL(actorDownloadStarted(QString)), this, SLOT(progressStarted(QString)));
     connect(ui->movieWidget, SIGNAL(actorDownloadFinished()), this, SLOT(progressFinished()));
     connect(ui->movieWidget, SIGNAL(movieChangeCanceled()), ui->filesWidget, SLOT(restoreLastSelection()));
     connect(ui->movieWidget, SIGNAL(setActionSaveEnabled(bool)), this, SLOT(setActionSaveEnabled(bool)));
@@ -159,10 +159,15 @@ void MainWindow::execSettingsDialog()
     }
 }
 
-void MainWindow::progressStarted()
+void MainWindow::progressStarted(QString msg)
 {
     ui->filesWidget->disableRefresh();
     ui->statusBar->addWidget(m_progressBar);
+    if (!msg.isEmpty()) {
+        QLabel *label = new QLabel(msg);
+        m_progressLabels.append(label);
+        ui->statusBar->addWidget(label);
+    }
     m_progressBar->show();
     m_progressBar->setValue(0);
 }
@@ -180,4 +185,9 @@ void MainWindow::progressFinished()
     ui->filesWidget->enableRefresh();
     if (m_progressBar->isVisible())
         ui->statusBar->removeWidget(m_progressBar);
+    foreach (QLabel *label, m_progressLabels) {
+        ui->statusBar->removeWidget(label);
+        label->deleteLater();
+    }
+    m_progressLabels.clear();
 }

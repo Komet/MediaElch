@@ -151,6 +151,14 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>MovieFileSearcher</name>
+    <message>
+        <location filename="../data/MovieFileSearcher.cpp" line="18"/>
+        <source>Searching for Movies...</source>
+        <translation>Suche nach Filmen...</translation>
+    </message>
+</context>
+<context>
     <name>MovieImageDialog</name>
     <message>
         <location filename="../MovieImageDialog.ui" line="17"/>
@@ -435,6 +443,11 @@ p, li { white-space: pre-wrap; }
         <location filename="../MovieWidget.cpp" line="181"/>
         <source>Unkown Country</source>
         <translation>Unbekanntes Land</translation>
+    </message>
+    <message>
+        <location filename="../MovieWidget.cpp" line="510"/>
+        <source>Downloading Missing Actor Images...</source>
+        <translation>Lade fehlende Schauspieler Bilder...</translation>
     </message>
 </context>
 <context>

@@ -507,7 +507,7 @@ void MovieWidget::saveInformation()
             downloads.append(d);
         }
         m_posterDownloadManager->setDownloads(downloads);
-        emit actorDownloadStarted();
+        emit actorDownloadStarted(tr("Downloading Missing Actor Images..."));
         connect(m_posterDownloadManager, SIGNAL(allDownloadsFinished()), this, SLOT(downloadActorsFinished()), Qt::UniqueConnection);
     } else {
         this->downloadActorsFinished();

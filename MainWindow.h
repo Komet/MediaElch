@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QLabel>
 #include <QMainWindow>
 #include <QProgressBar>
 #include "AboutDialog.h"
@@ -27,7 +28,7 @@ private slots:
     void execSettingsDialog();
     void progressProgress(int current, int max);
     void progressFinished();
-    void progressStarted();
+    void progressStarted(QString msg = "");
 
 private:
     Ui::MainWindow *ui;
@@ -40,6 +41,7 @@ private:
     QAction *m_actionQuit;
     QAction *m_actionRefreshFiles;
     FilterWidget *m_filterWidget;
+    QList<QLabel*> m_progressLabels;
     void setupToolbar();
 };
 

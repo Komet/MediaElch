@@ -36,7 +36,7 @@ protected:
     void resizeEvent(QResizeEvent *event);
 
 signals:
-    void actorDownloadStarted();
+    void actorDownloadStarted(QString);
     void actorDownloadProgress(int, int);
     void actorDownloadFinished();
     void movieChangeCanceled();

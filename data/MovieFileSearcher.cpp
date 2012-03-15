@@ -15,7 +15,7 @@ MovieFileSearcher::~MovieFileSearcher()
 
 void MovieFileSearcher::run()
 {
-    emit searchStarted();
+    emit searchStarted(tr("Searching for Movies..."));
 
     Manager::instance()->movieModel()->clear();
     QList<QStringList> contents;
@@ -56,7 +56,7 @@ void MovieFileSearcher::getDirContents(QString path, QList<QStringList> &content
     QStringList filters;
     QStringList dvdFilters;
     QStringList files;
-    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "VIDEO_TS.IFO";
+    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.iso" << "VIDEO_TS.IFO";
     dvdFilters << "*.VOB" << "*.IFO" << "*.BUP";
     foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::System)) {
         files.append(file);
