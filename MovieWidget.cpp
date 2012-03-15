@@ -325,6 +325,7 @@ void MovieWidget::updateMovieInfo()
     ui->playcount->setText(QString::number(m_movie->playcount()));
     ui->lastPlayed->setDateTime(m_movie->lastPlayed());
     ui->overview->setHtml(m_movie->overview());
+    ui->watched->setChecked(m_movie->watched());
 
     QStringList certifications;
     QStringList sets;
@@ -463,6 +464,7 @@ void MovieWidget::saveInformation()
     m_movie->setOverview(ui->overview->toPlainText());
     m_movie->setCertification(ui->certification->currentText());
     m_movie->setSet(ui->set->currentText());
+    m_movie->setWatched(ui->watched->isChecked());
 
     QList<Actor> actors;
     for (int i=0, n=ui->actors->rowCount() ; i<n ; i++) {

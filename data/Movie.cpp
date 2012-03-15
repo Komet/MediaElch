@@ -22,6 +22,7 @@ Movie::Movie(QStringList files, QObject *parent) :
             m_folderName = path.last();
     }
     m_infoLoaded = false;
+    m_watched = false;
 }
 
 Movie::~Movie()
@@ -230,6 +231,11 @@ bool Movie::backdropImageChanged() const
     return m_backdropImageChanged;
 }
 
+bool Movie::watched() const
+{
+    return m_watched;
+}
+
 /*** SETTER ***/
 
 void Movie::setName(QString name)
@@ -339,6 +345,11 @@ void Movie::setBackdrop(int index, Poster backdrop)
     if (m_backdrops.size() < index)
         return;
     m_backdrops[index] = backdrop;
+}
+
+void Movie::setWatched(bool watched)
+{
+    m_watched = watched;
 }
 
 /*** ADDER ***/

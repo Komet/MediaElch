@@ -160,31 +160,14 @@
               <item row="7" column="1">
                <widget class="QDateEdit" name="released"/>
               </item>
-              <item row="8" column="0">
-               <widget class="QLabel" name="label_7">
-                <property name="text">
-                 <string>Runtime</string>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="1">
-               <widget class="QLineEdit" name="runtime">
-                <property name="maximumSize">
-                 <size>
-                  <width>70</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-              <item row="9" column="0">
+              <item row="10" column="0">
                <widget class="QLabel" name="label_8">
                 <property name="text">
                  <string>Certification</string>
                 </property>
                </widget>
               </item>
-              <item row="9" column="1">
+              <item row="10" column="1">
                <widget class="QComboBox" name="certification">
                 <property name="editable">
                  <bool>true</bool>
@@ -194,24 +177,24 @@
                 </property>
                </widget>
               </item>
-              <item row="10" column="0">
+              <item row="11" column="0">
                <widget class="QLabel" name="label_9">
                 <property name="text">
                  <string>Trailer</string>
                 </property>
                </widget>
               </item>
-              <item row="10" column="1">
+              <item row="11" column="1">
                <widget class="QLineEdit" name="trailer"/>
               </item>
-              <item row="11" column="0">
+              <item row="13" column="0">
                <widget class="QLabel" name="label_10">
                 <property name="text">
                  <string>Play Count</string>
                 </property>
                </widget>
               </item>
-              <item row="11" column="1">
+              <item row="13" column="1">
                <widget class="QLineEdit" name="playcount">
                 <property name="maximumSize">
                  <size>
@@ -221,25 +204,70 @@
                 </property>
                </widget>
               </item>
-              <item row="12" column="0">
+              <item row="14" column="0">
                <widget class="QLabel" name="label_11">
                 <property name="text">
                  <string>Last Played</string>
                 </property>
                </widget>
               </item>
-              <item row="12" column="1">
+              <item row="14" column="1">
                <widget class="QDateTimeEdit" name="lastPlayed"/>
               </item>
-              <item row="13" column="0">
+              <item row="15" column="0">
                <widget class="QLabel" name="label_15">
                 <property name="text">
                  <string>Overview</string>
                 </property>
                </widget>
               </item>
-              <item row="13" column="1">
+              <item row="15" column="1">
                <widget class="QTextEdit" name="overview"/>
+              </item>
+              <item row="12" column="0">
+               <widget class="QLabel" name="label_20">
+                <property name="text">
+                 <string>Watched</string>
+                </property>
+               </widget>
+              </item>
+              <item row="12" column="1">
+               <widget class="QCheckBox" name="watched">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="1">
+               <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1">
+                <property name="margin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QLineEdit" name="runtime">
+                  <property name="maximumSize">
+                   <size>
+                    <width>70</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_21">
+                  <property name="text">
+                   <string>Minutes</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="8" column="0">
+               <widget class="QLabel" name="label_7">
+                <property name="text">
+                 <string>Runtime</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>

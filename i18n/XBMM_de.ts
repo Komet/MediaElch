@@ -289,138 +289,148 @@ p, li { white-space: pre-wrap; }
         <translation>Erschienen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="166"/>
+        <location filename="../MovieWidget.ui" line="268"/>
         <source>Runtime</source>
         <translation>Laufzeit</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="183"/>
+        <location filename="../MovieWidget.ui" line="166"/>
         <source>Certification</source>
         <translation>Freigabe</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="200"/>
+        <location filename="../MovieWidget.ui" line="183"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="210"/>
+        <location filename="../MovieWidget.ui" line="193"/>
         <source>Play Count</source>
         <translation>Wiedergaben</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="227"/>
+        <location filename="../MovieWidget.ui" line="210"/>
         <source>Last Played</source>
         <translation>Letzte Wiedergabe</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="237"/>
+        <location filename="../MovieWidget.ui" line="220"/>
         <source>Overview</source>
         <translation>Inhalt</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="250"/>
+        <location filename="../MovieWidget.ui" line="230"/>
+        <source>Watched</source>
+        <translation>Gesehen</translation>
+    </message>
+    <message>
+        <location filename="../MovieWidget.ui" line="259"/>
+        <source>Minutes</source>
+        <translation>Minuten</translation>
+    </message>
+    <message>
+        <location filename="../MovieWidget.ui" line="278"/>
         <source>Extended</source>
         <translation>Erweitert</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="288"/>
+        <location filename="../MovieWidget.ui" line="316"/>
         <source>Genre</source>
         <translation>Genre</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="298"/>
+        <location filename="../MovieWidget.ui" line="326"/>
         <source>Add Genre</source>
         <translation>Genre hinzufügen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="312"/>
+        <location filename="../MovieWidget.ui" line="340"/>
         <source>Remove Genre</source>
         <translation>Genre entfernen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="356"/>
+        <location filename="../MovieWidget.ui" line="384"/>
         <source>Genres</source>
         <translation>Genres</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="387"/>
+        <location filename="../MovieWidget.ui" line="415"/>
         <source>Studio</source>
         <translation>Studio</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="397"/>
+        <location filename="../MovieWidget.ui" line="425"/>
         <source>Add Studio</source>
         <translation>Studio hinzufügen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="411"/>
+        <location filename="../MovieWidget.ui" line="439"/>
         <source>Remove Studio</source>
         <translation>Studio entfernen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="455"/>
+        <location filename="../MovieWidget.ui" line="483"/>
         <source>Studios</source>
         <translation>Studios</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="486"/>
+        <location filename="../MovieWidget.ui" line="514"/>
         <source>Country</source>
         <translation>Land</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="496"/>
+        <location filename="../MovieWidget.ui" line="524"/>
         <source>Add Country</source>
         <translation>Land hinzufügen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="510"/>
+        <location filename="../MovieWidget.ui" line="538"/>
         <source>Remove Country</source>
         <translation>Land entfernen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="554"/>
+        <location filename="../MovieWidget.ui" line="582"/>
         <source>Countries</source>
         <translation>Länder</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="573"/>
+        <location filename="../MovieWidget.ui" line="601"/>
         <source>Actor</source>
         <translation>Schauspieler</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="578"/>
+        <location filename="../MovieWidget.ui" line="606"/>
         <source>Role</source>
         <translation>Rolle</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="588"/>
+        <location filename="../MovieWidget.ui" line="616"/>
         <source>Add Actor</source>
         <translation>Schauspieler hinzufügen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="602"/>
+        <location filename="../MovieWidget.ui" line="630"/>
         <source>Remove Actor</source>
         <translation>Schauspieler entfernen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="633"/>
+        <location filename="../MovieWidget.ui" line="661"/>
         <source>Actors</source>
         <translation>Schauspieler</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="660"/>
+        <location filename="../MovieWidget.ui" line="688"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="682"/>
-        <location filename="../MovieWidget.ui" line="726"/>
+        <location filename="../MovieWidget.ui" line="710"/>
+        <location filename="../MovieWidget.ui" line="754"/>
         <source>Click to Change</source>
         <translation>Zum Ändern klicken</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="704"/>
+        <location filename="../MovieWidget.ui" line="732"/>
         <source>Backdrop</source>
         <translation>Fanart</translation>
     </message>
@@ -450,7 +460,7 @@ p, li { white-space: pre-wrap; }
         <translation>Unbekanntes Land</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="510"/>
+        <location filename="../MovieWidget.cpp" line="512"/>
         <source>Downloading Missing Actor Images...</source>
         <translation>Lade fehlende Schauspieler Bilder...</translation>
     </message>

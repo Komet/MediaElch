@@ -35,6 +35,7 @@ bool XbmcXml::saveData(Movie *movie)
     xml.writeTextElement("id", movie->id());
     xml.writeTextElement("set", movie->set());
     xml.writeTextElement("trailer", movie->trailer().toString());
+    xml.writeTextElement("watched", (movie->watched()) ? "true" : "false");
     foreach (const QString &studio, movie->studios())
         xml.writeTextElement("studio", studio);
     foreach (const QString &genre, movie->genres())
@@ -139,6 +140,8 @@ bool XbmcXml::loadData(Movie *movie)
         movie->setSet(domDoc.elementsByTagName("set").at(0).toElement().text());
     if (!domDoc.elementsByTagName("trailer").isEmpty())
         movie->setTrailer(QUrl(domDoc.elementsByTagName("trailer").at(0).toElement().text()));
+    if (!domDoc.elementsByTagName("watched").isEmpty())
+        movie->setWatched(domDoc.elementsByTagName("watched").at(0).toElement().text() == "true" ? true : false);
 
     for (int i=0, n=domDoc.elementsByTagName("studio").size() ; i<n ; i++)
         movie->addStudio(domDoc.elementsByTagName("studio").at(i).toElement().text());

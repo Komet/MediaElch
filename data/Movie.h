@@ -51,6 +51,7 @@ public:
     bool infoLoaded() const;
     bool posterImageChanged() const;
     bool backdropImageChanged() const;
+    bool watched() const;
 
     void setName(QString name);
     void setOriginalName(QString originalName);
@@ -81,6 +82,7 @@ public:
     void addBackdrop(Poster backdrop);
     void setPosterImage(QImage poster);
     void setBackdropImage(QImage backdrop);
+    void setWatched(bool watched);
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface);
@@ -119,6 +121,7 @@ private:
     bool m_posterImageChanged;
     bool m_backdropImageChanged;
     bool m_infoLoaded;
+    bool m_watched;
 };
 
 QDebug operator<<(QDebug dbg, const Movie &movie);
