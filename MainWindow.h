@@ -5,6 +5,7 @@
 #include <QProgressBar>
 #include "AboutDialog.h"
 #include "data/MovieFileSearcher.h"
+#include "smallWidgets/FilterWidget.h"
 
 namespace Ui {
 class MainWindow;
@@ -37,6 +38,8 @@ private:
     QAction *m_actionSettings;
     QAction *m_actionAbout;
     QAction *m_actionQuit;
+    QAction *m_actionRefreshFiles;
+    FilterWidget *m_filterWidget;
     void setupToolbar();
 };
 

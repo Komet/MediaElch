@@ -19,6 +19,8 @@ public:
     explicit MyLineEdit(QWidget *parent = 0);
     void setLoading(bool loading);
     void setType(LineEditType type);
+    void setAdditionalStyleSheet(QString style);
+    void setShowMagnifier(bool show);
     LineEditType type();
 
 protected:
@@ -32,6 +34,9 @@ private:
     QLabel *m_loadingLabel;
     QToolButton *m_clearButton;
     LineEditType m_type;
+    QString m_initialStyleSheet;
+    bool m_showMagnifier;
+    QLabel *m_magnifierLabel;
 };
 
 #endif // MYLINEEDIT_H

@@ -10,35 +10,16 @@
     <height>587</height>
    </rect>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QTableView {
+	border: 0px;
+	border-right: 1px solid rgba(0, 0, 0, 100);
+}</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="MyLineEdit" name="filter">
-       <property name="placeholderText">
-        <string>Filter</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="buttonRefresh">
-       <property name="toolTip">
-        <string>Reload Movie List</string>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border: none;</string>
-       </property>
-       <property name="text">
-        <string>Refresh</string>
-       </property>
-       <property name="icon">
-        <iconset resource="XBMM.qrc">
-         <normaloff>:/img/arrow_circle_right.png</normaloff>:/img/arrow_circle_right.png</iconset>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
+   <property name="margin">
+    <number>0</number>
+   </property>
    <item>
     <widget class="MyTableView" name="files">
      <property name="minimumSize">
@@ -48,7 +29,8 @@
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">alternate-background-color: rgb(243, 246, 250);</string>
+      <string notr="true">alternate-background-color: rgb(243, 246, 250);
+</string>
      </property>
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>
@@ -80,18 +62,11 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MyLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>MyLineEdit.h</header>
-  </customwidget>
-  <customwidget>
    <class>MyTableView</class>
    <extends>QTableView</extends>
    <header>MyTableView.h</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="XBMM.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

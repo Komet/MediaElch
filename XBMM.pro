@@ -33,7 +33,8 @@ SOURCES += main.cpp\
     scrapers/VideoBuster.cpp \
     scrapers/OFDb.cpp \
     scrapers/Cinefacts.cpp \
-    QuestionDialog.cpp
+    QuestionDialog.cpp \
+    smallWidgets/FilterWidget.cpp
 
 HEADERS  += MainWindow.h \
     SettingsDialog.h \
@@ -60,7 +61,8 @@ HEADERS  += MainWindow.h \
     scrapers/VideoBuster.h \
     scrapers/OFDb.h \
     scrapers/Cinefacts.h \
-    QuestionDialog.h
+    QuestionDialog.h \
+    smallWidgets/FilterWidget.h
 
 FORMS    += MainWindow.ui \
     SettingsDialog.ui \
@@ -69,7 +71,8 @@ FORMS    += MainWindow.ui \
     MovieImageDialog.ui \
     FilesWidget.ui \
     AboutDialog.ui \
-    QuestionDialog.ui
+    QuestionDialog.ui \
+    smallWidgets/FilterWidget.ui
 
 RESOURCES += \
     XBMM.qrc

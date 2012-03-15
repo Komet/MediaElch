@@ -25,16 +25,17 @@ public:
 
 public slots:
     void restoreLastSelection();
+    void setFilter(QString filter);
 
 signals:
     void noMovieSelected();
     void movieSelected(Movie*);
+    void setRefreshButtonEnabled(bool);
 
 private slots:
     void startSearch();
     void searchFinished();
     void itemActivated(QModelIndex index, QModelIndex previous);
-    void filter(QString filter);
     void tableViewResized(QSize size);
     void movieSelectedEmitter();
 

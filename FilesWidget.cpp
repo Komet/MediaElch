@@ -12,13 +12,14 @@ FilesWidget::FilesWidget(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->files->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-    ui->filter->setType(MyLineEdit::TypeClear);
 #ifdef Q_WS_MAC
     QFont font = ui->files->font();
     font.setPointSize(font.pointSize()-2);
     ui->files->setFont(font);
 #endif
-
+#ifdef Q_WS_WIN
+    ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
+#endif
     m_movieProxyModel = new MovieProxyModel(this);
     m_movieProxyModel->setSourceModel(Manager::instance()->movieModel());
     m_movieProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
@@ -26,9 +27,7 @@ FilesWidget::FilesWidget(QWidget *parent) :
     ui->files->setModel(m_movieProxyModel);
     ui->files->sortByColumn(0);
 
-    connect(ui->buttonRefresh, SIGNAL(clicked()), this, SLOT(startSearch()));
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(finished()), this, SLOT(searchFinished()));
-    connect(ui->filter, SIGNAL(textChanged(QString)), this, SLOT(filter(QString)));
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
     connect(ui->files, SIGNAL(resized(QSize)), this, SLOT(tableViewResized(QSize)));
 
@@ -68,13 +67,13 @@ void FilesWidget::hideFirstTime()
 
 void FilesWidget::startSearch()
 {
-    ui->buttonRefresh->setEnabled(false);
+    emit setRefreshButtonEnabled(false);
     Manager::instance()->movieFileSearcher()->start();
 }
 
 void FilesWidget::searchFinished()
 {
-    ui->buttonRefresh->setEnabled(true);
+    emit setRefreshButtonEnabled(true);
 }
 
 void FilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
@@ -98,19 +97,19 @@ void FilesWidget::movieSelectedEmitter()
     emit movieSelected(m_lastMovie);
 }
 
-void FilesWidget::filter(QString filter)
+void FilesWidget::setFilter(QString filter)
 {
     m_movieProxyModel->setFilterWildcard("*" + filter + "*");
 }
 
 void FilesWidget::enableRefresh()
 {
-    ui->buttonRefresh->setEnabled(true);
+    emit setRefreshButtonEnabled(true);
 }
 
 void FilesWidget::disableRefresh()
 {
-    ui->buttonRefresh->setEnabled(false);
+    emit setRefreshButtonEnabled(false);
 }
 
 void FilesWidget::restoreLastSelection()
