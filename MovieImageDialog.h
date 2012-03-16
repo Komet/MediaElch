@@ -42,6 +42,7 @@ private slots:
     void startNextDownload();
     void imageClicked(int row, int col);
     void chooseLocalImage();
+    void onImageDropped(QUrl url);
 
 private:
     Ui::MovieImageDialog *ui;

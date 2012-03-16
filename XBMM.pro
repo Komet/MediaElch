@@ -34,7 +34,8 @@ SOURCES += main.cpp\
     scrapers/OFDb.cpp \
     scrapers/Cinefacts.cpp \
     QuestionDialog.cpp \
-    smallWidgets/FilterWidget.cpp
+    smallWidgets/FilterWidget.cpp \
+    MyTableWidget.cpp
 
 HEADERS  += MainWindow.h \
     SettingsDialog.h \
@@ -62,7 +63,8 @@ HEADERS  += MainWindow.h \
     scrapers/OFDb.h \
     scrapers/Cinefacts.h \
     QuestionDialog.h \
-    smallWidgets/FilterWidget.h
+    smallWidgets/FilterWidget.h \
+    MyTableWidget.h
 
 FORMS    += MainWindow.ui \
     SettingsDialog.ui \
