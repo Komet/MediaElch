@@ -17,12 +17,12 @@
         <file>img/text_start_files_en.png</file>
         <file>img/text_start_movieWidget_de.png</file>
         <file>img/text_start_movieWidget_en.png</file>
-        <file>i18n/XBMM_de.qm</file>
         <file>img/warning1.png</file>
         <file>img/gear.png</file>
         <file>img/info.png</file>
         <file>img/spanner.png</file>
         <file>img/pattern2.png</file>
         <file>img/folder_in.png</file>
+        <file>i18n/MediaElch_de.qm</file>
     </qresource>
 </RCC>

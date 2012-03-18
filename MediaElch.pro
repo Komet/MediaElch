@@ -6,7 +6,7 @@
 
 QT       += core gui network script xml
 
-TARGET = XBMM
+TARGET = MediaElch
 TEMPLATE = app
 
 
@@ -80,10 +80,10 @@ FORMS    += MainWindow.ui \
     ExportDialog.ui
 
 RESOURCES += \
-    XBMM.qrc
+    MediaElch.qrc
 
 TRANSLATIONS += \
-    i18n/XBMM_de.ts
+    i18n/MediaElch_de.ts
 
-ICON = XBMM.icns
-RC_FILE = XBMM.rc
+ICON = MediaElch.icns
+RC_FILE = MediaElch.rc
