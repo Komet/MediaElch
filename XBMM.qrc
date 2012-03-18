@@ -23,5 +23,6 @@
         <file>img/info.png</file>
         <file>img/spanner.png</file>
         <file>img/pattern2.png</file>
+        <file>img/folder_in.png</file>
     </qresource>
 </RCC>

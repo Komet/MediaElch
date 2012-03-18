@@ -5,6 +5,7 @@
 #include <QMainWindow>
 #include <QProgressBar>
 #include "AboutDialog.h"
+#include "ExportDialog.h"
 #include "data/MovieFileSearcher.h"
 #include "smallWidgets/FilterWidget.h"
 
@@ -23,6 +24,8 @@ public:
 public slots:
     void setActionSaveEnabled(bool enabled);
     void setActionSearchEnabled(bool enabled);
+    void setActionExportEnabled(bool enabled = true);
+    void setActionExportDisabled(bool disabled = true);
 
 private slots:
     void execSettingsDialog();
@@ -34,9 +37,11 @@ private:
     Ui::MainWindow *ui;
     QProgressBar *m_progressBar;
     AboutDialog *m_aboutDialog;
+    ExportDialog *m_exportDialog;
     QAction *m_actionSearch;
     QAction *m_actionSave;
     QAction *m_actionSettings;
+    QAction *m_actionExport;
     QAction *m_actionAbout;
     QAction *m_actionQuit;
     QAction *m_actionRefreshFiles;

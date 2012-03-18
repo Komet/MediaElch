@@ -1,26 +1,23 @@
 #include "XbmcXml.h"
 
+#include <QApplication>
 #include <QDebug>
 #include <QDir>
 #include <QDomDocument>
 #include <QFileInfo>
 #include <QXmlStreamWriter>
 
-XbmcXml::XbmcXml(QObject *parent) :
-    QObject(parent)
+XbmcXml::XbmcXml(QObject *parent)
 {
+    setParent(parent);
 }
 
 XbmcXml::~XbmcXml()
 {
 }
 
-bool XbmcXml::saveData(Movie *movie)
+void XbmcXml::writeXml(QXmlStreamWriter &xml, Movie *movie, bool writePath, QString pathSearch, QString pathReplace)
 {
-    QByteArray xmlContent;
-    QXmlStreamWriter xml(&xmlContent);
-    xml.setAutoFormatting(true);
-    xml.writeStartDocument("1.0", true);
     xml.writeStartElement("movie");
     xml.writeTextElement("title", movie->name());
     xml.writeTextElement("originaltitle", movie->originalName());
@@ -32,6 +29,23 @@ bool XbmcXml::saveData(Movie *movie)
     xml.writeTextElement("mpaa", movie->certification());
     xml.writeTextElement("playcount", QString("%1").arg(movie->playcount()));
     xml.writeTextElement("lastplayed", movie->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
+    if (writePath && movie->files().size() > 0) {
+        QFileInfo fi(movie->files().at(0));
+        xml.writeTextElement("path", fi.absolutePath());
+        if (movie->files().size() == 1) {
+            fi.setFile(movie->files().at(0));
+            xml.writeTextElement("filenameandpath", fi.absoluteFilePath().replace(pathSearch, pathReplace));
+            xml.writeTextElement("basepath", fi.absoluteFilePath().replace(pathSearch, pathReplace));
+        } else {
+            QStringList files;
+            foreach (const QString &file, movie->files()) {
+                fi.setFile(file);
+                files.append(fi.absoluteFilePath().replace(pathSearch, pathReplace));
+            }
+            xml.writeTextElement("filenameandpath", QString("stack://%1").arg(files.join(" , ")));
+            xml.writeTextElement("basepath", QString("stack://%1").arg(files.join(" , ")));
+        }
+    }
     xml.writeTextElement("id", movie->id());
     xml.writeTextElement("set", movie->set());
     xml.writeTextElement("trailer", movie->trailer().toString());
@@ -64,6 +78,15 @@ bool XbmcXml::saveData(Movie *movie)
     }
     xml.writeEndElement();
     xml.writeEndElement();
+}
+
+bool XbmcXml::saveData(Movie *movie)
+{
+    QByteArray xmlContent;
+    QXmlStreamWriter xml(&xmlContent);
+    xml.setAutoFormatting(true);
+    xml.writeStartDocument("1.0", true);
+    writeXml(xml, movie);
     xml.writeEndDocument();
 
     if (movie->files().size() == 0)
@@ -192,4 +215,61 @@ void XbmcXml::loadImages(Movie *movie)
     if (backdropFi.isFile()) {
         movie->backdropImage()->load(backdropFi.absoluteFilePath());
     }
+}
+
+void XbmcXml::exportDatabase(QList<Movie *> movies, QString exportPath, QString pathSearch, QString pathReplace)
+{
+    emit sigExportStarted();
+
+    QDir dir(exportPath);
+    if (!dir.mkdir("actors")) {
+        emit sigExportRaiseError(tr("Could not create actors directory"));
+        return;
+    }
+    if (!dir.mkdir("movies")) {
+        emit sigExportRaiseError(tr("Could not create movies directory"));
+        return;
+    }
+
+    QByteArray xmlContent;
+    QXmlStreamWriter xml(&xmlContent);
+    xml.setAutoFormatting(true);
+    xml.writeStartDocument("1.0", true);
+    xml.writeStartElement("videodb");
+    xml.writeTextElement("version", "1");
+    for (int i=0, n=movies.size() ; i<n ; ++i) {
+        emit sigExportProgress(i, n);
+        Movie *movie = movies[i];
+        writeXml(xml, movie, true, pathSearch, pathReplace);
+
+        if (movie->files().size() == 0)
+            continue;
+
+        QFileInfo fi(movie->files().at(0));
+        QString actorPath = fi.absolutePath() + QDir::separator() + ".actors";
+        QDir movieDir(actorPath);
+        QStringList actorFilters;
+        actorFilters << "*.tbn";
+        foreach (QString actorFile, movieDir.entryList(actorFilters, QDir::NoDotAndDotDot | QDir::Files))
+            QFile::copy(actorPath + QDir::separator() + actorFile, exportPath + QDir::separator() + "actors" + QDir::separator() + actorFile.replace(" ", "_"));
+
+        QFileInfo posterFi(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".tbn");
+        QFileInfo backdropFi(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + "-fanart.jpg");
+        QString newPosterName = QString("%1_%2.tbn").arg(movie->name().replace(" ", "_")).arg(movie->released().year());
+        QString newBackdropName = QString("%1_%2-fanart.jpg").arg(movie->name().replace(" ", "_")).arg(movie->released().year());
+        if (posterFi.isFile())
+            QFile::copy(posterFi.absoluteFilePath(), exportPath + QDir::separator() + "movies" + QDir::separator() + newPosterName);
+        if (backdropFi.isFile())
+            QFile::copy(backdropFi.absoluteFilePath(), exportPath + QDir::separator() + "movies" + QDir::separator() + newBackdropName);
+    }
+    xml.writeEndElement();
+    xml.writeEndDocument();
+
+    QFile file(exportPath + QDir::separator() + "videodb.xml");
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        file.write(xmlContent);
+        file.close();
+    }
+
+    emit sigExportDone();
 }

@@ -65,6 +65,72 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>ExportDialog</name>
+    <message>
+        <location filename="../ExportDialog.ui" line="17"/>
+        <source>Dialog</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../ExportDialog.ui" line="26"/>
+        <source>Export the Database including Fanarts, Posters and Actors into a folder. This way you can import your whole library into XBMC.</source>
+        <translation>Exportiert die gesamte Datenbank inklusive Postern, Fanarts und Darstellerbildern. Damit kann die gesamte Datenbank in XBMC importiert werden.</translation>
+    </message>
+    <message>
+        <location filename="../ExportDialog.ui" line="55"/>
+        <source>If the path where your movies are stored is different on your HTPC (running the XBMC instance) you can specify it here (e.g. replace &quot;/Volumes/Movies/&quot; with &quot;/mnt/movies/&quot;).</source>
+        <translation>Falls sich das lokale Verzeichnis, in dem sich die Filme befinden, von dem Verzeichnis auf dem HTPC (wo die XBMC Instanz läuft) unterscheidet, kann hier eine Anpassung vorgenommen werden (z.B. &quot;/Volumes/Movies/&quot; durch &quot;/mnt/movies/&quot; ersetzen).</translation>
+    </message>
+    <message>
+        <location filename="../ExportDialog.ui" line="67"/>
+        <source>Search</source>
+        <translation>Suche</translation>
+    </message>
+    <message>
+        <location filename="../ExportDialog.ui" line="77"/>
+        <source>Replace</source>
+        <translation>Ersetzung</translation>
+    </message>
+    <message>
+        <location filename="../ExportDialog.ui" line="111"/>
+        <source>Please choose an empty directory, existing files might get overwritten.</source>
+        <translation>Bitte ein leeres Verzeichnis auswählen, andernfalls könnten existierende Dateien überschrieben werden.</translation>
+    </message>
+    <message>
+        <location filename="../ExportDialog.ui" line="126"/>
+        <location filename="../ExportDialog.cpp" line="93"/>
+        <source>Export Directory</source>
+        <translation>Export Verzeichnis</translation>
+    </message>
+    <message>
+        <location filename="../ExportDialog.ui" line="140"/>
+        <source>Choose Directory</source>
+        <translation>Verzeichnis auswählen</translation>
+    </message>
+    <message>
+        <location filename="../ExportDialog.ui" line="175"/>
+        <source>Error Message</source>
+        <translation>Fehlermeldung</translation>
+    </message>
+    <message>
+        <location filename="../ExportDialog.ui" line="197"/>
+        <location filename="../ExportDialog.cpp" line="48"/>
+        <source>Cancel</source>
+        <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <location filename="../ExportDialog.ui" line="207"/>
+        <source>Export</source>
+        <translation>Export</translation>
+    </message>
+    <message>
+        <location filename="../ExportDialog.cpp" line="78"/>
+        <location filename="../ExportDialog.cpp" line="87"/>
+        <source>Close</source>
+        <translation>Schließen</translation>
+    </message>
+</context>
+<context>
     <name>FilesWidget</name>
     <message>
         <source>Filter</source>
@@ -119,40 +185,50 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../MainWindow.ui" line="73"/>
-        <location filename="../MainWindow.cpp" line="120"/>
+        <location filename="../MainWindow.cpp" line="131"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="78"/>
-        <location filename="../MainWindow.cpp" line="119"/>
+        <location filename="../MainWindow.cpp" line="130"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="114"/>
+        <location filename="../MainWindow.cpp" line="123"/>
         <source>Search</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="115"/>
+        <location filename="../MainWindow.cpp" line="124"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="116"/>
+        <location filename="../MainWindow.cpp" line="125"/>
         <source>Reload</source>
         <translation>Neu laden</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="117"/>
+        <location filename="../MainWindow.cpp" line="126"/>
         <source>Reload Movie List</source>
         <translation>Filmliste neu laden</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="118"/>
+        <location filename="../MainWindow.cpp" line="127"/>
         <source>Preferences</source>
         <translation>Einstellungen</translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="128"/>
+        <source>Export</source>
+        <translation>Export</translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="129"/>
+        <source>Export Movie Database</source>
+        <translation>Filmdatenbank exportieren</translation>
     </message>
 </context>
 <context>
@@ -171,36 +247,36 @@ p, li { white-space: pre-wrap; }
         <translation>Wähle ein Bild aus</translation>
     </message>
     <message>
-        <location filename="../MovieImageDialog.ui" line="53"/>
-        <location filename="../MovieImageDialog.ui" line="58"/>
-        <location filename="../MovieImageDialog.ui" line="63"/>
-        <location filename="../MovieImageDialog.ui" line="68"/>
-        <location filename="../MovieImageDialog.ui" line="73"/>
+        <location filename="../MovieImageDialog.ui" line="56"/>
+        <location filename="../MovieImageDialog.ui" line="61"/>
+        <location filename="../MovieImageDialog.ui" line="66"/>
+        <location filename="../MovieImageDialog.ui" line="71"/>
+        <location filename="../MovieImageDialog.ui" line="76"/>
         <source>Neue Spalte</source>
         <translation>Neue Spalte</translation>
     </message>
     <message>
-        <location filename="../MovieImageDialog.ui" line="83"/>
+        <location filename="../MovieImageDialog.ui" line="86"/>
         <source>Choose Local Image</source>
         <translation>Lokales Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../MovieImageDialog.ui" line="100"/>
+        <location filename="../MovieImageDialog.ui" line="103"/>
         <source>Loading...</source>
         <translation>Lade...</translation>
     </message>
     <message>
-        <location filename="../MovieImageDialog.ui" line="120"/>
+        <location filename="../MovieImageDialog.ui" line="123"/>
         <source>Close</source>
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../MovieImageDialog.cpp" line="235"/>
+        <location filename="../MovieImageDialog.cpp" line="236"/>
         <source>Choose Image</source>
         <translation>Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../MovieImageDialog.cpp" line="235"/>
+        <location filename="../MovieImageDialog.cpp" line="236"/>
         <source>Images (*.jpg *.png)</source>
         <translation>Bilder (*.jpg *.png)</translation>
     </message>
@@ -289,7 +365,7 @@ p, li { white-space: pre-wrap; }
         <translation>Erschienen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="268"/>
+        <location filename="../MovieWidget.ui" line="265"/>
         <source>Runtime</source>
         <translation>Laufzeit</translation>
     </message>
@@ -324,113 +400,113 @@ p, li { white-space: pre-wrap; }
         <translation>Gesehen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="259"/>
+        <location filename="../MovieWidget.ui" line="256"/>
         <source>Minutes</source>
         <translation>Minuten</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="278"/>
+        <location filename="../MovieWidget.ui" line="275"/>
         <source>Extended</source>
         <translation>Erweitert</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="316"/>
+        <location filename="../MovieWidget.ui" line="313"/>
         <source>Genre</source>
         <translation>Genre</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="326"/>
+        <location filename="../MovieWidget.ui" line="323"/>
         <source>Add Genre</source>
         <translation>Genre hinzufügen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="340"/>
+        <location filename="../MovieWidget.ui" line="337"/>
         <source>Remove Genre</source>
         <translation>Genre entfernen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="384"/>
+        <location filename="../MovieWidget.ui" line="381"/>
         <source>Genres</source>
         <translation>Genres</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="415"/>
+        <location filename="../MovieWidget.ui" line="412"/>
         <source>Studio</source>
         <translation>Studio</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="425"/>
+        <location filename="../MovieWidget.ui" line="422"/>
         <source>Add Studio</source>
         <translation>Studio hinzufügen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="439"/>
+        <location filename="../MovieWidget.ui" line="436"/>
         <source>Remove Studio</source>
         <translation>Studio entfernen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="483"/>
+        <location filename="../MovieWidget.ui" line="480"/>
         <source>Studios</source>
         <translation>Studios</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="514"/>
+        <location filename="../MovieWidget.ui" line="511"/>
         <source>Country</source>
         <translation>Land</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="524"/>
+        <location filename="../MovieWidget.ui" line="521"/>
         <source>Add Country</source>
         <translation>Land hinzufügen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="538"/>
+        <location filename="../MovieWidget.ui" line="535"/>
         <source>Remove Country</source>
         <translation>Land entfernen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="582"/>
+        <location filename="../MovieWidget.ui" line="579"/>
         <source>Countries</source>
         <translation>Länder</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="601"/>
+        <location filename="../MovieWidget.ui" line="598"/>
         <source>Actor</source>
         <translation>Schauspieler</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="606"/>
+        <location filename="../MovieWidget.ui" line="603"/>
         <source>Role</source>
         <translation>Rolle</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="616"/>
+        <location filename="../MovieWidget.ui" line="613"/>
         <source>Add Actor</source>
         <translation>Schauspieler hinzufügen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="630"/>
+        <location filename="../MovieWidget.ui" line="627"/>
         <source>Remove Actor</source>
         <translation>Schauspieler entfernen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="661"/>
+        <location filename="../MovieWidget.ui" line="658"/>
         <source>Actors</source>
         <translation>Schauspieler</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="688"/>
+        <location filename="../MovieWidget.ui" line="685"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="710"/>
-        <location filename="../MovieWidget.ui" line="754"/>
+        <location filename="../MovieWidget.ui" line="707"/>
+        <location filename="../MovieWidget.ui" line="751"/>
         <source>Click to Change</source>
         <translation>Zum Ändern klicken</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="732"/>
+        <location filename="../MovieWidget.ui" line="729"/>
         <source>Backdrop</source>
         <translation>Fanart</translation>
     </message>
@@ -660,6 +736,19 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <location filename="../scrapers/TMDb.cpp" line="81"/>
         <source>Language</source>
         <translation>Sprache</translation>
+    </message>
+</context>
+<context>
+    <name>XbmcXml</name>
+    <message>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="226"/>
+        <source>Could not create actors directory</source>
+        <translation>Verzeichnis &quot;actors&quot; konnte nicht erstellt werden</translation>
+    </message>
+    <message>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="230"/>
+        <source>Could not create movies directory</source>
+        <translation>Verzeichnis &quot;movies&quot; konnte nicht erstellt werden</translation>
     </message>
 </context>
 </TS>

@@ -35,7 +35,8 @@ SOURCES += main.cpp\
     scrapers/Cinefacts.cpp \
     QuestionDialog.cpp \
     smallWidgets/FilterWidget.cpp \
-    MyTableWidget.cpp
+    MyTableWidget.cpp \
+    ExportDialog.cpp
 
 HEADERS  += MainWindow.h \
     SettingsDialog.h \
@@ -64,7 +65,8 @@ HEADERS  += MainWindow.h \
     scrapers/Cinefacts.h \
     QuestionDialog.h \
     smallWidgets/FilterWidget.h \
-    MyTableWidget.h
+    MyTableWidget.h \
+    ExportDialog.h
 
 FORMS    += MainWindow.ui \
     SettingsDialog.ui \
@@ -74,7 +76,8 @@ FORMS    += MainWindow.ui \
     FilesWidget.ui \
     AboutDialog.ui \
     QuestionDialog.ui \
-    smallWidgets/FilterWidget.ui
+    smallWidgets/FilterWidget.ui \
+    ExportDialog.ui
 
 RESOURCES += \
     XBMM.qrc
