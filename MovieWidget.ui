@@ -326,7 +326,7 @@
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset resource="XBMM.qrc">
+                     <iconset resource="MediaElch.qrc">
                       <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
                     </property>
                    </widget>
@@ -340,7 +340,7 @@
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset resource="XBMM.qrc">
+                     <iconset resource="MediaElch.qrc">
                       <normaloff>:/img/minus.png</normaloff>:/img/minus.png</iconset>
                     </property>
                    </widget>
@@ -425,7 +425,7 @@
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset resource="XBMM.qrc">
+                     <iconset resource="MediaElch.qrc">
                       <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
                     </property>
                    </widget>
@@ -439,7 +439,7 @@
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset resource="XBMM.qrc">
+                     <iconset resource="MediaElch.qrc">
                       <normaloff>:/img/minus.png</normaloff>:/img/minus.png</iconset>
                     </property>
                    </widget>
@@ -524,7 +524,7 @@
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset resource="XBMM.qrc">
+                     <iconset resource="MediaElch.qrc">
                       <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
                     </property>
                    </widget>
@@ -538,7 +538,7 @@
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset resource="XBMM.qrc">
+                     <iconset resource="MediaElch.qrc">
                       <normaloff>:/img/minus.png</normaloff>:/img/minus.png</iconset>
                     </property>
                    </widget>
@@ -616,7 +616,7 @@
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset resource="XBMM.qrc">
+                     <iconset resource="MediaElch.qrc">
                       <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
                     </property>
                    </widget>
@@ -630,7 +630,7 @@
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset resource="XBMM.qrc">
+                     <iconset resource="MediaElch.qrc">
                       <normaloff>:/img/minus.png</normaloff>:/img/minus.png</iconset>
                     </property>
                    </widget>
@@ -710,7 +710,7 @@
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="XBMM.qrc">:/img/film_reel.png</pixmap>
+             <pixmap resource="MediaElch.qrc">:/img/film_reel.png</pixmap>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -754,7 +754,7 @@
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="XBMM.qrc">:/img/pictures_alt.png</pixmap>
+             <pixmap resource="MediaElch.qrc">:/img/pictures_alt.png</pixmap>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -797,7 +797,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="XBMM.qrc"/>
+  <include location="MediaElch.qrc"/>
  </resources>
  <connections/>
 </ui>
