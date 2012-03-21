@@ -186,8 +186,8 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie)
                 movie->setRuntime(v.property("runtime").toInteger());
             if (!v.property("trailer").isNull())
                 movie->setTrailer(QUrl(v.property("trailer").toString()));
-            if (v.property("categories").isArray()) {
-                QScriptValueIterator itC(v.property("categories"));
+            if (v.property("genres").isArray()) {
+                QScriptValueIterator itC(v.property("genres"));
                 while (itC.hasNext()) {
                     itC.next();
                     QScriptValue vC = itC.value();
