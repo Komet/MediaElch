@@ -30,6 +30,15 @@ MovieWidget::MovieWidget(QWidget *parent) :
     font.setPointSize(font.pointSize()+4);
     ui->movieName->setFont(font);
 
+    font = ui->posterResolution->font();
+    #ifdef Q_WS_WIN
+    font.setPointSize(font.pointSize()-1);
+    #else
+    font.setPointSize(font.pointSize()-2);
+    #endif
+    ui->posterResolution->setFont(font);
+    ui->backdropResolution->setFont(font);
+
     m_movie = 0;
     m_posterDownloadManager = new DownloadManager(this);
 
@@ -215,6 +224,8 @@ void MovieWidget::clear()
     ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
     ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->tabWidget->setCurrentIndex(0);
+    ui->posterResolution->setText("");
+    ui->backdropResolution->setText("");
     m_chosenPoster = QImage();
     m_chosenBackdrop = QImage();
     m_loadedFromScraper = false;
@@ -366,15 +377,21 @@ void MovieWidget::updateMovieInfo()
         ui->countries->setItem(row, 0, new QTableWidgetItem(country));
     }
 
-    if (!m_movie->posterImage()->isNull())
+    if (!m_movie->posterImage()->isNull()) {
         ui->poster->setPixmap(QPixmap::fromImage(*m_movie->posterImage()).scaledToWidth(200, Qt::SmoothTransformation));
-    else
+        ui->posterResolution->setText(QString("%1x%2").arg(m_movie->posterImage()->width()).arg(m_movie->posterImage()->height()));
+    } else {
         ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
+        ui->posterResolution->setText("");
+    }
 
-    if (!m_movie->backdropImage()->isNull())
+    if (!m_movie->backdropImage()->isNull()) {
         ui->backdrop->setPixmap(QPixmap::fromImage(*m_movie->backdropImage()).scaledToWidth(200, Qt::SmoothTransformation));
-    else
+        ui->backdropResolution->setText(QString("%1x%2").arg(m_movie->backdropImage()->width()).arg(m_movie->backdropImage()->height()));
+    } else {
         ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->backdropResolution->setText("");
+    }
 
     emit setActionSaveEnabled(true);
 }
@@ -439,9 +456,11 @@ void MovieWidget::posterDownloadFinished(DownloadManagerElement elem)
     if (elem.imageType == TypePoster) {
         m_chosenPoster = elem.image;
         ui->poster->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->posterResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
     } else if (elem.imageType == TypeBackdrop) {
         m_chosenBackdrop = elem.image;
         ui->backdrop->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->backdropResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
     }
     if (m_posterDownloadManager->downloadQueueSize() == 0)
         emit setActionSaveEnabled(true);

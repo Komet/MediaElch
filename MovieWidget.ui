@@ -718,6 +718,16 @@
            </widget>
           </item>
           <item>
+           <widget class="QLabel" name="posterResolution">
+            <property name="toolTip">
+             <string>Resolution</string>
+            </property>
+            <property name="text">
+             <string>Resolution</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QLabel" name="label_14">
             <property name="font">
              <font>
@@ -758,6 +768,16 @@
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="backdropResolution">
+            <property name="toolTip">
+             <string>Resolution</string>
+            </property>
+            <property name="text">
+             <string>Resolution</string>
             </property>
            </widget>
           </item>

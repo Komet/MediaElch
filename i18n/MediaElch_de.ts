@@ -501,42 +501,50 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../MovieWidget.ui" line="707"/>
-        <location filename="../MovieWidget.ui" line="751"/>
+        <location filename="../MovieWidget.ui" line="761"/>
         <source>Click to Change</source>
         <translation>Zum Ändern klicken</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.ui" line="729"/>
+        <location filename="../MovieWidget.ui" line="723"/>
+        <location filename="../MovieWidget.ui" line="726"/>
+        <location filename="../MovieWidget.ui" line="777"/>
+        <location filename="../MovieWidget.ui" line="780"/>
+        <source>Resolution</source>
+        <translation>Auflösung</translation>
+    </message>
+    <message>
+        <location filename="../MovieWidget.ui" line="739"/>
         <source>Backdrop</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="126"/>
+        <location filename="../MovieWidget.cpp" line="135"/>
         <source>Unknown Actor</source>
         <translation>Unbekannter Schauspieler</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="127"/>
+        <location filename="../MovieWidget.cpp" line="136"/>
         <source>Unkown Role</source>
         <translation>Unbekannte Rolle</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="145"/>
+        <location filename="../MovieWidget.cpp" line="154"/>
         <source>Unkown Genre</source>
         <translation>Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="163"/>
+        <location filename="../MovieWidget.cpp" line="172"/>
         <source>Unknown Studio</source>
         <translation>Unbekanntes Studio</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="181"/>
+        <location filename="../MovieWidget.cpp" line="190"/>
         <source>Unkown Country</source>
         <translation>Unbekanntes Land</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="512"/>
+        <location filename="../MovieWidget.cpp" line="531"/>
         <source>Downloading Missing Actor Images...</source>
         <translation>Lade fehlende Schauspieler Bilder...</translation>
     </message>
