@@ -156,6 +156,7 @@ void TMDb::loadFinished()
 
 void TMDb::parseAndAssignInfos(QString json, Movie *movie)
 {
+    qDebug() << json;
     movie->clear();
     QScriptValue sc;
     QScriptEngine engine;
