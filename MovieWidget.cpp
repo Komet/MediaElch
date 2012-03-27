@@ -258,6 +258,7 @@ void MovieWidget::setMovie(Movie *movie)
             return;
         }
     }
+    movie->loadData(Manager::instance()->mediaCenterInterface());
     hideFirstTime();
     m_posterDownloadManager->abortDownloads();
     m_movie = movie;
