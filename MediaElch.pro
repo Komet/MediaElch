@@ -12,7 +12,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         MainWindow.cpp \
-    SettingsDialog.cpp \
     data/Movie.cpp \
     data/MovieFileSearcher.cpp \
     mediaCenterPlugins/XbmcXml.cpp \
@@ -36,10 +35,11 @@ SOURCES += main.cpp\
     QuestionDialog.cpp \
     smallWidgets/FilterWidget.cpp \
     MyTableWidget.cpp \
-    ExportDialog.cpp
+    ExportDialog.cpp \
+    SettingsWidget.cpp \
+    MessageBox.cpp
 
 HEADERS  += MainWindow.h \
-    SettingsDialog.h \
     data/Movie.h \
     Globals.h \
     data/MediaCenterInterface.h \
@@ -66,10 +66,11 @@ HEADERS  += MainWindow.h \
     QuestionDialog.h \
     smallWidgets/FilterWidget.h \
     MyTableWidget.h \
-    ExportDialog.h
+    ExportDialog.h \
+    SettingsWidget.h \
+    MessageBox.h
 
 FORMS    += MainWindow.ui \
-    SettingsDialog.ui \
     MovieSearch.ui \
     MovieWidget.ui \
     MovieImageDialog.ui \
@@ -77,7 +78,9 @@ FORMS    += MainWindow.ui \
     AboutDialog.ui \
     QuestionDialog.ui \
     smallWidgets/FilterWidget.ui \
-    ExportDialog.ui
+    ExportDialog.ui \
+    SettingsWidget.ui \
+    MessageBox.ui
 
 RESOURCES += \
     MediaElch.qrc

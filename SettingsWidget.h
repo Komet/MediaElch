@@ -1,24 +1,21 @@
-#ifndef SETTINGSDIALOG_H
-#define SETTINGSDIALOG_H
+#ifndef SETTINGSWIDGET_H
+#define SETTINGSWIDGET_H
 
-#include <QDialog>
 #include <QSettings>
+#include <QWidget>
 
 namespace Ui {
-class SettingsDialog;
+class SettingsWidget;
 }
 
-class SettingsDialog : public QDialog
+class SettingsWidget : public QWidget
 {
     Q_OBJECT
     
 public:
-    explicit SettingsDialog(QWidget *parent = 0);
-    ~SettingsDialog();
-
-    static SettingsDialog* instance(QWidget *parent = 0);
-    void accept();
-
+    explicit SettingsWidget(QWidget *parent = 0);
+    ~SettingsWidget();
+    void loadSettings();
     QSize mainWindowSize();
     QPoint mainWindowPosition();
     QStringList movieDirectories();
@@ -26,9 +23,9 @@ public:
 
     void setMainWindowSize(QSize mainWindowSize);
     void setMainWindowPosition(QPoint mainWindowPosition);
-    
+
 public slots:
-    int exec();
+    void saveSettings();
 
 private slots:
     void addMovieDir();
@@ -36,15 +33,12 @@ private slots:
     void movieListRowChanged(int currentRow);
 
 private:
-    Ui::SettingsDialog *ui;
-
+    Ui::SettingsWidget *ui;
     QSettings m_settings;
     QStringList m_movieDirectories;
     QSize m_mainWindowSize;
     QPoint m_mainWindowPosition;
     bool m_firstTime;
-
-    void loadSettings();
 };
 
-#endif // SETTINGSDIALOG_H
+#endif // SETTINGSWIDGET_H

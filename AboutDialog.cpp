@@ -6,7 +6,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
     ui(new Ui::AboutDialog)
 {
     ui->setupUi(this);
-    ui->labelXbmm->setText(tr("XBMM %1").arg(QApplication::applicationVersion()));
+    ui->labelXbmm->setText(tr("MediaElch %1").arg(QApplication::applicationVersion()));
 
 #ifdef Q_WS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);

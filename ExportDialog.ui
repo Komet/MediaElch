@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>MediaElch</string>
   </property>
   <property name="modal">
    <bool>true</bool>

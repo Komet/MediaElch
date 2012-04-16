@@ -1,30 +1,27 @@
-#include "SettingsDialog.h"
-#include "ui_SettingsDialog.h"
-
+#include "SettingsWidget.h"
+#include "ui_SettingsWidget.h"
 #include <QFileDialog>
-#include <QListWidgetItem>
-
 #include "Manager.h"
+#include "MessageBox.h"
 
-SettingsDialog::SettingsDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::SettingsDialog)
+SettingsWidget::SettingsWidget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::SettingsWidget)
 {
     ui->setupUi(this);
 
-#ifdef Q_WS_MAC
-    setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
-#else
-    setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
-#endif
+    QFont font = ui->labelMovies->font();
+    font.setPointSize(font.pointSize()+3);
+    ui->labelMovies->setFont(font);
+    ui->labelScrapers->setFont(font);
 
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
         if (scraper->hasSettings()) {
             QWidget *scraperSettings = scraper->settingsWidget();
-            scraperSettings->setParent(ui->tabScrapers);
-            ui->verticalLayoutScrapers->addWidget(new QLabel(scraper->name(), ui->tabScrapers));
+            scraperSettings->setParent(ui->groupBox_2);
+            ui->verticalLayoutScrapers->addWidget(new QLabel(scraper->name(), ui->groupBox_2));
             ui->verticalLayoutScrapers->addWidget(scraperSettings);
-            QFrame *line = new QFrame(ui->tabScrapers);
+            QFrame *line = new QFrame(ui->groupBox_2);
             line->setFrameShape(QFrame::HLine);
             line->setFrameShadow(QFrame::Sunken);
             ui->verticalLayoutScrapers->addWidget(line);
@@ -32,8 +29,6 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     }
     ui->verticalLayoutScrapers->addSpacerItem(new QSpacerItem(1, 1, QSizePolicy::Minimum, QSizePolicy::Expanding));
 
-    connect(ui->buttonOk, SIGNAL(clicked()), this, SLOT(accept()));
-    connect(ui->buttonCancel, SIGNAL(clicked()), this, SLOT(reject()));
     connect(ui->buttonAddMovieDir, SIGNAL(clicked()), this, SLOT(addMovieDir()));
     connect(ui->buttonRemoveMovieDir, SIGNAL(clicked()), this, SLOT(removeMovieDir()));
     connect(ui->listMovieDirs, SIGNAL(currentRowChanged(int)), this, SLOT(movieListRowChanged(int)));
@@ -41,27 +36,12 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     this->loadSettings();
 }
 
-SettingsDialog::~SettingsDialog()
+SettingsWidget::~SettingsWidget()
 {
     delete ui;
 }
 
-SettingsDialog *SettingsDialog::instance(QWidget *parent)
-{
-    static SettingsDialog *m_instance = 0;
-    if (m_instance == 0) {
-        m_instance = new SettingsDialog(parent);
-    }
-    return m_instance;
-}
-
-int SettingsDialog::exec()
-{
-    this->loadSettings();
-    return QDialog::exec();
-}
-
-void SettingsDialog::loadSettings()
+void SettingsWidget::loadSettings()
 {
     // Globals
     m_firstTime = m_settings.value("FirstTime", true).toBool();
@@ -82,7 +62,7 @@ void SettingsDialog::loadSettings()
     }
 }
 
-void SettingsDialog::accept()
+void SettingsWidget::saveSettings()
 {
     m_settings.setValue("FirstTime", false);
     m_settings.setValue("Directories/Movies", m_movieDirectories);
@@ -91,11 +71,10 @@ void SettingsDialog::accept()
             scraper->saveSettings();
     }
     Manager::instance()->movieFileSearcher()->setMovieDirectories(this->movieDirectories());
-
-    QDialog::accept();
+    MessageBox::instance()->showMessage(tr("Settings saved"));
 }
 
-void SettingsDialog::addMovieDir()
+void SettingsWidget::addMovieDir()
 {
     QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a directory containing your movies"), QDir::homePath());
     if (!dir.isEmpty()) {
@@ -106,7 +85,7 @@ void SettingsDialog::addMovieDir()
     }
 }
 
-void SettingsDialog::removeMovieDir()
+void SettingsWidget::removeMovieDir()
 {
     int row = ui->listMovieDirs->currentRow();
     if (row < 0) {
@@ -117,36 +96,36 @@ void SettingsDialog::removeMovieDir()
     delete ui->listMovieDirs->takeItem(ui->listMovieDirs->currentRow());
 }
 
-void SettingsDialog::movieListRowChanged(int currentRow)
+void SettingsWidget::movieListRowChanged(int currentRow)
 {
     ui->buttonRemoveMovieDir->setDisabled(currentRow < 0);
 }
 
 /*** GETTER ***/
 
-QSize SettingsDialog::mainWindowSize()
+QSize SettingsWidget::mainWindowSize()
 {
     return m_mainWindowSize;
 }
 
-QPoint SettingsDialog::mainWindowPosition()
+QPoint SettingsWidget::mainWindowPosition()
 {
     return m_mainWindowPosition;
 }
 
-QStringList SettingsDialog::movieDirectories()
+QStringList SettingsWidget::movieDirectories()
 {
     return m_movieDirectories;
 }
 
-bool SettingsDialog::firstTime()
+bool SettingsWidget::firstTime()
 {
     return m_firstTime;
 }
 
 /*** SETTER ***/
 
-void SettingsDialog::setMainWindowSize(QSize mainWindowSize)
+void SettingsWidget::setMainWindowSize(QSize mainWindowSize)
 {
     int height = mainWindowSize.height();
     // don't know where 42px are left...
@@ -158,7 +137,7 @@ void SettingsDialog::setMainWindowSize(QSize mainWindowSize)
     m_settings.setValue("MainWindowSize", mainWindowSize);
 }
 
-void SettingsDialog::setMainWindowPosition(QPoint mainWindowPosition)
+void SettingsWidget::setMainWindowPosition(QPoint mainWindowPosition)
 {
     m_mainWindowPosition = mainWindowPosition;
     m_settings.setValue("MainWindowPosition", mainWindowPosition);

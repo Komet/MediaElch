@@ -8,6 +8,7 @@
 #include "ExportDialog.h"
 #include "data/MovieFileSearcher.h"
 #include "smallWidgets/FilterWidget.h"
+#include "SettingsWidget.h"
 
 namespace Ui {
 class MainWindow;
@@ -27,26 +28,31 @@ public slots:
     void setActionExportEnabled(bool enabled = true);
     void setActionExportDisabled(bool disabled = true);
 
+protected:
+    void resizeEvent(QResizeEvent *event);
+
 private slots:
-    void execSettingsDialog();
     void progressProgress(int current, int max);
     void progressFinished();
     void progressStarted(QString msg = "");
+    void onMenuMovies();
+    void onMenuTvShows();
+    void onMenuSettings();
+    void onActionSave();
+    void onFilterChanged(QString text);
 
 private:
     Ui::MainWindow *ui;
-    QProgressBar *m_progressBar;
+    SettingsWidget *m_settingsWidget;
     AboutDialog *m_aboutDialog;
     ExportDialog *m_exportDialog;
     QAction *m_actionSearch;
     QAction *m_actionSave;
-    QAction *m_actionSettings;
     QAction *m_actionExport;
     QAction *m_actionAbout;
     QAction *m_actionQuit;
     QAction *m_actionRefreshFiles;
     FilterWidget *m_filterWidget;
-    QList<QLabel*> m_progressLabels;
     void setupToolbar();
 };
 

@@ -24,5 +24,14 @@
         <file>img/pattern2.png</file>
         <file>img/folder_in.png</file>
         <file>i18n/MediaElch_de.qm</file>
+        <file>img/display_off.png</file>
+        <file>img/display_on.png</file>
+        <file>img/video.png</file>
+        <file>img/display_on_menu.png</file>
+        <file>img/display_on_menuActive.png</file>
+        <file>img/spanner_menu.png</file>
+        <file>img/spanner_menuActive.png</file>
+        <file>img/video_menu.png</file>
+        <file>img/video_menuActive.png</file>
     </qresource>
 </RCC>

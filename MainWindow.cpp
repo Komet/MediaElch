@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QPainter>
+#include <QTimer>
 
 #include "data/MediaCenterInterface.h"
 #include "data/ScraperInterface.h"
@@ -12,31 +13,30 @@
 #include "MovieImageDialog.h"
 #include "MovieSearch.h"
 #include "QuestionDialog.h"
-#include "SettingsDialog.h"
+#include "SettingsWidget.h"
+#include "MessageBox.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    m_progressBar = new QProgressBar(ui->statusBar);
-    m_progressBar->hide();
     m_aboutDialog = new AboutDialog(ui->centralWidget);
     m_exportDialog = new ExportDialog(ui->centralWidget);
     m_filterWidget = new FilterWidget(ui->mainToolBar);
+    m_settingsWidget = static_cast<SettingsWidget*>(ui->stackedWidget->widget(2));
     setupToolbar();
 
+    MessageBox::instance(this)->reposition(this->size());
     Manager::instance();
-    SettingsDialog::instance(ui->centralWidget);
-
-    if (SettingsDialog::instance()->mainWindowSize().isValid()) {
-        resize(SettingsDialog::instance()->mainWindowSize());
+    if (m_settingsWidget->mainWindowSize().isValid()) {
+        resize(m_settingsWidget->mainWindowSize());
     }
-    if (!SettingsDialog::instance()->mainWindowPosition().isNull()) {
-        move(SettingsDialog::instance()->mainWindowPosition());
+    if (!m_settingsWidget->mainWindowPosition().isNull()) {
+        move(m_settingsWidget->mainWindowPosition());
     }
 
-    Manager::instance()->movieFileSearcher()->setMovieDirectories(SettingsDialog::instance()->movieDirectories());
+    Manager::instance()->movieFileSearcher()->setMovieDirectories(m_settingsWidget->movieDirectories());
 
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded()), this, SLOT(progressFinished()));
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(progress(int,int)), this, SLOT(progressProgress(int,int)));
@@ -54,12 +54,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->movieWidget, SIGNAL(movieChangeCanceled()), ui->filesWidget, SLOT(restoreLastSelection()));
     connect(ui->movieWidget, SIGNAL(setActionSaveEnabled(bool)), this, SLOT(setActionSaveEnabled(bool)));
     connect(ui->movieWidget, SIGNAL(setActionSearchEnabled(bool)), this, SLOT(setActionSearchEnabled(bool)));
-    connect(m_filterWidget, SIGNAL(sigFilterTextChanged(QString)), ui->filesWidget, SLOT(setFilter(QString)));
-
-    if (SettingsDialog::instance()->firstTime()) {
-        ui->filesWidget->showFirstTime();
-        ui->movieWidget->showFirstTime();
-    }
+    connect(m_filterWidget, SIGNAL(sigFilterTextChanged(QString)), this, SLOT(onFilterChanged(QString)));
+    connect(ui->buttonMovies, SIGNAL(clicked()), this, SLOT(onMenuMovies()));
+    connect(ui->buttonTvshows, SIGNAL(clicked()), this, SLOT(onMenuTvShows()));
+    connect(ui->buttonSettings, SIGNAL(clicked()), this, SLOT(onMenuSettings()));
 
     MovieSearch::instance(ui->centralWidget);
     MovieImageDialog::instance(ui->centralWidget);
@@ -73,10 +71,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    SettingsDialog::instance()->setMainWindowSize(size());
-    SettingsDialog::instance()->setMainWindowPosition(pos());
-    delete SettingsDialog::instance();
+    m_settingsWidget->setMainWindowSize(size());
+    m_settingsWidget->setMainWindowPosition(pos());
     delete ui;
+}
+
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    MessageBox::instance()->reposition(event->size());
+    QWidget::resizeEvent(event);
 }
 
 void MainWindow::setupToolbar()
@@ -124,7 +127,6 @@ void MainWindow::setupToolbar()
     m_actionSave = new QAction(QIcon(save), tr("Save"), this);
     m_actionRefreshFiles = new QAction(QIcon(refresh), tr("Reload"), this);
     m_actionRefreshFiles->setToolTip(tr("Reload Movie List"));
-    m_actionSettings = new QAction(QIcon(spanner), tr("Preferences"), this);
     m_actionExport = new QAction(QIcon(exportDb), tr("Export"), this);
     m_actionExport->setToolTip(tr("Export Movie Database"));
     m_actionAbout = new QAction(QIcon(info), tr("About"), this);
@@ -132,16 +134,14 @@ void MainWindow::setupToolbar()
     ui->mainToolBar->addAction(m_actionSearch);
     ui->mainToolBar->addAction(m_actionSave);
     ui->mainToolBar->addAction(m_actionRefreshFiles);
-    ui->mainToolBar->addAction(m_actionSettings);
     ui->mainToolBar->addAction(m_actionExport);
     ui->mainToolBar->addAction(m_actionAbout);
     ui->mainToolBar->addAction(m_actionQuit);
     ui->mainToolBar->addWidget(m_filterWidget);
 
     connect(m_actionSearch, SIGNAL(triggered()), ui->movieWidget, SLOT(startScraperSearch()));
-    connect(m_actionSave, SIGNAL(triggered()), ui->movieWidget, SLOT(saveInformation()));
+    connect(m_actionSave, SIGNAL(triggered()), this, SLOT(onActionSave()));
     connect(m_actionRefreshFiles, SIGNAL(triggered()), ui->filesWidget, SLOT(startSearch()));
-    connect(m_actionSettings, SIGNAL(triggered()), this, SLOT(execSettingsDialog()));
     connect(m_actionExport, SIGNAL(triggered()), m_exportDialog, SLOT(exec()));
     connect(m_actionAbout, SIGNAL(triggered()), m_aboutDialog, SLOT(exec()));
     connect(m_actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -157,17 +157,17 @@ void MainWindow::setupToolbar()
 
 void MainWindow::setActionSaveEnabled(bool enabled)
 {
-    m_actionSave->setEnabled(enabled);
+    m_actionSave->setEnabled(enabled && ui->stackedWidget->currentIndex() == 0);
 }
 
 void MainWindow::setActionSearchEnabled(bool enabled)
 {
-    m_actionSearch->setEnabled(enabled);
+    m_actionSearch->setEnabled(enabled && ui->stackedWidget->currentIndex() == 0);
 }
 
 void MainWindow::setActionExportEnabled(bool enabled)
 {
-    m_actionExport->setEnabled(enabled);
+    m_actionExport->setEnabled(enabled && ui->stackedWidget->currentIndex() == 0);
 }
 
 void MainWindow::setActionExportDisabled(bool disabled)
@@ -175,31 +175,15 @@ void MainWindow::setActionExportDisabled(bool disabled)
     m_actionExport->setDisabled(disabled);
 }
 
-void MainWindow::execSettingsDialog()
-{
-    int result = SettingsDialog::instance()->exec();
-    if (result == QDialog::Accepted && !Manager::instance()->movieFileSearcher()->isRunning()) {
-        Manager::instance()->movieFileSearcher()->start();
-    }
-}
-
 void MainWindow::progressStarted(QString msg)
 {
     ui->filesWidget->disableRefresh();
-    ui->statusBar->addWidget(m_progressBar);
-    if (!msg.isEmpty()) {
-        QLabel *label = new QLabel(msg);
-        m_progressLabels.append(label);
-        ui->statusBar->addWidget(label);
-    }
-    m_progressBar->show();
-    m_progressBar->setValue(0);
+    MessageBox::instance()->showProgressBar(msg);
 }
 
 void MainWindow::progressProgress(int current, int max)
 {
-    m_progressBar->setRange(0, max);
-    m_progressBar->setValue(current);
+    MessageBox::instance()->progressBarProgress(current, max);
 }
 
 void MainWindow::progressFinished()
@@ -207,11 +191,59 @@ void MainWindow::progressFinished()
     if (Manager::instance()->movieModel()->movies().size() > 0)
         ui->filesWidget->hideFirstTime();
     ui->filesWidget->enableRefresh();
-    if (m_progressBar->isVisible())
-        ui->statusBar->removeWidget(m_progressBar);
-    foreach (QLabel *label, m_progressLabels) {
-        ui->statusBar->removeWidget(label);
-        label->deleteLater();
-    }
-    m_progressLabels.clear();
+    MessageBox::instance()->hideProgressBar();
+}
+
+void MainWindow::onMenuMovies()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+    ui->buttonMovies->setIcon(QIcon(":/img/video_menuActive.png"));
+    ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menu.png"));
+    ui->buttonSettings->setIcon(QIcon(":/img/spanner_menu.png"));
+    m_actionSearch->setEnabled(true);
+    m_actionSave->setEnabled(true);
+    m_actionRefreshFiles->setEnabled(true);
+    m_actionExport->setEnabled(true);
+    m_filterWidget->setEnabled(true);
+}
+
+void MainWindow::onMenuTvShows()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+    ui->buttonMovies->setIcon(QIcon(":/img/video_menu.png"));
+    ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menuActive.png"));
+    ui->buttonSettings->setIcon(QIcon(":/img/spanner_menu.png"));
+    m_actionSearch->setEnabled(false);
+    m_actionSave->setEnabled(false);
+    m_actionRefreshFiles->setEnabled(false);
+    m_actionExport->setEnabled(false);
+    m_filterWidget->setEnabled(true);
+}
+
+void MainWindow::onMenuSettings()
+{
+    m_settingsWidget->loadSettings();
+    ui->stackedWidget->setCurrentIndex(2);
+    ui->buttonMovies->setIcon(QIcon(":/img/video_menu.png"));
+    ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menu.png"));
+    ui->buttonSettings->setIcon(QIcon(":/img/spanner_menuActive.png"));
+    m_actionSearch->setEnabled(false);
+    m_actionSave->setEnabled(true);
+    m_actionRefreshFiles->setEnabled(false);
+    m_actionExport->setEnabled(false);
+    m_filterWidget->setEnabled(false);
+}
+
+void MainWindow::onActionSave()
+{
+    if (ui->stackedWidget->currentIndex() == 0)
+        QTimer::singleShot(0, ui->movieWidget, SLOT(saveInformation()));
+    else if (ui->stackedWidget->currentIndex() == 2)
+        QTimer::singleShot(0, ui->settingsWidget, SLOT(saveSettings()));
+}
+
+void MainWindow::onFilterChanged(QString text)
+{
+    if (ui->stackedWidget->currentIndex() == 0)
+        ui->filesWidget->setFilter(text);
 }
