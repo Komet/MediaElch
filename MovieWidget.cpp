@@ -39,7 +39,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->posterResolution->setFont(font);
     ui->backdropResolution->setFont(font);
 
-    m_progressMessageId = 10001;
+    m_progressMessageId = Constants::MovieWidgetProgressMessageId;
     m_movie = 0;
     m_posterDownloadManager = new DownloadManager(this);
 

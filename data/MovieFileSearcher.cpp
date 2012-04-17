@@ -7,7 +7,7 @@
 MovieFileSearcher::MovieFileSearcher(QObject *parent) :
     QThread(parent)
 {
-    m_progressMessageId = 10000;
+    m_progressMessageId = Constants::MovieFileSearcherProgressMessageId;
 }
 
 MovieFileSearcher::~MovieFileSearcher()

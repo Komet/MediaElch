@@ -6,6 +6,11 @@
 #include <QString>
 #include <QUrl>
 
+namespace Constants {
+    const int MovieFileSearcherProgressMessageId = 10000;
+    const int MovieWidgetProgressMessageId       = 10001;
+}
+
 struct Actor {
     QString name;
     QString role;
