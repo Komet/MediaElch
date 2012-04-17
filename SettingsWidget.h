@@ -19,6 +19,7 @@ public:
     QSize mainWindowSize();
     QPoint mainWindowPosition();
     QStringList movieDirectories();
+    QStringList tvShowDirectories();
     bool firstTime();
 
     void setMainWindowSize(QSize mainWindowSize);
@@ -31,11 +32,15 @@ private slots:
     void addMovieDir();
     void removeMovieDir();
     void movieListRowChanged(int currentRow);
+    void addTvShowDir();
+    void removeTvShowDir();
+    void tvShowListRowChanged(int currentRow);
 
 private:
     Ui::SettingsWidget *ui;
     QSettings m_settings;
     QStringList m_movieDirectories;
+    QStringList m_tvShowDirectories;
     QSize m_mainWindowSize;
     QPoint m_mainWindowPosition;
     bool m_firstTime;

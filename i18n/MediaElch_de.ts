@@ -235,18 +235,18 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../MainWindow.ui" line="113"/>
-        <location filename="../MainWindow.ui" line="202"/>
+        <location filename="../MainWindow.ui" line="205"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="207"/>
+        <location filename="../MainWindow.ui" line="210"/>
         <location filename="../MainWindow.cpp" line="133"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="212"/>
+        <location filename="../MainWindow.ui" line="215"/>
         <location filename="../MainWindow.cpp" line="132"/>
         <source>About</source>
         <translation>Über</translation>
@@ -690,39 +690,56 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="56"/>
+        <location filename="../SettingsWidget.ui" line="62"/>
         <source>Movies</source>
         <translation>Filme</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="66"/>
+        <location filename="../SettingsWidget.ui" line="72"/>
         <source>Add one or more directories containing your movie files.</source>
         <translation>Füge Verzeichnisse hinzu, die deine Filme enthalten.</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="80"/>
+        <location filename="../SettingsWidget.ui" line="86"/>
+        <location filename="../SettingsWidget.ui" line="222"/>
         <source>Add</source>
         <translation>Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="87"/>
+        <location filename="../SettingsWidget.ui" line="93"/>
+        <location filename="../SettingsWidget.ui" line="229"/>
         <source>Remove</source>
         <translation>Entfernen</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="138"/>
+        <location filename="../SettingsWidget.ui" line="144"/>
         <source>Scrapers</source>
         <translation>Scraper</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="74"/>
+        <location filename="../SettingsWidget.ui" line="198"/>
+        <source>TV Shows</source>
+        <translation>TV Serien</translation>
+    </message>
+    <message>
+        <location filename="../SettingsWidget.ui" line="205"/>
+        <source>Add one or more directories containing your TV Shows. Episodes have to be in subfolders with the name of the show.</source>
+        <translation>Füge Verzeichnisse hinzu, die deine Serien enthalten. Episoden müssen in Unterverzeichnissen mit dem Namen der Serie sein.</translation>
+    </message>
+    <message>
+        <location filename="../SettingsWidget.cpp" line="75"/>
         <source>Settings saved</source>
         <translation>Einstellungen gespeichert</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="79"/>
+        <location filename="../SettingsWidget.cpp" line="80"/>
         <source>Choose a directory containing your movies</source>
         <translation>Wähle ein Verzeichnis aus, das deine Filme enthält</translation>
+    </message>
+    <message>
+        <location filename="../SettingsWidget.cpp" line="107"/>
+        <source>Choose a directory containing your TV shows</source>
+        <translation>Wähle ein Verzeichnis aus, das deine Serien enthält</translation>
     </message>
 </context>
 <context>

@@ -14,6 +14,7 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     font.setPointSize(font.pointSize()+3);
     ui->labelMovies->setFont(font);
     ui->labelScrapers->setFont(font);
+    ui->labelTvShows->setFont(font);
 
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
         if (scraper->hasSettings()) {
@@ -101,6 +102,31 @@ void SettingsWidget::movieListRowChanged(int currentRow)
     ui->buttonRemoveMovieDir->setDisabled(currentRow < 0);
 }
 
+void SettingsWidget::addTvShowDir()
+{
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a directory containing your TV shows"), QDir::homePath());
+    if (!dir.isEmpty()) {
+        if( !m_tvShowDirectories.contains(dir) ) {
+            m_tvShowDirectories.append(dir);
+            new QListWidgetItem(dir, ui->listTvShowDirs);
+        }
+    }
+}
+
+void SettingsWidget::removeTvShowDir()
+{
+    int row = ui->listTvShowDirs->currentRow();
+    if (row<0)
+        return;
+    m_tvShowDirectories.removeOne(ui->listTvShowDirs->currentItem()->text());
+    delete ui->listTvShowDirs->takeItem(ui->listTvShowDirs->currentRow());
+}
+
+void SettingsWidget::tvShowListRowChanged(int currentRow)
+{
+    ui->buttonRemoveTvShowDir->setDisabled(currentRow < 0);
+}
+
 /*** GETTER ***/
 
 QSize SettingsWidget::mainWindowSize()
@@ -116,6 +142,11 @@ QPoint SettingsWidget::mainWindowPosition()
 QStringList SettingsWidget::movieDirectories()
 {
     return m_movieDirectories;
+}
+
+QStringList SettingsWidget::tvShowDirectories()
+{
+    return m_tvShowDirectories;
 }
 
 bool SettingsWidget::firstTime()
