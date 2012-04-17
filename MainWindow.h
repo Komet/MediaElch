@@ -32,9 +32,9 @@ protected:
     void resizeEvent(QResizeEvent *event);
 
 private slots:
-    void progressProgress(int current, int max);
-    void progressFinished();
-    void progressStarted(QString msg = "");
+    void progressProgress(int current, int max, int id);
+    void progressFinished(int id);
+    void progressStarted(QString msg, int id);
     void onMenuMovies();
     void onMenuTvShows();
     void onMenuSettings();

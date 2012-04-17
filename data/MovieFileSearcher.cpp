@@ -7,6 +7,7 @@
 MovieFileSearcher::MovieFileSearcher(QObject *parent) :
     QThread(parent)
 {
+    m_progressMessageId = 10000;
 }
 
 MovieFileSearcher::~MovieFileSearcher()
@@ -15,7 +16,7 @@ MovieFileSearcher::~MovieFileSearcher()
 
 void MovieFileSearcher::run()
 {
-    emit searchStarted(tr("Searching for Movies..."));
+    emit searchStarted(tr("Searching for Movies..."), m_progressMessageId);
 
     Manager::instance()->movieModel()->clear();
     QList<QStringList> contents;
@@ -29,10 +30,10 @@ void MovieFileSearcher::run()
         Movie *movie = new Movie(files);
         movie->loadData(Manager::instance()->mediaCenterInterface());
         Manager::instance()->movieModel()->addMovie(movie);
-        emit progress(++i, n);
+        emit progress(++i, n, m_progressMessageId);
     }
 
-    emit moviesLoaded();
+    emit moviesLoaded(m_progressMessageId);
 }
 
 void MovieFileSearcher::setMovieDirectories(QStringList directories)

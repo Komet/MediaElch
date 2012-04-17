@@ -9,8 +9,7 @@ MessageBox::MessageBox(QWidget *parent) :
     ui(new Ui::MessageBox)
 {
     ui->setupUi(this);
-    m_timer = new QTimer;
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(hide()));
+    m_msgCounter = 0;
     hide();
 }
 
@@ -34,33 +33,66 @@ void MessageBox::reposition(QSize size)
     m_parentSize = size;
 }
 
-void MessageBox::showMessage(QString message)
+void MessageBox::adjustSize()
 {
-    ui->progressBar->hide();
-    ui->label->setText(message);
-    resize(this->size().width(), 48+ui->label->sizeHint().height());
+    int height = 48;
+    foreach (const Message *msg, m_messages)
+        height += msg->sizeHint().height() + ui->layoutMessages->spacing();
+    height -= ui->layoutMessages->spacing();
+    resize(this->size().width(), height);
+}
+
+int MessageBox::showMessage(QString message)
+{
+    m_msgCounter++;
+    Message *msg = new Message(this);
+    msg->setMessage(message);
+    msg->setId(m_msgCounter);
+    m_messages.append(msg);
+    adjustSize();
+    ui->layoutMessages->addWidget(msg);
     show();
-    m_timer->start(3000);
+    connect(msg, SIGNAL(sigHideMessage(int)), this, SLOT(removeMessage(int)));
+    return m_msgCounter;
 }
 
-void MessageBox::showProgressBar(QString message)
+void MessageBox::removeMessage(int id)
 {
-    m_timer->stop();
-    ui->progressBar->show();
-    ui->progressBar->setValue(0);
-    ui->label->setText(message);
-    resize(this->size().width(), 48+ui->label->sizeHint().height()+ui->progressBar->sizeHint().height()+4);
+    foreach (Message *msg, m_messages) {
+        if (msg->id() == id) {
+            ui->layoutMessages->removeWidget(msg);
+            msg->deleteLater();
+            m_messages.removeOne(msg);
+            adjustSize();
+        }
+    }
+    if (m_messages.size() == 0)
+        hide();
+}
+
+void MessageBox::showProgressBar(QString message, int id)
+{
+    m_msgCounter++;
+    Message *msg = new Message(this);
+    msg->setMessage(message);
+    msg->setId(id);
+    msg->showProgressBar(true);
+    m_messages.append(msg);
+    adjustSize();
+    ui->layoutMessages->addWidget(msg);
     show();
+    connect(msg, SIGNAL(sigHideMessage(int)), this, SLOT(removeMessage(int)));
 }
 
-void MessageBox::progressBarProgress(int current, int max)
+void MessageBox::progressBarProgress(int current, int max, int id)
 {
-    ui->progressBar->setRange(0, max);
-    ui->progressBar->setValue(current);
+    foreach (Message *msg, m_messages) {
+        if (msg->id() == id)
+            msg->setProgress(current, max);
+    }
 }
 
-void MessageBox::hideProgressBar()
+void MessageBox::hideProgressBar(int id)
 {
-    ui->progressBar->hide();
-    hide();
+    removeMessage(id);
 }

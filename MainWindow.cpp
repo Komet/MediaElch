@@ -38,19 +38,19 @@ MainWindow::MainWindow(QWidget *parent) :
 
     Manager::instance()->movieFileSearcher()->setMovieDirectories(m_settingsWidget->movieDirectories());
 
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded()), this, SLOT(progressFinished()));
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(progress(int,int)), this, SLOT(progressProgress(int,int)));
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(searchStarted(QString)), this, SLOT(progressStarted(QString)));
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded()), this, SLOT(setActionExportEnabled()));
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(searchStarted(QString)), this, SLOT(setActionExportDisabled()));
+    connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded(int)), this, SLOT(progressFinished(int)));
+    connect(Manager::instance()->movieFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
+    connect(Manager::instance()->movieFileSearcher(), SIGNAL(searchStarted(QString,int)), this, SLOT(progressStarted(QString,int)));
+    connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded(int)), this, SLOT(setActionExportEnabled()));
+    connect(Manager::instance()->movieFileSearcher(), SIGNAL(searchStarted(QString,int)), this, SLOT(setActionExportDisabled()));
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setMovie(Movie*)));
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setEnabledTrue()));
     connect(ui->filesWidget, SIGNAL(noMovieSelected()), ui->movieWidget, SLOT(clear()));
     connect(ui->filesWidget, SIGNAL(noMovieSelected()), ui->movieWidget, SLOT(setDisabledTrue()));
     connect(ui->filesWidget, SIGNAL(setRefreshButtonEnabled(bool)), m_actionRefreshFiles, SLOT(setEnabled(bool)));
-    connect(ui->movieWidget, SIGNAL(actorDownloadProgress(int,int)), this, SLOT(progressProgress(int,int)));
-    connect(ui->movieWidget, SIGNAL(actorDownloadStarted(QString)), this, SLOT(progressStarted(QString)));
-    connect(ui->movieWidget, SIGNAL(actorDownloadFinished()), this, SLOT(progressFinished()));
+    connect(ui->movieWidget, SIGNAL(actorDownloadProgress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
+    connect(ui->movieWidget, SIGNAL(actorDownloadStarted(QString,int)), this, SLOT(progressStarted(QString,int)));
+    connect(ui->movieWidget, SIGNAL(actorDownloadFinished(int)), this, SLOT(progressFinished(int)));
     connect(ui->movieWidget, SIGNAL(movieChangeCanceled()), ui->filesWidget, SLOT(restoreLastSelection()));
     connect(ui->movieWidget, SIGNAL(setActionSaveEnabled(bool)), this, SLOT(setActionSaveEnabled(bool)));
     connect(ui->movieWidget, SIGNAL(setActionSearchEnabled(bool)), this, SLOT(setActionSearchEnabled(bool)));
@@ -175,23 +175,23 @@ void MainWindow::setActionExportDisabled(bool disabled)
     m_actionExport->setDisabled(disabled);
 }
 
-void MainWindow::progressStarted(QString msg)
+void MainWindow::progressStarted(QString msg, int id)
 {
     ui->filesWidget->disableRefresh();
-    MessageBox::instance()->showProgressBar(msg);
+    MessageBox::instance()->showProgressBar(msg, id);
 }
 
-void MainWindow::progressProgress(int current, int max)
+void MainWindow::progressProgress(int current, int max, int id)
 {
-    MessageBox::instance()->progressBarProgress(current, max);
+    MessageBox::instance()->progressBarProgress(current, max, id);
 }
 
-void MainWindow::progressFinished()
+void MainWindow::progressFinished(int id)
 {
     if (Manager::instance()->movieModel()->movies().size() > 0)
         ui->filesWidget->hideFirstTime();
     ui->filesWidget->enableRefresh();
-    MessageBox::instance()->hideProgressBar();
+    MessageBox::instance()->hideProgressBar(id);
 }
 
 void MainWindow::onMenuMovies()

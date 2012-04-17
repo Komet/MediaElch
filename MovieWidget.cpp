@@ -39,6 +39,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->posterResolution->setFont(font);
     ui->backdropResolution->setFont(font);
 
+    m_progressMessageId = 10001;
     m_movie = 0;
     m_posterDownloadManager = new DownloadManager(this);
 
@@ -529,7 +530,7 @@ void MovieWidget::saveInformation()
             downloads.append(d);
         }
         m_posterDownloadManager->setDownloads(downloads);
-        emit actorDownloadStarted(tr("Downloading Missing Actor Images..."));
+        emit actorDownloadStarted(tr("Downloading Missing Actor Images..."), m_progressMessageId);
         connect(m_posterDownloadManager, SIGNAL(allDownloadsFinished()), this, SLOT(downloadActorsFinished()), Qt::UniqueConnection);
     } else {
         this->downloadActorsFinished();
@@ -538,7 +539,7 @@ void MovieWidget::saveInformation()
 
 void MovieWidget::downloadActorsFinished()
 {
-    emit actorDownloadFinished();
+    emit actorDownloadFinished(m_progressMessageId);
     m_movie->saveData(Manager::instance()->mediaCenterInterface());
     this->setEnabledTrue();
     m_savingWidget->hide();
@@ -547,7 +548,7 @@ void MovieWidget::downloadActorsFinished()
 
 void MovieWidget::actorDownloadsLeft(int left)
 {
-    emit actorDownloadProgress(m_movie->actors().size()-left, m_movie->actors().size());
+    emit actorDownloadProgress(m_movie->actors().size()-left, m_movie->actors().size(), m_progressMessageId);
 }
 
 void MovieWidget::markHasChanged()

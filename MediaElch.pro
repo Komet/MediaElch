@@ -37,7 +37,8 @@ SOURCES += main.cpp\
     MyTableWidget.cpp \
     ExportDialog.cpp \
     SettingsWidget.cpp \
-    MessageBox.cpp
+    MessageBox.cpp \
+    Message.cpp
 
 HEADERS  += MainWindow.h \
     data/Movie.h \
@@ -68,7 +69,8 @@ HEADERS  += MainWindow.h \
     MyTableWidget.h \
     ExportDialog.h \
     SettingsWidget.h \
-    MessageBox.h
+    MessageBox.h \
+    Message.h
 
 FORMS    += MainWindow.ui \
     MovieSearch.ui \
@@ -80,7 +82,8 @@ FORMS    += MainWindow.ui \
     smallWidgets/FilterWidget.ui \
     ExportDialog.ui \
     SettingsWidget.ui \
-    MessageBox.ui
+    MessageBox.ui \
+    Message.ui
 
 RESOURCES += \
     MediaElch.qrc

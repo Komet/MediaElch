@@ -17,13 +17,13 @@ public:
     void setMovieDirectories(QStringList directories);
 
 signals:
-    void searchStarted(QString);
-    void progress(int, int);
-    void moviesLoaded();
+    void searchStarted(QString, int);
+    void progress(int, int, int);
+    void moviesLoaded(int);
 
 private:
     QStringList m_directories;
-
+    int m_progressMessageId;
     void getDirContents(QString path, QList<QStringList> &contents);
 };
 

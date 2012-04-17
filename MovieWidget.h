@@ -36,9 +36,9 @@ protected:
     void resizeEvent(QResizeEvent *event);
 
 signals:
-    void actorDownloadStarted(QString);
-    void actorDownloadProgress(int, int);
-    void actorDownloadFinished();
+    void actorDownloadStarted(QString, int);
+    void actorDownloadProgress(int, int, int);
+    void actorDownloadFinished(int);
     void movieChangeCanceled();
     void setActionSearchEnabled(bool);
     void setActionSaveEnabled(bool);
@@ -74,6 +74,7 @@ private:
     QLabel *m_firstTimeLabel;
     bool m_loadedFromScraper;
     bool m_hasChanged;
+    int m_progressMessageId;
     void updateMovieInfo();
 };
 

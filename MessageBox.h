@@ -3,6 +3,7 @@
 
 #include <QTimer>
 #include <QWidget>
+#include "Message.h"
 
 namespace Ui {
 class MessageBox;
@@ -17,15 +18,18 @@ public:
     ~MessageBox();
     static MessageBox *instance(QWidget *parent = 0);
     void reposition(QSize size);
-    void showMessage(QString message);
-    void showProgressBar(QString message);
-    void hideProgressBar();
-    void progressBarProgress(int current, int max);
-
+    int showMessage(QString message);
+    void showProgressBar(QString message, int id);
+    void hideProgressBar(int id);
+    void progressBarProgress(int current, int max, int id);
+private slots:
+    void removeMessage(int id);
 private:
     Ui::MessageBox *ui;
-    QTimer *m_timer;
     QSize m_parentSize;
+    int m_msgCounter;
+    QList<Message*> m_messages;
+    void adjustSize();
 };
 
 #endif // MESSAGEBOX_H
