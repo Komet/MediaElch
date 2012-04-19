@@ -240,15 +240,15 @@ void MovieWidget::movieNameChanged(QString text)
 void MovieWidget::setEnabledTrue()
 {
     ui->groupBox_3->setEnabled(true);
-    emit setActionSaveEnabled(true);
-    emit setActionSearchEnabled(true);
+    emit setActionSaveEnabled(true, WidgetMovies);
+    emit setActionSearchEnabled(true, WidgetMovies);
 }
 
 void MovieWidget::setDisabledTrue()
 {
     ui->groupBox_3->setDisabled(true);
-    emit setActionSaveEnabled(false);
-    emit setActionSearchEnabled(false);
+    emit setActionSaveEnabled(false, WidgetMovies);
+    emit setActionSearchEnabled(false, WidgetMovies);
 }
 
 void MovieWidget::setMovie(Movie *movie)
@@ -272,8 +272,8 @@ void MovieWidget::startScraperSearch()
 {
     if (m_movie == 0)
         return;
-    emit setActionSearchEnabled(false);
-    emit setActionSaveEnabled(false);
+    emit setActionSearchEnabled(false, WidgetMovies);
+    emit setActionSaveEnabled(false, WidgetMovies);
     MovieSearch::instance()->exec(m_movie->name());
     if (MovieSearch::instance()->result() == QDialog::Accepted) {
         this->setDisabledTrue();
@@ -281,8 +281,8 @@ void MovieWidget::startScraperSearch()
         connect(this->m_movie, SIGNAL(loaded()), this, SLOT(loadDone()), Qt::UniqueConnection);
         m_hasChanged = true;
     } else {
-        emit setActionSearchEnabled(true);
-        emit setActionSaveEnabled(true);
+        emit setActionSearchEnabled(true, WidgetMovies);
+        emit setActionSaveEnabled(true, WidgetMovies);
     }
 }
 
@@ -296,7 +296,7 @@ void MovieWidget::loadDone()
     m_loadedFromScraper = true;
 
     if (m_movie->posters().size() > 0) {
-        emit setActionSaveEnabled(false);
+        emit setActionSaveEnabled(false, WidgetMovies);
         DownloadManagerElement d;
         d.imageType = TypePoster;
         d.url = m_movie->posters().at(0).originalUrl;
@@ -306,7 +306,7 @@ void MovieWidget::loadDone()
     }
 
     if (m_movie->backdrops().size() > 0) {
-        emit setActionSaveEnabled(false);
+        emit setActionSaveEnabled(false, WidgetMovies);
         DownloadManagerElement d;
         d.imageType = TypeBackdrop;
         d.url = m_movie->backdrops().at(0).originalUrl;
@@ -395,7 +395,7 @@ void MovieWidget::updateMovieInfo()
         ui->backdropResolution->setText("");
     }
 
-    emit setActionSaveEnabled(true);
+    emit setActionSaveEnabled(true, WidgetMovies);
 }
 
 void MovieWidget::chooseMoviePoster()
@@ -409,7 +409,7 @@ void MovieWidget::chooseMoviePoster()
     MovieImageDialog::instance()->exec();
 
     if (MovieImageDialog::instance()->result() == QDialog::Accepted) {
-        emit setActionSaveEnabled(false);
+        emit setActionSaveEnabled(false, WidgetMovies);
         DownloadManagerElement d;
         d.imageType = TypePoster;
         d.url = MovieImageDialog::instance()->imageUrl();
@@ -431,7 +431,7 @@ void MovieWidget::chooseMovieBackdrop()
     MovieImageDialog::instance()->exec();
 
     if (MovieImageDialog::instance()->result() == QDialog::Accepted) {
-        emit setActionSaveEnabled(false);
+        emit setActionSaveEnabled(false, WidgetMovies);
         DownloadManagerElement d;
         d.imageType = TypeBackdrop;
         d.url = MovieImageDialog::instance()->imageUrl();
@@ -465,7 +465,7 @@ void MovieWidget::posterDownloadFinished(DownloadManagerElement elem)
         ui->backdropResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
     }
     if (m_posterDownloadManager->downloadQueueSize() == 0)
-        emit setActionSaveEnabled(true);
+        emit setActionSaveEnabled(true, WidgetMovies);
 
 }
 

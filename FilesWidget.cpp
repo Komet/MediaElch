@@ -67,13 +67,13 @@ void FilesWidget::hideFirstTime()
 
 void FilesWidget::startSearch()
 {
-    emit setRefreshButtonEnabled(false);
+    emit setRefreshButtonEnabled(false, WidgetMovies);
     Manager::instance()->movieFileSearcher()->start();
 }
 
 void FilesWidget::searchFinished()
 {
-    emit setRefreshButtonEnabled(true);
+    emit setRefreshButtonEnabled(true, WidgetMovies);
 }
 
 void FilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
@@ -104,12 +104,12 @@ void FilesWidget::setFilter(QString filter)
 
 void FilesWidget::enableRefresh()
 {
-    emit setRefreshButtonEnabled(true);
+    emit setRefreshButtonEnabled(true, WidgetMovies);
 }
 
 void FilesWidget::disableRefresh()
 {
-    emit setRefreshButtonEnabled(false);
+    emit setRefreshButtonEnabled(false, WidgetMovies);
 }
 
 void FilesWidget::restoreLastSelection()

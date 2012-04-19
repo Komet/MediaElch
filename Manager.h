@@ -5,7 +5,9 @@
 #include "data/MediaCenterInterface.h"
 #include "data/MovieFileSearcher.h"
 #include "data/ScraperInterface.h"
+#include "data/TvShowFileSearcher.h"
 #include "data/MovieModel.h"
+#include "data/TvShowModel.h"
 
 class Manager : public QObject
 {
@@ -18,13 +20,17 @@ public:
     QList<ScraperInterface*> scrapers();
     MediaCenterInterface *mediaCenterInterface();
     MovieFileSearcher* movieFileSearcher();
+    TvShowFileSearcher* tvShowFileSearcher();
     MovieModel* movieModel();
+    TvShowModel* tvShowModel();
 
 private:
     QList<MediaCenterInterface*> m_mediaCenters;
     QList<ScraperInterface*> m_scrapers;
     MovieFileSearcher* m_movieFileSearcher;
+    TvShowFileSearcher* m_tvShowFileSearcher;
     MovieModel* m_movieModel;
+    TvShowModel* m_tvShowModel;
 };
 
 #endif // MANAGER_H

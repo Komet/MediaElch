@@ -235,39 +235,39 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../MainWindow.ui" line="113"/>
-        <location filename="../MainWindow.ui" line="205"/>
+        <location filename="../MainWindow.ui" line="237"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="210"/>
-        <location filename="../MainWindow.cpp" line="133"/>
+        <location filename="../MainWindow.ui" line="242"/>
+        <location filename="../MainWindow.cpp" line="153"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="215"/>
-        <location filename="../MainWindow.cpp" line="132"/>
+        <location filename="../MainWindow.ui" line="247"/>
+        <location filename="../MainWindow.cpp" line="152"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="126"/>
+        <location filename="../MainWindow.cpp" line="146"/>
         <source>Search</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="127"/>
+        <location filename="../MainWindow.cpp" line="147"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="128"/>
+        <location filename="../MainWindow.cpp" line="148"/>
         <source>Reload</source>
         <translation>Neu laden</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="129"/>
+        <location filename="../MainWindow.cpp" line="149"/>
         <source>Reload Movie List</source>
         <translation>Filmliste neu laden</translation>
     </message>
@@ -276,14 +276,27 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Einstellungen</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="130"/>
+        <location filename="../MainWindow.cpp" line="150"/>
         <source>Export</source>
         <translation>Export</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="131"/>
+        <location filename="../MainWindow.cpp" line="151"/>
         <source>Export Movie Database</source>
         <translation>Filmdatenbank exportieren</translation>
+    </message>
+</context>
+<context>
+    <name>Message</name>
+    <message>
+        <location filename="../Message.ui" line="14"/>
+        <source>Form</source>
+        <translation>Form</translation>
+    </message>
+    <message>
+        <location filename="../Message.ui" line="26"/>
+        <source>TextLabel</source>
+        <translation>Nachricht</translation>
     </message>
 </context>
 <context>
@@ -294,15 +307,14 @@ p, li { white-space: pre-wrap; }
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../MessageBox.ui" line="42"/>
         <source>TextLabel</source>
-        <translation>Nachricht</translation>
+        <translation type="obsolete">Nachricht</translation>
     </message>
 </context>
 <context>
     <name>MovieFileSearcher</name>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="18"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="19"/>
         <source>Searching for Movies...</source>
         <translation>Suche nach Filmen...</translation>
     </message>
@@ -587,32 +599,32 @@ p, li { white-space: pre-wrap; }
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="135"/>
+        <location filename="../MovieWidget.cpp" line="136"/>
         <source>Unknown Actor</source>
         <translation>Unbekannter Schauspieler</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="136"/>
+        <location filename="../MovieWidget.cpp" line="137"/>
         <source>Unkown Role</source>
         <translation>Unbekannte Rolle</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="154"/>
+        <location filename="../MovieWidget.cpp" line="155"/>
         <source>Unkown Genre</source>
         <translation>Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="172"/>
+        <location filename="../MovieWidget.cpp" line="173"/>
         <source>Unknown Studio</source>
         <translation>Unbekanntes Studio</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="190"/>
+        <location filename="../MovieWidget.cpp" line="191"/>
         <source>Unkown Country</source>
         <translation>Unbekanntes Land</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="532"/>
+        <location filename="../MovieWidget.cpp" line="533"/>
         <source>Downloading Missing Actor Images...</source>
         <translation>Lade fehlende Schauspieler Bilder...</translation>
     </message>
@@ -727,17 +739,17 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Füge Verzeichnisse hinzu, die deine Serien enthalten. Episoden müssen in Unterverzeichnissen mit dem Namen der Serie sein.</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="75"/>
+        <location filename="../SettingsWidget.cpp" line="88"/>
         <source>Settings saved</source>
         <translation>Einstellungen gespeichert</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="80"/>
+        <location filename="../SettingsWidget.cpp" line="93"/>
         <source>Choose a directory containing your movies</source>
         <translation>Wähle ein Verzeichnis aus, das deine Filme enthält</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="107"/>
+        <location filename="../SettingsWidget.cpp" line="120"/>
         <source>Choose a directory containing your TV shows</source>
         <translation>Wähle ein Verzeichnis aus, das deine Serien enthält</translation>
     </message>
@@ -863,6 +875,33 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <location filename="../scrapers/TMDb.cpp" line="81"/>
         <source>Language</source>
         <translation>Sprache</translation>
+    </message>
+</context>
+<context>
+    <name>TvShowDelegate</name>
+    <message numerus="yes">
+        <location filename="../data/TvShowDelegate.cpp" line="40"/>
+        <source>%n Episodes</source>
+        <translation>
+            <numerusform>%n Episode</numerusform>
+            <numerusform>%n Episoden</numerusform>
+        </translation>
+    </message>
+</context>
+<context>
+    <name>TvShowFileSearcher</name>
+    <message>
+        <location filename="../data/TvShowFileSearcher.cpp" line="28"/>
+        <source>Searching for TV Shows...</source>
+        <translation>Suche nach Serien...</translation>
+    </message>
+</context>
+<context>
+    <name>TvShowFilesWidget</name>
+    <message>
+        <location filename="../TvShowFilesWidget.ui" line="14"/>
+        <source>Form</source>
+        <translation>Form</translation>
     </message>
 </context>
 <context>

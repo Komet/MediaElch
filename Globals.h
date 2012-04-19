@@ -9,7 +9,23 @@
 namespace Constants {
     const int MovieFileSearcherProgressMessageId = 10000;
     const int MovieWidgetProgressMessageId       = 10001;
+    const int TvShowSearcherProgressMessageId    = 10002;
 }
+
+namespace TvShowRoles {
+    const int Type = Qt::UserRole+1;
+    const int ParentId = Qt::UserRole+2;
+    const int Id = Qt::UserRole+3;
+    const int EpisodeCount = Qt::UserRole+4;
+}
+
+enum MainActions {
+    ActionSearch, ActionSave, ActionRefresh, ActionExport
+};
+
+enum MainWidgets {
+    WidgetMovies, WidgetTvShows
+};
 
 struct Actor {
     QString name;
@@ -32,6 +48,10 @@ struct Poster {
 
 enum ImageType {
     TypePoster, TypeBackdrop, TypeActor
+};
+
+enum TvShowType {
+    TypeTvShow, TypeEpisode
 };
 
 struct DownloadManagerElement {

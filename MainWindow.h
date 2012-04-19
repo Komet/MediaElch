@@ -6,6 +6,7 @@
 #include <QProgressBar>
 #include "AboutDialog.h"
 #include "ExportDialog.h"
+#include "Globals.h"
 #include "data/MovieFileSearcher.h"
 #include "smallWidgets/FilterWidget.h"
 #include "SettingsWidget.h"
@@ -22,12 +23,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-public slots:
-    void setActionSaveEnabled(bool enabled);
-    void setActionSearchEnabled(bool enabled);
-    void setActionExportEnabled(bool enabled = true);
-    void setActionExportDisabled(bool disabled = true);
-
 protected:
     void resizeEvent(QResizeEvent *event);
 
@@ -39,7 +34,12 @@ private slots:
     void onMenuTvShows();
     void onMenuSettings();
     void onActionSave();
+    void onActionRefresh();
     void onFilterChanged(QString text);
+    void onSetRefreshEnabled(bool enabled, MainWidgets widget);
+    void onSetExportEnabled(bool enabled, MainWidgets widget);
+    void onSetSaveEnabled(bool enabled, MainWidgets widget);
+    void onSetSearchEnabled(bool enabled, MainWidgets widget);
 
 private:
     Ui::MainWindow *ui;
@@ -52,6 +52,8 @@ private:
     QAction *m_actionAbout;
     QAction *m_actionQuit;
     QAction *m_actionRefreshFiles;
+    QMap<MainActions, bool> m_movieActions;
+    QMap<MainActions, bool> m_tvShowActions;
     FilterWidget *m_filterWidget;
     void setupToolbar();
 };

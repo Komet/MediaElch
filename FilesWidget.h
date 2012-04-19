@@ -30,7 +30,7 @@ public slots:
 signals:
     void noMovieSelected();
     void movieSelected(Movie*);
-    void setRefreshButtonEnabled(bool);
+    void setRefreshButtonEnabled(bool, MainWidgets);
 
 private slots:
     void startSearch();

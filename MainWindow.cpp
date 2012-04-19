@@ -21,6 +21,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    m_movieActions.insert(ActionSave, false);
+    m_movieActions.insert(ActionSearch, false);
+    m_movieActions.insert(ActionRefresh, false);
+    m_movieActions.insert(ActionExport, false);
+    m_tvShowActions.insert(ActionSave, false);
+    m_tvShowActions.insert(ActionSearch, false);
+    m_tvShowActions.insert(ActionRefresh, false);
+    m_tvShowActions.insert(ActionExport, false);
+
     m_aboutDialog = new AboutDialog(ui->centralWidget);
     m_exportDialog = new ExportDialog(ui->centralWidget);
     m_filterWidget = new FilterWidget(ui->mainToolBar);
@@ -37,24 +47,33 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     Manager::instance()->movieFileSearcher()->setMovieDirectories(m_settingsWidget->movieDirectories());
+    Manager::instance()->tvShowFileSearcher()->setMovieDirectories(m_settingsWidget->tvShowDirectories());
 
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded(int)), this, SLOT(progressFinished(int)));
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(searchStarted(QString,int)), this, SLOT(progressStarted(QString,int)));
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded(int)), this, SLOT(setActionExportEnabled()));
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(searchStarted(QString,int)), this, SLOT(setActionExportDisabled()));
+    connect(ui->filesWidget, SIGNAL(setRefreshButtonEnabled(bool,MainWidgets)), this, SLOT(onSetRefreshEnabled(bool,MainWidgets)));
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setMovie(Movie*)));
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setEnabledTrue()));
     connect(ui->filesWidget, SIGNAL(noMovieSelected()), ui->movieWidget, SLOT(clear()));
     connect(ui->filesWidget, SIGNAL(noMovieSelected()), ui->movieWidget, SLOT(setDisabledTrue()));
-    connect(ui->filesWidget, SIGNAL(setRefreshButtonEnabled(bool)), m_actionRefreshFiles, SLOT(setEnabled(bool)));
+
+    connect(ui->tvShowFilesWidget, SIGNAL(setRefreshButtonEnabled(bool,MainWidgets)), this, SLOT(onSetRefreshEnabled(bool,MainWidgets)));
+
+    connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded(int)), this, SLOT(progressFinished(int)));
+    connect(Manager::instance()->movieFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
+    connect(Manager::instance()->movieFileSearcher(), SIGNAL(searchStarted(QString,int)), this, SLOT(progressStarted(QString,int)));
+
+    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(progressFinished(int)));
+    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
+    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(searchStarted(QString,int)), this, SLOT(progressStarted(QString,int)));
+
     connect(ui->movieWidget, SIGNAL(actorDownloadProgress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
     connect(ui->movieWidget, SIGNAL(actorDownloadStarted(QString,int)), this, SLOT(progressStarted(QString,int)));
     connect(ui->movieWidget, SIGNAL(actorDownloadFinished(int)), this, SLOT(progressFinished(int)));
+    connect(ui->movieWidget, SIGNAL(setActionSaveEnabled(bool, MainWidgets)), this, SLOT(onSetSaveEnabled(bool, MainWidgets)));
+    connect(ui->movieWidget, SIGNAL(setActionSearchEnabled(bool, MainWidgets)), this, SLOT(onSetSearchEnabled(bool, MainWidgets)));
     connect(ui->movieWidget, SIGNAL(movieChangeCanceled()), ui->filesWidget, SLOT(restoreLastSelection()));
-    connect(ui->movieWidget, SIGNAL(setActionSaveEnabled(bool)), this, SLOT(setActionSaveEnabled(bool)));
-    connect(ui->movieWidget, SIGNAL(setActionSearchEnabled(bool)), this, SLOT(setActionSearchEnabled(bool)));
+
     connect(m_filterWidget, SIGNAL(sigFilterTextChanged(QString)), this, SLOT(onFilterChanged(QString)));
+
     connect(ui->buttonMovies, SIGNAL(clicked()), this, SLOT(onMenuMovies()));
     connect(ui->buttonTvshows, SIGNAL(clicked()), this, SLOT(onMenuTvShows()));
     connect(ui->buttonSettings, SIGNAL(clicked()), this, SLOT(onMenuSettings()));
@@ -63,6 +82,7 @@ MainWindow::MainWindow(QWidget *parent) :
     MovieImageDialog::instance(ui->centralWidget);
     QuestionDialog::instance(ui->centralWidget);
     Manager::instance()->movieFileSearcher()->start();
+    Manager::instance()->tvShowFileSearcher()->start();
 
 #ifdef Q_WS_WIN
     setStyleSheet(styleSheet() + " #centralWidget { border-bottom: 1px solid rgba(0, 0, 0, 100); } ");
@@ -141,43 +161,32 @@ void MainWindow::setupToolbar()
 
     connect(m_actionSearch, SIGNAL(triggered()), ui->movieWidget, SLOT(startScraperSearch()));
     connect(m_actionSave, SIGNAL(triggered()), this, SLOT(onActionSave()));
-    connect(m_actionRefreshFiles, SIGNAL(triggered()), ui->filesWidget, SLOT(startSearch()));
+    connect(m_actionRefreshFiles, SIGNAL(triggered()), this, SLOT(onActionRefresh()));
     connect(m_actionExport, SIGNAL(triggered()), m_exportDialog, SLOT(exec()));
     connect(m_actionAbout, SIGNAL(triggered()), m_aboutDialog, SLOT(exec()));
     connect(m_actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
 
-    setActionSearchEnabled(false);
-    setActionSaveEnabled(false);
-    setActionExportDisabled(true);
+    m_actionSearch->setEnabled(false);
+    m_actionSave->setEnabled(false);
+    m_actionExport->setEnabled(false);
 
 #ifdef Q_WS_WIN
     ui->mainToolBar->setStyleSheet("QToolButton {border: 0; padding: 5px;} QToolBar { border-bottom: 1px solid rgba(0, 0, 0, 100); }");
 #endif
 }
 
-void MainWindow::setActionSaveEnabled(bool enabled)
-{
-    m_actionSave->setEnabled(enabled && ui->stackedWidget->currentIndex() == 0);
-}
-
-void MainWindow::setActionSearchEnabled(bool enabled)
-{
-    m_actionSearch->setEnabled(enabled && ui->stackedWidget->currentIndex() == 0);
-}
-
-void MainWindow::setActionExportEnabled(bool enabled)
-{
-    m_actionExport->setEnabled(enabled && ui->stackedWidget->currentIndex() == 0);
-}
-
-void MainWindow::setActionExportDisabled(bool disabled)
-{
-    m_actionExport->setDisabled(disabled);
-}
-
 void MainWindow::progressStarted(QString msg, int id)
 {
-    ui->filesWidget->disableRefresh();
+    if (id == Constants::MovieFileSearcherProgressMessageId) {
+        ui->filesWidget->disableRefresh();
+        onSetExportEnabled(false, WidgetMovies);
+    } else if (id == Constants::TvShowSearcherProgressMessageId) {
+        ui->tvShowFilesWidget->disableRefresh();
+        onSetExportEnabled(false, WidgetTvShows);
+    } else if (id == Constants::MovieWidgetProgressMessageId) {
+        onSetExportEnabled(false, WidgetMovies);
+        onSetRefreshEnabled(false, WidgetMovies);
+    }
     MessageBox::instance()->showProgressBar(msg, id);
 }
 
@@ -188,9 +197,19 @@ void MainWindow::progressProgress(int current, int max, int id)
 
 void MainWindow::progressFinished(int id)
 {
-    if (Manager::instance()->movieModel()->movies().size() > 0)
-        ui->filesWidget->hideFirstTime();
-    ui->filesWidget->enableRefresh();
+    if (id == Constants::MovieFileSearcherProgressMessageId) {
+        if (Manager::instance()->movieModel()->movies().size() > 0)
+            ui->filesWidget->hideFirstTime();
+        ui->filesWidget->enableRefresh();
+        onSetExportEnabled(true, WidgetMovies);
+    } else if (id == Constants::TvShowSearcherProgressMessageId) {
+        ui->tvShowFilesWidget->renewModel();
+        ui->tvShowFilesWidget->enableRefresh();
+        onSetExportEnabled(true, WidgetTvShows);
+    } else if (id == Constants::MovieWidgetProgressMessageId) {
+        onSetRefreshEnabled(true, WidgetMovies);
+        onSetExportEnabled(true, WidgetMovies);
+    }
     MessageBox::instance()->hideProgressBar(id);
 }
 
@@ -200,10 +219,10 @@ void MainWindow::onMenuMovies()
     ui->buttonMovies->setIcon(QIcon(":/img/video_menuActive.png"));
     ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menu.png"));
     ui->buttonSettings->setIcon(QIcon(":/img/spanner_menu.png"));
-    m_actionSearch->setEnabled(true);
-    m_actionSave->setEnabled(true);
-    m_actionRefreshFiles->setEnabled(true);
-    m_actionExport->setEnabled(true);
+    m_actionSearch->setEnabled(m_movieActions[ActionSearch]);
+    m_actionSave->setEnabled(m_movieActions[ActionSave]);
+    m_actionRefreshFiles->setEnabled(m_movieActions[ActionRefresh]);
+    m_actionExport->setEnabled(m_movieActions[ActionExport]);
     m_filterWidget->setEnabled(true);
 }
 
@@ -213,10 +232,10 @@ void MainWindow::onMenuTvShows()
     ui->buttonMovies->setIcon(QIcon(":/img/video_menu.png"));
     ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menuActive.png"));
     ui->buttonSettings->setIcon(QIcon(":/img/spanner_menu.png"));
-    m_actionSearch->setEnabled(false);
-    m_actionSave->setEnabled(false);
-    m_actionRefreshFiles->setEnabled(false);
-    m_actionExport->setEnabled(false);
+    m_actionSearch->setEnabled(m_tvShowActions[ActionSearch]);
+    m_actionSave->setEnabled(m_tvShowActions[ActionSave]);
+    m_actionRefreshFiles->setEnabled(m_tvShowActions[ActionRefresh]);
+    m_actionExport->setEnabled(m_tvShowActions[ActionExport]);
     m_filterWidget->setEnabled(true);
 }
 
@@ -242,8 +261,67 @@ void MainWindow::onActionSave()
         QTimer::singleShot(0, ui->settingsWidget, SLOT(saveSettings()));
 }
 
+void MainWindow::onActionRefresh()
+{
+    if (ui->stackedWidget->currentIndex() == 0)
+        QTimer::singleShot(0, ui->filesWidget, SLOT(startSearch()));
+    else if (ui->stackedWidget->currentIndex() == 1)
+        QTimer::singleShot(0, ui->tvShowFilesWidget, SLOT(startSearch()));
+
+}
+
 void MainWindow::onFilterChanged(QString text)
 {
     if (ui->stackedWidget->currentIndex() == 0)
         ui->filesWidget->setFilter(text);
+    else if (ui->stackedWidget->currentIndex() == 1)
+        ui->tvShowFilesWidget->setFilter(text);
+}
+
+void MainWindow::onSetRefreshEnabled(bool enabled, MainWidgets widget)
+{
+    if (widget == WidgetMovies)
+        m_movieActions[ActionRefresh] = enabled;
+    else if (widget == WidgetTvShows)
+        m_tvShowActions[ActionRefresh] = enabled;
+
+    if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
+         widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1)
+        m_actionRefreshFiles->setEnabled(enabled);
+}
+
+void MainWindow::onSetExportEnabled(bool enabled, MainWidgets widget)
+{
+    if (widget == WidgetMovies)
+        m_movieActions[ActionExport] = enabled;
+    else if (widget == WidgetTvShows)
+        m_tvShowActions[ActionExport] = enabled;
+
+    if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
+         widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1)
+        m_actionExport->setEnabled(enabled);
+}
+
+void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
+{
+    if (widget == WidgetMovies)
+        m_movieActions[ActionSave] = enabled;
+    else if (widget == WidgetTvShows)
+        m_tvShowActions[ActionSave] = enabled;
+
+    if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
+         widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1)
+        m_actionSave->setEnabled(enabled);
+}
+
+void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
+{
+    if (widget == WidgetMovies)
+        m_movieActions[ActionSearch] = enabled;
+    else if (widget == WidgetTvShows)
+        m_tvShowActions[ActionSearch] = enabled;
+
+    if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
+         widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1)
+        m_actionSearch->setEnabled(enabled);
 }

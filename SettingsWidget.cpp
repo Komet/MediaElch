@@ -33,6 +33,9 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     connect(ui->buttonAddMovieDir, SIGNAL(clicked()), this, SLOT(addMovieDir()));
     connect(ui->buttonRemoveMovieDir, SIGNAL(clicked()), this, SLOT(removeMovieDir()));
     connect(ui->listMovieDirs, SIGNAL(currentRowChanged(int)), this, SLOT(movieListRowChanged(int)));
+    connect(ui->buttonAddTvShowDir, SIGNAL(clicked()), this, SLOT(addTvShowDir()));
+    connect(ui->buttonRemoveTvShowDir, SIGNAL(clicked()), this, SLOT(removeTvShowDir()));
+    connect(ui->listTvShowDirs, SIGNAL(currentRowChanged(int)), this, SLOT(tvShowListRowChanged(int)));
 
     this->loadSettings();
 }
@@ -57,6 +60,14 @@ void SettingsWidget::loadSettings()
     }
     ui->buttonRemoveMovieDir->setEnabled(!m_movieDirectories.isEmpty());
 
+    // TV Show Directories
+    m_tvShowDirectories = m_settings.value("Directories/TvShows").toStringList();
+    ui->listTvShowDirs->clear();
+    foreach (const QString &dir, m_tvShowDirectories) {
+        new QListWidgetItem(dir, ui->listTvShowDirs);
+    }
+    ui->buttonRemoveTvShowDir->setEnabled(!m_tvShowDirectories.isEmpty());
+
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
         if (scraper->hasSettings())
             scraper->loadSettings();
@@ -67,11 +78,13 @@ void SettingsWidget::saveSettings()
 {
     m_settings.setValue("FirstTime", false);
     m_settings.setValue("Directories/Movies", m_movieDirectories);
+    m_settings.setValue("Directories/TvShows", m_tvShowDirectories);
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
         if (scraper->hasSettings())
             scraper->saveSettings();
     }
     Manager::instance()->movieFileSearcher()->setMovieDirectories(this->movieDirectories());
+    Manager::instance()->tvShowFileSearcher()->setMovieDirectories(this->tvShowDirectories());
     MessageBox::instance()->showMessage(tr("Settings saved"));
 }
 

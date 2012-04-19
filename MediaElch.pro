@@ -38,7 +38,15 @@ SOURCES += main.cpp\
     ExportDialog.cpp \
     SettingsWidget.cpp \
     MessageBox.cpp \
-    Message.cpp
+    Message.cpp \
+    data/TvShow.cpp \
+    data/TvShowFileSearcher.cpp \
+    data/TvShowModel.cpp \
+    TvShowFilesWidget.cpp \
+    data/TvShowProxyModel.cpp \
+    data/TvShowModelItem.cpp \
+    data/TvShowEpisode.cpp \
+    data/TvShowDelegate.cpp
 
 HEADERS  += MainWindow.h \
     data/Movie.h \
@@ -70,7 +78,15 @@ HEADERS  += MainWindow.h \
     ExportDialog.h \
     SettingsWidget.h \
     MessageBox.h \
-    Message.h
+    Message.h \
+    data/TvShow.h \
+    data/TvShowFileSearcher.h \
+    data/TvShowModel.h \
+    TvShowFilesWidget.h \
+    data/TvShowProxyModel.h \
+    data/TvShowModelItem.h \
+    data/TvShowEpisode.h \
+    data/TvShowDelegate.h
 
 FORMS    += MainWindow.ui \
     MovieSearch.ui \
@@ -83,7 +99,8 @@ FORMS    += MainWindow.ui \
     ExportDialog.ui \
     SettingsWidget.ui \
     MessageBox.ui \
-    Message.ui
+    Message.ui \
+    TvShowFilesWidget.ui
 
 RESOURCES += \
     MediaElch.qrc

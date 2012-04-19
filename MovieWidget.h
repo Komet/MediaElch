@@ -40,8 +40,8 @@ signals:
     void actorDownloadProgress(int, int, int);
     void actorDownloadFinished(int);
     void movieChangeCanceled();
-    void setActionSearchEnabled(bool);
-    void setActionSaveEnabled(bool);
+    void setActionSearchEnabled(bool, MainWidgets);
+    void setActionSaveEnabled(bool, MainWidgets);
 
 private slots:
     void downloadActorsFinished();

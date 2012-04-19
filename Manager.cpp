@@ -16,7 +16,9 @@ Manager::Manager(QObject *parent) :
     m_scrapers.append(new OFDb(this));
     m_scrapers.append(new VideoBuster(this));
     m_movieFileSearcher = new MovieFileSearcher(this);
+    m_tvShowFileSearcher = new TvShowFileSearcher(this);
     m_movieModel = new MovieModel(this);
+    m_tvShowModel = new TvShowModel(this);
 }
 
 Manager* Manager::instance()
@@ -38,6 +40,11 @@ MovieFileSearcher *Manager::movieFileSearcher()
     return m_movieFileSearcher;
 }
 
+TvShowFileSearcher *Manager::tvShowFileSearcher()
+{
+    return m_tvShowFileSearcher;
+}
+
 QList<ScraperInterface*> Manager::scrapers()
 {
     return m_scrapers;
@@ -46,4 +53,9 @@ QList<ScraperInterface*> Manager::scrapers()
 MovieModel *Manager::movieModel()
 {
     return m_movieModel;
+}
+
+TvShowModel *Manager::tvShowModel()
+{
+    return m_tvShowModel;
 }
