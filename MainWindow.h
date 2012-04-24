@@ -33,6 +33,7 @@ private slots:
     void onMenuMovies();
     void onMenuTvShows();
     void onMenuSettings();
+    void onActionSearch();
     void onActionSave();
     void onActionRefresh();
     void onFilterChanged(QString text);

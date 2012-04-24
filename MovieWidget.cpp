@@ -16,9 +16,6 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui(new Ui::MovieWidget)
 {
     ui->setupUi(this);
-    ui->rating->setValidator(new QDoubleValidator);
-    ui->runtime->setValidator(new QIntValidator);
-    ui->playcount->setValidator(new QIntValidator);
     ui->movieName->clear();
     ui->actors->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     ui->actors->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
@@ -64,13 +61,13 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->set, SIGNAL(currentIndexChanged(int)), this, SLOT(markHasChanged()));
     connect(ui->set, SIGNAL(editTextChanged(QString)), this, SLOT(markHasChanged()));
     connect(ui->tagline, SIGNAL(textEdited(QString)), this, SLOT(markHasChanged()));
-    connect(ui->rating, SIGNAL(textEdited(QString)), this, SLOT(markHasChanged()));
+    connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(markHasChanged()));
     connect(ui->released, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(markHasChanged()));
-    connect(ui->runtime, SIGNAL(textEdited(QString)), this, SLOT(markHasChanged()));
+    connect(ui->runtime, SIGNAL(valueChanged(int)), this, SLOT(markHasChanged()));
     connect(ui->certification, SIGNAL(editTextChanged(QString)), this, SLOT(markHasChanged()));
     connect(ui->certification, SIGNAL(currentIndexChanged(int)), this, SLOT(markHasChanged()));
     connect(ui->trailer, SIGNAL(textEdited(QString)), this, SLOT(markHasChanged()));
-    connect(ui->playcount, SIGNAL(textEdited(QString)), this, SLOT(markHasChanged()));
+    connect(ui->playcount, SIGNAL(valueChanged(int)), this, SLOT(markHasChanged()));
     connect(ui->lastPlayed, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(markHasChanged()));
     connect(ui->overview, SIGNAL(textChanged()), this, SLOT(markHasChanged()));
     connect(ui->actors, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(markHasChanged()));
@@ -331,11 +328,11 @@ void MovieWidget::updateMovieInfo()
     ui->movieName->setText(m_movie->name());
     ui->originalName->setText(m_movie->originalName());
     ui->tagline->setText(m_movie->tagline());
-    ui->rating->setText(QString::number(m_movie->rating()));
+    ui->rating->setValue(m_movie->rating());
     ui->released->setDate(m_movie->released());
-    ui->runtime->setText(QString::number(m_movie->runtime()));
+    ui->runtime->setValue(m_movie->runtime());
     ui->trailer->setText(m_movie->trailer().toString());
-    ui->playcount->setText(QString::number(m_movie->playcount()));
+    ui->playcount->setValue(m_movie->playcount());
     ui->lastPlayed->setDateTime(m_movie->lastPlayed());
     ui->overview->setHtml(m_movie->overview());
     ui->watched->setChecked(m_movie->watched());
@@ -476,11 +473,11 @@ void MovieWidget::saveInformation()
     m_movie->setName(ui->name->text());
     m_movie->setOriginalName(ui->originalName->text());
     m_movie->setTagline(ui->tagline->text());
-    m_movie->setRating(ui->rating->text().toFloat());
+    m_movie->setRating(ui->rating->value());
     m_movie->setReleased(ui->released->date());
-    m_movie->setRuntime(ui->runtime->text().toInt());
+    m_movie->setRuntime(ui->runtime->value());
     m_movie->setTrailer(QUrl(ui->trailer->text()));
-    m_movie->setPlayCount(ui->playcount->text().toInt());
+    m_movie->setPlayCount(ui->playcount->value());
     m_movie->setLastPlayed(ui->lastPlayed->dateTime());
     m_movie->setOverview(ui->overview->toPlainText());
     m_movie->setCertification(ui->certification->currentText());

@@ -4,21 +4,98 @@
 #include <QMetaType>
 #include <QObject>
 #include <QStringList>
+#include "data/MediaCenterInterface.h"
+#include "data/TvScraperInterface.h"
 #include "data/TvShow.h"
 
 class TvShow;
+class MediaCenterInterface;
+class TvScraperInterface;
 
 class TvShowEpisode : public QObject
 {
     Q_OBJECT
 public:
     explicit TvShowEpisode(QStringList files = QStringList(), TvShow *parent = 0);
-    QString name();
+    void moveToMainThread();
+    void clear();
+
+    TvShow *tvShow();
+    QStringList files() const;
+    QString showTitle() const;
+    QString name() const;
+    QString completeEpisodeName() const;
+    qreal rating() const;
+    int season() const;
+    int episode() const;
+    QString overview() const;
+    QStringList writers() const;
+    QStringList directors() const;
+    int playCount() const;
+    QDateTime lastPlayed() const;
+    QDate firstAired() const;
+    QString certification() const;
+    QString network() const;
+    QString seasonString() const;
+    QString episodeString() const;
+    bool isValid() const;
+    QUrl thumbnail() const;
+    QImage *thumbnailImage();
+    bool thumbnailImageChanged() const;
+
+    void setName(QString name);
+    void setShowTitle(QString showTitle);
+    void setRating(qreal rating);
+    void setSeason(int season);
+    void setEpisode(int episode);
+    void setOverview(QString overview);
+    void setWriters(QStringList writers);
+    void addWriter(QString writer);
+    void setDirectors(QStringList directors);
+    void addDirector(QString director);
+    void setPlayCount(int playCount);
+    void setLastPlayed(QDateTime lastPlayed);
+    void setFirstAired(QDate firstAired);
+    void setCertification(QString certification);
+    void setNetwork(QString network);
+    void setThumbnail(QUrl url);
+    void setThumbnailImage(QImage thumbnail);
+
+    bool loadData(MediaCenterInterface *mediaCenterInterface);
+    void loadData(QString id, TvScraperInterface *tvScraperInterface);
+    bool saveData(MediaCenterInterface *mediaCenterInterface);
+    void loadImages(MediaCenterInterface *mediaCenterInterface);
+
+    void scraperLoadDone();
+
+signals:
+    void sigLoaded();
 
 private:
     QStringList m_files;
     TvShow *m_parent;
+    QString m_name;
+    QString m_showTitle;
+    qreal m_rating;
+    int m_season;
+    int m_episode;
+    QString m_overview;
+    QStringList m_writers;
+    QStringList m_directors;
+    int m_playCount;
+    QDateTime m_lastPlayed;
+    QDate m_firstAired;
+    QString m_certification;
+    QString m_network;
+    QUrl m_thumbnail;
+    QImage m_thumbnailImage;
+    bool m_thumbnailImageChanged;
+
+    bool m_infoLoaded;
 };
+
+QDebug operator<<(QDebug dbg, const TvShowEpisode &episode);
+QDebug operator<<(QDebug dbg, const TvShowEpisode *episode);
 
 Q_DECLARE_METATYPE(TvShowEpisode*)
 

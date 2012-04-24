@@ -28,8 +28,10 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     ui->files->setModel(m_tvShowProxyModel);
     ui->files->setItemDelegate(m_tvShowDelegate);
     ui->files->sortByColumn(0);
+
     connect(ui->files, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)));
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(finished()), this, SLOT(searchFinished()));
+    connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)));
 }
 
 TvShowFilesWidget::~TvShowFilesWidget()
@@ -76,5 +78,22 @@ void TvShowFilesWidget::onItemClicked(QModelIndex index)
         ui->files->collapseAll();
         if (!wasExpanded)
             ui->files->expand(index);
+    }
+}
+
+void TvShowFilesWidget::onItemActivated(QModelIndex index, QModelIndex previous)
+{
+    Q_UNUSED(previous);
+
+    if (!index.isValid()) {
+        emit sigNothingSelected();
+        return;
+    }
+
+    QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(index);
+    if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TypeTvShow) {
+        emit sigTvShowSelected(Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShow());
+    } else if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TypeEpisode) {
+        emit sigEpisodeSelected(Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShowEpisode());
     }
 }

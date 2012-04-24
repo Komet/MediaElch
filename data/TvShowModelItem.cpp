@@ -51,7 +51,7 @@ QVariant TvShowModelItem::data(int column) const
         if (m_tvShow)
             return m_tvShow->name();
         else if (m_tvShowEpisode)
-            return m_tvShowEpisode->name();
+            return m_tvShowEpisode->completeEpisodeName();
         break;
     }
     return QVariant();

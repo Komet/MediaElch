@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TvShowWidget</class>
+ <widget class="QWidget" name="TvShowWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>924</width>
+    <height>793</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QStackedWidget" name="stackedWidget">
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="TvShowWidgetTvShow" name="tvShowWidget"/>
+     <widget class="TvShowWidgetEpisode" name="episodeWidget"/>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TvShowWidgetEpisode</class>
+   <extends>QWidget</extends>
+   <header>TvShowWidgetEpisode.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TvShowWidgetTvShow</class>
+   <extends>QWidget</extends>
+   <header>TvShowWidgetTvShow.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

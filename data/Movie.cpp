@@ -49,7 +49,7 @@ void Movie::clear()
 
 bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
 {
-    bool saved = mediaCenterInterface->saveData(this);
+    bool saved = mediaCenterInterface->saveMovie(this);
     if (!m_infoLoaded)
         m_infoLoaded = saved;
     return saved;
@@ -57,7 +57,7 @@ bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
 
 bool Movie::loadData(MediaCenterInterface *mediaCenterInterface)
 {
-    bool infoLoaded = mediaCenterInterface->loadData(this);
+    bool infoLoaded = mediaCenterInterface->loadMovie(this);
     if (!infoLoaded) {
         if (this->files().size() > 0) {
             QFileInfo fi(this->files().at(0));
@@ -88,7 +88,7 @@ void Movie::scraperLoadDone()
 
 void Movie::loadImages(MediaCenterInterface *mediaCenterInterface)
 {
-    mediaCenterInterface->loadImages(this);
+    mediaCenterInterface->loadMovieImages(this);
 }
 
 /*** GETTER ***/

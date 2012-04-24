@@ -47,7 +47,7 @@ void DownloadManager::startNextDownload()
     connect(m_currentReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
     connect(m_currentReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(downloadProgress(qint64,qint64)));
 
-    if (m_currentDownloadElement.imageType == TypeActor)
+    if (m_currentDownloadElement.imageType == TypeActor || m_currentDownloadElement.imageType == TypeShowThumbnail)
         emit downloadsLeft(m_queue.size());
 }
 
@@ -68,11 +68,12 @@ void DownloadManager::downloadFinished()
     img.loadFromData(m_currentReply->readAll());
     m_currentDownloadElement.image = img;
     m_currentReply->deleteLater();
-    if (m_currentDownloadElement.imageType == TypeActor) {
+    if (m_currentDownloadElement.imageType == TypeActor)
         m_currentDownloadElement.actor->image = img;
-    } else {
+    else if (m_currentDownloadElement.imageType == TypeShowThumbnail)
+        m_currentDownloadElement.episode->setThumbnailImage(img);
+    else
         emit downloadFinished(m_currentDownloadElement);
-    }
     this->startNextDownload();
 }
 

@@ -4,23 +4,107 @@
 #include <QMetaType>
 #include <QObject>
 #include <QStringList>
+#include "data/MediaCenterInterface.h"
+#include "data/TvScraperInterface.h"
 #include "data/TvShowEpisode.h"
 
 class TvShowEpisode;
+class TvScraperInterface;
 
 class TvShow : public QObject
 {
     Q_OBJECT
 public:
     explicit TvShow(QString dir = QString(), QObject *parent = 0);
+    void clear();
     void addEpisode(TvShowEpisode *episode);
-    QString name();
     int episodeCount();
+    void moveToMainThread();
+
+    QString name() const;
+    QString showTitle() const;
+    QString dir() const;
+    qreal rating() const;
+    QDate firstAired() const;
+    QStringList genres() const;
+    QString certification() const;
+    QString network() const;
+    QString overview() const;
+    QStringList certifications() const;
+    QList<Actor> actors() const;
+    QList<Actor*> actorsPointer();
+    QList<Poster> posters() const;
+    QList<Poster> backdrops() const;
+    QList<Poster> seasonPosters(int season) const;
+    QImage *posterImage();
+    QImage *backdropImage();
+    QImage *seasonPosterImage(int season);
+    bool posterImageChanged() const;
+    bool backdropImageChanged() const;
+    bool seasonPosterImageChanged(int season) const;
+    TvShowEpisode *episode(int season, int episode);
+    QList<int> seasons();
+    QList<TvShowEpisode*> episodes();
+
+    void setName(QString name);
+    void setShowTitle(QString title);
+    void setRating(qreal rating);
+    void setFirstAired(QDate aired);
+    void setGenres(QStringList genres);
+    void addGenre(QString genre);
+    void setCertification(QString certification);
+    void setNetwork(QString network);
+    void setOverview(QString overview);
+    void setActors(QList<Actor> actors);
+    void addActor(Actor actor);
+    void setPosters(QList<Poster> posters);
+    void setPoster(int index, Poster poster);
+    void addPoster(Poster poster);
+    void addSeasonPoster(int season, Poster poster);
+    void setBackdrops(QList<Poster> backdrops);
+    void setBackdrop(int index, Poster backdrop);
+    void addBackdrop(Poster backdrop);
+    void setPosterImage(QImage poster);
+    void setBackdropImage(QImage backdrop);
+    void setSeasonPosterImage(int season, QImage poster);
+
+    bool loadData(MediaCenterInterface *mediaCenterInterface);
+    void loadData(QString id, TvScraperInterface *tvScraperInterface);
+    bool saveData(MediaCenterInterface *mediaCenterInterface);
+    void loadImages(MediaCenterInterface *mediaCenterInterface);
+
+    void scraperLoadDone();
+
+signals:
+    void sigLoaded();
 
 private:
     QList<TvShowEpisode*> m_episodes;
     QString m_dir;
+    QString m_name;
+    QString m_showTitle;
+    qreal m_rating;
+    QDate m_firstAired;
+    QStringList m_genres;
+    QString m_certification;
+    QString m_network;
+    QString m_overview;
+    QList<Actor> m_actors;
+    QList<Poster> m_posters;
+    QList<Poster> m_backdrops;
+    QMap<int, QList<Poster> > m_seasonPosters;
+    QImage m_posterImage;
+    QImage m_backdropImage;
+    bool m_posterImageChanged;
+    bool m_backdropImageChanged;
+    QMap<int, QImage> m_seasonPosterImages;
+    QList<int> m_seasonPosterImagesChanged;
+
+    bool m_infoLoaded;
 };
+
+QDebug operator<<(QDebug dbg, const TvShow &show);
+QDebug operator<<(QDebug dbg, const TvShow *show);
 
 Q_DECLARE_METATYPE(TvShow*)
 

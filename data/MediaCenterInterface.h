@@ -2,16 +2,26 @@
 #define MEDIACENTERINTERFACE_H
 
 #include "data/Movie.h"
+#include "data/TvShow.h"
+#include "data/TvShowEpisode.h"
 
 class Movie;
+class TvShow;
+class TvShowEpisode;
 
 class MediaCenterInterface : public QObject
 {
 public:
-    virtual bool saveData(Movie *movie) = 0;
-    virtual bool loadData(Movie *movie) = 0;
-    virtual void loadImages(Movie *movie) = 0;
+    virtual bool saveMovie(Movie *movie) = 0;
+    virtual bool loadMovie(Movie *movie) = 0;
+    virtual void loadMovieImages(Movie *movie) = 0;
     virtual void exportDatabase(QList<Movie*> movies, QString exportPath, QString pathSearch, QString pathReplace) = 0;
+    virtual bool loadTvShow(TvShow *show) = 0;
+    virtual void loadTvShowImages(TvShow *show) = 0;
+    virtual bool loadTvShowEpisode(TvShowEpisode *episode) = 0;
+    virtual void loadTvShowEpisodeImages(TvShowEpisode *episode) = 0;
+    virtual bool saveTvShow(TvShow *show) = 0;
+    virtual bool saveTvShowEpisode(TvShowEpisode *episode) = 0;
 signals:
     virtual void sigExportStarted() = 0;
     virtual void sigExportProgress(int, int) = 0;

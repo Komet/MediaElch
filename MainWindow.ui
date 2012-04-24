@@ -193,17 +193,7 @@
          </widget>
         </item>
         <item>
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>831</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
+         <widget class="TvShowWidget" name="tvShowWidget" native="true"/>
         </item>
        </layout>
       </widget>
@@ -272,6 +262,12 @@
    <class>TvShowFilesWidget</class>
    <extends>QWidget</extends>
    <header>TvShowFilesWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TvShowWidget</class>
+   <extends>QWidget</extends>
+   <header>TvShowWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

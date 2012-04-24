@@ -4,6 +4,8 @@
 #include <QModelIndex>
 #include <QWidget>
 #include "Globals.h"
+#include "data/TvShow.h"
+#include "data/TvShowEpisode.h"
 #include "data/TvShowProxyModel.h"
 #include "data/TvShowDelegate.h"
 
@@ -28,10 +30,14 @@ public slots:
 
 signals:
     void setRefreshButtonEnabled(bool, MainWidgets);
+    void sigEpisodeSelected(TvShowEpisode *episode);
+    void sigTvShowSelected(TvShow *show);
+    void sigNothingSelected();
 
 private slots:
-    void onItemClicked(QModelIndex index);
     void searchFinished();
+    void onItemActivated(QModelIndex index, QModelIndex previous);
+    void onItemClicked(QModelIndex index);
 
 private:
     Ui::TvShowFilesWidget *ui;

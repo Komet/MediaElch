@@ -7,6 +7,7 @@
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include "Globals.h"
+#include "data/TvShowEpisode.h"
 
 class DownloadManager : public QObject
 {

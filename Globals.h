@@ -6,10 +6,13 @@
 #include <QString>
 #include <QUrl>
 
+class TvShowEpisode;
+
 namespace Constants {
     const int MovieFileSearcherProgressMessageId = 10000;
     const int MovieWidgetProgressMessageId       = 10001;
     const int TvShowSearcherProgressMessageId    = 10002;
+    const int TvShowWidgetProgressMessageId      = 10003;
 }
 
 namespace TvShowRoles {
@@ -47,7 +50,7 @@ struct Poster {
 };
 
 enum ImageType {
-    TypePoster, TypeBackdrop, TypeActor
+    TypePoster, TypeBackdrop, TypeActor, TypeSeasonPoster, TypeShowThumbnail
 };
 
 enum TvShowType {
@@ -61,6 +64,8 @@ struct DownloadManagerElement {
     qint64 bytesReceived;
     qint64 bytesTotal;
     Actor *actor;
+    TvShowEpisode *episode;
+    int season;
 };
 
 #endif // GLOBALS_H

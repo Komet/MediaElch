@@ -14,6 +14,7 @@
 #include "MovieSearch.h"
 #include "QuestionDialog.h"
 #include "SettingsWidget.h"
+#include "TvShowSearch.h"
 #include "MessageBox.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -56,6 +57,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->filesWidget, SIGNAL(noMovieSelected()), ui->movieWidget, SLOT(setDisabledTrue()));
 
     connect(ui->tvShowFilesWidget, SIGNAL(setRefreshButtonEnabled(bool,MainWidgets)), this, SLOT(onSetRefreshEnabled(bool,MainWidgets)));
+    connect(ui->tvShowFilesWidget, SIGNAL(sigTvShowSelected(TvShow*)), ui->tvShowWidget, SLOT(onTvShowSelected(TvShow*)));
+    connect(ui->tvShowFilesWidget, SIGNAL(sigEpisodeSelected(TvShowEpisode*)), ui->tvShowWidget, SLOT(onEpisodeSelected(TvShowEpisode*)));
+    connect(ui->tvShowFilesWidget, SIGNAL(sigTvShowSelected(TvShow*)), ui->tvShowWidget, SLOT(onSetEnabledTrue()));
+    connect(ui->tvShowFilesWidget, SIGNAL(sigEpisodeSelected(TvShowEpisode*)), ui->tvShowWidget, SLOT(onSetEnabledTrue()));
+    connect(ui->tvShowFilesWidget, SIGNAL(sigNothingSelected()), ui->tvShowWidget, SLOT(onClear()));
+    connect(ui->tvShowFilesWidget, SIGNAL(sigNothingSelected()), ui->tvShowWidget, SLOT(onSetDisabledTrue()));
 
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded(int)), this, SLOT(progressFinished(int)));
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
@@ -72,6 +79,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->movieWidget, SIGNAL(setActionSearchEnabled(bool, MainWidgets)), this, SLOT(onSetSearchEnabled(bool, MainWidgets)));
     connect(ui->movieWidget, SIGNAL(movieChangeCanceled()), ui->filesWidget, SLOT(restoreLastSelection()));
 
+    connect(ui->tvShowWidget, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)), this, SLOT(onSetSaveEnabled(bool,MainWidgets)));
+    connect(ui->tvShowWidget, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)), this, SLOT(onSetSearchEnabled(bool,MainWidgets)));
+    connect(ui->tvShowWidget, SIGNAL(sigDownloadsStarted(QString,int)), this, SLOT(progressStarted(QString,int)));
+    connect(ui->tvShowWidget, SIGNAL(sigDownloadsProgress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
+    connect(ui->tvShowWidget, SIGNAL(sigDownloadsFinished(int)), this, SLOT(progressFinished(int)));
+
     connect(m_filterWidget, SIGNAL(sigFilterTextChanged(QString)), this, SLOT(onFilterChanged(QString)));
 
     connect(ui->buttonMovies, SIGNAL(clicked()), this, SLOT(onMenuMovies()));
@@ -79,6 +92,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->buttonSettings, SIGNAL(clicked()), this, SLOT(onMenuSettings()));
 
     MovieSearch::instance(ui->centralWidget);
+    TvShowSearch::instance(ui->centralWidget);
     MovieImageDialog::instance(ui->centralWidget);
     QuestionDialog::instance(ui->centralWidget);
     Manager::instance()->movieFileSearcher()->start();
@@ -159,7 +173,7 @@ void MainWindow::setupToolbar()
     ui->mainToolBar->addAction(m_actionQuit);
     ui->mainToolBar->addWidget(m_filterWidget);
 
-    connect(m_actionSearch, SIGNAL(triggered()), ui->movieWidget, SLOT(startScraperSearch()));
+    connect(m_actionSearch, SIGNAL(triggered()), this, SLOT(onActionSearch()));
     connect(m_actionSave, SIGNAL(triggered()), this, SLOT(onActionSave()));
     connect(m_actionRefreshFiles, SIGNAL(triggered()), this, SLOT(onActionRefresh()));
     connect(m_actionExport, SIGNAL(triggered()), m_exportDialog, SLOT(exec()));
@@ -253,10 +267,20 @@ void MainWindow::onMenuSettings()
     m_filterWidget->setEnabled(false);
 }
 
+void MainWindow::onActionSearch()
+{
+    if (ui->stackedWidget->currentIndex() == 0)
+        QTimer::singleShot(0, ui->movieWidget, SLOT(startScraperSearch()));
+    else if (ui->stackedWidget->currentIndex() == 1)
+        QTimer::singleShot(0, ui->tvShowWidget, SLOT(onStartScraperSearch()));
+}
+
 void MainWindow::onActionSave()
 {
     if (ui->stackedWidget->currentIndex() == 0)
         QTimer::singleShot(0, ui->movieWidget, SLOT(saveInformation()));
+    else if (ui->stackedWidget->currentIndex() == 1)
+        QTimer::singleShot(0, ui->tvShowWidget, SLOT(onSaveInformation()));
     else if (ui->stackedWidget->currentIndex() == 2)
         QTimer::singleShot(0, ui->settingsWidget, SLOT(saveSettings()));
 }

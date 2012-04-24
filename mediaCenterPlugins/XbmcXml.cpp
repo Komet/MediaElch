@@ -16,7 +16,7 @@ XbmcXml::~XbmcXml()
 {
 }
 
-void XbmcXml::writeXml(QXmlStreamWriter &xml, Movie *movie, bool writePath, QString pathSearch, QString pathReplace)
+void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath, QString pathSearch, QString pathReplace)
 {
     xml.writeStartElement("movie");
     xml.writeTextElement("title", movie->name());
@@ -80,13 +80,13 @@ void XbmcXml::writeXml(QXmlStreamWriter &xml, Movie *movie, bool writePath, QStr
     xml.writeEndElement();
 }
 
-bool XbmcXml::saveData(Movie *movie)
+bool XbmcXml::saveMovie(Movie *movie)
 {
     QByteArray xmlContent;
     QXmlStreamWriter xml(&xmlContent);
     xml.setAutoFormatting(true);
     xml.writeStartDocument("1.0", true);
-    writeXml(xml, movie);
+    writeMovieXml(xml, movie);
     xml.writeEndDocument();
 
     if (movie->files().size() == 0)
@@ -116,7 +116,7 @@ bool XbmcXml::saveData(Movie *movie)
     return true;
 }
 
-bool XbmcXml::loadData(Movie *movie)
+bool XbmcXml::loadMovie(Movie *movie)
 {
     if (movie->files().size() == 0)
         return false;
@@ -202,7 +202,7 @@ bool XbmcXml::loadData(Movie *movie)
     return true;
 }
 
-void XbmcXml::loadImages(Movie *movie)
+void XbmcXml::loadMovieImages(Movie *movie)
 {
     if (movie->files().size() == 0)
         return;
@@ -215,6 +215,37 @@ void XbmcXml::loadImages(Movie *movie)
     if (backdropFi.isFile()) {
         movie->backdropImage()->load(backdropFi.absoluteFilePath());
     }
+}
+
+void XbmcXml::loadTvShowImages(TvShow *show)
+{
+    if (show->dir().isEmpty())
+        return;
+    QFileInfo posterFi(show->dir() + QDir::separator() + "season-all.tbn");
+    QFileInfo backdropFi(show->dir() + QDir::separator() + "fanart.jpg");
+    if (posterFi.isFile())
+        show->posterImage()->load(posterFi.absoluteFilePath());
+    if (backdropFi.isFile())
+        show->backdropImage()->load(backdropFi.absoluteFilePath());
+
+    foreach (int season, show->seasons()) {
+        QString s = QString("%1").arg(season);
+        if (season < 10)
+            s.prepend("0");
+        QFileInfo seasonFi(show->dir() + QDir::separator() + "season" + s + ".tbn");
+        if (seasonFi.isFile())
+            show->seasonPosterImage(season)->load(seasonFi.absoluteFilePath());
+    }
+}
+
+void XbmcXml::loadTvShowEpisodeImages(TvShowEpisode *episode)
+{
+    if (episode->files().isEmpty())
+        return;
+    QFileInfo fi(episode->files().at(0));
+    QFileInfo thumbnailFi(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".tbn");
+    if (thumbnailFi.isFile())
+        episode->thumbnailImage()->load(thumbnailFi.absoluteFilePath());
 }
 
 void XbmcXml::exportDatabase(QList<Movie *> movies, QString exportPath, QString pathSearch, QString pathReplace)
@@ -240,7 +271,7 @@ void XbmcXml::exportDatabase(QList<Movie *> movies, QString exportPath, QString 
     for (int i=0, n=movies.size() ; i<n ; ++i) {
         emit sigExportProgress(i, n);
         Movie *movie = movies[i];
-        writeXml(xml, movie, true, pathSearch, pathReplace);
+        writeMovieXml(xml, movie, true, pathSearch, pathReplace);
 
         if (movie->files().size() == 0)
             continue;
@@ -272,4 +303,311 @@ void XbmcXml::exportDatabase(QList<Movie *> movies, QString exportPath, QString 
     }
 
     emit sigExportDone();
+}
+
+bool XbmcXml::loadTvShow(TvShow *show)
+{
+    if (show->dir().isEmpty())
+        return false;
+    QFileInfo fi(show->dir().append(QDir::separator()).append("tvshow.nfo"));
+    if (!fi.isFile() ) {
+        return false;
+    }
+
+    QFile file(fi.absoluteFilePath());
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        return false;
+    }
+
+    show->clear();
+    QDomDocument domDoc;
+    domDoc.setContent(file.readAll());
+    if (!domDoc.elementsByTagName("title").isEmpty() )
+        show->setName(domDoc.elementsByTagName("title").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("showtitle").isEmpty() )
+        show->setShowTitle(domDoc.elementsByTagName("showtitle").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("rating").isEmpty())
+        show->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().toFloat());
+    if (!domDoc.elementsByTagName("plot").isEmpty())
+        show->setOverview(domDoc.elementsByTagName("plot").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("mpaa").isEmpty())
+        show->setCertification(domDoc.elementsByTagName("mpaa").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("premiered").isEmpty())
+        show->setFirstAired(QDate::fromString(domDoc.elementsByTagName("premiered").at(0).toElement().text(), "yyyy-MM-dd"));
+    if (!domDoc.elementsByTagName("studio").isEmpty())
+        show->setNetwork(domDoc.elementsByTagName("studio").at(0).toElement().text());
+    for (int i=0, n=domDoc.elementsByTagName("genre").size() ; i<n ; i++)
+        show->addGenre(domDoc.elementsByTagName("genre").at(i).toElement().text());
+    for (int i=0, n=domDoc.elementsByTagName("actor").size() ; i<n ; i++) {
+        Actor a;
+        if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("name").isEmpty())
+            a.name = domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("name").at(0).toElement().text();
+        if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("role").isEmpty())
+            a.role = domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("role").at(0).toElement().text();
+        if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("thumb").isEmpty())
+            a.thumb = domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("thumb").at(0).toElement().text();
+        show->addActor(a);
+    }
+    for (int i=0, n=domDoc.elementsByTagName("thumb").size() ; i<n ; i++) {
+        QString parentTag = domDoc.elementsByTagName("thumb").at(i).parentNode().toElement().tagName();
+        if (parentTag == "tvshow") {
+            QDomElement elem = domDoc.elementsByTagName("thumb").at(i).toElement();
+            Poster p;
+            p.originalUrl = QUrl(elem.text());
+            p.thumbUrl = QUrl(elem.text());
+            if (elem.hasAttribute("type") && elem.attribute("type") == "season") {
+                int season = elem.attribute("season").toInt();
+                if (season >= 0)
+                    show->addSeasonPoster(season, p);
+            } else {
+                show->addPoster(p);
+            }
+        } else if (parentTag == "fanart") {
+            QString url = domDoc.elementsByTagName("thumb").at(i).parentNode().toElement().attribute("url");
+            Poster p;
+            p.originalUrl = QUrl(url + domDoc.elementsByTagName("thumb").at(i).toElement().text());
+            p.thumbUrl = QUrl(url + domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
+            show->addBackdrop(p);
+        }
+    }
+
+    file.close();
+
+    return true;
+}
+
+bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode)
+{
+    if (episode->files().size() == 0)
+        return false;
+    QFileInfo fi(episode->files().at(0));
+    if (!fi.isFile() ) {
+        return false;
+    }
+    QString nfoFile = fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".nfo";
+    fi.setFile(nfoFile);
+    if (!fi.exists()) {
+        return false;
+    }
+
+    QFile file(nfoFile);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        return false;
+    }
+    episode->clear();
+
+    QDomDocument domDoc;
+    domDoc.setContent(file.readAll());
+    if (!domDoc.elementsByTagName("title").isEmpty() )
+        episode->setName(domDoc.elementsByTagName("title").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("showtitle").isEmpty() )
+        episode->setShowTitle(domDoc.elementsByTagName("showtitle").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("season").isEmpty())
+        episode->setSeason(domDoc.elementsByTagName("season").at(0).toElement().text().toInt());
+    if (!domDoc.elementsByTagName("episode").isEmpty())
+        episode->setEpisode(domDoc.elementsByTagName("episode").at(0).toElement().text().toInt());
+    if (!domDoc.elementsByTagName("rating").isEmpty())
+        episode->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().toFloat());
+    if (!domDoc.elementsByTagName("plot").isEmpty())
+        episode->setOverview(domDoc.elementsByTagName("plot").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("mpaa").isEmpty())
+        episode->setCertification(domDoc.elementsByTagName("mpaa").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("aired").isEmpty())
+        episode->setFirstAired(QDate::fromString(domDoc.elementsByTagName("aired").at(0).toElement().text(), "yyyy-MM-dd"));
+    if (!domDoc.elementsByTagName("playcount").isEmpty())
+        episode->setPlayCount(domDoc.elementsByTagName("playcount").at(0).toElement().text().toInt());
+    if (!domDoc.elementsByTagName("lastplayed").isEmpty())
+        episode->setLastPlayed(QDateTime::fromString(domDoc.elementsByTagName("lastplayed").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss"));
+    if (!domDoc.elementsByTagName("studio").isEmpty())
+        episode->setNetwork(domDoc.elementsByTagName("studio").at(0).toElement().text());
+    for (int i=0, n=domDoc.elementsByTagName("credits").size() ; i<n ; i++)
+        episode->addWriter(domDoc.elementsByTagName("credits").at(i).toElement().text());
+    for (int i=0, n=domDoc.elementsByTagName("director").size() ; i<n ; i++)
+        episode->addDirector(domDoc.elementsByTagName("director").at(i).toElement().text());
+
+    file.close();
+
+    return true;
+}
+
+bool XbmcXml::saveTvShow(TvShow *show)
+{
+    QByteArray xmlContent;
+    QXmlStreamWriter xml(&xmlContent);
+    xml.setAutoFormatting(true);
+    xml.writeStartDocument("1.0", true);
+    writeTvShowXml(xml, show);
+    xml.writeEndDocument();
+
+    if (show->dir().isEmpty())
+        return false;
+    QFile file(show->dir() + QDir::separator() + "tvshow.nfo");
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return false;
+    file.write(xmlContent);
+    file.close();
+
+    if (show->posterImageChanged() && !show->posterImage()->isNull())
+        show->posterImage()->save(show->dir() + QDir::separator() + "season-all.tbn", "jpg", 100);
+    if (show->backdropImageChanged() && !show->backdropImage()->isNull())
+        show->backdropImage()->save(show->dir() + QDir::separator() + "fanart.jpg", "jpg", 100);
+
+    foreach (const Actor &actor, show->actors()) {
+        if (!actor.image.isNull()) {
+            QDir dir;
+            dir.mkdir(show->dir() + QDir::separator() + ".actors");
+            QString actorName = actor.name;
+            actorName = actorName.replace(" ", "_");
+            actor.image.save(show->dir() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn", "jpg", 100);
+        }
+    }
+
+    foreach (int season, show->seasons()) {
+        if (show->seasonPosterImageChanged(season) && !show->seasonPosterImage(season)->isNull()) {
+            QString s = QString("%1").arg(season);
+            if (season < 10)
+                s.prepend("0");
+            show->seasonPosterImage(season)->save(show->dir() + QDir::separator() + "season" + s + ".tbn", "jpg", 100);
+        }
+    }
+
+    return true;
+}
+
+bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
+{
+    QByteArray xmlContent;
+    QXmlStreamWriter xml(&xmlContent);
+    xml.setAutoFormatting(true);
+    xml.writeStartDocument("1.0", true);
+    writeTvShowEpisodeXml(xml, episode);
+    xml.writeEndDocument();
+
+    if (episode->files().isEmpty())
+        return false;
+    QFileInfo fi(episode->files().at(0));
+    QFile file(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".nfo");
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return false;
+    file.write(xmlContent);
+    file.close();
+
+    if (episode->thumbnailImageChanged() && !episode->thumbnailImage()->isNull())
+        episode->thumbnailImage()->save(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".tbn", "jpg", 100);
+
+    return true;
+}
+
+void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath, QString pathSearch, QString pathReplace)
+{
+    xml.writeStartElement("tvshow");
+    xml.writeTextElement("title", show->name());
+    xml.writeTextElement("showtitle", show->showTitle());
+    xml.writeTextElement("rating", QString("%1").arg(show->rating()));
+    xml.writeTextElement("episode", QString("%1").arg(show->episodes().count()));
+    xml.writeTextElement("plot", show->overview());
+    xml.writeTextElement("mpaa", QString("%1").arg(show->rating()));
+    xml.writeTextElement("aired", show->firstAired().toString("yyyy-MM-dd"));
+
+    foreach (const QString &genre, show->genres())
+        xml.writeTextElement("genre", genre);
+
+    foreach (const Actor &actor, show->actors()) {
+        xml.writeStartElement("actor");
+        xml.writeTextElement("name", actor.name);
+        xml.writeTextElement("role", actor.role);
+        xml.writeTextElement("thumb", actor.thumb);
+        xml.writeEndElement();
+    }
+
+    foreach (const Poster &poster, show->posters()) {
+        xml.writeStartElement("thumb");
+        xml.writeCharacters(poster.originalUrl.toString());
+        xml.writeEndElement();
+        xml.writeStartElement("thumb");
+        xml.writeAttribute("type", "season");
+        xml.writeAttribute("season", "-1");
+        xml.writeCharacters(poster.originalUrl.toString());
+        xml.writeEndElement();
+    }
+
+    xml.writeStartElement("fanart");
+    foreach (const Poster &poster, show->backdrops()) {
+        xml.writeStartElement("thumb");
+        xml.writeAttribute("preview", poster.thumbUrl.toString());
+        xml.writeCharacters(poster.originalUrl.toString());
+        xml.writeEndElement();
+    }
+    xml.writeEndElement();
+
+    foreach (int season, show->seasons()) {
+        foreach (const Poster &poster, show->seasonPosters(season)) {
+            xml.writeStartElement("thumb");
+            xml.writeAttribute("type", "season");
+            xml.writeAttribute("season", QString("%1").arg(season));
+            xml.writeCharacters(poster.originalUrl.toString());
+            xml.writeEndElement();
+        }
+    }
+
+    if (writePath && !show->dir().isEmpty()) {
+        QString dir = show->dir();
+        xml.writeTextElement("path", dir.replace(pathSearch, pathReplace));
+        xml.writeTextElement("filenameandpath", "");
+        xml.writeTextElement("file", "");
+        xml.writeTextElement("basepath", dir.replace(pathSearch, pathReplace));
+    }
+
+    xml.writeEndElement();
+}
+
+void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode, bool writePath, QString pathSearch, QString pathReplace)
+{
+    xml.writeStartElement("episodedetails");
+    xml.writeTextElement("title", episode->name());
+    xml.writeTextElement("showtitle", episode->showTitle());
+    xml.writeTextElement("rating", QString("%1").arg(episode->rating()));
+    xml.writeTextElement("season", QString("%1").arg(episode->season()));
+    xml.writeTextElement("episode", QString("%1").arg(episode->episode()));
+    xml.writeTextElement("plot", episode->overview());
+    xml.writeTextElement("mpaa", episode->certification());
+    xml.writeTextElement("playcount", QString("%1").arg(episode->playCount()));
+    xml.writeTextElement("lastplayed", episode->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
+    xml.writeTextElement("aired", episode->firstAired().toString("yyyy-MM-dd"));
+    xml.writeTextElement("studio", episode->network());
+    foreach (const QString &writer, episode->writers())
+        xml.writeTextElement("credits", writer);
+    foreach (const QString &director, episode->directors())
+        xml.writeTextElement("director", director);
+    if (!episode->thumbnail().isEmpty())
+        xml.writeTextElement("thumb", episode->thumbnail().toString());
+
+    if (writePath && episode->files().size() > 0) {
+        QFileInfo fi(episode->files().at(0));
+        xml.writeTextElement("path", fi.absolutePath());
+        if (episode->files().size() == 1) {
+            fi.setFile(episode->files().at(0));
+            xml.writeTextElement("filenameandpath", fi.absoluteFilePath().replace(pathSearch, pathReplace));
+            xml.writeTextElement("basepath", fi.absoluteFilePath().replace(pathSearch, pathReplace));
+        } else {
+            QStringList files;
+            foreach (const QString &file, episode->files()) {
+                fi.setFile(file);
+                files.append(fi.absoluteFilePath().replace(pathSearch, pathReplace));
+            }
+            xml.writeTextElement("filenameandpath", QString("stack://%1").arg(files.join(" , ")));
+            xml.writeTextElement("basepath", QString("stack://%1").arg(files.join(" , ")));
+        }
+    }
+
+    if (episode->tvShow() != 0) {
+        foreach (const Actor &actor, episode->tvShow()->actors()) {
+            xml.writeStartElement("actor");
+            xml.writeTextElement("name", actor.name);
+            xml.writeTextElement("role", actor.role);
+            xml.writeTextElement("thumb", actor.thumb);
+            xml.writeEndElement();
+        }
+    }
+    xml.writeEndElement();
 }

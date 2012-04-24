@@ -46,7 +46,12 @@ SOURCES += main.cpp\
     data/TvShowProxyModel.cpp \
     data/TvShowModelItem.cpp \
     data/TvShowEpisode.cpp \
-    data/TvShowDelegate.cpp
+    data/TvShowDelegate.cpp \
+    TvShowWidget.cpp \
+    TvShowWidgetEpisode.cpp \
+    TvShowWidgetTvShow.cpp \
+    scrapers/TheTvDb.cpp \
+    TvShowSearch.cpp
 
 HEADERS  += MainWindow.h \
     data/Movie.h \
@@ -86,7 +91,13 @@ HEADERS  += MainWindow.h \
     data/TvShowProxyModel.h \
     data/TvShowModelItem.h \
     data/TvShowEpisode.h \
-    data/TvShowDelegate.h
+    data/TvShowDelegate.h \
+    TvShowWidget.h \
+    TvShowWidgetEpisode.h \
+    TvShowWidgetTvShow.h \
+    scrapers/TheTvDb.h \
+    data/TvScraperInterface.h \
+    TvShowSearch.h
 
 FORMS    += MainWindow.ui \
     MovieSearch.ui \
@@ -100,7 +111,11 @@ FORMS    += MainWindow.ui \
     SettingsWidget.ui \
     MessageBox.ui \
     Message.ui \
-    TvShowFilesWidget.ui
+    TvShowFilesWidget.ui \
+    TvShowWidget.ui \
+    TvShowWidgetEpisode.ui \
+    TvShowWidgetTvShow.ui \
+    TvShowSearch.ui
 
 RESOURCES += \
     MediaElch.qrc

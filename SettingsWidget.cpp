@@ -28,6 +28,18 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
             ui->verticalLayoutScrapers->addWidget(line);
         }
     }
+    foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers()) {
+        if (scraper->hasSettings()) {
+            QWidget *scraperSettings = scraper->settingsWidget();
+            scraperSettings->setParent(ui->groupBox_2);
+            ui->verticalLayoutScrapers->addWidget(new QLabel(scraper->name(), ui->groupBox_2));
+            ui->verticalLayoutScrapers->addWidget(scraperSettings);
+            QFrame *line = new QFrame(ui->groupBox_2);
+            line->setFrameShape(QFrame::HLine);
+            line->setFrameShadow(QFrame::Sunken);
+            ui->verticalLayoutScrapers->addWidget(line);
+        }
+    }
     ui->verticalLayoutScrapers->addSpacerItem(new QSpacerItem(1, 1, QSizePolicy::Minimum, QSizePolicy::Expanding));
 
     connect(ui->buttonAddMovieDir, SIGNAL(clicked()), this, SLOT(addMovieDir()));
@@ -72,6 +84,10 @@ void SettingsWidget::loadSettings()
         if (scraper->hasSettings())
             scraper->loadSettings();
     }
+    foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers()) {
+        if (scraper->hasSettings())
+            scraper->loadSettings();
+    }
 }
 
 void SettingsWidget::saveSettings()
@@ -80,6 +96,10 @@ void SettingsWidget::saveSettings()
     m_settings.setValue("Directories/Movies", m_movieDirectories);
     m_settings.setValue("Directories/TvShows", m_tvShowDirectories);
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
+        if (scraper->hasSettings())
+            scraper->saveSettings();
+    }
+    foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers()) {
         if (scraper->hasSettings())
             scraper->saveSettings();
     }
