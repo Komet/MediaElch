@@ -45,7 +45,6 @@ private:
     Movie *m_lastMovie;
     QLabel *m_firstTimeLabel;
     QModelIndex m_lastModelIndex;
-    bool m_emitMovieSelected;
 };
 
 #endif // FILESWIDGET_H

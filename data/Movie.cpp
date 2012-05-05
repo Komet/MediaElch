@@ -22,7 +22,9 @@ Movie::Movie(QStringList files, QObject *parent) :
             m_folderName = path.last();
     }
     m_infoLoaded = false;
+    m_imagesLoaded = false;
     m_watched = false;
+    m_hasChanged = false;
 }
 
 Movie::~Movie()
@@ -31,6 +33,7 @@ Movie::~Movie()
 
 void Movie::clear()
 {
+    m_hasChanged = false;
     m_actors.clear();
     m_backdrops.clear();
     m_countries.clear();
@@ -52,11 +55,15 @@ bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
     bool saved = mediaCenterInterface->saveMovie(this);
     if (!m_infoLoaded)
         m_infoLoaded = saved;
+    m_hasChanged = false;
     return saved;
 }
 
 bool Movie::loadData(MediaCenterInterface *mediaCenterInterface)
 {
+    if (m_infoLoaded)
+        return m_infoLoaded;
+
     bool infoLoaded = mediaCenterInterface->loadMovie(this);
     if (!infoLoaded) {
         if (this->files().size() > 0) {
@@ -73,6 +80,7 @@ bool Movie::loadData(MediaCenterInterface *mediaCenterInterface)
         }
     }
     m_infoLoaded = infoLoaded;
+    m_hasChanged = false;
     return infoLoaded;
 }
 
@@ -88,7 +96,9 @@ void Movie::scraperLoadDone()
 
 void Movie::loadImages(MediaCenterInterface *mediaCenterInterface)
 {
-    mediaCenterInterface->loadMovieImages(this);
+    if (!m_imagesLoaded)
+        mediaCenterInterface->loadMovieImages(this);
+    m_imagesLoaded = true;
 }
 
 /*** GETTER ***/
@@ -138,14 +148,38 @@ QStringList Movie::genres() const
     return m_genres;
 }
 
+QList<QString*> Movie::genresPointer()
+{
+    QList<QString*> genres;
+    for (int i=0, n=m_genres.size() ; i<n ; ++i)
+        genres.append(&m_genres[i]);
+    return genres;
+}
+
 QStringList Movie::countries() const
 {
     return m_countries;
 }
 
+QList<QString*> Movie::countriesPointer()
+{
+    QList<QString*> countries;
+    for (int i=0, n=m_countries.size() ; i<n ; ++i)
+        countries.append(&m_countries[i]);
+    return countries;
+}
+
 QStringList Movie::studios() const
 {
     return m_studios;
+}
+
+QList<QString*> Movie::studiosPointer()
+{
+    QList<QString*> studios;
+    for (int i=0, n=m_studios.size() ; i<n ; ++i)
+        studios.append(&m_studios[i]);
+    return studios;
 }
 
 QUrl Movie::trailer() const
@@ -236,96 +270,119 @@ bool Movie::watched() const
     return m_watched;
 }
 
+bool Movie::hasChanged() const
+{
+    return m_hasChanged;
+}
+
 /*** SETTER ***/
 
 void Movie::setName(QString name)
 {
     m_name = name;
+    m_hasChanged = true;
 }
 
 void Movie::setOriginalName(QString originalName)
 {
     m_originalName = originalName;
+    m_hasChanged = true;
 }
 
 void Movie::setOverview(QString overview)
 {
     m_overview = overview;
+    m_hasChanged = true;
 }
 
 void Movie::setRating(qreal rating)
 {
     m_rating = rating;
+    m_hasChanged = true;
 }
 
 void Movie::setReleased(QDate released)
 {
     m_released = released;
+    m_hasChanged = true;
 }
 
 void Movie::setTagline(QString tagline)
 {
     m_tagline = tagline;
+    m_hasChanged = true;
 }
 
 void Movie::setRuntime(int runtime)
 {
     m_runtime = runtime;
+    m_hasChanged = true;
 }
 
 void Movie::setCertification(QString certification)
 {
     m_certification = certification;
+    m_hasChanged = true;
 }
 
 void Movie::setGenres(QStringList genres)
 {
     m_genres = genres;
+    m_hasChanged = true;
 }
 
 void Movie::setCountries(QStringList countries)
 {
     m_countries = countries;
+    m_hasChanged = true;
 }
 
 void Movie::setStudios(QStringList studios)
 {
     m_studios = studios;
+    m_hasChanged = true;
 }
 
 void Movie::setTrailer(QUrl trailer)
 {
     m_trailer = trailer;
+    m_hasChanged = true;
 }
 
 void Movie::setActors(QList<Actor> actors)
 {
     m_actors = actors;
+    m_hasChanged = true;
 }
 
 void Movie::setPlayCount(int playcount)
 {
     m_playcount = playcount;
+    m_hasChanged = true;
 }
 
 void Movie::setLastPlayed(QDateTime lastPlayed)
 {
     m_lastPlayed = lastPlayed;
+    m_hasChanged = true;
 }
 
 void Movie::setId(QString id)
 {
     m_id = id;
+    m_hasChanged = true;
 }
 
 void Movie::setSet(QString set)
 {
     m_set = set;
+    m_hasChanged = true;
 }
 
 void Movie::setPosters(QList<Poster> posters)
 {
     m_posters = posters;
+    m_hasChanged = true;
 }
 
 void Movie::setPoster(int index, Poster poster)
@@ -333,11 +390,13 @@ void Movie::setPoster(int index, Poster poster)
     if (m_posters.size() < index)
         return;
     m_posters[index] = poster;
+    m_hasChanged = true;
 }
 
 void Movie::setBackdrops(QList<Poster> backdrops)
 {
     m_backdrops.append(backdrops);
+    m_hasChanged = true;
 }
 
 void Movie::setBackdrop(int index, Poster backdrop)
@@ -345,11 +404,18 @@ void Movie::setBackdrop(int index, Poster backdrop)
     if (m_backdrops.size() < index)
         return;
     m_backdrops[index] = backdrop;
+    m_hasChanged = true;
 }
 
 void Movie::setWatched(bool watched)
 {
     m_watched = watched;
+    m_hasChanged = true;
+}
+
+void Movie::setChanged(bool changed)
+{
+    m_hasChanged = changed;
 }
 
 /*** ADDER ***/
@@ -357,43 +423,97 @@ void Movie::setWatched(bool watched)
 void Movie::addActor(Actor actor)
 {
     m_actors.append(actor);
+    m_hasChanged = true;
 }
 
 void Movie::addCountry(QString country)
 {
     m_countries.append(country);
+    m_hasChanged = true;
 }
 
 void Movie::addGenre(QString genre)
 {
     m_genres.append(genre);
+    m_hasChanged = true;
 }
 
 void Movie::addStudio(QString studio)
 {
     m_studios.append(studio);
+    m_hasChanged = true;
 }
 
 void Movie::addPoster(Poster poster)
 {
     m_posters.append(poster);
+    m_hasChanged = true;
 }
 
 void Movie::addBackdrop(Poster backdrop)
 {
     m_backdrops.append(backdrop);
+    m_hasChanged = true;
 }
 
 void Movie::setPosterImage(QImage poster)
 {
     m_posterImage = QImage(poster);
     m_posterImageChanged = true;
+    m_hasChanged = true;
 }
 
 void Movie::setBackdropImage(QImage backdrop)
 {
     m_backdropImage = QImage(backdrop);
     m_backdropImageChanged = true;
+    m_hasChanged = true;
+}
+
+/*** REMOVER ***/
+
+void Movie::removeActor(Actor *actor)
+{
+    for (int i=0, n=m_actors.size() ; i<n ; ++i) {
+        if (&m_actors[i] == actor) {
+            m_actors.removeAt(i);
+            break;
+        }
+    }
+    m_hasChanged = true;
+}
+
+void Movie::removeCountry(QString *country)
+{
+    for (int i=0, n=m_countries.size() ; i<n ; ++i) {
+        if (&m_countries[i] == country) {
+            m_countries.removeAt(i);
+            break;
+        }
+    }
+    m_hasChanged = true;
+}
+
+void Movie::removeGenre(QString *genre)
+{
+    for (int i=0, n=m_genres.size() ; i<n ; ++i) {
+        if (&m_genres[i] == genre) {
+            m_genres.removeAt(i);
+            break;
+        }
+    }
+    m_hasChanged = true;
+}
+
+void Movie::removeStudio(QString *studio)
+{
+    for (int i=0, n=m_studios.size() ; i<n ; ++i) {
+        if (&m_studios[i] == studio) {
+            m_studios.removeAt(i);
+            break;
+        }
+    }
+    m_hasChanged = true;
 }
 
 /*** DEBUG ***/

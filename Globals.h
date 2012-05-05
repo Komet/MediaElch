@@ -3,8 +3,10 @@
 
 #include <QDate>
 #include <QImage>
+#include <QMetaType>
 #include <QString>
 #include <QUrl>
+#include <QVariant>
 
 class TvShowEpisode;
 
@@ -36,6 +38,8 @@ struct Actor {
     QString thumb;
     QImage image;
 };
+Q_DECLARE_METATYPE(Actor*);
+Q_DECLARE_METATYPE(QString*);
 
 struct ScraperSearchResult {
     QString id;

@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QMenu>
 #include <QResizeEvent>
+#include <QTableWidgetItem>
 #include <QWidget>
 
 #include "data/Movie.h"
@@ -39,7 +40,6 @@ signals:
     void actorDownloadStarted(QString, int);
     void actorDownloadProgress(int, int, int);
     void actorDownloadFinished(int);
-    void movieChangeCanceled();
     void setActionSearchEnabled(bool, MainWidgets);
     void setActionSaveEnabled(bool, MainWidgets);
 
@@ -50,7 +50,6 @@ private slots:
     void chooseMoviePoster();
     void chooseMovieBackdrop();
     void posterDownloadFinished(DownloadManagerElement elem);
-    void posterDownloadProgress(DownloadManagerElement elem);
     void movieNameChanged(QString text);
     void addGenre();
     void removeGenre();
@@ -61,19 +60,33 @@ private slots:
     void addCountry();
     void removeCountry();
     void groupBoxResized(QSize size);
-    void markHasChanged();
+
+    void onNameChange(QString text);
+    void onOriginalNameChange(QString text);
+    void onSetChange(QString text);
+    void onTaglineChange(QString text);
+    void onRatingChange(double value);
+    void onReleasedChange(QDate date);
+    void onRuntimeChange(int value);
+    void onCertificationChange(QString text);
+    void onTrailerChange(QString text);
+    void onWatchedChange(int state);
+    void onPlayCountChange(int value);
+    void onLastWatchedChange(QDateTime dateTime);
+    void onOverviewChange();
+
+    void onActorEdited(QTableWidgetItem *item);
+    void onCountryEdited(QTableWidgetItem *item);
+    void onGenreEdited(QTableWidgetItem *item);
+    void onStudioEdited(QTableWidgetItem *item);
 
 private:
     Ui::MovieWidget *ui;
     Movie *m_movie;
     DownloadManager *m_posterDownloadManager;
     QMovie *m_loadingMovie;
-    QImage m_chosenPoster;
-    QImage m_chosenBackdrop;
     QLabel *m_savingWidget;
     QLabel *m_firstTimeLabel;
-    bool m_loadedFromScraper;
-    bool m_hasChanged;
     int m_progressMessageId;
     void updateMovieInfo();
 };

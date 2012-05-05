@@ -33,8 +33,11 @@ public:
     int runtime() const;
     QString certification() const;
     QStringList genres() const;
+    QList<QString*> genresPointer();
     QStringList countries() const;
+    QList<QString*> countriesPointer();
     QStringList studios() const;
+    QList<QString*> studiosPointer();
     QUrl trailer() const;
     QList<Actor> actors() const;
     QList<Actor*> actorsPointer();
@@ -52,6 +55,8 @@ public:
     bool posterImageChanged() const;
     bool backdropImageChanged() const;
     bool watched() const;
+
+    bool hasChanged() const;
 
     void setName(QString name);
     void setOriginalName(QString originalName);
@@ -83,6 +88,12 @@ public:
     void setPosterImage(QImage poster);
     void setBackdropImage(QImage backdrop);
     void setWatched(bool watched);
+    void setChanged(bool changed);
+
+    void removeActor(Actor *actor);
+    void removeCountry(QString *country);
+    void removeStudio(QString *studio);
+    void removeGenre(QString *genre);
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface);
@@ -121,7 +132,9 @@ private:
     bool m_posterImageChanged;
     bool m_backdropImageChanged;
     bool m_infoLoaded;
+    bool m_imagesLoaded;
     bool m_watched;
+    bool m_hasChanged;
 };
 
 QDebug operator<<(QDebug dbg, const Movie &movie);

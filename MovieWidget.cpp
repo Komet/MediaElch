@@ -7,6 +7,7 @@
 #include <QPainter>
 #include <QScrollBar>
 #include "Manager.h"
+#include "MessageBox.h"
 #include "MovieImageDialog.h"
 #include "MovieSearch.h"
 #include "QuestionDialog.h"
@@ -43,7 +44,6 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->poster, SIGNAL(clicked()), this, SLOT(chooseMoviePoster()));
     connect(ui->backdrop, SIGNAL(clicked()), this, SLOT(chooseMovieBackdrop()));
     connect(m_posterDownloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(posterDownloadFinished(DownloadManagerElement)));
-    connect(m_posterDownloadManager, SIGNAL(downloadProgress(DownloadManagerElement)), this, SLOT(posterDownloadProgress(DownloadManagerElement)));
     connect(m_posterDownloadManager, SIGNAL(downloadsLeft(int)), this, SLOT(actorDownloadsLeft(int)));
     connect(ui->name, SIGNAL(textChanged(QString)), this, SLOT(movieNameChanged(QString)));
     connect(ui->buttonAddActor, SIGNAL(clicked()), this, SLOT(addActor()));
@@ -55,25 +55,10 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->buttonAddStudio, SIGNAL(clicked()), this, SLOT(addStudio()));
     connect(ui->buttonRemoveStudio, SIGNAL(clicked()), this, SLOT(removeStudio()));
     connect(ui->groupBox_3, SIGNAL(resized(QSize)), this, SLOT(groupBoxResized(QSize)));
-
-    connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(markHasChanged()));
-    connect(ui->originalName, SIGNAL(textEdited(QString)), this, SLOT(markHasChanged()));
-    connect(ui->set, SIGNAL(currentIndexChanged(int)), this, SLOT(markHasChanged()));
-    connect(ui->set, SIGNAL(editTextChanged(QString)), this, SLOT(markHasChanged()));
-    connect(ui->tagline, SIGNAL(textEdited(QString)), this, SLOT(markHasChanged()));
-    connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(markHasChanged()));
-    connect(ui->released, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(markHasChanged()));
-    connect(ui->runtime, SIGNAL(valueChanged(int)), this, SLOT(markHasChanged()));
-    connect(ui->certification, SIGNAL(editTextChanged(QString)), this, SLOT(markHasChanged()));
-    connect(ui->certification, SIGNAL(currentIndexChanged(int)), this, SLOT(markHasChanged()));
-    connect(ui->trailer, SIGNAL(textEdited(QString)), this, SLOT(markHasChanged()));
-    connect(ui->playcount, SIGNAL(valueChanged(int)), this, SLOT(markHasChanged()));
-    connect(ui->lastPlayed, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(markHasChanged()));
-    connect(ui->overview, SIGNAL(textChanged()), this, SLOT(markHasChanged()));
-    connect(ui->actors, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(markHasChanged()));
-    connect(ui->genres, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(markHasChanged()));
-    connect(ui->countries, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(markHasChanged()));
-    connect(ui->studios, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(markHasChanged()));
+    connect(ui->actors, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onActorEdited(QTableWidgetItem*)));
+    connect(ui->genres, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onGenreEdited(QTableWidgetItem*)));
+    connect(ui->studios, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onStudioEdited(QTableWidgetItem*)));
+    connect(ui->countries, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onCountryEdited(QTableWidgetItem*)));
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -97,7 +82,20 @@ MovieWidget::MovieWidget(QWidget *parent) :
     m_firstTimeLabel->resize(firstTimePixmap.width()+40, firstTimePixmap.height()+40);
     m_firstTimeLabel->hide();
 
-    m_hasChanged = false;
+    // Connect GUI change events to movie object
+    connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(onNameChange(QString)));
+    connect(ui->originalName, SIGNAL(textEdited(QString)), this, SLOT(onOriginalNameChange(QString)));
+    connect(ui->tagline, SIGNAL(textEdited(QString)), this, SLOT(onTaglineChange(QString)));
+    connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
+    connect(ui->trailer, SIGNAL(textEdited(QString)), this, SLOT(onTrailerChange(QString)));
+    connect(ui->runtime, SIGNAL(valueChanged(int)), this, SLOT(onRuntimeChange(int)));
+    connect(ui->playcount, SIGNAL(valueChanged(int)), this, SLOT(onPlayCountChange(int)));
+    connect(ui->certification, SIGNAL(editTextChanged(QString)), this, SLOT(onCertificationChange(QString)));
+    connect(ui->set, SIGNAL(editTextChanged(QString)), this, SLOT(onSetChange(QString)));
+    connect(ui->watched, SIGNAL(stateChanged(int)), this, SLOT(onWatchedChange(int)));
+    connect(ui->released, SIGNAL(dateChanged(QDate)), this, SLOT(onReleasedChange(QDate)));
+    connect(ui->lastPlayed, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(onLastWatchedChange(QDateTime)));
+    connect(ui->overview, SIGNAL(textChanged()), this, SLOT(onOverviewChange()));
 }
 
 MovieWidget::~MovieWidget()
@@ -126,79 +124,6 @@ void MovieWidget::resizeEvent(QResizeEvent *event)
     QWidget::resizeEvent(event);
 }
 
-void MovieWidget::addActor()
-{
-    int row = ui->actors->rowCount();
-    ui->actors->insertRow(row);
-    ui->actors->setItem(row, 0, new QTableWidgetItem(tr("Unknown Actor")));
-    ui->actors->setItem(row, 1, new QTableWidgetItem(tr("Unkown Role")));
-    ui->actors->scrollToBottom();
-    m_hasChanged = true;
-}
-
-void MovieWidget::removeActor()
-{
-    int row = ui->actors->currentRow();
-    if (row < 0 || row >= ui->actors->rowCount() || !ui->actors->currentItem()->isSelected())
-        return;
-    ui->actors->removeRow(row);
-    m_hasChanged = true;
-}
-
-void MovieWidget::addGenre()
-{
-    int row = ui->genres->rowCount();
-    ui->genres->insertRow(row);
-    ui->genres->setItem(row, 0, new QTableWidgetItem(tr("Unkown Genre")));
-    ui->genres->scrollToBottom();
-    m_hasChanged = true;
-}
-
-void MovieWidget::removeGenre()
-{
-    int row = ui->genres->currentRow();
-    if (row < 0 || row >= ui->genres->rowCount() || !ui->genres->currentItem()->isSelected())
-        return;
-    ui->genres->removeRow(row);
-    m_hasChanged = true;
-}
-
-void MovieWidget::addStudio()
-{
-    int row = ui->studios->rowCount();
-    ui->studios->insertRow(row);
-    ui->studios->setItem(row, 0, new QTableWidgetItem(tr("Unknown Studio")));
-    ui->studios->scrollToBottom();
-    m_hasChanged = true;
-}
-
-void MovieWidget::removeStudio()
-{
-    int row = ui->studios->currentRow();
-    if (row < 0 || row >= ui->studios->rowCount() || !ui->studios->currentItem()->isSelected())
-        return;
-    ui->studios->removeRow(row);
-    m_hasChanged = true;
-}
-
-void MovieWidget::addCountry()
-{
-    int row = ui->countries->rowCount();
-    ui->countries->insertRow(row);
-    ui->countries->setItem(row, 0, new QTableWidgetItem(tr("Unkown Country")));
-    ui->countries->scrollToBottom();
-    m_hasChanged = true;
-}
-
-void MovieWidget::removeCountry()
-{
-    int row = ui->countries->currentRow();
-    if (row < 0 || row >= ui->countries->rowCount() || !ui->countries->currentItem()->isSelected())
-        return;
-    ui->countries->removeRow(row);
-    m_hasChanged = true;
-}
-
 void MovieWidget::clear()
 {
     ui->set->clear();
@@ -224,9 +149,6 @@ void MovieWidget::clear()
     ui->tabWidget->setCurrentIndex(0);
     ui->posterResolution->setText("");
     ui->backdropResolution->setText("");
-    m_chosenPoster = QImage();
-    m_chosenBackdrop = QImage();
-    m_loadedFromScraper = false;
 }
 
 void MovieWidget::movieNameChanged(QString text)
@@ -250,19 +172,12 @@ void MovieWidget::setDisabledTrue()
 
 void MovieWidget::setMovie(Movie *movie)
 {
-    if (m_hasChanged) {
-        if (QuestionDialog::instance()->exec() != QDialog::Accepted) {
-            emit movieChangeCanceled();
-            return;
-        }
-    }
     movie->loadData(Manager::instance()->mediaCenterInterface());
     hideFirstTime();
     m_posterDownloadManager->abortDownloads();
     m_movie = movie;
     movie->loadImages(Manager::instance()->mediaCenterInterface());
     this->updateMovieInfo();
-    m_hasChanged = false;
 }
 
 void MovieWidget::startScraperSearch()
@@ -276,7 +191,6 @@ void MovieWidget::startScraperSearch()
         this->setDisabledTrue();
         m_movie->loadData(MovieSearch::instance()->scraperId(), Manager::instance()->scrapers().at(MovieSearch::instance()->scraperNo()));
         connect(this->m_movie, SIGNAL(loaded()), this, SLOT(loadDone()), Qt::UniqueConnection);
-        m_hasChanged = true;
     } else {
         emit setActionSearchEnabled(true, WidgetMovies);
         emit setActionSaveEnabled(true, WidgetMovies);
@@ -290,7 +204,6 @@ void MovieWidget::loadDone()
 
     this->updateMovieInfo();
     this->setEnabledTrue();
-    m_loadedFromScraper = true;
 
     if (m_movie->posters().size() > 0) {
         emit setActionSaveEnabled(false, WidgetMovies);
@@ -311,6 +224,19 @@ void MovieWidget::loadDone()
         ui->backdrop->setPixmap(QPixmap());
         ui->backdrop->setMovie(m_loadingMovie);
     }
+
+    QList<Actor*> actors = m_movie->actorsPointer();
+    for (int i=0, n=actors.size() ; i<n ; i++) {
+        if (actors.at(i)->thumb.isEmpty())
+            continue;
+        DownloadManagerElement d;
+        d.imageType = TypeActor;
+        d.url = QUrl(actors.at(i)->thumb);
+        d.actor = actors.at(i);
+        m_posterDownloadManager->addDownload(d);
+    }
+    emit actorDownloadStarted(tr("Downloading Missing Actor Images..."), m_progressMessageId);
+    connect(m_posterDownloadManager, SIGNAL(allDownloadsFinished()), this, SLOT(downloadActorsFinished()), Qt::UniqueConnection);
 }
 
 void MovieWidget::updateMovieInfo()
@@ -318,9 +244,21 @@ void MovieWidget::updateMovieInfo()
     if (m_movie == 0)
         return;
 
+    ui->rating->blockSignals(true);
+    ui->runtime->blockSignals(true);
+    ui->playcount->blockSignals(true);
+    ui->set->blockSignals(true);
+    ui->certification->blockSignals(true);
+    ui->watched->blockSignals(true);
+    ui->released->blockSignals(true);
+    ui->lastPlayed->blockSignals(true);
+    ui->overview->blockSignals(true);
+    ui->actors->blockSignals(true);
+    ui->genres->blockSignals(true);
+    ui->studios->blockSignals(true);
+    ui->countries->blockSignals(true);
+
     this->clear();
-    ui->set->clear();
-    ui->certification->clear();
 
     ui->files->setText(m_movie->files().join(", "));
     ui->files->setToolTip(m_movie->files().join("\n"));
@@ -353,28 +291,45 @@ void MovieWidget::updateMovieInfo()
     ui->certification->setCurrentIndex(certifications.indexOf(m_movie->certification()));
     ui->set->setCurrentIndex(sets.indexOf(m_movie->set()));
 
-    foreach (const Actor &actor, m_movie->actors()) {
+    ui->set->blockSignals(false);
+    ui->certification->blockSignals(false);
+
+
+    ui->actors->blockSignals(true);
+    foreach (Actor *actor, m_movie->actorsPointer()) {
         int row = ui->actors->rowCount();
         ui->actors->insertRow(row);
-        ui->actors->setItem(row, 0, new QTableWidgetItem(actor.name));
-        ui->actors->setItem(row, 1, new QTableWidgetItem(actor.role));
-        ui->actors->item(row, 0)->setData(Qt::UserRole, actor.thumb);
+        ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
+        ui->actors->setItem(row, 1, new QTableWidgetItem(actor->role));
+        ui->actors->item(row, 0)->setData(Qt::UserRole, actor->thumb);
+        ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(actor));
     }
-    foreach (const QString &genre, m_movie->genres()) {
+    ui->actors->blockSignals(false);
+
+    ui->genres->blockSignals(true);
+    foreach (QString *genre, m_movie->genresPointer()) {
         int row = ui->genres->rowCount();
         ui->genres->insertRow(row);
-        ui->genres->setItem(row, 0, new QTableWidgetItem(genre));
+        ui->genres->setItem(row, 0, new QTableWidgetItem(*genre));
+        ui->genres->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(genre));
     }
+    ui->genres->blockSignals(false);
+
+    ui->studios->blockSignals(true);
     foreach (const QString &studio, m_movie->studios()) {
         int row = ui->studios->rowCount();
         ui->studios->insertRow(row);
         ui->studios->setItem(row, 0, new QTableWidgetItem(studio));
     }
+    ui->studios->blockSignals(false);
+
+    ui->countries->blockSignals(true);
     foreach (const QString &country, m_movie->countries()) {
         int row = ui->countries->rowCount();
         ui->countries->insertRow(row);
         ui->countries->setItem(row, 0, new QTableWidgetItem(country));
     }
+    ui->countries->blockSignals(false);
 
     if (!m_movie->posterImage()->isNull()) {
         ui->poster->setPixmap(QPixmap::fromImage(*m_movie->posterImage()).scaledToWidth(200, Qt::SmoothTransformation));
@@ -391,6 +346,18 @@ void MovieWidget::updateMovieInfo()
         ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->backdropResolution->setText("");
     }
+
+    ui->rating->blockSignals(false);
+    ui->runtime->blockSignals(false);
+    ui->playcount->blockSignals(false);
+    ui->watched->blockSignals(false);
+    ui->released->blockSignals(false);
+    ui->lastPlayed->blockSignals(false);
+    ui->overview->blockSignals(false);
+    ui->actors->blockSignals(false);
+    ui->genres->blockSignals(false);
+    ui->studios->blockSignals(false);
+    ui->countries->blockSignals(false);
 
     emit setActionSaveEnabled(true, WidgetMovies);
 }
@@ -413,7 +380,6 @@ void MovieWidget::chooseMoviePoster()
         m_posterDownloadManager->addDownload(d);
         ui->poster->setPixmap(QPixmap());
         ui->poster->setMovie(m_loadingMovie);
-        m_hasChanged = true;
     }
 }
 
@@ -435,31 +401,19 @@ void MovieWidget::chooseMovieBackdrop()
         m_posterDownloadManager->addDownload(d);
         ui->backdrop->setPixmap(QPixmap());
         ui->backdrop->setMovie(m_loadingMovie);
-        m_hasChanged = true;
-    }
-}
-
-void MovieWidget::posterDownloadProgress(DownloadManagerElement elem)
-{
-    if (elem.imageType == TypePoster) {
-        // ui->posterProgressBar->setRange(0, elem.bytesTotal);
-        // ui->posterProgressBar->setValue(elem.bytesReceived);
-    } else if (elem.imageType == TypeBackdrop) {
-        // ui->backdropProgressBar->setRange(0, elem.bytesTotal);
-        // ui->backdropProgressBar->setValue(elem.bytesReceived);
     }
 }
 
 void MovieWidget::posterDownloadFinished(DownloadManagerElement elem)
 {
     if (elem.imageType == TypePoster) {
-        m_chosenPoster = elem.image;
         ui->poster->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->posterResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+        m_movie->setPosterImage(elem.image);
     } else if (elem.imageType == TypeBackdrop) {
-        m_chosenBackdrop = elem.image;
         ui->backdrop->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->backdropResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+        m_movie->setBackdropImage(elem.image);
     }
     if (m_posterDownloadManager->downloadQueueSize() == 0)
         emit setActionSaveEnabled(true, WidgetMovies);
@@ -470,77 +424,16 @@ void MovieWidget::saveInformation()
 {
     this->setDisabledTrue();
     m_savingWidget->show();
-    m_movie->setName(ui->name->text());
-    m_movie->setOriginalName(ui->originalName->text());
-    m_movie->setTagline(ui->tagline->text());
-    m_movie->setRating(ui->rating->value());
-    m_movie->setReleased(ui->released->date());
-    m_movie->setRuntime(ui->runtime->value());
-    m_movie->setTrailer(QUrl(ui->trailer->text()));
-    m_movie->setPlayCount(ui->playcount->value());
-    m_movie->setLastPlayed(ui->lastPlayed->dateTime());
-    m_movie->setOverview(ui->overview->toPlainText());
-    m_movie->setCertification(ui->certification->currentText());
-    m_movie->setSet(ui->set->currentText());
-    m_movie->setWatched(ui->watched->isChecked());
-
-    QList<Actor> actors;
-    for (int i=0, n=ui->actors->rowCount() ; i<n ; i++) {
-        Actor a;
-        a.name = ui->actors->item(i, 0)->text();
-        a.role = ui->actors->item(i, 1)->text();
-        a.thumb = ui->actors->item(i, 0)->data(Qt::UserRole).toString();
-        actors.append(a);
-    }
-    m_movie->setActors(actors);
-
-    QStringList genres;
-    for (int i=0, n=ui->genres->rowCount() ; i<n ; i++)
-        genres.append(ui->genres->item(i, 0)->text());
-    m_movie->setGenres(genres);
-
-    QStringList studios;
-    for (int i=0, n=ui->studios->rowCount(); i<n ; i++)
-        studios.append(ui->studios->item(i, 0)->text());
-    m_movie->setStudios(studios);
-
-    QStringList countries;
-    for (int i=0, n=ui->countries->rowCount() ; i<n ; i++)
-        countries.append(ui->countries->item(i, 0)->text());
-    m_movie->setCountries(countries);
-
-    if (!m_chosenPoster.isNull())
-        m_movie->setPosterImage(m_chosenPoster);
-    if (!m_chosenBackdrop.isNull())
-        m_movie->setBackdropImage(m_chosenBackdrop);
-
-    if (m_loadedFromScraper) {
-        QList<DownloadManagerElement> downloads;
-        QList<Actor*> actors = m_movie->actorsPointer();
-        for (int i=0, n=actors.size() ; i<n ; i++) {
-            if (actors.at(i)->thumb.isEmpty())
-                continue;
-            DownloadManagerElement d;
-            d.imageType = TypeActor;
-            d.url = QUrl(actors.at(i)->thumb);
-            d.actor = actors.at(i);
-            downloads.append(d);
-        }
-        m_posterDownloadManager->setDownloads(downloads);
-        emit actorDownloadStarted(tr("Downloading Missing Actor Images..."), m_progressMessageId);
-        connect(m_posterDownloadManager, SIGNAL(allDownloadsFinished()), this, SLOT(downloadActorsFinished()), Qt::UniqueConnection);
-    } else {
-        this->downloadActorsFinished();
-    }
+    m_movie->saveData(Manager::instance()->mediaCenterInterface());
+    this->setEnabledTrue();
+    m_savingWidget->hide();
+    MessageBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_movie->name()));
 }
 
 void MovieWidget::downloadActorsFinished()
 {
     emit actorDownloadFinished(m_progressMessageId);
-    m_movie->saveData(Manager::instance()->mediaCenterInterface());
     this->setEnabledTrue();
-    m_savingWidget->hide();
-    m_hasChanged = false;
 }
 
 void MovieWidget::actorDownloadsLeft(int left)
@@ -548,7 +441,247 @@ void MovieWidget::actorDownloadsLeft(int left)
     emit actorDownloadProgress(m_movie->actors().size()-left, m_movie->actors().size(), m_progressMessageId);
 }
 
-void MovieWidget::markHasChanged()
+/*** add/remove/edit Actors, Genres, Countries and Studios ***/
+
+void MovieWidget::addActor()
 {
-    m_hasChanged = true;
+    Actor a;
+    a.name = tr("Unknown Actor");
+    a.role = tr("Unkown Role");
+    m_movie->addActor(a);
+
+    Actor *actor = m_movie->actorsPointer().last();
+
+    ui->actors->blockSignals(true);
+    int row = ui->actors->rowCount();
+    ui->actors->insertRow(row);
+    ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
+    ui->actors->setItem(row, 1, new QTableWidgetItem(actor->role));
+    ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(actor));
+    ui->actors->scrollToBottom();
+    ui->actors->blockSignals(false);
+}
+
+void MovieWidget::removeActor()
+{
+    int row = ui->actors->currentRow();
+    if (row < 0 || row >= ui->actors->rowCount() || !ui->actors->currentItem()->isSelected())
+        return;
+
+    Actor *actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor*>();
+    m_movie->removeActor(actor);
+    ui->actors->blockSignals(true);
+    ui->actors->removeRow(row);
+    ui->actors->blockSignals(false);
+}
+
+void MovieWidget::onActorEdited(QTableWidgetItem *item)
+{
+    Actor *actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor*>();
+    if (item->column() == 0)
+        actor->name = item->text();
+    else if (item->column() == 1)
+        actor->role = item->text();
+    m_movie->setChanged(true);
+}
+
+void MovieWidget::addGenre()
+{
+    QString g = tr("Unkown Genre");
+    m_movie->addGenre(g);
+    QString *genre = m_movie->genresPointer().last();
+
+    ui->genres->blockSignals(true);
+    int row = ui->genres->rowCount();
+    ui->genres->insertRow(row);
+    ui->genres->setItem(row, 0, new QTableWidgetItem(g));
+    ui->genres->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(genre));
+    ui->genres->scrollToBottom();
+    ui->genres->blockSignals(false);
+}
+
+void MovieWidget::removeGenre()
+{
+    int row = ui->genres->currentRow();
+    if (row < 0 || row >= ui->genres->rowCount() || !ui->genres->currentItem()->isSelected())
+        return;
+
+    QString *genre = ui->genres->item(row, 0)->data(Qt::UserRole).value<QString*>();
+    m_movie->removeGenre(genre);
+    ui->genres->blockSignals(true);
+    ui->genres->removeRow(row);
+    ui->genres->blockSignals(false);
+}
+
+void MovieWidget::onGenreEdited(QTableWidgetItem *item)
+{
+    QString *genre = ui->genres->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
+    genre->clear();
+    genre->append(item->text());
+    m_movie->setChanged(true);
+}
+
+void MovieWidget::addStudio()
+{
+    QString s = tr("Unkown Studio");
+    m_movie->addStudio(s);
+    QString *studio = m_movie->studiosPointer().last();
+
+    ui->studios->blockSignals(true);
+    int row = ui->studios->rowCount();
+    ui->studios->insertRow(row);
+    ui->studios->setItem(row, 0, new QTableWidgetItem(s));
+    ui->studios->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(studio));
+    ui->studios->scrollToBottom();
+    ui->studios->blockSignals(false);
+}
+
+void MovieWidget::removeStudio()
+{
+    int row = ui->studios->currentRow();
+    if (row < 0 || row >= ui->studios->rowCount() || !ui->studios->currentItem()->isSelected())
+        return;
+
+    QString *studio = ui->studios->item(row, 0)->data(Qt::UserRole).value<QString*>();
+    m_movie->removeStudio(studio);
+    ui->studios->blockSignals(true);
+    ui->studios->removeRow(row);
+    ui->studios->blockSignals(false);
+}
+
+void MovieWidget::onStudioEdited(QTableWidgetItem *item)
+{
+    QString *studio = ui->studios->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
+    studio->clear();
+    studio->append(item->text());
+    m_movie->setChanged(true);
+}
+
+void MovieWidget::addCountry()
+{
+    QString c = tr("Unkown Country");
+    m_movie->addCountry(c);
+    QString *country = m_movie->countriesPointer().last();
+
+    ui->countries->blockSignals(true);
+    int row = ui->countries->rowCount();
+    ui->countries->insertRow(row);
+    ui->countries->setItem(row, 0, new QTableWidgetItem(c));
+    ui->countries->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(country));
+    ui->countries->scrollToBottom();
+    ui->countries->blockSignals(false);
+}
+
+void MovieWidget::removeCountry()
+{
+    int row = ui->countries->currentRow();
+    if (row < 0 || row >= ui->countries->rowCount() || !ui->countries->currentItem()->isSelected())
+        return;
+
+    QString *country = ui->countries->item(row, 0)->data(Qt::UserRole).value<QString*>();
+    m_movie->removeCountry(country);
+    ui->countries->blockSignals(true);
+    ui->countries->removeRow(row);
+    ui->countries->blockSignals(false);
+}
+
+void MovieWidget::onCountryEdited(QTableWidgetItem *item)
+{
+    QString *country = ui->countries->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
+    country->clear();
+    country->append(item->text());
+    m_movie->setChanged(true);
+}
+
+/*** Pass GUI events to movie object ***/
+
+void MovieWidget::onNameChange(QString text)
+{
+    if (!m_movie)
+        return;
+    m_movie->setName(text);
+}
+
+void MovieWidget::onOriginalNameChange(QString text)
+{
+    if (!m_movie)
+        return;
+    m_movie->setOriginalName(text);
+}
+
+void MovieWidget::onSetChange(QString text)
+{
+    if (!m_movie)
+        return;
+    m_movie->setSet(text);
+}
+
+void MovieWidget::onTaglineChange(QString text)
+{
+    if (!m_movie)
+        return;
+    m_movie->setTagline(text);
+}
+
+void MovieWidget::onRatingChange(double value)
+{
+    if (!m_movie)
+        return;
+    m_movie->setRating(value);
+}
+
+void MovieWidget::onReleasedChange(QDate date)
+{
+    if (!m_movie)
+        return;
+    m_movie->setReleased(date);
+}
+
+void MovieWidget::onRuntimeChange(int value)
+{
+    if (!m_movie)
+        return;
+    m_movie->setRuntime(value);
+}
+
+void MovieWidget::onCertificationChange(QString text)
+{
+    if (!m_movie)
+        return;
+    m_movie->setCertification(text);
+}
+
+void MovieWidget::onTrailerChange(QString text)
+{
+    if (!m_movie)
+        return;
+    m_movie->setTrailer(text);
+}
+
+void MovieWidget::onWatchedChange(int state)
+{
+    if (!m_movie)
+        return;
+    m_movie->setWatched(state == Qt::Checked);
+}
+
+void MovieWidget::onPlayCountChange(int value)
+{
+    if (!m_movie)
+        return;
+    m_movie->setPlayCount(value);
+}
+
+void MovieWidget::onLastWatchedChange(QDateTime dateTime)
+{
+    if (!m_movie)
+        return;
+    m_movie->setLastPlayed(dateTime);
+}
+
+void MovieWidget::onOverviewChange()
+{
+    if (!m_movie)
+        return;
+    m_movie->setOverview(ui->overview->toPlainText());
 }

@@ -42,7 +42,6 @@ FilesWidget::FilesWidget(QWidget *parent) :
     m_firstTimeLabel->setPixmap(firstTimePixmap);
     m_firstTimeLabel->resize(firstTimePixmap.width()+40, firstTimePixmap.height()+40);
     m_firstTimeLabel->hide();
-    m_emitMovieSelected = true;
 }
 
 FilesWidget::~FilesWidget()
@@ -85,11 +84,7 @@ void FilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
     m_lastModelIndex = previous;
     int row = index.model()->data(index, Qt::UserRole).toInt();
     m_lastMovie = Manager::instance()->movieModel()->movie(row);
-    if (m_emitMovieSelected) {
-        QTimer::singleShot(0, this, SLOT(movieSelectedEmitter()));
-    } else {
-        m_emitMovieSelected = true;
-    }
+    QTimer::singleShot(0, this, SLOT(movieSelectedEmitter()));
 }
 
 void FilesWidget::movieSelectedEmitter()
@@ -114,6 +109,5 @@ void FilesWidget::disableRefresh()
 
 void FilesWidget::restoreLastSelection()
 {
-    m_emitMovieSelected = false;
     ui->files->setCurrentIndex(m_lastModelIndex);
 }
