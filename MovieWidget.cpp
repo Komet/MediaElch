@@ -203,7 +203,7 @@ void MovieWidget::loadDone()
         return;
 
     this->updateMovieInfo();
-    this->setEnabledTrue();
+    int downloadsSize = 0;
 
     if (m_movie->posters().size() > 0) {
         emit setActionSaveEnabled(false, WidgetMovies);
@@ -213,6 +213,7 @@ void MovieWidget::loadDone()
         m_posterDownloadManager->addDownload(d);
         ui->poster->setPixmap(QPixmap());
         ui->poster->setMovie(m_loadingMovie);
+        downloadsSize++;
     }
 
     if (m_movie->backdrops().size() > 0) {
@@ -223,6 +224,7 @@ void MovieWidget::loadDone()
         m_posterDownloadManager->addDownload(d);
         ui->backdrop->setPixmap(QPixmap());
         ui->backdrop->setMovie(m_loadingMovie);
+        downloadsSize++;
     }
 
     QList<Actor*> actors = m_movie->actorsPointer();
@@ -234,8 +236,13 @@ void MovieWidget::loadDone()
         d.url = QUrl(actors.at(i)->thumb);
         d.actor = actors.at(i);
         m_posterDownloadManager->addDownload(d);
+        downloadsSize++;
     }
-    emit actorDownloadStarted(tr("Downloading Missing Actor Images..."), m_progressMessageId);
+    if (downloadsSize > 0)
+        emit actorDownloadStarted(tr("Downloading Missing Actor Images..."), m_progressMessageId);
+    else
+        this->setEnabledTrue();
+
     connect(m_posterDownloadManager, SIGNAL(allDownloadsFinished()), this, SLOT(downloadActorsFinished()), Qt::UniqueConnection);
 }
 
