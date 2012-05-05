@@ -32,6 +32,7 @@ public slots:
     void hideFirstTime();
     void startScraperSearch();
     void saveInformation();
+    void saveAll();
 
 protected:
     void resizeEvent(QResizeEvent *event);

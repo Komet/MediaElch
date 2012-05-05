@@ -126,6 +126,7 @@ void MainWindow::setupToolbar()
     QPixmap quit(":/img/stop.png");
     QPixmap search(":/img/magnifier.png");
     QPixmap save(":/img/save.png");
+    QPixmap saveAll(":/img/storage.png");
     QPainter p;
     p.begin(&search);
     p.setCompositionMode(QPainter::CompositionMode_SourceIn);
@@ -155,9 +156,14 @@ void MainWindow::setupToolbar()
     p.setCompositionMode(QPainter::CompositionMode_SourceIn);
     p.fillRect(quit.rect(), QColor(0, 0, 0, 100));
     p.end();
+    p.begin(&saveAll);
+    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    p.fillRect(saveAll.rect(), QColor(0, 0, 0, 100));
+    p.end();
 
     m_actionSearch = new QAction(QIcon(search), tr("Search"), this);
     m_actionSave = new QAction(QIcon(save), tr("Save"), this);
+    m_actionSaveAll = new QAction(QIcon(saveAll), tr("Save All"), this);
     m_actionRefreshFiles = new QAction(QIcon(refresh), tr("Reload"), this);
     m_actionRefreshFiles->setToolTip(tr("Reload Movie List"));
     m_actionExport = new QAction(QIcon(exportDb), tr("Export"), this);
@@ -166,6 +172,7 @@ void MainWindow::setupToolbar()
     m_actionQuit = new QAction(QIcon(quit), tr("Quit"), this);
     ui->mainToolBar->addAction(m_actionSearch);
     ui->mainToolBar->addAction(m_actionSave);
+    ui->mainToolBar->addAction(m_actionSaveAll);
     ui->mainToolBar->addAction(m_actionRefreshFiles);
     ui->mainToolBar->addAction(m_actionExport);
     ui->mainToolBar->addAction(m_actionAbout);
@@ -174,6 +181,7 @@ void MainWindow::setupToolbar()
 
     connect(m_actionSearch, SIGNAL(triggered()), this, SLOT(onActionSearch()));
     connect(m_actionSave, SIGNAL(triggered()), this, SLOT(onActionSave()));
+    connect(m_actionSaveAll, SIGNAL(triggered()), this, SLOT(onActionSaveAll()));
     connect(m_actionRefreshFiles, SIGNAL(triggered()), this, SLOT(onActionRefresh()));
     connect(m_actionExport, SIGNAL(triggered()), m_exportDialog, SLOT(exec()));
     connect(m_actionAbout, SIGNAL(triggered()), m_aboutDialog, SLOT(exec()));
@@ -181,6 +189,7 @@ void MainWindow::setupToolbar()
 
     m_actionSearch->setEnabled(false);
     m_actionSave->setEnabled(false);
+    m_actionSaveAll->setEnabled(false);
     m_actionExport->setEnabled(false);
 
 #ifdef Q_WS_WIN
@@ -234,6 +243,7 @@ void MainWindow::onMenuMovies()
     ui->buttonSettings->setIcon(QIcon(":/img/spanner_menu.png"));
     m_actionSearch->setEnabled(m_movieActions[ActionSearch]);
     m_actionSave->setEnabled(m_movieActions[ActionSave]);
+    m_actionSaveAll->setEnabled(m_movieActions[ActionSave]);
     m_actionRefreshFiles->setEnabled(m_movieActions[ActionRefresh]);
     m_actionExport->setEnabled(m_movieActions[ActionExport]);
     m_filterWidget->setEnabled(true);
@@ -247,6 +257,7 @@ void MainWindow::onMenuTvShows()
     ui->buttonSettings->setIcon(QIcon(":/img/spanner_menu.png"));
     m_actionSearch->setEnabled(m_tvShowActions[ActionSearch]);
     m_actionSave->setEnabled(m_tvShowActions[ActionSave]);
+    m_actionSaveAll->setEnabled(m_tvShowActions[ActionSave]);
     m_actionRefreshFiles->setEnabled(m_tvShowActions[ActionRefresh]);
     m_actionExport->setEnabled(m_tvShowActions[ActionExport]);
     m_filterWidget->setEnabled(true);
@@ -261,6 +272,7 @@ void MainWindow::onMenuSettings()
     ui->buttonSettings->setIcon(QIcon(":/img/spanner_menuActive.png"));
     m_actionSearch->setEnabled(false);
     m_actionSave->setEnabled(true);
+    m_actionSaveAll->setEnabled(false);
     m_actionRefreshFiles->setEnabled(false);
     m_actionExport->setEnabled(false);
     m_filterWidget->setEnabled(false);
@@ -282,6 +294,12 @@ void MainWindow::onActionSave()
         QTimer::singleShot(0, ui->tvShowWidget, SLOT(onSaveInformation()));
     else if (ui->stackedWidget->currentIndex() == 2)
         QTimer::singleShot(0, ui->settingsWidget, SLOT(saveSettings()));
+}
+
+void MainWindow::onActionSaveAll()
+{
+    if (ui->stackedWidget->currentIndex() == 0)
+        QTimer::singleShot(0, ui->movieWidget, SLOT(saveAll()));
 }
 
 void MainWindow::onActionRefresh()
@@ -333,8 +351,10 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
         m_tvShowActions[ActionSave] = enabled;
 
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
-         widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1)
+         widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1) {
         m_actionSave->setEnabled(enabled);
+        m_actionSaveAll->setEnabled(enabled);
+    }
 }
 
 void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)

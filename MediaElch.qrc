@@ -33,5 +33,6 @@
         <file>img/spanner_menuActive.png</file>
         <file>img/video_menu.png</file>
         <file>img/video_menuActive.png</file>
+        <file>img/storage.png</file>
     </qresource>
 </RCC>

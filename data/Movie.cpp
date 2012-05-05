@@ -55,7 +55,7 @@ bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
     bool saved = mediaCenterInterface->saveMovie(this);
     if (!m_infoLoaded)
         m_infoLoaded = saved;
-    m_hasChanged = false;
+    setChanged(false);
     return saved;
 }
 
@@ -80,7 +80,7 @@ bool Movie::loadData(MediaCenterInterface *mediaCenterInterface)
         }
     }
     m_infoLoaded = infoLoaded;
-    m_hasChanged = false;
+    setChanged(false);
     return infoLoaded;
 }
 
@@ -280,109 +280,109 @@ bool Movie::hasChanged() const
 void Movie::setName(QString name)
 {
     m_name = name;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setOriginalName(QString originalName)
 {
     m_originalName = originalName;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setOverview(QString overview)
 {
     m_overview = overview;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setRating(qreal rating)
 {
     m_rating = rating;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setReleased(QDate released)
 {
     m_released = released;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setTagline(QString tagline)
 {
     m_tagline = tagline;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setRuntime(int runtime)
 {
     m_runtime = runtime;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setCertification(QString certification)
 {
     m_certification = certification;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setGenres(QStringList genres)
 {
     m_genres = genres;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setCountries(QStringList countries)
 {
     m_countries = countries;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setStudios(QStringList studios)
 {
     m_studios = studios;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setTrailer(QUrl trailer)
 {
     m_trailer = trailer;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setActors(QList<Actor> actors)
 {
     m_actors = actors;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setPlayCount(int playcount)
 {
     m_playcount = playcount;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setLastPlayed(QDateTime lastPlayed)
 {
     m_lastPlayed = lastPlayed;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setId(QString id)
 {
     m_id = id;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setSet(QString set)
 {
     m_set = set;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setPosters(QList<Poster> posters)
 {
     m_posters = posters;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setPoster(int index, Poster poster)
@@ -390,13 +390,13 @@ void Movie::setPoster(int index, Poster poster)
     if (m_posters.size() < index)
         return;
     m_posters[index] = poster;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setBackdrops(QList<Poster> backdrops)
 {
     m_backdrops.append(backdrops);
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setBackdrop(int index, Poster backdrop)
@@ -404,18 +404,19 @@ void Movie::setBackdrop(int index, Poster backdrop)
     if (m_backdrops.size() < index)
         return;
     m_backdrops[index] = backdrop;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setWatched(bool watched)
 {
     m_watched = watched;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setChanged(bool changed)
 {
     m_hasChanged = changed;
+    emit sigChanged(this);
 }
 
 /*** ADDER ***/
@@ -423,51 +424,51 @@ void Movie::setChanged(bool changed)
 void Movie::addActor(Actor actor)
 {
     m_actors.append(actor);
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::addCountry(QString country)
 {
     m_countries.append(country);
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::addGenre(QString genre)
 {
     m_genres.append(genre);
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::addStudio(QString studio)
 {
     m_studios.append(studio);
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::addPoster(Poster poster)
 {
     m_posters.append(poster);
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::addBackdrop(Poster backdrop)
 {
     m_backdrops.append(backdrop);
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setPosterImage(QImage poster)
 {
     m_posterImage = QImage(poster);
     m_posterImageChanged = true;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::setBackdropImage(QImage backdrop)
 {
     m_backdropImage = QImage(backdrop);
     m_backdropImageChanged = true;
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 /*** REMOVER ***/
@@ -480,7 +481,7 @@ void Movie::removeActor(Actor *actor)
             break;
         }
     }
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::removeCountry(QString *country)
@@ -491,7 +492,7 @@ void Movie::removeCountry(QString *country)
             break;
         }
     }
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::removeGenre(QString *genre)
@@ -502,7 +503,7 @@ void Movie::removeGenre(QString *genre)
             break;
         }
     }
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 void Movie::removeStudio(QString *studio)
@@ -513,7 +514,7 @@ void Movie::removeStudio(QString *studio)
             break;
         }
     }
-    m_hasChanged = true;
+    setChanged(true);
 }
 
 /*** DEBUG ***/

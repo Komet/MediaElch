@@ -430,6 +430,21 @@ void MovieWidget::saveInformation()
     MessageBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_movie->name()));
 }
 
+void MovieWidget::saveAll()
+{
+    this->setDisabledTrue();
+    m_savingWidget->show();
+
+    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+        if (movie->hasChanged())
+            movie->saveData(Manager::instance()->mediaCenterInterface());
+    }
+
+    this->setEnabledTrue();
+    m_savingWidget->hide();
+    MessageBox::instance()->showMessage(tr("All Movies Saved"));
+}
+
 void MovieWidget::downloadActorsFinished()
 {
     emit actorDownloadFinished(m_progressMessageId);
@@ -523,7 +538,7 @@ void MovieWidget::onGenreEdited(QTableWidgetItem *item)
 
 void MovieWidget::addStudio()
 {
-    QString s = tr("Unkown Studio");
+    QString s = tr("Unknown Studio");
     m_movie->addStudio(s);
     QString *studio = m_movie->studiosPointer().last();
 

@@ -30,6 +30,13 @@ void MovieModel::addMovie(Movie *movie)
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
     m_movies.append(movie);
     endInsertRows();
+    connect(movie, SIGNAL(sigChanged(Movie*)), this, SLOT(onMovieChanged(Movie*)), Qt::UniqueConnection);
+}
+
+void MovieModel::onMovieChanged(Movie *movie)
+{
+    QModelIndex index = createIndex(m_movies.indexOf(movie), 0);
+    emit dataChanged(index, index);
 }
 
 Movie *MovieModel::movie(int row)
@@ -74,6 +81,15 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
         return movie->folderName();
     } else if (role == Qt::UserRole+1) {
         return movie->infoLoaded();
+    } else if (role == Qt::ForegroundRole) {
+        if (movie->hasChanged())
+            return QColor(255, 0, 0);
+    } else if (role == Qt::FontRole) {
+        if (movie->hasChanged()) {
+            QFont font;
+            font.setItalic(true);
+            return font;
+        }
     }
     return QVariant();
 }

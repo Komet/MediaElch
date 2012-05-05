@@ -241,33 +241,38 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../MainWindow.ui" line="232"/>
-        <location filename="../MainWindow.cpp" line="167"/>
+        <location filename="../MainWindow.cpp" line="172"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="237"/>
-        <location filename="../MainWindow.cpp" line="166"/>
+        <location filename="../MainWindow.cpp" line="171"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="160"/>
+        <location filename="../MainWindow.cpp" line="164"/>
         <source>Search</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="161"/>
+        <location filename="../MainWindow.cpp" line="165"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="162"/>
+        <location filename="../MainWindow.cpp" line="166"/>
+        <source>Save All</source>
+        <translation>Alle Speichern</translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="167"/>
         <source>Reload</source>
         <translation>Neu laden</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="163"/>
+        <location filename="../MainWindow.cpp" line="168"/>
         <source>Reload Movie List</source>
         <translation>Filmliste neu laden</translation>
     </message>
@@ -276,12 +281,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Einstellungen</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="164"/>
+        <location filename="../MainWindow.cpp" line="169"/>
         <source>Export</source>
         <translation>Export</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="165"/>
+        <location filename="../MainWindow.cpp" line="170"/>
         <source>Export Movie Database</source>
         <translation>Filmdatenbank exportieren</translation>
     </message>
@@ -603,32 +608,42 @@ p, li { white-space: pre-wrap; }
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="133"/>
+        <location filename="../MovieWidget.cpp" line="430"/>
+        <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
+    </message>
+    <message>
+        <location filename="../MovieWidget.cpp" line="445"/>
+        <source>All Movies Saved</source>
+        <translation>Alle Filme gespeichert</translation>
+    </message>
+    <message>
+        <location filename="../MovieWidget.cpp" line="464"/>
         <source>Unknown Actor</source>
         <translation>Unbekannter Schauspieler</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="134"/>
+        <location filename="../MovieWidget.cpp" line="465"/>
         <source>Unkown Role</source>
         <translation>Unbekannte Rolle</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="152"/>
+        <location filename="../MovieWidget.cpp" line="505"/>
         <source>Unkown Genre</source>
         <translation>Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="170"/>
+        <location filename="../MovieWidget.cpp" line="541"/>
         <source>Unknown Studio</source>
         <translation>Unbekanntes Studio</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="188"/>
+        <location filename="../MovieWidget.cpp" line="577"/>
         <source>Unkown Country</source>
         <translation>Unbekanntes Land</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="530"/>
+        <location filename="../MovieWidget.cpp" line="238"/>
         <source>Downloading Missing Actor Images...</source>
         <translation>Lade fehlende Schauspieler Bilder...</translation>
     </message>

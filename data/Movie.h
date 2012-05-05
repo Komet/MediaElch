@@ -104,6 +104,7 @@ public:
 
 signals:
     void loaded();
+    void sigChanged(Movie*);
     
 private:
     QStringList m_files;

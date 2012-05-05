@@ -24,6 +24,9 @@ public:
     QModelIndex index(int row, int column, const QModelIndex &parent) const;
     QModelIndex parent(const QModelIndex &child) const;
     
+private slots:
+    void onMovieChanged(Movie *movie);
+
 private:
     QList<Movie*> m_movies;
 
