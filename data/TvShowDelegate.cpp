@@ -29,9 +29,22 @@ void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
 
         font.setBold(true);
         font.setPointSize(12);
+
+        if (index.data(TvShowRoles::HasChanged).toBool()) {
+            font.setItalic(true);
+            if (option.state & QStyle::State_Selected) {
+            } else {
+                painter->setPen(QPen(index.data(Qt::ForegroundRole).value<QColor>()));
+            }
+        }
+
         painter->setFont(font);
         painter->drawText(rect, Qt::AlignTop, index.data().toString());
 
+        if (option.state & QStyle::State_Selected)
+            painter->setPen(QPen(option.palette.highlightedText().color()));
+        else
+            painter->setPen(QPen(option.palette.text().color()));
         int episodeCount = index.data(TvShowRoles::EpisodeCount).toInt();
         font.setBold(false);
         font.setPointSize(10);

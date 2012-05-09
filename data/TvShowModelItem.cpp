@@ -1,10 +1,13 @@
 #include "TvShowModelItem.h"
 
+#include <QApplication>
 #include <QStringList>
 #include "Globals.h"
 
-TvShowModelItem::TvShowModelItem(TvShowModelItem *parent)
+TvShowModelItem::TvShowModelItem(TvShowModelItem *parent) :
+    QObject(0)
 {
+    moveToThread(QApplication::instance()->thread());
     m_parentItem = parent;
     m_tvShow = 0;
     m_tvShowEpisode = 0;
@@ -40,9 +43,14 @@ int TvShowModelItem::columnCount() const
 
 QVariant TvShowModelItem::data(int column) const
 {
-    Q_UNUSED(column);
     switch (column)
     {
+    case 2:
+        if (m_tvShow)
+            return m_tvShow->hasChanged();
+        else if (m_tvShowEpisode)
+            return m_tvShowEpisode->hasChanged();
+        break;
     case 1:
         if (m_tvShow)
             return m_tvShow->episodeCount();
@@ -61,6 +69,7 @@ TvShowModelItem *TvShowModelItem::appendChild(TvShow *show)
 {
     TvShowModelItem *item = new TvShowModelItem(this);
     item->setTvShow(show);
+    show->setModelItem(item);
     m_childItems.append(item);
     return item;
 }
@@ -69,7 +78,9 @@ TvShowModelItem *TvShowModelItem::appendChild(TvShowEpisode *episode)
 {
     TvShowModelItem *item = new TvShowModelItem(this);
     item->setTvShowEpisode(episode);
-    m_childItems.append(item);
+    episode->setModelItem(item);
+    m_childItems.append(item);    
+    connect(episode, SIGNAL(sigChanged(TvShowEpisode*)), this, SLOT(onTvShowEpisodeChanged(TvShowEpisode*)), Qt::UniqueConnection);
     return item;
 }
 
@@ -117,4 +128,9 @@ int TvShowModelItem::type()
         return TypeEpisode;
 
     return -1;
+}
+
+void TvShowModelItem::onTvShowEpisodeChanged(TvShowEpisode *episode)
+{
+    emit sigChanged(this, episode->modelItem());
 }

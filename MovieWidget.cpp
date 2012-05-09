@@ -469,7 +469,7 @@ void MovieWidget::addActor()
 {
     Actor a;
     a.name = tr("Unknown Actor");
-    a.role = tr("Unkown Role");
+    a.role = tr("Unknown Role");
     m_movie->addActor(a);
 
     Actor *actor = m_movie->actorsPointer().last();
@@ -509,7 +509,7 @@ void MovieWidget::onActorEdited(QTableWidgetItem *item)
 
 void MovieWidget::addGenre()
 {
-    QString g = tr("Unkown Genre");
+    QString g = tr("Unknown Genre");
     m_movie->addGenre(g);
     QString *genre = m_movie->genresPointer().last();
 
@@ -581,7 +581,7 @@ void MovieWidget::onStudioEdited(QTableWidgetItem *item)
 
 void MovieWidget::addCountry()
 {
-    QString c = tr("Unkown Country");
+    QString c = tr("Unknown Country");
     m_movie->addCountry(c);
     QString *country = m_movie->countriesPointer().last();
 

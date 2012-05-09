@@ -20,6 +20,7 @@ public:
     void setProgress(int current, int max);
     void setId(int id);
     int id();
+
 signals:
     void sigHideMessage(int);
 private slots:

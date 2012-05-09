@@ -21,6 +21,7 @@ Manager::Manager(QObject *parent) :
     m_tvShowFileSearcher = new TvShowFileSearcher(this);
     m_movieModel = new MovieModel(this);
     m_tvShowModel = new TvShowModel(this);
+    m_tvShowProxyModel = new TvShowProxyModel(this);
 }
 
 Manager* Manager::instance()
@@ -65,4 +66,9 @@ MovieModel *Manager::movieModel()
 TvShowModel *Manager::tvShowModel()
 {
     return m_tvShowModel;
+}
+
+TvShowProxyModel *Manager::tvShowProxyModel()
+{
+    return m_tvShowProxyModel;
 }

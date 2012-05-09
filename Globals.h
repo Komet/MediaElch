@@ -22,6 +22,7 @@ namespace TvShowRoles {
     const int ParentId = Qt::UserRole+2;
     const int Id = Qt::UserRole+3;
     const int EpisodeCount = Qt::UserRole+4;
+    const int HasChanged = Qt::UserRole+5;
 }
 
 enum MainActions {

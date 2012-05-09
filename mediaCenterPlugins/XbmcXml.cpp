@@ -506,8 +506,9 @@ void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath
     xml.writeTextElement("rating", QString("%1").arg(show->rating()));
     xml.writeTextElement("episode", QString("%1").arg(show->episodes().count()));
     xml.writeTextElement("plot", show->overview());
-    xml.writeTextElement("mpaa", QString("%1").arg(show->rating()));
+    xml.writeTextElement("mpaa", QString("%1").arg(show->certification()));
     xml.writeTextElement("aired", show->firstAired().toString("yyyy-MM-dd"));
+    xml.writeTextElement("studio", show->network());
 
     foreach (const QString &genre, show->genres())
         xml.writeTextElement("genre", genre);

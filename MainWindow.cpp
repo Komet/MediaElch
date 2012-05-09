@@ -300,6 +300,8 @@ void MainWindow::onActionSaveAll()
 {
     if (ui->stackedWidget->currentIndex() == 0)
         QTimer::singleShot(0, ui->movieWidget, SLOT(saveAll()));
+    else if (ui->stackedWidget->currentIndex() == 1)
+        QTimer::singleShot(0, ui->tvShowWidget, SLOT(onSaveAll()));
 }
 
 void MainWindow::onActionRefresh()

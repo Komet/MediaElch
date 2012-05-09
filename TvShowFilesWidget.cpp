@@ -21,7 +21,7 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
 #endif
 
     m_tvShowDelegate = new TvShowDelegate(this);
-    m_tvShowProxyModel = new TvShowProxyModel(this);
+    m_tvShowProxyModel = Manager::instance()->tvShowProxyModel();
     m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
     m_tvShowProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     m_tvShowProxyModel->setDynamicSortFilter(true);

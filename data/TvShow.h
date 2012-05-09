@@ -9,6 +9,7 @@
 #include "data/TvShowEpisode.h"
 
 class TvShowEpisode;
+class TvShowModelItem;
 class TvScraperInterface;
 
 class TvShow : public QObject
@@ -27,6 +28,7 @@ public:
     qreal rating() const;
     QDate firstAired() const;
     QStringList genres() const;
+    QList<QString*> genresPointer();
     QString certification() const;
     QString network() const;
     QString overview() const;
@@ -45,6 +47,8 @@ public:
     TvShowEpisode *episode(int season, int episode);
     QList<int> seasons();
     QList<TvShowEpisode*> episodes();
+    TvShowModelItem *modelItem();
+    bool hasChanged() const;
 
     void setName(QString name);
     void setShowTitle(QString title);
@@ -67,6 +71,11 @@ public:
     void setPosterImage(QImage poster);
     void setBackdropImage(QImage backdrop);
     void setSeasonPosterImage(int season, QImage poster);
+    void setChanged(bool changed);
+    void setModelItem(TvShowModelItem *item);
+
+    void removeActor(Actor *actor);
+    void removeGenre(QString *genre);
 
     bool loadData(MediaCenterInterface *mediaCenterInterface);
     void loadData(QString id, TvScraperInterface *tvScraperInterface);
@@ -77,6 +86,7 @@ public:
 
 signals:
     void sigLoaded();
+    void sigChanged(TvShow*);
 
 private:
     QList<TvShowEpisode*> m_episodes;
@@ -99,8 +109,10 @@ private:
     bool m_backdropImageChanged;
     QMap<int, QImage> m_seasonPosterImages;
     QList<int> m_seasonPosterImagesChanged;
+    TvShowModelItem *m_modelItem;
 
     bool m_infoLoaded;
+    bool m_hasChanged;
 };
 
 QDebug operator<<(QDebug dbg, const TvShow &show);

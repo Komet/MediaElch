@@ -15,6 +15,7 @@ TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) :
     m_playCount = 0;
     m_rating = 0;
     m_thumbnailImageChanged = false;
+    m_hasChanged = false;
 }
 
 void TvShowEpisode::moveToMainThread()
@@ -38,6 +39,7 @@ void TvShowEpisode::clear()
     m_network = "";
     m_thumbnail = QUrl();
     m_thumbnailImageChanged = false;
+    m_hasChanged = false;
 }
 
 bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface)
@@ -50,6 +52,7 @@ bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface)
         }
     }
     m_infoLoaded = infoLoaded;
+    setChanged(false);
     return infoLoaded;
 }
 
@@ -68,6 +71,7 @@ bool TvShowEpisode::saveData(MediaCenterInterface *mediaCenterInterface)
     bool saved = mediaCenterInterface->saveTvShowEpisode(this);
     if (!m_infoLoaded)
         m_infoLoaded = saved;
+    setChanged(false);
     return saved;
 }
 
@@ -223,92 +227,175 @@ bool TvShowEpisode::thumbnailImageChanged() const
     return m_thumbnailImageChanged;
 }
 
+TvShowModelItem *TvShowEpisode::modelItem()
+{
+    return m_modelItem;
+}
+
+bool TvShowEpisode::hasChanged() const
+{
+    return m_hasChanged;
+}
+
+QList<QString*> TvShowEpisode::writersPointer()
+{
+    QList<QString*> writers;
+    for (int i=0, n=m_writers.size() ; i<n ; ++i)
+        writers.append(&m_writers[i]);
+    return writers;
+}
+
+QList<QString*> TvShowEpisode::directorsPointer()
+{
+    QList<QString*> directors;
+    for (int i=0, n=m_directors.size() ; i<n ; ++i)
+        directors.append(&m_directors[i]);
+    return directors;
+}
+
 /*** SETTER ***/
 
 void TvShowEpisode::setName(QString name)
 {
     m_name = name;
+    setChanged(true);
 }
 
 void TvShowEpisode::setShowTitle(QString showTitle)
 {
     m_showTitle = showTitle;
+    setChanged(true);
 }
 
 void TvShowEpisode::setRating(qreal rating)
 {
     m_rating = rating;
+    setChanged(true);
 }
 
 void TvShowEpisode::setSeason(int season)
 {
     m_season = season;
+    setChanged(true);
 }
 
 void TvShowEpisode::setEpisode(int episode)
 {
     m_episode = episode;
+    setChanged(true);
 }
 
 void TvShowEpisode::setOverview(QString overview)
 {
     m_overview = overview;
+    setChanged(true);
 }
 
 void TvShowEpisode::setWriters(QStringList writers)
 {
     m_writers = writers;
+    setChanged(true);
 }
 
 void TvShowEpisode::addWriter(QString writer)
 {
     m_writers.append(writer);
+    setChanged(true);
 }
 
 void TvShowEpisode::addDirector(QString director)
 {
     m_directors.append(director);
+    setChanged(true);
 }
 
 void TvShowEpisode::setDirectors(QStringList directors)
 {
     m_directors = directors;
+    setChanged(true);
 }
 
 void TvShowEpisode::setPlayCount(int playCount)
 {
     m_playCount = playCount;
+    setChanged(true);
 }
 
 void TvShowEpisode::setLastPlayed(QDateTime lastPlayed)
 {
     m_lastPlayed = lastPlayed;
+    setChanged(true);
 }
 
 void TvShowEpisode::setFirstAired(QDate firstAired)
 {
     m_firstAired = firstAired;
+    setChanged(true);
 }
 
 void TvShowEpisode::setCertification(QString certification)
 {
     m_certification = certification;
+    setChanged(true);
 }
 
 void TvShowEpisode::setNetwork(QString network)
 {
     m_network = network;
+    setChanged(true);
 }
 
 void TvShowEpisode::setThumbnail(QUrl url)
 {
     m_thumbnail = url;
+    setChanged(true);
 }
 
 void TvShowEpisode::setThumbnailImage(QImage thumbnail)
 {
     m_thumbnailImage = thumbnail;
     m_thumbnailImageChanged = true;
+    setChanged(true);
+}
+
+void TvShowEpisode::setInfosLoaded(bool loaded)
+{
+    m_infoLoaded = loaded;
+}
+
+void TvShowEpisode::setChanged(bool changed)
+{
+    m_hasChanged = changed;
+    emit sigChanged(this);
+}
+
+void TvShowEpisode::setModelItem(TvShowModelItem *item)
+{
+    m_modelItem = item;
+}
+
+/*** REMOVER ***/
+
+void TvShowEpisode::removeWriter(QString *writer)
+{
+    for (int i=0, n=m_writers.size() ; i<n ; ++i) {
+        if (&m_writers[i] == writer) {
+            m_writers.removeAt(i);
+            break;
+        }
+    }
+    setChanged(true);
+}
+
+void TvShowEpisode::removeDirector(QString *director)
+{
+    for (int i=0, n=m_directors.size() ; i<n ; ++i) {
+        if (&m_directors[i] == director) {
+            m_directors.removeAt(i);
+            break;
+        }
+    }
+    setChanged(true);
 }
 
 /*** DEBUG ***/

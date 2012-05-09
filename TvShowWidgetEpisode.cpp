@@ -42,6 +42,21 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     connect(ui->thumbnail, SIGNAL(clicked()), this, SLOT(onChooseThumbnail()));
     connect(m_posterDownloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onPosterDownloadFinished(DownloadManagerElement)));
 
+    onClear();
+
+    // Connect GUI change events to movie object
+    connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(onNameChange(QString)));
+    connect(ui->showTitle, SIGNAL(textEdited(QString)), this, SLOT(onShowTitleChange(QString)));
+    connect(ui->season, SIGNAL(valueChanged(int)), this, SLOT(onSeasonChange(int)));
+    connect(ui->episode, SIGNAL(valueChanged(int)), this, SLOT(onEpisodeChange(int)));
+    connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
+    connect(ui->certification, SIGNAL(editTextChanged(QString)), this, SLOT(onCertificationChange(QString)));
+    connect(ui->firstAired, SIGNAL(dateChanged(QDate)), this, SLOT(onFirstAiredChange(QDate)));
+    connect(ui->playCount, SIGNAL(valueChanged(int)), this, SLOT(onPlayCountChange(int)));
+    connect(ui->lastPlayed, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(onLastPlayedChange(QDateTime)));
+    connect(ui->studio, SIGNAL(textEdited(QString)), this, SLOT(onStudioChange(QString)));
+    connect(ui->overview, SIGNAL(textChanged()), this, SLOT(onOverviewChange()));
+
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
     m_savingWidget = new QLabel(this);
@@ -49,7 +64,6 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     m_savingWidget->hide();
 
     onSetEnabled(false);
-    onClear();
 }
 
 TvShowWidgetEpisode::~TvShowWidgetEpisode()
@@ -83,7 +97,6 @@ void TvShowWidgetEpisode::onClear()
     ui->lastPlayed->setDateTime(QDateTime::currentDateTime());
     ui->studio->clear();
     ui->overview->clear();
-    m_chosenThumbnail = QImage();
 }
 
 void TvShowWidgetEpisode::onSetEnabled(bool enabled)
@@ -103,6 +116,15 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     if (m_episode == 0)
         return;
 
+    ui->season->blockSignals(true);
+    ui->episode->blockSignals(true);
+    ui->rating->blockSignals(true);
+    ui->certification->blockSignals(true);
+    ui->firstAired->blockSignals(true);
+    ui->playCount->blockSignals(true);
+    ui->lastPlayed->blockSignals(true);
+    ui->overview->blockSignals(true);
+
     onClear();
 
     ui->files->setText(m_episode->files().join(", "));
@@ -118,16 +140,23 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->studio->setText(m_episode->network());
     ui->overview->setText(m_episode->overview());
 
-    foreach (const QString &writer, m_episode->writers()) {
+    ui->writers->blockSignals(true);
+    foreach (QString *writer, m_episode->writersPointer()) {
         int row = ui->writers->rowCount();
         ui->writers->insertRow(row);
-        ui->writers->setItem(row, 0, new QTableWidgetItem(writer));
+        ui->writers->setItem(row, 0, new QTableWidgetItem(*writer));
+        ui->writers->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(writer));
     }
-    foreach (const QString &director, m_episode->directors()) {
+    ui->writers->blockSignals(false);
+
+    ui->directors->blockSignals(true);
+    foreach (QString *director, m_episode->directorsPointer()) {
         int row = ui->directors->rowCount();
         ui->directors->insertRow(row);
-        ui->directors->setItem(row, 0, new QTableWidgetItem(director));
+        ui->directors->setItem(row, 0, new QTableWidgetItem(*director));
+        ui->directors->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(director));
     }
+    ui->writers->blockSignals(false);
 
     if (m_episode->tvShow()) {
         QStringList certifications = m_episode->tvShow()->certifications();
@@ -145,38 +174,15 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
         ui->thumbnail->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->thumbnailResolution->setText("");
     }
-}
 
-void TvShowWidgetEpisode::onAddDirector()
-{
-    int row = ui->directors->rowCount();
-    ui->directors->insertRow(row);
-    ui->directors->setItem(row, 0, new QTableWidgetItem(tr("Unknown Director")));
-    ui->directors->scrollToBottom();
-}
-
-void TvShowWidgetEpisode::onRemoveDirector()
-{
-    int row = ui->directors->currentRow();
-    if (row < 0 || row >= ui->directors->rowCount() || !ui->directors->currentItem()->isSelected())
-        return;
-    ui->directors->removeRow(row);
-}
-
-void TvShowWidgetEpisode::onAddWriter()
-{
-    int row = ui->writers->rowCount();
-    ui->writers->insertRow(row);
-    ui->writers->setItem(row, 0, new QTableWidgetItem(tr("Unknown Writer")));
-    ui->writers->scrollToBottom();
-}
-
-void TvShowWidgetEpisode::onRemoveWriter()
-{
-    int row = ui->writers->currentRow();
-    if (row < 0 || row >= ui->writers->rowCount() || !ui->writers->currentItem()->isSelected())
-        return;
-    ui->writers->removeRow(row);
+    ui->season->blockSignals(false);
+    ui->episode->blockSignals(false);
+    ui->rating->blockSignals(false);
+    ui->certification->blockSignals(false);
+    ui->firstAired->blockSignals(false);
+    ui->playCount->blockSignals(false);
+    ui->lastPlayed->blockSignals(false);
+    ui->overview->blockSignals(false);
 }
 
 void TvShowWidgetEpisode::onSaveInformation()
@@ -186,32 +192,6 @@ void TvShowWidgetEpisode::onSaveInformation()
 
     onSetEnabled(false);
     m_savingWidget->show();
-
-    m_episode->setCertification(ui->certification->currentText());
-    m_episode->setEpisode(ui->episode->value());
-    m_episode->setFirstAired(ui->firstAired->date());
-    m_episode->setLastPlayed(ui->lastPlayed->dateTime());
-    m_episode->setName(ui->name->text());
-    m_episode->setNetwork(ui->studio->text());
-    m_episode->setOverview(ui->overview->toPlainText());
-    m_episode->setPlayCount(ui->playCount->value());
-    m_episode->setRating(ui->rating->value());
-    m_episode->setSeason(ui->season->value());
-    m_episode->setShowTitle(ui->showTitle->text());
-
-    QStringList directors;
-    for (int i=0, n=ui->directors->rowCount() ; i<n ; ++i)
-        directors.append(ui->directors->item(i, 0)->text());
-    m_episode->setDirectors(directors);
-
-    QStringList writers;
-    for (int i=0, n=ui->writers->rowCount() ; i<n ; ++i)
-        writers.append(ui->writers->item(i, 0)->text());
-    m_episode->setWriters(writers);
-
-    if (!m_chosenThumbnail.isNull())
-        m_episode->setThumbnailImage(m_chosenThumbnail);
-
     m_episode->saveData(Manager::instance()->mediaCenterInterface());
     onSetEnabled(true);
     m_savingWidget->hide();
@@ -244,13 +224,15 @@ void TvShowWidgetEpisode::onLoadDone()
     onSetEnabled(true);
 
     if (!m_episode->thumbnail().isEmpty()) {
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
         DownloadManagerElement d;
         d.imageType = TypeBackdrop;
         d.url = m_episode->thumbnail();
         m_posterDownloadManager->addDownload(d);
         ui->thumbnail->setPixmap(QPixmap());
         ui->thumbnail->setMovie(m_loadingMovie);
+    } else {
+        emit sigSetActionSearchEnabled(true, WidgetTvShows);
+        emit sigSetActionSaveEnabled(true, WidgetTvShows);
     }
 }
 
@@ -283,10 +265,143 @@ void TvShowWidgetEpisode::onChooseThumbnail()
 void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
 {
     if (elem.imageType == TypeBackdrop) {
-        m_chosenThumbnail = elem.image;
         ui->thumbnail->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->thumbnailResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+        m_episode->setThumbnailImage(elem.image);
     }
-    if (m_posterDownloadManager->downloadQueueSize() == 0)
+    if (m_posterDownloadManager->downloadQueueSize() == 0) {
         emit sigSetActionSaveEnabled(true, WidgetTvShows);
+        emit sigSetActionSearchEnabled(true, WidgetTvShows);
+    }
+}
+
+/*** add/remove/edit Actors, Genres, Countries and Studios ***/
+
+void TvShowWidgetEpisode::onAddDirector()
+{
+    QString d = tr("Unknown Director");
+    m_episode->addDirector(d);
+    QString *director = m_episode->directorsPointer().last();
+
+    ui->directors->blockSignals(true);
+    int row = ui->directors->rowCount();
+    ui->directors->insertRow(row);
+    ui->directors->setItem(row, 0, new QTableWidgetItem(d));
+    ui->directors->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(director));
+    ui->directors->scrollToBottom();
+    ui->directors->blockSignals(false);
+}
+
+void TvShowWidgetEpisode::onRemoveDirector()
+{
+    int row = ui->directors->currentRow();
+    if (row < 0 || row >= ui->directors->rowCount() || !ui->directors->currentItem()->isSelected())
+        return;
+
+    QString *director = ui->directors->item(row, 0)->data(Qt::UserRole).value<QString*>();
+    m_episode->removeDirector(director);
+    ui->directors->blockSignals(true);
+    ui->directors->removeRow(row);
+    ui->directors->blockSignals(false);
+}
+
+void TvShowWidgetEpisode::onDirectorEdited(QTableWidgetItem *item)
+{
+    QString *director = ui->directors->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
+    director->clear();
+    director->append(item->text());
+    m_episode->setChanged(true);
+}
+
+void TvShowWidgetEpisode::onAddWriter()
+{
+    QString w = tr("Unknown Writer");
+    m_episode->addWriter(w);
+    QString *writer = m_episode->writersPointer().last();
+
+    ui->writers->blockSignals(true);
+    int row = ui->writers->rowCount();
+    ui->writers->insertRow(row);
+    ui->writers->setItem(row, 0, new QTableWidgetItem(w));
+    ui->writers->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(writer));
+    ui->writers->scrollToBottom();
+    ui->writers->blockSignals(false);
+}
+
+void TvShowWidgetEpisode::onRemoveWriter()
+{
+    int row = ui->writers->currentRow();
+    if (row < 0 || row >= ui->writers->rowCount() || !ui->writers->currentItem()->isSelected())
+        return;
+
+    QString *writer = ui->writers->item(row, 0)->data(Qt::UserRole).value<QString*>();
+    m_episode->removeWriter(writer);
+    ui->writers->blockSignals(true);
+    ui->writers->removeRow(row);
+    ui->writers->blockSignals(false);
+}
+
+void TvShowWidgetEpisode::onWriterEdited(QTableWidgetItem *item)
+{
+    QString *writer = ui->writers->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
+    writer->clear();
+    writer->append(item->text());
+    m_episode->setChanged(true);
+}
+
+/*** Pass GUI events to episode object ***/
+
+void TvShowWidgetEpisode::onNameChange(QString text)
+{
+    m_episode->setName(text);
+}
+
+void TvShowWidgetEpisode::onShowTitleChange(QString text)
+{
+    m_episode->setShowTitle(text);
+}
+
+void TvShowWidgetEpisode::onSeasonChange(int value)
+{
+    m_episode->setSeason(value);
+}
+
+void TvShowWidgetEpisode::onEpisodeChange(int value)
+{
+    m_episode->setEpisode(value);
+}
+
+void TvShowWidgetEpisode::onRatingChange(double value)
+{
+    m_episode->setRating(value);
+}
+
+void TvShowWidgetEpisode::onCertificationChange(QString text)
+{
+    m_episode->setCertification(text);
+}
+
+void TvShowWidgetEpisode::onFirstAiredChange(QDate date)
+{
+    m_episode->setFirstAired(date);
+}
+
+void TvShowWidgetEpisode::onPlayCountChange(int value)
+{
+    m_episode->setPlayCount(value);
+}
+
+void TvShowWidgetEpisode::onLastPlayedChange(QDateTime dateTime)
+{
+    m_episode->setLastPlayed(dateTime);
+}
+
+void TvShowWidgetEpisode::onStudioChange(QString text)
+{
+    m_episode->setNetwork(text);
+}
+
+void TvShowWidgetEpisode::onOverviewChange()
+{
+    m_episode->setOverview(ui->overview->toPlainText());
 }

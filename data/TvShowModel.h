@@ -26,6 +26,11 @@ public:
     TvShowModelItem *appendChild(TvShow *show);
     void clear();
     TvShowModelItem *getItem(const QModelIndex &index) const;
+    QList<TvShow*> tvShows();
+
+private slots:
+    void onSigChanged(TvShowModelItem *showItem, TvShowModelItem *episodeItem);
+    void onShowChanged(TvShow *show);
 
 private:
     TvShowModelItem *m_rootItem;

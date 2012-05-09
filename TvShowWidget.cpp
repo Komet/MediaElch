@@ -2,6 +2,8 @@
 #include "ui_TvShowWidget.h"
 
 #include <QTimer>
+#include "Manager.h"
+#include "MessageBox.h"
 
 TvShowWidget::TvShowWidget(QWidget *parent) :
     QWidget(parent),
@@ -10,7 +12,9 @@ TvShowWidget::TvShowWidget(QWidget *parent) :
     ui->setupUi(this);
 
     connect(ui->tvShowWidget, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)));
+    connect(ui->tvShowWidget, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)));
     connect(ui->episodeWidget, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)));
+    connect(ui->episodeWidget, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)));
     connect(ui->tvShowWidget, SIGNAL(sigDownloadsStarted(QString,int)), this, SIGNAL(sigDownloadsStarted(QString,int)));
     connect(ui->tvShowWidget, SIGNAL(sigDownloadsProgress(int,int,int)), this, SIGNAL(sigDownloadsProgress(int,int,int)));
     connect(ui->tvShowWidget, SIGNAL(sigDownloadsFinished(int)), this, SIGNAL(sigDownloadsFinished(int)));
@@ -61,6 +65,21 @@ void TvShowWidget::onSaveInformation()
         ui->tvShowWidget->onSaveInformation();
     else if (ui->stackedWidget->currentIndex() == 1)
         ui->episodeWidget->onSaveInformation();
+}
+
+void TvShowWidget::onSaveAll()
+{
+    qDebug() << Q_FUNC_INFO;
+    QList<TvShow*> shows = Manager::instance()->tvShowModel()->tvShows();
+    for (int i=0, n=shows.count() ; i<n ; ++i) {
+        if (shows[i]->hasChanged())
+            shows[i]->saveData(Manager::instance()->mediaCenterInterface());
+        for (int x=0, y=shows[i]->episodes().count() ; x<y ; ++x) {
+            if (shows[i]->episodes().at(x)->hasChanged())
+                shows[i]->episodes().at(x)->saveData(Manager::instance()->mediaCenterInterface());
+        }
+    }
+    MessageBox::instance()->showMessage(tr("All TV Shows and Episodes Saved"));
 }
 
 void TvShowWidget::onStartScraperSearch()

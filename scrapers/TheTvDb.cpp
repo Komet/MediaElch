@@ -343,6 +343,7 @@ void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *
         QString mirror = m_bannerMirrors.at(qrand()%m_bannerMirrors.count());
         episode->setThumbnail(QUrl(QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("filename").at(0).toElement().text())));
     }
+    episode->setInfosLoaded(true);
 }
 
 void TheTvDb::loadTvShowEpisodeData(QString id, TvShowEpisode *episode)

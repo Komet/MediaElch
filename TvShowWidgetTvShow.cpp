@@ -53,8 +53,19 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     connect(m_posterDownloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onPosterDownloadFinished(DownloadManagerElement)));
     connect(m_posterDownloadManager, SIGNAL(downloadsLeft(int)), this, SLOT(onDownloadsLeft(int)));
 
-    onSetEnabled(false);
     onClear();
+
+    // Connect GUI change events to movie object
+    connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(onNameChange(QString)));
+    connect(ui->certification, SIGNAL(editTextChanged(QString)), this, SLOT(onCertificationChange(QString)));
+    connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
+    connect(ui->firstAired, SIGNAL(dateChanged(QDate)), this, SLOT(onFirstAiredChange(QDate)));
+    connect(ui->studio, SIGNAL(textEdited(QString)), this, SLOT(onStudioChange(QString)));
+    connect(ui->overview, SIGNAL(textChanged()), this, SLOT(onOverviewChange()));
+    connect(ui->actors, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onActorEdited(QTableWidgetItem*)));
+    connect(ui->genres, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onGenreEdited(QTableWidgetItem*)));
+
+    onSetEnabled(false);
 }
 
 TvShowWidgetTvShow::~TvShowWidgetTvShow()
@@ -76,6 +87,7 @@ void TvShowWidgetTvShow::onClear()
     ui->dir->clear();
     ui->name->clear();
     ui->rating->clear();
+    ui->certification->clear();
     ui->firstAired->setDate(QDate::currentDate());
     ui->studio->clear();
     ui->overview->clear();
@@ -84,10 +96,6 @@ void TvShowWidgetTvShow::onClear()
     ui->tabWidget->setCurrentIndex(0);
     ui->posterResolution->clear();
     ui->backdropResolution->clear();
-    m_chosenPoster = QImage();
-    m_chosenBackdrop = QImage();
-    m_chosenSeasonPosters.clear();
-    m_loadedFromScraper = false;
 
     QMapIterator<int, QList<QWidget*> > it(m_seasonLayoutWidgets);
     while (it.hasNext()) {
@@ -103,8 +111,6 @@ void TvShowWidgetTvShow::onClear()
 void TvShowWidgetTvShow::onSetEnabled(bool enabled)
 {
     ui->groupBox_3->setEnabled(enabled);
-    emit sigSetActionSearchEnabled(enabled, WidgetTvShows);
-    emit sigSetActionSaveEnabled(enabled, WidgetTvShows);
 }
 
 void TvShowWidgetTvShow::setTvShow(TvShow *show)
@@ -119,6 +125,11 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     if (m_show == 0)
         return;
 
+    ui->certification->blockSignals(true);
+    ui->rating->blockSignals(true);
+    ui->firstAired->blockSignals(true);
+    ui->overview->blockSignals(true);
+
     onClear();
 
     ui->dir->setText(m_show->dir());
@@ -128,19 +139,25 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->studio->setText(m_show->network());
     ui->overview->setText(m_show->overview());
 
-    foreach (const QString &genre, m_show->genres()) {
-        int row = ui->genres->rowCount();
-        ui->genres->insertRow(row);
-        ui->genres->setItem(row, 0, new QTableWidgetItem(genre));
-    }
-
-    foreach (const Actor &actor, m_show->actors()) {
+    ui->actors->blockSignals(true);
+    foreach (Actor *actor, m_show->actorsPointer()) {
         int row = ui->actors->rowCount();
         ui->actors->insertRow(row);
-        ui->actors->setItem(row, 0, new QTableWidgetItem(actor.name));
-        ui->actors->setItem(row, 1, new QTableWidgetItem(actor.role));
-        ui->actors->item(row, 0)->setData(Qt::UserRole, actor.thumb);
+        ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
+        ui->actors->setItem(row, 1, new QTableWidgetItem(actor->role));
+        ui->actors->item(row, 0)->setData(Qt::UserRole, actor->thumb);
+        ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(actor));
     }
+    ui->actors->blockSignals(false);
+
+    ui->genres->blockSignals(true);
+    foreach (QString *genre, m_show->genresPointer()) {
+        int row = ui->genres->rowCount();
+        ui->genres->insertRow(row);
+        ui->genres->setItem(row, 0, new QTableWidgetItem(*genre));
+        ui->genres->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(genre));
+    }
+    ui->genres->blockSignals(false);
 
     QStringList certifications = m_show->certifications();
     certifications.prepend("");
@@ -194,39 +211,11 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         widgets.append(poster);
         m_seasonLayoutWidgets.insert(season, widgets);
     }
-}
 
-void TvShowWidgetTvShow::onAddGenre()
-{
-    int row = ui->genres->rowCount();
-    ui->genres->insertRow(row);
-    ui->genres->setItem(row, 0, new QTableWidgetItem(tr("Unknown Genre")));
-    ui->genres->scrollToBottom();
-}
-
-void TvShowWidgetTvShow::onRemoveGenre()
-{
-    int row = ui->genres->currentRow();
-    if (row < 0 || row >= ui->genres->rowCount() || !ui->genres->currentItem()->isSelected())
-        return;
-    ui->genres->removeRow(row);
-}
-
-void TvShowWidgetTvShow::onAddActor()
-{
-    int row = ui->actors->rowCount();
-    ui->actors->insertRow(row);
-    ui->actors->setItem(row, 0, new QTableWidgetItem(tr("Unknown Actor")));
-    ui->actors->setItem(row, 1, new QTableWidgetItem(tr("Unkown Role")));
-    ui->actors->scrollToBottom();
-}
-
-void TvShowWidgetTvShow::onRemoveActor()
-{
-    int row = ui->actors->currentRow();
-    if (row < 0 || row >= ui->actors->rowCount() || !ui->actors->currentItem()->isSelected())
-        return;
-    ui->actors->removeRow(row);
+    ui->certification->blockSignals(false);
+    ui->rating->blockSignals(false);
+    ui->firstAired->blockSignals(false);
+    ui->overview->blockSignals(false);
 }
 
 void TvShowWidgetTvShow::onSaveInformation()
@@ -236,71 +225,18 @@ void TvShowWidgetTvShow::onSaveInformation()
 
     onSetEnabled(false);
     m_savingWidget->show();
-
-    m_show->setCertification(ui->certification->currentText());
-    m_show->setFirstAired(ui->firstAired->date());
-    m_show->setName(ui->name->text());
-    m_show->setNetwork(ui->studio->text());
-    m_show->setOverview(ui->overview->toPlainText());
-    m_show->setRating(ui->rating->value());
-    m_show->setShowTitle(ui->name->text());
-
-    QList<Actor> actors;
-    for (int i=0, n=ui->actors->rowCount() ; i<n ; i++) {
-        Actor a;
-        a.name = ui->actors->item(i, 0)->text();
-        a.role = ui->actors->item(i, 1)->text();
-        a.thumb = ui->actors->item(i, 0)->data(Qt::UserRole).toString();
-        actors.append(a);
-    }
-    m_show->setActors(actors);
-
-    if (!m_chosenPoster.isNull())
-        m_show->setPosterImage(m_chosenPoster);
-    if (!m_chosenBackdrop.isNull())
-        m_show->setBackdropImage(m_chosenBackdrop);
-    QMapIterator<int, QImage> it(m_chosenSeasonPosters);
-    while (it.hasNext()) {
-        it.next();
-        m_show->setSeasonPosterImage(it.key(), it.value());
-    }
-
-    if (m_loadedFromScraper) {
-        QList<DownloadManagerElement> downloads;
-        QList<Actor*> actors = m_show->actorsPointer();
-        for (int i=0, n=actors.size() ; i<n ; ++i) {
-            if (actors.at(i)->thumb.isEmpty())
-                continue;
-            DownloadManagerElement d;
-            d.imageType = TypeActor;
-            d.url = QUrl(actors.at(i)->thumb);
-            d.actor = actors.at(i);
-            downloads.append(d);
-        }
-        foreach (TvShowEpisode *episode, m_show->episodes()) {
-            if (episode->thumbnail().isEmpty())
-                continue;
-            DownloadManagerElement d;
-            d.imageType = TypeShowThumbnail;
-            d.url = episode->thumbnail();
-            d.episode = episode;
-            downloads.append(d);
-        }
-        m_currentDownloadsSize = downloads.count();
-        m_posterDownloadManager->setDownloads(downloads);
-        emit sigDownloadsStarted(tr("Downloading Missing Actor Images and Episode Thumbnails..."), m_progressMessageId);
-        connect(m_posterDownloadManager, SIGNAL(allDownloadsFinished()), this, SLOT(onDownloadsFinished()), Qt::UniqueConnection);
-    } else {
-        onDownloadsFinished();
-    }
+    m_show->saveData(Manager::instance()->mediaCenterInterface());
+    m_savingWidget->hide();
+    onSetEnabled(true);
+    MessageBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_show->name()));
 }
 
 void TvShowWidgetTvShow::onStartScraperSearch()
 {
     if (m_show == 0)
         return;
-    emit sigSetActionSearchEnabled(false, WidgetTvShows);
     emit sigSetActionSaveEnabled(false, WidgetTvShows);
+    emit sigSetActionSearchEnabled(false, WidgetTvShows);
     TvShowSearch::instance()->exec(m_show->name());
     if (TvShowSearch::instance()->result() == QDialog::Accepted) {
         onSetEnabled(false);
@@ -318,15 +254,14 @@ void TvShowWidgetTvShow::onLoadDone()
         return;
 
     updateTvShowInfo();
-    onSetEnabled(true);
-    m_loadedFromScraper = true;
 
+    QList<DownloadManagerElement> downloads;
     if (m_show->posters().size() > 0) {
         emit sigSetActionSaveEnabled(false, WidgetTvShows);
         DownloadManagerElement d;
         d.imageType = TypePoster;
         d.url = m_show->posters().at(0).originalUrl;
-        m_posterDownloadManager->addDownload(d);
+        downloads.append(d);
         ui->poster->setPixmap(QPixmap());
         ui->poster->setMovie(m_loadingMovie);
     }
@@ -336,12 +271,22 @@ void TvShowWidgetTvShow::onLoadDone()
         DownloadManagerElement d;
         d.imageType = TypeBackdrop;
         d.url = m_show->backdrops().at(0).originalUrl;
-        m_posterDownloadManager->addDownload(d);
+        downloads.append(d);
         ui->backdrop->setPixmap(QPixmap());
         ui->backdrop->setMovie(m_loadingMovie);
     }
 
-    QList<DownloadManagerElement> downloads;
+    QList<Actor*> actors = m_show->actorsPointer();
+    for (int i=0, n=actors.size() ; i<n ; ++i) {
+        if (actors.at(i)->thumb.isEmpty())
+            continue;
+        DownloadManagerElement d;
+        d.imageType = TypeActor;
+        d.url = QUrl(actors.at(i)->thumb);
+        d.actor = actors.at(i);
+        downloads.append(d);
+    }
+
     foreach (int season, m_show->seasons()) {
         if (!m_show->seasonPosters(season).isEmpty() && m_seasonLayoutWidgets.contains(season)) {
             emit sigSetActionSaveEnabled(false, WidgetTvShows);
@@ -354,8 +299,28 @@ void TvShowWidgetTvShow::onLoadDone()
             static_cast<MyLabel*>(m_seasonLayoutWidgets[season].at(1))->setMovie(m_loadingMovie);
         }
     }
-    foreach (DownloadManagerElement d, downloads)
-        m_posterDownloadManager->addDownload(d);
+
+    foreach (TvShowEpisode *episode, m_show->episodes()) {
+        if (episode->thumbnail().isEmpty())
+            continue;
+        DownloadManagerElement d;
+        d.imageType = TypeShowThumbnail;
+        d.url = episode->thumbnail();
+        d.episode = episode;
+        downloads.append(d);
+    }
+
+    m_currentDownloadsSize = downloads.size();
+    m_posterDownloadManager->setDownloads(downloads);
+
+    if (downloads.size() > 0) {
+        emit sigDownloadsStarted(tr("Downloading Missing Actor Images and Episode Thumbnails..."), m_progressMessageId);
+        connect(m_posterDownloadManager, SIGNAL(allDownloadsFinished()), this, SLOT(onDownloadsFinished()), Qt::UniqueConnection);
+    } else {
+        onSetEnabled(true);
+        emit sigSetActionSearchEnabled(true, WidgetTvShows);
+        emit sigSetActionSaveEnabled(true, WidgetTvShows);
+    }
 }
 
 void TvShowWidgetTvShow::onChoosePoster()
@@ -426,36 +391,143 @@ void TvShowWidgetTvShow::onChooseBackdrop()
 void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
 {
     if (elem.imageType == TypePoster) {
-        m_chosenPoster = elem.image;
         ui->poster->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->posterResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+        m_show->setPosterImage(elem.image);
     } else if (elem.imageType == TypeBackdrop) {
-        m_chosenBackdrop = elem.image;
         ui->backdrop->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->backdropResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+        m_show->setBackdropImage(elem.image);
     } else if (elem.imageType == TypeSeasonPoster) {
         int season = elem.season;
         if (m_seasonLayoutWidgets.contains(season)) {
             static_cast<MyLabel*>(m_seasonLayoutWidgets[season].at(1))->setPixmap(QPixmap::fromImage(elem.image).scaled(150, 225, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            if (!m_chosenSeasonPosters.contains(season))
-                m_chosenSeasonPosters.insert(season, QImage());
-            m_chosenSeasonPosters[season] = elem.image;
+            m_show->setSeasonPosterImage(season, elem.image);
         }
     }
-    if (m_posterDownloadManager->downloadQueueSize() == 0)
-        emit sigSetActionSaveEnabled(true, WidgetTvShows);
 }
 
 void TvShowWidgetTvShow::onDownloadsFinished()
 {
     emit sigDownloadsFinished(m_progressMessageId);
-    m_show->saveData(Manager::instance()->mediaCenterInterface());
     onSetEnabled(true);
-    m_savingWidget->hide();
-    MessageBox::instance()->showMessage(tr("TV Show and all Episodes Saved"));
+    emit sigSetActionSaveEnabled(true, WidgetTvShows);
+    emit sigSetActionSearchEnabled(true, WidgetTvShows);
 }
 
 void TvShowWidgetTvShow::onDownloadsLeft(int left)
 {
     emit sigDownloadsProgress(m_currentDownloadsSize-left, m_currentDownloadsSize, m_progressMessageId);
+}
+
+/*** add/remove/edit Actors, Genres, Countries and Studios ***/
+
+void TvShowWidgetTvShow::onGenreEdited(QTableWidgetItem *item)
+{
+    QString *genre = ui->genres->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
+    genre->clear();
+    genre->append(item->text());
+    m_show->setChanged(true);
+}
+
+void TvShowWidgetTvShow::onAddGenre()
+{
+    QString g = tr("Unknown Genre");
+    m_show->addGenre(g);
+    QString *genre = m_show->genresPointer().last();
+
+    ui->genres->blockSignals(true);
+    int row = ui->genres->rowCount();
+    ui->genres->insertRow(row);
+    ui->genres->setItem(row, 0, new QTableWidgetItem(g));
+    ui->genres->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(genre));
+    ui->genres->scrollToBottom();
+    ui->genres->blockSignals(false);
+}
+
+void TvShowWidgetTvShow::onRemoveGenre()
+{
+    int row = ui->genres->currentRow();
+    if (row < 0 || row >= ui->genres->rowCount() || !ui->genres->currentItem()->isSelected())
+        return;
+
+    QString *genre = ui->genres->item(row, 0)->data(Qt::UserRole).value<QString*>();
+    m_show->removeGenre(genre);
+    ui->genres->blockSignals(true);
+    ui->genres->removeRow(row);
+    ui->genres->blockSignals(false);
+}
+
+void TvShowWidgetTvShow::onActorEdited(QTableWidgetItem *item)
+{
+    Actor *actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor*>();
+    if (item->column() == 0)
+        actor->name = item->text();
+    else if (item->column() == 1)
+        actor->role = item->text();
+    m_show->setChanged(true);
+}
+
+void TvShowWidgetTvShow::onAddActor()
+{
+    Actor a;
+    a.name = tr("Unknown Actor");
+    a.role = tr("Unknown Role");
+    m_show->addActor(a);
+
+    Actor *actor = m_show->actorsPointer().last();
+
+    ui->actors->blockSignals(true);
+    int row = ui->actors->rowCount();
+    ui->actors->insertRow(row);
+    ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
+    ui->actors->setItem(row, 1, new QTableWidgetItem(actor->role));
+    ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(actor));
+    ui->actors->scrollToBottom();
+    ui->actors->blockSignals(false);
+}
+
+void TvShowWidgetTvShow::onRemoveActor()
+{
+    int row = ui->actors->currentRow();
+    if (row < 0 || row >= ui->actors->rowCount() || !ui->actors->currentItem()->isSelected())
+        return;
+
+    Actor *actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor*>();
+    m_show->removeActor(actor);
+    ui->actors->blockSignals(true);
+    ui->actors->removeRow(row);
+    ui->actors->blockSignals(false);
+}
+
+/*** Pass GUI events to tv show object ***/
+
+void TvShowWidgetTvShow::onNameChange(QString text)
+{
+    m_show->setName(text);
+}
+
+void TvShowWidgetTvShow::onCertificationChange(QString text)
+{
+    m_show->setCertification(text);
+}
+
+void TvShowWidgetTvShow::onRatingChange(double value)
+{
+    m_show->setRating(value);
+}
+
+void TvShowWidgetTvShow::onFirstAiredChange(QDate date)
+{
+    m_show->setFirstAired(date);
+}
+
+void TvShowWidgetTvShow::onStudioChange(QString studio)
+{
+    m_show->setNetwork(studio);
+}
+
+void TvShowWidgetTvShow::onOverviewChange()
+{
+    m_show->setOverview(ui->overview->toPlainText());
 }

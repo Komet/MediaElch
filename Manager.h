@@ -9,6 +9,7 @@
 #include "data/TvShowFileSearcher.h"
 #include "data/MovieModel.h"
 #include "data/TvShowModel.h"
+#include "data/TvShowProxyModel.h"
 
 class Manager : public QObject
 {
@@ -25,6 +26,7 @@ public:
     TvShowFileSearcher* tvShowFileSearcher();
     MovieModel* movieModel();
     TvShowModel* tvShowModel();
+    TvShowProxyModel *tvShowProxyModel();
 
 private:
     QList<MediaCenterInterface*> m_mediaCenters;
@@ -34,6 +36,7 @@ private:
     TvShowFileSearcher* m_tvShowFileSearcher;
     MovieModel* m_movieModel;
     TvShowModel* m_tvShowModel;
+    TvShowProxyModel* m_tvShowProxyModel;
 };
 
 #endif // MANAGER_H

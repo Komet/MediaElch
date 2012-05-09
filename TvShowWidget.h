@@ -24,6 +24,7 @@ public slots:
     void onSetDisabledTrue();
     void onClear();
     void onSaveInformation();
+    void onSaveAll();
     void onStartScraperSearch();
 
 signals:

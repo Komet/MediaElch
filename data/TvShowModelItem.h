@@ -2,15 +2,19 @@
 #define TVSHOWMODELITEM_H
 
 #include <QList>
+#include <QObject>
 #include <QVariant>
 #include <QVector>
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 
-class TvShowModelItem
+class TvShow;
+
+class TvShowModelItem : public QObject
 {
+    Q_OBJECT
 public:
-    TvShowModelItem(TvShowModelItem *parent = 0);
+    explicit TvShowModelItem(TvShowModelItem *parent = 0);
     ~TvShowModelItem();
 
     TvShowModelItem *child(int number);
@@ -27,6 +31,12 @@ public:
     TvShow *tvShow();
     TvShowEpisode *tvShowEpisode();
     int type();
+
+signals:
+    void sigChanged(TvShowModelItem*, TvShowModelItem*);
+
+private slots:
+    void onTvShowEpisodeChanged(TvShowEpisode *episode);
 
 private:
     QList<TvShowModelItem*> m_childItems;

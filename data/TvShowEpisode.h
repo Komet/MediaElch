@@ -7,10 +7,12 @@
 #include "data/MediaCenterInterface.h"
 #include "data/TvScraperInterface.h"
 #include "data/TvShow.h"
+#include "data/TvShowModelItem.h"
 
 class TvShow;
 class MediaCenterInterface;
 class TvScraperInterface;
+class TvShowModelItem;
 
 class TvShowEpisode : public QObject
 {
@@ -42,6 +44,10 @@ public:
     QUrl thumbnail() const;
     QImage *thumbnailImage();
     bool thumbnailImageChanged() const;
+    TvShowModelItem *modelItem();
+    bool hasChanged() const;
+    QList<QString*> writersPointer();
+    QList<QString*> directorsPointer();
 
     void setName(QString name);
     void setShowTitle(QString showTitle);
@@ -60,6 +66,12 @@ public:
     void setNetwork(QString network);
     void setThumbnail(QUrl url);
     void setThumbnailImage(QImage thumbnail);
+    void setInfosLoaded(bool loaded);
+    void setChanged(bool changed);
+    void setModelItem(TvShowModelItem *item);
+
+    void removeWriter(QString *writer);
+    void removeDirector(QString *director);
 
     bool loadData(MediaCenterInterface *mediaCenterInterface);
     void loadData(QString id, TvScraperInterface *tvScraperInterface);
@@ -70,6 +82,7 @@ public:
 
 signals:
     void sigLoaded();
+    void sigChanged(TvShowEpisode*);
 
 private:
     QStringList m_files;
@@ -89,9 +102,10 @@ private:
     QString m_network;
     QUrl m_thumbnail;
     QImage m_thumbnailImage;
+    TvShowModelItem *m_modelItem;
     bool m_thumbnailImageChanged;
-
     bool m_infoLoaded;
+    bool m_hasChanged;
 };
 
 QDebug operator<<(QDebug dbg, const TvShowEpisode &episode);

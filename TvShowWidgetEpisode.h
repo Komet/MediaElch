@@ -2,6 +2,7 @@
 #define TVSHOWWIDGETEPISODE_H
 
 #include <QLabel>
+#include <QTableWidgetItem>
 #include <QWidget>
 #include "data/TvShowEpisode.h"
 #include "DownloadManager.h"
@@ -41,12 +42,25 @@ private slots:
     void onPosterDownloadFinished(DownloadManagerElement elem);
     void onLoadDone();
 
+    void onNameChange(QString text);
+    void onShowTitleChange(QString text);
+    void onSeasonChange(int value);
+    void onEpisodeChange(int value);
+    void onRatingChange(double value);
+    void onCertificationChange(QString text);
+    void onFirstAiredChange(QDate date);
+    void onPlayCountChange(int value);
+    void onLastPlayedChange(QDateTime dateTime);
+    void onStudioChange(QString text);
+    void onOverviewChange();
+    void onDirectorEdited(QTableWidgetItem *item);
+    void onWriterEdited(QTableWidgetItem *item);
+
 private:
     Ui::TvShowWidgetEpisode *ui;
     TvShowEpisode *m_episode;
     QLabel *m_savingWidget;
     QMovie *m_loadingMovie;
-    QImage m_chosenThumbnail;
     DownloadManager *m_posterDownloadManager;
 
     void updateEpisodeInfo();

@@ -1,6 +1,8 @@
 #include "Message.h"
 #include "ui_Message.h"
 
+#include <QDebug>
+
 Message::Message(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Message)

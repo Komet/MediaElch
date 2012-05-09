@@ -3,6 +3,7 @@
 
 #include <QLabel>
 #include <QMovie>
+#include <QTableWidgetItem>
 #include <QWidget>
 #include "data/TvShow.h"
 #include "DownloadManager.h"
@@ -49,17 +50,22 @@ private slots:
     void onDownloadsFinished();
     void onDownloadsLeft(int left);
 
+    void onNameChange(QString text);
+    void onCertificationChange(QString text);
+    void onRatingChange(double value);
+    void onFirstAiredChange(QDate date);
+    void onStudioChange(QString studio);
+    void onOverviewChange();
+    void onActorEdited(QTableWidgetItem *item);
+    void onGenreEdited(QTableWidgetItem *item);
+
 private:
     Ui::TvShowWidgetTvShow *ui;
     TvShow *m_show;
     QLabel *m_savingWidget;
     QMovie *m_loadingMovie;
-    QImage m_chosenBackdrop;
-    QImage m_chosenPoster;
-    QMap<int, QImage> m_chosenSeasonPosters;
     DownloadManager *m_posterDownloadManager;
     QMap<int, QList<QWidget*> > m_seasonLayoutWidgets;
-    bool m_loadedFromScraper;
     int m_progressMessageId;
     int m_currentDownloadsSize;
 

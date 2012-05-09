@@ -11,6 +11,8 @@ TvShow::TvShow(QString dir, QObject *parent) :
     m_infoLoaded = false;
     m_backdropImageChanged = false;
     m_posterImageChanged = false;
+    m_hasChanged = false;
+    clear();
 }
 
 void TvShow::moveToMainThread()
@@ -37,6 +39,7 @@ void TvShow::clear()
     m_posterImageChanged = false;
     m_seasonPosterImages.clear();
     m_seasonPosterImagesChanged.clear();
+    m_hasChanged = false;
 }
 
 void TvShow::addEpisode(TvShowEpisode *episode)
@@ -58,6 +61,7 @@ bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface)
             this->setName(dirParts.last());
     }
     m_infoLoaded = infoLoaded;
+    setChanged(false);
     return infoLoaded;
 }
 
@@ -72,9 +76,7 @@ bool TvShow::saveData(MediaCenterInterface *mediaCenterInterface)
     if (!m_infoLoaded)
         m_infoLoaded = saved;
 
-    foreach (TvShowEpisode *episode, episodes())
-        mediaCenterInterface->saveTvShowEpisode(episode);
-
+    setChanged(false);
     return saved;
 }
 
@@ -118,6 +120,14 @@ QDate TvShow::firstAired() const
 QStringList TvShow::genres() const
 {
     return m_genres;
+}
+
+QList<QString*> TvShow::genresPointer()
+{
+    QList<QString*> genres;
+    for (int i=0, n=m_genres.size() ; i<n ; ++i)
+        genres.append(&m_genres[i]);
+    return genres;
 }
 
 QString TvShow::certification() const
@@ -234,66 +244,88 @@ QList<TvShowEpisode*> TvShow::episodes()
     return m_episodes;
 }
 
+TvShowModelItem *TvShow::modelItem()
+{
+    return m_modelItem;
+}
+
+bool TvShow::hasChanged() const
+{
+    return m_hasChanged;
+}
+
 /*** SETTER ***/
 
 void TvShow::setName(QString name)
 {
     m_name = name;
+    setChanged(true);
 }
 
 void TvShow::setShowTitle(QString title)
 {
     m_showTitle = title;
+    setChanged(true);
 }
 
 void TvShow::setRating(qreal rating)
 {
     m_rating = rating;
+    setChanged(true);
 }
 
 void TvShow::setFirstAired(QDate aired)
 {
     m_firstAired = aired;
+    setChanged(true);
 }
 
 void TvShow::setGenres(QStringList genres)
 {
     m_genres = genres;
+    setChanged(true);
 }
 
 void TvShow::addGenre(QString genre)
 {
     m_genres.append(genre);
+    setChanged(true);
 }
 
 void TvShow::setCertification(QString certification)
 {
     m_certification = certification;
+    setChanged(true);
 }
 
 void TvShow::setNetwork(QString network)
 {
     m_network = network;
+    setChanged(true);
 }
 
 void TvShow::setOverview(QString overview)
 {
     m_overview = overview;
+    setChanged(true);
 }
 
 void TvShow::setActors(QList<Actor> actors)
 {
     m_actors = actors;
+    setChanged(true);
 }
 
 void TvShow::addActor(Actor actor)
 {
     m_actors.append(actor);
+    setChanged(true);
 }
 
 void TvShow::setPosters(QList<Poster> posters)
 {
     m_posters = posters;
+    setChanged(true);
 }
 
 void TvShow::setPoster(int index, Poster poster)
@@ -301,11 +333,13 @@ void TvShow::setPoster(int index, Poster poster)
     if (m_posters.size() < index)
         return;
     m_posters[index] = poster;
+    setChanged(true);
 }
 
 void TvShow::setBackdrops(QList<Poster> backdrops)
 {
     m_backdrops.append(backdrops);
+    setChanged(true);
 }
 
 void TvShow::setBackdrop(int index, Poster backdrop)
@@ -313,28 +347,33 @@ void TvShow::setBackdrop(int index, Poster backdrop)
     if (m_backdrops.size() < index)
         return;
     m_backdrops[index] = backdrop;
+    setChanged(true);
 }
 
 void TvShow::addPoster(Poster poster)
 {
     m_posters.append(poster);
+    setChanged(true);
 }
 
 void TvShow::addBackdrop(Poster backdrop)
 {
     m_backdrops.append(backdrop);
+    setChanged(true);
 }
 
 void TvShow::setPosterImage(QImage poster)
 {
     m_posterImage = QImage(poster);
     m_posterImageChanged = true;
+    setChanged(true);
 }
 
 void TvShow::setBackdropImage(QImage backdrop)
 {
     m_backdropImage = QImage(backdrop);
     m_backdropImageChanged = true;
+    setChanged(true);
 }
 
 void TvShow::addSeasonPoster(int season, Poster poster)
@@ -345,6 +384,7 @@ void TvShow::addSeasonPoster(int season, Poster poster)
     }
 
     m_seasonPosters[season].append(poster);
+    setChanged(true);
 }
 
 void TvShow::setSeasonPosterImage(int season, QImage poster)
@@ -356,6 +396,42 @@ void TvShow::setSeasonPosterImage(int season, QImage poster)
 
     if (!m_seasonPosterImagesChanged.contains(season))
         m_seasonPosterImagesChanged.append(season);
+    setChanged(true);
+}
+
+void TvShow::setChanged(bool changed)
+{
+    m_hasChanged = changed;
+    emit sigChanged(this);
+}
+
+void TvShow::setModelItem(TvShowModelItem *item)
+{
+    m_modelItem = item;
+}
+
+/*** REMOVER ***/
+
+void TvShow::removeActor(Actor *actor)
+{
+    for (int i=0, n=m_actors.size() ; i<n ; ++i) {
+        if (&m_actors[i] == actor) {
+            m_actors.removeAt(i);
+            break;
+        }
+    }
+    setChanged(true);
+}
+
+void TvShow::removeGenre(QString *genre)
+{
+    for (int i=0, n=m_genres.size() ; i<n ; ++i) {
+        if (&m_genres[i] == genre) {
+            m_genres.removeAt(i);
+            break;
+        }
+    }
+    setChanged(true);
 }
 
 /*** DEBUG ***/
