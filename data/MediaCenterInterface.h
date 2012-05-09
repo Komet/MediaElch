@@ -15,7 +15,7 @@ public:
     virtual bool saveMovie(Movie *movie) = 0;
     virtual bool loadMovie(Movie *movie) = 0;
     virtual void loadMovieImages(Movie *movie) = 0;
-    virtual void exportDatabase(QList<Movie*> movies, QString exportPath, QString pathSearch, QString pathReplace) = 0;
+    virtual void exportDatabase(QList<Movie*> movies, QList<TvShow*> shows, QString exportPath, QString pathSearch, QString pathReplace) = 0;
     virtual bool loadTvShow(TvShow *show) = 0;
     virtual void loadTvShowImages(TvShow *show) = 0;
     virtual bool loadTvShowEpisode(TvShowEpisode *episode) = 0;

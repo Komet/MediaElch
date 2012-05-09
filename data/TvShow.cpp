@@ -92,6 +92,11 @@ void TvShow::loadImages(MediaCenterInterface *mediaCenterInterface)
 
 /*** GETTER ***/
 
+bool TvShow::infoLoaded() const
+{
+    return m_infoLoaded;
+}
+
 QString TvShow::dir() const
 {
     return m_dir;

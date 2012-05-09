@@ -57,7 +57,8 @@ void ExportDialog::exportDatabase()
     ui->replace->setReadOnly(true);
     ui->buttonChooseDir->setEnabled(false);
     QtConcurrent::run(Manager::instance()->mediaCenterInterface(), &MediaCenterInterface::exportDatabase,
-                      Manager::instance()->movieModel()->movies(), ui->exportDirectory->text(), ui->search->text(), ui->replace->text());
+                      Manager::instance()->movieModel()->movies(), Manager::instance()->tvShowModel()->tvShows(),
+                      ui->exportDirectory->text(), ui->search->text(), ui->replace->text());
 }
 
 void ExportDialog::onExportStarted()

@@ -19,7 +19,7 @@ public:
     bool saveMovie(Movie *movie);
     bool loadMovie(Movie *movie);
     void loadMovieImages(Movie *movie);
-    void exportDatabase(QList<Movie *> movies, QString exportPath, QString pathSearch, QString pathReplace);
+    void exportDatabase(QList<Movie *> movies, QList<TvShow*> shows, QString exportPath, QString pathSearch, QString pathReplace);
     bool loadTvShow(TvShow *show);
     void loadTvShowImages(TvShow *show);
     bool loadTvShowEpisode(TvShowEpisode *episode);
@@ -33,7 +33,7 @@ signals:
     void sigExportRaiseError(QString);
 private:
     void writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath = false, QString pathSearch = "", QString pathReplace = "");
-    void writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath = false, QString pathSearch = "", QString pathReplace = "");
+    void writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath = false, QString pathSearch = "", QString pathReplace = "", bool writeStartAndEndElement = true);
     void writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode, bool writePath = false, QString pathSearch = "", QString pathReplace = "");
 };
 

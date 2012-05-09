@@ -49,6 +49,7 @@ public:
     QList<TvShowEpisode*> episodes();
     TvShowModelItem *modelItem();
     bool hasChanged() const;
+    bool infoLoaded() const;
 
     void setName(QString name);
     void setShowTitle(QString title);

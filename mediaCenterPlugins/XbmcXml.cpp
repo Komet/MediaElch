@@ -248,7 +248,7 @@ void XbmcXml::loadTvShowEpisodeImages(TvShowEpisode *episode)
         episode->thumbnailImage()->load(thumbnailFi.absoluteFilePath());
 }
 
-void XbmcXml::exportDatabase(QList<Movie *> movies, QString exportPath, QString pathSearch, QString pathReplace)
+void XbmcXml::exportDatabase(QList<Movie*> movies, QList<TvShow*> shows, QString exportPath, QString pathSearch, QString pathReplace)
 {
     emit sigExportStarted();
 
@@ -261,6 +261,15 @@ void XbmcXml::exportDatabase(QList<Movie *> movies, QString exportPath, QString 
         emit sigExportRaiseError(tr("Could not create movies directory"));
         return;
     }
+    if (!dir.mkdir("tvshows")) {
+        emit sigExportRaiseError(tr("Could not create tv shows directory"));
+        return;
+    }
+
+    int numOfMovies = movies.count();
+    int numOfElements = numOfElements + shows.size();
+    for (int i=0, n=shows.count() ; i<n ; ++i)
+        numOfElements += shows[i]->episodeCount();
 
     QByteArray xmlContent;
     QXmlStreamWriter xml(&xmlContent);
@@ -269,8 +278,11 @@ void XbmcXml::exportDatabase(QList<Movie *> movies, QString exportPath, QString 
     xml.writeStartElement("videodb");
     xml.writeTextElement("version", "1");
     for (int i=0, n=movies.size() ; i<n ; ++i) {
-        emit sigExportProgress(i, n);
+        emit sigExportProgress(i, numOfElements);
         Movie *movie = movies[i];
+        if (!movie->infoLoaded())
+            continue;
+
         writeMovieXml(xml, movie, true, pathSearch, pathReplace);
 
         if (movie->files().size() == 0)
@@ -293,6 +305,65 @@ void XbmcXml::exportDatabase(QList<Movie *> movies, QString exportPath, QString 
         if (backdropFi.isFile())
             QFile::copy(backdropFi.absoluteFilePath(), exportPath + QDir::separator() + "movies" + QDir::separator() + newBackdropName);
     }
+
+    int progress = numOfMovies;
+    for (int i=0, x=shows.count() ; i<x ; ++i) {
+        emit sigExportProgress(progress++, numOfElements);
+        if (!shows[i]->infoLoaded())
+            continue;
+
+        // create tv show directory
+        QDir tvShowDir(exportPath + QDir::separator() + "tvshows");
+        if (!tvShowDir.mkdir(shows[i]->name().replace(" ", "_")))
+            continue;
+        tvShowDir.setPath(exportPath + QDir::separator() + "tvshows" + QDir::separator() + shows[i]->name().replace(" ", "_"));
+
+        // copy actors
+        QDir actorsDir(shows[i]->dir() + QDir::separator() + ".actors");
+        QStringList actorFilters;
+        actorFilters << "*.tbn";
+        foreach (QString actorFile, actorsDir.entryList(actorFilters, QDir::NoDotAndDotDot | QDir::Files))
+            QFile::copy(actorsDir.absolutePath() + QDir::separator() + actorFile, exportPath + QDir::separator() + "actors" + QDir::separator() + actorFile.replace(" ", "_"));
+
+        // copy poster and backdrop
+        QFileInfo posterFi(shows[i]->dir() + QDir::separator() + "season-all.tbn");
+        QFileInfo backdropFi(shows[i]->dir() + QDir::separator() + "fanart.jpg");
+        if (posterFi.isFile())
+            QFile::copy(posterFi.absoluteFilePath(), tvShowDir.absolutePath() + QDir::separator() + "season-all.tbn");
+        if (backdropFi.isFile())
+            QFile::copy(backdropFi.absoluteFilePath(), tvShowDir.absolutePath() + QDir::separator() + "fanart.jpg");
+
+        // copy season backdrops
+        foreach (int s, shows[i]->seasons()) {
+            QString season = QString::number(s);
+            if (s < 10)
+                season.prepend("0");
+            QFileInfo seasonFi(shows[i]->dir() + QDir::separator() + "season" + season + ".tbn");
+            if (seasonFi.isFile())
+                QFile::copy(seasonFi.absoluteFilePath(), tvShowDir.absolutePath() + QDir::separator() + "season" + season + ".tbn");
+        }
+
+        xml.writeStartElement("tvshow");
+        writeTvShowXml(xml, shows[i], true, pathSearch, pathReplace, false);
+
+        for (int n=0, y=shows[i]->episodes().count() ; n<y ; ++n) {
+            emit sigExportProgress(progress++, numOfElements);
+            TvShowEpisode *episode = shows[i]->episodes().at(n);
+            if (!episode->infoLoaded())
+                continue;
+            if (episode->files().isEmpty())
+                continue;
+
+            QFileInfo fi(episode->files().at(0));
+            QFileInfo thumbFi(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".tbn");
+            if (thumbFi.isFile())
+                QFile::copy(thumbFi.absoluteFilePath(), tvShowDir.absolutePath() + QDir::separator() + "s" + episode->seasonString() + "e" + episode->episodeString() + ".tbn");
+
+            writeTvShowEpisodeXml(xml, shows[i]->episodes().at(n), true, pathSearch, pathReplace);
+        }
+        xml.writeEndElement();
+    }
+
     xml.writeEndElement();
     xml.writeEndDocument();
 
@@ -498,9 +569,10 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
     return true;
 }
 
-void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath, QString pathSearch, QString pathReplace)
+void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath, QString pathSearch, QString pathReplace, bool writeStartAndEndElement)
 {
-    xml.writeStartElement("tvshow");
+    if (writeStartAndEndElement)
+        xml.writeStartElement("tvshow");
     xml.writeTextElement("title", show->name());
     xml.writeTextElement("showtitle", show->showTitle());
     xml.writeTextElement("rating", QString("%1").arg(show->rating()));
@@ -559,7 +631,8 @@ void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath
         xml.writeTextElement("basepath", dir.replace(pathSearch, pathReplace));
     }
 
-    xml.writeEndElement();
+    if (writeStartAndEndElement)
+        xml.writeEndElement();
 }
 
 void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode, bool writePath, QString pathSearch, QString pathReplace)

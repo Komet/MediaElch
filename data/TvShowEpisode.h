@@ -48,6 +48,7 @@ public:
     bool hasChanged() const;
     QList<QString*> writersPointer();
     QList<QString*> directorsPointer();
+    bool infoLoaded() const;
 
     void setName(QString name);
     void setShowTitle(QString showTitle);

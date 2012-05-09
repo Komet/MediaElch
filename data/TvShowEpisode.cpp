@@ -92,6 +92,11 @@ void TvShowEpisode::loadImages(MediaCenterInterface *mediaCenterInterface)
 
 /*** GETTER ***/
 
+bool TvShowEpisode::infoLoaded() const
+{
+    return m_infoLoaded;
+}
+
 QString TvShowEpisode::name() const
 {
     return m_name;
