@@ -277,7 +277,7 @@ void XbmcXml::exportDatabase(QList<Movie*> movies, QList<TvShow*> shows, QString
     }
 
     int numOfMovies = movies.count();
-    int numOfElements = numOfElements + shows.size();
+    int numOfElements = numOfMovies + shows.size();
     for (int i=0, n=shows.count() ; i<n ; ++i)
         numOfElements += shows[i]->episodeCount();
 

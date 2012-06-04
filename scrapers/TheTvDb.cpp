@@ -117,11 +117,11 @@ void TheTvDb::onMirrorsReady()
             if (!node.toElement().elementsByTagName("typemask").isEmpty())
                 typemask = node.toElement().elementsByTagName("typemask").at(0).toElement().text().toInt();
 
-            if (typemask & 1 == 1)
+            if ((typemask & 1) == 1)
                 m_xmlMirrors.append(mirror);
-            if (typemask & 2 == 2)
+            if ((typemask & 2) == 2)
                 m_bannerMirrors.append(mirror);
-            if (typemask & 4 == 4)
+            if ((typemask & 4) == 4)
                 m_zipMirrors.append(mirror);
         }
     }

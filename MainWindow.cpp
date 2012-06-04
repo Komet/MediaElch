@@ -334,7 +334,7 @@ void MainWindow::onSetRefreshEnabled(bool enabled, MainWidgets widget)
         m_tvShowActions[ActionRefresh] = enabled;
 
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
-         widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1)
+        (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1))
         m_actionRefreshFiles->setEnabled(enabled);
 }
 
@@ -346,7 +346,7 @@ void MainWindow::onSetExportEnabled(bool enabled, MainWidgets widget)
         m_tvShowActions[ActionExport] = enabled;
 
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
-         widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1)
+        (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1))
         m_actionExport->setEnabled(enabled);
 }
 
@@ -358,7 +358,7 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
         m_tvShowActions[ActionSave] = enabled;
 
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
-         widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1) {
+        (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1)) {
         m_actionSave->setEnabled(enabled);
         m_actionSaveAll->setEnabled(enabled);
     }
@@ -372,6 +372,6 @@ void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
         m_tvShowActions[ActionSearch] = enabled;
 
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
-         widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1)
+        (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1))
         m_actionSearch->setEnabled(enabled);
 }
