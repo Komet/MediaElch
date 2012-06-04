@@ -50,6 +50,7 @@ public:
     TvShowModelItem *modelItem();
     bool hasChanged() const;
     bool infoLoaded() const;
+    QString mediaCenterPath() const;
 
     void setName(QString name);
     void setShowTitle(QString title);
@@ -74,6 +75,7 @@ public:
     void setSeasonPosterImage(int season, QImage poster);
     void setChanged(bool changed);
     void setModelItem(TvShowModelItem *item);
+    void setMediaCenterPath(QString path);
 
     void removeActor(Actor *actor);
     void removeGenre(QString *genre);
@@ -111,6 +113,7 @@ private:
     QMap<int, QImage> m_seasonPosterImages;
     QList<int> m_seasonPosterImagesChanged;
     TvShowModelItem *m_modelItem;
+    QString m_mediaCenterPath;
 
     bool m_infoLoaded;
     bool m_hasChanged;

@@ -16,6 +16,16 @@ XbmcXml::~XbmcXml()
 {
 }
 
+bool XbmcXml::hasFeature(int feature)
+{
+    Q_UNUSED(feature);
+    return true;
+}
+
+void XbmcXml::shutdown()
+{
+}
+
 void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath, QString pathSearch, QString pathReplace)
 {
     xml.writeStartElement("movie");

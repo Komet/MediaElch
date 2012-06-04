@@ -42,11 +42,11 @@ void MessageBox::adjustSize()
     resize(this->size().width(), height);
 }
 
-int MessageBox::showMessage(QString message)
+int MessageBox::showMessage(QString message, int timeout)
 {
     m_msgCounter++;
     Message *msg = new Message(this);
-    msg->setMessage(message);
+    msg->setMessage(message, timeout);
     msg->setId(m_msgCounter);
     m_messages.append(msg);
     adjustSize();

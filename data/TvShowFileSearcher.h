@@ -11,7 +11,7 @@ class TvShowFileSearcher : public QThread
 public:
     explicit TvShowFileSearcher(QObject *parent = 0);
     void run();
-    void setMovieDirectories(QStringList directories);
+    void setMovieDirectories(QList<SettingsDir> directories);
 
 signals:
     void searchStarted(QString, int);

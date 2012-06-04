@@ -26,6 +26,8 @@ public:
     void loadTvShowEpisodeImages(TvShowEpisode *episode);
     bool saveTvShow(TvShow *show);
     bool saveTvShowEpisode(TvShowEpisode *episode);
+    void shutdown();
+    bool hasFeature(int feature);
 signals:
     void sigExportStarted();
     void sigExportProgress(int, int);

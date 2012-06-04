@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network script xml
+QT       += core gui network script xml sql
 
 TARGET = MediaElch
 TEMPLATE = app
@@ -51,7 +51,9 @@ SOURCES += main.cpp\
     TvShowWidgetEpisode.cpp \
     TvShowWidgetTvShow.cpp \
     scrapers/TheTvDb.cpp \
-    TvShowSearch.cpp
+    TvShowSearch.cpp \
+    mediaCenterPlugins/XbmcSql.cpp \
+    data/PortScan.cpp
 
 HEADERS  += MainWindow.h \
     data/Movie.h \
@@ -97,7 +99,9 @@ HEADERS  += MainWindow.h \
     TvShowWidgetTvShow.h \
     scrapers/TheTvDb.h \
     data/TvScraperInterface.h \
-    TvShowSearch.h
+    TvShowSearch.h \
+    mediaCenterPlugins/XbmcSql.h \
+    data/PortScan.h
 
 FORMS    += MainWindow.ui \
     MovieSearch.ui \

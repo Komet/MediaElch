@@ -16,7 +16,7 @@ class TvShowFilesWidget;
 class TvShowFilesWidget : public QWidget
 {
     Q_OBJECT
-    
+
 public:
     explicit TvShowFilesWidget(QWidget *parent = 0);
     ~TvShowFilesWidget();
@@ -24,6 +24,7 @@ public:
     void setFilter(QString filter);
     void enableRefresh();
     void disableRefresh();
+    static TvShowFilesWidget *instance();
 
 public slots:
     void startSearch();
@@ -43,6 +44,7 @@ private:
     Ui::TvShowFilesWidget *ui;
     TvShowProxyModel *m_tvShowProxyModel;
     TvShowDelegate *m_tvShowDelegate;
+    static TvShowFilesWidget *m_instance;
 };
 
 #endif // TVSHOWFILESWIDGET_H

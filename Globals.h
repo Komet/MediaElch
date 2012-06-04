@@ -25,6 +25,18 @@ namespace TvShowRoles {
     const int HasChanged = Qt::UserRole+5;
 }
 
+namespace MediaCenterInterfaces {
+    const int XbmcXml    = 1;
+    const int XbmcMysql  = 2;
+    const int XbmcSqlite = 3;
+}
+
+namespace MediaCenterFeatures {
+    const int EditTvShowEpisodeCertification = 1;
+    const int EditTvShowEpisodeShowTitle     = 2;
+    const int EditTvShowEpisodeNetwork       = 3;
+}
+
 enum MainActions {
     ActionSearch, ActionSave, ActionRefresh, ActionExport
 };
@@ -71,6 +83,11 @@ struct DownloadManagerElement {
     Actor *actor;
     TvShowEpisode *episode;
     int season;
+};
+
+struct SettingsDir {
+    QString path;
+    QString mediaCenterPath;
 };
 
 #endif // GLOBALS_H

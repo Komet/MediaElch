@@ -146,7 +146,11 @@
              </widget>
             </item>
             <item row="4" column="1">
-             <widget class="QDateEdit" name="firstAired"/>
+             <widget class="QDateEdit" name="firstAired">
+              <property name="displayFormat">
+               <string>dd.MM.yyyy</string>
+              </property>
+             </widget>
             </item>
             <item row="5" column="0">
              <widget class="QLabel" name="label_9">
@@ -381,8 +385,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>615</width>
-               <height>545</height>
+               <width>60</width>
+               <height>16</height>
               </rect>
              </property>
              <layout class="QFormLayout" name="seasonsLayout">

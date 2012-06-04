@@ -97,6 +97,7 @@ void TvShowWidgetEpisode::onClear()
     ui->lastPlayed->setDateTime(QDateTime::currentDateTime());
     ui->studio->clear();
     ui->overview->clear();
+    ui->certification->clear();
 }
 
 void TvShowWidgetEpisode::onSetEnabled(bool enabled)
@@ -138,7 +139,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->playCount->setValue(m_episode->playCount());
     ui->lastPlayed->setDateTime(m_episode->lastPlayed());
     ui->studio->setText(m_episode->network());
-    ui->overview->setText(m_episode->overview());
+    ui->overview->setPlainText(m_episode->overview());
 
     ui->writers->blockSignals(true);
     foreach (QString *writer, m_episode->writersPointer()) {
@@ -183,6 +184,10 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->playCount->blockSignals(false);
     ui->lastPlayed->blockSignals(false);
     ui->overview->blockSignals(false);
+
+    ui->certification->setEnabled(Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeCertification));
+    ui->showTitle->setEnabled(Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeShowTitle));
+    ui->studio->setEnabled(Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeNetwork));
 }
 
 void TvShowWidgetEpisode::onSaveInformation()

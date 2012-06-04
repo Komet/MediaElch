@@ -14,7 +14,7 @@ class FilesWidget;
 class FilesWidget : public QWidget
 {
     Q_OBJECT
-    
+
 public:
     explicit FilesWidget(QWidget *parent = 0);
     ~FilesWidget();
@@ -22,6 +22,7 @@ public:
     void disableRefresh();
     void showFirstTime();
     void hideFirstTime();
+    static FilesWidget *instance();
 
 public slots:
     void restoreLastSelection();
@@ -45,6 +46,7 @@ private:
     Movie *m_lastMovie;
     QLabel *m_firstTimeLabel;
     QModelIndex m_lastModelIndex;
+    static FilesWidget *m_instance;
 };
 
 #endif // FILESWIDGET_H

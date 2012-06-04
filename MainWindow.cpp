@@ -90,12 +90,16 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->buttonTvshows, SIGNAL(clicked()), this, SLOT(onMenuTvShows()));
     connect(ui->buttonSettings, SIGNAL(clicked()), this, SLOT(onMenuSettings()));
 
+    Manager::instance()->setupMediaCenterInterface();
+
     MovieSearch::instance(ui->centralWidget);
     TvShowSearch::instance(ui->centralWidget);
     MovieImageDialog::instance(ui->centralWidget);
     QuestionDialog::instance(ui->centralWidget);
+
+    // start TV Show File Searcher after Movie File Searcher has finished
     Manager::instance()->movieFileSearcher()->start();
-    Manager::instance()->tvShowFileSearcher()->start();
+    connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded(int)), Manager::instance()->tvShowFileSearcher(), SLOT(start()));
 
 #ifdef Q_WS_WIN
     setStyleSheet(styleSheet() + " #centralWidget { border-bottom: 1px solid rgba(0, 0, 0, 100); } ");
@@ -104,6 +108,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    Manager::instance()->shutdownMediaCenterInterfaces();
     m_settingsWidget->setMainWindowSize(size());
     m_settingsWidget->setMainWindowPosition(pos());
     delete ui;

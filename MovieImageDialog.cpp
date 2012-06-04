@@ -233,7 +233,7 @@ void MovieImageDialog::cancelDownloads()
 
 void MovieImageDialog::chooseLocalImage()
 {
-    QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), QDir::homePath(), tr("Images (*.jpg *.png)"));
+    QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), QDir::homePath(), tr("Images (*.jpg *.jpeg *.png)"));
     if (!fileName.isNull()) {
         int index = m_elements.size();
         DownloadElement d;

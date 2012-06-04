@@ -5,6 +5,7 @@
 #include <QDir>
 
 #include "data/Movie.h"
+#include "Globals.h"
 
 class MovieFileSearcher : public QThread
 {
@@ -14,7 +15,7 @@ public:
     ~MovieFileSearcher();
 
     void run();
-    void setMovieDirectories(QStringList directories);
+    void setMovieDirectories(QList<SettingsDir> directories);
 
 signals:
     void searchStarted(QString, int);

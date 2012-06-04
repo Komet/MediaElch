@@ -25,16 +25,12 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">#widget {
-	border: 1px solid rgba(80, 80, 80, 230);
-	border-radius: 5px;
-	background-color: rgba(80, 80, 80, 200);
-}</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
    <property name="margin">
-    <number>12</number>
+    <number>0</number>
    </property>
    <item>
     <widget class="QWidget" name="widget" native="true">

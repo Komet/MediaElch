@@ -1,6 +1,7 @@
 #include "Manager.h"
 
 #include <QApplication>
+#include "mediaCenterPlugins/XbmcSql.h"
 #include "mediaCenterPlugins/XbmcXml.h"
 #include "scrapers/Cinefacts.h"
 #include "scrapers/OFDb.h"
@@ -8,10 +9,10 @@
 #include "scrapers/TMDb.h"
 #include "scrapers/VideoBuster.h"
 
+
 Manager::Manager(QObject *parent) :
     QObject(parent)
 {
-    m_mediaCenters.append(new XbmcXml(this));
     m_scrapers.append(new TMDb(this));
     m_scrapers.append(new Cinefacts(this));
     m_scrapers.append(new OFDb(this));
@@ -22,6 +23,14 @@ Manager::Manager(QObject *parent) :
     m_movieModel = new MovieModel(this);
     m_tvShowModel = new TvShowModel(this);
     m_tvShowProxyModel = new TvShowProxyModel(this);
+
+    m_mediaCenters.append(new XbmcXml(this));
+    m_mediaCenters.append(new XbmcSql(this));
+    m_mediaCenters.append(new XbmcSql(this));
+}
+
+Manager::~Manager()
+{
 }
 
 Manager* Manager::instance()
@@ -33,8 +42,33 @@ Manager* Manager::instance()
     return m_instance;
 }
 
+void Manager::setupMediaCenterInterface()
+{
+    if (SettingsWidget::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcMysql) {
+        MediaCenterInterface *interface = m_mediaCenters.at(1);
+        static_cast<XbmcSql*>(interface)->connectMysql(SettingsWidget::instance()->xbmcMysqlHost(), SettingsWidget::instance()->xbmcMysqlDatabase(),
+                                                       SettingsWidget::instance()->xbmcMysqlUser(), SettingsWidget::instance()->xbmcMysqlPassword());
+    } else if (SettingsWidget::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcSqlite) {
+        MediaCenterInterface *interface = m_mediaCenters.at(2);
+        static_cast<XbmcSql*>(interface)->connectSqlite(SettingsWidget::instance()->xbmcSqliteDatabase());
+    }
+}
+
+void Manager::shutdownMediaCenterInterfaces()
+{
+    for (int i=0, n=m_mediaCenters.count() ; i<n ; ++i)
+        m_mediaCenters.at(i)->shutdown();
+}
+
 MediaCenterInterface *Manager::mediaCenterInterface()
 {
+    if (SettingsWidget::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcXml)
+        return m_mediaCenters.at(0);
+    else if (SettingsWidget::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcMysql)
+        return m_mediaCenters.at(1);
+    else if (SettingsWidget::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcSqlite)
+        return m_mediaCenters.at(2);
+
     return m_mediaCenters.at(0);
 }
 

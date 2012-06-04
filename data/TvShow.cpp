@@ -259,6 +259,11 @@ bool TvShow::hasChanged() const
     return m_hasChanged;
 }
 
+QString TvShow::mediaCenterPath() const
+{
+    return m_mediaCenterPath;
+}
+
 /*** SETTER ***/
 
 void TvShow::setName(QString name)
@@ -413,6 +418,11 @@ void TvShow::setChanged(bool changed)
 void TvShow::setModelItem(TvShowModelItem *item)
 {
     m_modelItem = item;
+}
+
+void TvShow::setMediaCenterPath(QString path)
+{
+    m_mediaCenterPath = path;
 }
 
 /*** REMOVER ***/

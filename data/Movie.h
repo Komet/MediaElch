@@ -99,13 +99,13 @@ public:
     bool loadData(MediaCenterInterface *mediaCenterInterface);
     void loadData(QString id, ScraperInterface *scraperInterface);
     void loadImages(MediaCenterInterface *mediaCenterInterface);
-    
+
     void scraperLoadDone();
 
 signals:
     void loaded();
     void sigChanged(Movie*);
-    
+
 private:
     QStringList m_files;
     QString m_folderName;

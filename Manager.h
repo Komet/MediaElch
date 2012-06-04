@@ -2,6 +2,7 @@
 #define MANAGER_H
 
 #include <QObject>
+#include "SettingsWidget.h"
 #include "data/MediaCenterInterface.h"
 #include "data/MovieFileSearcher.h"
 #include "data/ScraperInterface.h"
@@ -16,7 +17,8 @@ class Manager : public QObject
     Q_OBJECT
 public:
     explicit Manager(QObject *parent = 0);
-    
+    ~Manager();
+
     static Manager *instance();
     QList<MediaCenterInterface*> mediaCenters();
     QList<ScraperInterface*> scrapers();
@@ -27,6 +29,8 @@ public:
     MovieModel* movieModel();
     TvShowModel* tvShowModel();
     TvShowProxyModel *tvShowProxyModel();
+    void setupMediaCenterInterface();
+    void shutdownMediaCenterInterfaces();
 
 private:
     QList<MediaCenterInterface*> m_mediaCenters;
@@ -37,6 +41,7 @@ private:
     MovieModel* m_movieModel;
     TvShowModel* m_tvShowModel;
     TvShowProxyModel* m_tvShowProxyModel;
+    SettingsWidget *m_settingsWidget;
 };
 
 #endif // MANAGER_H

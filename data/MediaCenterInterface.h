@@ -1,6 +1,7 @@
 #ifndef MEDIACENTERINTERFACE_H
 #define MEDIACENTERINTERFACE_H
 
+#include "Globals.h"
 #include "data/Movie.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
@@ -22,6 +23,8 @@ public:
     virtual void loadTvShowEpisodeImages(TvShowEpisode *episode) = 0;
     virtual bool saveTvShow(TvShow *show) = 0;
     virtual bool saveTvShowEpisode(TvShowEpisode *episode) = 0;
+    virtual void shutdown() = 0;
+    virtual bool hasFeature(int feature) = 0;
 signals:
     virtual void sigExportStarted() = 0;
     virtual void sigExportProgress(int, int) = 0;

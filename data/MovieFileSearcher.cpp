@@ -36,14 +36,13 @@ void MovieFileSearcher::run()
     emit moviesLoaded(m_progressMessageId);
 }
 
-void MovieFileSearcher::setMovieDirectories(QStringList directories)
+void MovieFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
 {
     m_directories.clear();
-    foreach (const QString &path, directories) {
-        QFileInfo fi(path);
-        if (fi.isDir()) {
-            m_directories.append(path);
-        }
+    for (int i=0, n=directories.count() ; i<n ; ++i) {
+        QFileInfo fi(directories.at(i).path);
+        if (fi.isDir())
+            m_directories.append(directories.at(i).path);
     }
 }
 
@@ -57,7 +56,7 @@ void MovieFileSearcher::getDirContents(QString path, QList<QStringList> &content
     QStringList filters;
     QStringList dvdFilters;
     QStringList files;
-    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.iso" << "VIDEO_TS.IFO";
+    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.m2ts" << "*.iso" << "VIDEO_TS.IFO";
     dvdFilters << "*.VOB" << "*.IFO" << "*.BUP";
     foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::System)) {
         files.append(file);

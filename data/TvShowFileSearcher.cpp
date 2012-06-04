@@ -1,5 +1,6 @@
 #include "TvShowFileSearcher.h"
 
+#include <QApplication>
 #include <QFileInfo>
 #include "Manager.h"
 #include "data/TvShow.h"
@@ -12,14 +13,13 @@ TvShowFileSearcher::TvShowFileSearcher(QObject *parent) :
     m_progressMessageId = Constants::TvShowSearcherProgressMessageId;
 }
 
-void TvShowFileSearcher::setMovieDirectories(QStringList directories)
+void TvShowFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
 {
     m_directories.clear();
-    foreach (const QString &path, directories) {
-        QFileInfo fi(path);
-        if (fi.isDir()) {
-            m_directories.append(path);
-        }
+    for (int i=0, n=directories.count() ; i<n ; ++i) {
+        QFileInfo fi(directories.at(i).path);
+        if (fi.isDir())
+            m_directories.append(directories.at(i).path);
     }
 }
 

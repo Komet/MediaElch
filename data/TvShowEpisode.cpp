@@ -121,7 +121,7 @@ QString TvShowEpisode::showTitle() const
     if (!m_showTitle.isEmpty())
         return m_showTitle;
     if (m_parent)
-        return m_parent->showTitle();
+        return m_parent->name();
 
     return QString();
 }

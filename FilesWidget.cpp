@@ -6,10 +6,13 @@
 #include <QTimer>
 #include "Manager.h"
 
+FilesWidget *FilesWidget::m_instance;
+
 FilesWidget::FilesWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::FilesWidget)
 {
+    m_instance = this;
     ui->setupUi(this);
     ui->files->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #ifdef Q_WS_MAC
@@ -47,6 +50,11 @@ FilesWidget::FilesWidget(QWidget *parent) :
 FilesWidget::~FilesWidget()
 {
     delete ui;
+}
+
+FilesWidget *FilesWidget::instance()
+{
+    return m_instance;
 }
 
 void FilesWidget::tableViewResized(QSize size)

@@ -11,11 +11,11 @@ class Message;
 class Message : public QWidget
 {
     Q_OBJECT
-    
+
 public:
     explicit Message(QWidget *parent = 0);
     ~Message();
-    void setMessage(QString message);
+    void setMessage(QString message, int timeout = 3000);
     void showProgressBar(bool show);
     void setProgress(int current, int max);
     void setId(int id);

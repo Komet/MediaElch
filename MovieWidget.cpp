@@ -279,7 +279,7 @@ void MovieWidget::updateMovieInfo()
     ui->trailer->setText(m_movie->trailer().toString());
     ui->playcount->setValue(m_movie->playcount());
     ui->lastPlayed->setDateTime(m_movie->lastPlayed());
-    ui->overview->setHtml(m_movie->overview());
+    ui->overview->setPlainText(m_movie->overview());
     ui->watched->setChecked(m_movie->watched());
 
     QStringList certifications;
@@ -323,18 +323,20 @@ void MovieWidget::updateMovieInfo()
     ui->genres->blockSignals(false);
 
     ui->studios->blockSignals(true);
-    foreach (const QString &studio, m_movie->studios()) {
+    foreach (QString *studio, m_movie->studiosPointer()) {
         int row = ui->studios->rowCount();
         ui->studios->insertRow(row);
-        ui->studios->setItem(row, 0, new QTableWidgetItem(studio));
+        ui->studios->setItem(row, 0, new QTableWidgetItem(*studio));
+        ui->studios->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(studio));
     }
     ui->studios->blockSignals(false);
 
     ui->countries->blockSignals(true);
-    foreach (const QString &country, m_movie->countries()) {
+    foreach (QString *country, m_movie->countriesPointer()) {
         int row = ui->countries->rowCount();
         ui->countries->insertRow(row);
-        ui->countries->setItem(row, 0, new QTableWidgetItem(country));
+        ui->countries->setItem(row, 0, new QTableWidgetItem(*country));
+        ui->countries->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(country));
     }
     ui->countries->blockSignals(false);
 

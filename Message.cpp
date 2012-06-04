@@ -31,20 +31,20 @@ int Message::id()
 void Message::showProgressBar(bool show)
 {
     ui->progressBar->setVisible(show);
-    m_timer->start(10000);
+    m_timer->start(30000);
 }
 
 void Message::setProgress(int current, int max)
 {
     ui->progressBar->setRange(0, max);
     ui->progressBar->setValue(current);
-    m_timer->start(10000);
+    m_timer->start(30000);
 }
 
-void Message::setMessage(QString message)
+void Message::setMessage(QString message, int timeout)
 {
     ui->label->setText(message);
-    m_timer->start(3000);
+    m_timer->start(timeout);
 }
 
 void Message::timeout()

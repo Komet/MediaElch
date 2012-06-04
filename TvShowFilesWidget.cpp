@@ -5,10 +5,13 @@
 #include "Manager.h"
 #include "data/TvShowModelItem.h"
 
+TvShowFilesWidget *TvShowFilesWidget::m_instance;
+
 TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::TvShowFilesWidget)
 {
+    m_instance = this;
     ui->setupUi(this);
 
 #ifdef Q_WS_MAC
@@ -38,6 +41,12 @@ TvShowFilesWidget::~TvShowFilesWidget()
 {
     delete ui;
 }
+
+TvShowFilesWidget *TvShowFilesWidget::instance()
+{
+    return m_instance;
+}
+
 void TvShowFilesWidget::setFilter(QString filter)
 {
     m_tvShowProxyModel->setFilterWildcard("*" + filter + "*");

@@ -137,7 +137,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->rating->setValue(m_show->rating());
     ui->firstAired->setDate(m_show->firstAired());
     ui->studio->setText(m_show->network());
-    ui->overview->setText(m_show->overview());
+    ui->overview->setPlainText(m_show->overview());
 
     ui->actors->blockSignals(true);
     foreach (Actor *actor, m_show->actorsPointer()) {
