@@ -19,7 +19,7 @@ public:
     void abortDownloads();
     bool isDownloading();
     int downloadQueueSize();
-    
+
 signals:
     void downloadProgress(DownloadManagerElement);
     void downloadsLeft(int);

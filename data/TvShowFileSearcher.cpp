@@ -65,7 +65,7 @@ void TvShowFileSearcher::getDirContents(QString path, QMap<QString, QList<QStrin
         QDir subDir(path + QDir::separator() + cDir);
         QStringList filters;
         QStringList files;
-        filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg";
+        filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.m2ts" << "*.vob";
         foreach (const QString &file, subDir.entryList(filters, QDir::Files | QDir::System)) {
             files.append(file);
         }

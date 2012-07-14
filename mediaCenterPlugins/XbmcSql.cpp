@@ -54,8 +54,7 @@ void XbmcSql::connectSqlite(QString database)
         m_db->close();
         delete m_db;
     }
-    m_db = new QSqlDatabase();
-    m_db->addDatabase("QSQLITE");
+    m_db = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE", "xbmc"));
     m_db->setDatabaseName(database);
     if (!m_db->open())
         MessageBox::instance()->showMessage(tr("Connection to XBMC SQLite Database failed!"));
@@ -79,7 +78,11 @@ bool XbmcSql::saveMovie(Movie *movie)
     int idPath = -1;
     QString path = mediaCenterPath(movie->files().at(0));
     QFileInfo fiPath(path);
-    path = fiPath.path() + QDir::separator();
+    path = fiPath.path();
+    if (path.contains("\\"))
+        path.append("\\");
+    else
+        path.append("/");
     query.prepare("SELECT idPath FROM path WHERE strPath=:path");
     query.bindValue(":path", path);
     query.exec();
@@ -101,11 +104,11 @@ bool XbmcSql::saveMovie(Movie *movie)
         sqlWhereFile = QString("strFilename='%1'").arg(mediaCenterPath(movie->files().at(0)));
     else
         sqlWhereFile = QString("strFilename LIKE 'stack://%%1%'").arg(mediaCenterPath(movie->files().at(0)));
-    query.prepare("SELECT id, strFilename FROM files WHERE " + sqlWhereFile);
+    query.prepare("SELECT idFile, strFilename FROM files WHERE " + sqlWhereFile);
     query.exec();
     if (movie->files().count() == 1) {
         if (query.next())
-            idFile = query.value(query.record().indexOf("id")).toInt();
+            idFile = query.value(query.record().indexOf("idFile")).toInt();
     } else {
         while (idFile == -1 && query.next()) {
             QString path = query.value(query.record().indexOf("strFilename")).toString();
@@ -117,17 +120,17 @@ bool XbmcSql::saveMovie(Movie *movie)
             qSort(filePaths);
             qSort(dbPaths);
             if (dbPaths == filePaths)
-                idFile = query.value(query.record().indexOf("id")).toInt();
+                idFile = query.value(query.record().indexOf("idFile")).toInt();
         }
     }
 
     // update file data and get movie id, or insert file
     if (idFile != -1) {
-        query.prepare("SELECT id FROM movies WHERE idFile=:idFile");
+        query.prepare("SELECT idMovie FROM movies WHERE idFile=:idFile");
         query.bindValue(":idFile", idFile);
         query.exec();
         if (query.next())
-            idMovie = query.value(query.record().indexOf("id")).toInt();
+            idMovie = query.value(query.record().indexOf("idMovie")).toInt();
         query.prepare("UPDATE files SET playCount=:playCount, lastPlayed=:lastPlayed WHERE idFile=:idFile");
         query.bindValue(":idFile", idFile);
         if (movie->playcount() == 0)
@@ -199,7 +202,7 @@ bool XbmcSql::saveMovie(Movie *movie)
                       "c19=:trailer, "
                       "c20=:fanart, "
                       "c21=:countries "
-                      "WHERE id=:movieId ");
+                      "WHERE idMovie=:movieId ");
         query.bindValue(":movieId", idMovie);
         query.bindValue(":title", movie->name());
         query.bindValue(":plot", movie->overview());
@@ -852,6 +855,7 @@ bool XbmcSql::saveTvShow(TvShow *show)
         query.bindValue(":fanart", fanart);
         query.bindValue(":certification", show->certification());
         query.bindValue(":network", show->network());
+        query.exec();
     } else {
         query.prepare("INSERT INTO tvshow(c00, c01, c04, c05, c06, c08, c11, c13, c14, c16, c17) "
                       "VALUES(:title, :plot, :rating, :firstAired, :thumbnails, :genres, :fanart, :certification, :network, :path, :idPath)");
@@ -957,9 +961,13 @@ bool XbmcSql::saveTvShow(TvShow *show)
     // save images
     // all seasons poster
     if (show->posterImageChanged() && !show->posterImage()->isNull()) {
-        // English
-        QString fileHash = hash(QString("season%1* All Seasons").arg(path));
+        QString fileHash = hash(path);
         QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
+        show->posterImage()->save(posterPath, "jpg", 100);
+
+        // English
+        fileHash = hash(QString("season%1* All Seasons").arg(path));
+        posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
         show->posterImage()->save(posterPath, "jpg", 100);
 
         // German
@@ -1038,8 +1046,10 @@ bool XbmcSql::saveTvShowEpisode(TvShowEpisode *episode)
     QString path = episode->tvShow()->mediaCenterPath();
     if (path.isEmpty()) {
         path = tvShowMediaCenterPath(episode->tvShow()->dir());
-        if (!path.endsWith(QDir::separator()))
-            path.append(QDir::separator());
+        if (path.contains("\\") && !path.endsWith("\\"))
+            path.append("\\");
+        else if (path.contains("/") && !path.endsWith("/"))
+            path.append("/");
     }
     query.prepare("SELECT idPath FROM path WHERE strPath=:path");
     query.bindValue(":path", path);
@@ -1086,11 +1096,11 @@ bool XbmcSql::saveTvShowEpisode(TvShowEpisode *episode)
 
     // update file data and get episode id, or insert file
     if (idFile != -1) {
-        query.prepare("SELECT id FROM episode WHERE idFile=:idFile");
+        query.prepare("SELECT idEpisode FROM episode WHERE idFile=:idFile");
         query.bindValue(":idFile", idFile);
         query.exec();
         if (query.next())
-            idEpisode = query.value(query.record().indexOf("id")).toInt();
+            idEpisode = query.value(query.record().indexOf("idEpisode")).toInt();
         query.prepare("UPDATE files SET playCount=:playCount, lastPlayed=:lastPlayed WHERE idFile=:idFile");
         query.bindValue(":idFile", idFile);
         if (episode->playCount() == 0)
@@ -1119,7 +1129,6 @@ bool XbmcSql::saveTvShowEpisode(TvShowEpisode *episode)
             query.bindValue(":playCount", episode->playCount());
         query.bindValue(":lastPlayed", episode->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
         query.exec();
-        qDebug() << query.lastError();
         idFile = query.lastInsertId().toInt();
     }
 
@@ -1295,6 +1304,11 @@ QString XbmcSql::mediaCenterPath(QString file)
     if (!dir.mediaCenterPath.isEmpty())
         mediaCenterFile.replace(dir.path, dir.mediaCenterPath);
 
+    if (dir.mediaCenterPath.contains("\\"))
+        mediaCenterFile.replace("/", "\\");
+    else
+        mediaCenterFile.replace("\\", "/");
+
     return mediaCenterFile;
 }
 
@@ -1324,6 +1338,11 @@ QString XbmcSql::tvShowMediaCenterPath(QString file)
     }
     if (!dir.mediaCenterPath.isEmpty())
         mediaCenterFile.replace(dir.path, dir.mediaCenterPath);
+
+    if (dir.mediaCenterPath.contains("\\"))
+        mediaCenterFile.replace("/", "\\");
+    else
+        mediaCenterFile.replace("\\", "/");
 
     return mediaCenterFile;
 }
