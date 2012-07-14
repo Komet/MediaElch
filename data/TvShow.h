@@ -81,7 +81,7 @@ public:
     void removeGenre(QString *genre);
 
     bool loadData(MediaCenterInterface *mediaCenterInterface);
-    void loadData(QString id, TvScraperInterface *tvScraperInterface);
+    void loadData(QString id, TvScraperInterface *tvScraperInterface, bool updateAllEpisodes);
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     void loadImages(MediaCenterInterface *mediaCenterInterface);
 

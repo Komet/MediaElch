@@ -175,10 +175,11 @@ QList<ScraperSearchResult> TheTvDb::parseSearch(QString xml)
     return results;
 }
 
-void TheTvDb::loadTvShowData(QString id, TvShow *show)
+void TheTvDb::loadTvShowData(QString id, TvShow *show, bool updateAllEpisodes)
 {
     m_currentShow = show;
     m_currentId = id;
+    m_updateAllEpisodes = updateAllEpisodes;
     QString mirror = m_xmlMirrors.at(qrand()%m_xmlMirrors.count());
     QUrl url(QString("%1/api/%2/series/%3/all/%4.xml").arg(mirror).arg(m_apiKey).arg(id).arg(m_language));
     m_loadReply = qnam()->get(QNetworkRequest(url));
@@ -189,7 +190,7 @@ void TheTvDb::onLoadFinished()
 {
     if (m_loadReply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(m_loadReply->readAll());
-        parseAndAssignInfos(msg, m_currentShow);
+        parseAndAssignInfos(msg, m_currentShow, m_updateAllEpisodes);
     }
     m_loadReply->deleteLater();
     QString mirror = m_xmlMirrors.at(qrand()%m_xmlMirrors.count());
@@ -221,7 +222,7 @@ void TheTvDb::onBannersFinished()
     m_currentShow->scraperLoadDone();
 }
 
-void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show)
+void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, bool updateAllEpisodes)
 {
     show->clear();
     QDomDocument domDoc;
@@ -250,7 +251,7 @@ void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show)
             int seasonNumber = elem.elementsByTagName("SeasonNumber").at(0).toElement().text().toInt();
             int episodeNumber = elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt();
             TvShowEpisode *episode = show->episode(seasonNumber, episodeNumber);
-            if (episode->isValid())
+            if (episode->isValid() && (updateAllEpisodes || !episode->infoLoaded() ))
                 parseAndAssignSingleEpisodeInfos(elem, episode);
         }
     }

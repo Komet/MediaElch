@@ -65,9 +65,9 @@ bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface)
     return infoLoaded;
 }
 
-void TvShow::loadData(QString id, TvScraperInterface *tvScraperInterface)
+void TvShow::loadData(QString id, TvScraperInterface *tvScraperInterface, bool updateAllEpisodes)
 {
-    tvScraperInterface->loadTvShowData(id, this);
+    tvScraperInterface->loadTvShowData(id, this, updateAllEpisodes);
 }
 
 bool TvShow::saveData(MediaCenterInterface *mediaCenterInterface)

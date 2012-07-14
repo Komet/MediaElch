@@ -237,10 +237,11 @@ void TvShowWidgetTvShow::onStartScraperSearch()
         return;
     emit sigSetActionSaveEnabled(false, WidgetTvShows);
     emit sigSetActionSearchEnabled(false, WidgetTvShows);
+    TvShowSearch::instance()->setChkUpdateAllVisible(true);
     TvShowSearch::instance()->exec(m_show->name());
     if (TvShowSearch::instance()->result() == QDialog::Accepted) {
         onSetEnabled(false);
-        m_show->loadData(TvShowSearch::instance()->scraperId(), Manager::instance()->tvScrapers().at(0));
+        m_show->loadData(TvShowSearch::instance()->scraperId(), Manager::instance()->tvScrapers().at(0), TvShowSearch::instance()->updateAll());
         connect(m_show, SIGNAL(sigLoaded()), this, SLOT(onLoadDone()), Qt::UniqueConnection);
     } else {
         emit sigSetActionSearchEnabled(true, WidgetTvShows);
@@ -301,7 +302,7 @@ void TvShowWidgetTvShow::onLoadDone()
     }
 
     foreach (TvShowEpisode *episode, m_show->episodes()) {
-        if (episode->thumbnail().isEmpty())
+        if (episode->thumbnail().isEmpty() || !episode->hasChanged())
             continue;
         DownloadManagerElement d;
         d.imageType = TypeShowThumbnail;

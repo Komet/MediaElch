@@ -12,7 +12,7 @@ class TvShowSearch;
 class TvShowSearch : public QDialog
 {
     Q_OBJECT
-    
+
 public:
     explicit TvShowSearch(QWidget *parent = 0);
     ~TvShowSearch();
@@ -21,6 +21,8 @@ public:
 public slots:
     int exec(QString searchString);
     static TvShowSearch *instance(QWidget *parent = 0);
+    void setChkUpdateAllVisible(bool visible);
+    bool updateAll();
 
 private slots:
     void onSearch();

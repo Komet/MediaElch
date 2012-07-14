@@ -67,6 +67,13 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
+      <widget class="QCheckBox" name="chkUpdateAllEpisodes">
+       <property name="text">
+        <string>Update all episodes</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="horizontalSpacer_4">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>

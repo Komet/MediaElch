@@ -267,38 +267,38 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../MainWindow.ui" line="232"/>
-        <location filename="../MainWindow.cpp" line="177"/>
+        <location filename="../MainWindow.cpp" line="175"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="237"/>
-        <location filename="../MainWindow.cpp" line="176"/>
+        <location filename="../MainWindow.cpp" line="174"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="169"/>
+        <location filename="../MainWindow.cpp" line="167"/>
         <source>Search</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="170"/>
+        <location filename="../MainWindow.cpp" line="168"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="171"/>
+        <location filename="../MainWindow.cpp" line="169"/>
         <source>Save All</source>
         <translation>Alle Speichern</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="172"/>
+        <location filename="../MainWindow.cpp" line="170"/>
         <source>Reload</source>
         <translation>Neu laden</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="173"/>
+        <location filename="../MainWindow.cpp" line="171"/>
         <source>Reload Movie List</source>
         <translation>Filmliste neu laden</translation>
     </message>
@@ -307,12 +307,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Einstellungen</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="174"/>
+        <location filename="../MainWindow.cpp" line="172"/>
         <source>Export</source>
         <translation>Export</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="175"/>
+        <location filename="../MainWindow.cpp" line="173"/>
         <source>Export Movie Database</source>
         <translation>Filmdatenbank exportieren</translation>
     </message>
@@ -1186,7 +1186,12 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Ergebnis</translation>
     </message>
     <message>
-        <location filename="../TvShowSearch.ui" line="85"/>
+        <location filename="../TvShowSearch.ui" line="72"/>
+        <source>Update all episodes</source>
+        <translation>Alle Episoden neu laden</translation>
+    </message>
+    <message>
+        <location filename="../TvShowSearch.ui" line="92"/>
         <source>Close</source>
         <translation>Schließen</translation>
     </message>
@@ -1199,7 +1204,12 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../TvShowWidget.cpp" line="82"/>
+        <location filename="../TvShowWidget.cpp" line="84"/>
+        <source>Saving changed TV Shows and Episodes</source>
+        <translation>Speichere geänderte Serien und Episoden</translation>
+    </message>
+    <message>
+        <location filename="../TvShowWidget.cpp" line="102"/>
         <source>All TV Shows and Episodes Saved</source>
         <translation>Alle Serien und Episoden gespeichert</translation>
     </message>
@@ -1365,12 +1375,12 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Auflösung</translation>
     </message>
     <message>
-        <location filename="../TvShowWidgetEpisode.cpp" line="287"/>
+        <location filename="../TvShowWidgetEpisode.cpp" line="288"/>
         <source>Unknown Director</source>
         <translation>Unbekannter Regisseur</translation>
     </message>
     <message>
-        <location filename="../TvShowWidgetEpisode.cpp" line="323"/>
+        <location filename="../TvShowWidgetEpisode.cpp" line="324"/>
         <source>Unknown Writer</source>
         <translation>Unbekannter Autor</translation>
     </message>
@@ -1523,12 +1533,12 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Staffel %1</translation>
     </message>
     <message>
-        <location filename="../TvShowWidgetTvShow.cpp" line="435"/>
+        <location filename="../TvShowWidgetTvShow.cpp" line="436"/>
         <source>Unknown Genre</source>
         <translation>Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../TvShowWidgetTvShow.cpp" line="475"/>
+        <location filename="../TvShowWidgetTvShow.cpp" line="476"/>
         <source>Unknown Role</source>
         <translation>Unbekannte Rolle</translation>
     </message>
@@ -1537,7 +1547,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../TvShowWidgetTvShow.cpp" line="474"/>
+        <location filename="../TvShowWidgetTvShow.cpp" line="475"/>
         <source>Unknown Actor</source>
         <translation>Unbekannter Schauspieler</translation>
     </message>
@@ -1551,7 +1561,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
     <message>
-        <location filename="../TvShowWidgetTvShow.cpp" line="317"/>
+        <location filename="../TvShowWidgetTvShow.cpp" line="318"/>
         <source>Downloading Missing Actor Images and Episode Thumbnails...</source>
         <translation>Lade fehlende Schauspielerbilder und Episoden Vorschaubilder...</translation>
     </message>

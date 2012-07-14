@@ -40,13 +40,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     MessageBox::instance(this)->reposition(this->size());
     Manager::instance();
-    if (m_settingsWidget->mainWindowSize().isValid()) {
+    if (m_settingsWidget->mainWindowSize().isValid())
         resize(m_settingsWidget->mainWindowSize());
-    }
-    if (!m_settingsWidget->mainWindowPosition().isNull()) {
+    if (!m_settingsWidget->mainWindowPosition().isNull())
         move(m_settingsWidget->mainWindowPosition());
-        qDebug() << "setting position" << m_settingsWidget->mainWindowPosition();
-    }
 
     Manager::instance()->movieFileSearcher()->setMovieDirectories(m_settingsWidget->movieDirectories());
     Manager::instance()->tvShowFileSearcher()->setMovieDirectories(m_settingsWidget->tvShowDirectories());

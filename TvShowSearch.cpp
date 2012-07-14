@@ -82,9 +82,19 @@ void TvShowSearch::onResultClicked(QTableWidgetItem *item)
     this->accept();
 }
 
+void TvShowSearch::setChkUpdateAllVisible(bool visible)
+{
+    ui->chkUpdateAllEpisodes->setVisible(visible);
+}
+
 /*** GETTER ***/
 
 QString TvShowSearch::scraperId()
 {
     return m_scraperId;
+}
+
+bool TvShowSearch::updateAll()
+{
+    return ui->chkUpdateAllEpisodes->isChecked();
 }

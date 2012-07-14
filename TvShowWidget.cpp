@@ -69,7 +69,6 @@ void TvShowWidget::onSaveInformation()
 
 void TvShowWidget::onSaveAll()
 {
-    qDebug() << Q_FUNC_INFO;
     QList<TvShow*> shows = Manager::instance()->tvShowModel()->tvShows();
     int episodesToSave = 0;
     int episodesSaved = 0;
@@ -86,7 +85,6 @@ void TvShowWidget::onSaveAll()
     qApp->processEvents();
 
     for (int i=0, n=shows.count() ; i<n ; ++i) {
-        qDebug() << shows[i]->name();
         if (shows[i]->hasChanged()) {
             shows[i]->saveData(Manager::instance()->mediaCenterInterface());
             MessageBox::instance()->progressBarProgress(++episodesSaved, episodesToSave, Constants::TvShowWidgetSaveProgressMessageId);
