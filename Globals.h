@@ -15,6 +15,7 @@ namespace Constants {
     const int MovieWidgetProgressMessageId       = 10001;
     const int TvShowSearcherProgressMessageId    = 10002;
     const int TvShowWidgetProgressMessageId      = 10003;
+    const int TvShowWidgetSaveProgressMessageId  = 10004;
 }
 
 namespace TvShowRoles {

@@ -71,14 +71,36 @@ void TvShowWidget::onSaveAll()
 {
     qDebug() << Q_FUNC_INFO;
     QList<TvShow*> shows = Manager::instance()->tvShowModel()->tvShows();
+    int episodesToSave = 0;
+    int episodesSaved = 0;
     for (int i=0, n=shows.count() ; i<n ; ++i) {
         if (shows[i]->hasChanged())
-            shows[i]->saveData(Manager::instance()->mediaCenterInterface());
+            episodesToSave++;
         for (int x=0, y=shows[i]->episodes().count() ; x<y ; ++x) {
             if (shows[i]->episodes().at(x)->hasChanged())
-                shows[i]->episodes().at(x)->saveData(Manager::instance()->mediaCenterInterface());
+                episodesToSave++;
         }
     }
+
+    MessageBox::instance()->showProgressBar(tr("Saving changed TV Shows and Episodes"), Constants::TvShowWidgetSaveProgressMessageId);
+    qApp->processEvents();
+
+    for (int i=0, n=shows.count() ; i<n ; ++i) {
+        qDebug() << shows[i]->name();
+        if (shows[i]->hasChanged()) {
+            shows[i]->saveData(Manager::instance()->mediaCenterInterface());
+            MessageBox::instance()->progressBarProgress(++episodesSaved, episodesToSave, Constants::TvShowWidgetSaveProgressMessageId);
+            qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
+        }
+        for (int x=0, y=shows[i]->episodes().count() ; x<y ; ++x) {
+            if (shows[i]->episodes().at(x)->hasChanged()) {
+                shows[i]->episodes().at(x)->saveData(Manager::instance()->mediaCenterInterface());
+                MessageBox::instance()->progressBarProgress(++episodesSaved, episodesToSave, Constants::TvShowWidgetSaveProgressMessageId);
+                qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
+            }
+        }
+    }
+    MessageBox::instance()->hideProgressBar(Constants::TvShowWidgetSaveProgressMessageId);
     MessageBox::instance()->showMessage(tr("All TV Shows and Episodes Saved"));
 }
 

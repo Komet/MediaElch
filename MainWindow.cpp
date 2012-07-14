@@ -45,6 +45,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     if (!m_settingsWidget->mainWindowPosition().isNull()) {
         move(m_settingsWidget->mainWindowPosition());
+        qDebug() << "setting position" << m_settingsWidget->mainWindowPosition();
     }
 
     Manager::instance()->movieFileSearcher()->setMovieDirectories(m_settingsWidget->movieDirectories());
