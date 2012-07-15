@@ -31,6 +31,7 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     ui->files->setModel(m_tvShowProxyModel);
     ui->files->setItemDelegate(m_tvShowDelegate);
     ui->files->sortByColumn(0);
+    ui->files->setAttribute(Qt::WA_MacShowFocusRect, false);
 
     connect(ui->files, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)));
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(finished()), this, SLOT(searchFinished()));
