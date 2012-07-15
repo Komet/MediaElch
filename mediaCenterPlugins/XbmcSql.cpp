@@ -100,10 +100,11 @@ bool XbmcSql::saveMovie(Movie *movie)
     int idMovie = -1;
     int idFile = -1;
     QString sqlWhereFile;
+    QString fileName = fiPath.fileName();
     if (movie->files().count() == 1)
-        sqlWhereFile = QString("strFilename='%1'").arg(mediaCenterPath(movie->files().at(0)));
+        sqlWhereFile = QString("strFilename='%1' AND idPath='%2'").arg(fileName).arg(idPath);
     else
-        sqlWhereFile = QString("strFilename LIKE 'stack://%%1%'").arg(mediaCenterPath(movie->files().at(0)));
+        sqlWhereFile = QString("strFilename LIKE 'stack://%%1%' AND idPath='%2'").arg(fileName).arg(idPath);
     query.prepare("SELECT idFile, strFilename FROM files WHERE " + sqlWhereFile);
     query.exec();
     if (movie->files().count() == 1) {
@@ -126,7 +127,7 @@ bool XbmcSql::saveMovie(Movie *movie)
 
     // update file data and get movie id, or insert file
     if (idFile != -1) {
-        query.prepare("SELECT idMovie FROM movies WHERE idFile=:idFile");
+        query.prepare("SELECT idMovie FROM movie WHERE idFile=:idFile");
         query.bindValue(":idFile", idFile);
         query.exec();
         if (query.next())
