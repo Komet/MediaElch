@@ -177,7 +177,8 @@ void MainWindow::setupToolbar()
     ui->mainToolBar->addAction(m_actionSave);
     ui->mainToolBar->addAction(m_actionSaveAll);
     ui->mainToolBar->addAction(m_actionRefreshFiles);
-    ui->mainToolBar->addAction(m_actionExport);
+    // @TODO: currently disabled as the whole exports need rethinking... ;)
+    // ui->mainToolBar->addAction(m_actionExport);
     ui->mainToolBar->addAction(m_actionAbout);
     ui->mainToolBar->addAction(m_actionQuit);
     ui->mainToolBar->addWidget(m_filterWidget);
