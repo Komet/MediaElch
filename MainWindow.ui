@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>993</width>
-    <height>649</height>
+    <width>1062</width>
+    <height>748</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -152,51 +152,81 @@
        <number>0</number>
       </property>
       <widget class="QWidget" name="page">
-       <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1">
-        <property name="spacing">
-         <number>0</number>
-        </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
         <property name="margin">
          <number>0</number>
         </property>
         <item>
-         <widget class="FilesWidget" name="filesWidget" native="true">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>0</height>
-           </size>
+         <widget class="QSplitter" name="movieSplitter">
+          <property name="styleSheet">
+           <string notr="true">QSplitter::handle {
+	background-color: transparent;
+}
+</string>
           </property>
+          <property name="lineWidth">
+           <number>0</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="handleWidth">
+           <number>1</number>
+          </property>
+          <property name="childrenCollapsible">
+           <bool>false</bool>
+          </property>
+          <widget class="FilesWidget" name="filesWidget" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+          </widget>
+          <widget class="MovieWidget" name="movieWidget" native="true"/>
          </widget>
-        </item>
-        <item>
-         <widget class="MovieWidget" name="movieWidget" native="true"/>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="page_2">
-       <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,1">
-        <property name="spacing">
-         <number>0</number>
-        </property>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
         <property name="margin">
          <number>0</number>
         </property>
         <item>
-         <widget class="TvShowFilesWidget" name="tvShowFilesWidget" native="true">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>0</height>
-           </size>
+         <widget class="QSplitter" name="tvShowSplitter">
+          <property name="styleSheet">
+           <string notr="true">QSplitter::handle {
+	background-color: transparent;
+}
+</string>
           </property>
-          <property name="focusPolicy">
-           <enum>Qt::NoFocus</enum>
+          <property name="lineWidth">
+           <number>0</number>
           </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="handleWidth">
+           <number>1</number>
+          </property>
+          <property name="childrenCollapsible">
+           <bool>false</bool>
+          </property>
+          <widget class="TvShowFilesWidget" name="tvShowFilesWidget" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
+          </widget>
+          <widget class="TvShowWidget" name="tvShowWidget" native="true"/>
          </widget>
-        </item>
-        <item>
-         <widget class="TvShowWidget" name="tvShowWidget" native="true"/>
         </item>
        </layout>
       </widget>

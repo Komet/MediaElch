@@ -44,6 +44,10 @@ MainWindow::MainWindow(QWidget *parent) :
         resize(m_settingsWidget->mainWindowSize());
     if (!m_settingsWidget->mainWindowPosition().isNull())
         move(m_settingsWidget->mainWindowPosition());
+    if (!m_settingsWidget->movieSplitterState().isNull())
+        ui->movieSplitter->restoreState(m_settingsWidget->movieSplitterState());
+    if (!m_settingsWidget->tvShowSplitterState().isNull())
+        ui->tvShowSplitter->restoreState(m_settingsWidget->tvShowSplitterState());
 
     Manager::instance()->movieFileSearcher()->setMovieDirectories(m_settingsWidget->movieDirectories());
     Manager::instance()->tvShowFileSearcher()->setMovieDirectories(m_settingsWidget->tvShowDirectories());
@@ -88,6 +92,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->buttonTvshows, SIGNAL(clicked()), this, SLOT(onMenuTvShows()));
     connect(ui->buttonSettings, SIGNAL(clicked()), this, SLOT(onMenuSettings()));
 
+    connect(ui->movieSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(onMovieSplitterMoved()));
+    connect(ui->tvShowSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(onTvShowSplitterMoved()));
+
     Manager::instance()->setupMediaCenterInterface();
 
     MovieSearch::instance(ui->centralWidget);
@@ -109,6 +116,8 @@ MainWindow::~MainWindow()
     Manager::instance()->shutdownMediaCenterInterfaces();
     m_settingsWidget->setMainWindowSize(size());
     m_settingsWidget->setMainWindowPosition(pos());
+    m_settingsWidget->setMovieSplitterState(ui->movieSplitter->saveState());
+    m_settingsWidget->setTvShowSplitterState(ui->tvShowSplitter->saveState());
     delete ui;
 }
 
@@ -373,4 +382,14 @@ void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
         (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1))
         m_actionSearch->setEnabled(enabled);
+}
+
+void MainWindow::onMovieSplitterMoved()
+{
+    ui->tvShowSplitter->restoreState(ui->movieSplitter->saveState());
+}
+
+void MainWindow::onTvShowSplitterMoved()
+{
+    ui->movieSplitter->restoreState(ui->tvShowSplitter->saveState());
 }

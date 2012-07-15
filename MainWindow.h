@@ -18,7 +18,7 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-    
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -42,6 +42,8 @@ private slots:
     void onSetExportEnabled(bool enabled, MainWidgets widget);
     void onSetSaveEnabled(bool enabled, MainWidgets widget);
     void onSetSearchEnabled(bool enabled, MainWidgets widget);
+    void onMovieSplitterMoved();
+    void onTvShowSplitterMoved();
 
 private:
     Ui::MainWindow *ui;
