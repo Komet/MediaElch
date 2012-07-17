@@ -47,6 +47,7 @@ private:
     QSqlDatabase db();
 
     QSqlDatabase *m_db;
+    bool m_isMySQL;
 };
 
 #endif // XBMCSQL_H

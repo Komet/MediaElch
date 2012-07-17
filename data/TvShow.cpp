@@ -3,6 +3,7 @@
 
 #include <QApplication>
 #include <QDebug>
+#include <QDir>
 
 TvShow::TvShow(QString dir, QObject *parent) :
     QObject(parent)
@@ -56,7 +57,7 @@ bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface)
 {
     bool infoLoaded = mediaCenterInterface->loadTvShow(this);
     if (!infoLoaded) {
-        QStringList dirParts = this->dir().split("/");
+        QStringList dirParts = this->dir().split(QDir::separator());
         if (dirParts.count() > 0)
             this->setName(dirParts.last());
     }

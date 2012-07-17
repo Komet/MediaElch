@@ -77,7 +77,7 @@ void TvShowFileSearcher::getDirContents(QString path, QMap<QString, QList<QStrin
             QString file = files.at(i);
             if (file.isEmpty())
                 continue;
-            tvShowFiles << subDir.path() + QDir::separator() + file;
+            tvShowFiles << QDir::toNativeSeparators(subDir.path()) + QDir::separator() + file;
             int pos = rx.indexIn(file);
             if (pos != -1) {
                 QString left = file.left(pos) + rx.cap(1);
@@ -92,12 +92,12 @@ void TvShowFileSearcher::getDirContents(QString path, QMap<QString, QList<QStrin
                     }
                 }
             }
-            if (contents.contains(subDir.path())) {
-                contents[subDir.path()].append(tvShowFiles);
+            if (contents.contains(QDir::toNativeSeparators(subDir.path()))) {
+                contents[QDir::toNativeSeparators(subDir.path())].append(tvShowFiles);
             } else {
                 QList<QStringList> l;
                 l << tvShowFiles;
-                contents.insert(subDir.path(), l);
+                contents.insert(QDir::toNativeSeparators(subDir.path()), l);
             }
         }
     }

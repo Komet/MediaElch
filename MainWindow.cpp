@@ -42,6 +42,8 @@ MainWindow::MainWindow(QWidget *parent) :
     Manager::instance();
     if (m_settingsWidget->mainWindowSize().isValid())
         resize(m_settingsWidget->mainWindowSize());
+    // Size for Screenshots
+    // resize(1121, 735);
     if (!m_settingsWidget->mainWindowPosition().isNull())
         move(m_settingsWidget->mainWindowPosition());
     if (!m_settingsWidget->movieSplitterState().isNull())

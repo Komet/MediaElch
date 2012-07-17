@@ -5,6 +5,9 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QXmlStreamWriter>
+#include <QtSql>
+
+#include <QMessageBox>
 
 #include "MessageBox.h"
 #include "SettingsWidget.h"
@@ -14,6 +17,7 @@ XbmcSql::XbmcSql(QObject *parent)
 {
     setParent(parent);
     m_db = 0;
+    m_isMySQL = false;
 }
 
 XbmcSql::~XbmcSql()
@@ -39,6 +43,7 @@ void XbmcSql::connectMysql(QString host, QString database, QString username, QSt
         delete m_db;
     }
 
+    m_isMySQL = true;
     m_db = new QSqlDatabase(QSqlDatabase::addDatabase("QMYSQL", "xbmc"));
     m_db->setHostName(host);
     m_db->setDatabaseName(database);
@@ -54,6 +59,7 @@ void XbmcSql::connectSqlite(QString database)
         m_db->close();
         delete m_db;
     }
+    m_isMySQL = false;
     m_db = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE", "xbmc"));
     m_db->setDatabaseName(database);
     if (!m_db->open())
@@ -76,13 +82,18 @@ bool XbmcSql::saveMovie(Movie *movie)
 
     // get Path ID
     int idPath = -1;
-    QString path = mediaCenterPath(movie->files().at(0));
-    QFileInfo fiPath(path);
-    path = fiPath.path();
-    if (path.contains("\\"))
-        path.append("\\");
-    else
-        path.append("/");
+    QFileInfo fiPath(mediaCenterPath(movie->files().at(0)));
+    QString path = fiPath.path();
+    if (mediaCenterPath(movie->files().at(0)).contains("\\")) {
+        path.replace("/", "\\");
+        if (!path.endsWith("\\"))
+            path.append("\\");
+    } else {
+        path.replace("\\", "/");
+        if (!path.endsWith("/"))
+            path.append("/");
+    }
+
     query.prepare("SELECT idPath FROM path WHERE strPath=:path");
     query.bindValue(":path", path);
     query.exec();
@@ -99,13 +110,14 @@ bool XbmcSql::saveMovie(Movie *movie)
     // get File ID
     int idMovie = -1;
     int idFile = -1;
-    QString sqlWhereFile;
-    QString fileName = fiPath.fileName();
-    if (movie->files().count() == 1)
-        sqlWhereFile = QString("strFilename='%1' AND idPath='%2'").arg(fileName).arg(idPath);
-    else
-        sqlWhereFile = QString("strFilename LIKE 'stack://%%1%' AND idPath='%2'").arg(fileName).arg(idPath);
-    query.prepare("SELECT idFile, strFilename FROM files WHERE " + sqlWhereFile);
+    if (movie->files().count() == 1) {
+        query.prepare("SELECT idFile, strFilename FROM files WHERE strFilename=:fileName AND idPath=:idPath");
+        query.bindValue(":idPath", idPath);
+        query.bindValue(":fileName", fiPath.fileName());
+    } else {
+        QString fileName = fiPath.fileName();
+        query.prepare(QString("SELECT idFile, strFilename FROM files WHERE strFilename LIKE 'stack://%%1%' AND idPath='%2'").arg(fileName).arg(idPath));
+    }
     query.exec();
     if (movie->files().count() == 1) {
         if (query.next())
@@ -188,7 +200,7 @@ bool XbmcSql::saveMovie(Movie *movie)
     if (idMovie != -1) {
         QString thumbnails;
         QString fanart;
-        query.prepare("UPDATE movies SET "
+        query.prepare("UPDATE movie SET "
                       "c00=:title, "
                       "c01=:plot, "
                       "c03=:tagline, "
@@ -413,10 +425,16 @@ bool XbmcSql::loadMovie(Movie *movie)
     movie->clear();
 
     QString sqlWhereFile;
-    if (movie->files().count() == 1)
-        sqlWhereFile = QString("M.c22='%1'").arg(mediaCenterPath(movie->files().at(0)));
-    else
-        sqlWhereFile = QString("M.c22 LIKE 'stack://%%1%'").arg(mediaCenterPath(movie->files().at(0)));
+    QString file = mediaCenterPath(movie->files().at(0));
+    if (movie->files().count() == 1) {
+        if (m_isMySQL)
+            file.replace("\\", "\\\\");
+        sqlWhereFile = QString("M.c22='%1'").arg(file);
+    } else {
+        if (m_isMySQL)
+            file.replace("\\", "\\\\\\\\");
+        sqlWhereFile = QString("M.c22 LIKE 'stack://%%1%'").arg(file);
+    }
 
     QSqlQuery query(db());
     query.prepare("SELECT "
@@ -575,21 +593,28 @@ bool XbmcSql::loadTvShow(TvShow *show)
         return false;
     show->clear();
 
+    QString path = tvShowMediaCenterPath(show->dir());
+    if (path.contains("\\") && !path.endsWith("\\"))
+        path.append("\\");
+    else if (path.contains("/") && !path.endsWith("/"))
+        path.append("/");
+
     QSqlQuery query(db());
-    query.prepare(QString("SELECT "
-                          "S.idShow, "
-                          "S.c00 AS title, "
-                          "S.c01 AS plot, "
-                          "S.c04 AS rating, "
-                          "S.c05 AS firstAired, "
-                          "S.c06 AS thumbnails, "
-                          "S.c08 AS genres, "
-                          "S.c11 AS fanart, "
-                          "S.c13 AS certification, "
-                          "S.c14 AS network, "
-                          "S.c16 AS folder "
-                          "FROM tvshow S "
-                          "WHERE S.c16 LIKE '%1%'").arg(tvShowMediaCenterPath(show->dir())));
+    query.prepare("SELECT "
+                  "S.idShow, "
+                  "S.c00 AS title, "
+                  "S.c01 AS plot, "
+                  "S.c04 AS rating, "
+                  "S.c05 AS firstAired, "
+                  "S.c06 AS thumbnails, "
+                  "S.c08 AS genres, "
+                  "S.c11 AS fanart, "
+                  "S.c13 AS certification, "
+                  "S.c14 AS network, "
+                  "S.c16 AS folder "
+                  "FROM tvshow S "
+                  "WHERE S.c16=:path");
+    query.bindValue(":path", path);
     query.exec();
     if (!query.next())
         return false;
@@ -697,9 +722,9 @@ bool XbmcSql::loadTvShowEpisode(TvShowEpisode *episode)
 
     QString sqlWhereFile;
     if (episode->files().count() == 1)
-        sqlWhereFile = QString("E.c18='%1'").arg(tvShowMediaCenterPath(episode->files().at(0)));
+        sqlWhereFile = QString("E.c18='%1'").arg(tvShowMediaCenterPath(episode->files().at(0)).replace("\\", "\\\\"));
     else
-        sqlWhereFile = QString("E.c18 LIKE 'stack://%%1%'").arg(tvShowMediaCenterPath(episode->files().at(0)));
+        sqlWhereFile = QString("E.c18 LIKE 'stack://%%1%'").arg(tvShowMediaCenterPath(episode->files().at(0)).replace("\\", "\\\\\\\\"));
 
     QSqlQuery query(db());
     query.prepare(QString("SELECT "
@@ -791,8 +816,10 @@ bool XbmcSql::saveTvShow(TvShow *show)
     QString path = show->mediaCenterPath();
     if (path.isEmpty()) {
         path = tvShowMediaCenterPath(show->dir());
-        if (!path.endsWith(QDir::separator()))
-            path.append(QDir::separator());
+        if (path.contains("\\") && !path.endsWith("\\"))
+            path.append("\\");
+        else if (path.contains("/") && !path.endsWith("/"))
+            path.append("/");
     }
     query.prepare("SELECT idPath FROM path WHERE strPath=:path");
     query.bindValue(":path", path);
@@ -808,7 +835,8 @@ bool XbmcSql::saveTvShow(TvShow *show)
     }
 
     int idShow = -1;
-    query.prepare(QString("SELECT idShow FROM tvshow WHERE c16 LIKE '%1%'").arg(tvShowMediaCenterPath(show->dir())));
+    query.prepare("SELECT idShow FROM tvshow WHERE c16=:path");
+    query.bindValue(":path", path);
     query.exec();
     if (query.next())
         idShow = query.value(query.record().indexOf("idShow")).toInt();
@@ -1023,8 +1051,14 @@ bool XbmcSql::saveTvShowEpisode(TvShowEpisode *episode)
     QSqlQuery query(db());
     int idShow = -1;
 
+    QString path = tvShowMediaCenterPath(episode->tvShow()->dir());
+    if (path.contains("\\") && !path.endsWith("\\"))
+        path.append("\\");
+    else if (path.contains("/") && !path.endsWith("/"))
+        path.append("/");
     // get show id
-    query.prepare(QString("SELECT idShow FROM tvshow WHERE c16 LIKE '%1%'").arg(tvShowMediaCenterPath(episode->tvShow()->dir())));
+    query.prepare("SELECT idShow FROM tvshow WHERE c16=:path");
+    query.bindValue(":path", path);
     query.exec();
     if (query.next())
         idShow = query.value(query.record().indexOf("idShow")).toInt();
@@ -1034,7 +1068,8 @@ bool XbmcSql::saveTvShowEpisode(TvShowEpisode *episode)
         episode->tvShow()->saveData(this);
 
     // check again
-    query.prepare(QString("SELECT idShow FROM tvshow WHERE c16 LIKE '%1%'").arg(tvShowMediaCenterPath(episode->tvShow()->dir())));
+    query.prepare("SELECT idShow FROM tvshow WHERE c16=:path");
+    query.bindValue(":path", path);
     query.exec();
     if (query.next())
         idShow = query.value(query.record().indexOf("idShow")).toInt();
@@ -1044,14 +1079,6 @@ bool XbmcSql::saveTvShowEpisode(TvShowEpisode *episode)
 
     // get Path ID
     int idPath = -1;
-    QString path = episode->tvShow()->mediaCenterPath();
-    if (path.isEmpty()) {
-        path = tvShowMediaCenterPath(episode->tvShow()->dir());
-        if (path.contains("\\") && !path.endsWith("\\"))
-            path.append("\\");
-        else if (path.contains("/") && !path.endsWith("/"))
-            path.append("/");
-    }
     query.prepare("SELECT idPath FROM path WHERE strPath=:path");
     query.bindValue(":path", path);
     query.exec();
@@ -1297,18 +1324,19 @@ QString XbmcSql::mediaCenterPath(QString file)
 {
     QList<SettingsDir> dirs = SettingsWidget::instance()->movieDirectories();
     SettingsDir dir;
+    file = QDir::toNativeSeparators(file);
     QString mediaCenterFile = file;
     for (int i=0, n=dirs.count() ; i<n ; ++i) {
         if (file.startsWith(dirs.at(i).path) && dirs.at(i).path.length() > dir.path.length())
             dir = dirs.at(i);
     }
-    if (!dir.mediaCenterPath.isEmpty())
+    if (!dir.mediaCenterPath.isEmpty()) {
         mediaCenterFile.replace(dir.path, dir.mediaCenterPath);
-
-    if (dir.mediaCenterPath.contains("\\"))
-        mediaCenterFile.replace("/", "\\");
-    else
-        mediaCenterFile.replace("\\", "/");
+        if (dir.mediaCenterPath.contains("\\"))
+            mediaCenterFile.replace("/", "\\");
+        else
+            mediaCenterFile.replace("\\", "/");
+    }
 
     return mediaCenterFile;
 }
@@ -1332,18 +1360,19 @@ QString XbmcSql::tvShowMediaCenterPath(QString file)
 {
     QList<SettingsDir> dirs = SettingsWidget::instance()->tvShowDirectories();
     SettingsDir dir;
+    file = QDir::toNativeSeparators(file);
     QString mediaCenterFile = file;
     for (int i=0, n=dirs.count() ; i<n ; ++i) {
         if (file.startsWith(dirs.at(i).path) && dirs.at(i).path.length() > dir.path.length())
             dir = dirs.at(i);
     }
-    if (!dir.mediaCenterPath.isEmpty())
+    if (!dir.mediaCenterPath.isEmpty()) {
         mediaCenterFile.replace(dir.path, dir.mediaCenterPath);
-
-    if (dir.mediaCenterPath.contains("\\"))
-        mediaCenterFile.replace("/", "\\");
-    else
-        mediaCenterFile.replace("\\", "/");
+        if (dir.mediaCenterPath.contains("\\"))
+            mediaCenterFile.replace("/", "\\");
+        else
+            mediaCenterFile.replace("\\", "/");
+    }
 
     return mediaCenterFile;
 }
