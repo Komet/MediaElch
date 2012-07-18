@@ -152,9 +152,10 @@ void OFDb::parseAndAssignInfos(QString data, Movie *movie)
         } else if (xml.name() == "jahr") {
             movie->setReleased(QDate::fromString(xml.readElementText(), "yyyy"));
         } else if (xml.name() == "bild") {
+            QString url = xml.readElementText();
             Poster p;
-            p.originalUrl = QUrl(xml.readElementText());
-            p.thumbUrl = QUrl(xml.readElementText());
+            p.originalUrl = QUrl(url);
+            p.thumbUrl = QUrl(url);
             movie->addPoster(p);
         } else if (xml.name() == "bewertung") {
             while (xml.readNextStartElement()) {
