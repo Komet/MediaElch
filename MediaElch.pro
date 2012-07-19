@@ -9,6 +9,16 @@ QT       += core gui network script xml sql
 TARGET = MediaElch
 TEMPLATE = app
 
+target.path = /usr/bin
+INSTALLS += target
+
+dotDesktop.path = /usr/share/applications
+dotDesktop.files = desktop/MediaElch.desktop
+INSTALLS += dotDesktop
+
+icon.path = /usr/share/pixmaps
+icon.files = desktop/MediaElch.png
+INSTALLS += icon
 
 SOURCES += main.cpp\
         MainWindow.cpp \
