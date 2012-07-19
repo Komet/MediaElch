@@ -3,6 +3,8 @@
 #include <QDebug>
 #include <QTimer>
 
+#include "DownloadManagerElement.h"
+
 DownloadManager::DownloadManager(QObject *parent) :
     QObject(parent)
 {
@@ -36,6 +38,16 @@ void DownloadManager::setDownloads(QList<DownloadManagerElement> elements)
 
 void DownloadManager::startNextDownload()
 {
+    if (m_currentDownloadElement.movie) {
+        int numDownloadsLeft = 0;
+        for (int i=0, n=m_queue.size() ; i<n ; ++i) {
+            if (m_queue[i].movie == m_currentDownloadElement.movie)
+                numDownloadsLeft++;
+        }
+        if (numDownloadsLeft == 0)
+            emit allDownloadsFinished(m_currentDownloadElement.movie);
+    }
+
     if (m_queue.isEmpty()) {
         emit allDownloadsFinished();
         return;
@@ -47,8 +59,19 @@ void DownloadManager::startNextDownload()
     connect(m_currentReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
     connect(m_currentReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(downloadProgress(qint64,qint64)));
 
-    if (m_currentDownloadElement.imageType == TypeActor || m_currentDownloadElement.imageType == TypeShowThumbnail)
-        emit downloadsLeft(m_queue.size());
+
+    if (m_currentDownloadElement.imageType == TypeActor || m_currentDownloadElement.imageType == TypeShowThumbnail) {
+        if (m_currentDownloadElement.movie) {
+            int numDownloadsLeft = 0;
+            for (int i=0, n=m_queue.size() ; i<n ; ++i) {
+                if (m_queue[i].movie == m_currentDownloadElement.movie)
+                    numDownloadsLeft++;
+            }
+            emit downloadsLeft(numDownloadsLeft, m_currentDownloadElement);
+        } else {
+            emit downloadsLeft(m_queue.size());
+        }
+    }
 }
 
 void DownloadManager::downloadProgress(qint64 received, qint64 total)

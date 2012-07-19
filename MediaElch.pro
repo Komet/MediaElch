@@ -53,7 +53,8 @@ SOURCES += main.cpp\
     scrapers/TheTvDb.cpp \
     TvShowSearch.cpp \
     mediaCenterPlugins/XbmcSql.cpp \
-    data/PortScan.cpp
+    data/PortScan.cpp \
+    DownloadManagerElement.cpp
 
 HEADERS  += MainWindow.h \
     data/Movie.h \
@@ -101,7 +102,8 @@ HEADERS  += MainWindow.h \
     data/TvScraperInterface.h \
     TvShowSearch.h \
     mediaCenterPlugins/XbmcSql.h \
-    data/PortScan.h
+    data/PortScan.h \
+    DownloadManagerElement.h
 
 FORMS    += MainWindow.ui \
     MovieSearch.ui \

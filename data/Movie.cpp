@@ -25,6 +25,9 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_imagesLoaded = false;
     m_watched = false;
     m_hasChanged = false;
+    m_downloadsInProgress = false;
+    static int m_idCounter = 0;
+    m_movieId = ++m_idCounter;
 }
 
 Movie::~Movie()
@@ -61,7 +64,7 @@ bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
 
 bool Movie::loadData(MediaCenterInterface *mediaCenterInterface)
 {
-    if (m_infoLoaded)
+    if (m_infoLoaded || hasChanged())
         return m_infoLoaded;
 
     bool infoLoaded = mediaCenterInterface->loadMovie(this);
@@ -91,7 +94,7 @@ void Movie::loadData(QString id, ScraperInterface *scraperInterface)
 
 void Movie::scraperLoadDone()
 {
-    emit loaded();
+    emit loaded(this);
 }
 
 void Movie::loadImages(MediaCenterInterface *mediaCenterInterface)
@@ -275,6 +278,16 @@ bool Movie::hasChanged() const
     return m_hasChanged;
 }
 
+int Movie::movieId() const
+{
+    return m_movieId;
+}
+
+bool Movie::downloadsInProgress() const
+{
+    return m_downloadsInProgress;
+}
+
 /*** SETTER ***/
 
 void Movie::setName(QString name)
@@ -417,6 +430,11 @@ void Movie::setChanged(bool changed)
 {
     m_hasChanged = changed;
     emit sigChanged(this);
+}
+
+void Movie::setDownloadsInProgress(bool inProgress)
+{
+    m_downloadsInProgress = inProgress;
 }
 
 /*** ADDER ***/

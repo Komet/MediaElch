@@ -6,6 +6,7 @@
 #include <QUrl>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
+#include "DownloadManagerElement.h"
 #include "Globals.h"
 #include "data/TvShowEpisode.h"
 
@@ -23,8 +24,10 @@ public:
 signals:
     void downloadProgress(DownloadManagerElement);
     void downloadsLeft(int);
+    void downloadsLeft(int, DownloadManagerElement);
     void downloadFinished(DownloadManagerElement);
     void allDownloadsFinished();
+    void allDownloadsFinished(Movie*);
 
 private slots:
     void downloadProgress(qint64 received, qint64 total);

@@ -55,6 +55,8 @@ public:
     bool posterImageChanged() const;
     bool backdropImageChanged() const;
     bool watched() const;
+    int movieId() const;
+    bool downloadsInProgress() const;
 
     bool hasChanged() const;
 
@@ -89,6 +91,7 @@ public:
     void setBackdropImage(QImage backdrop);
     void setWatched(bool watched);
     void setChanged(bool changed);
+    void setDownloadsInProgress(bool inProgress);
 
     void removeActor(Actor *actor);
     void removeCountry(QString *country);
@@ -103,7 +106,7 @@ public:
     void scraperLoadDone();
 
 signals:
-    void loaded();
+    void loaded(Movie*);
     void sigChanged(Movie*);
 
 private:
@@ -136,6 +139,8 @@ private:
     bool m_imagesLoaded;
     bool m_watched;
     bool m_hasChanged;
+    int m_movieId;
+    bool m_downloadsInProgress;
 };
 
 QDebug operator<<(QDebug dbg, const Movie &movie);

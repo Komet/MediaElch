@@ -18,7 +18,7 @@ class MovieWidget;
 class MovieWidget : public QWidget
 {
     Q_OBJECT
-    
+
 public:
     explicit MovieWidget(QWidget *parent = 0);
     ~MovieWidget();
@@ -26,13 +26,13 @@ public:
 public slots:
     void clear();
     void setMovie(Movie *movie);
-    void setEnabledTrue();
-    void setDisabledTrue();
     void showFirstTime();
     void hideFirstTime();
     void startScraperSearch();
     void saveInformation();
     void saveAll();
+    void setEnabledTrue(Movie *movie = 0);
+    void setDisabledTrue();
 
 protected:
     void resizeEvent(QResizeEvent *event);
@@ -45,9 +45,9 @@ signals:
     void setActionSaveEnabled(bool, MainWidgets);
 
 private slots:
-    void downloadActorsFinished();
-    void actorDownloadsLeft(int left);
-    void loadDone();
+    void downloadActorsFinished(Movie *movie);
+    void actorDownloadsLeft(int left, DownloadManagerElement elem);
+    void loadDone(Movie *movie);
     void chooseMoviePoster();
     void chooseMovieBackdrop();
     void posterDownloadFinished(DownloadManagerElement elem);
@@ -88,7 +88,6 @@ private:
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;
     QLabel *m_firstTimeLabel;
-    int m_progressMessageId;
     void updateMovieInfo();
 };
 

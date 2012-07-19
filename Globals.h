@@ -8,6 +8,7 @@
 #include <QUrl>
 #include <QVariant>
 
+class Movie;
 class TvShowEpisode;
 
 namespace Constants {
@@ -16,6 +17,7 @@ namespace Constants {
     const int TvShowSearcherProgressMessageId    = 10002;
     const int TvShowWidgetProgressMessageId      = 10003;
     const int TvShowWidgetSaveProgressMessageId  = 10004;
+    const int MovieProgressMessageId             = 20000;
 }
 
 namespace TvShowRoles {
@@ -75,6 +77,7 @@ enum TvShowType {
     TypeTvShow, TypeEpisode
 };
 
+/*
 struct DownloadManagerElement {
     ImageType imageType;
     QUrl url;
@@ -83,9 +86,10 @@ struct DownloadManagerElement {
     qint64 bytesTotal;
     Actor *actor;
     TvShowEpisode *episode;
+    Movie *movie;
     int season;
 };
-
+*/
 struct SettingsDir {
     QString path;
     QString mediaCenterPath;
