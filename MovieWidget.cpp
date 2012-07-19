@@ -302,6 +302,8 @@ void MovieWidget::updateMovieInfo()
         if (!certifications.contains(movie->certification()) && !movie->certification().isEmpty())
             certifications.append(movie->certification());
     }
+    sets.sort();
+    certifications.sort();
     ui->certification->addItems(certifications);
     ui->set->addItems(sets);
 
