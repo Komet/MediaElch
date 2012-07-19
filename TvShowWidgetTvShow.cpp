@@ -332,7 +332,7 @@ void TvShowWidgetTvShow::onChoosePoster()
     MovieImageDialog::instance()->setImageType(TypePoster);
     MovieImageDialog::instance()->clear();
     MovieImageDialog::instance()->setDownloads(m_show->posters());
-    MovieImageDialog::instance()->exec();
+    MovieImageDialog::instance()->exec(MovieImageDialogType::TvShowPoster);
 
     if (MovieImageDialog::instance()->result() == QDialog::Accepted) {
         emit sigSetActionSaveEnabled(false, WidgetTvShows);
@@ -353,7 +353,7 @@ void TvShowWidgetTvShow::onChooseSeasonPoster(int season)
     MovieImageDialog::instance()->setImageType(TypePoster);
     MovieImageDialog::instance()->clear();
     MovieImageDialog::instance()->setDownloads(m_show->seasonPosters(season));
-    MovieImageDialog::instance()->exec();
+    MovieImageDialog::instance()->exec(MovieImageDialogType::TvShowSeason);
     if (MovieImageDialog::instance()->result() == QDialog::Accepted) {
         emit sigSetActionSaveEnabled(false, WidgetTvShows);
         DownloadManagerElement d;
@@ -376,7 +376,7 @@ void TvShowWidgetTvShow::onChooseBackdrop()
     MovieImageDialog::instance()->setImageType(TypeBackdrop);
     MovieImageDialog::instance()->clear();
     MovieImageDialog::instance()->setDownloads(m_show->backdrops());
-    MovieImageDialog::instance()->exec();
+    MovieImageDialog::instance()->exec(MovieImageDialogType::TvShowBackdrop);
 
     if (MovieImageDialog::instance()->result() == QDialog::Accepted) {
         emit sigSetActionSaveEnabled(false, WidgetTvShows);

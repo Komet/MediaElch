@@ -295,6 +295,13 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show)
                 p.originalUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
             if (!elem.elementsByTagName("ThumbnailPath").isEmpty())
                 p.thumbUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("ThumbnailPath").at(0).toElement().text());
+            if (!elem.elementsByTagName("BannerType2").isEmpty()) {
+                QRegExp rx("(\\d+)x(\\d+)");
+                if (rx.indexIn(elem.elementsByTagName("BannerType2").at(0).toElement().text(), 0) != -1) {
+                    p.originalSize.setWidth(rx.cap(1).toInt());
+                    p.originalSize.setHeight(rx.cap(2).toInt());
+                }
+            }
             show->addBackdrop(p);
         } else if (bannerType == "poster") {
             Poster p;
@@ -303,6 +310,13 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show)
             if (!elem.elementsByTagName("BannerPath").isEmpty()) {
                 p.originalUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
                 p.thumbUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+            }
+            if (!elem.elementsByTagName("BannerType2").isEmpty()) {
+                QRegExp rx("(\\d+)x(\\d+)");
+                if (rx.indexIn(elem.elementsByTagName("BannerType2").at(0).toElement().text(), 0) != -1) {
+                    p.originalSize.setWidth(rx.cap(1).toInt());
+                    p.originalSize.setHeight(rx.cap(2).toInt());
+                }
             }
             show->addPoster(p);
         } else if (bannerType == "season") {

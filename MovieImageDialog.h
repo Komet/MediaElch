@@ -10,6 +10,7 @@
 #include <QResizeEvent>
 
 #include "Globals.h"
+#include "smallWidgets/ImageLabel.h"
 
 namespace Ui {
 class MovieImageDialog;
@@ -18,7 +19,7 @@ class MovieImageDialog;
 class MovieImageDialog : public QDialog
 {
     Q_OBJECT
-    
+
 public:
     explicit MovieImageDialog(QWidget *parent = 0);
     ~MovieImageDialog();
@@ -32,7 +33,7 @@ public:
 public slots:
     void accept();
     void reject();
-    int exec();
+    int exec(int type);
 
 protected:
     void resizeEvent(QResizeEvent *event);
@@ -43,6 +44,7 @@ private slots:
     void imageClicked(int row, int col);
     void chooseLocalImage();
     void onImageDropped(QUrl url);
+    void onPreviewSizeChange(int value);
 
 private:
     Ui::MovieImageDialog *ui;
@@ -51,8 +53,10 @@ private:
         QUrl thumbUrl;
         QUrl originalUrl;
         QPixmap pixmap;
+        QPixmap scaledPixmap;
         bool downloaded;
-        QLabel *cellWidget;
+        ImageLabel *cellWidget;
+        QSize resolution;
     };
 
     QNetworkAccessManager m_qnam;
@@ -61,6 +65,7 @@ private:
     ImageType m_imageType;
     QList<DownloadElement> m_elements;
     QUrl m_imageUrl;
+    int m_type;
 
     QNetworkAccessManager *qnam();
     void renderTable();

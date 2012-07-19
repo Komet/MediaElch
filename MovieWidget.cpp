@@ -389,13 +389,14 @@ void MovieWidget::chooseMoviePoster()
     MovieImageDialog::instance()->setImageType(TypePoster);
     MovieImageDialog::instance()->clear();
     MovieImageDialog::instance()->setDownloads(m_movie->posters());
-    MovieImageDialog::instance()->exec();
+    MovieImageDialog::instance()->exec(MovieImageDialogType::MoviePoster);
 
     if (MovieImageDialog::instance()->result() == QDialog::Accepted) {
         emit setActionSaveEnabled(false, WidgetMovies);
         DownloadManagerElement d;
         d.imageType = TypePoster;
         d.url = MovieImageDialog::instance()->imageUrl();
+        d.movie = m_movie;
         m_posterDownloadManager->addDownload(d);
         ui->poster->setPixmap(QPixmap());
         ui->poster->setMovie(m_loadingMovie);
@@ -410,13 +411,14 @@ void MovieWidget::chooseMovieBackdrop()
     MovieImageDialog::instance()->setImageType(TypeBackdrop);
     MovieImageDialog::instance()->clear();
     MovieImageDialog::instance()->setDownloads(m_movie->backdrops());
-    MovieImageDialog::instance()->exec();
+    MovieImageDialog::instance()->exec(MovieImageDialogType::MovieBackdrop);
 
     if (MovieImageDialog::instance()->result() == QDialog::Accepted) {
         emit setActionSaveEnabled(false, WidgetMovies);
         DownloadManagerElement d;
         d.imageType = TypeBackdrop;
         d.url = MovieImageDialog::instance()->imageUrl();
+        d.movie = m_movie;
         m_posterDownloadManager->addDownload(d);
         ui->backdrop->setPixmap(QPixmap());
         ui->backdrop->setMovie(m_loadingMovie);

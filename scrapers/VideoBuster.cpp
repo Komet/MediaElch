@@ -145,10 +145,10 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie)
 
     // Posters
     pos = 0;
-    rx.setPattern("src=\"(https://gfx.videobuster.de/archive/resized)/w200/([^\"]*)\"");
+    rx.setPattern("src=\"(https://gfx.videobuster.de/archive/resized)/w124/([^\"]*)\"");
     while ((pos = rx.indexIn(html, pos)) != -1) {
         Poster p;
-        p.thumbUrl = rx.cap(1) + "/w200/" + rx.cap(2);
+        p.thumbUrl = rx.cap(1) + "/h550/" + rx.cap(2);
         p.originalUrl = rx.cap(1) + "/w700/" + rx.cap(2);
         movie->addPoster(p);
         pos += rx.matchedLength();

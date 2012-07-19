@@ -67,6 +67,7 @@ struct Poster {
     QString id;
     QUrl originalUrl;
     QUrl thumbUrl;
+    QSize originalSize;
 };
 
 enum ImageType {
@@ -77,22 +78,18 @@ enum TvShowType {
     TypeTvShow, TypeEpisode
 };
 
-/*
-struct DownloadManagerElement {
-    ImageType imageType;
-    QUrl url;
-    QImage image;
-    qint64 bytesReceived;
-    qint64 bytesTotal;
-    Actor *actor;
-    TvShowEpisode *episode;
-    Movie *movie;
-    int season;
-};
-*/
 struct SettingsDir {
     QString path;
     QString mediaCenterPath;
 };
+
+namespace MovieImageDialogType {
+    const int MoviePoster    = 1;
+    const int MovieBackdrop  = 2;
+    const int TvShowPoster   = 3;
+    const int TvShowBackdrop = 4;
+    const int TvShowThumb    = 5;
+    const int TvShowSeason   = 6;
+}
 
 #endif // GLOBALS_H

@@ -30,6 +30,7 @@ MovieImageDialog::MovieImageDialog(QWidget *parent) :
     connect(ui->table, SIGNAL(sigDroppedImage(QUrl)), this, SLOT(onImageDropped(QUrl)));
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
     connect(ui->buttonChoose, SIGNAL(clicked()), this, SLOT(chooseLocalImage()));
+    connect(ui->previewSizeSlider, SIGNAL(valueChanged(int)), this, SLOT(onPreviewSizeChange(int)));
     QMovie *movie = new QMovie(":/img/spinner.gif");
     movie->start();
     ui->labelSpinner->setMovie(movie);
@@ -43,8 +44,11 @@ MovieImageDialog::~MovieImageDialog()
     delete ui;
 }
 
-int MovieImageDialog::exec()
+int MovieImageDialog::exec(int type)
 {
+    m_type = type;
+    QSettings settings;
+    ui->previewSizeSlider->setValue(settings.value(QString("MovieImageDialog/PreviewSize_%1").arg(m_type), 8).toInt());
     QSize newSize;
     newSize.setHeight(parentWidget()->size().height()-200);
     newSize.setWidth(qMin(1000, parentWidget()->size().width()-200));
@@ -109,6 +113,7 @@ void MovieImageDialog::setDownloads(QList<Poster> downloads)
         d.originalUrl = poster.originalUrl;
         d.thumbUrl = poster.thumbUrl;
         d.downloaded = false;
+        d.resolution = poster.originalSize;
         this->m_elements.append(d);
     }
     ui->labelLoading->setVisible(true);
@@ -151,8 +156,9 @@ void MovieImageDialog::downloadFinished()
     }
 
     m_elements[m_currentDownloadIndex].pixmap.loadFromData(m_currentDownloadReply->readAll());
-    m_elements[m_currentDownloadIndex].pixmap = m_elements[m_currentDownloadIndex].pixmap.scaledToWidth(this->getColumnWidth()-10, Qt::SmoothTransformation);
-    m_elements[m_currentDownloadIndex].cellWidget->setPixmap(m_elements[m_currentDownloadIndex].pixmap);
+    m_elements[m_currentDownloadIndex].scaledPixmap = m_elements[m_currentDownloadIndex].pixmap.scaledToWidth(this->getColumnWidth()-10, Qt::SmoothTransformation);
+    m_elements[m_currentDownloadIndex].cellWidget->setImage(m_elements[m_currentDownloadIndex].scaledPixmap);
+    m_elements[m_currentDownloadIndex].cellWidget->setResolution(m_elements[m_currentDownloadIndex].resolution);
     ui->table->resizeRowsToContents();
     m_elements[m_currentDownloadIndex].downloaded = true;
     m_currentDownloadReply->deleteLater();
@@ -175,10 +181,11 @@ void MovieImageDialog::renderTable()
             ui->table->insertRow(row);
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(Qt::UserRole, m_elements[i].originalUrl);
-        QLabel *label = new QLabel(ui->table);
-        label->setStyleSheet("margin: 5px;");
-        label->setAlignment(Qt::AlignTop);
-        label->setPixmap(m_elements[i].pixmap);
+        ImageLabel *label = new ImageLabel(ui->table);
+        if (!m_elements[i].pixmap.isNull()) {
+            label->setImage(m_elements[i].pixmap.scaledToWidth(this->getColumnWidth()-10, Qt::SmoothTransformation));
+            label->setResolution(m_elements[i].resolution);
+        }
         m_elements[i].cellWidget = label;
         ui->table->setItem(row, i%cols, item);
         ui->table->setCellWidget(row, i%cols, label);
@@ -196,11 +203,7 @@ int MovieImageDialog::calcColumnCount()
 
 int MovieImageDialog::getColumnWidth()
 {
-    if (m_imageType == TypePoster)
-        return 102;
-    if (m_imageType == TypeBackdrop)
-        return 210;
-    return 102;
+    return ui->previewSizeSlider->value()*16;
 }
 
 void MovieImageDialog::imageClicked(int row, int col)
@@ -244,7 +247,8 @@ void MovieImageDialog::chooseLocalImage()
         this->renderTable();
         m_elements[index].pixmap = QPixmap(fileName);
         m_elements[index].pixmap = m_elements[index].pixmap.scaledToWidth(this->getColumnWidth()-10, Qt::SmoothTransformation);
-        m_elements[index].cellWidget->setPixmap(m_elements[index].pixmap);
+        m_elements[index].cellWidget->setImage(m_elements[index].pixmap);
+        m_elements[index].cellWidget->setResolution(m_elements[index].pixmap.size());
         ui->table->resizeRowsToContents();
         m_elements[index].downloaded = true;
         m_imageUrl = QUrl(fileName);
@@ -264,10 +268,18 @@ void MovieImageDialog::onImageDropped(QUrl url)
     if (url.toString().startsWith("file://")) {
         m_elements[index].pixmap = QPixmap(url.toLocalFile());
         m_elements[index].pixmap = m_elements[index].pixmap.scaledToWidth(this->getColumnWidth()-10, Qt::SmoothTransformation);
-        m_elements[index].cellWidget->setPixmap(m_elements[index].pixmap);
+        m_elements[index].cellWidget->setImage(m_elements[index].pixmap);
+        m_elements[index].cellWidget->setResolution(m_elements[index].pixmap.size());
     }
     ui->table->resizeRowsToContents();
     m_elements[index].downloaded = true;
     m_imageUrl = url;
     accept();
+}
+
+void MovieImageDialog::onPreviewSizeChange(int value)
+{
+    QSettings settings;
+    settings.setValue(QString("MovieImageDialog/PreviewSize_%1").arg(m_type), value);
+    renderTable();
 }

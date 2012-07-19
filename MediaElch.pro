@@ -54,7 +54,8 @@ SOURCES += main.cpp\
     TvShowSearch.cpp \
     mediaCenterPlugins/XbmcSql.cpp \
     data/PortScan.cpp \
-    DownloadManagerElement.cpp
+    DownloadManagerElement.cpp \
+    smallWidgets/ImageLabel.cpp
 
 HEADERS  += MainWindow.h \
     data/Movie.h \
@@ -103,7 +104,8 @@ HEADERS  += MainWindow.h \
     TvShowSearch.h \
     mediaCenterPlugins/XbmcSql.h \
     data/PortScan.h \
-    DownloadManagerElement.h
+    DownloadManagerElement.h \
+    smallWidgets/ImageLabel.h
 
 FORMS    += MainWindow.ui \
     MovieSearch.ui \
@@ -121,7 +123,8 @@ FORMS    += MainWindow.ui \
     TvShowWidget.ui \
     TvShowWidgetEpisode.ui \
     TvShowWidgetTvShow.ui \
-    TvShowSearch.ui
+    TvShowSearch.ui \
+    smallWidgets/ImageLabel.ui
 
 RESOURCES += \
     MediaElch.qrc

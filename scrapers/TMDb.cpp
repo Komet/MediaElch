@@ -246,10 +246,13 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie)
                         }
                     }
                     p.id = vP.property("id").toString();
-                    if (vP.property("size").toString() == "thumb")
+                    if (vP.property("size").toString() == "w342")
                         p.thumbUrl = vP.property("url").toString();
-                    if (vP.property("size").toString() == "original")
+                    if (vP.property("size").toString() == "original") {
                         p.originalUrl = vP.property("url").toString();
+                        p.originalSize.setWidth(vP.property("width").toString().toInt());
+                        p.originalSize.setHeight(vP.property("height").toString().toInt());
+                    }
                     if (index == -1)
                         movie->addPoster(p);
                     else
@@ -272,10 +275,13 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie)
                         }
                     }
                     b.id = vB.property("id").toString();
-                    if (vB.property("size").toString() == "thumb")
+                    if (vB.property("size").toString() == "poster")
                         b.thumbUrl = vB.property("url").toString();
-                    if (vB.property("size").toString() == "original")
+                    if (vB.property("size").toString() == "original") {
                         b.originalUrl = vB.property("url").toString();
+                        b.originalSize.setWidth(vB.property("width").toString().toInt());
+                        b.originalSize.setHeight(vB.property("height").toString().toInt());
+                    }
                     if (index == -1)
                         movie->addBackdrop(b);
                     else
