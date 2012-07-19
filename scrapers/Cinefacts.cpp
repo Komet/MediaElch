@@ -1,4 +1,5 @@
 #include "Cinefacts.h"
+#include <QTextDocument>
 
 Cinefacts::Cinefacts(QObject *parent)
 {
@@ -93,6 +94,7 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie)
     QRegExp rx;
     rx.setMinimal(true);
     int pos = 0;
+    QTextDocument doc;
 
     // Title
     rx.setPattern("<h1>([^<]*)<");
@@ -166,7 +168,8 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie)
     // Overview
     rx.setPattern("KURZINHALT</h2></li>.*<li[^>]*>(.*)</li>");
     if (rx.indexIn(html) != -1) {
-        movie->setOverview(rx.cap(1).trimmed());
+        doc.setHtml(rx.cap(1).trimmed());
+        movie->setOverview(doc.toPlainText());
     }
 
     // Posters

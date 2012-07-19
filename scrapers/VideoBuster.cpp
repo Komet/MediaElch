@@ -1,4 +1,5 @@
 #include "VideoBuster.h"
+#include <QTextDocument>
 
 VideoBuster::VideoBuster(QObject *parent)
 {
@@ -74,6 +75,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie)
     QRegExp rx;
     rx.setMinimal(true);
     int pos = 0;
+    QTextDocument doc;
 
     // Title
     rx.setPattern("class=\"name\">([^<]*)</h1>");
@@ -140,8 +142,10 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie)
 
     // Overview
     rx.setPattern("<div class=\"txt movie_description\">(.*)(<br />|</div>)");
-    if (rx.indexIn(html) != -1)
-        movie->setOverview(rx.cap(1).trimmed());
+    if (rx.indexIn(html) != -1) {
+        doc.setHtml(rx.cap(1).trimmed());
+        movie->setOverview(doc.toPlainText());
+    }
 
     // Posters
     pos = 0;
