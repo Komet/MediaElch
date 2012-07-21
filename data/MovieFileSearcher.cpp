@@ -56,7 +56,7 @@ void MovieFileSearcher::getDirContents(QString path, QList<QStringList> &content
     QStringList filters;
     QStringList dvdFilters;
     QStringList files;
-    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.m2ts" << "*.iso" << "VIDEO_TS.IFO";
+    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.m2ts" << "*.mp4" << "*.iso" << "VIDEO_TS.IFO";
     dvdFilters << "*.VOB" << "*.IFO" << "*.BUP";
     foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::System)) {
         files.append(file);
