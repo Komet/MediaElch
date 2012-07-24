@@ -173,9 +173,11 @@ void MovieImageDialog::downloadFinished()
     }
 
     m_elements[m_currentDownloadIndex].pixmap.loadFromData(m_currentDownloadReply->readAll());
-    m_elements[m_currentDownloadIndex].scaledPixmap = m_elements[m_currentDownloadIndex].pixmap.scaledToWidth(this->getColumnWidth()-10, Qt::SmoothTransformation);
-    m_elements[m_currentDownloadIndex].cellWidget->setImage(m_elements[m_currentDownloadIndex].scaledPixmap);
-    m_elements[m_currentDownloadIndex].cellWidget->setResolution(m_elements[m_currentDownloadIndex].resolution);
+    if (!m_elements[m_currentDownloadIndex].pixmap.isNull()) {
+        m_elements[m_currentDownloadIndex].scaledPixmap = m_elements[m_currentDownloadIndex].pixmap.scaledToWidth(this->getColumnWidth()-10, Qt::SmoothTransformation);
+        m_elements[m_currentDownloadIndex].cellWidget->setImage(m_elements[m_currentDownloadIndex].scaledPixmap);
+        m_elements[m_currentDownloadIndex].cellWidget->setResolution(m_elements[m_currentDownloadIndex].resolution);
+    }
     ui->table->resizeRowsToContents();
     m_elements[m_currentDownloadIndex].downloaded = true;
     m_currentDownloadReply->deleteLater();
