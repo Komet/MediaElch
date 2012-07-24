@@ -410,12 +410,17 @@ p, li { white-space: pre-wrap; }
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../MovieImageDialog.cpp" line="256"/>
+        <location filename="../MovieImageDialog.cpp" line="58"/>
+        <source>No images found</source>
+        <translation>Keine Bilder gefunden</translation>
+    </message>
+    <message>
+        <location filename="../MovieImageDialog.cpp" line="264"/>
         <source>Choose Image</source>
         <translation>Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../MovieImageDialog.cpp" line="256"/>
+        <location filename="../MovieImageDialog.cpp" line="264"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>Bilder (*.jpg *.jpeg *.png)</translation>
     </message>

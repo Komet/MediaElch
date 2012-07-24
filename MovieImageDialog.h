@@ -68,6 +68,7 @@ private:
     QList<DownloadElement> m_elements;
     QUrl m_imageUrl;
     int m_type;
+    QLabel *m_noElementsLabel;
 
     QNetworkAccessManager *qnam();
     void renderTable();

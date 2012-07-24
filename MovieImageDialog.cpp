@@ -54,6 +54,10 @@ MovieImageDialog::MovieImageDialog(QWidget *parent) :
     p.end();
     ui->buttonZoomOut->setIcon(QIcon(zoomOut));
     ui->buttonZoomIn->setIcon(QIcon(zoomIn));
+
+    m_noElementsLabel = new QLabel(tr("No images found"), ui->table);
+    m_noElementsLabel->setMargin(10);
+    m_noElementsLabel->hide();
 }
 
 MovieImageDialog::~MovieImageDialog()
@@ -210,6 +214,8 @@ void MovieImageDialog::renderTable()
         ui->table->setCellWidget(row, i%cols, label);
         ui->table->resizeRowToContents(row);
     }
+
+    m_noElementsLabel->setVisible(m_elements.size() == 0);
 }
 
 int MovieImageDialog::calcColumnCount()
