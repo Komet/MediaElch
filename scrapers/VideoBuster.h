@@ -25,11 +25,13 @@ signals:
 private slots:
     void searchFinished();
     void loadFinished();
+    void backdropFinished();
 private:
     Movie *m_currentMovie;
     QNetworkAccessManager m_qnam;
     QNetworkReply *m_searchReply;
     QNetworkReply *m_loadReply;
+    QNetworkReply *m_backdropReply;
     QNetworkAccessManager *qnam();
     QList<ScraperSearchResult> parseSearch(QString html);
     void parseAndAssignInfos(QString html, Movie *movie);

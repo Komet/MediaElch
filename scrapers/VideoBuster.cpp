@@ -66,7 +66,6 @@ void VideoBuster::loadFinished()
         parseAndAssignInfos(msg, m_currentMovie);
     }
     m_loadReply->deleteLater();
-    m_currentMovie->scraperLoadDone();
 }
 
 void VideoBuster::parseAndAssignInfos(QString html, Movie *movie)
@@ -157,6 +156,40 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie)
         movie->addPoster(p);
         pos += rx.matchedLength();
     }
+
+    // Backdrops
+    rx.setPattern("<a href=\"/titledtl.php/([^\\?]*)\\?tab=gallery&content_type_idnr=1");
+    if (rx.indexIn(html) != -1) {
+        QUrl backdropUrl(QString("https://www.videobuster.de/titledtl.php/%1?tab=gallery&content_type_idnr=1").arg(rx.cap(1)));
+        m_backdropReply = qnam()->get(QNetworkRequest(backdropUrl));
+        connect(m_backdropReply, SIGNAL(finished()), this, SLOT(backdropFinished()));
+    } else {
+        m_currentMovie->scraperLoadDone();
+    }
+}
+
+void VideoBuster::backdropFinished()
+{
+    if (m_backdropReply->error() == QNetworkReply::NoError ) {
+        QString msg = m_backdropReply->readAll();
+        QRegExp rx("href=\"https://gfx.videobuster.de/archive/resized/([^\"]*)\"(.*)([^<]*)<img (.*) src=\"https://gfx.videobuster.de/archive/resized/c110/([^\"]*)\"");
+        rx.setMinimal(true);
+        int pos = 0;
+        int counter = 0;
+        while ((pos = rx.indexIn(msg, pos)) != -1) {
+            pos += rx.matchedLength();
+            if (rx.cap(2).contains("titledtl_cover_pictures")) {
+                continue;
+            }
+            Poster p;
+            p.thumbUrl = QUrl(QString("https://gfx.videobuster.de/archive/resized/w700/%1").arg(rx.cap(5)));
+            p.originalUrl = QUrl(QString("https://gfx.videobuster.de/archive/resized/%1").arg(rx.cap(1)));
+            m_currentMovie->addBackdrop(p);
+            counter++;
+        }
+    }
+    m_backdropReply->deleteLater();
+    m_currentMovie->scraperLoadDone();
 }
 
 bool VideoBuster::hasSettings()
