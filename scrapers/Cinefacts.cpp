@@ -90,6 +90,7 @@ void Cinefacts::loadFinished()
 
 void Cinefacts::parseAndAssignInfos(QString html, Movie *movie)
 {
+    m_backdropUrl.clear();
     movie->clear();
     QRegExp rx;
     rx.setMinimal(true);
@@ -172,15 +173,27 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie)
         movie->setOverview(doc.toPlainText());
     }
 
+    // Backdrops
+    rx.setPattern("<a href=\"/kino/film/([0-9]*)/0/([^/]*)/szenenbilder_seite_1.html\">");
+    if (rx.indexIn(html) != -1)
+        m_backdropUrl = QUrl(QString("http://www.cinefacts.de/kino/film/%1/0/%2/szenenbilder_seite_1.html").arg(rx.cap(1)).arg(rx.cap(2)));
+
     // Posters
     rx.setPattern("<a href=\"/kino/film/([0-9]*)/([^/]*)/plakate.html\">");
     if (rx.indexIn(html) != -1) {
         QUrl posterUrl(QString("http://www.cinefacts.de/kino/film/%1/%2/plakate.html").arg(rx.cap(1)).arg(rx.cap(2)));
         m_posterReply = this->qnam()->get(QNetworkRequest(posterUrl));
         connect(m_posterReply, SIGNAL(finished()), this, SLOT(posterFinished()));
-    } else {
-        m_currentMovie->scraperLoadDone();
+        return;
     }
+
+    if (!m_backdropUrl.isEmpty()) {
+        m_backdropReply = this->qnam()->get(QNetworkRequest(m_backdropUrl));
+        connect(m_backdropReply, SIGNAL(finished()), this, SLOT(backdropFinished()));
+        return;
+    }
+
+    m_currentMovie->scraperLoadDone();
 }
 
 void Cinefacts::posterFinished()
@@ -197,21 +210,60 @@ void Cinefacts::posterFinished()
             pos += rx.matchedLength();
         }
         startNextPosterDownload();
+    } else if (!m_backdropUrl.isEmpty()) {
+        m_backdropReply = this->qnam()->get(QNetworkRequest(m_backdropUrl));
+        connect(m_backdropReply, SIGNAL(finished()), this, SLOT(backdropFinished()));
     } else {
         m_currentMovie->scraperLoadDone();
     }
     m_posterReply->deleteLater();
 }
 
+void Cinefacts::backdropFinished()
+{
+    m_backdropQueue.clear();
+    if (m_backdropReply->error() == QNetworkReply::NoError ) {
+        QString msg = m_backdropReply->readAll();
+        int pos = 0;
+        QRegExp rx("<a href=\"/kino/film/([^\"]+)\">[^<]*<img");
+        rx.setMinimal(true);
+        while ((pos = rx.indexIn(msg, pos)) != -1) {
+            QUrl url(QString("http://www.cinefacts.de/kino/film/%1").arg(rx.cap(1)));
+            m_backdropQueue.append(url);
+            pos += rx.matchedLength();
+        }
+        startNextBackdropDownload();
+    } else {
+        m_currentMovie->scraperLoadDone();
+    }
+    m_backdropReply->deleteLater();
+}
+
 void Cinefacts::startNextPosterDownload()
 {
     if (m_posterQueue.isEmpty()) {
-        m_currentMovie->scraperLoadDone();
+        if (!m_backdropUrl.isEmpty()) {
+            m_backdropReply = this->qnam()->get(QNetworkRequest(m_backdropUrl));
+            connect(m_backdropReply, SIGNAL(finished()), this, SLOT(backdropFinished()));
+        } else {
+            m_currentMovie->scraperLoadDone();
+        }
         return;
     }
     QUrl url = m_posterQueue.dequeue();
     m_posterSubReply = qnam()->get(QNetworkRequest(url));
     connect(m_posterSubReply, SIGNAL(finished()), this, SLOT(posterSubFinished()));
+}
+
+void Cinefacts::startNextBackdropDownload()
+{
+    if (m_backdropQueue.isEmpty()) {
+        m_currentMovie->scraperLoadDone();
+        return;
+    }
+    QUrl url = m_backdropQueue.dequeue();
+    m_backdropSubReply = qnam()->get(QNetworkRequest(url));
+    connect(m_backdropSubReply, SIGNAL(finished()), this, SLOT(backdropSubFinished()));
 }
 
 void Cinefacts::posterSubFinished()
@@ -231,4 +283,23 @@ void Cinefacts::posterSubFinished()
     }
     m_posterSubReply->deleteLater();
     startNextPosterDownload();
+}
+
+void Cinefacts::backdropSubFinished()
+{
+    if (m_backdropSubReply->error() == QNetworkReply::NoError ) {
+        QString msg = m_backdropSubReply->readAll();
+        QRegExp rx("src=\"/kino/bild/([^\"]*)\"");
+        rx.setMinimal(true);
+        if (rx.indexIn(msg) != -1) {
+            Poster p;
+            p.thumbUrl = QUrl(QString("http://www.cinefacts.de/kino/bild/%1").arg(rx.cap(1)));
+            rx.setPattern("<a rel=\"shadowbox\" href=\"/kino/bild/([^\"]*)\"");
+            if (rx.indexIn(msg) != -1)
+                p.originalUrl = QUrl(QString("http://www.cinefacts.de/kino/bild/%1").arg(rx.cap(1)));
+            m_currentMovie->addBackdrop(p);
+        }
+    }
+    m_backdropSubReply->deleteLater();
+    startNextBackdropDownload();
 }
