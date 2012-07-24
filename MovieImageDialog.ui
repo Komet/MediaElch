@@ -79,7 +79,25 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,1,0,0,0">
+    <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,0,1,0,0,0">
+     <item>
+      <widget class="QToolButton" name="buttonZoomOut">
+       <property name="toolTip">
+        <string>Zoom out</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 0px;
+background: transparent;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="MediaElch.qrc">
+         <normaloff>:/img/zoom_out.png</normaloff>:/img/zoom_out.png</iconset>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QSlider" name="previewSizeSlider">
        <property name="minimumSize">
@@ -101,7 +119,7 @@
         <number>4</number>
        </property>
        <property name="maximum">
-        <number>16</number>
+        <number>20</number>
        </property>
        <property name="singleStep">
         <number>1</number>
@@ -114,6 +132,24 @@
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="buttonZoomIn">
+       <property name="toolTip">
+        <string>Zoom in</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 0px;
+background: transparent;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="MediaElch.qrc">
+         <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
        </property>
       </widget>
      </item>
@@ -172,6 +208,8 @@
    <header>MyTableWidget.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="MediaElch.qrc"/>
+ </resources>
  <connections/>
 </ui>

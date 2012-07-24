@@ -235,8 +235,6 @@ void MainWindow::progressProgress(int current, int max, int id)
 void MainWindow::progressFinished(int id)
 {
     if (id == Constants::MovieFileSearcherProgressMessageId) {
-        if (Manager::instance()->movieModel()->movies().size() > 0)
-            ui->filesWidget->hideFirstTime();
         ui->filesWidget->enableRefresh();
         onSetExportEnabled(true, WidgetMovies);
     } else if (id == Constants::TvShowSearcherProgressMessageId) {

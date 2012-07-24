@@ -45,6 +45,8 @@ private slots:
     void chooseLocalImage();
     void onImageDropped(QUrl url);
     void onPreviewSizeChange(int value);
+    void onZoomIn();
+    void onZoomOut();
 
 private:
     Ui::MovieImageDialog *ui;

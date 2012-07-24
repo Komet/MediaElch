@@ -13,10 +13,6 @@
         <file>img/plus.png</file>
         <file>img/save.png</file>
         <file>img/arrow_circle_right.png</file>
-        <file>img/text_start_files_de.png</file>
-        <file>img/text_start_files_en.png</file>
-        <file>img/text_start_movieWidget_de.png</file>
-        <file>img/text_start_movieWidget_en.png</file>
         <file>img/warning1.png</file>
         <file>img/gear.png</file>
         <file>img/info.png</file>
@@ -34,5 +30,7 @@
         <file>img/video_menu.png</file>
         <file>img/video_menuActive.png</file>
         <file>img/storage.png</file>
+        <file>img/zoom_in.png</file>
+        <file>img/zoom_out.png</file>
     </qresource>
 </RCC>

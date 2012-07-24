@@ -7,6 +7,7 @@
 #include <QtCore/qmath.h>
 #include <QLabel>
 #include <QMovie>
+#include <QPainter>
 #include <QSize>
 #include <QTimer>
 
@@ -31,12 +32,28 @@ MovieImageDialog::MovieImageDialog(QWidget *parent) :
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
     connect(ui->buttonChoose, SIGNAL(clicked()), this, SLOT(chooseLocalImage()));
     connect(ui->previewSizeSlider, SIGNAL(valueChanged(int)), this, SLOT(onPreviewSizeChange(int)));
+    connect(ui->buttonZoomIn, SIGNAL(clicked()), this, SLOT(onZoomIn()));
+    connect(ui->buttonZoomOut, SIGNAL(clicked()), this, SLOT(onZoomOut()));
     QMovie *movie = new QMovie(":/img/spinner.gif");
     movie->start();
     ui->labelSpinner->setMovie(movie);
     this->clear();
     this->setImageType(TypePoster);
     m_currentDownloadReply = 0;
+
+    QPixmap zoomOut(":/img/zoom_out.png");
+    QPixmap zoomIn(":/img/zoom_in.png");
+    QPainter p;
+    p.begin(&zoomOut);
+    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    p.fillRect(zoomOut.rect(), QColor(0, 0, 0, 150));
+    p.end();
+    p.begin(&zoomIn);
+    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    p.fillRect(zoomIn.rect(), QColor(0, 0, 0, 150));
+    p.end();
+    ui->buttonZoomOut->setIcon(QIcon(zoomOut));
+    ui->buttonZoomIn->setIcon(QIcon(zoomIn));
 }
 
 MovieImageDialog::~MovieImageDialog()
@@ -279,7 +296,19 @@ void MovieImageDialog::onImageDropped(QUrl url)
 
 void MovieImageDialog::onPreviewSizeChange(int value)
 {
+    ui->buttonZoomOut->setDisabled(value == ui->previewSizeSlider->minimum());
+    ui->buttonZoomIn->setDisabled(value == ui->previewSizeSlider->maximum());
     QSettings settings;
     settings.setValue(QString("MovieImageDialog/PreviewSize_%1").arg(m_type), value);
     renderTable();
+}
+
+void MovieImageDialog::onZoomIn()
+{
+    ui->previewSizeSlider->setValue(ui->previewSizeSlider->value()+1);
+}
+
+void MovieImageDialog::onZoomOut()
+{
+    ui->previewSizeSlider->setValue(ui->previewSizeSlider->value()-1);
 }

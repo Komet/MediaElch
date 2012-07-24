@@ -53,7 +53,6 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->buttonRemoveGenre, SIGNAL(clicked()), this, SLOT(removeGenre()));
     connect(ui->buttonAddStudio, SIGNAL(clicked()), this, SLOT(addStudio()));
     connect(ui->buttonRemoveStudio, SIGNAL(clicked()), this, SLOT(removeStudio()));
-    connect(ui->groupBox_3, SIGNAL(resized(QSize)), this, SLOT(groupBoxResized(QSize)));
     connect(ui->actors, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onActorEdited(QTableWidgetItem*)));
     connect(ui->genres, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onGenreEdited(QTableWidgetItem*)));
     connect(ui->studios, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onStudioEdited(QTableWidgetItem*)));
@@ -68,18 +67,6 @@ MovieWidget::MovieWidget(QWidget *parent) :
     m_savingWidget = new QLabel(this);
     m_savingWidget->setMovie(m_loadingMovie);
     m_savingWidget->hide();
-
-    QString language = QLocale::system().name().left(2);
-    QString textStartMovieWidget = ":/img/text_start_movieWidget_" + language + ".png";
-    QFileInfo fi(textStartMovieWidget);
-    if (!fi.exists())
-        textStartMovieWidget = ":/img/text_start_movieWidget_en.png";
-    QPixmap firstTimePixmap(textStartMovieWidget);
-    m_firstTimeLabel = new QLabel(this);
-    m_firstTimeLabel->setStyleSheet("border-radius: 5px; background-color: rgba(0, 0, 0, 150); padding: 20px;");
-    m_firstTimeLabel->setPixmap(firstTimePixmap);
-    m_firstTimeLabel->resize(firstTimePixmap.width()+40, firstTimePixmap.height()+40);
-    m_firstTimeLabel->hide();
 
     // Connect GUI change events to movie object
     connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(onNameChange(QString)));
@@ -100,21 +87,6 @@ MovieWidget::MovieWidget(QWidget *parent) :
 MovieWidget::~MovieWidget()
 {
     delete ui;
-}
-
-void MovieWidget::groupBoxResized(QSize size)
-{
-    m_firstTimeLabel->move((size.width()-m_firstTimeLabel->width())/2, (size.height()-m_firstTimeLabel->height())/2);
-}
-
-void MovieWidget::showFirstTime()
-{
-    m_firstTimeLabel->show();
-}
-
-void MovieWidget::hideFirstTime()
-{
-    m_firstTimeLabel->hide();
 }
 
 void MovieWidget::resizeEvent(QResizeEvent *event)
@@ -174,7 +146,6 @@ void MovieWidget::setDisabledTrue()
 void MovieWidget::setMovie(Movie *movie)
 {
     movie->loadData(Manager::instance()->mediaCenterInterface());
-    hideFirstTime();
     m_movie = movie;
     movie->loadImages(Manager::instance()->mediaCenterInterface());
     updateMovieInfo();

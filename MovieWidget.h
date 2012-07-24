@@ -26,8 +26,6 @@ public:
 public slots:
     void clear();
     void setMovie(Movie *movie);
-    void showFirstTime();
-    void hideFirstTime();
     void startScraperSearch();
     void saveInformation();
     void saveAll();
@@ -60,7 +58,6 @@ private slots:
     void removeStudio();
     void addCountry();
     void removeCountry();
-    void groupBoxResized(QSize size);
 
     void onNameChange(QString text);
     void onOriginalNameChange(QString text);
@@ -87,7 +84,6 @@ private:
     DownloadManager *m_posterDownloadManager;
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;
-    QLabel *m_firstTimeLabel;
     void updateMovieInfo();
 };
 

@@ -20,8 +20,6 @@ public:
     ~FilesWidget();
     void enableRefresh();
     void disableRefresh();
-    void showFirstTime();
-    void hideFirstTime();
     static FilesWidget *instance();
 
 public slots:
@@ -37,14 +35,12 @@ private slots:
     void startSearch();
     void searchFinished();
     void itemActivated(QModelIndex index, QModelIndex previous);
-    void tableViewResized(QSize size);
     void movieSelectedEmitter();
 
 private:
     Ui::FilesWidget *ui;
     MovieProxyModel *m_movieProxyModel;
     Movie *m_lastMovie;
-    QLabel *m_firstTimeLabel;
     QModelIndex m_lastModelIndex;
     static FilesWidget *m_instance;
 };

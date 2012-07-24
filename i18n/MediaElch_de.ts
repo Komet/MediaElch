@@ -220,6 +220,19 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>ImageLabel</name>
+    <message>
+        <location filename="../smallWidgets/ImageLabel.ui" line="14"/>
+        <source>Form</source>
+        <translation>Form</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/ImageLabel.ui" line="45"/>
+        <source>Resolution</source>
+        <translation>Auflösung</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>XBMM</source>
@@ -261,44 +274,44 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../MainWindow.ui" line="113"/>
-        <location filename="../MainWindow.ui" line="227"/>
+        <location filename="../MainWindow.ui" line="260"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="232"/>
-        <location filename="../MainWindow.cpp" line="175"/>
+        <location filename="../MainWindow.ui" line="265"/>
+        <location filename="../MainWindow.cpp" line="186"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="237"/>
-        <location filename="../MainWindow.cpp" line="174"/>
+        <location filename="../MainWindow.ui" line="270"/>
+        <location filename="../MainWindow.cpp" line="185"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="167"/>
+        <location filename="../MainWindow.cpp" line="178"/>
         <source>Search</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="168"/>
+        <location filename="../MainWindow.cpp" line="179"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="169"/>
+        <location filename="../MainWindow.cpp" line="180"/>
         <source>Save All</source>
         <translation>Alle Speichern</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="170"/>
+        <location filename="../MainWindow.cpp" line="181"/>
         <source>Reload</source>
         <translation>Neu laden</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="171"/>
+        <location filename="../MainWindow.cpp" line="182"/>
         <source>Reload Movie List</source>
         <translation>Filmliste neu laden</translation>
     </message>
@@ -307,12 +320,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Einstellungen</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="172"/>
+        <location filename="../MainWindow.cpp" line="183"/>
         <source>Export</source>
         <translation>Export</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="173"/>
+        <location filename="../MainWindow.cpp" line="184"/>
         <source>Export Movie Database</source>
         <translation>Filmdatenbank exportieren</translation>
     </message>
@@ -368,26 +381,41 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../MovieImageDialog.ui" line="86"/>
+        <source>Zoom out</source>
+        <translation>Verkleinern</translation>
+    </message>
+    <message>
+        <location filename="../MovieImageDialog.ui" line="116"/>
+        <source>Preview size</source>
+        <translation>Vorschaugröße</translation>
+    </message>
+    <message>
+        <location filename="../MovieImageDialog.ui" line="141"/>
+        <source>Zoom in</source>
+        <translation>Vergrößern</translation>
+    </message>
+    <message>
+        <location filename="../MovieImageDialog.ui" line="186"/>
         <source>Choose Local Image</source>
         <translation>Lokales Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../MovieImageDialog.ui" line="103"/>
+        <location filename="../MovieImageDialog.ui" line="166"/>
         <source>Loading...</source>
         <translation>Lade...</translation>
     </message>
     <message>
-        <location filename="../MovieImageDialog.ui" line="123"/>
+        <location filename="../MovieImageDialog.ui" line="196"/>
         <source>Close</source>
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../MovieImageDialog.cpp" line="236"/>
+        <location filename="../MovieImageDialog.cpp" line="256"/>
         <source>Choose Image</source>
         <translation>Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../MovieImageDialog.cpp" line="236"/>
+        <location filename="../MovieImageDialog.cpp" line="256"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>Bilder (*.jpg *.jpeg *.png)</translation>
     </message>
@@ -643,32 +671,32 @@ p, li { white-space: pre-wrap; }
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="439"/>
+        <location filename="../MovieWidget.cpp" line="429"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="454"/>
+        <location filename="../MovieWidget.cpp" line="443"/>
         <source>All Movies Saved</source>
         <translation>Alle Filme gespeichert</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="473"/>
+        <location filename="../MovieWidget.cpp" line="464"/>
         <source>Unknown Actor</source>
         <translation>Unbekannter Schauspieler</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="474"/>
+        <location filename="../MovieWidget.cpp" line="465"/>
         <source>Unknown Role</source>
         <translation>Unbekannte Rolle</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="514"/>
+        <location filename="../MovieWidget.cpp" line="505"/>
         <source>Unknown Genre</source>
         <translation>Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="586"/>
+        <location filename="../MovieWidget.cpp" line="577"/>
         <source>Unknown Country</source>
         <translation>Unbekanntes Land</translation>
     </message>
@@ -681,7 +709,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="550"/>
+        <location filename="../MovieWidget.cpp" line="541"/>
         <source>Unknown Studio</source>
         <translation>Unbekanntes Studio</translation>
     </message>
@@ -690,7 +718,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Unbekanntes Land</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="242"/>
+        <location filename="../MovieWidget.cpp" line="221"/>
         <source>Downloading Missing Actor Images...</source>
         <translation>Lade fehlende Schauspieler Bilder...</translation>
     </message>
@@ -875,27 +903,27 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Füge Verzeichnisse hinzu, die deine Serien enthalten. Episoden müssen in Unterverzeichnissen mit dem Namen der Serie sein.</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="226"/>
+        <location filename="../SettingsWidget.cpp" line="228"/>
         <source>Settings saved</source>
         <translation>Einstellungen gespeichert</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="237"/>
+        <location filename="../SettingsWidget.cpp" line="239"/>
         <source>Choose a directory containing your movies</source>
         <translation>Wähle ein Verzeichnis aus, das deine Filme enthält</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="277"/>
+        <location filename="../SettingsWidget.cpp" line="279"/>
         <source>Choose a directory containing your TV shows</source>
         <translation>Wähle ein Verzeichnis aus, das deine Serien enthält</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="357"/>
+        <location filename="../SettingsWidget.cpp" line="359"/>
         <source>SQLite Database *.db</source>
         <translation>SQLite Datenbank *.db</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="369"/>
+        <location filename="../SettingsWidget.cpp" line="371"/>
         <source>Choose a directory containing your Thumbnails</source>
         <translation>Wähle das Verzeichnis aus, in dem die Thumbnails gespeichert werden</translation>
     </message>
@@ -1573,12 +1601,12 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
 <context>
     <name>XbmcSql</name>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcSql.cpp" line="48"/>
+        <location filename="../mediaCenterPlugins/XbmcSql.cpp" line="53"/>
         <source>Connection to XBMC MySQL Database failed!</source>
         <translation>Verbindung zur XBMC MySQL Datenbank fehlgeschlagen!</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcSql.cpp" line="60"/>
+        <location filename="../mediaCenterPlugins/XbmcSql.cpp" line="66"/>
         <source>Connection to XBMC SQLite Database failed!</source>
         <translation>Verbindung zur XBMC SQLite Datenbank fehlgeschlagen!</translation>
     </message>

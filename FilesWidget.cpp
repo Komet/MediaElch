@@ -32,19 +32,6 @@ FilesWidget::FilesWidget(QWidget *parent) :
 
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(finished()), this, SLOT(searchFinished()));
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
-    connect(ui->files, SIGNAL(resized(QSize)), this, SLOT(tableViewResized(QSize)));
-
-    QString language = QLocale::system().name().left(2);
-    QString textStartFiles = ":/img/text_start_files_" + language + ".png";
-    QFileInfo fi(textStartFiles);
-    if (!fi.exists())
-        textStartFiles = ":/img/text_start_files_en.png";
-    QPixmap firstTimePixmap(textStartFiles);
-    m_firstTimeLabel = new QLabel(ui->files);
-    m_firstTimeLabel->setStyleSheet("border-radius: 5px; background-color: rgba(0, 0, 0, 150); padding: 20px;");
-    m_firstTimeLabel->setPixmap(firstTimePixmap);
-    m_firstTimeLabel->resize(firstTimePixmap.width()+40, firstTimePixmap.height()+40);
-    m_firstTimeLabel->hide();
 }
 
 FilesWidget::~FilesWidget()
@@ -55,21 +42,6 @@ FilesWidget::~FilesWidget()
 FilesWidget *FilesWidget::instance()
 {
     return m_instance;
-}
-
-void FilesWidget::tableViewResized(QSize size)
-{
-    m_firstTimeLabel->move((size.width()-m_firstTimeLabel->width())/2, 50);
-}
-
-void FilesWidget::showFirstTime()
-{
-    m_firstTimeLabel->show();
-}
-
-void FilesWidget::hideFirstTime()
-{
-    m_firstTimeLabel->hide();
 }
 
 void FilesWidget::startSearch()
