@@ -223,7 +223,10 @@ bool XbmcSql::saveMovie(Movie *movie)
         query.bindValue(":rating", movie->rating());
         query.bindValue(":year", movie->released().toString("yyyy"));
         query.bindValue(":thumbnails", QString(thumbnails));
-        query.bindValue(":runtime", movie->runtime());
+        if (movie->runtime() == 0)
+            query.bindValue(":runtime", QVariant(QVariant::Int));
+        else
+            query.bindValue(":runtime", movie->runtime());
         query.bindValue(":certification", movie->certification());
         query.bindValue(":genres", movie->genres().join(" / "));
         query.bindValue(":originalTitle", movie->originalName());

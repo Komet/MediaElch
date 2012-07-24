@@ -35,7 +35,8 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath,
     xml.writeTextElement("year", movie->released().toString("yyyy"));
     xml.writeTextElement("plot", movie->overview());
     xml.writeTextElement("tagline", movie->tagline());
-    xml.writeTextElement("runtime", QString("%1").arg(movie->runtime()));
+    if (movie->runtime() > 0)
+        xml.writeTextElement("runtime", QString("%1").arg(movie->runtime()));
     xml.writeTextElement("mpaa", movie->certification());
     xml.writeTextElement("playcount", QString("%1").arg(movie->playcount()));
     xml.writeTextElement("lastplayed", movie->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
