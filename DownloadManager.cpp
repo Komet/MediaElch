@@ -48,6 +48,16 @@ void DownloadManager::startNextDownload()
             emit allDownloadsFinished(m_currentDownloadElement.movie);
     }
 
+    if (m_currentDownloadElement.show) {
+        int numDownloadsLeft = 0;
+        for (int i=0, n=m_queue.size() ; i<n ; ++i) {
+            if (m_queue[i].show == m_currentDownloadElement.show)
+                numDownloadsLeft++;
+        }
+        if (numDownloadsLeft == 0)
+            emit allDownloadsFinished(m_currentDownloadElement.show);
+    }
+
     if (m_queue.isEmpty()) {
         emit allDownloadsFinished();
         return;
@@ -65,6 +75,13 @@ void DownloadManager::startNextDownload()
             int numDownloadsLeft = 0;
             for (int i=0, n=m_queue.size() ; i<n ; ++i) {
                 if (m_queue[i].movie == m_currentDownloadElement.movie)
+                    numDownloadsLeft++;
+            }
+            emit downloadsLeft(numDownloadsLeft, m_currentDownloadElement);
+        } else if (m_currentDownloadElement.show) {
+            int numDownloadsLeft = 0;
+            for (int i=0, n=m_queue.size() ; i<n ; ++i) {
+                if (m_queue[i].show == m_currentDownloadElement.show)
                     numDownloadsLeft++;
             }
             emit downloadsLeft(numDownloadsLeft, m_currentDownloadElement);

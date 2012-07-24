@@ -233,6 +233,7 @@ void TvShowWidgetEpisode::onLoadDone()
         DownloadManagerElement d;
         d.imageType = TypeBackdrop;
         d.url = m_episode->thumbnail();
+        d.episode = m_episode;
         m_posterDownloadManager->addDownload(d);
         ui->thumbnail->setPixmap(QPixmap());
         ui->thumbnail->setMovie(m_loadingMovie);
@@ -262,6 +263,7 @@ void TvShowWidgetEpisode::onChooseThumbnail()
         DownloadManagerElement d;
         d.imageType = TypeBackdrop;
         d.url = MovieImageDialog::instance()->imageUrl();
+        d.episode = m_episode;
         m_posterDownloadManager->addDownload(d);
         ui->thumbnail->setPixmap(QPixmap());
         ui->thumbnail->setMovie(m_loadingMovie);
@@ -279,9 +281,11 @@ void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
             elem.image.width() > 1275 && elem.image.width() < 1285 && elem.image.height() > 715 && elem.image.height() < 725)
             elem.image = elem.image.scaled(1280, 720, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 
-        ui->thumbnail->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->thumbnailResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
-        m_episode->setThumbnailImage(elem.image);
+        if (m_episode == elem.episode) {
+            ui->thumbnail->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->thumbnailResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+        }
+        elem.episode->setThumbnailImage(elem.image);
     }
     if (m_posterDownloadManager->downloadQueueSize() == 0) {
         emit sigSetActionSaveEnabled(true, WidgetTvShows);

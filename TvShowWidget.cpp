@@ -43,8 +43,22 @@ void TvShowWidget::onEpisodeSelected(TvShowEpisode *episode)
     ui->episodeWidget->setEpisode(episode);
 }
 
-void TvShowWidget::onSetEnabledTrue()
+void TvShowWidget::onSetEnabledTrue(TvShow *show)
 {
+    if (show && show->downloadsInProgress())
+        return;
+
+    ui->episodeWidget->onSetEnabled(true);
+    ui->tvShowWidget->onSetEnabled(true);
+    emit sigSetActionSaveEnabled(true, WidgetTvShows);
+    emit sigSetActionSearchEnabled(true, WidgetTvShows);
+}
+
+void TvShowWidget::onSetEnabledTrue(TvShowEpisode *episode)
+{
+    if (episode && episode->tvShow() && episode->tvShow()->downloadsInProgress())
+        return;
+
     ui->episodeWidget->onSetEnabled(true);
     ui->tvShowWidget->onSetEnabled(true);
     emit sigSetActionSaveEnabled(true, WidgetTvShows);

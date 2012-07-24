@@ -49,6 +49,7 @@ public:
     QList<QString*> writersPointer();
     QList<QString*> directorsPointer();
     bool infoLoaded() const;
+    int episodeId() const;
 
     void setName(QString name);
     void setShowTitle(QString showTitle);
@@ -107,6 +108,7 @@ private:
     bool m_thumbnailImageChanged;
     bool m_infoLoaded;
     bool m_hasChanged;
+    int m_episodeId;
 };
 
 QDebug operator<<(QDebug dbg, const TvShowEpisode &episode);

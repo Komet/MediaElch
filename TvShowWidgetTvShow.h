@@ -15,7 +15,7 @@ class TvShowWidgetTvShow;
 class TvShowWidgetTvShow : public QWidget
 {
     Q_OBJECT
-    
+
 public:
     explicit TvShowWidgetTvShow(QWidget *parent = 0);
     ~TvShowWidgetTvShow();
@@ -42,13 +42,13 @@ private slots:
     void onRemoveGenre();
     void onAddActor();
     void onRemoveActor();
-    void onLoadDone();
+    void onLoadDone(TvShow *show);
     void onChoosePoster();
     void onChooseBackdrop();
     void onChooseSeasonPoster(int season);
     void onPosterDownloadFinished(DownloadManagerElement elem);
-    void onDownloadsFinished();
-    void onDownloadsLeft(int left);
+    void onDownloadsFinished(TvShow *show);
+    void onDownloadsLeft(int left, DownloadManagerElement elem);
 
     void onNameChange(QString text);
     void onCertificationChange(QString text);
@@ -66,8 +66,6 @@ private:
     QMovie *m_loadingMovie;
     DownloadManager *m_posterDownloadManager;
     QMap<int, QList<QWidget*> > m_seasonLayoutWidgets;
-    int m_progressMessageId;
-    int m_currentDownloadsSize;
 
     void updateTvShowInfo();
 };

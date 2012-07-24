@@ -12,7 +12,7 @@ class TvShowWidget;
 class TvShowWidget : public QWidget
 {
     Q_OBJECT
-    
+
 public:
     explicit TvShowWidget(QWidget *parent = 0);
     ~TvShowWidget();
@@ -20,7 +20,8 @@ public:
 public slots:
     void onTvShowSelected(TvShow *show);
     void onEpisodeSelected(TvShowEpisode *episode);
-    void onSetEnabledTrue();
+    void onSetEnabledTrue(TvShow *show = 0);
+    void onSetEnabledTrue(TvShowEpisode *episode);
     void onSetDisabledTrue();
     void onClear();
     void onSaveInformation();

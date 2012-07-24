@@ -2,6 +2,7 @@
 #define DOWNLOADMANAGERELEMENT_H
 
 #include "Globals.h"
+#include "data/TvShow.h"
 
 class DownloadManagerElement
 {
@@ -15,6 +16,7 @@ public:
     Actor *actor;
     TvShowEpisode *episode;
     Movie *movie;
+    TvShow *show;
     int season;
 };
 

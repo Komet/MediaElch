@@ -51,6 +51,8 @@ public:
     bool hasChanged() const;
     bool infoLoaded() const;
     QString mediaCenterPath() const;
+    int showId() const;
+    bool downloadsInProgress() const;
 
     void setName(QString name);
     void setShowTitle(QString title);
@@ -76,6 +78,7 @@ public:
     void setChanged(bool changed);
     void setModelItem(TvShowModelItem *item);
     void setMediaCenterPath(QString path);
+    void setDownloadsInProgress(bool inProgress);
 
     void removeActor(Actor *actor);
     void removeGenre(QString *genre);
@@ -88,7 +91,7 @@ public:
     void scraperLoadDone();
 
 signals:
-    void sigLoaded();
+    void sigLoaded(TvShow*);
     void sigChanged(TvShow*);
 
 private:
@@ -114,7 +117,8 @@ private:
     QList<int> m_seasonPosterImagesChanged;
     TvShowModelItem *m_modelItem;
     QString m_mediaCenterPath;
-
+    int m_showId;
+    bool m_downloadsInProgress;
     bool m_infoLoaded;
     bool m_hasChanged;
 };

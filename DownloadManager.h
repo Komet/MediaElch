@@ -28,6 +28,7 @@ signals:
     void downloadFinished(DownloadManagerElement);
     void allDownloadsFinished();
     void allDownloadsFinished(Movie*);
+    void allDownloadsFinished(TvShow*);
 
 private slots:
     void downloadProgress(qint64 received, qint64 total);

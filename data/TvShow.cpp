@@ -14,6 +14,9 @@ TvShow::TvShow(QString dir, QObject *parent) :
     m_posterImageChanged = false;
     m_hasChanged = false;
     clear();
+    m_downloadsInProgress = false;
+    static int m_idCounter = 0;
+    m_showId = ++m_idCounter;
 }
 
 void TvShow::moveToMainThread()
@@ -83,7 +86,7 @@ bool TvShow::saveData(MediaCenterInterface *mediaCenterInterface)
 
 void TvShow::scraperLoadDone()
 {
-    emit sigLoaded();
+    emit sigLoaded(this);
 }
 
 void TvShow::loadImages(MediaCenterInterface *mediaCenterInterface)
@@ -265,6 +268,16 @@ QString TvShow::mediaCenterPath() const
     return m_mediaCenterPath;
 }
 
+int TvShow::showId() const
+{
+    return m_showId;
+}
+
+bool TvShow::downloadsInProgress() const
+{
+    return m_downloadsInProgress;
+}
+
 /*** SETTER ***/
 
 void TvShow::setName(QString name)
@@ -424,6 +437,11 @@ void TvShow::setModelItem(TvShowModelItem *item)
 void TvShow::setMediaCenterPath(QString path)
 {
     m_mediaCenterPath = path;
+}
+
+void TvShow::setDownloadsInProgress(bool inProgress)
+{
+    m_downloadsInProgress = inProgress;
 }
 
 /*** REMOVER ***/

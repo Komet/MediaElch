@@ -188,8 +188,10 @@ void MovieWidget::loadDone(Movie *movie)
         d.url = movie->posters().at(0).originalUrl;
         d.movie = movie;
         m_posterDownloadManager->addDownload(d);
-        ui->poster->setPixmap(QPixmap());
-        ui->poster->setMovie(m_loadingMovie);
+        if (m_movie == movie) {
+            ui->poster->setPixmap(QPixmap());
+            ui->poster->setMovie(m_loadingMovie);
+        }
         downloadsSize++;
     }
 
@@ -200,8 +202,10 @@ void MovieWidget::loadDone(Movie *movie)
         d.url = movie->backdrops().at(0).originalUrl;
         d.movie = movie;
         m_posterDownloadManager->addDownload(d);
-        ui->backdrop->setPixmap(QPixmap());
-        ui->backdrop->setMovie(m_loadingMovie);
+        if (m_movie == movie) {
+            ui->backdrop->setPixmap(QPixmap());
+            ui->backdrop->setMovie(m_loadingMovie);
+        }
         downloadsSize++;
     }
 

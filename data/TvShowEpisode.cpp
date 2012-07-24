@@ -16,6 +16,8 @@ TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) :
     m_rating = 0;
     m_thumbnailImageChanged = false;
     m_hasChanged = false;
+    static int m_idCounter = 0;
+    m_episodeId = ++m_idCounter;
 }
 
 void TvShowEpisode::moveToMainThread()
@@ -256,6 +258,11 @@ QList<QString*> TvShowEpisode::directorsPointer()
     for (int i=0, n=m_directors.size() ; i<n ; ++i)
         directors.append(&m_directors[i]);
     return directors;
+}
+
+int TvShowEpisode::episodeId() const
+{
+    return m_episodeId;
 }
 
 /*** SETTER ***/
