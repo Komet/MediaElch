@@ -62,7 +62,7 @@ void TvShowFileSearcher::run()
 void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QList<QStringList> > &contents)
 {
     QStringList filters;
-    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "VIDEO_TS.ifo" << "index.bdmv";
+    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "VIDEO_TS.ifo" << "index.bdmv";
 
     QDir dir(path);
     foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
@@ -72,7 +72,8 @@ void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QList<QStringLis
         getSubDirs(tvShowDir, subDirs);
 
         foreach (const QString &subDir, subDirs) {
-            if (subDir.endsWith("BDMV/BACKUP", Qt::CaseInsensitive) || subDir.endsWith("BDMV\\Backup", Qt::CaseInsensitive))
+            if (subDir.endsWith("BDMV/BACKUP", Qt::CaseInsensitive) || subDir.endsWith("BDMV\\Backup", Qt::CaseInsensitive) ||
+                subDir.endsWith("BDMV/STREAM", Qt::CaseInsensitive) || subDir.endsWith("BDMV\\STREAM", Qt::CaseInsensitive))
                 continue;
 
             QStringList files;

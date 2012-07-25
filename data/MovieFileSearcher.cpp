@@ -74,8 +74,11 @@ void MovieFileSearcher::getDirContents(QString path, QList<QStringList> &content
 
     QStringList filters;
     QStringList files;
-    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.iso" << "VIDEO_TS.IFO" << "index.bdmv";
+    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.iso" << "*.m2ts" << "VIDEO_TS.IFO" << "index.bdmv";
     foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::System)) {
+        if (file.endsWith(".m2ts", Qt::CaseInsensitive) && (dir.path().endsWith("BDMV/STREAM", Qt::CaseInsensitive) ||
+                                                             dir.path().endsWith("BDMV\\STREAM", Qt::CaseInsensitive)))
+            continue;
         files.append(file);
     }
     files.sort();
