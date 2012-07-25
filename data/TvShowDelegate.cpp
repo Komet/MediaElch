@@ -28,8 +28,11 @@ void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
         int showNameHeight = 16;
 
         font.setBold(true);
-        font.setPointSize(12);
-
+        #ifdef Q_WS_MAC
+            font.setPointSize(12);
+        #else
+            font.setPixelSize(12);
+        #endif
         if (index.data(TvShowRoles::HasChanged).toBool()) {
             font.setItalic(true);
             if (option.state & QStyle::State_Selected) {
@@ -47,7 +50,11 @@ void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
             painter->setPen(QPen(option.palette.text().color()));
         int episodeCount = index.data(TvShowRoles::EpisodeCount).toInt();
         font.setBold(false);
-        font.setPointSize(10);
+        #ifdef Q_WS_MAC
+            font.setPointSize(10);
+        #else
+            font.setPixelSize(11);
+        #endif
         painter->setFont(font);
         painter->drawText(rect.x(), rect.y()+showNameHeight, rect.width(), rect.height()-showNameHeight,
                           Qt::AlignTop, QString(tr("%n Episodes", "", episodeCount)));
