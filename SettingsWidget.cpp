@@ -22,7 +22,9 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     ui->labelTvShows->setFont(font);
 
     ui->movieDirs->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-    ui->movieDirs->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->movieDirs->horizontalHeaderItem(2)->setToolTip(tr("Movies are in separate folders"));
+    ui->movieDirs->horizontalHeader()->setResizeMode(0, QHeaderView::Stretch);
+    ui->movieDirs->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
     ui->tvShowDirs->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->tvShowDirs->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
 
@@ -100,11 +102,18 @@ void SettingsWidget::loadSettings()
         QTableWidgetItem *item = new QTableWidgetItem(m_settings.value("path").toString());
         item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
         item->setToolTip(m_settings.value("path").toString());
+        QTableWidgetItem *item2 = new QTableWidgetItem;
+        if (m_settings.value("sepFolders", false).toBool())
+            item2->setCheckState(Qt::Checked);
+        else
+            item2->setCheckState(Qt::Unchecked);
         ui->movieDirs->setItem(i, 0, item);
         ui->movieDirs->setItem(i, 1, new QTableWidgetItem(m_settings.value("mediaCenterPath").toString()));
+        ui->movieDirs->setItem(i, 2, item2);
         SettingsDir dir;
         dir.path = m_settings.value("path").toString();
         dir.mediaCenterPath = m_settings.value("mediaCenterPath").toString();
+        dir.separateFolders = m_settings.value("sepFolders", false).toBool();
         m_movieDirectories.append(dir);
     }
     m_settings.endArray();
@@ -176,6 +185,7 @@ void SettingsWidget::saveSettings()
         m_settings.setArrayIndex(i);
         m_settings.setValue("path", m_movieDirectories.at(i).path);
         m_settings.setValue("mediaCenterPath", m_movieDirectories.at(i).mediaCenterPath);
+        m_settings.setValue("sepFolders", m_movieDirectories.at(i).separateFolders);
     }
     m_settings.endArray();
 
@@ -316,9 +326,13 @@ void SettingsWidget::tvShowListRowChanged(int currentRow)
 
 void SettingsWidget::movieMediaCenterPathChanged(QTableWidgetItem *item)
 {
-    if (item->row() < 0 || item->row() >= m_movieDirectories.count() || item->column() != 1)
+    if (item->row() < 0 || item->row() >= m_movieDirectories.count())
         return;
-    m_movieDirectories[item->row()].mediaCenterPath = item->text();
+
+    if (item->column() == 1)
+        m_movieDirectories[item->row()].mediaCenterPath = item->text();
+    else if (item->column() == 2)
+        m_movieDirectories[item->row()].separateFolders = item->checkState() == Qt::Checked;
 }
 
 void SettingsWidget::tvShowMediaCenterPathChanged(QTableWidgetItem *item)

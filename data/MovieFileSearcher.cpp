@@ -20,14 +20,30 @@ void MovieFileSearcher::run()
 
     Manager::instance()->movieModel()->clear();
     QList<QStringList> contents;
-    foreach (const QString &path, m_directories) {
-        this->getDirContents(path, contents);
+    foreach (SettingsDir dir, m_directories) {
+        getDirContents(dir.path, contents);
     }
 
     int i=0;
     int n=contents.size();
     foreach (const QStringList &files, contents) {
+        bool inSeparateFolder = false;
+        // get directory
+        if (!files.isEmpty()) {
+            int index = -1;
+            for (int i=0, n=m_directories.count() ; i<n ; ++i) {
+                if (files.at(0).startsWith(m_directories[i].path)) {
+                    if (index == -1)
+                        index = i;
+                    else if (m_directories[index].path.length() < m_directories[i].path.length())
+                        index = i;
+                }
+            }
+            if (index != -1)
+                inSeparateFolder = m_directories[index].separateFolders;
+        }
         Movie *movie = new Movie(files);
+        movie->setInSeparateFolder(inSeparateFolder);
         movie->loadData(Manager::instance()->mediaCenterInterface());
         Manager::instance()->movieModel()->addMovie(movie);
         emit progress(++i, n, m_progressMessageId);
@@ -42,7 +58,7 @@ void MovieFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
     for (int i=0, n=directories.count() ; i<n ; ++i) {
         QFileInfo fi(directories.at(i).path);
         if (fi.isDir())
-            m_directories.append(directories.at(i).path);
+            m_directories.append(directories.at(i));
     }
 }
 

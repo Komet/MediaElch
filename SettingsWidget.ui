@@ -77,8 +77,8 @@
          <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0">
           <item>
            <widget class="QTableWidget" name="movieDirs">
-            <attribute name="horizontalHeaderStretchLastSection">
-             <bool>true</bool>
+            <attribute name="horizontalHeaderDefaultSectionSize">
+             <number>70</number>
             </attribute>
             <attribute name="verticalHeaderVisible">
              <bool>false</bool>
@@ -91,6 +91,11 @@
             <column>
              <property name="text">
               <string>MediaCenter Path</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Sep. folders</string>
              </property>
             </column>
            </widget>

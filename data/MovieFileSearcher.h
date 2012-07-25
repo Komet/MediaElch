@@ -23,7 +23,7 @@ signals:
     void moviesLoaded(int);
 
 private:
-    QStringList m_directories;
+    QList<SettingsDir> m_directories;
     int m_progressMessageId;
     void getDirContents(QString path, QList<QStringList> &contents);
 };

@@ -26,6 +26,7 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_watched = false;
     m_hasChanged = false;
     m_downloadsInProgress = false;
+    m_inSeparateFolder = false;
     static int m_idCounter = 0;
     m_movieId = ++m_idCounter;
 }
@@ -83,8 +84,14 @@ bool Movie::loadData(MediaCenterInterface *mediaCenterInterface)
                         pathElements.removeLast();
                     if (pathElements.size() > 0)
                         this->setName(pathElements.last());
+            } else if (inSeparateFolder()) {
+                QStringList splitted = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
+                if (!splitted.isEmpty())
+                    setName(splitted.last());
+                else
+                    setName(fi.completeBaseName().replace(".", " ").replace("_", " "));
             } else {
-                this->setName(fi.completeBaseName().replace(".", " ").replace("_", " "));
+                setName(fi.completeBaseName().replace(".", " ").replace("_", " "));
             }
         }
     }
@@ -294,6 +301,11 @@ bool Movie::downloadsInProgress() const
     return m_downloadsInProgress;
 }
 
+bool Movie::inSeparateFolder() const
+{
+    return m_inSeparateFolder;
+}
+
 /*** SETTER ***/
 
 void Movie::setName(QString name)
@@ -441,6 +453,11 @@ void Movie::setChanged(bool changed)
 void Movie::setDownloadsInProgress(bool inProgress)
 {
     m_downloadsInProgress = inProgress;
+}
+
+void Movie::setInSeparateFolder(bool inSepFolder)
+{
+    m_inSeparateFolder = inSepFolder;
 }
 
 /*** ADDER ***/

@@ -57,6 +57,7 @@ public:
     bool watched() const;
     int movieId() const;
     bool downloadsInProgress() const;
+    bool inSeparateFolder() const;
 
     bool hasChanged() const;
 
@@ -92,6 +93,7 @@ public:
     void setWatched(bool watched);
     void setChanged(bool changed);
     void setDownloadsInProgress(bool inProgress);
+    void setInSeparateFolder(bool inSepFolder);
 
     void removeActor(Actor *actor);
     void removeCountry(QString *country);
@@ -141,6 +143,7 @@ private:
     bool m_hasChanged;
     int m_movieId;
     bool m_downloadsInProgress;
+    bool m_inSeparateFolder;
 };
 
 QDebug operator<<(QDebug dbg, const Movie &movie);

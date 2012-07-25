@@ -83,6 +83,7 @@ enum TvShowType {
 struct SettingsDir {
     QString path;
     QString mediaCenterPath;
+    bool separateFolders;
 };
 
 namespace MovieImageDialogType {
