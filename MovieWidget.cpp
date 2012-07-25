@@ -6,6 +6,7 @@
 #include <QMovie>
 #include <QPainter>
 #include <QScrollBar>
+#include "ImagePreviewDialog.h"
 #include "Manager.h"
 #include "MessageBox.h"
 #include "MovieImageDialog.h"
@@ -23,6 +24,8 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->genres->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->countries->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->studios->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    ui->buttonPreviewPoster->setEnabled(false);
+    ui->buttonPreviewBackdrop->setEnabled(false);
 
     QFont font = ui->movieName->font();
     font.setPointSize(font.pointSize()+4);
@@ -57,6 +60,8 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->genres, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onGenreEdited(QTableWidgetItem*)));
     connect(ui->studios, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onStudioEdited(QTableWidgetItem*)));
     connect(ui->countries, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onCountryEdited(QTableWidgetItem*)));
+    connect(ui->buttonPreviewPoster, SIGNAL(clicked()), this, SLOT(onPreviewPoster()));
+    connect(ui->buttonPreviewBackdrop, SIGNAL(clicked()), this, SLOT(onPreviewBackdrop()));
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -82,6 +87,15 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->released, SIGNAL(dateChanged(QDate)), this, SLOT(onReleasedChange(QDate)));
     connect(ui->lastPlayed, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(onLastWatchedChange(QDateTime)));
     connect(ui->overview, SIGNAL(textChanged()), this, SLOT(onOverviewChange()));
+
+    QPixmap zoomIn(":/img/zoom_in.png");
+    QPainter p;
+    p.begin(&zoomIn);
+    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    p.fillRect(zoomIn.rect(), QColor(0, 0, 0, 150));
+    p.end();
+    ui->buttonPreviewBackdrop->setIcon(QIcon(zoomIn));
+    ui->buttonPreviewPoster->setIcon(QIcon(zoomIn));
 }
 
 MovieWidget::~MovieWidget()
@@ -330,17 +344,23 @@ void MovieWidget::updateMovieInfo()
     if (!m_movie->posterImage()->isNull()) {
         ui->poster->setPixmap(QPixmap::fromImage(*m_movie->posterImage()).scaledToWidth(200, Qt::SmoothTransformation));
         ui->posterResolution->setText(QString("%1x%2").arg(m_movie->posterImage()->width()).arg(m_movie->posterImage()->height()));
+        ui->buttonPreviewPoster->setEnabled(true);
+        m_currentPoster = *m_movie->posterImage();
     } else {
         ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
         ui->posterResolution->setText("");
+        ui->buttonPreviewPoster->setEnabled(false);
     }
 
     if (!m_movie->backdropImage()->isNull()) {
         ui->backdrop->setPixmap(QPixmap::fromImage(*m_movie->backdropImage()).scaledToWidth(200, Qt::SmoothTransformation));
         ui->backdropResolution->setText(QString("%1x%2").arg(m_movie->backdropImage()->width()).arg(m_movie->backdropImage()->height()));
+        ui->buttonPreviewBackdrop->setEnabled(true);
+        m_currentBackdrop = *m_movie->backdropImage();
     } else {
         ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->backdropResolution->setText("");
+        ui->buttonPreviewBackdrop->setEnabled(false);
     }
 
     ui->rating->blockSignals(false);
@@ -377,6 +397,7 @@ void MovieWidget::chooseMoviePoster()
         m_posterDownloadManager->addDownload(d);
         ui->poster->setPixmap(QPixmap());
         ui->poster->setMovie(m_loadingMovie);
+        ui->buttonPreviewPoster->setEnabled(false);
     }
 }
 
@@ -399,6 +420,7 @@ void MovieWidget::chooseMovieBackdrop()
         m_posterDownloadManager->addDownload(d);
         ui->backdrop->setPixmap(QPixmap());
         ui->backdrop->setMovie(m_loadingMovie);
+        ui->buttonPreviewBackdrop->setEnabled(false);
     }
 }
 
@@ -408,6 +430,8 @@ void MovieWidget::posterDownloadFinished(DownloadManagerElement elem)
         if (m_movie == elem.movie) {
             ui->poster->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             ui->posterResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+            ui->buttonPreviewPoster->setEnabled(true);
+            m_currentPoster = elem.image;
         }
         elem.movie->setPosterImage(elem.image);
     } else if (elem.imageType == TypeBackdrop) {
@@ -422,6 +446,8 @@ void MovieWidget::posterDownloadFinished(DownloadManagerElement elem)
         if (m_movie == elem.movie) {
             ui->backdrop->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             ui->backdropResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+            ui->buttonPreviewBackdrop->setEnabled(true);
+            m_currentBackdrop = elem.image;
         }
         elem.movie->setBackdropImage(elem.image);
     }
@@ -618,6 +644,18 @@ void MovieWidget::onCountryEdited(QTableWidgetItem *item)
     country->clear();
     country->append(item->text());
     m_movie->setChanged(true);
+}
+
+void MovieWidget::onPreviewBackdrop()
+{
+    ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentBackdrop));
+    ImagePreviewDialog::instance()->exec();
+}
+
+void MovieWidget::onPreviewPoster()
+{
+    ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentPoster));
+    ImagePreviewDialog::instance()->exec();
 }
 
 /*** Pass GUI events to movie object ***/

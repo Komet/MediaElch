@@ -499,14 +499,43 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="thumbnailResolution">
-          <property name="toolTip">
-           <string>Resolution</string>
-          </property>
-          <property name="text">
-           <string>Resolution</string>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QToolButton" name="buttonPreviewBackdrop">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>Full Preview</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QToolButton {
+	border: none;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="MediaElch.qrc">
+              <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="thumbnailResolution">
+            <property name="toolTip">
+             <string>Resolution</string>
+            </property>
+            <property name="text">
+             <string>Resolution</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
          <spacer name="verticalSpacer">

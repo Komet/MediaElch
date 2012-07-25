@@ -49,6 +49,8 @@ private slots:
     void onPosterDownloadFinished(DownloadManagerElement elem);
     void onDownloadsFinished(TvShow *show);
     void onDownloadsLeft(int left, DownloadManagerElement elem);
+    void onPreviewPoster();
+    void onPreviewBackdrop();
 
     void onNameChange(QString text);
     void onCertificationChange(QString text);
@@ -66,6 +68,8 @@ private:
     QMovie *m_loadingMovie;
     DownloadManager *m_posterDownloadManager;
     QMap<int, QList<QWidget*> > m_seasonLayoutWidgets;
+    QImage m_currentPoster;
+    QImage m_currentBackdrop;
 
     void updateTvShowInfo();
 };

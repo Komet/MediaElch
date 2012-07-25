@@ -65,7 +65,8 @@ SOURCES += main.cpp\
     mediaCenterPlugins/XbmcSql.cpp \
     data/PortScan.cpp \
     DownloadManagerElement.cpp \
-    smallWidgets/ImageLabel.cpp
+    smallWidgets/ImageLabel.cpp \
+    ImagePreviewDialog.cpp
 
 HEADERS  += MainWindow.h \
     data/Movie.h \
@@ -115,7 +116,8 @@ HEADERS  += MainWindow.h \
     mediaCenterPlugins/XbmcSql.h \
     data/PortScan.h \
     DownloadManagerElement.h \
-    smallWidgets/ImageLabel.h
+    smallWidgets/ImageLabel.h \
+    ImagePreviewDialog.h
 
 FORMS    += MainWindow.ui \
     MovieSearch.ui \
@@ -134,7 +136,8 @@ FORMS    += MainWindow.ui \
     TvShowWidgetEpisode.ui \
     TvShowWidgetTvShow.ui \
     TvShowSearch.ui \
-    smallWidgets/ImageLabel.ui
+    smallWidgets/ImageLabel.ui \
+    ImagePreviewDialog.ui
 
 RESOURCES += \
     MediaElch.qrc

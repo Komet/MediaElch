@@ -58,6 +58,8 @@ private slots:
     void removeStudio();
     void addCountry();
     void removeCountry();
+    void onPreviewPoster();
+    void onPreviewBackdrop();
 
     void onNameChange(QString text);
     void onOriginalNameChange(QString text);
@@ -84,6 +86,8 @@ private:
     DownloadManager *m_posterDownloadManager;
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;
+    QImage m_currentPoster;
+    QImage m_currentBackdrop;
     void updateMovieInfo();
 };
 

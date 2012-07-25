@@ -9,6 +9,7 @@
 #include "data/MediaCenterInterface.h"
 #include "data/ScraperInterface.h"
 #include "ExportDialog.h"
+#include "ImagePreviewDialog.h"
 #include "Manager.h"
 #include "MovieImageDialog.h"
 #include "MovieSearch.h"
@@ -103,6 +104,7 @@ MainWindow::MainWindow(QWidget *parent) :
     TvShowSearch::instance(ui->centralWidget);
     MovieImageDialog::instance(ui->centralWidget);
     QuestionDialog::instance(ui->centralWidget);
+    ImagePreviewDialog::instance(ui->centralWidget);
 
     // start TV Show File Searcher after Movie File Searcher has finished
     Manager::instance()->movieFileSearcher()->start();

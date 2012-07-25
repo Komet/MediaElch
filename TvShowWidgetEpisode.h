@@ -14,7 +14,7 @@ class TvShowWidgetEpisode;
 class TvShowWidgetEpisode : public QWidget
 {
     Q_OBJECT
-    
+
 public:
     explicit TvShowWidgetEpisode(QWidget *parent = 0);
     ~TvShowWidgetEpisode();
@@ -41,6 +41,7 @@ private slots:
     void onChooseThumbnail();
     void onPosterDownloadFinished(DownloadManagerElement elem);
     void onLoadDone();
+    void onPreviewBackdrop();
 
     void onNameChange(QString text);
     void onShowTitleChange(QString text);
@@ -62,6 +63,7 @@ private:
     QLabel *m_savingWidget;
     QMovie *m_loadingMovie;
     DownloadManager *m_posterDownloadManager;
+    QImage m_currentBackdrop;
 
     void updateEpisodeInfo();
 };

@@ -2,6 +2,7 @@
 #include "ui_TvShowWidgetEpisode.h"
 
 #include <QMovie>
+#include "ImagePreviewDialog.h"
 #include "Manager.h"
 #include "MessageBox.h"
 #include "MovieImageDialog.h"
@@ -19,6 +20,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     ui->thumbnailResolution->clear();
     ui->directors->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->writers->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    ui->buttonPreviewBackdrop->setEnabled(false);
 
     QFont font = ui->episodeName->font();
     font.setPointSize(font.pointSize()+4);
@@ -41,6 +43,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     connect(ui->buttonRemoveWriter, SIGNAL(clicked()), this, SLOT(onRemoveWriter()));
     connect(ui->thumbnail, SIGNAL(clicked()), this, SLOT(onChooseThumbnail()));
     connect(m_posterDownloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onPosterDownloadFinished(DownloadManagerElement)));
+    connect(ui->buttonPreviewBackdrop, SIGNAL(clicked()), this, SLOT(onPreviewBackdrop()));
 
     onClear();
 
@@ -171,9 +174,12 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     if (!m_episode->thumbnailImage()->isNull()) {
         ui->thumbnail->setPixmap(QPixmap::fromImage(*m_episode->thumbnailImage()).scaledToWidth(200, Qt::SmoothTransformation));
         ui->thumbnailResolution->setText(QString("%1x%2").arg(m_episode->thumbnailImage()->width()).arg(m_episode->thumbnailImage()->height()));
+        ui->buttonPreviewBackdrop->setEnabled(true);
+        m_currentBackdrop = *m_episode->thumbnailImage();
     } else {
         ui->thumbnail->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->thumbnailResolution->setText("");
+        ui->buttonPreviewBackdrop->setEnabled(false);
     }
 
     ui->season->blockSignals(false);
@@ -237,6 +243,7 @@ void TvShowWidgetEpisode::onLoadDone()
         m_posterDownloadManager->addDownload(d);
         ui->thumbnail->setPixmap(QPixmap());
         ui->thumbnail->setMovie(m_loadingMovie);
+        ui->buttonPreviewBackdrop->setEnabled(false);
     } else {
         emit sigSetActionSearchEnabled(true, WidgetTvShows);
         emit sigSetActionSaveEnabled(true, WidgetTvShows);
@@ -267,6 +274,7 @@ void TvShowWidgetEpisode::onChooseThumbnail()
         m_posterDownloadManager->addDownload(d);
         ui->thumbnail->setPixmap(QPixmap());
         ui->thumbnail->setMovie(m_loadingMovie);
+        ui->buttonPreviewBackdrop->setEnabled(false);
     }
 }
 
@@ -284,6 +292,8 @@ void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
         if (m_episode == elem.episode) {
             ui->thumbnail->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             ui->thumbnailResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+            ui->buttonPreviewBackdrop->setEnabled(true);
+            m_currentBackdrop = elem.image;
         }
         elem.episode->setThumbnailImage(elem.image);
     }
@@ -365,6 +375,12 @@ void TvShowWidgetEpisode::onWriterEdited(QTableWidgetItem *item)
     writer->clear();
     writer->append(item->text());
     m_episode->setChanged(true);
+}
+
+void TvShowWidgetEpisode::onPreviewBackdrop()
+{
+    ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentBackdrop));
+    ImagePreviewDialog::instance()->exec();
 }
 
 /*** Pass GUI events to episode object ***/
