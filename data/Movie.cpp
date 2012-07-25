@@ -71,12 +71,18 @@ bool Movie::loadData(MediaCenterInterface *mediaCenterInterface)
     if (!infoLoaded) {
         if (this->files().size() > 0) {
             QFileInfo fi(this->files().at(0));
-            if (fi.fileName() == "VIDEO_TS.IFO") {
+            if (QString::compare(fi.fileName(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0) {
                 QStringList pathElements = fi.canonicalPath().split(QDir::separator());
-                if (pathElements.size() > 0 && pathElements.last() == "VIDEO_TS")
+                if (pathElements.size() > 0 && QString::compare(pathElements.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0)
                     pathElements.removeLast();
                 if (pathElements.size() > 0)
                     this->setName(pathElements.last());
+            } else if (QString::compare(fi.fileName(), "index.bdmv", Qt::CaseInsensitive) == 0) {
+                    QStringList pathElements = fi.canonicalPath().split(QDir::separator());
+                    if (pathElements.size() > 0 && QString::compare(pathElements.last(), "BDMV", Qt::CaseInsensitive) == 0)
+                        pathElements.removeLast();
+                    if (pathElements.size() > 0)
+                        this->setName(pathElements.last());
             } else {
                 this->setName(fi.completeBaseName().replace(".", " ").replace("_", " "));
             }

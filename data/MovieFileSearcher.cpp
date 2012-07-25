@@ -50,14 +50,15 @@ void MovieFileSearcher::getDirContents(QString path, QList<QStringList> &content
 {
     QDir dir(path);
     foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+        // skip bluray backup folder
+        if (QString::compare(cDir, "BACKUP", Qt::CaseInsensitive) == 0 && dir.path().endsWith("BDMV", Qt::CaseInsensitive))
+            continue;
         this->getDirContents(path + QDir::separator() + cDir, contents);
     }
 
     QStringList filters;
-    QStringList dvdFilters;
     QStringList files;
-    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.m2ts" << "*.mp4" << "*.iso" << "VIDEO_TS.IFO";
-    dvdFilters << "*.VOB" << "*.IFO" << "*.BUP";
+    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.iso" << "VIDEO_TS.IFO" << "index.bdmv";
     foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::System)) {
         files.append(file);
     }
@@ -72,12 +73,7 @@ void MovieFileSearcher::getDirContents(QString path, QList<QStringList> &content
 
         movieFiles << path + QDir::separator() + file;
 
-        if (file == "VIDEO_TS.IFO") {
-            foreach (const QString &dvdFile, dir.entryList(dvdFilters, QDir::Files | QDir::System)) {
-                if (dvdFile != "VIDEO_TS.IFO")
-                    movieFiles.append(path + QDir::separator() + dvdFile);
-            }
-        } else {
+        if (QString::compare(file, "VIDEO_TS.IFO", Qt::CaseInsensitive) != 0 && QString::compare(file, "index.bdmv", Qt::CaseInsensitive) != 0) {
             int pos = rx.indexIn(file);
             if (pos != -1) {
                 QString left = file.left(pos) + rx.cap(1);

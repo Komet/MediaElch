@@ -30,7 +30,7 @@ void TvShowFileSearcher::run()
     Manager::instance()->tvShowModel()->clear();
     QMap<QString, QList<QStringList> > contents;
     foreach (const QString &path, m_directories) {
-        this->getDirContents(path, contents);
+        getTvShows(path, contents);
     }
 
     int i=0;
@@ -55,50 +55,70 @@ void TvShowFileSearcher::run()
         }
         show->moveToMainThread();
     }
+
     emit tvShowsLoaded(m_progressMessageId);
 }
 
-void TvShowFileSearcher::getDirContents(QString path, QMap<QString, QList<QStringList> > &contents)
+void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QList<QStringList> > &contents)
 {
+    QStringList filters;
+    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "VIDEO_TS.ifo" << "index.bdmv";
+
     QDir dir(path);
     foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
-        QDir subDir(path + QDir::separator() + cDir);
-        QStringList filters;
-        QStringList files;
-        filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.vob";
-        foreach (const QString &file, subDir.entryList(filters, QDir::Files | QDir::System)) {
-            files.append(file);
-        }
-        files.sort();
+        QDir tvShowDir = QDir(path + QDir::separator() + cDir);
+        QStringList subDirs;
+        subDirs << tvShowDir.path();
+        getSubDirs(tvShowDir, subDirs);
 
-        QRegExp rx("((part|cd)[\\s_]*)(\\d+)", Qt::CaseInsensitive);
-        for (int i=0, n=files.size() ; i<n ; ++i) {
-            QStringList tvShowFiles;
-            QString file = files.at(i);
-            if (file.isEmpty())
+        foreach (const QString &subDir, subDirs) {
+            if (subDir.endsWith("BDMV/BACKUP", Qt::CaseInsensitive) || subDir.endsWith("BDMV\\Backup", Qt::CaseInsensitive))
                 continue;
-            tvShowFiles << QDir::toNativeSeparators(subDir.path()) + QDir::separator() + file;
-            int pos = rx.indexIn(file);
-            if (pos != -1) {
-                QString left = file.left(pos) + rx.cap(1);
-                QString right = file.mid(pos+rx.cap(1).size()+rx.cap(2).size());
-                for (int x=0 ; x<n ; x++) {
-                    QString subFile = files.at(x);
-                    if (subFile != file) {
-                        if (subFile.startsWith(left) && subFile.endsWith(right)) {
-                            tvShowFiles << path + QDir::separator() + subFile;
-                            files[x] = ""; // set an empty file name, this way we can skip this file in the main loop
+
+            QStringList files;
+            foreach (const QString &file, QDir(subDir).entryList(filters, QDir::Files | QDir::System)) {
+                files.append(file);
+            }
+            files.sort();
+
+            QRegExp rx("((part|cd)[\\s_]*)(\\d+)", Qt::CaseInsensitive);
+            for (int i=0, n=files.size() ; i<n ; ++i) {
+                QStringList tvShowFiles;
+                QString file = files.at(i);
+                if (file.isEmpty())
+                    continue;
+                tvShowFiles << QDir::toNativeSeparators(subDir) + QDir::separator() + file;
+                int pos = rx.indexIn(file);
+                if (pos != -1) {
+                    QString left = file.left(pos) + rx.cap(1);
+                    QString right = file.mid(pos+rx.cap(1).size()+rx.cap(2).size());
+                    for (int x=0 ; x<n ; x++) {
+                        QString subFile = files.at(x);
+                        if (subFile != file) {
+                            if (subFile.startsWith(left) && subFile.endsWith(right)) {
+                                tvShowFiles << QDir::toNativeSeparators(subDir) + QDir::separator() + subFile;
+                                files[x] = ""; // set an empty file name, this way we can skip this file in the main loop
+                            }
                         }
                     }
                 }
-            }
-            if (contents.contains(QDir::toNativeSeparators(subDir.path()))) {
-                contents[QDir::toNativeSeparators(subDir.path())].append(tvShowFiles);
-            } else {
-                QList<QStringList> l;
-                l << tvShowFiles;
-                contents.insert(QDir::toNativeSeparators(subDir.path()), l);
+
+                if (contents.contains(QDir::toNativeSeparators(dir.path() + QDir::separator() + cDir))) {
+                    contents[QDir::toNativeSeparators(dir.path() + QDir::separator() + cDir)].append(tvShowFiles);
+                } else {
+                    QList<QStringList> l;
+                    l << tvShowFiles;
+                    contents.insert(QDir::toNativeSeparators(dir.path() + QDir::separator() + cDir), l);
+                }
             }
         }
+    }
+}
+
+void TvShowFileSearcher::getSubDirs(QDir dir, QStringList &subDirs)
+{
+    foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+        subDirs.append(dir.path() + QDir::separator() + cDir);
+        getSubDirs(QDir(dir.path() + QDir::separator() + cDir), subDirs);
     }
 }

@@ -239,6 +239,20 @@ bool XbmcSql::saveMovie(Movie *movie)
         QString file;
         if (movie->files().count() == 1) {
             file = mediaCenterPath(movie->files().at(0));
+            bool isUnixFile = !file.contains("\\");
+            QStringList fileSplit = (isUnixFile) ? file.split("/", QString::SkipEmptyParts) : file.split("\\", QString::SkipEmptyParts);
+            if (!fileSplit.isEmpty() && (QString::compare(fileSplit.last(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0 ||
+                                         QString::compare(fileSplit.last(), "index.bdmv", Qt::CaseInsensitive) == 0)) {
+                fileSplit.takeLast();
+                if (!fileSplit.isEmpty() && (QString::compare(fileSplit.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0 ||
+                                             QString::compare(fileSplit.last(), "BDMV", Qt::CaseInsensitive) == 0)) {
+                    fileSplit.takeLast();
+                }
+                file = (isUnixFile) ? fileSplit.join("/") : fileSplit.join("\\");
+                file.prepend((isUnixFile) ? "/" : "\\");
+                file.append((isUnixFile) ? "/" : "\\");
+            }
+            qDebug() << file;
         } else {
             QStringList files;
             foreach (const QString &mFile, movie->files())
@@ -430,6 +444,19 @@ bool XbmcSql::loadMovie(Movie *movie)
     QString sqlWhereFile;
     QString file = mediaCenterPath(movie->files().at(0));
     if (movie->files().count() == 1) {
+        bool isUnixFile = !file.contains("\\");
+        QStringList fileSplit = (isUnixFile) ? file.split("/", QString::SkipEmptyParts) : file.split("\\", QString::SkipEmptyParts);
+        if (!fileSplit.isEmpty() && (QString::compare(fileSplit.last(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0) ||
+                                     QString::compare(fileSplit.last(), "index.bdmv", Qt::CaseInsensitive) == 0) {
+            fileSplit.takeLast();
+            if (!fileSplit.isEmpty() && (QString::compare(fileSplit.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0 ||
+                                         QString::compare(fileSplit.last(), "BDMV", Qt::CaseInsensitive) == 0)) {
+                fileSplit.takeLast();
+            }
+            file = (isUnixFile) ? fileSplit.join("/") : fileSplit.join("\\");
+            file.prepend((isUnixFile) ? "/" : "\\");
+            file.append((isUnixFile) ? "/" : "\\");
+        }
         if (m_isMySQL)
             file.replace("\\", "\\\\");
         sqlWhereFile = QString("M.c22='%1'").arg(file);

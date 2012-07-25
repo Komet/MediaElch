@@ -21,7 +21,8 @@ signals:
 private:
     QStringList m_directories;
     int m_progressMessageId;
-    void getDirContents(QString path, QMap<QString, QList<QStringList> > &contents);
+    void getTvShows(QString path, QMap<QString, QList<QStringList> > &contents);
+    void getSubDirs(QDir dir, QStringList &subDirs);
 };
 
 #endif // TVSHOWFILESEARCHER_H
