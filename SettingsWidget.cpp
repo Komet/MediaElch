@@ -103,6 +103,7 @@ void SettingsWidget::loadSettings()
         item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
         item->setToolTip(m_settings.value("path").toString());
         QTableWidgetItem *item2 = new QTableWidgetItem;
+        item2->setToolTip(tr("Movies are in separate folders"));
         if (m_settings.value("sepFolders", false).toBool())
             item2->setCheckState(Qt::Checked);
         else

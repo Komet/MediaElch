@@ -914,31 +914,32 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <location filename="../SettingsWidget.cpp" line="25"/>
+        <location filename="../SettingsWidget.cpp" line="106"/>
         <source>Movies are in separate folders</source>
         <translation>Filme sind in separaten Verzeichnissen</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="238"/>
+        <location filename="../SettingsWidget.cpp" line="239"/>
         <source>Settings saved</source>
         <translation>Einstellungen gespeichert</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="249"/>
+        <location filename="../SettingsWidget.cpp" line="250"/>
         <source>Choose a directory containing your movies</source>
         <translation>Wähle ein Verzeichnis aus, das deine Filme enthält</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="289"/>
+        <location filename="../SettingsWidget.cpp" line="290"/>
         <source>Choose a directory containing your TV shows</source>
         <translation>Wähle ein Verzeichnis aus, das deine Serien enthält</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="373"/>
+        <location filename="../SettingsWidget.cpp" line="374"/>
         <source>SQLite Database *.db</source>
         <translation>SQLite Datenbank *.db</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="385"/>
+        <location filename="../SettingsWidget.cpp" line="386"/>
         <source>Choose a directory containing your Thumbnails</source>
         <translation>Wähle das Verzeichnis aus, in dem die Thumbnails gespeichert werden</translation>
     </message>
