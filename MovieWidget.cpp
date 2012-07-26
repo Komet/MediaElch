@@ -2,6 +2,7 @@
 #include "ui_MovieWidget.h"
 
 #include <QDoubleValidator>
+#include <QFileDialog>
 #include <QIntValidator>
 #include <QMovie>
 #include <QPainter>
@@ -39,6 +40,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     #endif
     ui->posterResolution->setFont(font);
     ui->backdropResolution->setFont(font);
+    ui->actorResolution->setFont(font);
 
     m_movie = 0;
     m_posterDownloadManager = new DownloadManager(this);
@@ -57,11 +59,13 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->buttonAddStudio, SIGNAL(clicked()), this, SLOT(addStudio()));
     connect(ui->buttonRemoveStudio, SIGNAL(clicked()), this, SLOT(removeStudio()));
     connect(ui->actors, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onActorEdited(QTableWidgetItem*)));
+    connect(ui->actors, SIGNAL(itemSelectionChanged()), this, SLOT(onActorChanged()));
     connect(ui->genres, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onGenreEdited(QTableWidgetItem*)));
     connect(ui->studios, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onStudioEdited(QTableWidgetItem*)));
     connect(ui->countries, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onCountryEdited(QTableWidgetItem*)));
     connect(ui->buttonPreviewPoster, SIGNAL(clicked()), this, SLOT(onPreviewPoster()));
     connect(ui->buttonPreviewBackdrop, SIGNAL(clicked()), this, SLOT(onPreviewBackdrop()));
+    connect(ui->actor, SIGNAL(clicked()), this, SLOT(onChangeActorImage()));
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -131,9 +135,11 @@ void MovieWidget::clear()
     ui->countries->setRowCount(0);
     ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
     ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->actor->setPixmap(QPixmap(":/img/man.png"));
     ui->tabWidget->setCurrentIndex(0);
     ui->posterResolution->setText("");
     ui->backdropResolution->setText("");
+    ui->actorResolution->setText("");
 }
 
 void MovieWidget::movieNameChanged(QString text)
@@ -656,6 +662,45 @@ void MovieWidget::onPreviewPoster()
 {
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentPoster));
     ImagePreviewDialog::instance()->exec();
+}
+
+void MovieWidget::onActorChanged()
+{
+    if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount() ||
+        ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
+        ui->actor->setPixmap(QPixmap(":/img/man.png"));
+        ui->actorResolution->setText("");
+        return;
+    }
+
+    Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
+    if (actor->image.isNull()) {
+        ui->actor->setPixmap(QPixmap(":/img/man.png"));
+        ui->actorResolution->setText("");
+        return;
+    }
+    ui->actor->setPixmap(QPixmap::fromImage(actor->image).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->actorResolution->setText(QString("%1 x %2").arg(actor->image.width()).arg(actor->image.height()));
+}
+
+void MovieWidget::onChangeActorImage()
+{
+    if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount() ||
+        ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
+        return;
+    }
+
+    QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), QDir::homePath(), tr("Images (*.jpg *.jpeg)"));
+    if (!fileName.isNull()) {
+        QImage img(fileName);
+        if (!img.isNull()) {
+            Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
+            actor->image.load(fileName);
+            actor->imageHasChanged = true;
+            onActorChanged();
+            m_movie->setChanged(true);
+        }
+    }
 }
 
 /*** Pass GUI events to movie object ***/

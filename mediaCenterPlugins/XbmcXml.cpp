@@ -185,6 +185,7 @@ bool XbmcXml::loadMovie(Movie *movie)
         movie->addCountry(domDoc.elementsByTagName("country").at(i).toElement().text());
     for (int i=0, n=domDoc.elementsByTagName("actor").size() ; i<n ; i++) {
         Actor a;
+        a.imageHasChanged = false;
         if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("name").isEmpty())
             a.name = domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("name").at(0).toElement().text();
         if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("role").isEmpty())
@@ -220,11 +221,17 @@ void XbmcXml::loadMovieImages(Movie *movie)
     QFileInfo fi(movie->files().at(0));
     QFileInfo posterFi(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".tbn");
     QFileInfo backdropFi(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + "-fanart.jpg");
-    if (posterFi.isFile()) {
+    if (posterFi.isFile())
         movie->posterImage()->load(posterFi.absoluteFilePath());
-    }
-    if (backdropFi.isFile()) {
+    if (backdropFi.isFile())
         movie->backdropImage()->load(backdropFi.absoluteFilePath());
+
+    foreach (Actor *actor, movie->actorsPointer()) {
+        if (actor->imageHasChanged)
+            continue;
+        QString actorName = actor->name;
+        actorName = actorName.replace(" ", "_");
+        actor->image.load(fi.absolutePath() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn");
     }
 }
 
@@ -259,6 +266,14 @@ void XbmcXml::loadTvShowImages(TvShow *show)
         QFileInfo seasonFi(show->dir() + QDir::separator() + "season" + s + ".tbn");
         if (seasonFi.isFile())
             show->seasonPosterImage(season)->load(seasonFi.absoluteFilePath());
+    }
+
+    foreach (Actor *actor, show->actorsPointer()) {
+        if (actor->imageHasChanged)
+            continue;
+        QString actorName = actor->name;
+        actorName = actorName.replace(" ", "_");
+        actor->image.load(show->dir() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn");
     }
 }
 
@@ -435,6 +450,7 @@ bool XbmcXml::loadTvShow(TvShow *show)
         show->addGenre(domDoc.elementsByTagName("genre").at(i).toElement().text());
     for (int i=0, n=domDoc.elementsByTagName("actor").size() ; i<n ; i++) {
         Actor a;
+        a.imageHasChanged = false;
         if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("name").isEmpty())
             a.name = domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("name").at(0).toElement().text();
         if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("role").isEmpty())

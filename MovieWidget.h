@@ -60,6 +60,8 @@ private slots:
     void removeCountry();
     void onPreviewPoster();
     void onPreviewBackdrop();
+    void onActorChanged();
+    void onChangeActorImage();
 
     void onNameChange(QString text);
     void onOriginalNameChange(QString text);

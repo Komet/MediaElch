@@ -53,6 +53,8 @@ private slots:
     void onPreviewPoster();
     void onPreviewBackdrop();
     void onPreviewBanner();
+    void onActorChanged();
+    void onChangeActorImage();
 
     void onNameChange(QString text);
     void onCertificationChange(QString text);

@@ -1,6 +1,7 @@
 #include "TvShowWidgetTvShow.h"
 #include "ui_TvShowWidgetTvShow.h"
 
+#include <QFileDialog>
 #include <QMovie>
 #include <QPainter>
 #include "ImagePreviewDialog.h"
@@ -40,6 +41,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->posterResolution->setFont(font);
     ui->backdropResolution->setFont(font);
     ui->bannerResolution->setFont(font);
+    ui->actorResolution->setFont(font);
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -62,6 +64,8 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     connect(ui->buttonPreviewPoster, SIGNAL(clicked()), this, SLOT(onPreviewPoster()));
     connect(ui->buttonPreviewBackdrop, SIGNAL(clicked()), this, SLOT(onPreviewBackdrop()));
     connect(ui->buttonPreviewBanner, SIGNAL(clicked()), this, SLOT(onPreviewBanner()));
+    connect(ui->actors, SIGNAL(itemSelectionChanged()), this, SLOT(onActorChanged()));
+    connect(ui->actor, SIGNAL(clicked()), this, SLOT(onChangeActorImage()));
 
     onClear();
 
@@ -652,6 +656,45 @@ void TvShowWidgetTvShow::onPreviewBanner()
 {
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentBanner));
     ImagePreviewDialog::instance()->exec();
+}
+
+void TvShowWidgetTvShow::onActorChanged()
+{
+    if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount() ||
+        ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
+        ui->actor->setPixmap(QPixmap(":/img/man.png"));
+        ui->actorResolution->setText("");
+        return;
+    }
+
+    Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
+    if (actor->image.isNull()) {
+        ui->actor->setPixmap(QPixmap(":/img/man.png"));
+        ui->actorResolution->setText("");
+        return;
+    }
+    ui->actor->setPixmap(QPixmap::fromImage(actor->image).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->actorResolution->setText(QString("%1 x %2").arg(actor->image.width()).arg(actor->image.height()));
+}
+
+void TvShowWidgetTvShow::onChangeActorImage()
+{
+    if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount() ||
+        ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
+        return;
+    }
+
+    QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), QDir::homePath(), tr("Images (*.jpg *.jpeg)"));
+    if (!fileName.isNull()) {
+        QImage img(fileName);
+        if (!img.isNull()) {
+            Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
+            actor->image.load(fileName);
+            actor->imageHasChanged = true;
+            onActorChanged();
+            m_show->setChanged(true);
+        }
+    }
 }
 
 /*** Pass GUI events to tv show object ***/

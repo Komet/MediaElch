@@ -252,7 +252,6 @@ bool XbmcSql::saveMovie(Movie *movie)
                 file.prepend((isUnixFile) ? "/" : "\\");
                 file.append((isUnixFile) ? "/" : "\\");
             }
-            qDebug() << file;
         } else {
             QStringList files;
             foreach (const QString &mFile, movie->files())
@@ -606,6 +605,16 @@ void XbmcSql::loadMovieImages(Movie *movie)
         movie->posterImage()->load(posterPath);
     if (fanartFi.isFile())
         movie->backdropImage()->load(fanartPath);
+
+    foreach (Actor *actor, movie->actorsPointer()) {
+        if (actor->imageHasChanged)
+            continue;
+        QString hashActor = actorHash(*actor);
+        QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
+        QFileInfo fi(actorThumb);
+        if (fi.isFile())
+            actor->image.load(actorThumb);
+    }
 }
 
 void XbmcSql::exportDatabase(QList<Movie *> movies, QList<TvShow *> shows, QString exportPath, QString pathSearch, QString pathReplace)
@@ -746,6 +755,16 @@ void XbmcSql::loadTvShowImages(TvShow *show)
             if (seasonFi.isFile())
                 show->seasonPosterImage(season)->load(seasonFi.absoluteFilePath());
         }
+    }
+
+    foreach (Actor *actor, show->actorsPointer()) {
+        if (actor->imageHasChanged)
+            continue;
+        QString hashActor = actorHash(*actor);
+        QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
+        QFileInfo fi(actorThumb);
+        if (fi.isFile())
+            actor->image.load(actorThumb);
     }
 }
 
