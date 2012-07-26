@@ -79,6 +79,8 @@ void MovieFileSearcher::getDirContents(QString path, QList<QStringList> &content
         if (file.endsWith(".m2ts", Qt::CaseInsensitive) && (dir.path().endsWith("BDMV/STREAM", Qt::CaseInsensitive) ||
                                                              dir.path().endsWith("BDMV\\STREAM", Qt::CaseInsensitive)))
             continue;
+        if (file.contains("-trailer", Qt::CaseInsensitive))
+            continue;
         files.append(file);
     }
     files.sort();
