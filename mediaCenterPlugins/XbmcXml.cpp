@@ -234,10 +234,23 @@ void XbmcXml::loadTvShowImages(TvShow *show)
         return;
     QFileInfo posterFi(show->dir() + QDir::separator() + "season-all.tbn");
     QFileInfo backdropFi(show->dir() + QDir::separator() + "fanart.jpg");
-    if (posterFi.isFile())
+    QFileInfo bannerFi(show->dir() + QDir::separator() + "folder.jpg");
+    if (posterFi.isFile()) {
         show->posterImage()->load(posterFi.absoluteFilePath());
+    } else {
+        posterFi.setFile(show->dir() + QDir::separator() + "poster.jpg");
+        if (posterFi.isFile())
+            show->posterImage()->load(posterFi.absoluteFilePath());
+    }
     if (backdropFi.isFile())
         show->backdropImage()->load(backdropFi.absoluteFilePath());
+    if (bannerFi.isFile()) {
+        show->bannerImage()->load(bannerFi.absoluteFilePath());
+    } else {
+        bannerFi.setFile(show->dir() + QDir::separator() + "banner.jpg");
+        if (bannerFi.isFile())
+            show->bannerImage()->load(bannerFi.absoluteFilePath());
+    }
 
     foreach (int season, show->seasons()) {
         QString s = QString("%1").arg(season);
@@ -529,10 +542,16 @@ bool XbmcXml::saveTvShow(TvShow *show)
     file.write(xmlContent);
     file.close();
 
-    if (show->posterImageChanged() && !show->posterImage()->isNull())
+    if (show->posterImageChanged() && !show->posterImage()->isNull()) {
         show->posterImage()->save(show->dir() + QDir::separator() + "season-all.tbn", "jpg", 100);
+        show->posterImage()->save(show->dir() + QDir::separator() + "poster.jpg", "jpg", 100);
+    }
     if (show->backdropImageChanged() && !show->backdropImage()->isNull())
         show->backdropImage()->save(show->dir() + QDir::separator() + "fanart.jpg", "jpg", 100);
+    if (show->bannerImageChanged() && !show->bannerImage()->isNull()) {
+        show->bannerImage()->save(show->dir() + QDir::separator() + "folder.jpg", "jpg", 100);
+        show->bannerImage()->save(show->dir() + QDir::separator() + "banner.jpg", "jpg", 100);
+    }
 
     foreach (const Actor &actor, show->actors()) {
         if (!actor.image.isNull()) {

@@ -12,6 +12,7 @@ TvShow::TvShow(QString dir, QObject *parent) :
     m_infoLoaded = false;
     m_backdropImageChanged = false;
     m_posterImageChanged = false;
+    m_bannerImageChanged = false;
     m_hasChanged = false;
     clear();
     m_downloadsInProgress = false;
@@ -38,9 +39,11 @@ void TvShow::clear()
     m_actors.clear();
     m_backdrops.clear();
     m_posters.clear();
+    m_banners.clear();
     m_seasonPosters.clear();
     m_backdropImageChanged = false;
     m_posterImageChanged = false;
+    m_bannerImageChanged = false;
     m_seasonPosterImages.clear();
     m_seasonPosterImagesChanged.clear();
     m_hasChanged = false;
@@ -183,6 +186,11 @@ QList<Poster> TvShow::posters() const
     return m_posters;
 }
 
+QList<Poster> TvShow::banners() const
+{
+    return m_banners;
+}
+
 QList<Poster> TvShow::backdrops() const
 {
     return m_backdrops;
@@ -196,6 +204,11 @@ QImage *TvShow::posterImage()
 QImage *TvShow::backdropImage()
 {
     return &m_backdropImage;
+}
+
+QImage *TvShow::bannerImage()
+{
+    return &m_bannerImage;
 }
 
 QImage *TvShow::seasonPosterImage(int season)
@@ -231,6 +244,11 @@ bool TvShow::posterImageChanged() const
 bool TvShow::backdropImageChanged() const
 {
     return m_backdropImageChanged;
+}
+
+bool TvShow::bannerImageChanged() const
+{
+    return m_bannerImageChanged;
 }
 
 bool TvShow::seasonPosterImageChanged(int season) const
@@ -352,6 +370,12 @@ void TvShow::setPosters(QList<Poster> posters)
     setChanged(true);
 }
 
+void TvShow::setBanners(QList<Poster> banners)
+{
+    m_banners = banners;
+    setChanged(true);
+}
+
 void TvShow::setPoster(int index, Poster poster)
 {
     if (m_posters.size() < index)
@@ -380,6 +404,12 @@ void TvShow::addPoster(Poster poster)
     setChanged(true);
 }
 
+void TvShow::addBanner(Poster banner)
+{
+    m_banners.append(banner);
+    setChanged(true);
+}
+
 void TvShow::addBackdrop(Poster backdrop)
 {
     m_backdrops.append(backdrop);
@@ -390,6 +420,13 @@ void TvShow::setPosterImage(QImage poster)
 {
     m_posterImage = QImage(poster);
     m_posterImageChanged = true;
+    setChanged(true);
+}
+
+void TvShow::setBannerImage(QImage banner)
+{
+    m_bannerImage = QImage(banner);
+    m_bannerImageChanged = true;
     setChanged(true);
 }
 

@@ -45,12 +45,14 @@ private slots:
     void onLoadDone(TvShow *show);
     void onChoosePoster();
     void onChooseBackdrop();
+    void onChooseBanner();
     void onChooseSeasonPoster(int season);
     void onPosterDownloadFinished(DownloadManagerElement elem);
     void onDownloadsFinished(TvShow *show);
     void onDownloadsLeft(int left, DownloadManagerElement elem);
     void onPreviewPoster();
     void onPreviewBackdrop();
+    void onPreviewBanner();
 
     void onNameChange(QString text);
     void onCertificationChange(QString text);
@@ -70,6 +72,7 @@ private:
     QMap<int, QList<QWidget*> > m_seasonLayoutWidgets;
     QImage m_currentPoster;
     QImage m_currentBackdrop;
+    QImage m_currentBanner;
 
     void updateTvShowInfo();
 };

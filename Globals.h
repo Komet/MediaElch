@@ -73,7 +73,7 @@ struct Poster {
 };
 
 enum ImageType {
-    TypePoster, TypeBackdrop, TypeActor, TypeSeasonPoster, TypeShowThumbnail
+    TypePoster, TypeBackdrop, TypeBanner, TypeActor, TypeSeasonPoster, TypeShowThumbnail
 };
 
 enum TvShowType {
@@ -93,6 +93,7 @@ namespace MovieImageDialogType {
     const int TvShowBackdrop = 4;
     const int TvShowThumb    = 5;
     const int TvShowSeason   = 6;
+    const int TvShowBanner = 7;
 }
 
 #endif // GLOBALS_H

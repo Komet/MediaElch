@@ -728,6 +728,11 @@ void XbmcSql::loadTvShowImages(TvShow *show)
     if (backdropFi.isFile())
         show->backdropImage()->load(backdropFi.absoluteFilePath());
 
+    QString bannerHash = hash(show->mediaCenterPath());
+    QFileInfo bannerFi(QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(bannerHash.left(1)).arg(bannerHash));
+    if (bannerFi.isFile())
+        show->bannerImage()->load(bannerFi.absoluteFilePath());
+
     foreach (int season, show->seasons()) {
         // English
         QString seasonHash = hash(QString("season%1Season %2").arg(show->mediaCenterPath()).arg(season));
@@ -1024,6 +1029,11 @@ bool XbmcSql::saveTvShow(TvShow *show)
         QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
         show->posterImage()->save(posterPath, "jpg", 100);
 
+        // poster.jpg
+        fileHash = hash(path + "poster.jpg");
+        posterPath = QString("%1%2%3%2%4.jpg").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
+        show->posterImage()->save(posterPath, "jpg", 100);
+
         // English
         fileHash = hash(QString("season%1* All Seasons").arg(path));
         posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
@@ -1040,6 +1050,13 @@ bool XbmcSql::saveTvShow(TvShow *show)
         QString fanartHash = hash(path);
         QString fanartPath = QString("%1%2Video%2Fanart%2%3.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fanartHash);
         show->backdropImage()->save(fanartPath, "jpg", 100);
+    }
+
+    // banner
+    if (show->bannerImageChanged() && !show->bannerImage()->isNull()) {
+        QString bannerHash = hash(path);
+        QString bannerPath = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(bannerHash.left(1)).arg(bannerHash);
+        show->bannerImage()->save(bannerPath, "jpg", 100);
     }
 
     // season images

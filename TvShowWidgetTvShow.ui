@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>954</width>
-    <height>687</height>
+    <height>762</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -571,6 +571,83 @@
             <property name="toolTip">
              <string>Resolution</string>
             </property>
+            <property name="text">
+             <string>Resolution</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_6">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Banner</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyLabel" name="banner">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>37</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>37</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="toolTip">
+           <string>Click to change</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QToolButton" name="buttonPreviewBanner">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>Full Preview</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QToolButton {
+	border: none;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="MediaElch.qrc">
+              <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="bannerResolution">
             <property name="text">
              <string>Resolution</string>
             </property>

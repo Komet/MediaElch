@@ -20,6 +20,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->showTitle->clear();
     ui->posterResolution->clear();
     ui->backdropResolution->clear();
+    ui->bannerResolution->clear();
     ui->genres->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->actors->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     ui->actors->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
@@ -28,6 +29,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->showTitle->setFont(font);
     ui->buttonPreviewBackdrop->setEnabled(false);
     ui->buttonPreviewPoster->setEnabled(false);
+    ui->buttonPreviewBanner->setEnabled(false);
 
     font = ui->posterResolution->font();
     #ifdef Q_WS_WIN
@@ -37,6 +39,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     #endif
     ui->posterResolution->setFont(font);
     ui->backdropResolution->setFont(font);
+    ui->bannerResolution->setFont(font);
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -53,10 +56,12 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     connect(ui->buttonRemoveActor, SIGNAL(clicked()), this, SLOT(onRemoveActor()));
     connect(ui->poster, SIGNAL(clicked()), this, SLOT(onChoosePoster()));
     connect(ui->backdrop, SIGNAL(clicked()), this, SLOT(onChooseBackdrop()));
+    connect(ui->banner, SIGNAL(clicked()), this, SLOT(onChooseBanner()));
     connect(m_posterDownloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onPosterDownloadFinished(DownloadManagerElement)));
     connect(m_posterDownloadManager, SIGNAL(downloadsLeft(int,DownloadManagerElement)), this, SLOT(onDownloadsLeft(int,DownloadManagerElement)));
     connect(ui->buttonPreviewPoster, SIGNAL(clicked()), this, SLOT(onPreviewPoster()));
     connect(ui->buttonPreviewBackdrop, SIGNAL(clicked()), this, SLOT(onPreviewBackdrop()));
+    connect(ui->buttonPreviewBanner, SIGNAL(clicked()), this, SLOT(onPreviewBanner()));
 
     onClear();
 
@@ -80,6 +85,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     p.end();
     ui->buttonPreviewBackdrop->setIcon(QIcon(zoomIn));
     ui->buttonPreviewPoster->setIcon(QIcon(zoomIn));
+    ui->buttonPreviewBanner->setIcon(QIcon(zoomIn));
 }
 
 TvShowWidgetTvShow::~TvShowWidgetTvShow()
@@ -107,9 +113,11 @@ void TvShowWidgetTvShow::onClear()
     ui->overview->clear();
     ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
     ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt_small.png"));
     ui->tabWidget->setCurrentIndex(0);
     ui->posterResolution->clear();
     ui->backdropResolution->clear();
+    ui->bannerResolution->clear();
 
     QMapIterator<int, QList<QWidget*> > it(m_seasonLayoutWidgets);
     while (it.hasNext()) {
@@ -208,6 +216,17 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->backdropResolution->setText("");
         ui->buttonPreviewBackdrop->setEnabled(false);
+    }
+
+    if (!m_show->bannerImage()->isNull()) {
+        ui->banner->setPixmap(QPixmap::fromImage(*m_show->bannerImage()).scaledToWidth(200, Qt::SmoothTransformation));
+        ui->bannerResolution->setText(QString("%1x%2").arg(m_show->bannerImage()->width()).arg(m_show->bannerImage()->height()));
+        ui->buttonPreviewBanner->setEnabled(true);
+        m_currentBanner = *m_show->bannerImage();
+    } else {
+        ui->banner->setPixmap(QPixmap(":/img/pictures_alt_small.png"));
+        ui->bannerResolution->setText("");
+        ui->buttonPreviewBanner->setEnabled(false);
     }
 
     QMapIterator<int, QList<QWidget*> > it(m_seasonLayoutWidgets);
@@ -313,6 +332,20 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show)
         if (m_show == show) {
             ui->backdrop->setPixmap(QPixmap());
             ui->backdrop->setMovie(m_loadingMovie);
+        }
+    }
+
+    if (show->banners().size() > 0) {
+        emit sigSetActionSaveEnabled(false, WidgetTvShows);
+        DownloadManagerElement d;
+        d.imageType = TypeBanner;
+        d.url = show->banners().at(0).originalUrl;
+        d.show = show;
+        m_posterDownloadManager->addDownload(d);
+        downloadsSize++;
+        if (m_show == show) {
+            ui->banner->setPixmap(QPixmap());
+            ui->banner->setMovie(m_loadingMovie);
         }
     }
 
@@ -440,6 +473,29 @@ void TvShowWidgetTvShow::onChooseBackdrop()
     }
 }
 
+void TvShowWidgetTvShow::onChooseBanner()
+{
+    if (m_show == 0)
+        return;
+
+    MovieImageDialog::instance()->setImageType(TypeBanner);
+    MovieImageDialog::instance()->clear();
+    MovieImageDialog::instance()->setDownloads(m_show->banners());
+    MovieImageDialog::instance()->exec(MovieImageDialogType::TvShowBanner);
+
+    if (MovieImageDialog::instance()->result() == QDialog::Accepted) {
+        emit sigSetActionSaveEnabled(false, WidgetTvShows);
+        DownloadManagerElement d;
+        d.imageType = TypeBanner;
+        d.url = MovieImageDialog::instance()->imageUrl();
+        d.show = m_show;
+        m_posterDownloadManager->addDownload(d);
+        ui->banner->setPixmap(QPixmap());
+        ui->banner->setMovie(m_loadingMovie);
+        ui->buttonPreviewBanner->setEnabled(false);
+    }
+}
+
 void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
 {
     if (elem.imageType == TypePoster) {
@@ -466,6 +522,14 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
             m_currentBackdrop = elem.image;
         }
         elem.show->setBackdropImage(elem.image);
+    } else if (elem.imageType == TypeBanner) {
+        if (m_show == elem.show) {
+            ui->banner->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 37, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->bannerResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+            ui->buttonPreviewBanner->setEnabled(true);
+            m_currentBanner = elem.image;
+        }
+        elem.show->setBannerImage(elem.image);
     } else if (elem.imageType == TypeSeasonPoster) {
         int season = elem.season;
         elem.show->setSeasonPosterImage(season, elem.image);
@@ -581,6 +645,12 @@ void TvShowWidgetTvShow::onPreviewBackdrop()
 void TvShowWidgetTvShow::onPreviewPoster()
 {
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentPoster));
+    ImagePreviewDialog::instance()->exec();
+}
+
+void TvShowWidgetTvShow::onPreviewBanner()
+{
+    ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentBanner));
     ImagePreviewDialog::instance()->exec();
 }
 

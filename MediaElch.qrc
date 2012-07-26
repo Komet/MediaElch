@@ -32,5 +32,6 @@
         <file>img/storage.png</file>
         <file>img/zoom_in.png</file>
         <file>img/zoom_out.png</file>
+        <file>img/pictures_alt_small.png</file>
     </qresource>
 </RCC>
