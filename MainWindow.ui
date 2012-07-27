@@ -85,6 +85,29 @@
         </widget>
        </item>
        <item>
+        <widget class="QToolButton" name="buttonMovieSets">
+         <property name="toolTip">
+          <string>Movie Sets</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border: 0;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="MediaElch.qrc">
+           <normaloff>:/img/movieSets_menu.png</normaloff>:/img/movieSets_menu.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QToolButton" name="buttonTvshows">
          <property name="toolTip">
           <string>TV Shows</string>
@@ -231,6 +254,7 @@
        </layout>
       </widget>
       <widget class="SettingsWidget" name="settingsWidget"/>
+      <widget class="SetsWidget" name="setsWidget"/>
      </widget>
     </item>
    </layout>
@@ -301,6 +325,12 @@
    <class>TvShowWidget</class>
    <extends>QWidget</extends>
    <header>TvShowWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SetsWidget</class>
+   <extends>QWidget</extends>
+   <header>SetsWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

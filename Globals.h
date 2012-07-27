@@ -40,6 +40,7 @@ namespace MediaCenterFeatures {
     const int EditTvShowEpisodeCertification = 1;
     const int EditTvShowEpisodeShowTitle     = 2;
     const int EditTvShowEpisodeNetwork       = 3;
+    const int HandleMovieSetImages           = 4;
 }
 
 enum MainActions {
@@ -47,7 +48,7 @@ enum MainActions {
 };
 
 enum MainWidgets {
-    WidgetMovies, WidgetTvShows
+    WidgetMovies, WidgetMovieSets, WidgetTvShows
 };
 
 struct Actor {
@@ -58,6 +59,7 @@ struct Actor {
     bool imageHasChanged;
 };
 Q_DECLARE_METATYPE(Actor*);
+Q_DECLARE_METATYPE(Movie*);
 Q_DECLARE_METATYPE(QString*);
 
 struct ScraperSearchResult {

@@ -12,6 +12,7 @@
 #include "ImagePreviewDialog.h"
 #include "Manager.h"
 #include "MovieImageDialog.h"
+#include "MovieListDialog.h"
 #include "MovieSearch.h"
 #include "QuestionDialog.h"
 #include "SettingsWidget.h"
@@ -28,6 +29,10 @@ MainWindow::MainWindow(QWidget *parent) :
     m_movieActions.insert(ActionSearch, false);
     m_movieActions.insert(ActionRefresh, false);
     m_movieActions.insert(ActionExport, false);
+    m_movieSetActions.insert(ActionSave, false);
+    m_movieSetActions.insert(ActionSearch, false);
+    m_movieSetActions.insert(ActionRefresh, false);
+    m_movieSetActions.insert(ActionExport, false);
     m_tvShowActions.insert(ActionSave, false);
     m_tvShowActions.insert(ActionSearch, false);
     m_tvShowActions.insert(ActionRefresh, false);
@@ -51,6 +56,8 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->movieSplitter->restoreState(m_settingsWidget->movieSplitterState());
     if (!m_settingsWidget->tvShowSplitterState().isNull())
         ui->tvShowSplitter->restoreState(m_settingsWidget->tvShowSplitterState());
+    if (!m_settingsWidget->movieSetsSplitterState().isNull())
+        ui->setsWidget->splitter()->restoreState(m_settingsWidget->movieSetsSplitterState());
 
     Manager::instance()->movieFileSearcher()->setMovieDirectories(m_settingsWidget->movieDirectories());
     Manager::instance()->tvShowFileSearcher()->setMovieDirectories(m_settingsWidget->tvShowDirectories());
@@ -89,26 +96,33 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->tvShowWidget, SIGNAL(sigDownloadsProgress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
     connect(ui->tvShowWidget, SIGNAL(sigDownloadsFinished(int)), this, SLOT(progressFinished(int)));
 
+    connect(ui->setsWidget, SIGNAL(setActionSaveEnabled(bool,MainWidgets)), this, SLOT(onSetSaveEnabled(bool,MainWidgets)));
+
     connect(m_filterWidget, SIGNAL(sigFilterTextChanged(QString)), this, SLOT(onFilterChanged(QString)));
 
     connect(ui->buttonMovies, SIGNAL(clicked()), this, SLOT(onMenuMovies()));
+    connect(ui->buttonMovieSets, SIGNAL(clicked()), this, SLOT(onMenuMovieSets()));
     connect(ui->buttonTvshows, SIGNAL(clicked()), this, SLOT(onMenuTvShows()));
     connect(ui->buttonSettings, SIGNAL(clicked()), this, SLOT(onMenuSettings()));
 
     connect(ui->movieSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(onMovieSplitterMoved()));
     connect(ui->tvShowSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(onTvShowSplitterMoved()));
+    connect(ui->setsWidget->splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(onMovieSetsSplitterMoved()));
 
     Manager::instance()->setupMediaCenterInterface();
 
     MovieSearch::instance(ui->centralWidget);
     TvShowSearch::instance(ui->centralWidget);
     MovieImageDialog::instance(ui->centralWidget);
+    MovieListDialog::instance(ui->centralWidget);
     QuestionDialog::instance(ui->centralWidget);
     ImagePreviewDialog::instance(ui->centralWidget);
 
     // start TV Show File Searcher after Movie File Searcher has finished
     Manager::instance()->movieFileSearcher()->start();
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded(int)), Manager::instance()->tvShowFileSearcher(), SLOT(start()));
+    // load movie sets when Movie File Searcher has finished
+    connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded(int)), ui->setsWidget, SLOT(loadSets()));
 
 #ifdef Q_WS_WIN
     setStyleSheet(styleSheet() + " #centralWidget { border-bottom: 1px solid rgba(0, 0, 0, 100); } ");
@@ -122,6 +136,7 @@ MainWindow::~MainWindow()
     m_settingsWidget->setMainWindowPosition(pos());
     m_settingsWidget->setMovieSplitterState(ui->movieSplitter->saveState());
     m_settingsWidget->setTvShowSplitterState(ui->tvShowSplitter->saveState());
+    m_settingsWidget->setMovieSetsSplitterState(ui->setsWidget->splitter()->saveState());
     delete ui;
 }
 
@@ -254,6 +269,7 @@ void MainWindow::onMenuMovies()
 {
     ui->stackedWidget->setCurrentIndex(0);
     ui->buttonMovies->setIcon(QIcon(":/img/video_menuActive.png"));
+    ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menu.png"));
     ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menu.png"));
     ui->buttonSettings->setIcon(QIcon(":/img/spanner_menu.png"));
     m_actionSearch->setEnabled(m_movieActions[ActionSearch]);
@@ -264,10 +280,27 @@ void MainWindow::onMenuMovies()
     m_filterWidget->setEnabled(true);
 }
 
+void MainWindow::onMenuMovieSets()
+{
+    ui->stackedWidget->setCurrentIndex(3);
+    ui->buttonMovies->setIcon(QIcon(":/img/video_menu.png"));
+    ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menuActive.png"));
+    ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menu.png"));
+    ui->buttonSettings->setIcon(QIcon(":/img/spanner_menu.png"));
+    m_actionSearch->setEnabled(m_movieSetActions[ActionSearch]);
+    m_actionSave->setEnabled(m_movieSetActions[ActionSave]);
+    m_actionSaveAll->setEnabled(false);
+    m_actionRefreshFiles->setEnabled(m_movieSetActions[ActionRefresh]);
+    m_actionExport->setEnabled(m_movieSetActions[ActionExport]);
+    m_filterWidget->setEnabled(true);
+    ui->setsWidget->loadSets();
+}
+
 void MainWindow::onMenuTvShows()
 {
     ui->stackedWidget->setCurrentIndex(1);
     ui->buttonMovies->setIcon(QIcon(":/img/video_menu.png"));
+    ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menu.png"));
     ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menuActive.png"));
     ui->buttonSettings->setIcon(QIcon(":/img/spanner_menu.png"));
     m_actionSearch->setEnabled(m_tvShowActions[ActionSearch]);
@@ -283,6 +316,7 @@ void MainWindow::onMenuSettings()
     m_settingsWidget->loadSettings();
     ui->stackedWidget->setCurrentIndex(2);
     ui->buttonMovies->setIcon(QIcon(":/img/video_menu.png"));
+    ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menu.png"));
     ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menu.png"));
     ui->buttonSettings->setIcon(QIcon(":/img/spanner_menuActive.png"));
     m_actionSearch->setEnabled(false);
@@ -309,6 +343,8 @@ void MainWindow::onActionSave()
         QTimer::singleShot(0, ui->tvShowWidget, SLOT(onSaveInformation()));
     else if (ui->stackedWidget->currentIndex() == 2)
         QTimer::singleShot(0, ui->settingsWidget, SLOT(saveSettings()));
+    else if (ui->stackedWidget->currentIndex() == 3)
+        QTimer::singleShot(0, ui->setsWidget, SLOT(saveSet()));
 }
 
 void MainWindow::onActionSaveAll()
@@ -366,12 +402,16 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
         m_movieActions[ActionSave] = enabled;
     else if (widget == WidgetTvShows)
         m_tvShowActions[ActionSave] = enabled;
+    else if (widget == WidgetMovieSets)
+        m_movieSetActions[ActionSave] = enabled;
 
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
         (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1)) {
         m_actionSave->setEnabled(enabled);
         m_actionSaveAll->setEnabled(enabled);
     }
+    if (widget == WidgetMovieSets && ui->stackedWidget->currentIndex() == 3)
+        m_actionSave->setEnabled(enabled);
 }
 
 void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
@@ -389,9 +429,17 @@ void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
 void MainWindow::onMovieSplitterMoved()
 {
     ui->tvShowSplitter->restoreState(ui->movieSplitter->saveState());
+    ui->setsWidget->splitter()->restoreState(ui->movieSplitter->saveState());
 }
 
 void MainWindow::onTvShowSplitterMoved()
 {
     ui->movieSplitter->restoreState(ui->tvShowSplitter->saveState());
+    ui->setsWidget->splitter()->restoreState(ui->tvShowSplitter->saveState());
+}
+
+void MainWindow::onMovieSetsSplitterMoved()
+{
+    ui->movieSplitter->restoreState(ui->setsWidget->splitter()->saveState());
+    ui->tvShowSplitter->restoreState(ui->setsWidget->splitter()->saveState());
 }

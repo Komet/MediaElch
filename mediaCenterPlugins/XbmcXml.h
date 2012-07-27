@@ -28,6 +28,11 @@ public:
     bool saveTvShowEpisode(TvShowEpisode *episode);
     void shutdown();
     bool hasFeature(int feature);
+    QImage movieSetPoster(QString setName);
+    QImage movieSetBackdrop(QString setName);
+    void saveMovieSetPoster(QString setName, QImage poster);
+    void saveMovieSetBackdrop(QString setName, QImage backdrop);
+
 signals:
     void sigExportStarted();
     void sigExportProgress(int, int);

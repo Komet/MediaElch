@@ -52,6 +52,7 @@ void Movie::clear()
     m_runtime = 0;
     m_trailer = "";
     m_certification = "";
+    m_sortTitle = "";
 }
 
 bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
@@ -122,6 +123,11 @@ void Movie::loadImages(MediaCenterInterface *mediaCenterInterface)
 QString Movie::name() const
 {
     return m_name;
+}
+
+QString Movie::sortTitle() const
+{
+    return m_sortTitle;
 }
 
 QString Movie::originalName() const
@@ -311,6 +317,12 @@ bool Movie::inSeparateFolder() const
 void Movie::setName(QString name)
 {
     m_name = name;
+    setChanged(true);
+}
+
+void Movie::setSortTitle(QString sortTitle)
+{
+    m_sortTitle = sortTitle;
     setChanged(true);
 }
 

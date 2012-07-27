@@ -301,56 +301,61 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../MainWindow.ui" line="73"/>
-        <location filename="../MainWindow.ui" line="96"/>
         <location filename="../MainWindow.ui" line="119"/>
+        <location filename="../MainWindow.ui" line="142"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="90"/>
+        <source>Movie Sets</source>
+        <translation>Zusammenstellungen</translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.ui" line="113"/>
         <source>TV Shows</source>
         <translation>TV Serien</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="113"/>
-        <location filename="../MainWindow.ui" line="260"/>
+        <location filename="../MainWindow.ui" line="136"/>
+        <location filename="../MainWindow.ui" line="284"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="265"/>
-        <location filename="../MainWindow.cpp" line="188"/>
+        <location filename="../MainWindow.ui" line="289"/>
+        <location filename="../MainWindow.cpp" line="203"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui" line="270"/>
-        <location filename="../MainWindow.cpp" line="187"/>
+        <location filename="../MainWindow.ui" line="294"/>
+        <location filename="../MainWindow.cpp" line="202"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="180"/>
+        <location filename="../MainWindow.cpp" line="195"/>
         <source>Search</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="181"/>
+        <location filename="../MainWindow.cpp" line="196"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="182"/>
+        <location filename="../MainWindow.cpp" line="197"/>
         <source>Save All</source>
         <translation>Alle Speichern</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="183"/>
+        <location filename="../MainWindow.cpp" line="198"/>
         <source>Reload</source>
         <translation>Neu laden</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="184"/>
+        <location filename="../MainWindow.cpp" line="199"/>
         <source>Reload Movie List</source>
         <translation>Filmliste neu laden</translation>
     </message>
@@ -359,12 +364,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Einstellungen</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="185"/>
+        <location filename="../MainWindow.cpp" line="200"/>
         <source>Export</source>
         <translation>Export</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="186"/>
+        <location filename="../MainWindow.cpp" line="201"/>
         <source>Export Movie Database</source>
         <translation>Filmdatenbank exportieren</translation>
     </message>
@@ -466,6 +471,24 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Images (*.jpg *.png)</source>
         <translation type="obsolete">Bilder (*.jpg *.png)</translation>
+    </message>
+</context>
+<context>
+    <name>MovieListDialog</name>
+    <message>
+        <location filename="../MovieListDialog.ui" line="17"/>
+        <source>Choose a movie</source>
+        <translation>Wähle einen Film aus</translation>
+    </message>
+    <message>
+        <location filename="../MovieListDialog.ui" line="59"/>
+        <source>Result</source>
+        <translation>Ergebnis</translation>
+    </message>
+    <message>
+        <location filename="../MovieListDialog.ui" line="82"/>
+        <source>Close</source>
+        <translation>Schließen</translation>
     </message>
 </context>
 <context>
@@ -816,6 +839,103 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
 </context>
 <context>
+    <name>SetsWidget</name>
+    <message>
+        <location filename="../SetsWidget.ui" line="14"/>
+        <source>Form</source>
+        <translation>Form</translation>
+    </message>
+    <message>
+        <location filename="../SetsWidget.ui" line="71"/>
+        <source>Set</source>
+        <translation>Zusammenstellung</translation>
+    </message>
+    <message>
+        <location filename="../SetsWidget.ui" line="101"/>
+        <source>Set Name</source>
+        <translation>Zusammenstellung</translation>
+    </message>
+    <message>
+        <location filename="../SetsWidget.ui" line="145"/>
+        <source>Movie</source>
+        <translation>Film</translation>
+    </message>
+    <message>
+        <location filename="../SetsWidget.ui" line="150"/>
+        <source>Sorttitle</source>
+        <translation>Sortierung</translation>
+    </message>
+    <message>
+        <location filename="../SetsWidget.ui" line="173"/>
+        <source>Add movie to set</source>
+        <translation>Film zur Zusammenstellung hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="../SetsWidget.ui" line="187"/>
+        <source>Remove selected movie from set</source>
+        <translation>Film aus Zusammenstellung entfernen</translation>
+    </message>
+    <message>
+        <location filename="../SetsWidget.ui" line="219"/>
+        <source>Poster</source>
+        <translation>Poster</translation>
+    </message>
+    <message>
+        <location filename="../SetsWidget.ui" line="241"/>
+        <location filename="../SetsWidget.ui" line="324"/>
+        <source>Click to Change</source>
+        <translation>Zum Ändern klicken</translation>
+    </message>
+    <message>
+        <location filename="../SetsWidget.ui" line="262"/>
+        <location filename="../SetsWidget.ui" line="345"/>
+        <source>Full preview</source>
+        <translation>Vorschau</translation>
+    </message>
+    <message>
+        <location filename="../SetsWidget.ui" line="281"/>
+        <location filename="../SetsWidget.ui" line="284"/>
+        <location filename="../SetsWidget.ui" line="364"/>
+        <location filename="../SetsWidget.ui" line="367"/>
+        <source>Resolution</source>
+        <translation>Auflösung</translation>
+    </message>
+    <message>
+        <location filename="../SetsWidget.ui" line="302"/>
+        <source>Backdrop</source>
+        <translation>Fanart</translation>
+    </message>
+    <message>
+        <location filename="../SetsWidget.cpp" line="243"/>
+        <location filename="../SetsWidget.cpp" line="272"/>
+        <source>MediaElch</source>
+        <translation>MediaElch</translation>
+    </message>
+    <message>
+        <location filename="../SetsWidget.cpp" line="244"/>
+        <location filename="../SetsWidget.cpp" line="273"/>
+        <source>Setting Posters and Backdrops is only possible with XBMC MySQL and SQLite interfaces.</source>
+        <translation>Das Setzen von Postern und Fanarts ist nur mit den XBMC MySQL und SQLite Interfaces möglich.</translation>
+    </message>
+    <message>
+        <location filename="../SetsWidget.cpp" line="250"/>
+        <location filename="../SetsWidget.cpp" line="279"/>
+        <source>Choose Image</source>
+        <translation>Bild auswählen</translation>
+    </message>
+    <message>
+        <location filename="../SetsWidget.cpp" line="250"/>
+        <location filename="../SetsWidget.cpp" line="279"/>
+        <source>Images (*.jpg *.jpeg)</source>
+        <translation>Bilder (*.jpg *.jpeg)</translation>
+    </message>
+    <message>
+        <location filename="../SetsWidget.cpp" line="313"/>
+        <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
+    </message>
+</context>
+<context>
     <name>SettingsDialog</name>
     <message>
         <source>Settings</source>
@@ -975,32 +1095,32 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <location filename="../SettingsWidget.cpp" line="25"/>
-        <location filename="../SettingsWidget.cpp" line="106"/>
+        <location filename="../SettingsWidget.cpp" line="107"/>
         <source>Movies are in separate folders</source>
         <translation>Filme sind in separaten Verzeichnissen</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="239"/>
+        <location filename="../SettingsWidget.cpp" line="240"/>
         <source>Settings saved</source>
         <translation>Einstellungen gespeichert</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="250"/>
+        <location filename="../SettingsWidget.cpp" line="251"/>
         <source>Choose a directory containing your movies</source>
         <translation>Wähle ein Verzeichnis aus, das deine Filme enthält</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="290"/>
+        <location filename="../SettingsWidget.cpp" line="291"/>
         <source>Choose a directory containing your TV shows</source>
         <translation>Wähle ein Verzeichnis aus, das deine Serien enthält</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="374"/>
+        <location filename="../SettingsWidget.cpp" line="375"/>
         <source>SQLite Database *.db</source>
         <translation>SQLite Datenbank *.db</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="386"/>
+        <location filename="../SettingsWidget.cpp" line="387"/>
         <source>Choose a directory containing your Thumbnails</source>
         <translation>Wähle das Verzeichnis aus, in dem die Thumbnails gespeichert werden</translation>
     </message>
@@ -1726,17 +1846,17 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
 <context>
     <name>XbmcXml</name>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="296"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="301"/>
         <source>Could not create actors directory</source>
         <translation>Verzeichnis &quot;actors&quot; konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="300"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="305"/>
         <source>Could not create movies directory</source>
         <translation>Verzeichnis &quot;movies&quot; konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="304"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="309"/>
         <source>Could not create tv shows directory</source>
         <translation>Verzeichnis &quot;tvshows&quot; konnte nicht erstellt werden</translation>
     </message>

@@ -25,6 +25,7 @@ public:
     void clear();
 
     QString name() const;
+    QString sortTitle() const;
     QString originalName() const;
     QString overview() const;
     qreal rating() const;
@@ -62,6 +63,7 @@ public:
     bool hasChanged() const;
 
     void setName(QString name);
+    void setSortTitle(QString sortTitle);
     void setOriginalName(QString originalName);
     void setOverview(QString overview);
     void setRating(qreal rating);
@@ -115,6 +117,7 @@ private:
     QStringList m_files;
     QString m_folderName;
     QString m_name;
+    QString m_sortTitle;
     QString m_originalName;
     QString m_overview;
     qreal m_rating;

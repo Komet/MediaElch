@@ -21,6 +21,10 @@ public:
     virtual void loadTvShowImages(TvShow *show) = 0;
     virtual bool loadTvShowEpisode(TvShowEpisode *episode) = 0;
     virtual void loadTvShowEpisodeImages(TvShowEpisode *episode) = 0;
+    virtual QImage movieSetPoster(QString setName) = 0;
+    virtual QImage movieSetBackdrop(QString setName) = 0;
+    virtual void saveMovieSetPoster(QString setName, QImage poster) = 0;
+    virtual void saveMovieSetBackdrop(QString setName, QImage backdrop) = 0;
     virtual bool saveTvShow(TvShow *show) = 0;
     virtual bool saveTvShowEpisode(TvShowEpisode *episode) = 0;
     virtual void shutdown() = 0;

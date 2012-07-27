@@ -90,6 +90,7 @@ void SettingsWidget::loadSettings()
     m_mainWindowPosition = m_settings.value("MainWindowPosition").toPoint();
     m_movieSplitterState = m_settings.value("MovieSplitterState").toByteArray();
     m_tvShowSplitterState = m_settings.value("TvShowSplitterState").toByteArray();
+    m_movieSetsSplitterState = m_settings.value("MovieSetsSplitterState").toByteArray();
 
     // Movie Directories
     m_movieDirectories.clear();
@@ -421,6 +422,11 @@ QByteArray SettingsWidget::tvShowSplitterState()
     return m_tvShowSplitterState;
 }
 
+QByteArray SettingsWidget::movieSetsSplitterState()
+{
+    return m_movieSetsSplitterState;
+}
+
 QList<SettingsDir> SettingsWidget::movieDirectories()
 {
     return m_movieDirectories;
@@ -501,4 +507,10 @@ void SettingsWidget::setTvShowSplitterState(QByteArray state)
 {
     m_tvShowSplitterState = state;
     m_settings.setValue("TvShowSplitterState", state);
+}
+
+void SettingsWidget::setMovieSetsSplitterState(QByteArray state)
+{
+    m_movieSetsSplitterState = state;
+    m_settings.setValue("MovieSetsSplitterState", state);
 }

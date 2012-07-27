@@ -207,6 +207,7 @@ bool XbmcSql::saveMovie(Movie *movie)
                       "c05=:rating, "
                       "c07=:year, "
                       "c08=:thumbnails, "
+                      "c10=:sortTitle, "
                       "c11=:runtime, "
                       "c12=:certification, "
                       "c14=:genres, "
@@ -223,6 +224,10 @@ bool XbmcSql::saveMovie(Movie *movie)
         query.bindValue(":rating", movie->rating());
         query.bindValue(":year", movie->released().toString("yyyy"));
         query.bindValue(":thumbnails", QString(thumbnails));
+        if (movie->sortTitle().isEmpty())
+            query.bindValue(":sortTitle", QVariant(QVariant::String));
+        else
+            query.bindValue(":sortTitle", movie->sortTitle());
         if (movie->runtime() == 0)
             query.bindValue(":runtime", QVariant(QVariant::Int));
         else
@@ -259,8 +264,8 @@ bool XbmcSql::saveMovie(Movie *movie)
             file = "stack://" + files.join(" , ");
         }
 
-        query.prepare("INSERT INTO movie(idFile, c00, c01, c03, c05, c07, c08, c11, c12, c14, c16, c18, c19, c20, c21, c22, c23) "
-                      "VALUES(:idFile, :title, :plot, :tagline, :rating, :year, :thumbnails, :runtime, :certification, :genres, :originalTitle, "
+        query.prepare("INSERT INTO movie(idFile, c00, c01, c03, c05, c07, c08, c10, c11, c12, c14, c16, c18, c19, c20, c21, c22, c23) "
+                      "VALUES(:idFile, :title, :plot, :tagline, :rating, :year, :thumbnails, :sortTitle, :runtime, :certification, :genres, :originalTitle, "
                       ":studios, :trailer, :fanart, :countries, :file, :idPath)");
         query.bindValue(":idFile", idFile);
         query.bindValue(":title", movie->name());
@@ -269,7 +274,14 @@ bool XbmcSql::saveMovie(Movie *movie)
         query.bindValue(":rating", movie->rating());
         query.bindValue(":year", movie->released().toString("yyyy"));
         query.bindValue(":thumbnails", QString(thumbnails));
-        query.bindValue(":runtime", movie->runtime());
+        if (movie->sortTitle().isEmpty())
+            query.bindValue(":sortTitle", QVariant(QVariant::String));
+        else
+            query.bindValue(":sortTitle", movie->sortTitle());
+        if (movie->runtime() == 0)
+            query.bindValue(":runtime", QVariant(QVariant::Int));
+        else
+            query.bindValue(":runtime", movie->runtime());
         query.bindValue(":certification", movie->certification());
         query.bindValue(":genres", movie->genres().join(" / "));
         query.bindValue(":originalTitle", movie->originalName());
@@ -474,6 +486,7 @@ bool XbmcSql::loadMovie(Movie *movie)
                   "M.c05 AS rating, "
                   "M.c07 AS year, "
                   "M.c08 AS thumbnails, "
+                  "M.c10 AS sortTitle, "
                   "M.c11 AS runtime, "
                   "M.c12 AS certification, "
                   "M.c14 AS genres, "
@@ -517,6 +530,7 @@ bool XbmcSql::loadMovie(Movie *movie)
     QSqlRecord record = query.record();
     int idMovie = query.value(record.indexOf("idMovie")).toInt();
     movie->setName(query.value(record.indexOf("title")).toString());
+    movie->setSortTitle(query.value(record.indexOf("sortTitle")).toString());
     movie->setOverview(query.value(record.indexOf("plot")).toString());
     movie->setTagline(query.value(record.indexOf("tagline")).toString());
     movie->setRating(query.value(record.indexOf("rating")).toReal());
@@ -554,7 +568,7 @@ bool XbmcSql::loadMovie(Movie *movie)
     // Set
     query.prepare("SELECT S.strSet AS `set` "
                   "FROM setlinkmovie SLM "
-                  "JOIN set S ON SLM.idSet=S.idSet "
+                  "JOIN sets S ON SLM.idSet=S.idSet "
                   "WHERE SLM.idMovie=:idMovie");
     query.bindValue(":idMovie", idMovie);
     query.exec();
@@ -1357,6 +1371,42 @@ bool XbmcSql::saveTvShowEpisode(TvShowEpisode *episode)
     return true;
 }
 
+QImage XbmcSql::movieSetPoster(QString setName)
+{
+    QString hash = movieSetHash(setName);
+    QString path = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hash.left(1)).arg(hash);
+    QFileInfo fi(path);
+    if (!fi.isFile())
+        return QImage();
+    QImage img(path);
+    return img;
+}
+
+QImage XbmcSql::movieSetBackdrop(QString setName)
+{
+    QString hash = movieSetHash(setName);
+    QString path = QString("%1%2Video%2Fanart%2%3.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hash);
+    QFileInfo fi(path);
+    if (!fi.isFile())
+        return QImage();
+    QImage img(path);
+    return img;
+}
+
+void XbmcSql::saveMovieSetPoster(QString setName, QImage poster)
+{
+    QString hash = movieSetHash(setName);
+    QString path = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hash.left(1)).arg(hash);
+    poster.save(path, "jpg", 100);
+}
+
+void XbmcSql::saveMovieSetBackdrop(QString setName, QImage backdrop)
+{
+    QString hash = movieSetHash(setName);
+    QString path = QString("%1%2Video%2Fanart%2%3.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hash);
+    backdrop.save(path, "jpg", 100);
+}
+
 QString XbmcSql::hash(QString string)
 {
     QString chars = string.toLower();
@@ -1379,6 +1429,19 @@ QString XbmcSql::hash(QString string)
 QString XbmcSql::actorHash(Actor actor)
 {
     return hash(QString("actor%1").arg(actor.name));
+}
+
+QString XbmcSql::movieSetHash(QString setName)
+{
+    QSqlQuery query(db());
+    query.prepare("SELECT idSet FROM sets WHERE strSet=:setName");
+    query.bindValue(":setName", setName);
+    query.exec();
+    if (!query.next())
+        return QString();
+    int id = query.value(0).toInt();
+
+    return hash(QString("videodb://1/7/%1/").arg(id));
 }
 
 QSqlDatabase XbmcSql::db()

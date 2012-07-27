@@ -31,6 +31,7 @@ private slots:
     void progressFinished(int id);
     void progressStarted(QString msg, int id);
     void onMenuMovies();
+    void onMenuMovieSets();
     void onMenuTvShows();
     void onMenuSettings();
     void onActionSearch();
@@ -44,6 +45,7 @@ private slots:
     void onSetSearchEnabled(bool enabled, MainWidgets widget);
     void onMovieSplitterMoved();
     void onTvShowSplitterMoved();
+    void onMovieSetsSplitterMoved();
 
 private:
     Ui::MainWindow *ui;
@@ -58,6 +60,7 @@ private:
     QAction *m_actionRefreshFiles;
     QAction *m_actionSaveAll;
     QMap<MainActions, bool> m_movieActions;
+    QMap<MainActions, bool> m_movieSetActions;
     QMap<MainActions, bool> m_tvShowActions;
     FilterWidget *m_filterWidget;
     void setupToolbar();

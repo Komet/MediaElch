@@ -18,7 +18,9 @@ XbmcXml::~XbmcXml()
 
 bool XbmcXml::hasFeature(int feature)
 {
-    Q_UNUSED(feature);
+    if (feature == MediaCenterFeatures::HandleMovieSetImages)
+        return false;
+
     return true;
 }
 
@@ -59,6 +61,7 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath,
     }
     xml.writeTextElement("id", movie->id());
     xml.writeTextElement("set", movie->set());
+    xml.writeTextElement("sorttitle", movie->sortTitle());
     xml.writeTextElement("trailer", movie->trailer().toString());
     xml.writeTextElement("watched", (movie->watched()) ? "true" : "false");
     foreach (const QString &studio, movie->studios())
@@ -172,6 +175,8 @@ bool XbmcXml::loadMovie(Movie *movie)
         movie->setId(domDoc.elementsByTagName("id").at(0).toElement().text());
     if (!domDoc.elementsByTagName("set").isEmpty())
         movie->setSet(domDoc.elementsByTagName("set").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("sorttitle").isEmpty())
+        movie->setSortTitle(domDoc.elementsByTagName("sorttitle").at(0).toElement().text());
     if (!domDoc.elementsByTagName("trailer").isEmpty())
         movie->setTrailer(QUrl(domDoc.elementsByTagName("trailer").at(0).toElement().text()));
     if (!domDoc.elementsByTagName("watched").isEmpty())
@@ -730,4 +735,28 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
         }
     }
     xml.writeEndElement();
+}
+
+QImage XbmcXml::movieSetPoster(QString setName)
+{
+    Q_UNUSED(setName);
+    return QImage();
+}
+
+QImage XbmcXml::movieSetBackdrop(QString setName)
+{
+    Q_UNUSED(setName);
+    return QImage();
+}
+
+void XbmcXml::saveMovieSetPoster(QString setName, QImage poster)
+{
+    Q_UNUSED(setName);
+    Q_UNUSED(poster);
+}
+
+void XbmcXml::saveMovieSetBackdrop(QString setName, QImage backdrop)
+{
+    Q_UNUSED(setName);
+    Q_UNUSED(backdrop);
 }

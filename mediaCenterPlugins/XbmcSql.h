@@ -30,6 +30,10 @@ public:
     void connectSqlite(QString database);
     void shutdown();
     bool hasFeature(int feature);
+    QImage movieSetPoster(QString setName);
+    QImage movieSetBackdrop(QString setName);
+    void saveMovieSetPoster(QString setName, QImage poster);
+    void saveMovieSetBackdrop(QString setName, QImage backdrop);
 
 signals:
     void sigExportStarted();
@@ -40,6 +44,7 @@ signals:
 private:
     QString hash(QString string);
     QString actorHash(Actor actor);
+    QString movieSetHash(QString setName);
     QString mediaCenterPath(QString file);
     QString mediaCenterDir(QString file);
     QString tvShowMediaCenterPath(QString file);

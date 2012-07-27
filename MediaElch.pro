@@ -66,7 +66,9 @@ SOURCES += main.cpp\
     data/PortScan.cpp \
     DownloadManagerElement.cpp \
     smallWidgets/ImageLabel.cpp \
-    ImagePreviewDialog.cpp
+    ImagePreviewDialog.cpp \
+    SetsWidget.cpp \
+    MovieListDialog.cpp
 
 HEADERS  += MainWindow.h \
     data/Movie.h \
@@ -117,7 +119,9 @@ HEADERS  += MainWindow.h \
     data/PortScan.h \
     DownloadManagerElement.h \
     smallWidgets/ImageLabel.h \
-    ImagePreviewDialog.h
+    ImagePreviewDialog.h \
+    SetsWidget.h \
+    MovieListDialog.h
 
 FORMS    += MainWindow.ui \
     MovieSearch.ui \
@@ -137,7 +141,9 @@ FORMS    += MainWindow.ui \
     TvShowWidgetTvShow.ui \
     TvShowSearch.ui \
     smallWidgets/ImageLabel.ui \
-    ImagePreviewDialog.ui
+    ImagePreviewDialog.ui \
+    SetsWidget.ui \
+    MovieListDialog.ui
 
 RESOURCES += \
     MediaElch.qrc

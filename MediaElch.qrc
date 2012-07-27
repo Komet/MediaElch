@@ -34,5 +34,9 @@
         <file>img/zoom_out.png</file>
         <file>img/pictures_alt_small.png</file>
         <file>img/man.png</file>
+        <file>img/book_menu.png</file>
+        <file>img/book_menuActive.png</file>
+        <file>img/movieSets_menu.png</file>
+        <file>img/movieSets_menuActive.png</file>
     </qresource>
 </RCC>

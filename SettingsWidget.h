@@ -23,6 +23,7 @@ public:
     QPoint mainWindowPosition();
     QByteArray movieSplitterState();
     QByteArray tvShowSplitterState();
+    QByteArray movieSetsSplitterState();
     QList<SettingsDir> movieDirectories();
     QList<SettingsDir> tvShowDirectories();
     bool firstTime();
@@ -38,6 +39,7 @@ public:
     void setMainWindowPosition(QPoint mainWindowPosition);
     void setMovieSplitterState(QByteArray state);
     void setTvShowSplitterState(QByteArray state);
+    void setMovieSetsSplitterState(QByteArray state);
 
 public slots:
     void saveSettings();
@@ -66,6 +68,7 @@ private:
     QPoint m_mainWindowPosition;
     QByteArray m_movieSplitterState;
     QByteArray m_tvShowSplitterState;
+    QByteArray m_movieSetsSplitterState;
     bool m_firstTime;
     int m_mediaCenterInterface;
     QString m_xbmcMysqlHost;
