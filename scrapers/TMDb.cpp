@@ -41,22 +41,36 @@ TMDb::TMDb(QObject *parent)
     m_settingsLanguageCombo->addItem(tr("Spanish"), "es");
     m_settingsLanguageCombo->addItem(tr("Swedish"), "sv");
     m_settingsLanguageCombo->addItem(tr("Turkish"), "tr");
+
+    m_baseUrl = "http://cf2.imgobject.com/t/p/";
+    setup();
 }
 
 TMDb::~TMDb()
 {
 }
 
+/**
+ * @brief Returns the name of the scraper
+ * @return Name of the Scraper
+ */
 QString TMDb::name()
 {
     return QString("The Movie DB");
 }
 
+/**
+ * @brief Returns if the scraper has settings
+ * @return Scraper has settings
+ */
 bool TMDb::hasSettings()
 {
     return true;
 }
 
+/**
+ * @brief Loads scrapers settings
+ */
 void TMDb::loadSettings()
 {
     QSettings settings;
@@ -67,6 +81,9 @@ void TMDb::loadSettings()
     }
 }
 
+/**
+ * @brief Saves scrapers settings
+ */
 void TMDb::saveSettings()
 {
     QSettings settings;
@@ -74,6 +91,10 @@ void TMDb::saveSettings()
     settings.setValue("Scrapers/TMDb/Language", m_language);
 }
 
+/**
+ * @brief Constructs a widget with scrapers settings
+ * @return Settings Widget
+ */
 QWidget *TMDb::settingsWidget()
 {
     QWidget *widget = new QWidget;
@@ -89,46 +110,124 @@ QWidget *TMDb::settingsWidget()
     return widget;
 }
 
+/**
+ * @brief Just returns a pointer to the scrapers network access manager
+ * @return Network Access Manager
+ */
 QNetworkAccessManager *TMDb::qnam()
 {
     return &m_qnam;
 }
 
+/**
+ * @brief Loads the setup parameters from TMDb
+ * @see TMDb::setupFinished
+ */
+void TMDb::setup()
+{
+    QUrl url(QString("http://api.themoviedb.org/3/configuration?api_key=%1").arg(m_apiKey));
+    QNetworkRequest request(url);
+    request.setRawHeader("Accept", "application/json");
+    m_setupReply = this->qnam()->get(request);
+    connect(m_setupReply, SIGNAL(finished()), this, SLOT(setupFinished()));
+}
+
+/**
+ * @brief Called when setup parameters were got
+ *        Parses json and assigns the baseUrl
+ */
+void TMDb::setupFinished()
+{
+    if (m_setupReply->error() != QNetworkReply::NoError ) {
+        m_setupReply->deleteLater();
+        return;
+    }
+    QString msg = QString::fromUtf8(m_setupReply->readAll());
+    m_setupReply->deleteLater();
+    QScriptValue sc;
+    QScriptEngine engine;
+    sc = engine.evaluate("(" + QString(msg) + ")");
+
+    m_baseUrl = sc.property("images").property("base_url").toString();
+}
+
+/**
+ * @brief Searches for a movie
+ * @param searchStr The Movie name/search string
+ * @see TMDb::searchFinished
+ */
 void TMDb::search(QString searchStr)
 {
-    QUrl url(QString("http://api.themoviedb.org/2.1/Movie.search/%1/json/%2/%3").arg(m_language).arg(m_apiKey).arg(searchStr));
-    m_searchReply = this->qnam()->get(QNetworkRequest(url));
+    m_results.clear();
+    m_searchString = searchStr;
+    QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(m_apiKey).arg(m_language).arg(searchStr));
+    QNetworkRequest request(url);
+    request.setRawHeader("Accept", "application/json");
+    m_searchReply = this->qnam()->get(request);
     connect(m_searchReply, SIGNAL(finished()), this, SLOT(searchFinished()));
 }
 
+/**
+ * @brief Called when the search result was downloaded
+ *        Emits "searchDone" if there are no more pages in the result set
+ * @see TMDb::parseSearch
+ */
 void TMDb::searchFinished()
 {
     QList<ScraperSearchResult> results;
-    if (m_searchReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_searchReply->readAll());
-        results = parseSearch(msg);
+    if (m_searchReply->error() != QNetworkReply::NoError ) {
+        m_searchReply->deleteLater();
+        emit searchDone(results);
+        return;
     }
+
+    QString msg = QString::fromUtf8(m_searchReply->readAll());
+    int nextPage = -1;
+    results = parseSearch(msg, &nextPage);
+    m_results.append(results);
     m_searchReply->deleteLater();
-    emit searchDone(results);
+
+    if (nextPage == -1) {
+        emit searchDone(m_results);
+    } else {
+        QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&query=%4").arg(m_apiKey).arg(m_language).arg(nextPage).arg(m_searchString));
+        QNetworkRequest request(url);
+        request.setRawHeader("Accept", "application/json");
+        m_searchReply = this->qnam()->get(request);
+        connect(m_searchReply, SIGNAL(finished()), this, SLOT(searchFinished()));
+    }
 }
 
-QList<ScraperSearchResult> TMDb::parseSearch(QString json)
+/**
+ * @brief Parses the JSON search results
+ * @param json JSON string
+ * @param nextPage This will hold the next page to get, -1 if there are no more pages
+ * @return List of search results
+ */
+QList<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage)
 {
     QList<ScraperSearchResult> results;
     QScriptValue sc;
     QScriptEngine engine;
-    sc = engine.evaluate(json);
-    if (sc.isArray() ) {
-        QScriptValueIterator it(sc);
+    sc = engine.evaluate("(" + QString(json) + ")");
+
+    // only get the first 3 pages
+    if (sc.property("page").toInteger() < sc.property("total_pages").toInteger() && sc.property("page").toInteger() < 3)
+        *nextPage = sc.property("page").toInteger()+1;
+
+    if (sc.property("results").isArray() ) {
+        QScriptValueIterator it(sc.property("results"));
         while (it.hasNext() ) {
             it.next();
             if (it.value().property("id").toString().isEmpty()) {
                 continue;
             }
             ScraperSearchResult result;
-            result.name     = it.value().property("name").toString();
+            result.name     = it.value().property("title").toString();
+            if (result.name.isEmpty())
+                it.value().property("original_title").toString();
             result.id       = it.value().property("id").toString();
-            result.released = QDate::fromString(it.value().property("released").toString(), "yyyy-MM-dd");
+            result.released = QDate::fromString(it.value().property("release_date").toString(), "yyyy-MM-dd");
             results.append(result);
         }
     }
@@ -136,14 +235,68 @@ QList<ScraperSearchResult> TMDb::parseSearch(QString json)
     return results;
 }
 
+/**
+ * @brief Starts network requests to download infos from TMDb
+ * @param id TMDb movie ID
+ * @param movie Movie object
+ * @see TMDb::loadFinished
+ * @see TMDb::loadCastsFinished
+ * @see TMDb::loadTrailersFinished
+ * @see TMDb::loadImagesFinished
+ * @see TMDb::loadReleasesFinished
+ */
 void TMDb::loadData(QString id, Movie *movie)
 {
     m_currentMovie = movie;
-    QUrl url(QString("http://api.themoviedb.org/2.1/Movie.getInfo/%1/json/%2/%3").arg(m_language).arg(m_apiKey).arg(id));
-    m_loadReply = this->qnam()->get(QNetworkRequest(url));
+    m_currentMovie->clear();
+    m_currentId = id;
+    m_loadDoneFired = false;
+    m_loadsLeft.clear();
+    m_loadsLeft.append(DataInfos);
+    m_loadsLeft.append(DataReleases);
+    m_loadsLeft.append(DataCasts);
+    m_loadsLeft.append(DataImages);
+    m_loadsLeft.append(DataTrailers);
+
+    QUrl url;
+    QNetworkRequest request;
+    request.setRawHeader("Accept", "application/json");
+
+    // Infos
+    url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(id).arg(m_apiKey).arg(m_language));
+    request.setUrl(url);
+    m_loadReply = this->qnam()->get(QNetworkRequest(request));
     connect(m_loadReply, SIGNAL(finished()), this, SLOT(loadFinished()));
+
+    // Casts
+    url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/casts?api_key=%2").arg(m_currentId).arg(m_apiKey));
+    request.setUrl(url);
+    m_castsReply = this->qnam()->get(QNetworkRequest(request));
+    connect(m_castsReply, SIGNAL(finished()), this, SLOT(loadCastsFinished()));
+
+    // Trailers
+    url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/trailers?api_key=%2").arg(m_currentId).arg(m_apiKey));
+    request.setUrl(url);
+    m_trailersReply = this->qnam()->get(QNetworkRequest(request));
+    connect(m_trailersReply, SIGNAL(finished()), this, SLOT(loadTrailersFinished()));
+
+    // Images
+    url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/images?api_key=%2").arg(m_currentId).arg(m_apiKey));
+    request.setUrl(url);
+    m_imagesReply = this->qnam()->get(QNetworkRequest(request));
+    connect(m_imagesReply, SIGNAL(finished()), this, SLOT(loadImagesFinished()));
+
+    // Releases
+    url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/releases?api_key=%2").arg(m_currentId).arg(m_apiKey));
+    request.setUrl(url);
+    m_releasesReply = this->qnam()->get(QNetworkRequest(request));
+    connect(m_releasesReply, SIGNAL(finished()), this, SLOT(loadReleasesFinished()));
 }
 
+/**
+ * @brief Called when the movie infos are downloaded
+ * @see TMDb::parseAndAssignInfos
+ */
 void TMDb::loadFinished()
 {
     if (m_loadReply->error() == QNetworkReply::NoError ) {
@@ -151,143 +304,227 @@ void TMDb::loadFinished()
         parseAndAssignInfos(msg, m_currentMovie);
     }
     m_loadReply->deleteLater();
-    m_currentMovie->scraperLoadDone();
+    m_loadsLeft.removeOne(DataInfos);
+    checkDownloadsFinished();
 }
 
+/**
+ * @brief Called when the movie casts are downloaded
+ * @see TMDb::parseAndAssignInfos
+ */
+void TMDb::loadCastsFinished()
+{
+    if (m_castsReply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(m_castsReply->readAll());
+        parseAndAssignInfos(msg, m_currentMovie);
+    }
+    m_castsReply->deleteLater();
+    m_loadsLeft.removeOne(DataCasts);
+    checkDownloadsFinished();
+}
+
+/**
+ * @brief Called when the movie trailers are downloaded
+ * @see TMDb::parseAndAssignInfos
+ */
+void TMDb::loadTrailersFinished()
+{
+    if (m_trailersReply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(m_trailersReply->readAll());
+        parseAndAssignInfos(msg, m_currentMovie);
+    }
+    m_trailersReply->deleteLater();
+    m_loadsLeft.removeOne(DataTrailers);
+    checkDownloadsFinished();
+}
+
+/**
+ * @brief Called when the movie images are downloaded
+ * @see TMDb::parseAndAssignInfos
+ */
+void TMDb::loadImagesFinished()
+{
+    if (m_imagesReply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(m_imagesReply->readAll());
+        parseAndAssignInfos(msg, m_currentMovie);
+    }
+    m_imagesReply->deleteLater();
+    m_loadsLeft.removeOne(DataImages);
+    checkDownloadsFinished();
+}
+
+/**
+ * @brief Called when the movie releases are downloaded
+ * @see TMDb::parseAndAssignInfos
+ */
+void TMDb::loadReleasesFinished()
+{
+    if (m_releasesReply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(m_releasesReply->readAll());
+        parseAndAssignInfos(msg, m_currentMovie);
+    }
+    m_releasesReply->deleteLater();
+    m_loadsLeft.removeOne(DataReleases);
+    checkDownloadsFinished();
+}
+
+/**
+ * @brief Called when one of the movie infos has finished loading
+ *        Checks if there are downloads left. If all downloads have finished
+ *        the movie object is told that the scraper has finished loading
+ */
+void TMDb::checkDownloadsFinished()
+{
+    m_mutex.lock();
+    if (m_loadsLeft.isEmpty() && !m_loadDoneFired) {
+        m_loadDoneFired = true;
+        m_currentMovie->scraperLoadDone();
+    }
+    m_mutex.unlock();
+}
+
+/**
+ * @brief Parses JSON data and assigns it to the given movie object
+ *        Handles all types of data from TMDb (info, releases, trailers, casts, images)
+ * @param json JSON data
+ * @param movie Movie object
+ */
 void TMDb::parseAndAssignInfos(QString json, Movie *movie)
 {
-    movie->clear();
     QScriptValue sc;
     QScriptEngine engine;
-    sc = engine.evaluate(json);
-    if (sc.isArray() ) {
-        QScriptValueIterator it(sc);
-        while (it.hasNext()) {
-            it.next();
-            QScriptValue v = it.value();
-            if (v.property("id").toString().isEmpty()) {
+    sc = engine.evaluate("(" + QString(json) + ")");
+
+    // Infos
+    if (sc.property("title").isValid())
+        movie->setName(sc.property("title").toString());
+    if (sc.property("original_title").isValid())
+        movie->setOriginalName(sc.property("original_title").toString());
+    if (sc.property("overview").isValid())
+        movie->setOverview(sc.property("overview").toString());
+    if (sc.property("vote_average").isValid())
+        movie->setRating(sc.property("vote_average").toNumber());
+    if (sc.property("tagline").isValid())
+       movie->setTagline(sc.property("tagline").toString());
+    if (sc.property("release_date").isValid())
+        movie->setReleased(QDate::fromString(sc.property("release_date").toString(), "yyyy-MM-dd"));
+    if (sc.property("runtime").isValid())
+        movie->setRuntime(sc.property("runtime").toInteger());
+    if (sc.property("genres").isArray()) {
+        QScriptValueIterator itC(sc.property("genres"));
+        while (itC.hasNext()) {
+            itC.next();
+            QScriptValue vC = itC.value();
+            if (vC.property("id").toString().isEmpty())
                 continue;
-            }
-            if (!v.property("name").isNull())
-                movie->setName(v.property("name").toString());
-            if (!v.property("original_name").isNull())
-                movie->setOriginalName(v.property("original_name").toString());
-            if (!v.property("overview").isNull())
-                movie->setOverview(v.property("overview").toString());
-            if (!v.property("rating").isNull())
-                movie->setRating(v.property("rating").toNumber());
-            if (!v.property("tagline").isNull())
-               movie->setTagline(v.property("tagline").toString());
-            if (!v.property("certification").isNull())
-                movie->setCertification(v.property("certification").toString());
-            if (!v.property("released").isNull())
-                movie->setReleased(QDate::fromString(v.property("released").toString(), "yyyy-MM-dd"));
-            if (!v.property("runtime").isNull())
-                movie->setRuntime(v.property("runtime").toInteger());
-            if (!v.property("trailer").isNull())
-                movie->setTrailer(QUrl(v.property("trailer").toString()));
-            if (v.property("genres").isArray()) {
-                QScriptValueIterator itC(v.property("genres"));
-                while (itC.hasNext()) {
-                    itC.next();
-                    QScriptValue vC = itC.value();
-                    if (vC.property("id").toString().isEmpty())
-                        continue;
-                    movie->addGenre(vC.property("name").toString());
-                }
-            }
-            if (v.property("studios").isArray()) {
-                QScriptValueIterator itS(v.property("studios"));
-                while (itS.hasNext()) {
-                    itS.next();
-                    QScriptValue vS = itS.value();
-                    if (vS.property("id").toString().isEmpty())
-                        continue;
-                    movie->addStudio(vS.property("name").toString());
-                }
-            }
-            if (v.property("countries").isArray()) {
-                QScriptValueIterator itC(v.property("countries"));
-                while (itC.hasNext()) {
-                    itC.next();
-                    QScriptValue vC = itC.value();
-                    if (vC.property("name").toString().isEmpty())
-                        continue;
-                    movie->addCountry(vC.property("name").toString());
-                }
-            }
-            if (v.property("cast").isArray()) {
-                QScriptValueIterator itC(v.property("cast"));
-                while (itC.hasNext()) {
-                    itC.next();
-                    QScriptValue vC = itC.value();
-                    if (vC.property("name").toString().isEmpty() || vC.property("job").toString() != "Actor")
-                        continue;
-                    Actor a;
-                    a.name = vC.property("name").toString();
-                    a.role = vC.property("character").toString();
-                    a.thumb = vC.property("profile").toString();
-                    movie->addActor(a);
-                }
-            }
-            if (v.property("posters").isArray()) {
-                QScriptValueIterator itP(v.property("posters"));
-                while (itP.hasNext()) {
-                    itP.next();
-                    QScriptValue vP = itP.value().property("image");
-                    if (vP.property("id").toString().isEmpty() || vP.property("type").toString() != "poster")
-                        continue;
-                    int index = -1;
-                    Poster p;
-                    for (int i=0, n=movie->posters().size() ; i<n ; i++) {
-                        if (movie->posters().at(i).id == vP.property("id").toString()) {
-                            index = i;
-                            p = movie->posters().at(i);
-                        }
-                    }
-                    p.id = vP.property("id").toString();
-                    if (vP.property("size").toString() == "w342")
-                        p.thumbUrl = vP.property("url").toString();
-                    if (vP.property("size").toString() == "original") {
-                        p.originalUrl = vP.property("url").toString();
-                        p.originalSize.setWidth(vP.property("width").toString().toInt());
-                        p.originalSize.setHeight(vP.property("height").toString().toInt());
-                    }
-                    if (index == -1)
-                        movie->addPoster(p);
-                    else
-                        movie->setPoster(index, p);
-                }
-            }
-            if (v.property("backdrops").isArray()) {
-                QScriptValueIterator itB(v.property("backdrops"));
-                while (itB.hasNext()) {
-                    itB.next();
-                    QScriptValue vB = itB.value().property("image");
-                    if (vB.property("id").toString().isEmpty() || vB.property("type").toString() != "backdrop")
-                        continue;
-                    int index = -1;
-                    Poster b;
-                    for (int i=0, n=movie->backdrops().size() ; i<n ; i++) {
-                        if (movie->backdrops().at(i).id == vB.property("id").toString()) {
-                            index = i;
-                            b = movie->backdrops().at(i);
-                        }
-                    }
-                    b.id = vB.property("id").toString();
-                    if (vB.property("size").toString() == "poster")
-                        b.thumbUrl = vB.property("url").toString();
-                    if (vB.property("size").toString() == "original") {
-                        b.originalUrl = vB.property("url").toString();
-                        b.originalSize.setWidth(vB.property("width").toString().toInt());
-                        b.originalSize.setHeight(vB.property("height").toString().toInt());
-                    }
-                    if (index == -1)
-                        movie->addBackdrop(b);
-                    else
-                        movie->setBackdrop(index, b);
-                }
-            }
+            movie->addGenre(vC.property("name").toString());
         }
     }
+    if (sc.property("production_companies").isArray()) {
+        QScriptValueIterator itS(sc.property("production_companies"));
+        while (itS.hasNext()) {
+            itS.next();
+            QScriptValue vS = itS.value();
+            if (vS.property("id").toString().isEmpty())
+                continue;
+            movie->addStudio(vS.property("name").toString());
+        }
+    }
+    if (sc.property("production_countries").isArray()) {
+        QScriptValueIterator itC(sc.property("production_countries"));
+        while (itC.hasNext()) {
+            itC.next();
+            QScriptValue vC = itC.value();
+            if (vC.property("name").toString().isEmpty())
+                continue;
+            movie->addCountry(vC.property("name").toString());
+        }
+    }
+
+    // Casts
+    if (sc.property("cast").isArray()) {
+        QScriptValueIterator itC(sc.property("cast"));
+        while (itC.hasNext()) {
+            itC.next();
+            QScriptValue vC = itC.value();
+            if (vC.property("name").toString().isEmpty())
+                continue;
+            Actor a;
+            a.name = vC.property("name").toString();
+            a.role = vC.property("character").toString();
+            if (!vC.property("profile_path").isNull())
+                a.thumb = m_baseUrl + "original" + vC.property("profile_path").toString();
+            movie->addActor(a);
+        }
+    }
+
+    // Trailers
+    if (sc.property("youtube").isArray()) {
+        QScriptValueIterator itC(sc.property("youtube"));
+        while (itC.hasNext()) {
+            itC.next();
+            QScriptValue vC = itC.value();
+            if (vC.property("source").toString().isEmpty())
+                continue;
+            movie->setTrailer(QUrl(QString("http://www.youtube.com/watch?v=%1").arg(vC.property("source").toString())));
+            break;
+        }
+    }
+
+    // Images
+    if (sc.property("backdrops").isArray()) {
+        QScriptValueIterator itB(sc.property("backdrops"));
+        while (itB.hasNext()) {
+            itB.next();
+            QScriptValue vB = itB.value();
+            if (vB.property("file_path").toString().isEmpty())
+                continue;
+
+            Poster b;
+            b.thumbUrl = m_baseUrl + "w780" + vB.property("file_path").toString();
+            b.originalUrl = m_baseUrl + "original" + vB.property("file_path").toString();
+            b.originalSize.setWidth(vB.property("width").toString().toInt());
+            b.originalSize.setHeight(vB.property("height").toString().toInt());
+            movie->addBackdrop(b);
+        }
+    }
+
+    if (sc.property("posters").isArray()) {
+        QScriptValueIterator itB(sc.property("posters"));
+        while (itB.hasNext()) {
+            itB.next();
+            QScriptValue vB = itB.value();
+            Poster b;
+            b.thumbUrl = m_baseUrl + "w342" + vB.property("file_path").toString();
+            b.originalUrl = m_baseUrl + "original" + vB.property("file_path").toString();
+            b.originalSize.setWidth(vB.property("width").toString().toInt());
+            b.originalSize.setHeight(vB.property("height").toString().toInt());
+            movie->addPoster(b);
+        }
+    }
+
+    // Releases
+    if (sc.property("countries").isArray()) {
+        QString locale;
+        QString us;
+        QString gb;
+        QScriptValueIterator itB(sc.property("countries"));
+        while (itB.hasNext()) {
+            itB.next();
+            QScriptValue vB = itB.value();
+            if (vB.property("iso_3166_1").toString() == "US")
+                us = vB.property("certification").toString();
+            if (vB.property("iso_3166_1").toString() == "GB")
+                gb = vB.property("certification").toString();
+            if (vB.property("iso_3166_1").toString().toLower() == m_language)
+                locale = vB.property("certification").toString();
+        }
+        if (!locale.isEmpty())
+            movie->setCertification(locale);
+        else if (!us.isEmpty())
+            movie->setCertification(us);
+        else if (!gb.isEmpty())
+            movie->setCertification(gb);
+    }
+
 }
