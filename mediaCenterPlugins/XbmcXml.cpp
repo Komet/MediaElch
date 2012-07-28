@@ -106,16 +106,28 @@ bool XbmcXml::saveMovie(Movie *movie)
     if (movie->files().size() == 0)
         return false;
     QFileInfo fi(movie->files().at(0));
-    QFile file(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".nfo");
+    QFile file;
+    if (m_movieNfoFileNames.contains(movie))
+        file.setFileName(fi.absolutePath() + QDir::separator() + m_movieNfoFileNames[movie]);
+    else
+        file.setFileName(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".nfo");
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return false;
     file.write(xmlContent);
     file.close();
 
-    if (movie->posterImageChanged() && !movie->posterImage()->isNull())
-        movie->posterImage()->save(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".tbn", "jpg", 100);
-    if (movie->backdropImageChanged() && !movie->backdropImage()->isNull())
-        movie->backdropImage()->save(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + "-fanart.jpg", "jpg", 100);
+    if (movie->posterImageChanged() && !movie->posterImage()->isNull()) {
+        if (m_moviePosterFileNames.contains(movie))
+            movie->posterImage()->save(fi.absolutePath() + QDir::separator() + m_moviePosterFileNames[movie], "jpg", 100);
+        else
+            movie->posterImage()->save(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".tbn", "jpg", 100);
+    }
+    if (movie->backdropImageChanged() && !movie->backdropImage()->isNull()) {
+        if (m_movieBackdropFileNames.contains(movie))
+            movie->backdropImage()->save(fi.absolutePath() + QDir::separator() + m_movieBackdropFileNames[movie], "jpg", 100);
+        else
+            movie->backdropImage()->save(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + "-fanart.jpg", "jpg", 100);
+    }
 
     foreach (const Actor &actor, movie->actors()) {
         if (!actor.image.isNull()) {
@@ -141,8 +153,17 @@ bool XbmcXml::loadMovie(Movie *movie)
     QString nfoFile = fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".nfo";
     fi.setFile(nfoFile);
     if (!fi.exists()) {
-        return false;
+        // try movie.nfo instead
+        nfoFile = fi.absolutePath() + QDir::separator() + "movie.nfo";
+        fi.setFile(nfoFile);
+        if (!fi.exists())
+            return false;
     }
+
+    if (m_movieNfoFileNames.contains(movie))
+        m_movieNfoFileNames[movie] = fi.fileName();
+    else
+        m_movieNfoFileNames.insert(movie, fi.fileName());
 
     QFile file(nfoFile);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -226,10 +247,32 @@ void XbmcXml::loadMovieImages(Movie *movie)
     QFileInfo fi(movie->files().at(0));
     QFileInfo posterFi(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".tbn");
     QFileInfo backdropFi(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + "-fanart.jpg");
-    if (posterFi.isFile())
+
+    if (!posterFi.isFile())
+        posterFi.setFile(fi.absolutePath() + QDir::separator() + "movie.tbn");
+    if (!posterFi.isFile())
+        posterFi.setFile(fi.absolutePath() + QDir::separator() + "movie.jpg");
+    if (!posterFi.isFile())
+        posterFi.setFile(fi.absolutePath() + QDir::separator() + "folder.jpg");
+
+    if (posterFi.isFile()) {
         movie->posterImage()->load(posterFi.absoluteFilePath());
-    if (backdropFi.isFile())
+        if (m_moviePosterFileNames.contains(movie))
+            m_moviePosterFileNames[movie] = posterFi.fileName();
+        else
+            m_moviePosterFileNames.insert(movie, posterFi.fileName());
+    }
+
+    if (!backdropFi.isFile())
+        backdropFi.setFile(fi.absolutePath() + QDir::separator() + "fanart.jpg");
+
+    if (backdropFi.isFile()) {
         movie->backdropImage()->load(backdropFi.absoluteFilePath());
+        if (m_movieBackdropFileNames.contains(movie))
+            m_movieBackdropFileNames[movie] = backdropFi.fileName();
+        else
+            m_movieBackdropFileNames.insert(movie, backdropFi.fileName());
+    }
 
     foreach (Actor *actor, movie->actorsPointer()) {
         if (actor->imageHasChanged)
