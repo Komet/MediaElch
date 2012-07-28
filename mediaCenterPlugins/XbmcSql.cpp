@@ -50,7 +50,7 @@ void XbmcSql::connectMysql(QString host, QString database, QString username, QSt
     m_db->setUserName(username);
     m_db->setPassword(password);
     if (!m_db->open())
-        MessageBox::instance()->showMessage(tr("Connection to XBMC MySQL Database failed!"));
+        MessageBox::instance()->showMessage(tr("Connection to XBMC MySQL Database failed! \"%1\"").arg(m_db->lastError().text()));
 }
 
 void XbmcSql::connectSqlite(QString database)
@@ -63,7 +63,7 @@ void XbmcSql::connectSqlite(QString database)
     m_db = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE", "xbmc"));
     m_db->setDatabaseName(database);
     if (!m_db->open())
-        MessageBox::instance()->showMessage(tr("Connection to XBMC SQLite Database failed!"));
+        MessageBox::instance()->showMessage(tr("Connection to XBMC SQLite Database failed! \"%1\"").arg(m_db->lastError().text()));
 }
 
 void XbmcSql::shutdown()

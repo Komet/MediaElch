@@ -499,17 +499,22 @@ p, li { white-space: pre-wrap; }
         <translation>Suchergebnis</translation>
     </message>
     <message>
-        <location filename="../MovieSearch.ui" line="33"/>
+        <location filename="../MovieSearch.ui" line="49"/>
         <source>Scraper</source>
         <translation>Scraper</translation>
     </message>
     <message>
-        <location filename="../MovieSearch.ui" line="89"/>
+        <location filename="../MovieSearch.ui" line="105"/>
         <source>Result</source>
         <translation>Ergebnis</translation>
     </message>
     <message>
-        <location filename="../MovieSearch.ui" line="112"/>
+        <location filename="../MovieSearch.ui" line="120"/>
+        <source>CheckBox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MovieSearch.ui" line="146"/>
         <source>Close</source>
         <translation>Schließen</translation>
     </message>
@@ -1243,7 +1248,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Türkisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="81"/>
+        <location filename="../scrapers/TMDb.cpp" line="102"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
@@ -1833,30 +1838,38 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
 <context>
     <name>XbmcSql</name>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcSql.cpp" line="53"/>
         <source>Connection to XBMC MySQL Database failed!</source>
-        <translation>Verbindung zur XBMC MySQL Datenbank fehlgeschlagen!</translation>
+        <translation type="obsolete">Verbindung zur XBMC MySQL Datenbank fehlgeschlagen!</translation>
+    </message>
+    <message>
+        <location filename="../mediaCenterPlugins/XbmcSql.cpp" line="53"/>
+        <source>Connection to XBMC MySQL Database failed! &quot;%1&quot;</source>
+        <translation>Verbindung zur XBMC MySQL Datenbank fehlgeschlagen! &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../mediaCenterPlugins/XbmcSql.cpp" line="66"/>
+        <source>Connection to XBMC SQLite Database failed! &quot;%1&quot;</source>
+        <translation>Verbindung zur XBMC SQLite Datenbank fehlgeschlagen! &quot;%1&quot;</translation>
+    </message>
+    <message>
         <source>Connection to XBMC SQLite Database failed!</source>
-        <translation>Verbindung zur XBMC SQLite Datenbank fehlgeschlagen!</translation>
+        <translation type="obsolete">Verbindung zur XBMC SQLite Datenbank fehlgeschlagen!</translation>
     </message>
 </context>
 <context>
     <name>XbmcXml</name>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="301"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="344"/>
         <source>Could not create actors directory</source>
         <translation>Verzeichnis &quot;actors&quot; konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="305"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="348"/>
         <source>Could not create movies directory</source>
         <translation>Verzeichnis &quot;movies&quot; konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="309"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="352"/>
         <source>Could not create tv shows directory</source>
         <translation>Verzeichnis &quot;tvshows&quot; konnte nicht erstellt werden</translation>
     </message>
