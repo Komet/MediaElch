@@ -21,11 +21,12 @@ public:
     ~TMDb();
     QString name();
     void search(QString searchStr);
-    void loadData(QString id, Movie *movie);
+    void loadData(QString id, Movie *movie, QList<int> infos);
     bool hasSettings();
     QWidget *settingsWidget();
     void loadSettings();
     void saveSettings();
+    QList<int> scraperSupports();
 
 signals:
     void searchDone(QList<ScraperSearchResult>);
@@ -64,13 +65,11 @@ private:
         DataInfos, DataCasts, DataTrailers, DataImages, DataReleases
     };
     QList<Data> m_loadsLeft;
+    QList<int> m_infosToLoad;
+    QList<int> m_scraperSupports;
 
     void setup();
-    void parseAndAssignInfos(QString json, Movie *movie);
-    void parseAndAssignCastsInfos(QString json, Movie *movie);
-    void parseAndAssignTrailersInfos(QString json, Movie *movie);
-    void parseAndAssignImagesInfos(QString json, Movie *movie);
-    void parseAndAssignReleasesInfos(QString json, Movie *movie);
+    void parseAndAssignInfos(QString json, Movie *movie, QList<int> infos);
     void checkDownloadsFinished();
 };
 

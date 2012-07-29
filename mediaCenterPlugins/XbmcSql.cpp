@@ -451,6 +451,7 @@ bool XbmcSql::loadMovie(Movie *movie)
         return false;
     }
     movie->clear();
+    movie->setChanged(false);
 
     QString sqlWhereFile;
     QString file = mediaCenterPath(movie->files().at(0));

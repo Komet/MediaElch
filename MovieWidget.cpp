@@ -184,7 +184,8 @@ void MovieWidget::startScraperSearch()
     MovieSearch::instance()->exec(m_movie->name());
     if (MovieSearch::instance()->result() == QDialog::Accepted) {
         setDisabledTrue();
-        m_movie->loadData(MovieSearch::instance()->scraperId(), Manager::instance()->scrapers().at(MovieSearch::instance()->scraperNo()));
+        m_movie->loadData(MovieSearch::instance()->scraperId(), Manager::instance()->scrapers().at(MovieSearch::instance()->scraperNo()),
+                          MovieSearch::instance()->infosToLoad());
         connect(this->m_movie, SIGNAL(loaded(Movie*)), this, SLOT(loadDone(Movie*)), Qt::UniqueConnection);
     } else {
         emit setActionSearchEnabled(true, WidgetMovies);
@@ -201,7 +202,7 @@ void MovieWidget::loadDone(Movie *movie)
         updateMovieInfo();
     int downloadsSize = 0;
 
-    if (movie->posters().size() > 0) {
+    if (MovieSearch::instance()->infosToLoad().contains(MovieScraperInfos::Poster) && movie->posters().size() > 0) {
         emit setActionSaveEnabled(false, WidgetMovies);
         DownloadManagerElement d;
         d.imageType = TypePoster;
@@ -215,7 +216,7 @@ void MovieWidget::loadDone(Movie *movie)
         downloadsSize++;
     }
 
-    if (movie->backdrops().size() > 0) {
+    if (MovieSearch::instance()->infosToLoad().contains(MovieScraperInfos::Backdrop) &&movie->backdrops().size() > 0) {
         emit setActionSaveEnabled(false, WidgetMovies);
         DownloadManagerElement d;
         d.imageType = TypeBackdrop;
@@ -229,17 +230,19 @@ void MovieWidget::loadDone(Movie *movie)
         downloadsSize++;
     }
 
-    QList<Actor*> actors = movie->actorsPointer();
-    for (int i=0, n=actors.size() ; i<n ; i++) {
-        if (actors.at(i)->thumb.isEmpty())
-            continue;
-        DownloadManagerElement d;
-        d.imageType = TypeActor;
-        d.url = QUrl(actors.at(i)->thumb);
-        d.actor = actors.at(i);
-        d.movie = movie;
-        m_posterDownloadManager->addDownload(d);
-        downloadsSize++;
+    if (MovieSearch::instance()->infosToLoad().contains(MovieScraperInfos::Actors)) {
+        QList<Actor*> actors = movie->actorsPointer();
+        for (int i=0, n=actors.size() ; i<n ; i++) {
+            if (actors.at(i)->thumb.isEmpty())
+                continue;
+            DownloadManagerElement d;
+            d.imageType = TypeActor;
+            d.url = QUrl(actors.at(i)->thumb);
+            d.actor = actors.at(i);
+            d.movie = movie;
+            m_posterDownloadManager->addDownload(d);
+            downloadsSize++;
+        }
     }
     if (downloadsSize > 0)
         emit actorDownloadStarted(tr("Downloading Missing Actor Images..."), Constants::MovieProgressMessageId+movie->movieId());
@@ -247,6 +250,7 @@ void MovieWidget::loadDone(Movie *movie)
         setEnabledTrue();
 
     movie->setDownloadsInProgress(downloadsSize > 0);
+    movie->setDownloadsSize(downloadsSize);
 
     connect(m_posterDownloadManager, SIGNAL(allDownloadsFinished(Movie*)), this, SLOT(downloadActorsFinished(Movie*)), Qt::UniqueConnection);
 }
@@ -497,7 +501,7 @@ void MovieWidget::downloadActorsFinished(Movie *movie)
 
 void MovieWidget::actorDownloadsLeft(int left, DownloadManagerElement elem)
 {
-    emit actorDownloadProgress(elem.movie->actors().size()-left, elem.movie->actors().size(), Constants::MovieProgressMessageId+elem.movie->movieId());
+    emit actorDownloadProgress(elem.movie->downloadsSize()-left, elem.movie->downloadsSize(), Constants::MovieProgressMessageId+elem.movie->movieId());
 }
 
 /*** add/remove/edit Actors, Genres, Countries and Studios ***/

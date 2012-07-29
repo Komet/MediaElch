@@ -499,22 +499,97 @@ p, li { white-space: pre-wrap; }
         <translation>Suchergebnis</translation>
     </message>
     <message>
-        <location filename="../MovieSearch.ui" line="49"/>
+        <location filename="../MovieSearch.ui" line="33"/>
         <source>Scraper</source>
         <translation>Scraper</translation>
     </message>
     <message>
-        <location filename="../MovieSearch.ui" line="105"/>
+        <location filename="../MovieSearch.ui" line="91"/>
         <source>Result</source>
         <translation>Ergebnis</translation>
     </message>
     <message>
-        <location filename="../MovieSearch.ui" line="120"/>
-        <source>CheckBox</source>
-        <translation type="unfinished"></translation>
+        <location filename="../MovieSearch.ui" line="118"/>
+        <source>Infos to load</source>
+        <translation>Lade Infos</translation>
     </message>
     <message>
-        <location filename="../MovieSearch.ui" line="146"/>
+        <location filename="../MovieSearch.ui" line="141"/>
+        <source>Title</source>
+        <translation>Titel</translation>
+    </message>
+    <message>
+        <location filename="../MovieSearch.ui" line="148"/>
+        <source>Tagline</source>
+        <translation>Tagline</translation>
+    </message>
+    <message>
+        <location filename="../MovieSearch.ui" line="155"/>
+        <source>Rating</source>
+        <translation>Bewertung</translation>
+    </message>
+    <message>
+        <location filename="../MovieSearch.ui" line="162"/>
+        <source>Released</source>
+        <translation>Erschienen</translation>
+    </message>
+    <message>
+        <location filename="../MovieSearch.ui" line="169"/>
+        <source>Runtime</source>
+        <translation>Laufzeit</translation>
+    </message>
+    <message>
+        <location filename="../MovieSearch.ui" line="176"/>
+        <source>Certification</source>
+        <translation>Freigabe</translation>
+    </message>
+    <message>
+        <location filename="../MovieSearch.ui" line="183"/>
+        <source>Trailer</source>
+        <translation>Trailer</translation>
+    </message>
+    <message>
+        <location filename="../MovieSearch.ui" line="190"/>
+        <source>Overview</source>
+        <translation>Inhalt</translation>
+    </message>
+    <message>
+        <location filename="../MovieSearch.ui" line="197"/>
+        <source>Poster</source>
+        <translation>Poster</translation>
+    </message>
+    <message>
+        <location filename="../MovieSearch.ui" line="204"/>
+        <source>Backdrop</source>
+        <translation>Fanart</translation>
+    </message>
+    <message>
+        <location filename="../MovieSearch.ui" line="211"/>
+        <source>Actors</source>
+        <translation>Schauspieler</translation>
+    </message>
+    <message>
+        <location filename="../MovieSearch.ui" line="218"/>
+        <source>Genres</source>
+        <translation>Genres</translation>
+    </message>
+    <message>
+        <location filename="../MovieSearch.ui" line="225"/>
+        <source>Studios</source>
+        <translation>Studios</translation>
+    </message>
+    <message>
+        <location filename="../MovieSearch.ui" line="232"/>
+        <source>Countries</source>
+        <translation>Länder</translation>
+    </message>
+    <message>
+        <location filename="../MovieSearch.ui" line="246"/>
+        <source>(Un)Check all</source>
+        <translation>Alle aus/abwählen</translation>
+    </message>
+    <message>
+        <location filename="../MovieSearch.ui" line="299"/>
         <source>Close</source>
         <translation>Schließen</translation>
     </message>
@@ -755,42 +830,42 @@ p, li { white-space: pre-wrap; }
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="473"/>
+        <location filename="../MovieWidget.cpp" line="477"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="487"/>
+        <location filename="../MovieWidget.cpp" line="491"/>
         <source>All Movies Saved</source>
         <translation>Alle Filme gespeichert</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="508"/>
+        <location filename="../MovieWidget.cpp" line="512"/>
         <source>Unknown Actor</source>
         <translation>Unbekannter Schauspieler</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="509"/>
+        <location filename="../MovieWidget.cpp" line="513"/>
         <source>Unknown Role</source>
         <translation>Unbekannte Rolle</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="549"/>
+        <location filename="../MovieWidget.cpp" line="553"/>
         <source>Unknown Genre</source>
         <translation>Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="621"/>
+        <location filename="../MovieWidget.cpp" line="625"/>
         <source>Unknown Country</source>
         <translation>Unbekanntes Land</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="693"/>
+        <location filename="../MovieWidget.cpp" line="697"/>
         <source>Choose Image</source>
         <translation>Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="693"/>
+        <location filename="../MovieWidget.cpp" line="697"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
@@ -803,7 +878,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="585"/>
+        <location filename="../MovieWidget.cpp" line="589"/>
         <source>Unknown Studio</source>
         <translation>Unbekanntes Studio</translation>
     </message>
@@ -812,7 +887,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Unbekanntes Land</translation>
     </message>
     <message>
-        <location filename="../MovieWidget.cpp" line="245"/>
+        <location filename="../MovieWidget.cpp" line="248"/>
         <source>Downloading Missing Actor Images...</source>
         <translation>Lade fehlende Schauspieler Bilder...</translation>
     </message>
@@ -1248,7 +1323,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Türkisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="102"/>
+        <location filename="../scrapers/TMDb.cpp" line="117"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
@@ -1859,17 +1934,17 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
 <context>
     <name>XbmcXml</name>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="344"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="345"/>
         <source>Could not create actors directory</source>
         <translation>Verzeichnis &quot;actors&quot; konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="348"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="349"/>
         <source>Could not create movies directory</source>
         <translation>Verzeichnis &quot;movies&quot; konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="352"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="353"/>
         <source>Could not create tv shows directory</source>
         <translation>Verzeichnis &quot;tvshows&quot; konnte nicht erstellt werden</translation>
     </message>

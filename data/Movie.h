@@ -23,6 +23,7 @@ public:
     ~Movie();
 
     void clear();
+    void clear(QList<int> infos);
 
     QString name() const;
     QString sortTitle() const;
@@ -58,6 +59,7 @@ public:
     bool watched() const;
     int movieId() const;
     bool downloadsInProgress() const;
+    int downloadsSize() const;
     bool inSeparateFolder() const;
 
     bool hasChanged() const;
@@ -95,6 +97,7 @@ public:
     void setWatched(bool watched);
     void setChanged(bool changed);
     void setDownloadsInProgress(bool inProgress);
+    void setDownloadsSize(int downloadsSize);
     void setInSeparateFolder(bool inSepFolder);
 
     void removeActor(Actor *actor);
@@ -104,7 +107,7 @@ public:
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface);
-    void loadData(QString id, ScraperInterface *scraperInterface);
+    void loadData(QString id, ScraperInterface *scraperInterface, QList<int> infos);
     void loadImages(MediaCenterInterface *mediaCenterInterface);
 
     void scraperLoadDone();
@@ -146,6 +149,7 @@ private:
     bool m_hasChanged;
     int m_movieId;
     bool m_downloadsInProgress;
+    int m_downloadsSize;
     bool m_inSeparateFolder;
 };
 

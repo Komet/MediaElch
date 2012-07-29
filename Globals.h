@@ -96,7 +96,24 @@ namespace MovieImageDialogType {
     const int TvShowBackdrop = 4;
     const int TvShowThumb    = 5;
     const int TvShowSeason   = 6;
-    const int TvShowBanner = 7;
+    const int TvShowBanner   = 7;
+}
+
+namespace MovieScraperInfos {
+    const int Title         = 1;
+    const int Tagline       = 2;
+    const int Rating        = 3;
+    const int Released      = 4;
+    const int Runtime       = 5;
+    const int Certification = 6;
+    const int Trailer       = 7;
+    const int Overview      = 8;
+    const int Poster        = 9;
+    const int Backdrop      = 10;
+    const int Actors        = 11;
+    const int Genres        = 12;
+    const int Studios       = 13;
+    const int Countries     = 14;
 }
 
 #endif // GLOBALS_H

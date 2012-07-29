@@ -170,6 +170,7 @@ bool XbmcXml::loadMovie(Movie *movie)
         return false;
     }
     movie->clear();
+    movie->setChanged(false);
     QDomDocument domDoc;
     domDoc.setContent(file.readAll());
     if (!domDoc.elementsByTagName("title").isEmpty() )

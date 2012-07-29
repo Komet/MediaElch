@@ -7,36 +7,80 @@ OFDb::OFDb(QObject *parent)
 {
     setParent(parent);
     m_httpNotFoundCounter = 0;
+    m_scraperSupports << MovieScraperInfos::Title
+                      << MovieScraperInfos::Released
+                      << MovieScraperInfos::Poster
+                      << MovieScraperInfos::Rating
+                      << MovieScraperInfos::Genres
+                      << MovieScraperInfos::Actors
+                      << MovieScraperInfos::Countries
+                      << MovieScraperInfos::Overview;
 }
 
+/**
+ * @brief Returns the name of the scraper
+ * @return Name of the Scraper
+ */
 QString OFDb::name()
 {
     return QString("OFDb");
 }
 
+/**
+ * @brief Returns if the scraper has settings
+ * @return Scraper has settings
+ */
 bool OFDb::hasSettings()
 {
     return false;
 }
 
+/**
+ * @brief Loads scrapers settings
+ */
 void OFDb::loadSettings()
 {
 }
 
+/**
+ * @brief Saves scrapers settings
+ */
 void OFDb::saveSettings()
 {
 }
 
+/**
+ * @brief Constructs a widget with scrapers settings
+ * @return Settings Widget
+ */
 QWidget *OFDb::settingsWidget()
 {
     return 0;
 }
 
+/**
+ * @brief Just returns a pointer to the scrapers network access manager
+ * @return Network Access Manager
+ */
 QNetworkAccessManager *OFDb::qnam()
 {
     return &m_qnam;
 }
 
+/**
+ * @brief Returns a list of infos available from the scraper
+ * @return List of supported infos
+ */
+QList<int> OFDb::scraperSupports()
+{
+    return m_scraperSupports;
+}
+
+/**
+ * @brief Searches for a movie
+ * @param searchStr The Movie name/search string
+ * @see OFDb::searchFinished
+ */
 void OFDb::search(QString searchStr)
 {
     m_httpNotFoundCounter = 0;
@@ -46,6 +90,11 @@ void OFDb::search(QString searchStr)
     connect(m_searchReply, SIGNAL(finished()), this, SLOT(searchFinished()));
 }
 
+/**
+ * @brief Called when the search result was downloaded
+ *        Emits "searchDone" if there are no more pages in the result set
+ * @see OFDb::parseSearch
+ */
 void OFDb::searchFinished()
 {
     if (m_searchReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
@@ -75,6 +124,11 @@ void OFDb::searchFinished()
     emit searchDone(results);
 }
 
+/**
+ * @brief Parses the search results
+ * @param xml XML data
+ * @return List of search results
+ */
 QList<ScraperSearchResult> OFDb::parseSearch(QString xml)
 {
     QList<ScraperSearchResult> results;
@@ -95,8 +149,16 @@ QList<ScraperSearchResult> OFDb::parseSearch(QString xml)
     return results;
 }
 
-void OFDb::loadData(QString id, Movie *movie)
+/**
+ * @brief Starts network requests to download infos from OFDb
+ * @param id OFDb movie ID
+ * @param movie Movie object
+ * @param infos List of infos to load
+ * @see OFDb::loadFinished
+ */
+void OFDb::loadData(QString id, Movie *movie, QList<int> infos)
 {
+    m_infosToLoad = infos;
     m_httpNotFoundCounter = 0;
     m_currentLoadId = id;
     m_currentMovie = movie;
@@ -105,6 +167,10 @@ void OFDb::loadData(QString id, Movie *movie)
     connect(m_loadReply, SIGNAL(finished()), this, SLOT(loadFinished()));
 }
 
+/**
+ * @brief Called when the movie infos are downloaded
+ * @see OFDb::parseAndAssignInfos
+ */
 void OFDb::loadFinished()
 {
     if (m_loadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
@@ -127,15 +193,21 @@ void OFDb::loadFinished()
 
     if (m_loadReply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(m_loadReply->readAll());
-        parseAndAssignInfos(msg, m_currentMovie);
+        parseAndAssignInfos(msg, m_currentMovie, m_infosToLoad);
     }
     m_loadReply->deleteLater();
     m_currentMovie->scraperLoadDone();
 }
 
-void OFDb::parseAndAssignInfos(QString data, Movie *movie)
+/**
+ * @brief Parses HTML data and assigns it to the given movie object
+ * @param html HTML data
+ * @param movie Movie object
+ * @param infos List of infos to load
+ */
+void OFDb::parseAndAssignInfos(QString data, Movie *movie, QList<int> infos)
 {
-    movie->clear();
+    movie->clear(infos);
     QXmlStreamReader xml(data);
 
     xml.readNextStartElement();
@@ -147,31 +219,31 @@ void OFDb::parseAndAssignInfos(QString data, Movie *movie)
     }
 
     while (xml.readNextStartElement()) {
-        if (xml.name() == "titel") {
+        if (infos.contains(MovieScraperInfos::Title) && xml.name() == "titel") {
             movie->setName(xml.readElementText());
-        } else if (xml.name() == "jahr") {
+        } else if (infos.contains(MovieScraperInfos::Released) && xml.name() == "jahr") {
             movie->setReleased(QDate::fromString(xml.readElementText(), "yyyy"));
-        } else if (xml.name() == "bild") {
+        } else if (infos.contains(MovieScraperInfos::Poster) && xml.name() == "bild") {
             QString url = xml.readElementText();
             Poster p;
             p.originalUrl = QUrl(url);
             p.thumbUrl = QUrl(url);
             movie->addPoster(p);
-        } else if (xml.name() == "bewertung") {
+        } else if (infos.contains(MovieScraperInfos::Rating) && xml.name() == "bewertung") {
             while (xml.readNextStartElement()) {
                 if (xml.name() == "note")
                     movie->setRating(xml.readElementText().toFloat());
                 else
                     xml.skipCurrentElement();
             }
-        } else if (xml.name() == "genre") {
+        } else if (infos.contains(MovieScraperInfos::Genres) && xml.name() == "genre") {
             while (xml.readNextStartElement()) {
                 if (xml.name() == "titel")
                     movie->addGenre(xml.readElementText());
                 else
                     xml.skipCurrentElement();
             }
-        } else if (xml.name() == "besetzung") {
+        } else if (infos.contains(MovieScraperInfos::Actors) && xml.name() == "besetzung") {
             while (xml.readNextStartElement()) {
                 if (xml.name() != "person") {
                     xml.skipCurrentElement();
@@ -188,16 +260,16 @@ void OFDb::parseAndAssignInfos(QString data, Movie *movie)
                     movie->addActor(actor);
                 }
             }
-        } else if (xml.name() == "produktionsland") {
+        } else if (infos.contains(MovieScraperInfos::Countries) && xml.name() == "produktionsland") {
             while (xml.readNextStartElement()) {
                 if (xml.name() == "name")
                     movie->addCountry(xml.readElementText());
                 else
                     xml.skipCurrentElement();
             }
-        } else if (xml.name() == "alternativ") {
+        } else if (infos.contains(MovieScraperInfos::Title) && xml.name() == "alternativ") {
             movie->setOriginalName(xml.readElementText());
-        } else if (xml.name() == "beschreibung") {
+        } else if (infos.contains(MovieScraperInfos::Overview) && xml.name() == "beschreibung") {
             movie->setOverview(xml.readElementText());
         } else {
             xml.skipCurrentElement();

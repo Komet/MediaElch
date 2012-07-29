@@ -26,6 +26,7 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_watched = false;
     m_hasChanged = false;
     m_downloadsInProgress = false;
+    m_downloadsSize = 0;
     m_inSeparateFolder = false;
     static int m_idCounter = 0;
     m_movieId = ++m_idCounter;
@@ -37,22 +38,54 @@ Movie::~Movie()
 
 void Movie::clear()
 {
-    m_hasChanged = false;
-    m_actors.clear();
-    m_backdrops.clear();
-    m_countries.clear();
-    m_genres.clear();
-    m_posters.clear();
-    m_studios.clear();
-    m_originalName = "";
-    m_overview = "";
-    m_rating = 0;
-    m_released = QDate(2000, 02, 30); // invalid date
-    m_tagline = "";
-    m_runtime = 0;
-    m_trailer = "";
-    m_certification = "";
-    m_sortTitle = "";
+    QList<int> infos;
+    infos << MovieScraperInfos::Title
+          << MovieScraperInfos::Tagline
+          << MovieScraperInfos::Rating
+          << MovieScraperInfos::Released
+          << MovieScraperInfos::Runtime
+          << MovieScraperInfos::Certification
+          << MovieScraperInfos::Trailer
+          << MovieScraperInfos::Overview
+          << MovieScraperInfos::Poster
+          << MovieScraperInfos::Backdrop
+          << MovieScraperInfos::Actors
+          << MovieScraperInfos::Genres
+          << MovieScraperInfos::Studios
+          << MovieScraperInfos::Countries;
+    clear(infos);
+}
+
+void Movie::clear(QList<int> infos)
+{
+    if (infos.contains(MovieScraperInfos::Actors))
+        m_actors.clear();
+    if (infos.contains(MovieScraperInfos::Backdrop))
+        m_backdrops.clear();
+    if (infos.contains(MovieScraperInfos::Countries))
+        m_countries.clear();
+    if (infos.contains(MovieScraperInfos::Genres))
+        m_genres.clear();
+    if (infos.contains(MovieScraperInfos::Poster))
+        m_posters.clear();
+    if (infos.contains(MovieScraperInfos::Studios))
+        m_studios.clear();
+    if (infos.contains(MovieScraperInfos::Title))
+        m_originalName = "";
+    if (infos.contains(MovieScraperInfos::Overview))
+        m_overview = "";
+    if (infos.contains(MovieScraperInfos::Rating))
+        m_rating = 0;
+    if (infos.contains(MovieScraperInfos::Released))
+        m_released = QDate(2000, 02, 30); // invalid date
+    if (infos.contains(MovieScraperInfos::Tagline))
+        m_tagline = "";
+    if (infos.contains(MovieScraperInfos::Runtime))
+        m_runtime = 0;
+    if (infos.contains(MovieScraperInfos::Trailer))
+        m_trailer = "";
+    if (infos.contains(MovieScraperInfos::Certification))
+        m_certification = "";
 }
 
 bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
@@ -101,9 +134,9 @@ bool Movie::loadData(MediaCenterInterface *mediaCenterInterface)
     return infoLoaded;
 }
 
-void Movie::loadData(QString id, ScraperInterface *scraperInterface)
+void Movie::loadData(QString id, ScraperInterface *scraperInterface, QList<int> infos)
 {
-    scraperInterface->loadData(id, this);
+    scraperInterface->loadData(id, this, infos);
 }
 
 void Movie::scraperLoadDone()
@@ -307,6 +340,11 @@ bool Movie::downloadsInProgress() const
     return m_downloadsInProgress;
 }
 
+int Movie::downloadsSize() const
+{
+    return m_downloadsSize;
+}
+
 bool Movie::inSeparateFolder() const
 {
     return m_inSeparateFolder;
@@ -465,6 +503,11 @@ void Movie::setChanged(bool changed)
 void Movie::setDownloadsInProgress(bool inProgress)
 {
     m_downloadsInProgress = inProgress;
+}
+
+void Movie::setDownloadsSize(int downloadsLeft)
+{
+    m_downloadsSize = downloadsLeft;
 }
 
 void Movie::setInSeparateFolder(bool inSepFolder)

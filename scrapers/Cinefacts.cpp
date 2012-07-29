@@ -4,36 +4,83 @@
 Cinefacts::Cinefacts(QObject *parent)
 {
     setParent(parent);
+    m_scraperSupports << MovieScraperInfos::Title
+                      << MovieScraperInfos::Genres
+                      << MovieScraperInfos::Released
+                      << MovieScraperInfos::Countries
+                      << MovieScraperInfos::Actors
+                      << MovieScraperInfos::Studios
+                      << MovieScraperInfos::Certification
+                      << MovieScraperInfos::Runtime
+                      << MovieScraperInfos::Overview
+                      << MovieScraperInfos::Backdrop
+                      << MovieScraperInfos::Poster;
 }
 
+/**
+ * @brief Returns the name of the scraper
+ * @return Name of the Scraper
+ */
 QString Cinefacts::name()
 {
     return QString("Cinefacts");
 }
 
+/**
+ * @brief Returns if the scraper has settings
+ * @return Scraper has settings
+ */
 bool Cinefacts::hasSettings()
 {
     return false;
 }
 
+/**
+ * @brief Loads scrapers settings
+ */
 void Cinefacts::loadSettings()
 {
 }
 
+/**
+ * @brief Saves scrapers settings
+ */
 void Cinefacts::saveSettings()
 {
 }
 
+/**
+ * @brief Constructs a widget with scrapers settings
+ * @return Settings Widget
+ */
 QWidget *Cinefacts::settingsWidget()
 {
     return 0;
 }
 
+/**
+ * @brief Just returns a pointer to the scrapers network access manager
+ * @return Network Access Manager
+ */
 QNetworkAccessManager *Cinefacts::qnam()
 {
     return &m_qnam;
 }
 
+/**
+ * @brief Returns a list of infos available from the scraper
+ * @return List of supported infos
+ */
+QList<int> Cinefacts::scraperSupports()
+{
+    return m_scraperSupports;
+}
+
+/**
+ * @brief Searches for a movie
+ * @param searchStr The Movie name/search string
+ * @see Cinefacts::searchFinished
+ */
 void Cinefacts::search(QString searchStr)
 {
     QUrl url(QString("http://www.cinefacts.de/suche/suche.php?name=%1").arg(searchStr));
@@ -41,6 +88,11 @@ void Cinefacts::search(QString searchStr)
     connect(m_searchReply, SIGNAL(finished()), this, SLOT(searchFinished()));
 }
 
+/**
+ * @brief Called when the search result was downloaded
+ *        Emits "searchDone" if there are no more pages in the result set
+ * @see Cinefacts::parseSearch
+ */
 void Cinefacts::searchFinished()
 {
     QList<ScraperSearchResult> results;
@@ -52,6 +104,11 @@ void Cinefacts::searchFinished()
     emit searchDone(results);
 }
 
+/**
+ * @brief Parses the search results
+ * @param html Downloaded HTML data
+ * @return List of search results
+ */
 QList<ScraperSearchResult> Cinefacts::parseSearch(QString html)
 {
     QList<ScraperSearchResult> results;
@@ -69,29 +126,47 @@ QList<ScraperSearchResult> Cinefacts::parseSearch(QString html)
     return results;
 }
 
-void Cinefacts::loadData(QString id, Movie *movie)
+/**
+ * @brief Starts network requests to download infos from Cinefacts
+ * @param id Cinefacts movie ID
+ * @param movie Movie object
+ * @param infos List of infos to load
+ * @see Cinefacts::loadFinished
+ */
+void Cinefacts::loadData(QString id, Movie *movie, QList<int> infos)
 {
+    m_infosToLoad = infos;
     m_currentMovie = movie;
     QUrl url(QString("http://www.cinefacts.de/kino/%1/filmdetails.html").arg(id));
     m_loadReply = this->qnam()->get(QNetworkRequest(url));
     connect(m_loadReply, SIGNAL(finished()), this, SLOT(loadFinished()));
 }
 
+/**
+ * @brief Called when the movie infos are downloaded
+ * @see Cinefacts::parseAndAssignInfos
+ */
 void Cinefacts::loadFinished()
 {
     if (m_loadReply->error() == QNetworkReply::NoError ) {
         QString msg = m_loadReply->readAll();
-        parseAndAssignInfos(msg, m_currentMovie);
+        parseAndAssignInfos(msg, m_currentMovie, m_infosToLoad);
     } else {
         m_currentMovie->scraperLoadDone();
     }
     m_loadReply->deleteLater();
 }
 
-void Cinefacts::parseAndAssignInfos(QString html, Movie *movie)
+/**
+ * @brief Parses HTML data and assigns it to the given movie object
+ * @param html HTML data
+ * @param movie Movie object
+ * @param infos List of infos to load
+ */
+void Cinefacts::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
 {
     m_backdropUrl.clear();
-    movie->clear();
+    movie->clear(infos);
     QRegExp rx;
     rx.setMinimal(true);
     int pos = 0;
@@ -99,17 +174,17 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie)
 
     // Title
     rx.setPattern("<h1>([^<]*)<");
-    if (rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1)
         movie->setName(rx.cap(1).trimmed());
 
     // Original Title
     rx.setPattern("<dt class=\"c1\">Originaltitel:</dt>[^<]*<dd class=\"first\">(.[^<]*)</dd>");
-    if (rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1)
         movie->setOriginalName(rx.cap(1).trimmed());
 
     // Genre
     rx.setPattern("Genre:([^:]*)<dt");
-    if (rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfos::Genres) && rx.indexIn(html) != -1) {
         QString genres = rx.cap(1);
         pos = 0;
         rx.setPattern(">*[ A-Za-z]([^<>]*)</a>");
@@ -121,12 +196,12 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie)
 
     // Year
     rx.setPattern("</a> ([0-9]*) </dd>");
-    if (rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1)
         movie->setReleased(QDate::fromString(rx.cap(1).trimmed(), "yyyy"));
 
     // Country
     rx.setPattern("Produktionsland:([^:]*)<dt");
-    if (rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfos::Countries) && rx.indexIn(html) != -1) {
         QString countries = rx.cap(1);
         pos = 0;
         rx.setPattern("<a href=\"[^\"]*\">([^<]*)</a>");
@@ -138,7 +213,7 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie)
 
     // Actors
     rx.setPattern("Darsteller:</td>(.*)</table");
-    if (rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfos::Actors) && rx.indexIn(html) != -1) {
         QString actors = rx.cap(1);
         pos = 0;
         rx.setPattern(">([^<>]*)</a></td>+[^<]+<[^>]+> als([ A-Za-z]*)&nbsp;");
@@ -153,34 +228,34 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie)
 
     // Studio
     rx.setPattern("Verleih:([^\\.]*)\\.");
-    if (rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1)
         movie->addStudio(rx.cap(1).trimmed());
 
     // MPAA
     rx.setPattern("FSK:</dt>[^>]*>ab ([^<]*) Jahren<");
-    if (rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1)
         movie->setCertification("FSK " + rx.cap(1));
 
     // Runtime
     rx.setPattern("L.nge:</dt>[^>]*>([0-9]*) Minuten");
-    if (rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1)
         movie->setRuntime(rx.cap(1).trimmed().toInt());
 
     // Overview
     rx.setPattern("KURZINHALT</h2></li>.*<li[^>]*>(.*)</li>");
-    if (rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         doc.setHtml(rx.cap(1).trimmed());
         movie->setOverview(doc.toPlainText());
     }
 
     // Backdrops
     rx.setPattern("<a href=\"/kino/film/([0-9]*)/0/([^/]*)/szenenbilder_seite_1.html\">");
-    if (rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Backdrop) && rx.indexIn(html) != -1)
         m_backdropUrl = QUrl(QString("http://www.cinefacts.de/kino/film/%1/0/%2/szenenbilder_seite_1.html").arg(rx.cap(1)).arg(rx.cap(2)));
 
     // Posters
     rx.setPattern("<a href=\"/kino/film/([0-9]*)/([^/]*)/plakate.html\">");
-    if (rx.indexIn(html) != -1) {
+    if (infos.contains(MovieScraperInfos::Poster) && rx.indexIn(html) != -1) {
         QUrl posterUrl(QString("http://www.cinefacts.de/kino/film/%1/%2/plakate.html").arg(rx.cap(1)).arg(rx.cap(2)));
         m_posterReply = this->qnam()->get(QNetworkRequest(posterUrl));
         connect(m_posterReply, SIGNAL(finished()), this, SLOT(posterFinished()));
