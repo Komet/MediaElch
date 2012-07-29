@@ -30,6 +30,7 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_inSeparateFolder = false;
     static int m_idCounter = 0;
     m_movieId = ++m_idCounter;
+    m_mediaCenterId = -1;
 }
 
 Movie::~Movie()
@@ -350,6 +351,11 @@ bool Movie::inSeparateFolder() const
     return m_inSeparateFolder;
 }
 
+int Movie::mediaCenterId() const
+{
+    return m_mediaCenterId;
+}
+
 /*** SETTER ***/
 
 void Movie::setName(QString name)
@@ -513,6 +519,11 @@ void Movie::setDownloadsSize(int downloadsLeft)
 void Movie::setInSeparateFolder(bool inSepFolder)
 {
     m_inSeparateFolder = inSepFolder;
+}
+
+void Movie::setMediaCenterId(int mediaCenterId)
+{
+    m_mediaCenterId = mediaCenterId;
 }
 
 /*** ADDER ***/

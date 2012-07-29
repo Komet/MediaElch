@@ -82,58 +82,77 @@ bool XbmcSql::saveMovie(Movie *movie)
 
     // get Path ID
     int idPath = -1;
-    QFileInfo fiPath(mediaCenterPath(movie->files().at(0)));
-    QString path = fiPath.path();
-    if (mediaCenterPath(movie->files().at(0)).contains("\\")) {
-        path.replace("/", "\\");
-        if (!path.endsWith("\\"))
-            path.append("\\");
-    } else {
-        path.replace("\\", "/");
-        if (!path.endsWith("/"))
-            path.append("/");
+    if (movie->mediaCenterId() == -1) {
+        query.prepare("SELECT c23 FROM movie WHERE idMovie=:idMovie");
+        query.bindValue(":idMovie", movie->mediaCenterId());
+        query.exec();
+        if (query.next()) {
+            idPath = query.value(0).toInt();
+        }
     }
+    QFileInfo fiPath(mediaCenterPath(movie->files().at(0)));
+    if (idPath == -1) {
+        QString path = fiPath.path();
+        if (mediaCenterPath(movie->files().at(0)).contains("\\")) {
+            path.replace("/", "\\");
+            if (!path.endsWith("\\"))
+                path.append("\\");
+        } else {
+            path.replace("\\", "/");
+            if (!path.endsWith("/"))
+                path.append("/");
+        }
 
-    query.prepare("SELECT idPath FROM path WHERE strPath=:path");
-    query.bindValue(":path", path);
-    query.exec();
-    if (query.next()) {
-        idPath = query.value(query.record().indexOf("idPath")).toInt();
-    } else {
-        query.prepare("INSERT INTO path(strPath, strContent, strScraper, scanRecursive, useFolderNames, noUpdate, exclude) "
-                      "VALUES(:path, 'movies', 'metadata.themoviedb.org', 0, 0, 1, 0)");
+        query.prepare("SELECT idPath FROM path WHERE strPath=:path");
         query.bindValue(":path", path);
         query.exec();
-        idPath = query.lastInsertId().toInt();
+        if (query.next()) {
+            idPath = query.value(query.record().indexOf("idPath")).toInt();
+        } else {
+            query.prepare("INSERT INTO path(strPath, strContent, strScraper, scanRecursive, useFolderNames, noUpdate, exclude) "
+                          "VALUES(:path, 'movies', 'metadata.themoviedb.org', 0, 0, 1, 0)");
+            query.bindValue(":path", path);
+            query.exec();
+            idPath = query.lastInsertId().toInt();
+        }
     }
 
     // get File ID
     int idMovie = -1;
     int idFile = -1;
-    if (movie->files().count() == 1) {
-        query.prepare("SELECT idFile, strFilename FROM files WHERE strFilename=:fileName AND idPath=:idPath");
-        query.bindValue(":idPath", idPath);
-        query.bindValue(":fileName", fiPath.fileName());
-    } else {
-        QString fileName = fiPath.fileName();
-        query.prepare(QString("SELECT idFile, strFilename FROM files WHERE strFilename LIKE 'stack://%%1%' AND idPath='%2'").arg(fileName).arg(idPath));
-    }
-    query.exec();
-    if (movie->files().count() == 1) {
+    if (movie->mediaCenterId() != -1) {
+        idMovie = movie->mediaCenterId();
+        query.prepare("SELECT idFile FROM movie WHERE idMovie=:idMovie");
+        query.bindValue(":idMovie", idMovie);
+        query.exec();
         if (query.next())
-            idFile = query.value(query.record().indexOf("idFile")).toInt();
+            idFile = query.value(0).toInt();
     } else {
-        while (idFile == -1 && query.next()) {
-            QString path = query.value(query.record().indexOf("strFilename")).toString();
-            path.replace("stack://", "");
-            QStringList dbPaths = path.split(" , ", QString::SkipEmptyParts);
-            QStringList filePaths;
-            foreach (const QString &path, movie->files())
-                filePaths << mediaCenterPath(path);
-            qSort(filePaths);
-            qSort(dbPaths);
-            if (dbPaths == filePaths)
+        if (movie->files().count() == 1) {
+            query.prepare("SELECT idFile, strFilename FROM files WHERE strFilename=:fileName AND idPath=:idPath");
+            query.bindValue(":idPath", idPath);
+            query.bindValue(":fileName", fiPath.fileName());
+        } else {
+            QString fileName = fiPath.fileName();
+            query.prepare(QString("SELECT idFile, strFilename FROM files WHERE strFilename LIKE 'stack://%%1%' AND idPath='%2'").arg(fileName).arg(idPath));
+        }
+        query.exec();
+        if (movie->files().count() == 1) {
+            if (query.next())
                 idFile = query.value(query.record().indexOf("idFile")).toInt();
+        } else {
+            while (idFile == -1 && query.next()) {
+                QString path = query.value(query.record().indexOf("strFilename")).toString();
+                path.replace("stack://", "");
+                QStringList dbPaths = path.split(" , ", QString::SkipEmptyParts);
+                QStringList filePaths;
+                foreach (const QString &path, movie->files())
+                    filePaths << mediaCenterPath(path);
+                qSort(filePaths);
+                qSort(dbPaths);
+                if (dbPaths == filePaths)
+                    idFile = query.value(query.record().indexOf("idFile")).toInt();
+            }
         }
     }
 
@@ -457,7 +476,7 @@ bool XbmcSql::loadMovie(Movie *movie)
     QString file = mediaCenterPath(movie->files().at(0));
     if (movie->files().count() == 1) {
         bool isUnixFile = !file.contains("\\");
-        QStringList fileSplit = (isUnixFile) ? file.split("/", QString::SkipEmptyParts) : file.split("\\", QString::SkipEmptyParts);
+        QStringList fileSplit = (isUnixFile) ? file.split("/") : file.split("\\");
         if (!fileSplit.isEmpty() && (QString::compare(fileSplit.last(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0 ||
                                      QString::compare(fileSplit.last(), "index.bdmv", Qt::CaseInsensitive) == 0)) {
             fileSplit.takeLast();
@@ -466,8 +485,8 @@ bool XbmcSql::loadMovie(Movie *movie)
                 fileSplit.takeLast();
             }
             file = (isUnixFile) ? fileSplit.join("/") : fileSplit.join("\\");
-            file.prepend((isUnixFile) ? "/" : "\\");
-            file.append((isUnixFile) ? "/" : "\\");
+            if (!file.endsWith("/") && !file.endsWith("\\"))
+                file.append((isUnixFile) ? "/" : "\\");
         }
         if (m_isMySQL)
             file.replace("\\", "\\\\");
@@ -507,8 +526,47 @@ bool XbmcSql::loadMovie(Movie *movie)
     query.exec();
 
     if (movie->files().count() == 1) {
-        if (!query.next())
-            return false;
+        if (!query.next()) {
+            // Try the folder name instead
+            bool isUnixFile = !file.contains("\\");
+            QStringList fileSplit = (isUnixFile) ? file.split("/") : file.split("\\");
+            fileSplit.takeLast();
+            file = (isUnixFile) ? fileSplit.join("/") : fileSplit.join("\\");
+            file.append((isUnixFile) ? "/" : "\\");
+            if (m_isMySQL)
+                file.replace("\\", "\\\\");
+
+            query.clear();
+            query.prepare("SELECT "
+                          "M.idMovie, "
+                          "M.c00 AS title, "
+                          "M.c01 AS plot, "
+                          "M.c03 AS tagline, "
+                          "M.c05 AS rating, "
+                          "M.c07 AS year, "
+                          "M.c08 AS thumbnails, "
+                          "M.c10 AS sortTitle, "
+                          "M.c11 AS runtime, "
+                          "M.c12 AS certification, "
+                          "M.c14 AS genres, "
+                          "M.c16 AS originalTitle, "
+                          "M.c18 AS studios, "
+                          "M.c19 AS trailer, "
+                          "M.c20 AS fanart, "
+                          "M.c21 AS countries, "
+                          "F.playCount AS playCount, "
+                          "F.lastPlayed AS lastPlayed, "
+                          "M.c22 AS filePath "
+                          "FROM movie M "
+                          "JOIN files F ON M.idFile=F.idFile "
+                          "LEFT JOIN setlinkmovie SLM ON SLM.idMovie=M.idMovie "
+                          "LEFT JOIN sets S ON S.idSet=SLM.idSet "
+                          "WHERE M.c22=:file");
+            query.bindValue(":file", file);
+            query.exec();
+            if (!query.next())
+                return false;
+        }
     } else {
         bool found = false;
         while (!found && query.next()) {
@@ -530,6 +588,7 @@ bool XbmcSql::loadMovie(Movie *movie)
 
     QSqlRecord record = query.record();
     int idMovie = query.value(record.indexOf("idMovie")).toInt();
+    movie->setMediaCenterId(idMovie);
     movie->setName(query.value(record.indexOf("title")).toString());
     movie->setSortTitle(query.value(record.indexOf("sortTitle")).toString());
     movie->setOverview(query.value(record.indexOf("plot")).toString());

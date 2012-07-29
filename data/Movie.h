@@ -61,6 +61,7 @@ public:
     bool downloadsInProgress() const;
     int downloadsSize() const;
     bool inSeparateFolder() const;
+    int mediaCenterId() const;
 
     bool hasChanged() const;
 
@@ -99,6 +100,7 @@ public:
     void setDownloadsInProgress(bool inProgress);
     void setDownloadsSize(int downloadsSize);
     void setInSeparateFolder(bool inSepFolder);
+    void setMediaCenterId(int mediaCenterId);
 
     void removeActor(Actor *actor);
     void removeCountry(QString *country);
@@ -151,6 +153,7 @@ private:
     bool m_downloadsInProgress;
     int m_downloadsSize;
     bool m_inSeparateFolder;
+    int m_mediaCenterId;
 };
 
 QDebug operator<<(QDebug dbg, const Movie &movie);
