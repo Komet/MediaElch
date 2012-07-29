@@ -1,4 +1,4 @@
-mediaelch (0.9.2-1) unstable; urgency=low
+mediaelch (0.9.3-1) unstable; urgency=low
 
   * Added support for TV Show banners
   * Added Set Editor (add/remove movies from sets, reorder movies, change posters and backdrops)
