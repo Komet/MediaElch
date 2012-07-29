@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
     QCoreApplication::setOrganizationName("kVibes");
     QCoreApplication::setApplicationName("MediaElch");
-    QCoreApplication::setApplicationVersion("0.9.3");
+    QCoreApplication::setApplicationVersion("0.9.4");
 
     MainWindow w;
     w.show();

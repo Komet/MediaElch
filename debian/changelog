@@ -1,3 +1,9 @@
+mediaelch (0.9.4-1) unstable; urgency=low
+
+  * Fixed not escaped characters in SQL interface
+
+ -- Daniel Kabel <daniel.kabel@me.com>  Thu, 29 Jul 2012 19:20:31 +0200
+
 mediaelch (0.9.3-1) unstable; urgency=low
 
   * Added support for TV Show banners
