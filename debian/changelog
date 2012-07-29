@@ -1,5 +1,20 @@
 mediaelch (0.9.2-1) unstable; urgency=low
 
+  * Added support for TV Show banners
+  * Added Set Editor (add/remove movies from sets, reorder movies, change posters and backdrops)
+  * View and change images of actors
+  * Skip trailer files when searching for movies
+  * Rudimentary support for stub files (need to be created on your own)
+  * Switched to TMDb API v3
+  * Local certifications from TMDb
+  * Support metafiles like movie.nfo, movie.tbn, movie.jpg, fanart.jpg, folder.jpg
+  * Select which infos should be loaded from a scraper
+  * Fixed a bug when using SQL interfaces and "movies are stored in separate folders" is checked in XBMC
+
+ -- Daniel Kabel <daniel.kabel@me.com>  Thu, 29 Jul 2012 15:09:32 +0200
+
+mediaelch (0.9.2-1) unstable; urgency=low
+
   * Bugfixes and some new features
 
  -- Daniel Kabel <daniel.kabel@me.com>  Thu, 25 Jul 2012 20:51:02 +0200
