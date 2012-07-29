@@ -133,8 +133,7 @@ bool XbmcSql::saveMovie(Movie *movie)
             query.bindValue(":idPath", idPath);
             query.bindValue(":fileName", fiPath.fileName());
         } else {
-            QString fileName = fiPath.fileName();
-            query.prepare(QString("SELECT idFile, strFilename FROM files WHERE strFilename LIKE 'stack://%%1%' AND idPath='%2'").arg(fileName).arg(idPath));
+            query.prepare(QString("SELECT idFile, strFilename FROM files WHERE strFilename LIKE 'stack://%%1%' AND idPath='%2'").arg(fiPath.fileName().replace("'", "''")).arg(idPath));
         }
         query.exec();
         if (movie->files().count() == 1) {
@@ -490,11 +489,11 @@ bool XbmcSql::loadMovie(Movie *movie)
         }
         if (m_isMySQL)
             file.replace("\\", "\\\\");
-        sqlWhereFile = QString("M.c22='%1'").arg(file);
+        sqlWhereFile = QString("M.c22='%1'").arg(file.replace("'", "''"));
     } else {
         if (m_isMySQL)
             file.replace("\\", "\\\\\\\\");
-        sqlWhereFile = QString("M.c22 LIKE 'stack://%%1%'").arg(file);
+        sqlWhereFile = QString("M.c22 LIKE 'stack://%%1%'").arg(file.replace("'", "''"));
     }
 
     QSqlQuery query(db());
@@ -849,10 +848,16 @@ bool XbmcSql::loadTvShowEpisode(TvShowEpisode *episode)
     episode->clear();
 
     QString sqlWhereFile;
-    if (episode->files().count() == 1)
-        sqlWhereFile = QString("E.c18='%1'").arg(tvShowMediaCenterPath(episode->files().at(0)).replace("\\", "\\\\"));
+    QString file = tvShowMediaCenterPath(episode->files().at(0));
+    if (m_isMySQL)
+        file.replace("\\", "\\\\");
     else
-        sqlWhereFile = QString("E.c18 LIKE 'stack://%%1%'").arg(tvShowMediaCenterPath(episode->files().at(0)).replace("\\", "\\\\\\\\"));
+        file.replace("\\", "\\\\\\\\");
+    file.replace("'", "''");
+    if (episode->files().count() == 1)
+        sqlWhereFile = QString("E.c18='%1'").arg(file);
+    else
+        sqlWhereFile = QString("E.c18 LIKE 'stack://%%1%'").arg(file);
 
     QSqlQuery query(db());
     query.prepare(QString("SELECT "
@@ -1238,9 +1243,11 @@ bool XbmcSql::saveTvShowEpisode(TvShowEpisode *episode)
     QString sqlWhereFile;
     if (episode->files().count() == 1) {
         QFileInfo fi(episode->files().at(0));
-        sqlWhereFile = QString("strFilename='%1'").arg(fi.fileName());
+        sqlWhereFile = QString("strFilename='%1'").arg(fi.fileName().replace("'", "''"));
     } else {
-        sqlWhereFile = QString("strFilename LIKE 'stack://%%1%'").arg(tvShowMediaCenterPath(episode->files().at(0)));
+        QString file = tvShowMediaCenterPath(episode->files().at(0));
+        file.replace("'", "''");
+        sqlWhereFile = QString("strFilename LIKE 'stack://%%1%'").arg(file);
     }
     query.prepare("SELECT idFile, strFilename FROM files WHERE " + sqlWhereFile);
     query.exec();
