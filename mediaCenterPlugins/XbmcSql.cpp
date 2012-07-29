@@ -1131,6 +1131,7 @@ bool XbmcSql::saveTvShow(TvShow *show)
         fileHash = hash(path + "poster.jpg");
         posterPath = QString("%1%2%3%2%4.jpg").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
         show->posterImage()->save(posterPath, "jpg", 100);
+        show->posterImage()->save(show->dir() + QDir::separator() + "poster.jpg", "jpg", 100);
 
         // English
         fileHash = hash(QString("season%1* All Seasons").arg(path));
@@ -1223,16 +1224,29 @@ bool XbmcSql::saveTvShowEpisode(TvShowEpisode *episode)
         return false;
 
     // get Path ID
+    QString episodePath = tvShowMediaCenterPath(episode->files().at(0));
+    QStringList episodePathSplit;
+    QString joiner = (episodePath.contains("/")) ? "/" : "\\";
+    episodePathSplit = episodePath.split(joiner);
+    if (episodePathSplit.count() > 0 )
+        episodePathSplit.takeLast();
+    episodePath = episodePathSplit.join(joiner);
+
+    if (episodePath.contains("\\") && !episodePath.endsWith("\\"))
+        episodePath.append("\\");
+    else if (episodePath.contains("/") && !episodePath.endsWith("/"))
+        episodePath.append("/");
+
     int idPath = -1;
     query.prepare("SELECT idPath FROM path WHERE strPath=:path");
-    query.bindValue(":path", path);
+    query.bindValue(":path", episodePath);
     query.exec();
     if (query.next()) {
         idPath = query.value(query.record().indexOf("idPath")).toInt();
     } else {
         query.prepare("INSERT INTO path(strPath, strContent, strScraper, scanRecursive, useFolderNames, noUpdate, exclude) "
                       "VALUES(:path, 'tvshows', 'metadata.tvdb.com', 0, 1, 1, 0)");
-        query.bindValue(":path", path);
+        query.bindValue(":path", episodePath);
         query.exec();
         idPath = query.lastInsertId().toInt();
     }
