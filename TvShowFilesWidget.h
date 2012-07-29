@@ -22,21 +22,17 @@ public:
     ~TvShowFilesWidget();
     void renewModel();
     void setFilter(QString filter);
-    void enableRefresh();
-    void disableRefresh();
     static TvShowFilesWidget *instance();
 
 public slots:
     void startSearch();
 
 signals:
-    void setRefreshButtonEnabled(bool, MainWidgets);
     void sigEpisodeSelected(TvShowEpisode *episode);
     void sigTvShowSelected(TvShow *show);
     void sigNothingSelected();
 
 private slots:
-    void searchFinished();
     void onItemActivated(QModelIndex index, QModelIndex previous);
     void onItemClicked(QModelIndex index);
 

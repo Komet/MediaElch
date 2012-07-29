@@ -37,9 +37,7 @@ private slots:
     void onActionSearch();
     void onActionSave();
     void onActionSaveAll();
-    void onActionRefresh();
     void onFilterChanged(QString text);
-    void onSetRefreshEnabled(bool enabled, MainWidgets widget);
     void onSetExportEnabled(bool enabled, MainWidgets widget);
     void onSetSaveEnabled(bool enabled, MainWidgets widget);
     void onSetSearchEnabled(bool enabled, MainWidgets widget);
@@ -57,7 +55,6 @@ private:
     QAction *m_actionExport;
     QAction *m_actionAbout;
     QAction *m_actionQuit;
-    QAction *m_actionRefreshFiles;
     QAction *m_actionSaveAll;
     QMap<MainActions, bool> m_movieActions;
     QMap<MainActions, bool> m_movieSetActions;

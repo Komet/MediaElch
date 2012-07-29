@@ -18,8 +18,6 @@ class FilesWidget : public QWidget
 public:
     explicit FilesWidget(QWidget *parent = 0);
     ~FilesWidget();
-    void enableRefresh();
-    void disableRefresh();
     static FilesWidget *instance();
 
 public slots:
@@ -29,11 +27,9 @@ public slots:
 signals:
     void noMovieSelected();
     void movieSelected(Movie*);
-    void setRefreshButtonEnabled(bool, MainWidgets);
 
 private slots:
     void startSearch();
-    void searchFinished();
     void itemActivated(QModelIndex index, QModelIndex previous);
     void movieSelectedEmitter();
 

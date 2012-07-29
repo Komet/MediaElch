@@ -324,52 +324,50 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../MainWindow.ui" line="289"/>
-        <location filename="../MainWindow.cpp" line="203"/>
+        <location filename="../MainWindow.cpp" line="191"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui" line="294"/>
-        <location filename="../MainWindow.cpp" line="202"/>
+        <location filename="../MainWindow.cpp" line="190"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="195"/>
+        <location filename="../MainWindow.cpp" line="185"/>
         <source>Search</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="196"/>
+        <location filename="../MainWindow.cpp" line="186"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="197"/>
+        <location filename="../MainWindow.cpp" line="187"/>
         <source>Save All</source>
         <translation>Alle Speichern</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="198"/>
         <source>Reload</source>
-        <translation>Neu laden</translation>
+        <translation type="obsolete">Neu laden</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="199"/>
         <source>Reload Movie List</source>
-        <translation>Filmliste neu laden</translation>
+        <translation type="obsolete">Filmliste neu laden</translation>
     </message>
     <message>
         <source>Preferences</source>
         <translation type="obsolete">Einstellungen</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="200"/>
+        <location filename="../MainWindow.cpp" line="188"/>
         <source>Export</source>
         <translation>Export</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="201"/>
+        <location filename="../MainWindow.cpp" line="189"/>
         <source>Export Movie Database</source>
         <translation>Filmdatenbank exportieren</translation>
     </message>
@@ -1062,114 +1060,119 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="62"/>
+        <location filename="../SettingsWidget.ui" line="47"/>
+        <source>Please restart MediaElch after saving if you changed the MediaCenter interface or added/removed directories.</source>
+        <translation type="unfinished">Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
+    </message>
+    <message>
+        <location filename="../SettingsWidget.ui" line="86"/>
         <source>Movies</source>
         <translation>Filme</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="72"/>
+        <location filename="../SettingsWidget.ui" line="96"/>
         <source>Add one or more directories containing your movie files.</source>
         <translation>Füge Verzeichnisse hinzu, die deine Filme enthalten.</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="88"/>
-        <location filename="../SettingsWidget.ui" line="323"/>
-        <location filename="../SettingsWidget.ui" line="427"/>
+        <location filename="../SettingsWidget.ui" line="112"/>
+        <location filename="../SettingsWidget.ui" line="347"/>
+        <location filename="../SettingsWidget.ui" line="451"/>
         <source>Path</source>
         <translation>Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="93"/>
-        <location filename="../SettingsWidget.ui" line="432"/>
+        <location filename="../SettingsWidget.ui" line="117"/>
+        <location filename="../SettingsWidget.ui" line="456"/>
         <source>MediaCenter Path</source>
         <translation>MediaCenter Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="98"/>
+        <location filename="../SettingsWidget.ui" line="122"/>
         <source>Sep. folders</source>
         <translation>Sep. Verzeichnisse</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="108"/>
-        <location filename="../SettingsWidget.ui" line="442"/>
+        <location filename="../SettingsWidget.ui" line="132"/>
+        <location filename="../SettingsWidget.ui" line="466"/>
         <source>Add</source>
         <translation>Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="115"/>
-        <location filename="../SettingsWidget.ui" line="449"/>
+        <location filename="../SettingsWidget.ui" line="139"/>
+        <location filename="../SettingsWidget.ui" line="473"/>
         <source>Remove</source>
         <translation>Entfernen</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="160"/>
+        <location filename="../SettingsWidget.ui" line="184"/>
         <source>MediaCenter Interface</source>
         <translation>MediaCenter Interface</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="167"/>
+        <location filename="../SettingsWidget.ui" line="191"/>
         <source>Select the MediaCenter to use.</source>
         <translation>Wähle ein Interface zu deinem MediaCenter aus.</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="174"/>
+        <location filename="../SettingsWidget.ui" line="198"/>
         <source>XBMC XML</source>
         <translation>XBMC XML</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="181"/>
+        <location filename="../SettingsWidget.ui" line="205"/>
         <source>XBMC MySQL</source>
         <translation>XBMC MySQL</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="197"/>
+        <location filename="../SettingsWidget.ui" line="221"/>
         <source>Host</source>
         <translation>Host</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="214"/>
-        <location filename="../SettingsWidget.ui" line="287"/>
+        <location filename="../SettingsWidget.ui" line="238"/>
+        <location filename="../SettingsWidget.ui" line="311"/>
         <source>Database</source>
         <translation>Datenbank</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="231"/>
+        <location filename="../SettingsWidget.ui" line="255"/>
         <source>Username</source>
         <translation>Benutzername</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="248"/>
+        <location filename="../SettingsWidget.ui" line="272"/>
         <source>Password</source>
         <translation>Passwort</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="271"/>
+        <location filename="../SettingsWidget.ui" line="295"/>
         <source>XBMC SQLite</source>
         <translation>XBMC SQLite</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="301"/>
-        <location filename="../SettingsWidget.ui" line="337"/>
+        <location filename="../SettingsWidget.ui" line="325"/>
+        <location filename="../SettingsWidget.ui" line="361"/>
         <source>Select</source>
         <translation>Auswählen</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="311"/>
+        <location filename="../SettingsWidget.ui" line="335"/>
         <source>Set the path where Thumbnails are stored (e.g. ~/.xbmc/userdata/Thumbnails)</source>
         <translation>Wähle das Verzeichnis aus, in dem die XBMC Thumbnails gespeichert werden (z.B. ~/.xbmc/userdata/Thumbnails)</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="367"/>
+        <location filename="../SettingsWidget.ui" line="391"/>
         <source>Scrapers</source>
         <translation>Scraper</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="401"/>
+        <location filename="../SettingsWidget.ui" line="425"/>
         <source>TV Shows</source>
         <translation>TV Serien</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.ui" line="408"/>
+        <location filename="../SettingsWidget.ui" line="432"/>
         <source>Add one or more directories containing your TV Shows. Episodes have to be in subfolders with the name of the show.</source>
         <translation>Füge Verzeichnisse hinzu, die deine Serien enthalten. Episoden müssen in Unterverzeichnissen mit dem Namen der Serie sein.</translation>
     </message>

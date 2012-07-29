@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1053</width>
-    <height>681</height>
+    <height>752</height>
    </rect>
   </property>
   <property name="font">
@@ -28,7 +28,31 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
-    <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0">
+    <widget class="QLabel" name="label_9">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+	border: 1px solid rgba(0, 0, 0, 100);
+	border-radius: 5px;
+	background-color: rgba(255, 255, 255, 200);
+	padding: 5px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Please restart MediaElch after saving if you changed the MediaCenter interface or added/removed directories.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,1">
      <property name="verticalSpacing">
       <number>20</number>
      </property>
@@ -37,13 +61,13 @@
        <property name="minimumSize">
         <size>
          <width>400</width>
-         <height>300</height>
+         <height>150</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
          <width>16777215</width>
-         <height>300</height>
+         <height>250</height>
         </size>
        </property>
        <property name="title">
@@ -376,13 +400,13 @@
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>300</height>
+         <height>150</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
          <width>16777215</width>
-         <height>300</height>
+         <height>250</height>
         </size>
        </property>
        <property name="title">

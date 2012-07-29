@@ -34,7 +34,6 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     ui->files->setAttribute(Qt::WA_MacShowFocusRect, false);
 
     connect(ui->files, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)));
-    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(finished()), this, SLOT(searchFinished()));
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)));
 }
 
@@ -53,25 +52,9 @@ void TvShowFilesWidget::setFilter(QString filter)
     m_tvShowProxyModel->setFilterWildcard("*" + filter + "*");
 }
 
-void TvShowFilesWidget::enableRefresh()
-{
-    emit setRefreshButtonEnabled(true, WidgetTvShows);
-}
-
-void TvShowFilesWidget::disableRefresh()
-{
-    emit setRefreshButtonEnabled(false, WidgetTvShows);
-}
-
 void TvShowFilesWidget::startSearch()
 {
-    emit setRefreshButtonEnabled(false, WidgetTvShows);
     Manager::instance()->tvShowFileSearcher()->start();
-}
-
-void TvShowFilesWidget::searchFinished()
-{
-    emit setRefreshButtonEnabled(true, WidgetTvShows);
 }
 
 void TvShowFilesWidget::renewModel()

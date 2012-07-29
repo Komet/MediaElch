@@ -30,7 +30,6 @@ FilesWidget::FilesWidget(QWidget *parent) :
     ui->files->setModel(m_movieProxyModel);
     ui->files->sortByColumn(0);
 
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(finished()), this, SLOT(searchFinished()));
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
 }
 
@@ -46,13 +45,7 @@ FilesWidget *FilesWidget::instance()
 
 void FilesWidget::startSearch()
 {
-    emit setRefreshButtonEnabled(false, WidgetMovies);
     Manager::instance()->movieFileSearcher()->start();
-}
-
-void FilesWidget::searchFinished()
-{
-    emit setRefreshButtonEnabled(true, WidgetMovies);
 }
 
 void FilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
@@ -75,16 +68,6 @@ void FilesWidget::movieSelectedEmitter()
 void FilesWidget::setFilter(QString filter)
 {
     m_movieProxyModel->setFilterWildcard("*" + filter + "*");
-}
-
-void FilesWidget::enableRefresh()
-{
-    emit setRefreshButtonEnabled(true, WidgetMovies);
-}
-
-void FilesWidget::disableRefresh()
-{
-    emit setRefreshButtonEnabled(false, WidgetMovies);
 }
 
 void FilesWidget::restoreLastSelection()

@@ -458,8 +458,8 @@ bool XbmcSql::loadMovie(Movie *movie)
     if (movie->files().count() == 1) {
         bool isUnixFile = !file.contains("\\");
         QStringList fileSplit = (isUnixFile) ? file.split("/", QString::SkipEmptyParts) : file.split("\\", QString::SkipEmptyParts);
-        if (!fileSplit.isEmpty() && (QString::compare(fileSplit.last(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0) ||
-                                     QString::compare(fileSplit.last(), "index.bdmv", Qt::CaseInsensitive) == 0) {
+        if (!fileSplit.isEmpty() && (QString::compare(fileSplit.last(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0 ||
+                                     QString::compare(fileSplit.last(), "index.bdmv", Qt::CaseInsensitive) == 0)) {
             fileSplit.takeLast();
             if (!fileSplit.isEmpty() && (QString::compare(fileSplit.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0 ||
                                          QString::compare(fileSplit.last(), "BDMV", Qt::CaseInsensitive) == 0)) {
