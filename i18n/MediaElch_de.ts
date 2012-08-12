@@ -1062,7 +1062,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     <message>
         <location filename="../SettingsWidget.ui" line="47"/>
         <source>Please restart MediaElch after saving if you changed the MediaCenter interface or added/removed directories.</source>
-        <translation type="unfinished">Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
+        <translation>Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
     </message>
     <message>
         <location filename="../SettingsWidget.ui" line="86"/>

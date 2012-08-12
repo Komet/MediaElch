@@ -435,11 +435,11 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
         movie->setName(sc.property("title").toString());
     if (infos.contains(MovieScraperInfos::Title) && sc.property("original_title").isValid())
         movie->setOriginalName(sc.property("original_title").toString());
-    if (infos.contains(MovieScraperInfos::Overview) && sc.property("overview").isValid())
+    if (infos.contains(MovieScraperInfos::Overview) && sc.property("overview").isValid() && !sc.property("overview").isNull())
         movie->setOverview(sc.property("overview").toString());
     if (infos.contains(MovieScraperInfos::Rating) && sc.property("vote_average").isValid())
         movie->setRating(sc.property("vote_average").toNumber());
-    if (infos.contains(MovieScraperInfos::Tagline) && sc.property("tagline").isValid())
+    if (infos.contains(MovieScraperInfos::Tagline) && sc.property("tagline").isValid() && !sc.property("tagline").isNull())
        movie->setTagline(sc.property("tagline").toString());
     if (infos.contains(MovieScraperInfos::Released) && sc.property("release_date").isValid())
         movie->setReleased(QDate::fromString(sc.property("release_date").toString(), "yyyy-MM-dd"));
