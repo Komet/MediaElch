@@ -515,7 +515,6 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
             QScriptValue vB = itB.value();
             if (vB.property("file_path").toString().isEmpty())
                 continue;
-
             Poster b;
             b.thumbUrl = m_baseUrl + "w780" + vB.property("file_path").toString();
             b.originalUrl = m_baseUrl + "original" + vB.property("file_path").toString();
@@ -530,6 +529,8 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
         while (itB.hasNext()) {
             itB.next();
             QScriptValue vB = itB.value();
+            if (vB.property("file_path").toString().isEmpty())
+                continue;
             Poster b;
             b.thumbUrl = m_baseUrl + "w342" + vB.property("file_path").toString();
             b.originalUrl = m_baseUrl + "original" + vB.property("file_path").toString();

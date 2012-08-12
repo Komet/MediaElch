@@ -233,6 +233,8 @@ int MovieImageDialog::getColumnWidth()
 
 void MovieImageDialog::imageClicked(int row, int col)
 {
+    if (ui->table->item(row, col) == 0)
+        return;
     QUrl url = ui->table->item(row, col)->data(Qt::UserRole).toUrl();
     m_imageUrl = url;
     accept();
