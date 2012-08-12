@@ -184,7 +184,8 @@ void TMDb::search(QString searchStr)
 {
     m_results.clear();
     m_searchString = searchStr;
-    QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(m_apiKey).arg(m_language).arg(searchStr));
+    QString encodedSearch = QUrl::toPercentEncoding(searchStr);
+    QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(m_apiKey).arg(m_language).arg(encodedSearch));
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
     m_searchReply = this->qnam()->get(request);

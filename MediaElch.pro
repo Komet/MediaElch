@@ -68,7 +68,8 @@ SOURCES += main.cpp\
     smallWidgets/ImageLabel.cpp \
     ImagePreviewDialog.cpp \
     SetsWidget.cpp \
-    MovieListDialog.cpp
+    MovieListDialog.cpp \
+    Helper.cpp
 
 HEADERS  += MainWindow.h \
     data/Movie.h \
@@ -121,7 +122,8 @@ HEADERS  += MainWindow.h \
     smallWidgets/ImageLabel.h \
     ImagePreviewDialog.h \
     SetsWidget.h \
-    MovieListDialog.h
+    MovieListDialog.h \
+    Helper.h
 
 FORMS    += MainWindow.ui \
     MovieSearch.ui \

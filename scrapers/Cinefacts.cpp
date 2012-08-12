@@ -1,5 +1,6 @@
 #include "Cinefacts.h"
 #include <QTextDocument>
+#include "Helper.h"
 
 Cinefacts::Cinefacts(QObject *parent)
 {
@@ -83,7 +84,9 @@ QList<int> Cinefacts::scraperSupports()
  */
 void Cinefacts::search(QString searchStr)
 {
-    QUrl url(QString("http://www.cinefacts.de/suche/suche.php?name=%1").arg(searchStr));
+    QString encodedSearch = Helper::toLatin1PercentEncoding(searchStr);
+    QUrl url;
+    url.setEncodedUrl(QString("http://www.cinefacts.de/suche/suche.php?name=%1").arg(encodedSearch).toUtf8());
     m_searchReply = this->qnam()->get(QNetworkRequest(url));
     connect(m_searchReply, SIGNAL(finished()), this, SLOT(searchFinished()));
 }

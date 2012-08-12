@@ -1,5 +1,6 @@
 #include "VideoBuster.h"
 #include <QTextDocument>
+#include "Helper.h"
 
 VideoBuster::VideoBuster(QObject *parent)
 {
@@ -53,7 +54,9 @@ QList<int> VideoBuster::scraperSupports()
  */
 void VideoBuster::search(QString searchStr)
 {
-    QUrl url(QString("https://www.videobuster.de/titlesearch.php?tab_search_content=movies&view=title_list_view_option_list&search_title=%1").arg(searchStr));
+    QString encodedSearch = Helper::toLatin1PercentEncoding(searchStr);
+    QUrl url;
+    url.setEncodedUrl(QString("https://www.videobuster.de/titlesearch.php?tab_search_content=movies&view=title_list_view_option_list&search_title=%1").arg(encodedSearch).toUtf8());
     m_searchReply = this->qnam()->get(QNetworkRequest(url));
     connect(m_searchReply, SIGNAL(finished()), this, SLOT(searchFinished()));
 }

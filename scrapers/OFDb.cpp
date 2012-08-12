@@ -2,6 +2,7 @@
 
 #include <QDomDocument>
 #include <QXmlStreamReader>
+#include "Helper.h"
 
 OFDb::OFDb(QObject *parent)
 {
@@ -85,7 +86,10 @@ void OFDb::search(QString searchStr)
 {
     m_httpNotFoundCounter = 0;
     m_currentSearchString = searchStr;
-    QUrl url(QString("http://www.ofdbgw.org/search/%1").arg(searchStr));
+
+    QString encodedSearch = Helper::toLatin1PercentEncoding(searchStr);
+    QUrl url;
+    url.setEncodedUrl(QString("http://www.ofdbgw.org/search/%1").arg(encodedSearch).toUtf8());
     m_searchReply = this->qnam()->get(QNetworkRequest(url));
     connect(m_searchReply, SIGNAL(finished()), this, SLOT(searchFinished()));
 }
