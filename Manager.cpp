@@ -25,8 +25,12 @@ Manager::Manager(QObject *parent) :
     m_tvShowProxyModel = new TvShowProxyModel(this);
 
     m_mediaCenters.append(new XbmcXml(this));
-    m_mediaCenters.append(new XbmcSql(this));
-    m_mediaCenters.append(new XbmcSql(this));
+    m_mediaCenters.append(new XbmcSql(this, "xbmc"));
+    m_mediaCenters.append(new XbmcSql(this, "xbmc"));
+
+    m_mediaCentersTvShow.append(new XbmcXml(this));
+    m_mediaCentersTvShow.append(new XbmcSql(this, "xbmcTvShow"));
+    m_mediaCentersTvShow.append(new XbmcSql(this, "xbmcTvShow"));
 }
 
 Manager::~Manager()
@@ -48,8 +52,14 @@ void Manager::setupMediaCenterInterface()
         MediaCenterInterface *interface = m_mediaCenters.at(1);
         static_cast<XbmcSql*>(interface)->connectMysql(SettingsWidget::instance()->xbmcMysqlHost(), SettingsWidget::instance()->xbmcMysqlDatabase(),
                                                        SettingsWidget::instance()->xbmcMysqlUser(), SettingsWidget::instance()->xbmcMysqlPassword());
+        interface = m_mediaCentersTvShow.at(1);
+        static_cast<XbmcSql*>(interface)->connectMysql(SettingsWidget::instance()->xbmcMysqlHost(), SettingsWidget::instance()->xbmcMysqlDatabase(),
+                                                       SettingsWidget::instance()->xbmcMysqlUser(), SettingsWidget::instance()->xbmcMysqlPassword());
     } else if (SettingsWidget::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcSqlite) {
         MediaCenterInterface *interface = m_mediaCenters.at(2);
+        static_cast<XbmcSql*>(interface)->connectSqlite(SettingsWidget::instance()->xbmcSqliteDatabase());
+
+        interface = m_mediaCentersTvShow.at(2);
         static_cast<XbmcSql*>(interface)->connectSqlite(SettingsWidget::instance()->xbmcSqliteDatabase());
     }
 }
@@ -70,6 +80,18 @@ MediaCenterInterface *Manager::mediaCenterInterface()
         return m_mediaCenters.at(2);
 
     return m_mediaCenters.at(0);
+}
+
+MediaCenterInterface *Manager::mediaCenterInterfaceTvShow()
+{
+    if (SettingsWidget::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcXml)
+        return m_mediaCentersTvShow.at(0);
+    else if (SettingsWidget::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcMysql)
+        return m_mediaCentersTvShow.at(1);
+    else if (SettingsWidget::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcSqlite)
+        return m_mediaCentersTvShow.at(2);
+
+    return m_mediaCentersTvShow.at(0);
 }
 
 MovieFileSearcher *Manager::movieFileSearcher()

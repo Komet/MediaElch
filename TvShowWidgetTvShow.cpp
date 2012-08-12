@@ -142,7 +142,7 @@ void TvShowWidgetTvShow::onSetEnabled(bool enabled)
 void TvShowWidgetTvShow::setTvShow(TvShow *show)
 {
     m_show = show;
-    show->loadImages(Manager::instance()->mediaCenterInterface());
+    show->loadImages(Manager::instance()->mediaCenterInterfaceTvShow());
     updateTvShowInfo();
     if (show->downloadsInProgress()) {
         onSetEnabled(false);
@@ -278,7 +278,7 @@ void TvShowWidgetTvShow::onSaveInformation()
 
     onSetEnabled(false);
     m_savingWidget->show();
-    m_show->saveData(Manager::instance()->mediaCenterInterface());
+    m_show->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
     m_savingWidget->hide();
     onSetEnabled(true);
     MessageBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_show->name()));

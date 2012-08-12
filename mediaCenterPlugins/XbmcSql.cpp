@@ -13,11 +13,12 @@
 #include "SettingsWidget.h"
 #include "XbmcSql.h"
 
-XbmcSql::XbmcSql(QObject *parent)
+XbmcSql::XbmcSql(QObject *parent, QString connectionName)
 {
     setParent(parent);
     m_db = 0;
     m_isMySQL = false;
+    m_connectionName = connectionName;
 }
 
 XbmcSql::~XbmcSql()
@@ -44,7 +45,7 @@ void XbmcSql::connectMysql(QString host, QString database, QString username, QSt
     }
 
     m_isMySQL = true;
-    m_db = new QSqlDatabase(QSqlDatabase::addDatabase("QMYSQL", "xbmc"));
+    m_db = new QSqlDatabase(QSqlDatabase::addDatabase("QMYSQL", m_connectionName));
     m_db->setHostName(host);
     m_db->setDatabaseName(database);
     m_db->setUserName(username);
@@ -60,7 +61,7 @@ void XbmcSql::connectSqlite(QString database)
         delete m_db;
     }
     m_isMySQL = false;
-    m_db = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE", "xbmc"));
+    m_db = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE", m_connectionName));
     m_db->setDatabaseName(database);
     if (!m_db->open())
         MessageBox::instance()->showMessage(tr("Connection to XBMC SQLite Database failed! \"%1\"").arg(m_db->lastError().text()));

@@ -111,7 +111,7 @@ void TvShowWidgetEpisode::onSetEnabled(bool enabled)
 void TvShowWidgetEpisode::setEpisode(TvShowEpisode *episode)
 {
     m_episode = episode;
-    episode->loadImages(Manager::instance()->mediaCenterInterface());
+    episode->loadImages(Manager::instance()->mediaCenterInterfaceTvShow());
     updateEpisodeInfo();
 }
 
@@ -191,9 +191,9 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->lastPlayed->blockSignals(false);
     ui->overview->blockSignals(false);
 
-    ui->certification->setEnabled(Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeCertification));
-    ui->showTitle->setEnabled(Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeShowTitle));
-    ui->studio->setEnabled(Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeNetwork));
+    ui->certification->setEnabled(Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeCertification));
+    ui->showTitle->setEnabled(Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeShowTitle));
+    ui->studio->setEnabled(Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeNetwork));
 }
 
 void TvShowWidgetEpisode::onSaveInformation()
@@ -203,7 +203,7 @@ void TvShowWidgetEpisode::onSaveInformation()
 
     onSetEnabled(false);
     m_savingWidget->show();
-    m_episode->saveData(Manager::instance()->mediaCenterInterface());
+    m_episode->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
     onSetEnabled(true);
     m_savingWidget->hide();
     MessageBox::instance()->showMessage(tr("Episode Saved"));

@@ -24,6 +24,7 @@ public:
     QList<ScraperInterface*> scrapers();
     QList<TvScraperInterface*> tvScrapers();
     MediaCenterInterface *mediaCenterInterface();
+    MediaCenterInterface *mediaCenterInterfaceTvShow();
     MovieFileSearcher* movieFileSearcher();
     TvShowFileSearcher* tvShowFileSearcher();
     MovieModel* movieModel();
@@ -34,6 +35,7 @@ public:
 
 private:
     QList<MediaCenterInterface*> m_mediaCenters;
+    QList<MediaCenterInterface*> m_mediaCentersTvShow;
     QList<ScraperInterface*> m_scrapers;
     QList<TvScraperInterface*> m_tvScrapers;
     MovieFileSearcher* m_movieFileSearcher;

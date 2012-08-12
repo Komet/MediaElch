@@ -13,7 +13,7 @@ class XbmcSql : public MediaCenterInterface
 {
     Q_OBJECT
 public:
-    explicit XbmcSql(QObject *parent = 0);
+    explicit XbmcSql(QObject *parent = 0, QString connectionName = "xbmc");
     ~XbmcSql();
 
     bool saveMovie(Movie *movie);
@@ -52,6 +52,7 @@ private:
     QSqlDatabase db();
 
     QSqlDatabase *m_db;
+    QString m_connectionName;
     bool m_isMySQL;
 };
 

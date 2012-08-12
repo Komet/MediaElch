@@ -100,13 +100,13 @@ void TvShowWidget::onSaveAll()
 
     for (int i=0, n=shows.count() ; i<n ; ++i) {
         if (shows[i]->hasChanged()) {
-            shows[i]->saveData(Manager::instance()->mediaCenterInterface());
+            shows[i]->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
             MessageBox::instance()->progressBarProgress(++episodesSaved, episodesToSave, Constants::TvShowWidgetSaveProgressMessageId);
             qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
         }
         for (int x=0, y=shows[i]->episodes().count() ; x<y ; ++x) {
             if (shows[i]->episodes().at(x)->hasChanged()) {
-                shows[i]->episodes().at(x)->saveData(Manager::instance()->mediaCenterInterface());
+                shows[i]->episodes().at(x)->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
                 MessageBox::instance()->progressBarProgress(++episodesSaved, episodesToSave, Constants::TvShowWidgetSaveProgressMessageId);
                 qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
             }

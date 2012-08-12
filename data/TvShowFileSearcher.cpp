@@ -44,11 +44,11 @@ void TvShowFileSearcher::run()
     while (it.hasNext()) {
         it.next();
         TvShow *show = new TvShow(it.key());
-        show->loadData(Manager::instance()->mediaCenterInterface());
+        show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
         TvShowModelItem *item = Manager::instance()->tvShowModel()->appendChild(show);
         foreach (const QStringList &files, it.value()) {
             TvShowEpisode *episode = new TvShowEpisode(files, show);
-            episode->loadData(Manager::instance()->mediaCenterInterface());
+            episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
             show->addEpisode(episode);
             item->appendChild(episode);
             emit progress(++i, n, m_progressMessageId);
