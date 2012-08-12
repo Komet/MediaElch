@@ -45,6 +45,12 @@ QVariant TvShowModelItem::data(int column) const
 {
     switch (column)
     {
+    case 3:
+        if (m_tvShow)
+            return m_tvShow->hasNewEpisodes();
+        else if (m_tvShowEpisode)
+            return !m_tvShowEpisode->infoLoaded();
+        break;
     case 2:
         if (m_tvShow)
             return m_tvShow->hasChanged();
@@ -79,7 +85,7 @@ TvShowModelItem *TvShowModelItem::appendChild(TvShowEpisode *episode)
     TvShowModelItem *item = new TvShowModelItem(this);
     item->setTvShowEpisode(episode);
     episode->setModelItem(item);
-    m_childItems.append(item);    
+    m_childItems.append(item);
     connect(episode, SIGNAL(sigChanged(TvShowEpisode*)), this, SLOT(onTvShowEpisodeChanged(TvShowEpisode*)), Qt::UniqueConnection);
     return item;
 }

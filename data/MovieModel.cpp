@@ -22,7 +22,13 @@ MovieModel::MovieModel(QObject *parent) :
     p.end();
 
     m_movieIconDone = QIcon(":/img/film_reel.png");
-    m_movieIconTodo = QIcon(QPixmap::fromImage(iconTodo));
+
+    QPixmap star = QPixmap(":/img/star_24.png");
+    p.begin(&star);
+    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    p.fillRect(star.rect(), QColor(255, 150, 0, 100));
+    p.end();
+    m_movieIconTodo = QIcon(star);
 }
 
 void MovieModel::addMovie(Movie *movie)

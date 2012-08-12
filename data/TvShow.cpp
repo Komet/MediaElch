@@ -97,6 +97,15 @@ void TvShow::loadImages(MediaCenterInterface *mediaCenterInterface)
     mediaCenterInterface->loadTvShowImages(this);
 }
 
+bool TvShow::hasNewEpisodes() const
+{
+    foreach (TvShowEpisode *episode, m_episodes) {
+        if (!episode->infoLoaded())
+            return true;
+    }
+    return false;
+}
+
 /*** GETTER ***/
 
 bool TvShow::infoLoaded() const

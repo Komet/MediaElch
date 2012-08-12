@@ -2,6 +2,7 @@
 #define TVSHOWDELEGATE_H
 
 #include <QStyledItemDelegate>
+#include <QPixmap>
 
 class TvShowDelegate : public QStyledItemDelegate
 {
@@ -10,6 +11,8 @@ public:
     explicit TvShowDelegate(QObject *parent = 0);
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
+private:
+    QPixmap m_star;
 };
 
 #endif // TVSHOWDELEGATE_H

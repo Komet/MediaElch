@@ -45,6 +45,8 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
         }
     } else if (role == TvShowRoles::HasChanged) {
         return item->data(2);
+    } else if (role == TvShowRoles::IsNew) {
+        return item->data(3);
     }
     return QVariant();
 }

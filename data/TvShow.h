@@ -56,6 +56,7 @@ public:
     QString mediaCenterPath() const;
     int showId() const;
     bool downloadsInProgress() const;
+    bool hasNewEpisodes() const;
 
     void setName(QString name);
     void setShowTitle(QString title);
