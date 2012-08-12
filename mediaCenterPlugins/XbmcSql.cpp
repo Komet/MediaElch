@@ -1258,7 +1258,7 @@ bool XbmcSql::saveTvShowEpisode(TvShowEpisode *episode)
     QString sqlWhereFile;
     if (episode->files().count() == 1) {
         QFileInfo fi(episode->files().at(0));
-        sqlWhereFile = QString("strFilename='%1'").arg(fi.fileName().replace("'", "''"));
+        sqlWhereFile = QString("strFilename='%1' AND idPath='%2'").arg(fi.fileName().replace("'", "''")).arg(idPath);
     } else {
         QString file = tvShowMediaCenterPath(episode->files().at(0));
         file.replace("'", "''");
