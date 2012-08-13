@@ -24,7 +24,7 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QTreeView" name="files">
+    <widget class="MyTreeView" name="files">
      <property name="minimumSize">
       <size>
        <width>200</width>
@@ -47,6 +47,9 @@
      <property name="alternatingRowColors">
       <bool>true</bool>
      </property>
+     <property name="indentation">
+      <number>10</number>
+     </property>
      <property name="rootIsDecorated">
       <bool>false</bool>
      </property>
@@ -66,6 +69,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyTreeView</class>
+   <extends>QTreeView</extends>
+   <header>smallWidgets/MyTreeView.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

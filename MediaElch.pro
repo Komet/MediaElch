@@ -69,7 +69,9 @@ SOURCES += main.cpp\
     ImagePreviewDialog.cpp \
     SetsWidget.cpp \
     MovieListDialog.cpp \
-    Helper.cpp
+    Helper.cpp \
+    smallWidgets/MyTreeView.cpp \
+    data/MovieDelegate.cpp
 
 HEADERS  += MainWindow.h \
     data/Movie.h \
@@ -123,7 +125,9 @@ HEADERS  += MainWindow.h \
     ImagePreviewDialog.h \
     SetsWidget.h \
     MovieListDialog.h \
-    Helper.h
+    Helper.h \
+    smallWidgets/MyTreeView.h \
+    data/MovieDelegate.h
 
 FORMS    += MainWindow.ui \
     MovieSearch.ui \

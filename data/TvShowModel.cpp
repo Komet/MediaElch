@@ -80,7 +80,7 @@ TvShowModelItem *TvShowModel::appendChild(TvShow *show)
     //beginInsertRows(QModelIndex(), parentItem->childCount(), parentItem->childCount());
     TvShowModelItem *item = parentItem->appendChild(show);
     //endInsertRows();
-    connect(item, SIGNAL(sigChanged(TvShowModelItem*,TvShowModelItem*)), this, SLOT(onSigChanged(TvShowModelItem*,TvShowModelItem*)));
+    connect(item, SIGNAL(sigChanged(TvShowModelItem*,TvShowModelItem*,TvShowModelItem*)), this, SLOT(onSigChanged(TvShowModelItem*,TvShowModelItem*,TvShowModelItem*)));
     connect(show, SIGNAL(sigChanged(TvShow*)), this, SLOT(onShowChanged(TvShow*)));
     return item;
 }
@@ -123,10 +123,11 @@ void TvShowModel::clear()
     m_rootItem->removeChildren(0, m_rootItem->childCount());
 }
 
-void TvShowModel::onSigChanged(TvShowModelItem *showItem, TvShowModelItem *episodeItem)
+void TvShowModel::onSigChanged(TvShowModelItem *showItem, TvShowModelItem *seasonItem, TvShowModelItem *episodeItem)
 {
-    QModelIndex parentIndex = this->index(showItem->childNumber(), 0);
-    QModelIndex index = this->index(episodeItem->childNumber(), 0, parentIndex);
+    QModelIndex showIndex = this->index(showItem->childNumber(), 0);
+    QModelIndex seasonIndex = this->index(seasonItem->childNumber(), 0, showIndex);
+    QModelIndex index = this->index(episodeItem->childNumber(), 0, seasonIndex);
     emit dataChanged(index, index);
 }
 

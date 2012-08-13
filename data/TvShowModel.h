@@ -29,7 +29,7 @@ public:
     QList<TvShow*> tvShows();
 
 private slots:
-    void onSigChanged(TvShowModelItem *showItem, TvShowModelItem *episodeItem);
+    void onSigChanged(TvShowModelItem *showItem, TvShowModelItem *seasonItem, TvShowModelItem *episodeItem);
     void onShowChanged(TvShow *show);
 
 private:

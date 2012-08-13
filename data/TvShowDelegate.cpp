@@ -9,16 +9,20 @@
 TvShowDelegate::TvShowDelegate(QObject *parent) :
     QStyledItemDelegate(parent)
 {
-    m_star = QPixmap(":/img/star_24.png");
-    QPainter p;
-    p.begin(&m_star);
-    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    p.fillRect(m_star.rect(), QColor(255, 150, 0, 100));
-    p.end();
 }
 
 void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+    QFont newFont;
+    #ifdef Q_WS_MAC
+    newFont.setPixelSize(8);
+    #else
+    newFont.setPixelSize(8);
+    #endif
+    QString newInd = tr("new");
+    int newWidth = 21;
+    int newHeight = newFont.pixelSize();
+
     if (index.model()->data(index, TvShowRoles::Type).toInt() == TypeTvShow ) {
         painter->save();
         QFont font;
@@ -64,9 +68,19 @@ void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
         painter->setFont(font);
 
         if (index.model()->data(index, TvShowRoles::IsNew).toBool()) {
-            painter->drawPixmap(rect.x(), rect.y()+showNameHeight, rect.height()-showNameHeight-8, rect.height()-showNameHeight-8,
-                                m_star.scaled(rect.height()-showNameHeight-8, rect.height()-showNameHeight-8, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            painter->drawText(rect.x()+rect.height()-showNameHeight-4, rect.y()+showNameHeight, rect.width()-rect.height()+showNameHeight, rect.height()-showNameHeight,
+            QRect newRect(option.rect.x(), option.rect.y()+showNameHeight+((option.rect.height()-showNameHeight-newHeight-4)/2)-3, newWidth+4, newHeight+4);
+            painter->setPen(QColor(58, 135, 173));
+            painter->setBrush(QBrush(QColor(58, 135, 173)));
+            painter->setRenderHint(QPainter::Antialiasing, true);
+            painter->drawRoundedRect(newRect, 4, 4);
+            painter->setPen(QColor(255, 255, 255));
+            painter->drawText(newRect.x(), newRect.y(), newRect.width(), newRect.height()-2, Qt::AlignCenter | Qt::AlignVCenter, newInd);
+            if (option.state & QStyle::State_Selected)
+                painter->setPen(QPen(option.palette.highlightedText().color()));
+            else
+                painter->setPen(QPen(index.data(Qt::ForegroundRole).value<QColor>()));
+
+            painter->drawText(rect.x()+newRect.width()+4, rect.y()+showNameHeight, rect.width()-rect.height()+showNameHeight, rect.height()-showNameHeight,
                               Qt::AlignTop, QString(tr("%n Episodes", "", episodeCount)));
         } else {
             painter->drawText(rect.x(), rect.y()+showNameHeight, rect.width(), rect.height()-showNameHeight,
@@ -88,18 +102,52 @@ void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
         font.setPointSize(font.pointSize()-2);
         #endif
 
+        if (index.data(TvShowRoles::HasChanged).toBool()) {
+            font.setItalic(true);
+            if (option.state & QStyle::State_Selected) {
+            } else {
+                painter->setPen(QPen(index.data(Qt::ForegroundRole).value<QColor>()));
+            }
+        }
         painter->setFont(font);
 
         if (index.model()->data(index, TvShowRoles::IsNew).toBool()) {
-            painter->translate(option.rect.height()-3, 3);
+            QRect newRect(option.rect.x(), option.rect.y()+((option.rect.height()-newHeight-4)/2), newWidth+4, newHeight+4);
+            painter->setPen(QColor(58, 135, 173));
+            painter->setBrush(QBrush(QColor(58, 135, 173)));
+            painter->setRenderHint(QPainter::Antialiasing, true);
+            painter->drawRoundedRect(newRect, 4, 4);
+            painter->setPen(QColor(255, 255, 255));
+            painter->drawText(newRect.x(), newRect.y(), newRect.width(), newRect.height()-2, Qt::AlignCenter | Qt::AlignVCenter, newInd);
+
+            if (option.state & QStyle::State_Selected)
+                painter->setPen(QPen(option.palette.highlightedText().color()));
+            else
+                painter->setPen(QPen(index.data(Qt::ForegroundRole).value<QColor>()));
+            painter->translate(newRect.width()+4, 3);
             painter->drawText(option.rect, Qt::AlignTop,  index.data().toString());
-            painter->translate(-option.rect.height()+3, -1);
-            painter->drawPixmap(option.rect.x(), option.rect.y(), option.rect.height()-6, option.rect.height()-6,
-                                m_star.scaled(option.rect.height()-6, option.rect.height()-6, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
         } else {
             painter->translate(0, 3);
             painter->drawText(option.rect, Qt::AlignTop,  index.data().toString());
         }
+
+        painter->restore();
+    } else if (index.model()->data(index, TvShowRoles::Type).toInt() == TypeSeason ) {
+        painter->save();
+
+        if (option.state & QStyle::State_Selected) {
+            painter->fillRect(option.rect, option.palette.highlight());
+            painter->setPen(QPen(option.palette.highlightedText().color()));
+        }
+        QFont font;
+        #ifdef Q_WS_MAC
+        font.setPointSize(font.pointSize()-2);
+        #endif
+        font.setBold(true);
+        painter->setFont(font);
+        painter->translate(5, 3);
+        painter->drawText(option.rect, Qt::AlignTop, index.data().toString());
 
         painter->restore();
     } else {

@@ -398,6 +398,14 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>MovieDelegate</name>
+    <message>
+        <location filename="../data/MovieDelegate.cpp" line="21"/>
+        <source>new</source>
+        <translation>neu</translation>
+    </message>
+</context>
+<context>
     <name>MovieFileSearcher</name>
     <message>
         <location filename="../data/MovieFileSearcher.cpp" line="19"/>
@@ -457,12 +465,12 @@ p, li { white-space: pre-wrap; }
         <translation>Keine Bilder gefunden</translation>
     </message>
     <message>
-        <location filename="../MovieImageDialog.cpp" line="264"/>
+        <location filename="../MovieImageDialog.cpp" line="266"/>
         <source>Choose Image</source>
         <translation>Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../MovieImageDialog.cpp" line="264"/>
+        <location filename="../MovieImageDialog.cpp" line="266"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>Bilder (*.jpg *.jpeg *.png)</translation>
     </message>
@@ -1193,17 +1201,17 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Wähle ein Verzeichnis aus, das deine Filme enthält</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="291"/>
+        <location filename="../SettingsWidget.cpp" line="294"/>
         <source>Choose a directory containing your TV shows</source>
         <translation>Wähle ein Verzeichnis aus, das deine Serien enthält</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="375"/>
+        <location filename="../SettingsWidget.cpp" line="378"/>
         <source>SQLite Database *.db</source>
         <translation>SQLite Datenbank *.db</translation>
     </message>
     <message>
-        <location filename="../SettingsWidget.cpp" line="387"/>
+        <location filename="../SettingsWidget.cpp" line="390"/>
         <source>Choose a directory containing your Thumbnails</source>
         <translation>Wähle das Verzeichnis aus, in dem die Thumbnails gespeichert werden</translation>
     </message>
@@ -1456,8 +1464,14 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
 </context>
 <context>
     <name>TvShowDelegate</name>
+    <message>
+        <location filename="../data/TvShowDelegate.cpp" line="22"/>
+        <source>new</source>
+        <translation>neu</translation>
+    </message>
     <message numerus="yes">
-        <location filename="../data/TvShowDelegate.cpp" line="60"/>
+        <location filename="../data/TvShowDelegate.cpp" line="84"/>
+        <location filename="../data/TvShowDelegate.cpp" line="87"/>
         <source>%n Episodes</source>
         <translation>
             <numerusform>%n Episode</numerusform>
@@ -1479,6 +1493,14 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <location filename="../TvShowFilesWidget.ui" line="14"/>
         <source>Form</source>
         <translation>Form</translation>
+    </message>
+</context>
+<context>
+    <name>TvShowModelItem</name>
+    <message>
+        <location filename="../data/TvShowModelItem.cpp" line="70"/>
+        <source>Season %1</source>
+        <translation>Staffel %1</translation>
     </message>
 </context>
 <context>
@@ -1920,12 +1942,12 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Verbindung zur XBMC MySQL Datenbank fehlgeschlagen!</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcSql.cpp" line="53"/>
+        <location filename="../mediaCenterPlugins/XbmcSql.cpp" line="54"/>
         <source>Connection to XBMC MySQL Database failed! &quot;%1&quot;</source>
         <translation>Verbindung zur XBMC MySQL Datenbank fehlgeschlagen! &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcSql.cpp" line="66"/>
+        <location filename="../mediaCenterPlugins/XbmcSql.cpp" line="67"/>
         <source>Connection to XBMC SQLite Database failed! &quot;%1&quot;</source>
         <translation>Verbindung zur XBMC SQLite Datenbank fehlgeschlagen! &quot;%1&quot;</translation>
     </message>

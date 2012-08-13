@@ -45,12 +45,15 @@ void TvShowFileSearcher::run()
         it.next();
         TvShow *show = new TvShow(it.key());
         show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
-        TvShowModelItem *item = Manager::instance()->tvShowModel()->appendChild(show);
+        TvShowModelItem *showItem = Manager::instance()->tvShowModel()->appendChild(show);
+        QMap<int, TvShowModelItem*> seasonItems;
         foreach (const QStringList &files, it.value()) {
             TvShowEpisode *episode = new TvShowEpisode(files, show);
             episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
             show->addEpisode(episode);
-            item->appendChild(episode);
+            if (!seasonItems.contains(episode->season()))
+                seasonItems.insert(episode->season(), showItem->appendChild(episode->seasonString()));
+            seasonItems.value(episode->season())->appendChild(episode);
             emit progress(++i, n, m_progressMessageId);
         }
         show->moveToMainThread();

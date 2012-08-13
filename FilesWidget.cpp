@@ -23,11 +23,13 @@ FilesWidget::FilesWidget(QWidget *parent) :
 #ifdef Q_WS_WIN
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
 #endif
+    m_movieDelegate = new MovieDelegate(this);
     m_movieProxyModel = new MovieProxyModel(this);
     m_movieProxyModel->setSourceModel(Manager::instance()->movieModel());
     m_movieProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     m_movieProxyModel->setDynamicSortFilter(true);
     ui->files->setModel(m_movieProxyModel);
+    ui->files->setItemDelegate(m_movieDelegate);
     ui->files->sortByColumn(0);
 
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));

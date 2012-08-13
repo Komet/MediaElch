@@ -9,26 +9,6 @@ MovieModel::MovieModel(QObject *parent) :
     roles[NameRole] = "name";
     roles[FileNameRole] = "file";
     setRoleNames(roles);
-
-    QPainter p;
-    QImage img(":/img/film_reel.png");
-    QImage iconTodo(img.size(), QImage::Format_ARGB32_Premultiplied);
-    iconTodo.fill(0);
-
-    p.begin(&iconTodo);
-    p.drawImage(0, 0, img);
-    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    p.fillRect(img.rect(), QColor(150, 150, 150, 100));
-    p.end();
-
-    m_movieIconDone = QIcon(":/img/film_reel.png");
-
-    QPixmap star = QPixmap(":/img/star_24.png");
-    p.begin(&star);
-    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    p.fillRect(star.rect(), QColor(255, 150, 0, 100));
-    p.end();
-    m_movieIconTodo = QIcon(star);
 }
 
 void MovieModel::addMovie(Movie *movie)
@@ -78,15 +58,12 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
         if (movie->files().size() == 0)
             return QVariant();
         return movie->files().at(0);
-    } else if (index.column() == 0 && role == Qt::DecorationRole) {
-        if (movie->infoLoaded())
-            return m_movieIconDone;
-        else
-            return m_movieIconTodo;
     } else if (index.column() == 1 && role == Qt::DisplayRole) {
         return movie->folderName();
     } else if (role == Qt::UserRole+1) {
         return movie->infoLoaded();
+    } else if (role == Qt::UserRole+2) {
+        return movie->hasChanged();
     } else if (role == Qt::ForegroundRole) {
         if (movie->hasChanged())
             return QColor(255, 0, 0);

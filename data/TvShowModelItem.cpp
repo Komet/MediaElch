@@ -66,6 +66,8 @@ QVariant TvShowModelItem::data(int column) const
             return m_tvShow->name();
         else if (m_tvShowEpisode)
             return m_tvShowEpisode->completeEpisodeName();
+        else if (!m_season.isEmpty())
+            return tr("Season %1").arg(m_season);
         break;
     }
     return QVariant();
@@ -87,6 +89,15 @@ TvShowModelItem *TvShowModelItem::appendChild(TvShowEpisode *episode)
     episode->setModelItem(item);
     m_childItems.append(item);
     connect(episode, SIGNAL(sigChanged(TvShowEpisode*)), this, SLOT(onTvShowEpisodeChanged(TvShowEpisode*)), Qt::UniqueConnection);
+    return item;
+}
+
+TvShowModelItem *TvShowModelItem::appendChild(QString season)
+{
+    TvShowModelItem *item = new TvShowModelItem(this);
+    item->setSeason(season);
+    m_childItems.append(item);
+    connect(item, SIGNAL(sigIntChanged(TvShowModelItem*,TvShowModelItem*)), this, SLOT(onSeasonChanged(TvShowModelItem*, TvShowModelItem*)), Qt::UniqueConnection);
     return item;
 }
 
@@ -116,6 +127,11 @@ void TvShowModelItem::setTvShowEpisode(TvShowEpisode *episode)
     m_tvShowEpisode = episode;
 }
 
+void TvShowModelItem::setSeason(QString season)
+{
+    m_season = season;
+}
+
 TvShow *TvShowModelItem::tvShow()
 {
     return m_tvShow;
@@ -126,17 +142,29 @@ TvShowEpisode *TvShowModelItem::tvShowEpisode()
     return m_tvShowEpisode;
 }
 
+QString TvShowModelItem::season()
+{
+    return m_season;
+}
+
 int TvShowModelItem::type()
 {
     if (m_tvShow)
         return TypeTvShow;
     else if (m_tvShowEpisode)
         return TypeEpisode;
+    else if (!m_season.isEmpty())
+        return TypeSeason;
 
     return -1;
 }
 
 void TvShowModelItem::onTvShowEpisodeChanged(TvShowEpisode *episode)
 {
-    emit sigChanged(this, episode->modelItem());
+    emit sigIntChanged(this, episode->modelItem());
+}
+
+void TvShowModelItem::onSeasonChanged(TvShowModelItem *seasonItem, TvShowModelItem *episodeItem)
+{
+    emit sigChanged(this, seasonItem, episodeItem);
 }

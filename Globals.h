@@ -81,7 +81,7 @@ enum ImageType {
 };
 
 enum TvShowType {
-    TypeTvShow, TypeEpisode
+    TypeTvShow, TypeEpisode, TypeSeason
 };
 
 struct SettingsDir {

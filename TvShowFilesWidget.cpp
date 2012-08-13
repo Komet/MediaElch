@@ -71,6 +71,12 @@ void TvShowFilesWidget::onItemClicked(QModelIndex index)
         ui->files->collapseAll();
         if (!wasExpanded)
             ui->files->expand(index);
+    } else if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TypeSeason) {
+        bool wasExpanded = ui->files->isExpanded(index);
+        if (wasExpanded)
+            ui->files->collapse(index);
+        else
+            ui->files->expand(index);
     }
 }
 

@@ -265,8 +265,11 @@ void SettingsWidget::addMovieDir()
             QTableWidgetItem *item = new QTableWidgetItem(dir);
             item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
             item->setToolTip(dir);
+            QTableWidgetItem *itemCheck = new QTableWidgetItem();
+            itemCheck->setCheckState(Qt::Unchecked);
             ui->movieDirs->setItem(row, 0, item);
             ui->movieDirs->setItem(row, 1, new QTableWidgetItem(""));
+            ui->movieDirs->setItem(row, 2, itemCheck);
         }
     }
 }
