@@ -62,6 +62,7 @@ private slots:
     void onPreviewBackdrop();
     void onActorChanged();
     void onChangeActorImage();
+    void onRevertChanges();
 
     void onNameChange(QString text);
     void onOriginalNameChange(QString text);

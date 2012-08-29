@@ -98,9 +98,9 @@ bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
     return saved;
 }
 
-bool Movie::loadData(MediaCenterInterface *mediaCenterInterface)
+bool Movie::loadData(MediaCenterInterface *mediaCenterInterface, bool force)
 {
-    if (m_infoLoaded || hasChanged())
+    if ((m_infoLoaded || hasChanged()) && !force)
         return m_infoLoaded;
 
     bool infoLoaded = mediaCenterInterface->loadMovie(this);
@@ -145,9 +145,9 @@ void Movie::scraperLoadDone()
     emit loaded(this);
 }
 
-void Movie::loadImages(MediaCenterInterface *mediaCenterInterface)
+void Movie::loadImages(MediaCenterInterface *mediaCenterInterface, bool force)
 {
-    if (!m_imagesLoaded)
+    if (!m_imagesLoaded || force)
         mediaCenterInterface->loadMovieImages(this);
     m_imagesLoaded = true;
 }

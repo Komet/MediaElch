@@ -66,6 +66,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->buttonPreviewPoster, SIGNAL(clicked()), this, SLOT(onPreviewPoster()));
     connect(ui->buttonPreviewBackdrop, SIGNAL(clicked()), this, SLOT(onPreviewBackdrop()));
     connect(ui->actor, SIGNAL(clicked()), this, SLOT(onChangeActorImage()));
+    connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -100,6 +101,14 @@ MovieWidget::MovieWidget(QWidget *parent) :
     p.end();
     ui->buttonPreviewBackdrop->setIcon(QIcon(zoomIn));
     ui->buttonPreviewPoster->setIcon(QIcon(zoomIn));
+
+    QPixmap revert(":/img/arrow_circle_left.png");
+    p.begin(&revert);
+    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    p.fillRect(revert.rect(), QColor(0, 0, 0, 200));
+    p.end();
+    ui->buttonRevert->setIcon(QIcon(revert));
+    ui->buttonRevert->setVisible(false);
 }
 
 MovieWidget::~MovieWidget()
@@ -140,6 +149,7 @@ void MovieWidget::clear()
     ui->posterResolution->setText("");
     ui->backdropResolution->setText("");
     ui->actorResolution->setText("");
+    ui->buttonRevert->setVisible(false);
 }
 
 void MovieWidget::movieNameChanged(QString text)
@@ -251,6 +261,7 @@ void MovieWidget::loadDone(Movie *movie)
 
     movie->setDownloadsInProgress(downloadsSize > 0);
     movie->setDownloadsSize(downloadsSize);
+    ui->buttonRevert->setVisible(true);
 
     connect(m_posterDownloadManager, SIGNAL(allDownloadsFinished(Movie*)), this, SLOT(downloadActorsFinished(Movie*)), Qt::UniqueConnection);
 }
@@ -386,6 +397,8 @@ void MovieWidget::updateMovieInfo()
     ui->countries->blockSignals(false);
 
     emit setActionSaveEnabled(true, WidgetMovies);
+
+    ui->buttonRevert->setVisible(m_movie->hasChanged());
 }
 
 void MovieWidget::chooseMoviePoster()
@@ -408,6 +421,7 @@ void MovieWidget::chooseMoviePoster()
         ui->poster->setPixmap(QPixmap());
         ui->poster->setMovie(m_loadingMovie);
         ui->buttonPreviewPoster->setEnabled(false);
+        ui->buttonRevert->setVisible(true);
     }
 }
 
@@ -431,6 +445,7 @@ void MovieWidget::chooseMovieBackdrop()
         ui->backdrop->setPixmap(QPixmap());
         ui->backdrop->setMovie(m_loadingMovie);
         ui->buttonPreviewBackdrop->setEnabled(false);
+        ui->buttonRevert->setVisible(true);
     }
 }
 
@@ -465,6 +480,7 @@ void MovieWidget::posterDownloadFinished(DownloadManagerElement elem)
         emit setActionSaveEnabled(true, WidgetMovies);
         elem.movie->setDownloadsInProgress(false);
     }
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::saveInformation()
@@ -475,6 +491,7 @@ void MovieWidget::saveInformation()
     setEnabledTrue();
     m_savingWidget->hide();
     MessageBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_movie->name()));
+    ui->buttonRevert->setVisible(false);
 }
 
 void MovieWidget::saveAll()
@@ -489,6 +506,14 @@ void MovieWidget::saveAll()
     setEnabledTrue();
     m_savingWidget->hide();
     MessageBox::instance()->showMessage(tr("All Movies Saved"));
+    ui->buttonRevert->setVisible(false);
+}
+
+void MovieWidget::onRevertChanges()
+{
+    m_movie->loadData(Manager::instance()->mediaCenterInterface(), true);
+    m_movie->loadImages(Manager::instance()->mediaCenterInterface(), true);
+    updateMovieInfo();
 }
 
 void MovieWidget::downloadActorsFinished(Movie *movie)
@@ -523,6 +548,7 @@ void MovieWidget::addActor()
     ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(actor));
     ui->actors->scrollToBottom();
     ui->actors->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::removeActor()
@@ -536,6 +562,7 @@ void MovieWidget::removeActor()
     ui->actors->blockSignals(true);
     ui->actors->removeRow(row);
     ui->actors->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onActorEdited(QTableWidgetItem *item)
@@ -546,6 +573,7 @@ void MovieWidget::onActorEdited(QTableWidgetItem *item)
     else if (item->column() == 1)
         actor->role = item->text();
     m_movie->setChanged(true);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::addGenre()
@@ -561,6 +589,7 @@ void MovieWidget::addGenre()
     ui->genres->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(genre));
     ui->genres->scrollToBottom();
     ui->genres->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::removeGenre()
@@ -574,6 +603,7 @@ void MovieWidget::removeGenre()
     ui->genres->blockSignals(true);
     ui->genres->removeRow(row);
     ui->genres->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onGenreEdited(QTableWidgetItem *item)
@@ -582,6 +612,7 @@ void MovieWidget::onGenreEdited(QTableWidgetItem *item)
     genre->clear();
     genre->append(item->text());
     m_movie->setChanged(true);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::addStudio()
@@ -597,6 +628,7 @@ void MovieWidget::addStudio()
     ui->studios->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(studio));
     ui->studios->scrollToBottom();
     ui->studios->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::removeStudio()
@@ -610,6 +642,7 @@ void MovieWidget::removeStudio()
     ui->studios->blockSignals(true);
     ui->studios->removeRow(row);
     ui->studios->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onStudioEdited(QTableWidgetItem *item)
@@ -618,6 +651,7 @@ void MovieWidget::onStudioEdited(QTableWidgetItem *item)
     studio->clear();
     studio->append(item->text());
     m_movie->setChanged(true);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::addCountry()
@@ -633,6 +667,7 @@ void MovieWidget::addCountry()
     ui->countries->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(country));
     ui->countries->scrollToBottom();
     ui->countries->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::removeCountry()
@@ -646,6 +681,7 @@ void MovieWidget::removeCountry()
     ui->countries->blockSignals(true);
     ui->countries->removeRow(row);
     ui->countries->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onCountryEdited(QTableWidgetItem *item)
@@ -654,6 +690,7 @@ void MovieWidget::onCountryEdited(QTableWidgetItem *item)
     country->clear();
     country->append(item->text());
     m_movie->setChanged(true);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onPreviewBackdrop()
@@ -685,6 +722,7 @@ void MovieWidget::onActorChanged()
     }
     ui->actor->setPixmap(QPixmap::fromImage(actor->image).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->actorResolution->setText(QString("%1 x %2").arg(actor->image.width()).arg(actor->image.height()));
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onChangeActorImage()
@@ -705,6 +743,7 @@ void MovieWidget::onChangeActorImage()
             m_movie->setChanged(true);
         }
     }
+    ui->buttonRevert->setVisible(true);
 }
 
 /*** Pass GUI events to movie object ***/
@@ -714,6 +753,7 @@ void MovieWidget::onNameChange(QString text)
     if (!m_movie)
         return;
     m_movie->setName(text);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onOriginalNameChange(QString text)
@@ -721,6 +761,7 @@ void MovieWidget::onOriginalNameChange(QString text)
     if (!m_movie)
         return;
     m_movie->setOriginalName(text);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onSetChange(QString text)
@@ -728,6 +769,7 @@ void MovieWidget::onSetChange(QString text)
     if (!m_movie)
         return;
     m_movie->setSet(text);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onTaglineChange(QString text)
@@ -735,6 +777,7 @@ void MovieWidget::onTaglineChange(QString text)
     if (!m_movie)
         return;
     m_movie->setTagline(text);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onRatingChange(double value)
@@ -742,6 +785,7 @@ void MovieWidget::onRatingChange(double value)
     if (!m_movie)
         return;
     m_movie->setRating(value);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onReleasedChange(QDate date)
@@ -749,6 +793,7 @@ void MovieWidget::onReleasedChange(QDate date)
     if (!m_movie)
         return;
     m_movie->setReleased(date);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onRuntimeChange(int value)
@@ -756,6 +801,7 @@ void MovieWidget::onRuntimeChange(int value)
     if (!m_movie)
         return;
     m_movie->setRuntime(value);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onCertificationChange(QString text)
@@ -763,6 +809,7 @@ void MovieWidget::onCertificationChange(QString text)
     if (!m_movie)
         return;
     m_movie->setCertification(text);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onTrailerChange(QString text)
@@ -770,6 +817,7 @@ void MovieWidget::onTrailerChange(QString text)
     if (!m_movie)
         return;
     m_movie->setTrailer(text);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onWatchedChange(int state)
@@ -777,6 +825,7 @@ void MovieWidget::onWatchedChange(int state)
     if (!m_movie)
         return;
     m_movie->setWatched(state == Qt::Checked);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onPlayCountChange(int value)
@@ -784,6 +833,7 @@ void MovieWidget::onPlayCountChange(int value)
     if (!m_movie)
         return;
     m_movie->setPlayCount(value);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onLastWatchedChange(QDateTime dateTime)
@@ -791,6 +841,7 @@ void MovieWidget::onLastWatchedChange(QDateTime dateTime)
     if (!m_movie)
         return;
     m_movie->setLastPlayed(dateTime);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onOverviewChange()
@@ -798,4 +849,5 @@ void MovieWidget::onOverviewChange()
     if (!m_movie)
         return;
     m_movie->setOverview(ui->overview->toPlainText());
+    ui->buttonRevert->setVisible(true);
 }

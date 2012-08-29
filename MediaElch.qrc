@@ -39,5 +39,6 @@
         <file>img/movieSets_menu.png</file>
         <file>img/movieSets_menuActive.png</file>
         <file>img/star_24.png</file>
+        <file>img/arrow_circle_left.png</file>
     </qresource>
 </RCC>

@@ -66,6 +66,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     connect(ui->buttonPreviewBanner, SIGNAL(clicked()), this, SLOT(onPreviewBanner()));
     connect(ui->actors, SIGNAL(itemSelectionChanged()), this, SLOT(onActorChanged()));
     connect(ui->actor, SIGNAL(clicked()), this, SLOT(onChangeActorImage()));
+    connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
 
     onClear();
 
@@ -90,6 +91,14 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->buttonPreviewBackdrop->setIcon(QIcon(zoomIn));
     ui->buttonPreviewPoster->setIcon(QIcon(zoomIn));
     ui->buttonPreviewBanner->setIcon(QIcon(zoomIn));
+
+    QPixmap revert(":/img/arrow_circle_left.png");
+    p.begin(&revert);
+    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    p.fillRect(revert.rect(), QColor(0, 0, 0, 200));
+    p.end();
+    ui->buttonRevert->setIcon(QIcon(revert));
+    ui->buttonRevert->setVisible(false);
 }
 
 TvShowWidgetTvShow::~TvShowWidgetTvShow()
@@ -132,6 +141,7 @@ void TvShowWidgetTvShow::onClear()
         it.value().at(1)->deleteLater();
     }
     m_seasonLayoutWidgets.clear();
+    ui->buttonRevert->setVisible(false);
 }
 
 void TvShowWidgetTvShow::onSetEnabled(bool enabled)
@@ -269,6 +279,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->rating->blockSignals(false);
     ui->firstAired->blockSignals(false);
     ui->overview->blockSignals(false);
+    ui->buttonRevert->setVisible(m_show->hasChanged());
 }
 
 void TvShowWidgetTvShow::onSaveInformation()
@@ -281,7 +292,15 @@ void TvShowWidgetTvShow::onSaveInformation()
     m_show->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
     m_savingWidget->hide();
     onSetEnabled(true);
+    ui->buttonRevert->setVisible(false);
     MessageBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_show->name()));
+}
+
+void TvShowWidgetTvShow::onRevertChanges()
+{
+    m_show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
+    m_show->loadImages(Manager::instance()->mediaCenterInterfaceTvShow());
+    updateTvShowInfo();
 }
 
 void TvShowWidgetTvShow::onStartScraperSearch()
@@ -405,6 +424,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show)
         emit sigSetActionSearchEnabled(true, WidgetTvShows);
         emit sigSetActionSaveEnabled(true, WidgetTvShows);
     }
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetTvShow::onChoosePoster()
@@ -427,6 +447,7 @@ void TvShowWidgetTvShow::onChoosePoster()
         ui->poster->setPixmap(QPixmap());
         ui->poster->setMovie(m_loadingMovie);
         ui->buttonPreviewPoster->setEnabled(false);
+        ui->buttonRevert->setVisible(true);
     }
 }
 
@@ -451,6 +472,7 @@ void TvShowWidgetTvShow::onChooseSeasonPoster(int season)
             static_cast<MyLabel*>(m_seasonLayoutWidgets[season].at(1))->setPixmap(QPixmap());
             static_cast<MyLabel*>(m_seasonLayoutWidgets[season].at(1))->setMovie(m_loadingMovie);
         }
+        ui->buttonRevert->setVisible(true);
     }
 }
 
@@ -474,6 +496,7 @@ void TvShowWidgetTvShow::onChooseBackdrop()
         ui->backdrop->setPixmap(QPixmap());
         ui->backdrop->setMovie(m_loadingMovie);
         ui->buttonPreviewBackdrop->setEnabled(false);
+        ui->buttonRevert->setVisible(true);
     }
 }
 
@@ -497,6 +520,7 @@ void TvShowWidgetTvShow::onChooseBanner()
         ui->banner->setPixmap(QPixmap());
         ui->banner->setMovie(m_loadingMovie);
         ui->buttonPreviewBanner->setEnabled(false);
+        ui->buttonRevert->setVisible(true);
     }
 }
 
@@ -571,6 +595,7 @@ void TvShowWidgetTvShow::onGenreEdited(QTableWidgetItem *item)
     genre->clear();
     genre->append(item->text());
     m_show->setChanged(true);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetTvShow::onAddGenre()
@@ -586,6 +611,7 @@ void TvShowWidgetTvShow::onAddGenre()
     ui->genres->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(genre));
     ui->genres->scrollToBottom();
     ui->genres->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetTvShow::onRemoveGenre()
@@ -599,6 +625,7 @@ void TvShowWidgetTvShow::onRemoveGenre()
     ui->genres->blockSignals(true);
     ui->genres->removeRow(row);
     ui->genres->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetTvShow::onActorEdited(QTableWidgetItem *item)
@@ -609,6 +636,7 @@ void TvShowWidgetTvShow::onActorEdited(QTableWidgetItem *item)
     else if (item->column() == 1)
         actor->role = item->text();
     m_show->setChanged(true);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetTvShow::onAddActor()
@@ -628,6 +656,7 @@ void TvShowWidgetTvShow::onAddActor()
     ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(actor));
     ui->actors->scrollToBottom();
     ui->actors->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetTvShow::onRemoveActor()
@@ -641,6 +670,7 @@ void TvShowWidgetTvShow::onRemoveActor()
     ui->actors->blockSignals(true);
     ui->actors->removeRow(row);
     ui->actors->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetTvShow::onPreviewBackdrop()
@@ -678,6 +708,7 @@ void TvShowWidgetTvShow::onActorChanged()
     }
     ui->actor->setPixmap(QPixmap::fromImage(actor->image).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->actorResolution->setText(QString("%1 x %2").arg(actor->image.width()).arg(actor->image.height()));
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetTvShow::onChangeActorImage()
@@ -697,6 +728,7 @@ void TvShowWidgetTvShow::onChangeActorImage()
             onActorChanged();
             m_show->setChanged(true);
         }
+        ui->buttonRevert->setVisible(true);
     }
 }
 
@@ -705,29 +737,35 @@ void TvShowWidgetTvShow::onChangeActorImage()
 void TvShowWidgetTvShow::onNameChange(QString text)
 {
     m_show->setName(text);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetTvShow::onCertificationChange(QString text)
 {
     m_show->setCertification(text);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetTvShow::onRatingChange(double value)
 {
     m_show->setRating(value);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetTvShow::onFirstAiredChange(QDate date)
 {
     m_show->setFirstAired(date);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetTvShow::onStudioChange(QString studio)
 {
     m_show->setNetwork(studio);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetTvShow::onOverviewChange()
 {
     m_show->setOverview(ui->overview->toPlainText());
+    ui->buttonRevert->setVisible(true);
 }

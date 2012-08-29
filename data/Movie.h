@@ -108,9 +108,9 @@ public:
     void removeGenre(QString *genre);
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
-    bool loadData(MediaCenterInterface *mediaCenterInterface);
+    bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false);
     void loadData(QString id, ScraperInterface *scraperInterface, QList<int> infos);
-    void loadImages(MediaCenterInterface *mediaCenterInterface);
+    void loadImages(MediaCenterInterface *mediaCenterInterface, bool force = false);
 
     void scraperLoadDone();
 

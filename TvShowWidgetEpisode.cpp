@@ -2,6 +2,7 @@
 #include "ui_TvShowWidgetEpisode.h"
 
 #include <QMovie>
+#include <QPainter>
 #include "ImagePreviewDialog.h"
 #include "Manager.h"
 #include "MessageBox.h"
@@ -44,6 +45,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     connect(ui->thumbnail, SIGNAL(clicked()), this, SLOT(onChooseThumbnail()));
     connect(m_posterDownloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onPosterDownloadFinished(DownloadManagerElement)));
     connect(ui->buttonPreviewBackdrop, SIGNAL(clicked()), this, SLOT(onPreviewBackdrop()));
+    connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
 
     onClear();
 
@@ -67,6 +69,16 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     m_savingWidget->hide();
 
     onSetEnabled(false);
+
+
+    QPainter p;
+    QPixmap revert(":/img/arrow_circle_left.png");
+    p.begin(&revert);
+    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    p.fillRect(revert.rect(), QColor(0, 0, 0, 200));
+    p.end();
+    ui->buttonRevert->setIcon(QIcon(revert));
+    ui->buttonRevert->setVisible(false);
 }
 
 TvShowWidgetEpisode::~TvShowWidgetEpisode()
@@ -101,6 +113,7 @@ void TvShowWidgetEpisode::onClear()
     ui->studio->clear();
     ui->overview->clear();
     ui->certification->clear();
+    ui->buttonRevert->setVisible(false);
 }
 
 void TvShowWidgetEpisode::onSetEnabled(bool enabled)
@@ -194,6 +207,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->certification->setEnabled(Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeCertification));
     ui->showTitle->setEnabled(Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeShowTitle));
     ui->studio->setEnabled(Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeNetwork));
+    ui->buttonRevert->setVisible(m_episode->hasChanged());
 }
 
 void TvShowWidgetEpisode::onSaveInformation()
@@ -206,7 +220,15 @@ void TvShowWidgetEpisode::onSaveInformation()
     m_episode->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
     onSetEnabled(true);
     m_savingWidget->hide();
+    ui->buttonRevert->setVisible(false);
     MessageBox::instance()->showMessage(tr("Episode Saved"));
+}
+
+void TvShowWidgetEpisode::onRevertChanges()
+{
+    m_episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
+    m_episode->loadImages(Manager::instance()->mediaCenterInterfaceTvShow());
+    updateEpisodeInfo();
 }
 
 void TvShowWidgetEpisode::onStartScraperSearch()
@@ -248,6 +270,7 @@ void TvShowWidgetEpisode::onLoadDone()
         emit sigSetActionSearchEnabled(true, WidgetTvShows);
         emit sigSetActionSaveEnabled(true, WidgetTvShows);
     }
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onChooseThumbnail()
@@ -275,6 +298,7 @@ void TvShowWidgetEpisode::onChooseThumbnail()
         ui->thumbnail->setPixmap(QPixmap());
         ui->thumbnail->setMovie(m_loadingMovie);
         ui->buttonPreviewBackdrop->setEnabled(false);
+        ui->buttonRevert->setVisible(true);
     }
 }
 
@@ -318,6 +342,7 @@ void TvShowWidgetEpisode::onAddDirector()
     ui->directors->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(director));
     ui->directors->scrollToBottom();
     ui->directors->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onRemoveDirector()
@@ -331,6 +356,7 @@ void TvShowWidgetEpisode::onRemoveDirector()
     ui->directors->blockSignals(true);
     ui->directors->removeRow(row);
     ui->directors->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onDirectorEdited(QTableWidgetItem *item)
@@ -339,6 +365,7 @@ void TvShowWidgetEpisode::onDirectorEdited(QTableWidgetItem *item)
     director->clear();
     director->append(item->text());
     m_episode->setChanged(true);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onAddWriter()
@@ -354,6 +381,7 @@ void TvShowWidgetEpisode::onAddWriter()
     ui->writers->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(writer));
     ui->writers->scrollToBottom();
     ui->writers->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onRemoveWriter()
@@ -367,6 +395,7 @@ void TvShowWidgetEpisode::onRemoveWriter()
     ui->writers->blockSignals(true);
     ui->writers->removeRow(row);
     ui->writers->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onWriterEdited(QTableWidgetItem *item)
@@ -375,6 +404,7 @@ void TvShowWidgetEpisode::onWriterEdited(QTableWidgetItem *item)
     writer->clear();
     writer->append(item->text());
     m_episode->setChanged(true);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onPreviewBackdrop()
@@ -388,54 +418,65 @@ void TvShowWidgetEpisode::onPreviewBackdrop()
 void TvShowWidgetEpisode::onNameChange(QString text)
 {
     m_episode->setName(text);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onShowTitleChange(QString text)
 {
     m_episode->setShowTitle(text);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onSeasonChange(int value)
 {
     m_episode->setSeason(value);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onEpisodeChange(int value)
 {
     m_episode->setEpisode(value);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onRatingChange(double value)
 {
     m_episode->setRating(value);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onCertificationChange(QString text)
 {
     m_episode->setCertification(text);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onFirstAiredChange(QDate date)
 {
     m_episode->setFirstAired(date);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onPlayCountChange(int value)
 {
     m_episode->setPlayCount(value);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onLastPlayedChange(QDateTime dateTime)
 {
     m_episode->setLastPlayed(dateTime);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onStudioChange(QString text)
 {
     m_episode->setNetwork(text);
+    ui->buttonRevert->setVisible(true);
 }
 
 void TvShowWidgetEpisode::onOverviewChange()
 {
     m_episode->setOverview(ui->overview->toPlainText());
+    ui->buttonRevert->setVisible(true);
 }
