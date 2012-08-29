@@ -40,8 +40,8 @@ int ImagePreviewDialog::exec()
     ui->scrollArea->verticalScrollBar()->setValue(0);
     ui->scrollArea->horizontalScrollBar()->setValue(0);
     QSize newSize;
-    newSize.setHeight(parentWidget()->size().height()-100);
-    newSize.setWidth(qMin(1000, parentWidget()->size().width()-200));
+    newSize.setHeight(parentWidget()->size().height()-50);
+    newSize.setWidth(qMin(1200, parentWidget()->size().width()-100));
     resize(newSize);
 
     int xMove = (parentWidget()->size().width()-size().width())/2;

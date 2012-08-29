@@ -42,6 +42,9 @@
      <property name="selectionMode">
       <enum>QAbstractItemView::SingleSelection</enum>
      </property>
+     <property name="verticalScrollMode">
+      <enum>QAbstractItemView::ScrollPerPixel</enum>
+     </property>
      <property name="showGrid">
       <bool>false</bool>
      </property>
@@ -82,6 +85,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,0,1,0,0,0">
      <item>
       <widget class="QToolButton" name="buttonZoomOut">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="toolTip">
         <string>Zoom out</string>
        </property>
@@ -137,6 +143,9 @@ background: transparent;</string>
      </item>
      <item>
       <widget class="QToolButton" name="buttonZoomIn">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="toolTip">
         <string>Zoom in</string>
        </property>

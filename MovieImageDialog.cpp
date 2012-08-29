@@ -71,8 +71,8 @@ int MovieImageDialog::exec(int type)
     QSettings settings;
     ui->previewSizeSlider->setValue(settings.value(QString("MovieImageDialog/PreviewSize_%1").arg(m_type), 8).toInt());
     QSize newSize;
-    newSize.setHeight(parentWidget()->size().height()-200);
-    newSize.setWidth(qMin(1000, parentWidget()->size().width()-200));
+    newSize.setHeight(parentWidget()->size().height()-50);
+    newSize.setWidth(qMin(1200, parentWidget()->size().width()-100));
     resize(newSize);
 
     int xMove = (parentWidget()->size().width()-size().width())/2;
