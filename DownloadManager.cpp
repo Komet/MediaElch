@@ -20,14 +20,19 @@ void DownloadManager::addDownload(DownloadManagerElement elem)
 {
     if (m_queue.isEmpty())
         QTimer::singleShot(0, this, SLOT(startNextDownload()));
-    this->m_queue.enqueue(elem);
+    m_mutex.lock();
+    m_queue.enqueue(elem);
+    m_mutex.unlock();
 }
 
 void DownloadManager::setDownloads(QList<DownloadManagerElement> elements)
 {
     if (m_downloading)
         m_currentReply->abort();
+
+    m_mutex.lock();
     m_queue.clear();
+    m_mutex.unlock();
 
     foreach (const DownloadManagerElement &elem, elements)
         addDownload(elem);
@@ -64,7 +69,9 @@ void DownloadManager::startNextDownload()
     }
 
     m_downloading = true;
+    m_mutex.lock();
     m_currentDownloadElement = m_queue.dequeue();
+    m_mutex.unlock();
     m_currentReply = this->qnam()->get(QNetworkRequest(m_currentDownloadElement.url));
     connect(m_currentReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
     connect(m_currentReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(downloadProgress(qint64,qint64)));
@@ -73,17 +80,21 @@ void DownloadManager::startNextDownload()
     if (m_currentDownloadElement.imageType == TypeActor || m_currentDownloadElement.imageType == TypeShowThumbnail) {
         if (m_currentDownloadElement.movie) {
             int numDownloadsLeft = 0;
+            m_mutex.lock();
             for (int i=0, n=m_queue.size() ; i<n ; ++i) {
                 if (m_queue[i].movie == m_currentDownloadElement.movie)
                     numDownloadsLeft++;
             }
+            m_mutex.unlock();
             emit downloadsLeft(numDownloadsLeft, m_currentDownloadElement);
         } else if (m_currentDownloadElement.show) {
             int numDownloadsLeft = 0;
+            m_mutex.lock();
             for (int i=0, n=m_queue.size() ; i<n ; ++i) {
                 if (m_queue[i].show == m_currentDownloadElement.show)
                     numDownloadsLeft++;
             }
+            m_mutex.unlock();
             emit downloadsLeft(numDownloadsLeft, m_currentDownloadElement);
         } else {
             emit downloadsLeft(m_queue.size());
@@ -119,7 +130,9 @@ void DownloadManager::downloadFinished()
 
 void DownloadManager::abortDownloads()
 {
+    m_mutex.lock();
     m_queue.clear();
+    m_mutex.unlock();
     if (m_downloading) {
         m_currentReply->abort();
     }
@@ -133,4 +146,16 @@ bool DownloadManager::isDownloading()
 int DownloadManager::downloadQueueSize()
 {
     return m_queue.size();
+}
+
+int DownloadManager::downloadsLeftForShow(TvShow *show)
+{
+    int left = 0;
+    m_mutex.lock();
+    for (int i=0, n=m_queue.count() ; i<n ; ++i) {
+        if (m_queue[i].show == show)
+            left++;
+    }
+    m_mutex.unlock();
+    return left;
 }

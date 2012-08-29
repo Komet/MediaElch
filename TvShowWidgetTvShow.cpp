@@ -541,6 +541,9 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
             static_cast<MyLabel*>(m_seasonLayoutWidgets[season].at(1))->setPixmap(QPixmap::fromImage(elem.image).scaled(150, 225, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         }
     }
+
+    if (m_posterDownloadManager->downloadsLeftForShow(m_show) == 0)
+        emit sigSetActionSaveEnabled(true, WidgetTvShows);
 }
 
 void TvShowWidgetTvShow::onDownloadsFinished(TvShow *show)

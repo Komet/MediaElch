@@ -1,6 +1,7 @@
 #ifndef DOWNLOADMANAGER_H
 #define DOWNLOADMANAGER_H
 
+#include <QMutex>
 #include <QQueue>
 #include <QObject>
 #include <QUrl>
@@ -20,6 +21,7 @@ public:
     void abortDownloads();
     bool isDownloading();
     int downloadQueueSize();
+    int downloadsLeftForShow(TvShow *show);
 
 signals:
     void downloadProgress(DownloadManagerElement);
@@ -42,6 +44,7 @@ private:
     QQueue<DownloadManagerElement> m_queue;
     QNetworkAccessManager *qnam();
     bool m_downloading;
+    QMutex m_mutex;
 };
 
 #endif // DOWNLOADMANAGER_H
