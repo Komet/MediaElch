@@ -580,6 +580,8 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode)
         episode->setLastPlayed(QDateTime::fromString(domDoc.elementsByTagName("lastplayed").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss"));
     if (!domDoc.elementsByTagName("studio").isEmpty())
         episode->setNetwork(domDoc.elementsByTagName("studio").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("thumb").isEmpty())
+        episode->setThumbnail(QUrl(domDoc.elementsByTagName("thumb").at(0).toElement().text()));
     for (int i=0, n=domDoc.elementsByTagName("credits").size() ; i<n ; i++)
         episode->addWriter(domDoc.elementsByTagName("credits").at(i).toElement().text());
     for (int i=0, n=domDoc.elementsByTagName("director").size() ; i<n ; i++)

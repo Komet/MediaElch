@@ -275,16 +275,20 @@ void TvShowWidgetEpisode::onLoadDone()
 
 void TvShowWidgetEpisode::onChooseThumbnail()
 {
+    qDebug() << Q_FUNC_INFO;
+
     if (m_episode == 0)
         return;
 
     MovieImageDialog::instance()->setImageType(TypeBackdrop);
     MovieImageDialog::instance()->clear();
-    Poster p;
-    p.originalUrl = m_episode->thumbnail();
-    p.thumbUrl = m_episode->thumbnail();
     QList<Poster> posters;
-    posters << p;
+    if (!m_episode->thumbnail().isEmpty()) {
+        Poster p;
+        p.originalUrl = m_episode->thumbnail();
+        p.thumbUrl = m_episode->thumbnail();
+        posters << p;
+    }
     MovieImageDialog::instance()->setDownloads(posters);
     MovieImageDialog::instance()->exec(MovieImageDialogType::TvShowThumb);
 
