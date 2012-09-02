@@ -15,9 +15,36 @@
 class MediaCenterInterface;
 class ScraperInterface;
 
+/**
+ * @brief The Movie class
+ * This class represents a single movie
+ */
 class Movie : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QString name READ name WRITE setName)
+    Q_PROPERTY(QString sortTitle READ sortTitle WRITE setSortTitle)
+    Q_PROPERTY(QString originalName READ originalName WRITE setOriginalName)
+    Q_PROPERTY(QString overview READ overview WRITE setOverview)
+    Q_PROPERTY(qreal rating READ rating WRITE setRating)
+    Q_PROPERTY(QDate released READ released WRITE setReleased)
+    Q_PROPERTY(QString tagline READ tagline WRITE setTagline)
+    Q_PROPERTY(int runtime READ runtime WRITE setRuntime)
+    Q_PROPERTY(QString certification READ certification WRITE setCertification)
+    Q_PROPERTY(QStringList genres READ genres WRITE setGenres)
+    Q_PROPERTY(QStringList countries READ countries WRITE setCountries)
+    Q_PROPERTY(QStringList studios READ studios WRITE setStudios)
+    Q_PROPERTY(QUrl trailer READ trailer WRITE setTrailer)
+    Q_PROPERTY(QList<Actor> actors READ actors WRITE setActors)
+    Q_PROPERTY(int playcount READ playcount WRITE setPlayCount)
+    Q_PROPERTY(QDateTime lastPlayed READ lastPlayed WRITE setLastPlayed)
+    Q_PROPERTY(QString id READ id WRITE setId)
+    Q_PROPERTY(QString set READ set WRITE setSet)
+    Q_PROPERTY(QList<Poster> posters READ posters WRITE setPosters)
+    Q_PROPERTY(QList<Poster> backdrops READ backdrops WRITE setBackdrops)
+    Q_PROPERTY(bool watched READ watched WRITE setWatched)
+    Q_PROPERTY(bool hasChanged READ hasChanged WRITE setChanged)
+
 public:
     explicit Movie(QStringList files, QObject *parent = 0);
     ~Movie();
