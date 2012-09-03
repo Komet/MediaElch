@@ -92,7 +92,8 @@ void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QList<QStringLis
 
         foreach (const QString &subDir, subDirs) {
             if (subDir.endsWith("BDMV/BACKUP", Qt::CaseInsensitive) || subDir.endsWith("BDMV\\Backup", Qt::CaseInsensitive) ||
-                subDir.endsWith("BDMV/STREAM", Qt::CaseInsensitive) || subDir.endsWith("BDMV\\STREAM", Qt::CaseInsensitive))
+                subDir.endsWith("BDMV/STREAM", Qt::CaseInsensitive) || subDir.endsWith("BDMV\\STREAM", Qt::CaseInsensitive) ||
+                subDir.contains( "Extras", Qt::CaseInsensitive))
                 continue;
 
             QStringList files;

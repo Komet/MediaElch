@@ -87,8 +87,9 @@ void MovieFileSearcher::getDirContents(QString path, QList<QStringList> &content
     QDir dir(path);
     foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         // skip bluray backup folder
-        if (QString::compare(cDir, "BACKUP", Qt::CaseInsensitive) == 0 && dir.path().endsWith("BDMV", Qt::CaseInsensitive))
-            continue;
+        if ((QString::compare(cDir, "BACKUP", Qt::CaseInsensitive) == 0 && dir.path().endsWith("BDMV", Qt::CaseInsensitive)) ||
+			(QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0))
+			continue;
         this->getDirContents(path + QDir::separator() + cDir, contents);
     }
 
