@@ -3,11 +3,21 @@
 #include <QDebug>
 #include <QPainter>
 
+/**
+ * @brief MovieDelegate::MovieDelegate
+ * @param parent
+ */
 MovieDelegate::MovieDelegate(QObject *parent) :
     QStyledItemDelegate(parent)
 {
 }
 
+/**
+ * @brief Overrides the paint event: Show a "new" label in front of the movie name
+ * @param painter
+ * @param option
+ * @param index
+ */
 void MovieDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     painter->save();

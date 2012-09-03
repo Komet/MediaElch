@@ -6,11 +6,21 @@
 #include "data/TvShow.h"
 #include "data/TvShowModelItem.h"
 
+/**
+ * @brief TvShowDelegate::TvShowDelegate
+ * @param parent
+ */
 TvShowDelegate::TvShowDelegate(QObject *parent) :
     QStyledItemDelegate(parent)
 {
 }
 
+/**
+ * @brief Styles the types of items in the tv show list (show, season and episode)
+ * @param painter
+ * @param option
+ * @param index
+ */
 void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     QFont newFont;
@@ -155,6 +165,12 @@ void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
     }
 }
 
+/**
+ * @brief TvShowDelegate::sizeHint
+ * @param option
+ * @param index
+ * @return
+ */
 QSize TvShowDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     QSize size = QStyledItemDelegate::sizeHint(option, index);

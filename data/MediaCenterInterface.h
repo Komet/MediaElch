@@ -10,6 +10,10 @@ class Movie;
 class TvShow;
 class TvShowEpisode;
 
+/**
+ * @brief The MediaCenterInterface class
+ * This class is the base for every MediaCenter.
+ */
 class MediaCenterInterface : public QObject
 {
 public:

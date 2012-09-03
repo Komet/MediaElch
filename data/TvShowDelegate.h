@@ -4,6 +4,10 @@
 #include <QStyledItemDelegate>
 #include <QPixmap>
 
+/**
+ * @brief The TvShowDelegate class
+ * This class is used to style the items in the tv show list.
+ */
 class TvShowDelegate : public QStyledItemDelegate
 {
     Q_OBJECT

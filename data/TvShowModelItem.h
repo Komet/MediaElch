@@ -10,6 +10,9 @@
 
 class TvShow;
 
+/**
+ * @brief The TvShowModelItem class
+ */
 class TvShowModelItem : public QObject
 {
     Q_OBJECT

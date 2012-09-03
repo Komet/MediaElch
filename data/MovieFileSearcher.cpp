@@ -4,16 +4,26 @@
 #include <QDebug>
 #include "Manager.h"
 
+/**
+ * @brief MovieFileSearcher::MovieFileSearcher
+ * @param parent
+ */
 MovieFileSearcher::MovieFileSearcher(QObject *parent) :
     QThread(parent)
 {
     m_progressMessageId = Constants::MovieFileSearcherProgressMessageId;
 }
 
+/**
+ * @brief MovieFileSearcher::~MovieFileSearcher
+ */
 MovieFileSearcher::~MovieFileSearcher()
 {
 }
 
+/**
+ * @brief Starts the scanning process
+ */
 void MovieFileSearcher::run()
 {
     emit searchStarted(tr("Searching for Movies..."), m_progressMessageId);
@@ -52,6 +62,10 @@ void MovieFileSearcher::run()
     emit moviesLoaded(m_progressMessageId);
 }
 
+/**
+ * @brief Sets the directories to scan for movies. Not existing directories are skipped.
+ * @param directories List of directories
+ */
 void MovieFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
 {
     m_directories.clear();
@@ -62,6 +76,12 @@ void MovieFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
     }
 }
 
+/**
+ * @brief Scans the given path for movie files.
+ * Results are in a list which contains a QStringList for every movie.
+ * @param path Path to scan
+ * @param contents List of contents
+ */
 void MovieFileSearcher::getDirContents(QString path, QList<QStringList> &contents)
 {
     QDir dir(path);

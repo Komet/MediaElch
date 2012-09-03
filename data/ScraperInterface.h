@@ -7,6 +7,10 @@
 
 class Movie;
 
+/**
+ * @brief The ScraperInterface class
+ * This class is the base for every movie Scraper.
+ */
 class ScraperInterface : public QObject
 {
 public:

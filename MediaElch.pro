@@ -63,7 +63,6 @@ SOURCES += main.cpp\
     scrapers/TheTvDb.cpp \
     TvShowSearch.cpp \
     mediaCenterPlugins/XbmcSql.cpp \
-    data/PortScan.cpp \
     DownloadManagerElement.cpp \
     smallWidgets/ImageLabel.cpp \
     ImagePreviewDialog.cpp \
@@ -119,7 +118,6 @@ HEADERS  += MainWindow.h \
     data/TvScraperInterface.h \
     TvShowSearch.h \
     mediaCenterPlugins/XbmcSql.h \
-    data/PortScan.h \
     DownloadManagerElement.h \
     smallWidgets/ImageLabel.h \
     ImagePreviewDialog.h \

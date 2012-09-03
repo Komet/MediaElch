@@ -5,6 +5,9 @@
 #include <QThread>
 #include "Globals.h"
 
+/**
+ * @brief The TvShowFileSearcher class
+ */
 class TvShowFileSearcher : public QThread
 {
     Q_OBJECT

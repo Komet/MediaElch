@@ -3,6 +3,10 @@
 
 #include <QStyledItemDelegate>
 
+/**
+ * @brief The MovieDelegate class
+ * This class is used to style the items in the movie list.
+ */
 class MovieDelegate : public QStyledItemDelegate
 {
     Q_OBJECT

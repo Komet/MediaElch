@@ -14,9 +14,25 @@ class MediaCenterInterface;
 class TvScraperInterface;
 class TvShowModelItem;
 
+/**
+ * @brief The TvShowEpisode class
+ */
 class TvShowEpisode : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QString name READ name WRITE setName)
+    Q_PROPERTY(qreal ratin READ rating WRITE setRating)
+    Q_PROPERTY(int season READ season WRITE setSeason)
+    Q_PROPERTY(int episode READ episode WRITE setEpisode)
+    Q_PROPERTY(QString overview READ overview WRITE setOverview)
+    Q_PROPERTY(QStringList writers READ writers WRITE setWriters)
+    Q_PROPERTY(QStringList directors READ directors WRITE setDirectors)
+    Q_PROPERTY(int playCount READ playCount WRITE setPlayCount)
+    Q_PROPERTY(QDateTime lastPlayed READ lastPlayed WRITE setLastPlayed)
+    Q_PROPERTY(QDate firstAired READ firstAired WRITE setFirstAired)
+    Q_PROPERTY(QString certification READ certification WRITE setCertification)
+    Q_PROPERTY(QString network READ network WRITE setNetwork)
+
 public:
     explicit TvShowEpisode(QStringList files = QStringList(), TvShow *parent = 0);
     void moveToMainThread();

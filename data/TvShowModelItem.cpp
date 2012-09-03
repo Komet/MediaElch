@@ -4,6 +4,10 @@
 #include <QStringList>
 #include "Globals.h"
 
+/**
+ * @brief TvShowModelItem::TvShowModelItem
+ * @param parent
+ */
 TvShowModelItem::TvShowModelItem(TvShowModelItem *parent) :
     QObject(0)
 {
@@ -13,21 +17,37 @@ TvShowModelItem::TvShowModelItem(TvShowModelItem *parent) :
     m_tvShowEpisode = 0;
 }
 
+/**
+ * @brief Deletes all child items
+ */
 TvShowModelItem::~TvShowModelItem()
 {
     qDeleteAll(m_childItems);
 }
 
+/**
+ * @brief Returns a child
+ * @param number Child number
+ * @return Child
+ */
 TvShowModelItem *TvShowModelItem::child(int number)
 {
     return m_childItems.value(number);
 }
 
+/**
+ * @brief TvShowModelItem::childCount
+ * @return Number of child items
+ */
 int TvShowModelItem::childCount() const
 {
     return m_childItems.count();
 }
 
+/**
+ * @brief TvShowModelItem::childNumber
+ * @return Child number of this object
+ */
 int TvShowModelItem::childNumber() const
 {
     if (m_parentItem)
@@ -36,11 +56,20 @@ int TvShowModelItem::childNumber() const
     return 0;
 }
 
+/**
+ * @brief TvShowModelItem::columnCount
+ * @return Column count
+ */
 int TvShowModelItem::columnCount() const
 {
     return 1;
 }
 
+/**
+ * @brief TvShowModelItem::data
+ * @param column
+ * @return
+ */
 QVariant TvShowModelItem::data(int column) const
 {
     switch (column)
@@ -73,6 +102,11 @@ QVariant TvShowModelItem::data(int column) const
     return QVariant();
 }
 
+/**
+ * @brief Appends a tv show
+ * @param show Show object to append
+ * @return Constructed child item
+ */
 TvShowModelItem *TvShowModelItem::appendChild(TvShow *show)
 {
     TvShowModelItem *item = new TvShowModelItem(this);
@@ -82,6 +116,11 @@ TvShowModelItem *TvShowModelItem::appendChild(TvShow *show)
     return item;
 }
 
+/**
+ * @brief Appends an episode
+ * @param episode Episode object to append
+ * @return Constructed child item
+ */
 TvShowModelItem *TvShowModelItem::appendChild(TvShowEpisode *episode)
 {
     TvShowModelItem *item = new TvShowModelItem(this);
@@ -92,6 +131,11 @@ TvShowModelItem *TvShowModelItem::appendChild(TvShowEpisode *episode)
     return item;
 }
 
+/**
+ * @brief Appends a season-child
+ * @param season Number of the season
+ * @return Constructed child item
+ */
 TvShowModelItem *TvShowModelItem::appendChild(QString season)
 {
     TvShowModelItem *item = new TvShowModelItem(this);
@@ -101,11 +145,21 @@ TvShowModelItem *TvShowModelItem::appendChild(QString season)
     return item;
 }
 
+/**
+ * @brief TvShowModelItem::parent
+ * @return Parent item
+ */
 TvShowModelItem *TvShowModelItem::parent()
 {
     return m_parentItem;
 }
 
+/**
+ * @brief TvShowModelItem::removeChildren
+ * @param position
+ * @param count
+ * @return
+ */
 bool TvShowModelItem::removeChildren(int position, int count)
 {
     if (position < 0 || position + count > m_childItems.size())
@@ -117,36 +171,64 @@ bool TvShowModelItem::removeChildren(int position, int count)
     return true;
 }
 
+/**
+ * @brief TvShowModelItem::setTvShow
+ * @param show Sets the TV Show object
+ */
 void TvShowModelItem::setTvShow(TvShow *show)
 {
     m_tvShow = show;
 }
 
+/**
+ * @brief TvShowModelItem::setTvShowEpisode
+ * @param episode Sets the episode object
+ */
 void TvShowModelItem::setTvShowEpisode(TvShowEpisode *episode)
 {
     m_tvShowEpisode = episode;
 }
 
+/**
+ * @brief TvShowModelItem::setSeason
+ * @param season Sets the season number
+ */
 void TvShowModelItem::setSeason(QString season)
 {
     m_season = season;
 }
 
+/**
+ * @brief TvShowModelItem::tvShow
+ * @return Tv Show object of this item
+ */
 TvShow *TvShowModelItem::tvShow()
 {
     return m_tvShow;
 }
 
+/**
+ * @brief TvShowModelItem::tvShowEpisode
+ * @return Episode object of this item
+ */
 TvShowEpisode *TvShowModelItem::tvShowEpisode()
 {
     return m_tvShowEpisode;
 }
 
+/**
+ * @brief TvShowModelItem::season
+ * @return Seasonnumber
+ */
 QString TvShowModelItem::season()
 {
     return m_season;
 }
 
+/**
+ * @brief TvShowModelItem::type
+ * @return Type of this item
+ */
 int TvShowModelItem::type()
 {
     if (m_tvShow)
@@ -159,11 +241,20 @@ int TvShowModelItem::type()
     return -1;
 }
 
+/**
+ * @brief TvShowModelItem::onTvShowEpisodeChanged
+ * @param episode
+ */
 void TvShowModelItem::onTvShowEpisodeChanged(TvShowEpisode *episode)
 {
     emit sigIntChanged(this, episode->modelItem());
 }
 
+/**
+ * @brief TvShowModelItem::onSeasonChanged
+ * @param seasonItem
+ * @param episodeItem
+ */
 void TvShowModelItem::onSeasonChanged(TvShowModelItem *seasonItem, TvShowModelItem *episodeItem)
 {
     emit sigChanged(this, seasonItem, episodeItem);

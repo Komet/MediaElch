@@ -7,6 +7,9 @@
 #include "data/Movie.h"
 #include "Globals.h"
 
+/**
+ * @brief The MovieFileSearcher class
+ */
 class MovieFileSearcher : public QThread
 {
     Q_OBJECT

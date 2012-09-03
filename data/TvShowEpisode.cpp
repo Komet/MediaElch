@@ -5,6 +5,11 @@
 #include <QFileInfo>
 #include <QTime>
 
+/**
+ * @brief TvShowEpisode::TvShowEpisode
+ * @param files Files of the episode
+ * @param parent
+ */
 TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) :
     QObject(parent)
 {
@@ -20,11 +25,17 @@ TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) :
     m_episodeId = ++m_idCounter;
 }
 
+/**
+ * @brief Moves this object to the main thread
+ */
 void TvShowEpisode::moveToMainThread()
 {
     moveToThread(QApplication::instance()->thread());
 }
 
+/**
+ * @brief Clears the episodes data
+ */
 void TvShowEpisode::clear()
 {
     m_showTitle = "";
@@ -44,6 +55,11 @@ void TvShowEpisode::clear()
     m_hasChanged = false;
 }
 
+/**
+ * @brief Load data using a MediaCenterInterface
+ * @param mediaCenterInterface MediaCenterInterface to use
+ * @return Loading was successful
+ */
 bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface)
 {
     bool infoLoaded = mediaCenterInterface->loadTvShowEpisode(this);
@@ -58,16 +74,29 @@ bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface)
     return infoLoaded;
 }
 
+/**
+ * @brief Load data using a scraper
+ * @param id ID of the show for the scraper
+ * @param tvScraperInterface ScraperInterface to use
+ */
 void TvShowEpisode::loadData(QString id, TvScraperInterface *tvScraperInterface)
 {
     tvScraperInterface->loadTvShowEpisodeData(id, this);
 }
 
+/**
+ * @brief Called from the scraper when loading has finished
+ */
 void TvShowEpisode::scraperLoadDone()
 {
     emit sigLoaded();
 }
 
+/**
+ * @brief Save data using a MediaCenterInterface
+ * @param mediaCenterInterface MediaCenterInterface to use
+ * @return Saving was successful
+ */
 bool TvShowEpisode::saveData(MediaCenterInterface *mediaCenterInterface)
 {
     bool saved = mediaCenterInterface->saveTvShowEpisode(this);
@@ -77,16 +106,28 @@ bool TvShowEpisode::saveData(MediaCenterInterface *mediaCenterInterface)
     return saved;
 }
 
+/**
+ * @brief TvShowEpisode::tvShow
+ * @return Parent show
+ */
 TvShow *TvShowEpisode::tvShow()
 {
     return m_parent;
 }
 
+/**
+ * @brief TvShowEpisode::isValid
+ * @return
+ */
 bool TvShowEpisode::isValid() const
 {
     return !m_files.isEmpty();
 }
 
+/**
+ * @brief Tells the given MediaCenterInterface to load episodes images
+ * @param mediaCenterInterface MediaCenterInterface to use
+ */
 void TvShowEpisode::loadImages(MediaCenterInterface *mediaCenterInterface)
 {
     mediaCenterInterface->loadTvShowEpisodeImages(this);
@@ -94,16 +135,30 @@ void TvShowEpisode::loadImages(MediaCenterInterface *mediaCenterInterface)
 
 /*** GETTER ***/
 
+/**
+ * @brief TvShowEpisode::infoLoaded
+ * @return
+ */
 bool TvShowEpisode::infoLoaded() const
 {
     return m_infoLoaded;
 }
 
+/**
+ * @property TvShow::name
+ * @brief Name of the episode
+ * @return Name
+ * @see TvShow::setName
+ */
 QString TvShowEpisode::name() const
 {
     return m_name;
 }
 
+/**
+ * @brief TvShowEpisode::completeEpisodeName
+ * @return
+ */
 QString TvShowEpisode::completeEpisodeName() const
 {
     if (m_infoLoaded)
@@ -113,11 +168,20 @@ QString TvShowEpisode::completeEpisodeName() const
     return name();
 }
 
+/**
+ * @brief TvShowEpisode::files
+ * @return
+ */
 QStringList TvShowEpisode::files() const
 {
     return m_files;
 }
 
+/**
+ * @property TvShow::showTitle
+ * @brief The title of the parent show
+ * @return Title
+ */
 QString TvShowEpisode::showTitle() const
 {
     if (!m_showTitle.isEmpty())
@@ -128,11 +192,23 @@ QString TvShowEpisode::showTitle() const
     return QString();
 }
 
+/**
+ * @property TvShowEpisode::rating
+ * @brief Rating of the episode
+ * @return Rating
+ * @see TvShowEpisode::setRating
+ */
 qreal TvShowEpisode::rating() const
 {
     return m_rating;
 }
 
+/**
+ * @property TvShowEpisode::season
+ * @brief Season number
+ * @return Season number
+ * @see TvShowEpisode::setSeasonNumber
+ */
 int TvShowEpisode::season() const
 {
     if (m_season == -2 && files().count() > 0) {
@@ -144,6 +220,11 @@ int TvShowEpisode::season() const
     return m_season;
 }
 
+/**
+ * @brief Season number with leading zero
+ * @return Formatted Season number
+ * @see TvShowEpisode::season
+ */
 QString TvShowEpisode::seasonString() const
 {
     if (season() == -2)
@@ -151,6 +232,12 @@ QString TvShowEpisode::seasonString() const
     return QString("%1").arg(season()).prepend((season() < 10) ? "0" : "");
 }
 
+/**
+ * @property TvShowEpisode::episode
+ * @brief Episode number
+ * @return Episode number
+ * @see TvShowEpisode::setEpisode
+ */
 int TvShowEpisode::episode() const
 {
     if (m_episode == -2 && files().count() > 0) {
@@ -162,6 +249,11 @@ int TvShowEpisode::episode() const
     return m_episode;
 }
 
+/**
+ * @brief Episode number with leading zero
+ * @return Formatted episode number
+ * @see TvShowEpisode::setEpisode
+ */
 QString TvShowEpisode::episodeString() const
 {
     if (episode() == -2)
@@ -169,36 +261,78 @@ QString TvShowEpisode::episodeString() const
     return QString("%1").arg(episode()).prepend((episode() < 10) ? "0" : "");
 }
 
+/**
+ * @property TvShowEpisode::overview
+ * @brief Plot of the episode
+ * @return Plot
+ * @see TvShowEpisode::setOverview
+ */
 QString TvShowEpisode::overview() const
 {
     return m_overview;
 }
 
+/**
+ * @property TvShowEpisode::writers
+ * @brief Writers of the episode
+ * @return List of writers
+ * @see TvShowEpisode::setWriters
+ */
 QStringList TvShowEpisode::writers() const
 {
     return m_writers;
 }
 
+/**
+ * @property TvShowEpisode::directors
+ * @brief Directors of the episode
+ * @return List of directors
+ * @see TvShowEpisode::setDirectors
+ */
 QStringList TvShowEpisode::directors() const
 {
     return m_directors;
 }
 
+/**
+ * @property TvShowEpisode::playCount
+ * @brief Playcount of the episode
+ * @return Playcount
+ * @see TvShowEpisode::setPlayCount
+ */
 int TvShowEpisode::playCount() const
 {
     return m_playCount;
 }
 
+/**
+ * @property TvShowEpisode::lastPlayed
+ * @brief Holds the last time the episode was played
+ * @return Last playtime
+ * @see TvShowEpisode::setLastPlayed
+ */
 QDateTime TvShowEpisode::lastPlayed() const
 {
     return m_lastPlayed;
 }
 
+/**
+ * @property TvShowEpisode::firstAired
+ * @brief Holds the first aired date of the episode
+ * @return First aired
+ * @see TvShowEpisode::setFirstAired
+ */
 QDate TvShowEpisode::firstAired() const
 {
     return m_firstAired;
 }
 
+/**
+ * @property TvShowEpisode::certification
+ * @brief Certification of the episode
+ * @return Certification
+ * @see TvShowEpisode::setCertification
+ */
 QString TvShowEpisode::certification() const
 {
     if (!m_certification.isEmpty())
@@ -209,6 +343,12 @@ QString TvShowEpisode::certification() const
     return QString();
 }
 
+/**
+ * @property TvShowEpisode::network
+ * @brief Holds the network of the episode
+ * @return Network
+ * @see TvShowEpisode::setNetwork
+ */
 QString TvShowEpisode::network() const
 {
     if (!m_network.isEmpty())
@@ -219,31 +359,55 @@ QString TvShowEpisode::network() const
     return QString();
 }
 
+/**
+ * @brief Holds the thumbnail url
+ * @return URL of the thumbnail
+ */
 QUrl TvShowEpisode::thumbnail() const
 {
     return m_thumbnail;
 }
 
+/**
+ * @brief Holds the current thumbnail image
+ * @return Image of the thumbnail
+ */
 QImage *TvShowEpisode::thumbnailImage()
 {
     return &m_thumbnailImage;
 }
 
+/**
+ * @brief TvShowEpisode::thumbnailImageChanged
+ * @return
+ */
 bool TvShowEpisode::thumbnailImageChanged() const
 {
     return m_thumbnailImageChanged;
 }
 
+/**
+ * @brief TvShowEpisode::modelItem
+ * @return
+ */
 TvShowModelItem *TvShowEpisode::modelItem()
 {
     return m_modelItem;
 }
 
+/**
+ * @brief TvShowEpisode::hasChanged
+ * @return
+ */
 bool TvShowEpisode::hasChanged() const
 {
     return m_hasChanged;
 }
 
+/**
+ * @brief Returns a list of pointer to the writers
+ * @return List of pointers
+ */
 QList<QString*> TvShowEpisode::writersPointer()
 {
     QList<QString*> writers;
@@ -252,6 +416,10 @@ QList<QString*> TvShowEpisode::writersPointer()
     return writers;
 }
 
+/**
+ * @brief Returns a list of pointers to the directors
+ * @return List of pointers
+ */
 QList<QString*> TvShowEpisode::directorsPointer()
 {
     QList<QString*> directors;
@@ -260,6 +428,10 @@ QList<QString*> TvShowEpisode::directorsPointer()
     return directors;
 }
 
+/**
+ * @brief TvShowEpisode::episodeId
+ * @return
+ */
 int TvShowEpisode::episodeId() const
 {
     return m_episodeId;
@@ -267,102 +439,185 @@ int TvShowEpisode::episodeId() const
 
 /*** SETTER ***/
 
+/**
+ * @brief Sets the name
+ * @param name Name of the episode
+ * @see TvShowEpisode::name
+ */
 void TvShowEpisode::setName(QString name)
 {
     m_name = name;
     setChanged(true);
 }
 
+/**
+ * @brief Sets the title of the show
+ * @param showTitle
+ */
 void TvShowEpisode::setShowTitle(QString showTitle)
 {
     m_showTitle = showTitle;
     setChanged(true);
 }
 
+/**
+ * @brief Sets the rating
+ * @param rating Rating
+ * @see TvShowEpisode::rating
+ */
 void TvShowEpisode::setRating(qreal rating)
 {
     m_rating = rating;
     setChanged(true);
 }
 
+/**
+ * @brief Sets the season
+ * @param season Season number
+ * @see TvShowEpisode::season
+ */
 void TvShowEpisode::setSeason(int season)
 {
     m_season = season;
     setChanged(true);
 }
 
+/**
+ * @brief Sets the episode
+ * @param episode Episode number
+ * @see TvShowEpisode::episode
+ */
 void TvShowEpisode::setEpisode(int episode)
 {
     m_episode = episode;
     setChanged(true);
 }
 
+/**
+ * @brief Sets the plot
+ * @param overview Plot
+ * @see TvShowEpisode::overview
+ */
 void TvShowEpisode::setOverview(QString overview)
 {
     m_overview = overview;
     setChanged(true);
 }
 
+/**
+ * @brief Sets all writers
+ * @param writers List of writers
+ * @see TvShowEpisode::writers
+ */
 void TvShowEpisode::setWriters(QStringList writers)
 {
     m_writers = writers;
     setChanged(true);
 }
 
+/**
+ * @brief Adds a writer
+ * @param writer Writer to add
+ * @see TvShowEpisode::writers
+ */
 void TvShowEpisode::addWriter(QString writer)
 {
     m_writers.append(writer);
     setChanged(true);
 }
 
+/**
+ * @brief Adds a director
+ * @param director Director to add
+ * @see TvShowEpisode::directors
+ */
 void TvShowEpisode::addDirector(QString director)
 {
     m_directors.append(director);
     setChanged(true);
 }
 
+/**
+ * @brief Sets all directors
+ * @param directors List of directors
+ * @see TvShowEpisode::directors
+ */
 void TvShowEpisode::setDirectors(QStringList directors)
 {
     m_directors = directors;
     setChanged(true);
 }
 
+/**
+ * @brief Sets the playcount
+ * @param playCount Playcount
+ * @see TvShowEpisode::playCount
+ */
 void TvShowEpisode::setPlayCount(int playCount)
 {
     m_playCount = playCount;
     setChanged(true);
 }
 
+/**
+ * @brief Sets the last playtime
+ * @param lastPlayed Last playtime
+ * @see TvShowEpisode::lastPlayed
+ */
 void TvShowEpisode::setLastPlayed(QDateTime lastPlayed)
 {
     m_lastPlayed = lastPlayed;
     setChanged(true);
 }
 
+/**
+ * @brief Set the first aired date
+ * @param firstAired Date of first air
+ * @see TvShowEpisode::firstAired
+ */
 void TvShowEpisode::setFirstAired(QDate firstAired)
 {
     m_firstAired = firstAired;
     setChanged(true);
 }
 
+/**
+ * @brief Sets the certification
+ * @param certification Certification
+ * @see TvShowEpisode::certification
+ */
 void TvShowEpisode::setCertification(QString certification)
 {
     m_certification = certification;
     setChanged(true);
 }
 
+/**
+ * @brief Sets the network
+ * @param network Name of the network
+ * @see TvShowEpisode::network
+ */
 void TvShowEpisode::setNetwork(QString network)
 {
     m_network = network;
     setChanged(true);
 }
 
+/**
+ * @brief Sets the thumbnail
+ * @param url URL of the thumbnail
+ * @see TvShowEpisode::thumbnail
+ */
 void TvShowEpisode::setThumbnail(QUrl url)
 {
     m_thumbnail = url;
     setChanged(true);
 }
 
+/**
+ * @brief TvShowEpisode::setThumbnailImage
+ * @param thumbnail
+ */
 void TvShowEpisode::setThumbnailImage(QImage thumbnail)
 {
     m_thumbnailImage = thumbnail;
@@ -370,17 +625,29 @@ void TvShowEpisode::setThumbnailImage(QImage thumbnail)
     setChanged(true);
 }
 
+/**
+ * @brief TvShowEpisode::setInfosLoaded
+ * @param loaded
+ */
 void TvShowEpisode::setInfosLoaded(bool loaded)
 {
     m_infoLoaded = loaded;
 }
 
+/**
+ * @brief TvShowEpisode::setChanged
+ * @param changed
+ */
 void TvShowEpisode::setChanged(bool changed)
 {
     m_hasChanged = changed;
     emit sigChanged(this);
 }
 
+/**
+ * @brief TvShowEpisode::setModelItem
+ * @param item
+ */
 void TvShowEpisode::setModelItem(TvShowModelItem *item)
 {
     m_modelItem = item;
@@ -388,6 +655,11 @@ void TvShowEpisode::setModelItem(TvShowModelItem *item)
 
 /*** REMOVER ***/
 
+/**
+ * @brief Removes a writer
+ * @param writer
+ * @see TvShowEpisode::writers
+ */
 void TvShowEpisode::removeWriter(QString *writer)
 {
     for (int i=0, n=m_writers.size() ; i<n ; ++i) {
@@ -399,6 +671,11 @@ void TvShowEpisode::removeWriter(QString *writer)
     setChanged(true);
 }
 
+/**
+ * @brief Removes a director
+ * @param director
+ * @see TvShowEpisode::directors
+ */
 void TvShowEpisode::removeDirector(QString *director)
 {
     for (int i=0, n=m_directors.size() ; i<n ; ++i) {

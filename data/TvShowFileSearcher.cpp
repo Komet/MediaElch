@@ -7,12 +7,20 @@
 #include "data/TvShowEpisode.h"
 #include "data/TvShowModelItem.h"
 
+/**
+ * @brief TvShowFileSearcher::TvShowFileSearcher
+ * @param parent
+ */
 TvShowFileSearcher::TvShowFileSearcher(QObject *parent) :
     QThread(parent)
 {
     m_progressMessageId = Constants::TvShowSearcherProgressMessageId;
 }
 
+/**
+ * @brief Sets the directories
+ * @param directories List of directories
+ */
 void TvShowFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
 {
     m_directories.clear();
@@ -23,6 +31,9 @@ void TvShowFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
     }
 }
 
+/**
+ * @brief Starts the scan process
+ */
 void TvShowFileSearcher::run()
 {
     emit searchStarted(tr("Searching for TV Shows..."), m_progressMessageId);
@@ -62,6 +73,11 @@ void TvShowFileSearcher::run()
     emit tvShowsLoaded(m_progressMessageId);
 }
 
+/**
+ * @brief Scans a dir for tv show files
+ * @param path Directory to scan
+ * @param contents
+ */
 void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QList<QStringList> > &contents)
 {
     QStringList filters;
@@ -119,6 +135,11 @@ void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QList<QStringLis
     }
 }
 
+/**
+ * @brief Returns a list of all subdirectories
+ * @param dir Dir to scan
+ * @param subDirs
+ */
 void TvShowFileSearcher::getSubDirs(QDir dir, QStringList &subDirs)
 {
     foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {

@@ -4,6 +4,9 @@
 #include <QAbstractItemModel>
 #include "data/Movie.h"
 
+/**
+ * @brief The MovieModel class
+ */
 class MovieModel : public QAbstractItemModel
 {
     Q_OBJECT

@@ -6,22 +6,39 @@
 #include "TvShowModelItem.h"
 #include <QDebug>
 
+/**
+ * @brief TvShowModel::TvShowModel
+ * @param parent
+ */
 TvShowModel::TvShowModel(QObject *parent)
     : QAbstractItemModel(parent)
 {
     m_rootItem = new TvShowModelItem(0);
 }
 
+/**
+ * @brief TvShowModel::~TvShowModel
+ */
 TvShowModel::~TvShowModel()
 {
     delete m_rootItem;
 }
 
+/**
+ * @brief TvShowModel::columnCount
+ * @return Column count
+ */
 int TvShowModel::columnCount(const QModelIndex & /* parent */) const
 {
     return m_rootItem->columnCount();
 }
 
+/**
+ * @brief TvShowModel::data
+ * @param index
+ * @param role
+ * @return
+ */
 QVariant TvShowModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
@@ -51,6 +68,11 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
+/**
+ * @brief TvShowModel::getItem
+ * @param index
+ * @return
+ */
 TvShowModelItem *TvShowModel::getItem(const QModelIndex &index) const
 {
     if (index.isValid()) {
@@ -60,6 +82,13 @@ TvShowModelItem *TvShowModel::getItem(const QModelIndex &index) const
     return m_rootItem;
 }
 
+/**
+ * @brief TvShowModel::index
+ * @param row
+ * @param column
+ * @param parent
+ * @return
+ */
 QModelIndex TvShowModel::index(int row, int column, const QModelIndex &parent) const
 {
     if (parent.isValid() && parent.column() != 0)
@@ -74,6 +103,11 @@ QModelIndex TvShowModel::index(int row, int column, const QModelIndex &parent) c
         return QModelIndex();
 }
 
+/**
+ * @brief TvShowModel::appendChild
+ * @param show
+ * @return
+ */
 TvShowModelItem *TvShowModel::appendChild(TvShow *show)
 {
     TvShowModelItem *parentItem = m_rootItem;
@@ -85,6 +119,11 @@ TvShowModelItem *TvShowModel::appendChild(TvShow *show)
     return item;
 }
 
+/**
+ * @brief TvShowModel::parent
+ * @param index
+ * @return
+ */
 QModelIndex TvShowModel::parent(const QModelIndex &index) const
 {
     if (!index.isValid())
@@ -99,6 +138,13 @@ QModelIndex TvShowModel::parent(const QModelIndex &index) const
     return createIndex(parentItem->childNumber(), 0, parentItem);
 }
 
+/**
+ * @brief TvShowModel::removeRows
+ * @param position
+ * @param rows
+ * @param parent
+ * @return
+ */
 bool TvShowModel::removeRows(int position, int rows, const QModelIndex &parent)
 {
     TvShowModelItem *parentItem = getItem(parent);
@@ -111,18 +157,31 @@ bool TvShowModel::removeRows(int position, int rows, const QModelIndex &parent)
     return success;
 }
 
+/**
+ * @brief TvShowModel::rowCount
+ * @param parent
+ * @return Row count
+ */
 int TvShowModel::rowCount(const QModelIndex &parent) const
 {
     TvShowModelItem *parentItem = getItem(parent);
-
     return parentItem->childCount();
 }
 
+/**
+ * @brief Removes all children
+ */
 void TvShowModel::clear()
 {
     m_rootItem->removeChildren(0, m_rootItem->childCount());
 }
 
+/**
+ * @brief TvShowModel::onSigChanged
+ * @param showItem
+ * @param seasonItem
+ * @param episodeItem
+ */
 void TvShowModel::onSigChanged(TvShowModelItem *showItem, TvShowModelItem *seasonItem, TvShowModelItem *episodeItem)
 {
     QModelIndex showIndex = this->index(showItem->childNumber(), 0);
@@ -131,12 +190,20 @@ void TvShowModel::onSigChanged(TvShowModelItem *showItem, TvShowModelItem *seaso
     emit dataChanged(index, index);
 }
 
+/**
+ * @brief TvShowModel::onShowChanged
+ * @param show
+ */
 void TvShowModel::onShowChanged(TvShow *show)
 {
     QModelIndex index = this->index(show->modelItem()->childNumber(), 0);
     emit dataChanged(index, index);
 }
 
+/**
+ * @brief TvShowModel::tvShows
+ * @return
+ */
 QList<TvShow*> TvShowModel::tvShows()
 {
     QList<TvShow*> shows;

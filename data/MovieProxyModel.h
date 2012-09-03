@@ -3,6 +3,9 @@
 
 #include <QSortFilterProxyModel>
 
+/**
+ * @brief The MovieProxyModel class
+ */
 class MovieProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
