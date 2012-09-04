@@ -8,6 +8,9 @@
 
 #include "data/ScraperInterface.h"
 
+/**
+ * @brief The VideoBuster class
+ */
 class VideoBuster : public ScraperInterface
 {
     Q_OBJECT

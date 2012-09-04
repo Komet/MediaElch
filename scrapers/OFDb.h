@@ -8,6 +8,9 @@
 
 #include "data/ScraperInterface.h"
 
+/**
+ * @brief The OFDb class
+ */
 class OFDb : public ScraperInterface
 {
     Q_OBJECT

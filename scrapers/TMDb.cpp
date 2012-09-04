@@ -11,6 +11,10 @@
 #include <QSpacerItem>
 #include <QVBoxLayout>
 
+/**
+ * @brief TMDb::TMDb
+ * @param parent
+ */
 TMDb::TMDb(QObject *parent)
 {
     setParent(parent);

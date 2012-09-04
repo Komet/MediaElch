@@ -9,6 +9,9 @@
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 
+/**
+ * @brief The XbmcSql class
+ */
 class XbmcSql : public MediaCenterInterface
 {
     Q_OBJECT

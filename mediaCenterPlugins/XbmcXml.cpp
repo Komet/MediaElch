@@ -7,15 +7,27 @@
 #include <QFileInfo>
 #include <QXmlStreamWriter>
 
+/**
+ * @brief XbmcXml::XbmcXml
+ * @param parent
+ */
 XbmcXml::XbmcXml(QObject *parent)
 {
     setParent(parent);
 }
 
+/**
+ * @brief XbmcXml::~XbmcXml
+ */
 XbmcXml::~XbmcXml()
 {
 }
 
+/**
+ * @brief Checks if our MediaCenterPlugin supports a feature
+ * @param feature Feature to check
+ * @return Feature is supported or not
+ */
 bool XbmcXml::hasFeature(int feature)
 {
     if (feature == MediaCenterFeatures::HandleMovieSetImages)
@@ -24,10 +36,22 @@ bool XbmcXml::hasFeature(int feature)
     return true;
 }
 
+/**
+ * @brief Gets called when MediaElch shuts down
+ */
 void XbmcXml::shutdown()
 {
 }
 
+/**
+ * @brief Writes movie elements to an xml stream
+ * @param xml XML stream
+ * @param movie Movie to save
+ * @param writePath If true the full path of the files will be written (currently unused, just for export)
+ * @param pathSearch (currently unused, just for export)
+ * @param pathReplace (currently unused, just for export)
+ * @todo: Remove last three parameters or reimplement (Export)
+ */
 void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath, QString pathSearch, QString pathReplace)
 {
     xml.writeStartElement("movie");
@@ -94,6 +118,12 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath,
     xml.writeEndElement();
 }
 
+/**
+ * @brief Saves a movie (including images)
+ * @param movie Movie to save
+ * @return Saving success
+ * @see XbmcXml::writeMovieXml
+ */
 bool XbmcXml::saveMovie(Movie *movie)
 {
     QByteArray xmlContent;
@@ -142,6 +172,11 @@ bool XbmcXml::saveMovie(Movie *movie)
     return true;
 }
 
+/**
+ * @brief Loads movie infos (except images)
+ * @param movie Movie to load
+ * @return Loading success
+ */
 bool XbmcXml::loadMovie(Movie *movie)
 {
     if (movie->files().size() == 0)
@@ -241,6 +276,10 @@ bool XbmcXml::loadMovie(Movie *movie)
     return true;
 }
 
+/**
+ * @brief Loads images of a movie
+ * @param movie Movie to load
+ */
 void XbmcXml::loadMovieImages(Movie *movie)
 {
     if (movie->files().size() == 0)
@@ -284,6 +323,10 @@ void XbmcXml::loadMovieImages(Movie *movie)
     }
 }
 
+/**
+ * @brief Loads images for a tv show
+ * @param show Show to load images for
+ */
 void XbmcXml::loadTvShowImages(TvShow *show)
 {
     if (show->dir().isEmpty())
@@ -326,6 +369,10 @@ void XbmcXml::loadTvShowImages(TvShow *show)
     }
 }
 
+/**
+ * @brief Loads images for a tv show episode
+ * @param episode Episode to load images for
+ */
 void XbmcXml::loadTvShowEpisodeImages(TvShowEpisode *episode)
 {
     if (episode->files().isEmpty())
@@ -336,6 +383,16 @@ void XbmcXml::loadTvShowEpisodeImages(TvShowEpisode *episode)
         episode->thumbnailImage()->load(thumbnailFi.absoluteFilePath());
 }
 
+/**
+ * @brief Exports a list of movies and tv shows into a single xml file
+ * This is currently unused due to disabled export
+ * @param movies List of movies to export
+ * @param shows List of shows to export
+ * @param exportPath
+ * @param pathSearch
+ * @param pathReplace
+ * @todo: Remove or reimplement (Export)
+ */
 void XbmcXml::exportDatabase(QList<Movie*> movies, QList<TvShow*> shows, QString exportPath, QString pathSearch, QString pathReplace)
 {
     emit sigExportStarted();
@@ -464,6 +521,11 @@ void XbmcXml::exportDatabase(QList<Movie*> movies, QList<TvShow*> shows, QString
     emit sigExportDone();
 }
 
+/**
+ * @brief Loads tv show information
+ * @param show Show to load
+ * @return Loading success
+ */
 bool XbmcXml::loadTvShow(TvShow *show)
 {
     if (show->dir().isEmpty())
@@ -536,6 +598,11 @@ bool XbmcXml::loadTvShow(TvShow *show)
     return true;
 }
 
+/**
+ * @brief Loads tv show episode information
+ * @param episode Episode to load infos for
+ * @return Loading success
+ */
 bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode)
 {
     if (episode->files().size() == 0)
@@ -592,6 +659,12 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode)
     return true;
 }
 
+/**
+ * @brief Saves a tv show
+ * @param show Show to save
+ * @return Saving success
+ * @see XbmcXml::writeTvShowXml
+ */
 bool XbmcXml::saveTvShow(TvShow *show)
 {
     QByteArray xmlContent;
@@ -642,6 +715,12 @@ bool XbmcXml::saveTvShow(TvShow *show)
     return true;
 }
 
+/**
+ * @brief Saves a tv show episode
+ * @param episode Episode to save
+ * @return Saving success
+ * @see XbmcXml::writeTvShowEpisodeXml
+ */
 bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
 {
     QByteArray xmlContent;
@@ -666,6 +745,16 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
     return true;
 }
 
+/**
+ * @brief Writes tv show elements to an xml stream
+ * @param xml XML stream
+ * @param show Tv show to save
+ * @param writePath If true the full path of the files will be written (currently unused, just for export)
+ * @param pathSearch (currently unused, just for export)
+ * @param pathReplace (currently unused, just for export)
+ * @param writeStartAndEndElement
+ * @todo: Remove last four parameters or reimplement (Export)
+ */
 void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath, QString pathSearch, QString pathReplace, bool writeStartAndEndElement)
 {
     if (writeStartAndEndElement)
@@ -732,6 +821,15 @@ void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath
         xml.writeEndElement();
 }
 
+/**
+ * @brief Writes tv show episode elements to an xml stream
+ * @param xml XML stream
+ * @param episode Episode to save
+ * @param writePath If true the full path of the files will be written (currently unused, just for export)
+ * @param pathSearch (currently unused, just for export)
+ * @param pathReplace (currently unused, just for export)
+ * @todo: Remove last three parameters or reimplement (Export)
+ */
 void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode, bool writePath, QString pathSearch, QString pathReplace)
 {
     xml.writeStartElement("episodedetails");
@@ -783,24 +881,44 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
     xml.writeEndElement();
 }
 
+/**
+ * @brief Loading of movie set posters is not possible with nfos
+ * @param setName
+ * @return
+ */
 QImage XbmcXml::movieSetPoster(QString setName)
 {
     Q_UNUSED(setName);
     return QImage();
 }
 
+/**
+ * @brief Loading of movie set backdrops is not possible with nfos
+ * @param setName
+ * @return
+ */
 QImage XbmcXml::movieSetBackdrop(QString setName)
 {
     Q_UNUSED(setName);
     return QImage();
 }
 
+/**
+ * @brief Saving of movie set posters is not possible with nfos
+ * @param setName
+ * @param poster
+ */
 void XbmcXml::saveMovieSetPoster(QString setName, QImage poster)
 {
     Q_UNUSED(setName);
     Q_UNUSED(poster);
 }
 
+/**
+ * @brief Saving of movie set backdrops is not possible with nfos
+ * @param setName
+ * @param backdrop
+ */
 void XbmcXml::saveMovieSetBackdrop(QString setName, QImage backdrop)
 {
     Q_UNUSED(setName);

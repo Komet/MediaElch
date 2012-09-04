@@ -9,6 +9,9 @@
 
 #include "data/TvScraperInterface.h"
 
+/**
+ * @brief The TheTvDb class
+ */
 class TheTvDb : public TvScraperInterface
 {
     Q_OBJECT

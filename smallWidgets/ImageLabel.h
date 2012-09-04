@@ -7,6 +7,10 @@ namespace Ui {
 class ImageLabel;
 }
 
+/**
+ * @brief The ImageLabel class
+ * A widget with an image and a text below
+ */
 class ImageLabel : public QWidget
 {
     Q_OBJECT

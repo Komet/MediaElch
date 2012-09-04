@@ -3,6 +3,10 @@
 
 #include <QTreeView>
 
+/**
+ * @brief The MyTreeView class
+ * This is TreeView without branches
+ */
 class MyTreeView : public QTreeView
 {
     Q_OBJECT

@@ -2,6 +2,10 @@
 #include <QTextDocument>
 #include "Helper.h"
 
+/**
+ * @brief Cinefacts::Cinefacts
+ * @param parent
+ */
 Cinefacts::Cinefacts(QObject *parent)
 {
     setParent(parent);
@@ -274,6 +278,10 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
     m_currentMovie->scraperLoadDone();
 }
 
+/**
+ * @brief Called when poster scraping has finished
+ * Starts the next poster download or the backdrop download or tells the movie that scraping is done
+ */
 void Cinefacts::posterFinished()
 {
     m_posterQueue.clear();
@@ -297,6 +305,10 @@ void Cinefacts::posterFinished()
     m_posterReply->deleteLater();
 }
 
+/**
+ * @brief Called when backdrop scraping has finished
+ * Starts the next backdrop download or tells the movie that scraping is done
+ */
 void Cinefacts::backdropFinished()
 {
     m_backdropQueue.clear();
@@ -317,6 +329,9 @@ void Cinefacts::backdropFinished()
     m_backdropReply->deleteLater();
 }
 
+/**
+ * @brief Starts the next poster download
+ */
 void Cinefacts::startNextPosterDownload()
 {
     if (m_posterQueue.isEmpty()) {
@@ -333,6 +348,9 @@ void Cinefacts::startNextPosterDownload()
     connect(m_posterSubReply, SIGNAL(finished()), this, SLOT(posterSubFinished()));
 }
 
+/**
+ * @brief Starts the next backdrop download
+ */
 void Cinefacts::startNextBackdropDownload()
 {
     if (m_backdropQueue.isEmpty()) {
@@ -344,6 +362,9 @@ void Cinefacts::startNextBackdropDownload()
     connect(m_backdropSubReply, SIGNAL(finished()), this, SLOT(backdropSubFinished()));
 }
 
+/**
+ * @brief Called when a poster download has finished
+ */
 void Cinefacts::posterSubFinished()
 {
     if (m_posterSubReply->error() == QNetworkReply::NoError ) {
@@ -363,6 +384,9 @@ void Cinefacts::posterSubFinished()
     startNextPosterDownload();
 }
 
+/**
+ * @brief Called when a backdrop download has finished
+ */
 void Cinefacts::backdropSubFinished()
 {
     if (m_backdropSubReply->error() == QNetworkReply::NoError ) {

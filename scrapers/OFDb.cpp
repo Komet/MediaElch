@@ -4,6 +4,10 @@
 #include <QXmlStreamReader>
 #include "Helper.h"
 
+/**
+ * @brief OFDb::OFDb
+ * @param parent
+ */
 OFDb::OFDb(QObject *parent)
 {
     setParent(parent);
@@ -205,7 +209,7 @@ void OFDb::loadFinished()
 
 /**
  * @brief Parses HTML data and assigns it to the given movie object
- * @param html HTML data
+ * @param data HTML data
  * @param movie Movie object
  * @param infos List of infos to load
  */

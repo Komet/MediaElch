@@ -13,6 +13,11 @@
 #include "SettingsWidget.h"
 #include "XbmcSql.h"
 
+/**
+ * @brief XbmcSql::XbmcSql
+ * @param parent
+ * @param connectionName
+ */
 XbmcSql::XbmcSql(QObject *parent, QString connectionName)
 {
     setParent(parent);
@@ -21,10 +26,18 @@ XbmcSql::XbmcSql(QObject *parent, QString connectionName)
     m_connectionName = connectionName;
 }
 
+/**
+ * @brief XbmcSql::~XbmcSql
+ */
 XbmcSql::~XbmcSql()
 {
 }
 
+/**
+ * @brief Checks if our MediaCenterPlugin supports a feature
+ * @param feature Feature to check
+ * @return Feature is supported or not
+ */
 bool XbmcSql::hasFeature(int feature)
 {
     if (feature == MediaCenterFeatures::EditTvShowEpisodeCertification)
@@ -37,6 +50,13 @@ bool XbmcSql::hasFeature(int feature)
     return true;
 }
 
+/**
+ * @brief Connects to a MySQL database
+ * @param host Hostname
+ * @param database Database name
+ * @param username Username
+ * @param password Password
+ */
 void XbmcSql::connectMysql(QString host, QString database, QString username, QString password)
 {
     if (m_db) {
@@ -54,6 +74,10 @@ void XbmcSql::connectMysql(QString host, QString database, QString username, QSt
         MessageBox::instance()->showMessage(tr("Connection to XBMC MySQL Database failed! \"%1\"").arg(m_db->lastError().text()));
 }
 
+/**
+ * @brief Connects to a sqlite database
+ * @param database Path to the database
+ */
 void XbmcSql::connectSqlite(QString database)
 {
     if (m_db) {
@@ -67,6 +91,10 @@ void XbmcSql::connectSqlite(QString database)
         MessageBox::instance()->showMessage(tr("Connection to XBMC SQLite Database failed! \"%1\"").arg(m_db->lastError().text()));
 }
 
+/**
+ * @brief Called when MediaElch shutsdown
+ * (There were problems shutting down the db connection in the destructor)
+ */
 void XbmcSql::shutdown()
 {
     if (m_db) {
@@ -77,6 +105,11 @@ void XbmcSql::shutdown()
     }
 }
 
+/**
+ * @brief Saves movie information
+ * @param movie The movie to save
+ * @return Saving success
+ */
 bool XbmcSql::saveMovie(Movie *movie)
 {
     QSqlQuery query(db());
@@ -461,6 +494,11 @@ bool XbmcSql::saveMovie(Movie *movie)
     return true;
 }
 
+/**
+ * @brief Loads all movie information except images
+ * @param movie The movie to load infos for
+ * @return Loading success
+ */
 bool XbmcSql::loadMovie(Movie *movie)
 {
     if (movie->files().size() == 0)
@@ -657,6 +695,10 @@ bool XbmcSql::loadMovie(Movie *movie)
     return true;
 }
 
+/**
+ * @brief Loads images for a movie
+ * @param movie The movie to load images for
+ */
 void XbmcSql::loadMovieImages(Movie *movie)
 {
     if (movie->files().count() == 0)
@@ -691,6 +733,15 @@ void XbmcSql::loadMovieImages(Movie *movie)
     }
 }
 
+/**
+ * @brief Exports the database. Disabled till rework
+ * @param movies
+ * @param shows
+ * @param exportPath
+ * @param pathSearch
+ * @param pathReplace
+ * @todo: Remove or reimplement (Export)
+ */
 void XbmcSql::exportDatabase(QList<Movie *> movies, QList<TvShow *> shows, QString exportPath, QString pathSearch, QString pathReplace)
 {
     Q_UNUSED(movies);
@@ -700,6 +751,11 @@ void XbmcSql::exportDatabase(QList<Movie *> movies, QList<TvShow *> shows, QStri
     Q_UNUSED(pathReplace);
 }
 
+/**
+ * @brief Loads infos for a tv show (except images)
+ * @param show Show to load infos for
+ * @return Loading success
+ */
 bool XbmcSql::loadTvShow(TvShow *show)
 {
     if (show->dir().isEmpty())
@@ -791,6 +847,10 @@ bool XbmcSql::loadTvShow(TvShow *show)
     return true;
 }
 
+/**
+ * @brief Loads images for a tv show
+ * @param show Show to load images for
+ */
 void XbmcSql::loadTvShowImages(TvShow *show)
 {
     // English
@@ -842,6 +902,11 @@ void XbmcSql::loadTvShowImages(TvShow *show)
     }
 }
 
+/**
+ * @brief Loads all data (except images) for a tv show episode
+ * @param episode Episode to load infos for
+ * @return Loading success
+ */
 bool XbmcSql::loadTvShowEpisode(TvShowEpisode *episode)
 {
     if (episode->files().count() == 0)
@@ -926,6 +991,10 @@ bool XbmcSql::loadTvShowEpisode(TvShowEpisode *episode)
     return true;
 }
 
+/**
+ * @brief Loads image for an episode
+ * @param episode Episode to load images for
+ */
 void XbmcSql::loadTvShowEpisodeImages(TvShowEpisode *episode)
 {
     if (episode->files().count() == 0)
@@ -938,6 +1007,11 @@ void XbmcSql::loadTvShowEpisodeImages(TvShowEpisode *episode)
         episode->thumbnailImage()->load(posterPath);
 }
 
+/**
+ * @brief Saves a tv show (including infos, poster, backdrops, season images and actors)
+ * @param show Show to save
+ * @return Saving success
+ */
 bool XbmcSql::saveTvShow(TvShow *show)
 {
     if (show->dir().isEmpty())
@@ -1187,6 +1261,11 @@ bool XbmcSql::saveTvShow(TvShow *show)
     return true;
 }
 
+/**
+ * @brief Saves a tv show episode (including info, poster, backdrops)
+ * @param episode Episode to save
+ * @return Saving success
+ */
 bool XbmcSql::saveTvShowEpisode(TvShowEpisode *episode)
 {
     if (!episode->tvShow())
@@ -1453,6 +1532,11 @@ bool XbmcSql::saveTvShowEpisode(TvShowEpisode *episode)
     return true;
 }
 
+/**
+ * @brief Loads a poster for a movie set
+ * @param setName The name of the set
+ * @return The poster image
+ */
 QImage XbmcSql::movieSetPoster(QString setName)
 {
     QString hash = movieSetHash(setName);
@@ -1464,6 +1548,11 @@ QImage XbmcSql::movieSetPoster(QString setName)
     return img;
 }
 
+/**
+ * @brief Loads a backdrop for a movie set
+ * @param setName The name of the set
+ * @return The backdrop image
+ */
 QImage XbmcSql::movieSetBackdrop(QString setName)
 {
     QString hash = movieSetHash(setName);
@@ -1475,6 +1564,11 @@ QImage XbmcSql::movieSetBackdrop(QString setName)
     return img;
 }
 
+/**
+ * @brief Saves a movie set poster
+ * @param setName The name of the set
+ * @param poster The poster to save
+ */
 void XbmcSql::saveMovieSetPoster(QString setName, QImage poster)
 {
     QString hash = movieSetHash(setName);
@@ -1482,6 +1576,11 @@ void XbmcSql::saveMovieSetPoster(QString setName, QImage poster)
     poster.save(path, "jpg", 100);
 }
 
+/**
+ * @brief Saves a movie set backdrpo
+ * @param setName The name of the set
+ * @param backdrop The backdrop image
+ */
 void XbmcSql::saveMovieSetBackdrop(QString setName, QImage backdrop)
 {
     QString hash = movieSetHash(setName);
@@ -1489,6 +1588,11 @@ void XbmcSql::saveMovieSetBackdrop(QString setName, QImage backdrop)
     backdrop.save(path, "jpg", 100);
 }
 
+/**
+ * @brief Computes the thumbnail hash for a string
+ * @param string String
+ * @return Hash
+ */
 QString XbmcSql::hash(QString string)
 {
     QString chars = string.toLower();
@@ -1508,11 +1612,21 @@ QString XbmcSql::hash(QString string)
     return number.rightJustified(8, QChar('0'));
 }
 
+/**
+ * @brief Computes the thumbnail hash for an actor
+ * @param actor Actor
+ * @return Hash
+ */
 QString XbmcSql::actorHash(Actor actor)
 {
     return hash(QString("actor%1").arg(actor.name));
 }
 
+/**
+ * @brief Computes the thumbnail hash of a movie setname
+ * @param setName Setname to get the hash for
+ * @return Hash
+ */
 QString XbmcSql::movieSetHash(QString setName)
 {
     QSqlQuery query(db());
@@ -1526,11 +1640,21 @@ QString XbmcSql::movieSetHash(QString setName)
     return hash(QString("videodb://1/7/%1/").arg(id));
 }
 
+/**
+ * @brief DB Object getter
+ * @return Database object
+ */
 QSqlDatabase XbmcSql::db()
 {
     return *m_db;
 }
 
+/**
+ * @brief Replaces the path with the nearest MediaCenterPath for movies given in the settings
+ * It also adjusts the directory separator
+ * @param file Filename
+ * @return File with replaced path
+ */
 QString XbmcSql::mediaCenterPath(QString file)
 {
     QList<SettingsDir> dirs = SettingsWidget::instance()->movieDirectories();
@@ -1552,6 +1676,12 @@ QString XbmcSql::mediaCenterPath(QString file)
     return mediaCenterFile;
 }
 
+/**
+ * @brief Returns the nearest MediaCenterPath given in the settings for a movie file
+ * If the path is empty this function returns the path
+ * @param file Complete filename
+ * @return MediaCenterPath
+ */
 QString XbmcSql::mediaCenterDir(QString file)
 {
     QList<SettingsDir> dirs = SettingsWidget::instance()->movieDirectories();
@@ -1567,6 +1697,12 @@ QString XbmcSql::mediaCenterDir(QString file)
         return dir.mediaCenterPath;
 }
 
+/**
+ * @brief Replaces the path with the nearest MediaCenterPath for tv shows given in the settings
+ * It also adjusts the directory separator
+ * @param file Filename
+ * @return File with replaced path
+ */
 QString XbmcSql::tvShowMediaCenterPath(QString file)
 {
     QList<SettingsDir> dirs = SettingsWidget::instance()->tvShowDirectories();
@@ -1588,6 +1724,12 @@ QString XbmcSql::tvShowMediaCenterPath(QString file)
     return mediaCenterFile;
 }
 
+/**
+ * @brief Returns the nearest MediaCenterPath given in the settings for a tv show file
+ * If the path is empty this function returns the path
+ * @param file Complete filename
+ * @return MediaCenterPath
+ */
 QString XbmcSql::tvShowMediaCenterDir(QString file)
 {
     QList<SettingsDir> dirs = SettingsWidget::instance()->tvShowDirectories();

@@ -7,6 +7,10 @@
 #include <QSettings>
 #include <QSpacerItem>
 
+/**
+ * @brief TheTvDb::TheTvDb
+ * @param parent
+ */
 TheTvDb::TheTvDb(QObject *parent)
 {
     setParent(parent);
@@ -44,21 +48,36 @@ TheTvDb::TheTvDb(QObject *parent)
     setMirrors();
 }
 
+/**
+ * @brief Just returns a pointer to the scrapers network access manager
+ * @return Network Access Manager
+ */
 QNetworkAccessManager *TheTvDb::qnam()
 {
     return &m_qnam;
 }
 
+/**
+ * @brief Returns the name of the scraper
+ * @return Name of the Scraper
+ */
 QString TheTvDb::name()
 {
     return QString("The TV DB");
 }
 
+/**
+ * @brief Returns if the scraper has settings
+ * @return Scraper has settings
+ */
 bool TheTvDb::hasSettings()
 {
     return true;
 }
 
+/**
+ * @brief Loads scrapers settings
+ */
 void TheTvDb::loadSettings()
 {
     QSettings settings;
@@ -69,6 +88,9 @@ void TheTvDb::loadSettings()
     }
 }
 
+/**
+ * @brief Saves scrapers settings
+ */
 void TheTvDb::saveSettings()
 {
     QSettings settings;
@@ -76,6 +98,10 @@ void TheTvDb::saveSettings()
     settings.setValue("Scrapers/TheTvDb/Language", m_language);
 }
 
+/**
+ * @brief Constructs a widget with scrapers settings
+ * @return Settings Widget
+ */
 QWidget *TheTvDb::settingsWidget()
 {
     QWidget *widget = new QWidget;
@@ -91,6 +117,9 @@ QWidget *TheTvDb::settingsWidget()
     return widget;
 }
 
+/**
+ * @brief Starts loading a list of mirrors
+ */
 void TheTvDb::setMirrors()
 {
     QUrl url(QString("http://www.thetvdb.com/api/%1/mirrors.xml").arg(m_apiKey));
@@ -98,6 +127,10 @@ void TheTvDb::setMirrors()
     connect(m_mirrorsReply, SIGNAL(finished()), this, SLOT(onMirrorsReady()));
 }
 
+/**
+ * @brief Called when mirrors are loaded
+ * Parses and assigns mirrors
+ */
 void TheTvDb::onMirrorsReady()
 {
     m_xmlMirrors.clear();
@@ -129,6 +162,11 @@ void TheTvDb::onMirrorsReady()
     m_mirrorsReply->deleteLater();
 }
 
+/**
+ * @brief Searches for a tv show
+ * @param searchStr The tv show name/search string
+ * @see TheTvDb::onSearchFinished
+ */
 void TheTvDb::search(QString searchStr)
 {
     QUrl url(QString("http://www.thetvdb.com/api/GetSeries.php?language=%1&seriesname=%2").arg(m_language).arg(searchStr));
@@ -136,6 +174,11 @@ void TheTvDb::search(QString searchStr)
     connect(m_searchReply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
 }
 
+/**
+ * @brief Called when the search result was downloaded
+ *        Emits "sigSearchDone" if there was an error
+ * @see TheTvDb::parseSearch
+ */
 void TheTvDb::onSearchFinished()
 {
     QList<ScraperSearchResult> results;
@@ -147,6 +190,11 @@ void TheTvDb::onSearchFinished()
     emit sigSearchDone(results);
 }
 
+/**
+ * @brief Parses the search results
+ * @param xml XML data
+ * @return List of search results
+ */
 QList<ScraperSearchResult> TheTvDb::parseSearch(QString xml)
 {
     QList<ScraperSearchResult> results;
@@ -175,6 +223,13 @@ QList<ScraperSearchResult> TheTvDb::parseSearch(QString xml)
     return results;
 }
 
+/**
+ * @brief Starts network requests to download infos from TheTvDb
+ * @param id TheTvDb show ID
+ * @param show Tv show object
+ * @param updateAllEpisodes Also update all child episodes (regardless if they already have infos or not)
+ * @see TheTvDb::onLoadFinished
+ */
 void TheTvDb::loadTvShowData(QString id, TvShow *show, bool updateAllEpisodes)
 {
     m_currentShow = show;
@@ -186,6 +241,12 @@ void TheTvDb::loadTvShowData(QString id, TvShow *show, bool updateAllEpisodes)
     connect(m_loadReply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
 }
 
+/**
+ * @brief Called when the tv show infos are downloaded
+ * Starts download of actors
+ * @see TheTvDb::parseAndAssignInfos
+ * @see TheTvDb::onActorsFinished
+ */
 void TheTvDb::onLoadFinished()
 {
     if (m_loadReply->error() == QNetworkReply::NoError ) {
@@ -199,6 +260,12 @@ void TheTvDb::onLoadFinished()
     connect(m_actorsReply, SIGNAL(finished()), this, SLOT(onActorsFinished()));
 }
 
+/**
+ * @brief Called when the tv show actors are downloaded
+ * Starts download of banners
+ * @see TheTvDb::parseAndAssignActors
+ * @see TheTvDb::onBannersFinished
+ */
 void TheTvDb::onActorsFinished()
 {
     if (m_actorsReply->error() == QNetworkReply::NoError ) {
@@ -212,6 +279,11 @@ void TheTvDb::onActorsFinished()
     connect(m_bannersReply, SIGNAL(finished()), this, SLOT(onBannersFinished()));
 }
 
+/**
+ * @brief Called when the tv show banners are downloaded
+ * @see TheTvDb::parseAndAssignBanners
+ * Tells the current show that scraping has ended
+ */
 void TheTvDb::onBannersFinished()
 {
     if (m_bannersReply->error() == QNetworkReply::NoError ) {
@@ -222,6 +294,12 @@ void TheTvDb::onBannersFinished()
     m_currentShow->scraperLoadDone();
 }
 
+/**
+ * @brief Parses info XML data and assigns it to the given tv show object
+ * @param xml XML data
+ * @param show Tv Show object
+ * @param updateAllEpisodes Update all child episodes (regardless if they already have infos or not)
+ */
 void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, bool updateAllEpisodes)
 {
     show->clear();
@@ -257,6 +335,11 @@ void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, bool updateAllEpiso
     }
 }
 
+/**
+ * @brief Parses actor XML data and assigns it to the given tv show object
+ * @param xml XML data
+ * @param show Tv Show object
+ */
 void TheTvDb::parseAndAssignActors(QString xml, TvShow *show)
 {
     QDomDocument domDoc;
@@ -276,6 +359,11 @@ void TheTvDb::parseAndAssignActors(QString xml, TvShow *show)
     }
 }
 
+/**
+ * @brief Parses banner XML data and assigns it to the given tv show object
+ * @param xml XML data
+ * @param show Tv Show object
+ */
 void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show)
 {
     QDomDocument domDoc;
@@ -344,6 +432,11 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show)
     }
 }
 
+/**
+ * @brief Parses XML data (dom element) and assigns it to the given episode object
+ * @param elem Dom element
+ * @param episode Episode object
+ */
 void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *episode)
 {
     episode->clear();
@@ -370,6 +463,12 @@ void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *
     episode->setInfosLoaded(true);
 }
 
+/**
+ * @brief Starts network requests to download infos from TheTvDb
+ * @param id TheTvDb show ID
+ * @param episode Episode object
+ * @see TheTvDb::onEpisodeLoadFinished
+ */
 void TheTvDb::loadTvShowEpisodeData(QString id, TvShowEpisode *episode)
 {
     m_currentEpisode = episode;
@@ -380,6 +479,10 @@ void TheTvDb::loadTvShowEpisodeData(QString id, TvShowEpisode *episode)
     connect(m_episodeLoadReply, SIGNAL(finished()), this, SLOT(onEpisodeLoadFinished()));
 }
 
+/**
+ * @brief Called when the episode infos are downloaded
+ * @see TheTvDb::parseAndAssignSingleEpisodeInfos
+ */
 void TheTvDb::onEpisodeLoadFinished()
 {
     if (m_episodeLoadReply->error() == QNetworkReply::NoError ) {

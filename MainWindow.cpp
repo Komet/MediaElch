@@ -192,7 +192,7 @@ void MainWindow::setupToolbar()
     ui->mainToolBar->addAction(m_actionSearch);
     ui->mainToolBar->addAction(m_actionSave);
     ui->mainToolBar->addAction(m_actionSaveAll);
-    // @TODO: currently disabled as the whole exports need rethinking... ;)
+    // @todo: currently disabled as the whole exports need rethinking... ;)
     // ui->mainToolBar->addAction(m_actionExport);
     ui->mainToolBar->addAction(m_actionAbout);
     ui->mainToolBar->addAction(m_actionQuit);

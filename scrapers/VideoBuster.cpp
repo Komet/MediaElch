@@ -2,6 +2,10 @@
 #include <QTextDocument>
 #include "Helper.h"
 
+/**
+ * @brief VideoBuster::VideoBuster
+ * @param parent
+ */
 VideoBuster::VideoBuster(QObject *parent)
 {
     setParent(parent);

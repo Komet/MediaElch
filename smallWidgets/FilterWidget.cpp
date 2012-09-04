@@ -1,6 +1,10 @@
 #include "FilterWidget.h"
 #include "ui_FilterWidget.h"
 
+/**
+ * @brief FilterWidget::FilterWidget
+ * @param parent
+ */
 FilterWidget::FilterWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::FilterWidget)
@@ -13,6 +17,9 @@ FilterWidget::FilterWidget(QWidget *parent) :
     connect(ui->lineEdit, SIGNAL(textChanged(QString)), this, SIGNAL(sigFilterTextChanged(QString)));
 }
 
+/**
+ * @brief FilterWidget::~FilterWidget
+ */
 FilterWidget::~FilterWidget()
 {
     delete ui;
