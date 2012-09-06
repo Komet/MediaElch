@@ -10,6 +10,9 @@ namespace Ui {
 class SetsWidget;
 }
 
+/**
+ * @brief The SetsWidget class
+ */
 class SetsWidget : public QWidget
 {
     Q_OBJECT

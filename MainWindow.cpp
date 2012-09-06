@@ -8,7 +8,6 @@
 
 #include "data/MediaCenterInterface.h"
 #include "data/ScraperInterface.h"
-#include "ExportDialog.h"
 #include "ImagePreviewDialog.h"
 #include "Manager.h"
 #include "MovieImageDialog.h"
@@ -39,7 +38,6 @@ MainWindow::MainWindow(QWidget *parent) :
     m_tvShowActions.insert(ActionExport, false);
 
     m_aboutDialog = new AboutDialog(ui->centralWidget);
-    m_exportDialog = new ExportDialog(ui->centralWidget);
     m_filterWidget = new FilterWidget(ui->mainToolBar);
     m_settingsWidget = static_cast<SettingsWidget*>(ui->stackedWidget->widget(2));
     setupToolbar();
@@ -213,15 +211,11 @@ void MainWindow::setupToolbar()
     m_actionSearch = new QAction(QIcon(search), tr("Search"), this);
     m_actionSave = new QAction(QIcon(save), tr("Save"), this);
     m_actionSaveAll = new QAction(QIcon(saveAll), tr("Save All"), this);
-    m_actionExport = new QAction(QIcon(exportDb), tr("Export"), this);
-    m_actionExport->setToolTip(tr("Export Movie Database"));
     m_actionAbout = new QAction(QIcon(info), tr("About"), this);
     m_actionQuit = new QAction(QIcon(quit), tr("Quit"), this);
     ui->mainToolBar->addAction(m_actionSearch);
     ui->mainToolBar->addAction(m_actionSave);
     ui->mainToolBar->addAction(m_actionSaveAll);
-    // @todo: currently disabled as the whole exports need rethinking... ;)
-    // ui->mainToolBar->addAction(m_actionExport);
     ui->mainToolBar->addAction(m_actionAbout);
     ui->mainToolBar->addAction(m_actionQuit);
     ui->mainToolBar->addWidget(m_filterWidget);
@@ -229,14 +223,12 @@ void MainWindow::setupToolbar()
     connect(m_actionSearch, SIGNAL(triggered()), this, SLOT(onActionSearch()));
     connect(m_actionSave, SIGNAL(triggered()), this, SLOT(onActionSave()));
     connect(m_actionSaveAll, SIGNAL(triggered()), this, SLOT(onActionSaveAll()));
-    connect(m_actionExport, SIGNAL(triggered()), m_exportDialog, SLOT(exec()));
     connect(m_actionAbout, SIGNAL(triggered()), m_aboutDialog, SLOT(exec()));
     connect(m_actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
 
     m_actionSearch->setEnabled(false);
     m_actionSave->setEnabled(false);
     m_actionSaveAll->setEnabled(false);
-    m_actionExport->setEnabled(false);
 
 #ifdef Q_WS_WIN
     ui->mainToolBar->setStyleSheet("QToolButton {border: 0; padding: 5px;} QToolBar { border-bottom: 1px solid rgba(0, 0, 0, 100); }");
@@ -250,12 +242,6 @@ void MainWindow::setupToolbar()
  */
 void MainWindow::progressStarted(QString msg, int id)
 {
-    if (id == Constants::MovieFileSearcherProgressMessageId)
-        onSetExportEnabled(false, WidgetMovies);
-    else if (id == Constants::TvShowSearcherProgressMessageId)
-        onSetExportEnabled(false, WidgetTvShows);
-    else if (id == Constants::MovieWidgetProgressMessageId)
-        onSetExportEnabled(false, WidgetMovies);
     MessageBox::instance()->showProgressBar(msg, id);
 }
 
@@ -276,14 +262,8 @@ void MainWindow::progressProgress(int current, int max, int id)
  */
 void MainWindow::progressFinished(int id)
 {
-    if (id == Constants::MovieFileSearcherProgressMessageId) {
-        onSetExportEnabled(true, WidgetMovies);
-    } else if (id == Constants::TvShowSearcherProgressMessageId) {
+    if (id == Constants::TvShowSearcherProgressMessageId)
         ui->tvShowFilesWidget->renewModel();
-        onSetExportEnabled(true, WidgetTvShows);
-    } else if (id == Constants::MovieWidgetProgressMessageId) {
-        onSetExportEnabled(true, WidgetMovies);
-    }
     MessageBox::instance()->hideProgressBar(id);
 }
 
@@ -301,7 +281,6 @@ void MainWindow::onMenuMovies()
     m_actionSearch->setEnabled(m_movieActions[ActionSearch]);
     m_actionSave->setEnabled(m_movieActions[ActionSave]);
     m_actionSaveAll->setEnabled(m_movieActions[ActionSave]);
-    m_actionExport->setEnabled(m_movieActions[ActionExport]);
     m_filterWidget->setEnabled(true);
 }
 
@@ -319,7 +298,6 @@ void MainWindow::onMenuMovieSets()
     m_actionSearch->setEnabled(m_movieSetActions[ActionSearch]);
     m_actionSave->setEnabled(m_movieSetActions[ActionSave]);
     m_actionSaveAll->setEnabled(false);
-    m_actionExport->setEnabled(m_movieSetActions[ActionExport]);
     m_filterWidget->setEnabled(true);
     ui->setsWidget->loadSets();
 }
@@ -338,7 +316,6 @@ void MainWindow::onMenuTvShows()
     m_actionSearch->setEnabled(m_tvShowActions[ActionSearch]);
     m_actionSave->setEnabled(m_tvShowActions[ActionSave]);
     m_actionSaveAll->setEnabled(m_tvShowActions[ActionSave]);
-    m_actionExport->setEnabled(m_tvShowActions[ActionExport]);
     m_filterWidget->setEnabled(true);
 }
 
@@ -357,7 +334,6 @@ void MainWindow::onMenuSettings()
     m_actionSearch->setEnabled(false);
     m_actionSave->setEnabled(true);
     m_actionSaveAll->setEnabled(false);
-    m_actionExport->setEnabled(false);
     m_filterWidget->setEnabled(false);
 }
 
@@ -412,23 +388,6 @@ void MainWindow::onFilterChanged(QString text)
         ui->filesWidget->setFilter(text);
     else if (ui->stackedWidget->currentIndex() == 1)
         ui->tvShowFilesWidget->setFilter(text);
-}
-
-/**
- * @brief Sets the status of the export action
- * @param enabled Status
- * @param widget Widget to set the status for
- */
-void MainWindow::onSetExportEnabled(bool enabled, MainWidgets widget)
-{
-    if (widget == WidgetMovies)
-        m_movieActions[ActionExport] = enabled;
-    else if (widget == WidgetTvShows)
-        m_tvShowActions[ActionExport] = enabled;
-
-    if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
-        (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1))
-        m_actionExport->setEnabled(enabled);
 }
 
 /**

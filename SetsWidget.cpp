@@ -10,6 +10,10 @@
 #include "MessageBox.h"
 #include "MovieListDialog.h"
 
+/**
+ * @brief SetsWidget::SetsWidget
+ * @param parent
+ */
 SetsWidget::SetsWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::SetsWidget)
@@ -43,11 +47,18 @@ SetsWidget::SetsWidget(QWidget *parent) :
     clear();
 }
 
+/**
+ * @brief SetsWidget::~SetsWidget
+ */
 SetsWidget::~SetsWidget()
 {
     delete ui;
 }
 
+/**
+ * @brief Returns the splitter
+ * @return The splitter
+ */
 QSplitter *SetsWidget::splitter()
 {
     return ui->splitter;

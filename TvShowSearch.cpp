@@ -3,6 +3,10 @@
 
 #include "Manager.h"
 
+/**
+ * @brief TvShowSearch::TvShowSearch
+ * @param parent
+ */
 TvShowSearch::TvShowSearch(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::TvShowSearch)
@@ -24,11 +28,19 @@ TvShowSearch::TvShowSearch(QWidget *parent) :
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
 }
 
+/**
+ * @brief TvShowSearch::~TvShowSearch
+ */
 TvShowSearch::~TvShowSearch()
 {
     delete ui;
 }
 
+/**
+ * @brief Returns the instance of the dialog
+ * @param parent Parent widget (used only the first time for constructing)
+ * @return Instance of the dialog
+ */
 TvShowSearch* TvShowSearch::instance(QWidget *parent)
 {
     static TvShowSearch *m_instance = 0;
@@ -38,6 +50,11 @@ TvShowSearch* TvShowSearch::instance(QWidget *parent)
     return m_instance;
 }
 
+/**
+ * @brief Adjusts size and executes the dialog
+ * @param searchString String to search for
+ * @return Result of QDialog::exec
+ */
 int TvShowSearch::exec(QString searchString)
 {
     QSize newSize;
@@ -50,12 +67,18 @@ int TvShowSearch::exec(QString searchString)
     return QDialog::exec();
 }
 
+/**
+ * @brief Clears the widgets contents
+ */
 void TvShowSearch::clear()
 {
     ui->results->clearContents();
     ui->results->setRowCount(0);
 }
 
+/**
+ * @brief Tells the current scraper to search
+ */
 void TvShowSearch::onSearch()
 {
     clear();
@@ -63,6 +86,10 @@ void TvShowSearch::onSearch()
     Manager::instance()->tvScrapers().at(0)->search(ui->searchString->text());
 }
 
+/**
+ * @brief Displays the results from the scraper
+ * @param results List of results
+ */
 void TvShowSearch::onShowResults(QList<ScraperSearchResult> results)
 {
     ui->searchString->setLoading(false);
@@ -76,12 +103,20 @@ void TvShowSearch::onShowResults(QList<ScraperSearchResult> results)
     }
 }
 
+/**
+ * @brief Stores the clicked id and accepts the dialog
+ * @param item Item which was clicked
+ */
 void TvShowSearch::onResultClicked(QTableWidgetItem *item)
 {
     m_scraperId = item->data(Qt::UserRole).toString();
     this->accept();
 }
 
+/**
+ * @brief Toggles the visibility of the "Update all episodes" checkbox
+ * @param visible Visibility
+ */
 void TvShowSearch::setChkUpdateAllVisible(bool visible)
 {
     ui->chkUpdateAllEpisodes->setVisible(visible);
@@ -89,11 +124,19 @@ void TvShowSearch::setChkUpdateAllVisible(bool visible)
 
 /*** GETTER ***/
 
+/**
+ * @brief Returns the id of the current scraper
+ * @return Id of the current scraper
+ */
 QString TvShowSearch::scraperId()
 {
     return m_scraperId;
 }
 
+/**
+ * @brief Returns the state of the "Update all episodes" checkbox
+ * @return Is update all episodes checked
+ */
 bool TvShowSearch::updateAll()
 {
     return ui->chkUpdateAllEpisodes->isChecked();

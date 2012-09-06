@@ -42,7 +42,6 @@ SOURCES += main.cpp\
     scrapers/Cinefacts.cpp \
     smallWidgets/FilterWidget.cpp \
     MyTableWidget.cpp \
-    ExportDialog.cpp \
     SettingsWidget.cpp \
     MessageBox.cpp \
     Message.cpp \
@@ -93,7 +92,6 @@ HEADERS  += MainWindow.h \
     scrapers/Cinefacts.h \
     smallWidgets/FilterWidget.h \
     MyTableWidget.h \
-    ExportDialog.h \
     SettingsWidget.h \
     MessageBox.h \
     Message.h \
@@ -128,7 +126,6 @@ FORMS    += MainWindow.ui \
     FilesWidget.ui \
     AboutDialog.ui \
     smallWidgets/FilterWidget.ui \
-    ExportDialog.ui \
     SettingsWidget.ui \
     MessageBox.ui \
     Message.ui \

@@ -9,6 +9,9 @@ namespace Ui {
 class TvShowWidget;
 }
 
+/**
+ * @brief The TvShowWidget class
+ */
 class TvShowWidget : public QWidget
 {
     Q_OBJECT

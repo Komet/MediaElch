@@ -15,6 +15,9 @@ namespace Ui {
 class MovieWidget;
 }
 
+/**
+ * @brief The MovieWidget class
+ */
 class MovieWidget : public QWidget
 {
     Q_OBJECT

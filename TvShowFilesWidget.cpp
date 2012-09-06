@@ -7,6 +7,10 @@
 
 TvShowFilesWidget *TvShowFilesWidget::m_instance;
 
+/**
+ * @brief TvShowFilesWidget::TvShowFilesWidget
+ * @param parent
+ */
 TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::TvShowFilesWidget)
@@ -37,32 +41,45 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)));
 }
 
+/**
+ * @brief TvShowFilesWidget::~TvShowFilesWidget
+ */
 TvShowFilesWidget::~TvShowFilesWidget()
 {
     delete ui;
 }
 
+/**
+ * @brief Returns the current instance of the widget
+ * @return Current instance of TvShowFilesWidget
+ */
 TvShowFilesWidget *TvShowFilesWidget::instance()
 {
     return m_instance;
 }
 
+/**
+ * @brief Sets a filter
+ * @param filter Filter text
+ */
 void TvShowFilesWidget::setFilter(QString filter)
 {
     m_tvShowProxyModel->setFilterWildcard("*" + filter + "*");
 }
 
-void TvShowFilesWidget::startSearch()
-{
-    Manager::instance()->tvShowFileSearcher()->start();
-}
-
+/**
+ * @brief Renews the model (necessary after searching for tv shows)
+ */
 void TvShowFilesWidget::renewModel()
 {
     m_tvShowProxyModel->setSourceModel(0);
     m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
 }
 
+/**
+ * @brief Collapses or expands items
+ * @param index
+ */
 void TvShowFilesWidget::onItemClicked(QModelIndex index)
 {
     QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(index);
@@ -80,6 +97,11 @@ void TvShowFilesWidget::onItemClicked(QModelIndex index)
     }
 }
 
+/**
+ * @brief Emits sigTvShowSelected or sigEpisodeSelected
+ * @param index
+ * @param previous
+ */
 void TvShowFilesWidget::onItemActivated(QModelIndex index, QModelIndex previous)
 {
     Q_UNUSED(previous);

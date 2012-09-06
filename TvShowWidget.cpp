@@ -5,6 +5,10 @@
 #include "Manager.h"
 #include "MessageBox.h"
 
+/**
+ * @brief TvShowWidget::TvShowWidget
+ * @param parent
+ */
 TvShowWidget::TvShowWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::TvShowWidget)
@@ -20,29 +24,46 @@ TvShowWidget::TvShowWidget(QWidget *parent) :
     connect(ui->tvShowWidget, SIGNAL(sigDownloadsFinished(int)), this, SIGNAL(sigDownloadsFinished(int)));
 }
 
+/**
+ * @brief TvShowWidget::~TvShowWidget
+ */
 TvShowWidget::~TvShowWidget()
 {
     delete ui;
 }
 
+/**
+ * @brief Clears the subwidgets
+ */
 void TvShowWidget::onClear()
 {
     ui->episodeWidget->onClear();
     ui->tvShowWidget->onClear();
 }
 
+/**
+ * @brief Shows the tv show widget and sets the show
+ * @param show Current show object
+ */
 void TvShowWidget::onTvShowSelected(TvShow *show)
 {
     ui->stackedWidget->setCurrentIndex(0);
     ui->tvShowWidget->setTvShow(show);
 }
 
+/**
+ * @brief Shows the episode widget and set the episode
+ * @param episode Current episode object
+ */
 void TvShowWidget::onEpisodeSelected(TvShowEpisode *episode)
 {
     ui->stackedWidget->setCurrentIndex(1);
     ui->episodeWidget->setEpisode(episode);
 }
 
+/**
+ * @brief Sets the subwidgets enabled if there are no downloads
+ */
 void TvShowWidget::onSetEnabledTrue(TvShow *show)
 {
     if (show && show->downloadsInProgress())
@@ -54,6 +75,9 @@ void TvShowWidget::onSetEnabledTrue(TvShow *show)
     emit sigSetActionSearchEnabled(true, WidgetTvShows);
 }
 
+/**
+ * @brief Sets the subwidgets enabled if there are no downloads
+ */
 void TvShowWidget::onSetEnabledTrue(TvShowEpisode *episode)
 {
     if (episode && episode->tvShow() && episode->tvShow()->downloadsInProgress())
@@ -65,6 +89,9 @@ void TvShowWidget::onSetEnabledTrue(TvShowEpisode *episode)
     emit sigSetActionSearchEnabled(true, WidgetTvShows);
 }
 
+/**
+ * @brief Sets the subwidgets disabled
+ */
 void TvShowWidget::onSetDisabledTrue()
 {
     ui->episodeWidget->onSetEnabled(false);
@@ -73,6 +100,9 @@ void TvShowWidget::onSetDisabledTrue()
     emit sigSetActionSearchEnabled(false, WidgetTvShows);
 }
 
+/**
+ * @brief Delegates the save event to the current subwidget
+ */
 void TvShowWidget::onSaveInformation()
 {
     if (ui->stackedWidget->currentIndex() == 0)
@@ -81,6 +111,9 @@ void TvShowWidget::onSaveInformation()
         ui->episodeWidget->onSaveInformation();
 }
 
+/**
+ * @brief Saves all changed tv shows and episodes
+ */
 void TvShowWidget::onSaveAll()
 {
     QList<TvShow*> shows = Manager::instance()->tvShowModel()->tvShows();
@@ -116,6 +149,9 @@ void TvShowWidget::onSaveAll()
     MessageBox::instance()->showMessage(tr("All TV Shows and Episodes Saved"));
 }
 
+/**
+ * @brief Delegates the search to the current subwidget
+ */
 void TvShowWidget::onStartScraperSearch()
 {
     if (ui->stackedWidget->currentIndex() == 0)

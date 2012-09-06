@@ -9,6 +9,9 @@ namespace Ui {
 class TvShowSearch;
 }
 
+/**
+ * @brief The TvShowSearch class
+ */
 class TvShowSearch : public QDialog
 {
     Q_OBJECT

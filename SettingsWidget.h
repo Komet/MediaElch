@@ -10,6 +10,9 @@ namespace Ui {
 class SettingsWidget;
 }
 
+/**
+ * @brief The SettingsWidget class
+ */
 class SettingsWidget : public QWidget
 {
     Q_OBJECT
@@ -26,7 +29,6 @@ public:
     QByteArray movieSetsSplitterState();
     QList<SettingsDir> movieDirectories();
     QList<SettingsDir> tvShowDirectories();
-    bool firstTime();
     int mediaCenterInterface();
     QString xbmcMysqlHost();
     QString xbmcMysqlDatabase();
@@ -69,7 +71,6 @@ private:
     QByteArray m_movieSplitterState;
     QByteArray m_tvShowSplitterState;
     QByteArray m_movieSetsSplitterState;
-    bool m_firstTime;
     int m_mediaCenterInterface;
     QString m_xbmcMysqlHost;
     QString m_xbmcMysqlDatabase;

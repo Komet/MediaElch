@@ -5,7 +5,6 @@
 #include <QMainWindow>
 #include <QProgressBar>
 #include "AboutDialog.h"
-#include "ExportDialog.h"
 #include "Globals.h"
 #include "data/MovieFileSearcher.h"
 #include "smallWidgets/FilterWidget.h"
@@ -41,7 +40,6 @@ private slots:
     void onActionSave();
     void onActionSaveAll();
     void onFilterChanged(QString text);
-    void onSetExportEnabled(bool enabled, MainWidgets widget);
     void onSetSaveEnabled(bool enabled, MainWidgets widget);
     void onSetSearchEnabled(bool enabled, MainWidgets widget);
     void onMovieSplitterMoved();
@@ -52,10 +50,8 @@ private:
     Ui::MainWindow *ui;
     SettingsWidget *m_settingsWidget;
     AboutDialog *m_aboutDialog;
-    ExportDialog *m_exportDialog;
     QAction *m_actionSearch;
     QAction *m_actionSave;
-    QAction *m_actionExport;
     QAction *m_actionAbout;
     QAction *m_actionQuit;
     QAction *m_actionSaveAll;

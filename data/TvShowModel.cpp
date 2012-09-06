@@ -26,10 +26,12 @@ TvShowModel::~TvShowModel()
 
 /**
  * @brief TvShowModel::columnCount
+ * @param parent
  * @return Column count
  */
-int TvShowModel::columnCount(const QModelIndex & /* parent */) const
+int TvShowModel::columnCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent)
     return m_rootItem->columnCount();
 }
 

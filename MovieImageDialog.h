@@ -55,6 +55,9 @@ private slots:
 private:
     Ui::MovieImageDialog *ui;
 
+    /**
+     * @brief The DownloadElement struct
+     */
     struct DownloadElement {
         QUrl thumbUrl;
         QUrl originalUrl;

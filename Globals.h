@@ -52,6 +52,9 @@ enum MainWidgets {
     WidgetMovies, WidgetMovieSets, WidgetTvShows
 };
 
+/**
+ * @brief The Actor struct
+ */
 struct Actor {
     QString name;
     QString role;
@@ -63,12 +66,18 @@ Q_DECLARE_METATYPE(Actor*);
 Q_DECLARE_METATYPE(Movie*);
 Q_DECLARE_METATYPE(QString*);
 
+/**
+ * @brief The ScraperSearchResult struct
+ */
 struct ScraperSearchResult {
     QString id;
     QString name;
     QDate released;
 };
 
+/**
+ * @brief The Poster struct
+ */
 struct Poster {
     QString id;
     QUrl originalUrl;
@@ -84,6 +93,9 @@ enum TvShowType {
     TypeTvShow, TypeEpisode, TypeSeason
 };
 
+/**
+ * @brief The SettingsDir struct
+ */
 struct SettingsDir {
     QString path;
     QString mediaCenterPath;

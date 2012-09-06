@@ -10,6 +10,10 @@
 #include "TvShowSearch.h"
 #include "MovieImageDialog.h"
 
+/**
+ * @brief TvShowWidgetTvShow::TvShowWidgetTvShow
+ * @param parent
+ */
 TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::TvShowWidgetTvShow)
@@ -101,17 +105,27 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->buttonRevert->setVisible(false);
 }
 
+/**
+ * @brief TvShowWidgetTvShow::~TvShowWidgetTvShow
+ */
 TvShowWidgetTvShow::~TvShowWidgetTvShow()
 {
     delete ui;
 }
 
+/**
+ * @brief Repositions the saving widget
+ * @param event
+ */
 void TvShowWidgetTvShow::resizeEvent(QResizeEvent *event)
 {
     m_savingWidget->move(size().width()/2-m_savingWidget->width(), height()/2-m_savingWidget->height());
     QWidget::resizeEvent(event);
 }
 
+/**
+ * @brief Clears all contents of the widget
+ */
 void TvShowWidgetTvShow::onClear()
 {
     ui->showTitle->clear();
@@ -144,11 +158,19 @@ void TvShowWidgetTvShow::onClear()
     ui->buttonRevert->setVisible(false);
 }
 
+/**
+ * @brief Toggles the enabled state of the main groupbox
+ * @param enabled Status
+ */
 void TvShowWidgetTvShow::onSetEnabled(bool enabled)
 {
     ui->groupBox_3->setEnabled(enabled);
 }
 
+/**
+ * @brief Sets the current show and updates widgets contents
+ * @param show Show object
+ */
 void TvShowWidgetTvShow::setTvShow(TvShow *show)
 {
     m_show = show;
@@ -166,6 +188,9 @@ void TvShowWidgetTvShow::setTvShow(TvShow *show)
 
 }
 
+/**
+ * @brief Updates the widgets contents
+ */
 void TvShowWidgetTvShow::updateTvShowInfo()
 {
     if (m_show == 0)
@@ -282,6 +307,9 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->buttonRevert->setVisible(m_show->hasChanged());
 }
 
+/**
+ * @brief Saves the current show
+ */
 void TvShowWidgetTvShow::onSaveInformation()
 {
     if (m_show == 0)
@@ -296,6 +324,9 @@ void TvShowWidgetTvShow::onSaveInformation()
     MessageBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_show->name()));
 }
 
+/**
+ * @brief Reverts changes made to the current show
+ */
 void TvShowWidgetTvShow::onRevertChanges()
 {
     m_show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
@@ -303,6 +334,9 @@ void TvShowWidgetTvShow::onRevertChanges()
     updateTvShowInfo();
 }
 
+/**
+ * @brief Shows the search widget
+ */
 void TvShowWidgetTvShow::onStartScraperSearch()
 {
     if (m_show == 0)
@@ -321,6 +355,11 @@ void TvShowWidgetTvShow::onStartScraperSearch()
     }
 }
 
+/**
+ * @brief Called when the search widget finishes
+ * Updates infos and starts downloads
+ * @param show Tv Show
+ */
 void TvShowWidgetTvShow::onLoadDone(TvShow *show)
 {
     if (m_show == 0)
@@ -427,6 +466,9 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Shows the MovieImageDialog and after successful execution starts poster download
+ */
 void TvShowWidgetTvShow::onChoosePoster()
 {
     if (m_show == 0)
@@ -451,6 +493,9 @@ void TvShowWidgetTvShow::onChoosePoster()
     }
 }
 
+/**
+ * @brief Shows the MovieImageDialog and after successful execution starts season poster download
+ */
 void TvShowWidgetTvShow::onChooseSeasonPoster(int season)
 {
     if (m_show == 0)
@@ -476,6 +521,9 @@ void TvShowWidgetTvShow::onChooseSeasonPoster(int season)
     }
 }
 
+/**
+ * @brief Shows the MovieImageDialog and after successful execution starts backdrop download
+ */
 void TvShowWidgetTvShow::onChooseBackdrop()
 {
     if (m_show == 0)
@@ -500,6 +548,9 @@ void TvShowWidgetTvShow::onChooseBackdrop()
     }
 }
 
+/**
+ * @brief Shows the MovieImageDialog and after successful execution starts banner download
+ */
 void TvShowWidgetTvShow::onChooseBanner()
 {
     if (m_show == 0)
@@ -524,6 +575,10 @@ void TvShowWidgetTvShow::onChooseBanner()
     }
 }
 
+/**
+ * @brief Adjusts the size of the backdrop to common values (1080p or 720p) and shows the image
+ * @param elem Downloaded element
+ */
 void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
 {
     if (elem.imageType == TypePoster) {
@@ -570,6 +625,10 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
         emit sigSetActionSaveEnabled(true, WidgetTvShows);
 }
 
+/**
+ * @brief Toggles the state of save and search buttons when downloads have finished
+ * @param show Show for the download has finished
+ */
 void TvShowWidgetTvShow::onDownloadsFinished(TvShow *show)
 {
     emit sigDownloadsFinished(Constants::TvShowProgressMessageId+show->showId());
@@ -581,6 +640,11 @@ void TvShowWidgetTvShow::onDownloadsFinished(TvShow *show)
     show->setDownloadsInProgress(false);
 }
 
+/**
+ * @brief Emits the progress signal
+ * @param left Number of downloads left
+ * @param elem Current downloaded element
+ */
 void TvShowWidgetTvShow::onDownloadsLeft(int left, DownloadManagerElement elem)
 {
     emit sigDownloadsProgress(elem.show->actors().size()+elem.show->episodes().size()-left, elem.show->actors().size()+elem.show->episodes().size(),
@@ -589,6 +653,10 @@ void TvShowWidgetTvShow::onDownloadsLeft(int left, DownloadManagerElement elem)
 
 /*** add/remove/edit Actors, Genres, Countries and Studios ***/
 
+/**
+ * @brief Stores changed values for genres
+ * @param item Edited item
+ */
 void TvShowWidgetTvShow::onGenreEdited(QTableWidgetItem *item)
 {
     QString *genre = ui->genres->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
@@ -598,6 +666,9 @@ void TvShowWidgetTvShow::onGenreEdited(QTableWidgetItem *item)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Adds a genre
+ */
 void TvShowWidgetTvShow::onAddGenre()
 {
     QString g = tr("Unknown Genre");
@@ -614,6 +685,9 @@ void TvShowWidgetTvShow::onAddGenre()
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Removes a genre
+ */
 void TvShowWidgetTvShow::onRemoveGenre()
 {
     int row = ui->genres->currentRow();
@@ -628,6 +702,10 @@ void TvShowWidgetTvShow::onRemoveGenre()
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Stores changed values for actors
+ * @param item Edited item
+ */
 void TvShowWidgetTvShow::onActorEdited(QTableWidgetItem *item)
 {
     Actor *actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor*>();
@@ -639,6 +717,9 @@ void TvShowWidgetTvShow::onActorEdited(QTableWidgetItem *item)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Adds an actor
+ */
 void TvShowWidgetTvShow::onAddActor()
 {
     Actor a;
@@ -659,6 +740,9 @@ void TvShowWidgetTvShow::onAddActor()
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Removes an actor
+ */
 void TvShowWidgetTvShow::onRemoveActor()
 {
     int row = ui->actors->currentRow();
@@ -673,24 +757,36 @@ void TvShowWidgetTvShow::onRemoveActor()
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Shows the full size backdrop image
+ */
 void TvShowWidgetTvShow::onPreviewBackdrop()
 {
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentBackdrop));
     ImagePreviewDialog::instance()->exec();
 }
 
+/**
+ * @brief Shows the full size poster image
+ */
 void TvShowWidgetTvShow::onPreviewPoster()
 {
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentPoster));
     ImagePreviewDialog::instance()->exec();
 }
 
+/**
+ * @brief Shows the full size banner image
+ */
 void TvShowWidgetTvShow::onPreviewBanner()
 {
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentBanner));
     ImagePreviewDialog::instance()->exec();
 }
 
+/**
+ * @brief Shows the image of the selected actor
+ */
 void TvShowWidgetTvShow::onActorChanged()
 {
     if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount() ||
@@ -711,6 +807,9 @@ void TvShowWidgetTvShow::onActorChanged()
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Stores the changed actor image
+ */
 void TvShowWidgetTvShow::onChangeActorImage()
 {
     if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount() ||
@@ -734,36 +833,54 @@ void TvShowWidgetTvShow::onChangeActorImage()
 
 /*** Pass GUI events to tv show object ***/
 
+/**
+ * @brief Marks the show as changed when the name has changed
+ */
 void TvShowWidgetTvShow::onNameChange(QString text)
 {
     m_show->setName(text);
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Marks the show as changed when the certification has changed
+ */
 void TvShowWidgetTvShow::onCertificationChange(QString text)
 {
     m_show->setCertification(text);
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Marks the show as changed when the rating has changed
+ */
 void TvShowWidgetTvShow::onRatingChange(double value)
 {
     m_show->setRating(value);
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Marks the show as changed when the first aired date has changed
+ */
 void TvShowWidgetTvShow::onFirstAiredChange(QDate date)
 {
     m_show->setFirstAired(date);
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Marks the show as changed when the studio has changed
+ */
 void TvShowWidgetTvShow::onStudioChange(QString studio)
 {
     m_show->setNetwork(studio);
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Marks the show as changed when the overview has changed
+ */
 void TvShowWidgetTvShow::onOverviewChange()
 {
     m_show->setOverview(ui->overview->toPlainText());

@@ -12,8 +12,11 @@
 #include "MessageBox.h"
 #include "MovieImageDialog.h"
 #include "MovieSearch.h"
-#include "QuestionDialog.h"
 
+/**
+ * @brief MovieWidget::MovieWidget
+ * @param parent
+ */
 MovieWidget::MovieWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MovieWidget)
@@ -111,17 +114,27 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->buttonRevert->setVisible(false);
 }
 
+/**
+ * @brief MovieWidget::~MovieWidget
+ */
 MovieWidget::~MovieWidget()
 {
     delete ui;
 }
 
+/**
+ * @brief Repositions the saving widget
+ * @param event
+ */
 void MovieWidget::resizeEvent(QResizeEvent *event)
 {
     m_savingWidget->move(size().width()/2-m_savingWidget->width(), height()/2-m_savingWidget->height());
     QWidget::resizeEvent(event);
 }
 
+/**
+ * @brief Clears all contents of the widget
+ */
 void MovieWidget::clear()
 {
     ui->set->clear();
@@ -152,11 +165,19 @@ void MovieWidget::clear()
     ui->buttonRevert->setVisible(false);
 }
 
+/**
+ * @brief Updates the title text
+ * @param text New text
+ */
 void MovieWidget::movieNameChanged(QString text)
 {
     ui->movieName->setText(text);
 }
 
+/**
+ * @brief Sets the state of the main groupbox to enabled
+ * @param movie Current movie
+ */
 void MovieWidget::setEnabledTrue(Movie *movie)
 {
     if (movie && movie->downloadsInProgress())
@@ -166,6 +187,9 @@ void MovieWidget::setEnabledTrue(Movie *movie)
     emit setActionSearchEnabled(true, WidgetMovies);
 }
 
+/**
+ * @brief Sets the state of the main groupbox to disabled
+ */
 void MovieWidget::setDisabledTrue()
 {
     ui->groupBox_3->setDisabled(true);
@@ -173,6 +197,10 @@ void MovieWidget::setDisabledTrue()
     emit setActionSearchEnabled(false, WidgetMovies);
 }
 
+/**
+ * @brief Sets the current movie, tells the movie to load data and images and updates widgets contents
+ * @param movie Current movie
+ */
 void MovieWidget::setMovie(Movie *movie)
 {
     movie->loadData(Manager::instance()->mediaCenterInterface());
@@ -185,6 +213,9 @@ void MovieWidget::setMovie(Movie *movie)
         setEnabledTrue();
 }
 
+/**
+ * @brief Shows the search widget
+ */
 void MovieWidget::startScraperSearch()
 {
     if (m_movie == 0)
@@ -203,6 +234,11 @@ void MovieWidget::startScraperSearch()
     }
 }
 
+/**
+ * @brief Called when the search widget finishes
+ * Updates infos and starts downloads
+ * @param movie Movie
+ */
 void MovieWidget::loadDone(Movie *movie)
 {
     if (m_movie == 0)
@@ -266,6 +302,9 @@ void MovieWidget::loadDone(Movie *movie)
     connect(m_posterDownloadManager, SIGNAL(allDownloadsFinished(Movie*)), this, SLOT(downloadActorsFinished(Movie*)), Qt::UniqueConnection);
 }
 
+/**
+ * @brief Updates the contents of the widget with the current movie infos
+ */
 void MovieWidget::updateMovieInfo()
 {
     if (m_movie == 0)
@@ -401,6 +440,9 @@ void MovieWidget::updateMovieInfo()
     ui->buttonRevert->setVisible(m_movie->hasChanged());
 }
 
+/**
+ * @brief Shows the MovieImageDialog and after successful execution starts poster download
+ */
 void MovieWidget::chooseMoviePoster()
 {
     if (m_movie == 0)
@@ -425,6 +467,9 @@ void MovieWidget::chooseMoviePoster()
     }
 }
 
+/**
+ * @brief Shows the MovieImageDialog and after successful execution starts backdrop download
+ */
 void MovieWidget::chooseMovieBackdrop()
 {
     if (m_movie == 0)
@@ -449,6 +494,10 @@ void MovieWidget::chooseMovieBackdrop()
     }
 }
 
+/**
+ * @brief Adjusts the size of the backdrop to common values (1080p or 720p) and shows the image
+ * @param elem Downloaded element
+ */
 void MovieWidget::posterDownloadFinished(DownloadManagerElement elem)
 {
     if (elem.imageType == TypePoster) {
@@ -483,6 +532,9 @@ void MovieWidget::posterDownloadFinished(DownloadManagerElement elem)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Saves movie information
+ */
 void MovieWidget::saveInformation()
 {
     setDisabledTrue();
@@ -494,6 +546,9 @@ void MovieWidget::saveInformation()
     ui->buttonRevert->setVisible(false);
 }
 
+/**
+ * @brief Saves all changed movies
+ */
 void MovieWidget::saveAll()
 {
     setDisabledTrue();
@@ -509,6 +564,9 @@ void MovieWidget::saveAll()
     ui->buttonRevert->setVisible(false);
 }
 
+/**
+ * @brief Revert changes for current movie
+ */
 void MovieWidget::onRevertChanges()
 {
     m_movie->loadData(Manager::instance()->mediaCenterInterface(), true);
@@ -516,6 +574,10 @@ void MovieWidget::onRevertChanges()
     updateMovieInfo();
 }
 
+/**
+ * @brief Toggles enabled state of the widget
+ * @param movie
+ */
 void MovieWidget::downloadActorsFinished(Movie *movie)
 {
     emit actorDownloadFinished(Constants::MovieProgressMessageId+movie->movieId());
@@ -524,6 +586,11 @@ void MovieWidget::downloadActorsFinished(Movie *movie)
     movie->setDownloadsInProgress(false);
 }
 
+/**
+ * @brief Emits the progress signal
+ * @param left Number of downloads left
+ * @param elem Current downloaded element
+ */
 void MovieWidget::actorDownloadsLeft(int left, DownloadManagerElement elem)
 {
     emit actorDownloadProgress(elem.movie->downloadsSize()-left, elem.movie->downloadsSize(), Constants::MovieProgressMessageId+elem.movie->movieId());
@@ -531,6 +598,9 @@ void MovieWidget::actorDownloadsLeft(int left, DownloadManagerElement elem)
 
 /*** add/remove/edit Actors, Genres, Countries and Studios ***/
 
+/**
+ * @brief Adds an actor
+ */
 void MovieWidget::addActor()
 {
     Actor a;
@@ -551,6 +621,9 @@ void MovieWidget::addActor()
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Removes an actor
+ */
 void MovieWidget::removeActor()
 {
     int row = ui->actors->currentRow();
@@ -565,6 +638,10 @@ void MovieWidget::removeActor()
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Stores changed values for an actor
+ * @param item Edited item
+ */
 void MovieWidget::onActorEdited(QTableWidgetItem *item)
 {
     Actor *actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor*>();
@@ -576,6 +653,9 @@ void MovieWidget::onActorEdited(QTableWidgetItem *item)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Adds a genre
+ */
 void MovieWidget::addGenre()
 {
     QString g = tr("Unknown Genre");
@@ -592,6 +672,9 @@ void MovieWidget::addGenre()
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Removes a genre
+ */
 void MovieWidget::removeGenre()
 {
     int row = ui->genres->currentRow();
@@ -606,6 +689,10 @@ void MovieWidget::removeGenre()
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Stores changed values for a genre
+ * @param item Edited item
+ */
 void MovieWidget::onGenreEdited(QTableWidgetItem *item)
 {
     QString *genre = ui->genres->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
@@ -615,6 +702,9 @@ void MovieWidget::onGenreEdited(QTableWidgetItem *item)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Adds a studio
+ */
 void MovieWidget::addStudio()
 {
     QString s = tr("Unknown Studio");
@@ -631,6 +721,9 @@ void MovieWidget::addStudio()
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Removes a studio
+ */
 void MovieWidget::removeStudio()
 {
     int row = ui->studios->currentRow();
@@ -645,6 +738,10 @@ void MovieWidget::removeStudio()
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Stores changed values for a studio
+ * @param item Edited item
+ */
 void MovieWidget::onStudioEdited(QTableWidgetItem *item)
 {
     QString *studio = ui->studios->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
@@ -654,6 +751,9 @@ void MovieWidget::onStudioEdited(QTableWidgetItem *item)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Adds a country
+ */
 void MovieWidget::addCountry()
 {
     QString c = tr("Unknown Country");
@@ -670,6 +770,9 @@ void MovieWidget::addCountry()
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Removes a country
+ */
 void MovieWidget::removeCountry()
 {
     int row = ui->countries->currentRow();
@@ -684,6 +787,10 @@ void MovieWidget::removeCountry()
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Stores changed values for a country
+ * @param item Edited item
+ */
 void MovieWidget::onCountryEdited(QTableWidgetItem *item)
 {
     QString *country = ui->countries->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
@@ -693,18 +800,27 @@ void MovieWidget::onCountryEdited(QTableWidgetItem *item)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Shows a full size image of the backdrop
+ */
 void MovieWidget::onPreviewBackdrop()
 {
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentBackdrop));
     ImagePreviewDialog::instance()->exec();
 }
 
+/**
+ * @brief Shows a full size image of the poster
+ */
 void MovieWidget::onPreviewPoster()
 {
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentPoster));
     ImagePreviewDialog::instance()->exec();
 }
 
+/**
+ * @brief Shows the image of the selected actor
+ */
 void MovieWidget::onActorChanged()
 {
     if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount() ||
@@ -725,6 +841,9 @@ void MovieWidget::onActorChanged()
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Stores the changed actor image
+ */
 void MovieWidget::onChangeActorImage()
 {
     if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount() ||
@@ -748,6 +867,9 @@ void MovieWidget::onChangeActorImage()
 
 /*** Pass GUI events to movie object ***/
 
+/**
+ * @brief Marks the movie as changed when the name has changed
+ */
 void MovieWidget::onNameChange(QString text)
 {
     if (!m_movie)
@@ -756,6 +878,9 @@ void MovieWidget::onNameChange(QString text)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Marks the movie as changed when the original name has changed
+ */
 void MovieWidget::onOriginalNameChange(QString text)
 {
     if (!m_movie)
@@ -764,6 +889,9 @@ void MovieWidget::onOriginalNameChange(QString text)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Marks the movie as changed when the set has changed
+ */
 void MovieWidget::onSetChange(QString text)
 {
     if (!m_movie)
@@ -772,6 +900,9 @@ void MovieWidget::onSetChange(QString text)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Marks the movie as changed when the tagline has changed
+ */
 void MovieWidget::onTaglineChange(QString text)
 {
     if (!m_movie)
@@ -780,6 +911,9 @@ void MovieWidget::onTaglineChange(QString text)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Marks the movie as changed when the rating has changed
+ */
 void MovieWidget::onRatingChange(double value)
 {
     if (!m_movie)
@@ -788,6 +922,9 @@ void MovieWidget::onRatingChange(double value)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Marks the movie as changed when the release date has changed
+ */
 void MovieWidget::onReleasedChange(QDate date)
 {
     if (!m_movie)
@@ -796,6 +933,9 @@ void MovieWidget::onReleasedChange(QDate date)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Marks the movie as changed when the runtime has changed
+ */
 void MovieWidget::onRuntimeChange(int value)
 {
     if (!m_movie)
@@ -804,6 +944,9 @@ void MovieWidget::onRuntimeChange(int value)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Marks the movie as changed when the certification has changed
+ */
 void MovieWidget::onCertificationChange(QString text)
 {
     if (!m_movie)
@@ -812,6 +955,9 @@ void MovieWidget::onCertificationChange(QString text)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Marks the movie as changed when the trailer has changed
+ */
 void MovieWidget::onTrailerChange(QString text)
 {
     if (!m_movie)
@@ -820,6 +966,9 @@ void MovieWidget::onTrailerChange(QString text)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Marks the movie as changed when the watched state has changed
+ */
 void MovieWidget::onWatchedChange(int state)
 {
     if (!m_movie)
@@ -828,6 +977,9 @@ void MovieWidget::onWatchedChange(int state)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Marks the movie as changed when the play count has changed
+ */
 void MovieWidget::onPlayCountChange(int value)
 {
     if (!m_movie)
@@ -836,6 +988,9 @@ void MovieWidget::onPlayCountChange(int value)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Marks the movie as changed when the last watched date has changed
+ */
 void MovieWidget::onLastWatchedChange(QDateTime dateTime)
 {
     if (!m_movie)
@@ -844,6 +999,9 @@ void MovieWidget::onLastWatchedChange(QDateTime dateTime)
     ui->buttonRevert->setVisible(true);
 }
 
+/**
+ * @brief Marks the movie as changed when the overview has changed
+ */
 void MovieWidget::onOverviewChange()
 {
     if (!m_movie)

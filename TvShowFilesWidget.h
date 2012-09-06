@@ -13,6 +13,9 @@ namespace Ui {
 class TvShowFilesWidget;
 }
 
+/**
+ * @brief The TvShowFilesWidget class
+ */
 class TvShowFilesWidget : public QWidget
 {
     Q_OBJECT
@@ -23,9 +26,6 @@ public:
     void renewModel();
     void setFilter(QString filter);
     static TvShowFilesWidget *instance();
-
-public slots:
-    void startSearch();
 
 signals:
     void sigEpisodeSelected(TvShowEpisode *episode);
