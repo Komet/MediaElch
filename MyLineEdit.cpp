@@ -6,6 +6,10 @@
 #include <QStyle>
 #include <QToolButton>
 
+/**
+ * @brief MyLineEdit::MyLineEdit
+ * @param parent
+ */
 MyLineEdit::MyLineEdit(QWidget *parent) :
     QLineEdit(parent)
 {
@@ -14,6 +18,9 @@ MyLineEdit::MyLineEdit(QWidget *parent) :
     connect(this, SIGNAL(textChanged(QString)), this, SLOT(myTextChanged(QString)));
 }
 
+/**
+ * @brief Moves the icons to their positions
+ */
 void MyLineEdit::resizeEvent(QResizeEvent *)
 {
     if (m_type == TypeLoading) {
@@ -32,6 +39,10 @@ void MyLineEdit::resizeEvent(QResizeEvent *)
     }
 }
 
+/**
+ * @brief Shows/hides the loading movie and disabled/enables the line edit
+ * @param loading Is loading
+ */
 void MyLineEdit::setLoading(bool loading)
 {
     if (m_type != TypeLoading)
@@ -40,6 +51,10 @@ void MyLineEdit::setLoading(bool loading)
     QLineEdit::setDisabled(loading);
 }
 
+/**
+ * @brief Sets the type of the line edit
+ * @param type Type of the line edit
+ */
 void MyLineEdit::setType(LineEditType type)
 {
     m_type = type;
@@ -73,11 +88,19 @@ void MyLineEdit::setType(LineEditType type)
     }
 }
 
+/**
+ * @brief Returns the type of the line edit
+ * @return Type of the line edit
+ */
 MyLineEdit::LineEditType MyLineEdit::type()
 {
     return m_type;
 }
 
+/**
+ * @brief Shows/hides the clear button
+ * @param text Current text
+ */
 void MyLineEdit::myTextChanged(QString text)
 {
     if (m_type != TypeClear)
@@ -86,16 +109,27 @@ void MyLineEdit::myTextChanged(QString text)
     m_clearButton->setVisible(!text.isEmpty());
 }
 
+/**
+ * @brief Clears the text
+ */
 void MyLineEdit::myClear()
 {
     setText("");
 }
 
+/**
+ * @brief Sets and additional style sheet
+ * @param style Stylesheet
+ */
 void MyLineEdit::setAdditionalStyleSheet(QString style)
 {
     m_initialStyleSheet = style;
 }
 
+/**
+ * @brief Show/hide the magnifier
+ * @param show
+ */
 void MyLineEdit::setShowMagnifier(bool show)
 {
     m_showMagnifier = show;

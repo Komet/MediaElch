@@ -37,12 +37,9 @@ SOURCES += main.cpp\
     data/MovieModel.cpp \
     data/MovieProxyModel.cpp \
     AboutDialog.cpp \
-    MyTableView.cpp \
-    MyGroupBox.cpp \
     scrapers/VideoBuster.cpp \
     scrapers/OFDb.cpp \
     scrapers/Cinefacts.cpp \
-    QuestionDialog.cpp \
     smallWidgets/FilterWidget.cpp \
     MyTableWidget.cpp \
     ExportDialog.cpp \
@@ -91,12 +88,9 @@ HEADERS  += MainWindow.h \
     data/MovieModel.h \
     data/MovieProxyModel.h \
     AboutDialog.h \
-    MyTableView.h \
-    MyGroupBox.h \
     scrapers/VideoBuster.h \
     scrapers/OFDb.h \
     scrapers/Cinefacts.h \
-    QuestionDialog.h \
     smallWidgets/FilterWidget.h \
     MyTableWidget.h \
     ExportDialog.h \
@@ -133,7 +127,6 @@ FORMS    += MainWindow.ui \
     MovieImageDialog.ui \
     FilesWidget.ui \
     AboutDialog.ui \
-    QuestionDialog.ui \
     smallWidgets/FilterWidget.ui \
     ExportDialog.ui \
     SettingsWidget.ui \

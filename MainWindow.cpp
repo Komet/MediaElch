@@ -14,7 +14,6 @@
 #include "MovieImageDialog.h"
 #include "MovieListDialog.h"
 #include "MovieSearch.h"
-#include "QuestionDialog.h"
 #include "SettingsWidget.h"
 #include "TvShowSearch.h"
 #include "MessageBox.h"
@@ -130,7 +129,6 @@ MainWindow::MainWindow(QWidget *parent) :
     TvShowSearch::instance(ui->centralWidget);
     MovieImageDialog::instance(ui->centralWidget);
     MovieListDialog::instance(ui->centralWidget);
-    QuestionDialog::instance(ui->centralWidget);
     ImagePreviewDialog::instance(ui->centralWidget);
 
     // start TV Show File Searcher after Movie File Searcher has finished

@@ -9,7 +9,10 @@
 #include "scrapers/TMDb.h"
 #include "scrapers/VideoBuster.h"
 
-
+/**
+ * @brief Manager::Manager
+ * @param parent
+ */
 Manager::Manager(QObject *parent) :
     QObject(parent)
 {
@@ -33,10 +36,17 @@ Manager::Manager(QObject *parent) :
     m_mediaCentersTvShow.append(new XbmcSql(this, "xbmcTvShow"));
 }
 
+/**
+ * @brief Manager::~Manager
+ */
 Manager::~Manager()
 {
 }
 
+/**
+ * @brief Returns an instance of the Manager
+ * @return Instance of Manager
+ */
 Manager* Manager::instance()
 {
     static Manager *m_instance = 0;
@@ -46,6 +56,9 @@ Manager* Manager::instance()
     return m_instance;
 }
 
+/**
+ * @brief Sets up the MediaCenterInterfaces based on the settings
+ */
 void Manager::setupMediaCenterInterface()
 {
     if (SettingsWidget::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcMysql) {
@@ -64,12 +77,19 @@ void Manager::setupMediaCenterInterface()
     }
 }
 
+/**
+ * @brief Calls the shutdown function in every MediaCenterInterface
+ */
 void Manager::shutdownMediaCenterInterfaces()
 {
     for (int i=0, n=m_mediaCenters.count() ; i<n ; ++i)
         m_mediaCenters.at(i)->shutdown();
 }
 
+/**
+ * @brief Returns the active MediaCenterInterface
+ * @return Instance of a MediaCenterInterface
+ */
 MediaCenterInterface *Manager::mediaCenterInterface()
 {
     if (SettingsWidget::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcXml)
@@ -94,36 +114,64 @@ MediaCenterInterface *Manager::mediaCenterInterfaceTvShow()
     return m_mediaCentersTvShow.at(0);
 }
 
+/**
+ * @brief Returns an instance of the movie file searcher
+ * @return Instance of movie searcher
+ */
 MovieFileSearcher *Manager::movieFileSearcher()
 {
     return m_movieFileSearcher;
 }
 
+/**
+ * @brief Returns an instance of the tv show file searcher
+ * @return Instance of tv show file searcher
+ */
 TvShowFileSearcher *Manager::tvShowFileSearcher()
 {
     return m_tvShowFileSearcher;
 }
 
+/**
+ * @brief Returns a list of all movie scrapers
+ * @return List of pointers of movie scrapers
+ */
 QList<ScraperInterface*> Manager::scrapers()
 {
     return m_scrapers;
 }
 
+/**
+ * @brief Returns a list of all tv scrapers
+ * @return List of pointers of tv scrapers
+ */
 QList<TvScraperInterface*> Manager::tvScrapers()
 {
     return m_tvScrapers;
 }
 
+/**
+ * @brief Returns an instance of the MovieModel
+ * @return Instance of the MovieModel
+ */
 MovieModel *Manager::movieModel()
 {
     return m_movieModel;
 }
 
+/**
+ * @brief Returns an instance of the TvShowModel
+ * @return Instance of the TvShowModel
+ */
 TvShowModel *Manager::tvShowModel()
 {
     return m_tvShowModel;
 }
 
+/**
+ * @brief Returns an instance of the TvShowProxyModel
+ * @return Instance of the TvShowProxyModel
+ */
 TvShowProxyModel *Manager::tvShowProxyModel()
 {
     return m_tvShowProxyModel;

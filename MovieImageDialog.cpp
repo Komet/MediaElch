@@ -11,6 +11,10 @@
 #include <QSize>
 #include <QTimer>
 
+/**
+ * @brief MovieImageDialog::MovieImageDialog
+ * @param parent
+ */
 MovieImageDialog::MovieImageDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MovieImageDialog)
@@ -60,11 +64,19 @@ MovieImageDialog::MovieImageDialog(QWidget *parent) :
     m_noElementsLabel->hide();
 }
 
+/**
+ * @brief MovieImageDialog::~MovieImageDialog
+ */
 MovieImageDialog::~MovieImageDialog()
 {
     delete ui;
 }
 
+/**
+ * @brief Executes the dialog and returns the result of QDialog::exec
+ * @param type Type of the images (MovieImageDialogType)
+ * @return Result of QDialog::exec
+ */
 int MovieImageDialog::exec(int type)
 {
     m_type = type;
@@ -82,6 +94,9 @@ int MovieImageDialog::exec(int type)
     return QDialog::exec();
 }
 
+/**
+ * @brief Accepts the dialog and saves the size of the preview images
+ */
 void MovieImageDialog::accept()
 {
     this->cancelDownloads();
@@ -90,6 +105,9 @@ void MovieImageDialog::accept()
     QDialog::accept();
 }
 
+/**
+ * @brief Rejects the dialog and saves the size of the preview images
+ */
 void MovieImageDialog::reject()
 {
     this->cancelDownloads();
@@ -98,6 +116,11 @@ void MovieImageDialog::reject()
     QDialog::reject();
 }
 
+/**
+ * @brief Returns an instance of MovieImageDialog
+ * @param parent Parent widget (used the first time for constructing)
+ * @return Instance of MovieImageDialog
+ */
 MovieImageDialog *MovieImageDialog::instance(QWidget *parent)
 {
     static MovieImageDialog *m_instance = 0;
@@ -107,6 +130,9 @@ MovieImageDialog *MovieImageDialog::instance(QWidget *parent)
     return m_instance;
 }
 
+/**
+ * @brief Clears the dialogs contents and cancels outstanding downloads
+ */
 void MovieImageDialog::clear()
 {
     this->cancelDownloads();
@@ -115,11 +141,20 @@ void MovieImageDialog::clear()
     ui->table->setRowCount(0);
 }
 
+/**
+ * @brief Return the url of the last clicked image
+ * @return URL of the last image clicked
+ * @see MovieImageDialog::imageClicked
+ */
 QUrl MovieImageDialog::imageUrl()
 {
     return m_imageUrl;
 }
 
+/**
+ * @brief Renders the table when the size of the dialog changes
+ * @param event
+ */
 void MovieImageDialog::resizeEvent(QResizeEvent *event)
 {
     if (this->calcColumnCount() != ui->table->columnCount())
@@ -127,6 +162,10 @@ void MovieImageDialog::resizeEvent(QResizeEvent *event)
     QWidget::resizeEvent(event);
 }
 
+/**
+ * @brief Sets a list of images to be downloaded and shown
+ * @param downloads List of images (downloads)
+ */
 void MovieImageDialog::setDownloads(QList<Poster> downloads)
 {
     foreach (const Poster &poster, downloads) {
@@ -143,11 +182,18 @@ void MovieImageDialog::setDownloads(QList<Poster> downloads)
     this->renderTable();
 }
 
+/**
+ * @brief Returns an instance of a network access manager
+ * @return Instance of a network access manager
+ */
 QNetworkAccessManager *MovieImageDialog::qnam()
 {
     return &m_qnam;
 }
 
+/**
+ * @brief Starts the next download if there is one
+ */
 void MovieImageDialog::startNextDownload()
 {
     int nextIndex = -1;
@@ -169,6 +215,10 @@ void MovieImageDialog::startNextDownload()
     connect(m_currentDownloadReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
 }
 
+/**
+ * @brief Called when a download has finished
+ * Renders the table and displays the downloaded image and starts the next download
+ */
 void MovieImageDialog::downloadFinished()
 {
     if (m_currentDownloadReply->error() != QNetworkReply::NoError) {
@@ -188,6 +238,9 @@ void MovieImageDialog::downloadFinished()
     this->startNextDownload();
 }
 
+/**
+ * @brief Renders the table
+ */
 void MovieImageDialog::renderTable()
 {
     int cols = this->calcColumnCount();
@@ -218,6 +271,10 @@ void MovieImageDialog::renderTable()
     m_noElementsLabel->setVisible(m_elements.size() == 0);
 }
 
+/**
+ * @brief Calculates the number of columns that can be displayed
+ * @return Number of columns that fit in the layout
+ */
 int MovieImageDialog::calcColumnCount()
 {
     int width = ui->table->size().width();
@@ -226,11 +283,21 @@ int MovieImageDialog::calcColumnCount()
     return cols;
 }
 
+/**
+ * @brief Returns the list of one column (based on the value of the slider)
+ * @return Width of one column
+ */
 int MovieImageDialog::getColumnWidth()
 {
     return ui->previewSizeSlider->value()*16;
 }
 
+/**
+ * @brief Called when an image was clicked
+ * Saves the URL of the image and accepts the dialog
+ * @param row Row of the image
+ * @param col Column of the image
+ */
 void MovieImageDialog::imageClicked(int row, int col)
 {
     if (ui->table->item(row, col) == 0)
@@ -240,11 +307,18 @@ void MovieImageDialog::imageClicked(int row, int col)
     accept();
 }
 
+/**
+ * @brief Sets the type of images
+ * @param type Type of images
+ */
 void MovieImageDialog::setImageType(ImageType type)
 {
     m_imageType = type;
 }
 
+/**
+ * @brief Cancels the current download and clears the download queue
+ */
 void MovieImageDialog::cancelDownloads()
 {
     ui->labelLoading->setVisible(false);
@@ -261,6 +335,9 @@ void MovieImageDialog::cancelDownloads()
         m_currentDownloadReply->abort();
 }
 
+/**
+ * @brief Called when a local image should be chosen
+ */
 void MovieImageDialog::chooseLocalImage()
 {
     QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), QDir::homePath(), tr("Images (*.jpg *.jpeg *.png)"));
@@ -283,6 +360,10 @@ void MovieImageDialog::chooseLocalImage()
     }
 }
 
+/**
+ * @brief Called when an image was dropped
+ * @param url URL of the dropped image
+ */
 void MovieImageDialog::onImageDropped(QUrl url)
 {
     int index = m_elements.size();
@@ -304,6 +385,10 @@ void MovieImageDialog::onImageDropped(QUrl url)
     accept();
 }
 
+/**
+ * @brief Called when the preview size slider was moved
+ * @param value Current value of the slider
+ */
 void MovieImageDialog::onPreviewSizeChange(int value)
 {
     ui->buttonZoomOut->setDisabled(value == ui->previewSizeSlider->minimum());
@@ -313,11 +398,17 @@ void MovieImageDialog::onPreviewSizeChange(int value)
     renderTable();
 }
 
+/**
+ * @brief Increases the value of the preview size slider
+ */
 void MovieImageDialog::onZoomIn()
 {
     ui->previewSizeSlider->setValue(ui->previewSizeSlider->value()+1);
 }
 
+/**
+ * @brief Decreases the value of the preview size slider
+ */
 void MovieImageDialog::onZoomOut()
 {
     ui->previewSizeSlider->setValue(ui->previewSizeSlider->value()-1);

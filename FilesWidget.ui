@@ -21,7 +21,7 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="MyTableView" name="files">
+    <widget class="QTableView" name="files">
      <property name="minimumSize">
       <size>
        <width>200</width>
@@ -63,13 +63,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>MyTableView</class>
-   <extends>QTableView</extends>
-   <header>MyTableView.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

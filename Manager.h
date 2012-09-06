@@ -12,6 +12,10 @@
 #include "data/TvShowModel.h"
 #include "data/TvShowProxyModel.h"
 
+/**
+ * @brief The Manager class
+ * This class handles the various interfaces
+ */
 class Manager : public QObject
 {
     Q_OBJECT

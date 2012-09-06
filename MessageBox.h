@@ -9,6 +9,11 @@ namespace Ui {
 class MessageBox;
 }
 
+/**
+ * @brief The MessageBox class
+ * This class displays messages
+ * @see Message
+ */
 class MessageBox : public QWidget
 {
     Q_OBJECT

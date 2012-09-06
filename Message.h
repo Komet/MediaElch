@@ -8,9 +8,14 @@ namespace Ui {
 class Message;
 }
 
+/**
+ * @brief The Message class
+ * Instances of this widget are displayed in the MessageBox
+ */
 class Message : public QWidget
 {
     Q_OBJECT
+    Q_PROPERTY(int id READ id WRITE setId)
 
 public:
     explicit Message(QWidget *parent = 0);

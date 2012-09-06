@@ -5,6 +5,11 @@
 #include <QLineEdit>
 #include <QToolButton>
 
+/**
+ * @brief The MyLineEdit class
+ * This widget can display a magnifier icon ("search") along with the text
+ * and a loading spinner or reset icon
+ */
 class MyLineEdit : public QLineEdit
 {
     Q_OBJECT

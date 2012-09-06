@@ -4,6 +4,10 @@
 #include <QDebug>
 #include <QLabel>
 
+/**
+ * @brief MessageBox::MessageBox
+ * @param parent
+ */
 MessageBox::MessageBox(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MessageBox)
@@ -13,11 +17,19 @@ MessageBox::MessageBox(QWidget *parent) :
     hide();
 }
 
+/**
+ * @brief MessageBox::~MessageBox
+ */
 MessageBox::~MessageBox()
 {
     delete ui;
 }
 
+/**
+ * @brief Returns an instance of the message box
+ * @param parent Parent widget (used when called the first time)
+ * @return Instance of message box
+ */
 MessageBox *MessageBox::instance(QWidget *parent)
 {
     static MessageBox *m_instance = 0;
@@ -27,12 +39,19 @@ MessageBox *MessageBox::instance(QWidget *parent)
     return m_instance;
 }
 
+/**
+ * @brief Repositions the message box in the upper right corner
+ * @param size Size of the parent widget (MainWidget)
+ */
 void MessageBox::reposition(QSize size)
 {
     this->move(size.width()-this->size().width(), 0);
     m_parentSize = size;
 }
 
+/**
+ * @brief Adjusts the size to hold all the messages
+ */
 void MessageBox::adjustSize()
 {
     int height = 48;
@@ -42,6 +61,12 @@ void MessageBox::adjustSize()
     resize(this->size().width(), height);
 }
 
+/**
+ * @brief Shows a message
+ * @param message Message to show
+ * @param timeout How long should it be visible
+ * @return Id of the message
+ */
 int MessageBox::showMessage(QString message, int timeout)
 {
     m_msgCounter++;
@@ -56,6 +81,10 @@ int MessageBox::showMessage(QString message, int timeout)
     return m_msgCounter;
 }
 
+/**
+ * @brief Removes a message
+ * @param id Id of the message to remove
+ */
 void MessageBox::removeMessage(int id)
 {
     foreach (Message *msg, m_messages) {
@@ -70,6 +99,11 @@ void MessageBox::removeMessage(int id)
         hide();
 }
 
+/**
+ * @brief Shows a message with progress bar
+ * @param message Message to display
+ * @param id Id of the message
+ */
 void MessageBox::showProgressBar(QString message, int id)
 {
     m_msgCounter++;
@@ -84,6 +118,12 @@ void MessageBox::showProgressBar(QString message, int id)
     connect(msg, SIGNAL(sigHideMessage(int)), this, SLOT(removeMessage(int)));
 }
 
+/**
+ * @brief Sets the value of a message with progress bar
+ * @param current Current value
+ * @param max Maximum value
+ * @param id Id of the message
+ */
 void MessageBox::progressBarProgress(int current, int max, int id)
 {
     foreach (Message *msg, m_messages) {
@@ -92,6 +132,10 @@ void MessageBox::progressBarProgress(int current, int max, int id)
     }
 }
 
+/**
+ * @brief Hides a message with progress bar
+ * @param id Id of message to hide
+ */
 void MessageBox::hideProgressBar(int id)
 {
     removeMessage(id);

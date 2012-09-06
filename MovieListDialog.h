@@ -9,6 +9,10 @@ namespace Ui {
 class MovieListDialog;
 }
 
+/**
+ * @brief The MovieListDialog class
+ * Displays a list of movies (for the sets widget)
+ */
 class MovieListDialog : public QDialog
 {
     Q_OBJECT

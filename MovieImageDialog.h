@@ -16,6 +16,10 @@ namespace Ui {
 class MovieImageDialog;
 }
 
+/**
+ * @brief The MovieImageDialog class
+ * Displays a set of images
+ */
 class MovieImageDialog : public QDialog
 {
     Q_OBJECT

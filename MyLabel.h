@@ -4,6 +4,9 @@
 #include <QLabel>
 #include <QMouseEvent>
 
+/**
+ * @brief The MyLabel class
+ */
 class MyLabel : public QLabel
 {
     Q_OBJECT

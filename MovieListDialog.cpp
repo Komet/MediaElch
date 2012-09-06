@@ -3,6 +3,10 @@
 
 #include "Manager.h"
 
+/**
+ * @brief MovieListDialog::MovieListDialog
+ * @param parent
+ */
 MovieListDialog::MovieListDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MovieListDialog)
@@ -19,11 +23,19 @@ MovieListDialog::MovieListDialog(QWidget *parent) :
     connect(ui->movies, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(onMovieSelected(QTableWidgetItem*)));
 }
 
+/**
+ * @brief MovieListDialog::~MovieListDialog
+ */
 MovieListDialog::~MovieListDialog()
 {
     delete ui;
 }
 
+/**
+ * @brief Returns an instance of MovieListDialog
+ * @param parent Parent widget (used the first time for constructing)
+ * @return Instance of MovieListDialog
+ */
 MovieListDialog* MovieListDialog::instance(QWidget *parent)
 {
     static MovieListDialog *m_instance = 0;
@@ -33,6 +45,10 @@ MovieListDialog* MovieListDialog::instance(QWidget *parent)
     return m_instance;
 }
 
+/**
+ * @brief Executes the dialog
+ * @return Result of QDialog::exec
+ */
 int MovieListDialog::exec()
 {
     QSize newSize;
@@ -56,12 +72,20 @@ int MovieListDialog::exec()
     return QDialog::exec();
 }
 
+/**
+ * @brief Stores the selected movie and accepts the dialog
+ * @param item Clicked item in the list of movies
+ */
 void MovieListDialog::onMovieSelected(QTableWidgetItem *item)
 {
     m_selectedMovie = item->data(Qt::UserRole).value<Movie*>();
     accept();
 }
 
+/**
+ * @brief Returns the last selected movie
+ * @return Last selected movie
+ */
 Movie *MovieListDialog::selectedMovie()
 {
     return m_selectedMovie;

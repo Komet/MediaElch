@@ -7,6 +7,9 @@
 #include <QTableWidget>
 #include <QUrl>
 
+/**
+ * @brief The MyTableWidget class can handle drap and drop events
+ */
 class MyTableWidget : public QTableWidget
 {
     Q_OBJECT

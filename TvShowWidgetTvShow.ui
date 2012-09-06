@@ -78,7 +78,7 @@
     </layout>
    </item>
    <item>
-    <widget class="MyGroupBox" name="groupBox_3">
+    <widget class="QGroupBox" name="groupBox_3">
      <property name="styleSheet">
       <string notr="true">QGroupBox {
 	border: 1px solid rgba(0, 0, 0, 100);
@@ -801,12 +801,6 @@
    <class>MyLabel</class>
    <extends>QLabel</extends>
    <header>MyLabel.h</header>
-  </customwidget>
-  <customwidget>
-   <class>MyGroupBox</class>
-   <extends>QGroupBox</extends>
-   <header>MyGroupBox.h</header>
-   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>

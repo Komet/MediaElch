@@ -4,6 +4,10 @@
 #include <QDebug>
 #include "Manager.h"
 
+/**
+ * @brief MovieSearch::MovieSearch
+ * @param parent
+ */
 MovieSearch::MovieSearch(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MovieSearch)
@@ -49,6 +53,9 @@ MovieSearch::MovieSearch(QWidget *parent) :
     chkAllToggled(true);
 }
 
+/**
+ * @brief MovieSearch::~MovieSearch
+ */
 MovieSearch::~MovieSearch()
 {
     delete ui;
