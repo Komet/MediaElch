@@ -484,12 +484,6 @@ QString SettingsWidget::xbmcThumbnailPath()
 
 void SettingsWidget::setMainWindowSize(QSize mainWindowSize)
 {
-    int height = mainWindowSize.height();
-    // don't know where 42px are left...
-#ifdef Q_WS_MAC
-    height += 42;
-#endif
-    mainWindowSize.setHeight(height);
     m_mainWindowSize = mainWindowSize;
     m_settings.setValue("MainWindowSize", mainWindowSize);
 }

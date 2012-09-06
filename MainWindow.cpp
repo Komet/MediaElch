@@ -47,12 +47,28 @@ MainWindow::MainWindow(QWidget *parent) :
 
     MessageBox::instance(this)->reposition(this->size());
     Manager::instance();
-    if (m_settingsWidget->mainWindowSize().isValid())
+    if (m_settingsWidget->mainWindowSize().isValid() && !m_settingsWidget->mainWindowPosition().isNull()) {
+        #ifdef Q_WS_MAC
+            // Ugly workaround from https://bugreports.qt-project.org/browse/QTBUG-3116
+            // to fix invisible toolbar on mac
+            bool workaround = !isVisible();
+            if (workaround) {
+                // make "invisible"
+                setWindowOpacity(0); // let Qt update its frameStruts
+                show();
+            }
+            resize(m_settingsWidget->mainWindowSize());
+            if (workaround) {
+                move(m_settingsWidget->mainWindowPosition());
+                setWindowOpacity(1);
+            }
+        #else
         resize(m_settingsWidget->mainWindowSize());
+        move(m_settingsWidget->mainWindowPosition());
+        #endif
+    }
     // Size for Screenshots
     // resize(1121, 735);
-    if (!m_settingsWidget->mainWindowPosition().isNull())
-        move(m_settingsWidget->mainWindowPosition());
     if (!m_settingsWidget->movieSplitterState().isNull())
         ui->movieSplitter->restoreState(m_settingsWidget->movieSplitterState());
     if (!m_settingsWidget->tvShowSplitterState().isNull())
