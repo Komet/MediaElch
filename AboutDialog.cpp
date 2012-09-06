@@ -1,6 +1,10 @@
 #include "AboutDialog.h"
 #include "ui_AboutDialog.h"
 
+/**
+ * @brief AboutDialog::AboutDialog
+ * @param parent
+ */
 AboutDialog::AboutDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AboutDialog)
@@ -15,6 +19,9 @@ AboutDialog::AboutDialog(QWidget *parent) :
 #endif
 }
 
+/**
+ * @brief AboutDialog::~AboutDialog
+ */
 AboutDialog::~AboutDialog()
 {
     delete ui;

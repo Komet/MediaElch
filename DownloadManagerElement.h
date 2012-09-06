@@ -4,6 +4,9 @@
 #include "Globals.h"
 #include "data/TvShow.h"
 
+/**
+ * @brief The DownloadManagerElement class
+ */
 class DownloadManagerElement
 {
 public:

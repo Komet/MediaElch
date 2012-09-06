@@ -12,6 +12,12 @@ namespace Ui {
 class FilesWidget;
 }
 
+/**
+ * @brief The FilesWidget class
+ * This widget displays a list of movies
+ * It's a singleton and gets constructed through the gui,
+ * the instance can be retrieved through FilesWidget::instance
+ */
 class FilesWidget : public QWidget
 {
     Q_OBJECT
@@ -30,7 +36,6 @@ signals:
     void movieSelected(Movie*);
 
 private slots:
-    void startSearch();
     void itemActivated(QModelIndex index, QModelIndex previous);
     void movieSelectedEmitter();
 

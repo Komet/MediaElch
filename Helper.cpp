@@ -1,5 +1,10 @@
 #include "Helper.h"
 
+/**
+ * @brief Encodes a string to latin1 percent encoding needed for some scrapers
+ * @param str String to encode
+ * @return Encoded string
+ */
 QString Helper::toLatin1PercentEncoding(QString str)
 {
     str = str.toUtf8();

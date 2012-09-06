@@ -2,6 +2,10 @@
 #include "ui_ImagePreviewDialog.h"
 #include <QScrollBar>
 
+/**
+ * @brief ImagePreviewDialog::ImagePreviewDialog
+ * @param parent
+ */
 ImagePreviewDialog::ImagePreviewDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ImagePreviewDialog)
@@ -16,11 +20,19 @@ ImagePreviewDialog::ImagePreviewDialog(QWidget *parent) :
 #endif
 }
 
+/**
+ * @brief ImagePreviewDialog::~ImagePreviewDialog
+ */
 ImagePreviewDialog::~ImagePreviewDialog()
 {
     delete ui;
 }
 
+/**
+ * @brief Returns an instance of the dialog
+ * @param parent Parent widget
+ * @return Instance of ImagePreviewDialog
+ */
 ImagePreviewDialog *ImagePreviewDialog::instance(QWidget *parent)
 {
     static ImagePreviewDialog *m_instance = 0;
@@ -30,11 +42,19 @@ ImagePreviewDialog *ImagePreviewDialog::instance(QWidget *parent)
     return m_instance;
 }
 
+/**
+ * @brief Sets the image to be displayed
+ * @param img Image
+ */
 void ImagePreviewDialog::setImage(QPixmap img)
 {
     ui->image->setPixmap(img);
 }
 
+/**
+ * @brief Executes the dialog and adjusts its size
+ * @return The QDialog::exec result
+ */
 int ImagePreviewDialog::exec()
 {
     ui->scrollArea->verticalScrollBar()->setValue(0);

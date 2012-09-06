@@ -19,6 +19,10 @@
 #include "TvShowSearch.h"
 #include "MessageBox.h"
 
+/**
+ * @brief MainWindow::MainWindow
+ * @param parent
+ */
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -124,6 +128,9 @@ MainWindow::MainWindow(QWidget *parent) :
 #endif
 }
 
+/**
+ * @brief MainWindow::~MainWindow
+ */
 MainWindow::~MainWindow()
 {
     Manager::instance()->shutdownMediaCenterInterfaces();
@@ -135,12 +142,19 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+/**
+ * @brief Repositions the MessageBox
+ * @param event
+ */
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
     MessageBox::instance()->reposition(event->size());
     QWidget::resizeEvent(event);
 }
 
+/**
+ * @brief Sets up the toolbar
+ */
 void MainWindow::setupToolbar()
 {
     setUnifiedTitleAndToolBarOnMac(true);
@@ -215,6 +229,11 @@ void MainWindow::setupToolbar()
 #endif
 }
 
+/**
+ * @brief Called when a subwidget starts a progress, displays a progress MessageBox
+ * @param msg Message
+ * @param id (Unique) Id of the progress
+ */
 void MainWindow::progressStarted(QString msg, int id)
 {
     if (id == Constants::MovieFileSearcherProgressMessageId)
@@ -226,11 +245,21 @@ void MainWindow::progressStarted(QString msg, int id)
     MessageBox::instance()->showProgressBar(msg, id);
 }
 
+/**
+ * @brief Updates the progress MessageBox
+ * @param current Current value
+ * @param max Maximum value
+ * @param id (Unique) Id of the progress
+ */
 void MainWindow::progressProgress(int current, int max, int id)
 {
     MessageBox::instance()->progressBarProgress(current, max, id);
 }
 
+/**
+ * @brief Called when a progress has finished
+ * @param id (Unique) Id of the progress
+ */
 void MainWindow::progressFinished(int id)
 {
     if (id == Constants::MovieFileSearcherProgressMessageId) {
@@ -244,6 +273,10 @@ void MainWindow::progressFinished(int id)
     MessageBox::instance()->hideProgressBar(id);
 }
 
+/**
+ * @brief Called when the menu item "Movies" was clicked
+ * Updates menu icons and sets status of actions
+ */
 void MainWindow::onMenuMovies()
 {
     ui->stackedWidget->setCurrentIndex(0);
@@ -258,6 +291,10 @@ void MainWindow::onMenuMovies()
     m_filterWidget->setEnabled(true);
 }
 
+/**
+ * @brief Called when the menu item "Movie Sets" was clicked
+ * Updates menu icons and sets status of actions
+ */
 void MainWindow::onMenuMovieSets()
 {
     ui->stackedWidget->setCurrentIndex(3);
@@ -273,6 +310,10 @@ void MainWindow::onMenuMovieSets()
     ui->setsWidget->loadSets();
 }
 
+/**
+ * @brief Called when the menu item "Tv Shows" was clicked
+ * Updates menu icons and sets status of actions
+ */
 void MainWindow::onMenuTvShows()
 {
     ui->stackedWidget->setCurrentIndex(1);
@@ -287,6 +328,10 @@ void MainWindow::onMenuTvShows()
     m_filterWidget->setEnabled(true);
 }
 
+/**
+ * @brief Called when the menu item "Settings" was clicked
+ * Updates menu icons and sets status of actions
+ */
 void MainWindow::onMenuSettings()
 {
     m_settingsWidget->loadSettings();
@@ -302,6 +347,10 @@ void MainWindow::onMenuSettings()
     m_filterWidget->setEnabled(false);
 }
 
+/**
+ * @brief Called when the action "Search" was clicked
+ * Delegates the event down to the current subwidget
+ */
 void MainWindow::onActionSearch()
 {
     if (ui->stackedWidget->currentIndex() == 0)
@@ -310,6 +359,10 @@ void MainWindow::onActionSearch()
         QTimer::singleShot(0, ui->tvShowWidget, SLOT(onStartScraperSearch()));
 }
 
+/**
+ * @brief Called when the action "Save" was clicked
+ * Delegates the event down to the current subwidget
+ */
 void MainWindow::onActionSave()
 {
     if (ui->stackedWidget->currentIndex() == 0)
@@ -322,6 +375,10 @@ void MainWindow::onActionSave()
         QTimer::singleShot(0, ui->setsWidget, SLOT(saveSet()));
 }
 
+/**
+ * @brief Called when the action "Save all" was clicked
+ * Delegates the event down to the current subwidget
+ */
 void MainWindow::onActionSaveAll()
 {
     if (ui->stackedWidget->currentIndex() == 0)
@@ -330,6 +387,11 @@ void MainWindow::onActionSaveAll()
         QTimer::singleShot(0, ui->tvShowWidget, SLOT(onSaveAll()));
 }
 
+/**
+ * @brief Called when the filter text was changed
+ * Delegates the event down to the current subwidget
+ * @param text Filter text
+ */
 void MainWindow::onFilterChanged(QString text)
 {
     if (ui->stackedWidget->currentIndex() == 0)
@@ -338,6 +400,11 @@ void MainWindow::onFilterChanged(QString text)
         ui->tvShowFilesWidget->setFilter(text);
 }
 
+/**
+ * @brief Sets the status of the export action
+ * @param enabled Status
+ * @param widget Widget to set the status for
+ */
 void MainWindow::onSetExportEnabled(bool enabled, MainWidgets widget)
 {
     if (widget == WidgetMovies)
@@ -350,6 +417,11 @@ void MainWindow::onSetExportEnabled(bool enabled, MainWidgets widget)
         m_actionExport->setEnabled(enabled);
 }
 
+/**
+ * @brief Sets the status of the save and save all action
+ * @param enabled Status
+ * @param widget Widget to set the status for
+ */
 void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
 {
     if (widget == WidgetMovies)
@@ -368,6 +440,11 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
         m_actionSave->setEnabled(enabled);
 }
 
+/**
+ * @brief Sets the status of the search action
+ * @param enabled Status
+ * @param widget Widget to set the status for
+ */
 void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
 {
     if (widget == WidgetMovies)
@@ -380,18 +457,30 @@ void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
         m_actionSearch->setEnabled(enabled);
 }
 
+/**
+ * @brief Called when the splitter in the movie widget was moved
+ * Adjusts the other splitters as well
+ */
 void MainWindow::onMovieSplitterMoved()
 {
     ui->tvShowSplitter->restoreState(ui->movieSplitter->saveState());
     ui->setsWidget->splitter()->restoreState(ui->movieSplitter->saveState());
 }
 
+/**
+ * @brief Called when the splitter in the tv shows widget was moved
+ * Adjusts the other splitters as well
+ */
 void MainWindow::onTvShowSplitterMoved()
 {
     ui->movieSplitter->restoreState(ui->tvShowSplitter->saveState());
     ui->setsWidget->splitter()->restoreState(ui->tvShowSplitter->saveState());
 }
 
+/**
+ * @brief Called when the splitter in the movie sets widget was moved
+ * Adjusts the other splitters as well
+ */
 void MainWindow::onMovieSetsSplitterMoved()
 {
     ui->movieSplitter->restoreState(ui->setsWidget->splitter()->saveState());

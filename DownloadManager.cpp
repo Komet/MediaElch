@@ -5,17 +5,30 @@
 
 #include "DownloadManagerElement.h"
 
+/**
+ * @brief DownloadManager::DownloadManager
+ * @param parent
+ */
 DownloadManager::DownloadManager(QObject *parent) :
     QObject(parent)
 {
     m_downloading = false;
 }
 
+/**
+ * @brief Returns the network access manager
+ * @return Network access manager object
+ */
 QNetworkAccessManager *DownloadManager::qnam()
 {
     return &m_qnam;
 }
 
+/**
+ * @brief Adds a download and starts downloading
+ * @param elem Element to download
+ * @see DownloadManagerElement
+ */
 void DownloadManager::addDownload(DownloadManagerElement elem)
 {
     if (m_queue.isEmpty())
@@ -25,6 +38,11 @@ void DownloadManager::addDownload(DownloadManagerElement elem)
     m_mutex.unlock();
 }
 
+/**
+ * @brief Aborts and clears all downloads and sets a list of new downloads
+ * @param elements List of elements to download
+ * @see DownloadManagerElement
+ */
 void DownloadManager::setDownloads(QList<DownloadManagerElement> elements)
 {
     if (m_downloading)
@@ -41,6 +59,9 @@ void DownloadManager::setDownloads(QList<DownloadManagerElement> elements)
         QTimer::singleShot(0, this, SIGNAL(allDownloadsFinished()));
 }
 
+/**
+ * @brief Starts the next download
+ */
 void DownloadManager::startNextDownload()
 {
     if (m_currentDownloadElement.movie) {
@@ -102,6 +123,11 @@ void DownloadManager::startNextDownload()
     }
 }
 
+/**
+ * @brief Called by the current network reply
+ * @param received Received bytes
+ * @param total Total bytes
+ */
 void DownloadManager::downloadProgress(qint64 received, qint64 total)
 {
     m_currentDownloadElement.bytesReceived = received;
@@ -109,6 +135,10 @@ void DownloadManager::downloadProgress(qint64 received, qint64 total)
     emit downloadProgress(m_currentDownloadElement);
 }
 
+/**
+ * @brief Called by the current network reply
+ * Starts the next download if there is one
+ */
 void DownloadManager::downloadFinished()
 {
     m_downloading = false;
@@ -128,6 +158,9 @@ void DownloadManager::downloadFinished()
     this->startNextDownload();
 }
 
+/**
+ * @brief Aborts the current download and clears the queue
+ */
 void DownloadManager::abortDownloads()
 {
     m_mutex.lock();
@@ -138,16 +171,29 @@ void DownloadManager::abortDownloads()
     }
 }
 
+/**
+ * @brief Check if a download is in progress
+ * @return True if there is a download in progress
+ */
 bool DownloadManager::isDownloading()
 {
     return m_downloading;
 }
 
+/**
+ * @brief Returns the number of elements in queue
+ * @return Number of elements in queue
+ */
 int DownloadManager::downloadQueueSize()
 {
     return m_queue.size();
 }
 
+/**
+ * @brief Returns the number of left downloads for a tv show
+ * @param show Tv show to get number of downloads for
+ * @return Number of downloads left
+ */
 int DownloadManager::downloadsLeftForShow(TvShow *show)
 {
     int left = 0;

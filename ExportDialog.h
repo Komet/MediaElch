@@ -7,10 +7,14 @@ namespace Ui {
 class ExportDialog;
 }
 
+/**
+ * @brief The ExportDialog class
+ * This is an old class which is currently not used and will be removed later
+ */
 class ExportDialog : public QDialog
 {
     Q_OBJECT
-    
+
 public:
     explicit ExportDialog(QWidget *parent = 0);
     ~ExportDialog();

@@ -8,6 +8,10 @@
 
 FilesWidget *FilesWidget::m_instance;
 
+/**
+ * @brief FilesWidget::FilesWidget
+ * @param parent
+ */
 FilesWidget::FilesWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::FilesWidget)
@@ -35,21 +39,28 @@ FilesWidget::FilesWidget(QWidget *parent) :
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
 }
 
+/**
+ * @brief FilesWidget::~FilesWidget
+ */
 FilesWidget::~FilesWidget()
 {
     delete ui;
 }
 
+/**
+ * @brief Returns the current instance
+ * @return Instance of FilesWidget
+ */
 FilesWidget *FilesWidget::instance()
 {
     return m_instance;
 }
 
-void FilesWidget::startSearch()
-{
-    Manager::instance()->movieFileSearcher()->start();
-}
-
+/**
+ * @brief Called when an item has selected
+ * @param index
+ * @param previous
+ */
 void FilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
 {
     if (!index.isValid()) {
@@ -62,16 +73,26 @@ void FilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
     QTimer::singleShot(0, this, SLOT(movieSelectedEmitter()));
 }
 
+/**
+ * @brief Just emits movieSelected
+ */
 void FilesWidget::movieSelectedEmitter()
 {
     emit movieSelected(m_lastMovie);
 }
 
+/**
+ * @brief Sets the filter
+ * @param filter Filter text
+ */
 void FilesWidget::setFilter(QString filter)
 {
     m_movieProxyModel->setFilterWildcard("*" + filter + "*");
 }
 
+/**
+ * @brief Restores the last selected item
+ */
 void FilesWidget::restoreLastSelection()
 {
     ui->files->setCurrentIndex(m_lastModelIndex);

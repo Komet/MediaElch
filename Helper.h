@@ -3,6 +3,9 @@
 
 #include <QString>
 
+/**
+ * @brief Some convenience functions are bundled here
+ */
 class Helper
 {
 public:

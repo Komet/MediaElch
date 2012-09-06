@@ -11,6 +11,9 @@
 #include "Globals.h"
 #include "data/TvShowEpisode.h"
 
+/**
+ * @brief The DownloadManager class
+ */
 class DownloadManager : public QObject
 {
     Q_OBJECT

@@ -7,6 +7,9 @@ namespace Ui {
 class ImagePreviewDialog;
 }
 
+/**
+ * @brief This dialog shows a full size preview of images
+ */
 class ImagePreviewDialog : public QDialog
 {
     Q_OBJECT
