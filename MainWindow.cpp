@@ -8,12 +8,12 @@
 
 #include "data/MediaCenterInterface.h"
 #include "data/ScraperInterface.h"
+#include "settings/Settings.h"
 #include "ImagePreviewDialog.h"
 #include "Manager.h"
 #include "MovieImageDialog.h"
 #include "MovieListDialog.h"
 #include "MovieSearch.h"
-#include "SettingsWidget.h"
 #include "TvShowSearch.h"
 #include "MessageBox.h"
 
@@ -39,12 +39,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_aboutDialog = new AboutDialog(ui->centralWidget);
     m_filterWidget = new FilterWidget(ui->mainToolBar);
-    m_settingsWidget = static_cast<SettingsWidget*>(ui->stackedWidget->widget(2));
+    m_settings = static_cast<Settings*>(ui->stackedWidget->widget(2));
     setupToolbar();
 
     MessageBox::instance(this)->reposition(this->size());
     Manager::instance();
-    if (m_settingsWidget->mainWindowSize().isValid() && !m_settingsWidget->mainWindowPosition().isNull()) {
+    if (m_settings->mainWindowSize().isValid() && !m_settings->mainWindowPosition().isNull()) {
         #ifdef Q_WS_MAC
             // Ugly workaround from https://bugreports.qt-project.org/browse/QTBUG-3116
             // to fix invisible toolbar on mac
@@ -54,27 +54,27 @@ MainWindow::MainWindow(QWidget *parent) :
                 setWindowOpacity(0); // let Qt update its frameStruts
                 show();
             }
-            resize(m_settingsWidget->mainWindowSize());
+            resize(m_settings->mainWindowSize());
             if (workaround) {
-                move(m_settingsWidget->mainWindowPosition());
+                move(m_settings->mainWindowPosition());
                 setWindowOpacity(1);
             }
         #else
-        resize(m_settingsWidget->mainWindowSize());
-        move(m_settingsWidget->mainWindowPosition());
+        resize(m_settings->mainWindowSize());
+        move(m_settings->mainWindowPosition());
         #endif
     }
     // Size for Screenshots
     // resize(1121, 735);
-    if (!m_settingsWidget->movieSplitterState().isNull())
-        ui->movieSplitter->restoreState(m_settingsWidget->movieSplitterState());
-    if (!m_settingsWidget->tvShowSplitterState().isNull())
-        ui->tvShowSplitter->restoreState(m_settingsWidget->tvShowSplitterState());
-    if (!m_settingsWidget->movieSetsSplitterState().isNull())
-        ui->setsWidget->splitter()->restoreState(m_settingsWidget->movieSetsSplitterState());
+    if (!m_settings->movieSplitterState().isNull())
+        ui->movieSplitter->restoreState(m_settings->movieSplitterState());
+    if (!m_settings->tvShowSplitterState().isNull())
+        ui->tvShowSplitter->restoreState(m_settings->tvShowSplitterState());
+    if (!m_settings->movieSetsSplitterState().isNull())
+        ui->setsWidget->splitter()->restoreState(m_settings->movieSetsSplitterState());
 
-    Manager::instance()->movieFileSearcher()->setMovieDirectories(m_settingsWidget->movieDirectories());
-    Manager::instance()->tvShowFileSearcher()->setMovieDirectories(m_settingsWidget->tvShowDirectories());
+    Manager::instance()->movieFileSearcher()->setMovieDirectories(m_settings->movieDirectories());
+    Manager::instance()->tvShowFileSearcher()->setMovieDirectories(m_settings->tvShowDirectories());
 
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setMovie(Movie*)));
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setEnabledTrue(Movie*)));
@@ -146,11 +146,11 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     Manager::instance()->shutdownMediaCenterInterfaces();
-    m_settingsWidget->setMainWindowSize(size());
-    m_settingsWidget->setMainWindowPosition(pos());
-    m_settingsWidget->setMovieSplitterState(ui->movieSplitter->saveState());
-    m_settingsWidget->setTvShowSplitterState(ui->tvShowSplitter->saveState());
-    m_settingsWidget->setMovieSetsSplitterState(ui->setsWidget->splitter()->saveState());
+    m_settings->setMainWindowSize(size());
+    m_settings->setMainWindowPosition(pos());
+    m_settings->setMovieSplitterState(ui->movieSplitter->saveState());
+    m_settings->setTvShowSplitterState(ui->tvShowSplitter->saveState());
+    m_settings->setMovieSetsSplitterState(ui->setsWidget->splitter()->saveState());
     delete ui;
 }
 
@@ -325,7 +325,7 @@ void MainWindow::onMenuTvShows()
  */
 void MainWindow::onMenuSettings()
 {
-    m_settingsWidget->loadSettings();
+    m_settings->loadSettings();
     ui->stackedWidget->setCurrentIndex(2);
     ui->buttonMovies->setIcon(QIcon(":/img/video_menu.png"));
     ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menu.png"));
@@ -360,7 +360,7 @@ void MainWindow::onActionSave()
     else if (ui->stackedWidget->currentIndex() == 1)
         QTimer::singleShot(0, ui->tvShowWidget, SLOT(onSaveInformation()));
     else if (ui->stackedWidget->currentIndex() == 2)
-        QTimer::singleShot(0, ui->settingsWidget, SLOT(saveSettings()));
+        QTimer::singleShot(0, ui->settings, SLOT(saveSettings()));
     else if (ui->stackedWidget->currentIndex() == 3)
         QTimer::singleShot(0, ui->setsWidget, SLOT(saveSet()));
 }

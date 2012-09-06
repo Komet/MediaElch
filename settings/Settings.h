@@ -1,26 +1,28 @@
-#ifndef SETTINGSWIDGET_H
-#define SETTINGSWIDGET_H
+#ifndef SETTINGS_H
+#define SETTINGS_H
 
 #include <QSettings>
 #include <QTableWidgetItem>
 #include <QWidget>
+
 #include "Globals.h"
 
 namespace Ui {
-class SettingsWidget;
+class Settings;
 }
 
 /**
- * @brief The SettingsWidget class
+ * @brief The Settings class stores all MediaElch settings and displays the settings widget.
  */
-class SettingsWidget : public QWidget
+class Settings : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit SettingsWidget(QWidget *parent = 0);
-    ~SettingsWidget();
-    static SettingsWidget *instance();
+    explicit Settings(QWidget *parent = 0);
+    ~Settings();
+
+    static Settings *instance();
     void loadSettings();
     QSize mainWindowSize();
     QPoint mainWindowPosition();
@@ -62,7 +64,7 @@ private slots:
     void onChooseXbmcThumbnailPath();
 
 private:
-    Ui::SettingsWidget *ui;
+    Ui::Settings *ui;
     QSettings m_settings;
     QList<SettingsDir> m_movieDirectories;
     QList<SettingsDir> m_tvShowDirectories;
@@ -78,9 +80,9 @@ private:
     QString m_xbmcMysqlPassword;
     QString m_xbmcSqliteDatabase;
     QString m_xbmcThumbnailPath;
-    static SettingsWidget *m_instance;
+    static Settings *m_instance;
 
     void setXbmcThumbnailPathEnabled(bool enabled);
 };
 
-#endif // SETTINGSWIDGET_H
+#endif // SETTINGS_H

@@ -2,7 +2,7 @@
 #define MANAGER_H
 
 #include <QObject>
-#include "SettingsWidget.h"
+#include "settings/Settings.h"
 #include "data/MediaCenterInterface.h"
 #include "data/MovieFileSearcher.h"
 #include "data/ScraperInterface.h"
@@ -47,7 +47,7 @@ private:
     MovieModel* m_movieModel;
     TvShowModel* m_tvShowModel;
     TvShowProxyModel* m_tvShowProxyModel;
-    SettingsWidget *m_settingsWidget;
+    Settings *m_settings;
 };
 
 #endif // MANAGER_H

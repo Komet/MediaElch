@@ -253,7 +253,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="SettingsWidget" name="settingsWidget"/>
+      <widget class="Settings" name="settings"/>
       <widget class="SetsWidget" name="setsWidget"/>
      </widget>
     </item>
@@ -310,12 +310,6 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>SettingsWidget</class>
-   <extends>QWidget</extends>
-   <header>SettingsWidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>TvShowFilesWidget</class>
    <extends>QWidget</extends>
    <header>TvShowFilesWidget.h</header>
@@ -331,6 +325,12 @@
    <class>SetsWidget</class>
    <extends>QWidget</extends>
    <header>SetsWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Settings</class>
+   <extends>QWidget</extends>
+   <header>settings/Settings.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

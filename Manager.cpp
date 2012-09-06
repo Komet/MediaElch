@@ -61,19 +61,19 @@ Manager* Manager::instance()
  */
 void Manager::setupMediaCenterInterface()
 {
-    if (SettingsWidget::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcMysql) {
+    if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcMysql) {
         MediaCenterInterface *interface = m_mediaCenters.at(1);
-        static_cast<XbmcSql*>(interface)->connectMysql(SettingsWidget::instance()->xbmcMysqlHost(), SettingsWidget::instance()->xbmcMysqlDatabase(),
-                                                       SettingsWidget::instance()->xbmcMysqlUser(), SettingsWidget::instance()->xbmcMysqlPassword());
+        static_cast<XbmcSql*>(interface)->connectMysql(Settings::instance()->xbmcMysqlHost(), Settings::instance()->xbmcMysqlDatabase(),
+                                                       Settings::instance()->xbmcMysqlUser(), Settings::instance()->xbmcMysqlPassword());
         interface = m_mediaCentersTvShow.at(1);
-        static_cast<XbmcSql*>(interface)->connectMysql(SettingsWidget::instance()->xbmcMysqlHost(), SettingsWidget::instance()->xbmcMysqlDatabase(),
-                                                       SettingsWidget::instance()->xbmcMysqlUser(), SettingsWidget::instance()->xbmcMysqlPassword());
-    } else if (SettingsWidget::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcSqlite) {
+        static_cast<XbmcSql*>(interface)->connectMysql(Settings::instance()->xbmcMysqlHost(), Settings::instance()->xbmcMysqlDatabase(),
+                                                       Settings::instance()->xbmcMysqlUser(), Settings::instance()->xbmcMysqlPassword());
+    } else if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcSqlite) {
         MediaCenterInterface *interface = m_mediaCenters.at(2);
-        static_cast<XbmcSql*>(interface)->connectSqlite(SettingsWidget::instance()->xbmcSqliteDatabase());
+        static_cast<XbmcSql*>(interface)->connectSqlite(Settings::instance()->xbmcSqliteDatabase());
 
         interface = m_mediaCentersTvShow.at(2);
-        static_cast<XbmcSql*>(interface)->connectSqlite(SettingsWidget::instance()->xbmcSqliteDatabase());
+        static_cast<XbmcSql*>(interface)->connectSqlite(Settings::instance()->xbmcSqliteDatabase());
     }
 }
 
@@ -92,11 +92,11 @@ void Manager::shutdownMediaCenterInterfaces()
  */
 MediaCenterInterface *Manager::mediaCenterInterface()
 {
-    if (SettingsWidget::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcXml)
+    if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcXml)
         return m_mediaCenters.at(0);
-    else if (SettingsWidget::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcMysql)
+    else if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcMysql)
         return m_mediaCenters.at(1);
-    else if (SettingsWidget::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcSqlite)
+    else if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcSqlite)
         return m_mediaCenters.at(2);
 
     return m_mediaCenters.at(0);
@@ -104,11 +104,11 @@ MediaCenterInterface *Manager::mediaCenterInterface()
 
 MediaCenterInterface *Manager::mediaCenterInterfaceTvShow()
 {
-    if (SettingsWidget::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcXml)
+    if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcXml)
         return m_mediaCentersTvShow.at(0);
-    else if (SettingsWidget::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcMysql)
+    else if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcMysql)
         return m_mediaCentersTvShow.at(1);
-    else if (SettingsWidget::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcSqlite)
+    else if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcSqlite)
         return m_mediaCentersTvShow.at(2);
 
     return m_mediaCentersTvShow.at(0);

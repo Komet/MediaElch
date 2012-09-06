@@ -42,7 +42,6 @@ SOURCES += main.cpp\
     scrapers/Cinefacts.cpp \
     smallWidgets/FilterWidget.cpp \
     MyTableWidget.cpp \
-    SettingsWidget.cpp \
     MessageBox.cpp \
     Message.cpp \
     data/TvShow.cpp \
@@ -66,7 +65,8 @@ SOURCES += main.cpp\
     MovieListDialog.cpp \
     Helper.cpp \
     smallWidgets/MyTreeView.cpp \
-    data/MovieDelegate.cpp
+    data/MovieDelegate.cpp \
+    settings/Settings.cpp
 
 HEADERS  += MainWindow.h \
     data/Movie.h \
@@ -92,7 +92,6 @@ HEADERS  += MainWindow.h \
     scrapers/Cinefacts.h \
     smallWidgets/FilterWidget.h \
     MyTableWidget.h \
-    SettingsWidget.h \
     MessageBox.h \
     Message.h \
     data/TvShow.h \
@@ -117,7 +116,8 @@ HEADERS  += MainWindow.h \
     MovieListDialog.h \
     Helper.h \
     smallWidgets/MyTreeView.h \
-    data/MovieDelegate.h
+    data/MovieDelegate.h \
+    settings/Settings.h
 
 FORMS    += MainWindow.ui \
     MovieSearch.ui \
@@ -126,7 +126,6 @@ FORMS    += MainWindow.ui \
     FilesWidget.ui \
     AboutDialog.ui \
     smallWidgets/FilterWidget.ui \
-    SettingsWidget.ui \
     MessageBox.ui \
     Message.ui \
     TvShowFilesWidget.ui \
@@ -137,7 +136,8 @@ FORMS    += MainWindow.ui \
     smallWidgets/ImageLabel.ui \
     ImagePreviewDialog.ui \
     SetsWidget.ui \
-    MovieListDialog.ui
+    MovieListDialog.ui \
+    settings/Settings.ui
 
 RESOURCES += \
     MediaElch.qrc

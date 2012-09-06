@@ -8,7 +8,7 @@
 #include "Globals.h"
 #include "data/MovieFileSearcher.h"
 #include "smallWidgets/FilterWidget.h"
-#include "SettingsWidget.h"
+#include "settings/Settings.h"
 
 namespace Ui {
 class MainWindow;
@@ -48,7 +48,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    SettingsWidget *m_settingsWidget;
+    Settings *m_settings;
     AboutDialog *m_aboutDialog;
     QAction *m_actionSearch;
     QAction *m_actionSave;

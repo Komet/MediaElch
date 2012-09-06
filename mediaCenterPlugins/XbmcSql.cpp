@@ -1,16 +1,16 @@
 #include <QDir>
 #include <QDomDocument>
 #include <QFileInfo>
+#include <QMessageBox>
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QXmlStreamWriter>
 #include <QtSql>
 
-#include <QMessageBox>
 
 #include "MessageBox.h"
-#include "SettingsWidget.h"
+#include "settings/Settings.h"
 #include "XbmcSql.h"
 
 /**
@@ -476,8 +476,8 @@ bool XbmcSql::saveMovie(Movie *movie)
         fanartHash = hash(QString("stack://%1").arg(files.join(" , ")));
     }
 
-    QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
-    QString fanartPath = QString("%1%2Video%2Fanart%2%3.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fanartHash);
+    QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
+    QString fanartPath = QString("%1%2Video%2Fanart%2%3.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fanartHash);
     if (movie->posterImageChanged() && !movie->posterImage()->isNull())
         movie->posterImage()->save(posterPath, "jpg", 100);
     if (movie->backdropImageChanged() && !movie->backdropImage()->isNull())
@@ -487,7 +487,7 @@ bool XbmcSql::saveMovie(Movie *movie)
         if (actor.image.isNull())
             continue;
         QString hashActor = actorHash(actor);
-        QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
+        QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
         actor.image.save(actorThumb, "jpg", 100);
     }
 
@@ -713,8 +713,8 @@ void XbmcSql::loadMovieImages(Movie *movie)
         fanartHash = hash(QString("stack://%1").arg(files.join(" , ")));
     }
 
-    QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
-    QString fanartPath = QString("%1%2Video%2Fanart%2%3.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fanartHash);
+    QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
+    QString fanartPath = QString("%1%2Video%2Fanart%2%3.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fanartHash);
     QFileInfo posterFi(posterPath);
     QFileInfo fanartFi(fanartPath);
     if (posterFi.isFile())
@@ -726,7 +726,7 @@ void XbmcSql::loadMovieImages(Movie *movie)
         if (actor->imageHasChanged)
             continue;
         QString hashActor = actorHash(*actor);
-        QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
+        QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
         QFileInfo fi(actorThumb);
         if (fi.isFile())
             actor->image.load(actorThumb);
@@ -855,37 +855,37 @@ void XbmcSql::loadTvShowImages(TvShow *show)
 {
     // English
     QString fileHash = hash(QString("season%1* All Seasons").arg(show->mediaCenterPath()));
-    QFileInfo posterFi(QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash));
+    QFileInfo posterFi(QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash));
     if (posterFi.isFile()) {
         show->posterImage()->load(posterFi.absoluteFilePath());
     } else {
         // German
         fileHash = hash(QString("season%1* Alle Staffeln").arg(show->mediaCenterPath()));
-        posterFi.setFile(QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash));
+        posterFi.setFile(QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash));
         if (posterFi.isFile())
             show->posterImage()->load(posterFi.absoluteFilePath());
     }
 
     QString fanartHash = hash(show->mediaCenterPath());
-    QFileInfo backdropFi(QString("%1%2Video%2Fanart%2%3.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fanartHash));
+    QFileInfo backdropFi(QString("%1%2Video%2Fanart%2%3.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fanartHash));
     if (backdropFi.isFile())
         show->backdropImage()->load(backdropFi.absoluteFilePath());
 
     QString bannerHash = hash(show->mediaCenterPath());
-    QFileInfo bannerFi(QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(bannerHash.left(1)).arg(bannerHash));
+    QFileInfo bannerFi(QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(bannerHash.left(1)).arg(bannerHash));
     if (bannerFi.isFile())
         show->bannerImage()->load(bannerFi.absoluteFilePath());
 
     foreach (int season, show->seasons()) {
         // English
         QString seasonHash = hash(QString("season%1Season %2").arg(show->mediaCenterPath()).arg(season));
-        QFileInfo seasonFi(QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(seasonHash.left(1)).arg(seasonHash));
+        QFileInfo seasonFi(QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(seasonHash.left(1)).arg(seasonHash));
         if (seasonFi.isFile()) {
             show->seasonPosterImage(season)->load(seasonFi.absoluteFilePath());
         } else {
             // German
             seasonHash = hash(QString("season%1Staffel %2").arg(show->mediaCenterPath()).arg(season));
-            seasonFi.setFile(QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(seasonHash.left(1)).arg(seasonHash));
+            seasonFi.setFile(QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(seasonHash.left(1)).arg(seasonHash));
             if (seasonFi.isFile())
                 show->seasonPosterImage(season)->load(seasonFi.absoluteFilePath());
         }
@@ -895,7 +895,7 @@ void XbmcSql::loadTvShowImages(TvShow *show)
         if (actor->imageHasChanged)
             continue;
         QString hashActor = actorHash(*actor);
-        QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
+        QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
         QFileInfo fi(actorThumb);
         if (fi.isFile())
             actor->image.load(actorThumb);
@@ -1001,7 +1001,7 @@ void XbmcSql::loadTvShowEpisodeImages(TvShowEpisode *episode)
         return;
 
     QString fileHash = hash(tvShowMediaCenterPath(episode->files().at(0)));
-    QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
+    QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
     QFileInfo posterFi(posterPath);
     if (posterFi.isFile())
         episode->thumbnailImage()->load(posterPath);
@@ -1199,37 +1199,37 @@ bool XbmcSql::saveTvShow(TvShow *show)
     // all seasons poster
     if (show->posterImageChanged() && !show->posterImage()->isNull()) {
         QString fileHash = hash(path);
-        QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
+        QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
         show->posterImage()->save(posterPath, "jpg", 100);
 
         // poster.jpg
         fileHash = hash(path + "poster.jpg");
-        posterPath = QString("%1%2%3%2%4.jpg").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
+        posterPath = QString("%1%2%3%2%4.jpg").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
         show->posterImage()->save(posterPath, "jpg", 100);
         show->posterImage()->save(show->dir() + QDir::separator() + "poster.jpg", "jpg", 100);
 
         // English
         fileHash = hash(QString("season%1* All Seasons").arg(path));
-        posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
+        posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
         show->posterImage()->save(posterPath, "jpg", 100);
 
         // German
         fileHash = hash(QString("season%1* Alle Staffeln").arg(path));
-        posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
+        posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
         show->posterImage()->save(posterPath, "jpg", 100);
     }
 
     // backdrop
     if (show->backdropImageChanged() && !show->backdropImage()->isNull()) {
         QString fanartHash = hash(path);
-        QString fanartPath = QString("%1%2Video%2Fanart%2%3.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fanartHash);
+        QString fanartPath = QString("%1%2Video%2Fanart%2%3.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fanartHash);
         show->backdropImage()->save(fanartPath, "jpg", 100);
     }
 
     // banner
     if (show->bannerImageChanged() && !show->bannerImage()->isNull()) {
         QString bannerHash = hash(path);
-        QString bannerPath = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(bannerHash.left(1)).arg(bannerHash);
+        QString bannerPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(bannerHash.left(1)).arg(bannerHash);
         show->bannerImage()->save(bannerPath, "jpg", 100);
     }
 
@@ -1240,12 +1240,12 @@ bool XbmcSql::saveTvShow(TvShow *show)
 
         // English
         QString seasonHash = hash(QString("season%1Season %2").arg(path).arg(season));
-        QString seasonPath = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(seasonHash.left(1)).arg(seasonHash);
+        QString seasonPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(seasonHash.left(1)).arg(seasonHash);
         show->seasonPosterImage(season)->save(seasonPath, "jpg", 100);
 
         // German
         seasonHash = hash(QString("season%1Staffel %2").arg(path).arg(season));
-        seasonPath = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(seasonHash.left(1)).arg(seasonHash);
+        seasonPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(seasonHash.left(1)).arg(seasonHash);
         show->seasonPosterImage(season)->save(seasonPath, "jpg", 100);
     }
 
@@ -1254,7 +1254,7 @@ bool XbmcSql::saveTvShow(TvShow *show)
         if (actor.image.isNull())
             continue;
         QString hashActor = actorHash(actor);
-        QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
+        QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
         actor.image.save(actorThumb, "jpg", 100);
     }
 
@@ -1525,7 +1525,7 @@ bool XbmcSql::saveTvShowEpisode(TvShowEpisode *episode)
     // save images
     if (episode->thumbnailImageChanged() && !episode->thumbnailImage()->isNull()) {
         QString thumbHash = hash(tvShowMediaCenterPath(episode->files().at(0)));
-        QString thumbPath = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(thumbHash.left(1)).arg(thumbHash);
+        QString thumbPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(thumbHash.left(1)).arg(thumbHash);
         episode->thumbnailImage()->save(thumbPath, "jpg", 100);
     }
 
@@ -1540,7 +1540,7 @@ bool XbmcSql::saveTvShowEpisode(TvShowEpisode *episode)
 QImage XbmcSql::movieSetPoster(QString setName)
 {
     QString hash = movieSetHash(setName);
-    QString path = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hash.left(1)).arg(hash);
+    QString path = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hash.left(1)).arg(hash);
     QFileInfo fi(path);
     if (!fi.isFile())
         return QImage();
@@ -1556,7 +1556,7 @@ QImage XbmcSql::movieSetPoster(QString setName)
 QImage XbmcSql::movieSetBackdrop(QString setName)
 {
     QString hash = movieSetHash(setName);
-    QString path = QString("%1%2Video%2Fanart%2%3.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hash);
+    QString path = QString("%1%2Video%2Fanart%2%3.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hash);
     QFileInfo fi(path);
     if (!fi.isFile())
         return QImage();
@@ -1572,7 +1572,7 @@ QImage XbmcSql::movieSetBackdrop(QString setName)
 void XbmcSql::saveMovieSetPoster(QString setName, QImage poster)
 {
     QString hash = movieSetHash(setName);
-    QString path = QString("%1%2Video%2%3%2%4.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hash.left(1)).arg(hash);
+    QString path = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hash.left(1)).arg(hash);
     poster.save(path, "jpg", 100);
 }
 
@@ -1584,7 +1584,7 @@ void XbmcSql::saveMovieSetPoster(QString setName, QImage poster)
 void XbmcSql::saveMovieSetBackdrop(QString setName, QImage backdrop)
 {
     QString hash = movieSetHash(setName);
-    QString path = QString("%1%2Video%2Fanart%2%3.tbn").arg(SettingsWidget::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hash);
+    QString path = QString("%1%2Video%2Fanart%2%3.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hash);
     backdrop.save(path, "jpg", 100);
 }
 
@@ -1657,7 +1657,7 @@ QSqlDatabase XbmcSql::db()
  */
 QString XbmcSql::mediaCenterPath(QString file)
 {
-    QList<SettingsDir> dirs = SettingsWidget::instance()->movieDirectories();
+    QList<SettingsDir> dirs = Settings::instance()->movieDirectories();
     SettingsDir dir;
     file = QDir::toNativeSeparators(file);
     QString mediaCenterFile = file;
@@ -1684,7 +1684,7 @@ QString XbmcSql::mediaCenterPath(QString file)
  */
 QString XbmcSql::mediaCenterDir(QString file)
 {
-    QList<SettingsDir> dirs = SettingsWidget::instance()->movieDirectories();
+    QList<SettingsDir> dirs = Settings::instance()->movieDirectories();
     SettingsDir dir;
     for (int i=0, n=dirs.count() ; i<n ; ++i) {
         if (file.startsWith(dirs.at(i).path) && dirs.at(i).path.length() > dir.path.length())
@@ -1705,7 +1705,7 @@ QString XbmcSql::mediaCenterDir(QString file)
  */
 QString XbmcSql::tvShowMediaCenterPath(QString file)
 {
-    QList<SettingsDir> dirs = SettingsWidget::instance()->tvShowDirectories();
+    QList<SettingsDir> dirs = Settings::instance()->tvShowDirectories();
     SettingsDir dir;
     file = QDir::toNativeSeparators(file);
     QString mediaCenterFile = file;
@@ -1732,7 +1732,7 @@ QString XbmcSql::tvShowMediaCenterPath(QString file)
  */
 QString XbmcSql::tvShowMediaCenterDir(QString file)
 {
-    QList<SettingsDir> dirs = SettingsWidget::instance()->tvShowDirectories();
+    QList<SettingsDir> dirs = Settings::instance()->tvShowDirectories();
     SettingsDir dir;
     for (int i=0, n=dirs.count() ; i<n ; ++i) {
         if (file.startsWith(dirs.at(i).path) && dirs.at(i).path.length() > dir.path.length())

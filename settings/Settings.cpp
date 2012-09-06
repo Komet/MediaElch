@@ -1,29 +1,24 @@
-#include "SettingsWidget.h"
-#include "ui_SettingsWidget.h"
+#include "Settings.h"
+#include "ui_Settings.h"
 #include <QFileDialog>
 #include "FilesWidget.h"
 #include "Manager.h"
 #include "MessageBox.h"
 #include "TvShowFilesWidget.h"
 
-SettingsWidget *SettingsWidget::m_instance;
+Settings *Settings::m_instance;
 
 /**
- * @brief SettingsWidget::SettingsWidget
+ * @brief Settings::Settings
  * @param parent
  */
-SettingsWidget::SettingsWidget(QWidget *parent) :
+Settings::Settings(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::SettingsWidget)
+    ui(new Ui::Settings)
 {
     ui->setupUi(this);
-    m_instance = this;
 
-    QFont font = ui->labelMovies->font();
-    font.setPointSize(font.pointSize()+3);
-    ui->labelMovies->setFont(font);
-    ui->labelScrapers->setFont(font);
-    ui->labelTvShows->setFont(font);
+    m_instance = this;
 
     ui->movieDirs->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->movieDirs->horizontalHeaderItem(2)->setToolTip(tr("Movies are in separate folders"));
@@ -32,31 +27,35 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     ui->tvShowDirs->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->tvShowDirs->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
 
+    int scraperCounter = 0;
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
         if (scraper->hasSettings()) {
+            if (scraperCounter++ > 0) {
+                QFrame *line = new QFrame(ui->groupBox_2);
+                line->setFrameShape(QFrame::HLine);
+                line->setFrameShadow(QFrame::Sunken);
+                ui->verticalLayoutScrapers->addWidget(line);
+            }
             QWidget *scraperSettings = scraper->settingsWidget();
             scraperSettings->setParent(ui->groupBox_2);
             ui->verticalLayoutScrapers->addWidget(new QLabel(scraper->name(), ui->groupBox_2));
             ui->verticalLayoutScrapers->addWidget(scraperSettings);
-            QFrame *line = new QFrame(ui->groupBox_2);
-            line->setFrameShape(QFrame::HLine);
-            line->setFrameShadow(QFrame::Sunken);
-            ui->verticalLayoutScrapers->addWidget(line);
         }
     }
     foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers()) {
         if (scraper->hasSettings()) {
+            if (scraperCounter++ > 0) {
+                QFrame *line = new QFrame(ui->groupBox_2);
+                line->setFrameShape(QFrame::HLine);
+                line->setFrameShadow(QFrame::Sunken);
+                ui->verticalLayoutScrapers->addWidget(line);
+            }
             QWidget *scraperSettings = scraper->settingsWidget();
             scraperSettings->setParent(ui->groupBox_2);
             ui->verticalLayoutScrapers->addWidget(new QLabel(scraper->name(), ui->groupBox_2));
             ui->verticalLayoutScrapers->addWidget(scraperSettings);
-            QFrame *line = new QFrame(ui->groupBox_2);
-            line->setFrameShape(QFrame::HLine);
-            line->setFrameShadow(QFrame::Sunken);
-            ui->verticalLayoutScrapers->addWidget(line);
         }
     }
-    ui->verticalLayoutScrapers->addSpacerItem(new QSpacerItem(1, 1, QSizePolicy::Minimum, QSizePolicy::Expanding));
 
     connect(ui->buttonAddMovieDir, SIGNAL(clicked()), this, SLOT(addMovieDir()));
     connect(ui->buttonRemoveMovieDir, SIGNAL(clicked()), this, SLOT(removeMovieDir()));
@@ -73,22 +72,23 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     connect(ui->buttonSelectSqliteDatabase, SIGNAL(clicked()), this, SLOT(onChooseMediaCenterXbmcSqliteDatabase()));
     connect(ui->buttonSelectThumbnailPath, SIGNAL(clicked()), this, SLOT(onChooseXbmcThumbnailPath()));
 
-    this->loadSettings();
+    loadSettings();
+
 }
 
 /**
- * @brief SettingsWidget::~SettingsWidget
+ * @brief Settings::~Settings
  */
-SettingsWidget::~SettingsWidget()
+Settings::~Settings()
 {
     delete ui;
 }
 
 /**
- * @brief Returns an instance of the settings widget
- * @return Instance of SettingsWidget
+ * @brief Returns an instance of the settings
+ * @return Instance of Settings
  */
-SettingsWidget *SettingsWidget::instance()
+Settings *Settings::instance()
 {
     return m_instance;
 }
@@ -96,7 +96,7 @@ SettingsWidget *SettingsWidget::instance()
 /**
  * @brief Loads all settings
  */
-void SettingsWidget::loadSettings()
+void Settings::loadSettings()
 {
     // Globals
     m_mainWindowSize = m_settings.value("MainWindowSize").toSize();
@@ -193,7 +193,7 @@ void SettingsWidget::loadSettings()
 /**
  * @brief Saves all settings
  */
-void SettingsWidget::saveSettings()
+void Settings::saveSettings()
 {
     bool mediaInterfaceChanged = false;
 
@@ -264,7 +264,7 @@ void SettingsWidget::saveSettings()
 /**
  * @brief Adds a movie directory
  */
-void SettingsWidget::addMovieDir()
+void Settings::addMovieDir()
 {
     QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a directory containing your movies"), QDir::homePath());
     if (!dir.isEmpty()) {
@@ -295,7 +295,7 @@ void SettingsWidget::addMovieDir()
 /**
  * @brief Removes a movie directory
  */
-void SettingsWidget::removeMovieDir()
+void Settings::removeMovieDir()
 {
     int row = ui->movieDirs->currentRow();
     if (row < 0)
@@ -309,7 +309,7 @@ void SettingsWidget::removeMovieDir()
  * @brief Enables/disables the button to remove a movie dir
  * @param currentRow Current row in the movie list
  */
-void SettingsWidget::movieListRowChanged(int currentRow)
+void Settings::movieListRowChanged(int currentRow)
 {
     ui->buttonRemoveMovieDir->setDisabled(currentRow < 0);
 }
@@ -317,7 +317,7 @@ void SettingsWidget::movieListRowChanged(int currentRow)
 /**
  * @brief Adds a tv show dir
  */
-void SettingsWidget::addTvShowDir()
+void Settings::addTvShowDir()
 {
     QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a directory containing your TV shows"), QDir::homePath());
     if (!dir.isEmpty()) {
@@ -345,7 +345,7 @@ void SettingsWidget::addTvShowDir()
 /**
  * @brief Removes a tv show dir
  */
-void SettingsWidget::removeTvShowDir()
+void Settings::removeTvShowDir()
 {
     int row = ui->tvShowDirs->currentRow();
     if (row<0)
@@ -359,7 +359,7 @@ void SettingsWidget::removeTvShowDir()
  * @brief Enables/Disables the button to remove a tv show dir
  * @param currentRow Current selected row in the list of tv show dirs
  */
-void SettingsWidget::tvShowListRowChanged(int currentRow)
+void Settings::tvShowListRowChanged(int currentRow)
 {
     ui->buttonRemoveTvShowDir->setDisabled(currentRow < 0);
 }
@@ -368,7 +368,7 @@ void SettingsWidget::tvShowListRowChanged(int currentRow)
  * @brief Stores the values from the list for movie directories
  * @param item Current item
  */
-void SettingsWidget::movieMediaCenterPathChanged(QTableWidgetItem *item)
+void Settings::movieMediaCenterPathChanged(QTableWidgetItem *item)
 {
     if (item->row() < 0 || item->row() >= m_movieDirectories.count())
         return;
@@ -383,7 +383,7 @@ void SettingsWidget::movieMediaCenterPathChanged(QTableWidgetItem *item)
  * @brief Stores the values from the list for tv show directories
  * @param item Current item
  */
-void SettingsWidget::tvShowMediaCenterPathChanged(QTableWidgetItem *item)
+void Settings::tvShowMediaCenterPathChanged(QTableWidgetItem *item)
 {
     if (item->row() < 0 || item->row() >= m_tvShowDirectories.count() || item->column() != 1)
         return;
@@ -393,7 +393,7 @@ void SettingsWidget::tvShowMediaCenterPathChanged(QTableWidgetItem *item)
 /**
  * @brief Handles status of MediaCenter checkboxes and inputs
  */
-void SettingsWidget::onMediaCenterXbmcXmlSelected()
+void Settings::onMediaCenterXbmcXmlSelected()
 {
     ui->radioXbmcXml->setChecked(true);
     ui->widgetXbmcMysql->setEnabled(false);
@@ -404,7 +404,7 @@ void SettingsWidget::onMediaCenterXbmcXmlSelected()
 /**
  * @brief Handles status of MediaCenter checkboxes and inputs
  */
-void SettingsWidget::onMediaCenterXbmcMysqlSelected()
+void Settings::onMediaCenterXbmcMysqlSelected()
 {
     ui->radioXbmcMysql->setChecked(true);
     ui->widgetXbmcMysql->setEnabled(true);
@@ -415,7 +415,7 @@ void SettingsWidget::onMediaCenterXbmcMysqlSelected()
 /**
  * @brief Handles status of MediaCenter checkboxes and inputs
  */
-void SettingsWidget::onMediaCenterXbmcSqliteSelected()
+void Settings::onMediaCenterXbmcSqliteSelected()
 {
     ui->radioXbmcSqlite->setChecked(true);
     ui->widgetXbmcMysql->setEnabled(false);
@@ -426,7 +426,7 @@ void SettingsWidget::onMediaCenterXbmcSqliteSelected()
 /**
  * @brief Handles status of MediaCenter checkboxes and inputs
  */
-void SettingsWidget::onChooseMediaCenterXbmcSqliteDatabase()
+void Settings::onChooseMediaCenterXbmcSqliteDatabase()
 {
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::ExistingFile);
@@ -443,7 +443,7 @@ void SettingsWidget::onChooseMediaCenterXbmcSqliteDatabase()
 /**
  * @brief Shows a dialog to choose the thumbnail directory
  */
-void SettingsWidget::onChooseXbmcThumbnailPath()
+void Settings::onChooseXbmcThumbnailPath()
 {
     QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a directory containing your Thumbnails"), QDir::homePath());
     if (!dir.isEmpty()) {
@@ -457,7 +457,7 @@ void SettingsWidget::onChooseXbmcThumbnailPath()
  * @brief Enables or disables the thumbnail path
  * @param enabled Status
  */
-void SettingsWidget::setXbmcThumbnailPathEnabled(bool enabled)
+void Settings::setXbmcThumbnailPathEnabled(bool enabled)
 {
     ui->inputThumbnailPath->setEnabled(enabled);
     ui->buttonSelectThumbnailPath->setEnabled(enabled);
@@ -471,7 +471,7 @@ void SettingsWidget::setXbmcThumbnailPathEnabled(bool enabled)
  * @brief Returns the stored size of the main window
  * @return Size of the main window
  */
-QSize SettingsWidget::mainWindowSize()
+QSize Settings::mainWindowSize()
 {
     return m_mainWindowSize;
 }
@@ -480,7 +480,7 @@ QSize SettingsWidget::mainWindowSize()
  * @brief Returns the stored position of the main window
  * @return Position of the main window
  */
-QPoint SettingsWidget::mainWindowPosition()
+QPoint Settings::mainWindowPosition()
 {
     return m_mainWindowPosition;
 }
@@ -489,7 +489,7 @@ QPoint SettingsWidget::mainWindowPosition()
  * @brief Returns the state of the movie splitter
  * @return State of the movie splitter
  */
-QByteArray SettingsWidget::movieSplitterState()
+QByteArray Settings::movieSplitterState()
 {
     return m_movieSplitterState;
 }
@@ -498,7 +498,7 @@ QByteArray SettingsWidget::movieSplitterState()
  * @brief Returns the state of the tv show splitter
  * @return State of the tv show splitter
  */
-QByteArray SettingsWidget::tvShowSplitterState()
+QByteArray Settings::tvShowSplitterState()
 {
     return m_tvShowSplitterState;
 }
@@ -507,7 +507,7 @@ QByteArray SettingsWidget::tvShowSplitterState()
  * @brief Returns the state of the sets splitter
  * @return State of the sets splitter
  */
-QByteArray SettingsWidget::movieSetsSplitterState()
+QByteArray Settings::movieSetsSplitterState()
 {
     return m_movieSetsSplitterState;
 }
@@ -516,7 +516,7 @@ QByteArray SettingsWidget::movieSetsSplitterState()
  * @brief Returns a list of movie directories
  * @return List of movie directories
  */
-QList<SettingsDir> SettingsWidget::movieDirectories()
+QList<SettingsDir> Settings::movieDirectories()
 {
     return m_movieDirectories;
 }
@@ -525,7 +525,7 @@ QList<SettingsDir> SettingsWidget::movieDirectories()
  * @brief Returns a list of tv show directories
  * @return List of tv show directories
  */
-QList<SettingsDir> SettingsWidget::tvShowDirectories()
+QList<SettingsDir> Settings::tvShowDirectories()
 {
     return m_tvShowDirectories;
 }
@@ -534,7 +534,7 @@ QList<SettingsDir> SettingsWidget::tvShowDirectories()
  * @brief Returns the number of the chosen MediaCenterInterface
  * @return Number of the chosen MediaCenterInterface
  */
-int SettingsWidget::mediaCenterInterface()
+int Settings::mediaCenterInterface()
 {
     return m_mediaCenterInterface;
 }
@@ -543,7 +543,7 @@ int SettingsWidget::mediaCenterInterface()
  * @brief Returns the host of the MySQL database
  * @return Host of the MySQL db
  */
-QString SettingsWidget::xbmcMysqlHost()
+QString Settings::xbmcMysqlHost()
 {
     return m_xbmcMysqlHost;
 }
@@ -552,7 +552,7 @@ QString SettingsWidget::xbmcMysqlHost()
  * @brief Returns the name of the MySQL database
  * @return Name of the MySQL db
  */
-QString SettingsWidget::xbmcMysqlDatabase()
+QString Settings::xbmcMysqlDatabase()
 {
     return m_xbmcMysqlDatabase;
 }
@@ -561,7 +561,7 @@ QString SettingsWidget::xbmcMysqlDatabase()
  * @brief Returns the user of the MySQL database
  * @return User of the MySQL db
  */
-QString SettingsWidget::xbmcMysqlUser()
+QString Settings::xbmcMysqlUser()
 {
     return m_xbmcMysqlUser;
 }
@@ -570,7 +570,7 @@ QString SettingsWidget::xbmcMysqlUser()
  * @brief Returns the password of the MySQL database
  * @return Password of the MySQL db
  */
-QString SettingsWidget::xbmcMysqlPassword()
+QString Settings::xbmcMysqlPassword()
 {
     return m_xbmcMysqlPassword;
 }
@@ -579,7 +579,7 @@ QString SettingsWidget::xbmcMysqlPassword()
  * @brief Returns the path to the SQLite database
  * @return Path to SQLite database
  */
-QString SettingsWidget::xbmcSqliteDatabase()
+QString Settings::xbmcSqliteDatabase()
 {
     return m_xbmcSqliteDatabase;
 }
@@ -588,7 +588,7 @@ QString SettingsWidget::xbmcSqliteDatabase()
  * @brief Returns the path to the thumbnails
  * @return Path to thumbnails
  */
-QString SettingsWidget::xbmcThumbnailPath()
+QString Settings::xbmcThumbnailPath()
 {
     return m_xbmcThumbnailPath;
 }
@@ -599,7 +599,7 @@ QString SettingsWidget::xbmcThumbnailPath()
  * @brief Sets the size of the main window
  * @param mainWindowSize Size of the main window
  */
-void SettingsWidget::setMainWindowSize(QSize mainWindowSize)
+void Settings::setMainWindowSize(QSize mainWindowSize)
 {
     m_mainWindowSize = mainWindowSize;
     m_settings.setValue("MainWindowSize", mainWindowSize);
@@ -609,7 +609,7 @@ void SettingsWidget::setMainWindowSize(QSize mainWindowSize)
  * @brief Sets the position of the main window
  * @param mainWindowPosition Position of the main window
  */
-void SettingsWidget::setMainWindowPosition(QPoint mainWindowPosition)
+void Settings::setMainWindowPosition(QPoint mainWindowPosition)
 {
     m_mainWindowPosition = mainWindowPosition;
     m_settings.setValue("MainWindowPosition", mainWindowPosition);
@@ -619,7 +619,7 @@ void SettingsWidget::setMainWindowPosition(QPoint mainWindowPosition)
  * @brief Sets the state of the movie splitter
  * @param state State of the splitter
  */
-void SettingsWidget::setMovieSplitterState(QByteArray state)
+void Settings::setMovieSplitterState(QByteArray state)
 {
     m_movieSplitterState = state;
     m_settings.setValue("MovieSplitterState", state);
@@ -629,7 +629,7 @@ void SettingsWidget::setMovieSplitterState(QByteArray state)
  * @brief Sets the state of the tv show splitter
  * @param state State of the splitter
  */
-void SettingsWidget::setTvShowSplitterState(QByteArray state)
+void Settings::setTvShowSplitterState(QByteArray state)
 {
     m_tvShowSplitterState = state;
     m_settings.setValue("TvShowSplitterState", state);
@@ -639,7 +639,7 @@ void SettingsWidget::setTvShowSplitterState(QByteArray state)
  * @brief Sets the state of the movie sets splitter
  * @param state State of the splitter
  */
-void SettingsWidget::setMovieSetsSplitterState(QByteArray state)
+void Settings::setMovieSetsSplitterState(QByteArray state)
 {
     m_movieSetsSplitterState = state;
     m_settings.setValue("MovieSetsSplitterState", state);
