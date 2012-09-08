@@ -887,6 +887,19 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>QObject</name>
+    <message>
+        <location filename="../main.cpp" line="59"/>
+        <source>Logfile could not be openened</source>
+        <translation>Logdatei konnte nicht geöffnet werden</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="60"/>
+        <source>The logfile %1 could not be openend for writing.</source>
+        <translation>Die Logdatei %1 konnte nicht zum Schreiben geöffnet werden.</translation>
+    </message>
+</context>
+<context>
     <name>QuestionDialog</name>
     <message>
         <source>Discard Changes?</source>
@@ -1017,10 +1030,8 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Globale Einstellungen</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="141"/>
-        <location filename="../settings/Settings.ui" line="443"/>
         <source>Please restart MediaElch after saving if you changed the MediaCenter interface or added/removed directories.</source>
-        <translation>Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
+        <translation type="obsolete">Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
     </message>
     <message>
         <location filename="../settings/Settings.ui" line="163"/>
@@ -1155,6 +1166,12 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <location filename="../settings/Settings.ui" line="642"/>
         <source>Select</source>
         <translation>Auswählen</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="141"/>
+        <location filename="../settings/Settings.ui" line="443"/>
+        <source>Please restart MediaElch after saving if you changed the MediaCenter interface, debug mode or added/removed directories.</source>
+        <translation>Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, den Debug Modus, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
     </message>
     <message>
         <location filename="../settings/Settings.ui" line="616"/>

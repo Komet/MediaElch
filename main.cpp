@@ -1,7 +1,42 @@
+#include <QFile>
+#include <QMessageBox>
+#include <QObject>
 #include <QtGui/QApplication>
 #include <QTextCodec>
+#include <QTextStream>
 #include <QTranslator>
 #include "MainWindow.h"
+#include "settings/Settings.h"
+
+static QFile data;
+
+void messageOutput(QtMsgType type, const char *msg)
+{
+    if (!data.isOpen())
+        return;
+
+    QTextStream out(&data);
+    QString newLine = "\n";
+    #ifdef Q_WS_WIN
+        newLine = "\r\n";
+    #endif
+
+    switch (type) {
+    case QtDebugMsg:
+        out << msg << newLine;
+        break;
+    case QtWarningMsg:
+        out << "WARNING: " << msg << newLine;
+        break;
+    case QtCriticalMsg:
+        out << "CRITICAL: " << msg << newLine;
+        break;
+    case QtFatalMsg:
+        out << "FATAL: " << msg << newLine;
+        abort();
+    }
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -17,8 +52,20 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("MediaElch");
     QCoreApplication::setApplicationVersion("0.9.4");
 
+    QSettings settings;
+    if (settings.value("DebugModeActivated", false).toBool() && !settings.value("DebugLogPath").toString().isEmpty()) {
+        data.setFileName(settings.value("DebugLogPath").toString());
+        if (!data.open(QFile::WriteOnly | QFile::Truncate))
+            QMessageBox::critical(0, QObject::tr("Logfile could not be openened"),
+                                  QObject::tr("The logfile %1 could not be openend for writing.").arg(settings.value("DebugLogPath").toString()));
+        qInstallMsgHandler(messageOutput);
+    }
+
     MainWindow w;
     w.show();
+
+    if (data.isOpen())
+        data.close();
 
     return a.exec();
 }

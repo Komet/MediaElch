@@ -138,7 +138,7 @@ QTabBar::tab:last:selected {
           </font>
          </property>
          <property name="text">
-          <string>Please restart MediaElch after saving if you changed the MediaCenter interface or added/removed directories.</string>
+          <string>Please restart MediaElch after saving if you changed the MediaCenter interface, debug mode or added/removed directories.</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -440,7 +440,7 @@ QTabBar::tab:last:selected {
           </font>
          </property>
          <property name="text">
-          <string>Please restart MediaElch after saving if you changed the MediaCenter interface or added/removed directories.</string>
+          <string>Please restart MediaElch after saving if you changed the MediaCenter interface, debug mode or added/removed directories.</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
