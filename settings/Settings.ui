@@ -34,7 +34,34 @@ QTabWidget::pane {
 
 QGroupBox {
 	background-image: url(:/img/pattern.png);
+	border-radius: 5px;
+	border: 1px solid rgba(0, 0, 0, 100);
 }
+
+QTabBar:tab {
+/*	border: 1px solid rgba(0, 0, 0, 100);*/
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 5px;
+	margin-right: 10px;
+	color: #0088cc;
+	background-color: rgba(0, 0, 0, 70);
+	color: rgb(255, 255, 255);
+}
+
+QTabBar::tab:hover {
+/*	background-color: #eeeeee;
+	color: #005580;*/
+	background-color: rgba(0, 0, 0, 90);
+	color: rgb(255, 255, 255);
+}
+
+QTabBar::tab:selected {
+	background-color: #0088cc;
+	color: rgb(255, 255, 255);
+}
+
 
 /*
 QTabWidget::pane {
