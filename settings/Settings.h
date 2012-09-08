@@ -1,6 +1,7 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
+#include <QFileDialog>
 #include <QSettings>
 #include <QTableWidgetItem>
 #include <QWidget>
@@ -38,6 +39,8 @@ public:
     QString xbmcMysqlPassword();
     QString xbmcSqliteDatabase();
     QString xbmcThumbnailPath();
+    bool debugModeActivated();
+    QString debugLogPath();
 
     void setMainWindowSize(QSize mainWindowSize);
     void setMainWindowPosition(QPoint mainWindowPosition);
@@ -49,10 +52,10 @@ public slots:
     void saveSettings();
 
 private slots:
-    void addMovieDir();
+    void addMovieDir(QString dir);
     void removeMovieDir();
     void movieListRowChanged(int currentRow);
-    void addTvShowDir();
+    void addTvShowDir(QString dir);
     void removeTvShowDir();
     void tvShowListRowChanged(int currentRow);
     void movieMediaCenterPathChanged(QTableWidgetItem *item);
@@ -60,8 +63,11 @@ private slots:
     void onMediaCenterXbmcXmlSelected();
     void onMediaCenterXbmcMysqlSelected();
     void onMediaCenterXbmcSqliteSelected();
-    void onChooseMediaCenterXbmcSqliteDatabase();
-    void onChooseXbmcThumbnailPath();
+    void onChooseMediaCenterXbmcSqliteDatabase(QString file);
+    void onChooseXbmcThumbnailPath(QString dir);
+    void onDebugLogPathChosen(QString file);
+    void onActivateDebugMode();
+    void onSetDebugLogPath(QString path);
 
 private:
     Ui::Settings *ui;
@@ -80,7 +86,14 @@ private:
     QString m_xbmcMysqlPassword;
     QString m_xbmcSqliteDatabase;
     QString m_xbmcThumbnailPath;
+    bool m_debugModeActivated;
+    QString m_debugLogPath;
     static Settings *m_instance;
+    QFileDialog *m_logFileDialog;
+    QFileDialog *m_movieDirDialog;
+    QFileDialog *m_tvShowDirDialog;
+    QFileDialog *m_xbmcThumbnailDirDialog;
+    QFileDialog *m_xbmcSqliteDatabaseDialog;
 
     void setXbmcThumbnailPathEnabled(bool enabled);
 };

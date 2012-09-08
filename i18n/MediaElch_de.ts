@@ -1012,156 +1012,193 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="99"/>
+        <location filename="../settings/Settings.ui" line="126"/>
         <source>Global Settings</source>
         <translation>Globale Einstellungen</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="120"/>
+        <location filename="../settings/Settings.ui" line="141"/>
+        <location filename="../settings/Settings.ui" line="443"/>
+        <source>Please restart MediaElch after saving if you changed the MediaCenter interface or added/removed directories.</source>
+        <translation>Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="163"/>
         <source>Movies</source>
         <translation>Filme</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="130"/>
+        <location filename="../settings/Settings.ui" line="173"/>
         <source>Add one or more directories containing your movie files.</source>
         <translation>Füge Verzeichnisse hinzu, die deine Filme enthalten.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="144"/>
-        <location filename="../settings/Settings.ui" line="232"/>
-        <location filename="../settings/Settings.ui" line="509"/>
+        <location filename="../settings/Settings.ui" line="187"/>
+        <location filename="../settings/Settings.ui" line="275"/>
+        <location filename="../settings/Settings.ui" line="628"/>
         <source>Path</source>
         <translation>Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="149"/>
-        <location filename="../settings/Settings.ui" line="237"/>
+        <location filename="../settings/Settings.ui" line="192"/>
+        <location filename="../settings/Settings.ui" line="280"/>
         <source>MediaCenter Path</source>
         <translation>MediaCenter Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="154"/>
+        <location filename="../settings/Settings.ui" line="197"/>
         <source>Sep. folders</source>
         <translation>Sep. Verzeichnisse</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="164"/>
-        <location filename="../settings/Settings.ui" line="247"/>
+        <location filename="../settings/Settings.ui" line="207"/>
+        <location filename="../settings/Settings.ui" line="290"/>
         <source>Add</source>
         <translation>Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="171"/>
-        <location filename="../settings/Settings.ui" line="254"/>
+        <location filename="../settings/Settings.ui" line="214"/>
+        <location filename="../settings/Settings.ui" line="297"/>
         <source>Remove</source>
         <translation>Entfernen</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="208"/>
+        <location filename="../settings/Settings.ui" line="251"/>
         <source>TV Shows</source>
         <translation>TV Serien</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="215"/>
+        <location filename="../settings/Settings.ui" line="258"/>
         <source>Add one or more directories containing your TV Shows. Episodes have to be in subfolders with the name of the show.</source>
         <translation>Füge Verzeichnisse hinzu, die deine Serien enthalten. Episoden müssen in Unterverzeichnissen mit dem Namen der Serie sein.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="280"/>
-        <location filename="../settings/Settings.ui" line="301"/>
+        <location filename="../settings/Settings.ui" line="334"/>
+        <source>Debug</source>
+        <translation>Debug</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="341"/>
+        <source>When debug mode is activated debug messages are written to logfile you set. Please use this option only if you encountered problems with MediaElch as the logfile can get very big. </source>
+        <translation>Wenn der Debug Modus aktiviert ist, werden Debug Ausgaben in die Logdatei geschrieben, die du angegeben hast. Bitte benutze diese Option nur, wenn du ein Problem mit MediaElch entdeckt hast, da die Logdatei schnell sehr groß werden kann.</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="351"/>
+        <source>Activate debug mode</source>
+        <translation>Debug Modus aktivieren</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="360"/>
+        <source>Logfile: </source>
+        <translation>Logdatei:</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="383"/>
+        <location filename="../settings/Settings.ui" line="404"/>
         <source>Scrapers</source>
         <translation>Scraper</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="325"/>
+        <location filename="../settings/Settings.ui" line="428"/>
         <source>MediaCenter</source>
         <translation>MediaCenter</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="346"/>
+        <location filename="../settings/Settings.ui" line="465"/>
         <source>MediaCenter Interface</source>
         <translation>MediaCenter Interface</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="353"/>
+        <location filename="../settings/Settings.ui" line="472"/>
         <source>Select the MediaCenter to use.</source>
         <translation>Wähle ein Interface zu deinem MediaCenter aus.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="360"/>
+        <location filename="../settings/Settings.ui" line="479"/>
         <source>XBMC XML</source>
         <translation>XBMC XML</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="367"/>
+        <location filename="../settings/Settings.ui" line="486"/>
         <source>XBMC MySQL</source>
         <translation>XBMC MySQL</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="383"/>
+        <location filename="../settings/Settings.ui" line="502"/>
         <source>Host</source>
         <translation>Host</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="400"/>
-        <location filename="../settings/Settings.ui" line="473"/>
+        <location filename="../settings/Settings.ui" line="519"/>
+        <location filename="../settings/Settings.ui" line="592"/>
         <source>Database</source>
         <translation>Datenbank</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="417"/>
+        <location filename="../settings/Settings.ui" line="536"/>
         <source>Username</source>
         <translation>Benutzername</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="434"/>
+        <location filename="../settings/Settings.ui" line="553"/>
         <source>Password</source>
         <translation>Passwort</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="457"/>
+        <location filename="../settings/Settings.ui" line="576"/>
         <source>XBMC SQLite</source>
         <translation>XBMC SQLite</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="487"/>
-        <location filename="../settings/Settings.ui" line="523"/>
+        <location filename="../settings/Settings.ui" line="370"/>
+        <location filename="../settings/Settings.ui" line="606"/>
+        <location filename="../settings/Settings.ui" line="642"/>
         <source>Select</source>
         <translation>Auswählen</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="497"/>
+        <location filename="../settings/Settings.ui" line="616"/>
         <source>Set the path where Thumbnails are stored (e.g. ~/.xbmc/userdata/Thumbnails)</source>
         <translation>Wähle das Verzeichnis aus, in dem die XBMC Thumbnails gespeichert werden (z.B. ~/.xbmc/userdata/Thumbnails)</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="24"/>
-        <location filename="../settings/Settings.cpp" line="120"/>
+        <location filename="../settings/Settings.cpp" line="25"/>
+        <location filename="../settings/Settings.cpp" line="149"/>
         <source>Movies are in separate folders</source>
         <translation>Filme sind in separaten Verzeichnissen</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="255"/>
+        <location filename="../settings/Settings.cpp" line="289"/>
         <source>Settings saved</source>
         <translation>Einstellungen gespeichert</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="269"/>
+        <location filename="../settings/Settings.cpp" line="64"/>
         <source>Choose a directory containing your movies</source>
         <translation>Wähle ein Verzeichnis aus, das deine Filme enthält</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="322"/>
+        <location filename="../settings/Settings.cpp" line="62"/>
+        <source>Logfile</source>
+        <translation>Logdatei</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.cpp" line="62"/>
+        <source>Logfiles (*.log *.txt)</source>
+        <translation>Logdateien (*.log *.txt)</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.cpp" line="67"/>
         <source>Choose a directory containing your TV shows</source>
         <translation>Wähle ein Verzeichnis aus, das deine Serien enthält</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="433"/>
+        <location filename="../settings/Settings.cpp" line="71"/>
         <source>SQLite Database *.db</source>
         <translation>SQLite Datenbank *.db</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="448"/>
+        <location filename="../settings/Settings.cpp" line="69"/>
         <source>Choose a directory containing your Thumbnails</source>
         <translation>Wähle das Verzeichnis aus, in dem die Thumbnails gespeichert werden</translation>
     </message>

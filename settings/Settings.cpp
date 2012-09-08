@@ -1,7 +1,8 @@
 #include "Settings.h"
 #include "ui_Settings.h"
-#include <QFileDialog>
+
 #include "FilesWidget.h"
+#include "MainWindow.h"
 #include "Manager.h"
 #include "MessageBox.h"
 #include "TvShowFilesWidget.h"
@@ -57,23 +58,44 @@ Settings::Settings(QWidget *parent) :
         }
     }
 
-    connect(ui->buttonAddMovieDir, SIGNAL(clicked()), this, SLOT(addMovieDir()));
+    // Setup file dialogs
+    m_logFileDialog = new QFileDialog(this, tr("Logfile"), QDir::homePath(), tr("Logfiles (*.log *.txt)"));
+    m_logFileDialog->setFileMode(QFileDialog::ExistingFile);
+    m_movieDirDialog = new QFileDialog(this, tr("Choose a directory containing your movies"), QDir::homePath());
+    m_movieDirDialog->setFileMode(QFileDialog::Directory);
+    m_movieDirDialog->setOption(QFileDialog::ShowDirsOnly, true);
+    m_tvShowDirDialog = new QFileDialog(this, tr("Choose a directory containing your TV shows"), QDir::homePath());
+    m_tvShowDirDialog->setOption(QFileDialog::ShowDirsOnly, true);
+    m_xbmcThumbnailDirDialog = new QFileDialog(this, tr("Choose a directory containing your Thumbnails"), QDir::homePath());;
+    m_xbmcThumbnailDirDialog->setOption(QFileDialog::ShowDirsOnly, true);
+    m_xbmcSqliteDatabaseDialog = new QFileDialog(this, tr("SQLite Database *.db"), QDir::homePath());
+    m_xbmcSqliteDatabaseDialog->setFileMode(QFileDialog::ExistingFile);
+
+    connect(m_logFileDialog, SIGNAL(fileSelected(QString)), this, SLOT(onDebugLogPathChosen(QString)));
+    connect(m_movieDirDialog, SIGNAL(fileSelected(QString)), this, SLOT(addMovieDir(QString)));
+    connect(m_tvShowDirDialog, SIGNAL(fileSelected(QString)), this, SLOT(addTvShowDir(QString)));
+    connect(m_xbmcThumbnailDirDialog, SIGNAL(fileSelected(QString)), this, SLOT(onChooseXbmcThumbnailPath(QString)));
+    connect(m_xbmcSqliteDatabaseDialog, SIGNAL(fileSelected(QString)), this, SLOT(onChooseMediaCenterXbmcSqliteDatabase(QString)));
+
+    connect(ui->buttonAddMovieDir, SIGNAL(clicked()), m_movieDirDialog, SLOT(open()));
     connect(ui->buttonRemoveMovieDir, SIGNAL(clicked()), this, SLOT(removeMovieDir()));
     connect(ui->movieDirs, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(movieListRowChanged(int)));
-    connect(ui->buttonAddTvShowDir, SIGNAL(clicked()), this, SLOT(addTvShowDir()));
+    connect(ui->buttonAddTvShowDir, SIGNAL(clicked()), m_tvShowDirDialog, SLOT(open()));
     connect(ui->buttonRemoveTvShowDir, SIGNAL(clicked()), this, SLOT(removeTvShowDir()));
     connect(ui->tvShowDirs, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(tvShowListRowChanged(int)));
     connect(ui->movieDirs, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(movieMediaCenterPathChanged(QTableWidgetItem*)));
     connect(ui->tvShowDirs, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(tvShowMediaCenterPathChanged(QTableWidgetItem*)));
+    connect(ui->chkActivateDebug, SIGNAL(clicked()), this, SLOT(onActivateDebugMode()));
+    connect(ui->buttonChooseLogfile, SIGNAL(clicked()), m_logFileDialog, SLOT(open()));
+    connect(ui->logfilePath, SIGNAL(textChanged(QString)), this, SLOT(onSetDebugLogPath(QString)));
 
     connect(ui->radioXbmcXml, SIGNAL(clicked()), this, SLOT(onMediaCenterXbmcXmlSelected()));
     connect(ui->radioXbmcMysql, SIGNAL(clicked()), this, SLOT(onMediaCenterXbmcMysqlSelected()));
     connect(ui->radioXbmcSqlite, SIGNAL(clicked()), this, SLOT(onMediaCenterXbmcSqliteSelected()));
-    connect(ui->buttonSelectSqliteDatabase, SIGNAL(clicked()), this, SLOT(onChooseMediaCenterXbmcSqliteDatabase()));
-    connect(ui->buttonSelectThumbnailPath, SIGNAL(clicked()), this, SLOT(onChooseXbmcThumbnailPath()));
+    connect(ui->buttonSelectSqliteDatabase, SIGNAL(clicked()), m_xbmcSqliteDatabaseDialog, SLOT(open()));
+    connect(ui->buttonSelectThumbnailPath, SIGNAL(clicked()), m_xbmcThumbnailDirDialog, SLOT(open()));
 
     loadSettings();
-
 }
 
 /**
@@ -104,6 +126,13 @@ void Settings::loadSettings()
     m_movieSplitterState = m_settings.value("MovieSplitterState").toByteArray();
     m_tvShowSplitterState = m_settings.value("TvShowSplitterState").toByteArray();
     m_movieSetsSplitterState = m_settings.value("MovieSetsSplitterState").toByteArray();
+    m_debugModeActivated = m_settings.value("DebugModeActivated", false).toBool();
+    m_debugLogPath = m_settings.value("DebugLogPath").toString();
+
+    // Debug
+    ui->chkActivateDebug->setChecked(m_debugModeActivated);
+    ui->logfilePath->setText(m_debugLogPath);
+    onActivateDebugMode();
 
     // Movie Directories
     m_movieDirectories.clear();
@@ -184,10 +213,12 @@ void Settings::loadSettings()
     ui->inputUsername->setText(m_xbmcMysqlUser);
     ui->inputPassword->setText(m_xbmcMysqlPassword);
     ui->inputSqliteDatabase->setText(m_xbmcSqliteDatabase);
+    m_xbmcSqliteDatabaseDialog->selectFile(m_xbmcSqliteDatabase);
 
     m_xbmcThumbnailPath = m_settings.value("XbmcThumbnailpath").toString();
     ui->inputThumbnailPath->setText(m_xbmcThumbnailPath);
     ui->inputThumbnailPath->setToolTip(m_xbmcThumbnailPath);
+    m_xbmcThumbnailDirDialog->selectFile(m_xbmcThumbnailPath);
 }
 
 /**
@@ -196,6 +227,9 @@ void Settings::loadSettings()
 void Settings::saveSettings()
 {
     bool mediaInterfaceChanged = false;
+
+    m_settings.setValue("DebugModeActivated", m_debugModeActivated);
+    m_settings.setValue("DebugLogPath", m_debugLogPath);
 
     m_settings.beginWriteArray("Directories/Movies");
     for (int i=0, n=m_movieDirectories.count() ; i<n ; ++i) {
@@ -263,10 +297,10 @@ void Settings::saveSettings()
 
 /**
  * @brief Adds a movie directory
+ * @param dir Directory to add
  */
-void Settings::addMovieDir()
+void Settings::addMovieDir(QString dir)
 {
-    QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a directory containing your movies"), QDir::homePath());
     if (!dir.isEmpty()) {
         bool exists = false;
         for (int i=0, n=m_movieDirectories.count() ; i<n ; ++i) {
@@ -316,10 +350,10 @@ void Settings::movieListRowChanged(int currentRow)
 
 /**
  * @brief Adds a tv show dir
+ * @param dir Directory to add
  */
-void Settings::addTvShowDir()
+void Settings::addTvShowDir(QString dir)
 {
-    QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a directory containing your TV shows"), QDir::homePath());
     if (!dir.isEmpty()) {
         bool exists = false;
         for (int i=0, n=m_tvShowDirectories.count() ; i<n ; ++i) {
@@ -424,28 +458,23 @@ void Settings::onMediaCenterXbmcSqliteSelected()
 }
 
 /**
- * @brief Handles status of MediaCenter checkboxes and inputs
+ * @brief Sets the SQLite database
+ * @param file Database file
  */
-void Settings::onChooseMediaCenterXbmcSqliteDatabase()
+void Settings::onChooseMediaCenterXbmcSqliteDatabase(QString file)
 {
-    QFileDialog dialog(this);
-    dialog.setFileMode(QFileDialog::ExistingFile);
-    dialog.setNameFilter(tr("SQLite Database *.db"));
-    if (dialog.exec()) {
-        QStringList files = dialog.selectedFiles();
-        if (files.count() == 1) {
-            ui->inputSqliteDatabase->setText(files.at(0));
-            m_xbmcSqliteDatabase = files.at(0);
-        }
+    if (!file.isEmpty()) {
+        ui->inputSqliteDatabase->setText(file);
+        m_xbmcSqliteDatabase = file;
     }
 }
 
 /**
  * @brief Shows a dialog to choose the thumbnail directory
+ * @param dir Thumbnail directory to set
  */
-void Settings::onChooseXbmcThumbnailPath()
+void Settings::onChooseXbmcThumbnailPath(QString dir)
 {
-    QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a directory containing your Thumbnails"), QDir::homePath());
     if (!dir.isEmpty()) {
         m_xbmcThumbnailPath = dir;
         ui->inputThumbnailPath->setText(dir);
@@ -463,6 +492,24 @@ void Settings::setXbmcThumbnailPathEnabled(bool enabled)
     ui->buttonSelectThumbnailPath->setEnabled(enabled);
     ui->labelXbmcThumbnailPath->setEnabled(enabled);
     ui->labelXbmcThumbnailPathDesc->setEnabled(enabled);
+}
+
+/**
+ * @brief Toggles the status of logfile input and logfile select button based on the state of the checkbox
+ */
+void Settings::onActivateDebugMode()
+{
+    ui->logfilePath->setEnabled(ui->chkActivateDebug->isChecked());
+    ui->buttonChooseLogfile->setEnabled(ui->chkActivateDebug->isChecked());
+    m_debugModeActivated = ui->chkActivateDebug->isChecked();
+}
+
+/**
+ * @brief Shows a file chooser to choose a path to a logfile
+ */
+void Settings::onDebugLogPathChosen(QString file)
+{
+    ui->logfilePath->setText(file);
 }
 
 /*** GETTER ***/
@@ -593,6 +640,24 @@ QString Settings::xbmcThumbnailPath()
     return m_xbmcThumbnailPath;
 }
 
+/**
+ * @brief Returns the state of the debug mode
+ * @return Debug mode active or not
+ */
+bool Settings::debugModeActivated()
+{
+    return m_debugModeActivated;
+}
+
+/**
+ * @brief Returns the path to the logfile
+ * @return Path to logfile
+ */
+QString Settings::debugLogPath()
+{
+    return m_debugLogPath;
+}
+
 /*** SETTER ***/
 
 /**
@@ -643,4 +708,14 @@ void Settings::setMovieSetsSplitterState(QByteArray state)
 {
     m_movieSetsSplitterState = state;
     m_settings.setValue("MovieSetsSplitterState", state);
+}
+
+/**
+ * @brief Sets the path to the logfile
+ * @param path Path to logfile
+ */
+void Settings::onSetDebugLogPath(QString path)
+{
+    m_debugLogPath = path;
+    m_logFileDialog->selectFile(m_debugLogPath);
 }
