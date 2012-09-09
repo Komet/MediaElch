@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
     QCoreApplication::setOrganizationName("kVibes");
     QCoreApplication::setApplicationName("MediaElch");
-    QCoreApplication::setApplicationVersion("0.9.4");
+    QCoreApplication::setApplicationVersion("0.9.6");
 
     QSettings settings;
     if (settings.value("DebugModeActivated", false).toBool() && !settings.value("DebugLogPath").toString().isEmpty()) {
@@ -63,9 +63,10 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.show();
+    int ret = a.exec();
 
     if (data.isOpen())
         data.close();
 
-    return a.exec();
+    return ret;
 }

@@ -3,6 +3,8 @@
 
 #include <QTreeView>
 
+#include "Globals.h"
+
 /**
  * @brief The MyTreeView class
  * This is TreeView without branches

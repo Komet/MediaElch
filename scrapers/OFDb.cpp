@@ -2,6 +2,7 @@
 
 #include <QDomDocument>
 #include <QXmlStreamReader>
+#include "Globals.h"
 #include "Helper.h"
 
 /**
@@ -88,6 +89,7 @@ QList<int> OFDb::scraperSupports()
  */
 void OFDb::search(QString searchStr)
 {
+    qDebug() << "Entered, searchStr=" << searchStr;
     m_httpNotFoundCounter = 0;
     m_currentSearchString = searchStr;
 
@@ -105,8 +107,10 @@ void OFDb::search(QString searchStr)
  */
 void OFDb::searchFinished()
 {
+    qDebug() << "Entered";
     if (m_searchReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
         m_searchReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+        qDebug() << "Got redirect" << m_searchReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
         m_searchReply->deleteLater();
         m_searchReply = this->qnam()->get(QNetworkRequest(m_searchReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         connect(m_searchReply, SIGNAL(finished()), this, SLOT(searchFinished()));
@@ -115,6 +119,7 @@ void OFDb::searchFinished()
 
     // try to get another mirror when 404 occurs
     if (m_searchReply->error() == QNetworkReply::ContentNotFoundError && m_httpNotFoundCounter < 3) {
+        qWarning() << "Got 404";
         m_httpNotFoundCounter++;
         m_searchReply->deleteLater();
         QUrl url(QString("http://www.ofdbgw.org/search/%1").arg(m_currentSearchString));
@@ -127,6 +132,8 @@ void OFDb::searchFinished()
     if (m_searchReply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(m_searchReply->readAll());
         results = parseSearch(msg);
+    } else {
+        qWarning() << "Network Error" << m_searchReply->errorString();
     }
     m_searchReply->deleteLater();
     emit searchDone(results);
@@ -139,6 +146,7 @@ void OFDb::searchFinished()
  */
 QList<ScraperSearchResult> OFDb::parseSearch(QString xml)
 {
+    qDebug() << "Entered";
     QList<ScraperSearchResult> results;
     QDomDocument domDoc;
     domDoc.setContent(xml);
@@ -166,6 +174,7 @@ QList<ScraperSearchResult> OFDb::parseSearch(QString xml)
  */
 void OFDb::loadData(QString id, Movie *movie, QList<int> infos)
 {
+    qDebug() << "Entered, id=" << id << "movie=" << movie->name();
     m_infosToLoad = infos;
     m_httpNotFoundCounter = 0;
     m_currentLoadId = id;
@@ -181,8 +190,10 @@ void OFDb::loadData(QString id, Movie *movie, QList<int> infos)
  */
 void OFDb::loadFinished()
 {
+    qDebug() << "Entered";
     if (m_loadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
         m_loadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+        qDebug() << "Got redirect" << m_loadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
         m_loadReply->deleteLater();
         m_loadReply = this->qnam()->get(QNetworkRequest(m_loadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         connect(m_loadReply, SIGNAL(finished()), this, SLOT(loadFinished()));
@@ -190,6 +201,7 @@ void OFDb::loadFinished()
     }
 
     if (m_loadReply->error() == QNetworkReply::ContentNotFoundError && m_httpNotFoundCounter < 3) {
+        qWarning() << "Got 404";
         m_httpNotFoundCounter++;
         m_loadReply->deleteLater();
         QUrl url(QString("http://ofdbgw.org/movie/%1").arg(m_currentLoadId));
@@ -202,6 +214,8 @@ void OFDb::loadFinished()
     if (m_loadReply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(m_loadReply->readAll());
         parseAndAssignInfos(msg, m_currentMovie, m_infosToLoad);
+    } else {
+        qWarning() << "Network Error" << m_loadReply->errorString();
     }
     m_loadReply->deleteLater();
     m_currentMovie->scraperLoadDone();
@@ -215,6 +229,7 @@ void OFDb::loadFinished()
  */
 void OFDb::parseAndAssignInfos(QString data, Movie *movie, QList<int> infos)
 {
+    qDebug() << "Entered";
     movie->clear(infos);
     QXmlStreamReader xml(data);
 

@@ -31,6 +31,7 @@ QNetworkAccessManager *DownloadManager::qnam()
  */
 void DownloadManager::addDownload(DownloadManagerElement elem)
 {
+    qDebug() << "Entered, url=" << elem.url;
     if (m_queue.isEmpty())
         QTimer::singleShot(0, this, SLOT(startNextDownload()));
     m_mutex.lock();
@@ -45,6 +46,7 @@ void DownloadManager::addDownload(DownloadManagerElement elem)
  */
 void DownloadManager::setDownloads(QList<DownloadManagerElement> elements)
 {
+    qDebug() << "Entered";
     if (m_downloading)
         m_currentReply->abort();
 
@@ -64,6 +66,7 @@ void DownloadManager::setDownloads(QList<DownloadManagerElement> elements)
  */
 void DownloadManager::startNextDownload()
 {
+    qDebug() << "Entered";
     if (m_currentDownloadElement.movie) {
         int numDownloadsLeft = 0;
         for (int i=0, n=m_queue.size() ; i<n ; ++i) {
@@ -85,6 +88,7 @@ void DownloadManager::startNextDownload()
     }
 
     if (m_queue.isEmpty()) {
+        qDebug() << "All downloads finished";
         emit allDownloadsFinished();
         return;
     }
@@ -141,10 +145,12 @@ void DownloadManager::downloadProgress(qint64 received, qint64 total)
  */
 void DownloadManager::downloadFinished()
 {
+    qDebug() << "Entered";
     m_downloading = false;
-    if (this->m_currentReply->error() != QNetworkReply::NoError)
+    if (this->m_currentReply->error() != QNetworkReply::NoError) {
+        qWarning() << "Network Error" << m_currentReply->errorString();
         return;
-
+    }
     QImage img;
     img.loadFromData(m_currentReply->readAll());
     m_currentDownloadElement.image = img;
@@ -163,6 +169,7 @@ void DownloadManager::downloadFinished()
  */
 void DownloadManager::abortDownloads()
 {
+    qDebug() << "Entered";
     m_mutex.lock();
     m_queue.clear();
     m_mutex.unlock();
@@ -196,6 +203,7 @@ int DownloadManager::downloadQueueSize()
  */
 int DownloadManager::downloadsLeftForShow(TvShow *show)
 {
+    qDebug() << "Entered, show=" << show->name();
     int left = 0;
     m_mutex.lock();
     for (int i=0, n=m_queue.count() ; i<n ; ++i) {
@@ -203,5 +211,6 @@ int DownloadManager::downloadsLeftForShow(TvShow *show)
             left++;
     }
     m_mutex.unlock();
+    qDebug() << "Downloads left" << left;
     return left;
 }

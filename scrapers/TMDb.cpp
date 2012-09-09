@@ -11,6 +11,8 @@
 #include <QSpacerItem>
 #include <QVBoxLayout>
 
+#include "Globals.h"
+
 /**
  * @brief TMDb::TMDb
  * @param parent
@@ -186,6 +188,7 @@ void TMDb::setupFinished()
  */
 void TMDb::search(QString searchStr)
 {
+    qDebug() << "Entered, searchStr=" << searchStr;
     m_results.clear();
     m_searchString = searchStr;
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
@@ -203,8 +206,10 @@ void TMDb::search(QString searchStr)
  */
 void TMDb::searchFinished()
 {
+    qDebug() << "Entered";
     QList<ScraperSearchResult> results;
     if (m_searchReply->error() != QNetworkReply::NoError ) {
+        qWarning() << "Network Error" << m_searchReply->errorString();
         m_searchReply->deleteLater();
         emit searchDone(results);
         return;
@@ -235,6 +240,7 @@ void TMDb::searchFinished()
  */
 QList<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage)
 {
+    qDebug() << "Entered";
     QList<ScraperSearchResult> results;
     QScriptValue sc;
     QScriptEngine engine;
@@ -277,6 +283,7 @@ QList<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage)
  */
 void TMDb::loadData(QString id, Movie *movie, QList<int> infos)
 {
+    qDebug() << "Entered, id=" << id << "movie=" << movie->name();
     m_infosToLoad = infos;
     m_currentMovie = movie;
     m_currentMovie->clear(infos);
@@ -338,9 +345,12 @@ void TMDb::loadData(QString id, Movie *movie, QList<int> infos)
  */
 void TMDb::loadFinished()
 {
+    qDebug() << "Entered";
     if (m_loadReply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(m_loadReply->readAll());
         parseAndAssignInfos(msg, m_currentMovie, m_infosToLoad);
+    } else {
+        qWarning() << "Network Error (load)" << m_loadReply->errorString();
     }
     m_loadReply->deleteLater();
     m_loadsLeft.removeOne(DataInfos);
@@ -353,9 +363,12 @@ void TMDb::loadFinished()
  */
 void TMDb::loadCastsFinished()
 {
+    qDebug() << "Entered";
     if (m_castsReply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(m_castsReply->readAll());
         parseAndAssignInfos(msg, m_currentMovie, m_infosToLoad);
+    } else {
+        qWarning() << "Network Error (casts)" << m_castsReply->errorString();
     }
     m_castsReply->deleteLater();
     m_loadsLeft.removeOne(DataCasts);
@@ -368,9 +381,12 @@ void TMDb::loadCastsFinished()
  */
 void TMDb::loadTrailersFinished()
 {
+    qDebug() << "Entered";
     if (m_trailersReply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(m_trailersReply->readAll());
         parseAndAssignInfos(msg, m_currentMovie, m_infosToLoad);
+    } else {
+        qDebug() << "Network Error (trailers)" << m_trailersReply->errorString();
     }
     m_trailersReply->deleteLater();
     m_loadsLeft.removeOne(DataTrailers);
@@ -383,9 +399,12 @@ void TMDb::loadTrailersFinished()
  */
 void TMDb::loadImagesFinished()
 {
+    qDebug() << "Entered";
     if (m_imagesReply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(m_imagesReply->readAll());
         parseAndAssignInfos(msg, m_currentMovie, m_infosToLoad);
+    } else {
+        qWarning() << "Network Error (images)" << m_imagesReply->errorString();
     }
     m_imagesReply->deleteLater();
     m_loadsLeft.removeOne(DataImages);
@@ -398,9 +417,12 @@ void TMDb::loadImagesFinished()
  */
 void TMDb::loadReleasesFinished()
 {
+    qDebug() << "Entered";
     if (m_releasesReply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(m_releasesReply->readAll());
         parseAndAssignInfos(msg, m_currentMovie, m_infosToLoad);
+    } else {
+        qWarning() << "Network Error (releases)" << m_releasesReply->errorString();
     }
     m_releasesReply->deleteLater();
     m_loadsLeft.removeOne(DataReleases);
@@ -414,6 +436,7 @@ void TMDb::loadReleasesFinished()
  */
 void TMDb::checkDownloadsFinished()
 {
+    qDebug() << "Entered";
     m_mutex.lock();
     if (m_loadsLeft.isEmpty() && !m_loadDoneFired) {
         m_loadDoneFired = true;
@@ -431,6 +454,7 @@ void TMDb::checkDownloadsFinished()
  */
 void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
 {
+    qDebug() << "Entered";
     QScriptValue sc;
     QScriptEngine engine;
     sc = engine.evaluate("(" + QString(json) + ")");

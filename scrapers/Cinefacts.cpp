@@ -1,5 +1,6 @@
 #include "Cinefacts.h"
 #include <QTextDocument>
+#include "Globals.h"
 #include "Helper.h"
 
 /**
@@ -88,6 +89,7 @@ QList<int> Cinefacts::scraperSupports()
  */
 void Cinefacts::search(QString searchStr)
 {
+    qDebug() << "Entered, searchStr=" << searchStr;
     QString encodedSearch = Helper::toLatin1PercentEncoding(searchStr);
     QUrl url;
     url.setEncodedUrl(QString("http://www.cinefacts.de/suche/suche.php?name=%1").arg(encodedSearch).toUtf8());
@@ -102,10 +104,13 @@ void Cinefacts::search(QString searchStr)
  */
 void Cinefacts::searchFinished()
 {
+    qDebug() << "Entered";
     QList<ScraperSearchResult> results;
     if (m_searchReply->error() == QNetworkReply::NoError ) {
         QString msg = m_searchReply->readAll();
         results = parseSearch(msg);
+    } else {
+        qWarning() << "Network Error" << m_searchReply->errorString();
     }
     m_searchReply->deleteLater();
     emit searchDone(results);
@@ -118,6 +123,7 @@ void Cinefacts::searchFinished()
  */
 QList<ScraperSearchResult> Cinefacts::parseSearch(QString html)
 {
+    qDebug() << "Entered";
     QList<ScraperSearchResult> results;
     int pos = 0;
     QRegExp rx("<a href=\"/kino/([0-9]*)/(.[^/]*)/filmdetails.html\">[^<]*<b title=\"([^\"]*)\" class=\"headline\".*([0-9]{4})");
@@ -142,6 +148,7 @@ QList<ScraperSearchResult> Cinefacts::parseSearch(QString html)
  */
 void Cinefacts::loadData(QString id, Movie *movie, QList<int> infos)
 {
+    qDebug() << "Entered, id=" << id << "movie=" << movie->name();
     m_infosToLoad = infos;
     m_currentMovie = movie;
     QUrl url(QString("http://www.cinefacts.de/kino/%1/filmdetails.html").arg(id));
@@ -155,10 +162,12 @@ void Cinefacts::loadData(QString id, Movie *movie, QList<int> infos)
  */
 void Cinefacts::loadFinished()
 {
+    qDebug() << "Entered";
     if (m_loadReply->error() == QNetworkReply::NoError ) {
         QString msg = m_loadReply->readAll();
         parseAndAssignInfos(msg, m_currentMovie, m_infosToLoad);
     } else {
+        qWarning() << "Network Error" << m_loadReply->errorString();
         m_currentMovie->scraperLoadDone();
     }
     m_loadReply->deleteLater();
@@ -172,6 +181,7 @@ void Cinefacts::loadFinished()
  */
 void Cinefacts::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
 {
+    qDebug() << "Entered";
     m_backdropUrl.clear();
     movie->clear(infos);
     QRegExp rx;
@@ -284,6 +294,7 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
  */
 void Cinefacts::posterFinished()
 {
+    qDebug() << "Entered";
     m_posterQueue.clear();
     if (m_posterReply->error() == QNetworkReply::NoError ) {
         QString msg = m_posterReply->readAll();
@@ -311,6 +322,7 @@ void Cinefacts::posterFinished()
  */
 void Cinefacts::backdropFinished()
 {
+    qDebug() << "Entered";
     m_backdropQueue.clear();
     if (m_backdropReply->error() == QNetworkReply::NoError ) {
         QString msg = m_backdropReply->readAll();
@@ -324,6 +336,7 @@ void Cinefacts::backdropFinished()
         }
         startNextBackdropDownload();
     } else {
+        qWarning() << "Network Error" << m_backdropReply->errorString();
         m_currentMovie->scraperLoadDone();
     }
     m_backdropReply->deleteLater();
@@ -334,6 +347,7 @@ void Cinefacts::backdropFinished()
  */
 void Cinefacts::startNextPosterDownload()
 {
+    qDebug() << "Entered";
     if (m_posterQueue.isEmpty()) {
         if (!m_backdropUrl.isEmpty()) {
             m_backdropReply = this->qnam()->get(QNetworkRequest(m_backdropUrl));
@@ -353,6 +367,7 @@ void Cinefacts::startNextPosterDownload()
  */
 void Cinefacts::startNextBackdropDownload()
 {
+    qDebug() << "Entered";
     if (m_backdropQueue.isEmpty()) {
         m_currentMovie->scraperLoadDone();
         return;
@@ -367,6 +382,7 @@ void Cinefacts::startNextBackdropDownload()
  */
 void Cinefacts::posterSubFinished()
 {
+    qDebug() << "Entered";
     if (m_posterSubReply->error() == QNetworkReply::NoError ) {
         QString msg = m_posterSubReply->readAll();
         QRegExp rx("src=\"/kino/plakat/([^\"]*)\"");
@@ -379,6 +395,8 @@ void Cinefacts::posterSubFinished()
                 p.originalUrl = QUrl(QString("http://www.cinefacts.de/kino/plakat/%1").arg(rx.cap(1)));
             m_currentMovie->addPoster(p);
         }
+    } else {
+        qWarning() << "Network Error" << m_posterSubReply->errorString();
     }
     m_posterSubReply->deleteLater();
     startNextPosterDownload();
@@ -389,6 +407,7 @@ void Cinefacts::posterSubFinished()
  */
 void Cinefacts::backdropSubFinished()
 {
+    qDebug() << "Entered";
     if (m_backdropSubReply->error() == QNetworkReply::NoError ) {
         QString msg = m_backdropSubReply->readAll();
         QRegExp rx("src=\"/kino/bild/([^\"]*)\"");
@@ -401,6 +420,8 @@ void Cinefacts::backdropSubFinished()
                 p.originalUrl = QUrl(QString("http://www.cinefacts.de/kino/bild/%1").arg(rx.cap(1)));
             m_currentMovie->addBackdrop(p);
         }
+    } else {
+        qWarning() << "Network Error" << m_backdropSubReply->errorString();
     }
     m_backdropSubReply->deleteLater();
     startNextBackdropDownload();

@@ -1,6 +1,8 @@
 #include "AboutDialog.h"
 #include "ui_AboutDialog.h"
 
+#include "Globals.h"
+
 /**
  * @brief AboutDialog::AboutDialog
  * @param parent

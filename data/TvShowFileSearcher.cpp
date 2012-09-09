@@ -23,11 +23,14 @@ TvShowFileSearcher::TvShowFileSearcher(QObject *parent) :
  */
 void TvShowFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
 {
+    qDebug() << "Entered";
     m_directories.clear();
     for (int i=0, n=directories.count() ; i<n ; ++i) {
         QFileInfo fi(directories.at(i).path);
-        if (fi.isDir())
+        if (fi.isDir()) {
+            qDebug() << "Adding tv show directory" << directories.at(i).path << "with mediacenter dir" << directories.at(i).mediaCenterPath;
             m_directories.append(directories.at(i).path);
+        }
     }
 }
 
@@ -36,6 +39,7 @@ void TvShowFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
  */
 void TvShowFileSearcher::run()
 {
+    qDebug() << "Entered";
     emit searchStarted(tr("Searching for TV Shows..."), m_progressMessageId);
 
     Manager::instance()->tvShowModel()->clear();
@@ -70,6 +74,7 @@ void TvShowFileSearcher::run()
         show->moveToMainThread();
     }
 
+    qDebug() << "Searching for tv shows done";
     emit tvShowsLoaded(m_progressMessageId);
 }
 
@@ -125,10 +130,12 @@ void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QList<QStringLis
                 }
 
                 if (contents.contains(QDir::toNativeSeparators(dir.path() + QDir::separator() + cDir))) {
+                    qDebug() << "Appending tv show" << QDir::toNativeSeparators(dir.path() + QDir::separator() + cDir) << tvShowFiles;
                     contents[QDir::toNativeSeparators(dir.path() + QDir::separator() + cDir)].append(tvShowFiles);
                 } else {
                     QList<QStringList> l;
                     l << tvShowFiles;
+                    qDebug() << "Inserting tv show" << QDir::toNativeSeparators(dir.path() + QDir::separator() + cDir) << l;
                     contents.insert(QDir::toNativeSeparators(dir.path() + QDir::separator() + cDir), l);
                 }
             }

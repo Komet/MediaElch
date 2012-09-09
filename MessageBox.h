@@ -3,6 +3,7 @@
 
 #include <QTimer>
 #include <QWidget>
+#include "Globals.h"
 #include "Message.h"
 
 namespace Ui {

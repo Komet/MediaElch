@@ -108,7 +108,9 @@ void Movie::clear(QList<int> infos)
  */
 bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
 {
+    qDebug() << "Entered";
     bool saved = mediaCenterInterface->saveMovie(this);
+    qDebug() << "Saved" << saved;
     if (!m_infoLoaded)
         m_infoLoaded = saved;
     setChanged(false);
@@ -123,10 +125,12 @@ bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
  */
 bool Movie::loadData(MediaCenterInterface *mediaCenterInterface, bool force)
 {
+    qDebug() << "Entered, force=" << force;
     if ((m_infoLoaded || hasChanged()) && !force)
         return m_infoLoaded;
 
     bool infoLoaded = mediaCenterInterface->loadMovie(this);
+    qDebug() << "Loaded" << infoLoaded;
     if (!infoLoaded) {
         if (this->files().size() > 0) {
             QFileInfo fi(this->files().at(0));
@@ -166,6 +170,7 @@ bool Movie::loadData(MediaCenterInterface *mediaCenterInterface, bool force)
  */
 void Movie::loadData(QString id, ScraperInterface *scraperInterface, QList<int> infos)
 {
+    qDebug() << "Entered, id=" << id << "scraperInterface=" << scraperInterface->name();
     scraperInterface->loadData(id, this, infos);
 }
 
@@ -185,6 +190,7 @@ void Movie::scraperLoadDone()
  */
 void Movie::loadImages(MediaCenterInterface *mediaCenterInterface, bool force)
 {
+    qDebug() << "Entered, force=" << force;
     if (!m_imagesLoaded || force)
         mediaCenterInterface->loadMovieImages(this);
     m_imagesLoaded = true;

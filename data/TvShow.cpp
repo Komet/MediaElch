@@ -4,6 +4,7 @@
 #include <QApplication>
 #include <QDebug>
 #include <QDir>
+#include "Globals.h"
 
 /**
  * @brief TvShow::TvShow
@@ -85,7 +86,9 @@ int TvShow::episodeCount()
  */
 bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface)
 {
+    qDebug() << "Entered";
     bool infoLoaded = mediaCenterInterface->loadTvShow(this);
+    qDebug() << "Loaded" << infoLoaded;
     if (!infoLoaded) {
         QStringList dirParts = this->dir().split(QDir::separator());
         if (dirParts.count() > 0)
@@ -104,6 +107,7 @@ bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface)
  */
 void TvShow::loadData(QString id, TvScraperInterface *tvScraperInterface, bool updateAllEpisodes)
 {
+    qDebug() << "Entered, id=" << id << "scraperInterface" << tvScraperInterface->name() << "updateAllEpisodes" << updateAllEpisodes;
     tvScraperInterface->loadTvShowData(id, this, updateAllEpisodes);
 }
 
@@ -114,6 +118,7 @@ void TvShow::loadData(QString id, TvScraperInterface *tvScraperInterface, bool u
  */
 bool TvShow::saveData(MediaCenterInterface *mediaCenterInterface)
 {
+    qDebug() << "Entered";
     bool saved = mediaCenterInterface->saveTvShow(this);
     if (!m_infoLoaded)
         m_infoLoaded = saved;
@@ -136,6 +141,7 @@ void TvShow::scraperLoadDone()
  */
 void TvShow::loadImages(MediaCenterInterface *mediaCenterInterface)
 {
+    qDebug() << "Entered";
     mediaCenterInterface->loadTvShowImages(this);
 }
 

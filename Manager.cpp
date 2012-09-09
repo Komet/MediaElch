@@ -8,6 +8,7 @@
 #include "scrapers/TheTvDb.h"
 #include "scrapers/TMDb.h"
 #include "scrapers/VideoBuster.h"
+#include "Globals.h"
 
 /**
  * @brief Manager::Manager
@@ -61,6 +62,15 @@ Manager* Manager::instance()
  */
 void Manager::setupMediaCenterInterface()
 {
+    qDebug() << "Entered";
+    qDebug() << "Current MediaCenterInterface is";
+    if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcXml)
+        qDebug() << "Xbmc::Xml";
+    else if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcSqlite)
+        qDebug() << "Xbmc::Sqlite";
+    else if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcMysql)
+        qDebug() << "Xbmc::MySQL";
+
     if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcMysql) {
         MediaCenterInterface *interface = m_mediaCenters.at(1);
         static_cast<XbmcSql*>(interface)->connectMysql(Settings::instance()->xbmcMysqlHost(), Settings::instance()->xbmcMysqlDatabase(),

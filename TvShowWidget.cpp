@@ -2,6 +2,7 @@
 #include "ui_TvShowWidget.h"
 
 #include <QTimer>
+#include "Globals.h"
 #include "Manager.h"
 #include "MessageBox.h"
 
@@ -47,6 +48,7 @@ void TvShowWidget::onClear()
  */
 void TvShowWidget::onTvShowSelected(TvShow *show)
 {
+    qDebug() << "Entered, show=" << show->name();
     ui->stackedWidget->setCurrentIndex(0);
     ui->tvShowWidget->setTvShow(show);
 }
@@ -57,6 +59,7 @@ void TvShowWidget::onTvShowSelected(TvShow *show)
  */
 void TvShowWidget::onEpisodeSelected(TvShowEpisode *episode)
 {
+    qDebug() << "Entered, episode=" << episode->name();
     ui->stackedWidget->setCurrentIndex(1);
     ui->episodeWidget->setEpisode(episode);
 }
@@ -66,8 +69,15 @@ void TvShowWidget::onEpisodeSelected(TvShowEpisode *episode)
  */
 void TvShowWidget::onSetEnabledTrue(TvShow *show)
 {
-    if (show && show->downloadsInProgress())
+    qDebug() << "Entered";
+    if (show)
+        qDebug() << "show=" << show->name();
+    else
+        qDebug() << "Got no show";
+    if (show && show->downloadsInProgress()) {
+        qDebug() << "Downloads are in progress";
         return;
+    }
 
     ui->episodeWidget->onSetEnabled(true);
     ui->tvShowWidget->onSetEnabled(true);
@@ -80,8 +90,15 @@ void TvShowWidget::onSetEnabledTrue(TvShow *show)
  */
 void TvShowWidget::onSetEnabledTrue(TvShowEpisode *episode)
 {
-    if (episode && episode->tvShow() && episode->tvShow()->downloadsInProgress())
+    qDebug() << "Entered";
+    if (episode)
+         qDebug() << "episode=" << episode->name();
+    else
+        qDebug() << "Got no episode";
+    if (episode && episode->tvShow() && episode->tvShow()->downloadsInProgress()) {
+        qDebug() << "Downloads are in progress";
         return;
+    }
 
     ui->episodeWidget->onSetEnabled(true);
     ui->tvShowWidget->onSetEnabled(true);
@@ -94,6 +111,7 @@ void TvShowWidget::onSetEnabledTrue(TvShowEpisode *episode)
  */
 void TvShowWidget::onSetDisabledTrue()
 {
+    qDebug() << "Entered";
     ui->episodeWidget->onSetEnabled(false);
     ui->tvShowWidget->onSetEnabled(false);
     emit sigSetActionSaveEnabled(false, WidgetTvShows);
@@ -105,6 +123,7 @@ void TvShowWidget::onSetDisabledTrue()
  */
 void TvShowWidget::onSaveInformation()
 {
+    qDebug() << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
     if (ui->stackedWidget->currentIndex() == 0)
         ui->tvShowWidget->onSaveInformation();
     else if (ui->stackedWidget->currentIndex() == 1)
@@ -116,6 +135,7 @@ void TvShowWidget::onSaveInformation()
  */
 void TvShowWidget::onSaveAll()
 {
+    qDebug() << "Entered";
     QList<TvShow*> shows = Manager::instance()->tvShowModel()->tvShows();
     int episodesToSave = 0;
     int episodesSaved = 0;
@@ -127,6 +147,7 @@ void TvShowWidget::onSaveAll()
                 episodesToSave++;
         }
     }
+    qDebug() << "episodesToSave=" << episodesToSave;
 
     MessageBox::instance()->showProgressBar(tr("Saving changed TV Shows and Episodes"), Constants::TvShowWidgetSaveProgressMessageId);
     qApp->processEvents();
@@ -154,6 +175,7 @@ void TvShowWidget::onSaveAll()
  */
 void TvShowWidget::onStartScraperSearch()
 {
+    qDebug() << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
     if (ui->stackedWidget->currentIndex() == 0)
         QTimer::singleShot(0, ui->tvShowWidget, SLOT(onStartScraperSearch()));
     else if (ui->stackedWidget->currentIndex() == 1)

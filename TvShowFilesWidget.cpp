@@ -64,6 +64,7 @@ TvShowFilesWidget *TvShowFilesWidget::instance()
  */
 void TvShowFilesWidget::setFilter(QString filter)
 {
+    qDebug() << "Entered, filter=" << filter;
     m_tvShowProxyModel->setFilterWildcard("*" + filter + "*");
 }
 
@@ -72,6 +73,7 @@ void TvShowFilesWidget::setFilter(QString filter)
  */
 void TvShowFilesWidget::renewModel()
 {
+    qDebug() << "Entered";
     m_tvShowProxyModel->setSourceModel(0);
     m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
 }
@@ -82,6 +84,7 @@ void TvShowFilesWidget::renewModel()
  */
 void TvShowFilesWidget::onItemClicked(QModelIndex index)
 {
+    qDebug() << "Entered";
     QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(index);
     if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TypeTvShow) {
         bool wasExpanded = ui->files->isExpanded(index);
@@ -104,9 +107,11 @@ void TvShowFilesWidget::onItemClicked(QModelIndex index)
  */
 void TvShowFilesWidget::onItemActivated(QModelIndex index, QModelIndex previous)
 {
+    qDebug() << "Entered";
     Q_UNUSED(previous);
 
     if (!index.isValid()) {
+        qDebug() << "Invalid index";
         emit sigNothingSelected();
         return;
     }

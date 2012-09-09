@@ -9,6 +9,7 @@
 #include "data/MediaCenterInterface.h"
 #include "data/ScraperInterface.h"
 #include "settings/Settings.h"
+#include "Globals.h"
 #include "ImagePreviewDialog.h"
 #include "Manager.h"
 #include "MovieImageDialog.h"
@@ -26,6 +27,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    qDebug() << "MediaElch version" << QApplication::applicationVersion() << "starting up";
 
     m_movieActions.insert(ActionSave, false);
     m_movieActions.insert(ActionSearch, false);
@@ -169,6 +172,7 @@ void MainWindow::resizeEvent(QResizeEvent *event)
  */
 void MainWindow::setupToolbar()
 {
+    qDebug() << "Entered";
     setUnifiedTitleAndToolBarOnMac(true);
 
     QPixmap spanner(":/img/spanner.png");
@@ -242,6 +246,7 @@ void MainWindow::setupToolbar()
  */
 void MainWindow::progressStarted(QString msg, int id)
 {
+    qDebug() << "Entered, msg=" << msg << "id=" << id;
     MessageBox::instance()->showProgressBar(msg, id);
 }
 
@@ -262,6 +267,7 @@ void MainWindow::progressProgress(int current, int max, int id)
  */
 void MainWindow::progressFinished(int id)
 {
+    qDebug() << "Entered, id=" << id;
     if (id == Constants::TvShowSearcherProgressMessageId)
         ui->tvShowFilesWidget->renewModel();
     MessageBox::instance()->hideProgressBar(id);
@@ -273,6 +279,7 @@ void MainWindow::progressFinished(int id)
  */
 void MainWindow::onMenuMovies()
 {
+    qDebug() << "Entered";
     ui->stackedWidget->setCurrentIndex(0);
     ui->buttonMovies->setIcon(QIcon(":/img/video_menuActive.png"));
     ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menu.png"));
@@ -290,6 +297,7 @@ void MainWindow::onMenuMovies()
  */
 void MainWindow::onMenuMovieSets()
 {
+    qDebug() << "Entered";
     ui->stackedWidget->setCurrentIndex(3);
     ui->buttonMovies->setIcon(QIcon(":/img/video_menu.png"));
     ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menuActive.png"));
@@ -308,6 +316,7 @@ void MainWindow::onMenuMovieSets()
  */
 void MainWindow::onMenuTvShows()
 {
+    qDebug() << "Entered";
     ui->stackedWidget->setCurrentIndex(1);
     ui->buttonMovies->setIcon(QIcon(":/img/video_menu.png"));
     ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menu.png"));
@@ -325,6 +334,7 @@ void MainWindow::onMenuTvShows()
  */
 void MainWindow::onMenuSettings()
 {
+    qDebug() << "Entered";
     m_settings->loadSettings();
     ui->stackedWidget->setCurrentIndex(2);
     ui->buttonMovies->setIcon(QIcon(":/img/video_menu.png"));
@@ -343,10 +353,12 @@ void MainWindow::onMenuSettings()
  */
 void MainWindow::onActionSearch()
 {
-    if (ui->stackedWidget->currentIndex() == 0)
+    qDebug() << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
+    if (ui->stackedWidget->currentIndex() == 0) {
         QTimer::singleShot(0, ui->movieWidget, SLOT(startScraperSearch()));
-    else if (ui->stackedWidget->currentIndex() == 1)
+    } else if (ui->stackedWidget->currentIndex() == 1) {
         QTimer::singleShot(0, ui->tvShowWidget, SLOT(onStartScraperSearch()));
+    }
 }
 
 /**
@@ -355,6 +367,7 @@ void MainWindow::onActionSearch()
  */
 void MainWindow::onActionSave()
 {
+    qDebug() << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
     if (ui->stackedWidget->currentIndex() == 0)
         QTimer::singleShot(0, ui->movieWidget, SLOT(saveInformation()));
     else if (ui->stackedWidget->currentIndex() == 1)
@@ -371,6 +384,7 @@ void MainWindow::onActionSave()
  */
 void MainWindow::onActionSaveAll()
 {
+    qDebug() << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
     if (ui->stackedWidget->currentIndex() == 0)
         QTimer::singleShot(0, ui->movieWidget, SLOT(saveAll()));
     else if (ui->stackedWidget->currentIndex() == 1)
@@ -384,6 +398,7 @@ void MainWindow::onActionSaveAll()
  */
 void MainWindow::onFilterChanged(QString text)
 {
+    qDebug() << "Entered, text=" << text << "currentIndex=" << ui->stackedWidget->currentIndex();
     if (ui->stackedWidget->currentIndex() == 0)
         ui->filesWidget->setFilter(text);
     else if (ui->stackedWidget->currentIndex() == 1)
@@ -397,13 +412,17 @@ void MainWindow::onFilterChanged(QString text)
  */
 void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
 {
-    if (widget == WidgetMovies)
+    qDebug() << "Entered, enabled=" << enabled;
+    if (widget == WidgetMovies) {
+        qDebug() << "Widget is Movies";
         m_movieActions[ActionSave] = enabled;
-    else if (widget == WidgetTvShows)
+    } else if (widget == WidgetTvShows) {
+        qDebug() << "Widget is TV Shows";
         m_tvShowActions[ActionSave] = enabled;
-    else if (widget == WidgetMovieSets)
+    } else if (widget == WidgetMovieSets) {
+        qDebug() << "Widget is Movie Sets";
         m_movieSetActions[ActionSave] = enabled;
-
+    }
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
         (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1)) {
         m_actionSave->setEnabled(enabled);
@@ -420,11 +439,14 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
  */
 void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
 {
-    if (widget == WidgetMovies)
+    qDebug() << "Entered, enabled=" << enabled;
+    if (widget == WidgetMovies) {
+        qDebug() << "Widget is Movies";
         m_movieActions[ActionSearch] = enabled;
-    else if (widget == WidgetTvShows)
+    } else if (widget == WidgetTvShows) {
+        qDebug() << "Widget is TV Shows";
         m_tvShowActions[ActionSearch] = enabled;
-
+    }
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
         (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1))
         m_actionSearch->setEnabled(enabled);

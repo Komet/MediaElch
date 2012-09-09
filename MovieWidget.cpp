@@ -7,6 +7,7 @@
 #include <QMovie>
 #include <QPainter>
 #include <QScrollBar>
+#include "Globals.h"
 #include "ImagePreviewDialog.h"
 #include "Manager.h"
 #include "MessageBox.h"
@@ -137,6 +138,7 @@ void MovieWidget::resizeEvent(QResizeEvent *event)
  */
 void MovieWidget::clear()
 {
+    qDebug() << "Entered";
     ui->set->clear();
     ui->certification->clear();
     ui->movieName->clear();
@@ -180,8 +182,13 @@ void MovieWidget::movieNameChanged(QString text)
  */
 void MovieWidget::setEnabledTrue(Movie *movie)
 {
-    if (movie && movie->downloadsInProgress())
+    qDebug() << "Entered";
+    if (movie)
+        qDebug() << movie->name();
+    if (movie && movie->downloadsInProgress()) {
+        qDebug() << "Downloads are in progress";
         return;
+    }
     ui->groupBox_3->setEnabled(true);
     emit setActionSaveEnabled(true, WidgetMovies);
     emit setActionSearchEnabled(true, WidgetMovies);
@@ -192,6 +199,7 @@ void MovieWidget::setEnabledTrue(Movie *movie)
  */
 void MovieWidget::setDisabledTrue()
 {
+    qDebug() << "Entered";
     ui->groupBox_3->setDisabled(true);
     emit setActionSaveEnabled(false, WidgetMovies);
     emit setActionSearchEnabled(false, WidgetMovies);
@@ -203,6 +211,7 @@ void MovieWidget::setDisabledTrue()
  */
 void MovieWidget::setMovie(Movie *movie)
 {
+    qDebug() << "Entered, movie=" << movie->name();
     movie->loadData(Manager::instance()->mediaCenterInterface());
     m_movie = movie;
     movie->loadImages(Manager::instance()->mediaCenterInterface());
@@ -218,8 +227,11 @@ void MovieWidget::setMovie(Movie *movie)
  */
 void MovieWidget::startScraperSearch()
 {
-    if (m_movie == 0)
+    qDebug() << "Entered";
+    if (m_movie == 0) {
+        qDebug() << "My movie is invalid";
         return;
+    }
     emit setActionSearchEnabled(false, WidgetMovies);
     emit setActionSaveEnabled(false, WidgetMovies);
     MovieSearch::instance()->exec(m_movie->name());
@@ -241,11 +253,16 @@ void MovieWidget::startScraperSearch()
  */
 void MovieWidget::loadDone(Movie *movie)
 {
-    if (m_movie == 0)
+    qDebug() << "Entered";
+    if (m_movie == 0) {
+        qDebug() << "My movie is invalid";
         return;
+    }
 
     if (m_movie == movie)
         updateMovieInfo();
+    else
+        qDebug() << "Movie has changed";
     int downloadsSize = 0;
 
     if (MovieSearch::instance()->infosToLoad().contains(MovieScraperInfos::Poster) && movie->posters().size() > 0) {
@@ -307,8 +324,11 @@ void MovieWidget::loadDone(Movie *movie)
  */
 void MovieWidget::updateMovieInfo()
 {
-    if (m_movie == 0)
+    qDebug() << "Entered";
+    if (m_movie == 0) {
+        qDebug() << "My movie is invalid";
         return;
+    }
 
     ui->rating->blockSignals(true);
     ui->runtime->blockSignals(true);
@@ -324,7 +344,7 @@ void MovieWidget::updateMovieInfo()
     ui->studios->blockSignals(true);
     ui->countries->blockSignals(true);
 
-    this->clear();
+    clear();
 
     ui->files->setText(m_movie->files().join(", "));
     ui->files->setToolTip(m_movie->files().join("\n"));
@@ -445,8 +465,11 @@ void MovieWidget::updateMovieInfo()
  */
 void MovieWidget::chooseMoviePoster()
 {
-    if (m_movie == 0)
+    qDebug() << "Entered";
+    if (m_movie == 0) {
+        qDebug() << "My movie is invalid";
         return;
+    }
 
     MovieImageDialog::instance()->setImageType(TypePoster);
     MovieImageDialog::instance()->clear();
@@ -472,8 +495,11 @@ void MovieWidget::chooseMoviePoster()
  */
 void MovieWidget::chooseMovieBackdrop()
 {
-    if (m_movie == 0)
+    qDebug() << "Entered";
+    if (m_movie == 0) {
+        qDebug() << "My movie is invalid";
         return;
+    }
 
     MovieImageDialog::instance()->setImageType(TypeBackdrop);
     MovieImageDialog::instance()->clear();
@@ -500,7 +526,9 @@ void MovieWidget::chooseMovieBackdrop()
  */
 void MovieWidget::posterDownloadFinished(DownloadManagerElement elem)
 {
+    qDebug() << "Entered";
     if (elem.imageType == TypePoster) {
+        qDebug() << "Got a poster";
         if (m_movie == elem.movie) {
             ui->poster->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             ui->posterResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
@@ -509,6 +537,7 @@ void MovieWidget::posterDownloadFinished(DownloadManagerElement elem)
         }
         elem.movie->setPosterImage(elem.image);
     } else if (elem.imageType == TypeBackdrop) {
+        qDebug() << "Got a backdrop";
         if ((elem.image.width() != 1920 || elem.image.height() != 1080) &&
             elem.image.width() > 1915 && elem.image.width() < 1925 && elem.image.height() > 1075 && elem.image.height() < 1085)
             elem.image = elem.image.scaled(1920, 1080, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
@@ -537,6 +566,7 @@ void MovieWidget::posterDownloadFinished(DownloadManagerElement elem)
  */
 void MovieWidget::saveInformation()
 {
+    qDebug() << "Entered";
     setDisabledTrue();
     m_savingWidget->show();
     m_movie->saveData(Manager::instance()->mediaCenterInterface());
@@ -551,6 +581,7 @@ void MovieWidget::saveInformation()
  */
 void MovieWidget::saveAll()
 {
+    qDebug() << "Entered";
     setDisabledTrue();
     m_savingWidget->show();
 
@@ -569,6 +600,7 @@ void MovieWidget::saveAll()
  */
 void MovieWidget::onRevertChanges()
 {
+    qDebug() << "Entered";
     m_movie->loadData(Manager::instance()->mediaCenterInterface(), true);
     m_movie->loadImages(Manager::instance()->mediaCenterInterface(), true);
     updateMovieInfo();
@@ -580,9 +612,12 @@ void MovieWidget::onRevertChanges()
  */
 void MovieWidget::downloadActorsFinished(Movie *movie)
 {
+    qDebug() << "Entered, movie=" << movie->name();
     emit actorDownloadFinished(Constants::MovieProgressMessageId+movie->movieId());
     if (movie == m_movie)
         setEnabledTrue();
+    else
+        qDebug() << "Movie has changed";
     movie->setDownloadsInProgress(false);
 }
 

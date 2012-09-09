@@ -26,6 +26,7 @@ MovieFileSearcher::~MovieFileSearcher()
  */
 void MovieFileSearcher::run()
 {
+    qDebug() << "Entered";
     emit searchStarted(tr("Searching for Movies..."), m_progressMessageId);
 
     Manager::instance()->movieModel()->clear();
@@ -59,6 +60,7 @@ void MovieFileSearcher::run()
         emit progress(++i, n, m_progressMessageId);
     }
 
+    qDebug() << "Searching for movies done";
     emit moviesLoaded(m_progressMessageId);
 }
 
@@ -68,11 +70,14 @@ void MovieFileSearcher::run()
  */
 void MovieFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
 {
+    qDebug() << "Entered";
     m_directories.clear();
     for (int i=0, n=directories.count() ; i<n ; ++i) {
         QFileInfo fi(directories.at(i).path);
-        if (fi.isDir())
+        if (fi.isDir()) {
+            qDebug() << "Adding movie directory" << directories.at(i).path << "with mediacenter dir" << directories.at(i).mediaCenterPath;
             m_directories.append(directories.at(i));
+        }
     }
 }
 
@@ -88,8 +93,8 @@ void MovieFileSearcher::getDirContents(QString path, QList<QStringList> &content
     foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         // skip bluray backup folder
         if ((QString::compare(cDir, "BACKUP", Qt::CaseInsensitive) == 0 && dir.path().endsWith("BDMV", Qt::CaseInsensitive)) ||
-			(QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0))
-			continue;
+            (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0))
+            continue;
         this->getDirContents(path + QDir::separator() + cDir, contents);
     }
 
@@ -131,7 +136,7 @@ void MovieFileSearcher::getDirContents(QString path, QList<QStringList> &content
                 }
             }
         }
-
+        qDebug() << "Adding movie" << movieFiles;
         contents.append(movieFiles);
     }
 }

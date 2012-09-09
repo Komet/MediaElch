@@ -4,6 +4,7 @@
 #include <QFileDialog>
 #include <QMovie>
 #include <QPainter>
+#include "Globals.h"
 #include "ImagePreviewDialog.h"
 #include "Manager.h"
 #include "MessageBox.h"
@@ -128,6 +129,7 @@ void TvShowWidgetTvShow::resizeEvent(QResizeEvent *event)
  */
 void TvShowWidgetTvShow::onClear()
 {
+    qDebug() << "Entered";
     ui->showTitle->clear();
     ui->genres->setRowCount(0);
     ui->actors->setRowCount(0);
@@ -164,6 +166,7 @@ void TvShowWidgetTvShow::onClear()
  */
 void TvShowWidgetTvShow::onSetEnabled(bool enabled)
 {
+    qDebug() << "Entered, enabled=" << enabled;
     ui->groupBox_3->setEnabled(enabled);
 }
 
@@ -173,6 +176,7 @@ void TvShowWidgetTvShow::onSetEnabled(bool enabled)
  */
 void TvShowWidgetTvShow::setTvShow(TvShow *show)
 {
+    qDebug() << "Entered, show=" << show->name();
     m_show = show;
     show->loadImages(Manager::instance()->mediaCenterInterfaceTvShow());
     updateTvShowInfo();
@@ -193,8 +197,11 @@ void TvShowWidgetTvShow::setTvShow(TvShow *show)
  */
 void TvShowWidgetTvShow::updateTvShowInfo()
 {
-    if (m_show == 0)
+    qDebug() << "Entered";
+    if (m_show == 0) {
+        qDebug() << "My show is invalid";
         return;
+    }
 
     ui->certification->blockSignals(true);
     ui->rating->blockSignals(true);
@@ -312,8 +319,11 @@ void TvShowWidgetTvShow::updateTvShowInfo()
  */
 void TvShowWidgetTvShow::onSaveInformation()
 {
-    if (m_show == 0)
+    qDebug() << "Entered";
+    if (m_show == 0) {
+        qDebug() << "My show is invalid";
         return;
+    }
 
     onSetEnabled(false);
     m_savingWidget->show();
@@ -329,6 +339,7 @@ void TvShowWidgetTvShow::onSaveInformation()
  */
 void TvShowWidgetTvShow::onRevertChanges()
 {
+    qDebug() << "Entered";
     m_show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
     m_show->loadImages(Manager::instance()->mediaCenterInterfaceTvShow());
     updateTvShowInfo();
@@ -339,8 +350,11 @@ void TvShowWidgetTvShow::onRevertChanges()
  */
 void TvShowWidgetTvShow::onStartScraperSearch()
 {
-    if (m_show == 0)
+    qDebug() << "Entered";
+    if (m_show == 0) {
+        qDebug() << "My show is invalid";
         return;
+    }
     emit sigSetActionSaveEnabled(false, WidgetTvShows);
     emit sigSetActionSearchEnabled(false, WidgetTvShows);
     TvShowSearch::instance()->setChkUpdateAllVisible(true);
@@ -362,11 +376,16 @@ void TvShowWidgetTvShow::onStartScraperSearch()
  */
 void TvShowWidgetTvShow::onLoadDone(TvShow *show)
 {
-    if (m_show == 0)
+    qDebug() << "Entered";
+    if (m_show == 0) {
+        qDebug() << "My show is invalid";
         return;
+    }
 
     if (m_show == show)
         updateTvShowInfo();
+    else
+        qDebug() << "Show has changed";
 
     int downloadsSize = 0;
     if (show->posters().size() > 0) {
@@ -471,8 +490,11 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show)
  */
 void TvShowWidgetTvShow::onChoosePoster()
 {
-    if (m_show == 0)
+    qDebug() << "Entered";
+    if (m_show == 0) {
+        qDebug() << "My show is invalid";
         return;
+    }
 
     MovieImageDialog::instance()->setImageType(TypePoster);
     MovieImageDialog::instance()->clear();
@@ -498,8 +520,11 @@ void TvShowWidgetTvShow::onChoosePoster()
  */
 void TvShowWidgetTvShow::onChooseSeasonPoster(int season)
 {
-    if (m_show == 0)
+    qDebug() << "Entered";
+    if (m_show == 0) {
+        qDebug() << "My show is invalid";
         return;
+    }
 
     MovieImageDialog::instance()->setImageType(TypePoster);
     MovieImageDialog::instance()->clear();
@@ -526,9 +551,11 @@ void TvShowWidgetTvShow::onChooseSeasonPoster(int season)
  */
 void TvShowWidgetTvShow::onChooseBackdrop()
 {
-    if (m_show == 0)
+    qDebug() << "Entered";
+    if (m_show == 0) {
+        qDebug() << "My show is invalid";
         return;
-
+    }
     MovieImageDialog::instance()->setImageType(TypeBackdrop);
     MovieImageDialog::instance()->clear();
     MovieImageDialog::instance()->setDownloads(m_show->backdrops());
@@ -553,8 +580,11 @@ void TvShowWidgetTvShow::onChooseBackdrop()
  */
 void TvShowWidgetTvShow::onChooseBanner()
 {
-    if (m_show == 0)
+    qDebug() << "Entered";
+    if (m_show == 0) {
+        qDebug() << "My show is invalid";
         return;
+    }
 
     MovieImageDialog::instance()->setImageType(TypeBanner);
     MovieImageDialog::instance()->clear();
@@ -581,7 +611,9 @@ void TvShowWidgetTvShow::onChooseBanner()
  */
 void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
 {
+    qDebug() << "Entered";
     if (elem.imageType == TypePoster) {
+        qDebug() << "Got a poster";
         if (m_show == elem.show) {
             ui->poster->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             ui->posterResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
@@ -590,6 +622,7 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
         }
         elem.show->setPosterImage(elem.image);
     } else if (elem.imageType == TypeBackdrop) {
+        qDebug() << "Got a backdop";
         if ((elem.image.width() != 1920 || elem.image.height() != 1080) &&
             elem.image.width() > 1915 && elem.image.width() < 1925 && elem.image.height() > 1075 && elem.image.height() < 1085)
             elem.image = elem.image.scaled(1920, 1080, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
@@ -606,6 +639,7 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
         }
         elem.show->setBackdropImage(elem.image);
     } else if (elem.imageType == TypeBanner) {
+        qDebug() << "Got a banner";
         if (m_show == elem.show) {
             ui->banner->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 37, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             ui->bannerResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
@@ -614,6 +648,7 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
         }
         elem.show->setBannerImage(elem.image);
     } else if (elem.imageType == TypeSeasonPoster) {
+        qDebug() << "Got a season poster";
         int season = elem.season;
         elem.show->setSeasonPosterImage(season, elem.image);
         if (m_show == elem.show && m_seasonLayoutWidgets.contains(season)) {
@@ -631,6 +666,7 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
  */
 void TvShowWidgetTvShow::onDownloadsFinished(TvShow *show)
 {
+    qDebug() << "Entered, show=" << show->name();
     emit sigDownloadsFinished(Constants::TvShowProgressMessageId+show->showId());
     if (show == m_show) {
         onSetEnabled(true);

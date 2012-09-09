@@ -2,6 +2,7 @@
 
 #include <QDebug>
 #include <QPainter>
+#include "Globals.h"
 
 /**
  * @brief MovieDelegate::MovieDelegate
