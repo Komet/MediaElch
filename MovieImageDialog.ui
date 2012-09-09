@@ -214,7 +214,7 @@ background: transparent;</string>
   <customwidget>
    <class>MyTableWidget</class>
    <extends>QTableWidget</extends>
-   <header>MyTableWidget.h</header>
+   <header>smallWidgets/MyTableWidget.h</header>
   </customwidget>
  </customwidgets>
  <resources>

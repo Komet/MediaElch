@@ -28,9 +28,9 @@ SOURCES += main.cpp\
     scrapers/TMDb.cpp \
     Manager.cpp \
     MovieSearch.cpp \
-    MyLineEdit.cpp \
+    smallWidgets/MyLineEdit.cpp \
     MovieWidget.cpp \
-    MyLabel.cpp \
+    smallWidgets/MyLabel.cpp \
     MovieImageDialog.cpp \
     DownloadManager.cpp \
     FilesWidget.cpp \
@@ -41,7 +41,7 @@ SOURCES += main.cpp\
     scrapers/OFDb.cpp \
     scrapers/Cinefacts.cpp \
     smallWidgets/FilterWidget.cpp \
-    MyTableWidget.cpp \
+    smallWidgets/MyTableWidget.cpp \
     MessageBox.cpp \
     Message.cpp \
     data/TvShow.cpp \
@@ -78,9 +78,9 @@ HEADERS  += MainWindow.h \
     data/ScraperInterface.h \
     Manager.h \
     MovieSearch.h \
-    MyLineEdit.h \
+    smallWidgets/MyLineEdit.h \
     MovieWidget.h \
-    MyLabel.h \
+    smallWidgets/MyLabel.h \
     MovieImageDialog.h \
     DownloadManager.h \
     FilesWidget.h \
@@ -91,7 +91,7 @@ HEADERS  += MainWindow.h \
     scrapers/OFDb.h \
     scrapers/Cinefacts.h \
     smallWidgets/FilterWidget.h \
-    MyTableWidget.h \
+    smallWidgets/MyTableWidget.h \
     MessageBox.h \
     Message.h \
     data/TvShow.h \
