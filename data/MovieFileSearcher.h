@@ -5,7 +5,7 @@
 #include <QDir>
 
 #include "data/Movie.h"
-#include "Globals.h"
+#include "globals/Globals.h"
 
 /**
  * @brief The MovieFileSearcher class

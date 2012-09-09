@@ -4,7 +4,7 @@
 #include "data/MediaCenterInterface.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
-#include "Globals.h"
+#include "globals/Globals.h"
 
 class TvShow;
 class TvShowEpisode;

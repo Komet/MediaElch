@@ -3,7 +3,7 @@
 
 #include <QTreeView>
 
-#include "Globals.h"
+#include "globals/Globals.h"
 
 /**
  * @brief The MyTreeView class

@@ -2,7 +2,7 @@
 
 #include <QDebug>
 #include <QMimeData>
-#include "Globals.h"
+#include "globals/Globals.h"
 
 /**
  * @brief MyTableWidget::MyTableWidget

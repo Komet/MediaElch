@@ -11,7 +11,7 @@
 #include <QSpacerItem>
 #include <QVBoxLayout>
 
-#include "Globals.h"
+#include "globals/Globals.h"
 
 /**
  * @brief TMDb::TMDb

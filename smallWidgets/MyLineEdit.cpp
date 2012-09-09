@@ -6,7 +6,7 @@
 #include <QStyle>
 #include <QToolButton>
 
-#include "Globals.h"
+#include "globals/Globals.h"
 
 /**
  * @brief MyLineEdit::MyLineEdit

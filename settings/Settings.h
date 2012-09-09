@@ -6,7 +6,7 @@
 #include <QTableWidgetItem>
 #include <QWidget>
 
-#include "Globals.h"
+#include "globals/Globals.h"
 
 namespace Ui {
 class Settings;

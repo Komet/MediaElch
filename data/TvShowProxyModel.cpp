@@ -1,7 +1,7 @@
 #include "TvShowProxyModel.h"
 
-#include "Globals.h"
-#include "Manager.h"
+#include "globals/Globals.h"
+#include "globals/Manager.h"
 
 /**
  * @brief TvShowProxyModel::TvShowProxyModel

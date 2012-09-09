@@ -2,7 +2,7 @@
 
 #include <QApplication>
 #include <QDebug>
-#include "Manager.h"
+#include "globals/Manager.h"
 
 /**
  * @brief MovieFileSearcher::MovieFileSearcher

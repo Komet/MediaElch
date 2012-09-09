@@ -1,7 +1,7 @@
 #ifndef MEDIACENTERINTERFACE_H
 #define MEDIACENTERINTERFACE_H
 
-#include "Globals.h"
+#include "globals/Globals.h"
 #include "data/Movie.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"

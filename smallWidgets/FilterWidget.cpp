@@ -1,7 +1,7 @@
 #include "FilterWidget.h"
 #include "ui_FilterWidget.h"
 
-#include "Globals.h"
+#include "globals/Globals.h"
 
 /**
  * @brief FilterWidget::FilterWidget

@@ -1,6 +1,6 @@
 #include "MyTreeView.h"
 
-#include "Globals.h"
+#include "globals/Globals.h"
 
 /**
  * @brief MyTreeView::MyTreeView

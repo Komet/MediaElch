@@ -1,7 +1,7 @@
 #include "Cinefacts.h"
 #include <QTextDocument>
-#include "Globals.h"
-#include "Helper.h"
+#include "globals/Globals.h"
+#include "globals/Helper.h"
 
 /**
  * @brief Cinefacts::Cinefacts

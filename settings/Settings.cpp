@@ -1,11 +1,11 @@
 #include "Settings.h"
 #include "ui_Settings.h"
 
-#include "FilesWidget.h"
-#include "MainWindow.h"
-#include "Manager.h"
-#include "MessageBox.h"
-#include "TvShowFilesWidget.h"
+#include "movies/FilesWidget.h"
+#include "main/MainWindow.h"
+#include "globals/Manager.h"
+#include "main/MessageBox.h"
+#include "tvShows/TvShowFilesWidget.h"
 
 Settings *Settings::m_instance;
 

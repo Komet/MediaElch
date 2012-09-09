@@ -2,8 +2,8 @@
 
 #include <QDomDocument>
 #include <QXmlStreamReader>
-#include "Globals.h"
-#include "Helper.h"
+#include "globals/Globals.h"
+#include "globals/Helper.h"
 
 /**
  * @brief OFDb::OFDb

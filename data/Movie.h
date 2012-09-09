@@ -8,7 +8,7 @@
 #include <QStringList>
 #include <QUrl>
 
-#include "Globals.h"
+#include "globals/Globals.h"
 #include "data/MediaCenterInterface.h"
 #include "data/ScraperInterface.h"
 

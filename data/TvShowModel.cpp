@@ -1,7 +1,7 @@
 #include <QtGui>
 
-#include "Globals.h"
-#include "Manager.h"
+#include "globals/Globals.h"
+#include "globals/Manager.h"
 #include "TvShowModel.h"
 #include "TvShowModelItem.h"
 #include <QDebug>

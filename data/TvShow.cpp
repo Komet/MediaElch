@@ -1,10 +1,10 @@
 #include "TvShow.h"
-#include "Globals.h"
+#include "globals/Globals.h"
 
 #include <QApplication>
 #include <QDebug>
 #include <QDir>
-#include "Globals.h"
+#include "globals/Globals.h"
 
 /**
  * @brief TvShow::TvShow

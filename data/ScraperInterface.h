@@ -3,7 +3,7 @@
 
 #include "data/MediaCenterInterface.h"
 #include "data/Movie.h"
-#include "Globals.h"
+#include "globals/Globals.h"
 
 class Movie;
 

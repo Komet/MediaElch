@@ -1,6 +1,6 @@
 #include "MyLabel.h"
 
-#include "Globals.h"
+#include "globals/Globals.h"
 
 /**
  * @brief MyLabel::MyLabel

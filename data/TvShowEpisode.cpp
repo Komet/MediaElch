@@ -4,7 +4,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QTime>
-#include "Globals.h"
+#include "globals/Globals.h"
 
 /**
  * @brief TvShowEpisode::TvShowEpisode

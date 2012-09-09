@@ -1,8 +1,8 @@
 #include "TvShowDelegate.h"
 #include <QDebug>
 #include <QPainter>
-#include "Globals.h"
-#include "Manager.h"
+#include "globals/Globals.h"
+#include "globals/Manager.h"
 #include "data/TvShow.h"
 #include "data/TvShowModelItem.h"
 

@@ -7,7 +7,7 @@
 #include <QFileInfo>
 #include <QXmlStreamWriter>
 
-#include "Globals.h"
+#include "globals/Globals.h"
 
 /**
  * @brief XbmcXml::XbmcXml

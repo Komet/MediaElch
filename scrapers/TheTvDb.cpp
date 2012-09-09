@@ -7,7 +7,7 @@
 #include <QSettings>
 #include <QSpacerItem>
 
-#include "Globals.h"
+#include "globals/Globals.h"
 
 /**
  * @brief TheTvDb::TheTvDb

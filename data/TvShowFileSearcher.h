@@ -3,7 +3,7 @@
 
 #include <QDir>
 #include <QThread>
-#include "Globals.h"
+#include "globals/Globals.h"
 
 /**
  * @brief The TvShowFileSearcher class

@@ -5,7 +5,7 @@
 #include <QTextCodec>
 #include <QTextStream>
 #include <QTranslator>
-#include "MainWindow.h"
+#include "main/MainWindow.h"
 #include "settings/Settings.h"
 
 static QFile data;

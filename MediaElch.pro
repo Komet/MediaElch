@@ -21,123 +21,123 @@ icon.files = desktop/MediaElch.png
 INSTALLS += icon
 
 SOURCES += main.cpp\
-        MainWindow.cpp \
+        main/MainWindow.cpp \
     data/Movie.cpp \
     data/MovieFileSearcher.cpp \
     mediaCenterPlugins/XbmcXml.cpp \
     scrapers/TMDb.cpp \
-    Manager.cpp \
-    MovieSearch.cpp \
+    globals/Manager.cpp \
+    movies/MovieSearch.cpp \
     smallWidgets/MyLineEdit.cpp \
-    MovieWidget.cpp \
+    movies/MovieWidget.cpp \
     smallWidgets/MyLabel.cpp \
-    MovieImageDialog.cpp \
-    DownloadManager.cpp \
-    FilesWidget.cpp \
+    globals/DownloadManager.cpp \
+    movies/FilesWidget.cpp \
     data/MovieModel.cpp \
     data/MovieProxyModel.cpp \
-    AboutDialog.cpp \
+    main/AboutDialog.cpp \
     scrapers/VideoBuster.cpp \
     scrapers/OFDb.cpp \
     scrapers/Cinefacts.cpp \
     smallWidgets/FilterWidget.cpp \
     smallWidgets/MyTableWidget.cpp \
-    MessageBox.cpp \
-    Message.cpp \
+    main/MessageBox.cpp \
+    main/Message.cpp \
     data/TvShow.cpp \
     data/TvShowFileSearcher.cpp \
     data/TvShowModel.cpp \
-    TvShowFilesWidget.cpp \
+    tvShows/TvShowFilesWidget.cpp \
     data/TvShowProxyModel.cpp \
     data/TvShowModelItem.cpp \
     data/TvShowEpisode.cpp \
     data/TvShowDelegate.cpp \
-    TvShowWidget.cpp \
-    TvShowWidgetEpisode.cpp \
-    TvShowWidgetTvShow.cpp \
+    tvShows/TvShowWidget.cpp \
+    tvShows/TvShowWidgetEpisode.cpp \
+    tvShows/TvShowWidgetTvShow.cpp \
     scrapers/TheTvDb.cpp \
-    TvShowSearch.cpp \
+    tvShows/TvShowSearch.cpp \
     mediaCenterPlugins/XbmcSql.cpp \
-    DownloadManagerElement.cpp \
+    globals/DownloadManagerElement.cpp \
     smallWidgets/ImageLabel.cpp \
-    ImagePreviewDialog.cpp \
-    SetsWidget.cpp \
-    MovieListDialog.cpp \
-    Helper.cpp \
+    globals/ImagePreviewDialog.cpp \
+    sets/SetsWidget.cpp \
+    sets/MovieListDialog.cpp \
+    globals/Helper.cpp \
     smallWidgets/MyTreeView.cpp \
     data/MovieDelegate.cpp \
-    settings/Settings.cpp
+    settings/Settings.cpp \
+    globals/ImageDialog.cpp
 
-HEADERS  += MainWindow.h \
+HEADERS  += main/MainWindow.h \
     data/Movie.h \
-    Globals.h \
+    globals/Globals.h \
     data/MediaCenterInterface.h \
     data/MovieFileSearcher.h \
     mediaCenterPlugins/XbmcXml.h \
     scrapers/TMDb.h \
     data/ScraperInterface.h \
-    Manager.h \
-    MovieSearch.h \
+    globals/Manager.h \
+    movies/MovieSearch.h \
     smallWidgets/MyLineEdit.h \
-    MovieWidget.h \
+    movies/MovieWidget.h \
     smallWidgets/MyLabel.h \
-    MovieImageDialog.h \
-    DownloadManager.h \
-    FilesWidget.h \
+    globals/DownloadManager.h \
+    movies/FilesWidget.h \
     data/MovieModel.h \
     data/MovieProxyModel.h \
-    AboutDialog.h \
+    main/AboutDialog.h \
     scrapers/VideoBuster.h \
     scrapers/OFDb.h \
     scrapers/Cinefacts.h \
     smallWidgets/FilterWidget.h \
     smallWidgets/MyTableWidget.h \
-    MessageBox.h \
-    Message.h \
+    main/MessageBox.h \
+    main/Message.h \
     data/TvShow.h \
     data/TvShowFileSearcher.h \
     data/TvShowModel.h \
-    TvShowFilesWidget.h \
+    tvShows/TvShowFilesWidget.h \
     data/TvShowProxyModel.h \
     data/TvShowModelItem.h \
     data/TvShowEpisode.h \
     data/TvShowDelegate.h \
-    TvShowWidget.h \
-    TvShowWidgetEpisode.h \
-    TvShowWidgetTvShow.h \
+    tvShows/TvShowWidget.h \
+    tvShows/TvShowWidgetEpisode.h \
+    tvShows/TvShowWidgetTvShow.h \
     scrapers/TheTvDb.h \
     data/TvScraperInterface.h \
-    TvShowSearch.h \
+    tvShows/TvShowSearch.h \
     mediaCenterPlugins/XbmcSql.h \
-    DownloadManagerElement.h \
+    globals/DownloadManagerElement.h \
     smallWidgets/ImageLabel.h \
-    ImagePreviewDialog.h \
-    SetsWidget.h \
-    MovieListDialog.h \
-    Helper.h \
+    globals/ImagePreviewDialog.h \
+    sets/SetsWidget.h \
+    sets/MovieListDialog.h \
+    globals/Helper.h \
     smallWidgets/MyTreeView.h \
     data/MovieDelegate.h \
-    settings/Settings.h
+    settings/Settings.h \
+    globals/ImageDialog.h
 
-FORMS    += MainWindow.ui \
-    MovieSearch.ui \
-    MovieWidget.ui \
-    MovieImageDialog.ui \
-    FilesWidget.ui \
-    AboutDialog.ui \
+FORMS    += main/MainWindow.ui \
+    movies/MovieSearch.ui \
+    movies/MovieWidget.ui \
+    movies/FilesWidget.ui \
+    main/AboutDialog.ui \
     smallWidgets/FilterWidget.ui \
-    MessageBox.ui \
-    Message.ui \
-    TvShowFilesWidget.ui \
-    TvShowWidget.ui \
-    TvShowWidgetEpisode.ui \
-    TvShowWidgetTvShow.ui \
-    TvShowSearch.ui \
+    main/MessageBox.ui \
+    main/Message.ui \
+    tvShows/TvShowFilesWidget.ui \
+    tvShows/TvShowWidget.ui \
+    tvShows/TvShowWidgetEpisode.ui \
+    tvShows/TvShowWidgetTvShow.ui \
+    tvShows/TvShowSearch.ui \
     smallWidgets/ImageLabel.ui \
-    ImagePreviewDialog.ui \
-    SetsWidget.ui \
-    MovieListDialog.ui \
-    settings/Settings.ui
+    globals/ImagePreviewDialog.ui \
+    sets/SetsWidget.ui \
+    sets/MovieListDialog.ui \
+    settings/Settings.ui \
+    globals/ImageDialog.ui
 
 RESOURCES += \
     MediaElch.qrc

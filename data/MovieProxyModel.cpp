@@ -1,7 +1,7 @@
 #include "MovieProxyModel.h"
 
 #include <QDebug>
-#include "Globals.h"
+#include "globals/Globals.h"
 
 /**
  * @brief MovieProxyModel::MovieProxyModel

@@ -8,8 +8,8 @@
 #include <QXmlStreamWriter>
 #include <QtSql>
 
-#include "Globals.h"
-#include "MessageBox.h"
+#include "globals/Globals.h"
+#include "main/MessageBox.h"
 #include "settings/Settings.h"
 #include "XbmcSql.h"
 

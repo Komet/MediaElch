@@ -2,7 +2,7 @@
 
 #include <QApplication>
 #include <QFileInfo>
-#include "Manager.h"
+#include "globals/Manager.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "data/TvShowModelItem.h"

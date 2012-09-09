@@ -2,7 +2,7 @@
 
 #include <QApplication>
 #include <QStringList>
-#include "Globals.h"
+#include "globals/Globals.h"
 
 /**
  * @brief TvShowModelItem::TvShowModelItem
