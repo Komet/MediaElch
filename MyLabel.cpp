@@ -1,5 +1,7 @@
 #include "MyLabel.h"
 
+#include "Globals.h"
+
 /**
  * @brief MyLabel::MyLabel
  * @param parent

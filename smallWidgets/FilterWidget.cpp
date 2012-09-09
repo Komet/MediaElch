@@ -1,6 +1,8 @@
 #include "FilterWidget.h"
 #include "ui_FilterWidget.h"
 
+#include "Globals.h"
+
 /**
  * @brief FilterWidget::FilterWidget
  * @param parent

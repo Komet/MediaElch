@@ -1,6 +1,10 @@
 #include "ImagePreviewDialog.h"
 #include "ui_ImagePreviewDialog.h"
+
+#include <QDebug>
 #include <QScrollBar>
+
+#include "Globals.h"
 
 /**
  * @brief ImagePreviewDialog::ImagePreviewDialog
@@ -48,6 +52,7 @@ ImagePreviewDialog *ImagePreviewDialog::instance(QWidget *parent)
  */
 void ImagePreviewDialog::setImage(QPixmap img)
 {
+    qDebug() << "Entered";
     ui->image->setPixmap(img);
 }
 
@@ -57,6 +62,7 @@ void ImagePreviewDialog::setImage(QPixmap img)
  */
 int ImagePreviewDialog::exec()
 {
+    qDebug() << "Entered";
     ui->scrollArea->verticalScrollBar()->setValue(0);
     ui->scrollArea->horizontalScrollBar()->setValue(0);
     QSize newSize;

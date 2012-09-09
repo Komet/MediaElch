@@ -2,6 +2,7 @@
 #include "ui_Message.h"
 
 #include <QDebug>
+#include "Globals.h"
 
 /**
  * @brief Message::Message
@@ -84,5 +85,6 @@ void Message::setMessage(QString message, int timeout)
  */
 void Message::timeout()
 {
+    qDebug() << "Entered, m_id=" << m_id;
     emit sigHideMessage(m_id);
 }

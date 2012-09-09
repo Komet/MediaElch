@@ -1,5 +1,6 @@
 #include "TvShowProxyModel.h"
 
+#include "Globals.h"
 #include "Manager.h"
 
 /**

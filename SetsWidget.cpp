@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <QMessageBox>
+#include "Globals.h"
 #include "data/Movie.h"
 #include "ImagePreviewDialog.h"
 #include "Manager.h"
@@ -69,6 +70,7 @@ QSplitter *SetsWidget::splitter()
  */
 void SetsWidget::loadSets()
 {
+    qDebug() << "Entered";
     emit setActionSaveEnabled(false, WidgetMovieSets);
     clear();
     ui->buttonPreviewBackdrop->setEnabled(false);
@@ -111,7 +113,9 @@ void SetsWidget::loadSets()
  */
 void SetsWidget::onSetSelected()
 {
+    qDebug() << "Entered";
     int row = ui->sets->currentRow();
+    qDebug() << "row=" << row << "rowCount=" << ui->sets->rowCount();
     if (row < 0 || row >= ui->sets->rowCount()) {
         clear();
         return;
@@ -126,6 +130,7 @@ void SetsWidget::onSetSelected()
  */
 void SetsWidget::clear()
 {
+    qDebug() << "Entered";
     ui->setName->clear();
     ui->movies->clearContents();
     ui->movies->setRowCount(0);
@@ -141,6 +146,7 @@ void SetsWidget::clear()
  */
 void SetsWidget::loadSet(QString set)
 {
+    qDebug() << "Entered, set=" << set;
     clear();
     ui->setName->setText(set);
     ui->buttonPreviewBackdrop->setEnabled(false);
@@ -188,9 +194,11 @@ void SetsWidget::loadSet(QString set)
  */
 void SetsWidget::onSortTitleChanged(QTableWidgetItem *item)
 {
-    if (item->row() < 0 || item->row() >= ui->movies->rowCount() || item->column() != 1)
+    qDebug() << "Entered, item->row=" << item->row() << "rowCount=" << ui->movies->rowCount();
+    if (item->row() < 0 || item->row() >= ui->movies->rowCount() || item->column() != 1) {
+        qDebug() << "Invalid row";
         return;
-
+    }
     Movie *movie = ui->movies->item(item->row(), 0)->data(Qt::UserRole).value<Movie*>();
     movie->setSortTitle(item->text());
     ui->movies->sortByColumn(1, Qt::AscendingOrder);
@@ -204,8 +212,11 @@ void SetsWidget::onSortTitleChanged(QTableWidgetItem *item)
  */
 void SetsWidget::onAddMovie()
 {
-    if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount())
+    qDebug() << "Entered";
+    if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
+        qDebug() << "Invalid current row";
         return;
+    }
     if (MovieListDialog::instance()->exec() == QDialog::Accepted) {
         Movie *movie = MovieListDialog::instance()->selectedMovie();
         int row = ui->sets->currentRow();
@@ -229,10 +240,15 @@ void SetsWidget::onAddMovie()
  */
 void SetsWidget::onRemoveMovie()
 {
-    if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount())
+    qDebug() << "Entered";
+    if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
+        qDebug() << "Invalid current row in sets";
         return;
-    if (ui->movies->currentRow() < 0 || ui->movies->currentRow() >= ui->movies->rowCount())
+    }
+    if (ui->movies->currentRow() < 0 || ui->movies->currentRow() >= ui->movies->rowCount()) {
+        qDebug() << "Invalid current row in movies";
         return;
+    }
     Movie *movie = ui->movies->item(ui->movies->currentRow(), 0)->data(Qt::UserRole).value<Movie*>();
     m_sets[movie->set()].removeOne(movie);
     if (!m_moviesToSave[movie->set()].contains(movie))
@@ -247,8 +263,11 @@ void SetsWidget::onRemoveMovie()
  */
 void SetsWidget::chooseSetPoster()
 {
-    if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount())
+    qDebug() << "Entered";
+    if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
+        qDebug() << "Invalid current row in sets";
         return;
+    }
 
     if (!Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages)) {
         QMessageBox::information(this, tr("MediaElch"),
@@ -276,8 +295,11 @@ void SetsWidget::chooseSetPoster()
  */
 void SetsWidget::chooseSetBackdrop()
 {
-    if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount())
+    qDebug() << "Entered";
+    if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
+        qDebug() << "Invalid current row in sets";
         return;
+    }
 
     if (!Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages)) {
         QMessageBox::information(this, tr("MediaElch"),
@@ -305,8 +327,11 @@ void SetsWidget::chooseSetBackdrop()
  */
 void SetsWidget::saveSet()
 {
-    if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount())
+    qDebug() << "Entered";
+    if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
+        qDebug() << "Invalid current row in sets";
         return;
+    }
     QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
     foreach (Movie *movie, m_moviesToSave[setName])
         movie->saveData(Manager::instance()->mediaCenterInterface());
@@ -329,6 +354,7 @@ void SetsWidget::saveSet()
  */
 void SetsWidget::onPreviewBackdrop()
 {
+    qDebug() << "Entered";
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentBackdrop));
     ImagePreviewDialog::instance()->exec();
 }
@@ -338,6 +364,7 @@ void SetsWidget::onPreviewBackdrop()
  */
 void SetsWidget::onPreviewPoster()
 {
+    qDebug() << "Entered";
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentPoster));
     ImagePreviewDialog::instance()->exec();
 }

@@ -7,6 +7,8 @@
 #include <QSettings>
 #include <QSpacerItem>
 
+#include "Globals.h"
+
 /**
  * @brief TheTvDb::TheTvDb
  * @param parent
@@ -169,6 +171,7 @@ void TheTvDb::onMirrorsReady()
  */
 void TheTvDb::search(QString searchStr)
 {
+    qDebug() << "Entered, searchStr=" << searchStr;
     QUrl url(QString("http://www.thetvdb.com/api/GetSeries.php?language=%1&seriesname=%2").arg(m_language).arg(searchStr));
     m_searchReply = qnam()->get(QNetworkRequest(url));
     connect(m_searchReply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
@@ -181,10 +184,13 @@ void TheTvDb::search(QString searchStr)
  */
 void TheTvDb::onSearchFinished()
 {
+    qDebug() << "Entered";
     QList<ScraperSearchResult> results;
     if (m_searchReply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(m_searchReply->readAll());
         results = parseSearch(msg);
+    } else {
+        qWarning() << "Network Error" << m_searchReply->errorString();
     }
     m_searchReply->deleteLater();
     emit sigSearchDone(results);
@@ -197,6 +203,7 @@ void TheTvDb::onSearchFinished()
  */
 QList<ScraperSearchResult> TheTvDb::parseSearch(QString xml)
 {
+    qDebug() << "Entered";
     QList<ScraperSearchResult> results;
 
     QDomDocument domDoc;
@@ -232,6 +239,7 @@ QList<ScraperSearchResult> TheTvDb::parseSearch(QString xml)
  */
 void TheTvDb::loadTvShowData(QString id, TvShow *show, bool updateAllEpisodes)
 {
+    qDebug() << "Entered, id=" << id << "show=" << show->name() << "updateAllEpisodes=" << updateAllEpisodes;
     m_currentShow = show;
     m_currentId = id;
     m_updateAllEpisodes = updateAllEpisodes;
@@ -249,9 +257,12 @@ void TheTvDb::loadTvShowData(QString id, TvShow *show, bool updateAllEpisodes)
  */
 void TheTvDb::onLoadFinished()
 {
+    qDebug() << "Entered";
     if (m_loadReply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(m_loadReply->readAll());
         parseAndAssignInfos(msg, m_currentShow, m_updateAllEpisodes);
+    } else {
+        qWarning() << "Network Error" << m_loadReply->errorString();
     }
     m_loadReply->deleteLater();
     QString mirror = m_xmlMirrors.at(qrand()%m_xmlMirrors.count());
@@ -268,9 +279,12 @@ void TheTvDb::onLoadFinished()
  */
 void TheTvDb::onActorsFinished()
 {
+    qDebug() << "Entered";
     if (m_actorsReply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(m_actorsReply->readAll());
         parseAndAssignActors(msg, m_currentShow);
+    } else {
+        qWarning() << "Network Error" << m_actorsReply->errorString();
     }
     m_actorsReply->deleteLater();
     QString mirror = m_xmlMirrors.at(qrand()%m_xmlMirrors.count());
@@ -286,9 +300,12 @@ void TheTvDb::onActorsFinished()
  */
 void TheTvDb::onBannersFinished()
 {
+    qDebug() << "Entered";
     if (m_bannersReply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(m_bannersReply->readAll());
         parseAndAssignBanners(msg, m_currentShow);
+    } else {
+        qDebug() << "Network Error" << m_bannersReply->errorString();
     }
     m_bannersReply->deleteLater();
     m_currentShow->scraperLoadDone();
@@ -302,6 +319,7 @@ void TheTvDb::onBannersFinished()
  */
 void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, bool updateAllEpisodes)
 {
+    qDebug() << "Entered";
     show->clear();
     QDomDocument domDoc;
     domDoc.setContent(xml);
@@ -342,6 +360,7 @@ void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, bool updateAllEpiso
  */
 void TheTvDb::parseAndAssignActors(QString xml, TvShow *show)
 {
+    qDebug() << "Entered";
     QDomDocument domDoc;
     domDoc.setContent(xml);
     for (int i=0, n=domDoc.elementsByTagName("Actor").count() ; i<n ; ++i) {
@@ -366,6 +385,7 @@ void TheTvDb::parseAndAssignActors(QString xml, TvShow *show)
  */
 void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show)
 {
+    qDebug() << "Entered";
     QDomDocument domDoc;
     domDoc.setContent(xml);
     for (int i=0, n=domDoc.elementsByTagName("Banner").count() ; i<n ; ++i) {
@@ -439,6 +459,7 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show)
  */
 void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *episode)
 {
+    qDebug() << "Entered";
     episode->clear();
     if (!elem.elementsByTagName("Director").isEmpty())
         episode->setDirectors(elem.elementsByTagName("Director").at(0).toElement().text().split("|", QString::SkipEmptyParts));
@@ -471,6 +492,7 @@ void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *
  */
 void TheTvDb::loadTvShowEpisodeData(QString id, TvShowEpisode *episode)
 {
+    qDebug() << "Entered, id=" << id << "episode=" << episode->name();
     m_currentEpisode = episode;
     m_currentId = id;
     QString mirror = m_xmlMirrors.at(qrand()%m_xmlMirrors.count());
@@ -485,6 +507,7 @@ void TheTvDb::loadTvShowEpisodeData(QString id, TvShowEpisode *episode)
  */
 void TheTvDb::onEpisodeLoadFinished()
 {
+    qDebug() << "Entered";
     if (m_episodeLoadReply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(m_episodeLoadReply->readAll());
         QDomDocument domDoc;
@@ -498,6 +521,8 @@ void TheTvDb::onEpisodeLoadFinished()
                     parseAndAssignSingleEpisodeInfos(elem, m_currentEpisode);
             }
         }
+    } else {
+        qWarning() << "Network Error" << m_episodeLoadReply->errorString();
     }
     m_episodeLoadReply->deleteLater();
     m_currentEpisode->scraperLoadDone();

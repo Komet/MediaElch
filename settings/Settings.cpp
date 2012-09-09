@@ -60,7 +60,7 @@ Settings::Settings(QWidget *parent) :
 
     // Setup file dialogs
     m_logFileDialog = new QFileDialog(this, tr("Logfile"), QDir::homePath(), tr("Logfiles (*.log *.txt)"));
-    m_logFileDialog->setFileMode(QFileDialog::ExistingFile);
+    m_logFileDialog->setFileMode(QFileDialog::AnyFile);
     m_movieDirDialog = new QFileDialog(this, tr("Choose a directory containing your movies"), QDir::homePath());
     m_movieDirDialog->setFileMode(QFileDialog::Directory);
     m_movieDirDialog->setOption(QFileDialog::ShowDirsOnly, true);

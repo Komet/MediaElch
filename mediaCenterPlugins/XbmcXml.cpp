@@ -7,6 +7,8 @@
 #include <QFileInfo>
 #include <QXmlStreamWriter>
 
+#include "Globals.h"
+
 /**
  * @brief XbmcXml::XbmcXml
  * @param parent
@@ -54,6 +56,7 @@ void XbmcXml::shutdown()
  */
 void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath, QString pathSearch, QString pathReplace)
 {
+    qDebug() << "Entered, movie=" << movie->name();
     xml.writeStartElement("movie");
     xml.writeTextElement("title", movie->name());
     xml.writeTextElement("originaltitle", movie->originalName());
@@ -126,6 +129,7 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath,
  */
 bool XbmcXml::saveMovie(Movie *movie)
 {
+    qDebug() << "Entered, movie=" << movie->name();
     QByteArray xmlContent;
     QXmlStreamWriter xml(&xmlContent);
     xml.setAutoFormatting(true);
@@ -133,30 +137,41 @@ bool XbmcXml::saveMovie(Movie *movie)
     writeMovieXml(xml, movie);
     xml.writeEndDocument();
 
-    if (movie->files().size() == 0)
+    if (movie->files().size() == 0) {
+        qWarning() << "Movie has no files";
         return false;
+    }
     QFileInfo fi(movie->files().at(0));
     QFile file;
     if (m_movieNfoFileNames.contains(movie))
         file.setFileName(fi.absolutePath() + QDir::separator() + m_movieNfoFileNames[movie]);
     else
         file.setFileName(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".nfo");
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    qDebug() << "Saving to" << file.fileName();
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qWarning() << "File could not be openend";
         return false;
+    }
     file.write(xmlContent);
     file.close();
 
     if (movie->posterImageChanged() && !movie->posterImage()->isNull()) {
-        if (m_moviePosterFileNames.contains(movie))
+        if (m_moviePosterFileNames.contains(movie)) {
+            qDebug() << "Saving poster to" << fi.absolutePath() + QDir::separator() + m_moviePosterFileNames[movie];
             movie->posterImage()->save(fi.absolutePath() + QDir::separator() + m_moviePosterFileNames[movie], "jpg", 100);
-        else
+        } else {
+            qDebug() << "Saving poster to" << fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".tbn";
             movie->posterImage()->save(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".tbn", "jpg", 100);
+        }
     }
     if (movie->backdropImageChanged() && !movie->backdropImage()->isNull()) {
-        if (m_movieBackdropFileNames.contains(movie))
+        if (m_movieBackdropFileNames.contains(movie)) {
+            qDebug() << "Saving backdrop to" << fi.absolutePath() + QDir::separator() + m_movieBackdropFileNames[movie];
             movie->backdropImage()->save(fi.absolutePath() + QDir::separator() + m_movieBackdropFileNames[movie], "jpg", 100);
-        else
+        } else {
+            qDebug() << "Saving backdrop to" << fi.absolutePath() + QDir::separator() + fi.completeBaseName() + "-fanart.jpg";
             movie->backdropImage()->save(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + "-fanart.jpg", "jpg", 100);
+        }
     }
 
     foreach (const Actor &actor, movie->actors()) {
@@ -179,20 +194,28 @@ bool XbmcXml::saveMovie(Movie *movie)
  */
 bool XbmcXml::loadMovie(Movie *movie)
 {
-    if (movie->files().size() == 0)
+    qDebug() << "Entered, files=" << movie->files();
+    if (movie->files().size() == 0) {
+        qWarning() << "Movie has no files";
         return false;
+    }
     QFileInfo fi(movie->files().at(0));
     if (!fi.isFile() ) {
+        qWarning() << "First file of the movie is not readable" << movie->files().at(0);
         return false;
     }
     QString nfoFile = fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".nfo";
+    qDebug() << "Trying to load nfoFile" << nfoFile;
     fi.setFile(nfoFile);
     if (!fi.exists()) {
         // try movie.nfo instead
         nfoFile = fi.absolutePath() + QDir::separator() + "movie.nfo";
+        qDebug() << "Trying to load nfoFile" << nfoFile;
         fi.setFile(nfoFile);
-        if (!fi.exists())
+        if (!fi.exists()) {
+            qDebug() << "No usable nfo file found";
             return false;
+        }
     }
 
     if (m_movieNfoFileNames.contains(movie))
@@ -202,6 +225,7 @@ bool XbmcXml::loadMovie(Movie *movie)
 
     QFile file(nfoFile);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qWarning() << "File" << nfoFile << "could not be opened for reading";
         return false;
     }
     movie->clear();
@@ -282,8 +306,11 @@ bool XbmcXml::loadMovie(Movie *movie)
  */
 void XbmcXml::loadMovieImages(Movie *movie)
 {
-    if (movie->files().size() == 0)
+    qDebug() << "Entered, movie=" << movie->name();
+    if (movie->files().size() == 0) {
+        qWarning() << "Movie has no files";
         return;
+    }
     QFileInfo fi(movie->files().at(0));
     QFileInfo posterFi(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".tbn");
     QFileInfo backdropFi(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + "-fanart.jpg");
@@ -296,22 +323,28 @@ void XbmcXml::loadMovieImages(Movie *movie)
         posterFi.setFile(fi.absolutePath() + QDir::separator() + "folder.jpg");
 
     if (posterFi.isFile()) {
+        qDebug() << "Trying to load poster file" << posterFi.absoluteFilePath();
         movie->posterImage()->load(posterFi.absoluteFilePath());
         if (m_moviePosterFileNames.contains(movie))
             m_moviePosterFileNames[movie] = posterFi.fileName();
         else
             m_moviePosterFileNames.insert(movie, posterFi.fileName());
+    } else {
+        qDebug() << "Poster file is invalid" << posterFi.absoluteFilePath();
     }
 
     if (!backdropFi.isFile())
         backdropFi.setFile(fi.absolutePath() + QDir::separator() + "fanart.jpg");
 
     if (backdropFi.isFile()) {
+        qDebug() << "Trying to load backdrop file" << backdropFi.absoluteFilePath();
         movie->backdropImage()->load(backdropFi.absoluteFilePath());
         if (m_movieBackdropFileNames.contains(movie))
             m_movieBackdropFileNames[movie] = backdropFi.fileName();
         else
             m_movieBackdropFileNames.insert(movie, backdropFi.fileName());
+    } else {
+        qDebug() << "Backdrop file is invalid" << backdropFi.absoluteFilePath();
     }
 
     foreach (Actor *actor, movie->actorsPointer()) {
@@ -329,26 +362,37 @@ void XbmcXml::loadMovieImages(Movie *movie)
  */
 void XbmcXml::loadTvShowImages(TvShow *show)
 {
-    if (show->dir().isEmpty())
+    qDebug() << "Entered, show=" << show->name();
+    if (show->dir().isEmpty()) {
+        qWarning() << "TvShow has no dir";
         return;
+    }
     QFileInfo posterFi(show->dir() + QDir::separator() + "season-all.tbn");
     QFileInfo backdropFi(show->dir() + QDir::separator() + "fanart.jpg");
     QFileInfo bannerFi(show->dir() + QDir::separator() + "folder.jpg");
     if (posterFi.isFile()) {
+        qDebug() << "Trying to load poster file" << posterFi.absoluteFilePath();
         show->posterImage()->load(posterFi.absoluteFilePath());
     } else {
         posterFi.setFile(show->dir() + QDir::separator() + "poster.jpg");
-        if (posterFi.isFile())
+        if (posterFi.isFile()) {
+            qDebug() << "Trying to load poster file" << posterFi.absoluteFilePath();
             show->posterImage()->load(posterFi.absoluteFilePath());
+        }
     }
-    if (backdropFi.isFile())
+    if (backdropFi.isFile()) {
+        qDebug() << "Trying to load backdrop file" << backdropFi.absoluteFilePath();
         show->backdropImage()->load(backdropFi.absoluteFilePath());
+    }
     if (bannerFi.isFile()) {
+        qDebug() << "Trying to load banner file" << bannerFi.absoluteFilePath();
         show->bannerImage()->load(bannerFi.absoluteFilePath());
     } else {
         bannerFi.setFile(show->dir() + QDir::separator() + "banner.jpg");
-        if (bannerFi.isFile())
+        if (bannerFi.isFile()) {
+            qDebug() << "Trying to load banner file" << bannerFi.absoluteFilePath();
             show->bannerImage()->load(bannerFi.absoluteFilePath());
+        }
     }
 
     foreach (int season, show->seasons()) {
@@ -356,8 +400,10 @@ void XbmcXml::loadTvShowImages(TvShow *show)
         if (season < 10)
             s.prepend("0");
         QFileInfo seasonFi(show->dir() + QDir::separator() + "season" + s + ".tbn");
-        if (seasonFi.isFile())
+        if (seasonFi.isFile()) {
+            qDebug() << "Trying to load season poster" << seasonFi.absoluteFilePath() << "for season" << season;
             show->seasonPosterImage(season)->load(seasonFi.absoluteFilePath());
+        }
     }
 
     foreach (Actor *actor, show->actorsPointer()) {
@@ -375,12 +421,17 @@ void XbmcXml::loadTvShowImages(TvShow *show)
  */
 void XbmcXml::loadTvShowEpisodeImages(TvShowEpisode *episode)
 {
-    if (episode->files().isEmpty())
+    qDebug() << "Entered, episode=" << episode->name();
+    if (episode->files().isEmpty()) {
+        qWarning() << "Episode has no files";
         return;
+    }
     QFileInfo fi(episode->files().at(0));
     QFileInfo thumbnailFi(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".tbn");
-    if (thumbnailFi.isFile())
+    if (thumbnailFi.isFile()) {
+        qDebug() << "Trying to load thumbnail file" << thumbnailFi.absoluteFilePath();
         episode->thumbnailImage()->load(thumbnailFi.absoluteFilePath());
+    }
 }
 
 /**
@@ -528,15 +579,21 @@ void XbmcXml::exportDatabase(QList<Movie*> movies, QList<TvShow*> shows, QString
  */
 bool XbmcXml::loadTvShow(TvShow *show)
 {
-    if (show->dir().isEmpty())
+    qDebug() << "Entered, show=" << show->name();
+    if (show->dir().isEmpty()) {
+        qWarning() << "Show dir is empty";
         return false;
+    }
     QFileInfo fi(show->dir().append(QDir::separator()).append("tvshow.nfo"));
     if (!fi.isFile() ) {
+        qDebug() << "Nfo doesn't exist" << fi.absoluteFilePath();
         return false;
     }
 
     QFile file(fi.absoluteFilePath());
+    qDebug() << "Trying to load" << fi.absoluteFilePath();
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qWarning() << "Nfo file could not be opened for reading" << fi.absoluteFilePath();
         return false;
     }
 
@@ -605,20 +662,27 @@ bool XbmcXml::loadTvShow(TvShow *show)
  */
 bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode)
 {
-    if (episode->files().size() == 0)
+    qDebug() << "Entered, episode=" << episode->name();
+    if (episode->files().size() == 0) {
+        qWarning() << "Episode has no files";
         return false;
+    }
     QFileInfo fi(episode->files().at(0));
     if (!fi.isFile() ) {
+        qDebug() << "Episode file 0 is no file" << episode->files();
         return false;
     }
     QString nfoFile = fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".nfo";
     fi.setFile(nfoFile);
+    qDebug() << "Trying to load" << nfoFile;
     if (!fi.exists()) {
+        qDebug() << "Nfo file doesn't exist" << nfoFile;
         return false;
     }
 
     QFile file(nfoFile);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qWarning() << "Nfo file could not be opened for reading" << nfoFile;
         return false;
     }
     episode->clear();
@@ -667,6 +731,7 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode)
  */
 bool XbmcXml::saveTvShow(TvShow *show)
 {
+    qDebug() << "Entered, show=" << show->name();
     QByteArray xmlContent;
     QXmlStreamWriter xml(&xmlContent);
     xml.setAutoFormatting(true);
@@ -674,21 +739,35 @@ bool XbmcXml::saveTvShow(TvShow *show)
     writeTvShowXml(xml, show);
     xml.writeEndDocument();
 
-    if (show->dir().isEmpty())
+    if (show->dir().isEmpty()) {
+        qWarning() << "Show dir is not set";
         return false;
+    }
     QFile file(show->dir() + QDir::separator() + "tvshow.nfo");
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    qDebug() << "Trying to load" << file.fileName();
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qWarning() << "Nfo file could not be openend for writing";
         return false;
+    }
     file.write(xmlContent);
     file.close();
 
     if (show->posterImageChanged() && !show->posterImage()->isNull()) {
+        qDebug() << "Poster image has changed";
+        qDebug() << "Saving to" << show->dir() + QDir::separator() + "season-all.tbn";
+        qDebug() << "Saving to" << show->dir() + QDir::separator() + "poster.jpg";
         show->posterImage()->save(show->dir() + QDir::separator() + "season-all.tbn", "jpg", 100);
         show->posterImage()->save(show->dir() + QDir::separator() + "poster.jpg", "jpg", 100);
     }
-    if (show->backdropImageChanged() && !show->backdropImage()->isNull())
+    if (show->backdropImageChanged() && !show->backdropImage()->isNull()) {
+        qDebug() << "Backdrop image has changed";
+        qDebug() << "Saving to " << show->dir() + QDir::separator() + "fanart.jpg";
         show->backdropImage()->save(show->dir() + QDir::separator() + "fanart.jpg", "jpg", 100);
+    }
     if (show->bannerImageChanged() && !show->bannerImage()->isNull()) {
+        qDebug() << "Banner image has changed";
+        qDebug() << "Saving to" << show->dir() + QDir::separator() + "folder.jpg";
+        qDebug() << "Saving to" << show->dir() + QDir::separator() + "banner.jpg";
         show->bannerImage()->save(show->dir() + QDir::separator() + "folder.jpg", "jpg", 100);
         show->bannerImage()->save(show->dir() + QDir::separator() + "banner.jpg", "jpg", 100);
     }
@@ -708,6 +787,7 @@ bool XbmcXml::saveTvShow(TvShow *show)
             QString s = QString("%1").arg(season);
             if (season < 10)
                 s.prepend("0");
+            qDebug() << "Saving season poster image for season" << season << "to" << show->dir() + QDir::separator() + "season" + s + ".tbn";
             show->seasonPosterImage(season)->save(show->dir() + QDir::separator() + "season" + s + ".tbn", "jpg", 100);
         }
     }
@@ -723,6 +803,7 @@ bool XbmcXml::saveTvShow(TvShow *show)
  */
 bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
 {
+    qDebug() << "Entered, episode=" << episode->name();
     QByteArray xmlContent;
     QXmlStreamWriter xml(&xmlContent);
     xml.setAutoFormatting(true);
@@ -730,17 +811,24 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
     writeTvShowEpisodeXml(xml, episode);
     xml.writeEndDocument();
 
-    if (episode->files().isEmpty())
+    if (episode->files().isEmpty()) {
+        qWarning() << "Episode has no files";
         return false;
+    }
     QFileInfo fi(episode->files().at(0));
     QFile file(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".nfo");
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    qDebug() << "Trying to open" << file.fileName();
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qWarning() << "Nfo file could not be opened for writing";
         return false;
+    }
     file.write(xmlContent);
     file.close();
 
-    if (episode->thumbnailImageChanged() && !episode->thumbnailImage()->isNull())
+    if (episode->thumbnailImageChanged() && !episode->thumbnailImage()->isNull()) {
+        qDebug() << "Thumbnail image has changed, saving to" << fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".tbn";
         episode->thumbnailImage()->save(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".tbn", "jpg", 100);
+    }
 
     return true;
 }
@@ -757,6 +845,7 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
  */
 void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath, QString pathSearch, QString pathReplace, bool writeStartAndEndElement)
 {
+    qDebug() << "Entered, show=" << show->name();
     if (writeStartAndEndElement)
         xml.writeStartElement("tvshow");
     xml.writeTextElement("title", show->name());
@@ -832,6 +921,7 @@ void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath
  */
 void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode, bool writePath, QString pathSearch, QString pathReplace)
 {
+    qDebug() << "Entered, episode=" << episode->name();
     xml.writeStartElement("episodedetails");
     xml.writeTextElement("title", episode->name());
     xml.writeTextElement("showtitle", episode->showTitle());

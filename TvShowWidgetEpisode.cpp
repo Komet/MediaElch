@@ -3,6 +3,7 @@
 
 #include <QMovie>
 #include <QPainter>
+#include "Globals.h"
 #include "ImagePreviewDialog.h"
 #include "Manager.h"
 #include "MessageBox.h"
@@ -136,6 +137,7 @@ void TvShowWidgetEpisode::onClear()
  */
 void TvShowWidgetEpisode::onSetEnabled(bool enabled)
 {
+    qDebug() << "Entered";
     ui->groupBox_3->setEnabled(enabled);
 }
 
@@ -145,6 +147,7 @@ void TvShowWidgetEpisode::onSetEnabled(bool enabled)
  */
 void TvShowWidgetEpisode::setEpisode(TvShowEpisode *episode)
 {
+    qDebug() << "Entered, episode=" << episode->name();
     m_episode = episode;
     episode->loadImages(Manager::instance()->mediaCenterInterfaceTvShow());
     updateEpisodeInfo();
@@ -155,8 +158,11 @@ void TvShowWidgetEpisode::setEpisode(TvShowEpisode *episode)
  */
 void TvShowWidgetEpisode::updateEpisodeInfo()
 {
-    if (m_episode == 0)
+    qDebug() << "Entered";
+    if (m_episode == 0) {
+        qWarning() << "My episode is invalid";
         return;
+    }
 
     ui->season->blockSignals(true);
     ui->episode->blockSignals(true);
@@ -240,8 +246,11 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
  */
 void TvShowWidgetEpisode::onSaveInformation()
 {
-    if (m_episode == 0)
+    qDebug() << "Entered";
+    if (m_episode == 0) {
+        qWarning() << "My episode is invalid";
         return;
+    }
 
     onSetEnabled(false);
     m_savingWidget->show();
@@ -257,6 +266,7 @@ void TvShowWidgetEpisode::onSaveInformation()
  */
 void TvShowWidgetEpisode::onRevertChanges()
 {
+    qDebug() << "Entered";
     m_episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
     m_episode->loadImages(Manager::instance()->mediaCenterInterfaceTvShow());
     updateEpisodeInfo();
@@ -267,8 +277,11 @@ void TvShowWidgetEpisode::onRevertChanges()
  */
 void TvShowWidgetEpisode::onStartScraperSearch()
 {
-    if (m_episode == 0)
+    qDebug() << "Entered";
+    if (m_episode == 0) {
+        qWarning() << "My episode is invalid";
         return;
+    }
     emit sigSetActionSearchEnabled(false, WidgetTvShows);
     emit sigSetActionSaveEnabled(false, WidgetTvShows);
     TvShowSearch::instance()->setChkUpdateAllVisible(false);
@@ -289,8 +302,11 @@ void TvShowWidgetEpisode::onStartScraperSearch()
  */
 void TvShowWidgetEpisode::onLoadDone()
 {
-    if (m_episode == 0)
+    qDebug() << "Entered";
+    if (m_episode == 0) {
+        qWarning() << "My episode is invalid";
         return;
+    }
 
     updateEpisodeInfo();
     onSetEnabled(true);
@@ -316,10 +332,12 @@ void TvShowWidgetEpisode::onLoadDone()
  */
 void TvShowWidgetEpisode::onChooseThumbnail()
 {
-    qDebug() << Q_FUNC_INFO;
+    qDebug() << "Entered";
 
-    if (m_episode == 0)
+    if (m_episode == 0) {
+        qWarning() << "My episode is invalid";
         return;
+    }
 
     MovieImageDialog::instance()->setImageType(TypeBackdrop);
     MovieImageDialog::instance()->clear();
@@ -353,7 +371,9 @@ void TvShowWidgetEpisode::onChooseThumbnail()
  */
 void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
 {
+    qDebug() << "Entered";
     if (elem.imageType == TypeBackdrop) {
+        qDebug() << "Got a backdrop";
         if ((elem.image.width() != 1920 || elem.image.height() != 1080) &&
             elem.image.width() > 1915 && elem.image.width() < 1925 && elem.image.height() > 1075 && elem.image.height() < 1085)
             elem.image = elem.image.scaled(1920, 1080, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);

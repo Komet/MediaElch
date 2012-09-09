@@ -4,6 +4,7 @@
 #include <QLocale>
 #include <QTableWidget>
 #include <QTimer>
+#include "Globals.h"
 #include "Manager.h"
 
 FilesWidget *FilesWidget::m_instance;
@@ -63,7 +64,9 @@ FilesWidget *FilesWidget::instance()
  */
 void FilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
 {
+    qDebug() << "Entered";
     if (!index.isValid()) {
+        qDebug() << "Index is invalid";
         emit noMovieSelected();
         return;
     }
@@ -78,6 +81,7 @@ void FilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
  */
 void FilesWidget::movieSelectedEmitter()
 {
+    qDebug() << "Entered";
     emit movieSelected(m_lastMovie);
 }
 
@@ -87,6 +91,7 @@ void FilesWidget::movieSelectedEmitter()
  */
 void FilesWidget::setFilter(QString filter)
 {
+    qDebug() << "Entered, filter=" << filter;
     m_movieProxyModel->setFilterWildcard("*" + filter + "*");
 }
 
@@ -95,5 +100,6 @@ void FilesWidget::setFilter(QString filter)
  */
 void FilesWidget::restoreLastSelection()
 {
+    qDebug() << "Entered";
     ui->files->setCurrentIndex(m_lastModelIndex);
 }

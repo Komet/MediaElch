@@ -1,5 +1,7 @@
 #include "MyTreeView.h"
 
+#include "Globals.h"
+
 /**
  * @brief MyTreeView::MyTreeView
  * @param parent

@@ -4,6 +4,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QTime>
+#include "Globals.h"
 
 /**
  * @brief TvShowEpisode::TvShowEpisode
@@ -62,7 +63,9 @@ void TvShowEpisode::clear()
  */
 bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface)
 {
+    qDebug() << "Entered";
     bool infoLoaded = mediaCenterInterface->loadTvShowEpisode(this);
+    qDebug() << "Loaded" << infoLoaded;
     if (!infoLoaded) {
         if (this->files().count() > 0) {
             QFileInfo fi(this->files().at(0));
@@ -81,6 +84,7 @@ bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface)
  */
 void TvShowEpisode::loadData(QString id, TvScraperInterface *tvScraperInterface)
 {
+    qDebug() << "Entered, id=" << id << "scraperInterface=" << tvScraperInterface->name();
     tvScraperInterface->loadTvShowEpisodeData(id, this);
 }
 
@@ -99,7 +103,9 @@ void TvShowEpisode::scraperLoadDone()
  */
 bool TvShowEpisode::saveData(MediaCenterInterface *mediaCenterInterface)
 {
+    qDebug() << "Entered";
     bool saved = mediaCenterInterface->saveTvShowEpisode(this);
+    qDebug() << "Saved" << saved;
     if (!m_infoLoaded)
         m_infoLoaded = saved;
     setChanged(false);
@@ -130,6 +136,7 @@ bool TvShowEpisode::isValid() const
  */
 void TvShowEpisode::loadImages(MediaCenterInterface *mediaCenterInterface)
 {
+    qDebug() << "Entered";
     mediaCenterInterface->loadTvShowEpisodeImages(this);
 }
 

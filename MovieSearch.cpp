@@ -83,6 +83,7 @@ MovieSearch* MovieSearch::instance(QWidget *parent)
  */
 int MovieSearch::exec(QString searchString)
 {
+    qDebug() << "Entered";
     QSize newSize;
     newSize.setHeight(parentWidget()->size().height()-200);
     newSize.setWidth(qMin(600, parentWidget()->size().width()-400));
@@ -98,6 +99,7 @@ int MovieSearch::exec(QString searchString)
  */
 void MovieSearch::clear()
 {
+    qDebug() << "Entered";
     ui->results->clearContents();
     ui->results->setRowCount(0);
 }
@@ -107,6 +109,7 @@ void MovieSearch::clear()
  */
 void MovieSearch::search()
 {
+    qDebug() << "Entered";
     int index = ui->comboScraper->currentIndex();
     if (index < 0 || index >= Manager::instance()->scrapers().size()) {
         return;
@@ -125,6 +128,7 @@ void MovieSearch::search()
  */
 void MovieSearch::showResults(QList<ScraperSearchResult> results)
 {
+    qDebug() << "Entered, size of results=" << results.count();
     ui->comboScraper->setEnabled(true);
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
@@ -144,6 +148,7 @@ void MovieSearch::showResults(QList<ScraperSearchResult> results)
  */
 void MovieSearch::resultClicked(QTableWidgetItem *item)
 {
+    qDebug() << "Entered";
     m_scraperId = item->data(Qt::UserRole).toString();
     accept();
 }
@@ -266,6 +271,7 @@ void MovieSearch::chkAllToggled(bool toggled)
  */
 int MovieSearch::scraperNo()
 {
+    qDebug() << "Entered, m_scraperNo=" << m_scraperNo;
     return m_scraperNo;
 }
 
@@ -275,6 +281,7 @@ int MovieSearch::scraperNo()
  */
 QString MovieSearch::scraperId()
 {
+    qDebug() << "Entered, m_scraperId=" << m_scraperId;
     return m_scraperId;
 }
 

@@ -1,6 +1,7 @@
 #include "MovieModel.h"
 
 #include <QPainter>
+#include "Globals.h"
 
 /**
  * @brief MovieModel::MovieModel

@@ -1,5 +1,6 @@
 #include "VideoBuster.h"
 #include <QTextDocument>
+#include "Globals.h"
 #include "Helper.h"
 
 /**
@@ -58,6 +59,7 @@ QList<int> VideoBuster::scraperSupports()
  */
 void VideoBuster::search(QString searchStr)
 {
+    qDebug() << "Entered, searchStr=" << searchStr;
     QString encodedSearch = Helper::toLatin1PercentEncoding(searchStr);
     QUrl url;
     url.setEncodedUrl(QString("https://www.videobuster.de/titlesearch.php?tab_search_content=movies&view=title_list_view_option_list&search_title=%1").arg(encodedSearch).toUtf8());
@@ -72,10 +74,13 @@ void VideoBuster::search(QString searchStr)
  */
 void VideoBuster::searchFinished()
 {
+    qDebug() << "Entered";
     QList<ScraperSearchResult> results;
     if (m_searchReply->error() == QNetworkReply::NoError ) {
         QString msg = m_searchReply->readAll();
         results = parseSearch(msg);
+    } else {
+        qWarning() << "Network Error" << m_searchReply->errorString();
     }
     m_searchReply->deleteLater();
     emit searchDone(results);
@@ -88,6 +93,7 @@ void VideoBuster::searchFinished()
  */
 QList<ScraperSearchResult> VideoBuster::parseSearch(QString html)
 {
+    qDebug() << "Entered";
     QList<ScraperSearchResult> results;
     int pos = 0;
     QRegExp rx("class=\"movietip_yes\">([^<]*)</a>.*<a class=\"more\" href=\"([^\"]*)\">.*<label>Produktion:</label>.*([0-9]+)</div>");
@@ -112,6 +118,7 @@ QList<ScraperSearchResult> VideoBuster::parseSearch(QString html)
  */
 void VideoBuster::loadData(QString id, Movie *movie, QList<int> infos)
 {
+    qDebug() << "Entered, id=" << id << "movie=" << movie->name();
     m_infosToLoad = infos;
     m_currentMovie = movie;
     QUrl url(QString("https://www.videobuster.de%1").arg(id));
@@ -125,9 +132,12 @@ void VideoBuster::loadData(QString id, Movie *movie, QList<int> infos)
  */
 void VideoBuster::loadFinished()
 {
+    qDebug() << "Entered";
     if (m_loadReply->error() == QNetworkReply::NoError ) {
         QString msg = m_loadReply->readAll();
         parseAndAssignInfos(msg, m_currentMovie, m_infosToLoad);
+    } else {
+        qWarning() << "Network Error" << m_loadReply->errorString();
     }
     m_loadReply->deleteLater();
 }
@@ -140,6 +150,7 @@ void VideoBuster::loadFinished()
  */
 void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
 {
+    qDebug() << "Entered";
     movie->clear(infos);
     QRegExp rx;
     rx.setMinimal(true);
@@ -243,6 +254,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
  */
 void VideoBuster::backdropFinished()
 {
+    qDebug() << "Entered";
     if (m_backdropReply->error() == QNetworkReply::NoError ) {
         QString msg = m_backdropReply->readAll();
         QRegExp rx("href=\"https://gfx.videobuster.de/archive/resized/([^\"]*)\"(.*)([^<]*)<img (.*) src=\"https://gfx.videobuster.de/archive/resized/c110/([^\"]*)\"");
@@ -260,6 +272,8 @@ void VideoBuster::backdropFinished()
             m_currentMovie->addBackdrop(p);
             counter++;
         }
+    } else {
+        qWarning() << "Network Error" << m_backdropReply->errorString();
     }
     m_backdropReply->deleteLater();
     m_currentMovie->scraperLoadDone();

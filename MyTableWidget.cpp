@@ -2,6 +2,7 @@
 
 #include <QDebug>
 #include <QMimeData>
+#include "Globals.h"
 
 /**
  * @brief MyTableWidget::MyTableWidget

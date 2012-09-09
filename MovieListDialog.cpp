@@ -2,6 +2,7 @@
 #include "ui_MovieListDialog.h"
 
 #include "Manager.h"
+#include "Globals.h"
 
 /**
  * @brief MovieListDialog::MovieListDialog
@@ -51,6 +52,7 @@ MovieListDialog* MovieListDialog::instance(QWidget *parent)
  */
 int MovieListDialog::exec()
 {
+    qDebug() << "Entered";
     QSize newSize;
     newSize.setHeight(parentWidget()->size().height()-200);
     newSize.setWidth(qMin(1000, parentWidget()->size().width()-400));
@@ -78,7 +80,9 @@ int MovieListDialog::exec()
  */
 void MovieListDialog::onMovieSelected(QTableWidgetItem *item)
 {
+    qDebug() << "Entered";
     m_selectedMovie = item->data(Qt::UserRole).value<Movie*>();
+    qDebug() << "m_selectedMovie=" << m_selectedMovie->name();
     accept();
 }
 

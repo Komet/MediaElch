@@ -57,6 +57,7 @@ TvShowSearch* TvShowSearch::instance(QWidget *parent)
  */
 int TvShowSearch::exec(QString searchString)
 {
+    qDebug() << "Entered, searchString=" << searchString;
     QSize newSize;
     newSize.setHeight(parentWidget()->size().height()-200);
     newSize.setWidth(qMin(600, parentWidget()->size().width()-400));
@@ -72,6 +73,7 @@ int TvShowSearch::exec(QString searchString)
  */
 void TvShowSearch::clear()
 {
+    qDebug() << "Entered";
     ui->results->clearContents();
     ui->results->setRowCount(0);
 }
@@ -81,6 +83,7 @@ void TvShowSearch::clear()
  */
 void TvShowSearch::onSearch()
 {
+    qDebug() << "Entered, with" << ui->searchString->text();
     clear();
     ui->searchString->setLoading(true);
     Manager::instance()->tvScrapers().at(0)->search(ui->searchString->text());
@@ -92,6 +95,7 @@ void TvShowSearch::onSearch()
  */
 void TvShowSearch::onShowResults(QList<ScraperSearchResult> results)
 {
+    qDebug() << "Entered, size of results=" << results.count();
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
     foreach (const ScraperSearchResult &result, results) {
@@ -109,7 +113,9 @@ void TvShowSearch::onShowResults(QList<ScraperSearchResult> results)
  */
 void TvShowSearch::onResultClicked(QTableWidgetItem *item)
 {
+    qDebug() << "Entered";
     m_scraperId = item->data(Qt::UserRole).toString();
+    qDebug() << "m_scraperId=" << m_scraperId;
     this->accept();
 }
 
@@ -130,6 +136,7 @@ void TvShowSearch::setChkUpdateAllVisible(bool visible)
  */
 QString TvShowSearch::scraperId()
 {
+    qDebug() << "Entered, m_scraperId" << m_scraperId;
     return m_scraperId;
 }
 
@@ -139,5 +146,6 @@ QString TvShowSearch::scraperId()
  */
 bool TvShowSearch::updateAll()
 {
+    qDebug() << "Entered, updateAll=" << ui->chkUpdateAllEpisodes->isChecked();
     return ui->chkUpdateAllEpisodes->isChecked();
 }

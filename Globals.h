@@ -2,6 +2,7 @@
 #define GLOBALS_H
 
 #include <QDate>
+#include <QDebug>
 #include <QImage>
 #include <QMetaType>
 #include <QString>
@@ -128,5 +129,14 @@ namespace MovieScraperInfos {
     const int Studios       = 13;
     const int Countries     = 14;
 }
+
+// Debugging
+#if defined( Q_CC_GNU )
+#    if defined( qDebug )
+#        undef qDebug
+#    endif
+#    define DEBUG_FUNCTION_NAME  QString("%1").arg(__PRETTY_FUNCTION__, -70, QLatin1Char(' '))
+#    define qDebug() qDebug() << QString(DEBUG_FUNCTION_NAME + " :")
+#endif
 
 #endif // GLOBALS_H

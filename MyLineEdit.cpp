@@ -6,6 +6,8 @@
 #include <QStyle>
 #include <QToolButton>
 
+#include "Globals.h"
+
 /**
  * @brief MyLineEdit::MyLineEdit
  * @param parent

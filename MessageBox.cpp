@@ -54,10 +54,12 @@ void MessageBox::reposition(QSize size)
  */
 void MessageBox::adjustSize()
 {
+    qDebug() << "Entered";
     int height = 48;
     foreach (const Message *msg, m_messages)
         height += msg->sizeHint().height() + ui->layoutMessages->spacing();
     height -= ui->layoutMessages->spacing();
+    qDebug() << "Setting size to" << size().width() << "x" << height;
     resize(this->size().width(), height);
 }
 
@@ -69,6 +71,7 @@ void MessageBox::adjustSize()
  */
 int MessageBox::showMessage(QString message, int timeout)
 {
+    qDebug() << "Entered, message=" << message << "timeout=" << timeout;
     m_msgCounter++;
     Message *msg = new Message(this);
     msg->setMessage(message, timeout);
@@ -87,6 +90,7 @@ int MessageBox::showMessage(QString message, int timeout)
  */
 void MessageBox::removeMessage(int id)
 {
+    qDebug() << "Entered, id=" << id;
     foreach (Message *msg, m_messages) {
         if (msg->id() == id) {
             ui->layoutMessages->removeWidget(msg);
@@ -106,6 +110,7 @@ void MessageBox::removeMessage(int id)
  */
 void MessageBox::showProgressBar(QString message, int id)
 {
+    qDebug() << "Entered, message=" << message << "id=" << id;
     m_msgCounter++;
     Message *msg = new Message(this);
     msg->setMessage(message);
@@ -138,5 +143,6 @@ void MessageBox::progressBarProgress(int current, int max, int id)
  */
 void MessageBox::hideProgressBar(int id)
 {
+    qDebug() << "Entered, id=" << id;
     removeMessage(id);
 }
