@@ -1,3 +1,29 @@
+mediaelch (0.9.6-1) unstable; urgency=low
+
+  * Ignore files in directory “Extras” (thanks to KBagust)
+  * Allow TV Show episodes to have . inbetween season and episode numbers (thanks to KBagust)
+  * Added debug output
+  * Bugfix: Toolbar hidden in Mac OS X with small resolutions
+  
+ -- Daniel Kabel <daniel.kabel@me.com>  Thu, 20 Sep 2012 15:37:18 +0200
+
+mediaelch (0.9.5-1) unstable; urgency=low
+
+  * TV show episodes are grouped by seasons
+  * Markers for new movies and TV shows
+  * Skip empty values and images in TMDb
+  * Added support .m4v file extension
+  * Increased size of Fanart/Poster dialog
+  * Feature: Revert changes
+  * Bugfix: Crash when loading MediaElch
+  * Bugfix: Scraping issues with special characters in movie titles
+  * Bugfix: TV Shows had wrong path when episodes are in subfolders
+  * Bugfix: Confusion in SQL interfaces when different episodes have equal filenames
+  * Bugfix: Checkbox “separate folders” won’t show when adding a movie directory
+  * Bugfix: Changing just poster or fanart in tv shows won’t enable the save button
+
+ -- Daniel Kabel <daniel.kabel@me.com>  Thu, 20 Sep 2012 15:37:18 +0200
+
 mediaelch (0.9.4-1) unstable; urgency=low
 
   * Fixed not escaped characters in SQL interface
