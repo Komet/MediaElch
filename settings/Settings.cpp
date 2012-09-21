@@ -65,6 +65,7 @@ Settings::Settings(QWidget *parent) :
     m_movieDirDialog->setFileMode(QFileDialog::Directory);
     m_movieDirDialog->setOption(QFileDialog::ShowDirsOnly, true);
     m_tvShowDirDialog = new QFileDialog(this, tr("Choose a directory containing your TV shows"), QDir::homePath());
+    m_tvShowDirDialog->setFileMode(QFileDialog::Directory);
     m_tvShowDirDialog->setOption(QFileDialog::ShowDirsOnly, true);
     m_xbmcThumbnailDirDialog = new QFileDialog(this, tr("Choose a directory containing your Thumbnails"), QDir::homePath());;
     m_xbmcThumbnailDirDialog->setOption(QFileDialog::ShowDirsOnly, true);
