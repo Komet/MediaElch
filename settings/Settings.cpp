@@ -145,7 +145,7 @@ void Settings::loadSettings()
         ui->movieDirs->insertRow(i);
         QTableWidgetItem *item = new QTableWidgetItem(m_settings.value("path").toString());
         item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        item->setToolTip(m_settings.value("path").toString());
+        item->setToolTip(QDir::toNativeSeparators(m_settings.value("path").toString()));
         QTableWidgetItem *item2 = new QTableWidgetItem;
         item2->setToolTip(tr("Movies are in separate folders"));
         if (m_settings.value("sepFolders", false).toBool())
@@ -156,7 +156,7 @@ void Settings::loadSettings()
         ui->movieDirs->setItem(i, 1, new QTableWidgetItem(m_settings.value("mediaCenterPath").toString()));
         ui->movieDirs->setItem(i, 2, item2);
         SettingsDir dir;
-        dir.path = m_settings.value("path").toString();
+        dir.path = QDir::toNativeSeparators(m_settings.value("path").toString());
         dir.mediaCenterPath = m_settings.value("mediaCenterPath").toString();
         dir.separateFolders = m_settings.value("sepFolders", false).toBool();
         m_movieDirectories.append(dir);
@@ -174,11 +174,11 @@ void Settings::loadSettings()
         ui->tvShowDirs->insertRow(i);
         QTableWidgetItem *item = new QTableWidgetItem(m_settings.value("path").toString());
         item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        item->setToolTip(m_settings.value("path").toString());
+        item->setToolTip(QDir::toNativeSeparators(m_settings.value("path").toString()));
         ui->tvShowDirs->setItem(i, 0, item);
         ui->tvShowDirs->setItem(i, 1, new QTableWidgetItem(m_settings.value("mediaCenterPath").toString()));
         SettingsDir dir;
-        dir.path = m_settings.value("path").toString();
+        dir.path = QDir::toNativeSeparators(m_settings.value("path").toString());
         dir.mediaCenterPath = m_settings.value("mediaCenterPath").toString();
         m_tvShowDirectories.append(dir);
     }
@@ -302,6 +302,7 @@ void Settings::saveSettings()
  */
 void Settings::addMovieDir(QString dir)
 {
+    dir = QDir::toNativeSeparators(dir);
     if (!dir.isEmpty()) {
         bool exists = false;
         for (int i=0, n=m_movieDirectories.count() ; i<n ; ++i) {
@@ -355,6 +356,7 @@ void Settings::movieListRowChanged(int currentRow)
  */
 void Settings::addTvShowDir(QString dir)
 {
+    dir = QDir::toNativeSeparators(dir);
     if (!dir.isEmpty()) {
         bool exists = false;
         for (int i=0, n=m_tvShowDirectories.count() ; i<n ; ++i) {
@@ -506,10 +508,11 @@ void Settings::onActivateDebugMode()
 }
 
 /**
- * @brief Shows a file chooser to choose a path to a logfile
+ * @brief Sets the path to the logfile
  */
 void Settings::onDebugLogPathChosen(QString file)
 {
+    file = QDir::toNativeSeparators(file);
     ui->logfilePath->setText(file);
 }
 
