@@ -577,7 +577,7 @@ bool XbmcSql::loadMovie(Movie *movie)
     movie->clear();
     movie->setChanged(false);
 
-    QString sqlWhereFile;
+    QSqlQuery query(db());
     QString file = mediaCenterPath(movie->files().at(0));
     qDebug() << "File" << movie->files().at(0) << "becomes" << file;
     if (movie->files().count() == 1) {
@@ -598,47 +598,63 @@ bool XbmcSql::loadMovie(Movie *movie)
                 file.append((isUnixFile) ? "/" : "\\");
             qDebug() << "file is now" << file;
         }
-        if (m_isMySQL) {
-            file.replace("\\", "\\\\");
-            qDebug() << "Is MySQL, file=" << file;
-        }
-        sqlWhereFile = QString("M.c22='%1'").arg(file.replace("'", "''"));
+
+        query.prepare("SELECT "
+                      "M.idMovie, "
+                      "M.c00 AS title, "
+                      "M.c01 AS plot, "
+                      "M.c03 AS tagline, "
+                      "M.c05 AS rating, "
+                      "M.c07 AS year, "
+                      "M.c08 AS thumbnails, "
+                      "M.c10 AS sortTitle, "
+                      "M.c11 AS runtime, "
+                      "M.c12 AS certification, "
+                      "M.c14 AS genres, "
+                      "M.c16 AS originalTitle, "
+                      "M.c18 AS studios, "
+                      "M.c19 AS trailer, "
+                      "M.c20 AS fanart, "
+                      "M.c21 AS countries, "
+                      "F.playCount AS playCount, "
+                      "F.lastPlayed AS lastPlayed, "
+                      "M.c22 AS filePath "
+                      "FROM movie M "
+                      "JOIN files F ON M.idFile=F.idFile "
+                      "LEFT JOIN setlinkmovie SLM ON SLM.idMovie=M.idMovie "
+                      "LEFT JOIN sets S ON S.idSet=SLM.idSet "
+                      "WHERE M.c22=:file");
+        query.bindValue(":file", file);
+
     } else {
         qDebug() << "Movie is made of multiple files";
-        if (m_isMySQL) {
-            file.replace("\\", "\\\\\\\\");
-            qDebug() << "Is MySQL, file=" << file;
-        }
-        sqlWhereFile = QString("M.c22 LIKE 'stack://%%1%'").arg(file.replace("'", "''"));
+        query.prepare("SELECT "
+                      "M.idMovie, "
+                      "M.c00 AS title, "
+                      "M.c01 AS plot, "
+                      "M.c03 AS tagline, "
+                      "M.c05 AS rating, "
+                      "M.c07 AS year, "
+                      "M.c08 AS thumbnails, "
+                      "M.c10 AS sortTitle, "
+                      "M.c11 AS runtime, "
+                      "M.c12 AS certification, "
+                      "M.c14 AS genres, "
+                      "M.c16 AS originalTitle, "
+                      "M.c18 AS studios, "
+                      "M.c19 AS trailer, "
+                      "M.c20 AS fanart, "
+                      "M.c21 AS countries, "
+                      "F.playCount AS playCount, "
+                      "F.lastPlayed AS lastPlayed, "
+                      "M.c22 AS filePath "
+                      "FROM movie M "
+                      "JOIN files F ON M.idFile=F.idFile "
+                      "LEFT JOIN setlinkmovie SLM ON SLM.idMovie=M.idMovie "
+                      "LEFT JOIN sets S ON S.idSet=SLM.idSet "
+                      "WHERE M.c22 LIKE :file");
+        query.bindValue(":file", QString("stack://%%1%").arg(file));
     }
-    qDebug() << "sqlWhereFile=" << sqlWhereFile;
-
-    QSqlQuery query(db());
-    query.prepare("SELECT "
-                  "M.idMovie, "
-                  "M.c00 AS title, "
-                  "M.c01 AS plot, "
-                  "M.c03 AS tagline, "
-                  "M.c05 AS rating, "
-                  "M.c07 AS year, "
-                  "M.c08 AS thumbnails, "
-                  "M.c10 AS sortTitle, "
-                  "M.c11 AS runtime, "
-                  "M.c12 AS certification, "
-                  "M.c14 AS genres, "
-                  "M.c16 AS originalTitle, "
-                  "M.c18 AS studios, "
-                  "M.c19 AS trailer, "
-                  "M.c20 AS fanart, "
-                  "M.c21 AS countries, "
-                  "F.playCount AS playCount, "
-                  "F.lastPlayed AS lastPlayed, "
-                  "M.c22 AS filePath "
-                  "FROM movie M "
-                  "JOIN files F ON M.idFile=F.idFile "
-                  "LEFT JOIN setlinkmovie SLM ON SLM.idMovie=M.idMovie "
-                  "LEFT JOIN sets S ON S.idSet=SLM.idSet "
-                  "WHERE " + sqlWhereFile);
     query.exec();
 
     if (movie->files().count() == 1) {
@@ -651,8 +667,6 @@ bool XbmcSql::loadMovie(Movie *movie)
             fileSplit.takeLast();
             file = (isUnixFile) ? fileSplit.join("/") : fileSplit.join("\\");
             file.append((isUnixFile) ? "/" : "\\");
-            if (m_isMySQL)
-                file.replace("\\", "\\\\");
             qDebug() << "file is now" << file;
 
             query.clear();
