@@ -371,13 +371,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="289"/>
-        <location filename="../main/MainWindow.cpp" line="219"/>
+        <location filename="../main/MainWindow.cpp" line="229"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="294"/>
-        <location filename="../main/MainWindow.cpp" line="218"/>
+        <location filename="../main/MainWindow.cpp" line="228"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
@@ -387,14 +387,29 @@ p, li { white-space: pre-wrap; }
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="216"/>
+        <location filename="../main/MainWindow.cpp" line="217"/>
+        <source>Search (%1)</source>
+        <translation>Suche (%1)</translation>
+    </message>
+    <message>
+        <location filename="../main/MainWindow.cpp" line="219"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="217"/>
+        <location filename="../main/MainWindow.cpp" line="221"/>
+        <source>Save (%1)</source>
+        <translation>Speichern (%1)</translation>
+    </message>
+    <message>
+        <location filename="../main/MainWindow.cpp" line="223"/>
         <source>Save All</source>
         <translation>Alle Speichern</translation>
+    </message>
+    <message>
+        <location filename="../main/MainWindow.cpp" line="226"/>
+        <source>Save All (%1)</source>
+        <translation>Alle Speichern (%1)</translation>
     </message>
     <message>
         <source>Reload</source>

@@ -213,8 +213,18 @@ void MainWindow::setupToolbar()
     p.end();
 
     m_actionSearch = new QAction(QIcon(search), tr("Search"), this);
+    m_actionSearch->setShortcut(QKeySequence::Find);
+    m_actionSearch->setToolTip(tr("Search (%1)").arg(QKeySequence(QKeySequence::Find).toString(QKeySequence::NativeText)));
+
     m_actionSave = new QAction(QIcon(save), tr("Save"), this);
+    m_actionSave->setShortcut(QKeySequence::Save);
+    m_actionSave->setToolTip(tr("Save (%1)").arg(QKeySequence(QKeySequence::Save).toString(QKeySequence::NativeText)));
+
     m_actionSaveAll = new QAction(QIcon(saveAll), tr("Save All"), this);
+    QKeySequence seqSaveAll(Qt::CTRL+Qt::ShiftModifier+Qt::Key_S);
+    m_actionSaveAll->setShortcut(seqSaveAll);
+    m_actionSaveAll->setToolTip(tr("Save All (%1)").arg(seqSaveAll.toString(QKeySequence::NativeText)));
+
     m_actionAbout = new QAction(QIcon(info), tr("About"), this);
     m_actionQuit = new QAction(QIcon(quit), tr("Quit"), this);
     ui->mainToolBar->addAction(m_actionSearch);
