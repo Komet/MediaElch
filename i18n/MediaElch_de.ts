@@ -1092,7 +1092,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="126"/>
+        <location filename="../settings/Settings.ui" line="154"/>
         <source>Global Settings</source>
         <translation>Globale Einstellungen</translation>
     </message>
@@ -1101,173 +1101,265 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="163"/>
+        <location filename="../settings/Settings.ui" line="191"/>
         <source>Movies</source>
         <translation>Filme</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="173"/>
+        <location filename="../settings/Settings.ui" line="201"/>
         <source>Add one or more directories containing your movie files.</source>
         <translation>Füge Verzeichnisse hinzu, die deine Filme enthalten.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="187"/>
-        <location filename="../settings/Settings.ui" line="275"/>
-        <location filename="../settings/Settings.ui" line="628"/>
+        <location filename="../settings/Settings.ui" line="221"/>
+        <location filename="../settings/Settings.ui" line="315"/>
+        <location filename="../settings/Settings.ui" line="995"/>
         <source>Path</source>
         <translation>Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="192"/>
-        <location filename="../settings/Settings.ui" line="280"/>
+        <location filename="../settings/Settings.ui" line="226"/>
+        <location filename="../settings/Settings.ui" line="320"/>
         <source>MediaCenter Path</source>
         <translation>MediaCenter Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="197"/>
+        <location filename="../settings/Settings.ui" line="231"/>
         <source>Sep. folders</source>
         <translation>Sep. Verzeichnisse</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="207"/>
-        <location filename="../settings/Settings.ui" line="290"/>
+        <location filename="../settings/Settings.ui" line="241"/>
+        <location filename="../settings/Settings.ui" line="330"/>
         <source>Add</source>
         <translation>Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="214"/>
-        <location filename="../settings/Settings.ui" line="297"/>
+        <location filename="../settings/Settings.ui" line="248"/>
+        <location filename="../settings/Settings.ui" line="337"/>
         <source>Remove</source>
         <translation>Entfernen</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="251"/>
+        <location filename="../settings/Settings.ui" line="285"/>
         <source>TV Shows</source>
         <translation>TV Serien</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="258"/>
+        <location filename="../settings/Settings.ui" line="292"/>
         <source>Add one or more directories containing your TV Shows. Episodes have to be in subfolders with the name of the show.</source>
         <translation>Füge Verzeichnisse hinzu, die deine Serien enthalten. Episoden müssen in Unterverzeichnissen mit dem Namen der Serie sein.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="334"/>
+        <location filename="../settings/Settings.ui" line="374"/>
         <source>Debug</source>
         <translation>Debug</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="341"/>
+        <location filename="../settings/Settings.ui" line="381"/>
         <source>When debug mode is activated debug messages are written to logfile you set. Please use this option only if you encountered problems with MediaElch as the logfile can get very big. </source>
         <translation>Wenn der Debug Modus aktiviert ist, werden Debug Ausgaben in die Logdatei geschrieben, die du angegeben hast. Bitte benutze diese Option nur, wenn du ein Problem mit MediaElch entdeckt hast, da die Logdatei schnell sehr groß werden kann.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="351"/>
+        <location filename="../settings/Settings.ui" line="391"/>
         <source>Activate debug mode</source>
         <translation>Debug Modus aktivieren</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="360"/>
+        <location filename="../settings/Settings.ui" line="400"/>
         <source>Logfile: </source>
         <translation>Logdatei:</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="383"/>
-        <location filename="../settings/Settings.ui" line="404"/>
+        <location filename="../settings/Settings.ui" line="423"/>
+        <location filename="../settings/Settings.ui" line="444"/>
         <source>Scrapers</source>
         <translation>Scraper</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="428"/>
+        <location filename="../settings/Settings.ui" line="468"/>
         <source>MediaCenter</source>
         <translation>MediaCenter</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="465"/>
+        <location filename="../settings/Settings.ui" line="505"/>
         <source>MediaCenter Interface</source>
         <translation>MediaCenter Interface</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="472"/>
+        <location filename="../settings/Settings.ui" line="512"/>
         <source>Select the MediaCenter to use.</source>
         <translation>Wähle ein Interface zu deinem MediaCenter aus.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="479"/>
+        <location filename="../settings/Settings.ui" line="519"/>
         <source>XBMC XML</source>
         <translation>XBMC XML</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="486"/>
+        <location filename="../settings/Settings.ui" line="529"/>
+        <source>Select the filenames you wish to use for loading and saving. Enable/disable them using the checkbox in front, set priorities through sorting with drag and drop.</source>
+        <translation>Wähle die Dateinamen aus, die du zum Speichern und Laden benutzen möchtest. Aktiviere/deaktiviere sie durch die Checkboxen vorne, setze die Priorität durch Sortieren per drag&apos;n&apos;drop.</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="549"/>
+        <source>Movie NFO</source>
+        <translation>Film NFO</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="575"/>
+        <source>&lt;movie filename&gt;.nfo</source>
+        <translation>&lt;movie filename&gt;.nfo</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="583"/>
+        <source>movie.nfo</source>
+        <translation>movie.nfo</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="604"/>
+        <source>Movie Posters</source>
+        <translation>Film Poster</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="630"/>
+        <source>&lt;movie filename&gt;.tbn</source>
+        <translation>&lt;movie filename&gt;.tbn</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="638"/>
+        <source>movie.jpg</source>
+        <translation>movie.jpg</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="646"/>
+        <source>movie.tbn</source>
+        <translation>movie.tbn</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="654"/>
+        <location filename="../settings/Settings.ui" line="780"/>
+        <source>poster.jpg</source>
+        <translation>poster.jpg</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="662"/>
+        <source>poster.tbn</source>
+        <translation>poster.tbn</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="670"/>
+        <location filename="../settings/Settings.ui" line="835"/>
+        <source>folder.jpg</source>
+        <translation>folder.jpg</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="691"/>
+        <source>Movie Fanarts</source>
+        <translation>Film Fanarts</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="717"/>
+        <source>&lt;movie filename&gt;-fanart.jpg</source>
+        <translation>&lt;movie filename&gt;-fanart.jpg</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="725"/>
+        <source>fanart.jpg</source>
+        <translation>fanart.jpg</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="746"/>
+        <source>TV Show Poster</source>
+        <translation>Serien Poster</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="772"/>
+        <source>season-all.tbn</source>
+        <translation>season-all.tbn</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="801"/>
+        <source>TV Show Banner</source>
+        <translation>Serien Banner</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="827"/>
+        <source>banner.jpg</source>
+        <translation>banner.jpg</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="853"/>
         <source>XBMC MySQL</source>
         <translation>XBMC MySQL</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="502"/>
+        <location filename="../settings/Settings.ui" line="869"/>
         <source>Host</source>
         <translation>Host</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="519"/>
-        <location filename="../settings/Settings.ui" line="592"/>
+        <location filename="../settings/Settings.ui" line="886"/>
+        <location filename="../settings/Settings.ui" line="959"/>
         <source>Database</source>
         <translation>Datenbank</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="536"/>
+        <location filename="../settings/Settings.ui" line="903"/>
         <source>Username</source>
         <translation>Benutzername</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="553"/>
+        <location filename="../settings/Settings.ui" line="920"/>
         <source>Password</source>
         <translation>Passwort</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="576"/>
+        <location filename="../settings/Settings.ui" line="943"/>
         <source>XBMC SQLite</source>
         <translation>XBMC SQLite</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="666"/>
+        <location filename="../settings/Settings.ui" line="1033"/>
         <source>MediaCenter Settings</source>
         <translation>MediaCenter Einstellungen</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="673"/>
+        <location filename="../settings/Settings.ui" line="1040"/>
         <source>Stores YouTube URLs like &quot;http://www.youtube.com/watch?v=123&quot; as &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</source>
         <translation>Formatiert YouTube URLs wie &quot;http://www.youtube.com/watch?v=123&quot; als &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="676"/>
+        <location filename="../settings/Settings.ui" line="1043"/>
         <source>Store trailer URLs in YouTube Plugin format</source>
         <translation>Speichere Trailer URLs im YouTube Plugin Format</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="370"/>
-        <location filename="../settings/Settings.ui" line="606"/>
-        <location filename="../settings/Settings.ui" line="642"/>
+        <location filename="../settings/Settings.ui" line="410"/>
+        <location filename="../settings/Settings.ui" line="973"/>
+        <location filename="../settings/Settings.ui" line="1009"/>
         <source>Select</source>
         <translation>Auswählen</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="141"/>
-        <location filename="../settings/Settings.ui" line="443"/>
+        <location filename="../settings/Settings.ui" line="169"/>
+        <location filename="../settings/Settings.ui" line="483"/>
         <source>Please restart MediaElch after saving if you changed the MediaCenter interface, debug mode or added/removed directories.</source>
         <translation>Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, den Debug Modus, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="616"/>
+        <location filename="../settings/Settings.ui" line="983"/>
         <source>Set the path where Thumbnails are stored (e.g. ~/.xbmc/userdata/Thumbnails)</source>
         <translation>Wähle das Verzeichnis aus, in dem die XBMC Thumbnails gespeichert werden (z.B. ~/.xbmc/userdata/Thumbnails)</translation>
     </message>
     <message>
         <location filename="../settings/Settings.cpp" line="25"/>
-        <location filename="../settings/Settings.cpp" line="150"/>
+        <location filename="../settings/Settings.cpp" line="170"/>
         <source>Movies are in separate folders</source>
         <translation>Filme sind in separaten Verzeichnissen</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="294"/>
+        <location filename="../settings/Settings.cpp" line="440"/>
         <source>Settings saved</source>
         <translation>Einstellungen gespeichert</translation>
     </message>
@@ -2213,17 +2305,17 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
 <context>
     <name>XbmcXml</name>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="454"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="462"/>
         <source>Could not create actors directory</source>
         <translation>Verzeichnis &quot;actors&quot; konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="458"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="466"/>
         <source>Could not create movies directory</source>
         <translation>Verzeichnis &quot;movies&quot; konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="462"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="470"/>
         <source>Could not create tv shows directory</source>
         <translation>Verzeichnis &quot;tvshows&quot; konnte nicht erstellt werden</translation>
     </message>

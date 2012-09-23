@@ -45,10 +45,6 @@ private:
     void writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath = false, QString pathSearch = "", QString pathReplace = "");
     void writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath = false, QString pathSearch = "", QString pathReplace = "", bool writeStartAndEndElement = true);
     void writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode, bool writePath = false, QString pathSearch = "", QString pathReplace = "");
-
-    QMap<Movie*, QString> m_movieNfoFileNames;
-    QMap<Movie*, QString> m_moviePosterFileNames;
-    QMap<Movie*, QString> m_movieBackdropFileNames;
 };
 
 #endif // XBMCXML_H

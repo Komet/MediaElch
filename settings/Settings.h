@@ -7,6 +7,7 @@
 #include <QWidget>
 
 #include "globals/Globals.h"
+#include "settings/DataFile.h"
 
 namespace Ui {
 class Settings;
@@ -42,6 +43,11 @@ public:
     bool debugModeActivated();
     QString debugLogPath();
     bool useYoutubePluginUrls();
+    QList<DataFile*> enabledMovieNfoFiles();
+    QList<DataFile*> enabledMoviePosterFiles();
+    QList<DataFile*> enabledMovieFanartFiles();
+    QList<DataFile*> enabledTvShowPosterFiles();
+    QList<DataFile*> enabledTvShowBannerFiles();
 
     void setMainWindowSize(QSize mainWindowSize);
     void setMainWindowPosition(QPoint mainWindowPosition);
@@ -96,6 +102,11 @@ private:
     QFileDialog *m_xbmcThumbnailDirDialog;
     QFileDialog *m_xbmcSqliteDatabaseDialog;
     bool m_youtubePluginUrls;
+    QList<DataFile*> m_movieNfoFiles;
+    QList<DataFile*> m_moviePosterFiles;
+    QList<DataFile*> m_movieFanartFiles;
+    QList<DataFile*> m_tvShowPosterFiles;
+    QList<DataFile*> m_tvShowBannerFiles;
 
     void setXbmcThumbnailPathEnabled(bool enabled);
 };

@@ -66,7 +66,8 @@ SOURCES += main.cpp\
     smallWidgets/MyTreeView.cpp \
     data/MovieDelegate.cpp \
     settings/Settings.cpp \
-    globals/ImageDialog.cpp
+    globals/ImageDialog.cpp \
+    settings/DataFile.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -117,7 +118,8 @@ HEADERS  += main/MainWindow.h \
     smallWidgets/MyTreeView.h \
     data/MovieDelegate.h \
     settings/Settings.h \
-    globals/ImageDialog.h
+    globals/ImageDialog.h \
+    settings/DataFile.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
