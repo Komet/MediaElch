@@ -85,6 +85,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     // Connect GUI change events to movie object
     connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(onNameChange(QString)));
     connect(ui->originalName, SIGNAL(textEdited(QString)), this, SLOT(onOriginalNameChange(QString)));
+    connect(ui->sortTitle, SIGNAL(textEdited(QString)), this, SLOT(onSortTitleChange(QString)));
     connect(ui->tagline, SIGNAL(textEdited(QString)), this, SLOT(onTaglineChange(QString)));
     connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
     connect(ui->trailer, SIGNAL(textEdited(QString)), this, SLOT(onTrailerChange(QString)));
@@ -145,6 +146,7 @@ void MovieWidget::clear()
     ui->files->clear();
     ui->name->clear();
     ui->originalName->clear();
+    ui->sortTitle->clear();
     ui->tagline->clear();
     ui->rating->clear();
     ui->released->setDate(QDate::currentDate());
@@ -351,6 +353,7 @@ void MovieWidget::updateMovieInfo()
     ui->name->setText(m_movie->name());
     ui->movieName->setText(m_movie->name());
     ui->originalName->setText(m_movie->originalName());
+    ui->sortTitle->setText(m_movie->sortTitle());
     ui->tagline->setText(m_movie->tagline());
     ui->rating->setValue(m_movie->rating());
     ui->released->setDate(m_movie->released());
@@ -927,6 +930,17 @@ void MovieWidget::onOriginalNameChange(QString text)
     if (!m_movie)
         return;
     m_movie->setOriginalName(text);
+    ui->buttonRevert->setVisible(true);
+}
+
+/**
+ * @brief Marks the movie as changed when the sorttitle has changed
+ */
+void MovieWidget::onSortTitleChange(QString text)
+{
+    if (!m_movie)
+        return;
+    m_movie->setSortTitle(text);
     ui->buttonRevert->setVisible(true);
 }
 

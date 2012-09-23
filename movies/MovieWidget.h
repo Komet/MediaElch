@@ -69,6 +69,7 @@ private slots:
 
     void onNameChange(QString text);
     void onOriginalNameChange(QString text);
+    void onSortTitleChange(QString text);
     void onSetChange(QString text);
     void onTaglineChange(QString text);
     void onRatingChange(double value);
