@@ -208,6 +208,7 @@ void Settings::loadSettings()
     m_xbmcMysqlUser      = m_settings.value("XbmcMysql/User").toString();
     m_xbmcMysqlPassword  = m_settings.value("XbmcMysql/Password").toString();
     m_xbmcSqliteDatabase = m_settings.value("XbmcSqlite/Database").toString();
+    m_youtubePluginUrls  = m_settings.value("UseYoutubePluginURLs", false).toBool();
 
     ui->inputDatabase->setText(m_xbmcMysqlDatabase);
     ui->inputHost->setText(m_xbmcMysqlHost);
@@ -215,6 +216,7 @@ void Settings::loadSettings()
     ui->inputPassword->setText(m_xbmcMysqlPassword);
     ui->inputSqliteDatabase->setText(m_xbmcSqliteDatabase);
     m_xbmcSqliteDatabaseDialog->selectFile(m_xbmcSqliteDatabase);
+    ui->useYoutubePluginUrls->setChecked(m_youtubePluginUrls);
 
     m_xbmcThumbnailPath = m_settings.value("XbmcThumbnailpath").toString();
     ui->inputThumbnailPath->setText(m_xbmcThumbnailPath);
@@ -276,6 +278,7 @@ void Settings::saveSettings()
     m_xbmcMysqlUser      = ui->inputUsername->text();
     m_xbmcMysqlPassword  = ui->inputPassword->text();
     m_xbmcSqliteDatabase = ui->inputSqliteDatabase->text();
+    m_youtubePluginUrls  = ui->useYoutubePluginUrls->isChecked();
 
     m_settings.setValue("XbmcMysql/Host", m_xbmcMysqlHost);
     m_settings.setValue("XbmcMysql/Database", m_xbmcMysqlDatabase);
@@ -284,6 +287,7 @@ void Settings::saveSettings()
     m_settings.setValue("XbmcSqlite/Database", m_xbmcSqliteDatabase);
     m_settings.setValue("MediaCenterInterface", m_mediaCenterInterface);
     m_settings.setValue("XbmcThumbnailpath", m_xbmcThumbnailPath);
+    m_settings.setValue("UseYoutubePluginURLs", m_youtubePluginUrls);
 
     Manager::instance()->movieFileSearcher()->setMovieDirectories(this->movieDirectories());
     Manager::instance()->tvShowFileSearcher()->setMovieDirectories(this->tvShowDirectories());
@@ -660,6 +664,15 @@ bool Settings::debugModeActivated()
 QString Settings::debugLogPath()
 {
     return m_debugLogPath;
+}
+
+/**
+ * @brief Returns true if urls youtube trailers should be converted
+ * @return Change format of URLs to youtube
+ */
+bool Settings::useYoutubePluginUrls()
+{
+    return m_youtubePluginUrls;
 }
 
 /*** SETTER ***/

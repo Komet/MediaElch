@@ -12,6 +12,7 @@
 #include <QVBoxLayout>
 
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 
 /**
  * @brief TMDb::TMDb
@@ -530,7 +531,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
             QScriptValue vC = itC.value();
             if (vC.property("source").toString().isEmpty())
                 continue;
-            movie->setTrailer(QUrl(QString("http://www.youtube.com/watch?v=%1").arg(vC.property("source").toString())));
+            movie->setTrailer(QUrl(Helper::formatTrailerUrl(QString("http://www.youtube.com/watch?v=%1").arg(vC.property("source").toString()))));
             break;
         }
     }

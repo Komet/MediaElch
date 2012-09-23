@@ -1,6 +1,7 @@
 #include "Helper.h"
 
 #include "globals/Globals.h"
+#include "settings/Settings.h"
 
 /**
  * @brief Encodes a string to latin1 percent encoding needed for some scrapers
@@ -41,4 +42,25 @@ QString Helper::toLatin1PercentEncoding(QString str)
     str = str.replace("&", "%26");
     str = str.replace("#", "%23");
     return str;
+}
+
+/**
+ * @brief Changes the format of a trailer url
+ * @param url Trailer Url
+ * @return Reformatted trailer url
+ */
+QString Helper::formatTrailerUrl(QString url)
+{
+    if (!Settings::instance()->useYoutubePluginUrls())
+        return url;
+
+    QString videoId;
+    QRegExp rx("youtube.com/watch\\?v=([^&]*)");
+    if (rx.indexIn(url, 0) != -1)
+        videoId = rx.cap(1);
+
+    if (videoId.isEmpty())
+        return url;
+
+    return QString("plugin://plugin.video.youtube/?action=play_video&videoid=%1").arg(videoId);
 }

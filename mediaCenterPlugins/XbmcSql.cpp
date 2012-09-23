@@ -9,6 +9,7 @@
 #include <QtSql>
 
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 #include "main/MessageBox.h"
 #include "settings/Settings.h"
 #include "XbmcSql.h"
@@ -330,7 +331,7 @@ bool XbmcSql::saveMovie(Movie *movie)
         query.bindValue(":genres", movie->genres().join(" / "));
         query.bindValue(":originalTitle", movie->originalName());
         query.bindValue(":studios", movie->studios().join(" / "));
-        query.bindValue(":trailer", movie->trailer());
+        query.bindValue(":trailer", Helper::formatTrailerUrl(movie->trailer().toString()));
         query.bindValue(":fanart", QString(fanart));
         query.bindValue(":countries", movie->countries().join(" / "));
         query.exec();
@@ -388,7 +389,7 @@ bool XbmcSql::saveMovie(Movie *movie)
         query.bindValue(":genres", movie->genres().join(" / "));
         query.bindValue(":originalTitle", movie->originalName());
         query.bindValue(":studios", movie->studios().join(" / "));
-        query.bindValue(":trailer", movie->trailer());
+        query.bindValue(":trailer", Helper::formatTrailerUrl(movie->trailer().toString()));
         query.bindValue(":fanart", QString(fanart));
         query.bindValue(":countries", movie->countries().join(" / "));
         query.bindValue(":file", file);

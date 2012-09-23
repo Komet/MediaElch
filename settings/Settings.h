@@ -41,6 +41,7 @@ public:
     QString xbmcThumbnailPath();
     bool debugModeActivated();
     QString debugLogPath();
+    bool useYoutubePluginUrls();
 
     void setMainWindowSize(QSize mainWindowSize);
     void setMainWindowPosition(QPoint mainWindowPosition);
@@ -94,6 +95,7 @@ private:
     QFileDialog *m_tvShowDirDialog;
     QFileDialog *m_xbmcThumbnailDirDialog;
     QFileDialog *m_xbmcSqliteDatabaseDialog;
+    bool m_youtubePluginUrls;
 
     void setXbmcThumbnailPathEnabled(bool enabled);
 };

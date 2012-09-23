@@ -10,6 +10,7 @@ class Helper
 {
 public:
     static QString toLatin1PercentEncoding(QString str);
+    static QString formatTrailerUrl(QString url);
 };
 
 #endif // HELPER_H

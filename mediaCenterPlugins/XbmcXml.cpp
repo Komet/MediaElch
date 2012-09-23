@@ -8,6 +8,7 @@
 #include <QXmlStreamWriter>
 
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 
 /**
  * @brief XbmcXml::XbmcXml
@@ -89,7 +90,7 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath,
     xml.writeTextElement("id", movie->id());
     xml.writeTextElement("set", movie->set());
     xml.writeTextElement("sorttitle", movie->sortTitle());
-    xml.writeTextElement("trailer", movie->trailer().toString());
+    xml.writeTextElement("trailer", Helper::formatTrailerUrl(movie->trailer().toString()));
     xml.writeTextElement("watched", (movie->watched()) ? "true" : "false");
     foreach (const QString &studio, movie->studios())
         xml.writeTextElement("studio", studio);

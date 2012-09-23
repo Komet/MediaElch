@@ -570,6 +570,8 @@ void MovieWidget::saveInformation()
     setDisabledTrue();
     m_savingWidget->show();
     m_movie->saveData(Manager::instance()->mediaCenterInterface());
+    m_movie->loadData(Manager::instance()->mediaCenterInterface(), true);
+    updateMovieInfo();
     setEnabledTrue();
     m_savingWidget->hide();
     MessageBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_movie->name()));
@@ -586,8 +588,12 @@ void MovieWidget::saveAll()
     m_savingWidget->show();
 
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        if (movie->hasChanged())
+        if (movie->hasChanged()) {
             movie->saveData(Manager::instance()->mediaCenterInterface());
+            movie->loadData(Manager::instance()->mediaCenterInterface(), true);
+            if (m_movie == movie)
+                updateMovieInfo();
+        }
     }
     setEnabledTrue();
     m_savingWidget->hide();

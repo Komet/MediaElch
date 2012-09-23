@@ -648,6 +648,38 @@ QTabBar::tab:last:selected {
          </layout>
         </widget>
        </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_6">
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <item>
+           <widget class="QLabel" name="label_14">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>MediaCenter Settings</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="useYoutubePluginUrls">
+            <property name="toolTip">
+             <string>Stores YouTube URLs like &quot;http://www.youtube.com/watch?v=123&quot; as &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</string>
+            </property>
+            <property name="text">
+             <string>Store trailer URLs in YouTube Plugin format</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
       </layout>
      </widget>
     </widget>
