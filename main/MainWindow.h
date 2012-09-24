@@ -35,6 +35,7 @@ private slots:
     void onMenuMovies();
     void onMenuMovieSets();
     void onMenuTvShows();
+    void onMenuConcerts();
     void onMenuSettings();
     void onActionSearch();
     void onActionSave();
@@ -45,6 +46,7 @@ private slots:
     void onMovieSplitterMoved();
     void onTvShowSplitterMoved();
     void onMovieSetsSplitterMoved();
+    void onConcertSplitterMoved();
 
 private:
     Ui::MainWindow *ui;
@@ -58,6 +60,7 @@ private:
     QMap<MainActions, bool> m_movieActions;
     QMap<MainActions, bool> m_movieSetActions;
     QMap<MainActions, bool> m_tvShowActions;
+    QMap<MainActions, bool> m_concertActions;
     FilterWidget *m_filterWidget;
     void setupToolbar();
 };

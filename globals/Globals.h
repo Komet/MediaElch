@@ -13,14 +13,16 @@ class Movie;
 class TvShowEpisode;
 
 namespace Constants {
-    const int MovieFileSearcherProgressMessageId = 10000;
-    const int MovieWidgetProgressMessageId       = 10001;
-    const int TvShowSearcherProgressMessageId    = 10002;
-    const int TvShowWidgetProgressMessageId      = 10003;
-    const int TvShowWidgetSaveProgressMessageId  = 10004;
-    const int MovieProgressMessageId             = 20000;
-    const int TvShowProgressMessageId            = 40000;
-    const int EpisodeProgressMessageId           = 60000;
+    const int MovieFileSearcherProgressMessageId   = 10000;
+    const int MovieWidgetProgressMessageId         = 10001;
+    const int TvShowSearcherProgressMessageId      = 10002;
+    const int TvShowWidgetProgressMessageId        = 10003;
+    const int TvShowWidgetSaveProgressMessageId    = 10004;
+    const int ConcertFileSearcherProgressMessageId = 10005;
+    const int MovieProgressMessageId               = 20000;
+    const int TvShowProgressMessageId              = 40000;
+    const int EpisodeProgressMessageId             = 60000;
+    const int ConcertProgressMessageId             = 80000;
 }
 
 namespace TvShowRoles {
@@ -43,6 +45,11 @@ namespace MediaCenterFeatures {
     const int EditTvShowEpisodeShowTitle     = 2;
     const int EditTvShowEpisodeNetwork       = 3;
     const int HandleMovieSetImages           = 4;
+    const int EditConcertRating              = 5;
+    const int EditConcertTagline             = 6;
+    const int EditConcertCertification       = 7;
+    const int EditConcertTrailer             = 8;
+    const int EditConcertWatched             = 9;
 }
 
 enum MainActions {
@@ -50,7 +57,7 @@ enum MainActions {
 };
 
 enum MainWidgets {
-    WidgetMovies, WidgetMovieSets, WidgetTvShows
+    WidgetMovies, WidgetMovieSets, WidgetTvShows, WidgetConcerts
 };
 
 /**
@@ -104,13 +111,15 @@ struct SettingsDir {
 };
 
 namespace ImageDialogType {
-    const int MoviePoster    = 1;
-    const int MovieBackdrop  = 2;
-    const int TvShowPoster   = 3;
-    const int TvShowBackdrop = 4;
-    const int TvShowThumb    = 5;
-    const int TvShowSeason   = 6;
-    const int TvShowBanner   = 7;
+    const int MoviePoster     = 1;
+    const int MovieBackdrop   = 2;
+    const int TvShowPoster    = 3;
+    const int TvShowBackdrop  = 4;
+    const int TvShowThumb     = 5;
+    const int TvShowSeason    = 6;
+    const int TvShowBanner    = 7;
+    const int ConcertPoster   = 8;
+    const int ConcertBackdrop = 9;
 }
 
 namespace MovieScraperInfos {
@@ -128,6 +137,20 @@ namespace MovieScraperInfos {
     const int Genres        = 12;
     const int Studios       = 13;
     const int Countries     = 14;
+}
+
+namespace ConcertScraperInfos {
+    const int Title         = 1;
+    const int Tagline       = 2;
+    const int Rating        = 3;
+    const int Released      = 4;
+    const int Runtime       = 5;
+    const int Certification = 6;
+    const int Trailer       = 7;
+    const int Overview      = 8;
+    const int Poster        = 9;
+    const int Backdrop      = 10;
+    const int Genres        = 11;
 }
 
 // Debugging

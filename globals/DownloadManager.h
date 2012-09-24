@@ -34,6 +34,7 @@ signals:
     void allDownloadsFinished();
     void allDownloadsFinished(Movie*);
     void allDownloadsFinished(TvShow*);
+    void allDownloadsFinished(Concert*);
 
 private slots:
     void downloadProgress(qint64 received, qint64 total);

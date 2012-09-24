@@ -20,6 +20,7 @@ public:
     TvShowEpisode *episode;
     Movie *movie;
     TvShow *show;
+    Concert *concert;
     int season;
 };
 

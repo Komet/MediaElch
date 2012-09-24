@@ -40,5 +40,7 @@
         <file>img/movieSets_menuActive.png</file>
         <file>img/star_24.png</file>
         <file>img/arrow_circle_left.png</file>
+        <file>img/concerts_menu.png</file>
+        <file>img/concerts_menuActive.png</file>
     </qresource>
 </RCC>

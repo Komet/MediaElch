@@ -151,6 +151,273 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>ConcertDelegate</name>
+    <message>
+        <location filename="../data/ConcertDelegate.cpp" line="32"/>
+        <source>new</source>
+        <translation>neu</translation>
+    </message>
+</context>
+<context>
+    <name>ConcertFileSearcher</name>
+    <message>
+        <location filename="../data/ConcertFileSearcher.cpp" line="40"/>
+        <source>Searching for Concerts...</source>
+        <translation>Suche nach Konzerten...</translation>
+    </message>
+</context>
+<context>
+    <name>ConcertSearch</name>
+    <message>
+        <location filename="../concerts/ConcertSearch.ui" line="17"/>
+        <source>Search Result</source>
+        <translation>Suchergebnis</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertSearch.ui" line="33"/>
+        <source>Scraper</source>
+        <translation>Scraper</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertSearch.ui" line="91"/>
+        <source>Result</source>
+        <translation>Ergebnis</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertSearch.ui" line="118"/>
+        <source>Infos to load</source>
+        <translation>Lade Infos</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertSearch.ui" line="141"/>
+        <source>Title</source>
+        <translation>Titel</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertSearch.ui" line="148"/>
+        <source>Tagline</source>
+        <translation>Tagline</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertSearch.ui" line="155"/>
+        <source>Rating</source>
+        <translation>Bewertung</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertSearch.ui" line="162"/>
+        <source>Released</source>
+        <translation>Erschienen</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertSearch.ui" line="169"/>
+        <source>Runtime</source>
+        <translation>Laufzeit</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertSearch.ui" line="176"/>
+        <source>Certification</source>
+        <translation>Freigabe</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertSearch.ui" line="183"/>
+        <source>Trailer</source>
+        <translation>Trailer</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertSearch.ui" line="190"/>
+        <source>Overview</source>
+        <translation>Inhalt</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertSearch.ui" line="197"/>
+        <source>Poster</source>
+        <translation>Poster</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertSearch.ui" line="204"/>
+        <source>Backdrop</source>
+        <translation>Fanart</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertSearch.ui" line="211"/>
+        <source>Genres</source>
+        <translation>Genres</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertSearch.ui" line="225"/>
+        <source>(Un)Check all</source>
+        <translation>Alle aus/abwählen</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertSearch.ui" line="278"/>
+        <source>Close</source>
+        <translation>Schließen</translation>
+    </message>
+</context>
+<context>
+    <name>ConcertWidget</name>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="14"/>
+        <source>Form</source>
+        <translation>Form</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="31"/>
+        <source>Concert has changed. Click to revert changes.</source>
+        <translation>Mache Änderungen an diesem Konzert rückgängig.</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="60"/>
+        <source>Concert Name</source>
+        <translation>Konzertname</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="94"/>
+        <source>Information</source>
+        <translation>Informationen</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="108"/>
+        <source>Files</source>
+        <translation>Dateien</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="122"/>
+        <source>Name</source>
+        <translation>Titel</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="132"/>
+        <source>Tagline</source>
+        <translation>Tagline</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="142"/>
+        <source>Rating</source>
+        <translation>Bewertung</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="159"/>
+        <source>Released</source>
+        <translation>Erschienen</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="166"/>
+        <source>yyyy</source>
+        <translation>yyyy</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="173"/>
+        <source>Runtime</source>
+        <translation>Laufzeit</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="180"/>
+        <source> Minutes</source>
+        <translation> Minuten</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="190"/>
+        <source>Certification</source>
+        <translation>Freigabe</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="207"/>
+        <source>Trailer</source>
+        <translation>Trailer</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="217"/>
+        <source>Watched</source>
+        <translation>Gesehen</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="231"/>
+        <source>Play Count</source>
+        <translation>Wiedergaben</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="245"/>
+        <source>Last Played</source>
+        <translation>Letzte Wiedergabe</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="255"/>
+        <source>Overview</source>
+        <translation>Inhalt</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="268"/>
+        <source>Extended</source>
+        <translation>Erweitert</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="282"/>
+        <source>Genres</source>
+        <translation>Genres</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="313"/>
+        <source>Genre</source>
+        <translation>Genre</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="323"/>
+        <source>Add Genre</source>
+        <translation>Genre hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="337"/>
+        <source>Remove Genre</source>
+        <translation>Genre entfernen</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="401"/>
+        <source>Poster</source>
+        <translation>Poster</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="423"/>
+        <location filename="../concerts/ConcertWidget.ui" line="506"/>
+        <source>Click to Change</source>
+        <translation>Zum Ändern klicken</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="444"/>
+        <location filename="../concerts/ConcertWidget.ui" line="527"/>
+        <source>Full preview</source>
+        <translation>Vorschau</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="463"/>
+        <location filename="../concerts/ConcertWidget.ui" line="466"/>
+        <location filename="../concerts/ConcertWidget.ui" line="546"/>
+        <location filename="../concerts/ConcertWidget.ui" line="549"/>
+        <source>Resolution</source>
+        <translation>Auflösung</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="484"/>
+        <source>Backdrop</source>
+        <translation>Fanart</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.cpp" line="493"/>
+        <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.cpp" line="516"/>
+        <source>All Concerts Saved</source>
+        <translation>Alle Konzerte gespeichert</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.cpp" line="552"/>
+        <source>Unknown Genre</source>
+        <translation>Unbekanntes Genre</translation>
+    </message>
+</context>
+<context>
     <name>ExportDialog</name>
     <message>
         <source>MediaElch</source>
@@ -349,7 +616,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../main/MainWindow.ui" line="73"/>
         <location filename="../main/MainWindow.ui" line="119"/>
-        <location filename="../main/MainWindow.ui" line="142"/>
+        <location filename="../main/MainWindow.ui" line="165"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -365,49 +632,54 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="136"/>
-        <location filename="../main/MainWindow.ui" line="284"/>
+        <source>Concerts</source>
+        <translation>Konzerte</translation>
+    </message>
+    <message>
+        <location filename="../main/MainWindow.ui" line="159"/>
+        <location filename="../main/MainWindow.ui" line="336"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="289"/>
-        <location filename="../main/MainWindow.cpp" line="229"/>
+        <location filename="../main/MainWindow.ui" line="341"/>
+        <location filename="../main/MainWindow.cpp" line="253"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="294"/>
-        <location filename="../main/MainWindow.cpp" line="228"/>
+        <location filename="../main/MainWindow.ui" line="346"/>
+        <location filename="../main/MainWindow.cpp" line="252"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="215"/>
+        <location filename="../main/MainWindow.cpp" line="239"/>
         <source>Search</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="217"/>
+        <location filename="../main/MainWindow.cpp" line="241"/>
         <source>Search (%1)</source>
         <translation>Suche (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="219"/>
+        <location filename="../main/MainWindow.cpp" line="243"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="221"/>
+        <location filename="../main/MainWindow.cpp" line="245"/>
         <source>Save (%1)</source>
         <translation>Speichern (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="223"/>
+        <location filename="../main/MainWindow.cpp" line="247"/>
         <source>Save All</source>
         <translation>Alle Speichern</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="226"/>
+        <location filename="../main/MainWindow.cpp" line="250"/>
         <source>Save All (%1)</source>
         <translation>Alle Speichern (%1)</translation>
     </message>
@@ -1113,30 +1385,35 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     <message>
         <location filename="../settings/Settings.ui" line="221"/>
         <location filename="../settings/Settings.ui" line="315"/>
-        <location filename="../settings/Settings.ui" line="995"/>
+        <location filename="../settings/Settings.ui" line="401"/>
+        <location filename="../settings/Settings.ui" line="1086"/>
         <source>Path</source>
         <translation>Verzeichnis</translation>
     </message>
     <message>
         <location filename="../settings/Settings.ui" line="226"/>
         <location filename="../settings/Settings.ui" line="320"/>
+        <location filename="../settings/Settings.ui" line="406"/>
         <source>MediaCenter Path</source>
         <translation>MediaCenter Verzeichnis</translation>
     </message>
     <message>
         <location filename="../settings/Settings.ui" line="231"/>
+        <location filename="../settings/Settings.ui" line="411"/>
         <source>Sep. folders</source>
         <translation>Sep. Verzeichnisse</translation>
     </message>
     <message>
         <location filename="../settings/Settings.ui" line="241"/>
         <location filename="../settings/Settings.ui" line="330"/>
+        <location filename="../settings/Settings.ui" line="421"/>
         <source>Add</source>
         <translation>Hinzufügen</translation>
     </message>
     <message>
         <location filename="../settings/Settings.ui" line="248"/>
         <location filename="../settings/Settings.ui" line="337"/>
+        <location filename="../settings/Settings.ui" line="428"/>
         <source>Remove</source>
         <translation>Entfernen</translation>
     </message>
@@ -1152,244 +1429,265 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <location filename="../settings/Settings.ui" line="374"/>
+        <source>Concerts</source>
+        <translation>Konzerte</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="381"/>
+        <source>Add one or more directories containing your concert or music video files.</source>
+        <translation>Füge Verzeichnisse hinzu, die deine Konzerte oder Musikvideo enthalten.</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.ui" line="465"/>
         <source>Debug</source>
         <translation>Debug</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="381"/>
+        <location filename="../settings/Settings.ui" line="472"/>
         <source>When debug mode is activated debug messages are written to logfile you set. Please use this option only if you encountered problems with MediaElch as the logfile can get very big. </source>
         <translation>Wenn der Debug Modus aktiviert ist, werden Debug Ausgaben in die Logdatei geschrieben, die du angegeben hast. Bitte benutze diese Option nur, wenn du ein Problem mit MediaElch entdeckt hast, da die Logdatei schnell sehr groß werden kann.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="391"/>
+        <location filename="../settings/Settings.ui" line="482"/>
         <source>Activate debug mode</source>
         <translation>Debug Modus aktivieren</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="400"/>
+        <location filename="../settings/Settings.ui" line="491"/>
         <source>Logfile: </source>
         <translation>Logdatei:</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="423"/>
-        <location filename="../settings/Settings.ui" line="444"/>
+        <location filename="../settings/Settings.ui" line="514"/>
+        <location filename="../settings/Settings.ui" line="535"/>
         <source>Scrapers</source>
         <translation>Scraper</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="468"/>
+        <location filename="../settings/Settings.ui" line="559"/>
         <source>MediaCenter</source>
         <translation>MediaCenter</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="505"/>
+        <location filename="../settings/Settings.ui" line="596"/>
         <source>MediaCenter Interface</source>
         <translation>MediaCenter Interface</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="512"/>
+        <location filename="../settings/Settings.ui" line="603"/>
         <source>Select the MediaCenter to use.</source>
         <translation>Wähle ein Interface zu deinem MediaCenter aus.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="519"/>
+        <location filename="../settings/Settings.ui" line="610"/>
         <source>XBMC XML</source>
         <translation>XBMC XML</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="529"/>
+        <location filename="../settings/Settings.ui" line="620"/>
         <source>Select the filenames you wish to use for loading and saving. Enable/disable them using the checkbox in front, set priorities through sorting with drag and drop.</source>
         <translation>Wähle die Dateinamen aus, die du zum Speichern und Laden benutzen möchtest. Aktiviere/deaktiviere sie durch die Checkboxen vorne, setze die Priorität durch Sortieren per drag&apos;n&apos;drop.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="549"/>
+        <location filename="../settings/Settings.ui" line="640"/>
         <source>Movie NFO</source>
         <translation>Film NFO</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="575"/>
+        <location filename="../settings/Settings.ui" line="666"/>
         <source>&lt;movie filename&gt;.nfo</source>
         <translation>&lt;movie filename&gt;.nfo</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="583"/>
+        <location filename="../settings/Settings.ui" line="674"/>
         <source>movie.nfo</source>
         <translation>movie.nfo</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="604"/>
+        <location filename="../settings/Settings.ui" line="695"/>
         <source>Movie Posters</source>
         <translation>Film Poster</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="630"/>
+        <location filename="../settings/Settings.ui" line="721"/>
         <source>&lt;movie filename&gt;.tbn</source>
         <translation>&lt;movie filename&gt;.tbn</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="638"/>
+        <location filename="../settings/Settings.ui" line="729"/>
         <source>movie.jpg</source>
         <translation>movie.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="646"/>
+        <location filename="../settings/Settings.ui" line="737"/>
         <source>movie.tbn</source>
         <translation>movie.tbn</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="654"/>
-        <location filename="../settings/Settings.ui" line="780"/>
+        <location filename="../settings/Settings.ui" line="745"/>
+        <location filename="../settings/Settings.ui" line="871"/>
         <source>poster.jpg</source>
         <translation>poster.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="662"/>
+        <location filename="../settings/Settings.ui" line="753"/>
         <source>poster.tbn</source>
         <translation>poster.tbn</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="670"/>
-        <location filename="../settings/Settings.ui" line="835"/>
+        <location filename="../settings/Settings.ui" line="761"/>
+        <location filename="../settings/Settings.ui" line="926"/>
         <source>folder.jpg</source>
         <translation>folder.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="691"/>
+        <location filename="../settings/Settings.ui" line="782"/>
         <source>Movie Fanarts</source>
         <translation>Film Fanarts</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="717"/>
+        <location filename="../settings/Settings.ui" line="808"/>
         <source>&lt;movie filename&gt;-fanart.jpg</source>
         <translation>&lt;movie filename&gt;-fanart.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="725"/>
+        <location filename="../settings/Settings.ui" line="816"/>
         <source>fanart.jpg</source>
         <translation>fanart.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="746"/>
+        <location filename="../settings/Settings.ui" line="837"/>
         <source>TV Show Poster</source>
         <translation>Serien Poster</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="772"/>
+        <location filename="../settings/Settings.ui" line="863"/>
         <source>season-all.tbn</source>
         <translation>season-all.tbn</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="801"/>
+        <location filename="../settings/Settings.ui" line="892"/>
         <source>TV Show Banner</source>
         <translation>Serien Banner</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="827"/>
+        <location filename="../settings/Settings.ui" line="918"/>
         <source>banner.jpg</source>
         <translation>banner.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="853"/>
+        <location filename="../settings/Settings.ui" line="944"/>
         <source>XBMC MySQL</source>
         <translation>XBMC MySQL</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="869"/>
+        <location filename="../settings/Settings.ui" line="960"/>
         <source>Host</source>
         <translation>Host</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="886"/>
-        <location filename="../settings/Settings.ui" line="959"/>
+        <location filename="../settings/Settings.ui" line="977"/>
+        <location filename="../settings/Settings.ui" line="1050"/>
         <source>Database</source>
         <translation>Datenbank</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="903"/>
+        <location filename="../settings/Settings.ui" line="994"/>
         <source>Username</source>
         <translation>Benutzername</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="920"/>
+        <location filename="../settings/Settings.ui" line="1011"/>
         <source>Password</source>
         <translation>Passwort</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="943"/>
+        <location filename="../settings/Settings.ui" line="1034"/>
         <source>XBMC SQLite</source>
         <translation>XBMC SQLite</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="1033"/>
+        <location filename="../settings/Settings.ui" line="1124"/>
         <source>MediaCenter Settings</source>
         <translation>MediaCenter Einstellungen</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="1040"/>
+        <location filename="../settings/Settings.ui" line="1131"/>
         <source>Stores YouTube URLs like &quot;http://www.youtube.com/watch?v=123&quot; as &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</source>
         <translation>Formatiert YouTube URLs wie &quot;http://www.youtube.com/watch?v=123&quot; als &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="1043"/>
+        <location filename="../settings/Settings.ui" line="1134"/>
         <source>Store trailer URLs in YouTube Plugin format</source>
         <translation>Speichere Trailer URLs im YouTube Plugin Format</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="410"/>
-        <location filename="../settings/Settings.ui" line="973"/>
-        <location filename="../settings/Settings.ui" line="1009"/>
+        <location filename="../settings/Settings.ui" line="501"/>
+        <location filename="../settings/Settings.ui" line="1064"/>
+        <location filename="../settings/Settings.ui" line="1100"/>
         <source>Select</source>
         <translation>Auswählen</translation>
     </message>
     <message>
         <location filename="../settings/Settings.ui" line="169"/>
-        <location filename="../settings/Settings.ui" line="483"/>
+        <location filename="../settings/Settings.ui" line="574"/>
         <source>Please restart MediaElch after saving if you changed the MediaCenter interface, debug mode or added/removed directories.</source>
         <translation>Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, den Debug Modus, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="983"/>
+        <location filename="../settings/Settings.ui" line="1074"/>
         <source>Set the path where Thumbnails are stored (e.g. ~/.xbmc/userdata/Thumbnails)</source>
         <translation>Wähle das Verzeichnis aus, in dem die XBMC Thumbnails gespeichert werden (z.B. ~/.xbmc/userdata/Thumbnails)</translation>
     </message>
     <message>
         <location filename="../settings/Settings.cpp" line="25"/>
-        <location filename="../settings/Settings.cpp" line="170"/>
+        <location filename="../settings/Settings.cpp" line="201"/>
         <source>Movies are in separate folders</source>
         <translation>Filme sind in separaten Verzeichnissen</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="440"/>
+        <location filename="../settings/Settings.cpp" line="519"/>
         <source>Settings saved</source>
         <translation>Einstellungen gespeichert</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="64"/>
+        <location filename="../settings/Settings.cpp" line="82"/>
         <source>Choose a directory containing your movies</source>
         <translation>Wähle ein Verzeichnis aus, das deine Filme enthält</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="62"/>
+        <location filename="../settings/Settings.cpp" line="31"/>
+        <location filename="../settings/Settings.cpp" line="251"/>
+        <source>Concerts are in separate folders</source>
+        <translation>Konzerte sind in separaten Verzeichnissen</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.cpp" line="80"/>
         <source>Logfile</source>
         <translation>Logdatei</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="62"/>
+        <location filename="../settings/Settings.cpp" line="80"/>
         <source>Logfiles (*.log *.txt)</source>
         <translation>Logdateien (*.log *.txt)</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="67"/>
+        <location filename="../settings/Settings.cpp" line="85"/>
         <source>Choose a directory containing your TV shows</source>
         <translation>Wähle ein Verzeichnis aus, das deine Serien enthält</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="72"/>
+        <location filename="../settings/Settings.cpp" line="88"/>
+        <source>Choose a directory containing your concerts</source>
+        <translation>Wähle ein Verzeichnis aus, das deine Konzerte enthält</translation>
+    </message>
+    <message>
+        <location filename="../settings/Settings.cpp" line="93"/>
         <source>SQLite Database *.db</source>
         <translation>SQLite Datenbank *.db</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="70"/>
+        <location filename="../settings/Settings.cpp" line="91"/>
         <source>Choose a directory containing your Thumbnails</source>
         <translation>Wähle das Verzeichnis aus, in dem die Thumbnails gespeichert werden</translation>
     </message>
@@ -1671,6 +1969,129 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="124"/>
+        <source>Language</source>
+        <translation>Sprache</translation>
+    </message>
+</context>
+<context>
+    <name>TMDbConcerts</name>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="28"/>
+        <source>Chinese</source>
+        <translation>Chinesisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="29"/>
+        <source>Croatian</source>
+        <translation>Kroatisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="30"/>
+        <source>Czech</source>
+        <translation>Tschechisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="31"/>
+        <source>Danish</source>
+        <translation>Dänisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="32"/>
+        <source>Dutch</source>
+        <translation>Niederländisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="33"/>
+        <source>English</source>
+        <translation>Englisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="34"/>
+        <source>Finnish</source>
+        <translation>Finnisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="35"/>
+        <source>French</source>
+        <translation>Französisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="36"/>
+        <source>German</source>
+        <translation>Deutsch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="37"/>
+        <source>Greek</source>
+        <translation>Griechisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="38"/>
+        <source>Hebrew</source>
+        <translation>Hebräisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="39"/>
+        <source>Hungarian</source>
+        <translation>Ungarisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="40"/>
+        <source>Italian</source>
+        <translation>Italienisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="41"/>
+        <source>Japanese</source>
+        <translation>Japanisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="42"/>
+        <source>Korean</source>
+        <translation>Koreanisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="43"/>
+        <source>Norwegian</source>
+        <translation>Norwegisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="44"/>
+        <source>Polish</source>
+        <translation>Polnisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="45"/>
+        <source>Portuguese</source>
+        <translation>Portugiesisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="46"/>
+        <source>Russian</source>
+        <translation>Russisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="47"/>
+        <source>Slovene</source>
+        <translation>Slowakisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="48"/>
+        <source>Spanish</source>
+        <translation>Spanisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="49"/>
+        <source>Swedish</source>
+        <translation>Schwedisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="50"/>
+        <source>Turkish</source>
+        <translation>Türkisch</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="121"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
@@ -2288,12 +2709,12 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Verbindung zur XBMC MySQL Datenbank fehlgeschlagen!</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcSql.cpp" line="77"/>
+        <location filename="../mediaCenterPlugins/XbmcSql.cpp" line="88"/>
         <source>Connection to XBMC MySQL Database failed! &quot;%1&quot;</source>
         <translation>Verbindung zur XBMC MySQL Datenbank fehlgeschlagen! &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcSql.cpp" line="96"/>
+        <location filename="../mediaCenterPlugins/XbmcSql.cpp" line="107"/>
         <source>Connection to XBMC SQLite Database failed! &quot;%1&quot;</source>
         <translation>Verbindung zur XBMC SQLite Datenbank fehlgeschlagen! &quot;%1&quot;</translation>
     </message>
@@ -2305,17 +2726,17 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
 <context>
     <name>XbmcXml</name>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="462"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="713"/>
         <source>Could not create actors directory</source>
         <translation>Verzeichnis &quot;actors&quot; konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="466"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="717"/>
         <source>Could not create movies directory</source>
         <translation>Verzeichnis &quot;movies&quot; konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="470"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="721"/>
         <source>Could not create tv shows directory</source>
         <translation>Verzeichnis &quot;tvshows&quot; konnte nicht erstellt werden</translation>
     </message>

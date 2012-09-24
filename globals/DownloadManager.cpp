@@ -87,6 +87,16 @@ void DownloadManager::startNextDownload()
             emit allDownloadsFinished(m_currentDownloadElement.show);
     }
 
+    if (m_currentDownloadElement.concert) {
+        int numDownloadsLeft = 0;
+        for (int i=0, n=m_queue.size() ; i<n ; ++i) {
+            if (m_queue[i].concert == m_currentDownloadElement.concert)
+                numDownloadsLeft++;
+        }
+        if (numDownloadsLeft == 0)
+            emit allDownloadsFinished(m_currentDownloadElement.concert);
+    }
+
     if (m_queue.isEmpty()) {
         qDebug() << "All downloads finished";
         emit allDownloadsFinished();

@@ -7,6 +7,7 @@
 #include "scrapers/OFDb.h"
 #include "scrapers/TheTvDb.h"
 #include "scrapers/TMDb.h"
+#include "scrapers/TMDbConcerts.h"
 #include "scrapers/VideoBuster.h"
 #include "globals/Globals.h"
 
@@ -22,11 +23,14 @@ Manager::Manager(QObject *parent) :
     m_scrapers.append(new OFDb(this));
     m_scrapers.append(new VideoBuster(this));
     m_tvScrapers.append(new TheTvDb(this));
+    m_concertScrapers.append(new TMDbConcerts(this));
     m_movieFileSearcher = new MovieFileSearcher(this);
     m_tvShowFileSearcher = new TvShowFileSearcher(this);
+    m_concertFileSearcher = new ConcertFileSearcher(this);
     m_movieModel = new MovieModel(this);
     m_tvShowModel = new TvShowModel(this);
     m_tvShowProxyModel = new TvShowProxyModel(this);
+    m_concertModel = new ConcertModel(this);
 
     m_mediaCenters.append(new XbmcXml(this));
     m_mediaCenters.append(new XbmcSql(this, "xbmc"));
@@ -35,6 +39,10 @@ Manager::Manager(QObject *parent) :
     m_mediaCentersTvShow.append(new XbmcXml(this));
     m_mediaCentersTvShow.append(new XbmcSql(this, "xbmcTvShow"));
     m_mediaCentersTvShow.append(new XbmcSql(this, "xbmcTvShow"));
+
+    m_mediaCentersConcert.append(new XbmcXml(this));
+    m_mediaCentersConcert.append(new XbmcSql(this, "xbmcConcert"));
+    m_mediaCentersConcert.append(new XbmcSql(this, "xbmcConcert"));
 }
 
 /**
@@ -78,11 +86,17 @@ void Manager::setupMediaCenterInterface()
         interface = m_mediaCentersTvShow.at(1);
         static_cast<XbmcSql*>(interface)->connectMysql(Settings::instance()->xbmcMysqlHost(), Settings::instance()->xbmcMysqlDatabase(),
                                                        Settings::instance()->xbmcMysqlUser(), Settings::instance()->xbmcMysqlPassword());
+        interface = m_mediaCentersConcert.at(1);
+        static_cast<XbmcSql*>(interface)->connectMysql(Settings::instance()->xbmcMysqlHost(), Settings::instance()->xbmcMysqlDatabase(),
+                                                       Settings::instance()->xbmcMysqlUser(), Settings::instance()->xbmcMysqlPassword());
     } else if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcSqlite) {
         MediaCenterInterface *interface = m_mediaCenters.at(2);
         static_cast<XbmcSql*>(interface)->connectSqlite(Settings::instance()->xbmcSqliteDatabase());
 
         interface = m_mediaCentersTvShow.at(2);
+        static_cast<XbmcSql*>(interface)->connectSqlite(Settings::instance()->xbmcSqliteDatabase());
+
+        interface = m_mediaCentersConcert.at(2);
         static_cast<XbmcSql*>(interface)->connectSqlite(Settings::instance()->xbmcSqliteDatabase());
     }
 }
@@ -112,6 +126,10 @@ MediaCenterInterface *Manager::mediaCenterInterface()
     return m_mediaCenters.at(0);
 }
 
+/**
+ * @brief Returns the active MediaCenterInterface for TV Shows
+ * @return Instance of a MediaCenterinterface
+ */
 MediaCenterInterface *Manager::mediaCenterInterfaceTvShow()
 {
     if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcXml)
@@ -122,6 +140,22 @@ MediaCenterInterface *Manager::mediaCenterInterfaceTvShow()
         return m_mediaCentersTvShow.at(2);
 
     return m_mediaCentersTvShow.at(0);
+}
+
+/**
+ * @brief Returns the active MediaCenterInterface for Concerts
+ * @return Instance of a MediaCenterinterface
+ */
+MediaCenterInterface *Manager::mediaCenterInterfaceConcert()
+{
+    if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcXml)
+        return m_mediaCentersConcert.at(0);
+    else if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcMysql)
+        return m_mediaCentersConcert.at(1);
+    else if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcSqlite)
+        return m_mediaCentersConcert.at(2);
+
+    return m_mediaCentersConcert.at(0);
 }
 
 /**
@@ -143,6 +177,15 @@ TvShowFileSearcher *Manager::tvShowFileSearcher()
 }
 
 /**
+ * @brief Returns an instance of the concert file searcher
+ * @return Instance of tv show file searcher
+ */
+ConcertFileSearcher *Manager::concertFileSearcher()
+{
+    return m_concertFileSearcher;
+}
+
+/**
  * @brief Returns a list of all movie scrapers
  * @return List of pointers of movie scrapers
  */
@@ -161,6 +204,15 @@ QList<TvScraperInterface*> Manager::tvScrapers()
 }
 
 /**
+ * @brief Returns a list of all concert scrapers
+ * @return List of pointers of concert scrapers
+ */
+QList<ConcertScraperInterface*> Manager::concertScrapers()
+{
+    return m_concertScrapers;
+}
+
+/**
  * @brief Returns an instance of the MovieModel
  * @return Instance of the MovieModel
  */
@@ -176,6 +228,15 @@ MovieModel *Manager::movieModel()
 TvShowModel *Manager::tvShowModel()
 {
     return m_tvShowModel;
+}
+
+/**
+ * @brief Returns an instance of the ConcertModel
+ * @return Instance of the ConcertModel
+ */
+ConcertModel *Manager::concertModel()
+{
+    return m_concertModel;
 }
 
 /**

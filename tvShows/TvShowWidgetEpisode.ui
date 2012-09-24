@@ -46,7 +46,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="MediaElch.qrc">
+        <iconset resource="../MediaElch.qrc">
          <normaloff>:/img/arrow_circle_left.png</normaloff>:/img/arrow_circle_left.png</iconset>
        </property>
       </widget>
@@ -316,7 +316,7 @@
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="MediaElch.qrc">
+                   <iconset resource="../MediaElch.qrc">
                     <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
                   </property>
                  </widget>
@@ -330,7 +330,7 @@
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="MediaElch.qrc">
+                   <iconset resource="../MediaElch.qrc">
                     <normaloff>:/img/minus.png</normaloff>:/img/minus.png</iconset>
                   </property>
                  </widget>
@@ -415,7 +415,7 @@
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="MediaElch.qrc">
+                   <iconset resource="../MediaElch.qrc">
                     <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
                   </property>
                  </widget>
@@ -429,7 +429,7 @@
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="MediaElch.qrc">
+                   <iconset resource="../MediaElch.qrc">
                     <normaloff>:/img/minus.png</normaloff>:/img/minus.png</iconset>
                   </property>
                  </widget>
@@ -515,7 +515,7 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="MediaElch.qrc">:/img/pictures_alt.png</pixmap>
+           <pixmap resource="../MediaElch.qrc">:/img/pictures_alt.png</pixmap>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -541,7 +541,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="MediaElch.qrc">
+             <iconset resource="../MediaElch.qrc">
               <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
             </property>
            </widget>
@@ -589,7 +589,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="MediaElch.qrc"/>
+  <include location="../MediaElch.qrc"/>
  </resources>
  <connections/>
 </ui>

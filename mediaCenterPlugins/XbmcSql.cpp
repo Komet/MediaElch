@@ -48,6 +48,17 @@ bool XbmcSql::hasFeature(int feature)
     if (feature == MediaCenterFeatures::EditTvShowEpisodeNetwork)
         return false;
 
+    if (feature == MediaCenterFeatures::EditConcertRating)
+        return false;
+    if (feature == MediaCenterFeatures::EditConcertTagline)
+        return false;
+    if (feature == MediaCenterFeatures::EditConcertCertification)
+        return false;
+    if (feature == MediaCenterFeatures::EditConcertTrailer)
+        return false;
+    if (feature == MediaCenterFeatures::EditConcertWatched)
+        return false;
+
     return true;
 }
 
@@ -293,8 +304,6 @@ bool XbmcSql::saveMovie(Movie *movie)
     // update movie info or insert new movie
     if (idMovie != -1) {
         qDebug() << "We have idMovie, updating...";
-        QString thumbnails;
-        QString fanart;
         query.prepare("UPDATE movie SET "
                       "c00=:title, "
                       "c01=:plot, "
@@ -848,6 +857,525 @@ void XbmcSql::loadMovieImages(Movie *movie)
         QFileInfo fi(actorThumb);
         if (fi.isFile())
             actor->image.load(actorThumb);
+    }
+}
+
+
+/**
+ * @brief Saves concert information
+ * @param concert The concert to save
+ * @return Saving success
+ */
+bool XbmcSql::saveConcert(Concert *concert)
+{
+    qDebug() << "Entered, concert=" << concert->name();
+    QSqlQuery query(db());
+
+    // get Path ID
+    int idPath = -1;
+    int mediaCenterId = concert->mediaCenterId();
+    qDebug() << "mediaCenterId=" << mediaCenterId;
+    if (mediaCenterId != -1) {
+        query.prepare("SELECT c14 FROM musicvideo WHERE idMVideo=:idMVideo");
+        query.bindValue(":idMVideo", concert->mediaCenterId());
+        query.exec();
+        if (query.next()) {
+            idPath = query.value(0).toInt();
+            qDebug() << "Got path id based on idMVideo, idPath=" << idPath;
+        }
+    }
+    QFileInfo fiPath(concertMediaCenterPath(concert->files().at(0)));
+    qDebug() << "fiPath=" << fiPath.absoluteFilePath();
+    if (idPath == -1) {
+        qDebug() << "idPath is -1";
+        QString path = fiPath.path();
+        qDebug() << "path=" << path;
+        QString mediaCenterPath2 = concertMediaCenterPath(concert->files().at(0));
+        qDebug() << "mediaCenterPath=" << mediaCenterPath2;
+        if (mediaCenterPath2.contains("\\")) {
+            qDebug() << "mediaCenterPath contains \\";
+            path.replace("/", "\\");
+            if (!path.endsWith("\\"))
+                path.append("\\");
+        } else {
+            path.replace("\\", "/");
+            if (!path.endsWith("/"))
+                path.append("/");
+        }
+        qDebug() << "path is now" << path;
+
+        query.prepare("SELECT idPath FROM path WHERE strPath=:path");
+        query.bindValue(":path", path);
+        query.exec();
+        qDebug() << query.lastQuery() << ":path=" << path;
+        if (query.next()) {
+            idPath = query.value(query.record().indexOf("idPath")).toInt();
+            qDebug() << "Got path, idPath=" << idPath;
+        } else {
+            query.prepare("INSERT INTO path(strPath, strContent, strScraper, scanRecursive, useFolderNames, noUpdate, exclude) "
+                          "VALUES(:path, 'musicvideos', 'metadata.theconcertdb.org', 0, 0, 1, 0)");
+            query.bindValue(":path", path);
+            query.exec();
+            idPath = query.lastInsertId().toInt();
+            qDebug() << "Inserted path" << path << "got idPath=" << idPath;
+        }
+    }
+
+    // get File ID
+    int idMVideo = -1;
+    int idFile = -1;
+    if (concert->mediaCenterId() != -1) {
+        idMVideo = concert->mediaCenterId();
+        query.prepare("SELECT idFile FROM musicvideo WHERE idMVideo=:idMVideo");
+        query.bindValue(":idMVideo", idMVideo);
+        query.exec();
+        qDebug() << query.lastQuery() << ":idMVideo=" << idMVideo;
+        if (query.next()) {
+            idFile = query.value(0).toInt();
+            qDebug() << "Got idFile=" << idFile;
+        }
+    } else {
+        if (concert->files().count() == 1) {
+            qDebug() << "Concert is single file";
+            query.prepare("SELECT idFile, strFilename FROM files WHERE strFilename=:fileName AND idPath=:idPath");
+            query.bindValue(":idPath", idPath);
+            query.bindValue(":fileName", fiPath.fileName());
+            query.exec();
+            qDebug() << query.lastQuery() << ":fileName=" << fiPath.fileName() << ":idPath=" << idPath;
+        } else {
+            qDebug() << "Concert contains multiple files";
+            query.prepare(QString("SELECT idFile, strFilename FROM files WHERE strFilename LIKE 'stack://%%1%' AND idPath='%2'").arg(fiPath.fileName().replace("'", "''")).arg(idPath));
+            query.exec();
+            qDebug() << query.lastQuery();
+        }
+        if (concert->files().count() == 1) {
+            if (query.next()) {
+                idFile = query.value(query.record().indexOf("idFile")).toInt();
+                qDebug() << "Got (single file) idFile=" << idFile;
+            }
+        } else {
+            while (idFile == -1 && query.next()) {
+                qDebug() << "Checking if entry matches all files";
+                QString path = query.value(query.record().indexOf("strFilename")).toString();
+                path.replace("stack://", "");
+                qDebug() << "Path is now" << path;
+                QStringList dbPaths = path.split(" , ", QString::SkipEmptyParts);
+                QStringList filePaths;
+                foreach (const QString &path, concert->files())
+                    filePaths << concertMediaCenterPath(path);
+                qSort(filePaths);
+                qSort(dbPaths);
+                qDebug() << "filePaths=" << filePaths;
+                qDebug() << "dbPaths=" << dbPaths;
+                if (dbPaths == filePaths) {
+                    idFile = query.value(query.record().indexOf("idFile")).toInt();
+                    qDebug() << "FilePaths and dbPaths match, idFile=" << idFile;
+                }
+            }
+        }
+    }
+
+    // update file data and get concert id, or insert file
+    if (idFile != -1) {
+        qDebug() << "We have idFile=" << idFile;
+        query.prepare("SELECT idMVideo FROM musicvideo WHERE idFile=:idFile");
+        query.bindValue(":idFile", idFile);
+        query.exec();
+        if (query.next()) {
+            idMVideo = query.value(query.record().indexOf("idMVideo")).toInt();
+            qDebug() << "Got idMVideo=" << idMVideo;
+        }
+        query.prepare("UPDATE files SET playCount=:playCount, lastPlayed=:lastPlayed WHERE idFile=:idFile");
+        query.bindValue(":idFile", idFile);
+        if (concert->playcount() == 0)
+            query.bindValue(":playCount", QVariant(QVariant::Int));
+        else
+            query.bindValue(":playCount", concert->playcount());
+        query.bindValue(":lastPlayed", concert->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
+        query.exec();
+    } else {
+        qDebug() << "Inserting new file";
+        QString filename;
+        if (concert->files().count() == 1) {
+            QFileInfo fiFile(concert->files().at(0));
+            filename = fiFile.fileName();
+        } else {
+            QStringList files;
+            foreach (const QString &file, concert->files())
+                files << concertMediaCenterPath(file);
+            filename = QString("stack://%1").arg(files.join(" , "));
+        }
+        query.prepare("INSERT INTO files(idPath, strFilename, playCount, lastPlayed) VALUES(:idPath, :filename, :playCount, :lastPlayed)");
+        query.bindValue(":idPath", idPath);
+        query.bindValue(":filename", filename);
+        if (concert->playcount() == 0)
+            query.bindValue(":playCount", QVariant(QVariant::Int));
+        else
+            query.bindValue(":playCount", concert->playcount());
+        query.bindValue(":lastPlayed", concert->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
+        query.exec();
+        qDebug() << query.lastQuery() << ":idPath=" << idPath << ":filename=" << filename;
+        idFile = query.lastInsertId().toInt();
+        qDebug() << "idFile=" << idFile;
+    }
+
+    // create xml data for thumbnails and fanart
+    QByteArray thumbnails;
+    QXmlStreamWriter xml(&thumbnails);
+
+    foreach (const Poster &poster, concert->posters()) {
+        xml.writeStartElement("thumb");
+        xml.writeAttribute("preview", poster.thumbUrl.toString());
+        xml.writeCharacters(poster.originalUrl.toString());
+        xml.writeEndElement();
+    }
+
+    // update concert info or insert new concert
+    if (idMVideo != -1) {
+        qDebug() << "We have idMVideo, updating...";
+        query.prepare("UPDATE musicvideo SET "
+                      "c00=:title, "
+                      "c01=:thumbnails, "
+                      "c04=:runtime, "
+                      "c07=:year, "
+                      "c08=:plot, "
+                      "c11=:genres "
+                      "WHERE idMVideo=:idMVideo ");
+        query.bindValue(":idMVideo", idMVideo);
+        query.bindValue(":title", concert->name());
+        query.bindValue(":plot", concert->overview());
+        query.bindValue(":year", concert->released().toString("yyyy"));
+        query.bindValue(":thumbnails", QString(thumbnails));
+        if (concert->runtime() == 0)
+            query.bindValue(":runtime", QVariant(QVariant::Int));
+        else
+            query.bindValue(":runtime", concert->runtime());
+        query.bindValue(":genres", concert->genres().join(" / "));
+        query.exec();
+    } else {
+        qDebug() << "No idMVideo, inserting a new concert";
+        QString file;
+        if (concert->files().count() == 1) {
+            qDebug() << "It's a single file" << concert->files().at(0);
+            file = concertMediaCenterPath(concert->files().at(0));
+            qDebug() << "mediaCenterPath is " << file;
+            bool isUnixFile = !file.contains("\\");
+            qDebug() << "isUnixFile=" << isUnixFile;
+            QStringList fileSplit = (isUnixFile) ? file.split("/", QString::SkipEmptyParts) : file.split("\\", QString::SkipEmptyParts);
+            qDebug() << "fileSplit=" << fileSplit;
+            if (!fileSplit.isEmpty() && (QString::compare(fileSplit.last(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0 ||
+                                         QString::compare(fileSplit.last(), "index.bdmv", Qt::CaseInsensitive) == 0)) {
+                fileSplit.takeLast();
+                if (!fileSplit.isEmpty() && (QString::compare(fileSplit.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0 ||
+                                             QString::compare(fileSplit.last(), "BDMV", Qt::CaseInsensitive) == 0)) {
+                    fileSplit.takeLast();
+                }
+                file = (isUnixFile) ? fileSplit.join("/") : fileSplit.join("\\");
+                file.prepend((isUnixFile) ? "/" : "\\");
+                file.append((isUnixFile) ? "/" : "\\");
+            }
+        } else {
+            QStringList files;
+            foreach (const QString &mFile, concert->files()) {
+                qDebug() << mFile << "becomes" << concertMediaCenterPath(mFile);
+                files << concertMediaCenterPath(mFile);
+            }
+            file = "stack://" + files.join(" , ");
+        }
+        qDebug() << "file=" << file;
+
+        query.prepare("SELECT "
+                      "M.idMVideo, "
+                      "M.c00 AS title, "
+                      "M.c01 AS thumbnails, "
+                      "M.c04 AS runtime, "
+                      "M.c07 AS year, "
+                      "M.c08 AS plot, "
+                      "M.c11 AS genres, "
+                      "M.c13 AS filePath "
+                      "F.playCount AS playCount, "
+                      "F.lastPlayed AS lastPlayed "
+                      "FROM musicvideo M "
+                      "JOIN files F ON M.idFile=F.idFile "
+                      "WHERE M.c13=:file");
+
+
+
+        query.prepare("INSERT INTO musicvideo(idFile, c00, c01, c04, c07, c08, c11, c13, c14) "
+                      "VALUES(:idFile, :title, :thumbnails, :runtime, :year, :plot, :genres, :filePath, :idPath)");
+        query.bindValue(":idFile", idFile);
+        query.bindValue(":title", concert->name());
+        query.bindValue(":thumbnails", QString(thumbnails));
+        if (concert->runtime() == 0)
+            query.bindValue(":runtime", QVariant(QVariant::Int));
+        else
+            query.bindValue(":runtime", concert->runtime());
+        query.bindValue(":year", concert->released().toString("yyyy"));
+        query.bindValue(":plot", concert->overview());
+        query.bindValue(":genres", concert->genres().join(" / "));
+        query.bindValue(":filePath", file);
+        query.bindValue(":idPath", idPath);
+        query.exec();
+        idMVideo = query.lastInsertId().toInt();
+        qDebug() << "idMVideo=" << idMVideo;
+    }
+
+    // Genres
+    query.prepare("DELETE FROM genrelinkmusicvideo WHERE idMVideo=:idMVideo");
+    query.bindValue(":idMVideo", idMVideo);
+    query.exec();
+    foreach (const QString &genre, concert->genres()) {
+        int idGenre = -1;
+        query.prepare("SELECT idGenre FROM genre WHERE strGenre=:genre");
+        query.bindValue(":genre", genre);
+        query.exec();
+        if (query.next()) {
+            idGenre = query.value(query.record().indexOf("idGenre")).toInt();
+        } else {
+            query.prepare("INSERT INTO genre(strGenre) VALUES(:genre)");
+            query.bindValue(":genre", genre);
+            query.exec();
+            idGenre = query.lastInsertId().toInt();
+        }
+        query.prepare("INSERT INTO genrelinkmusicvideo(idGenre, idMVideo) VALUES(:idGenre, :idMVideo)");
+        query.bindValue(":idGenre", idGenre);
+        query.bindValue(":idMVideo", idMVideo);
+        query.exec();
+    }
+
+    // save images
+    qDebug() << "Saving images";
+    QString fileHash = hash(concertMediaCenterPath(concert->files().at(0)));
+    qDebug() << "Hash for file" << concert->files().at(0) << "with mediaCenterPath" << concertMediaCenterPath(concert->files().at(0)) << "is" << fileHash;
+    QString fanartHash = fileHash;
+    if (concert->files().count() > 1) {
+        qDebug() << "Multiple files";
+        QStringList files;
+        foreach (const QString &file, concert->files()) {
+            qDebug() << "file" << file << "becomes" << concertMediaCenterPath(file);
+            files << concertMediaCenterPath(file);
+        }
+        fanartHash = hash(QString("stack://%1").arg(files.join(" , ")));
+        qDebug() << "Hash for" << QString("stack://%1").arg(files.join(" , ")) << "is" << fanartHash;
+    }
+
+    QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
+    QString fanartPath = QString("%1%2Video%2Fanart%2%3.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fanartHash);
+    qDebug() << "posterPath=" << posterPath << "fanartPath" << fanartPath;
+    if (concert->posterImageChanged() && !concert->posterImage()->isNull()) {
+        qDebug() << "Concert poster has changed, saving";
+        concert->posterImage()->save(posterPath, "jpg", 100);
+    }
+    if (concert->backdropImageChanged() && !concert->backdropImage()->isNull()) {
+        qDebug() << "Concert backdrop has changed, saving";
+        concert->backdropImage()->save(fanartPath, "jpg", 100);
+    }
+
+    return true;
+}
+
+/**
+ * @brief Loads all concert information except images
+ * @param concert The concert to load infos for
+ * @return Loading success
+ */
+bool XbmcSql::loadConcert(Concert *concert)
+{
+    qDebug() << "Entered, concert=" << concert->name();
+    if (concert->files().size() == 0) {
+        qWarning() << "Concert has no files";
+        return false;
+    }
+    QFileInfo fi(concert->files().at(0));
+    if (!fi.isFile() ) {
+        qWarning() << "File" << concert->files().at(0) << "doesn't exist";
+        return false;
+    }
+    concert->clear();
+    concert->setChanged(false);
+
+    QSqlQuery query(db());
+    QString file = concertMediaCenterPath(concert->files().at(0));
+    qDebug() << "File" << concert->files().at(0) << "becomes" << file;
+    if (concert->files().count() == 1) {
+        qDebug() << "Concert is a single file";
+        bool isUnixFile = !file.contains("\\");
+        qDebug() << "isUnixFile=" << isUnixFile;
+        QStringList fileSplit = (isUnixFile) ? file.split("/") : file.split("\\");
+        qDebug() << "fileSplit=" << fileSplit;
+        if (!fileSplit.isEmpty() && (QString::compare(fileSplit.last(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0 ||
+                                     QString::compare(fileSplit.last(), "index.bdmv", Qt::CaseInsensitive) == 0)) {
+            fileSplit.takeLast();
+            if (!fileSplit.isEmpty() && (QString::compare(fileSplit.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0 ||
+                                         QString::compare(fileSplit.last(), "BDMV", Qt::CaseInsensitive) == 0)) {
+                fileSplit.takeLast();
+            }
+            file = (isUnixFile) ? fileSplit.join("/") : fileSplit.join("\\");
+            if (!file.endsWith("/") && !file.endsWith("\\"))
+                file.append((isUnixFile) ? "/" : "\\");
+            qDebug() << "file is now" << file;
+        }
+
+        query.prepare("SELECT "
+                      "M.idMVideo, "
+                      "M.c00 AS title, "
+                      "M.c01 AS thumbnails, "
+                      "M.c04 AS runtime, "
+                      "M.c07 AS year, "
+                      "M.c08 AS plot, "
+                      "M.c11 AS genres, "
+                      "M.c13 AS filePath, "
+                      "F.playCount AS playCount, "
+                      "F.lastPlayed AS lastPlayed "
+                      "FROM musicvideo M "
+                      "JOIN files F ON M.idFile=F.idFile "
+                      "WHERE M.c13=:file");
+        query.bindValue(":file", file);
+    } else {
+        qDebug() << "Concert is made of multiple files";
+        query.prepare("SELECT "
+                      "M.idMVideo, "
+                      "M.c00 AS title, "
+                      "M.c01 AS thumbnails, "
+                      "M.c04 AS runtime, "
+                      "M.c07 AS year, "
+                      "M.c08 AS plot, "
+                      "M.c11 AS genres, "
+                      "M.c13 AS filePath, "
+                      "F.playCount AS playCount, "
+                      "F.lastPlayed AS lastPlayed "
+                      "FROM musicvideo M "
+                      "JOIN files F ON M.idFile=F.idFile "
+                      "WHERE M.c13 LIKE :file");
+        query.bindValue(":file", QString("stack://%%1%").arg(file));
+    }
+    query.exec();
+    qDebug() << query.lastQuery();
+
+    if (concert->files().count() == 1) {
+        qDebug() << "Single file concert";
+        if (!query.next()) {
+            qDebug() << "Got no result, trying foldername";
+            // Try the folder name instead
+            bool isUnixFile = !file.contains("\\");
+            QStringList fileSplit = (isUnixFile) ? file.split("/") : file.split("\\");
+            fileSplit.takeLast();
+            file = (isUnixFile) ? fileSplit.join("/") : fileSplit.join("\\");
+            file.append((isUnixFile) ? "/" : "\\");
+            qDebug() << "file is now" << file;
+
+            query.clear();
+            query.prepare("SELECT "
+                          "M.idMVideo, "
+                          "M.c00 AS title, "
+                          "M.c01 AS thumbnails, "
+                          "M.c04 AS runtime, "
+                          "M.c07 AS year, "
+                          "M.c08 AS plot, "
+                          "M.c11 AS genres, "
+                          "M.c13 AS filePath, "
+                          "F.playCount AS playCount, "
+                          "F.lastPlayed AS lastPlayed "
+                          "FROM musicvideo M "
+                          "JOIN files F ON M.idFile=F.idFile "
+                          "WHERE M.c13=:file");
+            query.bindValue(":file", file);
+            query.exec();
+            if (!query.next()) {
+                qDebug() << "No entry found for concert, giving up";
+                return false;
+            }
+        }
+    } else {
+        qDebug() << "Stacked concert";
+        bool found = false;
+        while (!found && query.next()) {
+            QString path = query.value(query.record().indexOf("filePath")).toString();
+            path.replace("stack://", "");
+            qDebug() << "Path is now" << path;
+            QStringList dbPaths = path.split(" , ", QString::SkipEmptyParts);
+            QStringList filePaths;
+            foreach (const QString &path, concert->files())
+                filePaths << concertMediaCenterPath(path);
+            qSort(filePaths);
+            qSort(dbPaths);
+            qDebug() << "filePaths=" << filePaths << "dbPaths=" << dbPaths;
+            if (dbPaths == filePaths) {
+                qDebug() << "Paths match";
+                found = true;
+            }
+        }
+
+        if (!found) {
+            qDebug() << "No entry found for concert, giving up";
+            return false;
+        }
+    }
+
+    QSqlRecord record = query.record();
+    int idMVideo = query.value(record.indexOf("idMVideo")).toInt();
+    qDebug() << "idMVideo=" << idMVideo;
+    concert->setMediaCenterId(idMVideo);
+    concert->setName(query.value(record.indexOf("title")).toString());
+    concert->setOverview(query.value(record.indexOf("plot")).toString());
+    concert->setReleased(QDate(query.value(record.indexOf("year")).toInt(), 1, 1));
+    concert->setRuntime(query.value(record.indexOf("runtime")).toInt());
+    concert->setGenres(query.value(record.indexOf("genres")).toString().split(" / "));
+    concert->setPlayCount(query.value(record.indexOf("playCount")).toInt());
+    concert->setLastPlayed(QDateTime::fromString(query.value(record.indexOf("lastPlayed")).toString(), "yyyy-MM-dd HH:mm:ss"));
+    concert->setWatched(query.value(record.indexOf("playCount")).toInt() > 0);
+
+    // Posters
+    QDomDocument domDoc;
+    domDoc.setContent(QString("<thumbnails>%1</thumbnails>").arg(query.value(record.indexOf("thumbnails")).toString()));
+    for (int i=0, n=domDoc.elementsByTagName("thumb").size() ; i<n ; i++) {
+        Poster p;
+        p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
+        p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
+        concert->addPoster(p);
+    }
+
+    return true;
+}
+
+/**
+ * @brief Loads images for a concert
+ * @param concert The concert to load images for
+ */
+void XbmcSql::loadConcertImages(Concert *concert)
+{
+    qDebug() << "Entered, concert=" << concert->name();
+    if (concert->files().count() == 0) {
+        qWarning() << "Concert has no files";
+        return;
+    }
+
+    QString fileHash = hash(concertMediaCenterPath(concert->files().at(0)));
+    QString fanartHash = fileHash;
+    qDebug() << "First file is" << concert->files().at(0) << "becomes" << concertMediaCenterPath(concert->files().at(0)) << "hash=" << fileHash;
+    if (concert->files().count() > 1) {
+        qDebug() << "Stacked files concert";
+        QStringList files;
+        foreach (const QString &file, concert->files())
+            files << concertMediaCenterPath(file);
+        qDebug() << "files=" << files;
+        fanartHash = hash(QString("stack://%1").arg(files.join(" , ")));
+    }
+    qDebug() << "fanartHash=" << fanartHash;
+
+    QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
+    QString fanartPath = QString("%1%2Video%2Fanart%2%3.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fanartHash);
+    QFileInfo posterFi(posterPath);
+    QFileInfo fanartFi(fanartPath);
+    qDebug() << "posterPath=" << posterPath;
+    qDebug() << "fanartPath=" << fanartPath;
+    if (posterFi.isFile()) {
+        qDebug() << "Trying to load poster" << posterPath;
+        concert->posterImage()->load(posterPath);
+    }
+    if (fanartFi.isFile()) {
+        qDebug() << "Trying to load backdrop" << fanartPath;
+        concert->backdropImage()->load(fanartPath);
     }
 }
 
@@ -1986,6 +2514,60 @@ QString XbmcSql::tvShowMediaCenterDir(QString file)
 {
     qDebug() << "Entered, file=" << file;
     QList<SettingsDir> dirs = Settings::instance()->tvShowDirectories();
+    SettingsDir dir;
+    for (int i=0, n=dirs.count() ; i<n ; ++i) {
+        if (file.startsWith(dirs.at(i).path) && dirs.at(i).path.length() > dir.path.length())
+            dir = dirs.at(i);
+    }
+
+    qDebug() << "path=" << dir.path << "mediaCenterPath=" << dir.mediaCenterPath;
+
+    if (dir.mediaCenterPath.isEmpty())
+        return dir.path;
+    else
+        return dir.mediaCenterPath;
+}
+
+/**
+ * @brief Replaces the path with the nearest MediaCenterPath for concerts given in the settings
+ * It also adjusts the directory separator
+ * @param file Filename
+ * @return File with replaced path
+ */
+QString XbmcSql::concertMediaCenterPath(QString file)
+{
+    qDebug() << "Entered, file=" << file;
+    QList<SettingsDir> dirs = Settings::instance()->concertDirectories();
+    SettingsDir dir;
+    file = QDir::toNativeSeparators(file);
+    QString mediaCenterFile = file;
+    for (int i=0, n=dirs.count() ; i<n ; ++i) {
+        if (file.startsWith(dirs.at(i).path) && dirs.at(i).path.length() > dir.path.length())
+            dir = dirs.at(i);
+    }
+    if (!dir.mediaCenterPath.isEmpty()) {
+        mediaCenterFile.replace(dir.path, dir.mediaCenterPath);
+        if (dir.mediaCenterPath.contains("\\"))
+            mediaCenterFile.replace("/", "\\");
+        else
+            mediaCenterFile.replace("\\", "/");
+    }
+
+    qDebug() << "mediaCenterFile=" << mediaCenterFile;
+
+    return mediaCenterFile;
+}
+
+/**
+ * @brief Returns the nearest MediaCenterPath given in the settings for a concert file
+ * If the path is empty this function returns the path
+ * @param file Complete filename
+ * @return MediaCenterPath
+ */
+QString XbmcSql::concertMediaCenterDir(QString file)
+{
+    qDebug() << "Entered, file=" << file;
+    QList<SettingsDir> dirs = Settings::instance()->concertDirectories();
     SettingsDir dir;
     for (int i=0, n=dirs.count() ; i<n ; ++i) {
         if (file.startsWith(dirs.at(i).path) && dirs.at(i).path.length() > dir.path.length())

@@ -27,6 +27,10 @@ Settings::Settings(QWidget *parent) :
     ui->movieDirs->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
     ui->tvShowDirs->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->tvShowDirs->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->concertDirs->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    ui->concertDirs->horizontalHeaderItem(2)->setToolTip(tr("Concerts are in separate folders"));
+    ui->concertDirs->horizontalHeader()->setResizeMode(0, QHeaderView::Stretch);
+    ui->concertDirs->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
 
     int scraperCounter = 0;
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
@@ -57,6 +61,20 @@ Settings::Settings(QWidget *parent) :
             ui->verticalLayoutScrapers->addWidget(scraperSettings);
         }
     }
+    foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers()) {
+        if (scraper->hasSettings()) {
+            if (scraperCounter++ > 0) {
+                QFrame *line = new QFrame(ui->groupBox_2);
+                line->setFrameShape(QFrame::HLine);
+                line->setFrameShadow(QFrame::Sunken);
+                ui->verticalLayoutScrapers->addWidget(line);
+            }
+            QWidget *scraperSettings = scraper->settingsWidget();
+            scraperSettings->setParent(ui->groupBox_2);
+            ui->verticalLayoutScrapers->addWidget(new QLabel(scraper->name(), ui->groupBox_2));
+            ui->verticalLayoutScrapers->addWidget(scraperSettings);
+        }
+    }
 
     // Setup file dialogs
     m_logFileDialog = new QFileDialog(this, tr("Logfile"), QDir::homePath(), tr("Logfiles (*.log *.txt)"));
@@ -67,6 +85,9 @@ Settings::Settings(QWidget *parent) :
     m_tvShowDirDialog = new QFileDialog(this, tr("Choose a directory containing your TV shows"), QDir::homePath());
     m_tvShowDirDialog->setFileMode(QFileDialog::Directory);
     m_tvShowDirDialog->setOption(QFileDialog::ShowDirsOnly, true);
+    m_concertDirDialog = new QFileDialog(this, tr("Choose a directory containing your concerts"), QDir::homePath());
+    m_concertDirDialog->setFileMode(QFileDialog::Directory);
+    m_concertDirDialog->setOption(QFileDialog::ShowDirsOnly, true);
     m_xbmcThumbnailDirDialog = new QFileDialog(this, tr("Choose a directory containing your Thumbnails"), QDir::homePath());;
     m_xbmcThumbnailDirDialog->setOption(QFileDialog::ShowDirsOnly, true);
     m_xbmcSqliteDatabaseDialog = new QFileDialog(this, tr("SQLite Database *.db"), QDir::homePath());
@@ -92,9 +113,14 @@ Settings::Settings(QWidget *parent) :
     m_tvShowBannerFiles.append(new DataFile(12, "banner.jpg", "banner.jpg", 0, true));
     m_tvShowBannerFiles.append(new DataFile(13, "folder.jpg", "folder.jpg", 1, true));
 
+    m_concertNfoFiles.append(new DataFile(0, "<movie filename>.nfo", "<moviefile>.nfo", 0, true));
+    m_concertPosterFiles.append(new DataFile(1, "<movie filename>.tbn", "<moviefile>.tbn", 0, true));
+    m_concertFanartFiles.append(new DataFile(2, "<movie filename>-fanart.jpg", "<moviefile>-fanart.jpg", 0, true));
+
     connect(m_logFileDialog, SIGNAL(fileSelected(QString)), this, SLOT(onDebugLogPathChosen(QString)));
     connect(m_movieDirDialog, SIGNAL(fileSelected(QString)), this, SLOT(addMovieDir(QString)));
     connect(m_tvShowDirDialog, SIGNAL(fileSelected(QString)), this, SLOT(addTvShowDir(QString)));
+    connect(m_concertDirDialog, SIGNAL(fileSelected(QString)), this, SLOT(addConcertDir(QString)));
     connect(m_xbmcThumbnailDirDialog, SIGNAL(fileSelected(QString)), this, SLOT(onChooseXbmcThumbnailPath(QString)));
     connect(m_xbmcSqliteDatabaseDialog, SIGNAL(fileSelected(QString)), this, SLOT(onChooseMediaCenterXbmcSqliteDatabase(QString)));
 
@@ -104,8 +130,12 @@ Settings::Settings(QWidget *parent) :
     connect(ui->buttonAddTvShowDir, SIGNAL(clicked()), m_tvShowDirDialog, SLOT(open()));
     connect(ui->buttonRemoveTvShowDir, SIGNAL(clicked()), this, SLOT(removeTvShowDir()));
     connect(ui->tvShowDirs, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(tvShowListRowChanged(int)));
+    connect(ui->buttonAddConcertDir, SIGNAL(clicked()), m_concertDirDialog, SLOT(open()));
+    connect(ui->buttonRemoveConcertDir, SIGNAL(clicked()), this, SLOT(removeConcertDir()));
+    connect(ui->concertDirs, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(concertListRowChanged(int)));
     connect(ui->movieDirs, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(movieMediaCenterPathChanged(QTableWidgetItem*)));
     connect(ui->tvShowDirs, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(tvShowMediaCenterPathChanged(QTableWidgetItem*)));
+    connect(ui->concertDirs, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(concertMediaCenterPathChanged(QTableWidgetItem*)));
     connect(ui->chkActivateDebug, SIGNAL(clicked()), this, SLOT(onActivateDebugMode()));
     connect(ui->buttonChooseLogfile, SIGNAL(clicked()), m_logFileDialog, SLOT(open()));
     connect(ui->logfilePath, SIGNAL(textChanged(QString)), this, SLOT(onSetDebugLogPath(QString)));
@@ -146,6 +176,7 @@ void Settings::loadSettings()
     m_mainWindowPosition = m_settings.value("MainWindowPosition").toPoint();
     m_movieSplitterState = m_settings.value("MovieSplitterState").toByteArray();
     m_tvShowSplitterState = m_settings.value("TvShowSplitterState").toByteArray();
+    m_concertSplitterState = m_settings.value("ConcertSplitterState").toByteArray();
     m_movieSetsSplitterState = m_settings.value("MovieSetsSplitterState").toByteArray();
     m_debugModeActivated = m_settings.value("DebugModeActivated", false).toBool();
     m_debugLogPath = m_settings.value("DebugLogPath").toString();
@@ -205,11 +236,45 @@ void Settings::loadSettings()
     m_settings.endArray();
     ui->buttonRemoveTvShowDir->setEnabled(!m_tvShowDirectories.isEmpty());
 
+    // Concert Directories
+    m_concertDirectories.clear();
+    ui->concertDirs->setRowCount(0);
+    ui->concertDirs->clearContents();
+    int concertsSize = m_settings.beginReadArray("Directories/Concerts");
+    for (int i=0 ; i<concertsSize ; ++i) {
+        m_settings.setArrayIndex(i);
+        ui->concertDirs->insertRow(i);
+        QTableWidgetItem *item = new QTableWidgetItem(m_settings.value("path").toString());
+        item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        item->setToolTip(QDir::toNativeSeparators(m_settings.value("path").toString()));
+        QTableWidgetItem *item2 = new QTableWidgetItem;
+        item2->setToolTip(tr("Concerts are in separate folders"));
+        if (m_settings.value("sepFolders", false).toBool())
+            item2->setCheckState(Qt::Checked);
+        else
+            item2->setCheckState(Qt::Unchecked);
+        ui->concertDirs->setItem(i, 0, item);
+        ui->concertDirs->setItem(i, 1, new QTableWidgetItem(m_settings.value("mediaCenterPath").toString()));
+        ui->concertDirs->setItem(i, 2, item2);
+        SettingsDir dir;
+        dir.path = QDir::toNativeSeparators(m_settings.value("path").toString());
+        dir.mediaCenterPath = m_settings.value("mediaCenterPath").toString();
+        dir.separateFolders = m_settings.value("sepFolders", false).toBool();
+        m_concertDirectories.append(dir);
+    }
+    m_settings.endArray();
+    ui->buttonRemoveConcertDir->setEnabled(!m_concertDirectories.isEmpty());
+
+
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
         if (scraper->hasSettings())
             scraper->loadSettings();
     }
     foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers()) {
+        if (scraper->hasSettings())
+            scraper->loadSettings();
+    }
+    foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers()) {
         if (scraper->hasSettings())
             scraper->loadSettings();
     }
@@ -332,11 +397,24 @@ void Settings::saveSettings()
     }
     m_settings.endArray();
 
+    m_settings.beginWriteArray("Directories/Concerts");
+    for (int i=0, n=m_concertDirectories.count() ; i<n ; ++i) {
+        m_settings.setArrayIndex(i);
+        m_settings.setValue("path", m_concertDirectories.at(i).path);
+        m_settings.setValue("mediaCenterPath", m_concertDirectories.at(i).mediaCenterPath);
+        m_settings.setValue("sepFolders", m_concertDirectories.at(i).separateFolders);
+    }
+    m_settings.endArray();
+
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
         if (scraper->hasSettings())
             scraper->saveSettings();
     }
     foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers()) {
+        if (scraper->hasSettings())
+            scraper->saveSettings();
+    }
+    foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers()) {
         if (scraper->hasSettings())
             scraper->saveSettings();
     }
@@ -437,11 +515,12 @@ void Settings::saveSettings()
 
     Manager::instance()->movieFileSearcher()->setMovieDirectories(movieDirectories());
     Manager::instance()->tvShowFileSearcher()->setMovieDirectories(tvShowDirectories());
+    Manager::instance()->concertFileSearcher()->setConcertDirectories(concertDirectories());
     MessageBox::instance()->showMessage(tr("Settings saved"));
 
     Manager::instance()->setupMediaCenterInterface();
     if (mediaInterfaceChanged) {
-        // TvShow File Searcher is started when Movie File Searcher has finished @see MainWindow.cpp
+        // TvShow File Searcher and concert file searcher are started when Movie File Searcher has finished @see MainWindow.cpp
         Manager::instance()->movieFileSearcher()->start();
     }
 }
@@ -552,6 +631,61 @@ void Settings::tvShowListRowChanged(int currentRow)
 }
 
 /**
+ * @brief Adds a concert directory
+ * @param dir Directory to add
+ */
+void Settings::addConcertDir(QString dir)
+{
+    dir = QDir::toNativeSeparators(dir);
+    if (!dir.isEmpty()) {
+        bool exists = false;
+        for (int i=0, n=m_concertDirectories.count() ; i<n ; ++i) {
+            if (m_concertDirectories.at(i).path == dir)
+                exists = true;
+        }
+
+        if (!exists) {
+            SettingsDir sDir;
+            sDir.path = dir;
+            m_concertDirectories.append(sDir);
+            int row = ui->concertDirs->rowCount();
+            ui->concertDirs->insertRow(row);
+            QTableWidgetItem *item = new QTableWidgetItem(dir);
+            item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            item->setToolTip(dir);
+            QTableWidgetItem *itemCheck = new QTableWidgetItem();
+            itemCheck->setCheckState(Qt::Unchecked);
+            ui->concertDirs->setItem(row, 0, item);
+            ui->concertDirs->setItem(row, 1, new QTableWidgetItem(""));
+            ui->concertDirs->setItem(row, 2, itemCheck);
+        }
+    }
+}
+
+/**
+ * @brief Removes a concert directory
+ */
+void Settings::removeConcertDir()
+{
+    int row = ui->concertDirs->currentRow();
+    if (row < 0)
+        return;
+
+    m_concertDirectories.removeAt(row);
+    ui->concertDirs->removeRow(row);
+}
+
+/**
+ * @brief Enables/disables the button to remove a concert dir
+ * @param currentRow Current row in the concert list
+ */
+void Settings::concertListRowChanged(int currentRow)
+{
+    ui->buttonRemoveConcertDir->setDisabled(currentRow < 0);
+}
+
+
+/**
  * @brief Stores the values from the list for movie directories
  * @param item Current item
  */
@@ -575,6 +709,21 @@ void Settings::tvShowMediaCenterPathChanged(QTableWidgetItem *item)
     if (item->row() < 0 || item->row() >= m_tvShowDirectories.count() || item->column() != 1)
         return;
     m_tvShowDirectories[item->row()].mediaCenterPath = item->text();
+}
+
+/**
+ * @brief Stores the values from the list for concert directories
+ * @param item Current item
+ */
+void Settings::concertMediaCenterPathChanged(QTableWidgetItem *item)
+{
+    if (item->row() < 0 || item->row() >= m_concertDirectories.count())
+        return;
+
+    if (item->column() == 1)
+        m_concertDirectories[item->row()].mediaCenterPath = item->text();
+    else if (item->column() == 2)
+        m_concertDirectories[item->row()].separateFolders = item->checkState() == Qt::Checked;
 }
 
 /**
@@ -708,6 +857,15 @@ QByteArray Settings::tvShowSplitterState()
 }
 
 /**
+ * @brief Returns the state of the concert splitter
+ * @return State of the concert splitter
+ */
+QByteArray Settings::concertSplitterState()
+{
+    return m_concertSplitterState;
+}
+
+/**
  * @brief Returns the state of the sets splitter
  * @return State of the sets splitter
  */
@@ -732,6 +890,15 @@ QList<SettingsDir> Settings::movieDirectories()
 QList<SettingsDir> Settings::tvShowDirectories()
 {
     return m_tvShowDirectories;
+}
+
+/**
+ * @brief Returns a list of concert directories
+ * @return List of concert directories
+ */
+QList<SettingsDir> Settings::concertDirectories()
+{
+    return m_concertDirectories;
 }
 
 /**
@@ -899,6 +1066,51 @@ QList<DataFile*> Settings::enabledTvShowBannerFiles()
     return files;
 }
 
+/**
+ * @brief Returns a list of enabled DataFiles for concert nfos.
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::enabledConcertNfoFiles()
+{
+    QList<DataFile*> files;
+    foreach (DataFile* file, m_concertNfoFiles) {
+        if (file->enabled())
+            files.append(file);
+    }
+
+    return files;
+}
+
+/**
+ * @brief Returns a list of enabled DataFiles for concert posters.
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::enabledConcertPosterFiles()
+{
+    QList<DataFile*> files;
+    foreach (DataFile* file, m_concertPosterFiles) {
+        if (file->enabled())
+            files.append(file);
+    }
+
+    return files;
+}
+
+/**
+ * @brief Returns a list of enabled DataFiles for concert fanarts.
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::enabledConcertFanartFiles()
+{
+    QList<DataFile*> files;
+    foreach (DataFile* file, m_concertFanartFiles) {
+        if (file->enabled())
+            files.append(file);
+    }
+
+    return files;
+}
+
 /*** SETTER ***/
 
 /**
@@ -949,6 +1161,16 @@ void Settings::setMovieSetsSplitterState(QByteArray state)
 {
     m_movieSetsSplitterState = state;
     m_settings.setValue("MovieSetsSplitterState", state);
+}
+
+/**
+ * @brief Sets the state of the concert splitter
+ * @param state State of the splitter
+ */
+void Settings::setConcertSplitterState(QByteArray state)
+{
+    m_concertSplitterState = state;
+    m_settings.setValue("ConcertSplitterState", state);
 }
 
 /**

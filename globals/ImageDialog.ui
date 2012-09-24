@@ -99,7 +99,7 @@ background: transparent;</string>
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="MediaElch.qrc">
+        <iconset resource="../MediaElch.qrc">
          <normaloff>:/img/zoom_out.png</normaloff>:/img/zoom_out.png</iconset>
        </property>
       </widget>
@@ -157,7 +157,7 @@ background: transparent;</string>
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="MediaElch.qrc">
+        <iconset resource="../MediaElch.qrc">
          <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
        </property>
       </widget>
@@ -218,7 +218,7 @@ background: transparent;</string>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="MediaElch.qrc"/>
+  <include location="../MediaElch.qrc"/>
  </resources>
  <connections/>
 </ui>

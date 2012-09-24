@@ -355,6 +355,257 @@ void XbmcXml::loadMovieImages(Movie *movie)
 }
 
 /**
+ * @brief Writes concert elements to an xml stream
+ * @param xml XML stream
+ * @param concert Concert to save
+ * @param writePath If true the full path of the files will be written (currently unused, just for export)
+ * @param pathSearch (currently unused, just for export)
+ * @param pathReplace (currently unused, just for export)
+ * @todo: Remove last three parameters or reimplement (Export)
+ */
+void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert, bool writePath, QString pathSearch, QString pathReplace)
+{
+    qDebug() << "Entered, concert=" << concert->name();
+    xml.writeStartElement("musicvideo");
+    xml.writeTextElement("title", concert->name());
+    xml.writeTextElement("rating", QString("%1").arg(concert->rating()));
+    xml.writeTextElement("year", concert->released().toString("yyyy"));
+    xml.writeTextElement("plot", concert->overview());
+    xml.writeTextElement("tagline", concert->tagline());
+    if (concert->runtime() > 0)
+        xml.writeTextElement("runtime", QString("%1").arg(concert->runtime()));
+    xml.writeTextElement("mpaa", concert->certification());
+    xml.writeTextElement("playcount", QString("%1").arg(concert->playcount()));
+    xml.writeTextElement("lastplayed", concert->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
+    if (writePath && concert->files().size() > 0) {
+        QFileInfo fi(concert->files().at(0));
+        xml.writeTextElement("path", fi.absolutePath());
+        if (concert->files().size() == 1) {
+            fi.setFile(concert->files().at(0));
+            xml.writeTextElement("filenameandpath", fi.absoluteFilePath().replace(pathSearch, pathReplace));
+            xml.writeTextElement("basepath", fi.absoluteFilePath().replace(pathSearch, pathReplace));
+        } else {
+            QStringList files;
+            foreach (const QString &file, concert->files()) {
+                fi.setFile(file);
+                files.append(fi.absoluteFilePath().replace(pathSearch, pathReplace));
+            }
+            xml.writeTextElement("filenameandpath", QString("stack://%1").arg(files.join(" , ")));
+            xml.writeTextElement("basepath", QString("stack://%1").arg(files.join(" , ")));
+        }
+    }
+    xml.writeTextElement("trailer", Helper::formatTrailerUrl(concert->trailer().toString()));
+    xml.writeTextElement("watched", (concert->watched()) ? "true" : "false");
+    foreach (const QString &genre, concert->genres())
+        xml.writeTextElement("genre", genre);
+    foreach (const Poster &poster, concert->posters()) {
+        xml.writeStartElement("thumb");
+        xml.writeAttribute("preview", poster.thumbUrl.toString());
+        xml.writeCharacters(poster.originalUrl.toString());
+        xml.writeEndElement();
+    }
+    xml.writeStartElement("fanart");
+    foreach (const Poster &poster, concert->backdrops()) {
+        xml.writeStartElement("thumb");
+        xml.writeAttribute("preview", poster.thumbUrl.toString());
+        xml.writeCharacters(poster.originalUrl.toString());
+        xml.writeEndElement();
+    }
+    xml.writeEndElement();
+    xml.writeEndElement();
+}
+
+/**
+ * @brief Saves a concert (including images)
+ * @param movie Concert to save
+ * @return Saving success
+ * @see XbmcXml::writeConcertXml
+ */
+bool XbmcXml::saveConcert(Concert *concert)
+{
+    qDebug() << "Entered, movie=" << concert->name();
+    QByteArray xmlContent;
+    QXmlStreamWriter xml(&xmlContent);
+    xml.setAutoFormatting(true);
+    xml.writeStartDocument("1.0", true);
+    writeConcertXml(xml, concert);
+    xml.writeEndDocument();
+
+    if (concert->files().size() == 0) {
+        qWarning() << "Movie has no files";
+        return false;
+    }
+
+    bool saved = false;
+    QFileInfo fi(concert->files().at(0));
+    foreach (DataFile *dataFile, Settings::instance()->enabledConcertNfoFiles()) {
+        QString saveFileName = dataFile->saveFileName(fi.fileName());
+        QFile file(fi.absolutePath() + QDir::separator() + saveFileName);
+        qDebug() << "Saving to" << file.fileName();
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            qWarning() << "File could not be openend";
+        } else {
+            file.write(xmlContent);
+            file.close();
+            saved = true;
+        }
+    }
+    if (!saved)
+        return false;
+
+    if (concert->posterImageChanged() && !concert->posterImage()->isNull()) {
+        foreach (DataFile *dataFile, Settings::instance()->enabledConcertPosterFiles()) {
+            QString saveFileName = dataFile->saveFileName(fi.fileName());
+            qDebug() << "Saving poster to" << fi.absolutePath() + QDir::separator() + saveFileName;
+            concert->posterImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "jpg", 100);
+        }
+    }
+    if (concert->backdropImageChanged() && !concert->backdropImage()->isNull()) {
+        foreach (DataFile *dataFile, Settings::instance()->enabledConcertFanartFiles()) {
+            QString saveFileName = dataFile->saveFileName(fi.fileName());
+            qDebug() << "Saving fanart to" << fi.absolutePath() + QDir::separator() + saveFileName;
+            concert->backdropImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "jpg", 100);
+        }
+    }
+
+    return true;
+}
+
+/**
+ * @brief Loads concert infos (except images)
+ * @param movie Concert to load
+ * @return Loading success
+ */
+bool XbmcXml::loadConcert(Concert *concert)
+{
+    qDebug() << "Entered, files=" << concert->files();
+    if (concert->files().size() == 0) {
+        qWarning() << "Movie has no files";
+        return false;
+    }
+    QFileInfo fi(concert->files().at(0));
+    if (!fi.isFile() ) {
+        qWarning() << "First file of the concert is not readable" << concert->files().at(0);
+        return false;
+    }
+
+    QString nfoFile;
+    foreach (DataFile *dataFile, Settings::instance()->enabledConcertNfoFiles()) {
+        QString file = dataFile->saveFileName(fi.fileName());
+        QFileInfo nfoFi(fi.absolutePath() + QDir::separator() + file);
+        if (nfoFi.exists()) {
+            nfoFile = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    if (nfoFile.isEmpty()) {
+        qDebug() << "No usable nfo file found";
+        return false;
+    }
+
+    qDebug() << "Trying to load nfoFile" << nfoFile;
+    QFile file(nfoFile);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qWarning() << "File" << nfoFile << "could not be opened for reading";
+        return false;
+    }
+    concert->clear();
+    concert->setChanged(false);
+    QDomDocument domDoc;
+    domDoc.setContent(file.readAll());
+    if (!domDoc.elementsByTagName("title").isEmpty() )
+        concert->setName(domDoc.elementsByTagName("title").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("rating").isEmpty())
+        concert->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().toFloat());
+    if (!domDoc.elementsByTagName("year").isEmpty())
+        concert->setReleased(QDate::fromString(domDoc.elementsByTagName("year").at(0).toElement().text(), "yyyy"));
+    if (!domDoc.elementsByTagName("plot").isEmpty())
+        concert->setOverview(domDoc.elementsByTagName("plot").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("tagline").isEmpty())
+        concert->setTagline(domDoc.elementsByTagName("tagline").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("runtime").isEmpty())
+        concert->setRuntime(domDoc.elementsByTagName("runtime").at(0).toElement().text().toInt());
+    if (!domDoc.elementsByTagName("mpaa").isEmpty())
+        concert->setCertification(domDoc.elementsByTagName("mpaa").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("playcount").isEmpty())
+        concert->setPlayCount(domDoc.elementsByTagName("playcount").at(0).toElement().text().toInt());
+    if (!domDoc.elementsByTagName("lastplayed").isEmpty())
+        concert->setLastPlayed(QDateTime::fromString(domDoc.elementsByTagName("lastplayed").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss"));
+    if (!domDoc.elementsByTagName("trailer").isEmpty())
+        concert->setTrailer(QUrl(domDoc.elementsByTagName("trailer").at(0).toElement().text()));
+    if (!domDoc.elementsByTagName("watched").isEmpty())
+        concert->setWatched(domDoc.elementsByTagName("watched").at(0).toElement().text() == "true" ? true : false);
+
+    for (int i=0, n=domDoc.elementsByTagName("genre").size() ; i<n ; i++)
+        concert->addGenre(domDoc.elementsByTagName("genre").at(i).toElement().text());
+    for (int i=0, n=domDoc.elementsByTagName("thumb").size() ; i<n ; i++) {
+        QString parentTag = domDoc.elementsByTagName("thumb").at(i).parentNode().toElement().tagName();
+        if (parentTag == "movie") {
+            Poster p;
+            p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
+            p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
+            concert->addPoster(p);
+        } else if (parentTag == "fanart") {
+            Poster p;
+            p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
+            p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
+            concert->addBackdrop(p);
+        }
+    }
+
+    file.close();
+
+    return true;
+}
+
+/**
+ * @brief Loads images of a concert
+ * @param concert Concert to load
+ */
+void XbmcXml::loadConcertImages(Concert *concert)
+{
+    qDebug() << "Entered, concert=" << concert->name();
+    if (concert->files().size() == 0) {
+        qWarning() << "Concert has no files";
+        return;
+    }
+    QFileInfo fi(concert->files().at(0));
+
+    QString posterFileName;
+    foreach (DataFile *dataFile, Settings::instance()->enabledConcertPosterFiles()) {
+        QString file = dataFile->saveFileName(fi.fileName());
+        QFileInfo pFi(fi.absolutePath() + QDir::separator() + file);
+        if (pFi.isFile()) {
+            posterFileName = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+    if (posterFileName.isEmpty()) {
+        qDebug() << "No usable poster file found";
+    } else {
+        qDebug() << "Trying to load poster file" << posterFileName;
+        concert->posterImage()->load(posterFileName);
+    }
+
+    QString fanartFileName;
+    foreach (DataFile *dataFile, Settings::instance()->enabledConcertFanartFiles()) {
+        QString file = dataFile->saveFileName(fi.fileName());
+        QFileInfo bFi(fi.absolutePath() + QDir::separator() + file);
+        if (bFi.isFile()) {
+            fanartFileName = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+    if (fanartFileName.isEmpty()) {
+        qDebug() << "No usable fanart file found";
+    } else {
+        qDebug() << "Trying to load fanart file" << fanartFileName;
+        concert->backdropImage()->load(fanartFileName);
+    }
+}
+
+/**
  * @brief Loads images for a tv show
  * @param show Show to load images for
  */

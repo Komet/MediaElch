@@ -22,6 +22,9 @@ public:
     bool saveMovie(Movie *movie);
     bool loadMovie(Movie *movie);
     void loadMovieImages(Movie *movie);
+    bool saveConcert(Concert *concert);
+    bool loadConcert(Concert *concert);
+    void loadConcertImages(Concert *concert);
     void exportDatabase(QList<Movie*> movies, QList<TvShow*> shows, QString exportPath, QString pathSearch, QString pathReplace);
     bool loadTvShow(TvShow *show);
     void loadTvShowImages(TvShow *show);
@@ -52,6 +55,8 @@ private:
     QString mediaCenterDir(QString file);
     QString tvShowMediaCenterPath(QString file);
     QString tvShowMediaCenterDir(QString file);
+    QString concertMediaCenterPath(QString file);
+    QString concertMediaCenterDir(QString file);
     QSqlDatabase db();
 
     QSqlDatabase *m_db;

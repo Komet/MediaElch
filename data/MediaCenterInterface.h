@@ -2,10 +2,12 @@
 #define MEDIACENTERINTERFACE_H
 
 #include "globals/Globals.h"
+#include "data/Concert.h"
 #include "data/Movie.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 
+class Concert;
 class Movie;
 class TvShow;
 class TvShowEpisode;
@@ -20,6 +22,9 @@ public:
     virtual bool saveMovie(Movie *movie) = 0;
     virtual bool loadMovie(Movie *movie) = 0;
     virtual void loadMovieImages(Movie *movie) = 0;
+    virtual bool saveConcert(Concert *concert) = 0;
+    virtual bool loadConcert(Concert *concert) = 0;
+    virtual void loadConcertImages(Concert *concert) = 0;
     virtual void exportDatabase(QList<Movie*> movies, QList<TvShow*> shows, QString exportPath, QString pathSearch, QString pathReplace) = 0;
     virtual bool loadTvShow(TvShow *show) = 0;
     virtual void loadTvShowImages(TvShow *show) = 0;

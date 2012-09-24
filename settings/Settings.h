@@ -31,8 +31,10 @@ public:
     QByteArray movieSplitterState();
     QByteArray tvShowSplitterState();
     QByteArray movieSetsSplitterState();
+    QByteArray concertSplitterState();
     QList<SettingsDir> movieDirectories();
     QList<SettingsDir> tvShowDirectories();
+    QList<SettingsDir> concertDirectories();
     int mediaCenterInterface();
     QString xbmcMysqlHost();
     QString xbmcMysqlDatabase();
@@ -48,12 +50,16 @@ public:
     QList<DataFile*> enabledMovieFanartFiles();
     QList<DataFile*> enabledTvShowPosterFiles();
     QList<DataFile*> enabledTvShowBannerFiles();
+    QList<DataFile*> enabledConcertNfoFiles();
+    QList<DataFile*> enabledConcertPosterFiles();
+    QList<DataFile*> enabledConcertFanartFiles();
 
     void setMainWindowSize(QSize mainWindowSize);
     void setMainWindowPosition(QPoint mainWindowPosition);
     void setMovieSplitterState(QByteArray state);
     void setTvShowSplitterState(QByteArray state);
     void setMovieSetsSplitterState(QByteArray state);
+    void setConcertSplitterState(QByteArray state);
 
 public slots:
     void saveSettings();
@@ -65,8 +71,12 @@ private slots:
     void addTvShowDir(QString dir);
     void removeTvShowDir();
     void tvShowListRowChanged(int currentRow);
+    void addConcertDir(QString dir);
+    void removeConcertDir();
+    void concertListRowChanged(int currentRow);
     void movieMediaCenterPathChanged(QTableWidgetItem *item);
     void tvShowMediaCenterPathChanged(QTableWidgetItem *item);
+    void concertMediaCenterPathChanged(QTableWidgetItem *item);
     void onMediaCenterXbmcXmlSelected();
     void onMediaCenterXbmcMysqlSelected();
     void onMediaCenterXbmcSqliteSelected();
@@ -81,11 +91,13 @@ private:
     QSettings m_settings;
     QList<SettingsDir> m_movieDirectories;
     QList<SettingsDir> m_tvShowDirectories;
+    QList<SettingsDir> m_concertDirectories;
     QSize m_mainWindowSize;
     QPoint m_mainWindowPosition;
     QByteArray m_movieSplitterState;
     QByteArray m_tvShowSplitterState;
     QByteArray m_movieSetsSplitterState;
+    QByteArray m_concertSplitterState;
     int m_mediaCenterInterface;
     QString m_xbmcMysqlHost;
     QString m_xbmcMysqlDatabase;
@@ -99,12 +111,16 @@ private:
     QFileDialog *m_logFileDialog;
     QFileDialog *m_movieDirDialog;
     QFileDialog *m_tvShowDirDialog;
+    QFileDialog *m_concertDirDialog;
     QFileDialog *m_xbmcThumbnailDirDialog;
     QFileDialog *m_xbmcSqliteDatabaseDialog;
     bool m_youtubePluginUrls;
     QList<DataFile*> m_movieNfoFiles;
     QList<DataFile*> m_moviePosterFiles;
     QList<DataFile*> m_movieFanartFiles;
+    QList<DataFile*> m_concertNfoFiles;
+    QList<DataFile*> m_concertPosterFiles;
+    QList<DataFile*> m_concertFanartFiles;
     QList<DataFile*> m_tvShowPosterFiles;
     QList<DataFile*> m_tvShowBannerFiles;
 
