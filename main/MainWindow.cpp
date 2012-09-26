@@ -46,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_aboutDialog = new AboutDialog(ui->centralWidget);
     m_filterWidget = new FilterWidget(ui->mainToolBar);
-    m_settings = static_cast<Settings*>(ui->stackedWidget->widget(2));
+    m_settings = Settings::instance(this);
     setupToolbar();
 
     MessageBox::instance(this)->reposition(this->size());

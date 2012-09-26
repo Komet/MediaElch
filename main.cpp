@@ -4,9 +4,11 @@
 #include <QtGui/QApplication>
 #include <QTextCodec>
 #include <QTextStream>
+#include <QTimer>
 #include <QTranslator>
 #include "main/MainWindow.h"
 #include "settings/Settings.h"
+#include "cli/CLI.h"
 
 static QFile data;
 
@@ -37,10 +39,41 @@ void messageOutput(QtMsgType type, const char *msg)
     }
 }
 
+void cliMessageOutput(QtMsgType type, const char *msg)
+{
+    QString newLine = "\n";
+    #ifdef Q_WS_WIN
+        newLine = "\r\n";
+    #endif
+
+    QString message(msg);
+    message.append(newLine);
+
+    switch (type) {
+    case QtDebugMsg:
+        // printf("DEBUG: %s", qPrintable(message));
+        break;
+    case QtWarningMsg:
+        printf("WARNING: %s", qPrintable(message));
+        break;
+    case QtCriticalMsg:
+        printf("CRITICAL: %s", qPrintable(message));
+        break;
+    case QtFatalMsg:
+        printf("FATAL: %s", qPrintable(message));
+        abort();
+    }
+}
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+#ifdef Q_WS_X11
+    bool useGui = getenv("DISPLAY") != 0;
+#else
+    bool useGui = true;
+#endif
+
+    QApplication a(argc, argv, useGui);
     QTranslator editTranslator;
     QString filename;
     filename = QString("MediaElch_%1"). arg(QLocale::system().name());
@@ -51,6 +84,14 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName("kVibes");
     QCoreApplication::setApplicationName("MediaElch");
     QCoreApplication::setApplicationVersion("0.9.6");
+
+    if (!useGui || a.arguments().count() > 1) {
+        qInstallMsgHandler(cliMessageOutput);
+        CLI *cli = new CLI(&a, a.arguments());
+        QObject::connect(cli, SIGNAL(finished()), &a, SLOT(quit()));
+        QTimer::singleShot(0, cli, SLOT(run()));
+        return a.exec();
+    }
 
     QSettings settings;
     if (settings.value("DebugModeActivated", false).toBool() && !settings.value("DebugLogPath").toString().isEmpty()) {

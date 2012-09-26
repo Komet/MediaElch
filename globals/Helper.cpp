@@ -1,5 +1,6 @@
 #include "Helper.h"
 
+#include <QRegExp>
 #include "globals/Globals.h"
 #include "settings/Settings.h"
 

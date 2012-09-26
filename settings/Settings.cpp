@@ -1,97 +1,18 @@
 #include "Settings.h"
-#include "ui_Settings.h"
 
-#include "movies/FilesWidget.h"
-#include "main/MainWindow.h"
+#include "data/ScraperInterface.h"
 #include "globals/Manager.h"
-#include "main/MessageBox.h"
-#include "tvShows/TvShowFilesWidget.h"
 
-Settings *Settings::m_instance;
+Settings *Settings::m_instance = 0;
 
 /**
  * @brief Settings::Settings
  * @param parent
  */
-Settings::Settings(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Settings)
+Settings::Settings(QObject *parent) :
+    QObject(parent)
 {
-    ui->setupUi(this);
-
     m_instance = this;
-
-    ui->movieDirs->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-    ui->movieDirs->horizontalHeaderItem(2)->setToolTip(tr("Movies are in separate folders"));
-    ui->movieDirs->horizontalHeader()->setResizeMode(0, QHeaderView::Stretch);
-    ui->movieDirs->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
-    ui->tvShowDirs->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-    ui->tvShowDirs->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-    ui->concertDirs->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-    ui->concertDirs->horizontalHeaderItem(2)->setToolTip(tr("Concerts are in separate folders"));
-    ui->concertDirs->horizontalHeader()->setResizeMode(0, QHeaderView::Stretch);
-    ui->concertDirs->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
-
-    int scraperCounter = 0;
-    foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
-        if (scraper->hasSettings()) {
-            if (scraperCounter++ > 0) {
-                QFrame *line = new QFrame(ui->groupBox_2);
-                line->setFrameShape(QFrame::HLine);
-                line->setFrameShadow(QFrame::Sunken);
-                ui->verticalLayoutScrapers->addWidget(line);
-            }
-            QWidget *scraperSettings = scraper->settingsWidget();
-            scraperSettings->setParent(ui->groupBox_2);
-            ui->verticalLayoutScrapers->addWidget(new QLabel(scraper->name(), ui->groupBox_2));
-            ui->verticalLayoutScrapers->addWidget(scraperSettings);
-        }
-    }
-    foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers()) {
-        if (scraper->hasSettings()) {
-            if (scraperCounter++ > 0) {
-                QFrame *line = new QFrame(ui->groupBox_2);
-                line->setFrameShape(QFrame::HLine);
-                line->setFrameShadow(QFrame::Sunken);
-                ui->verticalLayoutScrapers->addWidget(line);
-            }
-            QWidget *scraperSettings = scraper->settingsWidget();
-            scraperSettings->setParent(ui->groupBox_2);
-            ui->verticalLayoutScrapers->addWidget(new QLabel(scraper->name(), ui->groupBox_2));
-            ui->verticalLayoutScrapers->addWidget(scraperSettings);
-        }
-    }
-    foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers()) {
-        if (scraper->hasSettings()) {
-            if (scraperCounter++ > 0) {
-                QFrame *line = new QFrame(ui->groupBox_2);
-                line->setFrameShape(QFrame::HLine);
-                line->setFrameShadow(QFrame::Sunken);
-                ui->verticalLayoutScrapers->addWidget(line);
-            }
-            QWidget *scraperSettings = scraper->settingsWidget();
-            scraperSettings->setParent(ui->groupBox_2);
-            ui->verticalLayoutScrapers->addWidget(new QLabel(scraper->name(), ui->groupBox_2));
-            ui->verticalLayoutScrapers->addWidget(scraperSettings);
-        }
-    }
-
-    // Setup file dialogs
-    m_logFileDialog = new QFileDialog(this, tr("Logfile"), QDir::homePath(), tr("Logfiles (*.log *.txt)"));
-    m_logFileDialog->setFileMode(QFileDialog::AnyFile);
-    m_movieDirDialog = new QFileDialog(this, tr("Choose a directory containing your movies"), QDir::homePath());
-    m_movieDirDialog->setFileMode(QFileDialog::Directory);
-    m_movieDirDialog->setOption(QFileDialog::ShowDirsOnly, true);
-    m_tvShowDirDialog = new QFileDialog(this, tr("Choose a directory containing your TV shows"), QDir::homePath());
-    m_tvShowDirDialog->setFileMode(QFileDialog::Directory);
-    m_tvShowDirDialog->setOption(QFileDialog::ShowDirsOnly, true);
-    m_concertDirDialog = new QFileDialog(this, tr("Choose a directory containing your concerts"), QDir::homePath());
-    m_concertDirDialog->setFileMode(QFileDialog::Directory);
-    m_concertDirDialog->setOption(QFileDialog::ShowDirsOnly, true);
-    m_xbmcThumbnailDirDialog = new QFileDialog(this, tr("Choose a directory containing your Thumbnails"), QDir::homePath());;
-    m_xbmcThumbnailDirDialog->setOption(QFileDialog::ShowDirsOnly, true);
-    m_xbmcSqliteDatabaseDialog = new QFileDialog(this, tr("SQLite Database *.db"), QDir::homePath());
-    m_xbmcSqliteDatabaseDialog->setFileMode(QFileDialog::ExistingFile);
 
     // Setup XML filenames
     m_movieNfoFiles.append(new DataFile(0, "<movie filename>.nfo", "<moviefile>.nfo", 0, true));
@@ -116,53 +37,17 @@ Settings::Settings(QWidget *parent) :
     m_concertNfoFiles.append(new DataFile(0, "<movie filename>.nfo", "<moviefile>.nfo", 0, true));
     m_concertPosterFiles.append(new DataFile(1, "<movie filename>.tbn", "<moviefile>.tbn", 0, true));
     m_concertFanartFiles.append(new DataFile(2, "<movie filename>-fanart.jpg", "<moviefile>-fanart.jpg", 0, true));
-
-    connect(m_logFileDialog, SIGNAL(fileSelected(QString)), this, SLOT(onDebugLogPathChosen(QString)));
-    connect(m_movieDirDialog, SIGNAL(fileSelected(QString)), this, SLOT(addMovieDir(QString)));
-    connect(m_tvShowDirDialog, SIGNAL(fileSelected(QString)), this, SLOT(addTvShowDir(QString)));
-    connect(m_concertDirDialog, SIGNAL(fileSelected(QString)), this, SLOT(addConcertDir(QString)));
-    connect(m_xbmcThumbnailDirDialog, SIGNAL(fileSelected(QString)), this, SLOT(onChooseXbmcThumbnailPath(QString)));
-    connect(m_xbmcSqliteDatabaseDialog, SIGNAL(fileSelected(QString)), this, SLOT(onChooseMediaCenterXbmcSqliteDatabase(QString)));
-
-    connect(ui->buttonAddMovieDir, SIGNAL(clicked()), m_movieDirDialog, SLOT(open()));
-    connect(ui->buttonRemoveMovieDir, SIGNAL(clicked()), this, SLOT(removeMovieDir()));
-    connect(ui->movieDirs, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(movieListRowChanged(int)));
-    connect(ui->buttonAddTvShowDir, SIGNAL(clicked()), m_tvShowDirDialog, SLOT(open()));
-    connect(ui->buttonRemoveTvShowDir, SIGNAL(clicked()), this, SLOT(removeTvShowDir()));
-    connect(ui->tvShowDirs, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(tvShowListRowChanged(int)));
-    connect(ui->buttonAddConcertDir, SIGNAL(clicked()), m_concertDirDialog, SLOT(open()));
-    connect(ui->buttonRemoveConcertDir, SIGNAL(clicked()), this, SLOT(removeConcertDir()));
-    connect(ui->concertDirs, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(concertListRowChanged(int)));
-    connect(ui->movieDirs, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(movieMediaCenterPathChanged(QTableWidgetItem*)));
-    connect(ui->tvShowDirs, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(tvShowMediaCenterPathChanged(QTableWidgetItem*)));
-    connect(ui->concertDirs, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(concertMediaCenterPathChanged(QTableWidgetItem*)));
-    connect(ui->chkActivateDebug, SIGNAL(clicked()), this, SLOT(onActivateDebugMode()));
-    connect(ui->buttonChooseLogfile, SIGNAL(clicked()), m_logFileDialog, SLOT(open()));
-    connect(ui->logfilePath, SIGNAL(textChanged(QString)), this, SLOT(onSetDebugLogPath(QString)));
-
-    connect(ui->radioXbmcXml, SIGNAL(clicked()), this, SLOT(onMediaCenterXbmcXmlSelected()));
-    connect(ui->radioXbmcMysql, SIGNAL(clicked()), this, SLOT(onMediaCenterXbmcMysqlSelected()));
-    connect(ui->radioXbmcSqlite, SIGNAL(clicked()), this, SLOT(onMediaCenterXbmcSqliteSelected()));
-    connect(ui->buttonSelectSqliteDatabase, SIGNAL(clicked()), m_xbmcSqliteDatabaseDialog, SLOT(open()));
-    connect(ui->buttonSelectThumbnailPath, SIGNAL(clicked()), m_xbmcThumbnailDirDialog, SLOT(open()));
-
-    loadSettings();
-}
-
-/**
- * @brief Settings::~Settings
- */
-Settings::~Settings()
-{
-    delete ui;
 }
 
 /**
  * @brief Returns an instance of the settings
  * @return Instance of Settings
  */
-Settings *Settings::instance()
+Settings *Settings::instance(QObject *parent)
 {
+    if (m_instance == 0) {
+        m_instance = new Settings(parent);
+    }
     return m_instance;
 }
 
@@ -181,31 +66,11 @@ void Settings::loadSettings()
     m_debugModeActivated = m_settings.value("DebugModeActivated", false).toBool();
     m_debugLogPath = m_settings.value("DebugLogPath").toString();
 
-    // Debug
-    ui->chkActivateDebug->setChecked(m_debugModeActivated);
-    ui->logfilePath->setText(m_debugLogPath);
-    onActivateDebugMode();
-
     // Movie Directories
     m_movieDirectories.clear();
-    ui->movieDirs->setRowCount(0);
-    ui->movieDirs->clearContents();
     int moviesSize = m_settings.beginReadArray("Directories/Movies");
     for (int i=0 ; i<moviesSize ; ++i) {
         m_settings.setArrayIndex(i);
-        ui->movieDirs->insertRow(i);
-        QTableWidgetItem *item = new QTableWidgetItem(m_settings.value("path").toString());
-        item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        item->setToolTip(QDir::toNativeSeparators(m_settings.value("path").toString()));
-        QTableWidgetItem *item2 = new QTableWidgetItem;
-        item2->setToolTip(tr("Movies are in separate folders"));
-        if (m_settings.value("sepFolders", false).toBool())
-            item2->setCheckState(Qt::Checked);
-        else
-            item2->setCheckState(Qt::Unchecked);
-        ui->movieDirs->setItem(i, 0, item);
-        ui->movieDirs->setItem(i, 1, new QTableWidgetItem(m_settings.value("mediaCenterPath").toString()));
-        ui->movieDirs->setItem(i, 2, item2);
         SettingsDir dir;
         dir.path = QDir::toNativeSeparators(m_settings.value("path").toString());
         dir.mediaCenterPath = m_settings.value("mediaCenterPath").toString();
@@ -213,49 +78,24 @@ void Settings::loadSettings()
         m_movieDirectories.append(dir);
     }
     m_settings.endArray();
-    ui->buttonRemoveMovieDir->setEnabled(!m_movieDirectories.isEmpty());
 
     // TV Show Directories
     m_tvShowDirectories.clear();
-    ui->tvShowDirs->setRowCount(0);
-    ui->tvShowDirs->clearContents();
     int tvShowSize = m_settings.beginReadArray("Directories/TvShows");
     for (int i=0 ; i<tvShowSize ; ++i) {
         m_settings.setArrayIndex(i);
-        ui->tvShowDirs->insertRow(i);
-        QTableWidgetItem *item = new QTableWidgetItem(m_settings.value("path").toString());
-        item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        item->setToolTip(QDir::toNativeSeparators(m_settings.value("path").toString()));
-        ui->tvShowDirs->setItem(i, 0, item);
-        ui->tvShowDirs->setItem(i, 1, new QTableWidgetItem(m_settings.value("mediaCenterPath").toString()));
         SettingsDir dir;
         dir.path = QDir::toNativeSeparators(m_settings.value("path").toString());
         dir.mediaCenterPath = m_settings.value("mediaCenterPath").toString();
         m_tvShowDirectories.append(dir);
     }
     m_settings.endArray();
-    ui->buttonRemoveTvShowDir->setEnabled(!m_tvShowDirectories.isEmpty());
 
     // Concert Directories
     m_concertDirectories.clear();
-    ui->concertDirs->setRowCount(0);
-    ui->concertDirs->clearContents();
     int concertsSize = m_settings.beginReadArray("Directories/Concerts");
     for (int i=0 ; i<concertsSize ; ++i) {
         m_settings.setArrayIndex(i);
-        ui->concertDirs->insertRow(i);
-        QTableWidgetItem *item = new QTableWidgetItem(m_settings.value("path").toString());
-        item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        item->setToolTip(QDir::toNativeSeparators(m_settings.value("path").toString()));
-        QTableWidgetItem *item2 = new QTableWidgetItem;
-        item2->setToolTip(tr("Concerts are in separate folders"));
-        if (m_settings.value("sepFolders", false).toBool())
-            item2->setCheckState(Qt::Checked);
-        else
-            item2->setCheckState(Qt::Unchecked);
-        ui->concertDirs->setItem(i, 0, item);
-        ui->concertDirs->setItem(i, 1, new QTableWidgetItem(m_settings.value("mediaCenterPath").toString()));
-        ui->concertDirs->setItem(i, 2, item2);
         SettingsDir dir;
         dir.path = QDir::toNativeSeparators(m_settings.value("path").toString());
         dir.mediaCenterPath = m_settings.value("mediaCenterPath").toString();
@@ -263,9 +103,8 @@ void Settings::loadSettings()
         m_concertDirectories.append(dir);
     }
     m_settings.endArray();
-    ui->buttonRemoveConcertDir->setEnabled(!m_concertDirectories.isEmpty());
 
-
+    // Scrapers
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
         if (scraper->hasSettings())
             scraper->loadSettings();
@@ -279,34 +118,15 @@ void Settings::loadSettings()
             scraper->loadSettings();
     }
 
-    // MediaCenterInterface
+    // Media Centers
     m_mediaCenterInterface = m_settings.value("MediaCenterInterface", MediaCenterInterfaces::XbmcXml).toInt();
-    if (m_mediaCenterInterface == MediaCenterInterfaces::XbmcXml)
-        onMediaCenterXbmcXmlSelected();
-    else if (m_mediaCenterInterface == MediaCenterInterfaces::XbmcMysql)
-        onMediaCenterXbmcMysqlSelected();
-    else if (m_mediaCenterInterface == MediaCenterInterfaces::XbmcSqlite)
-        onMediaCenterXbmcSqliteSelected();
-
-    m_xbmcMysqlHost      = m_settings.value("XbmcMysql/Host").toString();
-    m_xbmcMysqlDatabase  = m_settings.value("XbmcMysql/Database").toString();
-    m_xbmcMysqlUser      = m_settings.value("XbmcMysql/User").toString();
-    m_xbmcMysqlPassword  = m_settings.value("XbmcMysql/Password").toString();
-    m_xbmcSqliteDatabase = m_settings.value("XbmcSqlite/Database").toString();
-    m_youtubePluginUrls  = m_settings.value("UseYoutubePluginURLs", false).toBool();
-
-    ui->inputDatabase->setText(m_xbmcMysqlDatabase);
-    ui->inputHost->setText(m_xbmcMysqlHost);
-    ui->inputUsername->setText(m_xbmcMysqlUser);
-    ui->inputPassword->setText(m_xbmcMysqlPassword);
-    ui->inputSqliteDatabase->setText(m_xbmcSqliteDatabase);
-    m_xbmcSqliteDatabaseDialog->selectFile(m_xbmcSqliteDatabase);
-    ui->useYoutubePluginUrls->setChecked(m_youtubePluginUrls);
-
-    m_xbmcThumbnailPath = m_settings.value("XbmcThumbnailpath").toString();
-    ui->inputThumbnailPath->setText(m_xbmcThumbnailPath);
-    ui->inputThumbnailPath->setToolTip(m_xbmcThumbnailPath);
-    m_xbmcThumbnailDirDialog->selectFile(m_xbmcThumbnailPath);
+    m_xbmcMysqlHost        = m_settings.value("XbmcMysql/Host").toString();
+    m_xbmcMysqlDatabase    = m_settings.value("XbmcMysql/Database").toString();
+    m_xbmcMysqlUser        = m_settings.value("XbmcMysql/User").toString();
+    m_xbmcMysqlPassword    = m_settings.value("XbmcMysql/Password").toString();
+    m_xbmcSqliteDatabase   = m_settings.value("XbmcSqlite/Database").toString();
+    m_xbmcThumbnailPath    = m_settings.value("XbmcThumbnailpath").toString();
+    m_youtubePluginUrls    = m_settings.value("UseYoutubePluginURLs", false).toBool();
 
     // XBMC xml file
     QList<DataFile*> files;
@@ -328,46 +148,6 @@ void Settings::loadSettings()
     qSort(m_movieFanartFiles.begin(), m_movieFanartFiles.end(), DataFile::lessThan);
     qSort(m_tvShowPosterFiles.begin(), m_tvShowPosterFiles.end(), DataFile::lessThan);
     qSort(m_tvShowBannerFiles.begin(), m_tvShowBannerFiles.end(), DataFile::lessThan);
-
-    ui->xmlNfos->clear();
-    ui->xmlPosters->clear();
-    ui->xmlFanarts->clear();
-    ui->xmlTvShowPosters->clear();
-    ui->xmlTvShowBanners->clear();
-    foreach (DataFile *file, m_movieNfoFiles) {
-        QListWidgetItem *item = new QListWidgetItem(file->name());
-        item->setData(Qt::UserRole, file->id());
-        item->setCheckState((file->enabled()) ? Qt::Checked : Qt::Unchecked);
-        ui->xmlNfos->addItem(item);
-    }
-
-    foreach (DataFile *file, m_moviePosterFiles) {
-        QListWidgetItem *item = new QListWidgetItem(file->name());
-        item->setData(Qt::UserRole, file->id());
-        item->setCheckState((file->enabled()) ? Qt::Checked : Qt::Unchecked);
-        ui->xmlPosters->addItem(item);
-    }
-
-    foreach (DataFile *file, m_movieFanartFiles) {
-        QListWidgetItem *item = new QListWidgetItem(file->name());
-        item->setData(Qt::UserRole, file->id());
-        item->setCheckState((file->enabled()) ? Qt::Checked : Qt::Unchecked);
-        ui->xmlFanarts->addItem(item);
-    }
-
-    foreach (DataFile *file, m_tvShowPosterFiles) {
-        QListWidgetItem *item = new QListWidgetItem(file->name());
-        item->setData(Qt::UserRole, file->id());
-        item->setCheckState((file->enabled()) ? Qt::Checked : Qt::Unchecked);
-        ui->xmlTvShowPosters->addItem(item);
-    }
-
-    foreach (DataFile *file, m_tvShowBannerFiles) {
-        QListWidgetItem *item = new QListWidgetItem(file->name());
-        item->setData(Qt::UserRole, file->id());
-        item->setCheckState((file->enabled()) ? Qt::Checked : Qt::Unchecked);
-        ui->xmlTvShowBanners->addItem(item);
-    }
 }
 
 /**
@@ -375,10 +155,17 @@ void Settings::loadSettings()
  */
 void Settings::saveSettings()
 {
-    bool mediaInterfaceChanged = false;
-
     m_settings.setValue("DebugModeActivated", m_debugModeActivated);
     m_settings.setValue("DebugLogPath", m_debugLogPath);
+
+    m_settings.setValue("XbmcMysql/Host", m_xbmcMysqlHost);
+    m_settings.setValue("XbmcMysql/Database", m_xbmcMysqlDatabase);
+    m_settings.setValue("XbmcMysql/User", m_xbmcMysqlUser);
+    m_settings.setValue("XbmcMysql/Password", m_xbmcMysqlPassword);
+    m_settings.setValue("XbmcSqlite/Database", m_xbmcSqliteDatabase);
+    m_settings.setValue("MediaCenterInterface", m_mediaCenterInterface);
+    m_settings.setValue("XbmcThumbnailpath", m_xbmcThumbnailPath);
+    m_settings.setValue("UseYoutubePluginURLs", m_youtubePluginUrls);
 
     m_settings.beginWriteArray("Directories/Movies");
     for (int i=0, n=m_movieDirectories.count() ; i<n ; ++i) {
@@ -419,403 +206,23 @@ void Settings::saveSettings()
             scraper->saveSettings();
     }
 
-    if (ui->radioXbmcXml->isChecked()) {
-        if (m_mediaCenterInterface != MediaCenterInterfaces::XbmcXml)
-            mediaInterfaceChanged = true;
-        m_mediaCenterInterface = MediaCenterInterfaces::XbmcXml;
-    } else if (ui->radioXbmcMysql->isChecked()) {
-        if (m_mediaCenterInterface != MediaCenterInterfaces::XbmcMysql)
-            mediaInterfaceChanged = true;
-        m_mediaCenterInterface = MediaCenterInterfaces::XbmcMysql;
-    } else if (ui->radioXbmcSqlite->isChecked()) {
-        if (m_mediaCenterInterface != MediaCenterInterfaces::XbmcSqlite)
-            mediaInterfaceChanged = true;
-        m_mediaCenterInterface = MediaCenterInterfaces::XbmcSqlite;
+    qSort(m_movieNfoFiles.begin(), m_movieNfoFiles.end(), DataFile::lessThan);
+    qSort(m_moviePosterFiles.begin(), m_moviePosterFiles.end(), DataFile::lessThan);
+    qSort(m_movieFanartFiles.begin(), m_movieFanartFiles.end(), DataFile::lessThan);
+    qSort(m_tvShowPosterFiles.begin(), m_tvShowPosterFiles.end(), DataFile::lessThan);
+    qSort(m_tvShowBannerFiles.begin(), m_tvShowBannerFiles.end(), DataFile::lessThan);
+
+    QList<DataFile*> files;
+    files << m_movieNfoFiles << m_moviePosterFiles << m_movieFanartFiles << m_tvShowPosterFiles << m_tvShowBannerFiles;
+    m_settings.beginWriteArray("DataFiles");
+    int i=0;
+    foreach (DataFile *file, files) {
+        m_settings.setArrayIndex(i++);
+        m_settings.setValue("id", file->id());
+        m_settings.setValue("pos", file->pos());
+        m_settings.setValue("enabled", file->enabled());
     }
-
-    if (ui->radioXbmcXml->isChecked()) {
-        for (int i=0, n=ui->xmlNfos->count() ; i<n ; ++i) {
-            foreach (DataFile *file, m_movieNfoFiles) {
-                if (file->id() != ui->xmlNfos->item(i)->data(Qt::UserRole).toInt())
-                    continue;
-                file->setEnabled(ui->xmlNfos->item(i)->checkState() == Qt::Checked);
-                file->setPos(i);
-            }
-        }
-
-        for (int i=0, n=ui->xmlPosters->count() ; i<n ; ++i) {
-            foreach (DataFile *file, m_moviePosterFiles) {
-                if (file->id() != ui->xmlPosters->item(i)->data(Qt::UserRole).toInt())
-                    continue;
-                file->setEnabled(ui->xmlPosters->item(i)->checkState() == Qt::Checked);
-                file->setPos(i);
-            }
-        }
-
-        for (int i=0, n=ui->xmlFanarts->count() ; i<n ; ++i) {
-            foreach (DataFile *file, m_movieFanartFiles) {
-                if (file->id() != ui->xmlFanarts->item(i)->data(Qt::UserRole).toInt())
-                    continue;
-                file->setEnabled(ui->xmlFanarts->item(i)->checkState() == Qt::Checked);
-                file->setPos(i);
-            }
-        }
-
-        for (int i=0, n=ui->xmlTvShowPosters->count() ; i<n ; ++i) {
-            foreach (DataFile *file, m_tvShowPosterFiles) {
-                if (file->id() != ui->xmlTvShowPosters->item(i)->data(Qt::UserRole).toInt())
-                    continue;
-                file->setEnabled(ui->xmlTvShowPosters->item(i)->checkState() == Qt::Checked);
-                file->setPos(i);
-            }
-        }
-
-        for (int i=0, n=ui->xmlTvShowBanners->count() ; i<n ; ++i) {
-            foreach (DataFile *file, m_tvShowBannerFiles) {
-                if (file->id() != ui->xmlTvShowBanners->item(i)->data(Qt::UserRole).toInt())
-                    continue;
-                file->setEnabled(ui->xmlTvShowBanners->item(i)->checkState() == Qt::Checked);
-                file->setPos(i);
-            }
-        }
-        qSort(m_movieNfoFiles.begin(), m_movieNfoFiles.end(), DataFile::lessThan);
-        qSort(m_moviePosterFiles.begin(), m_moviePosterFiles.end(), DataFile::lessThan);
-        qSort(m_movieFanartFiles.begin(), m_movieFanartFiles.end(), DataFile::lessThan);
-        qSort(m_tvShowPosterFiles.begin(), m_tvShowPosterFiles.end(), DataFile::lessThan);
-        qSort(m_tvShowBannerFiles.begin(), m_tvShowBannerFiles.end(), DataFile::lessThan);
-
-        QList<DataFile*> files;
-        files << m_movieNfoFiles << m_moviePosterFiles << m_movieFanartFiles << m_tvShowPosterFiles << m_tvShowBannerFiles;
-        m_settings.beginWriteArray("DataFiles");
-        int i=0;
-        foreach (DataFile *file, files) {
-            m_settings.setArrayIndex(i++);
-            m_settings.setValue("id", file->id());
-            m_settings.setValue("pos", file->pos());
-            m_settings.setValue("enabled", file->enabled());
-        }
-        m_settings.endArray();
-    }
-
-    m_xbmcMysqlHost      = ui->inputHost->text();
-    m_xbmcMysqlDatabase  = ui->inputDatabase->text();
-    m_xbmcMysqlUser      = ui->inputUsername->text();
-    m_xbmcMysqlPassword  = ui->inputPassword->text();
-    m_xbmcSqliteDatabase = ui->inputSqliteDatabase->text();
-    m_youtubePluginUrls  = ui->useYoutubePluginUrls->isChecked();
-
-    m_settings.setValue("XbmcMysql/Host", m_xbmcMysqlHost);
-    m_settings.setValue("XbmcMysql/Database", m_xbmcMysqlDatabase);
-    m_settings.setValue("XbmcMysql/User", m_xbmcMysqlUser);
-    m_settings.setValue("XbmcMysql/Password", m_xbmcMysqlPassword);
-    m_settings.setValue("XbmcSqlite/Database", m_xbmcSqliteDatabase);
-    m_settings.setValue("MediaCenterInterface", m_mediaCenterInterface);
-    m_settings.setValue("XbmcThumbnailpath", m_xbmcThumbnailPath);
-    m_settings.setValue("UseYoutubePluginURLs", m_youtubePluginUrls);
-
-    Manager::instance()->movieFileSearcher()->setMovieDirectories(movieDirectories());
-    Manager::instance()->tvShowFileSearcher()->setMovieDirectories(tvShowDirectories());
-    Manager::instance()->concertFileSearcher()->setConcertDirectories(concertDirectories());
-    MessageBox::instance()->showMessage(tr("Settings saved"));
-
-    Manager::instance()->setupMediaCenterInterface();
-    if (mediaInterfaceChanged) {
-        // TvShow File Searcher and concert file searcher are started when Movie File Searcher has finished @see MainWindow.cpp
-        Manager::instance()->movieFileSearcher()->start();
-    }
-}
-
-/**
- * @brief Adds a movie directory
- * @param dir Directory to add
- */
-void Settings::addMovieDir(QString dir)
-{
-    dir = QDir::toNativeSeparators(dir);
-    if (!dir.isEmpty()) {
-        bool exists = false;
-        for (int i=0, n=m_movieDirectories.count() ; i<n ; ++i) {
-            if (m_movieDirectories.at(i).path == dir)
-                exists = true;
-        }
-
-        if (!exists) {
-            SettingsDir sDir;
-            sDir.path = dir;
-            m_movieDirectories.append(sDir);
-            int row = ui->movieDirs->rowCount();
-            ui->movieDirs->insertRow(row);
-            QTableWidgetItem *item = new QTableWidgetItem(dir);
-            item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-            item->setToolTip(dir);
-            QTableWidgetItem *itemCheck = new QTableWidgetItem();
-            itemCheck->setCheckState(Qt::Unchecked);
-            ui->movieDirs->setItem(row, 0, item);
-            ui->movieDirs->setItem(row, 1, new QTableWidgetItem(""));
-            ui->movieDirs->setItem(row, 2, itemCheck);
-        }
-    }
-}
-
-/**
- * @brief Removes a movie directory
- */
-void Settings::removeMovieDir()
-{
-    int row = ui->movieDirs->currentRow();
-    if (row < 0)
-        return;
-
-    m_movieDirectories.removeAt(row);
-    ui->movieDirs->removeRow(row);
-}
-
-/**
- * @brief Enables/disables the button to remove a movie dir
- * @param currentRow Current row in the movie list
- */
-void Settings::movieListRowChanged(int currentRow)
-{
-    ui->buttonRemoveMovieDir->setDisabled(currentRow < 0);
-}
-
-/**
- * @brief Adds a tv show dir
- * @param dir Directory to add
- */
-void Settings::addTvShowDir(QString dir)
-{
-    dir = QDir::toNativeSeparators(dir);
-    if (!dir.isEmpty()) {
-        bool exists = false;
-        for (int i=0, n=m_tvShowDirectories.count() ; i<n ; ++i) {
-            if (m_tvShowDirectories.at(i).path == dir)
-                exists = true;
-        }
-
-        if (!exists) {
-            SettingsDir sDir;
-            sDir.path = dir;
-            m_tvShowDirectories.append(sDir);
-            int row = ui->tvShowDirs->rowCount();
-            ui->tvShowDirs->insertRow(row);
-            QTableWidgetItem *item = new QTableWidgetItem(dir);
-            item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-            item->setToolTip(dir);
-            ui->tvShowDirs->setItem(row, 0, item);
-            ui->tvShowDirs->setItem(row, 1, new QTableWidgetItem(""));
-        }
-    }
-}
-
-/**
- * @brief Removes a tv show dir
- */
-void Settings::removeTvShowDir()
-{
-    int row = ui->tvShowDirs->currentRow();
-    if (row<0)
-        return;
-
-    m_tvShowDirectories.removeAt(row);
-    ui->tvShowDirs->removeRow(row);
-}
-
-/**
- * @brief Enables/Disables the button to remove a tv show dir
- * @param currentRow Current selected row in the list of tv show dirs
- */
-void Settings::tvShowListRowChanged(int currentRow)
-{
-    ui->buttonRemoveTvShowDir->setDisabled(currentRow < 0);
-}
-
-/**
- * @brief Adds a concert directory
- * @param dir Directory to add
- */
-void Settings::addConcertDir(QString dir)
-{
-    dir = QDir::toNativeSeparators(dir);
-    if (!dir.isEmpty()) {
-        bool exists = false;
-        for (int i=0, n=m_concertDirectories.count() ; i<n ; ++i) {
-            if (m_concertDirectories.at(i).path == dir)
-                exists = true;
-        }
-
-        if (!exists) {
-            SettingsDir sDir;
-            sDir.path = dir;
-            m_concertDirectories.append(sDir);
-            int row = ui->concertDirs->rowCount();
-            ui->concertDirs->insertRow(row);
-            QTableWidgetItem *item = new QTableWidgetItem(dir);
-            item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-            item->setToolTip(dir);
-            QTableWidgetItem *itemCheck = new QTableWidgetItem();
-            itemCheck->setCheckState(Qt::Unchecked);
-            ui->concertDirs->setItem(row, 0, item);
-            ui->concertDirs->setItem(row, 1, new QTableWidgetItem(""));
-            ui->concertDirs->setItem(row, 2, itemCheck);
-        }
-    }
-}
-
-/**
- * @brief Removes a concert directory
- */
-void Settings::removeConcertDir()
-{
-    int row = ui->concertDirs->currentRow();
-    if (row < 0)
-        return;
-
-    m_concertDirectories.removeAt(row);
-    ui->concertDirs->removeRow(row);
-}
-
-/**
- * @brief Enables/disables the button to remove a concert dir
- * @param currentRow Current row in the concert list
- */
-void Settings::concertListRowChanged(int currentRow)
-{
-    ui->buttonRemoveConcertDir->setDisabled(currentRow < 0);
-}
-
-
-/**
- * @brief Stores the values from the list for movie directories
- * @param item Current item
- */
-void Settings::movieMediaCenterPathChanged(QTableWidgetItem *item)
-{
-    if (item->row() < 0 || item->row() >= m_movieDirectories.count())
-        return;
-
-    if (item->column() == 1)
-        m_movieDirectories[item->row()].mediaCenterPath = item->text();
-    else if (item->column() == 2)
-        m_movieDirectories[item->row()].separateFolders = item->checkState() == Qt::Checked;
-}
-
-/**
- * @brief Stores the values from the list for tv show directories
- * @param item Current item
- */
-void Settings::tvShowMediaCenterPathChanged(QTableWidgetItem *item)
-{
-    if (item->row() < 0 || item->row() >= m_tvShowDirectories.count() || item->column() != 1)
-        return;
-    m_tvShowDirectories[item->row()].mediaCenterPath = item->text();
-}
-
-/**
- * @brief Stores the values from the list for concert directories
- * @param item Current item
- */
-void Settings::concertMediaCenterPathChanged(QTableWidgetItem *item)
-{
-    if (item->row() < 0 || item->row() >= m_concertDirectories.count())
-        return;
-
-    if (item->column() == 1)
-        m_concertDirectories[item->row()].mediaCenterPath = item->text();
-    else if (item->column() == 2)
-        m_concertDirectories[item->row()].separateFolders = item->checkState() == Qt::Checked;
-}
-
-/**
- * @brief Handles status of MediaCenter checkboxes and inputs
- */
-void Settings::onMediaCenterXbmcXmlSelected()
-{
-    ui->radioXbmcXml->setChecked(true);
-    ui->widgetXbmcXmlFiles->setVisible(true);
-    ui->widgetXbmcMysql->setVisible(false);
-    ui->widgetXbmcSqlite->setVisible(false);
-    setXbmcThumbnailPathEnabled(false);
-}
-
-/**
- * @brief Handles status of MediaCenter checkboxes and inputs
- */
-void Settings::onMediaCenterXbmcMysqlSelected()
-{
-    ui->radioXbmcMysql->setChecked(true);
-    ui->widgetXbmcXmlFiles->setVisible(false);
-    ui->widgetXbmcMysql->setVisible(true);
-    ui->widgetXbmcSqlite->setVisible(false);
-    setXbmcThumbnailPathEnabled(true);
-}
-
-/**
- * @brief Handles status of MediaCenter checkboxes and inputs
- */
-void Settings::onMediaCenterXbmcSqliteSelected()
-{
-    ui->radioXbmcSqlite->setChecked(true);
-    ui->widgetXbmcXmlFiles->setVisible(false);
-    ui->widgetXbmcMysql->setVisible(false);
-    ui->widgetXbmcSqlite->setVisible(true);
-    setXbmcThumbnailPathEnabled(true);
-}
-
-/**
- * @brief Sets the SQLite database
- * @param file Database file
- */
-void Settings::onChooseMediaCenterXbmcSqliteDatabase(QString file)
-{
-    if (!file.isEmpty()) {
-        ui->inputSqliteDatabase->setText(file);
-        m_xbmcSqliteDatabase = file;
-    }
-}
-
-/**
- * @brief Shows a dialog to choose the thumbnail directory
- * @param dir Thumbnail directory to set
- */
-void Settings::onChooseXbmcThumbnailPath(QString dir)
-{
-    if (!dir.isEmpty()) {
-        m_xbmcThumbnailPath = dir;
-        ui->inputThumbnailPath->setText(dir);
-        ui->inputThumbnailPath->setToolTip(dir);
-    }
-}
-
-/**
- * @brief Enables or disables the thumbnail path
- * @param enabled Status
- */
-void Settings::setXbmcThumbnailPathEnabled(bool enabled)
-{
-    ui->inputThumbnailPath->setVisible(enabled);
-    ui->buttonSelectThumbnailPath->setVisible(enabled);
-    ui->labelXbmcThumbnailPath->setVisible(enabled);
-    ui->labelXbmcThumbnailPathDesc->setVisible(enabled);
-}
-
-/**
- * @brief Toggles the status of logfile input and logfile select button based on the state of the checkbox
- */
-void Settings::onActivateDebugMode()
-{
-    ui->logfilePath->setEnabled(ui->chkActivateDebug->isChecked());
-    ui->buttonChooseLogfile->setEnabled(ui->chkActivateDebug->isChecked());
-    m_debugModeActivated = ui->chkActivateDebug->isChecked();
-}
-
-/**
- * @brief Sets the path to the logfile
- */
-void Settings::onDebugLogPathChosen(QString file)
-{
-    file = QDir::toNativeSeparators(file);
-    ui->logfilePath->setText(file);
+    m_settings.endArray();
 }
 
 /*** GETTER ***/
@@ -1111,6 +518,78 @@ QList<DataFile*> Settings::enabledConcertFanartFiles()
     return files;
 }
 
+/**
+ * @brief Returns a list of all DataFiles for movie nfos.
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::movieNfoFiles()
+{
+    return m_movieNfoFiles;
+}
+
+/**
+ * @brief Returns a list of all DataFiles for movie posters.
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::moviePosterFiles()
+{
+    return m_moviePosterFiles;
+}
+
+/**
+ * @brief Returns a list of all DataFiles for movie fanarts.
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::movieFanartFiles()
+{
+    return m_movieFanartFiles;
+}
+
+/**
+ * @brief Returns a list of all DataFiles for tv show posters.
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::tvShowPosterFiles()
+{
+    return m_tvShowPosterFiles;
+}
+
+/**
+ * @brief Returns a list of all DataFiles for tv show banners.
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::tvShowBannerFiles()
+{
+    return m_tvShowBannerFiles;
+}
+
+/**
+ * @brief Returns a list of all DataFiles for concert nfos.
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::concertNfoFiles()
+{
+    return m_concertNfoFiles;
+}
+
+/**
+ * @brief Returns a list of all DataFiles for concert posters.
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::concertPosterFiles()
+{
+    return m_concertPosterFiles;
+}
+
+/**
+ * @brief Returns a list of all DataFiles for concert fanarts.
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::concertFanartFiles()
+{
+    return m_concertFanartFiles;
+}
+
 /*** SETTER ***/
 
 /**
@@ -1174,11 +653,181 @@ void Settings::setConcertSplitterState(QByteArray state)
 }
 
 /**
- * @brief Sets the path to the logfile
- * @param path Path to logfile
+ * @brief Sets the movie directories
+ * @param dirs Dirs to set
  */
-void Settings::onSetDebugLogPath(QString path)
+void Settings::setMovieDirectories(QList<SettingsDir> dirs)
+{
+    m_movieDirectories = dirs;
+}
+
+/**
+ * @brief Sets the tv show directories
+ * @param dirs Dirs to set
+ */
+void Settings::setTvShowDirectories(QList<SettingsDir> dirs)
+{
+    m_tvShowDirectories = dirs;
+}
+
+/**
+ * @brief Sets the concert directories
+ * @param dirs Dirs to set
+ */
+void Settings::setConcertDirectories(QList<SettingsDir> dirs)
+{
+    m_concertDirectories = dirs;
+}
+
+/**
+ * @brief Sets the path to the xbmc sqlite database
+ * @param file Database file
+ */
+void Settings::setXbmcSqliteDatabase(QString file)
+{
+    m_xbmcSqliteDatabase = file;
+}
+
+/**
+ * @brief Sets the path to the xbmc thumbnails
+ * @param path Path to thumbnails
+ */
+void Settings::setXbmcThumbnailPath(QString path)
+{
+    m_xbmcThumbnailPath = path;
+}
+
+/**
+ * @brief Sets state of debug mode
+ * @param enabled
+ */
+void Settings::setDebugModeActivated(bool enabled)
+{
+    m_debugModeActivated = enabled;
+}
+
+/**
+ * @brief Sets the path to the logfile
+ * @param path Path to log file
+ */
+void Settings::setDebugLogPath(QString path)
 {
     m_debugLogPath = path;
-    m_logFileDialog->selectFile(m_debugLogPath);
+}
+
+/**
+ * @brief Sets the mysql host
+ * @param host
+ */
+void Settings::setXbmcMysqlHost(QString host)
+{
+    m_xbmcMysqlHost = host;
+}
+
+/**
+ * @brief Sets the mysql database
+ * @param db
+ */
+void Settings::setXbmcMysqlDatabase(QString db)
+{
+    m_xbmcMysqlDatabase = db;
+}
+
+/**
+ * @brief Sets the mysql user
+ * @param user
+ */
+void Settings::setXbmcMysqlUser(QString user)
+{
+    m_xbmcMysqlUser = user;
+}
+
+/**
+ * @brief Sets the mysql password
+ * @param password
+ */
+void Settings::setXbmcMysqlPassword(QString password)
+{
+    m_xbmcMysqlPassword = password;
+}
+
+/**
+ * @brief Convert trailer urls to youtube plugin format
+ * @param use
+ */
+void Settings::setUseYoutubePluginUrls(bool use)
+{
+    m_youtubePluginUrls = use;
+}
+
+/**
+ * @brief Sets the movie nfo files
+ * @param files List of DataFile Objects
+ */
+void Settings::setMovieNfoFiles(QList<DataFile*> files)
+{
+    m_movieNfoFiles = files;
+}
+
+/**
+ * @brief Sets the movie poster files
+ * @param files List of DataFile Objects
+ */
+void Settings::setMoviePosterFiles(QList<DataFile*> files)
+{
+    m_moviePosterFiles = files;
+}
+
+/**
+ * @brief Sets the movie fanart files
+ * @param files List of DataFile Objects
+ */
+void Settings::setMovieFanartFiles(QList<DataFile*> files)
+{
+    m_movieFanartFiles = files;
+}
+
+/**
+ * @brief Sets the tv show poster files
+ * @param files List of DataFile Objects
+ */
+void Settings::setTvShowPosterFiles(QList<DataFile*> files)
+{
+    m_tvShowPosterFiles = files;
+}
+
+/**
+ * @brief Sets the tv show banner files
+ * @param files List of DataFile Objects
+ */
+void Settings::setTvShowBannerFiles(QList<DataFile*> files)
+{
+    m_tvShowBannerFiles = files;
+}
+
+/**
+ * @brief Sets the concert nfo files
+ * @param files List of DataFile Objects
+ */
+void Settings::setConcertNfoFiles(QList<DataFile*> files)
+{
+    m_concertNfoFiles = files;
+}
+
+/**
+ * @brief Sets the concert poster files
+ * @param files List of DataFile Objects
+ */
+void Settings::setConcertPosterFiles(QList<DataFile*> files)
+{
+    m_concertPosterFiles = files;
+}
+
+/**
+ * @brief Sets the concert fanart files
+ * @param files List of DataFile Objects
+ */
+void Settings::setConcertFanartFiles(QList<DataFile*> files)
+{
+    m_concertFanartFiles = files;
 }

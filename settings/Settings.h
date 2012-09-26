@@ -1,31 +1,23 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#include <QFileDialog>
+#include <QObject>
+#include <QPoint>
 #include <QSettings>
-#include <QTableWidgetItem>
-#include <QWidget>
+#include <QSize>
 
 #include "globals/Globals.h"
 #include "settings/DataFile.h"
 
-namespace Ui {
-class Settings;
-}
-
-/**
- * @brief The Settings class stores all MediaElch settings and displays the settings widget.
- */
-class Settings : public QWidget
+class Settings : public QObject
 {
     Q_OBJECT
-
 public:
-    explicit Settings(QWidget *parent = 0);
-    ~Settings();
+    explicit Settings(QObject *parent = 0);
 
-    static Settings *instance();
+    static Settings *instance(QObject *parent = 0);
     void loadSettings();
+
     QSize mainWindowSize();
     QPoint mainWindowPosition();
     QByteArray movieSplitterState();
@@ -45,6 +37,14 @@ public:
     bool debugModeActivated();
     QString debugLogPath();
     bool useYoutubePluginUrls();
+    QList<DataFile*> movieNfoFiles();
+    QList<DataFile*> moviePosterFiles();
+    QList<DataFile*> movieFanartFiles();
+    QList<DataFile*> tvShowPosterFiles();
+    QList<DataFile*> tvShowBannerFiles();
+    QList<DataFile*> concertNfoFiles();
+    QList<DataFile*> concertPosterFiles();
+    QList<DataFile*> concertFanartFiles();
     QList<DataFile*> enabledMovieNfoFiles();
     QList<DataFile*> enabledMoviePosterFiles();
     QList<DataFile*> enabledMovieFanartFiles();
@@ -60,35 +60,34 @@ public:
     void setTvShowSplitterState(QByteArray state);
     void setMovieSetsSplitterState(QByteArray state);
     void setConcertSplitterState(QByteArray state);
+    void setMovieDirectories(QList<SettingsDir> dirs);
+    void setTvShowDirectories(QList<SettingsDir> dirs);
+    void setConcertDirectories(QList<SettingsDir> dirs);
+    void setXbmcMysqlHost(QString host);
+    void setXbmcMysqlDatabase(QString db);
+    void setXbmcMysqlUser(QString user);
+    void setXbmcMysqlPassword(QString password);
+    void setUseYoutubePluginUrls(bool use);
+    void setXbmcSqliteDatabase(QString file);
+    void setXbmcThumbnailPath(QString path);
+    void setDebugModeActivated(bool enabled);
+    void setDebugLogPath(QString path);
+    void setMovieNfoFiles(QList<DataFile*> files);
+    void setMoviePosterFiles(QList<DataFile*> files);
+    void setMovieFanartFiles(QList<DataFile*> files);
+    void setTvShowPosterFiles(QList<DataFile*> files);
+    void setTvShowBannerFiles(QList<DataFile*> files);
+    void setConcertNfoFiles(QList<DataFile*> files);
+    void setConcertPosterFiles(QList<DataFile*> files);
+    void setConcertFanartFiles(QList<DataFile*> files);
 
 public slots:
     void saveSettings();
 
-private slots:
-    void addMovieDir(QString dir);
-    void removeMovieDir();
-    void movieListRowChanged(int currentRow);
-    void addTvShowDir(QString dir);
-    void removeTvShowDir();
-    void tvShowListRowChanged(int currentRow);
-    void addConcertDir(QString dir);
-    void removeConcertDir();
-    void concertListRowChanged(int currentRow);
-    void movieMediaCenterPathChanged(QTableWidgetItem *item);
-    void tvShowMediaCenterPathChanged(QTableWidgetItem *item);
-    void concertMediaCenterPathChanged(QTableWidgetItem *item);
-    void onMediaCenterXbmcXmlSelected();
-    void onMediaCenterXbmcMysqlSelected();
-    void onMediaCenterXbmcSqliteSelected();
-    void onChooseMediaCenterXbmcSqliteDatabase(QString file);
-    void onChooseXbmcThumbnailPath(QString dir);
-    void onDebugLogPathChosen(QString file);
-    void onActivateDebugMode();
-    void onSetDebugLogPath(QString path);
-
 private:
-    Ui::Settings *ui;
+    static Settings *m_instance;
     QSettings m_settings;
+
     QList<SettingsDir> m_movieDirectories;
     QList<SettingsDir> m_tvShowDirectories;
     QList<SettingsDir> m_concertDirectories;
@@ -107,13 +106,6 @@ private:
     QString m_xbmcThumbnailPath;
     bool m_debugModeActivated;
     QString m_debugLogPath;
-    static Settings *m_instance;
-    QFileDialog *m_logFileDialog;
-    QFileDialog *m_movieDirDialog;
-    QFileDialog *m_tvShowDirDialog;
-    QFileDialog *m_concertDirDialog;
-    QFileDialog *m_xbmcThumbnailDirDialog;
-    QFileDialog *m_xbmcSqliteDatabaseDialog;
     bool m_youtubePluginUrls;
     QList<DataFile*> m_movieNfoFiles;
     QList<DataFile*> m_moviePosterFiles;
@@ -124,7 +116,6 @@ private:
     QList<DataFile*> m_tvShowPosterFiles;
     QList<DataFile*> m_tvShowBannerFiles;
 
-    void setXbmcThumbnailPathEnabled(bool enabled);
 };
 
 #endif // SETTINGS_H

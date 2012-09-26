@@ -65,7 +65,6 @@ SOURCES += main.cpp\
     globals/Helper.cpp \
     smallWidgets/MyTreeView.cpp \
     data/MovieDelegate.cpp \
-    settings/Settings.cpp \
     globals/ImageDialog.cpp \
     settings/DataFile.cpp \
     data/ConcertFileSearcher.cpp \
@@ -76,7 +75,10 @@ SOURCES += main.cpp\
     concerts/ConcertWidget.cpp \
     concerts/ConcertSearch.cpp \
     concerts/ConcertFilesWidget.cpp \
-    scrapers/TMDbConcerts.cpp
+    scrapers/TMDbConcerts.cpp \
+    cli/CLI.cpp \
+    settings/SettingsWidget.cpp \
+    settings/Settings.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -126,7 +128,6 @@ HEADERS  += main/MainWindow.h \
     globals/Helper.h \
     smallWidgets/MyTreeView.h \
     data/MovieDelegate.h \
-    settings/Settings.h \
     globals/ImageDialog.h \
     settings/DataFile.h \
     data/ConcertFileSearcher.h \
@@ -138,7 +139,10 @@ HEADERS  += main/MainWindow.h \
     concerts/ConcertWidget.h \
     concerts/ConcertSearch.h \
     concerts/ConcertFilesWidget.h \
-    scrapers/TMDbConcerts.h
+    scrapers/TMDbConcerts.h \
+    cli/CLI.h \
+    settings/SettingsWidget.h \
+    settings/Settings.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -157,11 +161,11 @@ FORMS    += main/MainWindow.ui \
     globals/ImagePreviewDialog.ui \
     sets/SetsWidget.ui \
     sets/MovieListDialog.ui \
-    settings/Settings.ui \
     globals/ImageDialog.ui \
     concerts/ConcertWidget.ui \
     concerts/ConcertSearch.ui \
-    concerts/ConcertFilesWidget.ui
+    concerts/ConcertFilesWidget.ui \
+    settings/SettingsWidget.ui
 
 RESOURCES += \
     MediaElch.qrc
