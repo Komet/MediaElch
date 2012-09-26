@@ -1,11 +1,13 @@
 #ifndef SETTINGSWIDGET_H
 #define SETTINGSWIDGET_H
 
+#include <QComboBox>
 #include <QFileDialog>
 #include <QSettings>
 #include <QTableWidgetItem>
 #include <QWidget>
 
+#include "data/ScraperInterface.h"
 #include "globals/Globals.h"
 #include "settings/DataFile.h"
 #include "settings/Settings.h"
@@ -63,6 +65,9 @@ private:
     QFileDialog *m_concertDirDialog;
     QFileDialog *m_xbmcThumbnailDirDialog;
     QFileDialog *m_xbmcSqliteDatabaseDialog;
+    QMap<ScraperInterface*, QComboBox*> m_scraperCombos;
+    QMap<TvScraperInterface*, QComboBox*> m_tvScraperCombos;
+    QMap<ConcertScraperInterface*, QComboBox*> m_concertScraperCombos;
 
     void setXbmcThumbnailPathEnabled(bool enabled);
 };

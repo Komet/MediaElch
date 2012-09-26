@@ -24,7 +24,9 @@ public:
     bool hasSettings();
     void loadSettings();
     void saveSettings();
-    QWidget* settingsWidget();
+    QMap<QString, QString> languages();
+    QString language();
+    void setLanguage(QString language);
 
 signals:
     void sigSearchDone(QList<ScraperSearchResult>);
@@ -40,7 +42,6 @@ private slots:
 private:
     QString m_apiKey;
     QString m_language;
-    QComboBox *m_settingsLanguageCombo;
     QNetworkAccessManager m_qnam;
     QNetworkReply *m_mirrorsReply;
     QNetworkReply *m_searchReply;

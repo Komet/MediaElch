@@ -303,10 +303,29 @@ void VideoBuster::saveSettings()
 }
 
 /**
- * @brief Constructs a widget with scrapers settings
- * @return Settings Widget
+ * @brief VideoBuster::languages
+ * @return
  */
-QWidget* VideoBuster::settingsWidget()
+QMap<QString, QString> VideoBuster::languages()
 {
-    return 0;
+    QMap<QString, QString> m;
+    return m;
+}
+
+/**
+ * @brief language
+ * @return
+ */
+QString VideoBuster::language()
+{
+    return QString();
+}
+
+/**
+ * @brief VideoBuster::setLanguage
+ * @param language
+ */
+void VideoBuster::setLanguage(QString language)
+{
+    Q_UNUSED(language);
 }

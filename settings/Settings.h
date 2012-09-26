@@ -80,6 +80,7 @@ public:
     void setConcertNfoFiles(QList<DataFile*> files);
     void setConcertPosterFiles(QList<DataFile*> files);
     void setConcertFanartFiles(QList<DataFile*> files);
+    void setMediaCenterInterface(int interface);
 
 public slots:
     void saveSettings();

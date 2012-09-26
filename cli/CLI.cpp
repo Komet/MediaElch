@@ -110,27 +110,32 @@ bool CLI::parseArguments(QStringList arguments)
 
     if (m_file.isEmpty()) {
         qWarning() << tr("No file given");
+        showHelp();
         return false;
     }
 
     if (m_scraper.isEmpty()) {
         qWarning() << tr("No scraper given");
+        showHelp();
         return false;
     }
 
     if (m_scraper != "tmdb") {
         qWarning() << tr("Unsupported scraper \"%1\"").arg(m_scraper);
+        showHelp();
         return false;
     }
 
     if (searchTermSet && m_searchTerm.isEmpty()) {
         qWarning() << tr("Search term given but empty");
+        showHelp();
         return false;
     }
 
     QFileInfo fi(m_file);
     if (!fi.isFile()) {
         qWarning() << tr("File \"%1\" does not exist").arg(m_file);
+        showHelp();
         return false;
     }
 

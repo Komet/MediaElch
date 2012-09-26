@@ -56,15 +56,6 @@ void OFDb::saveSettings()
 }
 
 /**
- * @brief Constructs a widget with scrapers settings
- * @return Settings Widget
- */
-QWidget *OFDb::settingsWidget()
-{
-    return 0;
-}
-
-/**
  * @brief Just returns a pointer to the scrapers network access manager
  * @return Network Access Manager
  */
@@ -298,4 +289,32 @@ void OFDb::parseAndAssignInfos(QString data, Movie *movie, QList<int> infos)
             xml.skipCurrentElement();
         }
     }
+}
+
+/**
+ * @brief OFDb::languages
+ * @return
+ */
+QMap<QString, QString> OFDb::languages()
+{
+    QMap<QString, QString> m;
+    return m;
+}
+
+/**
+ * @brief language
+ * @return
+ */
+QString OFDb::language()
+{
+    return QString();
+}
+
+/**
+ * @brief OFDb::setLanguage
+ * @param language
+ */
+void OFDb::setLanguage(QString language)
+{
+    Q_UNUSED(language);
 }

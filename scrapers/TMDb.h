@@ -1,12 +1,10 @@
 #ifndef TMDB_H
 #define TMDB_H
 
-#include <QComboBox>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include <QMutex>
 #include <QObject>
-#include <QWidget>
 
 #include "data/ScraperInterface.h"
 
@@ -23,10 +21,12 @@ public:
     void search(QString searchStr);
     void loadData(QString id, Movie *movie, QList<int> infos);
     bool hasSettings();
-    QWidget *settingsWidget();
     void loadSettings();
     void saveSettings();
     QList<int> scraperSupports();
+    QMap<QString, QString> languages();
+    QString language();
+    void setLanguage(QString language);
 
 signals:
     void searchDone(QList<ScraperSearchResult>);
@@ -52,7 +52,6 @@ private:
     QNetworkReply *m_setupReply;
     Movie *m_currentMovie;
     QString m_currentId;
-    QComboBox *m_settingsLanguageCombo;
     QString m_language;
     QList<ScraperSearchResult> m_results;
     QString m_searchString;

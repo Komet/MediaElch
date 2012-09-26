@@ -4,12 +4,7 @@
 #include <QtScript/QScriptValue>
 #include <QtScript/QScriptValueIterator>
 #include <QtScript/QScriptEngine>
-#include <QComboBox>
-#include <QHBoxLayout>
-#include <QLabel>
 #include <QSettings>
-#include <QSpacerItem>
-#include <QVBoxLayout>
 
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -23,31 +18,6 @@ TMDbConcerts::TMDbConcerts(QObject *parent)
     setParent(parent);
     m_apiKey = "5d832bdf69dcb884922381ab01548d5b";
     m_language = "en";
-
-    m_settingsLanguageCombo = new QComboBox;
-    m_settingsLanguageCombo->addItem(tr("Chinese"), "zh");
-    m_settingsLanguageCombo->addItem(tr("Croatian"), "hr");
-    m_settingsLanguageCombo->addItem(tr("Czech"), "cs");
-    m_settingsLanguageCombo->addItem(tr("Danish"), "da");
-    m_settingsLanguageCombo->addItem(tr("Dutch"), "nl");
-    m_settingsLanguageCombo->addItem(tr("English"), "en");
-    m_settingsLanguageCombo->addItem(tr("Finnish"), "fi");
-    m_settingsLanguageCombo->addItem(tr("French"), "fr");
-    m_settingsLanguageCombo->addItem(tr("German"), "de");
-    m_settingsLanguageCombo->addItem(tr("Greek"), "el");
-    m_settingsLanguageCombo->addItem(tr("Hebrew"), "he");
-    m_settingsLanguageCombo->addItem(tr("Hungarian"), "hu");
-    m_settingsLanguageCombo->addItem(tr("Italian"), "it");
-    m_settingsLanguageCombo->addItem(tr("Japanese"), "ja");
-    m_settingsLanguageCombo->addItem(tr("Korean"), "ko");
-    m_settingsLanguageCombo->addItem(tr("Norwegian"), "no");
-    m_settingsLanguageCombo->addItem(tr("Polish"), "pl");
-    m_settingsLanguageCombo->addItem(tr("Portuguese"), "pt");
-    m_settingsLanguageCombo->addItem(tr("Russian"), "ru");
-    m_settingsLanguageCombo->addItem(tr("Slovene"), "sl");
-    m_settingsLanguageCombo->addItem(tr("Spanish"), "es");
-    m_settingsLanguageCombo->addItem(tr("Swedish"), "sv");
-    m_settingsLanguageCombo->addItem(tr("Turkish"), "tr");
 
     m_scraperSupports << ConcertScraperInfos::Title
                       << ConcertScraperInfos::Tagline
@@ -67,6 +37,59 @@ TMDbConcerts::TMDbConcerts(QObject *parent)
 
 TMDbConcerts::~TMDbConcerts()
 {
+}
+
+/**
+ * @brief languages
+ * @return
+ */
+QMap<QString, QString> TMDbConcerts::languages()
+{
+    QMap<QString, QString> m;
+
+    m.insert(tr("Chinese"), "zh");
+    m.insert(tr("Croatian"), "hr");
+    m.insert(tr("Czech"), "cs");
+    m.insert(tr("Danish"), "da");
+    m.insert(tr("Dutch"), "nl");
+    m.insert(tr("English"), "en");
+    m.insert(tr("Finnish"), "fi");
+    m.insert(tr("French"), "fr");
+    m.insert(tr("German"), "de");
+    m.insert(tr("Greek"), "el");
+    m.insert(tr("Hebrew"), "he");
+    m.insert(tr("Hungarian"), "hu");
+    m.insert(tr("Italian"), "it");
+    m.insert(tr("Japanese"), "ja");
+    m.insert(tr("Korean"), "ko");
+    m.insert(tr("Norwegian"), "no");
+    m.insert(tr("Polish"), "pl");
+    m.insert(tr("Portuguese"), "pt");
+    m.insert(tr("Russian"), "ru");
+    m.insert(tr("Slovene"), "sl");
+    m.insert(tr("Spanish"), "es");
+    m.insert(tr("Swedish"), "sv");
+    m.insert(tr("Turkish"), "tr");
+
+    return m;
+}
+
+/**
+ * @brief language
+ * @return
+ */
+QString TMDbConcerts::language()
+{
+    return m_language;
+}
+
+/**
+ * @brief TMDbConcerts::setLanguage
+ * @param language
+ */
+void TMDbConcerts::setLanguage(QString language)
+{
+    m_language = language;
 }
 
 /**
@@ -94,10 +117,6 @@ void TMDbConcerts::loadSettings()
 {
     QSettings settings;
     m_language = settings.value("Scrapers/TMDbConcerts/Language", "en").toString();
-    for (int i=0, n=m_settingsLanguageCombo->count() ; i<n ; i++) {
-        if (m_settingsLanguageCombo->itemData(i).toString() == m_language)
-            m_settingsLanguageCombo->setCurrentIndex(i);
-    }
 }
 
 /**
@@ -106,27 +125,7 @@ void TMDbConcerts::loadSettings()
 void TMDbConcerts::saveSettings()
 {
     QSettings settings;
-    m_language = m_settingsLanguageCombo->itemData(m_settingsLanguageCombo->currentIndex()).toString();
     settings.setValue("Scrapers/TMDbConcerts/Language", m_language);
-}
-
-/**
- * @brief Constructs a widget with scrapers settings
- * @return Settings Widget
- */
-QWidget *TMDbConcerts::settingsWidget()
-{
-    QWidget *widget = new QWidget;
-    m_settingsLanguageCombo->setParent(widget);
-    QLabel *label = new QLabel(tr("Language"), widget);
-    QHBoxLayout *hboxLayout = new QHBoxLayout(widget);
-    QSpacerItem *spacer = new QSpacerItem(1, 1, QSizePolicy::Expanding);
-    hboxLayout->addWidget(label);
-    hboxLayout->addWidget(m_settingsLanguageCombo);
-    hboxLayout->addSpacerItem(spacer);
-    widget->setLayout(hboxLayout);
-
-    return widget;
 }
 
 /**

@@ -23,7 +23,9 @@ public:
     virtual bool hasSettings() = 0;
     virtual void loadSettings() = 0;
     virtual void saveSettings() = 0;
-    virtual QWidget* settingsWidget() = 0;
+    virtual QMap<QString, QString> languages() = 0;
+    virtual QString language() = 0;
+    virtual void setLanguage(QString language) = 0;
 signals:
     virtual void sigSearchDone(QList<ScraperSearchResult>) = 0;
 };

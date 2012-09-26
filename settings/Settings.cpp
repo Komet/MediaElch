@@ -831,3 +831,12 @@ void Settings::setConcertFanartFiles(QList<DataFile*> files)
 {
     m_concertFanartFiles = files;
 }
+
+/**
+ * @brief Sets the MediaCenterInterface
+ * @param interface
+ */
+void Settings::setMediaCenterInterface(int interface)
+{
+    m_mediaCenterInterface = interface;
+}

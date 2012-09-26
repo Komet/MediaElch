@@ -56,15 +56,6 @@ void Cinefacts::saveSettings()
 }
 
 /**
- * @brief Constructs a widget with scrapers settings
- * @return Settings Widget
- */
-QWidget *Cinefacts::settingsWidget()
-{
-    return 0;
-}
-
-/**
  * @brief Just returns a pointer to the scrapers network access manager
  * @return Network Access Manager
  */
@@ -425,4 +416,32 @@ void Cinefacts::backdropSubFinished()
     }
     m_backdropSubReply->deleteLater();
     startNextBackdropDownload();
+}
+
+/**
+ * @brief Cinefacts::languages
+ * @return
+ */
+QMap<QString, QString> Cinefacts::languages()
+{
+    QMap<QString, QString> m;
+    return m;
+}
+
+/**
+ * @brief language
+ * @return
+ */
+QString Cinefacts::language()
+{
+    return QString();
+}
+
+/**
+ * @brief Cinefacts::setLanguage
+ * @param language
+ */
+void Cinefacts::setLanguage(QString language)
+{
+    Q_UNUSED(language);
 }
