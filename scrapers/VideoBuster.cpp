@@ -138,6 +138,7 @@ void VideoBuster::loadFinished()
         parseAndAssignInfos(msg, m_currentMovie, m_infosToLoad);
     } else {
         qWarning() << "Network Error" << m_loadReply->errorString();
+        m_currentMovie->scraperLoadDone();
     }
     m_loadReply->deleteLater();
 }
