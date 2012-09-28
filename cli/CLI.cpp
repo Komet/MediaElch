@@ -1,12 +1,20 @@
 #include "CLI.h"
+#include <QApplication>
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
 #include <QRegExp>
+#include <QTimer>
 
 #include "globals/DownloadManagerElement.h"
 #include "globals/Manager.h"
+#include "scrapers/VideoBuster.h"
 
+/**
+ * @brief CLI::CLI
+ * @param parent
+ * @param arguments Command line arguments
+ */
 CLI::CLI(QObject *parent, QStringList arguments) :
     QObject(parent)
 {
@@ -30,8 +38,12 @@ CLI::CLI(QObject *parent, QStringList arguments) :
 
     connect(m_downloadManager, SIGNAL(allDownloadsFinished()), this, SLOT(onDownloadsFinished()));
     connect(m_downloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onDownloadFinished(DownloadManagerElement)));
+    Manager::instance();
 }
 
+/**
+ * @brief Main CLI function.
+ */
 void CLI::run()
 {
     if (!parseArguments(m_arguments)) {
@@ -50,19 +62,25 @@ void CLI::run()
     }
 
     m_movie = new Movie(QStringList() << m_file, this);
-    m_tmdb = new TMDb(this);
-    m_tmdb->loadSettings();
+    m_scraper = Manager::instance()->getScraperForName(m_scraperName);
+    m_scraper->loadSettings();
 
-    connect(m_tmdb, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(onScraperSearchDone(QList<ScraperSearchResult>)));
+    connect(m_scraper, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(onScraperSearchDone(QList<ScraperSearchResult>)));
     connect(m_movie, SIGNAL(loaded(Movie*)), this, SLOT(onScraperLoadDone()));
 
     if (m_scraperId.isEmpty()) {
-        m_tmdb->search(searchTerm);
+        m_scraper->search(searchTerm);
     } else {
-        m_movie->loadData(m_scraperId, m_tmdb, m_infosToLoad);
+        m_movie->loadData(m_scraperId, m_scraper, m_infosToLoad);
     }
 }
 
+/**
+ * @brief This function parses the list of arguments and assigns them to local variables.
+ *        If an invalid argument was passed this function returns false.
+ * @param arguments List of command line arguments
+ * @return True if all arguments where ok, false if an error occured
+ */
 bool CLI::parseArguments(QStringList arguments)
 {
     // Remove path to app
@@ -87,7 +105,7 @@ bool CLI::parseArguments(QStringList arguments)
             continue;
         }
         if (rxScraper.indexIn(argument) != -1) {
-            m_scraper = rxScraper.cap(1);
+            m_scraperName = rxScraper.cap(1);
             continue;
         }
         if (rxScraperId.indexIn(argument) != -1) {
@@ -114,14 +132,14 @@ bool CLI::parseArguments(QStringList arguments)
         return false;
     }
 
-    if (m_scraper.isEmpty()) {
+    if (m_scraperName.isEmpty()) {
         qWarning() << tr("No scraper given");
         showHelp();
         return false;
     }
 
-    if (m_scraper != "tmdb") {
-        qWarning() << tr("Unsupported scraper \"%1\"").arg(m_scraper);
+    if (m_scraperName != "tmdb" && m_scraperName != "cinefacts" && m_scraperName != "videobuster" && m_scraperName != "ofdb") {
+        qWarning() << tr("Unsupported scraper \"%1\"").arg(m_scraperName);
         showHelp();
         return false;
     }
@@ -142,6 +160,11 @@ bool CLI::parseArguments(QStringList arguments)
     return true;
 }
 
+/**
+ * @brief Called when a movie scraper has finished searching.
+ *        Starts loading the first result
+ * @param results List of Results
+ */
 void CLI::onScraperSearchDone(QList<ScraperSearchResult> results)
 {
     if (results.count() == 0) {
@@ -149,9 +172,13 @@ void CLI::onScraperSearchDone(QList<ScraperSearchResult> results)
         emit finished();
         return;
     }
-    m_movie->loadData(results.first().id, m_tmdb, m_infosToLoad);
+    m_movie->loadData(results.first().id, m_scraper, m_infosToLoad);
 }
 
+/**
+ * @brief Called when a movie scraper has finished loading all data
+ *        Starts loading of images for poster, backdrop and actors
+ */
 void CLI::onScraperLoadDone()
 {
     QList<DownloadManagerElement> downloads;
@@ -183,6 +210,11 @@ void CLI::onScraperLoadDone()
     m_downloadManager->setDownloads(downloads);
 }
 
+/**
+ * @brief Called when a download has finished.
+ *        If the download was a poster or backdrop, the image is assigned to the movie
+ * @param elem Download element
+ */
 void CLI::onDownloadFinished(DownloadManagerElement elem)
 {
     if (elem.imageType == TypePoster)
@@ -191,19 +223,26 @@ void CLI::onDownloadFinished(DownloadManagerElement elem)
         m_movie->setBackdropImage(elem.image);
 }
 
+/**
+ * @brief When all downloads have finished this function tells the movie object to save
+ *        and emits the finished signal
+ */
 void CLI::onDownloadsFinished()
 {
     m_movie->saveData(Manager::instance()->mediaCenterInterface());
     emit finished();
 }
 
+/**
+ * @brief Prints the usage information
+ */
 void CLI::showHelp()
 {
     printf("\nUsage:\n\n");
     printf("MediaElch <args>\n\n");
     printf("  needed arguments:\n");
     printf("    --file=\"/path/to/file.mkv\"     The path to the movie file\n");
-    printf("    --scraper=tmdb                 Scraper to use, currently only The Movie Db is supported ;)\n\n");
+    printf("    --scraper=tmdb                 Scraper to use, one of tmdb, ofdb, cinefacts or videobuster\n\n");
     printf("  optional arguments:\n");
     printf("    --use-folder-name              Use the folder name for search instead of filename\n");
     printf("    --scraper-id=123               Movie id in the scraper\n");

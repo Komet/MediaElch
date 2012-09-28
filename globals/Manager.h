@@ -43,6 +43,7 @@ public:
     ConcertModel* concertModel();
     void setupMediaCenterInterface();
     void shutdownMediaCenterInterfaces();
+    ScraperInterface* getScraperForName(QString name);
 
 private:
     QList<MediaCenterInterface*> m_mediaCenters;

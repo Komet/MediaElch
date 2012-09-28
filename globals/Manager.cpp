@@ -247,3 +247,22 @@ TvShowProxyModel *Manager::tvShowProxyModel()
 {
     return m_tvShowProxyModel;
 }
+
+/**
+ * @brief Returns the scraper for the given identifier
+ * @param name Identifier of the scraper
+ * @return Scraper Interface
+ */
+ScraperInterface *Manager::getScraperForName(QString name)
+{
+    if (name == "ofdb") {
+        return m_scrapers.at(2);
+    } else if (name == "cinefacts") {
+        return m_scrapers.at(1);
+    } else if (name == "videobuster") {
+        return m_scrapers.at(3);
+    } else {
+        // default to TMDb
+        return m_scrapers.at(0);
+    }
+}

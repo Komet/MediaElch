@@ -5,10 +5,10 @@
 #include <QStringList>
 
 #include "data/Movie.h"
+#include "data/ScraperInterface.h"
 #include "globals/DownloadManager.h"
 #include "globals/DownloadManagerElement.h"
 #include "globals/Globals.h"
-#include "scrapers/TMDb.h"
 
 class CLI : public QObject
 {
@@ -31,12 +31,12 @@ private slots:
 private:
     QStringList m_arguments;
     QString m_file;
-    QString m_scraper;
+    QString m_scraperName;
     QString m_scraperId;
     QString m_searchTerm;
     bool m_useFolderName;
     Movie *m_movie;
-    TMDb *m_tmdb;
+    ScraperInterface *m_scraper;
     QList<int> m_infosToLoad;
     DownloadManager *m_downloadManager;
 
