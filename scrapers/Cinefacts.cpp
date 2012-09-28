@@ -384,6 +384,8 @@ void Cinefacts::posterSubFinished()
             rx.setPattern("<a rel=\"shadowbox\" href=\"/kino/plakat/([^\"]*)\"");
             if (rx.indexIn(msg) != -1)
                 p.originalUrl = QUrl(QString("http://www.cinefacts.de/kino/plakat/%1").arg(rx.cap(1)));
+            else
+                p.originalUrl = p.thumbUrl;
             m_currentMovie->addPoster(p);
         }
     } else {
@@ -409,6 +411,8 @@ void Cinefacts::backdropSubFinished()
             rx.setPattern("<a rel=\"shadowbox\" href=\"/kino/bild/([^\"]*)\"");
             if (rx.indexIn(msg) != -1)
                 p.originalUrl = QUrl(QString("http://www.cinefacts.de/kino/bild/%1").arg(rx.cap(1)));
+            else
+                p.originalUrl = p.thumbUrl;
             m_currentMovie->addBackdrop(p);
         }
     } else {
