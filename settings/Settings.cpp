@@ -87,6 +87,7 @@ void Settings::loadSettings()
         SettingsDir dir;
         dir.path = QDir::toNativeSeparators(m_settings.value("path").toString());
         dir.mediaCenterPath = m_settings.value("mediaCenterPath").toString();
+        dir.separateFolders = m_settings.value("sepFolders", false).toBool();
         m_tvShowDirectories.append(dir);
     }
     m_settings.endArray();

@@ -110,6 +110,10 @@ struct SettingsDir {
     bool separateFolders;
 };
 
+enum SettingsDirType {
+    DirTypeMovies, DirTypeTvShows, DirTypeConcerts
+};
+
 namespace ImageDialogType {
     const int MoviePoster     = 1;
     const int MovieBackdrop   = 2;

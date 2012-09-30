@@ -151,6 +151,39 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>CLI</name>
+    <message>
+        <location filename="../cli/CLI.cpp" line="124"/>
+        <source>Unknown command line argument &quot;%1&quot;</source>
+        <translation>Unbekanntes Argument &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <location filename="../cli/CLI.cpp" line="130"/>
+        <source>No file given</source>
+        <translation>Keine Datei übergeben</translation>
+    </message>
+    <message>
+        <location filename="../cli/CLI.cpp" line="136"/>
+        <source>No scraper given</source>
+        <translation>Kein Scraper gegeben</translation>
+    </message>
+    <message>
+        <location filename="../cli/CLI.cpp" line="142"/>
+        <source>Unsupported scraper &quot;%1&quot;</source>
+        <translation>Nicht unterstützter Scraper &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <location filename="../cli/CLI.cpp" line="148"/>
+        <source>Search term given but empty</source>
+        <translation>Leerer Suchbegriff übergeben</translation>
+    </message>
+    <message>
+        <location filename="../cli/CLI.cpp" line="155"/>
+        <source>File &quot;%1&quot; does not exist</source>
+        <translation>Datei &quot;%1&quot; existiert nicht</translation>
+    </message>
+</context>
+<context>
     <name>ConcertDelegate</name>
     <message>
         <location filename="../data/ConcertDelegate.cpp" line="32"/>
@@ -616,7 +649,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../main/MainWindow.ui" line="73"/>
         <location filename="../main/MainWindow.ui" line="119"/>
-        <location filename="../main/MainWindow.ui" line="165"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -636,50 +668,50 @@ p, li { white-space: pre-wrap; }
         <translation>Konzerte</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="159"/>
-        <location filename="../main/MainWindow.ui" line="336"/>
+        <location filename="../main/MainWindow.ui" line="312"/>
+        <location filename="../main/MainWindow.cpp" line="227"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="341"/>
-        <location filename="../main/MainWindow.cpp" line="253"/>
+        <location filename="../main/MainWindow.ui" line="317"/>
+        <location filename="../main/MainWindow.cpp" line="230"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="346"/>
-        <location filename="../main/MainWindow.cpp" line="252"/>
+        <location filename="../main/MainWindow.ui" line="322"/>
+        <location filename="../main/MainWindow.cpp" line="229"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="239"/>
+        <location filename="../main/MainWindow.cpp" line="214"/>
         <source>Search</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="241"/>
+        <location filename="../main/MainWindow.cpp" line="216"/>
         <source>Search (%1)</source>
         <translation>Suche (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="243"/>
+        <location filename="../main/MainWindow.cpp" line="218"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="245"/>
+        <location filename="../main/MainWindow.cpp" line="220"/>
         <source>Save (%1)</source>
         <translation>Speichern (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="247"/>
+        <location filename="../main/MainWindow.cpp" line="222"/>
         <source>Save All</source>
         <translation>Alle Speichern</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="250"/>
+        <location filename="../main/MainWindow.cpp" line="225"/>
         <source>Save All (%1)</source>
         <translation>Alle Speichern (%1)</translation>
     </message>
@@ -1228,12 +1260,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="59"/>
+        <location filename="../main.cpp" line="100"/>
         <source>Logfile could not be openened</source>
         <translation>Logdatei konnte nicht geöffnet werden</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="60"/>
+        <location filename="../main.cpp" line="101"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Die Logdatei %1 konnte nicht zum Schreiben geöffnet werden.</translation>
     </message>
@@ -1359,337 +1391,256 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../settings/Settings.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation type="obsolete">Form</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="154"/>
         <source>Global Settings</source>
-        <translation>Globale Einstellungen</translation>
+        <translation type="obsolete">Globale Einstellungen</translation>
     </message>
     <message>
         <source>Please restart MediaElch after saving if you changed the MediaCenter interface or added/removed directories.</source>
         <translation type="obsolete">Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="191"/>
         <source>Movies</source>
-        <translation>Filme</translation>
+        <translation type="obsolete">Filme</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="201"/>
         <source>Add one or more directories containing your movie files.</source>
-        <translation>Füge Verzeichnisse hinzu, die deine Filme enthalten.</translation>
+        <translation type="obsolete">Füge Verzeichnisse hinzu, die deine Filme enthalten.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="221"/>
-        <location filename="../settings/Settings.ui" line="315"/>
-        <location filename="../settings/Settings.ui" line="401"/>
-        <location filename="../settings/Settings.ui" line="1086"/>
         <source>Path</source>
-        <translation>Verzeichnis</translation>
+        <translation type="obsolete">Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="226"/>
-        <location filename="../settings/Settings.ui" line="320"/>
-        <location filename="../settings/Settings.ui" line="406"/>
         <source>MediaCenter Path</source>
-        <translation>MediaCenter Verzeichnis</translation>
+        <translation type="obsolete">MediaCenter Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="231"/>
-        <location filename="../settings/Settings.ui" line="411"/>
         <source>Sep. folders</source>
-        <translation>Sep. Verzeichnisse</translation>
+        <translation type="obsolete">Sep. Verzeichnisse</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="241"/>
-        <location filename="../settings/Settings.ui" line="330"/>
-        <location filename="../settings/Settings.ui" line="421"/>
         <source>Add</source>
-        <translation>Hinzufügen</translation>
+        <translation type="obsolete">Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="248"/>
-        <location filename="../settings/Settings.ui" line="337"/>
-        <location filename="../settings/Settings.ui" line="428"/>
         <source>Remove</source>
-        <translation>Entfernen</translation>
+        <translation type="obsolete">Entfernen</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="285"/>
         <source>TV Shows</source>
-        <translation>TV Serien</translation>
+        <translation type="obsolete">TV Serien</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="292"/>
         <source>Add one or more directories containing your TV Shows. Episodes have to be in subfolders with the name of the show.</source>
-        <translation>Füge Verzeichnisse hinzu, die deine Serien enthalten. Episoden müssen in Unterverzeichnissen mit dem Namen der Serie sein.</translation>
+        <translation type="obsolete">Füge Verzeichnisse hinzu, die deine Serien enthalten. Episoden müssen in Unterverzeichnissen mit dem Namen der Serie sein.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="374"/>
         <source>Concerts</source>
-        <translation>Konzerte</translation>
+        <translation type="obsolete">Konzerte</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="381"/>
         <source>Add one or more directories containing your concert or music video files.</source>
-        <translation>Füge Verzeichnisse hinzu, die deine Konzerte oder Musikvideo enthalten.</translation>
+        <translation type="obsolete">Füge Verzeichnisse hinzu, die deine Konzerte oder Musikvideo enthalten.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="465"/>
         <source>Debug</source>
-        <translation>Debug</translation>
+        <translation type="obsolete">Debug</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="472"/>
         <source>When debug mode is activated debug messages are written to logfile you set. Please use this option only if you encountered problems with MediaElch as the logfile can get very big. </source>
-        <translation>Wenn der Debug Modus aktiviert ist, werden Debug Ausgaben in die Logdatei geschrieben, die du angegeben hast. Bitte benutze diese Option nur, wenn du ein Problem mit MediaElch entdeckt hast, da die Logdatei schnell sehr groß werden kann.</translation>
+        <translation type="obsolete">Wenn der Debug Modus aktiviert ist, werden Debug Ausgaben in die Logdatei geschrieben, die du angegeben hast. Bitte benutze diese Option nur, wenn du ein Problem mit MediaElch entdeckt hast, da die Logdatei schnell sehr groß werden kann.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="482"/>
         <source>Activate debug mode</source>
-        <translation>Debug Modus aktivieren</translation>
+        <translation type="obsolete">Debug Modus aktivieren</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="491"/>
         <source>Logfile: </source>
-        <translation>Logdatei:</translation>
+        <translation type="obsolete">Logdatei:</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="514"/>
-        <location filename="../settings/Settings.ui" line="535"/>
         <source>Scrapers</source>
-        <translation>Scraper</translation>
+        <translation type="obsolete">Scraper</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="559"/>
         <source>MediaCenter</source>
-        <translation>MediaCenter</translation>
+        <translation type="obsolete">MediaCenter</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="596"/>
         <source>MediaCenter Interface</source>
-        <translation>MediaCenter Interface</translation>
+        <translation type="obsolete">MediaCenter Interface</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="603"/>
         <source>Select the MediaCenter to use.</source>
-        <translation>Wähle ein Interface zu deinem MediaCenter aus.</translation>
+        <translation type="obsolete">Wähle ein Interface zu deinem MediaCenter aus.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="610"/>
         <source>XBMC XML</source>
-        <translation>XBMC XML</translation>
+        <translation type="obsolete">XBMC XML</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="620"/>
         <source>Select the filenames you wish to use for loading and saving. Enable/disable them using the checkbox in front, set priorities through sorting with drag and drop.</source>
-        <translation>Wähle die Dateinamen aus, die du zum Speichern und Laden benutzen möchtest. Aktiviere/deaktiviere sie durch die Checkboxen vorne, setze die Priorität durch Sortieren per drag&apos;n&apos;drop.</translation>
+        <translation type="obsolete">Wähle die Dateinamen aus, die du zum Speichern und Laden benutzen möchtest. Aktiviere/deaktiviere sie durch die Checkboxen vorne, setze die Priorität durch Sortieren per drag&apos;n&apos;drop.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="640"/>
         <source>Movie NFO</source>
-        <translation>Film NFO</translation>
+        <translation type="obsolete">Film NFO</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="666"/>
         <source>&lt;movie filename&gt;.nfo</source>
-        <translation>&lt;movie filename&gt;.nfo</translation>
+        <translation type="obsolete">&lt;movie filename&gt;.nfo</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="674"/>
         <source>movie.nfo</source>
-        <translation>movie.nfo</translation>
+        <translation type="obsolete">movie.nfo</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="695"/>
         <source>Movie Posters</source>
-        <translation>Film Poster</translation>
+        <translation type="obsolete">Film Poster</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="721"/>
         <source>&lt;movie filename&gt;.tbn</source>
-        <translation>&lt;movie filename&gt;.tbn</translation>
+        <translation type="obsolete">&lt;movie filename&gt;.tbn</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="729"/>
         <source>movie.jpg</source>
-        <translation>movie.jpg</translation>
+        <translation type="obsolete">movie.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="737"/>
         <source>movie.tbn</source>
-        <translation>movie.tbn</translation>
+        <translation type="obsolete">movie.tbn</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="745"/>
-        <location filename="../settings/Settings.ui" line="871"/>
         <source>poster.jpg</source>
-        <translation>poster.jpg</translation>
+        <translation type="obsolete">poster.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="753"/>
         <source>poster.tbn</source>
-        <translation>poster.tbn</translation>
+        <translation type="obsolete">poster.tbn</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="761"/>
-        <location filename="../settings/Settings.ui" line="926"/>
         <source>folder.jpg</source>
-        <translation>folder.jpg</translation>
+        <translation type="obsolete">folder.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="782"/>
         <source>Movie Fanarts</source>
-        <translation>Film Fanarts</translation>
+        <translation type="obsolete">Film Fanarts</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="808"/>
         <source>&lt;movie filename&gt;-fanart.jpg</source>
-        <translation>&lt;movie filename&gt;-fanart.jpg</translation>
+        <translation type="obsolete">&lt;movie filename&gt;-fanart.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="816"/>
         <source>fanart.jpg</source>
-        <translation>fanart.jpg</translation>
+        <translation type="obsolete">fanart.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="837"/>
         <source>TV Show Poster</source>
-        <translation>Serien Poster</translation>
+        <translation type="obsolete">Serien Poster</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="863"/>
         <source>season-all.tbn</source>
-        <translation>season-all.tbn</translation>
+        <translation type="obsolete">season-all.tbn</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="892"/>
         <source>TV Show Banner</source>
-        <translation>Serien Banner</translation>
+        <translation type="obsolete">Serien Banner</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="918"/>
         <source>banner.jpg</source>
-        <translation>banner.jpg</translation>
+        <translation type="obsolete">banner.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="944"/>
         <source>XBMC MySQL</source>
-        <translation>XBMC MySQL</translation>
+        <translation type="obsolete">XBMC MySQL</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="960"/>
         <source>Host</source>
-        <translation>Host</translation>
+        <translation type="obsolete">Host</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="977"/>
-        <location filename="../settings/Settings.ui" line="1050"/>
         <source>Database</source>
-        <translation>Datenbank</translation>
+        <translation type="obsolete">Datenbank</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="994"/>
         <source>Username</source>
-        <translation>Benutzername</translation>
+        <translation type="obsolete">Benutzername</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="1011"/>
         <source>Password</source>
-        <translation>Passwort</translation>
+        <translation type="obsolete">Passwort</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="1034"/>
         <source>XBMC SQLite</source>
-        <translation>XBMC SQLite</translation>
+        <translation type="obsolete">XBMC SQLite</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="1124"/>
         <source>MediaCenter Settings</source>
-        <translation>MediaCenter Einstellungen</translation>
+        <translation type="obsolete">MediaCenter Einstellungen</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="1131"/>
         <source>Stores YouTube URLs like &quot;http://www.youtube.com/watch?v=123&quot; as &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</source>
-        <translation>Formatiert YouTube URLs wie &quot;http://www.youtube.com/watch?v=123&quot; als &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</translation>
+        <translation type="obsolete">Formatiert YouTube URLs wie &quot;http://www.youtube.com/watch?v=123&quot; als &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="1134"/>
         <source>Store trailer URLs in YouTube Plugin format</source>
-        <translation>Speichere Trailer URLs im YouTube Plugin Format</translation>
+        <translation type="obsolete">Speichere Trailer URLs im YouTube Plugin Format</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="501"/>
-        <location filename="../settings/Settings.ui" line="1064"/>
-        <location filename="../settings/Settings.ui" line="1100"/>
         <source>Select</source>
-        <translation>Auswählen</translation>
+        <translation type="obsolete">Auswählen</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="169"/>
-        <location filename="../settings/Settings.ui" line="574"/>
         <source>Please restart MediaElch after saving if you changed the MediaCenter interface, debug mode or added/removed directories.</source>
-        <translation>Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, den Debug Modus, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
+        <translation type="obsolete">Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, den Debug Modus, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.ui" line="1074"/>
         <source>Set the path where Thumbnails are stored (e.g. ~/.xbmc/userdata/Thumbnails)</source>
-        <translation>Wähle das Verzeichnis aus, in dem die XBMC Thumbnails gespeichert werden (z.B. ~/.xbmc/userdata/Thumbnails)</translation>
+        <translation type="obsolete">Wähle das Verzeichnis aus, in dem die XBMC Thumbnails gespeichert werden (z.B. ~/.xbmc/userdata/Thumbnails)</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="25"/>
-        <location filename="../settings/Settings.cpp" line="201"/>
         <source>Movies are in separate folders</source>
-        <translation>Filme sind in separaten Verzeichnissen</translation>
+        <translation type="obsolete">Filme sind in separaten Verzeichnissen</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="519"/>
         <source>Settings saved</source>
-        <translation>Einstellungen gespeichert</translation>
+        <translation type="obsolete">Einstellungen gespeichert</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="82"/>
         <source>Choose a directory containing your movies</source>
-        <translation>Wähle ein Verzeichnis aus, das deine Filme enthält</translation>
+        <translation type="obsolete">Wähle ein Verzeichnis aus, das deine Filme enthält</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="31"/>
-        <location filename="../settings/Settings.cpp" line="251"/>
         <source>Concerts are in separate folders</source>
-        <translation>Konzerte sind in separaten Verzeichnissen</translation>
+        <translation type="obsolete">Konzerte sind in separaten Verzeichnissen</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="80"/>
         <source>Logfile</source>
-        <translation>Logdatei</translation>
+        <translation type="obsolete">Logdatei</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="80"/>
         <source>Logfiles (*.log *.txt)</source>
-        <translation>Logdateien (*.log *.txt)</translation>
+        <translation type="obsolete">Logdateien (*.log *.txt)</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="85"/>
         <source>Choose a directory containing your TV shows</source>
-        <translation>Wähle ein Verzeichnis aus, das deine Serien enthält</translation>
+        <translation type="obsolete">Wähle ein Verzeichnis aus, das deine Serien enthält</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="88"/>
         <source>Choose a directory containing your concerts</source>
-        <translation>Wähle ein Verzeichnis aus, das deine Konzerte enthält</translation>
+        <translation type="obsolete">Wähle ein Verzeichnis aus, das deine Konzerte enthält</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="93"/>
         <source>SQLite Database *.db</source>
-        <translation>SQLite Datenbank *.db</translation>
+        <translation type="obsolete">SQLite Datenbank *.db</translation>
     </message>
     <message>
-        <location filename="../settings/Settings.cpp" line="91"/>
         <source>Choose a directory containing your Thumbnails</source>
-        <translation>Wähle das Verzeichnis aus, in dem die Thumbnails gespeichert werden</translation>
+        <translation type="obsolete">Wähle das Verzeichnis aus, in dem die Thumbnails gespeichert werden</translation>
     </message>
 </context>
 <context>
@@ -1742,84 +1693,307 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.cpp" line="32"/>
+        <source>Items are in separate folders</source>
+        <translation>In separaten Verzeichnissen</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.cpp" line="54"/>
+        <location filename="../settings/SettingsWidget.cpp" line="83"/>
+        <location filename="../settings/SettingsWidget.cpp" line="112"/>
+        <source>Language</source>
+        <translation>Sprache</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.cpp" line="126"/>
+        <source>Logfile</source>
+        <translation>Logdatei</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.cpp" line="126"/>
+        <source>Logfiles (*.log *.txt)</source>
+        <translation>Logdateien (*.log *.txt)</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.cpp" line="128"/>
+        <source>Choose a directory containing your movies, TV show or concerts</source>
+        <translation>Wähle ein Verzeichnis aus, dass deine Filme, Serien oder Konzerte enthält</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.cpp" line="480"/>
         <source>Movies</source>
-        <translation type="obsolete">Filme</translation>
+        <translation>Filme</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.cpp" line="480"/>
+        <source>Concerts</source>
+        <translation>Konzerte</translation>
     </message>
     <message>
         <source>Add one or more directories containing your movie files.</source>
         <translation type="obsolete">Füge Verzeichnisse hinzu, die deine Filme enthalten.</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.ui" line="132"/>
+        <location filename="../settings/SettingsWidget.ui" line="777"/>
         <source>Path</source>
-        <translation type="obsolete">Verzeichnis</translation>
+        <translation>Verzeichnis</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.ui" line="137"/>
         <source>MediaCenter Path</source>
-        <translation type="obsolete">MediaCenter Verzeichnis</translation>
+        <translation>MediaCenter Verzeichnis</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.ui" line="142"/>
         <source>Sep. folders</source>
-        <translation type="obsolete">Sep. Verzeichnisse</translation>
+        <translation>Sep. Verzeichnisse</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.ui" line="152"/>
         <source>Add</source>
-        <translation type="obsolete">Hinzufügen</translation>
+        <translation>Hinzufügen</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.ui" line="159"/>
         <source>Remove</source>
-        <translation type="obsolete">Entfernen</translation>
+        <translation>Entfernen</translation>
     </message>
     <message>
         <source>MediaCenter Interface</source>
         <translation type="obsolete">MediaCenter Interface</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.ui" line="291"/>
         <source>Select the MediaCenter to use.</source>
-        <translation type="obsolete">Wähle ein Interface zu deinem MediaCenter aus.</translation>
+        <translation>Wähle ein Interface zu deinem MediaCenter aus.</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.ui" line="298"/>
         <source>XBMC XML</source>
-        <translation type="obsolete">XBMC XML</translation>
+        <translation>XBMC XML</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.ui" line="632"/>
         <source>XBMC MySQL</source>
-        <translation type="obsolete">XBMC MySQL</translation>
+        <translation>XBMC MySQL</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.ui" line="651"/>
         <source>Host</source>
-        <translation type="obsolete">Host</translation>
+        <translation>Host</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.ui" line="668"/>
+        <location filename="../settings/SettingsWidget.ui" line="741"/>
         <source>Database</source>
-        <translation type="obsolete">Datenbank</translation>
+        <translation>Datenbank</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.ui" line="685"/>
         <source>Username</source>
-        <translation type="obsolete">Benutzername</translation>
+        <translation>Benutzername</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.ui" line="702"/>
         <source>Password</source>
-        <translation type="obsolete">Passwort</translation>
+        <translation>Passwort</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.ui" line="725"/>
         <source>XBMC SQLite</source>
-        <translation type="obsolete">XBMC SQLite</translation>
+        <translation>XBMC SQLite</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.ui" line="223"/>
+        <location filename="../settings/SettingsWidget.ui" line="755"/>
+        <location filename="../settings/SettingsWidget.ui" line="791"/>
         <source>Select</source>
-        <translation type="obsolete">Auswählen</translation>
+        <translation>Auswählen</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.ui" line="17"/>
+        <source>Settings</source>
+        <translation>Einstellungen</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="82"/>
+        <source>Global Settings</source>
+        <translation>Globale Einstellungen</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="94"/>
+        <location filename="../settings/SettingsWidget.ui" line="281"/>
+        <source>Please restart MediaElch after saving if you changed the MediaCenter interface, debug mode or added/removed directories.</source>
+        <translation>Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, den Debug Modus, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="104"/>
+        <source>Add one or more directories containing your movie, TV Shows or concerts. TV Show Episodes have to be in subfolders with the name of the show.</source>
+        <translation>Füge Verzeichnisse hinzu, die deine Filme, Serien oder Konzerte enthalten. Bei Serien müssen Episoden in Unterverzeichnissen mit dem Namen der Serie sein.</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="127"/>
+        <source>Type</source>
+        <translation>Inhalt</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="187"/>
+        <source>Debug</source>
+        <translation>Debug</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="194"/>
+        <source>When debug mode is activated debug messages are written to logfile you set. Please use this option only if you encountered problems with MediaElch as the logfile can get very big. </source>
+        <translation>Wenn der Debug Modus aktiviert ist, werden Debug Ausgaben in die Logdatei geschrieben, die du angegeben hast. Bitte benutze diese Option nur, wenn du ein Problem mit MediaElch entdeckt hast, da die Logdatei schnell sehr groß werden kann.</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="204"/>
+        <source>Activate debug mode</source>
+        <translation>Debug Modus aktivieren</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="213"/>
+        <source>Logfile: </source>
+        <translation>Logdatei:</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="269"/>
+        <source>MediaCenter</source>
+        <translation>MediaCenter</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="308"/>
+        <source>Select the filenames you wish to use for loading and saving. Enable/disable them using the checkbox in front, set priorities through sorting with drag and drop.</source>
+        <translation>Wähle die Dateinamen aus, die du zum Speichern und Laden benutzen möchtest. Aktiviere/deaktiviere sie durch die Checkboxen vorne, setze die Priorität durch Sortieren per drag&apos;n&apos;drop.</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="328"/>
+        <source>Movie NFO</source>
+        <translation>Film NFO</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="354"/>
+        <source>&lt;movie filename&gt;.nfo</source>
+        <translation>&lt;movie filename&gt;.nfo</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="362"/>
+        <source>movie.nfo</source>
+        <translation>movie.nfo</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="383"/>
+        <source>Movie Posters</source>
+        <translation>Film Poster</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="409"/>
+        <source>&lt;movie filename&gt;.tbn</source>
+        <translation>&lt;movie filename&gt;.tbn</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="417"/>
+        <source>movie.jpg</source>
+        <translation>movie.jpg</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="425"/>
+        <source>movie.tbn</source>
+        <translation>movie.tbn</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="433"/>
+        <location filename="../settings/SettingsWidget.ui" line="559"/>
+        <source>poster.jpg</source>
+        <translation>poster.jpg</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="441"/>
+        <source>poster.tbn</source>
+        <translation>poster.tbn</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="449"/>
+        <location filename="../settings/SettingsWidget.ui" line="614"/>
+        <source>folder.jpg</source>
+        <translation>folder.jpg</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="470"/>
+        <source>Movie Fanarts</source>
+        <translation>Film Fanarts</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="496"/>
+        <source>&lt;movie filename&gt;-fanart.jpg</source>
+        <translation>&lt;movie filename&gt;-fanart.jpg</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="504"/>
+        <source>fanart.jpg</source>
+        <translation>fanart.jpg</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="525"/>
+        <source>TV Show Poster</source>
+        <translation>Serien Poster</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="551"/>
+        <source>season-all.tbn</source>
+        <translation>season-all.tbn</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="580"/>
+        <source>TV Show Banner</source>
+        <translation>Serien Banner</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="606"/>
+        <source>banner.jpg</source>
+        <translation>banner.jpg</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="765"/>
         <source>Set the path where Thumbnails are stored (e.g. ~/.xbmc/userdata/Thumbnails)</source>
-        <translation type="obsolete">Wähle das Verzeichnis aus, in dem die XBMC Thumbnails gespeichert werden (z.B. ~/.xbmc/userdata/Thumbnails)</translation>
+        <translation>Wähle das Verzeichnis aus, in dem die XBMC Thumbnails gespeichert werden (z.B. ~/.xbmc/userdata/Thumbnails)</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.ui" line="806"/>
+        <source>MediaCenter Settings</source>
+        <translation>MediaCenter Einstellungen</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="813"/>
+        <source>Stores YouTube URLs like &quot;http://www.youtube.com/watch?v=123&quot; as &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</source>
+        <translation>Formatiert YouTube URLs wie &quot;http://www.youtube.com/watch?v=123&quot; als &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="816"/>
+        <source>Store trailer URLs in YouTube Plugin format</source>
+        <translation>Speichere Trailer URLs im YouTube Plugin Format</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="855"/>
+        <source>Cancel</source>
+        <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="862"/>
+        <source>Save Settings</source>
+        <translation>Einstellungen Speichern</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="233"/>
+        <location filename="../settings/SettingsWidget.ui" line="245"/>
         <source>Scrapers</source>
-        <translation type="obsolete">Scraper</translation>
+        <translation>Scraper</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.cpp" line="480"/>
         <source>TV Shows</source>
-        <translation type="obsolete">TV Serien</translation>
+        <translation>TV Serien</translation>
     </message>
     <message>
         <source>Add one or more directories containing your TV Shows. Episodes have to be in subfolders with the name of the show.</source>
@@ -1830,8 +2004,9 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Filme sind in separaten Verzeichnissen</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.cpp" line="444"/>
         <source>Settings saved</source>
-        <translation type="obsolete">Einstellungen gespeichert</translation>
+        <translation>Einstellungen gespeichert</translation>
     </message>
     <message>
         <source>Choose a directory containing your movies</source>
@@ -1842,381 +2017,380 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Wähle ein Verzeichnis aus, das deine Serien enthält</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.cpp" line="133"/>
         <source>SQLite Database *.db</source>
-        <translation type="obsolete">SQLite Datenbank *.db</translation>
+        <translation>SQLite Datenbank *.db</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.cpp" line="131"/>
         <source>Choose a directory containing your Thumbnails</source>
-        <translation type="obsolete">Wähle das Verzeichnis aus, in dem die Thumbnails gespeichert werden</translation>
+        <translation>Wähle das Verzeichnis aus, in dem die Thumbnails gespeichert werden</translation>
     </message>
 </context>
 <context>
     <name>TMDb</name>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="28"/>
+        <location filename="../scrapers/TMDb.cpp" line="53"/>
         <source>Chinese</source>
         <translation>Chinesisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="29"/>
+        <location filename="../scrapers/TMDb.cpp" line="54"/>
         <source>Croatian</source>
         <translation>Kroatisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="30"/>
+        <location filename="../scrapers/TMDb.cpp" line="55"/>
         <source>Czech</source>
         <translation>Tschechisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="31"/>
+        <location filename="../scrapers/TMDb.cpp" line="56"/>
         <source>Danish</source>
         <translation>Dänisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="32"/>
+        <location filename="../scrapers/TMDb.cpp" line="57"/>
         <source>Dutch</source>
         <translation>Niederländisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="33"/>
+        <location filename="../scrapers/TMDb.cpp" line="58"/>
         <source>English</source>
         <translation>Englisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="34"/>
+        <location filename="../scrapers/TMDb.cpp" line="59"/>
         <source>Finnish</source>
         <translation>Finnisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="35"/>
+        <location filename="../scrapers/TMDb.cpp" line="60"/>
         <source>French</source>
         <translation>Französisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="36"/>
+        <location filename="../scrapers/TMDb.cpp" line="61"/>
         <source>German</source>
         <translation>Deutsch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="37"/>
+        <location filename="../scrapers/TMDb.cpp" line="62"/>
         <source>Greek</source>
         <translation>Griechisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="38"/>
+        <location filename="../scrapers/TMDb.cpp" line="63"/>
         <source>Hebrew</source>
         <translation>Hebräisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="39"/>
+        <location filename="../scrapers/TMDb.cpp" line="64"/>
         <source>Hungarian</source>
         <translation>Ungarisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="40"/>
+        <location filename="../scrapers/TMDb.cpp" line="65"/>
         <source>Italian</source>
         <translation>Italienisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="41"/>
+        <location filename="../scrapers/TMDb.cpp" line="66"/>
         <source>Japanese</source>
         <translation>Japanisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="42"/>
+        <location filename="../scrapers/TMDb.cpp" line="67"/>
         <source>Korean</source>
         <translation>Koreanisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="43"/>
+        <location filename="../scrapers/TMDb.cpp" line="68"/>
         <source>Norwegian</source>
         <translation>Norwegisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="44"/>
+        <location filename="../scrapers/TMDb.cpp" line="69"/>
         <source>Polish</source>
         <translation>Polnisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="45"/>
+        <location filename="../scrapers/TMDb.cpp" line="70"/>
         <source>Portuguese</source>
         <translation>Portugiesisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="46"/>
+        <location filename="../scrapers/TMDb.cpp" line="71"/>
         <source>Russian</source>
         <translation>Russisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="47"/>
+        <location filename="../scrapers/TMDb.cpp" line="72"/>
         <source>Slovene</source>
         <translation>Slowakisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="48"/>
+        <location filename="../scrapers/TMDb.cpp" line="73"/>
         <source>Spanish</source>
         <translation>Spanisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="49"/>
+        <location filename="../scrapers/TMDb.cpp" line="74"/>
         <source>Swedish</source>
         <translation>Schwedisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="50"/>
+        <location filename="../scrapers/TMDb.cpp" line="75"/>
         <source>Turkish</source>
         <translation>Türkisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="124"/>
         <source>Language</source>
-        <translation>Sprache</translation>
+        <translation type="obsolete">Sprache</translation>
     </message>
 </context>
 <context>
     <name>TMDbConcerts</name>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="28"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="50"/>
         <source>Chinese</source>
         <translation>Chinesisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="29"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="51"/>
         <source>Croatian</source>
         <translation>Kroatisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="30"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="52"/>
         <source>Czech</source>
         <translation>Tschechisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="31"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="53"/>
         <source>Danish</source>
         <translation>Dänisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="32"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="54"/>
         <source>Dutch</source>
         <translation>Niederländisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="33"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="55"/>
         <source>English</source>
         <translation>Englisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="34"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="56"/>
         <source>Finnish</source>
         <translation>Finnisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="35"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="57"/>
         <source>French</source>
         <translation>Französisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="36"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="58"/>
         <source>German</source>
         <translation>Deutsch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="37"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="59"/>
         <source>Greek</source>
         <translation>Griechisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="38"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="60"/>
         <source>Hebrew</source>
         <translation>Hebräisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="39"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="61"/>
         <source>Hungarian</source>
         <translation>Ungarisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="40"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="62"/>
         <source>Italian</source>
         <translation>Italienisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="41"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="63"/>
         <source>Japanese</source>
         <translation>Japanisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="42"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="64"/>
         <source>Korean</source>
         <translation>Koreanisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="43"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="65"/>
         <source>Norwegian</source>
         <translation>Norwegisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="44"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="66"/>
         <source>Polish</source>
         <translation>Polnisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="45"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="67"/>
         <source>Portuguese</source>
         <translation>Portugiesisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="46"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="68"/>
         <source>Russian</source>
         <translation>Russisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="47"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="69"/>
         <source>Slovene</source>
         <translation>Slowakisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="48"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="70"/>
         <source>Spanish</source>
         <translation>Spanisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="49"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="71"/>
         <source>Swedish</source>
         <translation>Schwedisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="50"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="72"/>
         <source>Turkish</source>
         <translation>Türkisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="121"/>
         <source>Language</source>
-        <translation>Sprache</translation>
+        <translation type="obsolete">Sprache</translation>
     </message>
 </context>
 <context>
     <name>TheTvDb</name>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="23"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="36"/>
         <source>Chinese</source>
         <translation>Chinesisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="24"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="37"/>
         <source>Croatian</source>
         <translation>Kroatisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="25"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="38"/>
         <source>Czech</source>
         <translation>Tschechisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="26"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="39"/>
         <source>Danish</source>
         <translation>Dänisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="27"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="40"/>
         <source>Dutch</source>
         <translation>Niederländisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="28"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="41"/>
         <source>English</source>
         <translation>Englisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="29"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="42"/>
         <source>Finnish</source>
         <translation>Finnisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="30"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="43"/>
         <source>French</source>
         <translation>Französisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="31"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="44"/>
         <source>German</source>
         <translation>Deutsch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="32"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="45"/>
         <source>Greek</source>
         <translation>Griechisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="33"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="46"/>
         <source>Hebrew</source>
         <translation>Hebräisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="34"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="47"/>
         <source>Hungarian</source>
         <translation>Ungarisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="35"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="48"/>
         <source>Italian</source>
         <translation>Italienisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="36"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="49"/>
         <source>Japanese</source>
         <translation>Japanisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="37"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="50"/>
         <source>Korean</source>
         <translation>Koreanisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="38"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="51"/>
         <source>Norwegian</source>
         <translation>Norwegisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="39"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="52"/>
         <source>Polish</source>
         <translation>Polnisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="40"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="53"/>
         <source>Portuguese</source>
         <translation>Portugiesisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="41"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="54"/>
         <source>Russian</source>
         <translation>Russisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="42"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="55"/>
         <source>Slovene</source>
         <translation>Slowakisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="43"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="56"/>
         <source>Spanish</source>
         <translation>Spanisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="44"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="57"/>
         <source>Swedish</source>
         <translation>Schwedisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="45"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="58"/>
         <source>Turkish</source>
         <translation>Türkisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="111"/>
         <source>Language</source>
-        <translation>Sprache</translation>
+        <translation type="obsolete">Sprache</translation>
     </message>
 </context>
 <context>

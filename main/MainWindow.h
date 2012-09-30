@@ -9,6 +9,7 @@
 #include "data/MovieFileSearcher.h"
 #include "smallWidgets/FilterWidget.h"
 #include "settings/Settings.h"
+#include "settings/SettingsWidget.h"
 
 namespace Ui {
 class MainWindow;
@@ -36,7 +37,6 @@ private slots:
     void onMenuMovieSets();
     void onMenuTvShows();
     void onMenuConcerts();
-    void onMenuSettings();
     void onActionSearch();
     void onActionSave();
     void onActionSaveAll();
@@ -51,12 +51,14 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Settings *m_settings;
+    SettingsWidget *m_settingsWidget;
     AboutDialog *m_aboutDialog;
     QAction *m_actionSearch;
     QAction *m_actionSave;
     QAction *m_actionAbout;
     QAction *m_actionQuit;
     QAction *m_actionSaveAll;
+    QAction *m_actionSettings;
     QMap<MainActions, bool> m_movieActions;
     QMap<MainActions, bool> m_movieSetActions;
     QMap<MainActions, bool> m_tvShowActions;

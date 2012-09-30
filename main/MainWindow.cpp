@@ -45,6 +45,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_concertActions.insert(ActionExport, false);
 
     m_aboutDialog = new AboutDialog(ui->centralWidget);
+    m_settingsWidget = new SettingsWidget(ui->centralWidget);
     m_filterWidget = new FilterWidget(ui->mainToolBar);
     m_settings = Settings::instance(this);
     setupToolbar();
@@ -138,7 +139,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->buttonMovieSets, SIGNAL(clicked()), this, SLOT(onMenuMovieSets()));
     connect(ui->buttonTvshows, SIGNAL(clicked()), this, SLOT(onMenuTvShows()));
     connect(ui->buttonConcerts, SIGNAL(clicked()), this, SLOT(onMenuConcerts()));
-    connect(ui->buttonSettings, SIGNAL(clicked()), this, SLOT(onMenuSettings()));
 
     connect(ui->movieSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(onMovieSplitterMoved()));
     connect(ui->tvShowSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(onTvShowSplitterMoved()));
@@ -199,61 +199,39 @@ void MainWindow::setupToolbar()
     qDebug() << "Entered";
     setUnifiedTitleAndToolBarOnMac(true);
 
-    QPixmap spanner(":/img/spanner.png");
-    QPixmap info(":/img/info.png");
-    QPixmap exportDb(":/img/folder_in.png");
-    QPixmap quit(":/img/stop.png");
-    QPixmap search(":/img/magnifier.png");
-    QPixmap save(":/img/save.png");
-    QPixmap saveAll(":/img/storage.png");
     QPainter p;
-    p.begin(&search);
-    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    p.fillRect(search.rect(), QColor(0, 0, 0, 100));
-    p.end();
-    p.begin(&save);
-    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    p.fillRect(save.rect(), QColor(0, 0, 0, 100));
-    p.end();
-    p.begin(&spanner);
-    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    p.fillRect(spanner.rect(), QColor(0, 0, 0, 100));
-    p.end();
-    p.begin(&exportDb);
-    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    p.fillRect(exportDb.rect(), QColor(0, 0, 0, 100));
-    p.end();
-    p.begin(&info);
-    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    p.fillRect(info.rect(), QColor(0, 0, 0, 100));
-    p.end();
-    p.begin(&quit);
-    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    p.fillRect(quit.rect(), QColor(0, 0, 0, 100));
-    p.end();
-    p.begin(&saveAll);
-    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    p.fillRect(saveAll.rect(), QColor(0, 0, 0, 100));
-    p.end();
+    QList<QPixmap> icons;
+    icons << QPixmap(":/img/spanner.png") << QPixmap(":/img/info.png") << QPixmap(":/img/folder_in.png")
+          << QPixmap(":/img/stop.png") << QPixmap(":/img/magnifier.png") <<QPixmap(":/img/save.png")
+          << QPixmap(":/img/storage.png");
+    for (int i=0, n=icons.count() ; i<n ; ++i) {
+        p.begin(&icons[i]);
+        p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+        p.fillRect(icons[i].rect(), QColor(0, 0, 0, 100));
+        p.end();
+    }
 
-    m_actionSearch = new QAction(QIcon(search), tr("Search"), this);
+    m_actionSearch = new QAction(QIcon(icons[4]), tr("Search"), this);
     m_actionSearch->setShortcut(QKeySequence::Find);
     m_actionSearch->setToolTip(tr("Search (%1)").arg(QKeySequence(QKeySequence::Find).toString(QKeySequence::NativeText)));
 
-    m_actionSave = new QAction(QIcon(save), tr("Save"), this);
+    m_actionSave = new QAction(QIcon(icons[5]), tr("Save"), this);
     m_actionSave->setShortcut(QKeySequence::Save);
     m_actionSave->setToolTip(tr("Save (%1)").arg(QKeySequence(QKeySequence::Save).toString(QKeySequence::NativeText)));
 
-    m_actionSaveAll = new QAction(QIcon(saveAll), tr("Save All"), this);
+    m_actionSaveAll = new QAction(QIcon(icons[6]), tr("Save All"), this);
     QKeySequence seqSaveAll(Qt::CTRL+Qt::ShiftModifier+Qt::Key_S);
     m_actionSaveAll->setShortcut(seqSaveAll);
     m_actionSaveAll->setToolTip(tr("Save All (%1)").arg(seqSaveAll.toString(QKeySequence::NativeText)));
 
-    m_actionAbout = new QAction(QIcon(info), tr("About"), this);
-    m_actionQuit = new QAction(QIcon(quit), tr("Quit"), this);
+    m_actionSettings = new QAction(QIcon(icons[0]), tr("Settings"), this);
+
+    m_actionAbout = new QAction(QIcon(icons[1]), tr("About"), this);
+    m_actionQuit = new QAction(QIcon(icons[3]), tr("Quit"), this);
     ui->mainToolBar->addAction(m_actionSearch);
     ui->mainToolBar->addAction(m_actionSave);
     ui->mainToolBar->addAction(m_actionSaveAll);
+    ui->mainToolBar->addAction(m_actionSettings);
     ui->mainToolBar->addAction(m_actionAbout);
     ui->mainToolBar->addAction(m_actionQuit);
     ui->mainToolBar->addWidget(m_filterWidget);
@@ -262,6 +240,7 @@ void MainWindow::setupToolbar()
     connect(m_actionSave, SIGNAL(triggered()), this, SLOT(onActionSave()));
     connect(m_actionSaveAll, SIGNAL(triggered()), this, SLOT(onActionSaveAll()));
     connect(m_actionAbout, SIGNAL(triggered()), m_aboutDialog, SLOT(exec()));
+    connect(m_actionSettings, SIGNAL(triggered()), m_settingsWidget, SLOT(exec()));
     connect(m_actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
 
     m_actionSearch->setEnabled(false);
@@ -319,7 +298,6 @@ void MainWindow::onMenuMovies()
     ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menu.png"));
     ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menu.png"));
     ui->buttonConcerts->setIcon(QIcon(":/img/concerts_menu.png"));
-    ui->buttonSettings->setIcon(QIcon(":/img/spanner_menu.png"));
     m_actionSearch->setEnabled(m_movieActions[ActionSearch]);
     m_actionSave->setEnabled(m_movieActions[ActionSave]);
     m_actionSaveAll->setEnabled(m_movieActions[ActionSave]);
@@ -333,12 +311,11 @@ void MainWindow::onMenuMovies()
 void MainWindow::onMenuMovieSets()
 {
     qDebug() << "Entered";
-    ui->stackedWidget->setCurrentIndex(3);
+    ui->stackedWidget->setCurrentIndex(2);
     ui->buttonMovies->setIcon(QIcon(":/img/video_menu.png"));
     ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menuActive.png"));
     ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menu.png"));
     ui->buttonConcerts->setIcon(QIcon(":/img/concerts_menu.png"));
-    ui->buttonSettings->setIcon(QIcon(":/img/spanner_menu.png"));
     m_actionSearch->setEnabled(m_movieSetActions[ActionSearch]);
     m_actionSave->setEnabled(m_movieSetActions[ActionSave]);
     m_actionSaveAll->setEnabled(false);
@@ -358,7 +335,6 @@ void MainWindow::onMenuTvShows()
     ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menu.png"));
     ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menuActive.png"));
     ui->buttonConcerts->setIcon(QIcon(":/img/concerts_menu.png"));
-    ui->buttonSettings->setIcon(QIcon(":/img/spanner_menu.png"));
     m_actionSearch->setEnabled(m_tvShowActions[ActionSearch]);
     m_actionSave->setEnabled(m_tvShowActions[ActionSave]);
     m_actionSaveAll->setEnabled(m_tvShowActions[ActionSave]);
@@ -372,36 +348,15 @@ void MainWindow::onMenuTvShows()
 void MainWindow::onMenuConcerts()
 {
     qDebug() << "Entered";
-    ui->stackedWidget->setCurrentIndex(4);
+    ui->stackedWidget->setCurrentIndex(3);
     ui->buttonMovies->setIcon(QIcon(":/img/video_menu.png"));
     ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menu.png"));
     ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menu.png"));
     ui->buttonConcerts->setIcon(QIcon(":/img/concerts_menuActive.png"));
-    ui->buttonSettings->setIcon(QIcon(":/img/spanner_menu.png"));
     m_actionSearch->setEnabled(m_concertActions[ActionSearch]);
     m_actionSave->setEnabled(m_concertActions[ActionSave]);
     m_actionSaveAll->setEnabled(m_concertActions[ActionSave]);
     m_filterWidget->setEnabled(true);
-}
-
-/**
- * @brief Called when the menu item "Settings" was clicked
- * Updates menu icons and sets status of actions
- */
-void MainWindow::onMenuSettings()
-{
-    qDebug() << "Entered";
-    m_settings->loadSettings();
-    ui->stackedWidget->setCurrentIndex(2);
-    ui->buttonMovies->setIcon(QIcon(":/img/video_menu.png"));
-    ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menu.png"));
-    ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menu.png"));
-    ui->buttonConcerts->setIcon(QIcon(":/img/concerts_menu.png"));
-    ui->buttonSettings->setIcon(QIcon(":/img/spanner_menuActive.png"));
-    m_actionSearch->setEnabled(false);
-    m_actionSave->setEnabled(true);
-    m_actionSaveAll->setEnabled(false);
-    m_filterWidget->setEnabled(false);
 }
 
 /**
@@ -415,7 +370,7 @@ void MainWindow::onActionSearch()
         QTimer::singleShot(0, ui->movieWidget, SLOT(startScraperSearch()));
     } else if (ui->stackedWidget->currentIndex() == 1) {
         QTimer::singleShot(0, ui->tvShowWidget, SLOT(onStartScraperSearch()));
-    } else if (ui->stackedWidget->currentIndex() == 4) {
+    } else if (ui->stackedWidget->currentIndex() == 3) {
         QTimer::singleShot(0, ui->concertWidget, SLOT(onStartScraperSearch()));
     }
 }
@@ -432,10 +387,8 @@ void MainWindow::onActionSave()
     else if (ui->stackedWidget->currentIndex() == 1)
         QTimer::singleShot(0, ui->tvShowWidget, SLOT(onSaveInformation()));
     else if (ui->stackedWidget->currentIndex() == 2)
-        QTimer::singleShot(0, ui->settings, SLOT(saveSettings()));
-    else if (ui->stackedWidget->currentIndex() == 3)
         QTimer::singleShot(0, ui->setsWidget, SLOT(saveSet()));
-    else if (ui->stackedWidget->currentIndex() == 4)
+    else if (ui->stackedWidget->currentIndex() == 3)
         QTimer::singleShot(0, ui->concertWidget, SLOT(onSaveInformation()));
 }
 
@@ -450,7 +403,7 @@ void MainWindow::onActionSaveAll()
         QTimer::singleShot(0, ui->movieWidget, SLOT(saveAll()));
     else if (ui->stackedWidget->currentIndex() == 1)
         QTimer::singleShot(0, ui->tvShowWidget, SLOT(onSaveAll()));
-    else if (ui->stackedWidget->currentIndex() == 4)
+    else if (ui->stackedWidget->currentIndex() == 3)
         QTimer::singleShot(0, ui->concertWidget, SLOT(onSaveAll()));
 }
 
@@ -466,7 +419,7 @@ void MainWindow::onFilterChanged(QString text)
         ui->filesWidget->setFilter(text);
     else if (ui->stackedWidget->currentIndex() == 1)
         ui->tvShowFilesWidget->setFilter(text);
-    else if (ui->stackedWidget->currentIndex() == 4)
+    else if (ui->stackedWidget->currentIndex() == 3)
         ui->concertFilesWidget->setFilter(text);
 }
 
@@ -493,11 +446,11 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
     }
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
         (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1) ||
-        (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 4)) {
+        (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 3)) {
         m_actionSave->setEnabled(enabled);
         m_actionSaveAll->setEnabled(enabled);
     }
-    if (widget == WidgetMovieSets && ui->stackedWidget->currentIndex() == 3)
+    if (widget == WidgetMovieSets && ui->stackedWidget->currentIndex() == 2)
         m_actionSave->setEnabled(enabled);
 }
 
@@ -521,7 +474,7 @@ void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
     }
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
         (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1) ||
-        (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 4))
+        (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 3))
         m_actionSearch->setEnabled(enabled);
 }
 

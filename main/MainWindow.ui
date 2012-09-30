@@ -154,29 +154,6 @@
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="buttonSettings">
-         <property name="toolTip">
-          <string>Settings</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">border: 0;</string>
-         </property>
-         <property name="text">
-          <string>...</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../MediaElch.qrc">
-           <normaloff>:/img/spanner_menu.png</normaloff>:/img/spanner_menu.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>24</width>
-           <height>28</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -276,7 +253,6 @@
         </item>
        </layout>
       </widget>
-      <widget class="SettingsWidget" name="settings"/>
       <widget class="SetsWidget" name="setsWidget"/>
       <widget class="QWidget" name="concerts">
        <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -389,12 +365,6 @@
    <class>ConcertWidget</class>
    <extends>QWidget</extends>
    <header>concerts/ConcertWidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>SettingsWidget</class>
-   <extends>QWidget</extends>
-   <header>settings/SettingsWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
