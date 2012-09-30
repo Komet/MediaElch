@@ -51,7 +51,7 @@ void CLI::run()
         return;
     }
 
-    QFileInfo fi(m_file);
+    QFileInfo fi(m_movieFile);
     QString searchTerm = fi.completeBaseName();
     if (!m_searchTerm.isEmpty()) {
         searchTerm = m_searchTerm;
@@ -61,7 +61,7 @@ void CLI::run()
             searchTerm = path.last();
     }
 
-    m_movie = new Movie(QStringList() << m_file, this);
+    m_movie = new Movie(QStringList() << m_movieFile, this);
     m_scraper = Manager::instance()->getScraperForName(m_scraperName);
     m_scraper->loadSettings();
 
@@ -88,7 +88,7 @@ bool CLI::parseArguments(QStringList arguments)
 
     bool searchTermSet = false;
 
-    QRegExp rxFile("^--file=(.*)");
+    QRegExp rxMovie("^--movie=(.*)");
     QRegExp rxFolder("^--use-folder-name$");
     QRegExp rxScraper("^--scraper=(.*)");
     QRegExp rxScraperId("^--scraper-id=(.*)");
@@ -96,8 +96,8 @@ bool CLI::parseArguments(QStringList arguments)
     QRegExp rxShowHelp("(^-h$)|(^--help$)");
 
     foreach (const QString &argument, arguments) {
-        if (rxFile.indexIn(argument) != -1) {
-            m_file = rxFile.cap(1);
+        if (rxMovie.indexIn(argument) != -1) {
+            m_movieFile = rxMovie.cap(1);
             continue;
         }
         if (rxFolder.indexIn(argument) != -1) {
@@ -126,7 +126,7 @@ bool CLI::parseArguments(QStringList arguments)
         return false;
     }
 
-    if (m_file.isEmpty()) {
+    if (m_movieFile.isEmpty()) {
         qWarning() << tr("No file given");
         showHelp();
         return false;
@@ -150,9 +150,9 @@ bool CLI::parseArguments(QStringList arguments)
         return false;
     }
 
-    QFileInfo fi(m_file);
+    QFileInfo fi(m_movieFile);
     if (!fi.isFile()) {
-        qWarning() << tr("File \"%1\" does not exist").arg(m_file);
+        qWarning() << tr("File \"%1\" does not exist").arg(m_movieFile);
         showHelp();
         return false;
     }
@@ -241,7 +241,7 @@ void CLI::showHelp()
     printf("\nUsage:\n\n");
     printf("MediaElch <args>\n\n");
     printf("  needed arguments:\n");
-    printf("    --file=\"/path/to/file.mkv\"     The path to the movie file\n");
+    printf("    --movie=\"/path/to/file.mkv\"    The path to the movie file\n");
     printf("    --scraper=tmdb                 Scraper to use, one of tmdb, ofdb, cinefacts or videobuster\n\n");
     printf("  optional arguments:\n");
     printf("    --use-folder-name              Use the folder name for search instead of filename\n");

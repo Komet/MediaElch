@@ -30,7 +30,7 @@ private slots:
 
 private:
     QStringList m_arguments;
-    QString m_file;
+    QString m_movieFile;
     QString m_scraperName;
     QString m_scraperId;
     QString m_searchTerm;
