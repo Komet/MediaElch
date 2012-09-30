@@ -15,4 +15,4 @@ Precompiled versions
 --------------------
 
 Precompiled versions are available for Mac OS X, Windows and Linux.
-Have a look at http://medialch.kvibes.net
+Have a look at http://medialech.kvibes.net
