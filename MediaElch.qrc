@@ -42,5 +42,11 @@
         <file>img/arrow_circle_left.png</file>
         <file>img/concerts_menu.png</file>
         <file>img/concerts_menuActive.png</file>
+        <file>img/certification_menu.png</file>
+        <file>img/certification_menuActive.png</file>
+        <file>img/genre_menu.png</file>
+        <file>img/genre_menuActive.png</file>
+        <file>img/certification2_menu.png</file>
+        <file>img/certification2_menuActive.png</file>
     </qresource>
 </RCC>

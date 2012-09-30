@@ -996,4 +996,8 @@
   <include location="../MediaElch.qrc"/>
  </resources>
  <connections/>
+ <slots>
+  <slot>setMovie(Movie*)</slot>
+  <slot>setEnabledTrue(Movie*)</slot>
+ </slots>
 </ui>

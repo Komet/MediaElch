@@ -31,18 +31,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     qDebug() << "MediaElch version" << QApplication::applicationVersion() << "starting up";
 
-    m_movieActions.insert(ActionSave, false);
-    m_movieActions.insert(ActionSearch, false);
-    m_movieActions.insert(ActionExport, false);
-    m_movieSetActions.insert(ActionSave, false);
-    m_movieSetActions.insert(ActionSearch, false);
-    m_movieSetActions.insert(ActionExport, false);
-    m_tvShowActions.insert(ActionSave, false);
-    m_tvShowActions.insert(ActionSearch, false);
-    m_tvShowActions.insert(ActionExport, false);
-    m_concertActions.insert(ActionSave, false);
-    m_concertActions.insert(ActionSearch, false);
-    m_concertActions.insert(ActionExport, false);
+    for (int i=WidgetMovies ; i!=WidgetCertifications ; i++) {
+        QMap<MainActions, bool> actions;
+        for (int n=ActionSearch ; n!=ActionExport ; n++) {
+            actions.insert(static_cast<MainActions>(n), false);
+        }
+        if (static_cast<MainWidgets>(i) == WidgetMovies || static_cast<MainWidgets>(i) == WidgetTvShows || static_cast<MainWidgets>(i) == WidgetConcerts)
+            actions[ActionFilterWidget] = true;
+        m_actions.insert(static_cast<MainWidgets>(i), actions);
+    }
 
     m_aboutDialog = new AboutDialog(ui->centralWidget);
     m_settingsWidget = new SettingsWidget(ui->centralWidget);
@@ -119,26 +116,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->movieWidget, SIGNAL(actorDownloadProgress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
     connect(ui->movieWidget, SIGNAL(actorDownloadStarted(QString,int)), this, SLOT(progressStarted(QString,int)));
     connect(ui->movieWidget, SIGNAL(actorDownloadFinished(int)), this, SLOT(progressFinished(int)));
-    connect(ui->movieWidget, SIGNAL(setActionSaveEnabled(bool, MainWidgets)), this, SLOT(onSetSaveEnabled(bool, MainWidgets)));
-    connect(ui->movieWidget, SIGNAL(setActionSearchEnabled(bool, MainWidgets)), this, SLOT(onSetSearchEnabled(bool, MainWidgets)));
 
-    connect(ui->concertWidget, SIGNAL(setActionSaveEnabled(bool, MainWidgets)), this, SLOT(onSetSaveEnabled(bool, MainWidgets)));
-    connect(ui->concertWidget, SIGNAL(setActionSearchEnabled(bool, MainWidgets)), this, SLOT(onSetSearchEnabled(bool, MainWidgets)));
-
-    connect(ui->tvShowWidget, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)), this, SLOT(onSetSaveEnabled(bool,MainWidgets)));
-    connect(ui->tvShowWidget, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)), this, SLOT(onSetSearchEnabled(bool,MainWidgets)));
     connect(ui->tvShowWidget, SIGNAL(sigDownloadsStarted(QString,int)), this, SLOT(progressStarted(QString,int)));
     connect(ui->tvShowWidget, SIGNAL(sigDownloadsProgress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
     connect(ui->tvShowWidget, SIGNAL(sigDownloadsFinished(int)), this, SLOT(progressFinished(int)));
 
-    connect(ui->setsWidget, SIGNAL(setActionSaveEnabled(bool,MainWidgets)), this, SLOT(onSetSaveEnabled(bool,MainWidgets)));
-
     connect(m_filterWidget, SIGNAL(sigFilterTextChanged(QString)), this, SLOT(onFilterChanged(QString)));
-
-    connect(ui->buttonMovies, SIGNAL(clicked()), this, SLOT(onMenuMovies()));
-    connect(ui->buttonMovieSets, SIGNAL(clicked()), this, SLOT(onMenuMovieSets()));
-    connect(ui->buttonTvshows, SIGNAL(clicked()), this, SLOT(onMenuTvShows()));
-    connect(ui->buttonConcerts, SIGNAL(clicked()), this, SLOT(onMenuConcerts()));
 
     connect(ui->movieSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(onMovieSplitterMoved()));
     connect(ui->tvShowSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(onTvShowSplitterMoved()));
@@ -228,6 +211,7 @@ void MainWindow::setupToolbar()
 
     m_actionAbout = new QAction(QIcon(icons[1]), tr("About"), this);
     m_actionQuit = new QAction(QIcon(icons[3]), tr("Quit"), this);
+
     ui->mainToolBar->addAction(m_actionSearch);
     ui->mainToolBar->addAction(m_actionSave);
     ui->mainToolBar->addAction(m_actionSaveAll);
@@ -287,21 +271,34 @@ void MainWindow::progressFinished(int id)
 }
 
 /**
+ * @brief Restores all menu icons to defaults and enables actions
+ * @param widget Current widget
+ */
+void MainWindow::onMenu(MainWidgets widget)
+{
+    ui->buttonMovies->setIcon(QIcon(":/img/video_menu.png"));
+    ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menu.png"));
+    ui->buttonGenres->setIcon(QIcon(":/img/genre_menu.png"));
+    ui->buttonCertifications->setIcon(QIcon(":/img/certification2_menu.png"));
+    ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menu.png"));
+    ui->buttonConcerts->setIcon(QIcon(":/img/concerts_menu.png"));
+
+    m_actionSearch->setEnabled(m_actions[widget][ActionSearch]);
+    m_actionSave->setEnabled(m_actions[widget][ActionSave]);
+    m_actionSaveAll->setEnabled(m_actions[widget][ActionSaveAll]);
+    m_filterWidget->setEnabled(m_actions[widget][ActionFilterWidget]);
+}
+
+/**
  * @brief Called when the menu item "Movies" was clicked
  * Updates menu icons and sets status of actions
  */
 void MainWindow::onMenuMovies()
 {
     qDebug() << "Entered";
-    ui->stackedWidget->setCurrentIndex(0);
+    onMenu(WidgetMovies);
     ui->buttonMovies->setIcon(QIcon(":/img/video_menuActive.png"));
-    ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menu.png"));
-    ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menu.png"));
-    ui->buttonConcerts->setIcon(QIcon(":/img/concerts_menu.png"));
-    m_actionSearch->setEnabled(m_movieActions[ActionSearch]);
-    m_actionSave->setEnabled(m_movieActions[ActionSave]);
-    m_actionSaveAll->setEnabled(m_movieActions[ActionSave]);
-    m_filterWidget->setEnabled(true);
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 /**
@@ -311,16 +308,36 @@ void MainWindow::onMenuMovies()
 void MainWindow::onMenuMovieSets()
 {
     qDebug() << "Entered";
-    ui->stackedWidget->setCurrentIndex(2);
-    ui->buttonMovies->setIcon(QIcon(":/img/video_menu.png"));
+    onMenu(WidgetMovies);
     ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menuActive.png"));
-    ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menu.png"));
-    ui->buttonConcerts->setIcon(QIcon(":/img/concerts_menu.png"));
-    m_actionSearch->setEnabled(m_movieSetActions[ActionSearch]);
-    m_actionSave->setEnabled(m_movieSetActions[ActionSave]);
-    m_actionSaveAll->setEnabled(false);
-    m_filterWidget->setEnabled(true);
+    ui->stackedWidget->setCurrentIndex(2);
     ui->setsWidget->loadSets();
+}
+
+/**
+ * @brief Called when the menu item "Movie Genres" was clicked
+ * Updates menu icons and sets status of actions
+ */
+void MainWindow::onMenuGenres()
+{
+    qDebug() << "Entered";
+    onMenu(WidgetGenres);
+    ui->buttonGenres->setIcon(QIcon(":/img/genre_menuActive.png"));
+    ui->stackedWidget->setCurrentIndex(4);
+    //ui->setsWidget->loadSets();
+}
+
+/**
+ * @brief Called when the menu item "Movie Certifications" was clicked
+ * Updates menu icons and sets status of actions
+ */
+void MainWindow::onMenuCertifications()
+{
+    qDebug() << "Entered";
+    onMenu(WidgetCertifications);
+    ui->buttonCertifications->setIcon(QIcon(":/img/certification2_menuActive.png"));
+    ui->stackedWidget->setCurrentIndex(5);
+    //ui->setsWidget->loadSets();
 }
 
 /**
@@ -330,15 +347,9 @@ void MainWindow::onMenuMovieSets()
 void MainWindow::onMenuTvShows()
 {
     qDebug() << "Entered";
-    ui->stackedWidget->setCurrentIndex(1);
-    ui->buttonMovies->setIcon(QIcon(":/img/video_menu.png"));
-    ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menu.png"));
+    onMenu(WidgetTvShows);
     ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menuActive.png"));
-    ui->buttonConcerts->setIcon(QIcon(":/img/concerts_menu.png"));
-    m_actionSearch->setEnabled(m_tvShowActions[ActionSearch]);
-    m_actionSave->setEnabled(m_tvShowActions[ActionSave]);
-    m_actionSaveAll->setEnabled(m_tvShowActions[ActionSave]);
-    m_filterWidget->setEnabled(true);
+    ui->stackedWidget->setCurrentIndex(1);
 }
 
 /**
@@ -348,15 +359,9 @@ void MainWindow::onMenuTvShows()
 void MainWindow::onMenuConcerts()
 {
     qDebug() << "Entered";
-    ui->stackedWidget->setCurrentIndex(3);
-    ui->buttonMovies->setIcon(QIcon(":/img/video_menu.png"));
-    ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menu.png"));
-    ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menu.png"));
+    onMenu(WidgetConcerts);
     ui->buttonConcerts->setIcon(QIcon(":/img/concerts_menuActive.png"));
-    m_actionSearch->setEnabled(m_concertActions[ActionSearch]);
-    m_actionSave->setEnabled(m_concertActions[ActionSave]);
-    m_actionSaveAll->setEnabled(m_concertActions[ActionSave]);
-    m_filterWidget->setEnabled(true);
+    ui->stackedWidget->setCurrentIndex(3);
 }
 
 /**
@@ -390,6 +395,11 @@ void MainWindow::onActionSave()
         QTimer::singleShot(0, ui->setsWidget, SLOT(saveSet()));
     else if (ui->stackedWidget->currentIndex() == 3)
         QTimer::singleShot(0, ui->concertWidget, SLOT(onSaveInformation()));
+    /*else if (ui->stackedWidget->currentIndex() == 4)
+        QTimer::singleShot(0, ui->genreWidget, SLOT(onSaveInformation()));
+    else if (ui->stackedWidget->currentIndex() == 5)
+        QTimer::singleShot(0, ui->certificationsWidget, SLOT(onSaveInformation()));
+        */
 }
 
 /**
@@ -431,26 +441,20 @@ void MainWindow::onFilterChanged(QString text)
 void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
 {
     qDebug() << "Entered, enabled=" << enabled;
-    if (widget == WidgetMovies) {
-        qDebug() << "Widget is Movies";
-        m_movieActions[ActionSave] = enabled;
-    } else if (widget == WidgetTvShows) {
-        qDebug() << "Widget is TV Shows";
-        m_tvShowActions[ActionSave] = enabled;
-    } else if (widget == WidgetMovieSets) {
-        qDebug() << "Widget is Movie Sets";
-        m_movieSetActions[ActionSave] = enabled;
-    } else if (widget == WidgetConcerts) {
-        qDebug() << "Widget is Concerts";
-        m_concertActions[ActionSave] = enabled;
-    }
+
+    m_actions[widget][ActionSave] = enabled;
+    if (widget != WidgetMovieSets && widget != WidgetGenres && widget != WidgetCertifications)
+        m_actions[widget][ActionSaveAll] = enabled;
+
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
         (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1) ||
         (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 3)) {
         m_actionSave->setEnabled(enabled);
         m_actionSaveAll->setEnabled(enabled);
     }
-    if (widget == WidgetMovieSets && ui->stackedWidget->currentIndex() == 2)
+    if ((widget == WidgetMovieSets && ui->stackedWidget->currentIndex() == 2) ||
+        (widget == WidgetGenres && ui->stackedWidget->currentIndex() == 4) ||
+        (widget == WidgetCertifications && ui->stackedWidget->currentIndex() == 5))
         m_actionSave->setEnabled(enabled);
 }
 
@@ -462,16 +466,8 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
 void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
 {
     qDebug() << "Entered, enabled=" << enabled;
-    if (widget == WidgetMovies) {
-        qDebug() << "Widget is Movies";
-        m_movieActions[ActionSearch] = enabled;
-    } else if (widget == WidgetTvShows) {
-        qDebug() << "Widget is TV Shows";
-        m_tvShowActions[ActionSearch] = enabled;
-    } else if (widget == WidgetConcerts) {
-        qDebug() << "Widget is Concerts";
-        m_concertActions[ActionSearch] = enabled;
-    }
+    m_actions[widget][ActionSearch] = enabled;
+
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
         (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1) ||
         (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 3))

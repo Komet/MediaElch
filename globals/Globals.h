@@ -53,11 +53,11 @@ namespace MediaCenterFeatures {
 }
 
 enum MainActions {
-    ActionSearch, ActionSave, ActionExport
+    ActionSearch, ActionSave, ActionSaveAll, ActionFilterWidget, ActionExport
 };
 
 enum MainWidgets {
-    WidgetMovies, WidgetMovieSets, WidgetTvShows, WidgetConcerts
+    WidgetMovies, WidgetMovieSets, WidgetTvShows, WidgetConcerts, WidgetGenres, WidgetCertifications
 };
 
 /**

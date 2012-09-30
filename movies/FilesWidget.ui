@@ -65,4 +65,8 @@
  </widget>
  <resources/>
  <connections/>
+ <slots>
+  <signal>movieSelected(Movie*)</signal>
+  <signal>noMovieSelected()</signal>
+ </slots>
 </ui>

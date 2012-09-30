@@ -33,10 +33,13 @@ private slots:
     void progressProgress(int current, int max, int id);
     void progressFinished(int id);
     void progressStarted(QString msg, int id);
+    void onMenu(MainWidgets widget);
     void onMenuMovies();
     void onMenuMovieSets();
     void onMenuTvShows();
     void onMenuConcerts();
+    void onMenuGenres();
+    void onMenuCertifications();
     void onActionSearch();
     void onActionSave();
     void onActionSaveAll();
@@ -59,10 +62,7 @@ private:
     QAction *m_actionQuit;
     QAction *m_actionSaveAll;
     QAction *m_actionSettings;
-    QMap<MainActions, bool> m_movieActions;
-    QMap<MainActions, bool> m_movieSetActions;
-    QMap<MainActions, bool> m_tvShowActions;
-    QMap<MainActions, bool> m_concertActions;
+    QMap<MainWidgets, QMap<MainActions, bool> > m_actions;
     FilterWidget *m_filterWidget;
     void setupToolbar();
 };
