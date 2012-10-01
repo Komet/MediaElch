@@ -151,6 +151,7 @@ void SetsWidget::loadSet(QString set)
     ui->setName->setText(set);
     ui->buttonPreviewBackdrop->setEnabled(false);
     ui->buttonPreviewPoster->setEnabled(false);
+    ui->movies->blockSignals(true);
 
     foreach (Movie *movie, m_sets[set]) {
         int row = ui->movies->rowCount();
@@ -185,6 +186,7 @@ void SetsWidget::loadSet(QString set)
         ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->buttonPreviewBackdrop->setEnabled(false);
     }
+    ui->movies->blockSignals(false);
 }
 
 /**

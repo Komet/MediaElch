@@ -52,9 +52,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     if (!m_settings->movieSplitterState().isNull()) {
         ui->movieSplitter->restoreState(m_settings->movieSplitterState());
-        ui->tvShowSplitter->restoreState(m_settings->tvShowSplitterState());
-        ui->setsWidget->splitter()->restoreState(m_settings->movieSetsSplitterState());
-        ui->concertSplitter->restoreState(m_settings->concertSplitterState());
+        ui->tvShowSplitter->restoreState(m_settings->movieSplitterState());
+        ui->setsWidget->splitter()->restoreState(m_settings->movieSplitterState());
+        ui->concertSplitter->restoreState(m_settings->movieSplitterState());
+        ui->genreWidget->splitter()->restoreState(m_settings->movieSplitterState());
     }
 
     if (m_settings->mainWindowSize().isValid() && !m_settings->mainWindowPosition().isNull()) {
@@ -123,10 +124,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(m_filterWidget, SIGNAL(sigFilterTextChanged(QString)), this, SLOT(onFilterChanged(QString)));
 
-    connect(ui->movieSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(onMovieSplitterMoved()));
-    connect(ui->tvShowSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(onTvShowSplitterMoved()));
-    connect(ui->setsWidget->splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(onMovieSetsSplitterMoved()));
-    connect(ui->concertSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(onConcertSplitterMoved()));
+    connect(ui->movieSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
+    connect(ui->tvShowSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
+    connect(ui->setsWidget->splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
+    connect(ui->genreWidget->splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
+    connect(ui->concertSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
 
     Manager::instance()->setupMediaCenterInterface();
 
@@ -324,7 +326,7 @@ void MainWindow::onMenuGenres()
     onMenu(WidgetGenres);
     ui->buttonGenres->setIcon(QIcon(":/img/genre_menuActive.png"));
     ui->stackedWidget->setCurrentIndex(4);
-    //ui->setsWidget->loadSets();
+    ui->genreWidget->loadGenres();
 }
 
 /**
@@ -337,7 +339,7 @@ void MainWindow::onMenuCertifications()
     onMenu(WidgetCertifications);
     ui->buttonCertifications->setIcon(QIcon(":/img/certification2_menuActive.png"));
     ui->stackedWidget->setCurrentIndex(5);
-    //ui->setsWidget->loadSets();
+    ui->certificationWidget->loadCertifications();
 }
 
 /**
@@ -395,11 +397,10 @@ void MainWindow::onActionSave()
         QTimer::singleShot(0, ui->setsWidget, SLOT(saveSet()));
     else if (ui->stackedWidget->currentIndex() == 3)
         QTimer::singleShot(0, ui->concertWidget, SLOT(onSaveInformation()));
-    /*else if (ui->stackedWidget->currentIndex() == 4)
+    else if (ui->stackedWidget->currentIndex() == 4)
         QTimer::singleShot(0, ui->genreWidget, SLOT(onSaveInformation()));
     else if (ui->stackedWidget->currentIndex() == 5)
-        QTimer::singleShot(0, ui->certificationsWidget, SLOT(onSaveInformation()));
-        */
+        QTimer::singleShot(0, ui->certificationWidget, SLOT(onSaveInformation()));
 }
 
 /**
@@ -415,6 +416,8 @@ void MainWindow::onActionSaveAll()
         QTimer::singleShot(0, ui->tvShowWidget, SLOT(onSaveAll()));
     else if (ui->stackedWidget->currentIndex() == 3)
         QTimer::singleShot(0, ui->concertWidget, SLOT(onSaveAll()));
+    else if (ui->stackedWidget->currentIndex() == 4)
+        QTimer::singleShot(0, ui->genreWidget, SLOT(onSaveAll()));
 }
 
 /**
@@ -443,17 +446,17 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
     qDebug() << "Entered, enabled=" << enabled;
 
     m_actions[widget][ActionSave] = enabled;
-    if (widget != WidgetMovieSets && widget != WidgetGenres && widget != WidgetCertifications)
+    if (widget != WidgetMovieSets && widget != WidgetCertifications)
         m_actions[widget][ActionSaveAll] = enabled;
 
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
         (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1) ||
-        (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 3)) {
+        (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 3) ||
+        (widget == WidgetGenres && ui->stackedWidget->currentIndex() == 4)) {
         m_actionSave->setEnabled(enabled);
         m_actionSaveAll->setEnabled(enabled);
     }
     if ((widget == WidgetMovieSets && ui->stackedWidget->currentIndex() == 2) ||
-        (widget == WidgetGenres && ui->stackedWidget->currentIndex() == 4) ||
         (widget == WidgetCertifications && ui->stackedWidget->currentIndex() == 5))
         m_actionSave->setEnabled(enabled);
 }
@@ -475,45 +478,23 @@ void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
 }
 
 /**
- * @brief Called when the splitter in the movie widget was moved
- * Adjusts the other splitters as well
+ * @brief Moves all splitters
+ * @param pos
+ * @param index
  */
-void MainWindow::onMovieSplitterMoved()
+void MainWindow::moveSplitter(int pos, int index)
 {
-    ui->tvShowSplitter->restoreState(ui->movieSplitter->saveState());
-    ui->setsWidget->splitter()->restoreState(ui->movieSplitter->saveState());
-    ui->concertSplitter->restoreState(ui->movieSplitter->saveState());
-}
+    QList<int> sizes;
+    QList<QSplitter*> splitters;
+    splitters << ui->movieSplitter << ui->tvShowSplitter << ui->setsWidget->splitter() << ui->genreWidget->splitter();
+    foreach (QSplitter *splitter, splitters) {
+        if (splitter->sizes().at(0) == pos) {
+            sizes = splitter->sizes();
+            break;
+        }
+    }
 
-/**
- * @brief Called when the splitter in the tv shows widget was moved
- * Adjusts the other splitters as well
- */
-void MainWindow::onTvShowSplitterMoved()
-{
-    ui->movieSplitter->restoreState(ui->tvShowSplitter->saveState());
-    ui->setsWidget->splitter()->restoreState(ui->tvShowSplitter->saveState());
-    ui->concertSplitter->restoreState(ui->tvShowSplitter->saveState());
-}
-
-/**
- * @brief Called when the splitter in the movie sets widget was moved
- * Adjusts the other splitters as well
- */
-void MainWindow::onMovieSetsSplitterMoved()
-{
-    ui->movieSplitter->restoreState(ui->setsWidget->splitter()->saveState());
-    ui->tvShowSplitter->restoreState(ui->setsWidget->splitter()->saveState());
-    ui->concertSplitter->restoreState(ui->setsWidget->splitter()->saveState());
-}
-
-/**
- * @brief Called when the splitter in the concert widget was moved
- * Adjusts the other splitters as well
- */
-void MainWindow::onConcertSplitterMoved()
-{
-    ui->movieSplitter->restoreState(ui->concertSplitter->saveState());
-    ui->tvShowSplitter->restoreState(ui->concertSplitter->saveState());
-    ui->setsWidget->splitter()->restoreState(ui->concertSplitter->saveState());
+    foreach (QSplitter *splitter, splitters) {
+        splitter->setSizes(sizes);
+    }
 }

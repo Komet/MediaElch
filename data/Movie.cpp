@@ -1063,6 +1063,17 @@ void Movie::removeGenre(QString *genre)
 }
 
 /**
+ * @brief Movie::removeGenre
+ * @param genre
+ * @see Movie::genres
+ */
+void Movie::removeGenre(QString genre)
+{
+    m_genres.removeOne(genre);
+    setChanged(true);
+}
+
+/**
  * @brief Removes a studio from the movie
  * @param studio Pointer to the studio to remove
  * @see Movie::studios

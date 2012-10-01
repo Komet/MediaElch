@@ -25,6 +25,7 @@ public:
 
 public slots:
     int exec();
+    int execWithoutGenre(QString genre);
 
 private slots:
     void onMovieSelected(QTableWidgetItem *item);
@@ -32,6 +33,7 @@ private slots:
 private:
     Ui::MovieListDialog *ui;
     Movie *m_selectedMovie;
+    void reposition();
 };
 
 #endif // MOVIELISTDIALOG_H

@@ -400,8 +400,26 @@ margin-right: 10px;</string>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="genres"/>
-      <widget class="QWidget" name="certifications"/>
+      <widget class="QWidget" name="page_5">
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <property name="margin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="GenreWidget" name="genreWidget" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_6">
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <property name="margin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="CertificationWidget" name="certificationWidget" native="true"/>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -499,6 +517,24 @@ margin-right: 10px;</string>
    <slots>
     <signal>setActionSaveEnabled(bool,MainWidgets)</signal>
     <signal>setActionSearchEnabled(bool,MainWidgets)</signal>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>GenreWidget</class>
+   <extends>QWidget</extends>
+   <header>movies/GenreWidget.h</header>
+   <container>1</container>
+   <slots>
+    <signal>setActionSaveEnabled(bool,MainWidgets)</signal>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>CertificationWidget</class>
+   <extends>QWidget</extends>
+   <header>movies/CertificationWidget.h</header>
+   <container>1</container>
+   <slots>
+    <signal>setActionSaveEnabled(bool,MainWidgets)</signal>
    </slots>
   </customwidget>
  </customwidgets>
@@ -700,6 +736,38 @@ margin-right: 10px;</string>
   </connection>
   <connection>
    <sender>setsWidget</sender>
+   <signal>setActionSaveEnabled(bool,MainWidgets)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onSetSaveEnabled(bool,MainWidgets)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>560</x>
+     <y>380</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>530</x>
+     <y>373</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>genreWidget</sender>
+   <signal>setActionSaveEnabled(bool,MainWidgets)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onSetSaveEnabled(bool,MainWidgets)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>560</x>
+     <y>380</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>530</x>
+     <y>373</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>certificationWidget</sender>
    <signal>setActionSaveEnabled(bool,MainWidgets)</signal>
    <receiver>MainWindow</receiver>
    <slot>onSetSaveEnabled(bool,MainWidgets)</slot>

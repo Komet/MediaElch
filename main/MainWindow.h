@@ -46,10 +46,7 @@ private slots:
     void onFilterChanged(QString text);
     void onSetSaveEnabled(bool enabled, MainWidgets widget);
     void onSetSearchEnabled(bool enabled, MainWidgets widget);
-    void onMovieSplitterMoved();
-    void onTvShowSplitterMoved();
-    void onMovieSetsSplitterMoved();
-    void onConcertSplitterMoved();
+    void moveSplitter(int pos, int index);
 
 private:
     Ui::MainWindow *ui;

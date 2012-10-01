@@ -78,7 +78,9 @@ SOURCES += main.cpp\
     scrapers/TMDbConcerts.cpp \
     cli/CLI.cpp \
     settings/SettingsWidget.cpp \
-    settings/Settings.cpp
+    settings/Settings.cpp \
+    movies/GenreWidget.cpp \
+    movies/CertificationWidget.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -142,7 +144,9 @@ HEADERS  += main/MainWindow.h \
     scrapers/TMDbConcerts.h \
     cli/CLI.h \
     settings/SettingsWidget.h \
-    settings/Settings.h
+    settings/Settings.h \
+    movies/GenreWidget.h \
+    movies/CertificationWidget.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -165,7 +169,9 @@ FORMS    += main/MainWindow.ui \
     concerts/ConcertWidget.ui \
     concerts/ConcertSearch.ui \
     concerts/ConcertFilesWidget.ui \
-    settings/SettingsWidget.ui
+    settings/SettingsWidget.ui \
+    movies/GenreWidget.ui \
+    movies/CertificationWidget.ui
 
 RESOURCES += \
     MediaElch.qrc

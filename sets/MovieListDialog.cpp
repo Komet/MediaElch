@@ -53,15 +53,8 @@ MovieListDialog* MovieListDialog::instance(QWidget *parent)
 int MovieListDialog::exec()
 {
     qDebug() << "Entered";
-    QSize newSize;
-    newSize.setHeight(parentWidget()->size().height()-200);
-    newSize.setWidth(qMin(1000, parentWidget()->size().width()-400));
-    resize(newSize);
 
-    int xMove = (parentWidget()->size().width()-size().width())/2;
-    QPoint globalPos = parentWidget()->mapToGlobal(parentWidget()->pos());
-    move(globalPos.x()+xMove, globalPos.y());
-
+    reposition();
     ui->movies->clearContents();
     ui->movies->setRowCount(0);
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
@@ -72,6 +65,43 @@ int MovieListDialog::exec()
         ui->movies->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(movie));
     }
     return QDialog::exec();
+}
+
+/**
+ * @brief Executes the dialog and displays all movies except the ones who have the genre
+ * @param genre Genre to exclude
+ * @return Result of QDialog::exec
+ */
+int MovieListDialog::execWithoutGenre(QString genre)
+{
+    reposition();
+    ui->movies->clearContents();
+    ui->movies->setRowCount(0);
+    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+        if (movie->genres().contains(genre))
+            continue;
+        int row = ui->movies->rowCount();
+        ui->movies->insertRow(row);
+        QString title = (movie->released().isValid()) ? QString("%1 (%2)").arg(movie->name()).arg(movie->released().toString("yyyy")) : movie->name();
+        ui->movies->setItem(row, 0, new QTableWidgetItem(title));
+        ui->movies->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(movie));
+    }
+    return QDialog::exec();
+}
+
+/**
+ * @brief Resizes and repositions the dialog
+ */
+void MovieListDialog::reposition()
+{
+    QSize newSize;
+    newSize.setHeight(parentWidget()->size().height()-200);
+    newSize.setWidth(qMin(1000, parentWidget()->size().width()-400));
+    resize(newSize);
+
+    int xMove = (parentWidget()->size().width()-size().width())/2;
+    QPoint globalPos = parentWidget()->mapToGlobal(parentWidget()->pos());
+    move(globalPos.x()+xMove, globalPos.y());
 }
 
 /**

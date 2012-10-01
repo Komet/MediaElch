@@ -133,6 +133,7 @@ public:
     void removeCountry(QString *country);
     void removeStudio(QString *studio);
     void removeGenre(QString *genre);
+    void removeGenre(QString genre);
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false);
