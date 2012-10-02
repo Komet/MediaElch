@@ -184,6 +184,59 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>CertificationWidget</name>
+    <message>
+        <location filename="../movies/CertificationWidget.ui" line="14"/>
+        <source>Form</source>
+        <translation>Form</translation>
+    </message>
+    <message>
+        <location filename="../movies/CertificationWidget.ui" line="61"/>
+        <source>Certification</source>
+        <translation>Freigabe</translation>
+    </message>
+    <message>
+        <location filename="../movies/CertificationWidget.ui" line="91"/>
+        <source>TextLabel</source>
+        <translation>Nachricht</translation>
+    </message>
+    <message>
+        <location filename="../movies/CertificationWidget.ui" line="135"/>
+        <source>Movie</source>
+        <translation>Film</translation>
+    </message>
+    <message>
+        <location filename="../movies/CertificationWidget.ui" line="158"/>
+        <source>Add Movie</source>
+        <translation>Film hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="../movies/CertificationWidget.ui" line="172"/>
+        <source>Remove Current Movie</source>
+        <translation>Ausgewählten Film entfernen</translation>
+    </message>
+    <message>
+        <location filename="../movies/CertificationWidget.ui" line="192"/>
+        <source>Double click a certification to rename it, right click to delete. If you want to merge two certifications just give them the same name.</source>
+        <translation>Klick eine Freigabe doppelt an, um sie umzubenennen. Wenn du zwei Freigaben zusammenfügen willst, gib ihnen einfach den gleichen Namen.</translation>
+    </message>
+    <message>
+        <location filename="../movies/CertificationWidget.ui" line="202"/>
+        <source>Please keep in mind that the changes you make here (renaming or deleting certifications) will be made for every movie.</source>
+        <translation>Bitte denk daran, dass die Änderungen, die du hier machst, für alle Filme angewendet werden.</translation>
+    </message>
+    <message>
+        <location filename="../movies/CertificationWidget.cpp" line="31"/>
+        <source>Delete Certification</source>
+        <translation>Freigabe Löschen</translation>
+    </message>
+    <message>
+        <location filename="../movies/CertificationWidget.cpp" line="218"/>
+        <source>All Movies Saved</source>
+        <translation>Alle Filme gespeichert</translation>
+    </message>
+</context>
+<context>
     <name>ConcertDelegate</name>
     <message>
         <location filename="../data/ConcertDelegate.cpp" line="32"/>
@@ -531,6 +584,59 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>GenreWidget</name>
+    <message>
+        <location filename="../movies/GenreWidget.ui" line="14"/>
+        <source>Form</source>
+        <translation>Form</translation>
+    </message>
+    <message>
+        <location filename="../movies/GenreWidget.ui" line="61"/>
+        <source>Genre</source>
+        <translation>Genre</translation>
+    </message>
+    <message>
+        <location filename="../movies/GenreWidget.ui" line="91"/>
+        <source>TextLabel</source>
+        <translation>Nachricht</translation>
+    </message>
+    <message>
+        <location filename="../movies/GenreWidget.ui" line="135"/>
+        <source>Movie</source>
+        <translation>Film</translation>
+    </message>
+    <message>
+        <location filename="../movies/GenreWidget.ui" line="158"/>
+        <source>Add Movie</source>
+        <translation>Film hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="../movies/GenreWidget.ui" line="172"/>
+        <source>Remove Current Movie</source>
+        <translation>Ausgewählten Film entfernen</translation>
+    </message>
+    <message>
+        <location filename="../movies/GenreWidget.ui" line="192"/>
+        <source>Double click a genre to rename it, right click to delete. If you want to merge two genres just give them the same name.</source>
+        <translation>Klick ein Genre doppelt an, um es umzubenennen. Wenn du zwei Genres zusammenfügen willst, gib ihnen einfach den gleichen Namen.</translation>
+    </message>
+    <message>
+        <location filename="../movies/GenreWidget.ui" line="202"/>
+        <source>Please keep in mind that the changes you make here (renaming or deleting genres) will be made for every movie.</source>
+        <translation>Bitte denk daran, dass die Änderungen, die du hier machst, für alle Filme angewendet werden.</translation>
+    </message>
+    <message>
+        <location filename="../movies/GenreWidget.cpp" line="31"/>
+        <source>Delete Genre</source>
+        <translation>Genre Löschen</translation>
+    </message>
+    <message>
+        <location filename="../movies/GenreWidget.cpp" line="226"/>
+        <source>All Movies Saved</source>
+        <translation>Alle Filme gespeichert</translation>
+    </message>
+</context>
+<context>
     <name>ImageDialog</name>
     <message>
         <location filename="../globals/ImageDialog.ui" line="17"/>
@@ -642,76 +748,93 @@ p, li { white-space: pre-wrap; }
         <translation>MediaElch</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="67"/>
+        <location filename="../main/MainWindow.ui" line="75"/>
+        <location filename="../main/MainWindow.ui" line="85"/>
         <source>Movies</source>
         <translation>Filme</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="73"/>
-        <location filename="../main/MainWindow.ui" line="119"/>
+        <location filename="../main/MainWindow.ui" line="95"/>
+        <location filename="../main/MainWindow.ui" line="222"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="90"/>
+        <location filename="../main/MainWindow.ui" line="112"/>
         <source>Movie Sets</source>
         <translation>Zusammenstellungen</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="113"/>
+        <location filename="../main/MainWindow.ui" line="139"/>
+        <source>Genres</source>
+        <translation>Genres</translation>
+    </message>
+    <message>
+        <location filename="../main/MainWindow.ui" line="166"/>
+        <source>Certifications</source>
+        <translation>Freigaben</translation>
+    </message>
+    <message>
+        <location filename="../main/MainWindow.ui" line="202"/>
+        <source>Shows</source>
+        <translation>Serien</translation>
+    </message>
+    <message>
+        <location filename="../main/MainWindow.ui" line="212"/>
         <source>TV Shows</source>
         <translation>TV Serien</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="136"/>
+        <location filename="../main/MainWindow.ui" line="248"/>
+        <location filename="../main/MainWindow.ui" line="258"/>
         <source>Concerts</source>
         <translation>Konzerte</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="312"/>
-        <location filename="../main/MainWindow.cpp" line="227"/>
+        <location filename="../main/MainWindow.ui" line="467"/>
+        <location filename="../main/MainWindow.cpp" line="211"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="317"/>
-        <location filename="../main/MainWindow.cpp" line="230"/>
+        <location filename="../main/MainWindow.ui" line="472"/>
+        <location filename="../main/MainWindow.cpp" line="214"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.ui" line="322"/>
-        <location filename="../main/MainWindow.cpp" line="229"/>
+        <location filename="../main/MainWindow.ui" line="477"/>
+        <location filename="../main/MainWindow.cpp" line="213"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="214"/>
+        <location filename="../main/MainWindow.cpp" line="198"/>
         <source>Search</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="216"/>
+        <location filename="../main/MainWindow.cpp" line="200"/>
         <source>Search (%1)</source>
         <translation>Suche (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="218"/>
+        <location filename="../main/MainWindow.cpp" line="202"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="220"/>
+        <location filename="../main/MainWindow.cpp" line="204"/>
         <source>Save (%1)</source>
         <translation>Speichern (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="222"/>
+        <location filename="../main/MainWindow.cpp" line="206"/>
         <source>Save All</source>
         <translation>Alle Speichern</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="225"/>
+        <location filename="../main/MainWindow.cpp" line="209"/>
         <source>Save All (%1)</source>
         <translation>Alle Speichern (%1)</translation>
     </message>
@@ -1359,31 +1482,31 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="273"/>
-        <location filename="../sets/SetsWidget.cpp" line="305"/>
+        <location filename="../sets/SetsWidget.cpp" line="275"/>
+        <location filename="../sets/SetsWidget.cpp" line="307"/>
         <source>MediaElch</source>
         <translation>MediaElch</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="274"/>
-        <location filename="../sets/SetsWidget.cpp" line="306"/>
+        <location filename="../sets/SetsWidget.cpp" line="276"/>
+        <location filename="../sets/SetsWidget.cpp" line="308"/>
         <source>Setting Posters and Backdrops is only possible with XBMC MySQL and SQLite interfaces.</source>
         <translation>Das Setzen von Postern und Fanarts ist nur mit den XBMC MySQL und SQLite Interfaces möglich.</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="280"/>
-        <location filename="../sets/SetsWidget.cpp" line="312"/>
+        <location filename="../sets/SetsWidget.cpp" line="282"/>
+        <location filename="../sets/SetsWidget.cpp" line="314"/>
         <source>Choose Image</source>
         <translation>Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="280"/>
-        <location filename="../sets/SetsWidget.cpp" line="312"/>
+        <location filename="../sets/SetsWidget.cpp" line="282"/>
+        <location filename="../sets/SetsWidget.cpp" line="314"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="349"/>
+        <location filename="../sets/SetsWidget.cpp" line="351"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>

@@ -20,10 +20,7 @@ public:
 
     QSize mainWindowSize();
     QPoint mainWindowPosition();
-    QByteArray movieSplitterState();
-    QByteArray tvShowSplitterState();
-    QByteArray movieSetsSplitterState();
-    QByteArray concertSplitterState();
+    QByteArray mainSplitterState();
     QList<SettingsDir> movieDirectories();
     QList<SettingsDir> tvShowDirectories();
     QList<SettingsDir> concertDirectories();
@@ -56,10 +53,7 @@ public:
 
     void setMainWindowSize(QSize mainWindowSize);
     void setMainWindowPosition(QPoint mainWindowPosition);
-    void setMovieSplitterState(QByteArray state);
-    void setTvShowSplitterState(QByteArray state);
-    void setMovieSetsSplitterState(QByteArray state);
-    void setConcertSplitterState(QByteArray state);
+    void setMainSplitterState(QByteArray state);
     void setMovieDirectories(QList<SettingsDir> dirs);
     void setTvShowDirectories(QList<SettingsDir> dirs);
     void setConcertDirectories(QList<SettingsDir> dirs);
@@ -94,10 +88,7 @@ private:
     QList<SettingsDir> m_concertDirectories;
     QSize m_mainWindowSize;
     QPoint m_mainWindowPosition;
-    QByteArray m_movieSplitterState;
-    QByteArray m_tvShowSplitterState;
-    QByteArray m_movieSetsSplitterState;
-    QByteArray m_concertSplitterState;
+    QByteArray m_mainSplitterState;
     int m_mediaCenterInterface;
     QString m_xbmcMysqlHost;
     QString m_xbmcMysqlDatabase;

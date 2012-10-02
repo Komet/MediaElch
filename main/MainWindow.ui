@@ -85,9 +85,11 @@
           <string>Movies</string>
          </property>
          <property name="styleSheet">
-          <string notr="true">border: 0;
-margin-left: 10px;
-margin-right: 10px;</string>
+          <string notr="true">QToolButton {
+	border: 0;
+	margin-left: 10px;
+	margin-right: 10px;
+}</string>
          </property>
          <property name="text">
           <string>...</string>
@@ -110,9 +112,11 @@ margin-right: 10px;</string>
           <string>Movie Sets</string>
          </property>
          <property name="styleSheet">
-          <string notr="true">border: 0;
-margin-left: 10px;
-margin-right: 10px;</string>
+          <string notr="true">QToolButton {
+	border: 0;
+	margin-left: 10px;
+	margin-right: 10px;
+}</string>
          </property>
          <property name="text">
           <string/>
@@ -131,10 +135,15 @@ margin-right: 10px;</string>
        </item>
        <item>
         <widget class="QToolButton" name="buttonGenres">
+         <property name="toolTip">
+          <string>Genres</string>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 0;
-margin-left: 10px;
-margin-right: 10px;</string>
+          <string notr="true">QToolButton {
+	border: 0;
+	margin-left: 10px;
+	margin-right: 10px;
+}</string>
          </property>
          <property name="text">
           <string/>
@@ -153,10 +162,15 @@ margin-right: 10px;</string>
        </item>
        <item>
         <widget class="QToolButton" name="buttonCertifications">
+         <property name="toolTip">
+          <string>Certifications</string>
+         </property>
          <property name="styleSheet">
-          <string notr="true">border: 0;
-margin-left: 10px;
-margin-right: 10px;</string>
+          <string notr="true">QToolButton {
+	border: 0;
+	margin-left: 10px;
+	margin-right: 10px;
+}</string>
          </property>
          <property name="text">
           <string/>
@@ -198,9 +212,11 @@ margin-top: 20px;</string>
           <string>TV Shows</string>
          </property>
          <property name="styleSheet">
-          <string notr="true">border: 0;
-margin-left: 10px;
-margin-right: 10px;</string>
+          <string notr="true">QToolButton {
+	border: 0;
+	margin-left: 10px;
+	margin-right: 10px;
+}</string>
          </property>
          <property name="text">
           <string>...</string>
@@ -242,9 +258,11 @@ margin-top: 20px;</string>
           <string>Concerts</string>
          </property>
          <property name="styleSheet">
-          <string notr="true">border: 0;
-margin-left: 10px;
-margin-right: 10px;</string>
+          <string notr="true">QToolButton {
+	border: 0;
+	margin-left: 10px;
+	margin-right: 10px;
+}</string>
          </property>
          <property name="text">
           <string/>

@@ -189,7 +189,7 @@
             <item>
              <widget class="QLabel" name="label_3">
               <property name="text">
-               <string>Double click a genre to rename it, right click to delete. If you want to merge two genres just give them the same name. After saving they will be one.</string>
+               <string>Double click a genre to rename it, right click to delete. If you want to merge two genres just give them the same name.</string>
               </property>
               <property name="wordWrap">
                <bool>true</bool>

@@ -90,6 +90,28 @@ int MovieListDialog::execWithoutGenre(QString genre)
 }
 
 /**
+ * @brief Executes the dialog and displays all movies except the ones who have the certification
+ * @param certification Certification to exclude
+ * @return Result of QDialog::exec
+ */
+int MovieListDialog::execWithoutCertification(QString certification)
+{
+    reposition();
+    ui->movies->clearContents();
+    ui->movies->setRowCount(0);
+    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+        if (movie->certification() == certification)
+            continue;
+        int row = ui->movies->rowCount();
+        ui->movies->insertRow(row);
+        QString title = (movie->released().isValid()) ? QString("%1 (%2)").arg(movie->name()).arg(movie->released().toString("yyyy")) : movie->name();
+        ui->movies->setItem(row, 0, new QTableWidgetItem(title));
+        ui->movies->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(movie));
+    }
+    return QDialog::exec();
+}
+
+/**
  * @brief Resizes and repositions the dialog
  */
 void MovieListDialog::reposition()

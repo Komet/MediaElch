@@ -59,10 +59,7 @@ void Settings::loadSettings()
     // Globals
     m_mainWindowSize = m_settings.value("MainWindowSize").toSize();
     m_mainWindowPosition = m_settings.value("MainWindowPosition").toPoint();
-    m_movieSplitterState = m_settings.value("MovieSplitterState").toByteArray();
-    m_tvShowSplitterState = m_settings.value("TvShowSplitterState").toByteArray();
-    m_concertSplitterState = m_settings.value("ConcertSplitterState").toByteArray();
-    m_movieSetsSplitterState = m_settings.value("MovieSetsSplitterState").toByteArray();
+    m_mainSplitterState = m_settings.value("MainSplitterState").toByteArray();
     m_debugModeActivated = m_settings.value("DebugModeActivated", false).toBool();
     m_debugLogPath = m_settings.value("DebugLogPath").toString();
 
@@ -247,39 +244,12 @@ QPoint Settings::mainWindowPosition()
 }
 
 /**
- * @brief Returns the state of the movie splitter
- * @return State of the movie splitter
+ * @brief Returns the state of the main splitter
+ * @return State of the main splitter
  */
-QByteArray Settings::movieSplitterState()
+QByteArray Settings::mainSplitterState()
 {
-    return m_movieSplitterState;
-}
-
-/**
- * @brief Returns the state of the tv show splitter
- * @return State of the tv show splitter
- */
-QByteArray Settings::tvShowSplitterState()
-{
-    return m_tvShowSplitterState;
-}
-
-/**
- * @brief Returns the state of the concert splitter
- * @return State of the concert splitter
- */
-QByteArray Settings::concertSplitterState()
-{
-    return m_concertSplitterState;
-}
-
-/**
- * @brief Returns the state of the sets splitter
- * @return State of the sets splitter
- */
-QByteArray Settings::movieSetsSplitterState()
-{
-    return m_movieSetsSplitterState;
+    return m_mainSplitterState;
 }
 
 /**
@@ -614,43 +584,13 @@ void Settings::setMainWindowPosition(QPoint mainWindowPosition)
 }
 
 /**
- * @brief Sets the state of the movie splitter
+ * @brief Sets the state of the main splitter
  * @param state State of the splitter
  */
-void Settings::setMovieSplitterState(QByteArray state)
+void Settings::setMainSplitterState(QByteArray state)
 {
-    m_movieSplitterState = state;
-    m_settings.setValue("MovieSplitterState", state);
-}
-
-/**
- * @brief Sets the state of the tv show splitter
- * @param state State of the splitter
- */
-void Settings::setTvShowSplitterState(QByteArray state)
-{
-    m_tvShowSplitterState = state;
-    m_settings.setValue("TvShowSplitterState", state);
-}
-
-/**
- * @brief Sets the state of the movie sets splitter
- * @param state State of the splitter
- */
-void Settings::setMovieSetsSplitterState(QByteArray state)
-{
-    m_movieSetsSplitterState = state;
-    m_settings.setValue("MovieSetsSplitterState", state);
-}
-
-/**
- * @brief Sets the state of the concert splitter
- * @param state State of the splitter
- */
-void Settings::setConcertSplitterState(QByteArray state)
-{
-    m_concertSplitterState = state;
-    m_settings.setValue("ConcertSplitterState", state);
+    m_mainSplitterState = state;
+    m_settings.setValue("MainSplitterState", state);
 }
 
 /**

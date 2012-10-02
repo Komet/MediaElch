@@ -26,6 +26,7 @@ public:
 public slots:
     int exec();
     int execWithoutGenre(QString genre);
+    int execWithoutCertification(QString certification);
 
 private slots:
     void onMovieSelected(QTableWidgetItem *item);

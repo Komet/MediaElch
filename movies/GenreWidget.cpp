@@ -149,6 +149,7 @@ void GenreWidget::onGenreNameChanged(QTableWidgetItem *item)
     }
     ui->genreName->setText(newName);
     item->setData(Qt::UserRole, newName);
+    loadGenres();
 }
 
 /**
@@ -221,5 +222,6 @@ void GenreWidget::onSaveInformation()
             movie->saveData(Manager::instance()->mediaCenterInterface());
     }
 
+    loadGenres();
     MessageBox::instance()->showMessage(tr("All Movies Saved"));
 }

@@ -50,12 +50,13 @@ MainWindow::MainWindow(QWidget *parent) :
     MessageBox::instance(this)->reposition(this->size());
     Manager::instance();
 
-    if (!m_settings->movieSplitterState().isNull()) {
-        ui->movieSplitter->restoreState(m_settings->movieSplitterState());
-        ui->tvShowSplitter->restoreState(m_settings->movieSplitterState());
-        ui->setsWidget->splitter()->restoreState(m_settings->movieSplitterState());
-        ui->concertSplitter->restoreState(m_settings->movieSplitterState());
-        ui->genreWidget->splitter()->restoreState(m_settings->movieSplitterState());
+    if (!m_settings->mainSplitterState().isNull()) {
+        ui->movieSplitter->restoreState(m_settings->mainSplitterState());
+        ui->tvShowSplitter->restoreState(m_settings->mainSplitterState());
+        ui->setsWidget->splitter()->restoreState(m_settings->mainSplitterState());
+        ui->concertSplitter->restoreState(m_settings->mainSplitterState());
+        ui->genreWidget->splitter()->restoreState(m_settings->mainSplitterState());
+        ui->certificationWidget->splitter()->restoreState(m_settings->mainSplitterState());
     }
 
     if (m_settings->mainWindowSize().isValid() && !m_settings->mainWindowPosition().isNull()) {
@@ -128,6 +129,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->tvShowSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
     connect(ui->setsWidget->splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
     connect(ui->genreWidget->splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
+    connect(ui->certificationWidget->splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
     connect(ui->concertSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
 
     Manager::instance()->setupMediaCenterInterface();
@@ -159,10 +161,7 @@ MainWindow::~MainWindow()
     Manager::instance()->shutdownMediaCenterInterfaces();
     m_settings->setMainWindowSize(size());
     m_settings->setMainWindowPosition(pos());
-    m_settings->setMovieSplitterState(ui->movieSplitter->saveState());
-    m_settings->setTvShowSplitterState(ui->tvShowSplitter->saveState());
-    m_settings->setMovieSetsSplitterState(ui->setsWidget->splitter()->saveState());
-    m_settings->setConcertSplitterState(ui->concertSplitter->saveState());
+    m_settings->setMainSplitterState(ui->movieSplitter->saveState());
     delete ui;
 }
 
@@ -482,9 +481,10 @@ void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
  */
 void MainWindow::moveSplitter(int pos, int index)
 {
+    Q_UNUSED(index)
     QList<int> sizes;
     QList<QSplitter*> splitters;
-    splitters << ui->movieSplitter << ui->tvShowSplitter << ui->setsWidget->splitter() << ui->genreWidget->splitter();
+    splitters << ui->movieSplitter << ui->tvShowSplitter << ui->setsWidget->splitter() << ui->genreWidget->splitter() << ui->certificationWidget->splitter();
     foreach (QSplitter *splitter, splitters) {
         if (splitter->sizes().at(0) == pos) {
             sizes = splitter->sizes();
