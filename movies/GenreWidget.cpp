@@ -117,7 +117,7 @@ void GenreWidget::onGenreSelected()
     ui->movies->setRowCount(0);
     ui->movies->setSortingEnabled(false);
 
-    QString genreName = ui->genres->item(ui->genres->currentRow(), 0)->data(Qt::UserRole).toString();
+    QString genreName = ui->genres->item(ui->genres->currentRow(), 0)->text();
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         if (movie->genres().contains(genreName)) {
             int row = ui->movies->rowCount();
@@ -148,6 +148,7 @@ void GenreWidget::onGenreNameChanged(QTableWidgetItem *item)
         }
     }
     ui->genreName->setText(newName);
+    item->setData(Qt::UserRole, newName);
 }
 
 /**
@@ -160,7 +161,7 @@ void GenreWidget::deleteGenre()
         return;
     }
 
-    QString genreName = ui->genres->item(ui->genres->currentRow(), 0)->data(Qt::UserRole).toString();
+    QString genreName = ui->genres->item(ui->genres->currentRow(), 0)->text();
     ui->genres->removeRow(ui->genres->currentRow());
 
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
@@ -202,7 +203,7 @@ void GenreWidget::addMovie()
 
     if (MovieListDialog::instance()->execWithoutGenre(ui->genres->item(ui->genres->currentRow(), 0)->text()) == QDialog::Accepted) {
         Movie *movie = MovieListDialog::instance()->selectedMovie();
-        QString genreName = ui->genres->item(ui->genres->currentRow(), 0)->data(Qt::UserRole).toString();
+        QString genreName = ui->genres->item(ui->genres->currentRow(), 0)->text();
         if (!movie->genres().contains(genreName)) {
             movie->addGenre(genreName);
             onGenreSelected();
@@ -211,7 +212,7 @@ void GenreWidget::addMovie()
 }
 
 /**
- * @brief Saves all changed movies with the current genre
+ * @brief Saves all changed movies
  */
 void GenreWidget::onSaveInformation()
 {
