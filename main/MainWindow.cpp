@@ -416,8 +416,6 @@ void MainWindow::onActionSaveAll()
         QTimer::singleShot(0, ui->tvShowWidget, SLOT(onSaveAll()));
     else if (ui->stackedWidget->currentIndex() == 3)
         QTimer::singleShot(0, ui->concertWidget, SLOT(onSaveAll()));
-    else if (ui->stackedWidget->currentIndex() == 4)
-        QTimer::singleShot(0, ui->genreWidget, SLOT(onSaveAll()));
 }
 
 /**
@@ -451,13 +449,13 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
 
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
         (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1) ||
-        (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 3) ||
-        (widget == WidgetGenres && ui->stackedWidget->currentIndex() == 4)) {
+        (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 3)) {
         m_actionSave->setEnabled(enabled);
         m_actionSaveAll->setEnabled(enabled);
     }
     if ((widget == WidgetMovieSets && ui->stackedWidget->currentIndex() == 2) ||
-        (widget == WidgetCertifications && ui->stackedWidget->currentIndex() == 5))
+        (widget == WidgetCertifications && ui->stackedWidget->currentIndex() == 5) ||
+        (widget == WidgetGenres && ui->stackedWidget->currentIndex() == 4))
         m_actionSave->setEnabled(enabled);
 }
 

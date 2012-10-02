@@ -28,7 +28,6 @@ signals:
 
 public slots:
     void onSaveInformation();
-    void onSaveAll();
     void loadGenres();
     QSplitter *splitter();
 

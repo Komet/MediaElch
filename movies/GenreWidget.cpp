@@ -215,25 +215,6 @@ void GenreWidget::addMovie()
  */
 void GenreWidget::onSaveInformation()
 {
-    if (ui->genres->currentRow() < 0 || ui->genres->currentRow() >= ui->genres->rowCount()) {
-        qWarning() << "Invalid genre row" << ui->genres->currentRow();
-        return;
-    }
-
-    QString genreName = ui->genres->item(ui->genres->currentRow(), 0)->data(Qt::UserRole).toString();
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        if (movie->hasChanged() && movie->genres().contains(genreName))
-            movie->saveData(Manager::instance()->mediaCenterInterface());
-    }
-
-    MessageBox::instance()->showMessage(tr("Genre <b>\"%1\"</b> Saved").arg(genreName));
-}
-
-/**
- * @brief Saves all changed movies
- */
-void GenreWidget::onSaveAll()
-{
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         if (movie->hasChanged())
             movie->saveData(Manager::instance()->mediaCenterInterface());
