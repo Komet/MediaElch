@@ -10,6 +10,7 @@
 #include "smallWidgets/FilterWidget.h"
 #include "settings/Settings.h"
 #include "settings/SettingsWidget.h"
+#include "support/SupportDialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -53,12 +54,14 @@ private:
     Settings *m_settings;
     SettingsWidget *m_settingsWidget;
     AboutDialog *m_aboutDialog;
+    SupportDialog *m_supportDialog;
     QAction *m_actionSearch;
     QAction *m_actionSave;
     QAction *m_actionAbout;
     QAction *m_actionQuit;
     QAction *m_actionSaveAll;
     QAction *m_actionSettings;
+    QAction *m_actionLike;
     QMap<MainWidgets, QMap<MainActions, bool> > m_actions;
     FilterWidget *m_filterWidget;
     void setupToolbar();

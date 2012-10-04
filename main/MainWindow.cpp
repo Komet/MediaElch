@@ -42,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     m_aboutDialog = new AboutDialog(ui->centralWidget);
+    m_supportDialog = new SupportDialog(ui->centralWidget);
     m_settingsWidget = new SettingsWidget(ui->centralWidget);
     m_filterWidget = new FilterWidget(ui->mainToolBar);
     m_settings = Settings::instance(this);
@@ -194,7 +195,7 @@ void MainWindow::setupToolbar()
     QList<QPixmap> icons;
     icons << QPixmap(":/img/spanner.png") << QPixmap(":/img/info.png") << QPixmap(":/img/folder_in.png")
           << QPixmap(":/img/stop.png") << QPixmap(":/img/magnifier.png") <<QPixmap(":/img/save.png")
-          << QPixmap(":/img/storage.png");
+          << QPixmap(":/img/storage.png") << QPixmap(":/img/heart.png");
     for (int i=0, n=icons.count() ; i<n ; ++i) {
         p.begin(&icons[i]);
         p.setCompositionMode(QPainter::CompositionMode_SourceIn);
@@ -220,6 +221,8 @@ void MainWindow::setupToolbar()
     m_actionAbout = new QAction(QIcon(icons[1]), tr("About"), this);
     m_actionQuit = new QAction(QIcon(icons[3]), tr("Quit"), this);
 
+    m_actionLike = new QAction(QIcon(icons[7]), tr("Support"), this);
+
     ui->mainToolBar->addAction(m_actionSearch);
     ui->mainToolBar->addAction(m_actionSave);
     ui->mainToolBar->addAction(m_actionSaveAll);
@@ -227,6 +230,7 @@ void MainWindow::setupToolbar()
     ui->mainToolBar->addAction(m_actionAbout);
     ui->mainToolBar->addAction(m_actionQuit);
     ui->mainToolBar->addWidget(m_filterWidget);
+    ui->mainToolBar->addAction(m_actionLike);
 
     connect(m_actionSearch, SIGNAL(triggered()), this, SLOT(onActionSearch()));
     connect(m_actionSave, SIGNAL(triggered()), this, SLOT(onActionSave()));
@@ -234,6 +238,7 @@ void MainWindow::setupToolbar()
     connect(m_actionAbout, SIGNAL(triggered()), m_aboutDialog, SLOT(exec()));
     connect(m_actionSettings, SIGNAL(triggered()), m_settingsWidget, SLOT(exec()));
     connect(m_actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
+    connect(m_actionLike, SIGNAL(triggered()), m_supportDialog, SLOT(exec()));
 
     m_actionSearch->setEnabled(false);
     m_actionSave->setEnabled(false);

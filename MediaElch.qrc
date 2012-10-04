@@ -46,5 +46,7 @@
         <file>img/genre_menuActive.png</file>
         <file>img/certification2_menu.png</file>
         <file>img/certification2_menuActive.png</file>
+        <file>img/heart.png</file>
+        <file>img/btn_donate_LG.gif</file>
     </qresource>
 </RCC>

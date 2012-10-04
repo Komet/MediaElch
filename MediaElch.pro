@@ -80,7 +80,8 @@ SOURCES += main.cpp\
     settings/SettingsWidget.cpp \
     settings/Settings.cpp \
     movies/GenreWidget.cpp \
-    movies/CertificationWidget.cpp
+    movies/CertificationWidget.cpp \
+    support/SupportDialog.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -146,7 +147,8 @@ HEADERS  += main/MainWindow.h \
     settings/SettingsWidget.h \
     settings/Settings.h \
     movies/GenreWidget.h \
-    movies/CertificationWidget.h
+    movies/CertificationWidget.h \
+    support/SupportDialog.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -171,7 +173,8 @@ FORMS    += main/MainWindow.ui \
     concerts/ConcertFilesWidget.ui \
     settings/SettingsWidget.ui \
     movies/GenreWidget.ui \
-    movies/CertificationWidget.ui
+    movies/CertificationWidget.ui \
+    support/SupportDialog.ui
 
 RESOURCES += \
     MediaElch.qrc
