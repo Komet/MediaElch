@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
     QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
     QCoreApplication::setOrganizationName("kVibes");
     QCoreApplication::setApplicationName("MediaElch");
-    QCoreApplication::setApplicationVersion("0.9.6");
+    QCoreApplication::setApplicationVersion("1.0");
 
     if (!useGui || a.arguments().count() > 1) {
         qInstallMsgHandler(cliMessageOutput);
