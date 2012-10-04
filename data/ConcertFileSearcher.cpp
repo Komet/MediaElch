@@ -145,7 +145,7 @@ void ConcertFileSearcher::scanDir(QString path, QList<QStringList> &contents, bo
 
     QStringList filters;
     QStringList files;
-    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.iso" << "*.m2ts" << "*.disc" << "*.m4v";
+    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.iso" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm";
     foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::System)) {
         // Skip Trailers
         if (file.contains("-trailer", Qt::CaseInsensitive))
