@@ -62,7 +62,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="labelMovies">
          <property name="font">
           <font>
            <pointsize>10</pointsize>
@@ -188,7 +188,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="labelShows">
          <property name="font">
           <font>
            <pointsize>10</pointsize>
@@ -196,7 +196,7 @@
          </property>
          <property name="styleSheet">
           <string notr="true">color: rgba(255, 255, 255, 200);
-margin-top: 20px;</string>
+margin-top: 15px;</string>
          </property>
          <property name="text">
           <string>Shows</string>
@@ -234,7 +234,7 @@ margin-top: 20px;</string>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="labelConcerts">
          <property name="font">
           <font>
            <pointsize>10</pointsize>
@@ -242,7 +242,7 @@ margin-top: 20px;</string>
          </property>
          <property name="styleSheet">
           <string notr="true">color: rgba(255, 255, 255, 200);
-margin-top: 20px;</string>
+margin-top: 15px;</string>
          </property>
          <property name="text">
           <string>Concerts</string>

@@ -150,6 +150,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
 #ifdef Q_WS_WIN
     setStyleSheet(styleSheet() + " #centralWidget { border-bottom: 1px solid rgba(0, 0, 0, 100); } ");
+
+    QFont font = ui->labelMovies->font();
+    font.setPointSize(font.pointSize()-3);
+    font.setBold(true);
+    ui->labelMovies->setFont(font);
+    ui->labelConcerts->setFont(font);
+    ui->labelShows->setFont(font);
 #endif
 }
 
