@@ -1,3 +1,17 @@
+mediaelch (1.0-1) unstable; urgency=low
+
+  * Added Concert/MusicVideo scraping
+  * Added keyboard shortcuts
+  * Rudimentary command line interface
+  * Editing of sort titles possible
+  * Option to save trailer urls in YouTube plugin format
+  * Choose between different files for nfos, posters, fanarts and banners
+  * Settings is now a dialog
+  * Added .strm file extension
+  * Bugfix: Adding of tv show directories possible again
+  
+ -- Daniel Kabel <daniel.kabel@me.com>  Fri, 5 Oct 2012 13:10:48 +0200
+
 mediaelch (0.9.6-1) unstable; urgency=low
 
   * Ignore files in directory “Extras” (thanks to KBagust)
