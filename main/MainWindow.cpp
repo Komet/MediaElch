@@ -496,7 +496,8 @@ void MainWindow::moveSplitter(int pos, int index)
     Q_UNUSED(index)
     QList<int> sizes;
     QList<QSplitter*> splitters;
-    splitters << ui->movieSplitter << ui->tvShowSplitter << ui->setsWidget->splitter() << ui->genreWidget->splitter() << ui->certificationWidget->splitter();
+    splitters << ui->movieSplitter << ui->tvShowSplitter << ui->setsWidget->splitter() << ui->genreWidget->splitter()
+              << ui->certificationWidget->splitter() << ui->concertSplitter;
     foreach (QSplitter *splitter, splitters) {
         if (splitter->sizes().at(0) == pos) {
             sizes = splitter->sizes();
