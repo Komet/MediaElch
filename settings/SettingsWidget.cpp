@@ -130,6 +130,7 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     m_dirDialog->setFileMode(QFileDialog::Directory);
     m_dirDialog->setOption(QFileDialog::ShowDirsOnly, true);
     m_xbmcThumbnailDirDialog = new QFileDialog(this, tr("Choose a directory containing your Thumbnails"), QDir::homePath());;
+    m_xbmcThumbnailDirDialog->setFileMode(QFileDialog::Directory);
     m_xbmcThumbnailDirDialog->setOption(QFileDialog::ShowDirsOnly, true);
     m_xbmcSqliteDatabaseDialog = new QFileDialog(this, tr("SQLite Database *.db"), QDir::homePath());
     m_xbmcSqliteDatabaseDialog->setFileMode(QFileDialog::ExistingFile);
