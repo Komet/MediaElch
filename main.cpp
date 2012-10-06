@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
     a.installTranslator(&editTranslator);
 
     QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
-    QCoreApplication::setOrganizationName("kVibes");
+    QCoreApplication::setOrganizationName("Daniel Kabel");
     QCoreApplication::setApplicationName("MediaElch");
     QCoreApplication::setApplicationVersion("1.0");
 

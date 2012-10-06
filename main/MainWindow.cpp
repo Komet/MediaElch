@@ -230,7 +230,9 @@ void MainWindow::setupToolbar()
     ui->mainToolBar->addAction(m_actionAbout);
     ui->mainToolBar->addAction(m_actionQuit);
     ui->mainToolBar->addWidget(m_filterWidget);
+#ifndef APPSTORE
     ui->mainToolBar->addAction(m_actionLike);
+#endif
 
     connect(m_actionSearch, SIGNAL(triggered()), this, SLOT(onActionSearch()));
     connect(m_actionSave, SIGNAL(triggered()), this, SLOT(onActionSave()));

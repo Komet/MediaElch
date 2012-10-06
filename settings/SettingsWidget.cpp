@@ -125,6 +125,7 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     // Setup file dialogs
     m_logFileDialog = new QFileDialog(this, tr("Logfile"), QDir::homePath(), tr("Logfiles (*.log *.txt)"));
     m_logFileDialog->setFileMode(QFileDialog::AnyFile);
+    m_logFileDialog->selectFile("MediaElch.log");
     m_dirDialog = new QFileDialog(this, tr("Choose a directory containing your movies, TV show or concerts"), QDir::homePath());
     m_dirDialog->setFileMode(QFileDialog::Directory);
     m_dirDialog->setOption(QFileDialog::ShowDirsOnly, true);

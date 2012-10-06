@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist SYSTEM "file://localhost/System/Library/DTDs/PropertyList.dtd">
+<plist version="0.9">
+<dict>
+    <key>CFBundleIconFile</key>
+    <string>MediaElch.icns</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleGetInfoString</key>
+    <string>1.0</string>
+    <key>CFBundleVersion</key>
+    <string>1.0</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    <key>CFBundleExecutable</key>
+    <string>MediaElch</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.daniel-kabel.MediaElch</string>
+    <key>NSHumanReadableCopyright</key>
+    <string>2012 Daniel Kabel</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>10.7.0</string>
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.utilities</string>
+    <key>ForAppStore</key>
+    <string>yes</string>
+</dict>
+</plist>

@@ -20,6 +20,12 @@ icon.path = /usr/share/pixmaps
 icon.files = desktop/MediaElch.png
 INSTALLS += icon
 
+ICON = MediaElch.icns
+RC_FILE = MediaElch.rc
+
+QMAKE_CFLAGS += -gdwarf-2
+QMAKE_CXXFLAGS += -gdwarf-2
+
 SOURCES += main.cpp\
         main/MainWindow.cpp \
     data/Movie.cpp \
@@ -181,6 +187,3 @@ RESOURCES += \
 
 TRANSLATIONS += \
     i18n/MediaElch_de.ts
-
-ICON = MediaElch.icns
-RC_FILE = MediaElch.rc
