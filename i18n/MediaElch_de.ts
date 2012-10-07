@@ -559,6 +559,34 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>FileScannerDialog</name>
+    <message>
+        <location filename="../main/FileScannerDialog.ui" line="17"/>
+        <source>File Scanner</source>
+        <translation>Datei Scanner</translation>
+    </message>
+    <message>
+        <location filename="../main/FileScannerDialog.ui" line="26"/>
+        <source>TextLabel</source>
+        <translation>Nachricht</translation>
+    </message>
+    <message>
+        <location filename="../main/FileScannerDialog.cpp" line="64"/>
+        <source>Searching for Movies...</source>
+        <translation>Suche nach Filmen...</translation>
+    </message>
+    <message>
+        <location filename="../main/FileScannerDialog.cpp" line="75"/>
+        <source>Searching for TV Shows...</source>
+        <translation>Suche nach Serien...</translation>
+    </message>
+    <message>
+        <location filename="../main/FileScannerDialog.cpp" line="86"/>
+        <source>Searching for Concerts...</source>
+        <translation>Suche nach Konzerten...</translation>
+    </message>
+</context>
+<context>
     <name>FilesWidget</name>
     <message>
         <source>Filter</source>
@@ -796,60 +824,66 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="467"/>
-        <location filename="../main/MainWindow.cpp" line="219"/>
+        <location filename="../main/MainWindow.cpp" line="204"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="472"/>
-        <location filename="../main/MainWindow.cpp" line="222"/>
+        <location filename="../main/MainWindow.cpp" line="207"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="477"/>
-        <location filename="../main/MainWindow.cpp" line="221"/>
+        <location filename="../main/MainWindow.cpp" line="206"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="206"/>
+        <location filename="../main/MainWindow.cpp" line="187"/>
         <source>Search</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="208"/>
+        <location filename="../main/MainWindow.cpp" line="189"/>
         <source>Search (%1)</source>
         <translation>Suche (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="210"/>
+        <location filename="../main/MainWindow.cpp" line="191"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="212"/>
+        <location filename="../main/MainWindow.cpp" line="193"/>
         <source>Save (%1)</source>
         <translation>Speichern (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="214"/>
+        <location filename="../main/MainWindow.cpp" line="195"/>
         <source>Save All</source>
         <translation>Alle Speichern</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="217"/>
+        <location filename="../main/MainWindow.cpp" line="198"/>
         <source>Save All (%1)</source>
         <translation>Alle Speichern (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="224"/>
+        <location filename="../main/MainWindow.cpp" line="202"/>
+        <source>Reload all files (%1)</source>
+        <translation>Lädt alle Dateien neu (%1)</translation>
+    </message>
+    <message>
+        <location filename="../main/MainWindow.cpp" line="209"/>
         <source>Support</source>
         <translation>Support</translation>
     </message>
     <message>
+        <location filename="../main/MainWindow.cpp" line="200"/>
         <source>Reload</source>
-        <translation type="obsolete">Neu laden</translation>
+        <translation>Neu laden</translation>
     </message>
     <message>
         <source>Reload Movie List</source>

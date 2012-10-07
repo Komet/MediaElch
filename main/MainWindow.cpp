@@ -45,6 +45,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_supportDialog = new SupportDialog(ui->centralWidget);
     m_settingsWidget = new SettingsWidget(ui->centralWidget);
     m_filterWidget = new FilterWidget(ui->mainToolBar);
+    m_fileScannerDialog = new FileScannerDialog(ui->centralWidget);
     m_settings = Settings::instance(this);
     setupToolbar();
 
@@ -83,10 +84,6 @@ MainWindow::MainWindow(QWidget *parent) :
     // Size for Screenshots
     // resize(1121, 735);
 
-    Manager::instance()->movieFileSearcher()->setMovieDirectories(m_settings->movieDirectories());
-    Manager::instance()->tvShowFileSearcher()->setMovieDirectories(m_settings->tvShowDirectories());
-    Manager::instance()->concertFileSearcher()->setConcertDirectories(m_settings->concertDirectories());
-
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setMovie(Movie*)));
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setEnabledTrue(Movie*)));
     connect(ui->filesWidget, SIGNAL(noMovieSelected()), ui->movieWidget, SLOT(clear()));
@@ -103,18 +100,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->tvShowFilesWidget, SIGNAL(sigEpisodeSelected(TvShowEpisode*)), ui->tvShowWidget, SLOT(onSetEnabledTrue(TvShowEpisode*)));
     connect(ui->tvShowFilesWidget, SIGNAL(sigNothingSelected()), ui->tvShowWidget, SLOT(onClear()));
     connect(ui->tvShowFilesWidget, SIGNAL(sigNothingSelected()), ui->tvShowWidget, SLOT(onSetDisabledTrue()));
-
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded(int)), this, SLOT(progressFinished(int)));
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(searchStarted(QString,int)), this, SLOT(progressStarted(QString,int)));
-
-    connect(Manager::instance()->concertFileSearcher(), SIGNAL(concertsLoaded(int)), this, SLOT(progressFinished(int)));
-    connect(Manager::instance()->concertFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
-    connect(Manager::instance()->concertFileSearcher(), SIGNAL(searchStarted(QString,int)), this, SLOT(progressStarted(QString,int)));
-
-    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(progressFinished(int)));
-    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
-    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(searchStarted(QString,int)), this, SLOT(progressStarted(QString,int)));
 
     connect(ui->movieWidget, SIGNAL(actorDownloadProgress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
     connect(ui->movieWidget, SIGNAL(actorDownloadStarted(QString,int)), this, SLOT(progressStarted(QString,int)));
@@ -142,12 +127,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ImagePreviewDialog::instance(ui->centralWidget);
     ConcertSearch::instance(ui->centralWidget);
 
-    // start TV Show File Searcher after Movie File Searcher has finished, and then start concert file searcher
-    Manager::instance()->movieFileSearcher()->start();
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded(int)), Manager::instance()->tvShowFileSearcher(), SLOT(start()));
-    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), Manager::instance()->concertFileSearcher(), SLOT(start()));
-    // load movie sets when Movie File Searcher has finished
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded(int)), ui->setsWidget, SLOT(loadSets()));
+    // Start scanning for files
+    m_fileScannerDialog->exec();
 
 #ifdef Q_WS_WIN
     setStyleSheet(styleSheet() + " #centralWidget { border-bottom: 1px solid rgba(0, 0, 0, 100); } ");
@@ -195,7 +176,7 @@ void MainWindow::setupToolbar()
     QList<QPixmap> icons;
     icons << QPixmap(":/img/spanner.png") << QPixmap(":/img/info.png") << QPixmap(":/img/folder_in.png")
           << QPixmap(":/img/stop.png") << QPixmap(":/img/magnifier.png") <<QPixmap(":/img/save.png")
-          << QPixmap(":/img/storage.png") << QPixmap(":/img/heart.png");
+          << QPixmap(":/img/storage.png") << QPixmap(":/img/heart.png") << QPixmap(":/img/arrow_circle_right.png");
     for (int i=0, n=icons.count() ; i<n ; ++i) {
         p.begin(&icons[i]);
         p.setCompositionMode(QPainter::CompositionMode_SourceIn);
@@ -216,6 +197,10 @@ void MainWindow::setupToolbar()
     m_actionSaveAll->setShortcut(seqSaveAll);
     m_actionSaveAll->setToolTip(tr("Save All (%1)").arg(seqSaveAll.toString(QKeySequence::NativeText)));
 
+    m_actionReload = new QAction(QIcon(icons[8]), tr("Reload"), this);
+    m_actionReload->setShortcut(QKeySequence::Refresh);
+    m_actionReload->setToolTip(tr("Reload all files (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+
     m_actionSettings = new QAction(QIcon(icons[0]), tr("Settings"), this);
 
     m_actionAbout = new QAction(QIcon(icons[1]), tr("About"), this);
@@ -226,6 +211,7 @@ void MainWindow::setupToolbar()
     ui->mainToolBar->addAction(m_actionSearch);
     ui->mainToolBar->addAction(m_actionSave);
     ui->mainToolBar->addAction(m_actionSaveAll);
+    ui->mainToolBar->addAction(m_actionReload);
     ui->mainToolBar->addAction(m_actionSettings);
     ui->mainToolBar->addAction(m_actionAbout);
     ui->mainToolBar->addAction(m_actionQuit);
@@ -237,6 +223,7 @@ void MainWindow::setupToolbar()
     connect(m_actionSearch, SIGNAL(triggered()), this, SLOT(onActionSearch()));
     connect(m_actionSave, SIGNAL(triggered()), this, SLOT(onActionSave()));
     connect(m_actionSaveAll, SIGNAL(triggered()), this, SLOT(onActionSaveAll()));
+    connect(m_actionReload, SIGNAL(triggered()), this, SLOT(onActionReload()));
     connect(m_actionAbout, SIGNAL(triggered()), m_aboutDialog, SLOT(exec()));
     connect(m_actionSettings, SIGNAL(triggered()), m_settingsWidget, SLOT(exec()));
     connect(m_actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -429,6 +416,14 @@ void MainWindow::onActionSaveAll()
         QTimer::singleShot(0, ui->tvShowWidget, SLOT(onSaveAll()));
     else if (ui->stackedWidget->currentIndex() == 3)
         QTimer::singleShot(0, ui->concertWidget, SLOT(onSaveAll()));
+}
+
+/**
+ * @brief Executes the file scanner dialog
+ */
+void MainWindow::onActionReload()
+{
+    m_fileScannerDialog->exec();
 }
 
 /**

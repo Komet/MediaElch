@@ -44,12 +44,8 @@ void ConcertFileSearcher::run()
 
     Manager::instance()->concertModel()->clear();
     QList<QStringList> contents;
-    foreach (SettingsDir dir, m_directories) {
-        qDebug() << dir.path;
+    foreach (SettingsDir dir, m_directories)
         scanDir(dir.path, contents, dir.separateFolders, true);
-    }
-
-    qDebug() << contents;
 
     int i=0;
     int n=contents.size();
