@@ -147,6 +147,8 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     connect(ui->chkActivateDebug, SIGNAL(clicked()), this, SLOT(onActivateDebugMode()));
     connect(ui->buttonChooseLogfile, SIGNAL(clicked()), m_logFileDialog, SLOT(open()));
     connect(ui->logfilePath, SIGNAL(textChanged(QString)), this, SLOT(onSetDebugLogPath(QString)));
+    connect(ui->chkUseCache, SIGNAL(clicked()), this, SLOT(onActivateCache()));
+    connect(ui->btnClearCache, SIGNAL(clicked()), this, SLOT(onClearCache()));
 
     connect(ui->radioXbmcXml, SIGNAL(clicked()), this, SLOT(onMediaCenterXbmcXmlSelected()));
     connect(ui->radioXbmcMysql, SIGNAL(clicked()), this, SLOT(onMediaCenterXbmcMysqlSelected()));
@@ -209,6 +211,10 @@ void SettingsWidget::loadSettings()
     ui->chkActivateDebug->setChecked(m_settings->debugModeActivated());
     ui->logfilePath->setText(m_settings->debugLogPath());
     onActivateDebugMode();
+
+    // Cache
+    ui->chkUseCache->setChecked(m_settings->useCache());
+    onActivateCache();
 
     // Directories
     ui->dirs->setRowCount(0);
@@ -599,6 +605,15 @@ void SettingsWidget::onActivateDebugMode()
 }
 
 /**
+ * @brief Toggles status of the clear cache button
+ */
+void SettingsWidget::onActivateCache()
+{
+    ui->btnClearCache->setEnabled(ui->chkUseCache->isChecked());
+    m_settings->setUseCache(ui->chkUseCache->isChecked());
+}
+
+/**
  * @brief Sets the path to the logfile
  */
 void SettingsWidget::onDebugLogPathChosen(QString file)
@@ -616,4 +631,12 @@ void SettingsWidget::onSetDebugLogPath(QString path)
 {
     m_settings->setDebugLogPath(path);
     m_logFileDialog->selectFile(path);
+}
+
+/**
+ * @brief Clears the cache database
+ */
+void SettingsWidget::onClearCache()
+{
+    Manager::instance()->clearCacheDatabase();
 }

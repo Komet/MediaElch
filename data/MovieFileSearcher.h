@@ -28,7 +28,8 @@ signals:
 private:
     QList<SettingsDir> m_directories;
     int m_progressMessageId;
-    void getDirContents(QString path, QList<QStringList> &contents);
+    void scanDir(QString path, QList<QStringList> &contents, bool separateFolders = false, bool firstScan = false);
+    QStringList getCachedFiles(QString path);
 };
 
 #endif // MOVIEFILESEARCHER_H

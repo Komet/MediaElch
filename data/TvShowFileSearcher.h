@@ -26,6 +26,7 @@ private:
     int m_progressMessageId;
     void getTvShows(QString path, QMap<QString, QList<QStringList> > &contents);
     void getSubDirs(QDir dir, QStringList &subDirs);
+    QStringList getCachedFiles(QString path);
 };
 
 #endif // TVSHOWFILESEARCHER_H

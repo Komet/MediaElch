@@ -49,6 +49,8 @@ private slots:
     void onDebugLogPathChosen(QString file);
     void onActivateDebugMode();
     void onSetDebugLogPath(QString path);
+    void onActivateCache();
+    void onClearCache();
 
 private:
     Ui::SettingsWidget *ui;

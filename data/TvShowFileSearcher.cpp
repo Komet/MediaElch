@@ -2,6 +2,9 @@
 
 #include <QApplication>
 #include <QFileInfo>
+#include <QSqlError>
+#include <QSqlQuery>
+#include <QSqlRecord>
 #include "globals/Manager.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
@@ -47,7 +50,6 @@ void TvShowFileSearcher::run()
     foreach (const QString &path, m_directories) {
         getTvShows(path, contents);
     }
-
     int i=0;
     int n=0;
     QMapIterator<QString, QList<QStringList> > it(contents);
@@ -85,11 +87,10 @@ void TvShowFileSearcher::run()
  */
 void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QList<QStringList> > &contents)
 {
-    QStringList filters;
-    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "VIDEO_TS.ifo" << "index.bdmv" << "*.disc" << "*.m4v" << "*.strm";
-
     QDir dir(path);
-    foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+    QStringList entries = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+
+    foreach (const QString &cDir, entries) {
         QDir tvShowDir = QDir(path + QDir::separator() + cDir);
         QStringList subDirs;
         subDirs << tvShowDir.path();
@@ -101,10 +102,7 @@ void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QList<QStringLis
                 subDir.contains( "Extras", Qt::CaseInsensitive))
                 continue;
 
-            QStringList files;
-            foreach (const QString &file, QDir(subDir).entryList(filters, QDir::Files | QDir::System)) {
-                files.append(file);
-            }
+            QStringList files = getCachedFiles(subDir);
             files.sort();
 
             QRegExp rx("((part|cd)[\\s_]*)(\\d+)", Qt::CaseInsensitive);
@@ -154,4 +152,64 @@ void TvShowFileSearcher::getSubDirs(QDir dir, QStringList &subDirs)
         subDirs.append(dir.path() + QDir::separator() + cDir);
         getSubDirs(QDir(dir.path() + QDir::separator() + cDir), subDirs);
     }
+}
+
+/**
+ * @brief Get a list of files in a directory
+ *        Retrieves the contents from the cache if the last
+ *        modification matches the on in the database
+ * @param path
+ * @return
+ */
+QStringList TvShowFileSearcher::getCachedFiles(QString path)
+{
+    QStringList filters;
+    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "VIDEO_TS.ifo" << "index.bdmv" << "*.disc" << "*.m4v" << "*.strm";
+
+    if (!Settings::instance()->useCache())
+        return QDir(path).entryList(filters, QDir::Files | QDir::System);
+
+    int idPath = -1;
+    QStringList files;
+    QFileInfo fi(path);
+    QSqlQuery query(Manager::instance()->cacheDb());
+    query.prepare("SELECT idPath, lastModified FROM tvShowDirs WHERE path=:path");
+    query.bindValue(":path", path);
+    query.exec();
+    if (query.next()) {
+        idPath = query.value(query.record().indexOf("idPath")).toInt();
+        if (fi.lastModified() != query.value(query.record().indexOf("lastModified")).toDateTime()) {
+            query.prepare("DELETE FROM tvShowDirs WHERE idPath=:idPath");
+            query.bindValue(":idPath", idPath);
+            query.exec();
+            query.prepare("DELETE FROM tvShowFiles WHERE idPath=:idPath");
+            query.bindValue(":idPath", idPath);
+            query.exec();
+            idPath = -1;
+        }
+    }
+
+    if (idPath != -1) {
+        query.prepare("SELECT filename FROM tvShowFiles WHERE idPath=:path");
+        query.bindValue(":path", idPath);
+        query.exec();
+        while (query.next()) {
+            files.append(query.value(query.record().indexOf("filename")).toString());
+        }
+    } else {
+        query.prepare("INSERT INTO tvShowDirs(path, lastModified, parent) VALUES(:path, :lastModified, 0)");
+        query.bindValue(":path", path);
+        query.bindValue(":lastModified", fi.lastModified());
+        query.exec();
+        idPath = query.lastInsertId().toInt();
+        files = QDir(path).entryList(filters, QDir::Files | QDir::System);
+        foreach (const QString &file, files) {
+            query.prepare("INSERT INTO tvShowFiles(idPath, filename) VALUES(:idPath, :filename)");
+            query.bindValue(":idPath", idPath);
+            query.bindValue(":filename", file);
+            query.exec();
+        }
+    }
+
+    return files;
 }

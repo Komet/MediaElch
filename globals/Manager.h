@@ -2,6 +2,7 @@
 #define MANAGER_H
 
 #include <QObject>
+#include <QSqlDatabase>
 #include "settings/Settings.h"
 #include "data/ConcertFileSearcher.h"
 #include "data/ConcertModel.h"
@@ -44,6 +45,8 @@ public:
     void setupMediaCenterInterface();
     void shutdownMediaCenterInterfaces();
     ScraperInterface* getScraperForName(QString name);
+    QSqlDatabase cacheDb();
+    void clearCacheDatabase();
 
 private:
     QList<MediaCenterInterface*> m_mediaCenters;
@@ -60,6 +63,9 @@ private:
     TvShowProxyModel* m_tvShowProxyModel;
     ConcertModel* m_concertModel;
     Settings *m_settings;
+    QSqlDatabase *m_cacheDb;
+    void setupCacheDatabase();
+    void closeCacheDatabase();
 };
 
 #endif // MANAGER_H

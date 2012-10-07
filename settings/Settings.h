@@ -50,6 +50,7 @@ public:
     QList<DataFile*> enabledConcertNfoFiles();
     QList<DataFile*> enabledConcertPosterFiles();
     QList<DataFile*> enabledConcertFanartFiles();
+    bool useCache();
 
     void setMainWindowSize(QSize mainWindowSize);
     void setMainWindowPosition(QPoint mainWindowPosition);
@@ -75,6 +76,7 @@ public:
     void setConcertPosterFiles(QList<DataFile*> files);
     void setConcertFanartFiles(QList<DataFile*> files);
     void setMediaCenterInterface(int interface);
+    void setUseCache(bool useCache);
 
 public slots:
     void saveSettings();
@@ -107,6 +109,7 @@ private:
     QList<DataFile*> m_concertFanartFiles;
     QList<DataFile*> m_tvShowPosterFiles;
     QList<DataFile*> m_tvShowBannerFiles;
+    bool m_useCache;
 
 };
 

@@ -62,6 +62,7 @@ void Settings::loadSettings()
     m_mainSplitterState = m_settings.value("MainSplitterState").toByteArray();
     m_debugModeActivated = m_settings.value("DebugModeActivated", false).toBool();
     m_debugLogPath = m_settings.value("DebugLogPath").toString();
+    m_useCache = m_settings.value("UseCache", true).toBool();
 
     // Movie Directories
     m_movieDirectories.clear();
@@ -155,6 +156,7 @@ void Settings::saveSettings()
 {
     m_settings.setValue("DebugModeActivated", m_debugModeActivated);
     m_settings.setValue("DebugLogPath", m_debugLogPath);
+    m_settings.setValue("UseCache", m_useCache);
 
     m_settings.setValue("XbmcMysql/Host", m_xbmcMysqlHost);
     m_settings.setValue("XbmcMysql/Database", m_xbmcMysqlDatabase);
@@ -561,6 +563,15 @@ QList<DataFile*> Settings::concertFanartFiles()
     return m_concertFanartFiles;
 }
 
+/**
+ * @brief Returns true if the cache should be used
+ * @return Cache usage
+ */
+bool Settings::useCache()
+{
+    return m_useCache;
+}
+
 /*** SETTER ***/
 
 /**
@@ -780,4 +791,13 @@ void Settings::setConcertFanartFiles(QList<DataFile*> files)
 void Settings::setMediaCenterInterface(int interface)
 {
     m_mediaCenterInterface = interface;
+}
+
+/**
+ * @brief Sets if the cache should be used
+ * @param useCache
+ */
+void Settings::setUseCache(bool useCache)
+{
+    m_useCache = useCache;
 }

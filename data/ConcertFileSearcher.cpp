@@ -2,6 +2,9 @@
 
 #include <QApplication>
 #include <QDebug>
+#include <QSqlQuery>
+#include <QSqlRecord>
+#include "globals/Helper.h"
 #include "globals/Manager.h"
 
 /**
@@ -78,38 +81,6 @@ void ConcertFileSearcher::run()
     emit concertsLoaded(m_progressMessageId);
 }
 
-bool ConcertFileSearcher::isDvd(QString path)
-{
-    QDir dir(path);
-    QStringList filters;
-    filters << "VIDEO_TS";
-    if (dir.entryList(filters, QDir::Dirs | QDir::NoDotAndDotDot).count() == 1) {
-        dir.setPath(path + QDir::separator() + "VIDEO_TS");
-        filters.clear();
-        filters << "VIDEO_TS.IFO";
-        if (dir.entryList(filters).count() == 1)
-            return true;
-    }
-
-    return false;
-}
-
-bool ConcertFileSearcher::isBluRay(QString path)
-{
-    QDir dir(path);
-    QStringList filters;
-    filters << "BDMV";
-    if (dir.entryList(filters, QDir::Dirs | QDir::NoDotAndDotDot).count() == 1) {
-        dir.setPath(path + QDir::separator() + "BDMV");
-        filters.clear();
-        filters << "index.bdmv";
-        if (dir.entryList(filters).count() == 1)
-            return true;
-    }
-
-    return false;
-}
-
 /**
  * @brief Scans the given path for concert files.
  * Results are in a list which contains a QStringList for every concert.
@@ -127,13 +98,13 @@ void ConcertFileSearcher::scanDir(QString path, QList<QStringList> &contents, bo
             continue;
 
         // Handle DVD
-        if (isDvd(path + QDir::separator() + cDir)) {
+        if (Helper::isDvd(path + QDir::separator() + cDir)) {
             contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/VIDEO_TS/VIDEO_TS.IFO"));
             continue;
         }
 
         // Handle BluRay
-        if (isBluRay(path + QDir::separator() + cDir)) {
+        if (Helper::isBluRay(path + QDir::separator() + cDir)) {
             contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/BDMV/index.bdmv"));
             continue;
         }
@@ -143,10 +114,9 @@ void ConcertFileSearcher::scanDir(QString path, QList<QStringList> &contents, bo
             scanDir(path + "/" + cDir, contents, separateFolders);
     }
 
-    QStringList filters;
     QStringList files;
-    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.iso" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm";
-    foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::System)) {
+    QStringList entries = getCachedFiles(path);
+    foreach (const QString &file, entries) {
         // Skip Trailers
         if (file.contains("-trailer", Qt::CaseInsensitive))
             continue;
@@ -189,4 +159,64 @@ void ConcertFileSearcher::scanDir(QString path, QList<QStringList> &contents, bo
         if (concertFiles.count() > 0 )
             contents.append(concertFiles);
     }
+}
+
+/**
+ * @brief Get a list of files in a directory
+ *        Retrieves the contents from the cache if the last
+ *        modification matches the on in the database
+ * @param path
+ * @return
+ */
+QStringList ConcertFileSearcher::getCachedFiles(QString path)
+{
+    QStringList filters;
+    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "VIDEO_TS.ifo" << "index.bdmv" << "*.disc" << "*.m4v" << "*.strm";
+
+    if (!Settings::instance()->useCache())
+        return QDir(path).entryList(filters, QDir::Files | QDir::System);
+
+    int idPath = -1;
+    QStringList files;
+    QFileInfo fi(path);
+    QSqlQuery query(Manager::instance()->cacheDb());
+    query.prepare("SELECT idPath, lastModified FROM concertDirs WHERE path=:path");
+    query.bindValue(":path", path);
+    query.exec();
+    if (query.next()) {
+        idPath = query.value(query.record().indexOf("idPath")).toInt();
+        if (fi.lastModified() != query.value(query.record().indexOf("lastModified")).toDateTime()) {
+            query.prepare("DELETE FROM concertDirs WHERE idPath=:idPath");
+            query.bindValue(":idPath", idPath);
+            query.exec();
+            query.prepare("DELETE FROM concertFiles WHERE idPath=:idPath");
+            query.bindValue(":idPath", idPath);
+            query.exec();
+            idPath = -1;
+        }
+    }
+
+    if (idPath != -1) {
+        query.prepare("SELECT filename FROM concertFiles WHERE idPath=:path");
+        query.bindValue(":path", idPath);
+        query.exec();
+        while (query.next()) {
+            files.append(query.value(query.record().indexOf("filename")).toString());
+        }
+    } else {
+        query.prepare("INSERT INTO concertDirs(path, lastModified, parent) VALUES(:path, :lastModified, 0)");
+        query.bindValue(":path", path);
+        query.bindValue(":lastModified", fi.lastModified());
+        query.exec();
+        idPath = query.lastInsertId().toInt();
+        files = QDir(path).entryList(filters, QDir::Files | QDir::System);
+        foreach (const QString &file, files) {
+            query.prepare("INSERT INTO concertFiles(idPath, filename) VALUES(:idPath, :filename)");
+            query.bindValue(":idPath", idPath);
+            query.bindValue(":filename", file);
+            query.exec();
+        }
+    }
+
+    return files;
 }

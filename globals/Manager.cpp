@@ -1,6 +1,8 @@
 #include "globals/Manager.h"
 
 #include <QApplication>
+#include <QDesktopServices>
+#include <QSqlQuery>
 #include "mediaCenterPlugins/XbmcSql.h"
 #include "mediaCenterPlugins/XbmcXml.h"
 #include "scrapers/Cinefacts.h"
@@ -43,6 +45,8 @@ Manager::Manager(QObject *parent) :
     m_mediaCentersConcert.append(new XbmcXml(this));
     m_mediaCentersConcert.append(new XbmcSql(this, "xbmcConcert"));
     m_mediaCentersConcert.append(new XbmcSql(this, "xbmcConcert"));
+
+    setupCacheDatabase();
 }
 
 /**
@@ -50,6 +54,7 @@ Manager::Manager(QObject *parent) :
  */
 Manager::~Manager()
 {
+    closeCacheDatabase();
 }
 
 /**
@@ -63,6 +68,89 @@ Manager* Manager::instance()
         m_instance = new Manager(qApp);
     }
     return m_instance;
+}
+
+/**
+ * @brief Creates and opens the cache database
+ */
+void Manager::setupCacheDatabase()
+{
+    QString dataLocation = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+    QDir dir(dataLocation);
+    if (!dir.exists())
+        dir.mkpath(dataLocation);
+    m_cacheDb = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE", "tvShowCache"));
+    m_cacheDb->setDatabaseName(dataLocation + QDir::separator() + "MediaElch.sqlite");
+    if (!m_cacheDb->open()) {
+        qWarning() << "Could not open tv show cache database";
+    } else {
+        QSqlQuery query(*m_cacheDb);
+        query.prepare("CREATE TABLE IF NOT EXISTS tvShowDirs ( "
+                      "\"idPath\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"path\" text NOT NULL, "
+                      "\"lastModified\" integer NOT NULL, "
+                      "\"parent\" integer NOT NULL);");
+        query.exec();
+        query.prepare("CREATE TABLE IF NOT EXISTS tvShowFiles ( "
+                      "\"idFile\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"idPath\" integer NOT NULL, "
+                      "\"filename\" text NOT NULL);");
+        query.exec();
+        query.prepare("CREATE TABLE IF NOT EXISTS movieDirs ( "
+                      "\"idPath\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"path\" text NOT NULL, "
+                      "\"lastModified\" integer NOT NULL, "
+                      "\"parent\" integer NOT NULL);");
+        query.exec();
+        query.prepare("CREATE TABLE IF NOT EXISTS movieFiles ( "
+                      "\"idFile\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"idPath\" integer NOT NULL, "
+                      "\"filename\" text NOT NULL);");
+        query.exec();
+        query.prepare("CREATE TABLE IF NOT EXISTS concertDirs ( "
+                      "\"idPath\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"path\" text NOT NULL, "
+                      "\"lastModified\" integer NOT NULL, "
+                      "\"parent\" integer NOT NULL);");
+        query.exec();
+        query.prepare("CREATE TABLE IF NOT EXISTS concertFiles ( "
+                      "\"idFile\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"idPath\" integer NOT NULL, "
+                      "\"filename\" text NOT NULL);");
+        query.exec();
+    }
+}
+
+/**
+ * @brief Closes the cache database
+ */
+void Manager::closeCacheDatabase()
+{
+    if (m_cacheDb && m_cacheDb->isOpen()) {
+        m_cacheDb->close();
+        delete m_cacheDb;
+        m_cacheDb = 0;
+    }
+}
+
+/**
+ * @brief Removes the cache file and reinits the database
+ */
+void Manager::clearCacheDatabase()
+{
+    closeCacheDatabase();
+    QString dataLocation = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+    QFile::remove(dataLocation + QDir::separator() + "MediaElch.sqlite");
+    setupCacheDatabase();
+}
+
+/**
+ * @brief Returns an object to the cache database
+ * @return Cache database object
+ */
+QSqlDatabase Manager::cacheDb()
+{
+    return *m_cacheDb;
 }
 
 /**
