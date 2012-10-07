@@ -73,6 +73,7 @@ public:
     int showId() const;
     bool downloadsInProgress() const;
     bool hasNewEpisodes() const;
+    bool hasNewEpisodesInSeason(QString season) const;
 
     void setName(QString name);
     void setShowTitle(QString title);

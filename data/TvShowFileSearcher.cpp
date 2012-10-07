@@ -69,7 +69,7 @@ void TvShowFileSearcher::run()
             episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
             show->addEpisode(episode);
             if (!seasonItems.contains(episode->season()))
-                seasonItems.insert(episode->season(), showItem->appendChild(episode->seasonString()));
+                seasonItems.insert(episode->season(), showItem->appendChild(episode->seasonString(), show));
             seasonItems.value(episode->season())->appendChild(episode);
             emit progress(++i, n, m_progressMessageId);
         }

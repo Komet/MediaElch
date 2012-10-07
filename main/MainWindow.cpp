@@ -118,6 +118,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->certificationWidget->splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
     connect(ui->concertSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
 
+    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), ui->tvShowFilesWidget, SLOT(renewModel()));
+
     Manager::instance()->setupMediaCenterInterface();
 
     MovieSearch::instance(ui->centralWidget);
@@ -267,8 +269,6 @@ void MainWindow::progressProgress(int current, int max, int id)
 void MainWindow::progressFinished(int id)
 {
     qDebug() << "Entered, id=" << id;
-    if (id == Constants::TvShowSearcherProgressMessageId)
-        ui->tvShowFilesWidget->renewModel();
     MessageBox::instance()->hideProgressBar(id);
 }
 

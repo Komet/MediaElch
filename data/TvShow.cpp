@@ -158,6 +158,19 @@ bool TvShow::hasNewEpisodes() const
     return false;
 }
 
+/**
+ * @brief TvShow::hasNewEpisodesInSeason
+ * @return
+ */
+bool TvShow::hasNewEpisodesInSeason(QString season) const
+{
+    foreach (TvShowEpisode *episode, m_episodes) {
+        if (episode->season() == season.toInt() && !episode->infoLoaded())
+            return true;
+    }
+    return false;
+}
+
 /*** GETTER ***/
 
 /**

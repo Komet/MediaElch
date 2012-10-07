@@ -156,8 +156,26 @@ void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
         #endif
         font.setBold(true);
         painter->setFont(font);
-        painter->translate(5, 3);
-        painter->drawText(option.rect, Qt::AlignTop, index.data().toString());
+
+        if (index.model()->data(index, TvShowRoles::IsNew).toBool()) {
+            QRect newRect(option.rect.x()+5, option.rect.y()+((option.rect.height()-newHeight-4)/2), newWidth+4, newHeight+4);
+            painter->setPen(QColor(58, 135, 173));
+            painter->setBrush(QBrush(QColor(58, 135, 173)));
+            painter->setRenderHint(QPainter::Antialiasing, true);
+            painter->drawRoundedRect(newRect, 4, 4);
+            painter->setPen(QColor(255, 255, 255));
+            painter->drawText(newRect.x(), newRect.y(), newRect.width(), newRect.height()-2, Qt::AlignCenter | Qt::AlignVCenter, newInd);
+            if (option.state & QStyle::State_Selected)
+                painter->setPen(QPen(option.palette.highlightedText().color()));
+            else
+                painter->setPen(QPen(index.data(Qt::ForegroundRole).value<QColor>()));
+
+            painter->translate(newRect.width()+9, 3);
+            painter->drawText(option.rect, Qt::AlignTop,  index.data().toString());
+        } else {
+            painter->translate(5, 3);
+            painter->drawText(option.rect, Qt::AlignTop, index.data().toString());
+        }
 
         painter->restore();
     } else {

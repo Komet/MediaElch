@@ -23,9 +23,11 @@ class TvShowFilesWidget : public QWidget
 public:
     explicit TvShowFilesWidget(QWidget *parent = 0);
     ~TvShowFilesWidget();
-    void renewModel();
     void setFilter(QString filter);
     static TvShowFilesWidget *instance();
+
+public slots:
+    void renewModel();
 
 signals:
     void sigEpisodeSelected(TvShowEpisode *episode);
