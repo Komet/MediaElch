@@ -140,25 +140,83 @@ void MovieWidget::resizeEvent(QResizeEvent *event)
 void MovieWidget::clear()
 {
     qDebug() << "Entered";
+    bool blocked;
+    blocked = ui->set->blockSignals(true);
     ui->set->clear();
+    ui->set->blockSignals(blocked);
+
+    blocked = ui->certification->blockSignals(true);
     ui->certification->clear();
+    ui->certification->blockSignals(blocked);
+
+    blocked = ui->movieName->blockSignals(true);
     ui->movieName->clear();
+    ui->movieName->blockSignals(blocked);
+
+    blocked = ui->files->blockSignals(true);
     ui->files->clear();
+    ui->files->blockSignals(blocked);
+
+    blocked = ui->name->blockSignals(true);
     ui->name->clear();
+    ui->name->blockSignals(blocked);
+
+    blocked = ui->originalName->blockSignals(true);
     ui->originalName->clear();
+    ui->originalName->blockSignals(blocked);
+
+    blocked = ui->sortTitle->blockSignals(true);
     ui->sortTitle->clear();
+    ui->sortTitle->blockSignals(blocked);
+
+    blocked = ui->tagline->blockSignals(true);
     ui->tagline->clear();
+    ui->tagline->blockSignals(blocked);
+
+    blocked = ui->rating->blockSignals(true);
     ui->rating->clear();
+    ui->rating->blockSignals(blocked);
+
+    blocked = ui->released->blockSignals(true);
     ui->released->setDate(QDate::currentDate());
+    ui->released->blockSignals(blocked);
+
+    blocked = ui->runtime->blockSignals(true);
     ui->runtime->clear();
+    ui->runtime->blockSignals(blocked);
+
+    blocked = ui->trailer->blockSignals(true);
     ui->trailer->clear();
+    ui->trailer->blockSignals(blocked);
+
+    blocked = ui->playcount->blockSignals(true);
     ui->playcount->clear();
+    ui->playcount->blockSignals(blocked);
+
+    blocked = ui->lastPlayed->blockSignals(true);
     ui->lastPlayed->setDateTime(QDateTime::currentDateTime());
+    ui->lastPlayed->blockSignals(blocked);
+
+    blocked = ui->overview->blockSignals(true);
     ui->overview->clear();
+    ui->overview->blockSignals(blocked);
+
+    blocked = ui->actors->blockSignals(true);
     ui->actors->setRowCount(0);
+    ui->actors->blockSignals(false);
+
+    blocked = ui->genres->blockSignals(true);
     ui->genres->setRowCount(0);
+    ui->genres->blockSignals(blocked);
+
+    blocked = ui->studios->blockSignals(true);
     ui->studios->setRowCount(0);
+    ui->studios->blockSignals(false);
+
+    blocked = ui->countries->blockSignals(true);
     ui->countries->setRowCount(0);
+    ui->countries->blockSignals(blocked);
+
     ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
     ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->actor->setPixmap(QPixmap(":/img/man.png"));
