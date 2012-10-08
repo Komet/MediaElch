@@ -36,6 +36,7 @@ Movie::Movie(QStringList files, QObject *parent) :
     static int m_idCounter = 0;
     m_movieId = ++m_idCounter;
     m_mediaCenterId = -1;
+    m_numPrimaryLangPosters = 0;
 }
 
 Movie::~Movie()
@@ -79,8 +80,10 @@ void Movie::clear(QList<int> infos)
         m_countries.clear();
     if (infos.contains(MovieScraperInfos::Genres))
         m_genres.clear();
-    if (infos.contains(MovieScraperInfos::Poster))
+    if (infos.contains(MovieScraperInfos::Poster)){
         m_posters.clear();
+        m_numPrimaryLangPosters = 0;
+    }
     if (infos.contains(MovieScraperInfos::Studios))
         m_studios.clear();
     if (infos.contains(MovieScraperInfos::Title))
@@ -612,6 +615,15 @@ int Movie::mediaCenterId() const
     return m_mediaCenterId;
 }
 
+/**
+ * @brief Returns how many of the posters were scraped in the primary language
+ * @return Number of primary language posters
+ */
+int Movie::numPrimaryLangPosters() const
+{
+    return m_numPrimaryLangPosters;
+}
+
 /*** SETTER ***/
 
 /**
@@ -920,6 +932,16 @@ void Movie::setMediaCenterId(int mediaCenterId)
     m_mediaCenterId = mediaCenterId;
 }
 
+
+/**
+ * @brief Sets the number of primary language posters
+ * @param numberPrimaryLangPosters Number of primary language posters
+ */
+void Movie::setNumPrimaryLangPosters(int numberPrimaryLangPosters)
+{
+    m_numPrimaryLangPosters = numberPrimaryLangPosters;
+}
+
 /*** ADDER ***/
 
 /**
@@ -971,9 +993,14 @@ void Movie::addStudio(QString studio)
  * @param poster Poster to add
  * @see Movie::posters
  */
-void Movie::addPoster(Poster poster)
+void Movie::addPoster(Poster poster, bool primaryLang)
 {
-    m_posters.append(poster);
+    if(primaryLang){
+        m_posters.insert(m_numPrimaryLangPosters,poster);
+        m_numPrimaryLangPosters++;
+    } else{
+        m_posters.append(poster);
+    }
     setChanged(true);
 }
 
