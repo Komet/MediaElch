@@ -89,6 +89,7 @@ public:
     int downloadsSize() const;
     bool inSeparateFolder() const;
     int mediaCenterId() const;
+    int numPrimaryLangPosters() const;
 
     bool hasChanged() const;
 
@@ -116,7 +117,7 @@ public:
     void setSet(QString set);
     void setPosters(QList<Poster> posters);
     void setPoster(int index, Poster poster);
-    void addPoster(Poster poster);
+    void addPoster(Poster poster,bool primaryLang = false);
     void setBackdrops(QList<Poster> backdrops);
     void setBackdrop(int index, Poster backdrop);
     void addBackdrop(Poster backdrop);
@@ -128,6 +129,7 @@ public:
     void setDownloadsSize(int downloadsSize);
     void setInSeparateFolder(bool inSepFolder);
     void setMediaCenterId(int mediaCenterId);
+    void setNumPrimaryLangPosters(int numberPrimaryLangPosters);
 
     void removeActor(Actor *actor);
     void removeCountry(QString *country);
@@ -182,6 +184,7 @@ private:
     int m_downloadsSize;
     bool m_inSeparateFolder;
     int m_mediaCenterId;
+    int m_numPrimaryLangPosters;
 };
 
 QDebug operator<<(QDebug dbg, const Movie &movie);

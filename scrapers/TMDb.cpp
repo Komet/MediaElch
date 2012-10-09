@@ -564,7 +564,9 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
             b.originalUrl = m_baseUrl + "original" + vB.property("file_path").toString();
             b.originalSize.setWidth(vB.property("width").toString().toInt());
             b.originalSize.setHeight(vB.property("height").toString().toInt());
-            movie->addPoster(b);
+            b.language = vB.property("iso_639_1").toString();
+            bool primaryLang = (b.language==m_language);
+            movie->addPoster(b,primaryLang);
         }
     }
 
