@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <QMainWindow>
 #include <QProgressBar>
+#include "globals/Filter.h"
 #include "globals/Globals.h"
 #include "data/MovieFileSearcher.h"
 #include "main/AboutDialog.h"
@@ -46,7 +47,7 @@ private slots:
     void onActionSave();
     void onActionSaveAll();
     void onActionReload();
-    void onFilterChanged(QString text);
+    void onFilterChanged(QList<Filter*> filters, QString text);
     void onSetSaveEnabled(bool enabled, MainWidgets widget);
     void onSetSearchEnabled(bool enabled, MainWidgets widget);
     void moveSplitter(int pos, int index);

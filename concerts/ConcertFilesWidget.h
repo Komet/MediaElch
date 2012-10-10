@@ -29,7 +29,7 @@ public:
 
 public slots:
     void restoreLastSelection();
-    void setFilter(QString filter);
+    void setFilter(QList<Filter*> filters, QString text);
 
 signals:
     void noConcertSelected();

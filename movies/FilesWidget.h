@@ -7,6 +7,7 @@
 #include "data/MovieModel.h"
 #include "data/MovieProxyModel.h"
 #include "data/MovieDelegate.h"
+#include "globals/Filter.h"
 
 namespace Ui {
 class FilesWidget;
@@ -29,7 +30,7 @@ public:
 
 public slots:
     void restoreLastSelection();
-    void setFilter(QString filter);
+    void setFilter(QList<Filter*> filters, QString text);
 
 signals:
     void noMovieSelected();

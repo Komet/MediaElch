@@ -20,8 +20,15 @@ TvShowProxyModel::TvShowProxyModel(QObject *parent) :
  */
 bool TvShowProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-    QModelIndex index = sourceModel()->index(sourceRow, 0, sourceParent);
-    return (sourceModel()->data(index).toString().contains(filterRegExp()));
+    Q_UNUSED(sourceParent);
+
+    TvShow *show = Manager::instance()->tvShowModel()->tvShows().at(sourceRow);
+    foreach (Filter *filter, m_filters) {
+        if (!filter->accepts(show))
+            return false;
+    }
+
+    return true;
 }
 
 /**
@@ -34,4 +41,15 @@ bool TvShowProxyModel::lessThan(const QModelIndex &left, const QModelIndex &righ
 {
     int cmp = QString::compare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString());
     return !(cmp < 0);
+}
+
+/**
+ * @brief Sets active filters
+ * @param filters
+ * @param text
+ */
+void TvShowProxyModel::setFilter(QList<Filter*> filters, QString text)
+{
+    m_filters = filters;
+    m_filterText = text;
 }

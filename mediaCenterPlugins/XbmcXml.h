@@ -45,11 +45,14 @@ signals:
     void sigExportProgress(int, int);
     void sigExportDone();
     void sigExportRaiseError(QString);
+
 private:
     void writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath = false, QString pathSearch = "", QString pathReplace = "");
     void writeConcertXml(QXmlStreamWriter &xml, Concert *concert, bool writePath = false, QString pathSearch = "", QString pathReplace = "");
     void writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath = false, QString pathSearch = "", QString pathReplace = "", bool writeStartAndEndElement = true);
     void writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode, bool writePath = false, QString pathSearch = "", QString pathReplace = "");
+    QString posterImageName(Movie *movie);
+    QString backdropImageName(Movie *movie);
 };
 
 #endif // XBMCXML_H

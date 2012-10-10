@@ -30,6 +30,8 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_imagesLoaded = false;
     m_watched = false;
     m_hasChanged = false;
+    m_hasPoster = false;
+    m_hasBackdrop = false;
     m_downloadsInProgress = false;
     m_downloadsSize = 0;
     m_inSeparateFolder = false;
@@ -569,6 +571,27 @@ bool Movie::hasChanged() const
     return m_hasChanged;
 }
 
+/**
+ * @property Movie::hasPoster
+ * @brief Holds a property if the movies has a poster
+ * @return True if movie has a poster
+ * @see Movie::setHasPoster
+ */
+bool Movie::hasPoster() const
+{
+    return m_hasPoster;
+}
+
+/**
+ * @property Movie::hasBackdrop
+ * @brief Holds a property if the movies has a backdrop
+ * @return True if movie has a backdrop
+ * @see Movie::setHasBackdrop
+ */
+bool Movie::hasBackdrop() const
+{
+    return m_hasBackdrop;
+}
 
 /**
  * @brief Holds a unique MediaElch movie id
@@ -894,6 +917,26 @@ void Movie::setChanged(bool changed)
 {
     m_hasChanged = changed;
     emit sigChanged(this);
+}
+
+/**
+ * @brief Sets if the movie has a poster
+ * @param has Movie has a poster
+ * @see Movie::hasPoster
+ */
+void Movie::setHasPoster(bool has)
+{
+    m_hasPoster = has;
+}
+
+/**
+ * @brief Sets if the movie has a backdrop
+ * @param has Movie has a backdrop
+ * @see Movie::hasBackdrop
+ */
+void Movie::setHasBackdrop(bool has)
+{
+    m_hasBackdrop = has;
 }
 
 /**

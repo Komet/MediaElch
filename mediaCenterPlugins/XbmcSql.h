@@ -58,6 +58,8 @@ private:
     QString concertMediaCenterPath(QString file);
     QString concertMediaCenterDir(QString file);
     QSqlDatabase db();
+    QString posterImageName(Movie *movie);
+    QString backdropImageName(Movie *movie);
 
     QSqlDatabase *m_db;
     QString m_connectionName;

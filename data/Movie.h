@@ -90,6 +90,8 @@ public:
     bool inSeparateFolder() const;
     int mediaCenterId() const;
     int numPrimaryLangPosters() const;
+    bool hasPoster() const;
+    bool hasBackdrop() const;
 
     bool hasChanged() const;
 
@@ -130,6 +132,8 @@ public:
     void setInSeparateFolder(bool inSepFolder);
     void setMediaCenterId(int mediaCenterId);
     void setNumPrimaryLangPosters(int numberPrimaryLangPosters);
+    void setHasPoster(bool has);
+    void setHasBackdrop(bool has);
 
     void removeActor(Actor *actor);
     void removeCountry(QString *country);
@@ -185,6 +189,8 @@ private:
     bool m_inSeparateFolder;
     int m_mediaCenterId;
     int m_numPrimaryLangPosters;
+    bool m_hasPoster;
+    bool m_hasBackdrop;
 };
 
 QDebug operator<<(QDebug dbg, const Movie &movie);

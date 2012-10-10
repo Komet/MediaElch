@@ -297,6 +297,10 @@ bool XbmcXml::loadMovie(Movie *movie)
 
     file.close();
 
+    // Existence of images
+    movie->setHasPoster(!posterImageName(movie).isEmpty());
+    movie->setHasBackdrop(!backdropImageName(movie).isEmpty());
+
     return true;
 }
 
@@ -307,21 +311,8 @@ bool XbmcXml::loadMovie(Movie *movie)
 void XbmcXml::loadMovieImages(Movie *movie)
 {
     qDebug() << "Entered, movie=" << movie->name();
-    if (movie->files().size() == 0) {
-        qWarning() << "Movie has no files";
-        return;
-    }
-    QFileInfo fi(movie->files().at(0));
 
-    QString posterFileName;
-    foreach (DataFile *dataFile, Settings::instance()->enabledMoviePosterFiles()) {
-        QString file = dataFile->saveFileName(fi.fileName());
-        QFileInfo pFi(fi.absolutePath() + QDir::separator() + file);
-        if (pFi.isFile()) {
-            posterFileName = fi.absolutePath() + QDir::separator() + file;
-            break;
-        }
-    }
+    QString posterFileName = posterImageName(movie);
     if (posterFileName.isEmpty()) {
         qDebug() << "No usable poster file found";
     } else {
@@ -329,21 +320,19 @@ void XbmcXml::loadMovieImages(Movie *movie)
         movie->posterImage()->load(posterFileName);
     }
 
-    QString fanartFileName;
-    foreach (DataFile *dataFile, Settings::instance()->enabledMovieFanartFiles()) {
-        QString file = dataFile->saveFileName(fi.fileName());
-        QFileInfo bFi(fi.absolutePath() + QDir::separator() + file);
-        if (bFi.isFile()) {
-            fanartFileName = fi.absolutePath() + QDir::separator() + file;
-            break;
-        }
-    }
+    QString fanartFileName = backdropImageName(movie);
     if (fanartFileName.isEmpty()) {
         qDebug() << "No usable fanart file found";
     } else {
         qDebug() << "Trying to load fanart file" << fanartFileName;
         movie->backdropImage()->load(fanartFileName);
     }
+
+    if (movie->files().size() == 0) {
+        qWarning() << "Movie has no files";
+        return;
+    }
+    QFileInfo fi(movie->files().at(0));
 
     foreach (Actor *actor, movie->actorsPointer()) {
         if (actor->imageHasChanged)
@@ -352,6 +341,58 @@ void XbmcXml::loadMovieImages(Movie *movie)
         actorName = actorName.replace(" ", "_");
         actor->image.load(fi.absolutePath() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn");
     }
+}
+
+/**
+ * @brief Get the path to the movie poster
+ * @param movie Movie object
+ * @return Path to poster image
+ */
+QString XbmcXml::posterImageName(Movie *movie)
+{
+    QString posterFileName;
+    if (movie->files().size() == 0) {
+        qWarning() << "Movie has no files";
+        return posterFileName;
+    }
+    QFileInfo fi(movie->files().at(0));
+
+    foreach (DataFile *dataFile, Settings::instance()->enabledMoviePosterFiles()) {
+        QString file = dataFile->saveFileName(fi.fileName());
+        QFileInfo pFi(fi.absolutePath() + QDir::separator() + file);
+        if (pFi.isFile()) {
+            posterFileName = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return posterFileName;
+}
+
+/**
+ * @brief Get the path to the movie backdrop
+ * @param movie Movie object
+ * @return Path to backdrop image
+ */
+QString XbmcXml::backdropImageName(Movie *movie)
+{
+    QString fanartFileName;
+    if (movie->files().size() == 0) {
+        qWarning() << "Movie has no files";
+        return fanartFileName;
+    }
+    QFileInfo fi(movie->files().at(0));
+
+    foreach (DataFile *dataFile, Settings::instance()->enabledMovieFanartFiles()) {
+        QString file = dataFile->saveFileName(fi.fileName());
+        QFileInfo bFi(fi.absolutePath() + QDir::separator() + file);
+        if (bFi.isFile()) {
+            fanartFileName = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return fanartFileName;
 }
 
 /**

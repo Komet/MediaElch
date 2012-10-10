@@ -109,7 +109,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->tvShowWidget, SIGNAL(sigDownloadsProgress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
     connect(ui->tvShowWidget, SIGNAL(sigDownloadsFinished(int)), this, SLOT(progressFinished(int)));
 
-    connect(m_filterWidget, SIGNAL(sigFilterTextChanged(QString)), this, SLOT(onFilterChanged(QString)));
+    connect(m_filterWidget, SIGNAL(sigFilterChanged(QList<Filter*>,QString)), this, SLOT(onFilterChanged(QList<Filter*>,QString)));
 
     connect(ui->movieSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
     connect(ui->tvShowSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
@@ -289,6 +289,7 @@ void MainWindow::onMenu(MainWidgets widget)
     m_actionSave->setEnabled(m_actions[widget][ActionSave]);
     m_actionSaveAll->setEnabled(m_actions[widget][ActionSaveAll]);
     m_filterWidget->setEnabled(m_actions[widget][ActionFilterWidget]);
+    m_filterWidget->setActiveWidget(widget);
 }
 
 /**
@@ -298,9 +299,9 @@ void MainWindow::onMenu(MainWidgets widget)
 void MainWindow::onMenuMovies()
 {
     qDebug() << "Entered";
+    ui->stackedWidget->setCurrentIndex(0);
     onMenu(WidgetMovies);
     ui->buttonMovies->setIcon(QIcon(":/img/video_menuActive.png"));
-    ui->stackedWidget->setCurrentIndex(0);
 }
 
 /**
@@ -310,10 +311,10 @@ void MainWindow::onMenuMovies()
 void MainWindow::onMenuMovieSets()
 {
     qDebug() << "Entered";
-    onMenu(WidgetMovies);
-    ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menuActive.png"));
     ui->stackedWidget->setCurrentIndex(2);
     ui->setsWidget->loadSets();
+    onMenu(WidgetMovieSets);
+    ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menuActive.png"));
 }
 
 /**
@@ -323,10 +324,10 @@ void MainWindow::onMenuMovieSets()
 void MainWindow::onMenuGenres()
 {
     qDebug() << "Entered";
-    onMenu(WidgetGenres);
-    ui->buttonGenres->setIcon(QIcon(":/img/genre_menuActive.png"));
     ui->stackedWidget->setCurrentIndex(4);
     ui->genreWidget->loadGenres();
+    onMenu(WidgetGenres);
+    ui->buttonGenres->setIcon(QIcon(":/img/genre_menuActive.png"));
 }
 
 /**
@@ -336,10 +337,10 @@ void MainWindow::onMenuGenres()
 void MainWindow::onMenuCertifications()
 {
     qDebug() << "Entered";
-    onMenu(WidgetCertifications);
-    ui->buttonCertifications->setIcon(QIcon(":/img/certification2_menuActive.png"));
     ui->stackedWidget->setCurrentIndex(5);
     ui->certificationWidget->loadCertifications();
+    onMenu(WidgetCertifications);
+    ui->buttonCertifications->setIcon(QIcon(":/img/certification2_menuActive.png"));
 }
 
 /**
@@ -349,9 +350,9 @@ void MainWindow::onMenuCertifications()
 void MainWindow::onMenuTvShows()
 {
     qDebug() << "Entered";
+    ui->stackedWidget->setCurrentIndex(1);
     onMenu(WidgetTvShows);
     ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menuActive.png"));
-    ui->stackedWidget->setCurrentIndex(1);
 }
 
 /**
@@ -361,9 +362,9 @@ void MainWindow::onMenuTvShows()
 void MainWindow::onMenuConcerts()
 {
     qDebug() << "Entered";
+    ui->stackedWidget->setCurrentIndex(3);
     onMenu(WidgetConcerts);
     ui->buttonConcerts->setIcon(QIcon(":/img/concerts_menuActive.png"));
-    ui->stackedWidget->setCurrentIndex(3);
 }
 
 /**
@@ -427,19 +428,20 @@ void MainWindow::onActionReload()
 }
 
 /**
- * @brief Called when the filter text was changed
+ * @brief Called when the filter text was changed or a filter was added/removed
  * Delegates the event down to the current subwidget
+ * @param filters List of filters
  * @param text Filter text
  */
-void MainWindow::onFilterChanged(QString text)
+void MainWindow::onFilterChanged(QList<Filter *> filters, QString text)
 {
-    qDebug() << "Entered, text=" << text << "currentIndex=" << ui->stackedWidget->currentIndex();
+    qDebug() << "Filter has changed";
     if (ui->stackedWidget->currentIndex() == 0)
-        ui->filesWidget->setFilter(text);
+        ui->filesWidget->setFilter(filters, text);
     else if (ui->stackedWidget->currentIndex() == 1)
-        ui->tvShowFilesWidget->setFilter(text);
+        ui->tvShowFilesWidget->setFilter(filters, text);
     else if (ui->stackedWidget->currentIndex() == 3)
-        ui->concertFilesWidget->setFilter(text);
+        ui->concertFilesWidget->setFilter(filters, text);
 }
 
 /**

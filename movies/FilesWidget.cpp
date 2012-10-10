@@ -86,13 +86,14 @@ void FilesWidget::movieSelectedEmitter()
 }
 
 /**
- * @brief Sets the filter
- * @param filter Filter text
+ * @brief Sets the filters
+ * @param filters List of filters
+ * @param text Filter text
  */
-void FilesWidget::setFilter(QString filter)
+void FilesWidget::setFilter(QList<Filter*> filters, QString text)
 {
-    qDebug() << "Entered, filter=" << filter;
-    m_movieProxyModel->setFilterWildcard("*" + filter + "*");
+    m_movieProxyModel->setFilter(filters, text);
+    m_movieProxyModel->setFilterWildcard("*" + text + "*");
 }
 
 /**

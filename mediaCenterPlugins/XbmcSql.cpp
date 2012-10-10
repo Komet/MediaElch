@@ -806,6 +806,10 @@ bool XbmcSql::loadMovie(Movie *movie)
         movie->addActor(a);
     }
 
+    // Existence of images
+    movie->setHasPoster(!posterImageName(movie).isEmpty());
+    movie->setHasBackdrop(!backdropImageName(movie).isEmpty());
+
     return true;
 }
 
@@ -816,35 +820,15 @@ bool XbmcSql::loadMovie(Movie *movie)
 void XbmcSql::loadMovieImages(Movie *movie)
 {
     qDebug() << "Entered, movie=" << movie->name();
-    if (movie->files().count() == 0) {
-        qWarning() << "Movie has no files";
-        return;
-    }
 
-    QString fileHash = hash(mediaCenterPath(movie->files().at(0)));
-    QString fanartHash = fileHash;
-    qDebug() << "First file is" << movie->files().at(0) << "becomes" << mediaCenterPath(movie->files().at(0)) << "hash=" << fileHash;
-    if (movie->files().count() > 1) {
-        qDebug() << "Stacked files movie";
-        QStringList files;
-        foreach (const QString &file, movie->files())
-            files << mediaCenterPath(file);
-        qDebug() << "files=" << files;
-        fanartHash = hash(QString("stack://%1").arg(files.join(" , ")));
-    }
-    qDebug() << "fanartHash=" << fanartHash;
+    QString posterPath = posterImageName(movie);
+    QString fanartPath = backdropImageName(movie);
 
-    QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
-    QString fanartPath = QString("%1%2Video%2Fanart%2%3.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fanartHash);
-    QFileInfo posterFi(posterPath);
-    QFileInfo fanartFi(fanartPath);
-    qDebug() << "posterPath=" << posterPath;
-    qDebug() << "fanartPath=" << fanartPath;
-    if (posterFi.isFile()) {
+    if (!posterPath.isEmpty()) {
         qDebug() << "Trying to load poster" << posterPath;
         movie->posterImage()->load(posterPath);
     }
-    if (fanartFi.isFile()) {
+    if (!fanartPath.isEmpty()) {
         qDebug() << "Trying to load backdrop" << fanartPath;
         movie->backdropImage()->load(fanartPath);
     }
@@ -860,6 +844,62 @@ void XbmcSql::loadMovieImages(Movie *movie)
     }
 }
 
+/**
+ * @brief Get the path to the movie poster
+ * @param movie Movie object
+ * @return Path to poster image
+ */
+QString XbmcSql::posterImageName(Movie *movie)
+{
+    QString posterPath;
+    if (movie->files().count() == 0) {
+        qWarning() << "Movie has no files";
+        return posterPath;
+    }
+    QString fileHash = hash(mediaCenterPath(movie->files().at(0)));
+    posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
+    QFileInfo posterFi(posterPath);
+    qDebug() << "posterPath=" << posterPath;
+
+    if (!posterFi.isFile())
+        return QString();
+
+    return posterPath;
+}
+
+/**
+ * @brief Get the path to the movie backdrop
+ * @param movie Movie object
+ * @return Path to backdrop image
+ */
+QString XbmcSql::backdropImageName(Movie *movie)
+{
+    QString fanartPath;
+    if (movie->files().count() == 0) {
+        qWarning() << "Movie has no files";
+        return fanartPath;
+    }
+    QString fileHash = hash(mediaCenterPath(movie->files().at(0)));
+    QString fanartHash = fileHash;
+    qDebug() << "First file is" << movie->files().at(0) << "becomes" << mediaCenterPath(movie->files().at(0)) << "hash=" << fileHash;
+    if (movie->files().count() > 1) {
+        qDebug() << "Stacked files movie";
+        QStringList files;
+        foreach (const QString &file, movie->files())
+            files << mediaCenterPath(file);
+        qDebug() << "files=" << files;
+        fanartHash = hash(QString("stack://%1").arg(files.join(" , ")));
+    }
+    qDebug() << "fanartHash=" << fanartHash;
+    fanartPath = QString("%1%2Video%2Fanart%2%3.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fanartHash);
+    QFileInfo fanartFi(fanartPath);
+    qDebug() << "fanartPath=" << fanartPath;
+
+    if (!fanartFi.isFile())
+        return QString();
+
+    return fanartPath;
+}
 
 /**
  * @brief Saves concert information

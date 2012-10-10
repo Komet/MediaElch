@@ -19,7 +19,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout">
+  <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1">
    <item>
     <spacer name="horizontalSpacer">
      <property name="orientation">
@@ -35,9 +35,15 @@
    </item>
    <item>
     <widget class="MyLineEdit" name="lineEdit">
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>0</height>
+      </size>
+     </property>
      <property name="maximumSize">
       <size>
-       <width>200</width>
+       <width>400</width>
        <height>16777215</height>
       </size>
      </property>
