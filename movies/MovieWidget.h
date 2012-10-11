@@ -4,6 +4,7 @@
 #include <QContextMenuEvent>
 #include <QLabel>
 #include <QMenu>
+#include <QPointer>
 #include <QResizeEvent>
 #include <QTableWidgetItem>
 #include <QWidget>
@@ -94,6 +95,7 @@ private:
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;
     QImage m_currentPoster;
+    QPixmap *m_currentPosterPointer;
     QImage m_currentBackdrop;
     void updateMovieInfo();
 };

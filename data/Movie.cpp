@@ -27,7 +27,6 @@ Movie::Movie(QStringList files, QObject *parent) :
             m_folderName = path.last();
     }
     m_infoLoaded = false;
-    m_imagesLoaded = false;
     m_watched = false;
     m_hasChanged = false;
     m_hasPoster = false;
@@ -119,6 +118,7 @@ bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
     if (!m_infoLoaded)
         m_infoLoaded = saved;
     setChanged(false);
+    clearImages();
     return saved;
 }
 
@@ -189,16 +189,14 @@ void Movie::scraperLoadDone()
 }
 
 /**
- * @brief Loads the movies images using the given MediaCenterInterface
- * @param mediaCenterInterface MediaCenterInterface to use for loading images
- * @param force When set to true, force loading of images, regardless if they were already loaded
+ * @brief Clears the movie images to save memory
  */
-void Movie::loadImages(MediaCenterInterface *mediaCenterInterface, bool force)
+void Movie::clearImages()
 {
-    qDebug() << "Entered, force=" << force;
-    if (!m_imagesLoaded || force)
-        mediaCenterInterface->loadMovieImages(this);
-    m_imagesLoaded = true;
+    m_posterImage = QImage();
+    m_backdropImage = QImage();
+    foreach (Actor *actor, actorsPointer())
+        actor->image = QImage();
 }
 
 /*** GETTER ***/

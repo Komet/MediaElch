@@ -22,7 +22,6 @@ public:
 
     bool saveMovie(Movie *movie);
     bool loadMovie(Movie *movie);
-    void loadMovieImages(Movie *movie);
     bool saveConcert(Concert *concert);
     bool loadConcert(Concert *concert);
     void loadConcertImages(Concert *concert);
@@ -39,6 +38,9 @@ public:
     QImage movieSetBackdrop(QString setName);
     void saveMovieSetPoster(QString setName, QImage poster);
     void saveMovieSetBackdrop(QString setName, QImage backdrop);
+    QString posterImageName(Movie *movie);
+    QString backdropImageName(Movie *movie);
+    QString actorImageName(Movie *movie, Actor actor);
 
 signals:
     void sigExportStarted();
@@ -51,8 +53,6 @@ private:
     void writeConcertXml(QXmlStreamWriter &xml, Concert *concert, bool writePath = false, QString pathSearch = "", QString pathReplace = "");
     void writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath = false, QString pathSearch = "", QString pathReplace = "", bool writeStartAndEndElement = true);
     void writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode, bool writePath = false, QString pathSearch = "", QString pathReplace = "");
-    QString posterImageName(Movie *movie);
-    QString backdropImageName(Movie *movie);
 };
 
 #endif // XBMCXML_H

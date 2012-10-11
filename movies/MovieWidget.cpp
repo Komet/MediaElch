@@ -6,6 +6,7 @@
 #include <QIntValidator>
 #include <QMovie>
 #include <QPainter>
+#include <QPixmapCache>
 #include <QScrollBar>
 #include "globals/Globals.h"
 #include "globals/ImagePreviewDialog.h"
@@ -114,6 +115,8 @@ MovieWidget::MovieWidget(QWidget *parent) :
     p.end();
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
+
+    m_currentPosterPointer = 0;
 }
 
 /**
@@ -274,7 +277,6 @@ void MovieWidget::setMovie(Movie *movie)
     qDebug() << "Entered, movie=" << movie->name();
     movie->loadData(Manager::instance()->mediaCenterInterface());
     m_movie = movie;
-    movie->loadImages(Manager::instance()->mediaCenterInterface());
     updateMovieInfo();
     if (movie->downloadsInProgress())
         setDisabledTrue();
@@ -487,6 +489,12 @@ void MovieWidget::updateMovieInfo()
         ui->posterResolution->setText(QString("%1x%2").arg(m_movie->posterImage()->width()).arg(m_movie->posterImage()->height()));
         ui->buttonPreviewPoster->setEnabled(true);
         m_currentPoster = *m_movie->posterImage();
+    } else if (!Manager::instance()->mediaCenterInterface()->posterImageName(m_movie).isEmpty()) {
+        QPixmap p(QPixmap(Manager::instance()->mediaCenterInterface()->posterImageName(m_movie)));
+        ui->poster->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
+        ui->posterResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        ui->buttonPreviewPoster->setEnabled(true);
+        m_currentPoster = p.toImage();
     } else {
         ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
         ui->posterResolution->setText("");
@@ -498,6 +506,12 @@ void MovieWidget::updateMovieInfo()
         ui->backdropResolution->setText(QString("%1x%2").arg(m_movie->backdropImage()->width()).arg(m_movie->backdropImage()->height()));
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = *m_movie->backdropImage();
+    } else if (!Manager::instance()->mediaCenterInterface()->backdropImageName(m_movie).isEmpty()) {
+        QPixmap p(QPixmap(Manager::instance()->mediaCenterInterface()->backdropImageName(m_movie)));
+        ui->backdrop->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
+        ui->backdropResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        ui->buttonPreviewBackdrop->setEnabled(true);
+        m_currentBackdrop = p.toImage();
     } else {
         ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->backdropResolution->setText("");
@@ -669,7 +683,6 @@ void MovieWidget::onRevertChanges()
 {
     qDebug() << "Entered";
     m_movie->loadData(Manager::instance()->mediaCenterInterface(), true);
-    m_movie->loadImages(Manager::instance()->mediaCenterInterface(), true);
     updateMovieInfo();
 }
 
@@ -933,14 +946,19 @@ void MovieWidget::onActorChanged()
     }
 
     Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
-    if (actor->image.isNull()) {
+    if (!actor->image.isNull()) {
+        ui->actor->setPixmap(QPixmap::fromImage(actor->image).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->actorResolution->setText(QString("%1 x %2").arg(actor->image.width()).arg(actor->image.height()));
+        ui->buttonRevert->setVisible(true);
+    } else if (!Manager::instance()->mediaCenterInterface()->actorImageName(m_movie, *actor).isEmpty()) {
+        QPixmap p(Manager::instance()->mediaCenterInterface()->actorImageName(m_movie, *actor));
+        ui->actor->setPixmap(p.scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
+        ui->buttonRevert->setVisible(true);
+    } else {
         ui->actor->setPixmap(QPixmap(":/img/man.png"));
         ui->actorResolution->setText("");
-        return;
     }
-    ui->actor->setPixmap(QPixmap::fromImage(actor->image).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->actorResolution->setText(QString("%1 x %2").arg(actor->image.width()).arg(actor->image.height()));
-    ui->buttonRevert->setVisible(true);
 }
 
 /**

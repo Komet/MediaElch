@@ -305,42 +305,23 @@ bool XbmcXml::loadMovie(Movie *movie)
 }
 
 /**
- * @brief Loads images of a movie
- * @param movie Movie to load
+ * @brief Get the path to the actor image
+ * @param movie
+ * @param actor Actor
+ * @return Path to actor image
  */
-void XbmcXml::loadMovieImages(Movie *movie)
+QString XbmcXml::actorImageName(Movie *movie, Actor actor)
 {
-    qDebug() << "Entered, movie=" << movie->name();
-
-    QString posterFileName = posterImageName(movie);
-    if (posterFileName.isEmpty()) {
-        qDebug() << "No usable poster file found";
-    } else {
-        qDebug() << "Trying to load poster file" << posterFileName;
-        movie->posterImage()->load(posterFileName);
-    }
-
-    QString fanartFileName = backdropImageName(movie);
-    if (fanartFileName.isEmpty()) {
-        qDebug() << "No usable fanart file found";
-    } else {
-        qDebug() << "Trying to load fanart file" << fanartFileName;
-        movie->backdropImage()->load(fanartFileName);
-    }
-
-    if (movie->files().size() == 0) {
-        qWarning() << "Movie has no files";
-        return;
-    }
+    if (movie->files().isEmpty())
+        return QString();
     QFileInfo fi(movie->files().at(0));
-
-    foreach (Actor *actor, movie->actorsPointer()) {
-        if (actor->imageHasChanged)
-            continue;
-        QString actorName = actor->name;
-        actorName = actorName.replace(" ", "_");
-        actor->image.load(fi.absolutePath() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn");
-    }
+    QString actorName = actor.name;
+    actorName = actorName.replace(" ", "_");
+    QString path = fi.absolutePath() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn";
+    fi.setFile(path);
+    if (fi.isFile())
+        return path;
+    return QString();
 }
 
 /**

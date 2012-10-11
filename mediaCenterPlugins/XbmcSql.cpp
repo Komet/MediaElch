@@ -814,34 +814,19 @@ bool XbmcSql::loadMovie(Movie *movie)
 }
 
 /**
- * @brief Loads images for a movie
- * @param movie The movie to load images for
+ * @brief Get the path to the actor image
+ * @param movie
+ * @param actor Actor
+ * @return Path to actor image
  */
-void XbmcSql::loadMovieImages(Movie *movie)
+QString XbmcSql::actorImageName(Movie *movie, Actor actor)
 {
-    qDebug() << "Entered, movie=" << movie->name();
-
-    QString posterPath = posterImageName(movie);
-    QString fanartPath = backdropImageName(movie);
-
-    if (!posterPath.isEmpty()) {
-        qDebug() << "Trying to load poster" << posterPath;
-        movie->posterImage()->load(posterPath);
-    }
-    if (!fanartPath.isEmpty()) {
-        qDebug() << "Trying to load backdrop" << fanartPath;
-        movie->backdropImage()->load(fanartPath);
-    }
-
-    foreach (Actor *actor, movie->actorsPointer()) {
-        if (actor->imageHasChanged)
-            continue;
-        QString hashActor = actorHash(*actor);
-        QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
-        QFileInfo fi(actorThumb);
-        if (fi.isFile())
-            actor->image.load(actorThumb);
-    }
+    QString hashActor = actorHash(actor);
+    QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
+    QFileInfo fi(actorThumb);
+    if (fi.isFile())
+        return actorThumb;
+    return QString();
 }
 
 /**

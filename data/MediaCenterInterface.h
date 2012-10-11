@@ -21,7 +21,6 @@ class MediaCenterInterface : public QObject
 public:
     virtual bool saveMovie(Movie *movie) = 0;
     virtual bool loadMovie(Movie *movie) = 0;
-    virtual void loadMovieImages(Movie *movie) = 0;
     virtual bool saveConcert(Concert *concert) = 0;
     virtual bool loadConcert(Concert *concert) = 0;
     virtual void loadConcertImages(Concert *concert) = 0;
@@ -38,6 +37,9 @@ public:
     virtual bool saveTvShowEpisode(TvShowEpisode *episode) = 0;
     virtual void shutdown() = 0;
     virtual bool hasFeature(int feature) = 0;
+    virtual QString posterImageName(Movie *movie) = 0;
+    virtual QString backdropImageName(Movie *movie) = 0;
+    virtual QString actorImageName(Movie *movie, Actor actor) = 0;
 signals:
     virtual void sigExportStarted() = 0;
     virtual void sigExportProgress(int, int) = 0;
