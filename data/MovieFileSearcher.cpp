@@ -112,7 +112,7 @@ void MovieFileSearcher::getDirContents(QString path, QList<QStringList> &content
     files.sort();
 
     /* detect movies with multiple files*/
-    QRegExp rx("([\-_\\s\.]+((a|b|c|d|e|f)|((part|cd)[\-_\\s\.]*\\d+))[\-_\\s\.]+)", Qt::CaseInsensitive);
+    QRegExp rx("([\-_\\s\.\(\)]+((a|b|c|d|e|f)|((part|cd|xvid)[\-_\\s\.\(\)]*\\d+))[\-_\\s\.\(\)]+)", Qt::CaseInsensitive);
     for (int i=0, n=files.size() ; i<n ; i++) {
         QStringList movieFiles;
         QString file = files.at(i);
@@ -122,7 +122,7 @@ void MovieFileSearcher::getDirContents(QString path, QList<QStringList> &content
         movieFiles << path + QDir::separator() + file;
 
         if (QString::compare(file, "VIDEO_TS.IFO", Qt::CaseInsensitive) != 0 && QString::compare(file, "index.bdmv", Qt::CaseInsensitive) != 0) {
-            int pos = rx.indexIn(file);
+            int pos = rx.lastIndexIn(file);
             if (pos != -1) {
                 qDebug() << "Detected multiple files for this movie =>";
                 QString left = file.left(pos);
