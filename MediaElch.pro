@@ -87,7 +87,8 @@ SOURCES += main.cpp\
     settings/Settings.cpp \
     movies/GenreWidget.cpp \
     movies/CertificationWidget.cpp \
-    support/SupportDialog.cpp
+    support/SupportDialog.cpp \
+    data/MovieFilesToDirs.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -154,7 +155,8 @@ HEADERS  += main/MainWindow.h \
     settings/Settings.h \
     movies/GenreWidget.h \
     movies/CertificationWidget.h \
-    support/SupportDialog.h
+    support/SupportDialog.h \
+    data/MovieFilesToDirs.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

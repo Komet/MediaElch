@@ -155,8 +155,24 @@ QTabBar::tab:selected {
          </item>
          <item>
           <widget class="QPushButton" name="buttonRemoveDir">
+           <property name="minimumSize">
+            <size>
+             <width>80</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="text">
             <string>Remove</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="buttonMovieFilesToDirs">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort Movies Into Seperate Directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>Organisiere</string>
            </property>
           </widget>
          </item>

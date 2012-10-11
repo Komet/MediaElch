@@ -14,6 +14,7 @@ class TvShowEpisode;
 
 namespace Constants {
     const int MovieFileSearcherProgressMessageId   = 10000;
+    const int MovieFilesToDirsProgressMessageId    = 10006;
     const int MovieWidgetProgressMessageId         = 10001;
     const int TvShowSearcherProgressMessageId      = 10002;
     const int TvShowWidgetProgressMessageId        = 10003;

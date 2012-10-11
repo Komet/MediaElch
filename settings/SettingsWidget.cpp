@@ -142,6 +142,7 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
 
     connect(ui->buttonAddDir, SIGNAL(clicked()), m_dirDialog, SLOT(open()));
     connect(ui->buttonRemoveDir, SIGNAL(clicked()), this, SLOT(removeDir()));
+    connect(ui->buttonMovieFilesToDirs, SIGNAL(clicked()), this, SLOT(organize()));
     connect(ui->dirs, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(dirListRowChanged(int)));
 
     connect(ui->chkActivateDebug, SIGNAL(clicked()), this, SLOT(onActivateDebugMode()));
@@ -507,12 +508,37 @@ void SettingsWidget::removeDir()
 }
 
 /**
- * @brief Enables/disables the button to remove a dir
+ * @brief Organize button clicked
+ */
+void SettingsWidget::organize()
+{
+    qDebug() << "ORGANIZEE!";
+}
+
+/**
+ * @brief Enables/disables the buttons to operate on dirs
  * @param currentRow Current row in the dir list
  */
 void SettingsWidget::dirListRowChanged(int currentRow)
 {
-    ui->buttonRemoveDir->setDisabled(currentRow < 0);
+    if (currentRow < 0) {
+        ui->buttonRemoveDir->setDisabled(true);
+        ui->buttonMovieFilesToDirs->setDisabled(true);
+
+    }
+    else {
+        ui->buttonRemoveDir->setDisabled(false);
+
+        QComboBox *temp = ((QComboBox*)ui->dirs->cellWidget(currentRow, 0));
+        if (temp->currentIndex() == 0) {
+            ui->buttonMovieFilesToDirs->setDisabled(false);
+        }
+        else
+            ui->buttonMovieFilesToDirs->setDisabled(true);
+    }
+    //if (((QComboBox)ui->dirs->cellWidget(currentRow, 0))->currentIndex() == 0)
+      //  qDebug() << "YEAH";
+
 }
 
 /**
