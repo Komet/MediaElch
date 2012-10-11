@@ -111,7 +111,8 @@ void MovieFileSearcher::getDirContents(QString path, QList<QStringList> &content
     }
     files.sort();
 
-    QRegExp rx("((part|cd)[\\s_]*)(\\d+)", Qt::CaseInsensitive);
+    /* detect movies with multiple files*/
+    QRegExp rx("([\-_\\s\.]+((a|b|c|d|e|f)|((part|cd)\\d+))[\-_\\s\.]+)", Qt::CaseInsensitive);
     for (int i=0, n=files.size() ; i<n ; i++) {
         QStringList movieFiles;
         QString file = files.at(i);
@@ -123,18 +124,21 @@ void MovieFileSearcher::getDirContents(QString path, QList<QStringList> &content
         if (QString::compare(file, "VIDEO_TS.IFO", Qt::CaseInsensitive) != 0 && QString::compare(file, "index.bdmv", Qt::CaseInsensitive) != 0) {
             int pos = rx.indexIn(file);
             if (pos != -1) {
-                QString left = file.left(pos) + rx.cap(1);
-                QString right = file.mid(pos+rx.cap(1).size()+rx.cap(2).size());
+                qDebug() << "Match :" << file << rx.indexIn(file);
+                QString left = file.left(pos);
+                QString right = file.mid(pos + rx.cap(0).size());
                 for (int x=0 ; x<n ; x++) {
                     QString subFile = files.at(x);
                     if (subFile != file) {
                         if (subFile.startsWith(left) && subFile.endsWith(right)) {
                             movieFiles << path + QDir::separator() + subFile;
-                            files[x] = ""; // set an empty file name, this way we can skip this file in the main loop
+                            // set an empty file name, this way we can skip this file in the main loop
+                            files[x] = "";
                         }
                     }
                 }
             }
+
         }
         qDebug() << "Adding movie" << movieFiles;
         contents.append(movieFiles);
