@@ -233,7 +233,6 @@ void MovieWidget::clear()
     ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
     ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->actor->setPixmap(QPixmap(":/img/man.png"));
-    ui->tabWidget->setCurrentIndex(0);
     ui->posterResolution->setText("");
     ui->backdropResolution->setText("");
     ui->actorResolution->setText("");
