@@ -41,6 +41,8 @@ public:
     QString posterImageName(Movie *movie);
     QString backdropImageName(Movie *movie);
     QString actorImageName(Movie *movie, Actor actor);
+    QString posterImageName(Concert *concert);
+    QString backdropImageName(Concert *concert);
 
 signals:
     void sigExportStarted();

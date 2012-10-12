@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QSqlDatabase>
 
+#include "data/Concert.h"
 #include "data/MediaCenterInterface.h"
 #include "data/Movie.h"
 #include "data/TvShow.h"
@@ -23,7 +24,6 @@ public:
     bool loadMovie(Movie *movie);
     bool saveConcert(Concert *concert);
     bool loadConcert(Concert *concert);
-    void loadConcertImages(Concert *concert);
     void exportDatabase(QList<Movie*> movies, QList<TvShow*> shows, QString exportPath, QString pathSearch, QString pathReplace);
     bool loadTvShow(TvShow *show);
     void loadTvShowImages(TvShow *show);
@@ -42,6 +42,8 @@ public:
     QString posterImageName(Movie *movie);
     QString backdropImageName(Movie *movie);
     QString actorImageName(Movie *movie, Actor actor);
+    QString posterImageName(Concert *concert);
+    QString backdropImageName(Concert *concert);
 
 signals:
     void sigExportStarted();

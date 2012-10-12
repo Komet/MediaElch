@@ -23,7 +23,6 @@ public:
     virtual bool loadMovie(Movie *movie) = 0;
     virtual bool saveConcert(Concert *concert) = 0;
     virtual bool loadConcert(Concert *concert) = 0;
-    virtual void loadConcertImages(Concert *concert) = 0;
     virtual void exportDatabase(QList<Movie*> movies, QList<TvShow*> shows, QString exportPath, QString pathSearch, QString pathReplace) = 0;
     virtual bool loadTvShow(TvShow *show) = 0;
     virtual void loadTvShowImages(TvShow *show) = 0;
@@ -40,6 +39,8 @@ public:
     virtual QString posterImageName(Movie *movie) = 0;
     virtual QString backdropImageName(Movie *movie) = 0;
     virtual QString actorImageName(Movie *movie, Actor actor) = 0;
+    virtual QString posterImageName(Concert *concert) = 0;
+    virtual QString backdropImageName(Concert *concert) = 0;
 signals:
     virtual void sigExportStarted() = 0;
     virtual void sigExportProgress(int, int) = 0;

@@ -582,18 +582,16 @@ bool XbmcXml::loadConcert(Concert *concert)
 }
 
 /**
- * @brief Loads images of a concert
- * @param concert Concert to load
+ * @brief Get the path to the concert poster
+ * @param concert Concert object
+ * @return Path to poster image
  */
-void XbmcXml::loadConcertImages(Concert *concert)
+QString XbmcXml::posterImageName(Concert *concert)
 {
-    qDebug() << "Entered, concert=" << concert->name();
-    if (concert->files().size() == 0) {
-        qWarning() << "Concert has no files";
-        return;
-    }
-    QFileInfo fi(concert->files().at(0));
+    if (concert->files().count() == 0)
+        return QString();
 
+    QFileInfo fi(concert->files().at(0));
     QString posterFileName;
     foreach (DataFile *dataFile, Settings::instance()->enabledConcertPosterFiles()) {
         QString file = dataFile->saveFileName(fi.fileName());
@@ -603,13 +601,23 @@ void XbmcXml::loadConcertImages(Concert *concert)
             break;
         }
     }
-    if (posterFileName.isEmpty()) {
-        qDebug() << "No usable poster file found";
-    } else {
-        qDebug() << "Trying to load poster file" << posterFileName;
-        concert->posterImage()->load(posterFileName);
-    }
+    fi.setFile(posterFileName);
+    if (fi.isFile())
+        return posterFileName;
+    return QString();
+}
 
+/**
+ * @brief Get the path to the concert backdrop
+ * @param concert Concert object
+ * @return Path to backdrop image
+ */
+QString XbmcXml::backdropImageName(Concert *concert)
+{
+    if (concert->files().count() == 0)
+        return QString();
+
+    QFileInfo fi(concert->files().at(0));
     QString fanartFileName;
     foreach (DataFile *dataFile, Settings::instance()->enabledConcertFanartFiles()) {
         QString file = dataFile->saveFileName(fi.fileName());
@@ -619,13 +627,12 @@ void XbmcXml::loadConcertImages(Concert *concert)
             break;
         }
     }
-    if (fanartFileName.isEmpty()) {
-        qDebug() << "No usable fanart file found";
-    } else {
-        qDebug() << "Trying to load fanart file" << fanartFileName;
-        concert->backdropImage()->load(fanartFileName);
-    }
+    fi.setFile(fanartFileName);
+    if (fi.isFile())
+        return fanartFileName;
+    return QString();
 }
+
 
 /**
  * @brief Loads images for a tv show

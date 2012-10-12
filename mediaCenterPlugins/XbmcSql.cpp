@@ -1364,20 +1364,35 @@ bool XbmcSql::loadConcert(Concert *concert)
 }
 
 /**
- * @brief Loads images for a concert
- * @param concert The concert to load images for
+ * @brief Get the path to the concert poster
+ * @param concert Concert object
+ * @return Path to poster image
  */
-void XbmcSql::loadConcertImages(Concert *concert)
+QString XbmcSql::posterImageName(Concert *concert)
 {
-    qDebug() << "Entered, concert=" << concert->name();
-    if (concert->files().count() == 0) {
-        qWarning() << "Concert has no files";
-        return;
-    }
+    if (concert->files().count() == 0)
+        return QString();
 
     QString fileHash = hash(concertMediaCenterPath(concert->files().at(0)));
-    QString fanartHash = fileHash;
-    qDebug() << "First file is" << concert->files().at(0) << "becomes" << concertMediaCenterPath(concert->files().at(0)) << "hash=" << fileHash;
+    QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
+    QFileInfo posterFi(posterPath);
+    qDebug() << "posterPath=" << posterPath;
+    if (posterFi.isFile())
+        return posterPath;
+    return QString();
+}
+
+/**
+ * @brief Get the path to the concert backdrop
+ * @param concert Concert object
+ * @return Path to backdrop image
+ */
+QString XbmcSql::backdropImageName(Concert *concert)
+{
+    if (concert->files().count() == 0)
+        return QString();
+
+    QString fanartHash = hash(concertMediaCenterPath(concert->files().at(0)));
     if (concert->files().count() > 1) {
         qDebug() << "Stacked files concert";
         QStringList files;
@@ -1388,20 +1403,12 @@ void XbmcSql::loadConcertImages(Concert *concert)
     }
     qDebug() << "fanartHash=" << fanartHash;
 
-    QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
     QString fanartPath = QString("%1%2Video%2Fanart%2%3.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fanartHash);
-    QFileInfo posterFi(posterPath);
     QFileInfo fanartFi(fanartPath);
-    qDebug() << "posterPath=" << posterPath;
     qDebug() << "fanartPath=" << fanartPath;
-    if (posterFi.isFile()) {
-        qDebug() << "Trying to load poster" << posterPath;
-        concert->posterImage()->load(posterPath);
-    }
-    if (fanartFi.isFile()) {
-        qDebug() << "Trying to load backdrop" << fanartPath;
-        concert->backdropImage()->load(fanartPath);
-    }
+    if (fanartFi.isFile())
+        return fanartPath;
+    return QString();
 }
 
 /**
