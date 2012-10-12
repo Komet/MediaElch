@@ -222,6 +222,9 @@ int TvShowEpisode::season() const
         QRegExp rx("S(\\d+)[.]?E", Qt::CaseInsensitive);
         if (rx.indexIn(filename) != -1)
             return rx.cap(1).toInt();
+        rx.setPattern("(\\d+)?x(\\d+)");
+        if (rx.indexIn(filename) != -1)
+            return rx.cap(1).toInt();
     }
     return m_season;
 }
@@ -249,6 +252,9 @@ int TvShowEpisode::episode() const
     if (m_episode == -2 && files().count() > 0) {
         QString filename = files().at(0).split(QDir::separator()).last();
         QRegExp rx("S(\\d+)[.]?E(\\d+)", Qt::CaseInsensitive);
+        if (rx.indexIn(filename) != -1)
+            return rx.cap(2).toInt();
+        rx.setPattern("(\\d+)x(\\d+)");
         if (rx.indexIn(filename) != -1)
             return rx.cap(2).toInt();
     }
