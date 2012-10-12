@@ -98,6 +98,8 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->released, SIGNAL(dateChanged(QDate)), this, SLOT(onReleasedChange(QDate)));
     connect(ui->lastPlayed, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(onLastWatchedChange(QDateTime)));
     connect(ui->overview, SIGNAL(textChanged()), this, SLOT(onOverviewChange()));
+    connect(ui->director, SIGNAL(textEdited(QString)), this, SLOT(onDirectorChange(QString)));
+    connect(ui->writer, SIGNAL(textEdited(QString)), this, SLOT(onWriterChange(QString)));
 
     QPixmap zoomIn(":/img/zoom_in.png");
     QPainter p;
@@ -151,6 +153,14 @@ void MovieWidget::clear()
     blocked = ui->certification->blockSignals(true);
     ui->certification->clear();
     ui->certification->blockSignals(blocked);
+
+    blocked = ui->director->blockSignals(true);
+    ui->director->clear();
+    ui->director->blockSignals(blocked);
+
+    blocked = ui->writer->blockSignals(true);
+    ui->writer->clear();
+    ui->writer->blockSignals(blocked);
 
     blocked = ui->movieName->blockSignals(true);
     ui->movieName->clear();
@@ -423,6 +433,8 @@ void MovieWidget::updateMovieInfo()
     ui->lastPlayed->setDateTime(m_movie->lastPlayed());
     ui->overview->setPlainText(m_movie->overview());
     ui->watched->setChecked(m_movie->watched());
+    ui->writer->setText(m_movie->writer());
+    ui->director->setText(m_movie->director());
 
     QStringList certifications;
     QStringList sets;
@@ -1081,6 +1093,28 @@ void MovieWidget::onCertificationChange(QString text)
     if (!m_movie)
         return;
     m_movie->setCertification(text);
+    ui->buttonRevert->setVisible(true);
+}
+
+/**
+ * @brief Marks the movie as changed when the writer has changed
+ */
+void MovieWidget::onWriterChange(QString text)
+{
+    if (!m_movie)
+        return;
+    m_movie->setWriter(text);
+    ui->buttonRevert->setVisible(true);
+}
+
+/**
+ * @brief Marks the movie as changed when the director has changed
+ */
+void MovieWidget::onDirectorChange(QString text)
+{
+    if (!m_movie)
+        return;
+    m_movie->setDirector(text);
     ui->buttonRevert->setVisible(true);
 }
 

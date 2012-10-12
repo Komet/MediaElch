@@ -32,7 +32,9 @@ TMDb::TMDb(QObject *parent)
                       << MovieScraperInfos::Actors
                       << MovieScraperInfos::Genres
                       << MovieScraperInfos::Studios
-                      << MovieScraperInfos::Countries;
+                      << MovieScraperInfos::Countries
+                      << MovieScraperInfos::Director
+                      << MovieScraperInfos::Writer;
 
     m_baseUrl = "http://cf2.imgobject.com/t/p/";
     setup();
@@ -520,6 +522,28 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
             if (!vC.property("profile_path").isNull())
                 a.thumb = m_baseUrl + "original" + vC.property("profile_path").toString();
             movie->addActor(a);
+        }
+    }
+
+    // Crew
+    if ((infos.contains(MovieScraperInfos::Director) || infos.contains(MovieScraperInfos::Writer)) && sc.property("crew").isArray()) {
+        QScriptValueIterator itC(sc.property("crew"));
+        while (itC.hasNext()) {
+            itC.next();
+            QScriptValue vC = itC.value();
+            if (vC.property("name").toString().isEmpty())
+                continue;
+            if (infos.contains(MovieScraperInfos::Writer) && vC.property("department").toString() == "Writing") {
+                QString writer = movie->writer();
+                if (writer.contains(vC.property("name").toString()))
+                    continue;
+                if (!writer.isEmpty())
+                    writer.append(", ");
+                writer.append(vC.property("name").toString());
+                movie->setWriter(writer);
+            }
+            if (infos.contains(MovieScraperInfos::Director) && vC.property("job").toString() == "Director" && vC.property("department").toString() == "Directing")
+                movie->setDirector(vC.property("name").toString());
         }
     }
 

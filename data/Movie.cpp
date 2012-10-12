@@ -63,7 +63,9 @@ void Movie::clear()
           << MovieScraperInfos::Actors
           << MovieScraperInfos::Genres
           << MovieScraperInfos::Studios
-          << MovieScraperInfos::Countries;
+          << MovieScraperInfos::Countries
+          << MovieScraperInfos::Writer
+          << MovieScraperInfos::Director;
     clear(infos);
 }
 
@@ -103,6 +105,10 @@ void Movie::clear(QList<int> infos)
         m_trailer = "";
     if (infos.contains(MovieScraperInfos::Certification))
         m_certification = "";
+    if (infos.contains(MovieScraperInfos::Writer))
+        m_writer = "";
+    if (infos.contains(MovieScraperInfos::Director))
+        m_director = "";
 }
 
 /**
@@ -296,6 +302,28 @@ int Movie::runtime() const
 QString Movie::certification() const
 {
     return m_certification;
+}
+
+/**
+ * @property Movie::writer
+ * @brief Holds the movies writer
+ * @return Writer of the movie
+ * @see Movie::setWriter
+ */
+QString Movie::writer() const
+{
+    return m_writer;
+}
+
+/**
+ * @property Movie::director
+ * @brief Holds the movies director
+ * @return Director of the movie
+ * @see Movie::setDirector
+ */
+QString Movie::director() const
+{
+    return m_director;
 }
 
 /**
@@ -743,6 +771,28 @@ void Movie::setRuntime(int runtime)
 void Movie::setCertification(QString certification)
 {
     m_certification = certification;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the movies writer
+ * @param writer Writer of the movie
+ * @see Movie::writer
+ */
+void Movie::setWriter(QString writer)
+{
+    m_writer = writer;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the movies director
+ * @param director Director of the movie
+ * @see Movie::director
+ */
+void Movie::setDirector(QString director)
+{
+    m_director = director;
     setChanged(true);
 }
 

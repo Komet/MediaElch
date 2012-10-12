@@ -309,12 +309,14 @@ bool XbmcSql::saveMovie(Movie *movie)
                       "c01=:plot, "
                       "c03=:tagline, "
                       "c05=:rating, "
+                      "c06=:writer, "
                       "c07=:year, "
                       "c08=:thumbnails, "
                       "c10=:sortTitle, "
                       "c11=:runtime, "
                       "c12=:certification, "
                       "c14=:genres, "
+                      "c15=:director, "
                       "c16=:originalTitle, "
                       "c18=:studios, "
                       "c19=:trailer, "
@@ -326,6 +328,7 @@ bool XbmcSql::saveMovie(Movie *movie)
         query.bindValue(":plot", movie->overview());
         query.bindValue(":tagline", movie->tagline());
         query.bindValue(":rating", movie->rating());
+        query.bindValue(":writer", movie->writer());
         query.bindValue(":year", movie->released().toString("yyyy"));
         query.bindValue(":thumbnails", QString(thumbnails));
         if (movie->sortTitle().isEmpty())
@@ -338,6 +341,7 @@ bool XbmcSql::saveMovie(Movie *movie)
             query.bindValue(":runtime", movie->runtime());
         query.bindValue(":certification", movie->certification());
         query.bindValue(":genres", movie->genres().join(" / "));
+        query.bindValue(":director", movie->director());
         query.bindValue(":originalTitle", movie->originalName());
         query.bindValue(":studios", movie->studios().join(" / "));
         query.bindValue(":trailer", Helper::formatTrailerUrl(movie->trailer().toString()));
@@ -376,14 +380,15 @@ bool XbmcSql::saveMovie(Movie *movie)
         }
         qDebug() << "file=" << file;
 
-        query.prepare("INSERT INTO movie(idFile, c00, c01, c03, c05, c07, c08, c10, c11, c12, c14, c16, c18, c19, c20, c21, c22, c23) "
-                      "VALUES(:idFile, :title, :plot, :tagline, :rating, :year, :thumbnails, :sortTitle, :runtime, :certification, :genres, :originalTitle, "
-                      ":studios, :trailer, :fanart, :countries, :file, :idPath)");
+        query.prepare("INSERT INTO movie(idFile, c00, c01, c03, c05, c06, c07, c08, c10, c11, c12, c14, c15, c16, c18, c19, c20, c21, c22, c23) "
+                      "VALUES(:idFile, :title, :plot, :tagline, :rating, :writer, :year, :thumbnails, :sortTitle, :runtime, :certification, "
+                      ":genres, :director, :originalTitle, :studios, :trailer, :fanart, :countries, :file, :idPath)");
         query.bindValue(":idFile", idFile);
         query.bindValue(":title", movie->name());
         query.bindValue(":plot", movie->overview());
         query.bindValue(":tagline", movie->tagline());
         query.bindValue(":rating", movie->rating());
+        query.bindValue(":writer", movie->writer());
         query.bindValue(":year", movie->released().toString("yyyy"));
         query.bindValue(":thumbnails", QString(thumbnails));
         if (movie->sortTitle().isEmpty())
@@ -396,6 +401,7 @@ bool XbmcSql::saveMovie(Movie *movie)
             query.bindValue(":runtime", movie->runtime());
         query.bindValue(":certification", movie->certification());
         query.bindValue(":genres", movie->genres().join(" / "));
+        query.bindValue(":director", movie->director());
         query.bindValue(":originalTitle", movie->originalName());
         query.bindValue(":studios", movie->studios().join(" / "));
         query.bindValue(":trailer", Helper::formatTrailerUrl(movie->trailer().toString()));
@@ -614,12 +620,14 @@ bool XbmcSql::loadMovie(Movie *movie)
                       "M.c01 AS plot, "
                       "M.c03 AS tagline, "
                       "M.c05 AS rating, "
+                      "M.c06 AS writer, "
                       "M.c07 AS year, "
                       "M.c08 AS thumbnails, "
                       "M.c10 AS sortTitle, "
                       "M.c11 AS runtime, "
                       "M.c12 AS certification, "
                       "M.c14 AS genres, "
+                      "M.c15 AS director, "
                       "M.c16 AS originalTitle, "
                       "M.c18 AS studios, "
                       "M.c19 AS trailer, "
@@ -643,12 +651,14 @@ bool XbmcSql::loadMovie(Movie *movie)
                       "M.c01 AS plot, "
                       "M.c03 AS tagline, "
                       "M.c05 AS rating, "
+                      "M.c06 AS writer, "
                       "M.c07 AS year, "
                       "M.c08 AS thumbnails, "
                       "M.c10 AS sortTitle, "
                       "M.c11 AS runtime, "
                       "M.c12 AS certification, "
                       "M.c14 AS genres, "
+                      "M.c15 AS director, "
                       "M.c16 AS originalTitle, "
                       "M.c18 AS studios, "
                       "M.c19 AS trailer, "
@@ -685,12 +695,14 @@ bool XbmcSql::loadMovie(Movie *movie)
                           "M.c01 AS plot, "
                           "M.c03 AS tagline, "
                           "M.c05 AS rating, "
+                          "M.c06 AS writer, "
                           "M.c07 AS year, "
                           "M.c08 AS thumbnails, "
                           "M.c10 AS sortTitle, "
                           "M.c11 AS runtime, "
                           "M.c12 AS certification, "
                           "M.c14 AS genres, "
+                          "M.c15 AS director, "
                           "M.c16 AS originalTitle, "
                           "M.c18 AS studios, "
                           "M.c19 AS trailer, "
@@ -746,9 +758,11 @@ bool XbmcSql::loadMovie(Movie *movie)
     movie->setOverview(query.value(record.indexOf("plot")).toString());
     movie->setTagline(query.value(record.indexOf("tagline")).toString());
     movie->setRating(query.value(record.indexOf("rating")).toReal());
+    movie->setWriter(query.value(record.indexOf("writer")).toString());
     movie->setReleased(QDate(query.value(record.indexOf("year")).toInt(), 1, 1));
     movie->setRuntime(query.value(record.indexOf("runtime")).toInt());
     movie->setCertification(query.value(record.indexOf("certification")).toString());
+    movie->setDirector(query.value(record.indexOf("director")).toString());
     movie->setGenres(query.value(record.indexOf("genres")).toString().split(" / "));
     movie->setOriginalName(query.value(record.indexOf("originalTitle")).toString());
     movie->setStudios(query.value(record.indexOf("studios")).toString().split(" / "));

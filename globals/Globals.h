@@ -144,6 +144,8 @@ namespace MovieScraperInfos {
     const int Genres        = 12;
     const int Studios       = 13;
     const int Countries     = 14;
+    const int Writer        = 15;
+    const int Director      = 16;
 }
 
 namespace ConcertScraperInfos {

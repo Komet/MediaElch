@@ -47,6 +47,8 @@ MovieSearch::MovieSearch(QWidget *parent) :
     connect(ui->chkTagline, SIGNAL(clicked()), this, SLOT(chkToggled()));
     connect(ui->chkTitle, SIGNAL(clicked()), this, SLOT(chkToggled()));
     connect(ui->chkTrailer, SIGNAL(clicked()), this, SLOT(chkToggled()));
+    connect(ui->chkWriter, SIGNAL(clicked()), this, SLOT(chkToggled()));
+    connect(ui->chkDirector, SIGNAL(clicked()), this, SLOT(chkToggled()));
     connect(ui->chkUnCheckAll, SIGNAL(clicked(bool)), this, SLOT(chkAllToggled(bool)));
 
     ui->chkUnCheckAll->setChecked(true);
@@ -191,6 +193,10 @@ void MovieSearch::chkToggled()
         m_infosToLoad.append(MovieScraperInfos::Title);
     if (ui->chkTrailer->isChecked())
         m_infosToLoad.append(MovieScraperInfos::Trailer);
+    if (ui->chkWriter->isChecked())
+        m_infosToLoad.append(MovieScraperInfos::Writer);
+    if (ui->chkDirector->isChecked())
+        m_infosToLoad.append(MovieScraperInfos::Director);
 
     if (ui->chkActors->isEnabled())
         numOfScraperSupports++;
@@ -219,6 +225,10 @@ void MovieSearch::chkToggled()
     if (ui->chkTitle->isEnabled())
         numOfScraperSupports++;
     if (ui->chkTrailer->isEnabled())
+        numOfScraperSupports++;
+    if (ui->chkWriter->isEnabled())
+        numOfScraperSupports++;
+    if (ui->chkDirector->isEnabled())
         numOfScraperSupports++;
 
     ui->chkUnCheckAll->setChecked(m_infosToLoad.size() == numOfScraperSupports);
@@ -260,6 +270,10 @@ void MovieSearch::chkAllToggled(bool toggled)
         ui->chkTitle->setChecked(isChecked);
     if (ui->chkTrailer->isEnabled())
         ui->chkTrailer->setChecked(isChecked);
+    if (ui->chkWriter->isEnabled())
+        ui->chkWriter->setChecked(isChecked);
+    if (ui->chkDirector->isEnabled())
+        ui->chkDirector->setChecked(isChecked);
     chkToggled();
 }
 
@@ -314,6 +328,8 @@ void MovieSearch::setChkBoxesEnabled(QList<int> scraperSupports)
     ui->chkTagline->setEnabled(scraperSupports.contains(MovieScraperInfos::Tagline));
     ui->chkTitle->setEnabled(scraperSupports.contains(MovieScraperInfos::Title));
     ui->chkTrailer->setEnabled(scraperSupports.contains(MovieScraperInfos::Trailer));
+    ui->chkWriter->setEnabled(scraperSupports.contains(MovieScraperInfos::Writer));
+    ui->chkDirector->setEnabled(scraperSupports.contains(MovieScraperInfos::Director));
 
     if (!scraperSupports.contains(MovieScraperInfos::Actors))
         ui->chkActors->setChecked(false);
@@ -343,6 +359,10 @@ void MovieSearch::setChkBoxesEnabled(QList<int> scraperSupports)
         ui->chkTitle->setChecked(false);
     if (!scraperSupports.contains(MovieScraperInfos::Trailer))
         ui->chkTrailer->setChecked(false);
+    if (!scraperSupports.contains(MovieScraperInfos::Writer))
+        ui->chkWriter->setChecked(false);
+    if (!scraperSupports.contains(MovieScraperInfos::Director))
+        ui->chkDirector->setChecked(false);
 
     chkToggled();
 }

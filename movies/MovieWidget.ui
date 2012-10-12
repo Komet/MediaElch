@@ -136,6 +136,16 @@
               <item row="3" column="1">
                <widget class="QLineEdit" name="originalName"/>
               </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="label_21">
+                <property name="text">
+                 <string>Sort Title</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QLineEdit" name="sortTitle"/>
+              </item>
               <item row="5" column="0">
                <widget class="QLabel" name="label_12">
                 <property name="text">
@@ -176,6 +186,16 @@
                 </property>
                </widget>
               </item>
+              <item row="7" column="1">
+               <widget class="QDoubleSpinBox" name="rating">
+                <property name="decimals">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <double>10.000000000000000</double>
+                </property>
+               </widget>
+              </item>
               <item row="8" column="0">
                <widget class="QLabel" name="label_5">
                 <property name="text">
@@ -190,95 +210,10 @@
                 </property>
                </widget>
               </item>
-              <item row="11" column="0">
-               <widget class="QLabel" name="label_8">
-                <property name="text">
-                 <string>Certification</string>
-                </property>
-               </widget>
-              </item>
-              <item row="11" column="1">
-               <widget class="QComboBox" name="certification">
-                <property name="editable">
-                 <bool>true</bool>
-                </property>
-                <property name="sizeAdjustPolicy">
-                 <enum>QComboBox::AdjustToContents</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="12" column="0">
-               <widget class="QLabel" name="label_9">
-                <property name="text">
-                 <string>Trailer</string>
-                </property>
-               </widget>
-              </item>
-              <item row="12" column="1">
-               <widget class="QLineEdit" name="trailer"/>
-              </item>
-              <item row="14" column="0">
-               <widget class="QLabel" name="label_10">
-                <property name="text">
-                 <string>Play Count</string>
-                </property>
-               </widget>
-              </item>
-              <item row="15" column="0">
-               <widget class="QLabel" name="label_11">
-                <property name="text">
-                 <string>Last Played</string>
-                </property>
-               </widget>
-              </item>
-              <item row="15" column="1">
-               <widget class="QDateTimeEdit" name="lastPlayed"/>
-              </item>
-              <item row="16" column="0">
-               <widget class="QLabel" name="label_15">
-                <property name="text">
-                 <string>Overview</string>
-                </property>
-               </widget>
-              </item>
-              <item row="16" column="1">
-               <widget class="QTextEdit" name="overview"/>
-              </item>
-              <item row="13" column="0">
-               <widget class="QLabel" name="label_20">
-                <property name="text">
-                 <string>Watched</string>
-                </property>
-               </widget>
-              </item>
-              <item row="13" column="1">
-               <widget class="QCheckBox" name="watched">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
               <item row="9" column="0">
                <widget class="QLabel" name="label_7">
                 <property name="text">
                  <string>Runtime</string>
-                </property>
-               </widget>
-              </item>
-              <item row="14" column="1">
-               <widget class="QSpinBox" name="playcount">
-                <property name="maximum">
-                 <number>99</number>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="1">
-               <widget class="QDoubleSpinBox" name="rating">
-                <property name="decimals">
-                 <number>1</number>
-                </property>
-                <property name="maximum">
-                 <double>10.000000000000000</double>
                 </property>
                </widget>
               </item>
@@ -292,15 +227,120 @@
                 </property>
                </widget>
               </item>
-              <item row="4" column="1">
-               <widget class="QLineEdit" name="sortTitle"/>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="label_21">
+              <item row="10" column="0">
+               <widget class="QLabel" name="label_22">
                 <property name="text">
-                 <string>Sort Title</string>
+                 <string>Director</string>
                 </property>
                </widget>
+              </item>
+              <item row="10" column="1">
+               <widget class="QLineEdit" name="director"/>
+              </item>
+              <item row="11" column="0">
+               <widget class="QLabel" name="label_23">
+                <property name="text">
+                 <string>Writer</string>
+                </property>
+               </widget>
+              </item>
+              <item row="11" column="1">
+               <widget class="QLineEdit" name="writer"/>
+              </item>
+              <item row="12" column="0">
+               <widget class="QLabel" name="label_8">
+                <property name="text">
+                 <string>Certification</string>
+                </property>
+               </widget>
+              </item>
+              <item row="12" column="1">
+               <widget class="QComboBox" name="certification">
+                <property name="editable">
+                 <bool>true</bool>
+                </property>
+                <property name="sizeAdjustPolicy">
+                 <enum>QComboBox::AdjustToContents</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="13" column="0">
+               <widget class="QLabel" name="label_9">
+                <property name="text">
+                 <string>Trailer</string>
+                </property>
+               </widget>
+              </item>
+              <item row="13" column="1">
+               <widget class="QLineEdit" name="trailer"/>
+              </item>
+              <item row="14" column="0">
+               <widget class="QLabel" name="label_20">
+                <property name="text">
+                 <string>Watched</string>
+                </property>
+               </widget>
+              </item>
+              <item row="14" column="1">
+               <widget class="QCheckBox" name="watched">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="15" column="0">
+               <widget class="QLabel" name="label_24">
+                <property name="text">
+                 <string>Play Count</string>
+                </property>
+               </widget>
+              </item>
+              <item row="15" column="1">
+               <layout class="QHBoxLayout" name="horizontalLayout_11">
+                <item>
+                 <widget class="QSpinBox" name="playcount">
+                  <property name="maximum">
+                   <number>99</number>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_6">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeType">
+                   <enum>QSizePolicy::Fixed</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_11">
+                  <property name="text">
+                   <string>Last Played</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QDateTimeEdit" name="lastPlayed"/>
+                </item>
+               </layout>
+              </item>
+              <item row="17" column="0">
+               <widget class="QLabel" name="label_15">
+                <property name="text">
+                 <string>Overview</string>
+                </property>
+               </widget>
+              </item>
+              <item row="17" column="1">
+               <widget class="QTextEdit" name="overview"/>
               </item>
              </layout>
             </item>

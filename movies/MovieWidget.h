@@ -73,6 +73,8 @@ private slots:
     void onSortTitleChange(QString text);
     void onSetChange(QString text);
     void onTaglineChange(QString text);
+    void onWriterChange(QString text);
+    void onDirectorChange(QString text);
     void onRatingChange(double value);
     void onReleasedChange(QDate date);
     void onRuntimeChange(int value);

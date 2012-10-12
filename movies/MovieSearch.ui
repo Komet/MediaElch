@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>547</height>
+    <height>589</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -167,6 +167,20 @@
          <widget class="QCheckBox" name="chkRuntime">
           <property name="text">
            <string>Runtime</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="chkDirector">
+          <property name="text">
+           <string>Director</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="chkWriter">
+          <property name="text">
+           <string>Writer</string>
           </property>
          </widget>
         </item>

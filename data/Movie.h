@@ -31,6 +31,8 @@ class Movie : public QObject
     Q_PROPERTY(QString tagline READ tagline WRITE setTagline)
     Q_PROPERTY(int runtime READ runtime WRITE setRuntime)
     Q_PROPERTY(QString certification READ certification WRITE setCertification)
+    Q_PROPERTY(QString writer READ writer WRITE setWriter)
+    Q_PROPERTY(QString director READ director WRITE setDirector)
     Q_PROPERTY(QStringList genres READ genres WRITE setGenres)
     Q_PROPERTY(QStringList countries READ countries WRITE setCountries)
     Q_PROPERTY(QStringList studios READ studios WRITE setStudios)
@@ -61,6 +63,8 @@ public:
     QString tagline() const;
     int runtime() const;
     QString certification() const;
+    QString writer() const;
+    QString director() const;
     QStringList genres() const;
     QList<QString*> genresPointer();
     QStringList countries() const;
@@ -104,6 +108,8 @@ public:
     void setTagline(QString tagline);
     void setRuntime(int runtime);
     void setCertification(QString certification);
+    void setWriter(QString writer);
+    void setDirector(QString director);
     void setGenres(QStringList genres);
     void setCountries(QStringList countries);
     void setStudios(QStringList studios);
@@ -164,6 +170,8 @@ private:
     QString m_tagline;
     int m_runtime;
     QString m_certification;
+    QString m_writer;
+    QString m_director;
     QStringList m_genres;
     QStringList m_countries;
     QStringList m_studios;

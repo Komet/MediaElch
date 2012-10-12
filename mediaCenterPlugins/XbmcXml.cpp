@@ -69,6 +69,8 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath,
     if (movie->runtime() > 0)
         xml.writeTextElement("runtime", QString("%1").arg(movie->runtime()));
     xml.writeTextElement("mpaa", movie->certification());
+    xml.writeTextElement("credits", movie->writer());
+    xml.writeTextElement("director", movie->director());
     xml.writeTextElement("playcount", QString("%1").arg(movie->playcount()));
     xml.writeTextElement("lastplayed", movie->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
     if (writePath && movie->files().size() > 0) {
@@ -248,6 +250,10 @@ bool XbmcXml::loadMovie(Movie *movie)
         movie->setRuntime(domDoc.elementsByTagName("runtime").at(0).toElement().text().toInt());
     if (!domDoc.elementsByTagName("mpaa").isEmpty())
         movie->setCertification(domDoc.elementsByTagName("mpaa").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("credits").isEmpty())
+        movie->setWriter(domDoc.elementsByTagName("credits").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("director").isEmpty())
+        movie->setDirector(domDoc.elementsByTagName("director").at(0).toElement().text());
     if (!domDoc.elementsByTagName("playcount").isEmpty())
         movie->setPlayCount(domDoc.elementsByTagName("playcount").at(0).toElement().text().toInt());
     if (!domDoc.elementsByTagName("lastplayed").isEmpty())
