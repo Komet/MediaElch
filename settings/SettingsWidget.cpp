@@ -149,6 +149,7 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     connect(ui->logfilePath, SIGNAL(textChanged(QString)), this, SLOT(onSetDebugLogPath(QString)));
     connect(ui->chkUseCache, SIGNAL(clicked()), this, SLOT(onActivateCache()));
     connect(ui->btnClearCache, SIGNAL(clicked()), this, SLOT(onClearCache()));
+    connect(ui->chkUseProxy, SIGNAL(clicked()), this, SLOT(onUseProxy()));
 
     connect(ui->radioXbmcXml, SIGNAL(clicked()), this, SLOT(onMediaCenterXbmcXmlSelected()));
     connect(ui->radioXbmcMysql, SIGNAL(clicked()), this, SLOT(onMediaCenterXbmcMysqlSelected()));
@@ -215,6 +216,15 @@ void SettingsWidget::loadSettings()
     // Cache
     ui->chkUseCache->setChecked(m_settings->useCache());
     onActivateCache();
+
+    // Proxy
+    ui->chkUseProxy->setChecked(m_settings->useProxy());
+    ui->proxyType->setCurrentIndex(m_settings->proxyType());
+    ui->proxyHost->setText(m_settings->proxyHost());
+    ui->proxyPort->setValue(m_settings->proxyPort());
+    ui->proxyUsername->setText(m_settings->proxyUsername());
+    ui->proxyPassword->setText(m_settings->proxyPassword());
+    onUseProxy();
 
     // Directories
     ui->dirs->setRowCount(0);
@@ -325,22 +335,13 @@ void SettingsWidget::loadSettings()
  */
 void SettingsWidget::saveSettings()
 {
-    bool mediaInterfaceChanged = false;
-
     int mediaCenterInterface = -1;
-    if (ui->radioXbmcXml->isChecked()) {
-        if (m_settings->mediaCenterInterface() != MediaCenterInterfaces::XbmcXml)
-            mediaInterfaceChanged = true;
+    if (ui->radioXbmcXml->isChecked())
         mediaCenterInterface = MediaCenterInterfaces::XbmcXml;
-    } else if (ui->radioXbmcMysql->isChecked()) {
-        if (m_settings->mediaCenterInterface() != MediaCenterInterfaces::XbmcMysql)
-            mediaInterfaceChanged = true;
+    else if (ui->radioXbmcMysql->isChecked())
         mediaCenterInterface = MediaCenterInterfaces::XbmcMysql;
-    } else if (ui->radioXbmcSqlite->isChecked()) {
-        if (m_settings->mediaCenterInterface() != MediaCenterInterfaces::XbmcSqlite)
-            mediaInterfaceChanged = true;
+    else if (ui->radioXbmcSqlite->isChecked())
         mediaCenterInterface = MediaCenterInterfaces::XbmcSqlite;
-    }
     m_settings->setMediaCenterInterface(mediaCenterInterface);
 
     if (ui->radioXbmcXml->isChecked()) {
@@ -407,6 +408,14 @@ void SettingsWidget::saveSettings()
     m_settings->setXbmcSqliteDatabase(ui->inputSqliteDatabase->text());
     m_settings->setUseYoutubePluginUrls(ui->useYoutubePluginUrls->isChecked());
 
+    // Proxy
+    m_settings->setUseProxy(ui->chkUseProxy->isChecked());
+    m_settings->setProxyType(ui->proxyType->currentIndex());
+    m_settings->setProxyHost(ui->proxyHost->text());
+    m_settings->setProxyPort(ui->proxyPort->value());
+    m_settings->setProxyUsername(ui->proxyUsername->text());
+    m_settings->setProxyPassword(ui->proxyPassword->text());
+
     // Scrapers
     QMapIterator<ScraperInterface*, QComboBox*> it(m_scraperCombos);
     while (it.hasNext()) {
@@ -452,10 +461,6 @@ void SettingsWidget::saveSettings()
     MessageBox::instance()->showMessage(tr("Settings saved"));
 
     Manager::instance()->setupMediaCenterInterface();
-    if (mediaInterfaceChanged) {
-        // TvShow File Searcher and concert file searcher are started when Movie File Searcher has finished @see MainWindow.cpp
-        Manager::instance()->movieFileSearcher()->start();
-    }
 }
 
 /**
@@ -642,4 +647,17 @@ void SettingsWidget::onSetDebugLogPath(QString path)
 void SettingsWidget::onClearCache()
 {
     Manager::instance()->clearCacheDatabase();
+}
+
+/**
+ * @brief Enables/Disables the proxy inputs
+ */
+void SettingsWidget::onUseProxy()
+{
+    bool enabled = ui->chkUseProxy->isChecked();
+    ui->proxyType->setEnabled(enabled);
+    ui->proxyHost->setEnabled(enabled);
+    ui->proxyPort->setEnabled(enabled);
+    ui->proxyUsername->setEnabled(enabled);
+    ui->proxyPassword->setEnabled(enabled);
 }

@@ -1,5 +1,6 @@
 #include "Settings.h"
 
+#include <QNetworkProxy>
 #include "data/ScraperInterface.h"
 #include "globals/Manager.h"
 
@@ -64,6 +65,15 @@ void Settings::loadSettings()
     m_debugModeActivated = m_settings.value("DebugModeActivated", false).toBool();
     m_debugLogPath = m_settings.value("DebugLogPath").toString();
     m_useCache = m_settings.value("UseCache", true).toBool();
+
+    // Proxy
+    m_useProxy = m_settings.value("Proxy/Enable", false).toBool();
+    m_proxyType = m_settings.value("Proxy/Type", 0).toInt();
+    m_proxyHost = m_settings.value("Proxy/Host").toString();
+    m_proxyPort = m_settings.value("Proxy/Port", 0).toInt();
+    m_proxyUsername = m_settings.value("Proxy/Username").toString();
+    m_proxyPassword = m_settings.value("Proxy/Password").toString();
+    setupProxy();
 
     // Movie Directories
     m_movieDirectories.clear();
@@ -168,6 +178,15 @@ void Settings::saveSettings()
     m_settings.setValue("XbmcThumbnailpath", m_xbmcThumbnailPath);
     m_settings.setValue("UseYoutubePluginURLs", m_youtubePluginUrls);
 
+    // Proxy
+    m_settings.setValue("Proxy/Enable", m_useProxy);
+    m_settings.setValue("Proxy/Type", m_proxyType);
+    m_settings.setValue("Proxy/Host", m_proxyHost);
+    m_settings.setValue("Proxy/Port", m_proxyPort);
+    m_settings.setValue("Proxy/Username", m_proxyUsername);
+    m_settings.setValue("Proxy/Password", m_proxyPassword);
+    setupProxy();
+
     m_settings.beginWriteArray("Directories/Movies");
     for (int i=0, n=m_movieDirectories.count() ; i<n ; ++i) {
         m_settings.setArrayIndex(i);
@@ -224,6 +243,25 @@ void Settings::saveSettings()
         m_settings.setValue("enabled", file->enabled());
     }
     m_settings.endArray();
+}
+
+/**
+ * @brief Sets up the proxy
+ */
+void Settings::setupProxy()
+{
+    QNetworkProxy proxy;
+    if (!m_useProxy)
+        proxy.setType(QNetworkProxy::NoProxy);
+    else if (m_proxyType == 0)
+        proxy.setType(QNetworkProxy::HttpProxy);
+    else
+        proxy.setType(QNetworkProxy::Socks5Proxy);
+    proxy.setHostName(m_proxyHost);
+    proxy.setPort(m_proxyPort);
+    proxy.setUser(m_proxyUsername);
+    proxy.setPassword(m_proxyPassword);
+    QNetworkProxy::setApplicationProxy(proxy);
 }
 
 /*** GETTER ***/
@@ -573,6 +611,60 @@ bool Settings::useCache()
     return m_useCache;
 }
 
+/**
+ * @brief Holds if a proxy should be used
+ * @return Proxy enabled
+ */
+bool Settings::useProxy()
+{
+    return m_useProxy;
+}
+
+/**
+ * @brief Holds the type of the proxy (0 HTTP, 1 SOCKS5)
+ * @return Proxy type
+ */
+int Settings::proxyType()
+{
+    return m_proxyType;
+}
+
+/**
+ * @brief Holds the host of the proxy
+ * @return Proxy host
+ */
+QString Settings::proxyHost()
+{
+    return m_proxyHost;
+}
+
+/**
+ * @brief Holds the port of the proxy
+ * @return Proxy port
+ */
+int Settings::proxyPort()
+{
+    return m_proxyPort;
+}
+
+/**
+ * @brief Holds the username of the proxy
+ * @return Proxy username
+ */
+QString Settings::proxyUsername()
+{
+    return m_proxyUsername;
+}
+
+/**
+ * @brief Holds the password of the proxy
+ * @return Proxy password
+ */
+QString Settings::proxyPassword()
+{
+    return m_proxyPassword;
+}
+
 /*** SETTER ***/
 
 /**
@@ -801,4 +893,58 @@ void Settings::setMediaCenterInterface(int interface)
 void Settings::setUseCache(bool useCache)
 {
     m_useCache = useCache;
+}
+
+/**
+ * @brief Sets if a proxy should be used
+ * @param use Enable proxy
+ */
+void Settings::setUseProxy(bool use)
+{
+    m_useProxy = use;
+}
+
+/**
+ * @brief Sets the proxy type
+ * @param type 0 HTTP, 1 SOCKS5
+ */
+void Settings::setProxyType(int type)
+{
+    m_proxyType = type;
+}
+
+/**
+ * @brief Sets the host of the proxy
+ * @param host Proxy host
+ */
+void Settings::setProxyHost(QString host)
+{
+    m_proxyHost = host;
+}
+
+/**
+ * @brief Sets the port of the proxy
+ * @param port Proxy port
+ */
+void Settings::setProxyPort(int port)
+{
+    m_proxyPort = port;
+}
+
+/**
+ * @brief Sets the username to use when connecting to the proxy
+ * @param username Proxy username
+ */
+void Settings::setProxyUsername(QString username)
+{
+    m_proxyUsername = username;
+}
+
+/**
+ * @brief Sets the password to use when connecting to the proxy
+ * @param username Proxy password
+ */
+void Settings::setProxyPassword(QString password)
+{
+    m_proxyPassword = password;
 }

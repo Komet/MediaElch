@@ -1552,42 +1552,42 @@ p, li { white-space: pre-wrap; }
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="664"/>
+        <location filename="../movies/MovieWidget.cpp" line="663"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="687"/>
+        <location filename="../movies/MovieWidget.cpp" line="686"/>
         <source>All Movies Saved</source>
         <translation>Alle Filme gespeichert</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="734"/>
+        <location filename="../movies/MovieWidget.cpp" line="733"/>
         <source>Unknown Actor</source>
         <translation>Unbekannter Schauspieler</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="735"/>
+        <location filename="../movies/MovieWidget.cpp" line="734"/>
         <source>Unknown Role</source>
         <translation>Unbekannte Rolle</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="788"/>
+        <location filename="../movies/MovieWidget.cpp" line="787"/>
         <source>Unknown Genre</source>
         <translation>Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="886"/>
+        <location filename="../movies/MovieWidget.cpp" line="885"/>
         <source>Unknown Country</source>
         <translation>Unbekanntes Land</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="984"/>
+        <location filename="../movies/MovieWidget.cpp" line="983"/>
         <source>Choose Image</source>
         <translation>Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="984"/>
+        <location filename="../movies/MovieWidget.cpp" line="983"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
@@ -1600,7 +1600,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="837"/>
+        <location filename="../movies/MovieWidget.cpp" line="836"/>
         <source>Unknown Studio</source>
         <translation>Unbekanntes Studio</translation>
     </message>
@@ -1609,7 +1609,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Unbekanntes Land</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="383"/>
+        <location filename="../movies/MovieWidget.cpp" line="382"/>
         <source>Downloading Missing Actor Images...</source>
         <translation>Lade fehlende Schauspieler Bilder...</translation>
     </message>
@@ -2077,12 +2077,12 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Wähle ein Verzeichnis aus, dass deine Filme, Serien oder Konzerte enthält</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="491"/>
+        <location filename="../settings/SettingsWidget.cpp" line="496"/>
         <source>Movies</source>
         <translation>Filme</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="491"/>
+        <location filename="../settings/SettingsWidget.cpp" line="496"/>
         <source>Concerts</source>
         <translation>Konzerte</translation>
     </message>
@@ -2137,6 +2137,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="688"/>
+        <location filename="../settings/SettingsWidget.ui" line="869"/>
         <source>Host</source>
         <translation>Host</translation>
     </message>
@@ -2148,11 +2149,13 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="722"/>
+        <location filename="../settings/SettingsWidget.ui" line="883"/>
         <source>Username</source>
         <translation>Benutzername</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="739"/>
+        <location filename="../settings/SettingsWidget.ui" line="890"/>
         <source>Password</source>
         <translation>Passwort</translation>
     </message>
@@ -2179,10 +2182,8 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Globale Einstellungen</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="94"/>
-        <location filename="../settings/SettingsWidget.ui" line="318"/>
         <source>Please restart MediaElch after saving if you changed the MediaCenter interface, debug mode or added/removed directories.</source>
-        <translation>Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, den Debug Modus, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
+        <translation type="obsolete">Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, den Debug Modus, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="104"/>
@@ -2201,6 +2202,11 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     <message>
         <source>When debug mode is activated debug messages are written to logfile you set. Please use this option only if you encountered problems with MediaElch as the logfile can get very big. </source>
         <translation type="obsolete">Wenn der Debug Modus aktiviert ist, werden Debug Ausgaben in die Logdatei geschrieben, die du angegeben hast. Bitte benutze diese Option nur, wenn du ein Problem mit MediaElch entdeckt hast, da die Logdatei schnell sehr groß werden kann.</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="94"/>
+        <source>Please hit the &quot;Reload&quot; button after adding or removing directories. If you changed the debug mode setting please restart MediaElch.</source>
+        <translation>Bitte klick auf &quot;Neu Laden&quot; nach dem du Verzeichnisse hinzugefügt oder entfernt hast. Wenn du den Debug Modus aktiviert oder deaktiviert hast, starte MediaElch bitte neu.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="190"/>
@@ -2236,6 +2242,11 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <location filename="../settings/SettingsWidget.ui" line="306"/>
         <source>MediaCenter</source>
         <translation>MediaCenter</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="318"/>
+        <source>Please hit the &quot;Reload&quot; button after changing the Media Center Interface.</source>
+        <translation>Bitte klick auf &quot;Neu Laden&quot; nach dem du das Media Center Interface geändert hast.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="345"/>
@@ -2350,12 +2361,43 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Speichere Trailer URLs im YouTube Plugin Format</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="892"/>
+        <location filename="../settings/SettingsWidget.ui" line="861"/>
+        <source>Proxy</source>
+        <translation>Proxy</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="876"/>
+        <source>Port</source>
+        <translation>Port</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="917"/>
+        <source>Enable Proxy</source>
+        <translation>Proxy verwenden</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="924"/>
+        <source>Type</source>
+        <comment>Proxy Type</comment>
+        <translation>Typ</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="932"/>
+        <source>HTTP</source>
+        <translation>HTTP</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="937"/>
+        <source>SOCKS 5</source>
+        <translation>SOCKS5</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="989"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="899"/>
+        <location filename="../settings/SettingsWidget.ui" line="996"/>
         <source>Save Settings</source>
         <translation>Einstellungen Speichern</translation>
     </message>
@@ -2366,7 +2408,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Scraper</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="491"/>
+        <location filename="../settings/SettingsWidget.cpp" line="496"/>
         <source>TV Shows</source>
         <translation>TV Serien</translation>
     </message>
@@ -2379,7 +2421,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Filme sind in separaten Verzeichnissen</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="452"/>
+        <location filename="../settings/SettingsWidget.cpp" line="461"/>
         <source>Settings saved</source>
         <translation>Einstellungen gespeichert</translation>
     </message>

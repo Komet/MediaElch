@@ -34,6 +34,12 @@ public:
     QString xbmcMysqlPassword();
     QString xbmcSqliteDatabase();
     QString xbmcThumbnailPath();
+    bool useProxy();
+    int proxyType();
+    QString proxyHost();
+    int proxyPort();
+    QString proxyUsername();
+    QString proxyPassword();
     bool debugModeActivated();
     QString debugLogPath();
     bool useYoutubePluginUrls();
@@ -65,6 +71,12 @@ public:
     void setXbmcMysqlDatabase(QString db);
     void setXbmcMysqlUser(QString user);
     void setXbmcMysqlPassword(QString password);
+    void setUseProxy(bool use);
+    void setProxyType(int type);
+    void setProxyHost(QString host);
+    void setProxyPort(int port);
+    void setProxyUsername(QString username);
+    void setProxyPassword(QString password);
     void setUseYoutubePluginUrls(bool use);
     void setXbmcSqliteDatabase(QString file);
     void setXbmcThumbnailPath(QString path);
@@ -101,6 +113,12 @@ private:
     QString m_xbmcMysqlPassword;
     QString m_xbmcSqliteDatabase;
     QString m_xbmcThumbnailPath;
+    bool m_useProxy;
+    int m_proxyType;
+    QString m_proxyHost;
+    int m_proxyPort;
+    QString m_proxyUsername;
+    QString m_proxyPassword;
     bool m_debugModeActivated;
     QString m_debugLogPath;
     bool m_youtubePluginUrls;
@@ -114,6 +132,7 @@ private:
     QList<DataFile*> m_tvShowBannerFiles;
     bool m_useCache;
 
+    void setupProxy();
 };
 
 #endif // SETTINGS_H
