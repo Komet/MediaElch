@@ -25,7 +25,7 @@ private:
     QStringList m_directories;
     int m_progressMessageId;
     void getTvShows(QString path, QMap<QString, QList<QStringList> > &contents);
-    void getSubDirs(QDir dir, QStringList &subDirs);
+    void scanTvShowDir(QString path, QList<QStringList> &contents);
     QStringList getCachedFiles(QString path);
 };
 

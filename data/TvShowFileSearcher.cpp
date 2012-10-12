@@ -5,6 +5,7 @@
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QSqlRecord>
+#include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
@@ -88,69 +89,77 @@ void TvShowFileSearcher::run()
 void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QList<QStringList> > &contents)
 {
     QDir dir(path);
-    QStringList entries = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-
-    foreach (const QString &cDir, entries) {
-        QDir tvShowDir = QDir(path + QDir::separator() + cDir);
-        QStringList subDirs;
-        subDirs << tvShowDir.path();
-        getSubDirs(tvShowDir, subDirs);
-
-        foreach (const QString &subDir, subDirs) {
-            if (subDir.endsWith("BDMV/BACKUP", Qt::CaseInsensitive) || subDir.endsWith("BDMV\\Backup", Qt::CaseInsensitive) ||
-                subDir.endsWith("BDMV/STREAM", Qt::CaseInsensitive) || subDir.endsWith("BDMV\\STREAM", Qt::CaseInsensitive) ||
-                subDir.contains( "Extras", Qt::CaseInsensitive))
-                continue;
-
-            QStringList files = getCachedFiles(subDir);
-            files.sort();
-
-            QRegExp rx("((part|cd)[\\s_]*)(\\d+)", Qt::CaseInsensitive);
-            for (int i=0, n=files.size() ; i<n ; ++i) {
-                QStringList tvShowFiles;
-                QString file = files.at(i);
-                if (file.isEmpty())
-                    continue;
-                tvShowFiles << QDir::toNativeSeparators(subDir) + QDir::separator() + file;
-                int pos = rx.indexIn(file);
-                if (pos != -1) {
-                    QString left = file.left(pos) + rx.cap(1);
-                    QString right = file.mid(pos+rx.cap(1).size()+rx.cap(2).size());
-                    for (int x=0 ; x<n ; x++) {
-                        QString subFile = files.at(x);
-                        if (subFile != file) {
-                            if (subFile.startsWith(left) && subFile.endsWith(right)) {
-                                tvShowFiles << QDir::toNativeSeparators(subDir) + QDir::separator() + subFile;
-                                files[x] = ""; // set an empty file name, this way we can skip this file in the main loop
-                            }
-                        }
-                    }
-                }
-
-                if (contents.contains(QDir::toNativeSeparators(dir.path() + QDir::separator() + cDir))) {
-                    qDebug() << "Appending tv show" << QDir::toNativeSeparators(dir.path() + QDir::separator() + cDir) << tvShowFiles;
-                    contents[QDir::toNativeSeparators(dir.path() + QDir::separator() + cDir)].append(tvShowFiles);
-                } else {
-                    QList<QStringList> l;
-                    l << tvShowFiles;
-                    qDebug() << "Inserting tv show" << QDir::toNativeSeparators(dir.path() + QDir::separator() + cDir) << l;
-                    contents.insert(QDir::toNativeSeparators(dir.path() + QDir::separator() + cDir), l);
-                }
-            }
-        }
+    QStringList tvShows = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+    foreach (const QString &cDir, tvShows) {
+        QList<QStringList> tvShowContents;
+        scanTvShowDir(path + QDir::separator() + cDir, tvShowContents);
+        contents.insert(QDir::toNativeSeparators(dir.path() + QDir::separator() + cDir), tvShowContents);
     }
 }
 
 /**
- * @brief Returns a list of all subdirectories
- * @param dir Dir to scan
- * @param subDirs
+ * @brief Scans the given path for tv show files.
+ * Results are in a list which contains a QStringList for every episode.
+ * @param path Path to scan
+ * @param contents List of contents
  */
-void TvShowFileSearcher::getSubDirs(QDir dir, QStringList &subDirs)
+void TvShowFileSearcher::scanTvShowDir(QString path, QList<QStringList> &contents)
 {
+    QDir dir(path);
     foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
-        subDirs.append(dir.path() + QDir::separator() + cDir);
-        getSubDirs(QDir(dir.path() + QDir::separator() + cDir), subDirs);
+        // Skip "Extras" folder
+        if (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0)
+            continue;
+
+        // Handle DVD
+        if (Helper::isDvd(path + QDir::separator() + cDir)) {
+            contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/VIDEO_TS/VIDEO_TS.IFO"));
+            continue;
+        }
+
+        // Handle BluRay
+        if (Helper::isBluRay(path + QDir::separator() + cDir)) {
+            contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/BDMV/index.bdmv"));
+            continue;
+        }
+        scanTvShowDir(path + "/" + cDir, contents);
+    }
+
+    QStringList files;
+    QStringList entries = getCachedFiles(path);
+    foreach (const QString &file, entries) {
+        // Skip Trailers
+        if (file.contains("-trailer", Qt::CaseInsensitive))
+            continue;
+        files.append(file);
+    }
+    files.sort();
+
+    QRegExp rx("((part|cd)[\\s_]*)(\\d+)", Qt::CaseInsensitive);
+    for (int i=0, n=files.size() ; i<n ; i++) {
+        QStringList tvShowFiles;
+        QString file = files.at(i);
+        if (file.isEmpty())
+            continue;
+
+        tvShowFiles << QDir::toNativeSeparators(path + QDir::separator() + file);
+
+        int pos = rx.indexIn(file);
+        if (pos != -1) {
+            QString left = file.left(pos) + rx.cap(1);
+            QString right = file.mid(pos+rx.cap(1).size()+rx.cap(2).size());
+            for (int x=0 ; x<n ; x++) {
+                QString subFile = files.at(x);
+                if (subFile != file) {
+                    if (subFile.startsWith(left) && subFile.endsWith(right)) {
+                        tvShowFiles << QDir::toNativeSeparators(path + QDir::separator() + subFile);
+                        files[x] = ""; // set an empty file name, this way we can skip this file in the main loop
+                    }
+                }
+            }
+        }
+        if (tvShowFiles.count() > 0 )
+            contents.append(tvShowFiles);
     }
 }
 
@@ -164,7 +173,7 @@ void TvShowFileSearcher::getSubDirs(QDir dir, QStringList &subDirs)
 QStringList TvShowFileSearcher::getCachedFiles(QString path)
 {
     QStringList filters;
-    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "VIDEO_TS.ifo" << "index.bdmv" << "*.disc" << "*.m4v" << "*.strm";
+    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
             << "*.dat" << "*.flv" << "*.vob" << "*.ts";
 
     if (!Settings::instance()->useCache())
