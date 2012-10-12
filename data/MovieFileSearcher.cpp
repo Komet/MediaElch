@@ -175,6 +175,7 @@ QStringList MovieFileSearcher::getCachedFiles(QString path)
 {
     QStringList filters;
     filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "VIDEO_TS.ifo" << "index.bdmv" << "*.disc" << "*.m4v" << "*.strm";
+            << "*.dat" << "*.flv" << "*.vob" << "*.ts";
 
     if (!Settings::instance()->useCache())
         return QDir(path).entryList(filters, QDir::Files | QDir::System);
