@@ -149,7 +149,6 @@ void TvShowWidgetEpisode::setEpisode(TvShowEpisode *episode)
 {
     qDebug() << "Entered, episode=" << episode->name();
     m_episode = episode;
-    episode->loadImages(Manager::instance()->mediaCenterInterfaceTvShow());
     updateEpisodeInfo();
 }
 
@@ -215,11 +214,18 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
         ui->certification->addItem(m_episode->certification());
     }
 
+
     if (!m_episode->thumbnailImage()->isNull()) {
         ui->thumbnail->setPixmap(QPixmap::fromImage(*m_episode->thumbnailImage()).scaledToWidth(200, Qt::SmoothTransformation));
         ui->thumbnailResolution->setText(QString("%1x%2").arg(m_episode->thumbnailImage()->width()).arg(m_episode->thumbnailImage()->height()));
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = *m_episode->thumbnailImage();
+    } else if (!Manager::instance()->mediaCenterInterface()->thumbnailImageName(m_episode).isEmpty()) {
+        QPixmap p(Manager::instance()->mediaCenterInterface()->thumbnailImageName(m_episode));
+        ui->thumbnail->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
+        ui->thumbnailResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        ui->buttonPreviewBackdrop->setEnabled(true);
+        m_currentBackdrop = p.toImage();
     } else {
         ui->thumbnail->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->thumbnailResolution->setText("");
@@ -268,7 +274,6 @@ void TvShowWidgetEpisode::onRevertChanges()
 {
     qDebug() << "Entered";
     m_episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
-    m_episode->loadImages(Manager::instance()->mediaCenterInterfaceTvShow());
     updateEpisodeInfo();
 }
 

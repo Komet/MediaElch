@@ -111,7 +111,7 @@ public:
     bool loadData(MediaCenterInterface *mediaCenterInterface);
     void loadData(QString id, TvScraperInterface *tvScraperInterface, bool updateAllEpisodes);
     bool saveData(MediaCenterInterface *mediaCenterInterface);
-    void loadImages(MediaCenterInterface *mediaCenterInterface);
+    void clearImages();
 
     void scraperLoadDone();
 

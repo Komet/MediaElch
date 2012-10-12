@@ -27,9 +27,7 @@ public:
     void loadConcertImages(Concert *concert);
     void exportDatabase(QList<Movie *> movies, QList<TvShow*> shows, QString exportPath, QString pathSearch, QString pathReplace);
     bool loadTvShow(TvShow *show);
-    void loadTvShowImages(TvShow *show);
     bool loadTvShowEpisode(TvShowEpisode *episode);
-    void loadTvShowEpisodeImages(TvShowEpisode *episode);
     bool saveTvShow(TvShow *show);
     bool saveTvShowEpisode(TvShowEpisode *episode);
     void shutdown();
@@ -43,6 +41,12 @@ public:
     QString actorImageName(Movie *movie, Actor actor);
     QString posterImageName(Concert *concert);
     QString backdropImageName(Concert *concert);
+    QString thumbnailImageName(TvShowEpisode *episode);
+    QString posterImageName(TvShow *show);
+    QString backdropImageName(TvShow *show);
+    QString bannerImageName(TvShow *show);
+    QString actorImageName(TvShow *show, Actor actor);
+    QString seasonPosterImageName(TvShow *show, int season);
 
 signals:
     void sigExportStarted();

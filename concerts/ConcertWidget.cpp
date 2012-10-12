@@ -339,7 +339,7 @@ void ConcertWidget::updateConcertInfo()
         ui->buttonPreviewPoster->setEnabled(true);
         m_currentPoster = *m_concert->posterImage();
     } else if (!Manager::instance()->mediaCenterInterface()->posterImageName(m_concert).isEmpty()) {
-        QPixmap p(QPixmap(Manager::instance()->mediaCenterInterface()->posterImageName(m_concert)));
+        QPixmap p(Manager::instance()->mediaCenterInterface()->posterImageName(m_concert));
         ui->poster->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
         ui->posterResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
         ui->buttonPreviewPoster->setEnabled(true);
@@ -356,7 +356,7 @@ void ConcertWidget::updateConcertInfo()
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = *m_concert->backdropImage();
     } else if (!Manager::instance()->mediaCenterInterface()->backdropImageName(m_concert).isEmpty()) {
-        QPixmap p(QPixmap(Manager::instance()->mediaCenterInterface()->backdropImageName(m_concert)));
+        QPixmap p(Manager::instance()->mediaCenterInterface()->backdropImageName(m_concert));
         ui->backdrop->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
         ui->backdropResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
         ui->buttonPreviewBackdrop->setEnabled(true);

@@ -821,6 +821,7 @@ bool XbmcSql::loadMovie(Movie *movie)
  */
 QString XbmcSql::actorImageName(Movie *movie, Actor actor)
 {
+    Q_UNUSED(movie);
     QString hashActor = actorHash(actor);
     QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
     QFileInfo fi(actorThumb);
@@ -1535,69 +1536,95 @@ bool XbmcSql::loadTvShow(TvShow *show)
 }
 
 /**
- * @brief Loads images for a tv show
- * @param show Show to load images for
+ * @brief Get path to poster image
+ * @param show
+ * @return
  */
-void XbmcSql::loadTvShowImages(TvShow *show)
+QString XbmcSql::posterImageName(TvShow *show)
 {
-    qDebug() << "Entered, show=" << show->name();
     // English
     QString fileHash = hash(QString("season%1* All Seasons").arg(show->mediaCenterPath()));
-    qDebug() << "Hash for" << QString("season%1* All Seasons").arg(show->mediaCenterPath()) << "is" << fileHash;
     QFileInfo posterFi(QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash));
     if (posterFi.isFile()) {
-        qDebug() << "Trying to load poster" << posterFi.absoluteFilePath();
-        show->posterImage()->load(posterFi.absoluteFilePath());
+        return posterFi.absoluteFilePath();
     } else {
         // German
         fileHash = hash(QString("season%1* Alle Staffeln").arg(show->mediaCenterPath()));
-        qDebug() << "Hash for" << QString("season%1* Alle Staffeln").arg(show->mediaCenterPath()) << "is" << fileHash;
         posterFi.setFile(QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash));
-        if (posterFi.isFile()) {
-            qDebug() << "Trying to load" << posterFi.absoluteFilePath();
-            show->posterImage()->load(posterFi.absoluteFilePath());
-        }
+        if (posterFi.isFile())
+            return posterFi.absoluteFilePath();
     }
 
+    return QString();
+}
+
+/**
+ * @brief Gets path to backdrop image
+ * @param show
+ * @return
+ */
+QString XbmcSql::backdropImageName(TvShow *show)
+{
     QString fanartHash = hash(show->mediaCenterPath());
-    qDebug() << "Hash for path" << show->mediaCenterPath() << "is" << fanartHash;
     QFileInfo backdropFi(QString("%1%2Video%2Fanart%2%3.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fanartHash));
-    if (backdropFi.isFile()) {
-        qDebug() << "Trying to load" << backdropFi.absoluteFilePath();
-        show->backdropImage()->load(backdropFi.absoluteFilePath());
-    }
+    if (backdropFi.isFile())
+        return backdropFi.absoluteFilePath();
+    return QString();
+}
 
+/**
+ * @brief Get path to banner image
+ * @param show
+ * @return
+ */
+QString XbmcSql::bannerImageName(TvShow *show)
+{
     QString bannerHash = hash(show->mediaCenterPath());
     QFileInfo bannerFi(QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(bannerHash.left(1)).arg(bannerHash));
-    if (bannerFi.isFile()) {
-        qDebug() << "Trying to load" << bannerFi.absoluteFilePath();
-        show->bannerImage()->load(bannerFi.absoluteFilePath());
+    if (bannerFi.isFile())
+        return bannerFi.absoluteFilePath();
+    return QString();
+}
+
+/**
+ * @brief Get path to season poster
+ * @param show
+ * @param season
+ * @return
+ */
+QString XbmcSql::seasonPosterImageName(TvShow *show, int season)
+{
+    // English
+    QString seasonHash = hash(QString("season%1Season %2").arg(show->mediaCenterPath()).arg(season));
+    QFileInfo seasonFi(QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(seasonHash.left(1)).arg(seasonHash));
+    if (seasonFi.isFile()) {
+        return seasonFi.absoluteFilePath();
+    } else {
+        // German
+        seasonHash = hash(QString("season%1Staffel %2").arg(show->mediaCenterPath()).arg(season));
+        seasonFi.setFile(QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(seasonHash.left(1)).arg(seasonHash));
+        if (seasonFi.isFile())
+            return seasonFi.absoluteFilePath();
     }
 
-    foreach (int season, show->seasons()) {
-        // English
-        QString seasonHash = hash(QString("season%1Season %2").arg(show->mediaCenterPath()).arg(season));
-        QFileInfo seasonFi(QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(seasonHash.left(1)).arg(seasonHash));
-        if (seasonFi.isFile()) {
-            show->seasonPosterImage(season)->load(seasonFi.absoluteFilePath());
-        } else {
-            // German
-            seasonHash = hash(QString("season%1Staffel %2").arg(show->mediaCenterPath()).arg(season));
-            seasonFi.setFile(QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(seasonHash.left(1)).arg(seasonHash));
-            if (seasonFi.isFile())
-                show->seasonPosterImage(season)->load(seasonFi.absoluteFilePath());
-        }
-    }
+    return QString();
+}
 
-    foreach (Actor *actor, show->actorsPointer()) {
-        if (actor->imageHasChanged)
-            continue;
-        QString hashActor = actorHash(*actor);
-        QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
-        QFileInfo fi(actorThumb);
-        if (fi.isFile())
-            actor->image.load(actorThumb);
-    }
+/**
+ * @brief Get path to actor image
+ * @param show
+ * @param actor
+ * @return Path to actor image
+ */
+QString XbmcSql::actorImageName(TvShow *show, Actor actor)
+{
+    Q_UNUSED(show);
+    QString hashActor = actorHash(actor);
+    QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
+    QFileInfo fi(actorThumb);
+    if (fi.isFile())
+        return actorThumb;
+    return QString();
 }
 
 /**
@@ -1708,25 +1735,21 @@ bool XbmcSql::loadTvShowEpisode(TvShowEpisode *episode)
 }
 
 /**
- * @brief Loads image for an episode
- * @param episode Episode to load images for
+ * @brief Get path to thumbnail image
+ * @param episode
+ * @return Path to image
  */
-void XbmcSql::loadTvShowEpisodeImages(TvShowEpisode *episode)
+QString XbmcSql::thumbnailImageName(TvShowEpisode *episode)
 {
-    qDebug() << "Entered, episode=" << episode->name();
-    if (episode->files().count() == 0) {
-        qWarning() << "Episode has no files";
-        return;
-    }
+    if (episode->files().count() == 0)
+        return QString();
 
     QString fileHash = hash(tvShowMediaCenterPath(episode->files().at(0)));
-    qDebug() << "First file" << episode->files().at(0) << "becomes" << tvShowMediaCenterPath(episode->files().at(0)) << "with hash" << fileHash;
     QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
     QFileInfo posterFi(posterPath);
-    if (posterFi.isFile()) {
-        qDebug() << "Trying to load" << posterPath;
-        episode->thumbnailImage()->load(posterPath);
-    }
+    if (posterFi.isFile())
+        return posterPath;
+    return QString();
 }
 
 /**

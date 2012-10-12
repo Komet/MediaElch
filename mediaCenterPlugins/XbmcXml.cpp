@@ -633,18 +633,15 @@ QString XbmcXml::backdropImageName(Concert *concert)
     return QString();
 }
 
-
 /**
- * @brief Loads images for a tv show
- * @param show Show to load images for
+ * @brief Get path to poster image
+ * @param show
+ * @return
  */
-void XbmcXml::loadTvShowImages(TvShow *show)
+QString XbmcXml::posterImageName(TvShow *show)
 {
-    qDebug() << "Entered, show=" << show->name();
-    if (show->dir().isEmpty()) {
-        qWarning() << "TvShow has no dir";
-        return;
-    }
+    if (show->dir().isEmpty())
+        return QString();
 
     QString posterFileName;
     foreach (DataFile *dataFile, Settings::instance()->enabledTvShowPosterFiles()) {
@@ -655,12 +652,37 @@ void XbmcXml::loadTvShowImages(TvShow *show)
             break;
         }
     }
-    if (posterFileName.isEmpty()) {
-        qDebug() << "No usable poster file found";
-    } else {
-        qDebug() << "Trying to load poster file" << posterFileName;
-        show->posterImage()->load(posterFileName);
-    }
+    QFileInfo fi(posterFileName);
+    if (fi.isFile())
+        return posterFileName;
+    return QString();
+}
+
+/**
+ * @brief Gets path to backdrop image
+ * @param show
+ * @return
+ */
+QString XbmcXml::backdropImageName(TvShow *show)
+{
+    if (show->dir().isEmpty())
+        return QString();
+
+    QFileInfo backdropFi(show->dir() + QDir::separator() + "fanart.jpg");
+    if (backdropFi.isFile())
+        return backdropFi.absoluteFilePath();
+    return QString();
+}
+
+/**
+ * @brief Get path to banner image
+ * @param show
+ * @return
+ */
+QString XbmcXml::bannerImageName(TvShow *show)
+{
+    if (show->dir().isEmpty())
+        return QString();
 
     QString bannerFileName;
     foreach (DataFile *dataFile, Settings::instance()->enabledTvShowBannerFiles()) {
@@ -671,56 +693,65 @@ void XbmcXml::loadTvShowImages(TvShow *show)
             break;
         }
     }
-    if (bannerFileName.isEmpty()) {
-        qDebug() << "No usable banner file found";
-    } else {
-        qDebug() << "Trying to load banner file" << bannerFileName;
-        show->bannerImage()->load(bannerFileName);
-    }
-
-    QFileInfo backdropFi(show->dir() + QDir::separator() + "fanart.jpg");
-    if (backdropFi.isFile()) {
-        qDebug() << "Trying to load backdrop file" << backdropFi.absoluteFilePath();
-        show->backdropImage()->load(backdropFi.absoluteFilePath());
-    }
-
-    foreach (int season, show->seasons()) {
-        QString s = QString("%1").arg(season);
-        if (season < 10)
-            s.prepend("0");
-        QFileInfo seasonFi(show->dir() + QDir::separator() + "season" + s + ".tbn");
-        if (seasonFi.isFile()) {
-            qDebug() << "Trying to load season poster" << seasonFi.absoluteFilePath() << "for season" << season;
-            show->seasonPosterImage(season)->load(seasonFi.absoluteFilePath());
-        }
-    }
-
-    foreach (Actor *actor, show->actorsPointer()) {
-        if (actor->imageHasChanged)
-            continue;
-        QString actorName = actor->name;
-        actorName = actorName.replace(" ", "_");
-        actor->image.load(show->dir() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn");
-    }
+    QFileInfo fi(bannerFileName);
+    if (fi.isFile())
+        return bannerFileName;
+    return QString();
 }
 
 /**
- * @brief Loads images for a tv show episode
- * @param episode Episode to load images for
+ * @brief Get path to season poster
+ * @param show
+ * @param season
+ * @return
  */
-void XbmcXml::loadTvShowEpisodeImages(TvShowEpisode *episode)
+QString XbmcXml::seasonPosterImageName(TvShow *show, int season)
 {
-    qDebug() << "Entered, episode=" << episode->name();
-    if (episode->files().isEmpty()) {
-        qWarning() << "Episode has no files";
-        return;
-    }
+    if (show->dir().isEmpty())
+        return QString();
+
+    QString s = QString("%1").arg(season);
+    if (season < 10)
+        s.prepend("0");
+    QFileInfo seasonFi(show->dir() + QDir::separator() + "season" + s + ".tbn");
+    if (seasonFi.isFile())
+        return seasonFi.absoluteFilePath();
+    return QString();
+}
+
+/**
+ * @brief Get path to actor image
+ * @param show
+ * @param actor
+ * @return Path to actor image
+ */
+QString XbmcXml::actorImageName(TvShow *show, Actor actor)
+{
+    if (show->dir().isEmpty())
+        return QString();
+    QString actorName = actor.name;
+    actorName = actorName.replace(" ", "_");
+    QString fileName = show->dir() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn";
+    QFileInfo fi(fileName);
+    if (fi.isFile())
+        return fileName;
+    return QString();
+}
+
+/**
+ * @brief Gets path to thumbnail image
+ * @param episode
+ * @return
+ */
+QString XbmcXml::thumbnailImageName(TvShowEpisode *episode)
+{
+    if (episode->files().isEmpty())
+        return QString();
     QFileInfo fi(episode->files().at(0));
     QFileInfo thumbnailFi(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".tbn");
-    if (thumbnailFi.isFile()) {
-        qDebug() << "Trying to load thumbnail file" << thumbnailFi.absoluteFilePath();
-        episode->thumbnailImage()->load(thumbnailFi.absoluteFilePath());
-    }
+    if (thumbnailFi.isFile())
+        return thumbnailFi.absoluteFilePath();
+    return QString();
 }
 
 /**

@@ -178,7 +178,6 @@ void TvShowWidgetTvShow::setTvShow(TvShow *show)
 {
     qDebug() << "Entered, show=" << show->name();
     m_show = show;
-    show->loadImages(Manager::instance()->mediaCenterInterfaceTvShow());
     updateTvShowInfo();
     if (show->downloadsInProgress()) {
         onSetEnabled(false);
@@ -242,11 +241,18 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->certification->addItems(certifications);
     ui->certification->setCurrentIndex(certifications.indexOf(m_show->certification()));
 
+
     if (!m_show->posterImage()->isNull()) {
         ui->poster->setPixmap(QPixmap::fromImage(*m_show->posterImage()).scaledToWidth(200, Qt::SmoothTransformation));
         ui->posterResolution->setText(QString("%1x%2").arg(m_show->posterImage()->width()).arg(m_show->posterImage()->height()));
         ui->buttonPreviewPoster->setEnabled(true);
         m_currentPoster = *m_show->posterImage();
+    } else if (!Manager::instance()->mediaCenterInterface()->posterImageName(m_show).isEmpty()) {
+        QPixmap p(Manager::instance()->mediaCenterInterface()->posterImageName(m_show));
+        ui->poster->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
+        ui->posterResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        ui->buttonPreviewPoster->setEnabled(true);
+        m_currentPoster = p.toImage();
     } else {
         ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
         ui->posterResolution->setText("");
@@ -258,6 +264,12 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         ui->backdropResolution->setText(QString("%1x%2").arg(m_show->backdropImage()->width()).arg(m_show->backdropImage()->height()));
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = *m_show->backdropImage();
+    } else if (!Manager::instance()->mediaCenterInterface()->backdropImageName(m_show).isEmpty()) {
+        QPixmap p(Manager::instance()->mediaCenterInterface()->backdropImageName(m_show));
+        ui->backdrop->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
+        ui->backdropResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        ui->buttonPreviewBackdrop->setEnabled(true);
+        m_currentBackdrop = p.toImage();
     } else {
         ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->backdropResolution->setText("");
@@ -269,6 +281,12 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         ui->bannerResolution->setText(QString("%1x%2").arg(m_show->bannerImage()->width()).arg(m_show->bannerImage()->height()));
         ui->buttonPreviewBanner->setEnabled(true);
         m_currentBanner = *m_show->bannerImage();
+    } else if (!Manager::instance()->mediaCenterInterface()->bannerImageName(m_show).isEmpty()) {
+        QPixmap p(Manager::instance()->mediaCenterInterface()->bannerImageName(m_show));
+        ui->banner->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
+        ui->bannerResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        ui->buttonPreviewBanner->setEnabled(true);
+        m_currentBanner = p.toImage();
     } else {
         ui->banner->setPixmap(QPixmap(":/img/pictures_alt_small.png"));
         ui->bannerResolution->setText("");
@@ -293,10 +311,12 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         poster->setCursor(Qt::PointingHandCursor);
         poster->setSeason(season);
         poster->setAlignment(Qt::AlignCenter);
-        if (!m_show->seasonPosterImage(season)->isNull())
-            poster->setPixmap(QPixmap::fromImage(*m_show->seasonPosterImage(season)).scaledToWidth(150, Qt::SmoothTransformation));
-        else
+        if (!Manager::instance()->mediaCenterInterface()->seasonPosterImageName(m_show, season).isEmpty()) {
+            QPixmap p(Manager::instance()->mediaCenterInterface()->seasonPosterImageName(m_show, season));
+            poster->setPixmap(p.scaledToWidth(150, Qt::SmoothTransformation));
+        } else {
             poster->setPixmap(QPixmap(":/img/film_reel.png"));
+        }
         connect(poster, SIGNAL(seasonClicked(int)), this, SLOT(onChooseSeasonPoster(int)));
         ui->seasonsLayout->setWidget(row, QFormLayout::LabelRole, label);
         ui->seasonsLayout->setWidget(row, QFormLayout::FieldRole, poster);
@@ -341,7 +361,6 @@ void TvShowWidgetTvShow::onRevertChanges()
 {
     qDebug() << "Entered";
     m_show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
-    m_show->loadImages(Manager::instance()->mediaCenterInterfaceTvShow());
     updateTvShowInfo();
 }
 
@@ -833,14 +852,17 @@ void TvShowWidgetTvShow::onActorChanged()
     }
 
     Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
-    if (actor->image.isNull()) {
+    if (!actor->image.isNull()) {
+        ui->actor->setPixmap(QPixmap::fromImage(actor->image).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->actorResolution->setText(QString("%1 x %2").arg(actor->image.width()).arg(actor->image.height()));
+    } else if (!Manager::instance()->mediaCenterInterface()->actorImageName(m_show, *actor).isEmpty()) {
+        QPixmap p(Manager::instance()->mediaCenterInterface()->actorImageName(m_show, *actor));
+        ui->actor->setPixmap(p.scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
+    } else {
         ui->actor->setPixmap(QPixmap(":/img/man.png"));
         ui->actorResolution->setText("");
-        return;
     }
-    ui->actor->setPixmap(QPixmap::fromImage(actor->image).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->actorResolution->setText(QString("%1 x %2").arg(actor->image.width()).arg(actor->image.height()));
-    ui->buttonRevert->setVisible(true);
 }
 
 /**

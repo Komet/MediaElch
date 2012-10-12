@@ -109,6 +109,7 @@ bool TvShowEpisode::saveData(MediaCenterInterface *mediaCenterInterface)
     if (!m_infoLoaded)
         m_infoLoaded = saved;
     setChanged(false);
+    clearImages();
     return saved;
 }
 
@@ -131,13 +132,11 @@ bool TvShowEpisode::isValid() const
 }
 
 /**
- * @brief Tells the given MediaCenterInterface to load episodes images
- * @param mediaCenterInterface MediaCenterInterface to use
+ * @brief Clears the episode images to save memory
  */
-void TvShowEpisode::loadImages(MediaCenterInterface *mediaCenterInterface)
+void TvShowEpisode::clearImages()
 {
-    qDebug() << "Entered";
-    mediaCenterInterface->loadTvShowEpisodeImages(this);
+    m_thumbnailImage = QImage();
 }
 
 /*** GETTER ***/
