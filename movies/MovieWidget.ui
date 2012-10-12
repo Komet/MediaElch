@@ -145,6 +145,12 @@
               </item>
               <item row="5" column="1">
                <widget class="QComboBox" name="set">
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>0</height>
+                 </size>
+                </property>
                 <property name="editable">
                  <bool>true</bool>
                 </property>
