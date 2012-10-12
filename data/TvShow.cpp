@@ -165,6 +165,7 @@ bool TvShow::hasNewEpisodes() const
 
 /**
  * @brief TvShow::hasNewEpisodesInSeason
+ * @param season Season number
  * @return
  */
 bool TvShow::hasNewEpisodesInSeason(QString season) const

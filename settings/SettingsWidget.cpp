@@ -461,6 +461,9 @@ void SettingsWidget::saveSettings()
 /**
  * @brief Adds a directory
  * @param dir Directory to add
+ * @param mediaCenterPath Media Center Path
+ * @param separateFolders
+ * @param dirType
  */
 void SettingsWidget::addDir(QString dir, QString mediaCenterPath, bool separateFolders, SettingsDirType dirType)
 {

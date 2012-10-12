@@ -439,7 +439,7 @@ void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert, bool writ
 
 /**
  * @brief Saves a concert (including images)
- * @param movie Concert to save
+ * @param concert Concert to save
  * @return Saving success
  * @see XbmcXml::writeConcertXml
  */
@@ -495,7 +495,7 @@ bool XbmcXml::saveConcert(Concert *concert)
 
 /**
  * @brief Loads concert infos (except images)
- * @param movie Concert to load
+ * @param concert Concert to load
  * @return Loading success
  */
 bool XbmcXml::loadConcert(Concert *concert)

@@ -41,6 +41,7 @@ Settings::Settings(QObject *parent) :
 
 /**
  * @brief Returns an instance of the settings
+ * @param parent Parent widget
  * @return Instance of Settings
  */
 Settings *Settings::instance(QObject *parent)

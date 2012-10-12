@@ -136,6 +136,7 @@ TvShowModelItem *TvShowModelItem::appendChild(TvShowEpisode *episode)
 /**
  * @brief Appends a season-child
  * @param season Number of the season
+ * @param show Tv Show object
  * @return Constructed child item
  */
 TvShowModelItem *TvShowModelItem::appendChild(QString season, TvShow *show)

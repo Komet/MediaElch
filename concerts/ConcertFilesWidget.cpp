@@ -87,7 +87,7 @@ void ConcertFilesWidget::concertSelectedEmitter()
 
 /**
  * @brief Sets the filters
- * @param filter List of filters
+ * @param filters List of filters
  * @param text Filter text
  */
 void ConcertFilesWidget::setFilter(QList<Filter*> filters, QString text)

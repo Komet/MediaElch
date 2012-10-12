@@ -9,6 +9,9 @@
 #include "globals/Globals.h"
 #include "settings/DataFile.h"
 
+/**
+ * @brief The Settings class
+ */
 class Settings : public QObject
 {
     Q_OBJECT

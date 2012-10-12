@@ -1032,6 +1032,7 @@ void Movie::addStudio(QString studio)
 /**
  * @brief Adds a poster to the movie
  * @param poster Poster to add
+ * @param primaryLang Poster is in primary language
  * @see Movie::posters
  */
 void Movie::addPoster(Poster poster, bool primaryLang)
