@@ -19,6 +19,7 @@ public:
 
     void run();
     void setMovieDirectories(QList<SettingsDir> directories);
+    void scanDir(QString path, QList<QStringList> &contents, bool separateFolders = false, bool firstScan = false);
 
 signals:
     void searchStarted(QString, int);
@@ -28,7 +29,6 @@ signals:
 private:
     QList<SettingsDir> m_directories;
     int m_progressMessageId;
-    void scanDir(QString path, QList<QStringList> &contents, bool separateFolders = false, bool firstScan = false);
     QStringList getCachedFiles(QString path);
 };
 

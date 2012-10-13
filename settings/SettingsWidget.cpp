@@ -2,12 +2,14 @@
 #include "ui_SettingsWidget.h"
 
 #include <QComboBox>
+#include <QMessageBox>
 
 #include "movies/FilesWidget.h"
 #include "main/MainWindow.h"
 #include "globals/Manager.h"
 #include "main/MessageBox.h"
 #include "tvShows/TvShowFilesWidget.h"
+#include "data/MovieFilesOrganizer.h"
 
 
 /**
@@ -526,7 +528,41 @@ void SettingsWidget::removeDir()
  */
 void SettingsWidget::organize()
 {
-    qDebug() << "ORGANIZEE!";
+    MovieFilesOrganizer* organizer = new MovieFilesOrganizer(this);
+    qDebug() << "Organize Button clicked!" << ui->dirs
+                ->item(ui->dirs->currentRow(), 1)->text();
+
+    int row = ui->dirs->currentRow();
+    if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() != 0
+            || ui->dirs->item(row, 3)->checkState() == Qt::Checked) {
+        qDebug() << "JEAP!";
+        organizer->canceled("Organizing movies does only work on " \
+                                      "movies, not allready sorted to " \
+                                      "seperate folders.");
+        return;
+    }
+
+    QMessageBox msgBox;
+    msgBox.setIcon(QMessageBox::Information);
+    msgBox.setText("Are you sure?");
+    msgBox.setInformativeText("This operation sorts all movies" \
+                              " in this directory to seperate " \
+                              "sub-directories. Click \"Ok\", " \
+                              "if thats, what you want to do");
+    msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Cancel);
+    int ret = msgBox.exec();
+
+    switch (ret) {
+      case QMessageBox::Ok:
+        qDebug() << "Okay was clicked";
+        organizer->moveToDirs(ui->dirs->item(ui->dirs->currentRow(), 1)->text());
+        break;
+      case QMessageBox::Cancel:
+        break;
+      default:
+        break;
+    }
 }
 
 /**

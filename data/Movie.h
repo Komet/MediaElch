@@ -85,6 +85,7 @@ public:
     QList<Poster> backdrops() const;
     QImage *posterImage();
     QImage *backdropImage();
+    static QString fitName(QString name);
     bool infoLoaded() const;
     bool posterImageChanged() const;
     bool backdropImageChanged() const;
@@ -160,7 +161,6 @@ signals:
     void sigChanged(Movie*);
 
 private:
-    QString fitName(QString name);
     QStringList m_files;
     QString m_folderName;
     QString m_name;

@@ -88,9 +88,9 @@ SOURCES += main.cpp\
     movies/GenreWidget.cpp \
     movies/CertificationWidget.cpp \
     support/SupportDialog.cpp \
-    data/MovieFilesToDirs.cpp \
     main/FileScannerDialog.cpp \
-    globals/Filter.cpp
+    globals/Filter.cpp \
+    data/MovieFilesOrganizer.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -160,7 +160,7 @@ HEADERS  += main/MainWindow.h \
     support/SupportDialog.h \
     main/FileScannerDialog.h \
     globals/Filter.h \
-    data/MovieFilesToDirs.h
+    data/MovieFilesOrganizer.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

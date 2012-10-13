@@ -150,7 +150,6 @@ void MovieFileSearcher::scanDir(QString path, QList<QStringList> &contents, bool
 
         int pos = rx.lastIndexIn(file);
         if (pos != -1) {
-            qDebug() << "Detected multiple files for this movie =>";
             QString left = file.left(pos);
             QString right = file.mid(pos + rx.cap(0).size());
             for (int x=0 ; x<n ; x++) {
