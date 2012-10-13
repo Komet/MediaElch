@@ -240,7 +240,6 @@ void SettingsWidget::loadSettings()
     for (int i=0, n=concertDirectories.count() ; i<n ; ++i)
         addDir(concertDirectories.at(i).path, concertDirectories.at(i).mediaCenterPath, concertDirectories.at(i).separateFolders, DirTypeConcerts);
 
-    //ui->buttonRemoveDir->setEnabled(ui->dirs->rowCount() > 0);
     dirListRowChanged(-1);
 
     // MediaCenterInterface
@@ -544,16 +543,13 @@ void SettingsWidget::dirListRowChanged(int currentRow)
     else {
         ui->buttonRemoveDir->setDisabled(false);
 
-        QComboBox *temp = ((QComboBox*)ui->dirs->cellWidget(currentRow, 0));
-        if (temp->currentIndex() == 0) {
+        if (static_cast<QComboBox*>(ui->dirs->cellWidget(currentRow, 0))->currentIndex() == 0
+                && ui->dirs->item(currentRow, 3)->checkState() == Qt::Unchecked) {
             ui->buttonMovieFilesToDirs->setDisabled(false);
         }
         else
             ui->buttonMovieFilesToDirs->setDisabled(true);
     }
-    //if (((QComboBox)ui->dirs->cellWidget(currentRow, 0))->currentIndex() == 0)
-      //  qDebug() << "YEAH";
-
 }
 
 /**

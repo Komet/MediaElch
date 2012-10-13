@@ -161,16 +161,33 @@ bool Movie::loadData(MediaCenterInterface *mediaCenterInterface, bool force)
                 QStringList splitted = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
                 if (!splitted.isEmpty())
                     setName(splitted.last());
-                else
-                    setName(fi.completeBaseName().replace(".", " ").replace("_", " "));
+                else {
+                    setName(fitName(fi.completeBaseName().replace(".", " ").replace("_", " ")));
+                }
             } else {
-                setName(fi.completeBaseName().replace(".", " ").replace("_", " "));
+                setName(fitName(fi.completeBaseName().replace(".", " ").replace("_", " ")));
             }
         }
     }
     m_infoLoaded = infoLoaded;
     setChanged(false);
     return infoLoaded;
+}
+
+QString Movie::fitName(QString name)
+{
+    if (this->files().size() > 1) {
+        QRegExp rx("([\\-\\s\\(\\)]+((a|b|c|d|e|f)|((part|cd|xvid)" \
+                   "[\\-\\s]*\\d+))[\\-_\\s\\.\\(\\)]*)",
+                   Qt::CaseInsensitive);
+        int pos = rx.lastIndexIn(name);
+        name = name.left(pos);
+
+        rx.setPattern("[\\-\\s]");
+        while (rx.lastIndexIn(name) == name.length() -1)
+            name.chop(1);
+    }
+    return name;
 }
 
 /**

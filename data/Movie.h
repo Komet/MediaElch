@@ -7,6 +7,7 @@
 #include <QObject>
 #include <QStringList>
 #include <QUrl>
+#include <QFileInfo>
 
 #include "globals/Globals.h"
 #include "data/MediaCenterInterface.h"
@@ -159,6 +160,7 @@ signals:
     void sigChanged(Movie*);
 
 private:
+    QString fitName(QString name);
     QStringList m_files;
     QString m_folderName;
     QString m_name;
