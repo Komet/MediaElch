@@ -8,6 +8,7 @@
 #include "data/TvShowEpisode.h"
 #include "data/TvShowProxyModel.h"
 #include "data/TvShowDelegate.h"
+#include "globals/Filter.h"
 
 namespace Ui {
 class TvShowFilesWidget;
@@ -23,9 +24,11 @@ class TvShowFilesWidget : public QWidget
 public:
     explicit TvShowFilesWidget(QWidget *parent = 0);
     ~TvShowFilesWidget();
-    void renewModel();
-    void setFilter(QString filter);
+    void setFilter(QList<Filter*> filters, QString text);
     static TvShowFilesWidget *instance();
+
+public slots:
+    void renewModel();
 
 signals:
     void sigEpisodeSelected(TvShowEpisode *episode);

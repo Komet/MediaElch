@@ -26,7 +26,7 @@ public:
     QVariant data(int column) const;
     TvShowModelItem *appendChild(TvShow *show);
     TvShowModelItem *appendChild(TvShowEpisode *episode);
-    TvShowModelItem *appendChild(QString season);
+    TvShowModelItem *appendChild(QString season, TvShow *show);
     TvShowModelItem *parent();
     bool removeChildren(int position, int count);
     int childNumber() const;

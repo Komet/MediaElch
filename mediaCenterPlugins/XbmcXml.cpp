@@ -69,6 +69,8 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath,
     if (movie->runtime() > 0)
         xml.writeTextElement("runtime", QString("%1").arg(movie->runtime()));
     xml.writeTextElement("mpaa", movie->certification());
+    xml.writeTextElement("credits", movie->writer());
+    xml.writeTextElement("director", movie->director());
     xml.writeTextElement("playcount", QString("%1").arg(movie->playcount()));
     xml.writeTextElement("lastplayed", movie->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
     if (writePath && movie->files().size() > 0) {
@@ -248,6 +250,10 @@ bool XbmcXml::loadMovie(Movie *movie)
         movie->setRuntime(domDoc.elementsByTagName("runtime").at(0).toElement().text().toInt());
     if (!domDoc.elementsByTagName("mpaa").isEmpty())
         movie->setCertification(domDoc.elementsByTagName("mpaa").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("credits").isEmpty())
+        movie->setWriter(domDoc.elementsByTagName("credits").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("director").isEmpty())
+        movie->setDirector(domDoc.elementsByTagName("director").at(0).toElement().text());
     if (!domDoc.elementsByTagName("playcount").isEmpty())
         movie->setPlayCount(domDoc.elementsByTagName("playcount").at(0).toElement().text().toInt());
     if (!domDoc.elementsByTagName("lastplayed").isEmpty())
@@ -297,23 +303,47 @@ bool XbmcXml::loadMovie(Movie *movie)
 
     file.close();
 
+    // Existence of images
+    movie->setHasPoster(!posterImageName(movie).isEmpty());
+    movie->setHasBackdrop(!backdropImageName(movie).isEmpty());
+
     return true;
 }
 
 /**
- * @brief Loads images of a movie
- * @param movie Movie to load
+ * @brief Get the path to the actor image
+ * @param movie
+ * @param actor Actor
+ * @return Path to actor image
  */
-void XbmcXml::loadMovieImages(Movie *movie)
+QString XbmcXml::actorImageName(Movie *movie, Actor actor)
 {
-    qDebug() << "Entered, movie=" << movie->name();
+    if (movie->files().isEmpty())
+        return QString();
+    QFileInfo fi(movie->files().at(0));
+    QString actorName = actor.name;
+    actorName = actorName.replace(" ", "_");
+    QString path = fi.absolutePath() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn";
+    fi.setFile(path);
+    if (fi.isFile())
+        return path;
+    return QString();
+}
+
+/**
+ * @brief Get the path to the movie poster
+ * @param movie Movie object
+ * @return Path to poster image
+ */
+QString XbmcXml::posterImageName(Movie *movie)
+{
+    QString posterFileName;
     if (movie->files().size() == 0) {
         qWarning() << "Movie has no files";
-        return;
+        return posterFileName;
     }
     QFileInfo fi(movie->files().at(0));
 
-    QString posterFileName;
     foreach (DataFile *dataFile, Settings::instance()->enabledMoviePosterFiles()) {
         QString file = dataFile->saveFileName(fi.fileName());
         QFileInfo pFi(fi.absolutePath() + QDir::separator() + file);
@@ -322,14 +352,24 @@ void XbmcXml::loadMovieImages(Movie *movie)
             break;
         }
     }
-    if (posterFileName.isEmpty()) {
-        qDebug() << "No usable poster file found";
-    } else {
-        qDebug() << "Trying to load poster file" << posterFileName;
-        movie->posterImage()->load(posterFileName);
-    }
 
+    return posterFileName;
+}
+
+/**
+ * @brief Get the path to the movie backdrop
+ * @param movie Movie object
+ * @return Path to backdrop image
+ */
+QString XbmcXml::backdropImageName(Movie *movie)
+{
     QString fanartFileName;
+    if (movie->files().size() == 0) {
+        qWarning() << "Movie has no files";
+        return fanartFileName;
+    }
+    QFileInfo fi(movie->files().at(0));
+
     foreach (DataFile *dataFile, Settings::instance()->enabledMovieFanartFiles()) {
         QString file = dataFile->saveFileName(fi.fileName());
         QFileInfo bFi(fi.absolutePath() + QDir::separator() + file);
@@ -338,20 +378,8 @@ void XbmcXml::loadMovieImages(Movie *movie)
             break;
         }
     }
-    if (fanartFileName.isEmpty()) {
-        qDebug() << "No usable fanart file found";
-    } else {
-        qDebug() << "Trying to load fanart file" << fanartFileName;
-        movie->backdropImage()->load(fanartFileName);
-    }
 
-    foreach (Actor *actor, movie->actorsPointer()) {
-        if (actor->imageHasChanged)
-            continue;
-        QString actorName = actor->name;
-        actorName = actorName.replace(" ", "_");
-        actor->image.load(fi.absolutePath() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn");
-    }
+    return fanartFileName;
 }
 
 /**
@@ -417,7 +445,7 @@ void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert, bool writ
 
 /**
  * @brief Saves a concert (including images)
- * @param movie Concert to save
+ * @param concert Concert to save
  * @return Saving success
  * @see XbmcXml::writeConcertXml
  */
@@ -473,7 +501,7 @@ bool XbmcXml::saveConcert(Concert *concert)
 
 /**
  * @brief Loads concert infos (except images)
- * @param movie Concert to load
+ * @param concert Concert to load
  * @return Loading success
  */
 bool XbmcXml::loadConcert(Concert *concert)
@@ -560,18 +588,16 @@ bool XbmcXml::loadConcert(Concert *concert)
 }
 
 /**
- * @brief Loads images of a concert
- * @param concert Concert to load
+ * @brief Get the path to the concert poster
+ * @param concert Concert object
+ * @return Path to poster image
  */
-void XbmcXml::loadConcertImages(Concert *concert)
+QString XbmcXml::posterImageName(Concert *concert)
 {
-    qDebug() << "Entered, concert=" << concert->name();
-    if (concert->files().size() == 0) {
-        qWarning() << "Concert has no files";
-        return;
-    }
-    QFileInfo fi(concert->files().at(0));
+    if (concert->files().count() == 0)
+        return QString();
 
+    QFileInfo fi(concert->files().at(0));
     QString posterFileName;
     foreach (DataFile *dataFile, Settings::instance()->enabledConcertPosterFiles()) {
         QString file = dataFile->saveFileName(fi.fileName());
@@ -581,13 +607,23 @@ void XbmcXml::loadConcertImages(Concert *concert)
             break;
         }
     }
-    if (posterFileName.isEmpty()) {
-        qDebug() << "No usable poster file found";
-    } else {
-        qDebug() << "Trying to load poster file" << posterFileName;
-        concert->posterImage()->load(posterFileName);
-    }
+    fi.setFile(posterFileName);
+    if (fi.isFile())
+        return posterFileName;
+    return QString();
+}
 
+/**
+ * @brief Get the path to the concert backdrop
+ * @param concert Concert object
+ * @return Path to backdrop image
+ */
+QString XbmcXml::backdropImageName(Concert *concert)
+{
+    if (concert->files().count() == 0)
+        return QString();
+
+    QFileInfo fi(concert->files().at(0));
     QString fanartFileName;
     foreach (DataFile *dataFile, Settings::instance()->enabledConcertFanartFiles()) {
         QString file = dataFile->saveFileName(fi.fileName());
@@ -597,25 +633,21 @@ void XbmcXml::loadConcertImages(Concert *concert)
             break;
         }
     }
-    if (fanartFileName.isEmpty()) {
-        qDebug() << "No usable fanart file found";
-    } else {
-        qDebug() << "Trying to load fanart file" << fanartFileName;
-        concert->backdropImage()->load(fanartFileName);
-    }
+    fi.setFile(fanartFileName);
+    if (fi.isFile())
+        return fanartFileName;
+    return QString();
 }
 
 /**
- * @brief Loads images for a tv show
- * @param show Show to load images for
+ * @brief Get path to poster image
+ * @param show
+ * @return
  */
-void XbmcXml::loadTvShowImages(TvShow *show)
+QString XbmcXml::posterImageName(TvShow *show)
 {
-    qDebug() << "Entered, show=" << show->name();
-    if (show->dir().isEmpty()) {
-        qWarning() << "TvShow has no dir";
-        return;
-    }
+    if (show->dir().isEmpty())
+        return QString();
 
     QString posterFileName;
     foreach (DataFile *dataFile, Settings::instance()->enabledTvShowPosterFiles()) {
@@ -626,12 +658,37 @@ void XbmcXml::loadTvShowImages(TvShow *show)
             break;
         }
     }
-    if (posterFileName.isEmpty()) {
-        qDebug() << "No usable poster file found";
-    } else {
-        qDebug() << "Trying to load poster file" << posterFileName;
-        show->posterImage()->load(posterFileName);
-    }
+    QFileInfo fi(posterFileName);
+    if (fi.isFile())
+        return posterFileName;
+    return QString();
+}
+
+/**
+ * @brief Gets path to backdrop image
+ * @param show
+ * @return
+ */
+QString XbmcXml::backdropImageName(TvShow *show)
+{
+    if (show->dir().isEmpty())
+        return QString();
+
+    QFileInfo backdropFi(show->dir() + QDir::separator() + "fanart.jpg");
+    if (backdropFi.isFile())
+        return backdropFi.absoluteFilePath();
+    return QString();
+}
+
+/**
+ * @brief Get path to banner image
+ * @param show
+ * @return
+ */
+QString XbmcXml::bannerImageName(TvShow *show)
+{
+    if (show->dir().isEmpty())
+        return QString();
 
     QString bannerFileName;
     foreach (DataFile *dataFile, Settings::instance()->enabledTvShowBannerFiles()) {
@@ -642,56 +699,65 @@ void XbmcXml::loadTvShowImages(TvShow *show)
             break;
         }
     }
-    if (bannerFileName.isEmpty()) {
-        qDebug() << "No usable banner file found";
-    } else {
-        qDebug() << "Trying to load banner file" << bannerFileName;
-        show->bannerImage()->load(bannerFileName);
-    }
-
-    QFileInfo backdropFi(show->dir() + QDir::separator() + "fanart.jpg");
-    if (backdropFi.isFile()) {
-        qDebug() << "Trying to load backdrop file" << backdropFi.absoluteFilePath();
-        show->backdropImage()->load(backdropFi.absoluteFilePath());
-    }
-
-    foreach (int season, show->seasons()) {
-        QString s = QString("%1").arg(season);
-        if (season < 10)
-            s.prepend("0");
-        QFileInfo seasonFi(show->dir() + QDir::separator() + "season" + s + ".tbn");
-        if (seasonFi.isFile()) {
-            qDebug() << "Trying to load season poster" << seasonFi.absoluteFilePath() << "for season" << season;
-            show->seasonPosterImage(season)->load(seasonFi.absoluteFilePath());
-        }
-    }
-
-    foreach (Actor *actor, show->actorsPointer()) {
-        if (actor->imageHasChanged)
-            continue;
-        QString actorName = actor->name;
-        actorName = actorName.replace(" ", "_");
-        actor->image.load(show->dir() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn");
-    }
+    QFileInfo fi(bannerFileName);
+    if (fi.isFile())
+        return bannerFileName;
+    return QString();
 }
 
 /**
- * @brief Loads images for a tv show episode
- * @param episode Episode to load images for
+ * @brief Get path to season poster
+ * @param show
+ * @param season
+ * @return
  */
-void XbmcXml::loadTvShowEpisodeImages(TvShowEpisode *episode)
+QString XbmcXml::seasonPosterImageName(TvShow *show, int season)
 {
-    qDebug() << "Entered, episode=" << episode->name();
-    if (episode->files().isEmpty()) {
-        qWarning() << "Episode has no files";
-        return;
-    }
+    if (show->dir().isEmpty())
+        return QString();
+
+    QString s = QString("%1").arg(season);
+    if (season < 10)
+        s.prepend("0");
+    QFileInfo seasonFi(show->dir() + QDir::separator() + "season" + s + ".tbn");
+    if (seasonFi.isFile())
+        return seasonFi.absoluteFilePath();
+    return QString();
+}
+
+/**
+ * @brief Get path to actor image
+ * @param show
+ * @param actor
+ * @return Path to actor image
+ */
+QString XbmcXml::actorImageName(TvShow *show, Actor actor)
+{
+    if (show->dir().isEmpty())
+        return QString();
+    QString actorName = actor.name;
+    actorName = actorName.replace(" ", "_");
+    QString fileName = show->dir() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn";
+    QFileInfo fi(fileName);
+    if (fi.isFile())
+        return fileName;
+    return QString();
+}
+
+/**
+ * @brief Gets path to thumbnail image
+ * @param episode
+ * @return
+ */
+QString XbmcXml::thumbnailImageName(TvShowEpisode *episode)
+{
+    if (episode->files().isEmpty())
+        return QString();
     QFileInfo fi(episode->files().at(0));
     QFileInfo thumbnailFi(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".tbn");
-    if (thumbnailFi.isFile()) {
-        qDebug() << "Trying to load thumbnail file" << thumbnailFi.absoluteFilePath();
-        episode->thumbnailImage()->load(thumbnailFi.absoluteFilePath());
-    }
+    if (thumbnailFi.isFile())
+        return thumbnailFi.absoluteFilePath();
+    return QString();
 }
 
 /**

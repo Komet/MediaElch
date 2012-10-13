@@ -2,6 +2,7 @@
 
 #include <QDebug>
 #include "globals/Globals.h"
+#include "globals/Manager.h"
 
 /**
  * @brief MovieProxyModel::MovieProxyModel
@@ -20,11 +21,15 @@ MovieProxyModel::MovieProxyModel(QObject *parent) :
  */
 bool MovieProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-    QModelIndex index0 = sourceModel()->index(sourceRow, 0, sourceParent);
-    QModelIndex index1 = sourceModel()->index(sourceRow, 1, sourceParent);
+    Q_UNUSED(sourceParent);
 
-    return (sourceModel()->data(index0).toString().contains(filterRegExp()) ||
-            sourceModel()->data(index1).toString().contains(filterRegExp()));
+    Movie *movie = Manager::instance()->movieModel()->movie(sourceRow);
+    foreach (Filter *filter, m_filters) {
+        if (!filter->accepts(movie))
+            return false;
+    }
+
+    return true;
 }
 
 /**
@@ -41,4 +46,15 @@ bool MovieProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right
         return false;
     int cmp = QString::compare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString());
     return !(cmp < 0);
+}
+
+/**
+ * @brief Sets active filters
+ * @param filters
+ * @param text
+ */
+void MovieProxyModel::setFilter(QList<Filter*> filters, QString text)
+{
+    m_filters = filters;
+    m_filterText = text;
 }

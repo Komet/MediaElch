@@ -1,5 +1,6 @@
 #include "Helper.h"
 
+#include <QDir>
 #include <QRegExp>
 #include "globals/Globals.h"
 #include "settings/Settings.h"
@@ -64,4 +65,47 @@ QString Helper::formatTrailerUrl(QString url)
         return url;
 
     return QString("plugin://plugin.video.youtube/?action=play_video&videoid=%1").arg(videoId);
+}
+
+
+/**
+ * @brief Returns true if path is a DVD directory
+ * @param path
+ * @return
+ */
+bool Helper::isDvd(QString path)
+{
+    QDir dir(path);
+    QStringList filters;
+    filters << "VIDEO_TS";
+    if (dir.entryList(filters, QDir::Dirs | QDir::NoDotAndDotDot).count() == 1) {
+        dir.setPath(path + QDir::separator() + "VIDEO_TS");
+        filters.clear();
+        filters << "VIDEO_TS.IFO";
+        if (dir.entryList(filters).count() == 1)
+            return true;
+    }
+
+    return false;
+}
+
+/**
+ * @brief Returns true if path is a bluray directory
+ * @param path
+ * @return
+ */
+bool Helper::isBluRay(QString path)
+{
+    QDir dir(path);
+    QStringList filters;
+    filters << "BDMV";
+    if (dir.entryList(filters, QDir::Dirs | QDir::NoDotAndDotDot).count() == 1) {
+        dir.setPath(path + QDir::separator() + "BDMV");
+        filters.clear();
+        filters << "index.bdmv";
+        if (dir.entryList(filters).count() == 1)
+            return true;
+    }
+
+    return false;
 }

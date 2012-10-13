@@ -86,13 +86,14 @@ void ConcertFilesWidget::concertSelectedEmitter()
 }
 
 /**
- * @brief Sets the filter
- * @param filter Filter text
+ * @brief Sets the filters
+ * @param filters List of filters
+ * @param text Filter text
  */
-void ConcertFilesWidget::setFilter(QString filter)
+void ConcertFilesWidget::setFilter(QList<Filter*> filters, QString text)
 {
-    qDebug() << "Entered, filter=" << filter;
-    m_concertProxyModel->setFilterWildcard("*" + filter + "*");
+    m_concertProxyModel->setFilter(filters, text);
+    m_concertProxyModel->setFilterWildcard("*" + text + "*");
 }
 
 /**

@@ -29,7 +29,6 @@ public:
 
     void loadSettings();
 
-
 public slots:
     int exec();
     void saveSettings();
@@ -50,6 +49,9 @@ private slots:
     void onDebugLogPathChosen(QString file);
     void onActivateDebugMode();
     void onSetDebugLogPath(QString path);
+    void onActivateCache();
+    void onClearCache();
+    void onUseProxy();
 
 private:
     Ui::SettingsWidget *ui;

@@ -11,6 +11,7 @@
 
 class Movie;
 class TvShowEpisode;
+class Filter;
 
 namespace Constants {
     const int MovieFileSearcherProgressMessageId   = 10000;
@@ -74,6 +75,7 @@ struct Actor {
 Q_DECLARE_METATYPE(Actor*);
 Q_DECLARE_METATYPE(Movie*);
 Q_DECLARE_METATYPE(QString*);
+Q_DECLARE_METATYPE(Filter*);
 
 /**
  * @brief The ScraperSearchResult struct
@@ -92,6 +94,7 @@ struct Poster {
     QUrl originalUrl;
     QUrl thumbUrl;
     QSize originalSize;
+    QString language;
 };
 
 enum ImageType {
@@ -142,6 +145,8 @@ namespace MovieScraperInfos {
     const int Genres        = 12;
     const int Studios       = 13;
     const int Countries     = 14;
+    const int Writer        = 15;
+    const int Director      = 16;
 }
 
 namespace ConcertScraperInfos {
@@ -156,6 +161,25 @@ namespace ConcertScraperInfos {
     const int Poster        = 9;
     const int Backdrop      = 10;
     const int Genres        = 11;
+}
+
+namespace MovieFilters {
+    const int Released      = 1;
+    const int Certification = 2;
+    const int Trailer       = 3;
+    const int Poster        = 4;
+    const int Backdrop      = 5;
+    const int Watched       = 6;
+    const int Genres        = 7;
+    const int Title         = 8;
+}
+
+namespace TvShowFilters {
+    const int Title         = 1;
+}
+
+namespace ConcertFilters {
+    const int Title         = 1;
 }
 
 // Debugging

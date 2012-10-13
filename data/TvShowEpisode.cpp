@@ -109,6 +109,7 @@ bool TvShowEpisode::saveData(MediaCenterInterface *mediaCenterInterface)
     if (!m_infoLoaded)
         m_infoLoaded = saved;
     setChanged(false);
+    clearImages();
     return saved;
 }
 
@@ -131,13 +132,11 @@ bool TvShowEpisode::isValid() const
 }
 
 /**
- * @brief Tells the given MediaCenterInterface to load episodes images
- * @param mediaCenterInterface MediaCenterInterface to use
+ * @brief Clears the episode images to save memory
  */
-void TvShowEpisode::loadImages(MediaCenterInterface *mediaCenterInterface)
+void TvShowEpisode::clearImages()
 {
-    qDebug() << "Entered";
-    mediaCenterInterface->loadTvShowEpisodeImages(this);
+    m_thumbnailImage = QImage();
 }
 
 /*** GETTER ***/
@@ -223,6 +222,9 @@ int TvShowEpisode::season() const
         QRegExp rx("S(\\d+)[.]?E", Qt::CaseInsensitive);
         if (rx.indexIn(filename) != -1)
             return rx.cap(1).toInt();
+        rx.setPattern("(\\d+)?x(\\d+)");
+        if (rx.indexIn(filename) != -1)
+            return rx.cap(1).toInt();
     }
     return m_season;
 }
@@ -250,6 +252,9 @@ int TvShowEpisode::episode() const
     if (m_episode == -2 && files().count() > 0) {
         QString filename = files().at(0).split(QDir::separator()).last();
         QRegExp rx("S(\\d+)[.]?E(\\d+)", Qt::CaseInsensitive);
+        if (rx.indexIn(filename) != -1)
+            return rx.cap(2).toInt();
+        rx.setPattern("(\\d+)x(\\d+)");
         if (rx.indexIn(filename) != -1)
             return rx.cap(2).toInt();
     }

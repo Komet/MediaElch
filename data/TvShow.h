@@ -73,6 +73,7 @@ public:
     int showId() const;
     bool downloadsInProgress() const;
     bool hasNewEpisodes() const;
+    bool hasNewEpisodesInSeason(QString season) const;
 
     void setName(QString name);
     void setShowTitle(QString title);
@@ -110,7 +111,7 @@ public:
     bool loadData(MediaCenterInterface *mediaCenterInterface);
     void loadData(QString id, TvScraperInterface *tvScraperInterface, bool updateAllEpisodes);
     bool saveData(MediaCenterInterface *mediaCenterInterface);
-    void loadImages(MediaCenterInterface *mediaCenterInterface);
+    void clearImages();
 
     void scraperLoadDone();
 

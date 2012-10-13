@@ -27,15 +27,17 @@ Movie::Movie(QStringList files, QObject *parent) :
             m_folderName = path.last();
     }
     m_infoLoaded = false;
-    m_imagesLoaded = false;
     m_watched = false;
     m_hasChanged = false;
+    m_hasPoster = false;
+    m_hasBackdrop = false;
     m_downloadsInProgress = false;
     m_downloadsSize = 0;
     m_inSeparateFolder = false;
     static int m_idCounter = 0;
     m_movieId = ++m_idCounter;
     m_mediaCenterId = -1;
+    m_numPrimaryLangPosters = 0;
 }
 
 Movie::~Movie()
@@ -61,7 +63,9 @@ void Movie::clear()
           << MovieScraperInfos::Actors
           << MovieScraperInfos::Genres
           << MovieScraperInfos::Studios
-          << MovieScraperInfos::Countries;
+          << MovieScraperInfos::Countries
+          << MovieScraperInfos::Writer
+          << MovieScraperInfos::Director;
     clear(infos);
 }
 
@@ -79,8 +83,10 @@ void Movie::clear(QList<int> infos)
         m_countries.clear();
     if (infos.contains(MovieScraperInfos::Genres))
         m_genres.clear();
-    if (infos.contains(MovieScraperInfos::Poster))
+    if (infos.contains(MovieScraperInfos::Poster)){
         m_posters.clear();
+        m_numPrimaryLangPosters = 0;
+    }
     if (infos.contains(MovieScraperInfos::Studios))
         m_studios.clear();
     if (infos.contains(MovieScraperInfos::Title))
@@ -99,6 +105,10 @@ void Movie::clear(QList<int> infos)
         m_trailer = "";
     if (infos.contains(MovieScraperInfos::Certification))
         m_certification = "";
+    if (infos.contains(MovieScraperInfos::Writer))
+        m_writer = "";
+    if (infos.contains(MovieScraperInfos::Director))
+        m_director = "";
 }
 
 /**
@@ -114,6 +124,7 @@ bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
     if (!m_infoLoaded)
         m_infoLoaded = saved;
     setChanged(false);
+    clearImages();
     return saved;
 }
 
@@ -184,16 +195,14 @@ void Movie::scraperLoadDone()
 }
 
 /**
- * @brief Loads the movies images using the given MediaCenterInterface
- * @param mediaCenterInterface MediaCenterInterface to use for loading images
- * @param force When set to true, force loading of images, regardless if they were already loaded
+ * @brief Clears the movie images to save memory
  */
-void Movie::loadImages(MediaCenterInterface *mediaCenterInterface, bool force)
+void Movie::clearImages()
 {
-    qDebug() << "Entered, force=" << force;
-    if (!m_imagesLoaded || force)
-        mediaCenterInterface->loadMovieImages(this);
-    m_imagesLoaded = true;
+    m_posterImage = QImage();
+    m_backdropImage = QImage();
+    foreach (Actor *actor, actorsPointer())
+        actor->image = QImage();
 }
 
 /*** GETTER ***/
@@ -293,6 +302,28 @@ int Movie::runtime() const
 QString Movie::certification() const
 {
     return m_certification;
+}
+
+/**
+ * @property Movie::writer
+ * @brief Holds the movies writer
+ * @return Writer of the movie
+ * @see Movie::setWriter
+ */
+QString Movie::writer() const
+{
+    return m_writer;
+}
+
+/**
+ * @property Movie::director
+ * @brief Holds the movies director
+ * @return Director of the movie
+ * @see Movie::setDirector
+ */
+QString Movie::director() const
+{
+    return m_director;
 }
 
 /**
@@ -566,6 +597,27 @@ bool Movie::hasChanged() const
     return m_hasChanged;
 }
 
+/**
+ * @property Movie::hasPoster
+ * @brief Holds a property if the movies has a poster
+ * @return True if movie has a poster
+ * @see Movie::setHasPoster
+ */
+bool Movie::hasPoster() const
+{
+    return m_hasPoster;
+}
+
+/**
+ * @property Movie::hasBackdrop
+ * @brief Holds a property if the movies has a backdrop
+ * @return True if movie has a backdrop
+ * @see Movie::setHasBackdrop
+ */
+bool Movie::hasBackdrop() const
+{
+    return m_hasBackdrop;
+}
 
 /**
  * @brief Holds a unique MediaElch movie id
@@ -610,6 +662,15 @@ bool Movie::inSeparateFolder() const
 int Movie::mediaCenterId() const
 {
     return m_mediaCenterId;
+}
+
+/**
+ * @brief Returns how many of the posters were scraped in the primary language
+ * @return Number of primary language posters
+ */
+int Movie::numPrimaryLangPosters() const
+{
+    return m_numPrimaryLangPosters;
 }
 
 /*** SETTER ***/
@@ -710,6 +771,28 @@ void Movie::setRuntime(int runtime)
 void Movie::setCertification(QString certification)
 {
     m_certification = certification;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the movies writer
+ * @param writer Writer of the movie
+ * @see Movie::writer
+ */
+void Movie::setWriter(QString writer)
+{
+    m_writer = writer;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the movies director
+ * @param director Director of the movie
+ * @see Movie::director
+ */
+void Movie::setDirector(QString director)
+{
+    m_director = director;
     setChanged(true);
 }
 
@@ -885,6 +968,26 @@ void Movie::setChanged(bool changed)
 }
 
 /**
+ * @brief Sets if the movie has a poster
+ * @param has Movie has a poster
+ * @see Movie::hasPoster
+ */
+void Movie::setHasPoster(bool has)
+{
+    m_hasPoster = has;
+}
+
+/**
+ * @brief Sets if the movie has a backdrop
+ * @param has Movie has a backdrop
+ * @see Movie::hasBackdrop
+ */
+void Movie::setHasBackdrop(bool has)
+{
+    m_hasBackdrop = has;
+}
+
+/**
  * @brief Sets if downloads are in progress
  * @param inProgress Status of downloads
  */
@@ -918,6 +1021,16 @@ void Movie::setInSeparateFolder(bool inSepFolder)
 void Movie::setMediaCenterId(int mediaCenterId)
 {
     m_mediaCenterId = mediaCenterId;
+}
+
+
+/**
+ * @brief Sets the number of primary language posters
+ * @param numberPrimaryLangPosters Number of primary language posters
+ */
+void Movie::setNumPrimaryLangPosters(int numberPrimaryLangPosters)
+{
+    m_numPrimaryLangPosters = numberPrimaryLangPosters;
 }
 
 /*** ADDER ***/
@@ -969,11 +1082,17 @@ void Movie::addStudio(QString studio)
 /**
  * @brief Adds a poster to the movie
  * @param poster Poster to add
+ * @param primaryLang Poster is in primary language
  * @see Movie::posters
  */
-void Movie::addPoster(Poster poster)
+void Movie::addPoster(Poster poster, bool primaryLang)
 {
-    m_posters.append(poster);
+    if(primaryLang){
+        m_posters.insert(m_numPrimaryLangPosters,poster);
+        m_numPrimaryLangPosters++;
+    } else{
+        m_posters.append(poster);
+    }
     setChanged(true);
 }
 

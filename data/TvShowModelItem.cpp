@@ -75,7 +75,9 @@ QVariant TvShowModelItem::data(int column) const
     switch (column)
     {
     case 3:
-        if (m_tvShow)
+        if (!m_season.isEmpty() && m_tvShow)
+            return m_tvShow->hasNewEpisodesInSeason(m_season);
+        else if (m_tvShow)
             return m_tvShow->hasNewEpisodes();
         else if (m_tvShowEpisode)
             return !m_tvShowEpisode->infoLoaded();
@@ -91,7 +93,7 @@ QVariant TvShowModelItem::data(int column) const
             return m_tvShow->episodeCount();
         break;
     default:
-        if (m_tvShow)
+        if (m_tvShow && m_season.isEmpty())
             return m_tvShow->name();
         else if (m_tvShowEpisode)
             return m_tvShowEpisode->completeEpisodeName();
@@ -134,12 +136,14 @@ TvShowModelItem *TvShowModelItem::appendChild(TvShowEpisode *episode)
 /**
  * @brief Appends a season-child
  * @param season Number of the season
+ * @param show Tv Show object
  * @return Constructed child item
  */
-TvShowModelItem *TvShowModelItem::appendChild(QString season)
+TvShowModelItem *TvShowModelItem::appendChild(QString season, TvShow *show)
 {
     TvShowModelItem *item = new TvShowModelItem(this);
     item->setSeason(season);
+    item->setTvShow(show);
     m_childItems.append(item);
     connect(item, SIGNAL(sigIntChanged(TvShowModelItem*,TvShowModelItem*)), this, SLOT(onSeasonChanged(TvShowModelItem*, TvShowModelItem*)), Qt::UniqueConnection);
     return item;
@@ -231,7 +235,7 @@ QString TvShowModelItem::season()
  */
 int TvShowModelItem::type()
 {
-    if (m_tvShow)
+    if (m_tvShow && m_season.isEmpty())
         return TypeTvShow;
     else if (m_tvShowEpisode)
         return TypeEpisode;

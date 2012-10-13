@@ -10,6 +10,9 @@
 #include "globals/DownloadManagerElement.h"
 #include "globals/Globals.h"
 
+/**
+ * @brief The CLI class
+ */
 class CLI : public QObject
 {
     Q_OBJECT

@@ -31,6 +31,8 @@ class Movie : public QObject
     Q_PROPERTY(QString tagline READ tagline WRITE setTagline)
     Q_PROPERTY(int runtime READ runtime WRITE setRuntime)
     Q_PROPERTY(QString certification READ certification WRITE setCertification)
+    Q_PROPERTY(QString writer READ writer WRITE setWriter)
+    Q_PROPERTY(QString director READ director WRITE setDirector)
     Q_PROPERTY(QStringList genres READ genres WRITE setGenres)
     Q_PROPERTY(QStringList countries READ countries WRITE setCountries)
     Q_PROPERTY(QStringList studios READ studios WRITE setStudios)
@@ -61,6 +63,8 @@ public:
     QString tagline() const;
     int runtime() const;
     QString certification() const;
+    QString writer() const;
+    QString director() const;
     QStringList genres() const;
     QList<QString*> genresPointer();
     QStringList countries() const;
@@ -89,6 +93,9 @@ public:
     int downloadsSize() const;
     bool inSeparateFolder() const;
     int mediaCenterId() const;
+    int numPrimaryLangPosters() const;
+    bool hasPoster() const;
+    bool hasBackdrop() const;
 
     bool hasChanged() const;
 
@@ -101,6 +108,8 @@ public:
     void setTagline(QString tagline);
     void setRuntime(int runtime);
     void setCertification(QString certification);
+    void setWriter(QString writer);
+    void setDirector(QString director);
     void setGenres(QStringList genres);
     void setCountries(QStringList countries);
     void setStudios(QStringList studios);
@@ -116,7 +125,7 @@ public:
     void setSet(QString set);
     void setPosters(QList<Poster> posters);
     void setPoster(int index, Poster poster);
-    void addPoster(Poster poster);
+    void addPoster(Poster poster,bool primaryLang = false);
     void setBackdrops(QList<Poster> backdrops);
     void setBackdrop(int index, Poster backdrop);
     void addBackdrop(Poster backdrop);
@@ -128,6 +137,9 @@ public:
     void setDownloadsSize(int downloadsSize);
     void setInSeparateFolder(bool inSepFolder);
     void setMediaCenterId(int mediaCenterId);
+    void setNumPrimaryLangPosters(int numberPrimaryLangPosters);
+    void setHasPoster(bool has);
+    void setHasBackdrop(bool has);
 
     void removeActor(Actor *actor);
     void removeCountry(QString *country);
@@ -138,7 +150,7 @@ public:
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false);
     void loadData(QString id, ScraperInterface *scraperInterface, QList<int> infos);
-    void loadImages(MediaCenterInterface *mediaCenterInterface, bool force = false);
+    void clearImages();
 
     void scraperLoadDone();
 
@@ -158,6 +170,8 @@ private:
     QString m_tagline;
     int m_runtime;
     QString m_certification;
+    QString m_writer;
+    QString m_director;
     QStringList m_genres;
     QStringList m_countries;
     QStringList m_studios;
@@ -182,6 +196,9 @@ private:
     int m_downloadsSize;
     bool m_inSeparateFolder;
     int m_mediaCenterId;
+    int m_numPrimaryLangPosters;
+    bool m_hasPoster;
+    bool m_hasBackdrop;
 };
 
 QDebug operator<<(QDebug dbg, const Movie &movie);

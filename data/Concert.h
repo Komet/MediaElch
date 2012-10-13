@@ -107,7 +107,7 @@ public:
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false);
     void loadData(QString id, ConcertScraperInterface *scraperInterface, QList<int> infos);
-    void loadImages(MediaCenterInterface *mediaCenterInterface, bool force = false);
+    void clearImages();
 
     void scraperLoadDone();
 
@@ -136,7 +136,6 @@ private:
     bool m_posterImageChanged;
     bool m_backdropImageChanged;
     bool m_infoLoaded;
-    bool m_imagesLoaded;
     bool m_watched;
     bool m_hasChanged;
     int m_concertId;

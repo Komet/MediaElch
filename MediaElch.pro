@@ -88,7 +88,9 @@ SOURCES += main.cpp\
     movies/GenreWidget.cpp \
     movies/CertificationWidget.cpp \
     support/SupportDialog.cpp \
-    data/MovieFilesToDirs.cpp
+	data/MovieFilesToDirs.cpp \
+    main/FileScannerDialog.cpp \
+    globals/Filter.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -156,6 +158,8 @@ HEADERS  += main/MainWindow.h \
     movies/GenreWidget.h \
     movies/CertificationWidget.h \
     support/SupportDialog.h \
+    main/FileScannerDialog.h \
+    globals/Filter.h
     data/MovieFilesToDirs.h
 
 FORMS    += main/MainWindow.ui \
@@ -182,7 +186,8 @@ FORMS    += main/MainWindow.ui \
     settings/SettingsWidget.ui \
     movies/GenreWidget.ui \
     movies/CertificationWidget.ui \
-    support/SupportDialog.ui
+    support/SupportDialog.ui \
+    main/FileScannerDialog.ui
 
 RESOURCES += \
     MediaElch.qrc

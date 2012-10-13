@@ -4,9 +4,11 @@
 #include <QLabel>
 #include <QMainWindow>
 #include <QProgressBar>
-#include "AboutDialog.h"
+#include "globals/Filter.h"
 #include "globals/Globals.h"
 #include "data/MovieFileSearcher.h"
+#include "main/AboutDialog.h"
+#include "main/FileScannerDialog.h"
 #include "smallWidgets/FilterWidget.h"
 #include "settings/Settings.h"
 #include "settings/SettingsWidget.h"
@@ -44,7 +46,8 @@ private slots:
     void onActionSearch();
     void onActionSave();
     void onActionSaveAll();
-    void onFilterChanged(QString text);
+    void onActionReload();
+    void onFilterChanged(QList<Filter*> filters, QString text);
     void onSetSaveEnabled(bool enabled, MainWidgets widget);
     void onSetSearchEnabled(bool enabled, MainWidgets widget);
     void moveSplitter(int pos, int index);
@@ -55,6 +58,7 @@ private:
     SettingsWidget *m_settingsWidget;
     AboutDialog *m_aboutDialog;
     SupportDialog *m_supportDialog;
+    FileScannerDialog *m_fileScannerDialog;
     QAction *m_actionSearch;
     QAction *m_actionSave;
     QAction *m_actionAbout;
@@ -62,6 +66,7 @@ private:
     QAction *m_actionSaveAll;
     QAction *m_actionSettings;
     QAction *m_actionLike;
+    QAction *m_actionReload;
     QMap<MainWidgets, QMap<MainActions, bool> > m_actions;
     FilterWidget *m_filterWidget;
     void setupToolbar();

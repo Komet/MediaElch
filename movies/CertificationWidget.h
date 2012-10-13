@@ -12,6 +12,9 @@ namespace Ui {
 class CertificationWidget;
 }
 
+/**
+ * @brief The CertificationWidget class
+ */
 class CertificationWidget : public QWidget
 {
     Q_OBJECT

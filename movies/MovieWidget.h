@@ -4,6 +4,7 @@
 #include <QContextMenuEvent>
 #include <QLabel>
 #include <QMenu>
+#include <QPointer>
 #include <QResizeEvent>
 #include <QTableWidgetItem>
 #include <QWidget>
@@ -72,6 +73,8 @@ private slots:
     void onSortTitleChange(QString text);
     void onSetChange(QString text);
     void onTaglineChange(QString text);
+    void onWriterChange(QString text);
+    void onDirectorChange(QString text);
     void onRatingChange(double value);
     void onReleasedChange(QDate date);
     void onRuntimeChange(int value);
@@ -94,6 +97,7 @@ private:
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;
     QImage m_currentPoster;
+    QPixmap *m_currentPosterPointer;
     QImage m_currentBackdrop;
     void updateMovieInfo();
 };

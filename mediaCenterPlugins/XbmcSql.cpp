@@ -309,12 +309,14 @@ bool XbmcSql::saveMovie(Movie *movie)
                       "c01=:plot, "
                       "c03=:tagline, "
                       "c05=:rating, "
+                      "c06=:writer, "
                       "c07=:year, "
                       "c08=:thumbnails, "
                       "c10=:sortTitle, "
                       "c11=:runtime, "
                       "c12=:certification, "
                       "c14=:genres, "
+                      "c15=:director, "
                       "c16=:originalTitle, "
                       "c18=:studios, "
                       "c19=:trailer, "
@@ -326,6 +328,7 @@ bool XbmcSql::saveMovie(Movie *movie)
         query.bindValue(":plot", movie->overview());
         query.bindValue(":tagline", movie->tagline());
         query.bindValue(":rating", movie->rating());
+        query.bindValue(":writer", movie->writer());
         query.bindValue(":year", movie->released().toString("yyyy"));
         query.bindValue(":thumbnails", QString(thumbnails));
         if (movie->sortTitle().isEmpty())
@@ -338,6 +341,7 @@ bool XbmcSql::saveMovie(Movie *movie)
             query.bindValue(":runtime", movie->runtime());
         query.bindValue(":certification", movie->certification());
         query.bindValue(":genres", movie->genres().join(" / "));
+        query.bindValue(":director", movie->director());
         query.bindValue(":originalTitle", movie->originalName());
         query.bindValue(":studios", movie->studios().join(" / "));
         query.bindValue(":trailer", Helper::formatTrailerUrl(movie->trailer().toString()));
@@ -376,14 +380,15 @@ bool XbmcSql::saveMovie(Movie *movie)
         }
         qDebug() << "file=" << file;
 
-        query.prepare("INSERT INTO movie(idFile, c00, c01, c03, c05, c07, c08, c10, c11, c12, c14, c16, c18, c19, c20, c21, c22, c23) "
-                      "VALUES(:idFile, :title, :plot, :tagline, :rating, :year, :thumbnails, :sortTitle, :runtime, :certification, :genres, :originalTitle, "
-                      ":studios, :trailer, :fanart, :countries, :file, :idPath)");
+        query.prepare("INSERT INTO movie(idFile, c00, c01, c03, c05, c06, c07, c08, c10, c11, c12, c14, c15, c16, c18, c19, c20, c21, c22, c23) "
+                      "VALUES(:idFile, :title, :plot, :tagline, :rating, :writer, :year, :thumbnails, :sortTitle, :runtime, :certification, "
+                      ":genres, :director, :originalTitle, :studios, :trailer, :fanart, :countries, :file, :idPath)");
         query.bindValue(":idFile", idFile);
         query.bindValue(":title", movie->name());
         query.bindValue(":plot", movie->overview());
         query.bindValue(":tagline", movie->tagline());
         query.bindValue(":rating", movie->rating());
+        query.bindValue(":writer", movie->writer());
         query.bindValue(":year", movie->released().toString("yyyy"));
         query.bindValue(":thumbnails", QString(thumbnails));
         if (movie->sortTitle().isEmpty())
@@ -396,6 +401,7 @@ bool XbmcSql::saveMovie(Movie *movie)
             query.bindValue(":runtime", movie->runtime());
         query.bindValue(":certification", movie->certification());
         query.bindValue(":genres", movie->genres().join(" / "));
+        query.bindValue(":director", movie->director());
         query.bindValue(":originalTitle", movie->originalName());
         query.bindValue(":studios", movie->studios().join(" / "));
         query.bindValue(":trailer", Helper::formatTrailerUrl(movie->trailer().toString()));
@@ -614,12 +620,14 @@ bool XbmcSql::loadMovie(Movie *movie)
                       "M.c01 AS plot, "
                       "M.c03 AS tagline, "
                       "M.c05 AS rating, "
+                      "M.c06 AS writer, "
                       "M.c07 AS year, "
                       "M.c08 AS thumbnails, "
                       "M.c10 AS sortTitle, "
                       "M.c11 AS runtime, "
                       "M.c12 AS certification, "
                       "M.c14 AS genres, "
+                      "M.c15 AS director, "
                       "M.c16 AS originalTitle, "
                       "M.c18 AS studios, "
                       "M.c19 AS trailer, "
@@ -643,12 +651,14 @@ bool XbmcSql::loadMovie(Movie *movie)
                       "M.c01 AS plot, "
                       "M.c03 AS tagline, "
                       "M.c05 AS rating, "
+                      "M.c06 AS writer, "
                       "M.c07 AS year, "
                       "M.c08 AS thumbnails, "
                       "M.c10 AS sortTitle, "
                       "M.c11 AS runtime, "
                       "M.c12 AS certification, "
                       "M.c14 AS genres, "
+                      "M.c15 AS director, "
                       "M.c16 AS originalTitle, "
                       "M.c18 AS studios, "
                       "M.c19 AS trailer, "
@@ -685,12 +695,14 @@ bool XbmcSql::loadMovie(Movie *movie)
                           "M.c01 AS plot, "
                           "M.c03 AS tagline, "
                           "M.c05 AS rating, "
+                          "M.c06 AS writer, "
                           "M.c07 AS year, "
                           "M.c08 AS thumbnails, "
                           "M.c10 AS sortTitle, "
                           "M.c11 AS runtime, "
                           "M.c12 AS certification, "
                           "M.c14 AS genres, "
+                          "M.c15 AS director, "
                           "M.c16 AS originalTitle, "
                           "M.c18 AS studios, "
                           "M.c19 AS trailer, "
@@ -746,9 +758,11 @@ bool XbmcSql::loadMovie(Movie *movie)
     movie->setOverview(query.value(record.indexOf("plot")).toString());
     movie->setTagline(query.value(record.indexOf("tagline")).toString());
     movie->setRating(query.value(record.indexOf("rating")).toReal());
+    movie->setWriter(query.value(record.indexOf("writer")).toString());
     movie->setReleased(QDate(query.value(record.indexOf("year")).toInt(), 1, 1));
     movie->setRuntime(query.value(record.indexOf("runtime")).toInt());
     movie->setCertification(query.value(record.indexOf("certification")).toString());
+    movie->setDirector(query.value(record.indexOf("director")).toString());
     movie->setGenres(query.value(record.indexOf("genres")).toString().split(" / "));
     movie->setOriginalName(query.value(record.indexOf("originalTitle")).toString());
     movie->setStudios(query.value(record.indexOf("studios")).toString().split(" / "));
@@ -806,21 +820,65 @@ bool XbmcSql::loadMovie(Movie *movie)
         movie->addActor(a);
     }
 
+    // Existence of images
+    movie->setHasPoster(!posterImageName(movie).isEmpty());
+    movie->setHasBackdrop(!backdropImageName(movie).isEmpty());
+
     return true;
 }
 
 /**
- * @brief Loads images for a movie
- * @param movie The movie to load images for
+ * @brief Get the path to the actor image
+ * @param movie
+ * @param actor Actor
+ * @return Path to actor image
  */
-void XbmcSql::loadMovieImages(Movie *movie)
+QString XbmcSql::actorImageName(Movie *movie, Actor actor)
 {
-    qDebug() << "Entered, movie=" << movie->name();
+    Q_UNUSED(movie);
+    QString hashActor = actorHash(actor);
+    QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
+    QFileInfo fi(actorThumb);
+    if (fi.isFile())
+        return actorThumb;
+    return QString();
+}
+
+/**
+ * @brief Get the path to the movie poster
+ * @param movie Movie object
+ * @return Path to poster image
+ */
+QString XbmcSql::posterImageName(Movie *movie)
+{
+    QString posterPath;
     if (movie->files().count() == 0) {
         qWarning() << "Movie has no files";
-        return;
+        return posterPath;
     }
+    QString fileHash = hash(mediaCenterPath(movie->files().at(0)));
+    posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
+    QFileInfo posterFi(posterPath);
+    qDebug() << "posterPath=" << posterPath;
 
+    if (!posterFi.isFile())
+        return QString();
+
+    return posterPath;
+}
+
+/**
+ * @brief Get the path to the movie backdrop
+ * @param movie Movie object
+ * @return Path to backdrop image
+ */
+QString XbmcSql::backdropImageName(Movie *movie)
+{
+    QString fanartPath;
+    if (movie->files().count() == 0) {
+        qWarning() << "Movie has no files";
+        return fanartPath;
+    }
     QString fileHash = hash(mediaCenterPath(movie->files().at(0)));
     QString fanartHash = fileHash;
     qDebug() << "First file is" << movie->files().at(0) << "becomes" << mediaCenterPath(movie->files().at(0)) << "hash=" << fileHash;
@@ -833,33 +891,15 @@ void XbmcSql::loadMovieImages(Movie *movie)
         fanartHash = hash(QString("stack://%1").arg(files.join(" , ")));
     }
     qDebug() << "fanartHash=" << fanartHash;
-
-    QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
-    QString fanartPath = QString("%1%2Video%2Fanart%2%3.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fanartHash);
-    QFileInfo posterFi(posterPath);
+    fanartPath = QString("%1%2Video%2Fanart%2%3.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fanartHash);
     QFileInfo fanartFi(fanartPath);
-    qDebug() << "posterPath=" << posterPath;
     qDebug() << "fanartPath=" << fanartPath;
-    if (posterFi.isFile()) {
-        qDebug() << "Trying to load poster" << posterPath;
-        movie->posterImage()->load(posterPath);
-    }
-    if (fanartFi.isFile()) {
-        qDebug() << "Trying to load backdrop" << fanartPath;
-        movie->backdropImage()->load(fanartPath);
-    }
 
-    foreach (Actor *actor, movie->actorsPointer()) {
-        if (actor->imageHasChanged)
-            continue;
-        QString hashActor = actorHash(*actor);
-        QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
-        QFileInfo fi(actorThumb);
-        if (fi.isFile())
-            actor->image.load(actorThumb);
-    }
+    if (!fanartFi.isFile())
+        return QString();
+
+    return fanartPath;
 }
-
 
 /**
  * @brief Saves concert information
@@ -1339,20 +1379,35 @@ bool XbmcSql::loadConcert(Concert *concert)
 }
 
 /**
- * @brief Loads images for a concert
- * @param concert The concert to load images for
+ * @brief Get the path to the concert poster
+ * @param concert Concert object
+ * @return Path to poster image
  */
-void XbmcSql::loadConcertImages(Concert *concert)
+QString XbmcSql::posterImageName(Concert *concert)
 {
-    qDebug() << "Entered, concert=" << concert->name();
-    if (concert->files().count() == 0) {
-        qWarning() << "Concert has no files";
-        return;
-    }
+    if (concert->files().count() == 0)
+        return QString();
 
     QString fileHash = hash(concertMediaCenterPath(concert->files().at(0)));
-    QString fanartHash = fileHash;
-    qDebug() << "First file is" << concert->files().at(0) << "becomes" << concertMediaCenterPath(concert->files().at(0)) << "hash=" << fileHash;
+    QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
+    QFileInfo posterFi(posterPath);
+    qDebug() << "posterPath=" << posterPath;
+    if (posterFi.isFile())
+        return posterPath;
+    return QString();
+}
+
+/**
+ * @brief Get the path to the concert backdrop
+ * @param concert Concert object
+ * @return Path to backdrop image
+ */
+QString XbmcSql::backdropImageName(Concert *concert)
+{
+    if (concert->files().count() == 0)
+        return QString();
+
+    QString fanartHash = hash(concertMediaCenterPath(concert->files().at(0)));
     if (concert->files().count() > 1) {
         qDebug() << "Stacked files concert";
         QStringList files;
@@ -1363,20 +1418,12 @@ void XbmcSql::loadConcertImages(Concert *concert)
     }
     qDebug() << "fanartHash=" << fanartHash;
 
-    QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
     QString fanartPath = QString("%1%2Video%2Fanart%2%3.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fanartHash);
-    QFileInfo posterFi(posterPath);
     QFileInfo fanartFi(fanartPath);
-    qDebug() << "posterPath=" << posterPath;
     qDebug() << "fanartPath=" << fanartPath;
-    if (posterFi.isFile()) {
-        qDebug() << "Trying to load poster" << posterPath;
-        concert->posterImage()->load(posterPath);
-    }
-    if (fanartFi.isFile()) {
-        qDebug() << "Trying to load backdrop" << fanartPath;
-        concert->backdropImage()->load(fanartPath);
-    }
+    if (fanartFi.isFile())
+        return fanartPath;
+    return QString();
 }
 
 /**
@@ -1503,69 +1550,95 @@ bool XbmcSql::loadTvShow(TvShow *show)
 }
 
 /**
- * @brief Loads images for a tv show
- * @param show Show to load images for
+ * @brief Get path to poster image
+ * @param show
+ * @return
  */
-void XbmcSql::loadTvShowImages(TvShow *show)
+QString XbmcSql::posterImageName(TvShow *show)
 {
-    qDebug() << "Entered, show=" << show->name();
     // English
     QString fileHash = hash(QString("season%1* All Seasons").arg(show->mediaCenterPath()));
-    qDebug() << "Hash for" << QString("season%1* All Seasons").arg(show->mediaCenterPath()) << "is" << fileHash;
     QFileInfo posterFi(QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash));
     if (posterFi.isFile()) {
-        qDebug() << "Trying to load poster" << posterFi.absoluteFilePath();
-        show->posterImage()->load(posterFi.absoluteFilePath());
+        return posterFi.absoluteFilePath();
     } else {
         // German
         fileHash = hash(QString("season%1* Alle Staffeln").arg(show->mediaCenterPath()));
-        qDebug() << "Hash for" << QString("season%1* Alle Staffeln").arg(show->mediaCenterPath()) << "is" << fileHash;
         posterFi.setFile(QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash));
-        if (posterFi.isFile()) {
-            qDebug() << "Trying to load" << posterFi.absoluteFilePath();
-            show->posterImage()->load(posterFi.absoluteFilePath());
-        }
+        if (posterFi.isFile())
+            return posterFi.absoluteFilePath();
     }
 
+    return QString();
+}
+
+/**
+ * @brief Gets path to backdrop image
+ * @param show
+ * @return
+ */
+QString XbmcSql::backdropImageName(TvShow *show)
+{
     QString fanartHash = hash(show->mediaCenterPath());
-    qDebug() << "Hash for path" << show->mediaCenterPath() << "is" << fanartHash;
     QFileInfo backdropFi(QString("%1%2Video%2Fanart%2%3.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fanartHash));
-    if (backdropFi.isFile()) {
-        qDebug() << "Trying to load" << backdropFi.absoluteFilePath();
-        show->backdropImage()->load(backdropFi.absoluteFilePath());
-    }
+    if (backdropFi.isFile())
+        return backdropFi.absoluteFilePath();
+    return QString();
+}
 
+/**
+ * @brief Get path to banner image
+ * @param show
+ * @return
+ */
+QString XbmcSql::bannerImageName(TvShow *show)
+{
     QString bannerHash = hash(show->mediaCenterPath());
     QFileInfo bannerFi(QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(bannerHash.left(1)).arg(bannerHash));
-    if (bannerFi.isFile()) {
-        qDebug() << "Trying to load" << bannerFi.absoluteFilePath();
-        show->bannerImage()->load(bannerFi.absoluteFilePath());
+    if (bannerFi.isFile())
+        return bannerFi.absoluteFilePath();
+    return QString();
+}
+
+/**
+ * @brief Get path to season poster
+ * @param show
+ * @param season
+ * @return
+ */
+QString XbmcSql::seasonPosterImageName(TvShow *show, int season)
+{
+    // English
+    QString seasonHash = hash(QString("season%1Season %2").arg(show->mediaCenterPath()).arg(season));
+    QFileInfo seasonFi(QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(seasonHash.left(1)).arg(seasonHash));
+    if (seasonFi.isFile()) {
+        return seasonFi.absoluteFilePath();
+    } else {
+        // German
+        seasonHash = hash(QString("season%1Staffel %2").arg(show->mediaCenterPath()).arg(season));
+        seasonFi.setFile(QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(seasonHash.left(1)).arg(seasonHash));
+        if (seasonFi.isFile())
+            return seasonFi.absoluteFilePath();
     }
 
-    foreach (int season, show->seasons()) {
-        // English
-        QString seasonHash = hash(QString("season%1Season %2").arg(show->mediaCenterPath()).arg(season));
-        QFileInfo seasonFi(QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(seasonHash.left(1)).arg(seasonHash));
-        if (seasonFi.isFile()) {
-            show->seasonPosterImage(season)->load(seasonFi.absoluteFilePath());
-        } else {
-            // German
-            seasonHash = hash(QString("season%1Staffel %2").arg(show->mediaCenterPath()).arg(season));
-            seasonFi.setFile(QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(seasonHash.left(1)).arg(seasonHash));
-            if (seasonFi.isFile())
-                show->seasonPosterImage(season)->load(seasonFi.absoluteFilePath());
-        }
-    }
+    return QString();
+}
 
-    foreach (Actor *actor, show->actorsPointer()) {
-        if (actor->imageHasChanged)
-            continue;
-        QString hashActor = actorHash(*actor);
-        QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
-        QFileInfo fi(actorThumb);
-        if (fi.isFile())
-            actor->image.load(actorThumb);
-    }
+/**
+ * @brief Get path to actor image
+ * @param show
+ * @param actor
+ * @return Path to actor image
+ */
+QString XbmcSql::actorImageName(TvShow *show, Actor actor)
+{
+    Q_UNUSED(show);
+    QString hashActor = actorHash(actor);
+    QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
+    QFileInfo fi(actorThumb);
+    if (fi.isFile())
+        return actorThumb;
+    return QString();
 }
 
 /**
@@ -1676,25 +1749,21 @@ bool XbmcSql::loadTvShowEpisode(TvShowEpisode *episode)
 }
 
 /**
- * @brief Loads image for an episode
- * @param episode Episode to load images for
+ * @brief Get path to thumbnail image
+ * @param episode
+ * @return Path to image
  */
-void XbmcSql::loadTvShowEpisodeImages(TvShowEpisode *episode)
+QString XbmcSql::thumbnailImageName(TvShowEpisode *episode)
 {
-    qDebug() << "Entered, episode=" << episode->name();
-    if (episode->files().count() == 0) {
-        qWarning() << "Episode has no files";
-        return;
-    }
+    if (episode->files().count() == 0)
+        return QString();
 
     QString fileHash = hash(tvShowMediaCenterPath(episode->files().at(0)));
-    qDebug() << "First file" << episode->files().at(0) << "becomes" << tvShowMediaCenterPath(episode->files().at(0)) << "with hash" << fileHash;
     QString posterPath = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(fileHash.left(1)).arg(fileHash);
     QFileInfo posterFi(posterPath);
-    if (posterFi.isFile()) {
-        qDebug() << "Trying to load" << posterPath;
-        episode->thumbnailImage()->load(posterPath);
-    }
+    if (posterFi.isFile())
+        return posterPath;
+    return QString();
 }
 
 /**

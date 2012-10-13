@@ -33,6 +33,7 @@ QMap<QString, QString> TheTvDb::languages()
 {
     QMap<QString, QString> m;
 
+    m.insert(tr("Bulgarian"), "bg");
     m.insert(tr("Chinese"), "zh");
     m.insert(tr("Croatian"), "hr");
     m.insert(tr("Czech"), "cs");

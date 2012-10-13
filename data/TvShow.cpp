@@ -124,6 +124,7 @@ bool TvShow::saveData(MediaCenterInterface *mediaCenterInterface)
         m_infoLoaded = saved;
 
     setChanged(false);
+    clearImages();
     return saved;
 }
 
@@ -136,13 +137,17 @@ void TvShow::scraperLoadDone()
 }
 
 /**
- * @brief Tells the mediaCenterInterface to load images
- * @param mediaCenterInterface MediaCenterInterface to use
+ * @brief Clears the movie images to save memory
  */
-void TvShow::loadImages(MediaCenterInterface *mediaCenterInterface)
+void TvShow::clearImages()
 {
-    qDebug() << "Entered";
-    mediaCenterInterface->loadTvShowImages(this);
+    m_posterImage = QImage();
+    m_backdropImage = QImage();
+    m_bannerImage = QImage();
+    foreach (int season, seasons())
+        m_seasonPosterImages[season] = QImage();
+    foreach (Actor *actor, actorsPointer())
+        actor->image = QImage();
 }
 
 /**
@@ -153,6 +158,20 @@ bool TvShow::hasNewEpisodes() const
 {
     foreach (TvShowEpisode *episode, m_episodes) {
         if (!episode->infoLoaded())
+            return true;
+    }
+    return false;
+}
+
+/**
+ * @brief TvShow::hasNewEpisodesInSeason
+ * @param season Season number
+ * @return
+ */
+bool TvShow::hasNewEpisodesInSeason(QString season) const
+{
+    foreach (TvShowEpisode *episode, m_episodes) {
+        if (episode->season() == season.toInt() && !episode->infoLoaded())
             return true;
     }
     return false;

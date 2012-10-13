@@ -59,13 +59,14 @@ TvShowFilesWidget *TvShowFilesWidget::instance()
 }
 
 /**
- * @brief Sets a filter
- * @param filter Filter text
+ * @brief Sets the filters
+ * @param filters List of filters
+ * @param text Filter text
  */
-void TvShowFilesWidget::setFilter(QString filter)
+void TvShowFilesWidget::setFilter(QList<Filter *> filters, QString text)
 {
-    qDebug() << "Entered, filter=" << filter;
-    m_tvShowProxyModel->setFilterWildcard("*" + filter + "*");
+    m_tvShowProxyModel->setFilter(filters, text);
+    m_tvShowProxyModel->setFilterWildcard("*" + text + "*");
 }
 
 /**

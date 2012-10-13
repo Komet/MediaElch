@@ -188,7 +188,6 @@ void ConcertWidget::setConcert(Concert *concert)
     qDebug() << "Entered, concert=" << concert->name();
     concert->loadData(Manager::instance()->mediaCenterInterfaceConcert());
     m_concert = concert;
-    concert->loadImages(Manager::instance()->mediaCenterInterfaceConcert());
     updateConcertInfo();
     if (concert->downloadsInProgress())
         setDisabledTrue();
@@ -339,6 +338,12 @@ void ConcertWidget::updateConcertInfo()
         ui->posterResolution->setText(QString("%1x%2").arg(m_concert->posterImage()->width()).arg(m_concert->posterImage()->height()));
         ui->buttonPreviewPoster->setEnabled(true);
         m_currentPoster = *m_concert->posterImage();
+    } else if (!Manager::instance()->mediaCenterInterface()->posterImageName(m_concert).isEmpty()) {
+        QPixmap p(Manager::instance()->mediaCenterInterface()->posterImageName(m_concert));
+        ui->poster->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
+        ui->posterResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        ui->buttonPreviewPoster->setEnabled(true);
+        m_currentPoster = p.toImage();
     } else {
         ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
         ui->posterResolution->setText("");
@@ -350,6 +355,12 @@ void ConcertWidget::updateConcertInfo()
         ui->backdropResolution->setText(QString("%1x%2").arg(m_concert->backdropImage()->width()).arg(m_concert->backdropImage()->height()));
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = *m_concert->backdropImage();
+    } else if (!Manager::instance()->mediaCenterInterface()->backdropImageName(m_concert).isEmpty()) {
+        QPixmap p(Manager::instance()->mediaCenterInterface()->backdropImageName(m_concert));
+        ui->backdrop->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
+        ui->backdropResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        ui->buttonPreviewBackdrop->setEnabled(true);
+        m_currentBackdrop = p.toImage();
     } else {
         ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->backdropResolution->setText("");
@@ -524,7 +535,6 @@ void ConcertWidget::onRevertChanges()
 {
     qDebug() << "Entered";
     m_concert->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);
-    m_concert->loadImages(Manager::instance()->mediaCenterInterfaceConcert(), true);
     updateConcertInfo();
 }
 

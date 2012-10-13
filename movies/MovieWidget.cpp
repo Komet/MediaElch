@@ -6,6 +6,7 @@
 #include <QIntValidator>
 #include <QMovie>
 #include <QPainter>
+#include <QPixmapCache>
 #include <QScrollBar>
 #include "globals/Globals.h"
 #include "globals/ImagePreviewDialog.h"
@@ -97,6 +98,8 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->released, SIGNAL(dateChanged(QDate)), this, SLOT(onReleasedChange(QDate)));
     connect(ui->lastPlayed, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(onLastWatchedChange(QDateTime)));
     connect(ui->overview, SIGNAL(textChanged()), this, SLOT(onOverviewChange()));
+    connect(ui->director, SIGNAL(textEdited(QString)), this, SLOT(onDirectorChange(QString)));
+    connect(ui->writer, SIGNAL(textEdited(QString)), this, SLOT(onWriterChange(QString)));
 
     QPixmap zoomIn(":/img/zoom_in.png");
     QPainter p;
@@ -114,6 +117,8 @@ MovieWidget::MovieWidget(QWidget *parent) :
     p.end();
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
+
+    m_currentPosterPointer = 0;
 }
 
 /**
@@ -140,29 +145,94 @@ void MovieWidget::resizeEvent(QResizeEvent *event)
 void MovieWidget::clear()
 {
     qDebug() << "Entered";
+    bool blocked;
+    blocked = ui->set->blockSignals(true);
     ui->set->clear();
+    ui->set->blockSignals(blocked);
+
+    blocked = ui->certification->blockSignals(true);
     ui->certification->clear();
+    ui->certification->blockSignals(blocked);
+
+    blocked = ui->director->blockSignals(true);
+    ui->director->clear();
+    ui->director->blockSignals(blocked);
+
+    blocked = ui->writer->blockSignals(true);
+    ui->writer->clear();
+    ui->writer->blockSignals(blocked);
+
+    blocked = ui->movieName->blockSignals(true);
     ui->movieName->clear();
+    ui->movieName->blockSignals(blocked);
+
+    blocked = ui->files->blockSignals(true);
     ui->files->clear();
+    ui->files->blockSignals(blocked);
+
+    blocked = ui->name->blockSignals(true);
     ui->name->clear();
+    ui->name->blockSignals(blocked);
+
+    blocked = ui->originalName->blockSignals(true);
     ui->originalName->clear();
+    ui->originalName->blockSignals(blocked);
+
+    blocked = ui->sortTitle->blockSignals(true);
     ui->sortTitle->clear();
+    ui->sortTitle->blockSignals(blocked);
+
+    blocked = ui->tagline->blockSignals(true);
     ui->tagline->clear();
+    ui->tagline->blockSignals(blocked);
+
+    blocked = ui->rating->blockSignals(true);
     ui->rating->clear();
+    ui->rating->blockSignals(blocked);
+
+    blocked = ui->released->blockSignals(true);
     ui->released->setDate(QDate::currentDate());
+    ui->released->blockSignals(blocked);
+
+    blocked = ui->runtime->blockSignals(true);
     ui->runtime->clear();
+    ui->runtime->blockSignals(blocked);
+
+    blocked = ui->trailer->blockSignals(true);
     ui->trailer->clear();
+    ui->trailer->blockSignals(blocked);
+
+    blocked = ui->playcount->blockSignals(true);
     ui->playcount->clear();
+    ui->playcount->blockSignals(blocked);
+
+    blocked = ui->lastPlayed->blockSignals(true);
     ui->lastPlayed->setDateTime(QDateTime::currentDateTime());
+    ui->lastPlayed->blockSignals(blocked);
+
+    blocked = ui->overview->blockSignals(true);
     ui->overview->clear();
+    ui->overview->blockSignals(blocked);
+
+    blocked = ui->actors->blockSignals(true);
     ui->actors->setRowCount(0);
+    ui->actors->blockSignals(false);
+
+    blocked = ui->genres->blockSignals(true);
     ui->genres->setRowCount(0);
+    ui->genres->blockSignals(blocked);
+
+    blocked = ui->studios->blockSignals(true);
     ui->studios->setRowCount(0);
+    ui->studios->blockSignals(false);
+
+    blocked = ui->countries->blockSignals(true);
     ui->countries->setRowCount(0);
+    ui->countries->blockSignals(blocked);
+
     ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
     ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->actor->setPixmap(QPixmap(":/img/man.png"));
-    ui->tabWidget->setCurrentIndex(0);
     ui->posterResolution->setText("");
     ui->backdropResolution->setText("");
     ui->actorResolution->setText("");
@@ -216,7 +286,6 @@ void MovieWidget::setMovie(Movie *movie)
     qDebug() << "Entered, movie=" << movie->name();
     movie->loadData(Manager::instance()->mediaCenterInterface());
     m_movie = movie;
-    movie->loadImages(Manager::instance()->mediaCenterInterface());
     updateMovieInfo();
     if (movie->downloadsInProgress())
         setDisabledTrue();
@@ -363,6 +432,8 @@ void MovieWidget::updateMovieInfo()
     ui->lastPlayed->setDateTime(m_movie->lastPlayed());
     ui->overview->setPlainText(m_movie->overview());
     ui->watched->setChecked(m_movie->watched());
+    ui->writer->setText(m_movie->writer());
+    ui->director->setText(m_movie->director());
 
     QStringList certifications;
     QStringList sets;
@@ -429,6 +500,12 @@ void MovieWidget::updateMovieInfo()
         ui->posterResolution->setText(QString("%1x%2").arg(m_movie->posterImage()->width()).arg(m_movie->posterImage()->height()));
         ui->buttonPreviewPoster->setEnabled(true);
         m_currentPoster = *m_movie->posterImage();
+    } else if (!Manager::instance()->mediaCenterInterface()->posterImageName(m_movie).isEmpty()) {
+        QPixmap p(Manager::instance()->mediaCenterInterface()->posterImageName(m_movie));
+        ui->poster->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
+        ui->posterResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        ui->buttonPreviewPoster->setEnabled(true);
+        m_currentPoster = p.toImage();
     } else {
         ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
         ui->posterResolution->setText("");
@@ -440,6 +517,12 @@ void MovieWidget::updateMovieInfo()
         ui->backdropResolution->setText(QString("%1x%2").arg(m_movie->backdropImage()->width()).arg(m_movie->backdropImage()->height()));
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = *m_movie->backdropImage();
+    } else if (!Manager::instance()->mediaCenterInterface()->backdropImageName(m_movie).isEmpty()) {
+        QPixmap p(Manager::instance()->mediaCenterInterface()->backdropImageName(m_movie));
+        ui->backdrop->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
+        ui->backdropResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        ui->buttonPreviewBackdrop->setEnabled(true);
+        m_currentBackdrop = p.toImage();
     } else {
         ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->backdropResolution->setText("");
@@ -611,7 +694,6 @@ void MovieWidget::onRevertChanges()
 {
     qDebug() << "Entered";
     m_movie->loadData(Manager::instance()->mediaCenterInterface(), true);
-    m_movie->loadImages(Manager::instance()->mediaCenterInterface(), true);
     updateMovieInfo();
 }
 
@@ -875,14 +957,17 @@ void MovieWidget::onActorChanged()
     }
 
     Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
-    if (actor->image.isNull()) {
+    if (!actor->image.isNull()) {
+        ui->actor->setPixmap(QPixmap::fromImage(actor->image).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->actorResolution->setText(QString("%1 x %2").arg(actor->image.width()).arg(actor->image.height()));
+    } else if (!Manager::instance()->mediaCenterInterface()->actorImageName(m_movie, *actor).isEmpty()) {
+        QPixmap p(Manager::instance()->mediaCenterInterface()->actorImageName(m_movie, *actor));
+        ui->actor->setPixmap(p.scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
+    } else {
         ui->actor->setPixmap(QPixmap(":/img/man.png"));
         ui->actorResolution->setText("");
-        return;
     }
-    ui->actor->setPixmap(QPixmap::fromImage(actor->image).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->actorResolution->setText(QString("%1 x %2").arg(actor->image.width()).arg(actor->image.height()));
-    ui->buttonRevert->setVisible(true);
 }
 
 /**
@@ -1007,6 +1092,28 @@ void MovieWidget::onCertificationChange(QString text)
     if (!m_movie)
         return;
     m_movie->setCertification(text);
+    ui->buttonRevert->setVisible(true);
+}
+
+/**
+ * @brief Marks the movie as changed when the writer has changed
+ */
+void MovieWidget::onWriterChange(QString text)
+{
+    if (!m_movie)
+        return;
+    m_movie->setWriter(text);
+    ui->buttonRevert->setVisible(true);
+}
+
+/**
+ * @brief Marks the movie as changed when the director has changed
+ */
+void MovieWidget::onDirectorChange(QString text)
+{
+    if (!m_movie)
+        return;
+    m_movie->setDirector(text);
     ui->buttonRevert->setVisible(true);
 }
 

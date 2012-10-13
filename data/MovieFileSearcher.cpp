@@ -2,6 +2,9 @@
 
 #include <QApplication>
 #include <QDebug>
+#include <QSqlQuery>
+#include <QSqlRecord>
+#include "globals/Helper.h"
 #include "globals/Manager.h"
 
 /**
@@ -32,7 +35,7 @@ void MovieFileSearcher::run()
     Manager::instance()->movieModel()->clear();
     QList<QStringList> contents;
     foreach (SettingsDir dir, m_directories) {
-        getDirContents(dir.path, contents);
+        scanDir(dir.path, contents, dir.separateFolders, true);
     }
 
     int i=0;
@@ -86,30 +89,52 @@ void MovieFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
  * Results are in a list which contains a QStringList for every movie.
  * @param path Path to scan
  * @param contents List of contents
+ * @param separateFolders Are concerts in separate folders
+ * @param firstScan When this is true, subfolders are scanned, regardless of separateFolders
  */
-void MovieFileSearcher::getDirContents(QString path, QList<QStringList> &contents)
+void MovieFileSearcher::scanDir(QString path, QList<QStringList> &contents, bool separateFolders, bool firstScan)
 {
     QDir dir(path);
     foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
-        // skip bluray backup folder
-        if ((QString::compare(cDir, "BACKUP", Qt::CaseInsensitive) == 0 && dir.path().endsWith("BDMV", Qt::CaseInsensitive)) ||
-            (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0))
+        // Skip "Extras" folder
+        if (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0)
             continue;
-        this->getDirContents(path + QDir::separator() + cDir, contents);
+
+        // Handle DVD
+        if (Helper::isDvd(path + QDir::separator() + cDir)) {
+            contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/VIDEO_TS/VIDEO_TS.IFO"));
+            continue;
+        }
+
+        // Handle BluRay
+        if (Helper::isBluRay(path + QDir::separator() + cDir)) {
+            contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/BDMV/index.bdmv"));
+            continue;
+        }
+
+        // Don't scan subfolders when separate folders is checked
+        if (!separateFolders || firstScan)
+            scanDir(path + "/" + cDir, contents, separateFolders);
     }
 
-    QStringList filters;
     QStringList files;
-    filters << "*.dat" << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.iso" << "*.m2ts" << "VIDEO_TS.IFO" << "index.bdmv" << "*.disc" << "*.m4v" << "*.strm";
-    foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::System)) {
-        if (file.endsWith(".m2ts", Qt::CaseInsensitive) && (dir.path().endsWith("BDMV/STREAM", Qt::CaseInsensitive) ||
-                                                             dir.path().endsWith("BDMV\\STREAM", Qt::CaseInsensitive)))
-            continue;
+    QStringList entries = getCachedFiles(path);
+    foreach (const QString &file, entries) {
+        // Skip Trailers
         if (file.contains("-trailer", Qt::CaseInsensitive))
             continue;
         files.append(file);
     }
     files.sort();
+
+    if (separateFolders) {
+        QStringList movieFiles;
+        foreach (const QString &file, files)
+            movieFiles.append(QDir::toNativeSeparators(path + "/" + file));
+        if (movieFiles.count() > 0)
+            contents.append(movieFiles);
+        return;
+    }
 
     /* detect movies with multiple files*/
     QRegExp rx("([\-_\\s\.\(\)]+((a|b|c|d|e|f)|((part|cd|xvid)[\-_\\s\.\(\)]*\\d+))[\-_\\s\.\(\)]+)", Qt::CaseInsensitive);
@@ -119,28 +144,85 @@ void MovieFileSearcher::getDirContents(QString path, QList<QStringList> &content
         if (file.isEmpty())
             continue;
 
-        movieFiles << path + QDir::separator() + file;
+        movieFiles << QDir::toNativeSeparators(path + QDir::separator() + file);
 
-        if (QString::compare(file, "VIDEO_TS.IFO", Qt::CaseInsensitive) != 0 && QString::compare(file, "index.bdmv", Qt::CaseInsensitive) != 0) {
-            int pos = rx.lastIndexIn(file);
-            if (pos != -1) {
-                qDebug() << "Detected multiple files for this movie =>";
-                QString left = file.left(pos);
-                QString right = file.mid(pos + rx.cap(0).size());
-                for (int x=0 ; x<n ; x++) {
-                    QString subFile = files.at(x);
+        int pos = rx.lastIndexIn(file);
+        if (pos != -1) {
+            qDebug() << "Detected multiple files for this movie =>";
+            QString left = file.left(pos);
+            QString right = file.mid(pos + rx.cap(0).size());
+            for (int x=0 ; x<n ; x++) {
+                QString subFile = files.at(x);
+                if (subFile != file) {
                     if (subFile.startsWith(left) && subFile.endsWith(right)) {
-                        if (subFile != file) {
-                            movieFiles << path + QDir::separator() + subFile;
-                            // set an empty file name, this way we can skip this file in the main loop
-                            files[x] = "";
-                        }
+                        movieFiles << QDir::toNativeSeparators(path + QDir::separator() + subFile);
+                        files[x] = ""; // set an empty file name, this way we can skip this file in the main loop
                     }
                 }
             }
-
         }
-        qDebug() << "Adding movie" << movieFiles;
-        contents.append(movieFiles);
+        if (movieFiles.count() > 0 )
+            contents.append(movieFiles);
     }
+}
+
+/**
+ * @brief Get a list of files in a directory
+ *        Retrieves the contents from the cache if the last
+ *        modification matches the on in the database
+ * @param path
+ * @return
+ */
+QStringList MovieFileSearcher::getCachedFiles(QString path)
+{
+    QStringList filters;
+    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
+            << "*.dat" << "*.flv" << "*.vob" << "*.ts";
+
+    if (!Settings::instance()->useCache())
+        return QDir(path).entryList(filters, QDir::Files | QDir::System);
+
+    int idPath = -1;
+    QStringList files;
+    QFileInfo fi(path);
+    QSqlQuery query(Manager::instance()->cacheDb());
+    query.prepare("SELECT idPath, lastModified FROM movieDirs WHERE path=:path");
+    query.bindValue(":path", path);
+    query.exec();
+    if (query.next()) {
+        idPath = query.value(query.record().indexOf("idPath")).toInt();
+        if (fi.lastModified() != query.value(query.record().indexOf("lastModified")).toDateTime()) {
+            query.prepare("DELETE FROM movieDirs WHERE idPath=:idPath");
+            query.bindValue(":idPath", idPath);
+            query.exec();
+            query.prepare("DELETE FROM movieFiles WHERE idPath=:idPath");
+            query.bindValue(":idPath", idPath);
+            query.exec();
+            idPath = -1;
+        }
+    }
+
+    if (idPath != -1) {
+        query.prepare("SELECT filename FROM movieFiles WHERE idPath=:path");
+        query.bindValue(":path", idPath);
+        query.exec();
+        while (query.next()) {
+            files.append(query.value(query.record().indexOf("filename")).toString());
+        }
+    } else {
+        query.prepare("INSERT INTO movieDirs(path, lastModified, parent) VALUES(:path, :lastModified, 0)");
+        query.bindValue(":path", path);
+        query.bindValue(":lastModified", fi.lastModified());
+        query.exec();
+        idPath = query.lastInsertId().toInt();
+        files = QDir(path).entryList(filters, QDir::Files | QDir::System);
+        foreach (const QString &file, files) {
+            query.prepare("INSERT INTO movieFiles(idPath, filename) VALUES(:idPath, :filename)");
+            query.bindValue(":idPath", idPath);
+            query.bindValue(":filename", file);
+            query.exec();
+        }
+    }
+
+    return files;
 }
