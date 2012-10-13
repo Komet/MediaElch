@@ -240,7 +240,8 @@ void SettingsWidget::loadSettings()
     for (int i=0, n=concertDirectories.count() ; i<n ; ++i)
         addDir(concertDirectories.at(i).path, concertDirectories.at(i).mediaCenterPath, concertDirectories.at(i).separateFolders, DirTypeConcerts);
 
-    ui->buttonRemoveDir->setEnabled(ui->dirs->rowCount() > 0);
+    //ui->buttonRemoveDir->setEnabled(ui->dirs->rowCount() > 0);
+    dirListRowChanged(-1);
 
     // MediaCenterInterface
     int mediaCenterInterface = m_settings->mediaCenterInterface();

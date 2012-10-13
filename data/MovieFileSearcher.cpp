@@ -137,7 +137,9 @@ void MovieFileSearcher::scanDir(QString path, QList<QStringList> &contents, bool
     }
 
     /* detect movies with multiple files*/
-    QRegExp rx("([\-_\\s\.\(\)]+((a|b|c|d|e|f)|((part|cd|xvid)[\-_\\s\.\(\)]*\\d+))[\-_\\s\.\(\)]+)", Qt::CaseInsensitive);
+    QRegExp rx("([\\-_\\s\\.\\(\\)]+((a|b|c|d|e|f)|((part|cd|xvid)" \
+               "[\\-_\\s\\.\\(\\)]*\\d+))[\\-_\\s\\.\\(\\)]+)",
+               Qt::CaseInsensitive);
     for (int i=0, n=files.size() ; i<n ; i++) {
         QStringList movieFiles;
         QString file = files.at(i);
