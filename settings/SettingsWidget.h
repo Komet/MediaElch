@@ -53,8 +53,6 @@ private slots:
     void onClearCache();
     void onUseProxy();
 
-    void on_logfilePath_textChanged(const QString &arg1);
-
 private:
     Ui::SettingsWidget *ui;
     Settings *m_settings;
