@@ -114,6 +114,8 @@ void Settings::loadSettings()
     }
     m_settings.endArray();
 
+    m_excludeWords = m_settings.value("excludeWords").toString();
+
     // Scrapers
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
         if (scraper->hasSettings())
@@ -127,6 +129,7 @@ void Settings::loadSettings()
         if (scraper->hasSettings())
             scraper->loadSettings();
     }
+
 
     // Media Centers
     m_mediaCenterInterface = m_settings.value("MediaCenterInterface", MediaCenterInterfaces::XbmcXml).toInt();
@@ -212,6 +215,9 @@ void Settings::saveSettings()
         m_settings.setValue("sepFolders", m_concertDirectories.at(i).separateFolders);
     }
     m_settings.endArray();
+
+    m_settings.setValue("excludeWords", m_excludeWords);
+
 
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
         if (scraper->hasSettings())
@@ -318,6 +324,16 @@ QList<SettingsDir> Settings::tvShowDirectories()
 QList<SettingsDir> Settings::concertDirectories()
 {
     return m_concertDirectories;
+}
+
+/**
+ * @brief Returns the words to exclude from media names,
+ * seperated by commas
+ * @return exclude words
+ */
+QString Settings::excludeWords()
+{
+    return m_excludeWords;
 }
 
 /**
@@ -722,6 +738,16 @@ void Settings::setTvShowDirectories(QList<SettingsDir> dirs)
 void Settings::setConcertDirectories(QList<SettingsDir> dirs)
 {
     m_concertDirectories = dirs;
+}
+
+/**
+ * @brief Sets the exclude words
+ * @param words Words to exclude from media names,
+ * seperated by commas
+ */
+void Settings::setExcludeWords(QString words)
+{
+    m_excludeWords = words;
 }
 
 /**

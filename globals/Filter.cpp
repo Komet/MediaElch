@@ -114,6 +114,8 @@ bool Filter::accepts(TvShow *show)
 {
     if (m_info == TvShowFilters::Title)
         return show->name().contains(m_shortText, Qt::CaseInsensitive);
+
+    return true;
 }
 
 /**

@@ -1115,6 +1115,14 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>MovieFilesOrganizer</name>
+    <message>
+        <location filename="../data/MovieFilesOrganizer.cpp" line="43"/>
+        <source>Putting movies to seperate folders...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MovieImageDialog</name>
     <message>
         <source>Choose an Image</source>
@@ -2050,39 +2058,39 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="32"/>
+        <location filename="../settings/SettingsWidget.cpp" line="34"/>
         <source>Items are in separate folders</source>
         <translation>In separaten Verzeichnissen</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="54"/>
-        <location filename="../settings/SettingsWidget.cpp" line="83"/>
-        <location filename="../settings/SettingsWidget.cpp" line="112"/>
+        <location filename="../settings/SettingsWidget.cpp" line="56"/>
+        <location filename="../settings/SettingsWidget.cpp" line="85"/>
+        <location filename="../settings/SettingsWidget.cpp" line="114"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="126"/>
+        <location filename="../settings/SettingsWidget.cpp" line="128"/>
         <source>Logfile</source>
         <translation>Logdatei</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="126"/>
+        <location filename="../settings/SettingsWidget.cpp" line="128"/>
         <source>Logfiles (*.log *.txt)</source>
         <translation>Logdateien (*.log *.txt)</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="129"/>
+        <location filename="../settings/SettingsWidget.cpp" line="131"/>
         <source>Choose a directory containing your movies, TV show or concerts</source>
         <translation>Wähle ein Verzeichnis aus, dass deine Filme, Serien oder Konzerte enthält</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="496"/>
+        <location filename="../settings/SettingsWidget.cpp" line="499"/>
         <source>Movies</source>
         <translation>Filme</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="496"/>
+        <location filename="../settings/SettingsWidget.cpp" line="499"/>
         <source>Concerts</source>
         <translation>Konzerte</translation>
     </message>
@@ -2092,7 +2100,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="141"/>
-        <location filename="../settings/SettingsWidget.ui" line="814"/>
+        <location filename="../settings/SettingsWidget.ui" line="878"/>
         <source>Path</source>
         <translation>Verzeichnis</translation>
     </message>
@@ -2112,7 +2120,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="168"/>
+        <location filename="../settings/SettingsWidget.ui" line="174"/>
         <source>Remove</source>
         <translation>Entfernen</translation>
     </message>
@@ -2121,53 +2129,53 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">MediaCenter Interface</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="328"/>
+        <location filename="../settings/SettingsWidget.ui" line="392"/>
         <source>Select the MediaCenter to use.</source>
         <translation>Wähle ein Interface zu deinem MediaCenter aus.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="335"/>
+        <location filename="../settings/SettingsWidget.ui" line="399"/>
         <source>XBMC XML</source>
         <translation>XBMC XML</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="669"/>
+        <location filename="../settings/SettingsWidget.ui" line="733"/>
         <source>XBMC MySQL</source>
         <translation>XBMC MySQL</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="688"/>
-        <location filename="../settings/SettingsWidget.ui" line="869"/>
+        <location filename="../settings/SettingsWidget.ui" line="752"/>
+        <location filename="../settings/SettingsWidget.ui" line="933"/>
         <source>Host</source>
         <translation>Host</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="705"/>
-        <location filename="../settings/SettingsWidget.ui" line="778"/>
+        <location filename="../settings/SettingsWidget.ui" line="769"/>
+        <location filename="../settings/SettingsWidget.ui" line="842"/>
         <source>Database</source>
         <translation>Datenbank</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="722"/>
-        <location filename="../settings/SettingsWidget.ui" line="883"/>
+        <location filename="../settings/SettingsWidget.ui" line="786"/>
+        <location filename="../settings/SettingsWidget.ui" line="947"/>
         <source>Username</source>
         <translation>Benutzername</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="739"/>
-        <location filename="../settings/SettingsWidget.ui" line="890"/>
+        <location filename="../settings/SettingsWidget.ui" line="803"/>
+        <location filename="../settings/SettingsWidget.ui" line="954"/>
         <source>Password</source>
         <translation>Passwort</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="762"/>
+        <location filename="../settings/SettingsWidget.ui" line="826"/>
         <source>XBMC SQLite</source>
         <translation>XBMC SQLite</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="219"/>
-        <location filename="../settings/SettingsWidget.ui" line="792"/>
-        <location filename="../settings/SettingsWidget.ui" line="828"/>
+        <location filename="../settings/SettingsWidget.ui" line="276"/>
+        <location filename="../settings/SettingsWidget.ui" line="856"/>
+        <location filename="../settings/SettingsWidget.ui" line="892"/>
         <source>Select</source>
         <translation>Auswählen</translation>
     </message>
@@ -2209,206 +2217,239 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Bitte klick auf &quot;Neu Laden&quot; nach dem du Verzeichnisse hinzugefügt oder entfernt hast. Wenn du den Debug Modus aktiviert oder deaktiviert hast, starte MediaElch bitte neu.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="190"/>
+        <location filename="../settings/SettingsWidget.ui" line="247"/>
         <source>&lt;b&gt;Debug&lt;/b&gt; When debug mode is activated debug messages are written to logfile you set. Please use this option only if you encountered problems with MediaElch as the logfile can get very big. </source>
         <translation>&lt;b&gt;Debug&lt;/b&gt; Wenn der Debug Modus aktiviert ist, werden Debug Ausgaben in die Logdatei geschrieben, die du angegeben hast. Bitte benutze diese Option nur, wenn du ein Problem mit MediaElch entdeckt hast, da die Logdatei schnell sehr groß werden kann.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="200"/>
+        <location filename="../settings/SettingsWidget.ui" line="257"/>
         <source>Activate debug mode</source>
         <translation>Debug Modus aktivieren</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="209"/>
+        <location filename="../settings/SettingsWidget.ui" line="266"/>
         <source>Logfile: </source>
         <translation>Logdatei:</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="228"/>
+        <location filename="../settings/SettingsWidget.ui" line="206"/>
         <source>&lt;b&gt;Cache&lt;/b&gt; Activating the cache will improve start up speed. In some cases this might not work as aspected. If new files won&apos;t show up, try clearing the cache or disabling it completely.</source>
         <translation>&lt;b&gt;Cache&lt;/b&gt; Der Cache beschleunigt die Startzeit von MediaElch. Unter Umständen können aber Probleme auftreten. Wenn neue Dateien nicht erscheinen, versuche den Cache zu leeren oder ganz zu deaktivieren.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="240"/>
+        <location filename="../settings/SettingsWidget.ui" line="181"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort Movies Into Seperate Directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="184"/>
+        <source>Organisiere</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="218"/>
         <source>Use Cache</source>
         <translation>Cache aktivieren</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="260"/>
+        <location filename="../settings/SettingsWidget.ui" line="238"/>
         <source>Clear Cache</source>
         <translation>Cache leeren</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="306"/>
+        <location filename="../settings/SettingsWidget.ui" line="293"/>
+        <source>Words to exclude
+from media names
+(seperated by
+commas and non
+case-sensitive):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="304"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Words to exclude from media names (seperated by commas and non case-sensitive)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="307"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;dvdrip,ac3,bdrip,german,englisch,deutsch,ac3d,unrated,dvd-rip,divx,hdrip,mrv3,dvdscr,mvcd&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="370"/>
         <source>MediaCenter</source>
         <translation>MediaCenter</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="318"/>
+        <location filename="../settings/SettingsWidget.ui" line="382"/>
         <source>Please hit the &quot;Reload&quot; button after changing the Media Center Interface.</source>
         <translation>Bitte klick auf &quot;Neu Laden&quot; nach dem du das Media Center Interface geändert hast.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="345"/>
+        <location filename="../settings/SettingsWidget.ui" line="409"/>
         <source>Select the filenames you wish to use for loading and saving. Enable/disable them using the checkbox in front, set priorities through sorting with drag and drop.</source>
         <translation>Wähle die Dateinamen aus, die du zum Speichern und Laden benutzen möchtest. Aktiviere/deaktiviere sie durch die Checkboxen vorne, setze die Priorität durch Sortieren per drag&apos;n&apos;drop.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="365"/>
+        <location filename="../settings/SettingsWidget.ui" line="429"/>
         <source>Movie NFO</source>
         <translation>Film NFO</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="391"/>
+        <location filename="../settings/SettingsWidget.ui" line="455"/>
         <source>&lt;movie filename&gt;.nfo</source>
         <translation>&lt;movie filename&gt;.nfo</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="399"/>
+        <location filename="../settings/SettingsWidget.ui" line="463"/>
         <source>movie.nfo</source>
         <translation>movie.nfo</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="420"/>
+        <location filename="../settings/SettingsWidget.ui" line="484"/>
         <source>Movie Posters</source>
         <translation>Film Poster</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="446"/>
+        <location filename="../settings/SettingsWidget.ui" line="510"/>
         <source>&lt;movie filename&gt;.tbn</source>
         <translation>&lt;movie filename&gt;.tbn</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="454"/>
+        <location filename="../settings/SettingsWidget.ui" line="518"/>
         <source>movie.jpg</source>
         <translation>movie.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="462"/>
+        <location filename="../settings/SettingsWidget.ui" line="526"/>
         <source>movie.tbn</source>
         <translation>movie.tbn</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="470"/>
-        <location filename="../settings/SettingsWidget.ui" line="596"/>
+        <location filename="../settings/SettingsWidget.ui" line="534"/>
+        <location filename="../settings/SettingsWidget.ui" line="660"/>
         <source>poster.jpg</source>
         <translation>poster.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="478"/>
+        <location filename="../settings/SettingsWidget.ui" line="542"/>
         <source>poster.tbn</source>
         <translation>poster.tbn</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="486"/>
-        <location filename="../settings/SettingsWidget.ui" line="651"/>
+        <location filename="../settings/SettingsWidget.ui" line="550"/>
+        <location filename="../settings/SettingsWidget.ui" line="715"/>
         <source>folder.jpg</source>
         <translation>folder.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="507"/>
+        <location filename="../settings/SettingsWidget.ui" line="571"/>
         <source>Movie Fanarts</source>
         <translation>Film Fanarts</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="533"/>
+        <location filename="../settings/SettingsWidget.ui" line="597"/>
         <source>&lt;movie filename&gt;-fanart.jpg</source>
         <translation>&lt;movie filename&gt;-fanart.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="541"/>
+        <location filename="../settings/SettingsWidget.ui" line="605"/>
         <source>fanart.jpg</source>
         <translation>fanart.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="562"/>
+        <location filename="../settings/SettingsWidget.ui" line="626"/>
         <source>TV Show Poster</source>
         <translation>Serien Poster</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="588"/>
+        <location filename="../settings/SettingsWidget.ui" line="652"/>
         <source>season-all.tbn</source>
         <translation>season-all.tbn</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="617"/>
+        <location filename="../settings/SettingsWidget.ui" line="681"/>
         <source>TV Show Banner</source>
         <translation>Serien Banner</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="643"/>
+        <location filename="../settings/SettingsWidget.ui" line="707"/>
         <source>banner.jpg</source>
         <translation>banner.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="802"/>
+        <location filename="../settings/SettingsWidget.ui" line="866"/>
         <source>Set the path where Thumbnails are stored (e.g. ~/.xbmc/userdata/Thumbnails)</source>
         <translation>Wähle das Verzeichnis aus, in dem die XBMC Thumbnails gespeichert werden (z.B. ~/.xbmc/userdata/Thumbnails)</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="843"/>
+        <location filename="../settings/SettingsWidget.ui" line="907"/>
         <source>MediaCenter Settings</source>
         <translation>MediaCenter Einstellungen</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="850"/>
+        <location filename="../settings/SettingsWidget.ui" line="914"/>
         <source>Stores YouTube URLs like &quot;http://www.youtube.com/watch?v=123&quot; as &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</source>
         <translation>Formatiert YouTube URLs wie &quot;http://www.youtube.com/watch?v=123&quot; als &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="853"/>
+        <location filename="../settings/SettingsWidget.ui" line="917"/>
         <source>Store trailer URLs in YouTube Plugin format</source>
         <translation>Speichere Trailer URLs im YouTube Plugin Format</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="861"/>
+        <location filename="../settings/SettingsWidget.ui" line="925"/>
         <source>Proxy</source>
         <translation>Proxy</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="876"/>
+        <location filename="../settings/SettingsWidget.ui" line="940"/>
         <source>Port</source>
         <translation>Port</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="917"/>
+        <location filename="../settings/SettingsWidget.ui" line="981"/>
         <source>Enable Proxy</source>
         <translation>Proxy verwenden</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="924"/>
+        <location filename="../settings/SettingsWidget.ui" line="988"/>
         <source>Type</source>
         <comment>Proxy Type</comment>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="932"/>
+        <location filename="../settings/SettingsWidget.ui" line="996"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="937"/>
+        <location filename="../settings/SettingsWidget.ui" line="1001"/>
         <source>SOCKS 5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="989"/>
+        <location filename="../settings/SettingsWidget.ui" line="1040"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="996"/>
+        <location filename="../settings/SettingsWidget.ui" line="1047"/>
         <source>Save Settings</source>
         <translation>Einstellungen Speichern</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="270"/>
-        <location filename="../settings/SettingsWidget.ui" line="282"/>
+        <location filename="../settings/SettingsWidget.ui" line="334"/>
+        <location filename="../settings/SettingsWidget.ui" line="346"/>
         <source>Scrapers</source>
         <translation>Scraper</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="496"/>
+        <location filename="../settings/SettingsWidget.cpp" line="499"/>
         <source>TV Shows</source>
         <translation>TV Serien</translation>
     </message>
@@ -2421,7 +2462,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Filme sind in separaten Verzeichnissen</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="461"/>
+        <location filename="../settings/SettingsWidget.cpp" line="464"/>
         <source>Settings saved</source>
         <translation>Einstellungen gespeichert</translation>
     </message>
@@ -2434,12 +2475,12 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Wähle ein Verzeichnis aus, das deine Serien enthält</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="135"/>
+        <location filename="../settings/SettingsWidget.cpp" line="137"/>
         <source>SQLite Database *.db</source>
         <translation>SQLite Datenbank *.db</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="132"/>
+        <location filename="../settings/SettingsWidget.cpp" line="134"/>
         <source>Choose a directory containing your Thumbnails</source>
         <translation>Wähle das Verzeichnis aus, in dem die Thumbnails gespeichert werden</translation>
     </message>

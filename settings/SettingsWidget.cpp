@@ -242,7 +242,10 @@ void SettingsWidget::loadSettings()
     for (int i=0, n=concertDirectories.count() ; i<n ; ++i)
         addDir(concertDirectories.at(i).path, concertDirectories.at(i).mediaCenterPath, concertDirectories.at(i).separateFolders, DirTypeConcerts);
 
-    dirListRowChanged(-1);
+    //dirListRowChanged(-1);
+
+    // Exclude words
+    ui->excludeWordsText->setPlainText(m_settings->excludeWords());
 
     // MediaCenterInterface
     int mediaCenterInterface = m_settings->mediaCenterInterface();
@@ -456,6 +459,10 @@ void SettingsWidget::saveSettings()
     m_settings->setTvShowDirectories(tvShowDirectories);
     m_settings->setConcertDirectories(concertDirectories);
 
+
+    // exclude words
+    m_settings->setExcludeWords(ui->excludeWordsText->toPlainText());
+
     m_settings->saveSettings();
 
     Manager::instance()->movieFileSearcher()->setMovieDirectories(m_settings->movieDirectories());
@@ -535,7 +542,6 @@ void SettingsWidget::organize()
     int row = ui->dirs->currentRow();
     if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() != 0
             || ui->dirs->item(row, 3)->checkState() == Qt::Checked) {
-        qDebug() << "JEAP!";
         organizer->canceled("Organizing movies does only work on " \
                                       "movies, not allready sorted to " \
                                       "seperate folders.");
@@ -555,7 +561,6 @@ void SettingsWidget::organize()
 
     switch (ret) {
       case QMessageBox::Ok:
-        qDebug() << "Okay was clicked";
         organizer->moveToDirs(ui->dirs->item(ui->dirs->currentRow(), 1)->text());
         break;
       case QMessageBox::Cancel:

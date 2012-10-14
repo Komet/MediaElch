@@ -90,7 +90,8 @@ SOURCES += main.cpp\
     support/SupportDialog.cpp \
     main/FileScannerDialog.cpp \
     globals/Filter.cpp \
-    data/MovieFilesOrganizer.cpp
+    data/MovieFilesOrganizer.cpp \
+    globals/NameFormatter.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -160,7 +161,8 @@ HEADERS  += main/MainWindow.h \
     support/SupportDialog.h \
     main/FileScannerDialog.h \
     globals/Filter.h \
-    data/MovieFilesOrganizer.h
+    data/MovieFilesOrganizer.h \
+    globals/NameFormatter.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

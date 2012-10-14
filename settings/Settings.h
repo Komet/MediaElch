@@ -27,6 +27,7 @@ public:
     QList<SettingsDir> movieDirectories();
     QList<SettingsDir> tvShowDirectories();
     QList<SettingsDir> concertDirectories();
+    QString excludeWords();
     int mediaCenterInterface();
     QString xbmcMysqlHost();
     QString xbmcMysqlDatabase();
@@ -67,6 +68,7 @@ public:
     void setMovieDirectories(QList<SettingsDir> dirs);
     void setTvShowDirectories(QList<SettingsDir> dirs);
     void setConcertDirectories(QList<SettingsDir> dirs);
+    void setExcludeWords(QString words);
     void setXbmcMysqlHost(QString host);
     void setXbmcMysqlDatabase(QString db);
     void setXbmcMysqlUser(QString user);
@@ -103,6 +105,7 @@ private:
     QList<SettingsDir> m_movieDirectories;
     QList<SettingsDir> m_tvShowDirectories;
     QList<SettingsDir> m_concertDirectories;
+    QString m_excludeWords;
     QSize m_mainWindowSize;
     QPoint m_mainWindowPosition;
     QByteArray m_mainSplitterState;
