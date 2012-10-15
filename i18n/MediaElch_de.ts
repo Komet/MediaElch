@@ -61,11 +61,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>About MediaElch</source>
-        <translation type="obsolete">Über MediaElch</translation>
+        <translation>Über MediaElch</translation>
     </message>
     <message>
         <source>MediaElch</source>
-        <translation type="obsolete">MediaElch</translation>
+        <translation>MediaElch</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -80,7 +80,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Always have a look at &lt;a href=&quot;http://mediaelch.kvibes.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://mediaelch.kvibes.net&lt;/span&gt;&lt;/a&gt; to get the latest version.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body&gt;
@@ -147,289 +147,289 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>MediaElch %1 - %2</source>
-        <translation type="obsolete">MediaElch %1 - %2</translation>
+        <translation>MediaElch %1 - %2</translation>
     </message>
 </context>
 <context>
     <name>CLI</name>
     <message>
         <source>Unknown command line argument &quot;%1&quot;</source>
-        <translation type="obsolete">Unbekanntes Argument &quot;%1&quot;</translation>
+        <translation>Unbekanntes Argument &quot;%1&quot;</translation>
     </message>
     <message>
         <source>No file given</source>
-        <translation type="obsolete">Keine Datei übergeben</translation>
+        <translation>Keine Datei übergeben</translation>
     </message>
     <message>
         <source>No scraper given</source>
-        <translation type="obsolete">Kein Scraper gegeben</translation>
+        <translation>Kein Scraper gegeben</translation>
     </message>
     <message>
         <source>Unsupported scraper &quot;%1&quot;</source>
-        <translation type="obsolete">Nicht unterstützter Scraper &quot;%1&quot;</translation>
+        <translation>Nicht unterstützter Scraper &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Search term given but empty</source>
-        <translation type="obsolete">Leerer Suchbegriff übergeben</translation>
+        <translation>Leerer Suchbegriff übergeben</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist</source>
-        <translation type="obsolete">Datei &quot;%1&quot; existiert nicht</translation>
+        <translation>Datei &quot;%1&quot; existiert nicht</translation>
     </message>
 </context>
 <context>
     <name>CertificationWidget</name>
     <message>
         <source>Form</source>
-        <translation type="obsolete">Form</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Certification</source>
-        <translation type="obsolete">Freigabe</translation>
+        <translation>Freigabe</translation>
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="obsolete">Nachricht</translation>
+        <translation>Nachricht</translation>
     </message>
     <message>
         <source>Movie</source>
-        <translation type="obsolete">Film</translation>
+        <translation>Film</translation>
     </message>
     <message>
         <source>Add Movie</source>
-        <translation type="obsolete">Film hinzufügen</translation>
+        <translation>Film hinzufügen</translation>
     </message>
     <message>
         <source>Remove Current Movie</source>
-        <translation type="obsolete">Ausgewählten Film entfernen</translation>
+        <translation>Ausgewählten Film entfernen</translation>
     </message>
     <message>
         <source>Double click a certification to rename it, right click to delete. If you want to merge two certifications just give them the same name.</source>
-        <translation type="obsolete">Klick eine Freigabe doppelt an, um sie umzubenennen. Wenn du zwei Freigaben zusammenfügen willst, gib ihnen einfach den gleichen Namen.</translation>
+        <translation>Klick eine Freigabe doppelt an, um sie umzubenennen. Wenn du zwei Freigaben zusammenfügen willst, gib ihnen einfach den gleichen Namen.</translation>
     </message>
     <message>
         <source>Please keep in mind that the changes you make here (renaming or deleting certifications) will be made for every movie.</source>
-        <translation type="obsolete">Bitte denk daran, dass die Änderungen, die du hier machst, für alle Filme angewendet werden.</translation>
+        <translation>Bitte denk daran, dass die Änderungen, die du hier machst, für alle Filme angewendet werden.</translation>
     </message>
     <message>
         <source>Delete Certification</source>
-        <translation type="obsolete">Freigabe Löschen</translation>
+        <translation>Freigabe Löschen</translation>
     </message>
     <message>
         <source>All Movies Saved</source>
-        <translation type="obsolete">Alle Filme gespeichert</translation>
+        <translation>Alle Filme gespeichert</translation>
     </message>
 </context>
 <context>
     <name>ConcertDelegate</name>
     <message>
         <source>new</source>
-        <translation type="obsolete">neu</translation>
+        <translation>neu</translation>
     </message>
 </context>
 <context>
     <name>ConcertFileSearcher</name>
     <message>
         <source>Searching for Concerts...</source>
-        <translation type="obsolete">Suche nach Konzerten...</translation>
+        <translation>Suche nach Konzerten...</translation>
     </message>
 </context>
 <context>
     <name>ConcertSearch</name>
     <message>
         <source>Search Result</source>
-        <translation type="obsolete">Suchergebnis</translation>
+        <translation>Suchergebnis</translation>
     </message>
     <message>
         <source>Scraper</source>
-        <translation type="obsolete">Scraper</translation>
+        <translation>Scraper</translation>
     </message>
     <message>
         <source>Result</source>
-        <translation type="obsolete">Ergebnis</translation>
+        <translation>Ergebnis</translation>
     </message>
     <message>
         <source>Infos to load</source>
-        <translation type="obsolete">Lade Infos</translation>
+        <translation>Lade Infos</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="obsolete">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <source>Tagline</source>
-        <translation type="obsolete">Tagline</translation>
+        <translation>Tagline</translation>
     </message>
     <message>
         <source>Rating</source>
-        <translation type="obsolete">Bewertung</translation>
+        <translation>Bewertung</translation>
     </message>
     <message>
         <source>Released</source>
-        <translation type="obsolete">Erschienen</translation>
+        <translation>Erschienen</translation>
     </message>
     <message>
         <source>Runtime</source>
-        <translation type="obsolete">Laufzeit</translation>
+        <translation>Laufzeit</translation>
     </message>
     <message>
         <source>Certification</source>
-        <translation type="obsolete">Freigabe</translation>
+        <translation>Freigabe</translation>
     </message>
     <message>
         <source>Trailer</source>
-        <translation type="obsolete">Trailer</translation>
+        <translation>Trailer</translation>
     </message>
     <message>
         <source>Overview</source>
-        <translation type="obsolete">Inhalt</translation>
+        <translation>Inhalt</translation>
     </message>
     <message>
         <source>Poster</source>
-        <translation type="obsolete">Poster</translation>
+        <translation>Poster</translation>
     </message>
     <message>
         <source>Backdrop</source>
-        <translation type="obsolete">Fanart</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <source>Genres</source>
-        <translation type="obsolete">Genres</translation>
+        <translation>Genres</translation>
     </message>
     <message>
         <source>(Un)Check all</source>
-        <translation type="obsolete">Alle aus/abwählen</translation>
+        <translation>Alle aus/abwählen</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="obsolete">Schließen</translation>
+        <translation>Schließen</translation>
     </message>
 </context>
 <context>
     <name>ConcertWidget</name>
     <message>
         <source>Form</source>
-        <translation type="obsolete">Form</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Concert has changed. Click to revert changes.</source>
-        <translation type="obsolete">Mache Änderungen an diesem Konzert rückgängig.</translation>
+        <translation>Mache Änderungen an diesem Konzert rückgängig.</translation>
     </message>
     <message>
         <source>Concert Name</source>
-        <translation type="obsolete">Konzertname</translation>
+        <translation>Konzertname</translation>
     </message>
     <message>
         <source>Information</source>
-        <translation type="obsolete">Informationen</translation>
+        <translation>Informationen</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="obsolete">Dateien</translation>
+        <translation>Dateien</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="obsolete">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <source>Tagline</source>
-        <translation type="obsolete">Tagline</translation>
+        <translation>Tagline</translation>
     </message>
     <message>
         <source>Rating</source>
-        <translation type="obsolete">Bewertung</translation>
+        <translation>Bewertung</translation>
     </message>
     <message>
         <source>Released</source>
-        <translation type="obsolete">Erschienen</translation>
+        <translation>Erschienen</translation>
     </message>
     <message>
         <source>yyyy</source>
-        <translation type="obsolete">yyyy</translation>
+        <translation>yyyy</translation>
     </message>
     <message>
         <source>Runtime</source>
-        <translation type="obsolete">Laufzeit</translation>
+        <translation>Laufzeit</translation>
     </message>
     <message>
         <source> Minutes</source>
-        <translation type="obsolete"> Minuten</translation>
+        <translation> Minuten</translation>
     </message>
     <message>
         <source>Certification</source>
-        <translation type="obsolete">Freigabe</translation>
+        <translation>Freigabe</translation>
     </message>
     <message>
         <source>Trailer</source>
-        <translation type="obsolete">Trailer</translation>
+        <translation>Trailer</translation>
     </message>
     <message>
         <source>Watched</source>
-        <translation type="obsolete">Gesehen</translation>
+        <translation>Gesehen</translation>
     </message>
     <message>
         <source>Play Count</source>
-        <translation type="obsolete">Wiedergaben</translation>
+        <translation>Wiedergaben</translation>
     </message>
     <message>
         <source>Last Played</source>
-        <translation type="obsolete">Letzte Wiedergabe</translation>
+        <translation>Letzte Wiedergabe</translation>
     </message>
     <message>
         <source>Overview</source>
-        <translation type="obsolete">Inhalt</translation>
+        <translation>Inhalt</translation>
     </message>
     <message>
         <source>Extended</source>
-        <translation type="obsolete">Erweitert</translation>
+        <translation>Erweitert</translation>
     </message>
     <message>
         <source>Genres</source>
-        <translation type="obsolete">Genres</translation>
+        <translation>Genres</translation>
     </message>
     <message>
         <source>Genre</source>
-        <translation type="obsolete">Genre</translation>
+        <translation>Genre</translation>
     </message>
     <message>
         <source>Add Genre</source>
-        <translation type="obsolete">Genre hinzufügen</translation>
+        <translation>Genre hinzufügen</translation>
     </message>
     <message>
         <source>Remove Genre</source>
-        <translation type="obsolete">Genre entfernen</translation>
+        <translation>Genre entfernen</translation>
     </message>
     <message>
         <source>Poster</source>
-        <translation type="obsolete">Poster</translation>
+        <translation>Poster</translation>
     </message>
     <message>
         <source>Click to Change</source>
-        <translation type="obsolete">Zum Ändern klicken</translation>
+        <translation>Zum Ändern klicken</translation>
     </message>
     <message>
         <source>Full preview</source>
-        <translation type="obsolete">Vorschau</translation>
+        <translation>Vorschau</translation>
     </message>
     <message>
         <source>Resolution</source>
-        <translation type="obsolete">Auflösung</translation>
+        <translation>Auflösung</translation>
     </message>
     <message>
         <source>Backdrop</source>
-        <translation type="obsolete">Fanart</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation type="obsolete">&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
     <message>
         <source>All Concerts Saved</source>
-        <translation type="obsolete">Alle Konzerte gespeichert</translation>
+        <translation>Alle Konzerte gespeichert</translation>
     </message>
     <message>
         <source>Unknown Genre</source>
-        <translation type="obsolete">Unbekanntes Genre</translation>
+        <translation>Unbekanntes Genre</translation>
     </message>
 </context>
 <context>
@@ -487,23 +487,23 @@ p, li { white-space: pre-wrap; }
     <name>FileScannerDialog</name>
     <message>
         <source>File Scanner</source>
-        <translation type="obsolete">Datei Scanner</translation>
+        <translation>Datei Scanner</translation>
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="obsolete">Nachricht</translation>
+        <translation>Nachricht</translation>
     </message>
     <message>
         <source>Searching for Movies...</source>
-        <translation type="obsolete">Suche nach Filmen...</translation>
+        <translation>Suche nach Filmen...</translation>
     </message>
     <message>
         <source>Searching for TV Shows...</source>
-        <translation type="obsolete">Suche nach Serien...</translation>
+        <translation>Suche nach Serien...</translation>
     </message>
     <message>
         <source>Searching for Concerts...</source>
-        <translation type="obsolete">Suche nach Konzerten...</translation>
+        <translation>Suche nach Konzerten...</translation>
     </message>
 </context>
 <context>
@@ -526,247 +526,247 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Form</source>
         <translatorcomment>Form</translatorcomment>
-        <translation type="obsolete">Form</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Filter</source>
-        <translation type="obsolete">Filter</translation>
+        <translation>Filter</translation>
     </message>
     <message>
         <source>Title contains &quot;%1&quot;</source>
-        <translation type="obsolete">Titel enthält &quot;%1&quot;</translation>
+        <translation>Titel enthält &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="obsolete">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <source>Movie has Poster</source>
-        <translation type="obsolete">Film hat Poster</translation>
+        <translation>Film hat Poster</translation>
     </message>
     <message>
         <source>Poster</source>
-        <translation type="obsolete">Poster</translation>
+        <translation>Poster</translation>
     </message>
     <message>
         <source>Movie has no Poster</source>
-        <translation type="obsolete">Film hat kein Poster</translation>
+        <translation>Film hat kein Poster</translation>
     </message>
     <message>
         <source>No Poster</source>
-        <translation type="obsolete">Kein Poster</translation>
+        <translation>Kein Poster</translation>
     </message>
     <message>
         <source>Movie has Backdrop</source>
-        <translation type="obsolete">Film hat Fanart</translation>
+        <translation>Film hat Fanart</translation>
     </message>
     <message>
         <source>Backdrop</source>
-        <translation type="obsolete">Fanart</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <source>Fanart</source>
-        <translation type="obsolete">Fanart</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <source>Movie has no Backdrop</source>
-        <translation type="obsolete">Film hat kein Fanart</translation>
+        <translation>Film hat kein Fanart</translation>
     </message>
     <message>
         <source>No Backdrop</source>
-        <translation type="obsolete">Kein Fanart</translation>
+        <translation>Kein Fanart</translation>
     </message>
     <message>
         <source>Movie has Trailer</source>
-        <translation type="obsolete">Film hat Trailer</translation>
+        <translation>Film hat Trailer</translation>
     </message>
     <message>
         <source>Trailer</source>
-        <translation type="obsolete">Trailer</translation>
+        <translation>Trailer</translation>
     </message>
     <message>
         <source>Movie has no Trailer</source>
-        <translation type="obsolete">Film hat keinen Trailer</translation>
+        <translation>Film hat keinen Trailer</translation>
     </message>
     <message>
         <source>No Trailer</source>
-        <translation type="obsolete">Kein Trailer</translation>
+        <translation>Kein Trailer</translation>
     </message>
     <message>
         <source>Movie is Watched</source>
-        <translation type="obsolete">Film is gesehen</translation>
+        <translation>Film is gesehen</translation>
     </message>
     <message>
         <source>Watched</source>
-        <translation type="obsolete">Gesehen</translation>
+        <translation>Gesehen</translation>
     </message>
     <message>
         <source>Seen</source>
-        <translation type="obsolete">Gesehen</translation>
+        <translation>Gesehen</translation>
     </message>
     <message>
         <source>Movie is Unwatched</source>
-        <translation type="obsolete">Film ist ungesehen</translation>
+        <translation>Film ist ungesehen</translation>
     </message>
     <message>
         <source>Unwatched</source>
-        <translation type="obsolete">Ungesehen</translation>
+        <translation>Ungesehen</translation>
     </message>
     <message>
         <source>Unseen</source>
-        <translation type="obsolete">Ungesehen</translation>
+        <translation>Ungesehen</translation>
     </message>
     <message>
         <source>Movie has no Certification</source>
-        <translation type="obsolete">Film hat keine Altersfreigabe</translation>
+        <translation>Film hat keine Altersfreigabe</translation>
     </message>
     <message>
         <source>No Certification</source>
-        <translation type="obsolete">Keine Freigabe</translation>
+        <translation>Keine Freigabe</translation>
     </message>
     <message>
         <source>Certification</source>
-        <translation type="obsolete">Freigabe</translation>
+        <translation>Freigabe</translation>
     </message>
     <message>
         <source>Movie has no Genre</source>
-        <translation type="obsolete">Film hat kein Genre</translation>
+        <translation>Film hat kein Genre</translation>
     </message>
     <message>
         <source>No Genre</source>
-        <translation type="obsolete">Kein Genre</translation>
+        <translation>Kein Genre</translation>
     </message>
     <message>
         <source>Genre</source>
-        <translation type="obsolete">Genre</translation>
+        <translation>Genre</translation>
     </message>
     <message>
         <source>Genre &quot;%1&quot;</source>
-        <translation type="obsolete">Genre &quot;%1&quot;</translation>
+        <translation>Genre &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Released %1</source>
-        <translation type="obsolete">Erschienen %1</translation>
+        <translation>Erschienen %1</translation>
     </message>
     <message>
         <source>Year</source>
-        <translation type="obsolete">Jahr</translation>
+        <translation>Jahr</translation>
     </message>
     <message>
         <source>Certification &quot;%1&quot;</source>
-        <translation type="obsolete">Freigabe &quot;%1&quot;</translation>
+        <translation>Freigabe &quot;%1&quot;</translation>
     </message>
 </context>
 <context>
     <name>GenreWidget</name>
     <message>
         <source>Form</source>
-        <translation type="obsolete">Form</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Genre</source>
-        <translation type="obsolete">Genre</translation>
+        <translation>Genre</translation>
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="obsolete">Nachricht</translation>
+        <translation>Nachricht</translation>
     </message>
     <message>
         <source>Movie</source>
-        <translation type="obsolete">Film</translation>
+        <translation>Film</translation>
     </message>
     <message>
         <source>Add Movie</source>
-        <translation type="obsolete">Film hinzufügen</translation>
+        <translation>Film hinzufügen</translation>
     </message>
     <message>
         <source>Remove Current Movie</source>
-        <translation type="obsolete">Ausgewählten Film entfernen</translation>
+        <translation>Ausgewählten Film entfernen</translation>
     </message>
     <message>
         <source>Double click a genre to rename it, right click to delete. If you want to merge two genres just give them the same name.</source>
-        <translation type="obsolete">Klick ein Genre doppelt an, um es umzubenennen. Wenn du zwei Genres zusammenfügen willst, gib ihnen einfach den gleichen Namen.</translation>
+        <translation>Klick ein Genre doppelt an, um es umzubenennen. Wenn du zwei Genres zusammenfügen willst, gib ihnen einfach den gleichen Namen.</translation>
     </message>
     <message>
         <source>Please keep in mind that the changes you make here (renaming or deleting genres) will be made for every movie.</source>
-        <translation type="obsolete">Bitte denk daran, dass die Änderungen, die du hier machst, für alle Filme angewendet werden.</translation>
+        <translation>Bitte denk daran, dass die Änderungen, die du hier machst, für alle Filme angewendet werden.</translation>
     </message>
     <message>
         <source>Delete Genre</source>
-        <translation type="obsolete">Genre Löschen</translation>
+        <translation>Genre Löschen</translation>
     </message>
     <message>
         <source>All Movies Saved</source>
-        <translation type="obsolete">Alle Filme gespeichert</translation>
+        <translation>Alle Filme gespeichert</translation>
     </message>
 </context>
 <context>
     <name>ImageDialog</name>
     <message>
         <source>Choose an Image</source>
-        <translation type="obsolete">Wähle ein Bild aus</translation>
+        <translation>Wähle ein Bild aus</translation>
     </message>
     <message>
         <source>Neue Spalte</source>
-        <translation type="obsolete">Neue Spalte</translation>
+        <translation>Neue Spalte</translation>
     </message>
     <message>
         <source>Zoom out</source>
-        <translation type="obsolete">Verkleinern</translation>
+        <translation>Verkleinern</translation>
     </message>
     <message>
         <source>Preview size</source>
-        <translation type="obsolete">Vorschaugröße</translation>
+        <translation>Vorschaugröße</translation>
     </message>
     <message>
         <source>Zoom in</source>
-        <translation type="obsolete">Vergrößern</translation>
+        <translation>Vergrößern</translation>
     </message>
     <message>
         <source>Loading...</source>
-        <translation type="obsolete">Lade...</translation>
+        <translation>Lade...</translation>
     </message>
     <message>
         <source>Choose Local Image</source>
-        <translation type="obsolete">Lokales Bild auswählen</translation>
+        <translation>Lokales Bild auswählen</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="obsolete">Schließen</translation>
+        <translation>Schließen</translation>
     </message>
     <message>
         <source>No images found</source>
-        <translation type="obsolete">Keine Bilder gefunden</translation>
+        <translation>Keine Bilder gefunden</translation>
     </message>
     <message>
         <source>Choose Image</source>
-        <translation type="obsolete">Bild auswählen</translation>
+        <translation>Bild auswählen</translation>
     </message>
     <message>
         <source>Images (*.jpg *.jpeg *.png)</source>
-        <translation type="obsolete">Bilder (*.jpg *.jpeg *.png)</translation>
+        <translation>Bilder (*.jpg *.jpeg *.png)</translation>
     </message>
 </context>
 <context>
     <name>ImageLabel</name>
     <message>
         <source>Form</source>
-        <translation type="obsolete">Form</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Resolution</source>
-        <translation type="obsolete">Auflösung</translation>
+        <translation>Auflösung</translation>
     </message>
 </context>
 <context>
     <name>ImagePreviewDialog</name>
     <message>
         <source>Preview</source>
-        <translation type="obsolete">Vorschau</translation>
+        <translation>Vorschau</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="obsolete">Schließen</translation>
+        <translation>Schließen</translation>
     </message>
 </context>
 <context>
@@ -789,87 +789,87 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>MediaElch</source>
-        <translation type="obsolete">MediaElch</translation>
+        <translation>MediaElch</translation>
     </message>
     <message>
         <source>Movies</source>
-        <translation type="obsolete">Filme</translation>
+        <translation>Filme</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="obsolete">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Movie Sets</source>
-        <translation type="obsolete">Zusammenstellungen</translation>
+        <translation>Zusammenstellungen</translation>
     </message>
     <message>
         <source>Genres</source>
-        <translation type="obsolete">Genres</translation>
+        <translation>Genres</translation>
     </message>
     <message>
         <source>Certifications</source>
-        <translation type="obsolete">Freigaben</translation>
+        <translation>Freigaben</translation>
     </message>
     <message>
         <source>Shows</source>
-        <translation type="obsolete">Serien</translation>
+        <translation>Serien</translation>
     </message>
     <message>
         <source>TV Shows</source>
-        <translation type="obsolete">TV Serien</translation>
+        <translation>TV Serien</translation>
     </message>
     <message>
         <source>Concerts</source>
-        <translation type="obsolete">Konzerte</translation>
+        <translation>Konzerte</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="obsolete">Einstellungen</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation type="obsolete">Beenden</translation>
+        <translation>Beenden</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="obsolete">Über</translation>
+        <translation>Über</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="obsolete">Suche</translation>
+        <translation>Suche</translation>
     </message>
     <message>
         <source>Search (%1)</source>
-        <translation type="obsolete">Suche (%1)</translation>
+        <translation>Suche (%1)</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="obsolete">Speichern</translation>
+        <translation>Speichern</translation>
     </message>
     <message>
         <source>Save (%1)</source>
-        <translation type="obsolete">Speichern (%1)</translation>
+        <translation>Speichern (%1)</translation>
     </message>
     <message>
         <source>Save All</source>
-        <translation type="obsolete">Alle Speichern</translation>
+        <translation>Alle Speichern</translation>
     </message>
     <message>
         <source>Save All (%1)</source>
-        <translation type="obsolete">Alle Speichern (%1)</translation>
+        <translation>Alle Speichern (%1)</translation>
     </message>
     <message>
         <source>Reload all files (%1)</source>
-        <translation type="obsolete">Lädt alle Dateien neu (%1)</translation>
+        <translation>Lädt alle Dateien neu (%1)</translation>
     </message>
     <message>
         <source>Support</source>
-        <translation type="obsolete">Support</translation>
+        <translation>Support</translation>
     </message>
     <message>
         <source>Reload</source>
-        <translation type="obsolete">Neu laden</translation>
+        <translation>Neu laden</translation>
     </message>
     <message>
         <source>Reload Movie List</source>
@@ -892,18 +892,18 @@ p, li { white-space: pre-wrap; }
     <name>Message</name>
     <message>
         <source>Form</source>
-        <translation type="obsolete">Form</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="obsolete">Nachricht</translation>
+        <translation>Nachricht</translation>
     </message>
 </context>
 <context>
     <name>MessageBox</name>
     <message>
         <source>Form</source>
-        <translation type="obsolete">Form</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -914,14 +914,14 @@ p, li { white-space: pre-wrap; }
     <name>MovieDelegate</name>
     <message>
         <source>new</source>
-        <translation type="obsolete">neu</translation>
+        <translation>neu</translation>
     </message>
 </context>
 <context>
     <name>MovieFileSearcher</name>
     <message>
         <source>Searching for Movies...</source>
-        <translation type="obsolete">Suche nach Filmen...</translation>
+        <translation>Suche nach Filmen...</translation>
     </message>
 </context>
 <context>
@@ -979,117 +979,117 @@ p, li { white-space: pre-wrap; }
     <name>MovieListDialog</name>
     <message>
         <source>Choose a movie</source>
-        <translation type="obsolete">Wähle einen Film aus</translation>
+        <translation>Wähle einen Film aus</translation>
     </message>
     <message>
         <source>Result</source>
-        <translation type="obsolete">Ergebnis</translation>
+        <translation>Ergebnis</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="obsolete">Schließen</translation>
+        <translation>Schließen</translation>
     </message>
 </context>
 <context>
     <name>MovieSearch</name>
     <message>
         <source>Search Result</source>
-        <translation type="obsolete">Suchergebnis</translation>
+        <translation>Suchergebnis</translation>
     </message>
     <message>
         <source>Scraper</source>
-        <translation type="obsolete">Scraper</translation>
+        <translation>Scraper</translation>
     </message>
     <message>
         <source>Result</source>
-        <translation type="obsolete">Ergebnis</translation>
+        <translation>Ergebnis</translation>
     </message>
     <message>
         <source>Infos to load</source>
-        <translation type="obsolete">Lade Infos</translation>
+        <translation>Lade Infos</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="obsolete">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <source>Tagline</source>
-        <translation type="obsolete">Tagline</translation>
+        <translation>Tagline</translation>
     </message>
     <message>
         <source>Rating</source>
-        <translation type="obsolete">Bewertung</translation>
+        <translation>Bewertung</translation>
     </message>
     <message>
         <source>Released</source>
-        <translation type="obsolete">Erschienen</translation>
+        <translation>Erschienen</translation>
     </message>
     <message>
         <source>Runtime</source>
-        <translation type="obsolete">Laufzeit</translation>
+        <translation>Laufzeit</translation>
     </message>
     <message>
         <source>Certification</source>
-        <translation type="obsolete">Freigabe</translation>
+        <translation>Freigabe</translation>
     </message>
     <message>
         <source>Trailer</source>
-        <translation type="obsolete">Trailer</translation>
+        <translation>Trailer</translation>
     </message>
     <message>
         <source>Writer</source>
-        <translation type="obsolete">Drehbuch</translation>
+        <translation>Drehbuch</translation>
     </message>
     <message>
         <source>Director</source>
-        <translation type="obsolete">Regisseur</translation>
+        <translation>Regisseur</translation>
     </message>
     <message>
         <source>Overview</source>
-        <translation type="obsolete">Inhalt</translation>
+        <translation>Inhalt</translation>
     </message>
     <message>
         <source>Poster</source>
-        <translation type="obsolete">Poster</translation>
+        <translation>Poster</translation>
     </message>
     <message>
         <source>Backdrop</source>
-        <translation type="obsolete">Fanart</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <source>Actors</source>
-        <translation type="obsolete">Schauspieler</translation>
+        <translation>Schauspieler</translation>
     </message>
     <message>
         <source>Genres</source>
-        <translation type="obsolete">Genres</translation>
+        <translation>Genres</translation>
     </message>
     <message>
         <source>Studios</source>
-        <translation type="obsolete">Studios</translation>
+        <translation>Studios</translation>
     </message>
     <message>
         <source>Countries</source>
-        <translation type="obsolete">Länder</translation>
+        <translation>Länder</translation>
     </message>
     <message>
         <source>(Un)Check all</source>
-        <translation type="obsolete">Alle aus/abwählen</translation>
+        <translation>Alle aus/abwählen</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="obsolete">Schließen</translation>
+        <translation>Schließen</translation>
     </message>
 </context>
 <context>
     <name>MovieWidget</name>
     <message>
         <source>Form</source>
-        <translation type="obsolete">Form</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Movie Name</source>
-        <translation type="obsolete">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <source>Load Information from Scraper</source>
@@ -1101,71 +1101,71 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Information</source>
-        <translation type="obsolete">Informationen</translation>
+        <translation>Informationen</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="obsolete">Dateien</translation>
+        <translation>Dateien</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="obsolete">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <source>Original Name</source>
-        <translation type="obsolete">Original Titel</translation>
+        <translation>Original Titel</translation>
     </message>
     <message>
         <source>Set</source>
-        <translation type="obsolete">Set</translation>
+        <translation>Set</translation>
     </message>
     <message>
         <source>Tagline</source>
-        <translation type="obsolete">Tagline</translation>
+        <translation>Tagline</translation>
     </message>
     <message>
         <source>Rating</source>
-        <translation type="obsolete">Bewertung</translation>
+        <translation>Bewertung</translation>
     </message>
     <message>
         <source>Released</source>
-        <translation type="obsolete">Erschienen</translation>
+        <translation>Erschienen</translation>
     </message>
     <message>
         <source>yyyy</source>
-        <translation type="obsolete">yyyy</translation>
+        <translation>yyyy</translation>
     </message>
     <message>
         <source>Runtime</source>
-        <translation type="obsolete">Laufzeit</translation>
+        <translation>Laufzeit</translation>
     </message>
     <message>
         <source>Certification</source>
-        <translation type="obsolete">Freigabe</translation>
+        <translation>Freigabe</translation>
     </message>
     <message>
         <source>Movie has changed. Click to revert changes.</source>
-        <translation type="obsolete">Mache Änderungen an diesem Film rückgängig.</translation>
+        <translation>Mache Änderungen an diesem Film rückgängig.</translation>
     </message>
     <message>
         <source>Trailer</source>
-        <translation type="obsolete">Trailer</translation>
+        <translation>Trailer</translation>
     </message>
     <message>
         <source>Play Count</source>
-        <translation type="obsolete">Wiedergaben</translation>
+        <translation>Wiedergaben</translation>
     </message>
     <message>
         <source>Last Played</source>
-        <translation type="obsolete">Letzte Wiedergabe</translation>
+        <translation>Letzte Wiedergabe</translation>
     </message>
     <message>
         <source>Overview</source>
-        <translation type="obsolete">Inhalt</translation>
+        <translation>Inhalt</translation>
     </message>
     <message>
         <source>Watched</source>
-        <translation type="obsolete">Gesehen</translation>
+        <translation>Gesehen</translation>
     </message>
     <message>
         <source>Minutes</source>
@@ -1173,147 +1173,147 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source> Minutes</source>
-        <translation type="obsolete"> Minuten</translation>
+        <translation> Minuten</translation>
     </message>
     <message>
         <source>Sort Title</source>
-        <translation type="obsolete">Titel für Sortierung</translation>
+        <translation>Titel für Sortierung</translation>
     </message>
     <message>
         <source>Director</source>
-        <translation type="obsolete">Regisseur</translation>
+        <translation>Regisseur</translation>
     </message>
     <message>
         <source>Writer</source>
-        <translation type="obsolete">Drehbuch</translation>
+        <translation>Drehbuch</translation>
     </message>
     <message>
         <source>Extended</source>
-        <translation type="obsolete">Erweitert</translation>
+        <translation>Erweitert</translation>
     </message>
     <message>
         <source>Genre</source>
-        <translation type="obsolete">Genre</translation>
+        <translation>Genre</translation>
     </message>
     <message>
         <source>Add Genre</source>
-        <translation type="obsolete">Genre hinzufügen</translation>
+        <translation>Genre hinzufügen</translation>
     </message>
     <message>
         <source>Remove Genre</source>
-        <translation type="obsolete">Genre entfernen</translation>
+        <translation>Genre entfernen</translation>
     </message>
     <message>
         <source>Genres</source>
-        <translation type="obsolete">Genres</translation>
+        <translation>Genres</translation>
     </message>
     <message>
         <source>Studio</source>
-        <translation type="obsolete">Studio</translation>
+        <translation>Studio</translation>
     </message>
     <message>
         <source>Add Studio</source>
-        <translation type="obsolete">Studio hinzufügen</translation>
+        <translation>Studio hinzufügen</translation>
     </message>
     <message>
         <source>Remove Studio</source>
-        <translation type="obsolete">Studio entfernen</translation>
+        <translation>Studio entfernen</translation>
     </message>
     <message>
         <source>Studios</source>
-        <translation type="obsolete">Studios</translation>
+        <translation>Studios</translation>
     </message>
     <message>
         <source>Country</source>
-        <translation type="obsolete">Land</translation>
+        <translation>Land</translation>
     </message>
     <message>
         <source>Add Country</source>
-        <translation type="obsolete">Land hinzufügen</translation>
+        <translation>Land hinzufügen</translation>
     </message>
     <message>
         <source>Remove Country</source>
-        <translation type="obsolete">Land entfernen</translation>
+        <translation>Land entfernen</translation>
     </message>
     <message>
         <source>Countries</source>
-        <translation type="obsolete">Länder</translation>
+        <translation>Länder</translation>
     </message>
     <message>
         <source>Actor</source>
-        <translation type="obsolete">Schauspieler</translation>
+        <translation>Schauspieler</translation>
     </message>
     <message>
         <source>Role</source>
-        <translation type="obsolete">Rolle</translation>
+        <translation>Rolle</translation>
     </message>
     <message>
         <source>Add Actor</source>
-        <translation type="obsolete">Schauspieler hinzufügen</translation>
+        <translation>Schauspieler hinzufügen</translation>
     </message>
     <message>
         <source>Remove Actor</source>
-        <translation type="obsolete">Schauspieler entfernen</translation>
+        <translation>Schauspieler entfernen</translation>
     </message>
     <message>
         <source>Click to change</source>
-        <translation type="obsolete">Zum Ändern klicken</translation>
+        <translation>Zum Ändern klicken</translation>
     </message>
     <message>
         <source>Actors</source>
-        <translation type="obsolete">Schauspieler</translation>
+        <translation>Schauspieler</translation>
     </message>
     <message>
         <source>Poster</source>
-        <translation type="obsolete">Poster</translation>
+        <translation>Poster</translation>
     </message>
     <message>
         <source>Click to Change</source>
-        <translation type="obsolete">Zum Ändern klicken</translation>
+        <translation>Zum Ändern klicken</translation>
     </message>
     <message>
         <source>Full preview</source>
-        <translation type="obsolete">Vorschau</translation>
+        <translation>Vorschau</translation>
     </message>
     <message>
         <source>Resolution</source>
-        <translation type="obsolete">Auflösung</translation>
+        <translation>Auflösung</translation>
     </message>
     <message>
         <source>Backdrop</source>
-        <translation type="obsolete">Fanart</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation type="obsolete">&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
     <message>
         <source>All Movies Saved</source>
-        <translation type="obsolete">Alle Filme gespeichert</translation>
+        <translation>Alle Filme gespeichert</translation>
     </message>
     <message>
         <source>Unknown Actor</source>
-        <translation type="obsolete">Unbekannter Schauspieler</translation>
+        <translation>Unbekannter Schauspieler</translation>
     </message>
     <message>
         <source>Unknown Role</source>
-        <translation type="obsolete">Unbekannte Rolle</translation>
+        <translation>Unbekannte Rolle</translation>
     </message>
     <message>
         <source>Unknown Genre</source>
-        <translation type="obsolete">Unbekanntes Genre</translation>
+        <translation>Unbekanntes Genre</translation>
     </message>
     <message>
         <source>Unknown Country</source>
-        <translation type="obsolete">Unbekanntes Land</translation>
+        <translation>Unbekanntes Land</translation>
     </message>
     <message>
         <source>Choose Image</source>
-        <translation type="obsolete">Bild auswählen</translation>
+        <translation>Bild auswählen</translation>
     </message>
     <message>
         <source>Images (*.jpg *.jpeg)</source>
-        <translation type="obsolete">Bilder (*.jpg *.jpeg)</translation>
+        <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
     <message>
         <source>Unkown Role</source>
@@ -1325,7 +1325,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Unknown Studio</source>
-        <translation type="obsolete">Unbekanntes Studio</translation>
+        <translation>Unbekanntes Studio</translation>
     </message>
     <message>
         <source>Unkown Country</source>
@@ -1333,18 +1333,18 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Downloading Missing Actor Images...</source>
-        <translation type="obsolete">Lade fehlende Schauspieler Bilder...</translation>
+        <translation>Lade fehlende Schauspieler Bilder...</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
         <source>Logfile could not be openened</source>
-        <translation type="obsolete">Logdatei konnte nicht geöffnet werden</translation>
+        <translation>Logdatei konnte nicht geöffnet werden</translation>
     </message>
     <message>
         <source>The logfile %1 could not be openend for writing.</source>
-        <translation type="obsolete">Die Logdatei %1 konnte nicht zum Schreiben geöffnet werden.</translation>
+        <translation>Die Logdatei %1 konnte nicht zum Schreiben geöffnet werden.</translation>
     </message>
 </context>
 <context>
@@ -1372,71 +1372,71 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     <name>SetsWidget</name>
     <message>
         <source>Form</source>
-        <translation type="obsolete">Form</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Set</source>
-        <translation type="obsolete">Zusammenstellung</translation>
+        <translation>Zusammenstellung</translation>
     </message>
     <message>
         <source>Set Name</source>
-        <translation type="obsolete">Zusammenstellung</translation>
+        <translation>Zusammenstellung</translation>
     </message>
     <message>
         <source>Movie</source>
-        <translation type="obsolete">Film</translation>
+        <translation>Film</translation>
     </message>
     <message>
         <source>Sorttitle</source>
-        <translation type="obsolete">Sortierung</translation>
+        <translation>Sortierung</translation>
     </message>
     <message>
         <source>Add movie to set</source>
-        <translation type="obsolete">Film zur Zusammenstellung hinzufügen</translation>
+        <translation>Film zur Zusammenstellung hinzufügen</translation>
     </message>
     <message>
         <source>Remove selected movie from set</source>
-        <translation type="obsolete">Film aus Zusammenstellung entfernen</translation>
+        <translation>Film aus Zusammenstellung entfernen</translation>
     </message>
     <message>
         <source>Poster</source>
-        <translation type="obsolete">Poster</translation>
+        <translation>Poster</translation>
     </message>
     <message>
         <source>Click to Change</source>
-        <translation type="obsolete">Zum Ändern klicken</translation>
+        <translation>Zum Ändern klicken</translation>
     </message>
     <message>
         <source>Full preview</source>
-        <translation type="obsolete">Vorschau</translation>
+        <translation>Vorschau</translation>
     </message>
     <message>
         <source>Resolution</source>
-        <translation type="obsolete">Auflösung</translation>
+        <translation>Auflösung</translation>
     </message>
     <message>
         <source>Backdrop</source>
-        <translation type="obsolete">Fanart</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <source>MediaElch</source>
-        <translation type="obsolete">MediaElch</translation>
+        <translation>MediaElch</translation>
     </message>
     <message>
         <source>Setting Posters and Backdrops is only possible with XBMC MySQL and SQLite interfaces.</source>
-        <translation type="obsolete">Das Setzen von Postern und Fanarts ist nur mit den XBMC MySQL und SQLite Interfaces möglich.</translation>
+        <translation>Das Setzen von Postern und Fanarts ist nur mit den XBMC MySQL und SQLite Interfaces möglich.</translation>
     </message>
     <message>
         <source>Choose Image</source>
-        <translation type="obsolete">Bild auswählen</translation>
+        <translation>Bild auswählen</translation>
     </message>
     <message>
         <source>Images (*.jpg *.jpeg)</source>
-        <translation type="obsolete">Bilder (*.jpg *.jpeg)</translation>
+        <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
     <message>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation type="obsolete">&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
 </context>
 <context>
@@ -1745,31 +1745,31 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <source>Items are in separate folders</source>
-        <translation type="obsolete">In separaten Verzeichnissen</translation>
+        <translation>In separaten Verzeichnissen</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="obsolete">Sprache</translation>
+        <translation>Sprache</translation>
     </message>
     <message>
         <source>Logfile</source>
-        <translation type="obsolete">Logdatei</translation>
+        <translation>Logdatei</translation>
     </message>
     <message>
         <source>Logfiles (*.log *.txt)</source>
-        <translation type="obsolete">Logdateien (*.log *.txt)</translation>
+        <translation>Logdateien (*.log *.txt)</translation>
     </message>
     <message>
         <source>Choose a directory containing your movies, TV show or concerts</source>
-        <translation type="obsolete">Wähle ein Verzeichnis aus, dass deine Filme, Serien oder Konzerte enthält</translation>
+        <translation>Wähle ein Verzeichnis aus, dass deine Filme, Serien oder Konzerte enthält</translation>
     </message>
     <message>
         <source>Movies</source>
-        <translation type="obsolete">Filme</translation>
+        <translation>Filme</translation>
     </message>
     <message>
         <source>Concerts</source>
-        <translation type="obsolete">Konzerte</translation>
+        <translation>Konzerte</translation>
     </message>
     <message>
         <source>Add one or more directories containing your movie files.</source>
@@ -1777,23 +1777,23 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <source>Path</source>
-        <translation type="obsolete">Verzeichnis</translation>
+        <translation>Verzeichnis</translation>
     </message>
     <message>
         <source>MediaCenter Path</source>
-        <translation type="obsolete">MediaCenter Verzeichnis</translation>
+        <translation>MediaCenter Verzeichnis</translation>
     </message>
     <message>
         <source>Sep. folders</source>
-        <translation type="obsolete">Sep. Verzeichnisse</translation>
+        <translation>Sep. Verzeichnisse</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="obsolete">Hinzufügen</translation>
+        <translation>Hinzufügen</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="obsolete">Entfernen</translation>
+        <translation>Entfernen</translation>
     </message>
     <message>
         <source>MediaCenter Interface</source>
@@ -1801,47 +1801,47 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <source>Select the MediaCenter to use.</source>
-        <translation type="obsolete">Wähle ein Interface zu deinem MediaCenter aus.</translation>
+        <translation>Wähle ein Interface zu deinem MediaCenter aus.</translation>
     </message>
     <message>
         <source>XBMC XML</source>
-        <translation type="obsolete">XBMC XML</translation>
+        <translation>XBMC XML</translation>
     </message>
     <message>
         <source>XBMC MySQL</source>
-        <translation type="obsolete">XBMC MySQL</translation>
+        <translation>XBMC MySQL</translation>
     </message>
     <message>
         <source>Host</source>
-        <translation type="obsolete">Host</translation>
+        <translation>Host</translation>
     </message>
     <message>
         <source>Database</source>
-        <translation type="obsolete">Datenbank</translation>
+        <translation>Datenbank</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="obsolete">Benutzername</translation>
+        <translation>Benutzername</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="obsolete">Passwort</translation>
+        <translation>Passwort</translation>
     </message>
     <message>
         <source>XBMC SQLite</source>
-        <translation type="obsolete">XBMC SQLite</translation>
+        <translation>XBMC SQLite</translation>
     </message>
     <message>
         <source>Select</source>
-        <translation type="obsolete">Auswählen</translation>
+        <translation>Auswählen</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="obsolete">Einstellungen</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <source>Global Settings</source>
-        <translation type="obsolete">Globale Einstellungen</translation>
+        <translation>Globale Einstellungen</translation>
     </message>
     <message>
         <source>Please restart MediaElch after saving if you changed the MediaCenter interface, debug mode or added/removed directories.</source>
@@ -1849,11 +1849,11 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <source>Add one or more directories containing your movie, TV Shows or concerts. TV Show Episodes have to be in subfolders with the name of the show.</source>
-        <translation type="obsolete">Füge Verzeichnisse hinzu, die deine Filme, Serien oder Konzerte enthalten. Bei Serien müssen Episoden in Unterverzeichnissen mit dem Namen der Serie sein.</translation>
+        <translation>Füge Verzeichnisse hinzu, die deine Filme, Serien oder Konzerte enthalten. Bei Serien müssen Episoden in Unterverzeichnissen mit dem Namen der Serie sein.</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="obsolete">Inhalt</translation>
+        <translation>Inhalt</translation>
     </message>
     <message>
         <source>Debug</source>
@@ -1865,23 +1865,23 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <source>Please hit the &quot;Reload&quot; button after adding or removing directories. If you changed the debug mode setting please restart MediaElch.</source>
-        <translation type="obsolete">Bitte klick auf &quot;Neu Laden&quot; nach dem du Verzeichnisse hinzugefügt oder entfernt hast. Wenn du den Debug Modus aktiviert oder deaktiviert hast, starte MediaElch bitte neu.</translation>
+        <translation>Bitte klick auf &quot;Neu Laden&quot; nach dem du Verzeichnisse hinzugefügt oder entfernt hast. Wenn du den Debug Modus aktiviert oder deaktiviert hast, starte MediaElch bitte neu.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Debug&lt;/b&gt; When debug mode is activated debug messages are written to logfile you set. Please use this option only if you encountered problems with MediaElch as the logfile can get very big. </source>
-        <translation type="obsolete">&lt;b&gt;Debug&lt;/b&gt; Wenn der Debug Modus aktiviert ist, werden Debug Ausgaben in die Logdatei geschrieben, die du angegeben hast. Bitte benutze diese Option nur, wenn du ein Problem mit MediaElch entdeckt hast, da die Logdatei schnell sehr groß werden kann.</translation>
+        <translation>&lt;b&gt;Debug&lt;/b&gt; Wenn der Debug Modus aktiviert ist, werden Debug Ausgaben in die Logdatei geschrieben, die du angegeben hast. Bitte benutze diese Option nur, wenn du ein Problem mit MediaElch entdeckt hast, da die Logdatei schnell sehr groß werden kann.</translation>
     </message>
     <message>
         <source>Activate debug mode</source>
-        <translation type="obsolete">Debug Modus aktivieren</translation>
+        <translation>Debug Modus aktivieren</translation>
     </message>
     <message>
         <source>Logfile: </source>
-        <translation type="obsolete">Logdatei:</translation>
+        <translation>Logdatei:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Cache&lt;/b&gt; Activating the cache will improve start up speed. In some cases this might not work as aspected. If new files won&apos;t show up, try clearing the cache or disabling it completely.</source>
-        <translation type="obsolete">&lt;b&gt;Cache&lt;/b&gt; Der Cache beschleunigt die Startzeit von MediaElch. Unter Umständen können aber Probleme auftreten. Wenn neue Dateien nicht erscheinen, versuche den Cache zu leeren oder ganz zu deaktivieren.</translation>
+        <translation>&lt;b&gt;Cache&lt;/b&gt; Der Cache beschleunigt die Startzeit von MediaElch. Unter Umständen können aber Probleme auftreten. Wenn neue Dateien nicht erscheinen, versuche den Cache zu leeren oder ganz zu deaktivieren.</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort Movies Into Seperate Directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -1889,148 +1889,148 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <source>Use Cache</source>
-        <translation type="obsolete">Cache aktivieren</translation>
+        <translation>Cache aktivieren</translation>
     </message>
     <message>
         <source>Clear Cache</source>
-        <translation type="obsolete">Cache leeren</translation>
+        <translation>Cache leeren</translation>
     </message>
     <message>
         <source>MediaCenter</source>
-        <translation type="obsolete">MediaCenter</translation>
+        <translation>MediaCenter</translation>
     </message>
     <message>
         <source>Please hit the &quot;Reload&quot; button after changing the Media Center Interface.</source>
-        <translation type="obsolete">Bitte klick auf &quot;Neu Laden&quot; nach dem du das Media Center Interface geändert hast.</translation>
+        <translation>Bitte klick auf &quot;Neu Laden&quot; nach dem du das Media Center Interface geändert hast.</translation>
     </message>
     <message>
         <source>Select the filenames you wish to use for loading and saving. Enable/disable them using the checkbox in front, set priorities through sorting with drag and drop.</source>
-        <translation type="obsolete">Wähle die Dateinamen aus, die du zum Speichern und Laden benutzen möchtest. Aktiviere/deaktiviere sie durch die Checkboxen vorne, setze die Priorität durch Sortieren per drag&apos;n&apos;drop.</translation>
+        <translation>Wähle die Dateinamen aus, die du zum Speichern und Laden benutzen möchtest. Aktiviere/deaktiviere sie durch die Checkboxen vorne, setze die Priorität durch Sortieren per drag&apos;n&apos;drop.</translation>
     </message>
     <message>
         <source>Movie NFO</source>
-        <translation type="obsolete">Film NFO</translation>
+        <translation>Film NFO</translation>
     </message>
     <message>
         <source>&lt;movie filename&gt;.nfo</source>
-        <translation type="obsolete">&lt;movie filename&gt;.nfo</translation>
+        <translation>&lt;movie filename&gt;.nfo</translation>
     </message>
     <message>
         <source>movie.nfo</source>
-        <translation type="obsolete">movie.nfo</translation>
+        <translation>movie.nfo</translation>
     </message>
     <message>
         <source>Movie Posters</source>
-        <translation type="obsolete">Film Poster</translation>
+        <translation>Film Poster</translation>
     </message>
     <message>
         <source>&lt;movie filename&gt;.tbn</source>
-        <translation type="obsolete">&lt;movie filename&gt;.tbn</translation>
+        <translation>&lt;movie filename&gt;.tbn</translation>
     </message>
     <message>
         <source>movie.jpg</source>
-        <translation type="obsolete">movie.jpg</translation>
+        <translation>movie.jpg</translation>
     </message>
     <message>
         <source>movie.tbn</source>
-        <translation type="obsolete">movie.tbn</translation>
+        <translation>movie.tbn</translation>
     </message>
     <message>
         <source>poster.jpg</source>
-        <translation type="obsolete">poster.jpg</translation>
+        <translation>poster.jpg</translation>
     </message>
     <message>
         <source>poster.tbn</source>
-        <translation type="obsolete">poster.tbn</translation>
+        <translation>poster.tbn</translation>
     </message>
     <message>
         <source>folder.jpg</source>
-        <translation type="obsolete">folder.jpg</translation>
+        <translation>folder.jpg</translation>
     </message>
     <message>
         <source>Movie Fanarts</source>
-        <translation type="obsolete">Film Fanarts</translation>
+        <translation>Film Fanarts</translation>
     </message>
     <message>
         <source>&lt;movie filename&gt;-fanart.jpg</source>
-        <translation type="obsolete">&lt;movie filename&gt;-fanart.jpg</translation>
+        <translation>&lt;movie filename&gt;-fanart.jpg</translation>
     </message>
     <message>
         <source>fanart.jpg</source>
-        <translation type="obsolete">fanart.jpg</translation>
+        <translation>fanart.jpg</translation>
     </message>
     <message>
         <source>TV Show Poster</source>
-        <translation type="obsolete">Serien Poster</translation>
+        <translation>Serien Poster</translation>
     </message>
     <message>
         <source>season-all.tbn</source>
-        <translation type="obsolete">season-all.tbn</translation>
+        <translation>season-all.tbn</translation>
     </message>
     <message>
         <source>TV Show Banner</source>
-        <translation type="obsolete">Serien Banner</translation>
+        <translation>Serien Banner</translation>
     </message>
     <message>
         <source>banner.jpg</source>
-        <translation type="obsolete">banner.jpg</translation>
+        <translation>banner.jpg</translation>
     </message>
     <message>
         <source>Set the path where Thumbnails are stored (e.g. ~/.xbmc/userdata/Thumbnails)</source>
-        <translation type="obsolete">Wähle das Verzeichnis aus, in dem die XBMC Thumbnails gespeichert werden (z.B. ~/.xbmc/userdata/Thumbnails)</translation>
+        <translation>Wähle das Verzeichnis aus, in dem die XBMC Thumbnails gespeichert werden (z.B. ~/.xbmc/userdata/Thumbnails)</translation>
     </message>
     <message>
         <source>MediaCenter Settings</source>
-        <translation type="obsolete">MediaCenter Einstellungen</translation>
+        <translation>MediaCenter Einstellungen</translation>
     </message>
     <message>
         <source>Stores YouTube URLs like &quot;http://www.youtube.com/watch?v=123&quot; as &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</source>
-        <translation type="obsolete">Formatiert YouTube URLs wie &quot;http://www.youtube.com/watch?v=123&quot; als &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</translation>
+        <translation>Formatiert YouTube URLs wie &quot;http://www.youtube.com/watch?v=123&quot; als &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</translation>
     </message>
     <message>
         <source>Store trailer URLs in YouTube Plugin format</source>
-        <translation type="obsolete">Speichere Trailer URLs im YouTube Plugin Format</translation>
+        <translation>Speichere Trailer URLs im YouTube Plugin Format</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="obsolete">Proxy</translation>
+        <translation>Proxy</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="obsolete">Port</translation>
+        <translation>Port</translation>
     </message>
     <message>
         <source>Enable Proxy</source>
-        <translation type="obsolete">Proxy verwenden</translation>
+        <translation>Proxy verwenden</translation>
     </message>
     <message>
         <source>Type</source>
         <comment>Proxy Type</comment>
-        <translation type="obsolete">Typ</translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="obsolete">HTTP</translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <source>SOCKS 5</source>
-        <translation type="obsolete">SOCKS5</translation>
+        <translation>SOCKS5</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="obsolete">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <source>Save Settings</source>
-        <translation type="obsolete">Einstellungen Speichern</translation>
+        <translation>Einstellungen Speichern</translation>
     </message>
     <message>
         <source>Scrapers</source>
-        <translation type="obsolete">Scraper</translation>
+        <translation>Scraper</translation>
     </message>
     <message>
         <source>TV Shows</source>
-        <translation type="obsolete">TV Serien</translation>
+        <translation>TV Serien</translation>
     </message>
     <message>
         <source>Add one or more directories containing your TV Shows. Episodes have to be in subfolders with the name of the show.</source>
@@ -2042,7 +2042,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <source>Settings saved</source>
-        <translation type="obsolete">Einstellungen gespeichert</translation>
+        <translation>Einstellungen gespeichert</translation>
     </message>
     <message>
         <source>Choose a directory containing your movies</source>
@@ -2054,22 +2054,54 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <source>SQLite Database *.db</source>
-        <translation type="obsolete">SQLite Datenbank *.db</translation>
+        <translation>SQLite Datenbank *.db</translation>
     </message>
     <message>
         <source>Choose a directory containing your Thumbnails</source>
-        <translation type="obsolete">Wähle das Verzeichnis aus, in dem die Thumbnails gespeichert werden</translation>
+        <translation>Wähle das Verzeichnis aus, in dem die Thumbnails gespeichert werden</translation>
+    </message>
+    <message>
+        <source>Organize</source>
+        <translation>Organisiere</translation>
+    </message>
+    <message>
+        <source>Words to exclude
+from media names
+(seperated by
+commas and non
+case-sensitive):</source>
+        <translation>Von Mediennamen
+auszuschließende
+Wörter (durch
+Kommas getrennt,
+case insensitive):</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Words to exclude from media names (seperated by commas and non case-sensitive)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort movies into separate directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SupportDialog</name>
     <message>
         <source>Support MediaElch</source>
-        <translation type="obsolete">Unterstütze MediaElch</translation>
+        <translation>Unterstütze MediaElch</translation>
     </message>
     <message>
         <source>If you like MediaElch and wish to support it you have the chance to do so! You can donate as much as you like via PayPal.</source>
-        <translation type="obsolete">Wenn du MediaElch unterstützen willst, kannst du es jetzt tun! Du kannst einen freien Betrag via PayPal spenden, es gibt keinen Mindestbetrag.</translation>
+        <translation>Wenn du MediaElch unterstützen willst, kannst du es jetzt tun! Du kannst einen freien Betrag via PayPal spenden, es gibt keinen Mindestbetrag.</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -2078,7 +2110,7 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Helvetica&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=6EU9GPSQ8PSUA&quot;&gt;&lt;img src=&quot;:/img/btn_donate_LG.gif&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Helvetica&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -2087,123 +2119,123 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>MediaElch makes use of various movie and tv show databases. These databases also need your help to keep their services up and running for free. If you don&apos;t want to donate you can also contribute information and missing artwork if possible.</source>
-        <translation type="obsolete">MediaElch nutzt verschiedene Film und TV Datenbanken. Diese Datenbanken brauchen ebenfalls deine Unterstützung, damit sie ihre Dienste weiterhin kostenlos anbieten können. Wenn du nicht spenden möchtest, kannst du trotzdem helfen, in dem du fehlende Informationen oder Bilder einfügst.</translation>
+        <translation>MediaElch nutzt verschiedene Film und TV Datenbanken. Diese Datenbanken brauchen ebenfalls deine Unterstützung, damit sie ihre Dienste weiterhin kostenlos anbieten können. Wenn du nicht spenden möchtest, kannst du trotzdem helfen, in dem du fehlende Informationen oder Bilder einfügst.</translation>
     </message>
     <message>
         <source>&lt;a href=&quot;http://www.themoviedb.org&quot;&gt;www.themoviedb.org&lt;/a&gt;
 </source>
-        <translation type="obsolete">&lt;a href=&quot;http://www.themoviedb.org&quot;&gt;www.themoviedb.org&lt;/a&gt;</translation>
+        <translation>&lt;a href=&quot;http://www.themoviedb.org&quot;&gt;www.themoviedb.org&lt;/a&gt;</translation>
     </message>
     <message>
         <source>&lt;a href=&quot;http://www.thetvdb.com&quot;&gt;TheTVDB.com&lt;/a&gt;</source>
-        <translation type="obsolete">&lt;a href=&quot;http://www.thetvdb.com&quot;&gt;TheTVDB.com&lt;/a&gt;</translation>
+        <translation>&lt;a href=&quot;http://www.thetvdb.com&quot;&gt;TheTVDB.com&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Thanks for your help and support!</source>
-        <translation type="obsolete">Danke für deine Hilfe und Unterstützung!</translation>
+        <translation>Danke für deine Hilfe und Unterstützung!</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="obsolete">Schließen</translation>
+        <translation>Schließen</translation>
     </message>
 </context>
 <context>
     <name>TMDb</name>
     <message>
         <source>Bulgarian</source>
-        <translation type="obsolete">Bulgarisch</translation>
+        <translation>Bulgarisch</translation>
     </message>
     <message>
         <source>Chinese</source>
-        <translation type="obsolete">Chinesisch</translation>
+        <translation>Chinesisch</translation>
     </message>
     <message>
         <source>Croatian</source>
-        <translation type="obsolete">Kroatisch</translation>
+        <translation>Kroatisch</translation>
     </message>
     <message>
         <source>Czech</source>
-        <translation type="obsolete">Tschechisch</translation>
+        <translation>Tschechisch</translation>
     </message>
     <message>
         <source>Danish</source>
-        <translation type="obsolete">Dänisch</translation>
+        <translation>Dänisch</translation>
     </message>
     <message>
         <source>Dutch</source>
-        <translation type="obsolete">Niederländisch</translation>
+        <translation>Niederländisch</translation>
     </message>
     <message>
         <source>English</source>
-        <translation type="obsolete">Englisch</translation>
+        <translation>Englisch</translation>
     </message>
     <message>
         <source>Finnish</source>
-        <translation type="obsolete">Finnisch</translation>
+        <translation>Finnisch</translation>
     </message>
     <message>
         <source>French</source>
-        <translation type="obsolete">Französisch</translation>
+        <translation>Französisch</translation>
     </message>
     <message>
         <source>German</source>
-        <translation type="obsolete">Deutsch</translation>
+        <translation>Deutsch</translation>
     </message>
     <message>
         <source>Greek</source>
-        <translation type="obsolete">Griechisch</translation>
+        <translation>Griechisch</translation>
     </message>
     <message>
         <source>Hebrew</source>
-        <translation type="obsolete">Hebräisch</translation>
+        <translation>Hebräisch</translation>
     </message>
     <message>
         <source>Hungarian</source>
-        <translation type="obsolete">Ungarisch</translation>
+        <translation>Ungarisch</translation>
     </message>
     <message>
         <source>Italian</source>
-        <translation type="obsolete">Italienisch</translation>
+        <translation>Italienisch</translation>
     </message>
     <message>
         <source>Japanese</source>
-        <translation type="obsolete">Japanisch</translation>
+        <translation>Japanisch</translation>
     </message>
     <message>
         <source>Korean</source>
-        <translation type="obsolete">Koreanisch</translation>
+        <translation>Koreanisch</translation>
     </message>
     <message>
         <source>Norwegian</source>
-        <translation type="obsolete">Norwegisch</translation>
+        <translation>Norwegisch</translation>
     </message>
     <message>
         <source>Polish</source>
-        <translation type="obsolete">Polnisch</translation>
+        <translation>Polnisch</translation>
     </message>
     <message>
         <source>Portuguese</source>
-        <translation type="obsolete">Portugiesisch</translation>
+        <translation>Portugiesisch</translation>
     </message>
     <message>
         <source>Russian</source>
-        <translation type="obsolete">Russisch</translation>
+        <translation>Russisch</translation>
     </message>
     <message>
         <source>Slovene</source>
-        <translation type="obsolete">Slowakisch</translation>
+        <translation>Slowakisch</translation>
     </message>
     <message>
         <source>Spanish</source>
-        <translation type="obsolete">Spanisch</translation>
+        <translation>Spanisch</translation>
     </message>
     <message>
         <source>Swedish</source>
-        <translation type="obsolete">Schwedisch</translation>
+        <translation>Schwedisch</translation>
     </message>
     <message>
         <source>Turkish</source>
-        <translation type="obsolete">Türkisch</translation>
+        <translation>Türkisch</translation>
     </message>
     <message>
         <source>Language</source>
@@ -2214,99 +2246,99 @@ p, li { white-space: pre-wrap; }
     <name>TMDbConcerts</name>
     <message>
         <source>Bulgarian</source>
-        <translation type="obsolete">Bulgarisch</translation>
+        <translation>Bulgarisch</translation>
     </message>
     <message>
         <source>Chinese</source>
-        <translation type="obsolete">Chinesisch</translation>
+        <translation>Chinesisch</translation>
     </message>
     <message>
         <source>Croatian</source>
-        <translation type="obsolete">Kroatisch</translation>
+        <translation>Kroatisch</translation>
     </message>
     <message>
         <source>Czech</source>
-        <translation type="obsolete">Tschechisch</translation>
+        <translation>Tschechisch</translation>
     </message>
     <message>
         <source>Danish</source>
-        <translation type="obsolete">Dänisch</translation>
+        <translation>Dänisch</translation>
     </message>
     <message>
         <source>Dutch</source>
-        <translation type="obsolete">Niederländisch</translation>
+        <translation>Niederländisch</translation>
     </message>
     <message>
         <source>English</source>
-        <translation type="obsolete">Englisch</translation>
+        <translation>Englisch</translation>
     </message>
     <message>
         <source>Finnish</source>
-        <translation type="obsolete">Finnisch</translation>
+        <translation>Finnisch</translation>
     </message>
     <message>
         <source>French</source>
-        <translation type="obsolete">Französisch</translation>
+        <translation>Französisch</translation>
     </message>
     <message>
         <source>German</source>
-        <translation type="obsolete">Deutsch</translation>
+        <translation>Deutsch</translation>
     </message>
     <message>
         <source>Greek</source>
-        <translation type="obsolete">Griechisch</translation>
+        <translation>Griechisch</translation>
     </message>
     <message>
         <source>Hebrew</source>
-        <translation type="obsolete">Hebräisch</translation>
+        <translation>Hebräisch</translation>
     </message>
     <message>
         <source>Hungarian</source>
-        <translation type="obsolete">Ungarisch</translation>
+        <translation>Ungarisch</translation>
     </message>
     <message>
         <source>Italian</source>
-        <translation type="obsolete">Italienisch</translation>
+        <translation>Italienisch</translation>
     </message>
     <message>
         <source>Japanese</source>
-        <translation type="obsolete">Japanisch</translation>
+        <translation>Japanisch</translation>
     </message>
     <message>
         <source>Korean</source>
-        <translation type="obsolete">Koreanisch</translation>
+        <translation>Koreanisch</translation>
     </message>
     <message>
         <source>Norwegian</source>
-        <translation type="obsolete">Norwegisch</translation>
+        <translation>Norwegisch</translation>
     </message>
     <message>
         <source>Polish</source>
-        <translation type="obsolete">Polnisch</translation>
+        <translation>Polnisch</translation>
     </message>
     <message>
         <source>Portuguese</source>
-        <translation type="obsolete">Portugiesisch</translation>
+        <translation>Portugiesisch</translation>
     </message>
     <message>
         <source>Russian</source>
-        <translation type="obsolete">Russisch</translation>
+        <translation>Russisch</translation>
     </message>
     <message>
         <source>Slovene</source>
-        <translation type="obsolete">Slowakisch</translation>
+        <translation>Slowakisch</translation>
     </message>
     <message>
         <source>Spanish</source>
-        <translation type="obsolete">Spanisch</translation>
+        <translation>Spanisch</translation>
     </message>
     <message>
         <source>Swedish</source>
-        <translation type="obsolete">Schwedisch</translation>
+        <translation>Schwedisch</translation>
     </message>
     <message>
         <source>Turkish</source>
-        <translation type="obsolete">Türkisch</translation>
+        <translation>Türkisch</translation>
     </message>
     <message>
         <source>Language</source>
@@ -2317,99 +2349,99 @@ p, li { white-space: pre-wrap; }
     <name>TheTvDb</name>
     <message>
         <source>Bulgarian</source>
-        <translation type="obsolete">Bulgarisch</translation>
+        <translation>Bulgarisch</translation>
     </message>
     <message>
         <source>Chinese</source>
-        <translation type="obsolete">Chinesisch</translation>
+        <translation>Chinesisch</translation>
     </message>
     <message>
         <source>Croatian</source>
-        <translation type="obsolete">Kroatisch</translation>
+        <translation>Kroatisch</translation>
     </message>
     <message>
         <source>Czech</source>
-        <translation type="obsolete">Tschechisch</translation>
+        <translation>Tschechisch</translation>
     </message>
     <message>
         <source>Danish</source>
-        <translation type="obsolete">Dänisch</translation>
+        <translation>Dänisch</translation>
     </message>
     <message>
         <source>Dutch</source>
-        <translation type="obsolete">Niederländisch</translation>
+        <translation>Niederländisch</translation>
     </message>
     <message>
         <source>English</source>
-        <translation type="obsolete">Englisch</translation>
+        <translation>Englisch</translation>
     </message>
     <message>
         <source>Finnish</source>
-        <translation type="obsolete">Finnisch</translation>
+        <translation>Finnisch</translation>
     </message>
     <message>
         <source>French</source>
-        <translation type="obsolete">Französisch</translation>
+        <translation>Französisch</translation>
     </message>
     <message>
         <source>German</source>
-        <translation type="obsolete">Deutsch</translation>
+        <translation>Deutsch</translation>
     </message>
     <message>
         <source>Greek</source>
-        <translation type="obsolete">Griechisch</translation>
+        <translation>Griechisch</translation>
     </message>
     <message>
         <source>Hebrew</source>
-        <translation type="obsolete">Hebräisch</translation>
+        <translation>Hebräisch</translation>
     </message>
     <message>
         <source>Hungarian</source>
-        <translation type="obsolete">Ungarisch</translation>
+        <translation>Ungarisch</translation>
     </message>
     <message>
         <source>Italian</source>
-        <translation type="obsolete">Italienisch</translation>
+        <translation>Italienisch</translation>
     </message>
     <message>
         <source>Japanese</source>
-        <translation type="obsolete">Japanisch</translation>
+        <translation>Japanisch</translation>
     </message>
     <message>
         <source>Korean</source>
-        <translation type="obsolete">Koreanisch</translation>
+        <translation>Koreanisch</translation>
     </message>
     <message>
         <source>Norwegian</source>
-        <translation type="obsolete">Norwegisch</translation>
+        <translation>Norwegisch</translation>
     </message>
     <message>
         <source>Polish</source>
-        <translation type="obsolete">Polnisch</translation>
+        <translation>Polnisch</translation>
     </message>
     <message>
         <source>Portuguese</source>
-        <translation type="obsolete">Portugiesisch</translation>
+        <translation>Portugiesisch</translation>
     </message>
     <message>
         <source>Russian</source>
-        <translation type="obsolete">Russisch</translation>
+        <translation>Russisch</translation>
     </message>
     <message>
         <source>Slovene</source>
-        <translation type="obsolete">Slowakisch</translation>
+        <translation>Slowakisch</translation>
     </message>
     <message>
         <source>Spanish</source>
-        <translation type="obsolete">Spanisch</translation>
+        <translation>Spanisch</translation>
     </message>
     <message>
         <source>Swedish</source>
-        <translation type="obsolete">Schwedisch</translation>
+        <translation>Schwedisch</translation>
     </message>
     <message>
         <source>Turkish</source>
-        <translation type="obsolete">Türkisch</translation>
+        <translation>Türkisch</translation>
     </message>
     <message>
         <source>Language</source>
@@ -2420,11 +2452,11 @@ p, li { white-space: pre-wrap; }
     <name>TvShowDelegate</name>
     <message>
         <source>new</source>
-        <translation type="obsolete">neu</translation>
+        <translation>neu</translation>
     </message>
     <message numerus="yes">
         <source>%n Episodes</source>
-        <translation type="obsolete">
+        <translation>
             <numerusform>%n Episode</numerusform>
             <numerusform>%n Episoden</numerusform>
         </translation>
@@ -2434,154 +2466,154 @@ p, li { white-space: pre-wrap; }
     <name>TvShowFileSearcher</name>
     <message>
         <source>Searching for TV Shows...</source>
-        <translation type="obsolete">Suche nach Serien...</translation>
+        <translation>Suche nach Serien...</translation>
     </message>
 </context>
 <context>
     <name>TvShowFilesWidget</name>
     <message>
         <source>Form</source>
-        <translation type="obsolete">Form</translation>
+        <translation>Form</translation>
     </message>
 </context>
 <context>
     <name>TvShowModelItem</name>
     <message>
         <source>Season %1</source>
-        <translation type="obsolete">Staffel %1</translation>
+        <translation>Staffel %1</translation>
     </message>
 </context>
 <context>
     <name>TvShowSearch</name>
     <message>
         <source>Search Result</source>
-        <translation type="obsolete">Suchergebnis</translation>
+        <translation>Suchergebnis</translation>
     </message>
     <message>
         <source>Result</source>
-        <translation type="obsolete">Ergebnis</translation>
+        <translation>Ergebnis</translation>
     </message>
     <message>
         <source>Update all episodes</source>
-        <translation type="obsolete">Alle Episoden neu laden</translation>
+        <translation>Alle Episoden neu laden</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="obsolete">Schließen</translation>
+        <translation>Schließen</translation>
     </message>
 </context>
 <context>
     <name>TvShowWidget</name>
     <message>
         <source>Form</source>
-        <translation type="obsolete">Form</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Saving changed TV Shows and Episodes</source>
-        <translation type="obsolete">Speichere geänderte Serien und Episoden</translation>
+        <translation>Speichere geänderte Serien und Episoden</translation>
     </message>
     <message>
         <source>All TV Shows and Episodes Saved</source>
-        <translation type="obsolete">Alle Serien und Episoden gespeichert</translation>
+        <translation>Alle Serien und Episoden gespeichert</translation>
     </message>
 </context>
 <context>
     <name>TvShowWidgetEpisode</name>
     <message>
         <source>Form</source>
-        <translation type="obsolete">Form</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Episode has changed. Click to revert changes.</source>
-        <translation type="obsolete">Mache Änderungen an dieser Episode rückgängig.</translation>
+        <translation>Mache Änderungen an dieser Episode rückgängig.</translation>
     </message>
     <message>
         <source>Episode Title</source>
-        <translation type="obsolete">Episode</translation>
+        <translation>Episode</translation>
     </message>
     <message>
         <source>Information</source>
-        <translation type="obsolete">Informationen</translation>
+        <translation>Informationen</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="obsolete">Dateien</translation>
+        <translation>Dateien</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="obsolete">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <source>Show Title</source>
-        <translation type="obsolete">Serientitel</translation>
+        <translation>Serientitel</translation>
     </message>
     <message>
         <source>Season</source>
-        <translation type="obsolete">Staffel</translation>
+        <translation>Staffel</translation>
     </message>
     <message>
         <source>Episode</source>
-        <translation type="obsolete">Episode</translation>
+        <translation>Episode</translation>
     </message>
     <message>
         <source>Rating</source>
-        <translation type="obsolete">Bewertung</translation>
+        <translation>Bewertung</translation>
     </message>
     <message>
         <source>Certification</source>
-        <translation type="obsolete">Freigabe</translation>
+        <translation>Freigabe</translation>
     </message>
     <message>
         <source>First Aired</source>
-        <translation type="obsolete">Erste Ausstrahlung</translation>
+        <translation>Erste Ausstrahlung</translation>
     </message>
     <message>
         <source>dd.MM.yyyy</source>
-        <translation type="obsolete">dd.MM.yyyy</translation>
+        <translation>dd.MM.yyyy</translation>
     </message>
     <message>
         <source>Play Count</source>
-        <translation type="obsolete">Wiedergaben</translation>
+        <translation>Wiedergaben</translation>
     </message>
     <message>
         <source>Last Played</source>
-        <translation type="obsolete">Letzte Wiedergabe</translation>
+        <translation>Letzte Wiedergabe</translation>
     </message>
     <message>
         <source>dd.MM.yyyy HH:mm</source>
-        <translation type="obsolete">dd.MM.yyyy HH:mm</translation>
+        <translation>dd.MM.yyyy HH:mm</translation>
     </message>
     <message>
         <source>Studio</source>
-        <translation type="obsolete">Studio</translation>
+        <translation>Studio</translation>
     </message>
     <message>
         <source>Overview</source>
-        <translation type="obsolete">Inhalt</translation>
+        <translation>Inhalt</translation>
     </message>
     <message>
         <source>Extended</source>
-        <translation type="obsolete">Erweitert</translation>
+        <translation>Erweitert</translation>
     </message>
     <message>
         <source>Directors</source>
-        <translation type="obsolete">Regisseur</translation>
+        <translation>Regisseur</translation>
     </message>
     <message>
         <source>Add Director</source>
-        <translation type="obsolete">Regisseur hinzufügen</translation>
+        <translation>Regisseur hinzufügen</translation>
     </message>
     <message>
         <source>Remove Director</source>
-        <translation type="obsolete">Regisseur entfernen</translation>
+        <translation>Regisseur entfernen</translation>
     </message>
     <message>
         <source>Add Writer</source>
-        <translation type="obsolete">Autor hinzufügen</translation>
+        <translation>Autor hinzufügen</translation>
     </message>
     <message>
         <source>Remove Writer</source>
-        <translation type="obsolete">Autor entfernen</translation>
+        <translation>Autor entfernen</translation>
     </message>
     <message>
         <source>Add Studio</source>
@@ -2593,11 +2625,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Writers</source>
-        <translation type="obsolete">Autoren</translation>
+        <translation>Autoren</translation>
     </message>
     <message>
         <source>Genre</source>
-        <translation type="obsolete">Genre</translation>
+        <translation>Genre</translation>
     </message>
     <message>
         <source>Add Genre</source>
@@ -2609,174 +2641,174 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Thumbnail</source>
-        <translation type="obsolete">Vorschau</translation>
+        <translation>Vorschau</translation>
     </message>
     <message>
         <source>Click to Change</source>
-        <translation type="obsolete">Zum Ändern klicken</translation>
+        <translation>Zum Ändern klicken</translation>
     </message>
     <message>
         <source>Full Preview</source>
-        <translation type="obsolete">Vorschau</translation>
+        <translation>Vorschau</translation>
     </message>
     <message>
         <source>Resolution</source>
-        <translation type="obsolete">Auflösung</translation>
+        <translation>Auflösung</translation>
     </message>
     <message>
         <source>Unknown Director</source>
-        <translation type="obsolete">Unbekannter Regisseur</translation>
+        <translation>Unbekannter Regisseur</translation>
     </message>
     <message>
         <source>Unknown Writer</source>
-        <translation type="obsolete">Unbekannter Autor</translation>
+        <translation>Unbekannter Autor</translation>
     </message>
     <message>
         <source>Episode Saved</source>
-        <translation type="obsolete">Episode gespeichert</translation>
+        <translation>Episode gespeichert</translation>
     </message>
 </context>
 <context>
     <name>TvShowWidgetTvShow</name>
     <message>
         <source>Form</source>
-        <translation type="obsolete">Form</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>TV Show has changed. Click to revert changes.</source>
-        <translation type="obsolete">Mache Änderungen an dieser Serie rückgängig.</translation>
+        <translation>Mache Änderungen an dieser Serie rückgängig.</translation>
     </message>
     <message>
         <source>Show Title</source>
-        <translation type="obsolete">Serientitel</translation>
+        <translation>Serientitel</translation>
     </message>
     <message>
         <source>Information</source>
-        <translation type="obsolete">Informationen</translation>
+        <translation>Informationen</translation>
     </message>
     <message>
         <source>Dir</source>
-        <translation type="obsolete">Verzeichnis</translation>
+        <translation>Verzeichnis</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="obsolete">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <source>Rating</source>
-        <translation type="obsolete">Bewertung</translation>
+        <translation>Bewertung</translation>
     </message>
     <message>
         <source>Certification</source>
-        <translation type="obsolete">Freigabe</translation>
+        <translation>Freigabe</translation>
     </message>
     <message>
         <source>First Aired</source>
-        <translation type="obsolete">Erste Ausstrahlung</translation>
+        <translation>Erste Ausstrahlung</translation>
     </message>
     <message>
         <source>dd.MM.yyyy</source>
-        <translation type="obsolete">dd.MM.yyyy</translation>
+        <translation>dd.MM.yyyy</translation>
     </message>
     <message>
         <source>Studio</source>
-        <translation type="obsolete">Studio</translation>
+        <translation>Studio</translation>
     </message>
     <message>
         <source>Overview</source>
-        <translation type="obsolete">Inhalt</translation>
+        <translation>Inhalt</translation>
     </message>
     <message>
         <source>Extended</source>
-        <translation type="obsolete">Erweitert</translation>
+        <translation>Erweitert</translation>
     </message>
     <message>
         <source>Genres</source>
-        <translation type="obsolete">Genres</translation>
+        <translation>Genres</translation>
     </message>
     <message>
         <source>Genre</source>
-        <translation type="obsolete">Genre</translation>
+        <translation>Genre</translation>
     </message>
     <message>
         <source>Add Genre</source>
-        <translation type="obsolete">Genre hinzufügen</translation>
+        <translation>Genre hinzufügen</translation>
     </message>
     <message>
         <source>Remove Genre</source>
-        <translation type="obsolete">Genre entfernen</translation>
+        <translation>Genre entfernen</translation>
     </message>
     <message>
         <source>Actor</source>
-        <translation type="obsolete">Schauspieler</translation>
+        <translation>Schauspieler</translation>
     </message>
     <message>
         <source>Role</source>
-        <translation type="obsolete">Rolle</translation>
+        <translation>Rolle</translation>
     </message>
     <message>
         <source>Add Actor</source>
-        <translation type="obsolete">Schauspieler hinzufügen</translation>
+        <translation>Schauspieler hinzufügen</translation>
     </message>
     <message>
         <source>Remove Actor</source>
-        <translation type="obsolete">Schauspieler entfernen</translation>
+        <translation>Schauspieler entfernen</translation>
     </message>
     <message>
         <source>Click to change</source>
-        <translation type="obsolete">Zum Ändern klicken</translation>
+        <translation>Zum Ändern klicken</translation>
     </message>
     <message>
         <source>Actors</source>
-        <translation type="obsolete">Schauspieler</translation>
+        <translation>Schauspieler</translation>
     </message>
     <message>
         <source>Season Posters</source>
-        <translation type="obsolete">Staffelposter</translation>
+        <translation>Staffelposter</translation>
     </message>
     <message>
         <source>Poster</source>
-        <translation type="obsolete">Poster</translation>
+        <translation>Poster</translation>
     </message>
     <message>
         <source>Click to Change</source>
-        <translation type="obsolete">Zum Ändern klicken</translation>
+        <translation>Zum Ändern klicken</translation>
     </message>
     <message>
         <source>Full Preview</source>
-        <translation type="obsolete">Vorschau</translation>
+        <translation>Vorschau</translation>
     </message>
     <message>
         <source>Banner</source>
-        <translation type="obsolete">Banner</translation>
+        <translation>Banner</translation>
     </message>
     <message>
         <source>Resolution</source>
-        <translation type="obsolete">Auflösung</translation>
+        <translation>Auflösung</translation>
     </message>
     <message>
         <source>Backdrop</source>
-        <translation type="obsolete">Fanart</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <source>Season %1</source>
-        <translation type="obsolete">Staffel %1</translation>
+        <translation>Staffel %1</translation>
     </message>
     <message>
         <source>Unknown Genre</source>
-        <translation type="obsolete">Unbekanntes Genre</translation>
+        <translation>Unbekanntes Genre</translation>
     </message>
     <message>
         <source>Unknown Role</source>
-        <translation type="obsolete">Unbekannte Rolle</translation>
+        <translation>Unbekannte Rolle</translation>
     </message>
     <message>
         <source>Choose Image</source>
-        <translation type="obsolete">Bild auswählen</translation>
+        <translation>Bild auswählen</translation>
     </message>
     <message>
         <source>Images (*.jpg *.jpeg)</source>
-        <translation type="obsolete">Bilder (*.jpg *.jpeg)</translation>
+        <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
     <message>
         <source>Unkown Genre</source>
@@ -2784,7 +2816,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Unknown Actor</source>
-        <translation type="obsolete">Unbekannter Schauspieler</translation>
+        <translation>Unbekannter Schauspieler</translation>
     </message>
     <message>
         <source>Unkown Role</source>
@@ -2792,11 +2824,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation type="obsolete">&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
     <message>
         <source>Downloading Missing Actor Images and Episode Thumbnails...</source>
-        <translation type="obsolete">Lade fehlende Schauspielerbilder und Episoden Vorschaubilder...</translation>
+        <translation>Lade fehlende Schauspielerbilder und Episoden Vorschaubilder...</translation>
     </message>
     <message>
         <source>TV Show and all Episodes Saved</source>
@@ -2811,11 +2843,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Connection to XBMC MySQL Database failed! &quot;%1&quot;</source>
-        <translation type="obsolete">Verbindung zur XBMC MySQL Datenbank fehlgeschlagen! &quot;%1&quot;</translation>
+        <translation>Verbindung zur XBMC MySQL Datenbank fehlgeschlagen! &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Connection to XBMC SQLite Database failed! &quot;%1&quot;</source>
-        <translation type="obsolete">Verbindung zur XBMC SQLite Datenbank fehlgeschlagen! &quot;%1&quot;</translation>
+        <translation>Verbindung zur XBMC SQLite Datenbank fehlgeschlagen! &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Connection to XBMC SQLite Database failed!</source>
@@ -2826,15 +2858,15 @@ p, li { white-space: pre-wrap; }
     <name>XbmcXml</name>
     <message>
         <source>Could not create actors directory</source>
-        <translation type="obsolete">Verzeichnis &quot;actors&quot; konnte nicht erstellt werden</translation>
+        <translation>Verzeichnis &quot;actors&quot; konnte nicht erstellt werden</translation>
     </message>
     <message>
         <source>Could not create movies directory</source>
-        <translation type="obsolete">Verzeichnis &quot;movies&quot; konnte nicht erstellt werden</translation>
+        <translation>Verzeichnis &quot;movies&quot; konnte nicht erstellt werden</translation>
     </message>
     <message>
         <source>Could not create tv shows directory</source>
-        <translation type="obsolete">Verzeichnis &quot;tvshows&quot; konnte nicht erstellt werden</translation>
+        <translation>Verzeichnis &quot;tvshows&quot; konnte nicht erstellt werden</translation>
     </message>
 </context>
 </TS>

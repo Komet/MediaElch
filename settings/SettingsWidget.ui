@@ -178,7 +178,7 @@ QTabBar::tab:selected {
          <item>
           <widget class="QPushButton" name="buttonMovieFilesToDirs">
            <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort Movies Into Seperate Directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort movies into separate directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="text">
             <string>Organize</string>
