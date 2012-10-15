@@ -1,5 +1,4 @@
 #include "Movie.h"
-#include "settings/Settings.h"
 #include "globals/NameFormatter.h"
 
 #include <QApplication>
