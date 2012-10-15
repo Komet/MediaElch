@@ -399,6 +399,8 @@ void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert, bool writ
     qDebug() << "Entered, concert=" << concert->name();
     xml.writeStartElement("musicvideo");
     xml.writeTextElement("title", concert->name());
+    xml.writeTextElement("id", concert->id());
+    xml.writeTextElement("tmdbid", concert->tmdbId());
     xml.writeTextElement("rating", QString("%1").arg(concert->rating()));
     xml.writeTextElement("year", concert->released().toString("yyyy"));
     xml.writeTextElement("plot", concert->overview());
@@ -545,6 +547,10 @@ bool XbmcXml::loadConcert(Concert *concert)
     concert->setChanged(false);
     QDomDocument domDoc;
     domDoc.setContent(file.readAll());
+    if (!domDoc.elementsByTagName("id").isEmpty() )
+        concert->setId(domDoc.elementsByTagName("id").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("tmdbid").isEmpty() )
+        concert->setTmdbId(domDoc.elementsByTagName("tmdbid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("title").isEmpty() )
         concert->setName(domDoc.elementsByTagName("title").at(0).toElement().text());
     if (!domDoc.elementsByTagName("rating").isEmpty())
@@ -929,6 +935,8 @@ bool XbmcXml::loadTvShow(TvShow *show)
     show->clear();
     QDomDocument domDoc;
     domDoc.setContent(file.readAll());
+    if (!domDoc.elementsByTagName("tvdbid").isEmpty() )
+        show->setTvdbId(domDoc.elementsByTagName("tvdbid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("title").isEmpty() )
         show->setName(domDoc.elementsByTagName("title").at(0).toElement().text());
     if (!domDoc.elementsByTagName("showtitle").isEmpty() )
@@ -1188,6 +1196,7 @@ void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath
     xml.writeTextElement("mpaa", QString("%1").arg(show->certification()));
     xml.writeTextElement("premiered", show->firstAired().toString("yyyy-MM-dd"));
     xml.writeTextElement("studio", show->network());
+    xml.writeTextElement("tvdbid", show->tvdbId());
 
     foreach (const QString &genre, show->genres())
         xml.writeTextElement("genre", genre);

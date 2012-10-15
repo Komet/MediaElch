@@ -486,6 +486,17 @@ QString Concert::tmdbId() const
     return m_tmdbId;
 }
 
+/**
+ * @property Concert::id
+ * @brief Holds the concerts id
+ * @return The concerts id
+ * @see Concert::setId
+ */
+QString Concert::id() const
+{
+    return m_id;
+}
+
 /*** SETTER ***/
 
 /**
@@ -725,6 +736,17 @@ void Concert::setMediaCenterId(int mediaCenterId)
 void Concert::setTmdbId(QString id)
 {
     m_tmdbId = id;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the concerts id
+ * @param id Imdb id of the concert
+ * @see Concert::id
+ */
+void Concert::setId(QString id)
+{
+    m_id = id;
     setChanged(true);
 }
 

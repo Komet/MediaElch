@@ -74,6 +74,7 @@ public:
     bool inSeparateFolder() const;
     int mediaCenterId() const;
     QString tmdbId() const;
+    QString id() const;
 
     bool hasChanged() const;
 
@@ -104,6 +105,7 @@ public:
     void setInSeparateFolder(bool inSepFolder);
     void setMediaCenterId(int mediaCenterId);
     void setTmdbId(QString id);
+    void setId(QString id);
 
     void removeGenre(QString *genre);
 
@@ -147,6 +149,7 @@ private:
     bool m_inSeparateFolder;
     int m_mediaCenterId;
     QString m_tmdbId;
+    QString m_id;
 };
 
 #endif // CONCERT_H

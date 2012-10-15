@@ -464,6 +464,8 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
     sc = engine.evaluate("(" + QString(json) + ")");
 
     // Infos
+    if (sc.property("imdb_id").isValid() && !sc.property("imdb_id").toString().isEmpty())
+        movie->setId(sc.property("imdb_id").toString());
     if (infos.contains(MovieScraperInfos::Title) && sc.property("title").isValid())
         movie->setName(sc.property("title").toString());
     if (infos.contains(MovieScraperInfos::Title) && sc.property("original_title").isValid())

@@ -433,6 +433,8 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<int
     sc = engine.evaluate("(" + QString(json) + ")");
 
     // Infos
+    if (sc.property("imdb_id").isValid() && !sc.property("imdb_id").toString().isEmpty())
+        concert->setId(sc.property("imdb_id").toString());
     if (infos.contains(ConcertScraperInfos::Title) && sc.property("title").isValid())
         concert->setName(sc.property("title").toString());
     if (infos.contains(ConcertScraperInfos::Overview) && sc.property("overview").isValid() && !sc.property("overview").isNull())
