@@ -22,7 +22,7 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="focusPolicy">
@@ -72,7 +72,7 @@ QTabBar::tab:selected {
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <property name="documentMode">
       <bool>false</bool>
@@ -164,12 +164,6 @@ QTabBar::tab:selected {
          </item>
          <item>
           <widget class="QPushButton" name="buttonRemoveDir">
-           <property name="minimumSize">
-            <size>
-             <width>80</width>
-             <height>0</height>
-            </size>
-           </property>
            <property name="text">
             <string>Remove</string>
            </property>
@@ -1020,6 +1014,19 @@ p, li { white-space: pre-wrap; }
     </widget>
    </item>
    <item>
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_7">
      <item>
       <spacer name="horizontalSpacer_4">

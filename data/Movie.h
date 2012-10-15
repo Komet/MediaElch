@@ -7,7 +7,6 @@
 #include <QObject>
 #include <QStringList>
 #include <QUrl>
-#include <QFileInfo>
 
 #include "globals/Globals.h"
 #include "data/MediaCenterInterface.h"
@@ -85,7 +84,6 @@ public:
     QList<Poster> backdrops() const;
     QImage *posterImage();
     QImage *backdropImage();
-    static QString fitName(QString name);
     bool infoLoaded() const;
     bool posterImageChanged() const;
     bool backdropImageChanged() const;

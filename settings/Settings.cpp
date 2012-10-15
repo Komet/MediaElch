@@ -130,7 +130,6 @@ void Settings::loadSettings()
             scraper->loadSettings();
     }
 
-
     // Media Centers
     m_mediaCenterInterface = m_settings.value("MediaCenterInterface", MediaCenterInterfaces::XbmcXml).toInt();
     m_xbmcMysqlHost        = m_settings.value("XbmcMysql/Host").toString();
@@ -217,7 +216,6 @@ void Settings::saveSettings()
     m_settings.endArray();
 
     m_settings.setValue("excludeWords", m_excludeWords);
-
 
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
         if (scraper->hasSettings())

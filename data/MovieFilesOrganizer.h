@@ -18,16 +18,6 @@ public:
     ~MovieFilesOrganizer();
     void canceled(QString msg);
     void moveToDirs(QString dir);
-
-signals:
-    void progressStarted(QString, int);
-    void progress(int, int, int);
-    void moviesOrganized(int);
-
-private:
-    //QList<SettingsDir> m_directories;
-    int m_progressMessageId;
-    //void getDirContents(QString path, QList<QStringList> &contents);
 };
 
 #endif // MOVIEFILESORGANIZER_H

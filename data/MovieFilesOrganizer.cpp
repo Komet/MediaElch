@@ -14,7 +14,6 @@
 MovieFilesOrganizer::MovieFilesOrganizer(QObject *parent) :
     QThread(parent)
 {
-    m_progressMessageId = Constants::MovieFilesToDirsProgressMessageId;
 }
 
 /**
