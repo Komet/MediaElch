@@ -46,6 +46,7 @@ class Movie : public QObject
     Q_PROPERTY(QList<Poster> backdrops READ backdrops WRITE setBackdrops)
     Q_PROPERTY(bool watched READ watched WRITE setWatched)
     Q_PROPERTY(bool hasChanged READ hasChanged WRITE setChanged)
+    Q_PROPERTY(QString tmdbId READ tmdbId WRITE setTmdbId)
 
 public:
     explicit Movie(QStringList files, QObject *parent = 0);
@@ -79,6 +80,7 @@ public:
     int playcount() const;
     QDateTime lastPlayed() const;
     QString id() const;
+    QString tmdbId() const;
     QString set() const;
     QList<Poster> posters() const;
     QList<Poster> backdrops() const;
@@ -122,6 +124,7 @@ public:
     void setPlayCount(int playcount);
     void setLastPlayed(QDateTime lastPlayed);
     void setId(QString id);
+    void setTmdbId(QString id);
     void setSet(QString set);
     void setPosters(QList<Poster> posters);
     void setPoster(int index, Poster poster);
@@ -180,6 +183,7 @@ private:
     int m_playcount;
     QDateTime m_lastPlayed;
     QString m_id;
+    QString m_tmdbId;
     QString m_set;
     QList<Poster> m_posters;
     QList<Poster> m_backdrops;

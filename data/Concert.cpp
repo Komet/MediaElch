@@ -475,6 +475,17 @@ int Concert::mediaCenterId() const
     return m_mediaCenterId;
 }
 
+/**
+ * @property Concert::tmdbId
+ * @brief Holds the concerts tmdb id
+ * @return The concerts tmdb id
+ * @see Concert::setTmdbId
+ */
+QString Concert::tmdbId() const
+{
+    return m_tmdbId;
+}
+
 /*** SETTER ***/
 
 /**
@@ -704,6 +715,17 @@ void Concert::setInSeparateFolder(bool inSepFolder)
 void Concert::setMediaCenterId(int mediaCenterId)
 {
     m_mediaCenterId = mediaCenterId;
+}
+
+/**
+ * @brief Sets the concerts tmdb id
+ * @param id Tmdb id of the concert
+ * @see Concert::tmdbId
+ */
+void Concert::setTmdbId(QString id)
+{
+    m_tmdbId = id;
+    setChanged(true);
 }
 
 /*** ADDER ***/

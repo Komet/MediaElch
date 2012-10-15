@@ -30,6 +30,7 @@ class TvShow : public QObject
     Q_PROPERTY(QList<Poster> posters READ posters WRITE setPosters)
     Q_PROPERTY(QList<Poster> backdrops READ backdrops WRITE setBackdrops)
     Q_PROPERTY(QList<Poster> banners READ banners WRITE setBanners)
+    Q_PROPERTY(QString tvdbId READ tvdbId WRITE setTvdbId)
 
 public:
     explicit TvShow(QString dir = QString(), QObject *parent = 0);
@@ -48,6 +49,7 @@ public:
     QString certification() const;
     QString network() const;
     QString overview() const;
+    QString tvdbId() const;
     QStringList certifications() const;
     QList<Actor> actors() const;
     QList<Actor*> actorsPointer();
@@ -84,6 +86,7 @@ public:
     void setCertification(QString certification);
     void setNetwork(QString network);
     void setOverview(QString overview);
+    void setTvdbId(QString id);
     void setActors(QList<Actor> actors);
     void addActor(Actor actor);
     void setPosters(QList<Poster> posters);
@@ -130,6 +133,7 @@ private:
     QString m_certification;
     QString m_network;
     QString m_overview;
+    QString m_tvdbId;
     QList<Actor> m_actors;
     QList<Poster> m_posters;
     QList<Poster> m_backdrops;

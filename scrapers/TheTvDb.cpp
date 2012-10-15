@@ -245,6 +245,7 @@ QList<ScraperSearchResult> TheTvDb::parseSearch(QString xml)
 void TheTvDb::loadTvShowData(QString id, TvShow *show, bool updateAllEpisodes)
 {
     qDebug() << "Entered, id=" << id << "show=" << show->name() << "updateAllEpisodes=" << updateAllEpisodes;
+    show->setTvdbId(id);
     m_currentShow = show;
     m_currentId = id;
     m_updateAllEpisodes = updateAllEpisodes;

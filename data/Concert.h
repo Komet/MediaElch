@@ -37,6 +37,7 @@ class Concert : public QObject
     Q_PROPERTY(QList<Poster> backdrops READ backdrops WRITE setBackdrops)
     Q_PROPERTY(bool watched READ watched WRITE setWatched)
     Q_PROPERTY(bool hasChanged READ hasChanged WRITE setChanged)
+    Q_PROPERTY(QString tmdbId READ tmdbId WRITE setTmdbId)
 
 public:
     explicit Concert(QStringList files, QObject *parent = 0);
@@ -72,6 +73,7 @@ public:
     int downloadsSize() const;
     bool inSeparateFolder() const;
     int mediaCenterId() const;
+    QString tmdbId() const;
 
     bool hasChanged() const;
 
@@ -101,6 +103,7 @@ public:
     void setDownloadsSize(int downloadsSize);
     void setInSeparateFolder(bool inSepFolder);
     void setMediaCenterId(int mediaCenterId);
+    void setTmdbId(QString id);
 
     void removeGenre(QString *genre);
 
@@ -143,6 +146,7 @@ private:
     int m_downloadsSize;
     bool m_inSeparateFolder;
     int m_mediaCenterId;
+    QString m_tmdbId;
 };
 
 #endif // CONCERT_H

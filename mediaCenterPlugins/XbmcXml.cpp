@@ -91,6 +91,7 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath,
         }
     }
     xml.writeTextElement("id", movie->id());
+    xml.writeTextElement("tmdbid", movie->tmdbId());
     xml.writeTextElement("set", movie->set());
     xml.writeTextElement("sorttitle", movie->sortTitle());
     xml.writeTextElement("trailer", Helper::formatTrailerUrl(movie->trailer().toString()));
@@ -260,6 +261,8 @@ bool XbmcXml::loadMovie(Movie *movie)
         movie->setLastPlayed(QDateTime::fromString(domDoc.elementsByTagName("lastplayed").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss"));
     if (!domDoc.elementsByTagName("id").isEmpty())
         movie->setId(domDoc.elementsByTagName("id").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("tmdbid").isEmpty())
+        movie->setTmdbId(domDoc.elementsByTagName("tmdbid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("set").isEmpty())
         movie->setSet(domDoc.elementsByTagName("set").at(0).toElement().text());
     if (!domDoc.elementsByTagName("sorttitle").isEmpty())

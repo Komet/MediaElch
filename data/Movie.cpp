@@ -485,6 +485,17 @@ QString Movie::id() const
 }
 
 /**
+ * @property Movie::tmdbId
+ * @brief Holds the movies tmdb id
+ * @return Tmdb id of the movie
+ * @see Movie::setTmdbId
+ */
+QString Movie::tmdbId() const
+{
+    return m_tmdbId;
+}
+
+/**
  * @property Movie::set
  * @brief Holds the set of the movie
  * @return Set of the movie
@@ -881,6 +892,17 @@ void Movie::setLastPlayed(QDateTime lastPlayed)
 void Movie::setId(QString id)
 {
     m_id = id;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the tmdb id of the movie
+ * @param id Tmdb id of the movie
+ * @see Movie::tmdbId
+ */
+void Movie::setTmdbId(QString id)
+{
+    m_tmdbId = id;
     setChanged(true);
 }
 

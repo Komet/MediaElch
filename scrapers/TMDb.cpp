@@ -287,6 +287,7 @@ QList<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage)
 void TMDb::loadData(QString id, Movie *movie, QList<int> infos)
 {
     qDebug() << "Entered, id=" << id << "movie=" << movie->name();
+    movie->setTmdbId(id);
     m_infosToLoad = infos;
     m_currentMovie = movie;
     m_currentMovie->clear(infos);

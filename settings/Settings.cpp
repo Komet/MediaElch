@@ -942,7 +942,7 @@ void Settings::setProxyUsername(QString username)
 
 /**
  * @brief Sets the password to use when connecting to the proxy
- * @param username Proxy password
+ * @param password Proxy password
  */
 void Settings::setProxyPassword(QString password)
 {

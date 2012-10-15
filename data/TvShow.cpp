@@ -301,6 +301,17 @@ QString TvShow::overview() const
 }
 
 /**
+ * @property TvShow::tvdbId
+ * @brief TheTvDb Id of the show
+ * @return TheTvDb Id
+ * @see TvShow::setTvdbId
+ */
+QString TvShow::tvdbId() const
+{
+    return m_tvdbId;
+}
+
+/**
  * @brief Constructs a list of all certifications used in child episodes
  * @return List of certifications
  */
@@ -651,6 +662,17 @@ void TvShow::setNetwork(QString network)
 void TvShow::setOverview(QString overview)
 {
     m_overview = overview;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the TheTvdbId
+ * @param id
+ * @see TvShow::tvdbId
+ */
+void TvShow::setTvdbId(QString id)
+{
+    m_tvdbId = id;
     setChanged(true);
 }
 
