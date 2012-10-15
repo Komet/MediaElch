@@ -242,7 +242,7 @@ void SettingsWidget::loadSettings()
     for (int i=0, n=concertDirectories.count() ; i<n ; ++i)
         addDir(concertDirectories.at(i).path, concertDirectories.at(i).mediaCenterPath, concertDirectories.at(i).separateFolders, DirTypeConcerts);
 
-    //dirListRowChanged(-1);
+    dirListRowChanged(ui->dirs->currentRow());
 
     // Exclude words
     ui->excludeWordsText->setPlainText(m_settings->excludeWords());
@@ -562,6 +562,7 @@ void SettingsWidget::organize()
     switch (ret) {
       case QMessageBox::Ok:
         organizer->moveToDirs(ui->dirs->item(ui->dirs->currentRow(), 1)->text());
+        ui->dirs->item(ui->dirs->currentRow(), 3)->setCheckState(Qt::Checked);
         break;
       case QMessageBox::Cancel:
         break;
