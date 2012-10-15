@@ -36,10 +36,11 @@ QString NameFormatter::excludeWords(QString name)
     QRegExp rx;
     rx.setCaseSensitivity(Qt::CaseInsensitive);
     foreach (QString word, exWords) {
-        rx.setPattern(word);
+        rx.setPattern("(^|[\\(\\s\\-]+)" + word + "([\\s\\-\\)]+|$)");
         pos = rx.indexIn(name);
         while (rx.indexIn(name) >= 0) {
-            name = name.remove(pos, word.length());
+            name = name.remove(pos, rx.cap(0).length());
+            name = name.insert(pos, ' ');
             pos = rx.indexIn(name);
         }
     }
@@ -66,8 +67,16 @@ QString NameFormatter::formatName(QString name)
     // remove exclude words
     name = excludeWords(name);
 
+    // remove resulting empty brackets
+    QRegExp rx("\\([\\s\\-]*\\)");
+    int pos = rx.indexIn(name);
+    while (rx.indexIn(name) >= 0) {
+        name = name.remove(pos, rx.cap(0).length());
+        pos = rx.indexIn(name);
+    }
+
     // remove " - " at the end of a name
-    QRegExp rx("[\\-\\s]");
+    rx.setPattern("[\\-\\s]");
     while (rx.lastIndexIn(name) == name.length() -1)
         name.chop(1);
     return name;
