@@ -12,6 +12,7 @@
 #include <QTimer>
 #include "data/ImageProviderInterface.h"
 #include "globals/Manager.h"
+#include "globals/NameFormatter.h"
 
 /**
  * @brief ImageDialog::ImageDialog
@@ -128,15 +129,15 @@ int ImageDialog::exec(int type)
 
     // show image widget
     ui->stackedWidget->setCurrentIndex(1);
-    // @todo: replace "replace" with fitname
+
     if (m_itemType == ItemMovie)
         ui->searchTerm->setText(m_movie->name().replace("-", " "));
     else if (m_itemType == ItemConcert)
         ui->searchTerm->setText(m_concert->name().replace("-", " "));
     else if (m_itemType == ItemTvShow)
-        ui->searchTerm->setText(m_tvShow->name());
+        ui->searchTerm->setText(m_tvShow->name().replace("-", " "));
     else if (m_itemType == ItemTvShowEpisode)
-        ui->searchTerm->setText(m_tvShowEpisode->tvShow()->name());
+        ui->searchTerm->setText(m_tvShowEpisode->tvShow()->name().replace("-", " "));
     else
         ui->searchTerm->clear();
 

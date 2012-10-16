@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
+#include "globals/NameFormatter.h"
 
 /**
  * @brief Constructs a new concert object
@@ -124,6 +125,7 @@ bool Concert::loadData(MediaCenterInterface *mediaCenterInterface, bool force)
     bool infoLoaded = mediaCenterInterface->loadConcert(this);
     qDebug() << "Loaded" << infoLoaded;
     if (!infoLoaded) {
+        NameFormatter *nameFormat = NameFormatter::instance(this);
         if (this->files().size() > 0) {
             QFileInfo fi(this->files().at(0));
             if (QString::compare(fi.fileName(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0) {
@@ -140,13 +142,22 @@ bool Concert::loadData(MediaCenterInterface *mediaCenterInterface, bool force)
                         this->setName(pathElements.last());
             } else if (inSeparateFolder()) {
                 QStringList splitted = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
-                if (!splitted.isEmpty())
-                    setName(splitted.last());
-                else
-                    setName(fi.completeBaseName().replace(".", " ").replace("_", " "));
+                if (!splitted.isEmpty()) {
+                    setName(nameFormat->formatName(splitted.last()));
+                } else {
+                    if (files().size() > 1)
+                        setName(nameFormat->formatName(nameFormat->formatParts(fi.completeBaseName())));
+                    else
+                        setName(nameFormat->formatName(fi.completeBaseName()));
+                }
             } else {
-                setName(fi.completeBaseName().replace(".", " ").replace("_", " "));
+                if (files().size() > 1)
+                    setName(nameFormat->formatName(nameFormat->formatParts(fi.completeBaseName())));
+                else
+                    setName(nameFormat->formatName(fi.completeBaseName()));
             }
+
+
         }
     }
     m_infoLoaded = infoLoaded;
