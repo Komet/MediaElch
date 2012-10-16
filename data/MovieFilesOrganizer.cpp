@@ -32,13 +32,13 @@ void MovieFilesOrganizer::moveToDirs(QString path)
     path = QDir::toNativeSeparators(path);
     QFileInfo fi(path);
     if (!fi.isDir()) {
-        qDebug() << "Source " << path << " is no directory.";
-        canceled("Source " + path + " is no directory");
+        canceled(tr("Source ") + path + tr(" is no directory"));
     }
 
     QList<QStringList> contents;
     MovieFileSearcher *fileSearcher = new MovieFileSearcher(this);
     fileSearcher->scanDir(path, contents, false, true);
+    fileSearcher->deleteLater();
 
     int pos = path.lastIndexOf(QDir::separator());
     QString dirName = path.right(path.length() - pos -1);

@@ -936,6 +936,14 @@ p, li { white-space: pre-wrap; }
         <translation>
  Operation abgebrochen.</translation>
     </message>
+    <message>
+        <source>Source </source>
+        <translation>Die Quelle</translation>
+    </message>
+    <message>
+        <source> is no directory</source>
+        <translation> ist kein Verzeichnis</translation>
+    </message>
 </context>
 <context>
     <name>MovieImageDialog</name>
@@ -2120,6 +2128,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>This operation sorts all movies in this directory to separate sub-directories. Click &quot;Ok&quot;, if thats, what you want to do</source>
         <translation>Diese Operation sortiert alle Filme in diesem Verzeichnis in separate Unterordner. Klicken Die &quot;Ok&quot;, falls sie damit einverstanden sind.</translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation>Ok</translation>
     </message>
 </context>
 <context>
