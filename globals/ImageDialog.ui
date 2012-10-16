@@ -37,6 +37,9 @@
    </item>
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
      <widget class="QWidget" name="page">
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <property name="margin">

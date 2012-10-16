@@ -104,11 +104,8 @@ void FilterWidget::onFilterTextChanged(QString text)
         if (!filter->accepts(text))
             continue;
 
-        qDebug() << filter->text() << filter->info();
-
         if ((filter->info() == MovieFilters::Title || filter->info() == ConcertFilters::Title || filter->info() == TvShowFilters::Title)
             && !m_activeFilters.contains(filter)) {
-            qDebug() << "adjusting filter text";
             filter->setText(tr("Title contains \"%1\"").arg(text));
             filter->setShortText(text);
         }

@@ -128,8 +128,9 @@ int ImageDialog::exec(int type)
 
     // show image widget
     ui->stackedWidget->setCurrentIndex(1);
+    // @todo: replace "replace" with fitname
     if (m_itemType == ItemMovie)
-        ui->searchTerm->setText(m_movie->name());
+        ui->searchTerm->setText(m_movie->name().replace("-", " "));
     else if (m_itemType == ItemConcert)
         ui->searchTerm->setText(m_concert->name());
     else if (m_itemType == ItemTvShow)
@@ -586,9 +587,9 @@ void ImageDialog::onSearch(bool onlyFirstResult)
         // -> trigger searching for item and show search result widget
         ui->results->clearContents();
         ui->results->setRowCount(0);
+        int limit = (onlyFirstResult) ? 1 : 0;
         // @todo: add tv shows & concerts
         if (m_itemType == ItemMovie) {
-            int limit = (onlyFirstResult) ? 1 : 0;
             m_currentProvider->searchMovie(searchTerm, limit);
         }
     }
