@@ -2,12 +2,14 @@
 #include "ui_SettingsWidget.h"
 
 #include <QComboBox>
+#include <QMessageBox>
 
 #include "movies/FilesWidget.h"
 #include "main/MainWindow.h"
 #include "globals/Manager.h"
 #include "main/MessageBox.h"
 #include "tvShows/TvShowFilesWidget.h"
+#include "data/MovieFilesOrganizer.h"
 
 
 /**
@@ -142,6 +144,7 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
 
     connect(ui->buttonAddDir, SIGNAL(clicked()), m_dirDialog, SLOT(open()));
     connect(ui->buttonRemoveDir, SIGNAL(clicked()), this, SLOT(removeDir()));
+    connect(ui->buttonMovieFilesToDirs, SIGNAL(clicked()), this, SLOT(organize()));
     connect(ui->dirs, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(dirListRowChanged(int)));
 
     connect(ui->chkActivateDebug, SIGNAL(clicked()), this, SLOT(onActivateDebugMode()));
@@ -239,7 +242,10 @@ void SettingsWidget::loadSettings()
     for (int i=0, n=concertDirectories.count() ; i<n ; ++i)
         addDir(concertDirectories.at(i).path, concertDirectories.at(i).mediaCenterPath, concertDirectories.at(i).separateFolders, DirTypeConcerts);
 
-    ui->buttonRemoveDir->setEnabled(ui->dirs->rowCount() > 0);
+    dirListRowChanged(ui->dirs->currentRow());
+
+    // Exclude words
+    ui->excludeWordsText->setPlainText(m_settings->excludeWords());
 
     // MediaCenterInterface
     int mediaCenterInterface = m_settings->mediaCenterInterface();
@@ -453,6 +459,10 @@ void SettingsWidget::saveSettings()
     m_settings->setTvShowDirectories(tvShowDirectories);
     m_settings->setConcertDirectories(concertDirectories);
 
+
+    // exclude words
+    m_settings->setExcludeWords(ui->excludeWordsText->toPlainText());
+
     m_settings->saveSettings();
 
     Manager::instance()->movieFileSearcher()->setMovieDirectories(m_settings->movieDirectories());
@@ -521,12 +531,69 @@ void SettingsWidget::removeDir()
 }
 
 /**
- * @brief Enables/disables the button to remove a dir
+ * @brief Organize button clicked
+ */
+void SettingsWidget::organize()
+{
+    MovieFilesOrganizer* organizer = new MovieFilesOrganizer(this);
+    qDebug() << "Organize Button clicked!" << ui->dirs
+                ->item(ui->dirs->currentRow(), 1)->text();
+
+    int row = ui->dirs->currentRow();
+    if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() != 0
+            || ui->dirs->item(row, 3)->checkState() == Qt::Checked) {
+        organizer->canceled(tr("Organizing movies does only work on " \
+                                      "movies, not already sorted to " \
+                                      "separate folders."));
+        return;
+    }
+
+    QMessageBox msgBox;
+    msgBox.setIcon(QMessageBox::Information);
+    msgBox.setText(tr("Are you sure?"));
+    msgBox.setInformativeText(tr("This operation sorts all movies" \
+                              " in this directory to separate " \
+                              "sub-directories. Click \"Ok\", " \
+                              "if thats, what you want to do"));
+    msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+    msgBox.setButtonText(1, tr("Ok"));
+    msgBox.setButtonText(2, tr("Cancel"));
+    msgBox.setDefaultButton(QMessageBox::Cancel);
+    int ret = msgBox.exec();
+
+    switch (ret) {
+      case QMessageBox::Ok:
+        organizer->moveToDirs(ui->dirs->item(ui->dirs->currentRow(), 1)->text());
+        ui->dirs->item(ui->dirs->currentRow(), 3)->setCheckState(Qt::Checked);
+        break;
+      case QMessageBox::Cancel:
+        break;
+      default:
+        break;
+    }
+}
+
+/**
+ * @brief Enables/disables the buttons to operate on dirs
  * @param currentRow Current row in the dir list
  */
 void SettingsWidget::dirListRowChanged(int currentRow)
 {
-    ui->buttonRemoveDir->setDisabled(currentRow < 0);
+    if (currentRow < 0) {
+        ui->buttonRemoveDir->setDisabled(true);
+        ui->buttonMovieFilesToDirs->setDisabled(true);
+
+    }
+    else {
+        ui->buttonRemoveDir->setDisabled(false);
+
+        if (static_cast<QComboBox*>(ui->dirs->cellWidget(currentRow, 0))->currentIndex() == 0
+                && ui->dirs->item(currentRow, 3)->checkState() == Qt::Unchecked) {
+            ui->buttonMovieFilesToDirs->setDisabled(false);
+        }
+        else
+            ui->buttonMovieFilesToDirs->setDisabled(true);
+    }
 }
 
 /**

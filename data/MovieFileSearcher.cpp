@@ -136,7 +136,10 @@ void MovieFileSearcher::scanDir(QString path, QList<QStringList> &contents, bool
         return;
     }
 
-    QRegExp rx("((part|cd)[\\s_]*)(\\d+)", Qt::CaseInsensitive);
+    /* detect movies with multiple files*/
+    QRegExp rx("([\\-_\\s\\.\\(\\)]+((a|b|c|d|e|f)|((part|cd|xvid)" \
+               "[\\-_\\s\\.\\(\\)]*\\d+))[\\-_\\s\\.\\(\\)]+)",
+               Qt::CaseInsensitive);
     for (int i=0, n=files.size() ; i<n ; i++) {
         QStringList movieFiles;
         QString file = files.at(i);
@@ -145,10 +148,10 @@ void MovieFileSearcher::scanDir(QString path, QList<QStringList> &contents, bool
 
         movieFiles << QDir::toNativeSeparators(path + QDir::separator() + file);
 
-        int pos = rx.indexIn(file);
+        int pos = rx.lastIndexIn(file);
         if (pos != -1) {
-            QString left = file.left(pos) + rx.cap(1);
-            QString right = file.mid(pos+rx.cap(1).size()+rx.cap(2).size());
+            QString left = file.left(pos);
+            QString right = file.mid(pos + rx.cap(0).size());
             for (int x=0 ; x<n ; x++) {
                 QString subFile = files.at(x);
                 if (subFile != file) {
@@ -175,7 +178,7 @@ QStringList MovieFileSearcher::getCachedFiles(QString path)
 {
     QStringList filters;
     filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
-            << "*.dat" << "*.flv" << "*.vob" << "*.ts";
+            << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm";
 
     if (!Settings::instance()->useCache())
         return QDir(path).entryList(filters, QDir::Files | QDir::System);

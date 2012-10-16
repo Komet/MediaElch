@@ -1,4 +1,5 @@
 #include "Movie.h"
+#include "globals/NameFormatter.h"
 
 #include <QApplication>
 #include <QDebug>
@@ -140,6 +141,8 @@ bool Movie::loadData(MediaCenterInterface *mediaCenterInterface, bool force)
     if ((m_infoLoaded || hasChanged()) && !force)
         return m_infoLoaded;
 
+    NameFormatter *nameFormat = NameFormatter::instance(this);
+
     bool infoLoaded = mediaCenterInterface->loadMovie(this);
     qDebug() << "Loaded" << infoLoaded;
     if (!infoLoaded) {
@@ -160,11 +163,20 @@ bool Movie::loadData(MediaCenterInterface *mediaCenterInterface, bool force)
             } else if (inSeparateFolder()) {
                 QStringList splitted = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
                 if (!splitted.isEmpty())
-                    setName(splitted.last());
-                else
-                    setName(fi.completeBaseName().replace(".", " ").replace("_", " "));
+                    setName(nameFormat->formatName(splitted.last()));
+                else {
+                    if (this->files().size() > 1)
+                        setName(nameFormat->formatName(
+                                    nameFormat->formatParts(fi.completeBaseName())));
+                    else
+                        setName(nameFormat->formatName(fi.completeBaseName()));
+                }
             } else {
-                setName(fi.completeBaseName().replace(".", " ").replace("_", " "));
+                if (this->files().size() > 1)
+                    setName(nameFormat->formatName(
+                                nameFormat->formatParts(fi.completeBaseName())));
+                else
+                    setName(nameFormat->formatName(fi.completeBaseName()));
             }
         }
     }
