@@ -54,6 +54,9 @@ public:
     QList<DataFile*> concertNfoFiles();
     QList<DataFile*> concertPosterFiles();
     QList<DataFile*> concertFanartFiles();
+    QList<DataFile*> concertCdArtFiles(bool onlyEnabled = false);
+    QList<DataFile*> concertLogoFiles(bool onlyEnabled = false);
+    QList<DataFile*> concertClearArtFiles(bool onlyEnabled = false);
     QList<DataFile*> enabledMovieNfoFiles();
     QList<DataFile*> enabledMoviePosterFiles();
     QList<DataFile*> enabledMovieFanartFiles();
@@ -96,6 +99,9 @@ public:
     void setConcertNfoFiles(QList<DataFile*> files);
     void setConcertPosterFiles(QList<DataFile*> files);
     void setConcertFanartFiles(QList<DataFile*> files);
+    void setConcertCdArtFiles(QList<DataFile*> files);
+    void setConcertLogoFiles(QList<DataFile*> files);
+    void setConcertClearArtFiles(QList<DataFile*> files);
     void setMediaCenterInterface(int interface);
     void setUseCache(bool useCache);
 
@@ -137,6 +143,9 @@ private:
     QList<DataFile*> m_concertNfoFiles;
     QList<DataFile*> m_concertPosterFiles;
     QList<DataFile*> m_concertFanartFiles;
+    QList<DataFile*> m_concertCdArtFiles;
+    QList<DataFile*> m_concertLogoFiles;
+    QList<DataFile*> m_concertClearArtFiles;
     QList<DataFile*> m_tvShowPosterFiles;
     QList<DataFile*> m_tvShowBannerFiles;
     bool m_useCache;

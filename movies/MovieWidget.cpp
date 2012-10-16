@@ -84,8 +84,6 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->buttonPreviewCdArt, SIGNAL(clicked()), this, SLOT(onPreviewCdArt()));
     connect(ui->actor, SIGNAL(clicked()), this, SLOT(onChangeActorImage()));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
-    connect(ui->buttonArtPageOne, SIGNAL(clicked()), this, SLOT(onArtPageOne()));
-    connect(ui->buttonArtPageTwo, SIGNAL(clicked()), this, SLOT(onArtPageTwo()));
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();

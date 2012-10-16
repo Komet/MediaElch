@@ -20,6 +20,9 @@ Concert::Concert(QStringList files, QObject *parent) :
     m_playcount = 0;
     m_backdropImageChanged = false;
     m_posterImageChanged = false;
+    m_logoImageChanged = false;
+    m_clearArtImageChanged = false;
+    m_cdArtImageChanged = false;
     if (files.size() > 0) {
         QFileInfo fi(files.at(0));
         QStringList path = fi.path().split("/", QString::SkipEmptyParts);
@@ -179,6 +182,9 @@ void Concert::clearImages()
 {
     m_posterImage = QImage();
     m_backdropImage = QImage();
+    m_logoImage = QImage();
+    m_clearArtImage = QImage();
+    m_cdArtImage = QImage();
 }
 
 /*** GETTER ***/
@@ -372,6 +378,33 @@ QImage *Concert::backdropImage()
 }
 
 /**
+ * @brief Holds the current concert logo
+ * @return Current concert logo
+ */
+QImage *Concert::logoImage()
+{
+    return &m_logoImage;
+}
+
+/**
+ * @brief Holds the current concert clear art
+ * @return Current concert clear art
+ */
+QImage *Concert::clearArtImage()
+{
+    return &m_clearArtImage;
+}
+
+/**
+ * @brief Holds the current concert cd art
+ * @return Current concert cd art
+ */
+QImage *Concert::cdArtImage()
+{
+    return &m_cdArtImage;
+}
+
+/**
  * @brief Returns the parent folder of the concert
  * @return Parent folder of the concert
  */
@@ -408,6 +441,33 @@ bool Concert::backdropImageChanged() const
 }
 
 /**
+ * @brief Holds a property indicating if the logo image was changed
+ * @return Concerts logo image was changed
+ */
+bool Concert::logoImageChanged() const
+{
+    return m_logoImageChanged;
+}
+
+/**
+ * @brief Holds a property indicating if the clear art image was changed
+ * @return Concerts clear art image was changed
+ */
+bool Concert::clearArtImageChanged() const
+{
+    return m_clearArtImageChanged;
+}
+
+/**
+ * @brief Holds a property indicating if the cd art image was changed
+ * @return Concerts cd art image was changed
+ */
+bool Concert::cdArtImageChanged() const
+{
+    return m_cdArtImageChanged;
+}
+
+/**
  * @property Concert::watched
  * @brief Holds the concerts watched status
  * @return Watched status of the concert
@@ -428,7 +488,6 @@ bool Concert::hasChanged() const
 {
     return m_hasChanged;
 }
-
 
 /**
  * @brief Holds a unique MediaElch concert id
@@ -806,6 +865,39 @@ void Concert::setBackdropImage(QImage backdrop)
 {
     m_backdropImage = QImage(backdrop);
     m_backdropImageChanged = true;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the current logo image
+ * @param img Current logo image
+ */
+void Concert::setLogoImage(QImage img)
+{
+    m_logoImage = QImage(img);
+    m_logoImageChanged = true;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the current clear art image
+ * @param img Current clear art image
+ */
+void Concert::setClearArtImage(QImage img)
+{
+    m_clearArtImage = QImage(img);
+    m_clearArtImageChanged = true;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the current cd art image
+ * @param img Current cd art image
+ */
+void Concert::setCdArtImage(QImage img)
+{
+    m_cdArtImage = QImage(img);
+    m_cdArtImageChanged = true;
     setChanged(true);
 }
 

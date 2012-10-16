@@ -132,7 +132,7 @@ int ImageDialog::exec(int type)
     if (m_itemType == ItemMovie)
         ui->searchTerm->setText(m_movie->name().replace("-", " "));
     else if (m_itemType == ItemConcert)
-        ui->searchTerm->setText(m_concert->name());
+        ui->searchTerm->setText(m_concert->name().replace("-", " "));
     else if (m_itemType == ItemTvShow)
         ui->searchTerm->setText(m_tvShow->name());
     else if (m_itemType == ItemTvShowEpisode)
@@ -588,10 +588,11 @@ void ImageDialog::onSearch(bool onlyFirstResult)
         ui->results->clearContents();
         ui->results->setRowCount(0);
         int limit = (onlyFirstResult) ? 1 : 0;
-        // @todo: add tv shows & concerts
-        if (m_itemType == ItemMovie) {
+        // @todo: add tv shows
+        if (m_itemType == ItemMovie)
             m_currentProvider->searchMovie(searchTerm, limit);
-        }
+        else if (m_itemType == ItemConcert)
+            m_currentProvider->searchConcert(searchTerm, limit);
     }
 }
 
@@ -624,7 +625,7 @@ void ImageDialog::onSearchFinished(QList<ScraperSearchResult> results)
  */
 void ImageDialog::loadImagesFromProvider(QString id)
 {
-    // @todo: add tv shows & concerts
+    // @todo: add tv shows
     ui->labelLoading->setVisible(true);
     ui->labelSpinner->setVisible(true);
     if (m_itemType == ItemMovie) {
@@ -638,6 +639,17 @@ void ImageDialog::loadImagesFromProvider(QString id)
             m_currentProvider->movieClearArts(id);
         else if (m_type == ImageDialogType::MovieCdArt)
             m_currentProvider->movieCdArts(id);
+    } else if (m_itemType == ItemConcert) {
+        if (m_type == ImageDialogType::ConcertBackdrop)
+            m_currentProvider->concertBackdrops(id);
+        else if (m_type == ImageDialogType::ConcertPoster)
+            m_currentProvider->concertPosters(id);
+        else if (m_type == ImageDialogType::ConcertLogo)
+            m_currentProvider->concertLogos(id);
+        else if (m_type == ImageDialogType::ConcertClearArt)
+            m_currentProvider->concertClearArts(id);
+        else if (m_type == ImageDialogType::ConcertCdArt)
+            m_currentProvider->concertCdArts(id);
     }
 }
 

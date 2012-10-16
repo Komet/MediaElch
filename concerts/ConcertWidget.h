@@ -47,13 +47,21 @@ private slots:
     void loadDone(Concert *concert);
     void chooseConcertPoster();
     void chooseConcertBackdrop();
+    void chooseConcertLogo();
+    void chooseConcertClearArt();
+    void chooseConcertCdArt();
     void posterDownloadFinished(DownloadManagerElement elem);
     void concertNameChanged(QString text);
     void addGenre();
     void removeGenre();
     void onPreviewPoster();
     void onPreviewBackdrop();
+    void onPreviewLogo();
+    void onPreviewClearArt();
+    void onPreviewCdArt();
     void onRevertChanges();
+    void onArtPageOne();
+    void onArtPageTwo();
 
     void onNameChange(QString text);
     void onTaglineChange(QString text);
@@ -77,6 +85,9 @@ private:
     QLabel *m_savingWidget;
     QImage m_currentPoster;
     QImage m_currentBackdrop;
+    QImage m_currentLogo;
+    QImage m_currentClearArt;
+    QImage m_currentCdArt;
     void updateConcertInfo();
 };
 

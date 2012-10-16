@@ -42,6 +42,9 @@ public:
     virtual QString actorImageName(Movie *movie, Actor actor) = 0;
     virtual QString posterImageName(Concert *concert) = 0;
     virtual QString backdropImageName(Concert *concert) = 0;
+    virtual QString logoImageName(Concert *concert) = 0;
+    virtual QString clearArtImageName(Concert *concert) = 0;
+    virtual QString cdArtImageName(Concert *concert) = 0;
     virtual QString thumbnailImageName(TvShowEpisode *episode) = 0;
     virtual QString posterImageName(TvShow *show) = 0;
     virtual QString backdropImageName(TvShow *show) = 0;

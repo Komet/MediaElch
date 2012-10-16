@@ -45,6 +45,9 @@ public:
     QString actorImageName(Movie *movie, Actor actor);
     QString posterImageName(Concert *concert);
     QString backdropImageName(Concert *concert);
+    QString logoImageName(Concert *concert);
+    QString clearArtImageName(Concert *concert);
+    QString cdArtImageName(Concert *concert);
     QString thumbnailImageName(TvShowEpisode *episode);
     QString posterImageName(TvShow *show);
     QString backdropImageName(TvShow *show);

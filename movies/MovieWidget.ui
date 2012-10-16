@@ -1416,9 +1416,44 @@ QPushButton::hover {
  <resources>
   <include location="../MediaElch.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>buttonArtPageOne</sender>
+   <signal>clicked()</signal>
+   <receiver>MovieWidget</receiver>
+   <slot>onArtPageOne()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>788</x>
+     <y>70</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>466</x>
+     <y>401</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonArtPageTwo</sender>
+   <signal>clicked()</signal>
+   <receiver>MovieWidget</receiver>
+   <slot>onArtPageTwo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>807</x>
+     <y>70</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>466</x>
+     <y>401</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
  <slots>
   <slot>setMovie(Movie*)</slot>
   <slot>setEnabledTrue(Movie*)</slot>
+  <slot>onArtPageOne()</slot>
+  <slot>onArtPageTwo()</slot>
  </slots>
 </ui>

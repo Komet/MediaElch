@@ -1245,6 +1245,7 @@ bool XbmcSql::saveConcert(Concert *concert)
         qDebug() << "Concert backdrop has changed, saving";
         concert->backdropImage()->save(fanartPath, "jpg", 100);
     }
+    XbmcXml::saveAdditionalImages(concert);
 
     return true;
 }
@@ -1459,6 +1460,36 @@ QString XbmcSql::backdropImageName(Concert *concert)
     if (fanartFi.isFile())
         return fanartPath;
     return QString();
+}
+
+/**
+ * @brief Get the path to the concert logo
+ * @param concert Concert object
+ * @return Path to logo image
+ */
+QString XbmcSql::logoImageName(Concert *concert)
+{
+    return XbmcXml::logoImageNameStatic(concert);
+}
+
+/**
+ * @brief Get the path to the concert clear art
+ * @param concert Concert object
+ * @return Path to clear art image
+ */
+QString XbmcSql::clearArtImageName(Concert *concert)
+{
+    return XbmcXml::clearArtImageNameStatic(concert);
+}
+
+/**
+ * @brief Get the path to the concert cd art
+ * @param concert Concert object
+ * @return Path to cd art image
+ */
+QString XbmcSql::cdArtImageName(Concert *concert)
+{
+    return XbmcXml::cdArtImageNameStatic(concert);
 }
 
 /**

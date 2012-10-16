@@ -44,6 +44,9 @@ public:
     QString actorImageName(Movie *movie, Actor actor);
     QString posterImageName(Concert *concert);
     QString backdropImageName(Concert *concert);
+    QString logoImageName(Concert *concert);
+    QString clearArtImageName(Concert *concert);
+    QString cdArtImageName(Concert *concert);
     QString thumbnailImageName(TvShowEpisode *episode);
     QString posterImageName(TvShow *show);
     QString backdropImageName(TvShow *show);
@@ -51,9 +54,13 @@ public:
     QString actorImageName(TvShow *show, Actor actor);
     QString seasonPosterImageName(TvShow *show, int season);
     static void saveAdditionalImages(Movie *movie);
+    static void saveAdditionalImages(Concert *concert);
     static QString logoImageNameStatic(Movie *movie);
     static QString clearArtImageNameStatic(Movie *movie);
     static QString cdArtImageNameStatic(Movie *movie);
+    static QString logoImageNameStatic(Concert *concert);
+    static QString clearArtImageNameStatic(Concert *concert);
+    static QString cdArtImageNameStatic(Concert *concert);
 
 signals:
     void sigExportStarted();

@@ -21,10 +21,16 @@ public:
     void movieLogos(QString tmdbId);
     void movieClearArts(QString tmdbId);
     void movieCdArts(QString tmdbId);
+    void concertPosters(QString tmdbId);
+    void concertBackdrops(QString tmdbId);
+    void concertLogos(QString tmdbId);
+    void concertClearArts(QString tmdbId);
+    void concertCdArts(QString tmdbId);
     QList<int> provides();
 
 public slots:
     void searchMovie(QString searchStr, int limit = 0);
+    void searchConcert(QString searchStr, int limit = 0);
 
 signals:
     void sigSearchDone(QList<ScraperSearchResult>);

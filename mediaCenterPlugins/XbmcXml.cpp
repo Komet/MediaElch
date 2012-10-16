@@ -642,8 +642,39 @@ bool XbmcXml::saveConcert(Concert *concert)
             concert->backdropImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "jpg", 100);
         }
     }
+    saveAdditionalImages(concert);
 
     return true;
+}
+
+/**
+ * @brief Saves additional concert images (logo, clear art, cd art)
+ * @param concert Concert object
+ */
+void XbmcXml::saveAdditionalImages(Concert *concert)
+{
+    QFileInfo fi(concert->files().at(0));
+    if (concert->logoImageChanged() && !concert->logoImage()->isNull()) {
+        foreach (DataFile *dataFile, Settings::instance()->concertLogoFiles(true)) {
+            QString saveFileName = dataFile->saveFileName(fi.fileName());
+            qDebug() << "Saving logo to" << fi.absolutePath() + QDir::separator() + saveFileName;
+            concert->logoImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "png", 100);
+        }
+    }
+    if (concert->clearArtImageChanged() && !concert->clearArtImage()->isNull()) {
+        foreach (DataFile *dataFile, Settings::instance()->concertClearArtFiles(true)) {
+            QString saveFileName = dataFile->saveFileName(fi.fileName());
+            qDebug() << "Saving clear art to" << fi.absolutePath() + QDir::separator() + saveFileName;
+            concert->clearArtImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "png", 100);
+        }
+    }
+    if (concert->cdArtImageChanged() && !concert->cdArtImage()->isNull()) {
+        foreach (DataFile *dataFile, Settings::instance()->concertCdArtFiles(true)) {
+            QString saveFileName = dataFile->saveFileName(fi.fileName());
+            qDebug() << "Saving cd art to" << fi.absolutePath() + QDir::separator() + saveFileName;
+            concert->cdArtImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "png", 100);
+        }
+    }
 }
 
 /**
@@ -788,6 +819,114 @@ QString XbmcXml::backdropImageName(Concert *concert)
     if (fi.isFile())
         return fanartFileName;
     return QString();
+}
+
+/**
+ * @brief Get the path to the concert logo
+ * @param concert Concert object
+ * @return Path to logo image
+ */
+QString XbmcXml::logoImageName(Concert *concert)
+{
+    return XbmcXml::logoImageNameStatic(concert);
+}
+
+/**
+ * @brief Get the path to the concert clear art
+ * @param concert Concert object
+ * @return Path to clear art image
+ */
+QString XbmcXml::clearArtImageName(Concert *concert)
+{
+    return XbmcXml::clearArtImageNameStatic(concert);
+}
+
+/**
+ * @brief Get the path to the concert cd art
+ * @param concert Concert object
+ * @return Path to cd art image
+ */
+QString XbmcXml::cdArtImageName(Concert *concert)
+{
+    return XbmcXml::cdArtImageNameStatic(concert);
+}
+
+/**
+ * @brief Get the path to the concert logo
+ * @param concert Concert object
+ * @return Path to logo image
+ */
+QString XbmcXml::logoImageNameStatic(Concert *concert)
+{
+    QString logoFileName;
+    if (concert->files().size() == 0) {
+        qWarning() << "Concert has no files";
+        return logoFileName;
+    }
+    QFileInfo fi(concert->files().at(0));
+
+    foreach (DataFile *dataFile, Settings::instance()->concertLogoFiles(true)) {
+        QString file = dataFile->saveFileName(fi.fileName());
+        QFileInfo bFi(fi.absolutePath() + QDir::separator() + file);
+        if (bFi.isFile()) {
+            logoFileName = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return logoFileName;
+}
+
+/**
+ * @brief Get the path to the concert clear art
+ * @param concert Concert object
+ * @return Path to clear art image
+ */
+QString XbmcXml::clearArtImageNameStatic(Concert *concert)
+{
+    QString clearArtFileName;
+    if (concert->files().size() == 0) {
+        qWarning() << "Concert has no files";
+        return clearArtFileName;
+    }
+    QFileInfo fi(concert->files().at(0));
+
+    foreach (DataFile *dataFile, Settings::instance()->concertClearArtFiles(true)) {
+        QString file = dataFile->saveFileName(fi.fileName());
+        QFileInfo bFi(fi.absolutePath() + QDir::separator() + file);
+        if (bFi.isFile()) {
+            clearArtFileName = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return clearArtFileName;
+}
+
+/**
+ * @brief Get the path to the concert cd art
+ * @param concert Concert object
+ * @return Path to cd art image
+ */
+QString XbmcXml::cdArtImageNameStatic(Concert *concert)
+{
+    QString cdArtFileName;
+    if (concert->files().size() == 0) {
+        qWarning() << "Concert has no files";
+        return cdArtFileName;
+    }
+    QFileInfo fi(concert->files().at(0));
+
+    foreach (DataFile *dataFile, Settings::instance()->concertCdArtFiles(true)) {
+        QString file = dataFile->saveFileName(fi.fileName());
+        QFileInfo bFi(fi.absolutePath() + QDir::separator() + file);
+        if (bFi.isFile()) {
+            cdArtFileName = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return cdArtFileName;
 }
 
 /**

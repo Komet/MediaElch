@@ -15,7 +15,8 @@ TMDbImages::TMDbImages(QObject *parent)
     setParent(parent);
     m_apiKey = "5d832bdf69dcb884922381ab01548d5b";
     m_baseUrl = "http://cf2.imgobject.com/t/p/";
-    m_provides << ImageDialogType::MovieBackdrop << ImageDialogType::MoviePoster;
+    m_provides << ImageDialogType::MovieBackdrop << ImageDialogType::MoviePoster
+               << ImageDialogType::ConcertBackdrop << ImageDialogType::ConcertPoster;
     m_searchResultLimit = 0;
     setup();
 }
@@ -97,7 +98,7 @@ void TMDbImages::onSetupFinished()
  * @brief Searches for a movie
  * @param searchStr The Movie name/search string
  * @param limit Number of results, if zero, all results are returned
- * @see TMDbImages::searchFinished
+ * @see TMDbImages::onSearchMovieFinished
  */
 void TMDbImages::searchMovie(QString searchStr, int limit)
 {
@@ -113,6 +114,17 @@ void TMDbImages::searchMovie(QString searchStr, int limit)
     request.setRawHeader("Accept", "application/json");
     m_searchReply = qnam()->get(request);
     connect(m_searchReply, SIGNAL(finished()), this, SLOT(onSearchMovieFinished()));
+}
+
+/**
+ * @brief Searches for a concert
+ * @param searchStr The concert name/search string
+ * @param limit Number of results, if zero, all results are returned
+ * @see TMDbImages::searchMovie
+ */
+void TMDbImages::searchConcert(QString searchStr, int limit)
+{
+    searchMovie(searchStr, limit);
 }
 
 /**
@@ -179,6 +191,24 @@ void TMDbImages::movieBackdrops(QString tmdbId)
     request.setUrl(url);
     m_loadReply = qnam()->get(QNetworkRequest(request));
     connect(m_loadReply, SIGNAL(finished()), this, SLOT(onLoadBackdropsFinished()));
+}
+
+/**
+ * @brief Load concert posters
+ * @param tmdbId
+ */
+void TMDbImages::concertPosters(QString tmdbId)
+{
+    moviePosters(tmdbId);
+}
+
+/**
+ * @brief Load concert backdrops
+ * @param tmdbId
+ */
+void TMDbImages::concertBackdrops(QString tmdbId)
+{
+    movieBackdrops(tmdbId);
 }
 
 /**
@@ -296,6 +326,33 @@ void TMDbImages::movieClearArts(QString tmdbId)
  * @param tmdbId The Movie DB id
  */
 void TMDbImages::movieCdArts(QString tmdbId)
+{
+    Q_UNUSED(tmdbId);
+}
+
+/**
+ * @brief Load concert logos
+ * @param tmdbId The Movie DB id
+ */
+void TMDbImages::concertLogos(QString tmdbId)
+{
+    Q_UNUSED(tmdbId);
+}
+
+/**
+ * @brief Load concert clear arts
+ * @param tmdbId The Movie DB id
+ */
+void TMDbImages::concertClearArts(QString tmdbId)
+{
+    Q_UNUSED(tmdbId);
+}
+
+/**
+ * @brief Load concert cd arts
+ * @param tmdbId The Movie DB id
+ */
+void TMDbImages::concertCdArts(QString tmdbId)
 {
     Q_UNUSED(tmdbId);
 }

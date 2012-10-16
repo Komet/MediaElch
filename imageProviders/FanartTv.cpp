@@ -15,7 +15,7 @@ FanartTv::FanartTv(QObject *parent)
     setParent(parent);
     m_provides << ImageDialogType::MovieBackdrop << ImageDialogType::MovieLogo << ImageDialogType::MovieClearArt << ImageDialogType::MovieCdArt
                << ImageDialogType::TvShowBanner << ImageDialogType::TvShowBackdrop
-               << ImageDialogType::ConcertBackdrop;
+               << ImageDialogType::ConcertBackdrop << ImageDialogType::ConcertLogo << ImageDialogType::ConcertClearArt << ImageDialogType::ConcertCdArt;
     m_tmdbApiKey = "5d832bdf69dcb884922381ab01548d5b";
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_tmdbBaseUrl = "http://cf2.imgobject.com/t/p/";
@@ -104,6 +104,17 @@ void FanartTv::searchMovie(QString searchStr, int limit)
 }
 
 /**
+ * @brief Searches for a concert
+ * @param searchStr The Concert name/search string
+ * @param limit Number of results, if zero, all results are returned
+ * @see FanartTv::searchMovie
+ */
+void FanartTv::searchConcert(QString searchStr, int limit)
+{
+    searchMovie(searchStr, limit);
+}
+
+/**
  * @brief Called when the search result was downloaded
  *        Emits "sigSearchDone" if there are no more pages in the result set
  * @see TMDb::parseSearch
@@ -184,6 +195,56 @@ void FanartTv::movieCdArts(QString tmdbId)
     loadMovieData(tmdbId, TypeCdArt);
 }
 
+/**
+ * @brief Would load concert posters (not supported by fanart.tv)
+ * @param tmdbId
+ */
+void FanartTv::concertPosters(QString tmdbId)
+{
+    Q_UNUSED(tmdbId);
+}
+
+/**
+ * @brief Load concert backdrops
+ * @param tmdbId
+ */
+void FanartTv::concertBackdrops(QString tmdbId)
+{
+    loadMovieData(tmdbId, TypeBackdrop);
+}
+
+/**
+ * @brief Load concert logos
+ * @param tmdbId The Movie DB id
+ */
+void FanartTv::concertLogos(QString tmdbId)
+{
+    loadMovieData(tmdbId, TypeLogo);
+}
+
+/**
+ * @brief Load concert clear arts
+ * @param tmdbId The Movie DB id
+ */
+void FanartTv::concertClearArts(QString tmdbId)
+{
+    loadMovieData(tmdbId, TypeClearArt);
+}
+
+/**
+ * @brief Load concert cd arts
+ * @param tmdbId The Movie DB id
+ */
+void FanartTv::concertCdArts(QString tmdbId)
+{
+    loadMovieData(tmdbId, TypeCdArt);
+}
+
+/**
+ * @brief FanartTv::loadMovieData
+ * @param tmdbId
+ * @param type
+ */
 void FanartTv::loadMovieData(QString tmdbId, int type)
 {
     m_currentType = type;
