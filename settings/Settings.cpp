@@ -29,15 +29,26 @@ Settings::Settings(QObject *parent) :
     m_movieFanartFiles.append(new DataFile(8, "<movie filename>-fanart.jpg", "<moviefile>-fanart.jpg", 0, true));
     m_movieFanartFiles.append(new DataFile(9, "fanart.jpg", "fanart.jpg", 1, false));
 
+    m_movieCdArtFiles.append(new DataFile(17, "cdart.png", "cdart.png", 0, true));
+    m_movieLogoFiles.append(new DataFile(18, "logo.png", "logo.png", 0, true));
+    m_movieClearArtFiles.append(new DataFile(19, "clearart.png", "clearart.png", 0, true));
+
     m_tvShowPosterFiles.append(new DataFile(10, "season-all.tbn", "season-all.tbn", 0, true));
     m_tvShowPosterFiles.append(new DataFile(11, "poster.jpg", "poster.jpg", 1, true));
 
     m_tvShowBannerFiles.append(new DataFile(12, "banner.jpg", "banner.jpg", 0, true));
     m_tvShowBannerFiles.append(new DataFile(13, "folder.jpg", "folder.jpg", 1, true));
+    m_tvShowLogoFiles.append(new DataFile(23, "logo.png", "logo.png", 0, true));
+    m_tvShowClearArtFiles.append(new DataFile(24, "clearart.png", "clearart.png", 0, true));
+    m_tvShowCharacterArtFiles.append(new DataFile(25, "character.png", "character.png", 0, true));
 
-    m_concertNfoFiles.append(new DataFile(0, "<movie filename>.nfo", "<moviefile>.nfo", 0, true));
-    m_concertPosterFiles.append(new DataFile(1, "<movie filename>.tbn", "<moviefile>.tbn", 0, true));
-    m_concertFanartFiles.append(new DataFile(2, "<movie filename>-fanart.jpg", "<moviefile>-fanart.jpg", 0, true));
+    m_concertNfoFiles.append(new DataFile(14, "<movie filename>.nfo", "<moviefile>.nfo", 0, true));
+    m_concertPosterFiles.append(new DataFile(15, "<movie filename>.tbn", "<moviefile>.tbn", 0, true));
+    m_concertFanartFiles.append(new DataFile(16, "<movie filename>-fanart.jpg", "<moviefile>-fanart.jpg", 0, true));
+    m_concertCdArtFiles.append(new DataFile(20, "cdart.png", "cdart.png", 0, true));
+    m_concertLogoFiles.append(new DataFile(21, "logo.png", "logo.png", 0, true));
+    m_concertClearArtFiles.append(new DataFile(22, "clearart.png", "clearart.png", 0, true));
+
 }
 
 /**
@@ -572,6 +583,108 @@ QList<DataFile*> Settings::movieFanartFiles()
 }
 
 /**
+ * @brief Returns a list of DataFiles for movie cd arts
+ * @param onlyEnabled If true, list contains only enabled files
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::movieCdArtFiles(bool onlyEnabled)
+{
+    if (!onlyEnabled)
+        return m_movieCdArtFiles;
+    QList<DataFile*> files;
+    foreach (DataFile* file, m_movieCdArtFiles) {
+        if (file->enabled())
+            files.append(file);
+    }
+    return files;
+}
+
+/**
+ * @brief Returns a list of DataFiles for movie logos
+ * @param onlyEnabled If true, list contains only enabled files
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::movieLogoFiles(bool onlyEnabled)
+{
+    if (!onlyEnabled)
+        return m_movieLogoFiles;
+    QList<DataFile*> files;
+    foreach (DataFile* file, m_movieLogoFiles) {
+        if (file->enabled())
+            files.append(file);
+    }
+    return files;
+}
+
+/**
+ * @brief Returns a list of DataFiles for movie clear arts
+ * @param onlyEnabled If true, list contains only enabled files
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::movieClearArtFiles(bool onlyEnabled)
+{
+    if (!onlyEnabled)
+        return m_movieClearArtFiles;
+    QList<DataFile*> files;
+    foreach (DataFile* file, m_movieClearArtFiles) {
+        if (file->enabled())
+            files.append(file);
+    }
+    return files;
+}
+
+/**
+ * @brief Returns a list of DataFiles for concert cd arts
+ * @param onlyEnabled If true, list contains only enabled files
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::concertCdArtFiles(bool onlyEnabled)
+{
+    if (!onlyEnabled)
+        return m_concertCdArtFiles;
+    QList<DataFile*> files;
+    foreach (DataFile* file, m_concertCdArtFiles) {
+        if (file->enabled())
+            files.append(file);
+    }
+    return files;
+}
+
+/**
+ * @brief Returns a list of DataFiles for concert logos
+ * @param onlyEnabled If true, list contains only enabled files
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::concertLogoFiles(bool onlyEnabled)
+{
+    if (!onlyEnabled)
+        return m_concertLogoFiles;
+    QList<DataFile*> files;
+    foreach (DataFile* file, m_concertLogoFiles) {
+        if (file->enabled())
+            files.append(file);
+    }
+    return files;
+}
+
+/**
+ * @brief Returns a list of DataFiles for concert clear arts
+ * @param onlyEnabled If true, list contains only enabled files
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::concertClearArtFiles(bool onlyEnabled)
+{
+    if (!onlyEnabled)
+        return m_concertClearArtFiles;
+    QList<DataFile*> files;
+    foreach (DataFile* file, m_concertClearArtFiles) {
+        if (file->enabled())
+            files.append(file);
+    }
+    return files;
+}
+
+/**
  * @brief Returns a list of all DataFiles for tv show posters.
  * @return List of DataFile objects
  */
@@ -587,6 +700,57 @@ QList<DataFile*> Settings::tvShowPosterFiles()
 QList<DataFile*> Settings::tvShowBannerFiles()
 {
     return m_tvShowBannerFiles;
+}
+
+/**
+ * @brief Returns a list of DataFiles for tv show logos
+ * @param onlyEnabled If true, list contains only enabled files
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::tvShowLogoFiles(bool onlyEnabled)
+{
+    if (!onlyEnabled)
+        return m_tvShowLogoFiles;
+    QList<DataFile*> files;
+    foreach (DataFile* file, m_tvShowLogoFiles) {
+        if (file->enabled())
+            files.append(file);
+    }
+    return files;
+}
+
+/**
+ * @brief Returns a list of DataFiles for tv show clear arts
+ * @param onlyEnabled If true, list contains only enabled files
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::tvShowClearArtFiles(bool onlyEnabled)
+{
+    if (!onlyEnabled)
+        return m_tvShowClearArtFiles;
+    QList<DataFile*> files;
+    foreach (DataFile* file, m_tvShowClearArtFiles) {
+        if (file->enabled())
+            files.append(file);
+    }
+    return files;
+}
+
+/**
+ * @brief Returns a list of DataFiles for tv show character arts
+ * @param onlyEnabled If true, list contains only enabled files
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::tvShowCharacterArtFiles(bool onlyEnabled)
+{
+    if (!onlyEnabled)
+        return m_tvShowCharacterArtFiles;
+    QList<DataFile*> files;
+    foreach (DataFile* file, m_tvShowCharacterArtFiles) {
+        if (file->enabled())
+            files.append(file);
+    }
+    return files;
 }
 
 /**
@@ -857,6 +1021,33 @@ void Settings::setMovieFanartFiles(QList<DataFile*> files)
 }
 
 /**
+ * @brief Sets the movie cd art files
+ * @param files List of DataFile Objects
+ */
+void Settings::setMovieCdArtFiles(QList<DataFile*> files)
+{
+    m_movieCdArtFiles = files;
+}
+
+/**
+ * @brief Sets the movie logo files
+ * @param files List of DataFile Objects
+ */
+void Settings::setMovieLogoFiles(QList<DataFile*> files)
+{
+    m_movieLogoFiles = files;
+}
+
+/**
+ * @brief Sets the movie clearart files
+ * @param files List of DataFile Objects
+ */
+void Settings::setMovieClearArtFiles(QList<DataFile*> files)
+{
+    m_movieClearArtFiles = files;
+}
+
+/**
  * @brief Sets the tv show poster files
  * @param files List of DataFile Objects
  */
@@ -872,6 +1063,33 @@ void Settings::setTvShowPosterFiles(QList<DataFile*> files)
 void Settings::setTvShowBannerFiles(QList<DataFile*> files)
 {
     m_tvShowBannerFiles = files;
+}
+
+/**
+ * @brief Sets the movie logo files
+ * @param files List of DataFile Objects
+ */
+void Settings::setTvShowLogoFiles(QList<DataFile*> files)
+{
+    m_tvShowLogoFiles = files;
+}
+
+/**
+ * @brief Sets the tv show clearart files
+ * @param files List of DataFile Objects
+ */
+void Settings::setTvShowClearArtFiles(QList<DataFile*> files)
+{
+    m_tvShowClearArtFiles = files;
+}
+
+/**
+ * @brief Sets the tv show character files
+ * @param files List of DataFile Objects
+ */
+void Settings::setTvShowCharacterArtFiles(QList<DataFile*> files)
+{
+    m_tvShowCharacterArtFiles = files;
 }
 
 /**
@@ -899,6 +1117,33 @@ void Settings::setConcertPosterFiles(QList<DataFile*> files)
 void Settings::setConcertFanartFiles(QList<DataFile*> files)
 {
     m_concertFanartFiles = files;
+}
+
+/**
+ * @brief Sets the concert cd art files
+ * @param files List of DataFile Objects
+ */
+void Settings::setConcertCdArtFiles(QList<DataFile*> files)
+{
+    m_concertCdArtFiles = files;
+}
+
+/**
+ * @brief Sets the concert logo files
+ * @param files List of DataFile Objects
+ */
+void Settings::setConcertLogoFiles(QList<DataFile*> files)
+{
+    m_concertLogoFiles = files;
+}
+
+/**
+ * @brief Sets the concert clearart files
+ * @param files List of DataFile Objects
+ */
+void Settings::setConcertClearArtFiles(QList<DataFile*> files)
+{
+    m_concertClearArtFiles = files;
 }
 
 /**
@@ -966,7 +1211,7 @@ void Settings::setProxyUsername(QString username)
 
 /**
  * @brief Sets the password to use when connecting to the proxy
- * @param username Proxy password
+ * @param password Proxy password
  */
 void Settings::setProxyPassword(QString password)
 {

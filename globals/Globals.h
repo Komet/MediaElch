@@ -12,6 +12,7 @@
 class Movie;
 class TvShowEpisode;
 class Filter;
+class ImageProviderInterface;
 
 namespace Constants {
     const int MovieFileSearcherProgressMessageId   = 10000;
@@ -75,6 +76,7 @@ Q_DECLARE_METATYPE(Actor*);
 Q_DECLARE_METATYPE(Movie*);
 Q_DECLARE_METATYPE(QString*);
 Q_DECLARE_METATYPE(Filter*);
+Q_DECLARE_METATYPE(ImageProviderInterface*);
 
 /**
  * @brief The ScraperSearchResult struct
@@ -97,11 +99,15 @@ struct Poster {
 };
 
 enum ImageType {
-    TypePoster, TypeBackdrop, TypeBanner, TypeActor, TypeSeasonPoster, TypeShowThumbnail
+    TypePoster, TypeBackdrop, TypeBanner, TypeActor, TypeSeasonPoster, TypeShowThumbnail, TypeLogo, TypeClearArt, TypeCdArt, TypeCharacterArt
 };
 
 enum TvShowType {
     TypeTvShow, TypeEpisode, TypeSeason
+};
+
+enum ItemType {
+    ItemMovie, ItemTvShow, ItemTvShowEpisode, ItemConcert
 };
 
 /**
@@ -118,15 +124,24 @@ enum SettingsDirType {
 };
 
 namespace ImageDialogType {
-    const int MoviePoster     = 1;
-    const int MovieBackdrop   = 2;
-    const int TvShowPoster    = 3;
-    const int TvShowBackdrop  = 4;
-    const int TvShowThumb     = 5;
-    const int TvShowSeason    = 6;
-    const int TvShowBanner    = 7;
-    const int ConcertPoster   = 8;
-    const int ConcertBackdrop = 9;
+    const int MoviePoster        = 1;
+    const int MovieBackdrop      = 2;
+    const int TvShowPoster       = 3;
+    const int TvShowBackdrop     = 4;
+    const int TvShowThumb        = 5;
+    const int TvShowSeason       = 6;
+    const int TvShowBanner       = 7;
+    const int ConcertPoster      = 8;
+    const int ConcertBackdrop    = 9;
+    const int MovieLogo          = 10;
+    const int MovieClearArt      = 11;
+    const int MovieCdArt         = 12;
+    const int ConcertLogo        = 13;
+    const int ConcertClearArt    = 14;
+    const int ConcertCdArt       = 15;
+    const int TvShowClearArt     = 16;
+    const int TvShowLogos        = 17;
+    const int TvShowCharacterArt = 18;
 }
 
 namespace MovieScraperInfos {
@@ -162,6 +177,7 @@ namespace ConcertScraperInfos {
     const int Genres        = 11;
 }
 
+// The filter numbers have to unique for MovieFilters, TvShowFilters and ConcertFilters
 namespace MovieFilters {
     const int Released      = 1;
     const int Certification = 2;
@@ -171,14 +187,17 @@ namespace MovieFilters {
     const int Watched       = 6;
     const int Genres        = 7;
     const int Title         = 8;
+    const int Logo          = 9;
+    const int ClearArt      = 10;
+    const int CdArt         = 11;
 }
 
 namespace TvShowFilters {
-    const int Title         = 1;
+    const int Title         = 12;
 }
 
 namespace ConcertFilters {
-    const int Title         = 1;
+    const int Title         = 13;
 }
 
 // Debugging

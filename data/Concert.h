@@ -37,6 +37,7 @@ class Concert : public QObject
     Q_PROPERTY(QList<Poster> backdrops READ backdrops WRITE setBackdrops)
     Q_PROPERTY(bool watched READ watched WRITE setWatched)
     Q_PROPERTY(bool hasChanged READ hasChanged WRITE setChanged)
+    Q_PROPERTY(QString tmdbId READ tmdbId WRITE setTmdbId)
 
 public:
     explicit Concert(QStringList files, QObject *parent = 0);
@@ -63,15 +64,23 @@ public:
     QList<Poster> backdrops() const;
     QImage *posterImage();
     QImage *backdropImage();
+    QImage *logoImage();
+    QImage *clearArtImage();
+    QImage *cdArtImage();
     bool infoLoaded() const;
     bool posterImageChanged() const;
     bool backdropImageChanged() const;
+    bool logoImageChanged() const;
+    bool clearArtImageChanged() const;
+    bool cdArtImageChanged() const;
     bool watched() const;
     int concertId() const;
     bool downloadsInProgress() const;
     int downloadsSize() const;
     bool inSeparateFolder() const;
     int mediaCenterId() const;
+    QString tmdbId() const;
+    QString id() const;
 
     bool hasChanged() const;
 
@@ -95,12 +104,17 @@ public:
     void addBackdrop(Poster backdrop);
     void setPosterImage(QImage poster);
     void setBackdropImage(QImage backdrop);
+    void setLogoImage(QImage img);
+    void setClearArtImage(QImage img);
+    void setCdArtImage(QImage img);
     void setWatched(bool watched);
     void setChanged(bool changed);
     void setDownloadsInProgress(bool inProgress);
     void setDownloadsSize(int downloadsSize);
     void setInSeparateFolder(bool inSepFolder);
     void setMediaCenterId(int mediaCenterId);
+    void setTmdbId(QString id);
+    void setId(QString id);
 
     void removeGenre(QString *genre);
 
@@ -133,8 +147,14 @@ private:
     QList<Poster> m_backdrops;
     QImage m_posterImage;
     QImage m_backdropImage;
+    QImage m_logoImage;
+    QImage m_clearArtImage;
+    QImage m_cdArtImage;
     bool m_posterImageChanged;
     bool m_backdropImageChanged;
+    bool m_logoImageChanged;
+    bool m_clearArtImageChanged;
+    bool m_cdArtImageChanged;
     bool m_infoLoaded;
     bool m_watched;
     bool m_hasChanged;
@@ -143,6 +163,8 @@ private:
     int m_downloadsSize;
     bool m_inSeparateFolder;
     int m_mediaCenterId;
+    QString m_tmdbId;
+    QString m_id;
 };
 
 #endif // CONCERT_H

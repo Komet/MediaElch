@@ -91,6 +91,7 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath,
         }
     }
     xml.writeTextElement("id", movie->id());
+    xml.writeTextElement("tmdbid", movie->tmdbId());
     xml.writeTextElement("set", movie->set());
     xml.writeTextElement("sorttitle", movie->sortTitle());
     xml.writeTextElement("trailer", Helper::formatTrailerUrl(movie->trailer().toString()));
@@ -177,6 +178,7 @@ bool XbmcXml::saveMovie(Movie *movie)
             movie->backdropImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "jpg", 100);
         }
     }
+    saveAdditionalImages(movie);
 
     foreach (const Actor &actor, movie->actors()) {
         if (!actor.image.isNull()) {
@@ -189,6 +191,36 @@ bool XbmcXml::saveMovie(Movie *movie)
     }
 
     return true;
+}
+
+/**
+ * @brief Saves additional movie images (logo, clear art, cd art)
+ * @param movie Movie object
+ */
+void XbmcXml::saveAdditionalImages(Movie *movie)
+{
+    QFileInfo fi(movie->files().at(0));
+    if (movie->logoImageChanged() && !movie->logoImage()->isNull()) {
+        foreach (DataFile *dataFile, Settings::instance()->movieLogoFiles(true)) {
+            QString saveFileName = dataFile->saveFileName(fi.fileName());
+            qDebug() << "Saving logo to" << fi.absolutePath() + QDir::separator() + saveFileName;
+            movie->logoImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "png", 100);
+        }
+    }
+    if (movie->clearArtImageChanged() && !movie->clearArtImage()->isNull()) {
+        foreach (DataFile *dataFile, Settings::instance()->movieClearArtFiles(true)) {
+            QString saveFileName = dataFile->saveFileName(fi.fileName());
+            qDebug() << "Saving clear art to" << fi.absolutePath() + QDir::separator() + saveFileName;
+            movie->clearArtImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "png", 100);
+        }
+    }
+    if (movie->cdArtImageChanged() && !movie->cdArtImage()->isNull()) {
+        foreach (DataFile *dataFile, Settings::instance()->movieCdArtFiles(true)) {
+            QString saveFileName = dataFile->saveFileName(fi.fileName());
+            qDebug() << "Saving cd art to" << fi.absolutePath() + QDir::separator() + saveFileName;
+            movie->cdArtImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "png", 100);
+        }
+    }
 }
 
 /**
@@ -260,6 +292,8 @@ bool XbmcXml::loadMovie(Movie *movie)
         movie->setLastPlayed(QDateTime::fromString(domDoc.elementsByTagName("lastplayed").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss"));
     if (!domDoc.elementsByTagName("id").isEmpty())
         movie->setId(domDoc.elementsByTagName("id").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("tmdbid").isEmpty())
+        movie->setTmdbId(domDoc.elementsByTagName("tmdbid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("set").isEmpty())
         movie->setSet(domDoc.elementsByTagName("set").at(0).toElement().text());
     if (!domDoc.elementsByTagName("sorttitle").isEmpty())
@@ -306,6 +340,9 @@ bool XbmcXml::loadMovie(Movie *movie)
     // Existence of images
     movie->setHasPoster(!posterImageName(movie).isEmpty());
     movie->setHasBackdrop(!backdropImageName(movie).isEmpty());
+    movie->setHasLogo(!logoImageName(movie).isEmpty());
+    movie->setHasClearArt(!clearArtImageName(movie).isEmpty());
+    movie->setHasCdArt(!cdArtImageName(movie).isEmpty());
 
     return true;
 }
@@ -383,6 +420,114 @@ QString XbmcXml::backdropImageName(Movie *movie)
 }
 
 /**
+ * @brief Get the path to the movie logo
+ * @param movie Movie object
+ * @return Path to logo image
+ */
+QString XbmcXml::logoImageName(Movie *movie)
+{
+    return XbmcXml::logoImageNameStatic(movie);
+}
+
+/**
+ * @brief Get the path to the movie clear art
+ * @param movie Movie object
+ * @return Path to clear art image
+ */
+QString XbmcXml::clearArtImageName(Movie *movie)
+{
+    return XbmcXml::clearArtImageNameStatic(movie);
+}
+
+/**
+ * @brief Get the path to the movie cd art
+ * @param movie Movie object
+ * @return Path to cd art image
+ */
+QString XbmcXml::cdArtImageName(Movie *movie)
+{
+    return XbmcXml::cdArtImageNameStatic(movie);
+}
+
+/**
+ * @brief Get the path to the movie logo
+ * @param movie Movie object
+ * @return Path to logo image
+ */
+QString XbmcXml::logoImageNameStatic(Movie *movie)
+{
+    QString logoFileName;
+    if (movie->files().size() == 0) {
+        qWarning() << "Movie has no files";
+        return logoFileName;
+    }
+    QFileInfo fi(movie->files().at(0));
+
+    foreach (DataFile *dataFile, Settings::instance()->movieLogoFiles(true)) {
+        QString file = dataFile->saveFileName(fi.fileName());
+        QFileInfo bFi(fi.absolutePath() + QDir::separator() + file);
+        if (bFi.isFile()) {
+            logoFileName = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return logoFileName;
+}
+
+/**
+ * @brief Get the path to the movie clear art
+ * @param movie Movie object
+ * @return Path to clear art image
+ */
+QString XbmcXml::clearArtImageNameStatic(Movie *movie)
+{
+    QString clearArtFileName;
+    if (movie->files().size() == 0) {
+        qWarning() << "Movie has no files";
+        return clearArtFileName;
+    }
+    QFileInfo fi(movie->files().at(0));
+
+    foreach (DataFile *dataFile, Settings::instance()->movieClearArtFiles(true)) {
+        QString file = dataFile->saveFileName(fi.fileName());
+        QFileInfo bFi(fi.absolutePath() + QDir::separator() + file);
+        if (bFi.isFile()) {
+            clearArtFileName = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return clearArtFileName;
+}
+
+/**
+ * @brief Get the path to the movie cd art
+ * @param movie Movie object
+ * @return Path to cd art image
+ */
+QString XbmcXml::cdArtImageNameStatic(Movie *movie)
+{
+    QString cdArtFileName;
+    if (movie->files().size() == 0) {
+        qWarning() << "Movie has no files";
+        return cdArtFileName;
+    }
+    QFileInfo fi(movie->files().at(0));
+
+    foreach (DataFile *dataFile, Settings::instance()->movieCdArtFiles(true)) {
+        QString file = dataFile->saveFileName(fi.fileName());
+        QFileInfo bFi(fi.absolutePath() + QDir::separator() + file);
+        if (bFi.isFile()) {
+            cdArtFileName = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return cdArtFileName;
+}
+
+/**
  * @brief Writes concert elements to an xml stream
  * @param xml XML stream
  * @param concert Concert to save
@@ -396,6 +541,8 @@ void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert, bool writ
     qDebug() << "Entered, concert=" << concert->name();
     xml.writeStartElement("musicvideo");
     xml.writeTextElement("title", concert->name());
+    xml.writeTextElement("id", concert->id());
+    xml.writeTextElement("tmdbid", concert->tmdbId());
     xml.writeTextElement("rating", QString("%1").arg(concert->rating()));
     xml.writeTextElement("year", concert->released().toString("yyyy"));
     xml.writeTextElement("plot", concert->overview());
@@ -495,8 +642,39 @@ bool XbmcXml::saveConcert(Concert *concert)
             concert->backdropImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "jpg", 100);
         }
     }
+    saveAdditionalImages(concert);
 
     return true;
+}
+
+/**
+ * @brief Saves additional concert images (logo, clear art, cd art)
+ * @param concert Concert object
+ */
+void XbmcXml::saveAdditionalImages(Concert *concert)
+{
+    QFileInfo fi(concert->files().at(0));
+    if (concert->logoImageChanged() && !concert->logoImage()->isNull()) {
+        foreach (DataFile *dataFile, Settings::instance()->concertLogoFiles(true)) {
+            QString saveFileName = dataFile->saveFileName(fi.fileName());
+            qDebug() << "Saving logo to" << fi.absolutePath() + QDir::separator() + saveFileName;
+            concert->logoImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "png", 100);
+        }
+    }
+    if (concert->clearArtImageChanged() && !concert->clearArtImage()->isNull()) {
+        foreach (DataFile *dataFile, Settings::instance()->concertClearArtFiles(true)) {
+            QString saveFileName = dataFile->saveFileName(fi.fileName());
+            qDebug() << "Saving clear art to" << fi.absolutePath() + QDir::separator() + saveFileName;
+            concert->clearArtImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "png", 100);
+        }
+    }
+    if (concert->cdArtImageChanged() && !concert->cdArtImage()->isNull()) {
+        foreach (DataFile *dataFile, Settings::instance()->concertCdArtFiles(true)) {
+            QString saveFileName = dataFile->saveFileName(fi.fileName());
+            qDebug() << "Saving cd art to" << fi.absolutePath() + QDir::separator() + saveFileName;
+            concert->cdArtImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "png", 100);
+        }
+    }
 }
 
 /**
@@ -542,6 +720,10 @@ bool XbmcXml::loadConcert(Concert *concert)
     concert->setChanged(false);
     QDomDocument domDoc;
     domDoc.setContent(file.readAll());
+    if (!domDoc.elementsByTagName("id").isEmpty() )
+        concert->setId(domDoc.elementsByTagName("id").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("tmdbid").isEmpty() )
+        concert->setTmdbId(domDoc.elementsByTagName("tmdbid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("title").isEmpty() )
         concert->setName(domDoc.elementsByTagName("title").at(0).toElement().text());
     if (!domDoc.elementsByTagName("rating").isEmpty())
@@ -640,6 +822,114 @@ QString XbmcXml::backdropImageName(Concert *concert)
 }
 
 /**
+ * @brief Get the path to the concert logo
+ * @param concert Concert object
+ * @return Path to logo image
+ */
+QString XbmcXml::logoImageName(Concert *concert)
+{
+    return XbmcXml::logoImageNameStatic(concert);
+}
+
+/**
+ * @brief Get the path to the concert clear art
+ * @param concert Concert object
+ * @return Path to clear art image
+ */
+QString XbmcXml::clearArtImageName(Concert *concert)
+{
+    return XbmcXml::clearArtImageNameStatic(concert);
+}
+
+/**
+ * @brief Get the path to the concert cd art
+ * @param concert Concert object
+ * @return Path to cd art image
+ */
+QString XbmcXml::cdArtImageName(Concert *concert)
+{
+    return XbmcXml::cdArtImageNameStatic(concert);
+}
+
+/**
+ * @brief Get the path to the concert logo
+ * @param concert Concert object
+ * @return Path to logo image
+ */
+QString XbmcXml::logoImageNameStatic(Concert *concert)
+{
+    QString logoFileName;
+    if (concert->files().size() == 0) {
+        qWarning() << "Concert has no files";
+        return logoFileName;
+    }
+    QFileInfo fi(concert->files().at(0));
+
+    foreach (DataFile *dataFile, Settings::instance()->concertLogoFiles(true)) {
+        QString file = dataFile->saveFileName(fi.fileName());
+        QFileInfo bFi(fi.absolutePath() + QDir::separator() + file);
+        if (bFi.isFile()) {
+            logoFileName = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return logoFileName;
+}
+
+/**
+ * @brief Get the path to the concert clear art
+ * @param concert Concert object
+ * @return Path to clear art image
+ */
+QString XbmcXml::clearArtImageNameStatic(Concert *concert)
+{
+    QString clearArtFileName;
+    if (concert->files().size() == 0) {
+        qWarning() << "Concert has no files";
+        return clearArtFileName;
+    }
+    QFileInfo fi(concert->files().at(0));
+
+    foreach (DataFile *dataFile, Settings::instance()->concertClearArtFiles(true)) {
+        QString file = dataFile->saveFileName(fi.fileName());
+        QFileInfo bFi(fi.absolutePath() + QDir::separator() + file);
+        if (bFi.isFile()) {
+            clearArtFileName = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return clearArtFileName;
+}
+
+/**
+ * @brief Get the path to the concert cd art
+ * @param concert Concert object
+ * @return Path to cd art image
+ */
+QString XbmcXml::cdArtImageNameStatic(Concert *concert)
+{
+    QString cdArtFileName;
+    if (concert->files().size() == 0) {
+        qWarning() << "Concert has no files";
+        return cdArtFileName;
+    }
+    QFileInfo fi(concert->files().at(0));
+
+    foreach (DataFile *dataFile, Settings::instance()->concertCdArtFiles(true)) {
+        QString file = dataFile->saveFileName(fi.fileName());
+        QFileInfo bFi(fi.absolutePath() + QDir::separator() + file);
+        if (bFi.isFile()) {
+            cdArtFileName = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return cdArtFileName;
+}
+
+/**
  * @brief Get path to poster image
  * @param show
  * @return
@@ -703,6 +993,102 @@ QString XbmcXml::bannerImageName(TvShow *show)
     if (fi.isFile())
         return bannerFileName;
     return QString();
+}
+
+/**
+ * @brief Get the path to the tv show logo
+ * @param show TV Show object
+ * @return Path to logo image
+ */
+QString XbmcXml::logoImageNameStatic(TvShow *show)
+{
+    QString logoFileName;
+    if (show->dir().isEmpty())
+        return logoFileName;
+    foreach (DataFile *dataFile, Settings::instance()->tvShowLogoFiles(true)) {
+        QString file = dataFile->saveFileName("");
+        QFileInfo fi(show->dir() + QDir::separator() + file);
+        if (fi.isFile()) {
+            logoFileName = show->dir() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return logoFileName;
+}
+
+/**
+ * @brief Get the path to the tv show clear art
+ * @param show TV Show object
+ * @return Path to clear art image
+ */
+QString XbmcXml::clearArtImageNameStatic(TvShow *show)
+{
+    QString clearArtFileName;
+    if (show->dir().isEmpty())
+        return clearArtFileName;
+    foreach (DataFile *dataFile, Settings::instance()->tvShowClearArtFiles(true)) {
+        QString file = dataFile->saveFileName("");
+        QFileInfo fi(show->dir() + QDir::separator() + file);
+        if (fi.isFile()) {
+            clearArtFileName = show->dir() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return clearArtFileName;
+}
+
+/**
+ * @brief Get the path to the tv show character art
+ * @param show TV Show object
+ * @return Path to character art image
+ */
+QString XbmcXml::characterArtImageNameStatic(TvShow *show)
+{
+    QString characterArtFileName;
+    if (show->dir().isEmpty())
+        return characterArtFileName;
+    foreach (DataFile *dataFile, Settings::instance()->tvShowCharacterArtFiles(true)) {
+        QString file = dataFile->saveFileName("");
+        QFileInfo fi(show->dir() + QDir::separator() + file);
+        if (fi.isFile()) {
+            characterArtFileName = show->dir() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return characterArtFileName;
+}
+
+/**
+ * @brief Get the path to the tv show logo
+ * @param show TV Show object
+ * @return Path to logo image
+ */
+QString XbmcXml::logoImageName(TvShow *show)
+{
+    return logoImageNameStatic(show);
+}
+
+/**
+ * @brief Get the path to the tv show clear art
+ * @param show TV Show object
+ * @return Path to clear art image
+ */
+QString XbmcXml::clearArtImageName(TvShow *show)
+{
+    return clearArtImageNameStatic(show);
+}
+
+/**
+ * @brief Get the path to the tv show character art
+ * @param show TV Show object
+ * @return Path to character art image
+ */
+QString XbmcXml::characterArtImageName(TvShow *show)
+{
+    return characterArtImageNameStatic(show);
 }
 
 /**
@@ -926,6 +1312,8 @@ bool XbmcXml::loadTvShow(TvShow *show)
     show->clear();
     QDomDocument domDoc;
     domDoc.setContent(file.readAll());
+    if (!domDoc.elementsByTagName("tvdbid").isEmpty() )
+        show->setTvdbId(domDoc.elementsByTagName("tvdbid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("title").isEmpty() )
         show->setName(domDoc.elementsByTagName("title").at(0).toElement().text());
     if (!domDoc.elementsByTagName("showtitle").isEmpty() )
@@ -1093,7 +1481,6 @@ bool XbmcXml::saveTvShow(TvShow *show)
     }
     if (show->bannerImageChanged() && !show->bannerImage()->isNull()) {
         qDebug() << "Banner image has changed";
-        qDebug() << "Poster image has changed";
         foreach (DataFile *dataFile, Settings::instance()->enabledTvShowBannerFiles()) {
             QString saveFileName = dataFile->saveFileName("");
             qDebug() << "Saving banner to" << show->dir() + QDir::separator() + saveFileName;
@@ -1120,8 +1507,41 @@ bool XbmcXml::saveTvShow(TvShow *show)
             show->seasonPosterImage(season)->save(show->dir() + QDir::separator() + "season" + s + ".tbn", "jpg", 100);
         }
     }
+    saveAdditionalImages(show);
 
     return true;
+}
+
+/**
+ * @brief Saves additional tv show images (logo, clear art,)
+ * @param show TV Show object
+ */
+void XbmcXml::saveAdditionalImages(TvShow *show)
+{
+    if (show->logoImageChanged() && !show->logoImage()->isNull()) {
+        qDebug() << "Logo image has changed";
+        foreach (DataFile *dataFile, Settings::instance()->tvShowLogoFiles(true)) {
+            QString saveFileName = dataFile->saveFileName("");
+            qDebug() << "Saving logo to" << show->dir() + QDir::separator() + saveFileName;
+            show->logoImage()->save(show->dir() + QDir::separator() + saveFileName, "png", 100);
+        }
+    }
+    if (show->clearArtImageChanged() && !show->clearArtImage()->isNull()) {
+        qDebug() << "Clear art image has changed";
+        foreach (DataFile *dataFile, Settings::instance()->tvShowClearArtFiles(true)) {
+            QString saveFileName = dataFile->saveFileName("");
+            qDebug() << "Saving clear art to" << show->dir() + QDir::separator() + saveFileName;
+            show->clearArtImage()->save(show->dir() + QDir::separator() + saveFileName, "png", 100);
+        }
+    }
+    if (show->characterArtImageChanged() && !show->characterArtImage()->isNull()) {
+        qDebug() << "Character art image has changed";
+        foreach (DataFile *dataFile, Settings::instance()->tvShowCharacterArtFiles(true)) {
+            QString saveFileName = dataFile->saveFileName("");
+            qDebug() << "Saving character art to" << show->dir() + QDir::separator() + saveFileName;
+            show->characterArtImage()->save(show->dir() + QDir::separator() + saveFileName, "png", 100);
+        }
+    }
 }
 
 /**
@@ -1185,6 +1605,7 @@ void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath
     xml.writeTextElement("mpaa", QString("%1").arg(show->certification()));
     xml.writeTextElement("premiered", show->firstAired().toString("yyyy-MM-dd"));
     xml.writeTextElement("studio", show->network());
+    xml.writeTextElement("tvdbid", show->tvdbId());
 
     foreach (const QString &genre, show->genres())
         xml.writeTextElement("genre", genre);

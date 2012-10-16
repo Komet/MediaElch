@@ -3,6 +3,10 @@
 #include <QApplication>
 #include <QDesktopServices>
 #include <QSqlQuery>
+#include "globals/Globals.h"
+#include "imageProviders/FanartTv.h"
+#include "imageProviders/TMDbImages.h"
+#include "imageProviders/TheTvDbImages.h"
 #include "mediaCenterPlugins/XbmcSql.h"
 #include "mediaCenterPlugins/XbmcXml.h"
 #include "scrapers/Cinefacts.h"
@@ -11,7 +15,6 @@
 #include "scrapers/TMDb.h"
 #include "scrapers/TMDbConcerts.h"
 #include "scrapers/VideoBuster.h"
-#include "globals/Globals.h"
 
 /**
  * @brief Manager::Manager
@@ -45,6 +48,10 @@ Manager::Manager(QObject *parent) :
     m_mediaCentersConcert.append(new XbmcXml(this));
     m_mediaCentersConcert.append(new XbmcSql(this, "xbmcConcert"));
     m_mediaCentersConcert.append(new XbmcSql(this, "xbmcConcert"));
+
+    m_imageProviders.append(new FanartTv(this));
+    m_imageProviders.append(new TMDbImages(this));
+    m_imageProviders.append(new TheTvDbImages(this));
 
     setupCacheDatabase();
 }
@@ -353,4 +360,28 @@ ScraperInterface *Manager::getScraperForName(QString name)
         // default to TMDb
         return m_scrapers.at(0);
     }
+}
+
+/**
+ * @brief Returns a list of all image providers available for type
+ * @param type Type of image
+ * @return List of pointers of image providers
+ */
+QList<ImageProviderInterface*> Manager::imageProviders(int type)
+{
+    QList<ImageProviderInterface*> providers;
+    foreach (ImageProviderInterface* provider, m_imageProviders) {
+        if (provider->provides().contains(type))
+            providers.append(provider);
+    }
+    return providers;
+}
+
+/**
+ * @brief Returns a list of all image providers
+ * @return List of pointers of image providers
+ */
+QList<ImageProviderInterface*> Manager::imageProviders()
+{
+    return m_imageProviders;
 }

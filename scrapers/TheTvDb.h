@@ -30,6 +30,7 @@ public:
 
 signals:
     void sigSearchDone(QList<ScraperSearchResult>);
+    void sigImagesLoaded(QString, QString);
 
 private slots:
     void onMirrorsReady();

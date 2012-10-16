@@ -36,14 +36,23 @@ public:
     virtual bool hasFeature(int feature) = 0;
     virtual QString posterImageName(Movie *movie) = 0;
     virtual QString backdropImageName(Movie *movie) = 0;
+    virtual QString logoImageName(Movie *movie) = 0;
+    virtual QString clearArtImageName(Movie *movie) = 0;
+    virtual QString cdArtImageName(Movie *movie) = 0;
     virtual QString actorImageName(Movie *movie, Actor actor) = 0;
     virtual QString posterImageName(Concert *concert) = 0;
     virtual QString backdropImageName(Concert *concert) = 0;
+    virtual QString logoImageName(Concert *concert) = 0;
+    virtual QString clearArtImageName(Concert *concert) = 0;
+    virtual QString cdArtImageName(Concert *concert) = 0;
     virtual QString thumbnailImageName(TvShowEpisode *episode) = 0;
     virtual QString posterImageName(TvShow *show) = 0;
     virtual QString backdropImageName(TvShow *show) = 0;
     virtual QString bannerImageName(TvShow *show) = 0;
     virtual QString actorImageName(TvShow *show, Actor actor) = 0;
+    virtual QString logoImageName(TvShow *show) = 0;
+    virtual QString clearArtImageName(TvShow *show) = 0;
+    virtual QString characterArtImageName(TvShow *show) = 0;
     virtual QString seasonPosterImageName(TvShow *show, int season) = 0;
 signals:
     virtual void sigExportStarted() = 0;

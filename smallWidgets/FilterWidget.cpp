@@ -260,6 +260,18 @@ void FilterWidget::setupMovieFilters()
                             QStringList() << tr("Backdrop") << tr("Fanart"), MovieFilters::Backdrop, true);
     m_filters << new Filter(tr("Movie has no Backdrop"), tr("No Backdrop"),
                             QStringList() << tr("Backdrop") << tr("Fanart"), MovieFilters::Backdrop, false);
+    m_filters << new Filter(tr("Movie has Logo"), tr("Logo"),
+                            QStringList() << tr("Logo"), MovieFilters::Logo, true);
+    m_filters << new Filter(tr("Movie has no Logo"), tr("No Logo"),
+                            QStringList() << tr("Logo"), MovieFilters::Logo, false);
+    m_filters << new Filter(tr("Movie has Clear Art"), tr("Clear Art"),
+                            QStringList() << tr("Clear Art"), MovieFilters::ClearArt, true);
+    m_filters << new Filter(tr("Movie has no Clear Art"), tr("No Clear Art"),
+                            QStringList() << tr("Clear Art"), MovieFilters::ClearArt, false);
+    m_filters << new Filter(tr("Movie has CD Art"), tr("CD Art"),
+                            QStringList() << tr("CD Art"), MovieFilters::CdArt, true);
+    m_filters << new Filter(tr("Movie has no CD Art"), tr("No CD Art"),
+                            QStringList() << tr("CD Art"), MovieFilters::CdArt, false);
     m_filters << new Filter(tr("Movie has Trailer"), tr("Trailer"),
                             QStringList() << tr("Trailer"), MovieFilters::Trailer, true);
     m_filters << new Filter(tr("Movie has no Trailer"), tr("No Trailer"),

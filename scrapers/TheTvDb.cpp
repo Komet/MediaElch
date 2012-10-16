@@ -245,6 +245,7 @@ QList<ScraperSearchResult> TheTvDb::parseSearch(QString xml)
 void TheTvDb::loadTvShowData(QString id, TvShow *show, bool updateAllEpisodes)
 {
     qDebug() << "Entered, id=" << id << "show=" << show->name() << "updateAllEpisodes=" << updateAllEpisodes;
+    show->setTvdbId(id);
     m_currentShow = show;
     m_currentId = id;
     m_updateAllEpisodes = updateAllEpisodes;
@@ -400,6 +401,7 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show)
 
         QString mirror = m_bannerMirrors.at(qrand()%m_bannerMirrors.count());
         QString bannerType = elem.elementsByTagName("BannerType").at(0).toElement().text();
+        QString bannerType2 = elem.elementsByTagName("BannerType2").at(0).toElement().text();
         if (bannerType == "fanart") {
             Poster p;
             if (!elem.elementsByTagName("id").isEmpty())
@@ -432,7 +434,7 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show)
                 }
             }
             show->addPoster(p);
-        } else if (bannerType == "season") {
+        } else if (bannerType == "season" && bannerType2 == "season") {
             Poster p;
             if (!elem.elementsByTagName("id").isEmpty())
                 p.id = elem.elementsByTagName("id").at(0).toElement().text();

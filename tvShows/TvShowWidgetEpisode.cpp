@@ -346,6 +346,7 @@ void TvShowWidgetEpisode::onChooseThumbnail()
 
     ImageDialog::instance()->setImageType(TypeBackdrop);
     ImageDialog::instance()->clear();
+    ImageDialog::instance()->setTvShowEpisode(m_episode);
     QList<Poster> posters;
     if (!m_episode->thumbnail().isEmpty()) {
         Poster p;

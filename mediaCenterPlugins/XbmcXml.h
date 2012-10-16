@@ -38,15 +38,36 @@ public:
     void saveMovieSetBackdrop(QString setName, QImage backdrop);
     QString posterImageName(Movie *movie);
     QString backdropImageName(Movie *movie);
+    QString logoImageName(Movie *movie);
+    QString clearArtImageName(Movie *movie);
+    QString cdArtImageName(Movie *movie);
     QString actorImageName(Movie *movie, Actor actor);
     QString posterImageName(Concert *concert);
     QString backdropImageName(Concert *concert);
+    QString logoImageName(Concert *concert);
+    QString clearArtImageName(Concert *concert);
+    QString cdArtImageName(Concert *concert);
     QString thumbnailImageName(TvShowEpisode *episode);
     QString posterImageName(TvShow *show);
     QString backdropImageName(TvShow *show);
     QString bannerImageName(TvShow *show);
     QString actorImageName(TvShow *show, Actor actor);
     QString seasonPosterImageName(TvShow *show, int season);
+    static void saveAdditionalImages(Movie *movie);
+    static void saveAdditionalImages(Concert *concert);
+    static void saveAdditionalImages(TvShow *show);
+    static QString logoImageNameStatic(Movie *movie);
+    static QString clearArtImageNameStatic(Movie *movie);
+    static QString cdArtImageNameStatic(Movie *movie);
+    static QString logoImageNameStatic(Concert *concert);
+    static QString clearArtImageNameStatic(Concert *concert);
+    static QString cdArtImageNameStatic(Concert *concert);
+    static QString logoImageNameStatic(TvShow *show);
+    static QString clearArtImageNameStatic(TvShow *show);
+    static QString characterArtImageNameStatic(TvShow *show);
+    QString logoImageName(TvShow *show);
+    QString clearArtImageName(TvShow *show);
+    QString characterArtImageName(TvShow *show);
 
 signals:
     void sigExportStarted();

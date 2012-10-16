@@ -19,6 +19,9 @@ TvShow::TvShow(QString dir, QObject *parent) :
     m_backdropImageChanged = false;
     m_posterImageChanged = false;
     m_bannerImageChanged = false;
+    m_logoImageChanged = false;
+    m_clearArtImageChanged = false;
+    m_characterArtImageChanged = false;
     m_hasChanged = false;
     clear();
     m_downloadsInProgress = false;
@@ -56,6 +59,9 @@ void TvShow::clear()
     m_backdropImageChanged = false;
     m_posterImageChanged = false;
     m_bannerImageChanged = false;
+    m_logoImageChanged = false;
+    m_clearArtImageChanged = false;
+    m_characterArtImageChanged = false;
     m_seasonPosterImages.clear();
     m_seasonPosterImagesChanged.clear();
     m_hasChanged = false;
@@ -144,6 +150,9 @@ void TvShow::clearImages()
     m_posterImage = QImage();
     m_backdropImage = QImage();
     m_bannerImage = QImage();
+    m_logoImage = QImage();
+    m_clearArtImage = QImage();
+    m_characterArtImage = QImage();
     foreach (int season, seasons())
         m_seasonPosterImages[season] = QImage();
     foreach (Actor *actor, actorsPointer())
@@ -301,6 +310,17 @@ QString TvShow::overview() const
 }
 
 /**
+ * @property TvShow::tvdbId
+ * @brief TheTvDb Id of the show
+ * @return TheTvDb Id
+ * @see TvShow::setTvdbId
+ */
+QString TvShow::tvdbId() const
+{
+    return m_tvdbId;
+}
+
+/**
  * @brief Constructs a list of all certifications used in child episodes
  * @return List of certifications
  */
@@ -408,6 +428,33 @@ QImage *TvShow::bannerImage()
 }
 
 /**
+ * @brief TvShow::logoImage
+ * @return
+ */
+QImage *TvShow::logoImage()
+{
+    return &m_logoImage;
+}
+
+/**
+ * @brief TvShow::clearArtImage
+ * @return
+ */
+QImage *TvShow::clearArtImage()
+{
+    return &m_clearArtImage;
+}
+
+/**
+ * @brief TvShow::characterArtImage
+ * @return
+ */
+QImage *TvShow::characterArtImage()
+{
+    return &m_characterArtImage;
+}
+
+/**
  * @brief TvShow::seasonPosterImage
  * @param season
  * @return
@@ -473,6 +520,33 @@ bool TvShow::backdropImageChanged() const
 bool TvShow::bannerImageChanged() const
 {
     return m_bannerImageChanged;
+}
+
+/**
+ * @brief TvShow::logoImageChanged
+ * @return
+ */
+bool TvShow::logoImageChanged() const
+{
+    return m_logoImageChanged;
+}
+
+/**
+ * @brief TvShow::clearArtImageChanged
+ * @return
+ */
+bool TvShow::clearArtImageChanged() const
+{
+    return m_clearArtImageChanged;
+}
+
+/**
+ * @brief TvShow::characterArtImageChanged
+ * @return
+ */
+bool TvShow::characterArtImageChanged() const
+{
+    return m_characterArtImageChanged;
 }
 
 /**
@@ -655,6 +729,17 @@ void TvShow::setOverview(QString overview)
 }
 
 /**
+ * @brief Sets the TheTvdbId
+ * @param id
+ * @see TvShow::tvdbId
+ */
+void TvShow::setTvdbId(QString id)
+{
+    m_tvdbId = id;
+    setChanged(true);
+}
+
+/**
  * @brief Sets all actors
  * @param actors
  * @see TvShow::actors
@@ -789,6 +874,39 @@ void TvShow::setBannerImage(QImage banner)
 {
     m_bannerImage = QImage(banner);
     m_bannerImageChanged = true;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the logo image
+ * @param img
+ */
+void TvShow::setLogoImage(QImage img)
+{
+    m_logoImage = QImage(img);
+    m_logoImageChanged = true;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the clear art image
+ * @param img
+ */
+void TvShow::setClearArtImage(QImage img)
+{
+    m_clearArtImage = QImage(img);
+    m_clearArtImageChanged = true;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the character art image
+ * @param img
+ */
+void TvShow::setCharacterArtImage(QImage img)
+{
+    m_characterArtImage = QImage(img);
+    m_characterArtImageChanged = true;
     setChanged(true);
 }
 

@@ -89,6 +89,12 @@ bool Filter::accepts(Movie *movie)
         return (m_hasInfo && movie->hasPoster()) || (!m_hasInfo && !movie->hasPoster());
     if (m_info == MovieFilters::Backdrop)
         return (m_hasInfo && movie->hasBackdrop()) || (!m_hasInfo && !movie->hasBackdrop());
+    if (m_info == MovieFilters::Logo)
+        return (m_hasInfo && movie->hasLogo()) || (!m_hasInfo && !movie->hasLogo());
+    if (m_info == MovieFilters::ClearArt)
+        return (m_hasInfo && movie->hasClearArt()) || (!m_hasInfo && !movie->hasClearArt());
+    if (m_info == MovieFilters::CdArt)
+        return (m_hasInfo && movie->hasCdArt()) || (!m_hasInfo && !movie->hasCdArt());
     if (m_info == MovieFilters::Trailer)
         return (m_hasInfo && !movie->trailer().isEmpty()) || (!m_hasInfo && movie->trailer().isEmpty());
     if (m_info == MovieFilters::Certification)
@@ -114,7 +120,6 @@ bool Filter::accepts(TvShow *show)
 {
     if (m_info == TvShowFilters::Title)
         return show->name().contains(m_shortText, Qt::CaseInsensitive);
-
     return true;
 }
 
@@ -127,6 +132,5 @@ bool Filter::accepts(Concert *concert)
 {
     if (m_info == ConcertFilters::Title)
         return concert->name().contains(m_shortText, Qt::CaseInsensitive);
-
     return true;
 }

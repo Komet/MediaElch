@@ -11,6 +11,7 @@
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "main/MessageBox.h"
+#include "mediaCenterPlugins/XbmcXml.h"
 #include "settings/Settings.h"
 #include "XbmcSql.h"
 
@@ -560,6 +561,7 @@ bool XbmcSql::saveMovie(Movie *movie)
         qDebug() << "Movie backdrop has changed, saving";
         movie->backdropImage()->save(fanartPath, "jpg", 100);
     }
+    XbmcXml::saveAdditionalImages(movie);
 
     foreach (Actor actor, movie->actors()) {
         if (actor.image.isNull())
@@ -823,6 +825,9 @@ bool XbmcSql::loadMovie(Movie *movie)
     // Existence of images
     movie->setHasPoster(!posterImageName(movie).isEmpty());
     movie->setHasBackdrop(!backdropImageName(movie).isEmpty());
+    movie->setHasLogo(!logoImageName(movie).isEmpty());
+    movie->setHasClearArt(!clearArtImageName(movie).isEmpty());
+    movie->setHasCdArt(!cdArtImageName(movie).isEmpty());
 
     return true;
 }
@@ -899,6 +904,36 @@ QString XbmcSql::backdropImageName(Movie *movie)
         return QString();
 
     return fanartPath;
+}
+
+/**
+ * @brief Get the path to the movie logo
+ * @param movie Movie object
+ * @return Path to logo image
+ */
+QString XbmcSql::logoImageName(Movie *movie)
+{
+    return XbmcXml::logoImageNameStatic(movie);
+}
+
+/**
+ * @brief Get the path to the movie clear art
+ * @param movie Movie object
+ * @return Path to clear art image
+ */
+QString XbmcSql::clearArtImageName(Movie *movie)
+{
+    return XbmcXml::clearArtImageNameStatic(movie);
+}
+
+/**
+ * @brief Get the path to the movie cd art
+ * @param movie Movie object
+ * @return Path to cd art image
+ */
+QString XbmcSql::cdArtImageName(Movie *movie)
+{
+    return XbmcXml::cdArtImageNameStatic(movie);
 }
 
 /**
@@ -1210,6 +1245,7 @@ bool XbmcSql::saveConcert(Concert *concert)
         qDebug() << "Concert backdrop has changed, saving";
         concert->backdropImage()->save(fanartPath, "jpg", 100);
     }
+    XbmcXml::saveAdditionalImages(concert);
 
     return true;
 }
@@ -1427,6 +1463,36 @@ QString XbmcSql::backdropImageName(Concert *concert)
 }
 
 /**
+ * @brief Get the path to the concert logo
+ * @param concert Concert object
+ * @return Path to logo image
+ */
+QString XbmcSql::logoImageName(Concert *concert)
+{
+    return XbmcXml::logoImageNameStatic(concert);
+}
+
+/**
+ * @brief Get the path to the concert clear art
+ * @param concert Concert object
+ * @return Path to clear art image
+ */
+QString XbmcSql::clearArtImageName(Concert *concert)
+{
+    return XbmcXml::clearArtImageNameStatic(concert);
+}
+
+/**
+ * @brief Get the path to the concert cd art
+ * @param concert Concert object
+ * @return Path to cd art image
+ */
+QString XbmcSql::cdArtImageName(Concert *concert)
+{
+    return XbmcXml::cdArtImageNameStatic(concert);
+}
+
+/**
  * @brief Exports the database. Disabled till rework
  * @param movies
  * @param shows
@@ -1598,6 +1664,36 @@ QString XbmcSql::bannerImageName(TvShow *show)
     if (bannerFi.isFile())
         return bannerFi.absoluteFilePath();
     return QString();
+}
+
+/**
+ * @brief Get the path to the tv show logo
+ * @param show TV show object
+ * @return Path to logo image
+ */
+QString XbmcSql::logoImageName(TvShow *show)
+{
+    return XbmcXml::logoImageNameStatic(show);
+}
+
+/**
+ * @brief Get the path to the tv show clear art
+ * @param show TV show object
+ * @return Path to clear art image
+ */
+QString XbmcSql::clearArtImageName(TvShow *show)
+{
+    return XbmcXml::clearArtImageNameStatic(show);
+}
+
+/**
+ * @brief Get the path to the tv show character art
+ * @param show TV show object
+ * @return Path to character art image
+ */
+QString XbmcSql::characterArtImageName(TvShow *show)
+{
+    return XbmcXml::characterArtImageNameStatic(show);
 }
 
 /**
@@ -2045,6 +2141,7 @@ bool XbmcSql::saveTvShow(TvShow *show)
         QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
         actor.image.save(actorThumb, "jpg", 100);
     }
+    XbmcXml::saveAdditionalImages(show);
 
     return true;
 }

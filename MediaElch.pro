@@ -91,7 +91,10 @@ SOURCES += main.cpp\
     main/FileScannerDialog.cpp \
     globals/Filter.cpp \
     data/MovieFilesOrganizer.cpp \
-    globals/NameFormatter.cpp
+    globals/NameFormatter.cpp \
+    imageProviders/FanartTv.cpp \
+    imageProviders/TMDbImages.cpp \
+    imageProviders/TheTvDbImages.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -162,7 +165,11 @@ HEADERS  += main/MainWindow.h \
     main/FileScannerDialog.h \
     globals/Filter.h \
     data/MovieFilesOrganizer.h \
-    globals/NameFormatter.h
+    globals/NameFormatter.h \
+    data/ImageProviderInterface.h \
+    imageProviders/FanartTv.h \
+    imageProviders/TMDbImages.h \
+    imageProviders/TheTvDbImages.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

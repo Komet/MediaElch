@@ -30,6 +30,7 @@ class TvShow : public QObject
     Q_PROPERTY(QList<Poster> posters READ posters WRITE setPosters)
     Q_PROPERTY(QList<Poster> backdrops READ backdrops WRITE setBackdrops)
     Q_PROPERTY(QList<Poster> banners READ banners WRITE setBanners)
+    Q_PROPERTY(QString tvdbId READ tvdbId WRITE setTvdbId)
 
 public:
     explicit TvShow(QString dir = QString(), QObject *parent = 0);
@@ -48,6 +49,7 @@ public:
     QString certification() const;
     QString network() const;
     QString overview() const;
+    QString tvdbId() const;
     QStringList certifications() const;
     QList<Actor> actors() const;
     QList<Actor*> actorsPointer();
@@ -58,10 +60,16 @@ public:
     QImage *posterImage();
     QImage *backdropImage();
     QImage *bannerImage();
+    QImage *logoImage();
+    QImage *clearArtImage();
+    QImage *characterArtImage();
     QImage *seasonPosterImage(int season);
     bool posterImageChanged() const;
     bool backdropImageChanged() const;
     bool bannerImageChanged() const;
+    bool logoImageChanged() const;
+    bool clearArtImageChanged() const;
+    bool characterArtImageChanged() const;
     bool seasonPosterImageChanged(int season) const;
     TvShowEpisode *episode(int season, int episode);
     QList<int> seasons();
@@ -84,6 +92,7 @@ public:
     void setCertification(QString certification);
     void setNetwork(QString network);
     void setOverview(QString overview);
+    void setTvdbId(QString id);
     void setActors(QList<Actor> actors);
     void addActor(Actor actor);
     void setPosters(QList<Poster> posters);
@@ -104,6 +113,9 @@ public:
     void setModelItem(TvShowModelItem *item);
     void setMediaCenterPath(QString path);
     void setDownloadsInProgress(bool inProgress);
+    void setLogoImage(QImage img);
+    void setClearArtImage(QImage img);
+    void setCharacterArtImage(QImage img);
 
     void removeActor(Actor *actor);
     void removeGenre(QString *genre);
@@ -130,6 +142,7 @@ private:
     QString m_certification;
     QString m_network;
     QString m_overview;
+    QString m_tvdbId;
     QList<Actor> m_actors;
     QList<Poster> m_posters;
     QList<Poster> m_backdrops;
@@ -138,9 +151,15 @@ private:
     QImage m_posterImage;
     QImage m_backdropImage;
     QImage m_bannerImage;
+    QImage m_logoImage;
+    QImage m_clearArtImage;
+    QImage m_characterArtImage;
     bool m_posterImageChanged;
     bool m_backdropImageChanged;
     bool m_bannerImageChanged;
+    bool m_logoImageChanged;
+    bool m_clearArtImageChanged;
+    bool m_characterArtImageChanged;
     QMap<int, QImage> m_seasonPosterImages;
     QList<int> m_seasonPosterImagesChanged;
     TvShowModelItem *m_modelItem;
