@@ -401,6 +401,7 @@ void ConcertWidget::chooseConcertPoster()
     ImageDialog::instance()->setImageType(TypePoster);
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setDownloads(m_concert->posters());
+    ImageDialog::instance()->setConcert(m_concert);
     ImageDialog::instance()->exec(ImageDialogType::ConcertPoster);
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
@@ -430,6 +431,7 @@ void ConcertWidget::chooseConcertBackdrop()
 
     ImageDialog::instance()->setImageType(TypeBackdrop);
     ImageDialog::instance()->clear();
+    ImageDialog::instance()->setConcert(m_concert);
     ImageDialog::instance()->setDownloads(m_concert->backdrops());
     ImageDialog::instance()->exec(ImageDialogType::ConcertBackdrop);
 

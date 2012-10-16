@@ -89,7 +89,9 @@ SOURCES += main.cpp\
     movies/CertificationWidget.cpp \
     support/SupportDialog.cpp \
     main/FileScannerDialog.cpp \
-    globals/Filter.cpp
+    globals/Filter.cpp \
+    imageProviders/FanartTv.cpp \
+    imageProviders/TMDbImages.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -158,7 +160,10 @@ HEADERS  += main/MainWindow.h \
     movies/CertificationWidget.h \
     support/SupportDialog.h \
     main/FileScannerDialog.h \
-    globals/Filter.h
+    globals/Filter.h \
+    data/ImageProviderInterface.h \
+    imageProviders/FanartTv.h \
+    imageProviders/TMDbImages.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

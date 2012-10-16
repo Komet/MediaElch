@@ -12,6 +12,7 @@
 class Movie;
 class TvShowEpisode;
 class Filter;
+class ImageProviderInterface;
 
 namespace Constants {
     const int MovieFileSearcherProgressMessageId   = 10000;
@@ -75,6 +76,7 @@ Q_DECLARE_METATYPE(Actor*);
 Q_DECLARE_METATYPE(Movie*);
 Q_DECLARE_METATYPE(QString*);
 Q_DECLARE_METATYPE(Filter*);
+Q_DECLARE_METATYPE(ImageProviderInterface*);
 
 /**
  * @brief The ScraperSearchResult struct
@@ -102,6 +104,10 @@ enum ImageType {
 
 enum TvShowType {
     TypeTvShow, TypeEpisode, TypeSeason
+};
+
+enum ItemType {
+    ItemMovie, ItemTvShow, ItemTvShowEpisode, ItemConcert
 };
 
 /**

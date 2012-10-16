@@ -517,6 +517,7 @@ void TvShowWidgetTvShow::onChoosePoster()
 
     ImageDialog::instance()->setImageType(TypePoster);
     ImageDialog::instance()->clear();
+    ImageDialog::instance()->setTvShow(m_show);
     ImageDialog::instance()->setDownloads(m_show->posters());
     ImageDialog::instance()->exec(ImageDialogType::TvShowPoster);
 
@@ -547,6 +548,7 @@ void TvShowWidgetTvShow::onChooseSeasonPoster(int season)
 
     ImageDialog::instance()->setImageType(TypePoster);
     ImageDialog::instance()->clear();
+    ImageDialog::instance()->setTvShow(m_show);
     ImageDialog::instance()->setDownloads(m_show->seasonPosters(season));
     ImageDialog::instance()->exec(ImageDialogType::TvShowSeason);
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
@@ -577,6 +579,7 @@ void TvShowWidgetTvShow::onChooseBackdrop()
     }
     ImageDialog::instance()->setImageType(TypeBackdrop);
     ImageDialog::instance()->clear();
+    ImageDialog::instance()->setTvShow(m_show);
     ImageDialog::instance()->setDownloads(m_show->backdrops());
     ImageDialog::instance()->exec(ImageDialogType::TvShowBackdrop);
 
@@ -607,6 +610,7 @@ void TvShowWidgetTvShow::onChooseBanner()
 
     ImageDialog::instance()->setImageType(TypeBanner);
     ImageDialog::instance()->clear();
+    ImageDialog::instance()->setTvShow(m_show);
     ImageDialog::instance()->setDownloads(m_show->banners());
     ImageDialog::instance()->exec(ImageDialogType::TvShowBanner);
 

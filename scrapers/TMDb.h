@@ -27,6 +27,7 @@ public:
     QMap<QString, QString> languages();
     QString language();
     void setLanguage(QString language);
+    static QList<ScraperSearchResult> parseSearch(QString json, int *nextPage);
 
 signals:
     void searchDone(QList<ScraperSearchResult>);
@@ -56,7 +57,6 @@ private:
     QList<ScraperSearchResult> m_results;
     QString m_searchString;
     QNetworkAccessManager *qnam();
-    QList<ScraperSearchResult> parseSearch(QString json, int *nextPage);
     QString m_baseUrl;
     QMutex m_mutex;
     bool m_loadDoneFired;

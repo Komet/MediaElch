@@ -26,59 +26,123 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="MyTableWidget" name="table">
-     <property name="minimumSize">
-      <size>
-       <width>400</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="acceptDrops">
-      <bool>true</bool>
-     </property>
-     <property name="editTriggers">
-      <set>QAbstractItemView::NoEditTriggers</set>
-     </property>
-     <property name="selectionMode">
-      <enum>QAbstractItemView::SingleSelection</enum>
-     </property>
-     <property name="verticalScrollMode">
-      <enum>QAbstractItemView::ScrollPerPixel</enum>
-     </property>
-     <property name="showGrid">
-      <bool>false</bool>
-     </property>
-     <attribute name="horizontalHeaderVisible">
-      <bool>false</bool>
-     </attribute>
-     <attribute name="verticalHeaderVisible">
-      <bool>false</bool>
-     </attribute>
-     <column>
-      <property name="text">
-       <string>Neue Spalte</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Neue Spalte</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Neue Spalte</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Neue Spalte</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Neue Spalte</string>
-      </property>
-     </column>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QComboBox" name="imageProvider"/>
+     </item>
+     <item>
+      <widget class="MyLineEdit" name="searchTerm"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QStackedWidget" name="stackedWidget">
+     <widget class="QWidget" name="page">
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QTableWidget" name="results">
+         <property name="styleSheet">
+          <string notr="true">alternate-background-color: rgb(243, 246, 250);</string>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::SingleSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="showGrid">
+          <bool>false</bool>
+         </property>
+         <attribute name="horizontalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>Movie</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_2">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="MyTableWidget" name="table">
+         <property name="minimumSize">
+          <size>
+           <width>400</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="acceptDrops">
+          <bool>true</bool>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::SingleSelection</enum>
+         </property>
+         <property name="verticalScrollMode">
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <property name="showGrid">
+          <bool>false</bool>
+         </property>
+         <attribute name="horizontalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>Neue Spalte</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Neue Spalte</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Neue Spalte</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Neue Spalte</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Neue Spalte</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>
@@ -191,6 +255,9 @@ background: transparent;</string>
      </item>
      <item>
       <widget class="QPushButton" name="buttonChoose">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="text">
         <string>Choose Local Image</string>
        </property>
@@ -201,6 +268,9 @@ background: transparent;</string>
      </item>
      <item>
       <widget class="QPushButton" name="buttonClose">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="text">
         <string>Close</string>
        </property>
@@ -215,6 +285,11 @@ background: transparent;</string>
    <class>MyTableWidget</class>
    <extends>QTableWidget</extends>
    <header>smallWidgets/MyTableWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MyLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>smallWidgets/MyLineEdit.h</header>
   </customwidget>
  </customwidgets>
  <resources>

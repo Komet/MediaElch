@@ -3,12 +3,18 @@
 
 #include <QDialog>
 #include <QLabel>
+#include <QTableWidgetItem>
 #include <QUrl>
 #include <QWidget>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include <QResizeEvent>
 
+#include "data/ImageProviderInterface.h"
+#include "data/Concert.h"
+#include "data/Movie.h"
+#include "data/TvShow.h"
+#include "data/TvShowEpisode.h"
 #include "globals/Globals.h"
 #include "smallWidgets/ImageLabel.h"
 
@@ -28,9 +34,14 @@ public:
     explicit ImageDialog(QWidget *parent = 0);
     ~ImageDialog();
     static ImageDialog *instance(QWidget *parent = 0);
-    void setDownloads(QList<Poster> downloads);
+    void setDownloads(QList<Poster> downloads, bool initial = true);
     QUrl imageUrl();
     void setImageType(ImageType type);
+    void setItemType(ItemType type);
+    void setMovie(Movie *movie);
+    void setConcert(Concert *concert);
+    void setTvShow(TvShow *show);
+    void setTvShowEpisode(TvShowEpisode *episode);
     void clear();
     void cancelDownloads();
 
@@ -51,6 +62,11 @@ private slots:
     void onPreviewSizeChange(int value);
     void onZoomIn();
     void onZoomOut();
+    void onSearch();
+    void onProviderChanged(int index);
+    void onSearchFinished(QList<ScraperSearchResult> results);
+    void onResultClicked(QTableWidgetItem *item);
+    void onProviderImagesLoaded(QList<Poster> images);
 
 private:
     Ui::ImageDialog *ui;
@@ -76,11 +92,20 @@ private:
     QUrl m_imageUrl;
     int m_type;
     QLabel *m_noElementsLabel;
+    QList<ImageProviderInterface*> m_providers;
+    Concert *m_concert;
+    Movie *m_movie;
+    TvShow *m_tvShow;
+    TvShowEpisode *m_tvShowEpisode;
+    ItemType m_itemType;
+    QList<Poster> m_defaultElements;
+    ImageProviderInterface *m_currentProvider;
 
     QNetworkAccessManager *qnam();
     void renderTable();
     int calcColumnCount();
     int getColumnWidth();
+    void loadImagesFromProvider(QString id);
 };
 
 #endif // IMAGEDIALOG_H

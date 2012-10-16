@@ -559,6 +559,7 @@ void MovieWidget::chooseMoviePoster()
 
     ImageDialog::instance()->setImageType(TypePoster);
     ImageDialog::instance()->clear();
+    ImageDialog::instance()->setMovie(m_movie);
     ImageDialog::instance()->setDownloads(m_movie->posters());
     ImageDialog::instance()->exec(ImageDialogType::MoviePoster);
 
@@ -589,6 +590,7 @@ void MovieWidget::chooseMovieBackdrop()
 
     ImageDialog::instance()->setImageType(TypeBackdrop);
     ImageDialog::instance()->clear();
+    ImageDialog::instance()->setMovie(m_movie);
     ImageDialog::instance()->setDownloads(m_movie->backdrops());
     ImageDialog::instance()->exec(ImageDialogType::MovieBackdrop);
 

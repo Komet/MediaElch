@@ -10,6 +10,8 @@
 #include <QPainter>
 #include <QSize>
 #include <QTimer>
+#include "data/ImageProviderInterface.h"
+#include "globals/Manager.h"
 
 /**
  * @brief ImageDialog::ImageDialog
@@ -20,6 +22,8 @@ ImageDialog::ImageDialog(QWidget *parent) :
     ui(new Ui::ImageDialog)
 {
     ui->setupUi(this);
+    ui->searchTerm->setType(MyLineEdit::TypeLoading);
+    ui->results->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 
 #ifdef Q_WS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
@@ -38,6 +42,10 @@ ImageDialog::ImageDialog(QWidget *parent) :
     connect(ui->previewSizeSlider, SIGNAL(valueChanged(int)), this, SLOT(onPreviewSizeChange(int)));
     connect(ui->buttonZoomIn, SIGNAL(clicked()), this, SLOT(onZoomIn()));
     connect(ui->buttonZoomOut, SIGNAL(clicked()), this, SLOT(onZoomOut()));
+    connect(ui->searchTerm, SIGNAL(returnPressed()), this, SLOT(onSearch()));
+    connect(ui->imageProvider, SIGNAL(currentIndexChanged(int)), this, SLOT(onProviderChanged(int)));
+    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(onResultClicked(QTableWidgetItem*)));
+
     QMovie *movie = new QMovie(":/img/spinner.gif");
     movie->start();
     ui->labelSpinner->setMovie(movie);
@@ -62,6 +70,11 @@ ImageDialog::ImageDialog(QWidget *parent) :
     m_noElementsLabel = new QLabel(tr("No images found"), ui->table);
     m_noElementsLabel->setMargin(10);
     m_noElementsLabel->hide();
+
+    foreach (ImageProviderInterface *provider, Manager::instance()->imageProviders()) {
+        connect(provider, SIGNAL(sigSearchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchFinished(QList<ScraperSearchResult>)));
+        connect(provider, SIGNAL(sigImagesLoaded(QList<Poster>)), this, SLOT(onProviderImagesLoaded(QList<Poster>)));
+    }
 }
 
 /**
@@ -81,16 +94,49 @@ int ImageDialog::exec(int type)
 {
     qDebug() << "Entered, type=" << type;
     m_type = type;
+
+    // set slider value
     QSettings settings;
     ui->previewSizeSlider->setValue(settings.value(QString("ImageDialog/PreviewSize_%1").arg(m_type), 8).toInt());
+
+    // resize
     QSize newSize;
     newSize.setHeight(parentWidget()->size().height()-50);
     newSize.setWidth(qMin(1200, parentWidget()->size().width()-100));
     resize(newSize);
 
+    // move to center
     int xMove = (parentWidget()->size().width()-size().width())/2;
     QPoint globalPos = parentWidget()->mapToGlobal(parentWidget()->pos());
     move(globalPos.x()+xMove, globalPos.y());
+
+    // get image providers and setup combo box
+    m_providers = Manager::instance()->imageProviders(type);
+    ui->imageProvider->blockSignals(true);
+    ui->imageProvider->clear();
+    ui->imageProvider->addItem(tr("Default"));
+    foreach (ImageProviderInterface *provider, m_providers) {
+        int row = ui->imageProvider->count();
+        ui->imageProvider->addItem(provider->name());
+        ui->imageProvider->setItemData(row, QVariant::fromValue(provider), Qt::UserRole);
+    }
+    ui->imageProvider->blockSignals(false);
+
+    ui->searchTerm->setLoading(false);
+    ui->searchTerm->setEnabled(false);
+
+    // show image widget
+    ui->stackedWidget->setCurrentIndex(1);
+    if (m_itemType == ItemMovie)
+        ui->searchTerm->setText(m_movie->name());
+    else if (m_itemType == ItemConcert)
+        ui->searchTerm->setText(m_concert->name());
+    else if (m_itemType == ItemTvShow)
+        ui->searchTerm->setText(m_tvShow->name());
+    else if (m_itemType == ItemTvShowEpisode)
+        ui->searchTerm->setText(m_tvShowEpisode->name());
+    else
+        ui->searchTerm->clear();
 
     return QDialog::exec();
 }
@@ -170,10 +216,13 @@ void ImageDialog::resizeEvent(QResizeEvent *event)
 /**
  * @brief Sets a list of images to be downloaded and shown
  * @param downloads List of images (downloads)
+ * @param initial If true saves downloads as defaults
  */
-void ImageDialog::setDownloads(QList<Poster> downloads)
+void ImageDialog::setDownloads(QList<Poster> downloads, bool initial)
 {
     qDebug() << "Entered";
+    if (initial)
+        m_defaultElements = downloads;
     foreach (const Poster &poster, downloads) {
         DownloadElement d;
         d.originalUrl = poster.originalUrl;
@@ -332,6 +381,46 @@ void ImageDialog::setImageType(ImageType type)
 }
 
 /**
+ * @brief Sets the current movie
+ * @param movie
+ */
+void ImageDialog::setMovie(Movie *movie)
+{
+    m_movie = movie;
+    m_itemType = ItemMovie;
+}
+
+/**
+ * @brief Sets the current concert
+ * @param concert
+ */
+void ImageDialog::setConcert(Concert *concert)
+{
+    m_concert = concert;
+    m_itemType = ItemConcert;
+}
+
+/**
+ * @brief Sets the current tv show
+ * @param show
+ */
+void ImageDialog::setTvShow(TvShow *show)
+{
+    m_tvShow = show;
+    m_itemType = ItemTvShow;
+}
+
+/**
+ * @brief Sets the current tv show episode
+ * @param episode
+ */
+void ImageDialog::setTvShowEpisode(TvShowEpisode *episode)
+{
+    m_tvShowEpisode = episode;
+    m_itemType = ItemTvShowEpisode;
+}
+
+/**
  * @brief Cancels the current download and clears the download queue
  */
 void ImageDialog::cancelDownloads()
@@ -432,4 +521,120 @@ void ImageDialog::onZoomIn()
 void ImageDialog::onZoomOut()
 {
     ui->previewSizeSlider->setValue(ui->previewSizeSlider->value()-1);
+}
+
+/**
+ * @brief If default provider is chosen, sets default downloads and disabled the search input
+ * @param index Current provider index
+ */
+void ImageDialog::onProviderChanged(int index)
+{
+    if (index < 0 || index >= ui->imageProvider->count())
+        return;
+    qDebug() << "index" << index;
+    if (index == 0) {
+        ui->stackedWidget->setCurrentIndex(1);
+        ui->searchTerm->setLoading(false);
+        ui->searchTerm->setEnabled(false);
+        clear();
+        setDownloads(m_defaultElements);
+    } else {
+        ui->searchTerm->setEnabled(true);
+        ui->searchTerm->setFocus();
+    }
+}
+
+/**
+ * @brief Tells the current provider to search
+ */
+void ImageDialog::onSearch()
+{
+    qDebug() << "onsearch";
+    QString searchTerm = ui->searchTerm->text();
+    QString initialSearchTerm;
+    QString id;
+    if (m_itemType == ItemMovie) {
+        initialSearchTerm = m_movie->name();
+        id = m_movie->tmdbId();
+    } else if (m_itemType == ItemConcert) {
+        initialSearchTerm = m_concert->name();
+        id = m_concert->tmdbId();
+    } else if (m_itemType == ItemTvShow) {
+        initialSearchTerm = m_tvShow->name();
+        id = m_tvShow->tvdbId();
+    } else if (m_itemType == ItemTvShowEpisode) {
+        initialSearchTerm = m_tvShowEpisode->name();
+        id = m_tvShowEpisode->tvShow()->tvdbId();
+    }
+
+    clear();
+    ui->searchTerm->setLoading(true);
+    m_currentProvider = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), Qt::UserRole).value<ImageProviderInterface*>();
+    if (!initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && !id.isEmpty()) {
+        // search term was not changed and we have an id
+        // -> trigger loading of images and show image widget
+        ui->stackedWidget->setCurrentIndex(1);
+        loadImagesFromProvider(id);
+    } else {
+        // manual search term change or id is empty
+        // -> trigger searching for item and show search result widget
+        ui->results->clearContents();
+        ui->results->setRowCount(0);
+        ui->stackedWidget->setCurrentIndex(0);
+        // @todo: add tv shows & concerts
+        if (m_itemType == ItemMovie)
+            m_currentProvider->searchMovie(searchTerm);
+    }
+}
+
+/**
+ * @brief Fills the results table
+ * @param results List of results
+ */
+void ImageDialog::onSearchFinished(QList<ScraperSearchResult> results)
+{
+    ui->searchTerm->setLoading(false);
+    foreach (const ScraperSearchResult &result, results) {
+        QTableWidgetItem *item = new QTableWidgetItem(QString("%1 (%2)").arg(result.name).arg(result.released.toString("yyyy")));
+        item->setData(Qt::UserRole, result.id);
+        int row = ui->results->rowCount();
+        ui->results->insertRow(row);
+        ui->results->setItem(row, 0, item);
+    }
+}
+
+/**
+ * @brief Triggers loading of images from the current provider
+ * @param id
+ */
+void ImageDialog::loadImagesFromProvider(QString id)
+{
+    // @todo: add tv shows & concerts
+    ui->labelLoading->setVisible(true);
+    ui->labelSpinner->setVisible(true);
+    if (m_itemType == ItemMovie) {
+        if (m_type == ImageDialogType::MovieBackdrop)
+            m_currentProvider->movieBackdrops(id);
+        else if (m_type == ImageDialogType::MoviePoster)
+            m_currentProvider->moviePosters(id);
+    }
+}
+
+/**
+ * @brief Triggers loading of images
+ * @param item
+ */
+void ImageDialog::onResultClicked(QTableWidgetItem *item)
+{
+    loadImagesFromProvider(item->data(Qt::UserRole).toString());
+}
+
+/**
+ * @brief Called when the image provider has finished loading
+ * @param images List of images
+ */
+void ImageDialog::onProviderImagesLoaded(QList<Poster> images)
+{
+    setDownloads(images, false);
+    ui->stackedWidget->setCurrentIndex(1);
 }
