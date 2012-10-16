@@ -17,7 +17,7 @@ public:
 
 
 private:
-    QStringList exWords;
+    QStringList m_exWords;
     static NameFormatter *m_instance;
     
 signals:
