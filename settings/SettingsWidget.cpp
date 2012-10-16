@@ -556,6 +556,8 @@ void SettingsWidget::organize()
                               "sub-directories. Click \"Ok\", " \
                               "if thats, what you want to do"));
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+    msgBox.setButtonText(1, tr("Ok"));
+    msgBox.setButtonText(2, tr("Cancel"));
     msgBox.setDefaultButton(QMessageBox::Cancel);
     int ret = msgBox.exec();
 

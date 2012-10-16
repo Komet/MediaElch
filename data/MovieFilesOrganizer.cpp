@@ -92,6 +92,7 @@ void MovieFilesOrganizer::canceled(QString msg)
     msgBox.setText(tr("Operation not possible."));
     msgBox.setInformativeText(msg + tr("\n Operation Canceled."));
     msgBox.setStandardButtons(QMessageBox::Ok);
+    msgBox.setButtonText(1, "Ok");
     msgBox.setDefaultButton(QMessageBox::Ok);
     msgBox.exec();
 }
