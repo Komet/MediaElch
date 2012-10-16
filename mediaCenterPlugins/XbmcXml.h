@@ -38,6 +38,9 @@ public:
     void saveMovieSetBackdrop(QString setName, QImage backdrop);
     QString posterImageName(Movie *movie);
     QString backdropImageName(Movie *movie);
+    QString logoImageName(Movie *movie);
+    QString clearArtImageName(Movie *movie);
+    QString cdArtImageName(Movie *movie);
     QString actorImageName(Movie *movie, Actor actor);
     QString posterImageName(Concert *concert);
     QString backdropImageName(Concert *concert);
@@ -47,6 +50,10 @@ public:
     QString bannerImageName(TvShow *show);
     QString actorImageName(TvShow *show, Actor actor);
     QString seasonPosterImageName(TvShow *show, int season);
+    static void saveAdditionalImages(Movie *movie);
+    static QString logoImageNameStatic(Movie *movie);
+    static QString clearArtImageNameStatic(Movie *movie);
+    static QString cdArtImageNameStatic(Movie *movie);
 
 signals:
     void sigExportStarted();

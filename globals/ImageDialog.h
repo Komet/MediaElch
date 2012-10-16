@@ -62,7 +62,7 @@ private slots:
     void onPreviewSizeChange(int value);
     void onZoomIn();
     void onZoomOut();
-    void onSearch();
+    void onSearch(bool onlyFirstResult = false);
     void onProviderChanged(int index);
     void onSearchFinished(QList<ScraperSearchResult> results);
     void onResultClicked(QTableWidgetItem *item);
@@ -91,7 +91,6 @@ private:
     QList<DownloadElement> m_elements;
     QUrl m_imageUrl;
     int m_type;
-    QLabel *m_noElementsLabel;
     QList<ImageProviderInterface*> m_providers;
     Concert *m_concert;
     Movie *m_movie;

@@ -86,9 +86,15 @@ public:
     QList<Poster> backdrops() const;
     QImage *posterImage();
     QImage *backdropImage();
+    QImage *logoImage();
+    QImage *clearArtImage();
+    QImage *cdArtImage();
     bool infoLoaded() const;
     bool posterImageChanged() const;
     bool backdropImageChanged() const;
+    bool logoImageChanged() const;
+    bool clearArtImageChanged() const;
+    bool cdArtImageChanged() const;
     bool watched() const;
     int movieId() const;
     bool downloadsInProgress() const;
@@ -98,6 +104,9 @@ public:
     int numPrimaryLangPosters() const;
     bool hasPoster() const;
     bool hasBackdrop() const;
+    bool hasLogo() const;
+    bool hasClearArt() const;
+    bool hasCdArt() const;
 
     bool hasChanged() const;
 
@@ -134,6 +143,9 @@ public:
     void addBackdrop(Poster backdrop);
     void setPosterImage(QImage poster);
     void setBackdropImage(QImage backdrop);
+    void setLogoImage(QImage img);
+    void setClearArtImage(QImage img);
+    void setCdArtImage(QImage img);
     void setWatched(bool watched);
     void setChanged(bool changed);
     void setDownloadsInProgress(bool inProgress);
@@ -143,6 +155,9 @@ public:
     void setNumPrimaryLangPosters(int numberPrimaryLangPosters);
     void setHasPoster(bool has);
     void setHasBackdrop(bool has);
+    void setHasLogo(bool has);
+    void setHasClearArt(bool has);
+    void setHasCdArt(bool has);
 
     void removeActor(Actor *actor);
     void removeCountry(QString *country);
@@ -189,8 +204,14 @@ private:
     QList<Poster> m_backdrops;
     QImage m_posterImage;
     QImage m_backdropImage;
+    QImage m_logoImage;
+    QImage m_clearArtImage;
+    QImage m_cdArtImage;
     bool m_posterImageChanged;
     bool m_backdropImageChanged;
+    bool m_logoImageChanged;
+    bool m_clearArtImageChanged;
+    bool m_cdArtImageChanged;
     bool m_infoLoaded;
     bool m_imagesLoaded;
     bool m_watched;
@@ -203,6 +224,9 @@ private:
     int m_numPrimaryLangPosters;
     bool m_hasPoster;
     bool m_hasBackdrop;
+    bool m_hasLogo;
+    bool m_hasClearArt;
+    bool m_hasCdArt;
 };
 
 QDebug operator<<(QDebug dbg, const Movie &movie);

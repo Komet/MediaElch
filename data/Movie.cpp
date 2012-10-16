@@ -20,6 +20,9 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_playcount = 0;
     m_backdropImageChanged = false;
     m_posterImageChanged = false;
+    m_logoImageChanged = false;
+    m_clearArtImageChanged = false;
+    m_cdArtImageChanged = false;
     if (files.size() > 0) {
         QFileInfo fi(files.at(0));
         QStringList path = fi.path().split("/", QString::SkipEmptyParts);
@@ -201,6 +204,9 @@ void Movie::clearImages()
 {
     m_posterImage = QImage();
     m_backdropImage = QImage();
+    m_logoImage = QImage();
+    m_clearArtImage = QImage();
+    m_cdArtImage = QImage();
     foreach (Actor *actor, actorsPointer())
         actor->image = QImage();
 }
@@ -551,6 +557,33 @@ QImage *Movie::backdropImage()
 }
 
 /**
+ * @brief Holds the current movie logo
+ * @return Current movie logo
+ */
+QImage *Movie::logoImage()
+{
+    return &m_logoImage;
+}
+
+/**
+ * @brief Holds the current movie clear art
+ * @return Current movie clear art
+ */
+QImage *Movie::clearArtImage()
+{
+    return &m_clearArtImage;
+}
+
+/**
+ * @brief Holds the current movie cd art
+ * @return Current movie cd art
+ */
+QImage *Movie::cdArtImage()
+{
+    return &m_cdArtImage;
+}
+
+/**
  * @brief Returns the parent folder of the movie
  * @return Parent folder of the movie
  */
@@ -584,6 +617,33 @@ bool Movie::posterImageChanged() const
 bool Movie::backdropImageChanged() const
 {
     return m_backdropImageChanged;
+}
+
+/**
+ * @brief Holds a property indicating if the logo image was changed
+ * @return Movies logo image was changed
+ */
+bool Movie::logoImageChanged() const
+{
+    return m_logoImageChanged;
+}
+
+/**
+ * @brief Holds a property indicating if the clear art image was changed
+ * @return Movies clear art image was changed
+ */
+bool Movie::clearArtImageChanged() const
+{
+    return m_clearArtImageChanged;
+}
+
+/**
+ * @brief Holds a property indicating if the cd art image was changed
+ * @return Movies cd art image was changed
+ */
+bool Movie::cdArtImageChanged() const
+{
+    return m_cdArtImageChanged;
 }
 
 /**
@@ -628,6 +688,39 @@ bool Movie::hasPoster() const
 bool Movie::hasBackdrop() const
 {
     return m_hasBackdrop;
+}
+
+/**
+ * @property Movie::hasLogo
+ * @brief Holds a property if the movie has a logo
+ * @return True if movie has a logo
+ * @see Movie::setHasLogo
+ */
+bool Movie::hasLogo() const
+{
+    return m_hasLogo;
+}
+
+/**
+ * @property Movie::hasClearArt
+ * @brief Holds a property if the movie has clear art
+ * @return True if movie has clear art
+ * @see Movie::setHasClearArt
+ */
+bool Movie::hasClearArt() const
+{
+    return m_hasClearArt;
+}
+
+/**
+ * @property Movie::hasCdArt
+ * @brief Holds a property if the movie has cd art
+ * @return True if movie has cd art
+ * @see Movie::setHasCdArt
+ */
+bool Movie::hasCdArt() const
+{
+    return m_hasCdArt;
 }
 
 /**
@@ -1010,6 +1103,36 @@ void Movie::setHasBackdrop(bool has)
 }
 
 /**
+ * @brief Sets if the movie has a logo
+ * @param has Movie has a logo
+ * @see Movie::hasLogo
+ */
+void Movie::setHasLogo(bool has)
+{
+    m_hasLogo = has;
+}
+
+/**
+ * @brief Sets if the movie has clear art
+ * @param has Movie has clear art
+ * @see Movie::hasClearArt
+ */
+void Movie::setHasClearArt(bool has)
+{
+    m_hasClearArt = has;
+}
+
+/**
+ * @brief Sets if the movie has cd art
+ * @param has Movie has cd art
+ * @see Movie::hasCdArt
+ */
+void Movie::setHasCdArt(bool has)
+{
+    m_hasCdArt = has;
+}
+
+/**
  * @brief Sets if downloads are in progress
  * @param inProgress Status of downloads
  */
@@ -1150,6 +1273,39 @@ void Movie::setBackdropImage(QImage backdrop)
 {
     m_backdropImage = QImage(backdrop);
     m_backdropImageChanged = true;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the current logo image
+ * @param img Current logo image
+ */
+void Movie::setLogoImage(QImage img)
+{
+    m_logoImage = QImage(img);
+    m_logoImageChanged = true;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the current clear art image
+ * @param img Current clear art image
+ */
+void Movie::setClearArtImage(QImage img)
+{
+    m_clearArtImage = QImage(img);
+    m_clearArtImageChanged = true;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the current cd art image
+ * @param img Current cd art image
+ */
+void Movie::setCdArtImage(QImage img)
+{
+    m_cdArtImage = QImage(img);
+    m_cdArtImageChanged = true;
     setChanged(true);
 }
 

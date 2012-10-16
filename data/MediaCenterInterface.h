@@ -36,6 +36,9 @@ public:
     virtual bool hasFeature(int feature) = 0;
     virtual QString posterImageName(Movie *movie) = 0;
     virtual QString backdropImageName(Movie *movie) = 0;
+    virtual QString logoImageName(Movie *movie) = 0;
+    virtual QString clearArtImageName(Movie *movie) = 0;
+    virtual QString cdArtImageName(Movie *movie) = 0;
     virtual QString actorImageName(Movie *movie, Actor actor) = 0;
     virtual QString posterImageName(Concert *concert) = 0;
     virtual QString backdropImageName(Concert *concert) = 0;

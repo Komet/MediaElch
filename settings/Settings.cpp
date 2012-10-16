@@ -29,15 +29,20 @@ Settings::Settings(QObject *parent) :
     m_movieFanartFiles.append(new DataFile(8, "<movie filename>-fanart.jpg", "<moviefile>-fanart.jpg", 0, true));
     m_movieFanartFiles.append(new DataFile(9, "fanart.jpg", "fanart.jpg", 1, false));
 
+    m_movieCdArtFiles.append(new DataFile(17, "cdart.png", "cdart.png", 0, true));
+    m_movieLogoFiles.append(new DataFile(18, "logo.png", "logo.png", 0, true));
+    m_movieClearArtFiles.append(new DataFile(19, "clearart.png", "clearart.png", 0, true));
+
     m_tvShowPosterFiles.append(new DataFile(10, "season-all.tbn", "season-all.tbn", 0, true));
     m_tvShowPosterFiles.append(new DataFile(11, "poster.jpg", "poster.jpg", 1, true));
 
     m_tvShowBannerFiles.append(new DataFile(12, "banner.jpg", "banner.jpg", 0, true));
     m_tvShowBannerFiles.append(new DataFile(13, "folder.jpg", "folder.jpg", 1, true));
 
-    m_concertNfoFiles.append(new DataFile(0, "<movie filename>.nfo", "<moviefile>.nfo", 0, true));
-    m_concertPosterFiles.append(new DataFile(1, "<movie filename>.tbn", "<moviefile>.tbn", 0, true));
-    m_concertFanartFiles.append(new DataFile(2, "<movie filename>-fanart.jpg", "<moviefile>-fanart.jpg", 0, true));
+    m_concertNfoFiles.append(new DataFile(14, "<movie filename>.nfo", "<moviefile>.nfo", 0, true));
+    m_concertPosterFiles.append(new DataFile(15, "<movie filename>.tbn", "<moviefile>.tbn", 0, true));
+    m_concertFanartFiles.append(new DataFile(16, "<movie filename>-fanart.jpg", "<moviefile>-fanart.jpg", 0, true));
+
 }
 
 /**
@@ -558,6 +563,57 @@ QList<DataFile*> Settings::movieFanartFiles()
 }
 
 /**
+ * @brief Returns a list of DataFiles for movie cd arts
+ * @param onlyEnabled If true, list contains only enabled files
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::movieCdArtFiles(bool onlyEnabled)
+{
+    if (!onlyEnabled)
+        return m_movieCdArtFiles;
+    QList<DataFile*> files;
+    foreach (DataFile* file, m_movieCdArtFiles) {
+        if (file->enabled())
+            files.append(file);
+    }
+    return files;
+}
+
+/**
+ * @brief Returns a list of DataFiles for movie logos
+ * @param onlyEnabled If true, list contains only enabled files
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::movieLogoFiles(bool onlyEnabled)
+{
+    if (!onlyEnabled)
+        return m_movieLogoFiles;
+    QList<DataFile*> files;
+    foreach (DataFile* file, m_movieLogoFiles) {
+        if (file->enabled())
+            files.append(file);
+    }
+    return files;
+}
+
+/**
+ * @brief Returns a list of DataFiles for movie clear arts
+ * @param onlyEnabled If true, list contains only enabled files
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::movieClearArtFiles(bool onlyEnabled)
+{
+    if (!onlyEnabled)
+        return m_movieClearArtFiles;
+    QList<DataFile*> files;
+    foreach (DataFile* file, m_movieClearArtFiles) {
+        if (file->enabled())
+            files.append(file);
+    }
+    return files;
+}
+
+/**
  * @brief Returns a list of all DataFiles for tv show posters.
  * @return List of DataFile objects
  */
@@ -830,6 +886,33 @@ void Settings::setMoviePosterFiles(QList<DataFile*> files)
 void Settings::setMovieFanartFiles(QList<DataFile*> files)
 {
     m_movieFanartFiles = files;
+}
+
+/**
+ * @brief Sets the movie cd art files
+ * @param files List of DataFile Objects
+ */
+void Settings::setMovieCdArtFiles(QList<DataFile*> files)
+{
+    m_movieCdArtFiles = files;
+}
+
+/**
+ * @brief Sets the movie logo files
+ * @param files List of DataFile Objects
+ */
+void Settings::setMovieLogoFiles(QList<DataFile*> files)
+{
+    m_movieLogoFiles = files;
+}
+
+/**
+ * @brief Sets the movie clearart files
+ * @param files List of DataFile Objects
+ */
+void Settings::setMovieClearArtFiles(QList<DataFile*> files)
+{
+    m_movieClearArtFiles = files;
 }
 
 /**

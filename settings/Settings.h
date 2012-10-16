@@ -46,6 +46,9 @@ public:
     QList<DataFile*> movieNfoFiles();
     QList<DataFile*> moviePosterFiles();
     QList<DataFile*> movieFanartFiles();
+    QList<DataFile*> movieCdArtFiles(bool onlyEnabled = false);
+    QList<DataFile*> movieLogoFiles(bool onlyEnabled = false);
+    QList<DataFile*> movieClearArtFiles(bool onlyEnabled = false);
     QList<DataFile*> tvShowPosterFiles();
     QList<DataFile*> tvShowBannerFiles();
     QList<DataFile*> concertNfoFiles();
@@ -85,6 +88,9 @@ public:
     void setMovieNfoFiles(QList<DataFile*> files);
     void setMoviePosterFiles(QList<DataFile*> files);
     void setMovieFanartFiles(QList<DataFile*> files);
+    void setMovieCdArtFiles(QList<DataFile*> files);
+    void setMovieLogoFiles(QList<DataFile*> files);
+    void setMovieClearArtFiles(QList<DataFile*> files);
     void setTvShowPosterFiles(QList<DataFile*> files);
     void setTvShowBannerFiles(QList<DataFile*> files);
     void setConcertNfoFiles(QList<DataFile*> files);
@@ -125,6 +131,9 @@ private:
     QList<DataFile*> m_movieNfoFiles;
     QList<DataFile*> m_moviePosterFiles;
     QList<DataFile*> m_movieFanartFiles;
+    QList<DataFile*> m_movieCdArtFiles;
+    QList<DataFile*> m_movieLogoFiles;
+    QList<DataFile*> m_movieClearArtFiles;
     QList<DataFile*> m_concertNfoFiles;
     QList<DataFile*> m_concertPosterFiles;
     QList<DataFile*> m_concertFanartFiles;

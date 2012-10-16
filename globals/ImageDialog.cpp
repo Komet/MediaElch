@@ -67,10 +67,6 @@ ImageDialog::ImageDialog(QWidget *parent) :
     ui->buttonZoomOut->setIcon(QIcon(zoomOut));
     ui->buttonZoomIn->setIcon(QIcon(zoomIn));
 
-    m_noElementsLabel = new QLabel(tr("No images found"), ui->table);
-    m_noElementsLabel->setMargin(10);
-    m_noElementsLabel->hide();
-
     foreach (ImageProviderInterface *provider, Manager::instance()->imageProviders()) {
         connect(provider, SIGNAL(sigSearchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchFinished(QList<ScraperSearchResult>)));
         connect(provider, SIGNAL(sigImagesLoaded(QList<Poster>)), this, SLOT(onProviderImagesLoaded(QList<Poster>)));
@@ -111,19 +107,24 @@ int ImageDialog::exec(int type)
     move(globalPos.x()+xMove, globalPos.y());
 
     // get image providers and setup combo box
+    bool haveDefault = m_defaultElements.count() > 0;
     m_providers = Manager::instance()->imageProviders(type);
     ui->imageProvider->blockSignals(true);
     ui->imageProvider->clear();
-    ui->imageProvider->addItem(tr("Default"));
+    if (haveDefault) {
+        ui->imageProvider->addItem(tr("Default"));
+        ui->imageProvider->setItemData(0, true, Qt::UserRole+1);
+    }
     foreach (ImageProviderInterface *provider, m_providers) {
         int row = ui->imageProvider->count();
         ui->imageProvider->addItem(provider->name());
         ui->imageProvider->setItemData(row, QVariant::fromValue(provider), Qt::UserRole);
+        ui->imageProvider->setItemData(row, false, Qt::UserRole+1);
     }
     ui->imageProvider->blockSignals(false);
 
     ui->searchTerm->setLoading(false);
-    ui->searchTerm->setEnabled(false);
+    ui->searchTerm->setEnabled(!haveDefault);
 
     // show image widget
     ui->stackedWidget->setCurrentIndex(1);
@@ -137,6 +138,9 @@ int ImageDialog::exec(int type)
         ui->searchTerm->setText(m_tvShowEpisode->name());
     else
         ui->searchTerm->clear();
+
+    if (!haveDefault)
+        onSearch(true);
 
     return QDialog::exec();
 }
@@ -221,6 +225,7 @@ void ImageDialog::resizeEvent(QResizeEvent *event)
 void ImageDialog::setDownloads(QList<Poster> downloads, bool initial)
 {
     qDebug() << "Entered";
+    ui->stackedWidget->setCurrentIndex(1);
     if (initial)
         m_defaultElements = downloads;
     foreach (const Poster &poster, downloads) {
@@ -235,6 +240,8 @@ void ImageDialog::setDownloads(QList<Poster> downloads, bool initial)
     ui->labelSpinner->setVisible(true);
     startNextDownload();
     renderTable();
+    if (downloads.count() == 0)
+        ui->stackedWidget->setCurrentIndex(2);
 }
 
 /**
@@ -326,8 +333,6 @@ void ImageDialog::renderTable()
         ui->table->setCellWidget(row, i%cols, label);
         ui->table->resizeRowToContents(row);
     }
-
-    m_noElementsLabel->setVisible(m_elements.size() == 0);
 }
 
 /**
@@ -531,8 +536,9 @@ void ImageDialog::onProviderChanged(int index)
 {
     if (index < 0 || index >= ui->imageProvider->count())
         return;
-    qDebug() << "index" << index;
-    if (index == 0) {
+
+    if (ui->imageProvider->itemData(index, Qt::UserRole+1).toBool()) {
+        // this is the default provider
         ui->stackedWidget->setCurrentIndex(1);
         ui->searchTerm->setLoading(false);
         ui->searchTerm->setEnabled(false);
@@ -546,10 +552,11 @@ void ImageDialog::onProviderChanged(int index)
 
 /**
  * @brief Tells the current provider to search
+ * @param onlyFirstResult If true, the results are limited to one
  */
-void ImageDialog::onSearch()
+void ImageDialog::onSearch(bool onlyFirstResult)
 {
-    qDebug() << "onsearch";
+    ui->stackedWidget->setCurrentIndex(1);
     QString searchTerm = ui->searchTerm->text();
     QString initialSearchTerm;
     QString id;
@@ -573,17 +580,17 @@ void ImageDialog::onSearch()
     if (!initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && !id.isEmpty()) {
         // search term was not changed and we have an id
         // -> trigger loading of images and show image widget
-        ui->stackedWidget->setCurrentIndex(1);
         loadImagesFromProvider(id);
     } else {
         // manual search term change or id is empty
         // -> trigger searching for item and show search result widget
         ui->results->clearContents();
         ui->results->setRowCount(0);
-        ui->stackedWidget->setCurrentIndex(0);
         // @todo: add tv shows & concerts
-        if (m_itemType == ItemMovie)
-            m_currentProvider->searchMovie(searchTerm);
+        if (m_itemType == ItemMovie) {
+            int limit = (onlyFirstResult) ? 1 : 0;
+            m_currentProvider->searchMovie(searchTerm, limit);
+        }
     }
 }
 
@@ -601,6 +608,13 @@ void ImageDialog::onSearchFinished(QList<ScraperSearchResult> results)
         ui->results->insertRow(row);
         ui->results->setItem(row, 0, item);
     }
+
+    // if there is only one result, take it
+    if (ui->results->rowCount() == 1) {
+        onResultClicked(ui->results->item(0, 0));
+    } else {
+        ui->stackedWidget->setCurrentIndex(0);
+    }
 }
 
 /**
@@ -617,6 +631,12 @@ void ImageDialog::loadImagesFromProvider(QString id)
             m_currentProvider->movieBackdrops(id);
         else if (m_type == ImageDialogType::MoviePoster)
             m_currentProvider->moviePosters(id);
+        else if (m_type == ImageDialogType::MovieLogo)
+            m_currentProvider->movieLogos(id);
+        else if (m_type == ImageDialogType::MovieClearArt)
+            m_currentProvider->movieClearArts(id);
+        else if (m_type == ImageDialogType::MovieCdArt)
+            m_currentProvider->movieCdArts(id);
     }
 }
 
@@ -636,5 +656,4 @@ void ImageDialog::onResultClicked(QTableWidgetItem *item)
 void ImageDialog::onProviderImagesLoaded(QList<Poster> images)
 {
     setDownloads(images, false);
-    ui->stackedWidget->setCurrentIndex(1);
 }

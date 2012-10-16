@@ -99,7 +99,7 @@ struct Poster {
 };
 
 enum ImageType {
-    TypePoster, TypeBackdrop, TypeBanner, TypeActor, TypeSeasonPoster, TypeShowThumbnail
+    TypePoster, TypeBackdrop, TypeBanner, TypeActor, TypeSeasonPoster, TypeShowThumbnail, TypeLogo, TypeClearArt, TypeCdArt
 };
 
 enum TvShowType {
@@ -133,6 +133,9 @@ namespace ImageDialogType {
     const int TvShowBanner    = 7;
     const int ConcertPoster   = 8;
     const int ConcertBackdrop = 9;
+    const int MovieLogo       = 10;
+    const int MovieClearArt   = 11;
+    const int MovieCdArt      = 12;
 }
 
 namespace MovieScraperInfos {
@@ -168,6 +171,7 @@ namespace ConcertScraperInfos {
     const int Genres        = 11;
 }
 
+// The filter numbers have to unique for MovieFilters, TvShowFilters and ConcertFilters
 namespace MovieFilters {
     const int Released      = 1;
     const int Certification = 2;
@@ -177,14 +181,17 @@ namespace MovieFilters {
     const int Watched       = 6;
     const int Genres        = 7;
     const int Title         = 8;
+    const int Logo          = 9;
+    const int ClearArt      = 10;
+    const int CdArt         = 11;
 }
 
 namespace TvShowFilters {
-    const int Title         = 1;
+    const int Title         = 12;
 }
 
 namespace ConcertFilters {
-    const int Title         = 1;
+    const int Title         = 13;
 }
 
 // Debugging

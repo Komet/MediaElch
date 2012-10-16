@@ -178,6 +178,7 @@ bool XbmcXml::saveMovie(Movie *movie)
             movie->backdropImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "jpg", 100);
         }
     }
+    saveAdditionalImages(movie);
 
     foreach (const Actor &actor, movie->actors()) {
         if (!actor.image.isNull()) {
@@ -190,6 +191,36 @@ bool XbmcXml::saveMovie(Movie *movie)
     }
 
     return true;
+}
+
+/**
+ * @brief Saves additional movie images (logo, clear art, cd art)
+ * @param movie Movie object
+ */
+void XbmcXml::saveAdditionalImages(Movie *movie)
+{
+    QFileInfo fi(movie->files().at(0));
+    if (movie->logoImageChanged() && !movie->logoImage()->isNull()) {
+        foreach (DataFile *dataFile, Settings::instance()->movieLogoFiles(true)) {
+            QString saveFileName = dataFile->saveFileName(fi.fileName());
+            qDebug() << "Saving logo to" << fi.absolutePath() + QDir::separator() + saveFileName;
+            movie->logoImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "png", 100);
+        }
+    }
+    if (movie->clearArtImageChanged() && !movie->clearArtImage()->isNull()) {
+        foreach (DataFile *dataFile, Settings::instance()->movieClearArtFiles(true)) {
+            QString saveFileName = dataFile->saveFileName(fi.fileName());
+            qDebug() << "Saving clear art to" << fi.absolutePath() + QDir::separator() + saveFileName;
+            movie->clearArtImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "png", 100);
+        }
+    }
+    if (movie->cdArtImageChanged() && !movie->cdArtImage()->isNull()) {
+        foreach (DataFile *dataFile, Settings::instance()->movieCdArtFiles(true)) {
+            QString saveFileName = dataFile->saveFileName(fi.fileName());
+            qDebug() << "Saving cd art to" << fi.absolutePath() + QDir::separator() + saveFileName;
+            movie->cdArtImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "png", 100);
+        }
+    }
 }
 
 /**
@@ -309,6 +340,9 @@ bool XbmcXml::loadMovie(Movie *movie)
     // Existence of images
     movie->setHasPoster(!posterImageName(movie).isEmpty());
     movie->setHasBackdrop(!backdropImageName(movie).isEmpty());
+    movie->setHasLogo(!logoImageName(movie).isEmpty());
+    movie->setHasClearArt(!clearArtImageName(movie).isEmpty());
+    movie->setHasCdArt(!cdArtImageName(movie).isEmpty());
 
     return true;
 }
@@ -383,6 +417,114 @@ QString XbmcXml::backdropImageName(Movie *movie)
     }
 
     return fanartFileName;
+}
+
+/**
+ * @brief Get the path to the movie logo
+ * @param movie Movie object
+ * @return Path to logo image
+ */
+QString XbmcXml::logoImageName(Movie *movie)
+{
+    return XbmcXml::logoImageNameStatic(movie);
+}
+
+/**
+ * @brief Get the path to the movie clear art
+ * @param movie Movie object
+ * @return Path to clear art image
+ */
+QString XbmcXml::clearArtImageName(Movie *movie)
+{
+    return XbmcXml::clearArtImageNameStatic(movie);
+}
+
+/**
+ * @brief Get the path to the movie cd art
+ * @param movie Movie object
+ * @return Path to cd art image
+ */
+QString XbmcXml::cdArtImageName(Movie *movie)
+{
+    return XbmcXml::cdArtImageNameStatic(movie);
+}
+
+/**
+ * @brief Get the path to the movie logo
+ * @param movie Movie object
+ * @return Path to logo image
+ */
+QString XbmcXml::logoImageNameStatic(Movie *movie)
+{
+    QString logoFileName;
+    if (movie->files().size() == 0) {
+        qWarning() << "Movie has no files";
+        return logoFileName;
+    }
+    QFileInfo fi(movie->files().at(0));
+
+    foreach (DataFile *dataFile, Settings::instance()->movieLogoFiles(true)) {
+        QString file = dataFile->saveFileName(fi.fileName());
+        QFileInfo bFi(fi.absolutePath() + QDir::separator() + file);
+        if (bFi.isFile()) {
+            logoFileName = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return logoFileName;
+}
+
+/**
+ * @brief Get the path to the movie clear art
+ * @param movie Movie object
+ * @return Path to clear art image
+ */
+QString XbmcXml::clearArtImageNameStatic(Movie *movie)
+{
+    QString clearArtFileName;
+    if (movie->files().size() == 0) {
+        qWarning() << "Movie has no files";
+        return clearArtFileName;
+    }
+    QFileInfo fi(movie->files().at(0));
+
+    foreach (DataFile *dataFile, Settings::instance()->movieClearArtFiles(true)) {
+        QString file = dataFile->saveFileName(fi.fileName());
+        QFileInfo bFi(fi.absolutePath() + QDir::separator() + file);
+        if (bFi.isFile()) {
+            clearArtFileName = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return clearArtFileName;
+}
+
+/**
+ * @brief Get the path to the movie cd art
+ * @param movie Movie object
+ * @return Path to cd art image
+ */
+QString XbmcXml::cdArtImageNameStatic(Movie *movie)
+{
+    QString cdArtFileName;
+    if (movie->files().size() == 0) {
+        qWarning() << "Movie has no files";
+        return cdArtFileName;
+    }
+    QFileInfo fi(movie->files().at(0));
+
+    foreach (DataFile *dataFile, Settings::instance()->movieCdArtFiles(true)) {
+        QString file = dataFile->saveFileName(fi.fileName());
+        QFileInfo bFi(fi.absolutePath() + QDir::separator() + file);
+        if (bFi.isFile()) {
+            cdArtFileName = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return cdArtFileName;
 }
 
 /**

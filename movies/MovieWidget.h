@@ -52,6 +52,9 @@ private slots:
     void loadDone(Movie *movie);
     void chooseMoviePoster();
     void chooseMovieBackdrop();
+    void chooseMovieLogo();
+    void chooseMovieClearArt();
+    void chooseMovieCdArt();
     void posterDownloadFinished(DownloadManagerElement elem);
     void movieNameChanged(QString text);
     void addGenre();
@@ -64,9 +67,14 @@ private slots:
     void removeCountry();
     void onPreviewPoster();
     void onPreviewBackdrop();
+    void onPreviewLogo();
+    void onPreviewClearArt();
+    void onPreviewCdArt();
     void onActorChanged();
     void onChangeActorImage();
     void onRevertChanges();
+    void onArtPageOne();
+    void onArtPageTwo();
 
     void onNameChange(QString text);
     void onOriginalNameChange(QString text);
@@ -97,8 +105,10 @@ private:
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;
     QImage m_currentPoster;
-    QPixmap *m_currentPosterPointer;
     QImage m_currentBackdrop;
+    QImage m_currentLogo;
+    QImage m_currentClearArt;
+    QImage m_currentCdArt;
     void updateMovieInfo();
 };
 

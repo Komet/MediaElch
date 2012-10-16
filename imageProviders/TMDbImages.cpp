@@ -16,6 +16,7 @@ TMDbImages::TMDbImages(QObject *parent)
     m_apiKey = "5d832bdf69dcb884922381ab01548d5b";
     m_baseUrl = "http://cf2.imgobject.com/t/p/";
     m_provides << ImageDialogType::MovieBackdrop << ImageDialogType::MoviePoster;
+    m_searchResultLimit = 0;
     setup();
 }
 
@@ -95,15 +96,17 @@ void TMDbImages::onSetupFinished()
 /**
  * @brief Searches for a movie
  * @param searchStr The Movie name/search string
+ * @param limit Number of results, if zero, all results are returned
  * @see TMDbImages::searchFinished
  */
-void TMDbImages::searchMovie(QString searchStr)
+void TMDbImages::searchMovie(QString searchStr, int limit)
 {
     qDebug() << "Entered, searchStr=" << searchStr;
     QSettings settings;
     m_language = settings.value("Scrapers/TMDb/Language", "en").toString();
     m_results.clear();
     m_searchString = searchStr;
+    m_searchResultLimit = limit;
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
     QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(m_apiKey).arg(m_language).arg(encodedSearch));
     QNetworkRequest request(url);
@@ -135,7 +138,10 @@ void TMDbImages::onSearchMovieFinished()
     m_searchReply->deleteLater();
 
     if (nextPage == -1) {
-        emit sigSearchDone(m_results);
+        if (m_searchResultLimit != 0)
+            emit sigSearchDone(m_results.mid(0, m_searchResultLimit));
+        else
+            emit sigSearchDone(m_results);
     } else {
         QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&query=%4").arg(m_apiKey).arg(m_language).arg(nextPage).arg(m_searchString));
         QNetworkRequest request(url);
@@ -265,4 +271,31 @@ QList<Poster> TMDbImages::parseBackdrops(QString json)
     }
 
     return posters;
+}
+
+/**
+ * @brief Load movie logos
+ * @param tmdbId The Movie DB id
+ */
+void TMDbImages::movieLogos(QString tmdbId)
+{
+    Q_UNUSED(tmdbId);
+}
+
+/**
+ * @brief Load movie clear arts
+ * @param tmdbId The Movie DB id
+ */
+void TMDbImages::movieClearArts(QString tmdbId)
+{
+    Q_UNUSED(tmdbId);
+}
+
+/**
+ * @brief Load movie cd arts
+ * @param tmdbId The Movie DB id
+ */
+void TMDbImages::movieCdArts(QString tmdbId)
+{
+    Q_UNUSED(tmdbId);
 }

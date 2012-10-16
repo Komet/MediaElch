@@ -18,10 +18,13 @@ public:
     QString name();
     void moviePosters(QString tmdbId);
     void movieBackdrops(QString tmdbId);
+    void movieLogos(QString tmdbId);
+    void movieClearArts(QString tmdbId);
+    void movieCdArts(QString tmdbId);
     QList<int> provides();
 
 public slots:
-    void searchMovie(QString searchStr);
+    void searchMovie(QString searchStr, int limit = 0);
 
 signals:
     void sigSearchDone(QList<ScraperSearchResult>);
@@ -30,7 +33,7 @@ signals:
 private slots:
     void onSetupFinished();
     void onSearchMovieFinished();
-    void onLoadBackdropsFinished();
+    void onLoadMovieDataFinished();
 
 private:
     QList<int> m_provides;
@@ -44,10 +47,13 @@ private:
     QString m_tmdbBaseUrl;
     QList<ScraperSearchResult> m_results;
     QString m_searchString;
+    int m_currentType;
+    int m_searchResultLimit;
 
     void setup();
     QNetworkAccessManager *qnam();
-    QList<Poster> parseBackdrops(QString json);
+    QList<Poster> parseMovieData(QString json, int type);
+    void loadMovieData(QString tmdbId, int type);
 };
 
 #endif // FANARTTV_H

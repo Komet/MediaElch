@@ -32,6 +32,9 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->studios->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->buttonPreviewPoster->setEnabled(false);
     ui->buttonPreviewBackdrop->setEnabled(false);
+    ui->buttonPreviewLogo->setEnabled(false);
+    ui->buttonPreviewClearArt->setEnabled(false);
+    ui->buttonPreviewCdArt->setEnabled(false);
 
     QFont font = ui->movieName->font();
     font.setPointSize(font.pointSize()+4);
@@ -45,6 +48,9 @@ MovieWidget::MovieWidget(QWidget *parent) :
     #endif
     ui->posterResolution->setFont(font);
     ui->backdropResolution->setFont(font);
+    ui->logoResolution->setFont(font);
+    ui->clearArtResolution->setFont(font);
+    ui->cdArtResolution->setFont(font);
     ui->actorResolution->setFont(font);
 
     m_movie = 0;
@@ -52,6 +58,9 @@ MovieWidget::MovieWidget(QWidget *parent) :
 
     connect(ui->poster, SIGNAL(clicked()), this, SLOT(chooseMoviePoster()));
     connect(ui->backdrop, SIGNAL(clicked()), this, SLOT(chooseMovieBackdrop()));
+    connect(ui->logo, SIGNAL(clicked()), this, SLOT(chooseMovieLogo()));
+    connect(ui->clearArt, SIGNAL(clicked()), this, SLOT(chooseMovieClearArt()));
+    connect(ui->cdArt, SIGNAL(clicked()), this, SLOT(chooseMovieCdArt()));
     connect(m_posterDownloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(posterDownloadFinished(DownloadManagerElement)));
     connect(m_posterDownloadManager, SIGNAL(downloadsLeft(int, DownloadManagerElement)), this, SLOT(actorDownloadsLeft(int, DownloadManagerElement)));
     connect(ui->name, SIGNAL(textChanged(QString)), this, SLOT(movieNameChanged(QString)));
@@ -70,8 +79,13 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->countries, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onCountryEdited(QTableWidgetItem*)));
     connect(ui->buttonPreviewPoster, SIGNAL(clicked()), this, SLOT(onPreviewPoster()));
     connect(ui->buttonPreviewBackdrop, SIGNAL(clicked()), this, SLOT(onPreviewBackdrop()));
+    connect(ui->buttonPreviewLogo, SIGNAL(clicked()), this, SLOT(onPreviewLogo()));
+    connect(ui->buttonPreviewClearArt, SIGNAL(clicked()), this, SLOT(onPreviewClearArt()));
+    connect(ui->buttonPreviewCdArt, SIGNAL(clicked()), this, SLOT(onPreviewCdArt()));
     connect(ui->actor, SIGNAL(clicked()), this, SLOT(onChangeActorImage()));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
+    connect(ui->buttonArtPageOne, SIGNAL(clicked()), this, SLOT(onArtPageOne()));
+    connect(ui->buttonArtPageTwo, SIGNAL(clicked()), this, SLOT(onArtPageTwo()));
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -109,6 +123,9 @@ MovieWidget::MovieWidget(QWidget *parent) :
     p.end();
     ui->buttonPreviewBackdrop->setIcon(QIcon(zoomIn));
     ui->buttonPreviewPoster->setIcon(QIcon(zoomIn));
+    ui->buttonPreviewLogo->setIcon(QIcon(zoomIn));
+    ui->buttonPreviewClearArt->setIcon(QIcon(zoomIn));
+    ui->buttonPreviewCdArt->setIcon(QIcon(zoomIn));
 
     QPixmap revert(":/img/arrow_circle_left.png");
     p.begin(&revert);
@@ -117,8 +134,6 @@ MovieWidget::MovieWidget(QWidget *parent) :
     p.end();
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
-
-    m_currentPosterPointer = 0;
 }
 
 /**
@@ -232,9 +247,15 @@ void MovieWidget::clear()
 
     ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
     ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->logo->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->clearArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->cdArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->actor->setPixmap(QPixmap(":/img/man.png"));
     ui->posterResolution->setText("");
     ui->backdropResolution->setText("");
+    ui->logoResolution->setText("");
+    ui->clearArtResolution->setText("");
+    ui->cdArtResolution->setText("");
     ui->actorResolution->setText("");
     ui->buttonRevert->setVisible(false);
 }
@@ -495,6 +516,7 @@ void MovieWidget::updateMovieInfo()
     }
     ui->countries->blockSignals(false);
 
+    // Poster
     if (!m_movie->posterImage()->isNull()) {
         ui->poster->setPixmap(QPixmap::fromImage(*m_movie->posterImage()).scaledToWidth(200, Qt::SmoothTransformation));
         ui->posterResolution->setText(QString("%1x%2").arg(m_movie->posterImage()->width()).arg(m_movie->posterImage()->height()));
@@ -512,6 +534,7 @@ void MovieWidget::updateMovieInfo()
         ui->buttonPreviewPoster->setEnabled(false);
     }
 
+    // Backdrop
     if (!m_movie->backdropImage()->isNull()) {
         ui->backdrop->setPixmap(QPixmap::fromImage(*m_movie->backdropImage()).scaledToWidth(200, Qt::SmoothTransformation));
         ui->backdropResolution->setText(QString("%1x%2").arg(m_movie->backdropImage()->width()).arg(m_movie->backdropImage()->height()));
@@ -527,6 +550,60 @@ void MovieWidget::updateMovieInfo()
         ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->backdropResolution->setText("");
         ui->buttonPreviewBackdrop->setEnabled(false);
+    }
+
+    // Logo
+    if (!m_movie->logoImage()->isNull()) {
+        ui->logo->setPixmap(QPixmap::fromImage(*m_movie->logoImage()).scaled(200, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->logoResolution->setText(QString("%1x%2").arg(m_movie->logoImage()->width()).arg(m_movie->logoImage()->height()));
+        ui->buttonPreviewLogo->setEnabled(true);
+        m_currentLogo = *m_movie->logoImage();
+    } else if (!Manager::instance()->mediaCenterInterface()->logoImageName(m_movie).isEmpty()) {
+        QPixmap p(Manager::instance()->mediaCenterInterface()->logoImageName(m_movie));
+        ui->logo->setPixmap(p.scaled(200, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->logoResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        ui->buttonPreviewLogo->setEnabled(true);
+        m_currentLogo = p.toImage();
+    } else {
+        ui->logo->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->logoResolution->setText("");
+        ui->buttonPreviewLogo->setEnabled(false);
+    }
+
+    // Clear art
+    if (!m_movie->clearArtImage()->isNull()) {
+        ui->clearArt->setPixmap(QPixmap::fromImage(*m_movie->clearArtImage()).scaled(200, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->clearArtResolution->setText(QString("%1x%2").arg(m_movie->clearArtImage()->width()).arg(m_movie->clearArtImage()->height()));
+        ui->buttonPreviewClearArt->setEnabled(true);
+        m_currentClearArt = *m_movie->clearArtImage();
+    } else if (!Manager::instance()->mediaCenterInterface()->clearArtImageName(m_movie).isEmpty()) {
+        QPixmap p(Manager::instance()->mediaCenterInterface()->clearArtImageName(m_movie));
+        ui->clearArt->setPixmap(p.scaled(200, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->clearArtResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        ui->buttonPreviewClearArt->setEnabled(true);
+        m_currentClearArt = p.toImage();
+    } else {
+        ui->clearArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->clearArtResolution->setText("");
+        ui->buttonPreviewClearArt->setEnabled(false);
+    }
+
+    // CD Art
+    if (!m_movie->cdArtImage()->isNull()) {
+        ui->cdArt->setPixmap(QPixmap::fromImage(*m_movie->cdArtImage()).scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->cdArtResolution->setText(QString("%1x%2").arg(m_movie->cdArtImage()->width()).arg(m_movie->cdArtImage()->height()));
+        ui->buttonPreviewCdArt->setEnabled(true);
+        m_currentCdArt = *m_movie->cdArtImage();
+    } else if (!Manager::instance()->mediaCenterInterface()->cdArtImageName(m_movie).isEmpty()) {
+        QPixmap p(Manager::instance()->mediaCenterInterface()->cdArtImageName(m_movie));
+        ui->cdArt->setPixmap(p.scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->cdArtResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        ui->buttonPreviewCdArt->setEnabled(true);
+        m_currentCdArt = p.toImage();
+    } else {
+        ui->cdArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->cdArtResolution->setText("");
+        ui->buttonPreviewCdArt->setEnabled(false);
     }
 
     ui->rating->blockSignals(false);
@@ -609,6 +686,87 @@ void MovieWidget::chooseMovieBackdrop()
 }
 
 /**
+ * @brief Shows the MovieImageDialog and after successful execution starts logo download
+ */
+void MovieWidget::chooseMovieLogo()
+{
+    if (m_movie == 0)
+        return;
+
+    ImageDialog::instance()->setImageType(TypeLogo);
+    ImageDialog::instance()->clear();
+    ImageDialog::instance()->setMovie(m_movie);
+    ImageDialog::instance()->exec(ImageDialogType::MovieLogo);
+
+    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+        emit setActionSaveEnabled(false, WidgetMovies);
+        DownloadManagerElement d;
+        d.imageType = TypeLogo;
+        d.url = ImageDialog::instance()->imageUrl();
+        d.movie = m_movie;
+        m_posterDownloadManager->addDownload(d);
+        ui->logo->setPixmap(QPixmap());
+        ui->logo->setMovie(m_loadingMovie);
+        ui->buttonPreviewLogo->setEnabled(false);
+        ui->buttonRevert->setVisible(true);
+    }
+}
+
+/**
+ * @brief Shows the MovieImageDialog and after successful execution starts clear art download
+ */
+void MovieWidget::chooseMovieClearArt()
+{
+    if (m_movie == 0)
+        return;
+
+    ImageDialog::instance()->setImageType(TypeClearArt);
+    ImageDialog::instance()->clear();
+    ImageDialog::instance()->setMovie(m_movie);
+    ImageDialog::instance()->exec(ImageDialogType::MovieClearArt);
+
+    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+        emit setActionSaveEnabled(false, WidgetMovies);
+        DownloadManagerElement d;
+        d.imageType = TypeClearArt;
+        d.url = ImageDialog::instance()->imageUrl();
+        d.movie = m_movie;
+        m_posterDownloadManager->addDownload(d);
+        ui->clearArt->setPixmap(QPixmap());
+        ui->clearArt->setMovie(m_loadingMovie);
+        ui->buttonPreviewClearArt->setEnabled(false);
+        ui->buttonRevert->setVisible(true);
+    }
+}
+
+/**
+ * @brief Shows the MovieImageDialog and after successful execution starts cd art download
+ */
+void MovieWidget::chooseMovieCdArt()
+{
+    if (m_movie == 0)
+        return;
+
+    ImageDialog::instance()->setImageType(TypeCdArt);
+    ImageDialog::instance()->clear();
+    ImageDialog::instance()->setMovie(m_movie);
+    ImageDialog::instance()->exec(ImageDialogType::MovieCdArt);
+
+    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+        emit setActionSaveEnabled(false, WidgetMovies);
+        DownloadManagerElement d;
+        d.imageType = TypeCdArt;
+        d.url = ImageDialog::instance()->imageUrl();
+        d.movie = m_movie;
+        m_posterDownloadManager->addDownload(d);
+        ui->cdArt->setPixmap(QPixmap());
+        ui->cdArt->setMovie(m_loadingMovie);
+        ui->buttonPreviewCdArt->setEnabled(false);
+        ui->buttonRevert->setVisible(true);
+    }
+}
+
+/**
  * @brief Adjusts the size of the backdrop to common values (1080p or 720p) and shows the image
  * @param elem Downloaded element
  */
@@ -641,7 +799,35 @@ void MovieWidget::posterDownloadFinished(DownloadManagerElement elem)
             m_currentBackdrop = elem.image;
         }
         elem.movie->setBackdropImage(elem.image);
+    } else if (elem.imageType == TypeLogo) {
+        qDebug() << "Got a logo";
+        if (m_movie == elem.movie) {
+            ui->logo->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->logoResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+            ui->buttonPreviewLogo->setEnabled(true);
+            m_currentLogo = elem.image;
+        }
+        elem.movie->setLogoImage(elem.image);
+    } else if (elem.imageType == TypeClearArt) {
+        qDebug() << "Got a clear art";
+        if (m_movie == elem.movie) {
+            ui->clearArt->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->clearArtResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+            ui->buttonPreviewClearArt->setEnabled(true);
+            m_currentClearArt = elem.image;
+        }
+        elem.movie->setClearArtImage(elem.image);
+    } else if (elem.imageType == TypeCdArt) {
+        qDebug() << "Got a cd art";
+        if (m_movie == elem.movie) {
+            ui->cdArt->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->cdArtResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+            ui->buttonPreviewCdArt->setEnabled(true);
+            m_currentCdArt = elem.image;
+        }
+        elem.movie->setCdArtImage(elem.image);
     }
+
     if (m_posterDownloadManager->downloadQueueSize() == 0) {
         emit setActionSaveEnabled(true, WidgetMovies);
         elem.movie->setDownloadsInProgress(false);
@@ -947,6 +1133,33 @@ void MovieWidget::onPreviewPoster()
 }
 
 /**
+ * @brief Shows a full size image of the logo
+ */
+void MovieWidget::onPreviewLogo()
+{
+    ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentLogo));
+    ImagePreviewDialog::instance()->exec();
+}
+
+/**
+ * @brief Shows a full size image of the clear art
+ */
+void MovieWidget::onPreviewClearArt()
+{
+    ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentClearArt));
+    ImagePreviewDialog::instance()->exec();
+}
+
+/**
+ * @brief Shows a full size image of the cd art
+ */
+void MovieWidget::onPreviewCdArt()
+{
+    ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentCdArt));
+    ImagePreviewDialog::instance()->exec();
+}
+
+/**
  * @brief Shows the image of the selected actor
  */
 void MovieWidget::onActorChanged()
@@ -994,6 +1207,26 @@ void MovieWidget::onChangeActorImage()
         }
     }
     ui->buttonRevert->setVisible(true);
+}
+
+/**
+ * @brief Shows the first page with movie art
+ */
+void MovieWidget::onArtPageOne()
+{
+    ui->artStackedWidget->setCurrentIndex(0);
+    ui->buttonArtPageTwo->setChecked(false);
+    ui->buttonArtPageOne->setChecked(true);
+}
+
+/**
+ * @brief Shows the second page with movie art
+ */
+void MovieWidget::onArtPageTwo()
+{
+    ui->artStackedWidget->setCurrentIndex(1);
+    ui->buttonArtPageOne->setChecked(false);
+    ui->buttonArtPageTwo->setChecked(true);
 }
 
 /*** Pass GUI events to movie object ***/
