@@ -24,7 +24,8 @@ MovieFilesOrganizer::~MovieFilesOrganizer()
 }
 
 /**
- * @brief Starts the foldering process
+ * @brief moves all movies in given path to seperate directories
+ * @param path place to organize
  */
 void MovieFilesOrganizer::moveToDirs(QString path)
 {
@@ -79,6 +80,11 @@ void MovieFilesOrganizer::moveToDirs(QString path)
     }
 }
 
+/**
+ * @brief Prints an error message, that tells why the
+ * foldering process has been canceled
+ * @param msg message with reason
+ */
 void MovieFilesOrganizer::canceled(QString msg)
 {
     QMessageBox msgBox;
