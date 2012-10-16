@@ -542,19 +542,19 @@ void SettingsWidget::organize()
     int row = ui->dirs->currentRow();
     if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() != 0
             || ui->dirs->item(row, 3)->checkState() == Qt::Checked) {
-        organizer->canceled("Organizing movies does only work on " \
-                                      "movies, not allready sorted to " \
-                                      "seperate folders.");
+        organizer->canceled(tr("Organizing movies does only work on " \
+                                      "movies, not already sorted to " \
+                                      "separate folders."));
         return;
     }
 
     QMessageBox msgBox;
     msgBox.setIcon(QMessageBox::Information);
-    msgBox.setText("Are you sure?");
-    msgBox.setInformativeText("This operation sorts all movies" \
-                              " in this directory to seperate " \
+    msgBox.setText(tr("Are you sure?"));
+    msgBox.setInformativeText(tr("This operation sorts all movies" \
+                              " in this directory to separate " \
                               "sub-directories. Click \"Ok\", " \
-                              "if thats, what you want to do");
+                              "if thats, what you want to do"));
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);
     int ret = msgBox.exec();
