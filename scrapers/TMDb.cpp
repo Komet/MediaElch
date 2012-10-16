@@ -193,7 +193,7 @@ void TMDb::search(QString searchStr)
 {
     qDebug() << "Entered, searchStr=" << searchStr;
     m_results.clear();
-    m_searchString = searchStr;
+    m_searchString = searchStr.replace("-", " ");
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
     QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(m_apiKey).arg(m_language).arg(encodedSearch));
     QNetworkRequest request(url);
