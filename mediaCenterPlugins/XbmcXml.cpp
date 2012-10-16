@@ -996,6 +996,70 @@ QString XbmcXml::bannerImageName(TvShow *show)
 }
 
 /**
+ * @brief Get the path to the tv show logo
+ * @param show TV Show object
+ * @return Path to logo image
+ */
+QString XbmcXml::logoImageNameStatic(TvShow *show)
+{
+    QString logoFileName;
+    if (show->dir().isEmpty())
+        return logoFileName;
+    foreach (DataFile *dataFile, Settings::instance()->tvShowLogoFiles(true)) {
+        QString file = dataFile->saveFileName("");
+        QFileInfo fi(show->dir() + QDir::separator() + file);
+        if (fi.isFile()) {
+            logoFileName = show->dir() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return logoFileName;
+}
+
+/**
+ * @brief Get the path to the tv show clear art
+ * @param show TV Show object
+ * @return Path to clear art image
+ */
+QString XbmcXml::clearArtImageNameStatic(TvShow *show)
+{
+    QString clearArtFileName;
+    if (show->dir().isEmpty())
+        return clearArtFileName;
+    foreach (DataFile *dataFile, Settings::instance()->tvShowClearArtFiles(true)) {
+        QString file = dataFile->saveFileName("");
+        QFileInfo fi(show->dir() + QDir::separator() + file);
+        if (fi.isFile()) {
+            clearArtFileName = show->dir() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return clearArtFileName;
+}
+
+/**
+ * @brief Get the path to the tv show logo
+ * @param show TV Show object
+ * @return Path to logo image
+ */
+QString XbmcXml::logoImageName(TvShow *show)
+{
+    return logoImageNameStatic(show);
+}
+
+/**
+ * @brief Get the path to the tv show clear art
+ * @param show TV Show object
+ * @return Path to clear art image
+ */
+QString XbmcXml::clearArtImageName(TvShow *show)
+{
+    return clearArtImageNameStatic(show);
+}
+
+/**
  * @brief Get path to season poster
  * @param show
  * @param season
@@ -1385,7 +1449,6 @@ bool XbmcXml::saveTvShow(TvShow *show)
     }
     if (show->bannerImageChanged() && !show->bannerImage()->isNull()) {
         qDebug() << "Banner image has changed";
-        qDebug() << "Poster image has changed";
         foreach (DataFile *dataFile, Settings::instance()->enabledTvShowBannerFiles()) {
             QString saveFileName = dataFile->saveFileName("");
             qDebug() << "Saving banner to" << show->dir() + QDir::separator() + saveFileName;
@@ -1412,8 +1475,33 @@ bool XbmcXml::saveTvShow(TvShow *show)
             show->seasonPosterImage(season)->save(show->dir() + QDir::separator() + "season" + s + ".tbn", "jpg", 100);
         }
     }
+    saveAdditionalImages(show);
 
     return true;
+}
+
+/**
+ * @brief Saves additional tv show images (logo, clear art,)
+ * @param show TV Show object
+ */
+void XbmcXml::saveAdditionalImages(TvShow *show)
+{
+    if (show->logoImageChanged() && !show->logoImage()->isNull()) {
+        qDebug() << "Logo image has changed";
+        foreach (DataFile *dataFile, Settings::instance()->tvShowLogoFiles(true)) {
+            QString saveFileName = dataFile->saveFileName("");
+            qDebug() << "Saving logo to" << show->dir() + QDir::separator() + saveFileName;
+            show->logoImage()->save(show->dir() + QDir::separator() + saveFileName, "png", 100);
+        }
+    }
+    if (show->clearArtImageChanged() && !show->clearArtImage()->isNull()) {
+        qDebug() << "Clear art image has changed";
+        foreach (DataFile *dataFile, Settings::instance()->tvShowClearArtFiles(true)) {
+            QString saveFileName = dataFile->saveFileName("");
+            qDebug() << "Saving clear art to" << show->dir() + QDir::separator() + saveFileName;
+            show->clearArtImage()->save(show->dir() + QDir::separator() + saveFileName, "png", 100);
+        }
+    }
 }
 
 /**

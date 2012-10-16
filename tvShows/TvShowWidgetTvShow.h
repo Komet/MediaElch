@@ -49,6 +49,8 @@ private slots:
     void onChoosePoster();
     void onChooseBackdrop();
     void onChooseBanner();
+    void onChooseLogo();
+    void onChooseClearArt();
     void onChooseSeasonPoster(int season);
     void onPosterDownloadFinished(DownloadManagerElement elem);
     void onDownloadsFinished(TvShow *show);
@@ -56,9 +58,13 @@ private slots:
     void onPreviewPoster();
     void onPreviewBackdrop();
     void onPreviewBanner();
+    void onPreviewLogo();
+    void onPreviewClearArt();
     void onActorChanged();
     void onChangeActorImage();
     void onRevertChanges();
+    void onArtPageOne();
+    void onArtPageTwo();
 
     void onNameChange(QString text);
     void onCertificationChange(QString text);
@@ -79,6 +85,8 @@ private:
     QImage m_currentPoster;
     QImage m_currentBackdrop;
     QImage m_currentBanner;
+    QImage m_currentLogo;
+    QImage m_currentClearArt;
 
     void updateTvShowInfo();
 };

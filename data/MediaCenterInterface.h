@@ -50,6 +50,8 @@ public:
     virtual QString backdropImageName(TvShow *show) = 0;
     virtual QString bannerImageName(TvShow *show) = 0;
     virtual QString actorImageName(TvShow *show, Actor actor) = 0;
+    virtual QString logoImageName(TvShow *show) = 0;
+    virtual QString clearArtImageName(TvShow *show) = 0;
     virtual QString seasonPosterImageName(TvShow *show, int season) = 0;
 signals:
     virtual void sigExportStarted() = 0;

@@ -1667,6 +1667,26 @@ QString XbmcSql::bannerImageName(TvShow *show)
 }
 
 /**
+ * @brief Get the path to the tv show logo
+ * @param show TV show object
+ * @return Path to logo image
+ */
+QString XbmcSql::logoImageName(TvShow *show)
+{
+    return XbmcXml::logoImageNameStatic(show);
+}
+
+/**
+ * @brief Get the path to the tv show clear art
+ * @param show TV show object
+ * @return Path to clear art image
+ */
+QString XbmcSql::clearArtImageName(TvShow *show)
+{
+    return XbmcXml::clearArtImageNameStatic(show);
+}
+
+/**
  * @brief Get path to season poster
  * @param show
  * @param season
@@ -2111,6 +2131,7 @@ bool XbmcSql::saveTvShow(TvShow *show)
         QString actorThumb = QString("%1%2Video%2%3%2%4.tbn").arg(Settings::instance()->xbmcThumbnailPath()).arg(QDir::separator()).arg(hashActor.left(1)).arg(hashActor);
         actor.image.save(actorThumb, "jpg", 100);
     }
+    XbmcXml::saveAdditionalImages(show);
 
     return true;
 }

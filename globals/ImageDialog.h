@@ -41,6 +41,7 @@ public:
     void setMovie(Movie *movie);
     void setConcert(Concert *concert);
     void setTvShow(TvShow *show);
+    void setSeason(int season);
     void setTvShowEpisode(TvShowEpisode *episode);
     void clear();
     void cancelDownloads();
@@ -99,6 +100,8 @@ private:
     ItemType m_itemType;
     QList<Poster> m_defaultElements;
     ImageProviderInterface *m_currentProvider;
+    int m_season;
+    int m_episode;
 
     QNetworkAccessManager *qnam();
     void renderTable();

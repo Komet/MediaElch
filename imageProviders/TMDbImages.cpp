@@ -13,26 +13,14 @@
 TMDbImages::TMDbImages(QObject *parent)
 {
     setParent(parent);
-    m_apiKey = "5d832bdf69dcb884922381ab01548d5b";
-    m_baseUrl = "http://cf2.imgobject.com/t/p/";
     m_provides << ImageDialogType::MovieBackdrop << ImageDialogType::MoviePoster
                << ImageDialogType::ConcertBackdrop << ImageDialogType::ConcertPoster;
     m_searchResultLimit = 0;
-    setup();
-}
-
-/**
- * @brief Returns an instance of TMDbImages
- * @param parent Parent widget (used the first time for constructing)
- * @return Instance of TMDbImages
- */
-TMDbImages *TMDbImages::instance(QObject *parent)
-{
-    static TMDbImages *m_instance = 0;
-    if (m_instance == 0) {
-        m_instance = new TMDbImages(parent);
-    }
-    return m_instance;
+    m_tmdb = new TMDb(this);
+    m_tmdb->loadSettings();
+    m_dummyMovie = new Movie(QStringList(), this);
+    connect(m_dummyMovie, SIGNAL(loaded(Movie*)), this, SLOT(onLoadImagesFinished()));
+    connect(m_tmdb, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchMovieFinished(QList<ScraperSearchResult>)));
 }
 
 /**
@@ -54,47 +42,6 @@ QList<int> TMDbImages::provides()
 }
 
 /**
- * @brief Just returns a pointer to the scrapers network access manager
- * @return Network Access Manager
- */
-QNetworkAccessManager *TMDbImages::qnam()
-{
-    return &m_qnam;
-}
-
-/**
- * @brief Loads the setup parameters from TMDb
- * @see TMDbImages::setupFinished
- */
-void TMDbImages::setup()
-{
-    QUrl url(QString("http://api.themoviedb.org/3/configuration?api_key=%1").arg(m_apiKey));
-    QNetworkRequest request(url);
-    request.setRawHeader("Accept", "application/json");
-    m_setupReply = qnam()->get(request);
-    connect(m_setupReply, SIGNAL(finished()), this, SLOT(onSetupFinished()));
-}
-
-/**
- * @brief Called when setup parameters were got
- *        Parses json and assigns the baseUrl
- */
-void TMDbImages::onSetupFinished()
-{
-    if (m_setupReply->error() != QNetworkReply::NoError ) {
-        m_setupReply->deleteLater();
-        return;
-    }
-    QString msg = QString::fromUtf8(m_setupReply->readAll());
-    m_setupReply->deleteLater();
-    QScriptValue sc;
-    QScriptEngine engine;
-    sc = engine.evaluate("(" + QString(msg) + ")");
-
-    m_baseUrl = sc.property("images").property("base_url").toString();
-}
-
-/**
  * @brief Searches for a movie
  * @param searchStr The Movie name/search string
  * @param limit Number of results, if zero, all results are returned
@@ -102,18 +49,8 @@ void TMDbImages::onSetupFinished()
  */
 void TMDbImages::searchMovie(QString searchStr, int limit)
 {
-    qDebug() << "Entered, searchStr=" << searchStr;
-    QSettings settings;
-    m_language = settings.value("Scrapers/TMDb/Language", "en").toString();
-    m_results.clear();
-    m_searchString = searchStr;
     m_searchResultLimit = limit;
-    QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(m_apiKey).arg(m_language).arg(encodedSearch));
-    QNetworkRequest request(url);
-    request.setRawHeader("Accept", "application/json");
-    m_searchReply = qnam()->get(request);
-    connect(m_searchReply, SIGNAL(finished()), this, SLOT(onSearchMovieFinished()));
+    m_tmdb->search(searchStr);
 }
 
 /**
@@ -130,37 +67,16 @@ void TMDbImages::searchConcert(QString searchStr, int limit)
 /**
  * @brief Called when the search result was downloaded
  *        Emits "sigSearchDone" if there are no more pages in the result set
+ * @param results List of results from scraper
  * @see TMDb::parseSearch
  */
-void TMDbImages::onSearchMovieFinished()
+void TMDbImages::onSearchMovieFinished(QList<ScraperSearchResult> results)
 {
     qDebug() << "Entered";
-    QList<ScraperSearchResult> results;
-    if (m_searchReply->error() != QNetworkReply::NoError ) {
-        qWarning() << "Network Error" << m_searchReply->errorString();
-        m_searchReply->deleteLater();
+    if (m_searchResultLimit == 0)
         emit sigSearchDone(results);
-        return;
-    }
-
-    QString msg = QString::fromUtf8(m_searchReply->readAll());
-    int nextPage = -1;
-    results = TMDb::parseSearch(msg, &nextPage);
-    m_results.append(results);
-    m_searchReply->deleteLater();
-
-    if (nextPage == -1) {
-        if (m_searchResultLimit != 0)
-            emit sigSearchDone(m_results.mid(0, m_searchResultLimit));
-        else
-            emit sigSearchDone(m_results);
-    } else {
-        QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&query=%4").arg(m_apiKey).arg(m_language).arg(nextPage).arg(m_searchString));
-        QNetworkRequest request(url);
-        request.setRawHeader("Accept", "application/json");
-        m_searchReply = qnam()->get(request);
-        connect(m_searchReply, SIGNAL(finished()), this, SLOT(onSearchMovieFinished()));
-    }
+    else
+        emit sigSearchDone(results.mid(0, m_searchResultLimit));
 }
 
 /**
@@ -169,13 +85,11 @@ void TMDbImages::onSearchMovieFinished()
  */
 void TMDbImages::moviePosters(QString tmdbId)
 {
-    QUrl url;
-    QNetworkRequest request;
-    request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/images?api_key=%2").arg(tmdbId).arg(m_apiKey));
-    request.setUrl(url);
-    m_loadReply = qnam()->get(QNetworkRequest(request));
-    connect(m_loadReply, SIGNAL(finished()), this, SLOT(onLoadPostersFinished()));
+    m_dummyMovie->clear();
+    m_imageType = TypePoster;
+    QList<int> infos;
+    infos << MovieScraperInfos::Poster;
+    m_tmdb->loadData(tmdbId, m_dummyMovie, infos);
 }
 
 /**
@@ -184,13 +98,11 @@ void TMDbImages::moviePosters(QString tmdbId)
  */
 void TMDbImages::movieBackdrops(QString tmdbId)
 {
-    QUrl url;
-    QNetworkRequest request;
-    request.setRawHeader("Accept", "application/json");
-    url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/images?api_key=%2").arg(tmdbId).arg(m_apiKey));
-    request.setUrl(url);
-    m_loadReply = qnam()->get(QNetworkRequest(request));
-    connect(m_loadReply, SIGNAL(finished()), this, SLOT(onLoadBackdropsFinished()));
+    m_dummyMovie->clear();
+    m_imageType = TypeBackdrop;
+    QList<int> infos;
+    infos << MovieScraperInfos::Backdrop;
+    m_tmdb->loadData(tmdbId, m_dummyMovie, infos);
 }
 
 /**
@@ -212,95 +124,17 @@ void TMDbImages::concertBackdrops(QString tmdbId)
 }
 
 /**
- * @brief Called when the movie posters are downloaded
- * @see TMDbImages::parsePosters
+ * @brief Called when the movie images are downloaded
  */
-void TMDbImages::onLoadPostersFinished()
+void TMDbImages::onLoadImagesFinished()
 {
     QList<Poster> posters;
-    if (m_loadReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_loadReply->readAll());
-        posters = parsePosters(msg);
-    }
-    m_loadReply->deleteLater();
+    if (m_imageType == TypeBackdrop)
+        posters = m_dummyMovie->backdrops();
+    else if (m_imageType == TypePoster)
+        posters = m_dummyMovie->posters();
+
     emit sigImagesLoaded(posters);
-}
-
-/**
- * @brief Called when the movie backdrops are downloaded
- * @see TMDbImages::parseBackdrops
- */
-void TMDbImages::onLoadBackdropsFinished()
-{
-    QList<Poster> posters;
-    if (m_loadReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_loadReply->readAll());
-        posters = parseBackdrops(msg);
-    }
-    m_loadReply->deleteLater();
-    emit sigImagesLoaded(posters);
-}
-
-/**
- * @brief Parses JSON data
- * @param json JSON data
- * @return List of posters
- */
-QList<Poster> TMDbImages::parsePosters(QString json)
-{
-    QList<Poster> posters;
-    QScriptValue sc;
-    QScriptEngine engine;
-    sc = engine.evaluate("(" + QString(json) + ")");
-
-    if (sc.property("posters").isArray()) {
-        QScriptValueIterator itB(sc.property("posters"));
-        while (itB.hasNext()) {
-            itB.next();
-            QScriptValue vB = itB.value();
-            if (vB.property("file_path").toString().isEmpty())
-                continue;
-            Poster b;
-            b.thumbUrl = m_baseUrl + "w342" + vB.property("file_path").toString();
-            b.originalUrl = m_baseUrl + "original" + vB.property("file_path").toString();
-            b.originalSize.setWidth(vB.property("width").toString().toInt());
-            b.originalSize.setHeight(vB.property("height").toString().toInt());
-            posters.append(b);
-        }
-    }
-
-    return posters;
-}
-
-/**
- * @brief Parses JSON data
- * @param json JSON data
- * @return List of posters
- */
-QList<Poster> TMDbImages::parseBackdrops(QString json)
-{
-    QList<Poster> posters;
-    QScriptValue sc;
-    QScriptEngine engine;
-    sc = engine.evaluate("(" + QString(json) + ")");
-
-    if (sc.property("backdrops").isArray()) {
-        QScriptValueIterator itB(sc.property("backdrops"));
-        while (itB.hasNext()) {
-            itB.next();
-            QScriptValue vB = itB.value();
-            if (vB.property("file_path").toString().isEmpty())
-                continue;
-            Poster b;
-            b.thumbUrl = m_baseUrl + "w780" + vB.property("file_path").toString();
-            b.originalUrl = m_baseUrl + "original" + vB.property("file_path").toString();
-            b.originalSize.setWidth(vB.property("width").toString().toInt());
-            b.originalSize.setHeight(vB.property("height").toString().toInt());
-            posters.append(b);
-        }
-    }
-
-    return posters;
 }
 
 /**
@@ -355,4 +189,84 @@ void TMDbImages::concertClearArts(QString tmdbId)
 void TMDbImages::concertCdArts(QString tmdbId)
 {
     Q_UNUSED(tmdbId);
+}
+
+/**
+ * @brief Searches for a tv show
+ * @param searchStr Search term
+ * @param limit Number of results, if zero, all results are returned
+ */
+void TMDbImages::searchTvShow(QString searchStr, int limit)
+{
+    Q_UNUSED(searchStr);
+    Q_UNUSED(limit);
+}
+
+/**
+ * @brief Load tv show posters
+ * @param tvdbId The TV DB id
+ */
+void TMDbImages::tvShowPosters(QString tvdbId)
+{
+    Q_UNUSED(tvdbId);
+}
+
+/**
+ * @brief Load tv show backdrops
+ * @param tvdbId The TV DB id
+ */
+void TMDbImages::tvShowBackdrops(QString tvdbId)
+{
+    Q_UNUSED(tvdbId);
+}
+
+/**
+ * @brief Load tv show logos
+ * @param tvdbId The TV DB id
+ */
+void TMDbImages::tvShowLogos(QString tvdbId)
+{
+    Q_UNUSED(tvdbId);
+}
+
+/**
+ * @brief Load tv show clear arts
+ * @param tvdbId The TV DB id
+ */
+void TMDbImages::tvShowClearArts(QString tvdbId)
+{
+    Q_UNUSED(tvdbId);
+}
+
+/**
+ * @brief Load tv show banners
+ * @param tvdbId The TV DB id
+ */
+void TMDbImages::tvShowBanners(QString tvdbId)
+{
+    Q_UNUSED(tvdbId);
+}
+
+/**
+ * @brief Load tv show thumbs
+ * @param tvdbId The TV DB id
+ * @param season Season number
+ * @param episode Episode number
+ */
+void TMDbImages::tvShowThumb(QString tvdbId, int season, int episode)
+{
+    Q_UNUSED(tvdbId);
+    Q_UNUSED(season);
+    Q_UNUSED(episode);
+}
+
+/**
+ * @brief Load tv show season
+ * @param tvdbId The TV DB id
+ * @param season Season number
+ */
+void TMDbImages::tvShowSeason(QString tvdbId, int season)
+{
+    Q_UNUSED(tvdbId);
+    Q_UNUSED(season);
 }

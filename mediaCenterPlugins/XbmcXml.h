@@ -55,12 +55,17 @@ public:
     QString seasonPosterImageName(TvShow *show, int season);
     static void saveAdditionalImages(Movie *movie);
     static void saveAdditionalImages(Concert *concert);
+    static void saveAdditionalImages(TvShow *show);
     static QString logoImageNameStatic(Movie *movie);
     static QString clearArtImageNameStatic(Movie *movie);
     static QString cdArtImageNameStatic(Movie *movie);
     static QString logoImageNameStatic(Concert *concert);
     static QString clearArtImageNameStatic(Concert *concert);
     static QString cdArtImageNameStatic(Concert *concert);
+    static QString logoImageNameStatic(TvShow *show);
+    static QString clearArtImageNameStatic(TvShow *show);
+    QString logoImageName(TvShow *show);
+    QString clearArtImageName(TvShow *show);
 
 signals:
     void sigExportStarted();

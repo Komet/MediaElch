@@ -136,7 +136,7 @@ int ImageDialog::exec(int type)
     else if (m_itemType == ItemTvShow)
         ui->searchTerm->setText(m_tvShow->name());
     else if (m_itemType == ItemTvShowEpisode)
-        ui->searchTerm->setText(m_tvShowEpisode->name());
+        ui->searchTerm->setText(m_tvShowEpisode->tvShow()->name());
     else
         ui->searchTerm->clear();
 
@@ -417,6 +417,15 @@ void ImageDialog::setTvShow(TvShow *show)
 }
 
 /**
+ * @brief Set season number
+ * @param season
+ */
+void ImageDialog::setSeason(int season)
+{
+    m_season = season;
+}
+
+/**
  * @brief Sets the current tv show episode
  * @param episode
  */
@@ -571,7 +580,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
         initialSearchTerm = m_tvShow->name();
         id = m_tvShow->tvdbId();
     } else if (m_itemType == ItemTvShowEpisode) {
-        initialSearchTerm = m_tvShowEpisode->name();
+        initialSearchTerm = m_tvShowEpisode->tvShow()->name();
         id = m_tvShowEpisode->tvShow()->tvdbId();
     }
 
@@ -581,6 +590,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
     if (!initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && !id.isEmpty()) {
         // search term was not changed and we have an id
         // -> trigger loading of images and show image widget
+        ui->searchTerm->setLoading(false);
         loadImagesFromProvider(id);
     } else {
         // manual search term change or id is empty
@@ -588,11 +598,12 @@ void ImageDialog::onSearch(bool onlyFirstResult)
         ui->results->clearContents();
         ui->results->setRowCount(0);
         int limit = (onlyFirstResult) ? 1 : 0;
-        // @todo: add tv shows
         if (m_itemType == ItemMovie)
             m_currentProvider->searchMovie(searchTerm, limit);
         else if (m_itemType == ItemConcert)
             m_currentProvider->searchConcert(searchTerm, limit);
+        else if (m_itemType == ItemTvShow || m_itemType == ItemTvShowEpisode)
+            m_currentProvider->searchTvShow(searchTerm, limit);
     }
 }
 
@@ -625,7 +636,6 @@ void ImageDialog::onSearchFinished(QList<ScraperSearchResult> results)
  */
 void ImageDialog::loadImagesFromProvider(QString id)
 {
-    // @todo: add tv shows
     ui->labelLoading->setVisible(true);
     ui->labelSpinner->setVisible(true);
     if (m_itemType == ItemMovie) {
@@ -650,7 +660,24 @@ void ImageDialog::loadImagesFromProvider(QString id)
             m_currentProvider->concertClearArts(id);
         else if (m_type == ImageDialogType::ConcertCdArt)
             m_currentProvider->concertCdArts(id);
+    } else if (m_itemType == ItemTvShow) {
+        if (m_type == ImageDialogType::TvShowBackdrop)
+            m_currentProvider->tvShowBackdrops(id);
+        else if (m_type == ImageDialogType::TvShowBanner)
+            m_currentProvider->tvShowBanners(id);
+        else if (m_type == ImageDialogType::TvShowClearArt)
+            m_currentProvider->tvShowClearArts(id);
+        else if (m_type == ImageDialogType::TvShowLogos)
+            m_currentProvider->tvShowLogos(id);
+        else if (m_type == ImageDialogType::TvShowPoster)
+            m_currentProvider->tvShowPosters(id);
+        else if (m_type == ImageDialogType::TvShowSeason)
+            m_currentProvider->tvShowSeason(id, m_season);
+    } else if (m_itemType == ItemTvShowEpisode) {
+        if (m_type == ImageDialogType::TvShowThumb)
+            m_currentProvider->tvShowThumb(id, m_tvShowEpisode->season(), m_tvShowEpisode->episode());
     }
+
 }
 
 /**
@@ -659,6 +686,7 @@ void ImageDialog::loadImagesFromProvider(QString id)
  */
 void ImageDialog::onResultClicked(QTableWidgetItem *item)
 {
+    ui->stackedWidget->setCurrentIndex(1);
     loadImagesFromProvider(item->data(Qt::UserRole).toString());
 }
 

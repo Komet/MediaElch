@@ -6,6 +6,7 @@
 #include "globals/Globals.h"
 #include "imageProviders/FanartTv.h"
 #include "imageProviders/TMDbImages.h"
+#include "imageProviders/TheTvDbImages.h"
 #include "mediaCenterPlugins/XbmcSql.h"
 #include "mediaCenterPlugins/XbmcXml.h"
 #include "scrapers/Cinefacts.h"
@@ -49,7 +50,8 @@ Manager::Manager(QObject *parent) :
     m_mediaCentersConcert.append(new XbmcSql(this, "xbmcConcert"));
 
     m_imageProviders.append(new FanartTv(this));
-    m_imageProviders.append(TMDbImages::instance(this));
+    m_imageProviders.append(new TMDbImages(this));
+    m_imageProviders.append(new TheTvDbImages(this));
 
     setupCacheDatabase();
 }

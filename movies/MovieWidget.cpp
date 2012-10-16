@@ -694,6 +694,7 @@ void MovieWidget::chooseMovieLogo()
     ImageDialog::instance()->setImageType(TypeLogo);
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setMovie(m_movie);
+    ImageDialog::instance()->setDownloads(QList<Poster>());
     ImageDialog::instance()->exec(ImageDialogType::MovieLogo);
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
@@ -721,6 +722,7 @@ void MovieWidget::chooseMovieClearArt()
     ImageDialog::instance()->setImageType(TypeClearArt);
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setMovie(m_movie);
+    ImageDialog::instance()->setDownloads(QList<Poster>());
     ImageDialog::instance()->exec(ImageDialogType::MovieClearArt);
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
@@ -748,6 +750,7 @@ void MovieWidget::chooseMovieCdArt()
     ImageDialog::instance()->setImageType(TypeCdArt);
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setMovie(m_movie);
+    ImageDialog::instance()->setDownloads(QList<Poster>());
     ImageDialog::instance()->exec(ImageDialogType::MovieCdArt);
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {

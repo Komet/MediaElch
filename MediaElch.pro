@@ -91,7 +91,8 @@ SOURCES += main.cpp\
     main/FileScannerDialog.cpp \
     globals/Filter.cpp \
     imageProviders/FanartTv.cpp \
-    imageProviders/TMDbImages.cpp
+    imageProviders/TMDbImages.cpp \
+    imageProviders/TheTvDbImages.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -163,7 +164,8 @@ HEADERS  += main/MainWindow.h \
     globals/Filter.h \
     data/ImageProviderInterface.h \
     imageProviders/FanartTv.h \
-    imageProviders/TMDbImages.h
+    imageProviders/TMDbImages.h \
+    imageProviders/TheTvDbImages.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

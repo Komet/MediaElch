@@ -21,8 +21,11 @@ TvShowProxyModel::TvShowProxyModel(QObject *parent) :
 bool TvShowProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
     Q_UNUSED(sourceParent);
+    QList<TvShow*> shows = Manager::instance()->tvShowModel()->tvShows();
+    if (sourceRow >= shows.count())
+        return true;
 
-    TvShow *show = Manager::instance()->tvShowModel()->tvShows().at(sourceRow);
+    TvShow *show = shows.at(sourceRow);
     foreach (Filter *filter, m_filters) {
         if (!filter->accepts(show))
             return false;

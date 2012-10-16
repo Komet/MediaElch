@@ -54,6 +54,8 @@ public:
     QString bannerImageName(TvShow *show);
     QString actorImageName(TvShow *show, Actor actor);
     QString seasonPosterImageName(TvShow *show, int season);
+    QString logoImageName(TvShow *show);
+    QString clearArtImageName(TvShow *show);
 
 signals:
     void sigExportStarted();

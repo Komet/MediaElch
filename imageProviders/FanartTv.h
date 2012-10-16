@@ -6,6 +6,8 @@
 #include <QObject>
 #include "globals/Globals.h"
 #include "data/ImageProviderInterface.h"
+#include "scrapers/TMDb.h"
+#include "scrapers/TheTvDb.h"
 
 /**
  * @brief The FanartTv class
@@ -26,40 +28,45 @@ public:
     void concertLogos(QString tmdbId);
     void concertClearArts(QString tmdbId);
     void concertCdArts(QString tmdbId);
+    void tvShowPosters(QString tvdbId);
+    void tvShowBackdrops(QString tvdbId);
+    void tvShowLogos(QString tvdbId);
+    void tvShowClearArts(QString tvdbId);
+    void tvShowBanners(QString tvdbId);
+    void tvShowThumb(QString tvdbId, int season, int episode);
+    void tvShowSeason(QString tvdbId, int season);
     QList<int> provides();
 
 public slots:
     void searchMovie(QString searchStr, int limit = 0);
     void searchConcert(QString searchStr, int limit = 0);
+    void searchTvShow(QString searchStr, int limit = 0);
 
 signals:
     void sigSearchDone(QList<ScraperSearchResult>);
     void sigImagesLoaded(QList<Poster>);
 
 private slots:
-    void onSetupFinished();
-    void onSearchMovieFinished();
+    void onSearchMovieFinished(QList<ScraperSearchResult> results);
     void onLoadMovieDataFinished();
+    void onSearchTvShowFinished(QList<ScraperSearchResult> results);
+    void onLoadTvShowDataFinished();
 
 private:
     QList<int> m_provides;
     QString m_apiKey;
-    QString m_tmdbApiKey;
     QNetworkAccessManager m_qnam;
-    QNetworkReply *m_searchReply;
-    QNetworkReply *m_setupReply;
     QNetworkReply *m_loadReply;
-    QString m_tmdbLanguage;
-    QString m_tmdbBaseUrl;
-    QList<ScraperSearchResult> m_results;
-    QString m_searchString;
     int m_currentType;
     int m_searchResultLimit;
+    TheTvDb *m_tvdb;
+    TMDb *m_tmdb;
 
-    void setup();
     QNetworkAccessManager *qnam();
     QList<Poster> parseMovieData(QString json, int type);
     void loadMovieData(QString tmdbId, int type);
+    QList<Poster> parseTvShowData(QString json, int type);
+    void loadTvShowData(QString tvdbId, int type);
 };
 
 #endif // FANARTTV_H

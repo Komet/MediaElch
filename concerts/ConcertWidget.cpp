@@ -535,6 +535,7 @@ void ConcertWidget::chooseConcertLogo()
     ImageDialog::instance()->setImageType(TypeLogo);
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setConcert(m_concert);
+    ImageDialog::instance()->setDownloads(QList<Poster>());
     ImageDialog::instance()->exec(ImageDialogType::ConcertLogo);
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
@@ -562,6 +563,7 @@ void ConcertWidget::chooseConcertClearArt()
     ImageDialog::instance()->setImageType(TypeClearArt);
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setConcert(m_concert);
+    ImageDialog::instance()->setDownloads(QList<Poster>());
     ImageDialog::instance()->exec(ImageDialogType::ConcertClearArt);
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
@@ -589,6 +591,7 @@ void ConcertWidget::chooseConcertCdArt()
     ImageDialog::instance()->setImageType(TypeCdArt);
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setConcert(m_concert);
+    ImageDialog::instance()->setDownloads(QList<Poster>());
     ImageDialog::instance()->exec(ImageDialogType::ConcertCdArt);
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {

@@ -139,6 +139,8 @@ namespace ImageDialogType {
     const int ConcertLogo     = 13;
     const int ConcertClearArt = 14;
     const int ConcertCdArt    = 15;
+    const int TvShowClearArt  = 16;
+    const int TvShowLogos     = 17;
 }
 
 namespace MovieScraperInfos {

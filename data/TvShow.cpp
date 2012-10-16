@@ -19,6 +19,8 @@ TvShow::TvShow(QString dir, QObject *parent) :
     m_backdropImageChanged = false;
     m_posterImageChanged = false;
     m_bannerImageChanged = false;
+    m_logoImageChanged = false;
+    m_clearArtImageChanged = false;
     m_hasChanged = false;
     clear();
     m_downloadsInProgress = false;
@@ -56,6 +58,8 @@ void TvShow::clear()
     m_backdropImageChanged = false;
     m_posterImageChanged = false;
     m_bannerImageChanged = false;
+    m_logoImageChanged = false;
+    m_clearArtImageChanged = false;
     m_seasonPosterImages.clear();
     m_seasonPosterImagesChanged.clear();
     m_hasChanged = false;
@@ -144,6 +148,8 @@ void TvShow::clearImages()
     m_posterImage = QImage();
     m_backdropImage = QImage();
     m_bannerImage = QImage();
+    m_logoImage = QImage();
+    m_clearArtImage = QImage();
     foreach (int season, seasons())
         m_seasonPosterImages[season] = QImage();
     foreach (Actor *actor, actorsPointer())
@@ -419,6 +425,24 @@ QImage *TvShow::bannerImage()
 }
 
 /**
+ * @brief TvShow::logoImage
+ * @return
+ */
+QImage *TvShow::logoImage()
+{
+    return &m_logoImage;
+}
+
+/**
+ * @brief TvShow::clearArtImage
+ * @return
+ */
+QImage *TvShow::clearArtImage()
+{
+    return &m_clearArtImage;
+}
+
+/**
  * @brief TvShow::seasonPosterImage
  * @param season
  * @return
@@ -484,6 +508,24 @@ bool TvShow::backdropImageChanged() const
 bool TvShow::bannerImageChanged() const
 {
     return m_bannerImageChanged;
+}
+
+/**
+ * @brief TvShow::logoImageChanged
+ * @return
+ */
+bool TvShow::logoImageChanged() const
+{
+    return m_logoImageChanged;
+}
+
+/**
+ * @brief TvShow::clearArtImageChanged
+ * @return
+ */
+bool TvShow::clearArtImageChanged() const
+{
+    return m_clearArtImageChanged;
 }
 
 /**
@@ -811,6 +853,28 @@ void TvShow::setBannerImage(QImage banner)
 {
     m_bannerImage = QImage(banner);
     m_bannerImageChanged = true;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the logo image
+ * @param img
+ */
+void TvShow::setLogoImage(QImage img)
+{
+    m_logoImage = QImage(img);
+    m_logoImageChanged = true;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the clear art image
+ * @param img
+ */
+void TvShow::setClearArtImage(QImage img)
+{
+    m_clearArtImage = QImage(img);
+    m_clearArtImageChanged = true;
     setChanged(true);
 }
 

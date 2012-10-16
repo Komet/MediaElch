@@ -14,12 +14,16 @@ FanartTv::FanartTv(QObject *parent)
 {
     setParent(parent);
     m_provides << ImageDialogType::MovieBackdrop << ImageDialogType::MovieLogo << ImageDialogType::MovieClearArt << ImageDialogType::MovieCdArt
-               << ImageDialogType::TvShowBanner << ImageDialogType::TvShowBackdrop
+               << ImageDialogType::TvShowClearArt << ImageDialogType::TvShowBackdrop << ImageDialogType::TvShowBanner << ImageDialogType::TvShowLogos
                << ImageDialogType::ConcertBackdrop << ImageDialogType::ConcertLogo << ImageDialogType::ConcertClearArt << ImageDialogType::ConcertCdArt;
-    m_tmdbApiKey = "5d832bdf69dcb884922381ab01548d5b";
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
-    m_tmdbBaseUrl = "http://cf2.imgobject.com/t/p/";
     m_searchResultLimit = 0;
+    m_tvdb = new TheTvDb(this);
+    m_tvdb->loadSettings();
+    m_tmdb = new TMDb(this);
+    m_tmdb->loadSettings();
+    connect(m_tvdb, SIGNAL(sigSearchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchTvShowFinished(QList<ScraperSearchResult>)));
+    connect(m_tmdb, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchMovieFinished(QList<ScraperSearchResult>)));
 }
 
 /**
@@ -50,38 +54,6 @@ QNetworkAccessManager *FanartTv::qnam()
 }
 
 /**
- * @brief Loads the setup parameters from TMDb
- * @see FanartTv::setupFinished
- */
-void FanartTv::setup()
-{
-    QUrl url(QString("http://api.themoviedb.org/3/configuration?api_key=%1").arg(m_tmdbApiKey));
-    QNetworkRequest request(url);
-    request.setRawHeader("Accept", "application/json");
-    m_setupReply = qnam()->get(request);
-    connect(m_setupReply, SIGNAL(finished()), this, SLOT(onSetupFinished()));
-}
-
-/**
- * @brief Called when setup parameters were got
- *        Parses json and assigns the baseUrl
- */
-void FanartTv::onSetupFinished()
-{
-    if (m_setupReply->error() != QNetworkReply::NoError ) {
-        m_setupReply->deleteLater();
-        return;
-    }
-    QString msg = QString::fromUtf8(m_setupReply->readAll());
-    m_setupReply->deleteLater();
-    QScriptValue sc;
-    QScriptEngine engine;
-    sc = engine.evaluate("(" + QString(msg) + ")");
-
-    m_tmdbBaseUrl = sc.property("images").property("base_url").toString();
-}
-
-/**
  * @brief Searches for a movie
  * @param searchStr The Movie name/search string
  * @param limit Number of results, if zero, all results are returned
@@ -89,18 +61,8 @@ void FanartTv::onSetupFinished()
  */
 void FanartTv::searchMovie(QString searchStr, int limit)
 {
-    qDebug() << "Entered, searchStr=" << searchStr;
-    QSettings settings;
-    m_tmdbLanguage = settings.value("Scrapers/TMDb/Language", "en").toString();
-    m_results.clear();
-    m_searchString = searchStr;
     m_searchResultLimit = limit;
-    QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(m_tmdbApiKey).arg(m_tmdbLanguage).arg(encodedSearch));
-    QNetworkRequest request(url);
-    request.setRawHeader("Accept", "application/json");
-    m_searchReply = qnam()->get(request);
-    connect(m_searchReply, SIGNAL(finished()), this, SLOT(onSearchMovieFinished()));
+    m_tmdb->search(searchStr);
 }
 
 /**
@@ -117,37 +79,15 @@ void FanartTv::searchConcert(QString searchStr, int limit)
 /**
  * @brief Called when the search result was downloaded
  *        Emits "sigSearchDone" if there are no more pages in the result set
+ * @param results List of results from scraper
  * @see TMDb::parseSearch
  */
-void FanartTv::onSearchMovieFinished()
+void FanartTv::onSearchMovieFinished(QList<ScraperSearchResult> results)
 {
-    qDebug() << "Entered";
-    QList<ScraperSearchResult> results;
-    if (m_searchReply->error() != QNetworkReply::NoError ) {
-        qWarning() << "Network Error" << m_searchReply->errorString();
-        m_searchReply->deleteLater();
+    if (m_searchResultLimit == 0)
         emit sigSearchDone(results);
-        return;
-    }
-
-    QString msg = QString::fromUtf8(m_searchReply->readAll());
-    int nextPage = -1;
-    results = TMDb::parseSearch(msg, &nextPage);
-    m_results.append(results);
-    m_searchReply->deleteLater();
-
-    if (nextPage == -1) {
-        if (m_searchResultLimit != 0)
-            emit sigSearchDone(m_results.mid(0, m_searchResultLimit));
-        else
-            emit sigSearchDone(m_results);
-    } else {
-        QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&query=%4").arg(m_tmdbApiKey).arg(m_tmdbLanguage).arg(nextPage).arg(m_searchString));
-        QNetworkRequest request(url);
-        request.setRawHeader("Accept", "application/json");
-        m_searchReply = qnam()->get(request);
-        connect(m_searchReply, SIGNAL(finished()), this, SLOT(onSearchMovieFinished()));
-    }
+    else
+        emit sigSearchDone(results.mid(0, m_searchResultLimit));
 }
 
 /**
@@ -285,6 +225,173 @@ QList<Poster> FanartTv::parseMovieData(QString json, int type)
     map.insert(TypeLogo, QStringList() << "hdmovielogo" << "movielogo");
     map.insert(TypeClearArt, QStringList() << "hdmovieclearart" << "movieart");
     map.insert(TypeCdArt, QStringList() << "moviedisc");
+    QList<Poster> posters;
+    QScriptValue sc;
+    QScriptEngine engine;
+    sc = engine.evaluate("(" + QString(json) + ")");
+
+    QScriptValueIterator it(sc);
+    while (it.hasNext()) {
+        it.next();
+        QScriptValue v = it.value();
+        foreach (const QString &section, map.value(type)) {
+            if (v.property(section).isArray()) {
+                QScriptValueIterator itB(v.property(section));
+                while (itB.hasNext()) {
+                    itB.next();
+                    QScriptValue vB = itB.value();
+                    if (vB.property("url").toString().isEmpty())
+                        continue;
+                    Poster b;
+                    b.thumbUrl = vB.property("url").toString() + "/preview";
+                    b.originalUrl = vB.property("url").toString();
+                    posters.append(b);
+                }
+            }
+        }
+    }
+
+    return posters;
+}
+
+/**
+ * @brief Searches for a tv show
+ * @param searchStr The tv show name/search string
+ * @param limit Number of results, if zero, all results are returned
+ * @see FanartTv::onSearchTvShowFinished
+ */
+void FanartTv::searchTvShow(QString searchStr, int limit)
+{
+    m_searchResultLimit = limit;
+    m_tvdb->search(searchStr);
+}
+
+/**
+ * @brief FanartTv::onSearchTvShowFinished
+ * @param results Result list
+ */
+void FanartTv::onSearchTvShowFinished(QList<ScraperSearchResult> results)
+{
+    if (m_searchResultLimit == 0)
+        emit sigSearchDone(results);
+    else
+        emit sigSearchDone(results.mid(0, m_searchResultLimit));
+}
+
+/**
+ * @brief FanartTv::loadTvShowData
+ * @param tvdbId The Tv DB Id
+ * @param type
+ */
+void FanartTv::loadTvShowData(QString tvdbId, int type)
+{
+    m_currentType = type;
+    QUrl url;
+    QNetworkRequest request;
+    request.setRawHeader("Accept", "application/json");
+    url.setUrl(QString("http://fanart.tv/webservice/series/%2/%1/json/all/1/2/").arg(tvdbId).arg(m_apiKey));
+    request.setUrl(url);
+    m_loadReply = qnam()->get(QNetworkRequest(request));
+    connect(m_loadReply, SIGNAL(finished()), this, SLOT(onLoadTvShowDataFinished()));
+}
+
+/**
+ * @brief Called when the tv show images are downloaded
+ * @see TMDbImages::parseTvShowData
+ */
+void FanartTv::onLoadTvShowDataFinished()
+{
+    QList<Poster> posters;
+    if (m_loadReply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(m_loadReply->readAll());
+        posters = parseTvShowData(msg, m_currentType);
+    }
+    m_loadReply->deleteLater();
+    emit sigImagesLoaded(posters);
+}
+
+/**
+ * @brief Load tv show posters
+ * @param tvdbId The TV DB id
+ */
+void FanartTv::tvShowPosters(QString tvdbId)
+{
+    Q_UNUSED(tvdbId);
+}
+
+/**
+ * @brief Load tv show backdrops
+ * @param tvdbId The TV DB id
+ */
+void FanartTv::tvShowBackdrops(QString tvdbId)
+{
+    loadTvShowData(tvdbId, TypeBackdrop);
+}
+
+/**
+ * @brief Load tv show logos
+ * @param tvdbId The TV DB id
+ */
+void FanartTv::tvShowLogos(QString tvdbId)
+{
+    loadTvShowData(tvdbId, TypeLogo);
+}
+
+/**
+ * @brief Load tv show clear arts
+ * @param tvdbId The TV DB id
+ */
+void FanartTv::tvShowClearArts(QString tvdbId)
+{
+    loadTvShowData(tvdbId, TypeClearArt);
+}
+
+/**
+ * @brief Load tv show banners
+ * @param tvdbId The TV DB id
+ */
+void FanartTv::tvShowBanners(QString tvdbId)
+{
+    loadTvShowData(tvdbId, TypeBanner);
+}
+
+/**
+ * @brief Load tv show thumbs
+ * @param tvdbId The TV DB id
+ * @param season Season number
+ * @param episode Episode number
+ */
+void FanartTv::tvShowThumb(QString tvdbId, int season, int episode)
+{
+    Q_UNUSED(tvdbId);
+    Q_UNUSED(season);
+    Q_UNUSED(episode);
+}
+
+/**
+ * @brief Load tv show season
+ * @param tvdbId The TV DB id
+ * @param season Season number
+ */
+void FanartTv::tvShowSeason(QString tvdbId, int season)
+{
+    Q_UNUSED(tvdbId);
+    Q_UNUSED(season);
+}
+
+/**
+ * @brief Parses JSON data for tv shows
+ * @param json JSON data
+ * @param type Type of image (ImageType)
+ * @return List of posters
+ */
+QList<Poster> FanartTv::parseTvShowData(QString json, int type)
+{
+    QMap<int, QStringList> map;
+    map.insert(TypeBackdrop, QStringList() << "showbackground");
+    map.insert(TypeLogo, QStringList() << "hdtvlogo" << "clearlogo");
+    map.insert(TypeClearArt, QStringList() << "hdclearart" << "clearart");
+    map.insert(TypeBanner, QStringList() << "tvbanner");
     QList<Poster> posters;
     QScriptValue sc;
     QScriptEngine engine;

@@ -38,6 +38,8 @@ Settings::Settings(QObject *parent) :
 
     m_tvShowBannerFiles.append(new DataFile(12, "banner.jpg", "banner.jpg", 0, true));
     m_tvShowBannerFiles.append(new DataFile(13, "folder.jpg", "folder.jpg", 1, true));
+    m_tvShowLogoFiles.append(new DataFile(23, "logo.png", "logo.png", 0, true));
+    m_tvShowClearArtFiles.append(new DataFile(24, "clearart.png", "clearart.png", 0, true));
 
     m_concertNfoFiles.append(new DataFile(14, "<movie filename>.nfo", "<moviefile>.nfo", 0, true));
     m_concertPosterFiles.append(new DataFile(15, "<movie filename>.tbn", "<moviefile>.tbn", 0, true));
@@ -686,6 +688,40 @@ QList<DataFile*> Settings::tvShowBannerFiles()
 }
 
 /**
+ * @brief Returns a list of DataFiles for tv show logos
+ * @param onlyEnabled If true, list contains only enabled files
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::tvShowLogoFiles(bool onlyEnabled)
+{
+    if (!onlyEnabled)
+        return m_tvShowLogoFiles;
+    QList<DataFile*> files;
+    foreach (DataFile* file, m_tvShowLogoFiles) {
+        if (file->enabled())
+            files.append(file);
+    }
+    return files;
+}
+
+/**
+ * @brief Returns a list of DataFiles for tv show clear arts
+ * @param onlyEnabled If true, list contains only enabled files
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::tvShowClearArtFiles(bool onlyEnabled)
+{
+    if (!onlyEnabled)
+        return m_tvShowClearArtFiles;
+    QList<DataFile*> files;
+    foreach (DataFile* file, m_tvShowClearArtFiles) {
+        if (file->enabled())
+            files.append(file);
+    }
+    return files;
+}
+
+/**
  * @brief Returns a list of all DataFiles for concert nfos.
  * @return List of DataFile objects
  */
@@ -985,6 +1021,24 @@ void Settings::setTvShowPosterFiles(QList<DataFile*> files)
 void Settings::setTvShowBannerFiles(QList<DataFile*> files)
 {
     m_tvShowBannerFiles = files;
+}
+
+/**
+ * @brief Sets the movie logo files
+ * @param files List of DataFile Objects
+ */
+void Settings::setTvShowLogoFiles(QList<DataFile*> files)
+{
+    m_tvShowLogoFiles = files;
+}
+
+/**
+ * @brief Sets the tv show clearart files
+ * @param files List of DataFile Objects
+ */
+void Settings::setTvShowClearArtFiles(QList<DataFile*> files)
+{
+    m_tvShowClearArtFiles = files;
 }
 
 /**

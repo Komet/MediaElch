@@ -1,18 +1,21 @@
-#ifndef TMDBIMAGES_H
-#define TMDBIMAGES_H
+#ifndef THETVDBIMAGES_H
+#define THETVDBIMAGES_H
 
+#include <QObject>
 #include "data/ImageProviderInterface.h"
-#include "data/Movie.h"
-#include "scrapers/TMDb.h"
+#include "data/TvShow.h"
+#include "data/TvShowEpisode.h"
+#include "globals/Globals.h"
+#include "scrapers/TheTvDb.h"
 
 /**
- * @brief The TMDbImages class
+ * @brief The TheTvDbImages class
  */
-class TMDbImages : public ImageProviderInterface
+class TheTvDbImages : public ImageProviderInterface
 {
     Q_OBJECT
 public:
-    explicit TMDbImages(QObject *parent = 0);
+    explicit TheTvDbImages(QObject *parent = 0);
     QString name();
     void moviePosters(QString tmdbId);
     void movieBackdrops(QString tmdbId);
@@ -43,15 +46,20 @@ signals:
     void sigImagesLoaded(QList<Poster>);
 
 private slots:
-    void onSearchMovieFinished(QList<ScraperSearchResult> results);
-    void onLoadImagesFinished();
+    void onSearchTvShowFinished(QList<ScraperSearchResult> results);
+    void onLoadTvShowDataFinished();
 
 private:
     QList<int> m_provides;
+    int m_currentType;
     int m_searchResultLimit;
-    TMDb *m_tmdb;
-    Movie *m_dummyMovie;
-    int m_imageType;
+    TheTvDb *m_tvdb;
+    TvShow *m_dummyShow;
+    TvShowEpisode *m_dummyEpisode;
+    int m_season;
+
+    QList<Poster> parseTvShowData(QString json, int type);
+    void loadTvShowData(QString tvdbId, int type);
 };
 
-#endif // TMDBIMAGES_H
+#endif // THETVDBIMAGES_H

@@ -21,10 +21,18 @@ public:
     virtual void concertLogos(QString tmdbId) = 0;
     virtual void concertClearArts(QString tmdbId) = 0;
     virtual void concertCdArts(QString tmdbId) = 0;
+    virtual void tvShowPosters(QString tvdbId) = 0;
+    virtual void tvShowBackdrops(QString tvdbId) = 0;
+    virtual void tvShowLogos(QString tvdbId) = 0;
+    virtual void tvShowClearArts(QString tvdbId) = 0;
+    virtual void tvShowBanners(QString tvdbId) = 0;
+    virtual void tvShowThumb(QString tvdbId, int season, int episode) = 0;
+    virtual void tvShowSeason(QString tvdbId, int season) = 0;
     virtual QList<int> provides() = 0;
 public slots:
     virtual void searchMovie(QString searchStr, int limit) = 0;
     virtual void searchConcert(QString searchStr, int limit) = 0;
+    virtual void searchTvShow(QString searchStr, int limit) = 0;
 signals:
     virtual void sigSearchDone(QList<ScraperSearchResult>) = 0;
     virtual void sigImagesLoaded(QList<Poster>) = 0;
