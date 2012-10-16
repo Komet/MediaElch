@@ -933,16 +933,26 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>
  Operation Canceled.</source>
-        <translation>
+        <translation type="obsolete">
  Operation abgebrochen.</translation>
     </message>
     <message>
         <source>Source </source>
-        <translation>Die Quelle</translation>
+        <translation type="obsolete">Die Quelle</translation>
     </message>
     <message>
         <source> is no directory</source>
-        <translation> ist kein Verzeichnis</translation>
+        <translation type="obsolete"> ist kein Verzeichnis</translation>
+    </message>
+    <message>
+        <source>Source %1 is no directory</source>
+        <translation>Die Quelle %1 ist kein Verzeichnis</translation>
+    </message>
+    <message>
+        <source>%1
+ Operation Canceled.</source>
+        <translation>%1
+Operation abgebrochen.</translation>
     </message>
 </context>
 <context>
@@ -2091,7 +2101,7 @@ from media names
 (seperated by
 commas and non
 case-sensitive):</source>
-        <translation>Von Mediennamen
+        <translation type="obsolete">Von Mediennamen
 auszuschließende
 Wörter (durch
 Kommas getrennt,
@@ -2099,7 +2109,7 @@ case insensitive):</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Words to exclude from media names (seperated by commas and non case-sensitive)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Von Mediennamen auszuschließende Wörter (durch Kommas getrennt, case insensitive)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Von Mediennamen auszuschließende Wörter (durch Kommas getrennt, case insensitive)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -2107,7 +2117,7 @@ case insensitive):</translation>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -2127,11 +2137,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>This operation sorts all movies in this directory to separate sub-directories. Click &quot;Ok&quot;, if thats, what you want to do</source>
-        <translation>Diese Operation sortiert alle Filme in diesem Verzeichnis in separate Unterordner. Klicken Die &quot;Ok&quot;, falls sie damit einverstanden sind.</translation>
+        <translation>Diese Operation sortiert alle Filme in diesem Verzeichnis in separate Unterordner. Klicken Die &quot;Ok&quot;, falls sie damit einverstanden sind</translation>
     </message>
     <message>
         <source>Ok</source>
         <translation>Ok</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Exclude&lt;/b&gt; Words to exclude from media names (seperated by commas and non case-sensitive)</source>
+        <translation>&lt;b&gt;Ausschluss&lt;/b&gt; Von Mediennamen auszuschließende Wörter (durch Kommas getrennt, case insensitive)</translation>
+    </message>
+    <message>
+        <source>Words to exclude from media names (seperated by commas and non case-sensitive)</source>
+        <translation>Von Mediennamen auszuschließende Wörter (durch Kommas getrennt, case insensitive)</translation>
     </message>
 </context>
 <context>

@@ -32,7 +32,7 @@ void MovieFilesOrganizer::moveToDirs(QString path)
     path = QDir::toNativeSeparators(path);
     QFileInfo fi(path);
     if (!fi.isDir()) {
-        canceled(tr("Source ") + path + tr(" is no directory"));
+        canceled(tr("Source %1 is no directory").arg(path));
     }
 
     QList<QStringList> contents;
@@ -90,7 +90,7 @@ void MovieFilesOrganizer::canceled(QString msg)
     QMessageBox msgBox;
     msgBox.setIcon(QMessageBox::Warning);
     msgBox.setText(tr("Operation not possible."));
-    msgBox.setInformativeText(msg + tr("\n Operation Canceled."));
+    msgBox.setInformativeText(tr("%1\n Operation Canceled.").arg(msg));
     msgBox.setStandardButtons(QMessageBox::Ok);
     msgBox.setButtonText(1, "Ok");
     msgBox.setDefaultButton(QMessageBox::Ok);
