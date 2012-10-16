@@ -62,12 +62,14 @@ public:
     QImage *bannerImage();
     QImage *logoImage();
     QImage *clearArtImage();
+    QImage *characterArtImage();
     QImage *seasonPosterImage(int season);
     bool posterImageChanged() const;
     bool backdropImageChanged() const;
     bool bannerImageChanged() const;
     bool logoImageChanged() const;
     bool clearArtImageChanged() const;
+    bool characterArtImageChanged() const;
     bool seasonPosterImageChanged(int season) const;
     TvShowEpisode *episode(int season, int episode);
     QList<int> seasons();
@@ -113,6 +115,7 @@ public:
     void setDownloadsInProgress(bool inProgress);
     void setLogoImage(QImage img);
     void setClearArtImage(QImage img);
+    void setCharacterArtImage(QImage img);
 
     void removeActor(Actor *actor);
     void removeGenre(QString *genre);
@@ -150,11 +153,13 @@ private:
     QImage m_bannerImage;
     QImage m_logoImage;
     QImage m_clearArtImage;
+    QImage m_characterArtImage;
     bool m_posterImageChanged;
     bool m_backdropImageChanged;
     bool m_bannerImageChanged;
     bool m_logoImageChanged;
     bool m_clearArtImageChanged;
+    bool m_characterArtImageChanged;
     QMap<int, QImage> m_seasonPosterImages;
     QList<int> m_seasonPosterImagesChanged;
     TvShowModelItem *m_modelItem;

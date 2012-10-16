@@ -1687,6 +1687,16 @@ QString XbmcSql::clearArtImageName(TvShow *show)
 }
 
 /**
+ * @brief Get the path to the tv show character art
+ * @param show TV show object
+ * @return Path to character art image
+ */
+QString XbmcSql::characterArtImageName(TvShow *show)
+{
+    return XbmcXml::characterArtImageNameStatic(show);
+}
+
+/**
  * @brief Get path to season poster
  * @param show
  * @param season

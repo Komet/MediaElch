@@ -25,6 +25,7 @@ public:
     virtual void tvShowBackdrops(QString tvdbId) = 0;
     virtual void tvShowLogos(QString tvdbId) = 0;
     virtual void tvShowClearArts(QString tvdbId) = 0;
+    virtual void tvShowCharacterArts(QString tvdbId) = 0;
     virtual void tvShowBanners(QString tvdbId) = 0;
     virtual void tvShowThumb(QString tvdbId, int season, int episode) = 0;
     virtual void tvShowSeason(QString tvdbId, int season) = 0;

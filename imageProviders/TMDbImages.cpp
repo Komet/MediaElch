@@ -239,6 +239,15 @@ void TMDbImages::tvShowClearArts(QString tvdbId)
 }
 
 /**
+ * @brief Load tv show character arts
+ * @param tvdbId The TV DB id
+ */
+void TMDbImages::tvShowCharacterArts(QString tvdbId)
+{
+    Q_UNUSED(tvdbId);
+}
+
+/**
  * @brief Load tv show banners
  * @param tvdbId The TV DB id
  */

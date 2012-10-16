@@ -665,6 +665,8 @@ void ImageDialog::loadImagesFromProvider(QString id)
             m_currentProvider->tvShowBackdrops(id);
         else if (m_type == ImageDialogType::TvShowBanner)
             m_currentProvider->tvShowBanners(id);
+        else if (m_type == ImageDialogType::TvShowCharacterArt)
+            m_currentProvider->tvShowCharacterArts(id);
         else if (m_type == ImageDialogType::TvShowClearArt)
             m_currentProvider->tvShowClearArts(id);
         else if (m_type == ImageDialogType::TvShowLogos)

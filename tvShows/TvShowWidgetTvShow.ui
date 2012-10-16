@@ -503,8 +503,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>60</width>
-               <height>16</height>
+               <width>615</width>
+               <height>615</height>
               </rect>
              </property>
              <layout class="QFormLayout" name="seasonsLayout">
@@ -1057,6 +1057,86 @@ QPushButton::hover {
               </item>
               <item>
                <widget class="QLabel" name="clearArtResolution">
+                <property name="text">
+                 <string>Resolution</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_7">
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Character Art</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="MyLabel" name="characterArt">
+              <property name="minimumSize">
+               <size>
+                <width>200</width>
+                <height>200</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>200</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="toolTip">
+               <string>Click to Change</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="../MediaElch.qrc">:/img/pictures_alt.png</pixmap>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_10">
+              <item>
+               <widget class="QToolButton" name="buttonPreviewCharacterArt">
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="toolTip">
+                 <string>Full preview</string>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QToolButton {
+	border: none;
+}</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../MediaElch.qrc">
+                  <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="characterArtResolution">
                 <property name="text">
                  <string>Resolution</string>
                 </property>

@@ -28,6 +28,7 @@ public:
     void tvShowBackdrops(QString tvdbId);
     void tvShowLogos(QString tvdbId);
     void tvShowClearArts(QString tvdbId);
+    void tvShowCharacterArts(QString tvdbId);
     void tvShowBanners(QString tvdbId);
     void tvShowThumb(QString tvdbId, int season, int episode);
     void tvShowSeason(QString tvdbId, int season);

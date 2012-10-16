@@ -38,6 +38,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->buttonPreviewBanner->setEnabled(false);
     ui->buttonPreviewLogo->setEnabled(false);
     ui->buttonPreviewClearArt->setEnabled(false);
+    ui->buttonPreviewCharacterArt->setEnabled(false);
 
     font = ui->posterResolution->font();
     #ifdef Q_WS_WIN
@@ -51,6 +52,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->actorResolution->setFont(font);
     ui->logoResolution->setFont(font);
     ui->clearArtResolution->setFont(font);
+    ui->characterArtResolution->setFont(font);
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -69,6 +71,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     connect(ui->backdrop, SIGNAL(clicked()), this, SLOT(onChooseBackdrop()));
     connect(ui->banner, SIGNAL(clicked()), this, SLOT(onChooseBanner()));
     connect(ui->clearArt, SIGNAL(clicked()), this, SLOT(onChooseClearArt()));
+    connect(ui->characterArt, SIGNAL(clicked()), this, SLOT(onChooseCharacterArt()));
     connect(ui->logo, SIGNAL(clicked()), this, SLOT(onChooseLogo()));
     connect(m_posterDownloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onPosterDownloadFinished(DownloadManagerElement)));
     connect(m_posterDownloadManager, SIGNAL(downloadsLeft(int,DownloadManagerElement)), this, SLOT(onDownloadsLeft(int,DownloadManagerElement)));
@@ -77,6 +80,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     connect(ui->buttonPreviewBanner, SIGNAL(clicked()), this, SLOT(onPreviewBanner()));
     connect(ui->buttonPreviewLogo, SIGNAL(clicked()), this, SLOT(onPreviewLogo()));
     connect(ui->buttonPreviewClearArt, SIGNAL(clicked()), this, SLOT(onPreviewClearArt()));
+    connect(ui->buttonPreviewCharacterArt, SIGNAL(clicked()), this, SLOT(onPreviewCharacterArt()));
     connect(ui->actors, SIGNAL(itemSelectionChanged()), this, SLOT(onActorChanged()));
     connect(ui->actor, SIGNAL(clicked()), this, SLOT(onChangeActorImage()));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
@@ -106,6 +110,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->buttonPreviewBanner->setIcon(QIcon(zoomIn));
     ui->buttonPreviewLogo->setIcon(QIcon(zoomIn));
     ui->buttonPreviewClearArt->setIcon(QIcon(zoomIn));
+    ui->buttonPreviewCharacterArt->setIcon(QIcon(zoomIn));
 
     QPixmap revert(":/img/arrow_circle_left.png");
     p.begin(&revert);
@@ -154,12 +159,14 @@ void TvShowWidgetTvShow::onClear()
     ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->logo->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->clearArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->characterArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->tabWidget->setCurrentIndex(0);
     ui->posterResolution->clear();
     ui->backdropResolution->clear();
     ui->bannerResolution->clear();
     ui->logoResolution->clear();
     ui->clearArtResolution->clear();
+    ui->characterArtResolution->clear();
 
     QMapIterator<int, QList<QWidget*> > it(m_seasonLayoutWidgets);
     while (it.hasNext()) {
@@ -342,6 +349,24 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         ui->clearArt->setPixmap(QPixmap(":/img/pictures_alt_small.png"));
         ui->clearArtResolution->setText("");
         ui->buttonPreviewClearArt->setEnabled(false);
+    }
+
+    // Character Art
+    if (!m_show->characterArtImage()->isNull()) {
+        ui->characterArt->setPixmap(QPixmap::fromImage(*m_show->characterArtImage()).scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->characterArtResolution->setText(QString("%1x%2").arg(m_show->characterArtImage()->width()).arg(m_show->characterArtImage()->height()));
+        ui->buttonPreviewCharacterArt->setEnabled(true);
+        m_currentCharacterArt = *m_show->characterArtImage();
+    } else if (!Manager::instance()->mediaCenterInterface()->characterArtImageName(m_show).isEmpty()) {
+        QPixmap p(Manager::instance()->mediaCenterInterface()->characterArtImageName(m_show));
+        ui->characterArt->setPixmap(p.scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->characterArtResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        ui->buttonPreviewCharacterArt->setEnabled(true);
+        m_currentCharacterArt = p.toImage();
+    } else {
+        ui->characterArt->setPixmap(QPixmap(":/img/pictures_alt_small.png"));
+        ui->characterArtResolution->setText("");
+        ui->buttonPreviewCharacterArt->setEnabled(false);
     }
 
     QMapIterator<int, QList<QWidget*> > it(m_seasonLayoutWidgets);
@@ -743,6 +768,37 @@ void TvShowWidgetTvShow::onChooseClearArt()
 }
 
 /**
+ * @brief Shows the ImageDialog and after successful execution starts character art download
+ */
+void TvShowWidgetTvShow::onChooseCharacterArt()
+{
+    qDebug() << "Entered";
+    if (m_show == 0) {
+        qDebug() << "My show is invalid";
+        return;
+    }
+
+    ImageDialog::instance()->setImageType(TypeCharacterArt);
+    ImageDialog::instance()->clear();
+    ImageDialog::instance()->setTvShow(m_show);
+    ImageDialog::instance()->setDownloads(QList<Poster>());
+    ImageDialog::instance()->exec(ImageDialogType::TvShowCharacterArt);
+
+    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+        emit sigSetActionSaveEnabled(false, WidgetTvShows);
+        DownloadManagerElement d;
+        d.imageType = TypeCharacterArt;
+        d.url = ImageDialog::instance()->imageUrl();
+        d.show = m_show;
+        m_posterDownloadManager->addDownload(d);
+        ui->characterArt->setPixmap(QPixmap());
+        ui->characterArt->setMovie(m_loadingMovie);
+        ui->buttonPreviewCharacterArt->setEnabled(false);
+        ui->buttonRevert->setVisible(true);
+    }
+}
+
+/**
  * @brief Adjusts the size of the backdrop to common values (1080p or 720p) and shows the image
  * @param elem Downloaded element
  */
@@ -800,6 +856,15 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
             m_currentLogo = elem.image;
         }
         elem.show->setLogoImage(elem.image);
+    } else if (elem.imageType == TypeCharacterArt) {
+        qDebug() << "Got a character art";
+        if (m_show == elem.show) {
+            ui->characterArt->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->characterArtResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+            ui->buttonPreviewCharacterArt->setEnabled(true);
+            m_currentCharacterArt = elem.image;
+        }
+        elem.show->setCharacterArtImage(elem.image);
     } else if (elem.imageType == TypeClearArt) {
         qDebug() << "Got a clear art";
         if (m_show == elem.show) {
@@ -990,6 +1055,15 @@ void TvShowWidgetTvShow::onPreviewLogo()
 void TvShowWidgetTvShow::onPreviewClearArt()
 {
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentClearArt));
+    ImagePreviewDialog::instance()->exec();
+}
+
+/**
+ * @brief Shows the full size character art image
+ */
+void TvShowWidgetTvShow::onPreviewCharacterArt()
+{
+    ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentCharacterArt));
     ImagePreviewDialog::instance()->exec();
 }
 

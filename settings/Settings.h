@@ -53,6 +53,7 @@ public:
     QList<DataFile*> tvShowBannerFiles();
     QList<DataFile*> tvShowLogoFiles(bool onlyEnabled = false);
     QList<DataFile*> tvShowClearArtFiles(bool onlyEnabled = false);
+    QList<DataFile*> tvShowCharacterArtFiles(bool onlyEnabled = false);
     QList<DataFile*> concertNfoFiles();
     QList<DataFile*> concertPosterFiles();
     QList<DataFile*> concertFanartFiles();
@@ -100,6 +101,7 @@ public:
     void setTvShowBannerFiles(QList<DataFile*> files);
     void setTvShowLogoFiles(QList<DataFile*> files);
     void setTvShowClearArtFiles(QList<DataFile*> files);
+    void setTvShowCharacterArtFiles(QList<DataFile*> files);
     void setConcertNfoFiles(QList<DataFile*> files);
     void setConcertPosterFiles(QList<DataFile*> files);
     void setConcertFanartFiles(QList<DataFile*> files);
@@ -154,6 +156,7 @@ private:
     QList<DataFile*> m_tvShowBannerFiles;
     QList<DataFile*> m_tvShowLogoFiles;
     QList<DataFile*> m_tvShowClearArtFiles;
+    QList<DataFile*> m_tvShowCharacterArtFiles;
     bool m_useCache;
 
     void setupProxy();

@@ -64,8 +64,10 @@ public:
     static QString cdArtImageNameStatic(Concert *concert);
     static QString logoImageNameStatic(TvShow *show);
     static QString clearArtImageNameStatic(TvShow *show);
+    static QString characterArtImageNameStatic(TvShow *show);
     QString logoImageName(TvShow *show);
     QString clearArtImageName(TvShow *show);
+    QString characterArtImageName(TvShow *show);
 
 signals:
     void sigExportStarted();

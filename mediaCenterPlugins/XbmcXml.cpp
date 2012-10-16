@@ -1040,6 +1040,28 @@ QString XbmcXml::clearArtImageNameStatic(TvShow *show)
 }
 
 /**
+ * @brief Get the path to the tv show character art
+ * @param show TV Show object
+ * @return Path to character art image
+ */
+QString XbmcXml::characterArtImageNameStatic(TvShow *show)
+{
+    QString characterArtFileName;
+    if (show->dir().isEmpty())
+        return characterArtFileName;
+    foreach (DataFile *dataFile, Settings::instance()->tvShowCharacterArtFiles(true)) {
+        QString file = dataFile->saveFileName("");
+        QFileInfo fi(show->dir() + QDir::separator() + file);
+        if (fi.isFile()) {
+            characterArtFileName = show->dir() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return characterArtFileName;
+}
+
+/**
  * @brief Get the path to the tv show logo
  * @param show TV Show object
  * @return Path to logo image
@@ -1057,6 +1079,16 @@ QString XbmcXml::logoImageName(TvShow *show)
 QString XbmcXml::clearArtImageName(TvShow *show)
 {
     return clearArtImageNameStatic(show);
+}
+
+/**
+ * @brief Get the path to the tv show character art
+ * @param show TV Show object
+ * @return Path to character art image
+ */
+QString XbmcXml::characterArtImageName(TvShow *show)
+{
+    return characterArtImageNameStatic(show);
 }
 
 /**
@@ -1500,6 +1532,14 @@ void XbmcXml::saveAdditionalImages(TvShow *show)
             QString saveFileName = dataFile->saveFileName("");
             qDebug() << "Saving clear art to" << show->dir() + QDir::separator() + saveFileName;
             show->clearArtImage()->save(show->dir() + QDir::separator() + saveFileName, "png", 100);
+        }
+    }
+    if (show->characterArtImageChanged() && !show->characterArtImage()->isNull()) {
+        qDebug() << "Character art image has changed";
+        foreach (DataFile *dataFile, Settings::instance()->tvShowCharacterArtFiles(true)) {
+            QString saveFileName = dataFile->saveFileName("");
+            qDebug() << "Saving character art to" << show->dir() + QDir::separator() + saveFileName;
+            show->characterArtImage()->save(show->dir() + QDir::separator() + saveFileName, "png", 100);
         }
     }
 }

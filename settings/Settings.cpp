@@ -40,6 +40,7 @@ Settings::Settings(QObject *parent) :
     m_tvShowBannerFiles.append(new DataFile(13, "folder.jpg", "folder.jpg", 1, true));
     m_tvShowLogoFiles.append(new DataFile(23, "logo.png", "logo.png", 0, true));
     m_tvShowClearArtFiles.append(new DataFile(24, "clearart.png", "clearart.png", 0, true));
+    m_tvShowCharacterArtFiles.append(new DataFile(25, "character.png", "character.png", 0, true));
 
     m_concertNfoFiles.append(new DataFile(14, "<movie filename>.nfo", "<moviefile>.nfo", 0, true));
     m_concertPosterFiles.append(new DataFile(15, "<movie filename>.tbn", "<moviefile>.tbn", 0, true));
@@ -722,6 +723,23 @@ QList<DataFile*> Settings::tvShowClearArtFiles(bool onlyEnabled)
 }
 
 /**
+ * @brief Returns a list of DataFiles for tv show character arts
+ * @param onlyEnabled If true, list contains only enabled files
+ * @return List of DataFile objects
+ */
+QList<DataFile*> Settings::tvShowCharacterArtFiles(bool onlyEnabled)
+{
+    if (!onlyEnabled)
+        return m_tvShowCharacterArtFiles;
+    QList<DataFile*> files;
+    foreach (DataFile* file, m_tvShowCharacterArtFiles) {
+        if (file->enabled())
+            files.append(file);
+    }
+    return files;
+}
+
+/**
  * @brief Returns a list of all DataFiles for concert nfos.
  * @return List of DataFile objects
  */
@@ -1039,6 +1057,15 @@ void Settings::setTvShowLogoFiles(QList<DataFile*> files)
 void Settings::setTvShowClearArtFiles(QList<DataFile*> files)
 {
     m_tvShowClearArtFiles = files;
+}
+
+/**
+ * @brief Sets the tv show character files
+ * @param files List of DataFile Objects
+ */
+void Settings::setTvShowCharacterArtFiles(QList<DataFile*> files)
+{
+    m_tvShowCharacterArtFiles = files;
 }
 
 /**

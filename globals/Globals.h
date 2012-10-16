@@ -99,7 +99,7 @@ struct Poster {
 };
 
 enum ImageType {
-    TypePoster, TypeBackdrop, TypeBanner, TypeActor, TypeSeasonPoster, TypeShowThumbnail, TypeLogo, TypeClearArt, TypeCdArt
+    TypePoster, TypeBackdrop, TypeBanner, TypeActor, TypeSeasonPoster, TypeShowThumbnail, TypeLogo, TypeClearArt, TypeCdArt, TypeCharacterArt
 };
 
 enum TvShowType {
@@ -124,23 +124,24 @@ enum SettingsDirType {
 };
 
 namespace ImageDialogType {
-    const int MoviePoster     = 1;
-    const int MovieBackdrop   = 2;
-    const int TvShowPoster    = 3;
-    const int TvShowBackdrop  = 4;
-    const int TvShowThumb     = 5;
-    const int TvShowSeason    = 6;
-    const int TvShowBanner    = 7;
-    const int ConcertPoster   = 8;
-    const int ConcertBackdrop = 9;
-    const int MovieLogo       = 10;
-    const int MovieClearArt   = 11;
-    const int MovieCdArt      = 12;
-    const int ConcertLogo     = 13;
-    const int ConcertClearArt = 14;
-    const int ConcertCdArt    = 15;
-    const int TvShowClearArt  = 16;
-    const int TvShowLogos     = 17;
+    const int MoviePoster        = 1;
+    const int MovieBackdrop      = 2;
+    const int TvShowPoster       = 3;
+    const int TvShowBackdrop     = 4;
+    const int TvShowThumb        = 5;
+    const int TvShowSeason       = 6;
+    const int TvShowBanner       = 7;
+    const int ConcertPoster      = 8;
+    const int ConcertBackdrop    = 9;
+    const int MovieLogo          = 10;
+    const int MovieClearArt      = 11;
+    const int MovieCdArt         = 12;
+    const int ConcertLogo        = 13;
+    const int ConcertClearArt    = 14;
+    const int ConcertCdArt       = 15;
+    const int TvShowClearArt     = 16;
+    const int TvShowLogos        = 17;
+    const int TvShowCharacterArt = 18;
 }
 
 namespace MovieScraperInfos {

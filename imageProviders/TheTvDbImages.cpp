@@ -284,3 +284,12 @@ void TheTvDbImages::tvShowClearArts(QString tvdbId)
 {
     Q_UNUSED(tvdbId);
 }
+
+/**
+ * @brief Load tv show character arts
+ * @param tvdbId The TV DB id
+ */
+void TheTvDbImages::tvShowCharacterArts(QString tvdbId)
+{
+    Q_UNUSED(tvdbId);
+}

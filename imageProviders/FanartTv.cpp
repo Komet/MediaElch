@@ -14,7 +14,8 @@ FanartTv::FanartTv(QObject *parent)
 {
     setParent(parent);
     m_provides << ImageDialogType::MovieBackdrop << ImageDialogType::MovieLogo << ImageDialogType::MovieClearArt << ImageDialogType::MovieCdArt
-               << ImageDialogType::TvShowClearArt << ImageDialogType::TvShowBackdrop << ImageDialogType::TvShowBanner << ImageDialogType::TvShowLogos
+               << ImageDialogType::TvShowClearArt << ImageDialogType::TvShowBackdrop << ImageDialogType::TvShowBanner
+               << ImageDialogType::TvShowLogos << ImageDialogType::TvShowCharacterArt
                << ImageDialogType::ConcertBackdrop << ImageDialogType::ConcertLogo << ImageDialogType::ConcertClearArt << ImageDialogType::ConcertCdArt;
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_searchResultLimit = 0;
@@ -347,6 +348,15 @@ void FanartTv::tvShowClearArts(QString tvdbId)
 }
 
 /**
+ * @brief Load tv show character arts
+ * @param tvdbId The TV DB id
+ */
+void FanartTv::tvShowCharacterArts(QString tvdbId)
+{
+    loadTvShowData(tvdbId, TypeCharacterArt);
+}
+
+/**
  * @brief Load tv show banners
  * @param tvdbId The TV DB id
  */
@@ -392,6 +402,7 @@ QList<Poster> FanartTv::parseTvShowData(QString json, int type)
     map.insert(TypeLogo, QStringList() << "hdtvlogo" << "clearlogo");
     map.insert(TypeClearArt, QStringList() << "hdclearart" << "clearart");
     map.insert(TypeBanner, QStringList() << "tvbanner");
+    map.insert(TypeCharacterArt, QStringList() << "characterart");
     QList<Poster> posters;
     QScriptValue sc;
     QScriptEngine engine;
