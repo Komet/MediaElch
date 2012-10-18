@@ -4,6 +4,9 @@
 #include <QObject>
 #include <QStringList>
 
+/**
+ * @brief The NameFormatter class
+ */
 class NameFormatter : public QObject
 {
     Q_OBJECT
@@ -15,15 +18,9 @@ public:
     QString formatName(QString name);
     QString formatParts(QString name);
 
-
 private:
     QStringList m_exWords;
     static NameFormatter *m_instance;
-    
-signals:
-    
-public slots:
-    
 };
 
 #endif // NAMEFORMATTER_H

@@ -4,6 +4,7 @@
 #include <QMutex>
 #include <QQueue>
 #include <QObject>
+#include <QTimer>
 #include <QUrl>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
@@ -40,6 +41,7 @@ private slots:
     void downloadProgress(qint64 received, qint64 total);
     void downloadFinished();
     void startNextDownload();
+    void downloadTimeout();
 
 private:
     QNetworkAccessManager m_qnam;
@@ -49,6 +51,8 @@ private:
     QNetworkAccessManager *qnam();
     bool m_downloading;
     QMutex m_mutex;
+    QTimer m_timer;
+    int m_retries;
 };
 
 #endif // DOWNLOADMANAGER_H

@@ -13,6 +13,7 @@ DownloadManager::DownloadManager(QObject *parent) :
     QObject(parent)
 {
     m_downloading = false;
+    connect(&m_timer, SIGNAL(timeout()), this, SLOT(downloadTimeout()));
 }
 
 /**
@@ -50,6 +51,7 @@ void DownloadManager::setDownloads(QList<DownloadManagerElement> elements)
     if (m_downloading)
         m_currentReply->abort();
 
+    m_timer.stop();
     m_mutex.lock();
     m_queue.clear();
     m_mutex.unlock();
@@ -67,6 +69,8 @@ void DownloadManager::setDownloads(QList<DownloadManagerElement> elements)
 void DownloadManager::startNextDownload()
 {
     qDebug() << "Entered";
+    m_timer.stop();
+    m_retries = 0;
     if (m_currentDownloadElement.movie) {
         int numDownloadsLeft = 0;
         for (int i=0, n=m_queue.size() ; i<n ; ++i) {
@@ -103,11 +107,12 @@ void DownloadManager::startNextDownload()
         return;
     }
 
+    m_timer.start(5000);
     m_downloading = true;
     m_mutex.lock();
     m_currentDownloadElement = m_queue.dequeue();
     m_mutex.unlock();
-    m_currentReply = this->qnam()->get(QNetworkRequest(m_currentDownloadElement.url));
+    m_currentReply = qnam()->get(QNetworkRequest(m_currentDownloadElement.url));
     connect(m_currentReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
     connect(m_currentReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(downloadProgress(qint64,qint64)));
 
@@ -144,9 +149,30 @@ void DownloadManager::startNextDownload()
  */
 void DownloadManager::downloadProgress(qint64 received, qint64 total)
 {
+    m_timer.start(5000);
     m_currentDownloadElement.bytesReceived = received;
     m_currentDownloadElement.bytesTotal = total;
     emit downloadProgress(m_currentDownloadElement);
+}
+
+/**
+ * @brief Stops the current download and prepends it to the queue
+ */
+void DownloadManager::downloadTimeout()
+{
+    if (!m_downloading)
+        return;
+    qWarning() << "Download timed out" << m_currentDownloadElement.url;
+    m_retries++;
+    m_currentReply->abort();
+    m_currentReply->deleteLater();
+    if (m_retries <= 3) {
+        qDebug() << "Restarting the download";
+        m_queue.prepend(m_currentDownloadElement);
+    } else {
+        qDebug() << "Giving up on this file, tried 3 times";
+    }
+    startNextDownload();
 }
 
 /**
@@ -157,7 +183,7 @@ void DownloadManager::downloadFinished()
 {
     qDebug() << "Entered";
     m_downloading = false;
-    if (this->m_currentReply->error() != QNetworkReply::NoError) {
+    if (m_currentReply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << m_currentReply->errorString();
         return;
     }
@@ -171,7 +197,7 @@ void DownloadManager::downloadFinished()
         m_currentDownloadElement.episode->setThumbnailImage(img);
     else
         emit downloadFinished(m_currentDownloadElement);
-    this->startNextDownload();
+    startNextDownload();
 }
 
 /**
@@ -180,6 +206,7 @@ void DownloadManager::downloadFinished()
 void DownloadManager::abortDownloads()
 {
     qDebug() << "Entered";
+    m_timer.stop();
     m_mutex.lock();
     m_queue.clear();
     m_mutex.unlock();
