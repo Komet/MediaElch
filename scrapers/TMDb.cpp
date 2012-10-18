@@ -307,7 +307,9 @@ void TMDb::loadData(QString id, Movie *movie, QList<int> infos)
     connect(m_loadReply, SIGNAL(finished()), this, SLOT(loadFinished()));
 
     // Casts
-    if (m_infosToLoad.contains(MovieScraperInfos::Actors)) {
+    if (m_infosToLoad.contains(MovieScraperInfos::Actors) ||
+        m_infosToLoad.contains(MovieScraperInfos::Director) ||
+        m_infosToLoad.contains(MovieScraperInfos::Writer)) {
         m_loadsLeft.append(DataCasts);
         url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/casts?api_key=%2").arg(m_currentId).arg(m_apiKey));
         request.setUrl(url);
