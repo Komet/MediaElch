@@ -3,11 +3,12 @@
 
 #include <QMovie>
 #include <QPainter>
+#include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
+#include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
 #include "main/MessageBox.h"
-#include "globals/ImageDialog.h"
 #include "tvShows/TvShowSearch.h"
 
 /**
@@ -39,6 +40,9 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     font.setPointSize(font.pointSize()-2);
     #endif
     ui->thumbnailResolution->setFont(font);
+
+    ui->directors->setItemDelegate(new ComboDelegate(ui->directors, WidgetTvShows, ComboDelegateDirectors));
+    ui->writers->setItemDelegate(new ComboDelegate(ui->writers, WidgetTvShows, ComboDelegateWriters));
 
     m_posterDownloadManager = new DownloadManager(this);
 

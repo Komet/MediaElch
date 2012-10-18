@@ -4,12 +4,13 @@
 #include <QFileDialog>
 #include <QMovie>
 #include <QPainter>
+#include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
+#include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
 #include "main/MessageBox.h"
 #include "tvShows/TvShowSearch.h"
-#include "globals/ImageDialog.h"
 
 /**
  * @brief TvShowWidgetTvShow::TvShowWidgetTvShow
@@ -53,6 +54,8 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->logoResolution->setFont(font);
     ui->clearArtResolution->setFont(font);
     ui->characterArtResolution->setFont(font);
+
+    ui->genres->setItemDelegate(new ComboDelegate(ui->genres, WidgetTvShows, ComboDelegateGenres));
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();

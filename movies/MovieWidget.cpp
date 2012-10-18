@@ -13,6 +13,7 @@
 #include "globals/Manager.h"
 #include "main/MessageBox.h"
 #include "globals/ImageDialog.h"
+#include "globals/ComboDelegate.h"
 #include "movies/MovieSearch.h"
 
 /**
@@ -89,11 +90,15 @@ MovieWidget::MovieWidget(QWidget *parent) :
     m_loadingMovie->start();
 
     setDisabledTrue();
-    this->clear();
+    clear();
 
     m_savingWidget = new QLabel(this);
     m_savingWidget->setMovie(m_loadingMovie);
     m_savingWidget->hide();
+
+    ui->genres->setItemDelegate(new ComboDelegate(ui->genres, WidgetMovies, ComboDelegateGenres));
+    ui->studios->setItemDelegate(new ComboDelegate(ui->studios, WidgetMovies, ComboDelegateStudios));
+    ui->countries->setItemDelegate(new ComboDelegate(ui->countries, WidgetMovies, ComboDelegateCountries));
 
     // Connect GUI change events to movie object
     connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(onNameChange(QString)));

@@ -123,6 +123,10 @@ enum SettingsDirType {
     DirTypeMovies, DirTypeTvShows, DirTypeConcerts
 };
 
+enum ComboDelegateType {
+    ComboDelegateGenres, ComboDelegateStudios, ComboDelegateCountries, ComboDelegateWriters, ComboDelegateDirectors
+};
+
 namespace ImageDialogType {
     const int MoviePoster        = 1;
     const int MovieBackdrop      = 2;

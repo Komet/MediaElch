@@ -7,12 +7,13 @@
 #include <QMovie>
 #include <QPainter>
 #include <QScrollBar>
+#include "concerts/ConcertSearch.h"
+#include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
+#include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
 #include "main/MessageBox.h"
-#include "globals/ImageDialog.h"
-#include "concerts/ConcertSearch.h"
 
 /**
  * @brief ConcertWidget::ConcertWidget
@@ -46,6 +47,8 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     ui->logoResolution->setFont(font);
     ui->clearArtResolution->setFont(font);
     ui->cdArtResolution->setFont(font);
+
+    ui->genres->setItemDelegate(new ComboDelegate(ui->genres, WidgetConcerts, ComboDelegateGenres));
 
     m_concert = 0;
     m_posterDownloadManager = new DownloadManager(this);
