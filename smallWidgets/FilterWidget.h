@@ -30,19 +30,29 @@ private slots:
     void onFilterTextChanged(QString text);
     void onKeyDown();
     void onKeyUp();
-    void setupFilters(bool forceClear = false);
+    void setupFilters();
     void addSelectedFilter();
     void addFilterFromItem(QListWidgetItem *item);
     void removeLastFilter();
 private:
     Ui::FilterWidget *ui;
     QList<Filter*> m_filters;
+    QList<Filter*> m_movieFilters;
+    QList<Filter*> m_movieGenreFilters;
+    QList<Filter*> m_movieYearFilters;
+    QList<Filter*> m_movieCertificationFilters;
+    QList<Filter*> m_tvShowFilters;
+    QList<Filter*> m_concertFilters;
     QListWidget *m_list;
     QList<Filter*> m_activeFilters;
     MainWidgets m_activeWidget;
+    QMap<MainWidgets, QList<Filter*> > m_storedFilters;
+    void initFilters();
     void setupMovieFilters();
     void setupTvShowFilters();
     void setupConcertFilters();
+    void storeFilters(MainWidgets widget);
+    void loadFilters(MainWidgets widget);
 };
 
 #endif // FILTERWIDGET_H
