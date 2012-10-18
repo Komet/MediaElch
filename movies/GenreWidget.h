@@ -1,7 +1,6 @@
 #ifndef GENREWIDGET_H
 #define GENREWIDGET_H
 
-#include <QContextMenuEvent>
 #include <QMenu>
 #include <QSplitter>
 #include <QTableWidgetItem>
@@ -31,15 +30,13 @@ public slots:
     void loadGenres();
     QSplitter *splitter();
 
-protected:
-    void contextMenuEvent(QContextMenuEvent *event);
-
 private slots:
     void deleteGenre();
     void onGenreNameChanged(QTableWidgetItem *item);
     void onGenreSelected();
     void addMovie();
     void removeMovie();
+    void showGenresContextMenu(QPoint point);
 
 private:
     Ui::GenreWidget *ui;

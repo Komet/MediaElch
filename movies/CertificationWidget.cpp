@@ -27,10 +27,12 @@ CertificationWidget::CertificationWidget(QWidget *parent) :
     ui->certifications->setFont(certificationsFont);
 #endif
 
+    ui->certifications->setContextMenuPolicy(Qt::CustomContextMenu);
     m_tableContextMenu = new QMenu(this);
     QAction *actionDeleteGenre = new QAction(tr("Delete Certification"), this);
     m_tableContextMenu->addAction(actionDeleteGenre);
     connect(actionDeleteGenre, SIGNAL(triggered()), this, SLOT(deleteCertification()));
+    connect(ui->certifications, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showCertificationsContextMenu(QPoint)));
 
     connect(ui->certifications, SIGNAL(itemSelectionChanged()), this, SLOT(onCertificationSelected()));
     connect(ui->certifications, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onCertificationNameChanged(QTableWidgetItem*)));
@@ -45,12 +47,12 @@ CertificationWidget::~CertificationWidget()
 }
 
 /**
- * @brief CertificationWidget::contextMenuEvent
- * @param event
+ * @brief Executes the certifications table context menu
+ * @param point Point where the menu will be shown
  */
-void CertificationWidget::contextMenuEvent(QContextMenuEvent *event)
+void CertificationWidget::showCertificationsContextMenu(QPoint point)
 {
-    m_tableContextMenu->exec(event->globalPos());
+    m_tableContextMenu->exec(ui->certifications->mapToGlobal(point));
 }
 
 /**

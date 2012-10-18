@@ -1,7 +1,6 @@
 #ifndef CERTIFICATIONWIDGET_H
 #define CERTIFICATIONWIDGET_H
 
-#include <QContextMenuEvent>
 #include <QMenu>
 #include <QSplitter>
 #include <QTableWidgetItem>
@@ -31,15 +30,13 @@ public slots:
     void loadCertifications();
     QSplitter *splitter();
 
-protected:
-    void contextMenuEvent(QContextMenuEvent *event);
-
 private slots:
     void deleteCertification();
     void onCertificationNameChanged(QTableWidgetItem *item);
     void onCertificationSelected();
     void addMovie();
     void removeMovie();
+    void showCertificationsContextMenu(QPoint point);
 
 private:
     Ui::CertificationWidget *ui;

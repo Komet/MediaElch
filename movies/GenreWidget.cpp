@@ -27,10 +27,12 @@ GenreWidget::GenreWidget(QWidget *parent) :
     ui->genres->setFont(genresFont);
 #endif
 
-    m_tableContextMenu = new QMenu(this);
+    ui->genres->setContextMenuPolicy(Qt::CustomContextMenu);
+    m_tableContextMenu = new QMenu(ui->genres);
     QAction *actionDeleteGenre = new QAction(tr("Delete Genre"), this);
     m_tableContextMenu->addAction(actionDeleteGenre);
     connect(actionDeleteGenre, SIGNAL(triggered()), this, SLOT(deleteGenre()));
+    connect(ui->genres, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showGenresContextMenu(QPoint)));
 
     connect(ui->genres, SIGNAL(itemSelectionChanged()), this, SLOT(onGenreSelected()));
     connect(ui->genres, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onGenreNameChanged(QTableWidgetItem*)));
@@ -45,12 +47,12 @@ GenreWidget::~GenreWidget()
 }
 
 /**
- * @brief GenreWidget::contextMenuEvent
- * @param event
+ * @brief Executes the genres table context menu
+ * @param point Point where the menu will be shown
  */
-void GenreWidget::contextMenuEvent(QContextMenuEvent *event)
+void GenreWidget::showGenresContextMenu(QPoint point)
 {
-    m_tableContextMenu->exec(event->globalPos());
+    m_tableContextMenu->exec(ui->genres->mapToGlobal(point));
 }
 
 /**

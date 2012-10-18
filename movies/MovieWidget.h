@@ -1,7 +1,6 @@
 #ifndef MOVIEWIDGET_H
 #define MOVIEWIDGET_H
 
-#include <QContextMenuEvent>
 #include <QLabel>
 #include <QMenu>
 #include <QPointer>
