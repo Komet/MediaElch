@@ -30,6 +30,7 @@ public slots:
 
 private slots:
     void onMovieSelected(QTableWidgetItem *item);
+    void onFilterEdited(QString text);
 
 private:
     Ui::MovieListDialog *ui;

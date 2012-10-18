@@ -22,6 +22,7 @@ MovieListDialog::MovieListDialog(QWidget *parent) :
 #endif
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
     connect(ui->movies, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(onMovieSelected(QTableWidgetItem*)));
+    connect(ui->filter, SIGNAL(textEdited(QString)), this, SLOT(onFilterEdited(QString)));
 }
 
 /**
@@ -55,8 +56,10 @@ int MovieListDialog::exec()
     qDebug() << "Entered";
 
     reposition();
+    ui->filter->clear();
     ui->movies->clearContents();
     ui->movies->setRowCount(0);
+    ui->movies->setSortingEnabled(false);
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
@@ -64,6 +67,8 @@ int MovieListDialog::exec()
         ui->movies->setItem(row, 0, new QTableWidgetItem(title));
         ui->movies->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(movie));
     }
+    ui->movies->setSortingEnabled(true);
+    ui->movies->sortByColumn(0, Qt::AscendingOrder);
     return QDialog::exec();
 }
 
@@ -75,8 +80,10 @@ int MovieListDialog::exec()
 int MovieListDialog::execWithoutGenre(QString genre)
 {
     reposition();
+    ui->filter->clear();
     ui->movies->clearContents();
     ui->movies->setRowCount(0);
+    ui->movies->setSortingEnabled(false);
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         if (movie->genres().contains(genre))
             continue;
@@ -86,6 +93,8 @@ int MovieListDialog::execWithoutGenre(QString genre)
         ui->movies->setItem(row, 0, new QTableWidgetItem(title));
         ui->movies->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(movie));
     }
+    ui->movies->setSortingEnabled(true);
+    ui->movies->sortByColumn(0, Qt::AscendingOrder);
     return QDialog::exec();
 }
 
@@ -97,8 +106,10 @@ int MovieListDialog::execWithoutGenre(QString genre)
 int MovieListDialog::execWithoutCertification(QString certification)
 {
     reposition();
+    ui->filter->clear();
     ui->movies->clearContents();
     ui->movies->setRowCount(0);
+    ui->movies->setSortingEnabled(false);
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         if (movie->certification() == certification)
             continue;
@@ -108,6 +119,8 @@ int MovieListDialog::execWithoutCertification(QString certification)
         ui->movies->setItem(row, 0, new QTableWidgetItem(title));
         ui->movies->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(movie));
     }
+    ui->movies->setSortingEnabled(true);
+    ui->movies->sortByColumn(0, Qt::AscendingOrder);
     return QDialog::exec();
 }
 
@@ -145,4 +158,16 @@ void MovieListDialog::onMovieSelected(QTableWidgetItem *item)
 Movie *MovieListDialog::selectedMovie()
 {
     return m_selectedMovie;
+}
+
+/**
+ * @brief Hides all rows which doesn't contain text
+ * @param text Filter text
+ */
+void MovieListDialog::onFilterEdited(QString text)
+{
+    for (int row=0, n=ui->movies->rowCount() ; row<n ; ++row) {
+        bool contains = ui->movies->item(row, 0)->text().contains(text, Qt::CaseInsensitive);
+        ui->movies->setRowHidden(row, !contains);
+    }
 }

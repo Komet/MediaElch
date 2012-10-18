@@ -26,6 +26,13 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
+    <widget class="MyLineEdit" name="filter">
+     <property name="placeholderText">
+      <string>Filter</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QTableWidget" name="movies">
      <property name="styleSheet">
       <string notr="true">alternate-background-color: rgb(243, 246, 250);</string>
@@ -90,6 +97,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>smallWidgets/MyLineEdit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
