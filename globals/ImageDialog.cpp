@@ -144,6 +144,8 @@ int ImageDialog::exec(int type)
     if (!haveDefault)
         onSearch(true);
 
+    QDialog::show();
+    renderTable();
     return QDialog::exec();
 }
 
