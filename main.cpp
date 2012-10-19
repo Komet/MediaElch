@@ -1,4 +1,5 @@
 #include <QFile>
+#include <QLibraryInfo>
 #include <QMessageBox>
 #include <QObject>
 #include <QtGui/QApplication>
@@ -74,6 +75,11 @@ int main(int argc, char *argv[])
 #endif
 
     QApplication a(argc, argv, useGui);
+
+    QTranslator qtTranslator;
+    qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    a.installTranslator(&qtTranslator);
+
     QTranslator editTranslator;
     QString filename;
     filename = QString("MediaElch_%1"). arg(QLocale::system().name());
