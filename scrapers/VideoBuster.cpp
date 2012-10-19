@@ -78,6 +78,7 @@ void VideoBuster::searchFinished()
     QList<ScraperSearchResult> results;
     if (m_searchReply->error() == QNetworkReply::NoError ) {
         QString msg = m_searchReply->readAll();
+        msg = replaceEntities(msg);
         results = parseSearch(msg);
     } else {
         qWarning() << "Network Error" << m_searchReply->errorString();
@@ -135,6 +136,7 @@ void VideoBuster::loadFinished()
     qDebug() << "Entered";
     if (m_loadReply->error() == QNetworkReply::NoError ) {
         QString msg = m_loadReply->readAll();
+        msg = replaceEntities(msg);
         parseAndAssignInfos(msg, m_currentMovie, m_infosToLoad);
     } else {
         qWarning() << "Network Error" << m_loadReply->errorString();
@@ -329,4 +331,17 @@ QString VideoBuster::language()
 void VideoBuster::setLanguage(QString language)
 {
     Q_UNUSED(language);
+}
+
+/**
+ * @brief This function replaces entities with their unicode counterparts
+ * @param msg String with entities
+ * @return String without entities
+ */
+QString VideoBuster::replaceEntities(const QString msg)
+{
+    // not nice but I don't know other methods which don't require the gui module
+    QString m = msg;
+    m.replace("&#039;", "'");
+    return m;
 }

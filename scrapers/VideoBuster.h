@@ -47,6 +47,7 @@ private:
     QNetworkAccessManager *qnam();
     QList<ScraperSearchResult> parseSearch(QString html);
     void parseAndAssignInfos(QString html, Movie *movie, QList<int> infos);
+    QString replaceEntities(const QString msg);
 };
 
 #endif // VIDEOBUSTER_H
