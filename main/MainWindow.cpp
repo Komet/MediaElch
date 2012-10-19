@@ -129,6 +129,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ImagePreviewDialog::instance(ui->centralWidget);
     ConcertSearch::instance(ui->centralWidget);
 
+    // hack. without only the fileScannerDialog pops up and blocks until it has finished
+    show();
+
     // Start scanning for files
     m_fileScannerDialog->exec();
 
