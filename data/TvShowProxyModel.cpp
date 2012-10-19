@@ -22,7 +22,7 @@ bool TvShowProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &source
 {
     Q_UNUSED(sourceParent);
     QList<TvShow*> shows = Manager::instance()->tvShowModel()->tvShows();
-    if (sourceRow >= shows.count())
+    if (sourceRow < 0 || sourceRow >= shows.count())
         return true;
 
     TvShow *show = shows.at(sourceRow);

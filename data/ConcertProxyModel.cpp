@@ -22,8 +22,11 @@ ConcertProxyModel::ConcertProxyModel(QObject *parent) :
 bool ConcertProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
     Q_UNUSED(sourceParent);
+    QList<Concert*> concerts = Manager::instance()->concertModel()->concerts();
+    if (sourceRow < 0 || sourceRow >= concerts.count())
+        return true;
 
-    Concert *concert = Manager::instance()->concertModel()->concert(sourceRow);
+    Concert *concert = concerts.at(sourceRow);
     foreach (Filter *filter, m_filters) {
         if (!filter->accepts(concert))
             return false;

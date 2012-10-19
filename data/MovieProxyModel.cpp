@@ -22,8 +22,11 @@ MovieProxyModel::MovieProxyModel(QObject *parent) :
 bool MovieProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
     Q_UNUSED(sourceParent);
+    QList<Movie*> movies = Manager::instance()->movieModel()->movies();
+    if (sourceRow < 0 || sourceRow >= movies.count())
+        return true;
 
-    Movie *movie = Manager::instance()->movieModel()->movie(sourceRow);
+    Movie *movie = movies.at(sourceRow);
     foreach (Filter *filter, m_filters) {
         if (!filter->accepts(movie))
             return false;
