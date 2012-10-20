@@ -159,3 +159,17 @@ QList<Movie*> MovieModel::movies()
 {
     return m_movies;
 }
+
+/**
+ * @brief Checks if there are new movies (movies where infoLoaded is false)
+ * @return True if there are new movies
+ */
+bool MovieModel::hasNewMovies()
+{
+    foreach (Movie *movie, m_movies) {
+        if (!movie->infoLoaded())
+            return true;
+    }
+
+    return false;
+}

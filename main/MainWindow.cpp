@@ -119,6 +119,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->concertSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
 
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), ui->tvShowFilesWidget, SLOT(renewModel()));
+    connect(m_fileScannerDialog, SIGNAL(accepted()), this, SLOT(setNewMarks()));
 
     Manager::instance()->setupMediaCenterInterface();
 
@@ -131,6 +132,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // hack. without only the fileScannerDialog pops up and blocks until it has finished
     show();
+    onMenu(WidgetMovies);
 
     // Start scanning for files
     m_fileScannerDialog->exec();
@@ -281,12 +283,34 @@ void MainWindow::progressFinished(int id)
  */
 void MainWindow::onMenu(MainWidgets widget)
 {
-    ui->buttonMovies->setIcon(QIcon(":/img/video_menu.png"));
-    ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menu.png"));
-    ui->buttonGenres->setIcon(QIcon(":/img/genre_menu.png"));
-    ui->buttonCertifications->setIcon(QIcon(":/img/certification2_menu.png"));
-    ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menu.png"));
-    ui->buttonConcerts->setIcon(QIcon(":/img/concerts_menu.png"));
+    m_icons.insert(WidgetMovies, QIcon(":/img/video_menu.png"));
+    m_icons.insert(WidgetTvShows, QIcon(":/img/display_on_menu.png"));
+    m_icons.insert(WidgetMovieSets, QIcon(":/img/movieSets_menu.png"));
+    m_icons.insert(WidgetGenres, QIcon(":/img/genre_menu.png"));
+    m_icons.insert(WidgetCertifications, QIcon(":/img/certification2_menu.png"));
+    m_icons.insert(WidgetConcerts, QIcon(":/img/concerts_menu.png"));
+
+    if (widget == WidgetMovies)
+        m_icons.insert(widget, QIcon(":/img/video_menuActive.png"));
+    else if (widget == WidgetTvShows)
+        m_icons.insert(widget, QIcon(":/img/display_on_menuActive.png"));
+    else if (widget == WidgetConcerts)
+        m_icons.insert(widget, QIcon(":/img/concerts_menuActive.png"));
+    else if (widget == WidgetGenres)
+        m_icons.insert(widget, QIcon(":/img/genre_menuActive.png"));
+    else if (widget == WidgetMovieSets)
+        m_icons.insert(widget, QIcon(":/img/movieSets_menuActive.png"));
+    else if (widget == WidgetCertifications)
+        m_icons.insert(widget, QIcon(":/img/certification2_menuActive.png"));
+
+    setNewMarks();
+
+    ui->buttonMovies->setIcon(m_icons.value(WidgetMovies));
+    ui->buttonMovieSets->setIcon(m_icons.value(WidgetMovieSets));
+    ui->buttonGenres->setIcon(m_icons.value(WidgetGenres));
+    ui->buttonCertifications->setIcon(m_icons.value(WidgetCertifications));
+    ui->buttonTvshows->setIcon(m_icons.value(WidgetTvShows));
+    ui->buttonConcerts->setIcon(m_icons.value(WidgetConcerts));
 
     m_actionSearch->setEnabled(m_actions[widget][ActionSearch]);
     m_actionSave->setEnabled(m_actions[widget][ActionSave]);
@@ -304,7 +328,6 @@ void MainWindow::onMenuMovies()
     qDebug() << "Entered";
     ui->stackedWidget->setCurrentIndex(0);
     onMenu(WidgetMovies);
-    ui->buttonMovies->setIcon(QIcon(":/img/video_menuActive.png"));
 }
 
 /**
@@ -317,7 +340,6 @@ void MainWindow::onMenuMovieSets()
     ui->stackedWidget->setCurrentIndex(2);
     ui->setsWidget->loadSets();
     onMenu(WidgetMovieSets);
-    ui->buttonMovieSets->setIcon(QIcon(":/img/movieSets_menuActive.png"));
 }
 
 /**
@@ -330,7 +352,6 @@ void MainWindow::onMenuGenres()
     ui->stackedWidget->setCurrentIndex(4);
     ui->genreWidget->loadGenres();
     onMenu(WidgetGenres);
-    ui->buttonGenres->setIcon(QIcon(":/img/genre_menuActive.png"));
 }
 
 /**
@@ -343,7 +364,6 @@ void MainWindow::onMenuCertifications()
     ui->stackedWidget->setCurrentIndex(5);
     ui->certificationWidget->loadCertifications();
     onMenu(WidgetCertifications);
-    ui->buttonCertifications->setIcon(QIcon(":/img/certification2_menuActive.png"));
 }
 
 /**
@@ -355,7 +375,6 @@ void MainWindow::onMenuTvShows()
     qDebug() << "Entered";
     ui->stackedWidget->setCurrentIndex(1);
     onMenu(WidgetTvShows);
-    ui->buttonTvshows->setIcon(QIcon(":/img/display_on_menuActive.png"));
 }
 
 /**
@@ -367,7 +386,6 @@ void MainWindow::onMenuConcerts()
     qDebug() << "Entered";
     ui->stackedWidget->setCurrentIndex(3);
     onMenu(WidgetConcerts);
-    ui->buttonConcerts->setIcon(QIcon(":/img/concerts_menuActive.png"));
 }
 
 /**
@@ -394,17 +412,18 @@ void MainWindow::onActionSave()
 {
     qDebug() << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
     if (ui->stackedWidget->currentIndex() == 0)
-        QTimer::singleShot(0, ui->movieWidget, SLOT(saveInformation()));
+        ui->movieWidget->saveInformation();
     else if (ui->stackedWidget->currentIndex() == 1)
-        QTimer::singleShot(0, ui->tvShowWidget, SLOT(onSaveInformation()));
+        ui->tvShowWidget->onSaveInformation();
     else if (ui->stackedWidget->currentIndex() == 2)
-        QTimer::singleShot(0, ui->setsWidget, SLOT(saveSet()));
+        ui->setsWidget->saveSet();
     else if (ui->stackedWidget->currentIndex() == 3)
-        QTimer::singleShot(0, ui->concertWidget, SLOT(onSaveInformation()));
+        ui->concertWidget->onSaveInformation();
     else if (ui->stackedWidget->currentIndex() == 4)
-        QTimer::singleShot(0, ui->genreWidget, SLOT(onSaveInformation()));
+        ui->genreWidget->onSaveInformation();
     else if (ui->stackedWidget->currentIndex() == 5)
-        QTimer::singleShot(0, ui->certificationWidget, SLOT(onSaveInformation()));
+        ui->certificationWidget->onSaveInformation();
+    setNewMarks();
 }
 
 /**
@@ -415,11 +434,12 @@ void MainWindow::onActionSaveAll()
 {
     qDebug() << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
     if (ui->stackedWidget->currentIndex() == 0)
-        QTimer::singleShot(0, ui->movieWidget, SLOT(saveAll()));
+        ui->movieWidget->saveAll();
     else if (ui->stackedWidget->currentIndex() == 1)
-        QTimer::singleShot(0, ui->tvShowWidget, SLOT(onSaveAll()));
+        ui->tvShowWidget->onSaveAll();
     else if (ui->stackedWidget->currentIndex() == 3)
-        QTimer::singleShot(0, ui->concertWidget, SLOT(onSaveAll()));
+        ui->concertWidget->onSaveAll();
+    setNewMarks();
 }
 
 /**
@@ -511,3 +531,47 @@ void MainWindow::moveSplitter(int pos, int index)
         splitter->setSizes(sizes);
     }
 }
+
+/**
+ * @brief Sets or removes the new mark in the main menu on the left
+ */
+void MainWindow::setNewMarks()
+{
+    bool newMovies = Manager::instance()->movieModel()->hasNewMovies();
+    bool newConcerts = Manager::instance()->concertModel()->hasNewConcerts();
+    bool newTvShows = Manager::instance()->tvShowModel()->hasNewShowOrEpisode();
+
+    QPainter painter;
+    QPixmap star(":/img/star.png");
+    QIcon movies = m_icons.value(WidgetMovies);
+    QIcon concerts = m_icons.value(WidgetConcerts);
+    QIcon shows = m_icons.value(WidgetTvShows);
+    if (newMovies) {
+        QPixmap pixmap = movies.pixmap(64, 64);
+        painter.begin(&pixmap);
+        painter.drawPixmap(pixmap.width()-star.width(), pixmap.height()-star.height(), star.width(), star.height(), star);
+        painter.end();
+        movies = QIcon(pixmap);
+    }
+
+    if (newConcerts) {
+        QPixmap pixmap = concerts.pixmap(64, 64);
+        painter.begin(&pixmap);
+        painter.drawPixmap(pixmap.width()-star.width(), pixmap.height()-star.height(), star.width(), star.height(), star);
+        painter.end();
+        concerts = QIcon(pixmap);
+    }
+
+    if (newTvShows) {
+        QPixmap pixmap = shows.pixmap(64, 64);
+        painter.begin(&pixmap);
+        painter.drawPixmap(pixmap.width()-star.width(), pixmap.height()-star.height(), star.width(), star.height(), star);
+        painter.end();
+        shows = QPixmap(pixmap);
+    }
+
+    ui->buttonMovies->setIcon(movies);
+    ui->buttonConcerts->setIcon(concerts);
+    ui->buttonTvshows->setIcon(shows);
+}
+

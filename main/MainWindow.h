@@ -29,6 +29,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+public slots:
+    void setNewMarks();
+
 protected:
     void resizeEvent(QResizeEvent *event);
 
@@ -68,6 +71,7 @@ private:
     QAction *m_actionLike;
     QAction *m_actionReload;
     QMap<MainWidgets, QMap<MainActions, bool> > m_actions;
+    QMap<MainWidgets, QIcon> m_icons;
     FilterWidget *m_filterWidget;
     void setupToolbar();
 };

@@ -25,6 +25,7 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     QModelIndex index(int row, int column, const QModelIndex &parent) const;
     QModelIndex parent(const QModelIndex &child) const;
+    bool hasNewMovies();
 
 private slots:
     void onMovieChanged(Movie *movie);

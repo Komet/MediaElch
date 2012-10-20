@@ -48,5 +48,6 @@
         <file>img/certification2_menuActive.png</file>
         <file>img/heart.png</file>
         <file>img/btn_donate_LG.gif</file>
+        <file>img/star.png</file>
     </qresource>
 </RCC>
