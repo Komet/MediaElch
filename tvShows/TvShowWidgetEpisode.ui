@@ -145,7 +145,11 @@
              </widget>
             </item>
             <item row="3" column="1">
-             <widget class="QSpinBox" name="season"/>
+             <widget class="QSpinBox" name="season">
+              <property name="maximum">
+               <number>99999</number>
+              </property>
+             </widget>
             </item>
             <item row="4" column="0">
              <widget class="QLabel" name="label_16">
@@ -155,7 +159,11 @@
              </widget>
             </item>
             <item row="4" column="1">
-             <widget class="QSpinBox" name="episode"/>
+             <widget class="QSpinBox" name="episode">
+              <property name="maximum">
+               <number>99999</number>
+              </property>
+             </widget>
             </item>
             <item row="5" column="0">
              <widget class="QLabel" name="label_4">
