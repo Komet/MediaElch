@@ -303,14 +303,14 @@ void MainWindow::onMenu(MainWidgets widget)
     else if (widget == WidgetCertifications)
         m_icons.insert(widget, QIcon(":/img/certification2_menuActive.png"));
 
-    setNewMarks();
-
     ui->buttonMovies->setIcon(m_icons.value(WidgetMovies));
     ui->buttonMovieSets->setIcon(m_icons.value(WidgetMovieSets));
     ui->buttonGenres->setIcon(m_icons.value(WidgetGenres));
     ui->buttonCertifications->setIcon(m_icons.value(WidgetCertifications));
     ui->buttonTvshows->setIcon(m_icons.value(WidgetTvShows));
     ui->buttonConcerts->setIcon(m_icons.value(WidgetConcerts));
+
+    setNewMarks();
 
     m_actionSearch->setEnabled(m_actions[widget][ActionSearch]);
     m_actionSave->setEnabled(m_actions[widget][ActionSave]);
