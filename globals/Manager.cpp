@@ -385,3 +385,12 @@ QList<ImageProviderInterface*> Manager::imageProviders()
 {
     return m_imageProviders;
 }
+
+/**
+ * @brief Manager::fanartTv
+ * @return
+ */
+FanartTv* Manager::fanartTv()
+{
+    return static_cast<FanartTv*>(m_imageProviders.at(0));
+}

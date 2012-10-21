@@ -16,6 +16,7 @@
 #include "data/MovieModel.h"
 #include "data/TvShowModel.h"
 #include "data/TvShowProxyModel.h"
+#include "imageProviders/FanartTv.h"
 
 /**
  * @brief The Manager class
@@ -50,6 +51,7 @@ public:
     ScraperInterface* getScraperForName(QString name);
     QSqlDatabase cacheDb();
     void clearCacheDatabase();
+    FanartTv* fanartTv();
 
 private:
     QList<MediaCenterInterface*> m_mediaCenters;

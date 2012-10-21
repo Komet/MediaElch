@@ -44,6 +44,7 @@ ConcertSearch::ConcertSearch(QWidget *parent) :
     connect(ui->chkTagline, SIGNAL(clicked()), this, SLOT(chkToggled()));
     connect(ui->chkTitle, SIGNAL(clicked()), this, SLOT(chkToggled()));
     connect(ui->chkTrailer, SIGNAL(clicked()), this, SLOT(chkToggled()));
+    connect(ui->chkExtraArts, SIGNAL(clicked()), this, SLOT(chkToggled()));
     connect(ui->chkUnCheckAll, SIGNAL(clicked(bool)), this, SLOT(chkAllToggled(bool)));
 
     ui->chkUnCheckAll->setChecked(true);
@@ -182,6 +183,8 @@ void ConcertSearch::chkToggled()
         m_infosToLoad.append(ConcertScraperInfos::Title);
     if (ui->chkTrailer->isChecked())
         m_infosToLoad.append(ConcertScraperInfos::Trailer);
+    if (ui->chkExtraArts->isChecked())
+        m_infosToLoad.append(ConcertScraperInfos::ExtraArts);
 
     if (ui->chkBackdrop->isEnabled())
         numOfScraperSupports++;
@@ -204,6 +207,8 @@ void ConcertSearch::chkToggled()
     if (ui->chkTitle->isEnabled())
         numOfScraperSupports++;
     if (ui->chkTrailer->isEnabled())
+        numOfScraperSupports++;
+    if (ui->chkExtraArts->isEnabled())
         numOfScraperSupports++;
 
     ui->chkUnCheckAll->setChecked(m_infosToLoad.size() == numOfScraperSupports);
@@ -239,6 +244,8 @@ void ConcertSearch::chkAllToggled(bool toggled)
         ui->chkTitle->setChecked(isChecked);
     if (ui->chkTrailer->isEnabled())
         ui->chkTrailer->setChecked(isChecked);
+    if (ui->chkExtraArts->isEnabled())
+        ui->chkExtraArts->setChecked(isChecked);
     chkToggled();
 }
 
@@ -290,6 +297,7 @@ void ConcertSearch::setChkBoxesEnabled(QList<int> scraperSupports)
     ui->chkTagline->setEnabled(scraperSupports.contains(ConcertScraperInfos::Tagline));
     ui->chkTitle->setEnabled(scraperSupports.contains(ConcertScraperInfos::Title));
     ui->chkTrailer->setEnabled(scraperSupports.contains(ConcertScraperInfos::Trailer));
+    ui->chkExtraArts->setEnabled(scraperSupports.contains(ConcertScraperInfos::ExtraArts));
 
     if (!scraperSupports.contains(ConcertScraperInfos::Backdrop))
         ui->chkBackdrop->setChecked(false);
@@ -313,6 +321,8 @@ void ConcertSearch::setChkBoxesEnabled(QList<int> scraperSupports)
         ui->chkTitle->setChecked(false);
     if (!scraperSupports.contains(ConcertScraperInfos::Trailer))
         ui->chkTrailer->setChecked(false);
+    if (!scraperSupports.contains(ConcertScraperInfos::ExtraArts))
+        ui->chkExtraArts->setChecked(false);
 
     chkToggled();
 }

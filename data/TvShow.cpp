@@ -114,6 +114,8 @@ bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface)
 void TvShow::loadData(QString id, TvScraperInterface *tvScraperInterface, bool updateAllEpisodes)
 {
     qDebug() << "Entered, id=" << id << "scraperInterface" << tvScraperInterface->name() << "updateAllEpisodes" << updateAllEpisodes;
+    if (tvScraperInterface->name() == "The TV DB")
+        setTvdbId(id);
     tvScraperInterface->loadTvShowData(id, this, updateAllEpisodes);
 }
 

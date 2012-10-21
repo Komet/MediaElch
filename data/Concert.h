@@ -124,6 +124,7 @@ public:
     void clearImages();
 
     void scraperLoadDone();
+    QList<int> infosToLoad();
 
 signals:
     void loaded(Concert*);
@@ -165,6 +166,7 @@ private:
     int m_mediaCenterId;
     QString m_tmdbId;
     QString m_id;
+    QList<int> m_infosToLoad;
 };
 
 #endif // CONCERT_H

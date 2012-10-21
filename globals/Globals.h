@@ -165,6 +165,7 @@ namespace MovieScraperInfos {
     const int Countries     = 14;
     const int Writer        = 15;
     const int Director      = 16;
+    const int ExtraArts     = 17;
 }
 
 namespace ConcertScraperInfos {
@@ -179,6 +180,7 @@ namespace ConcertScraperInfos {
     const int Poster        = 9;
     const int Backdrop      = 10;
     const int Genres        = 11;
+    const int ExtraArts     = 12;
 }
 
 // The filter numbers have to unique for MovieFilters, TvShowFilters and ConcertFilters

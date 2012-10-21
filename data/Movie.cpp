@@ -197,7 +197,19 @@ bool Movie::loadData(MediaCenterInterface *mediaCenterInterface, bool force)
 void Movie::loadData(QString id, ScraperInterface *scraperInterface, QList<int> infos)
 {
     qDebug() << "Entered, id=" << id << "scraperInterface=" << scraperInterface->name();
+    m_infosToLoad = infos;
+    if (scraperInterface->name() == "The Movie DB")
+        setTmdbId(id);
     scraperInterface->loadData(id, this, infos);
+}
+
+/**
+ * @brief Movie::infosToLoad
+ * @return
+ */
+QList<int> Movie::infosToLoad()
+{
+    return m_infosToLoad;
 }
 
 /**

@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>589</height>
+    <width>679</width>
+    <height>637</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -248,6 +248,16 @@
          </widget>
         </item>
         <item>
+         <widget class="QCheckBox" name="chkExtraArts">
+          <property name="toolTip">
+           <string>Logo, Clear Art, CD Art</string>
+          </property>
+          <property name="text">
+           <string>Extra Arts</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="Line" name="line">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
@@ -260,19 +270,6 @@
            <string>(Un)Check all</string>
           </property>
          </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
         <item>
          <spacer name="verticalSpacer_3">

@@ -460,7 +460,7 @@ void TvShowWidgetTvShow::onStartScraperSearch()
     if (TvShowSearch::instance()->result() == QDialog::Accepted) {
         onSetEnabled(false);
         m_show->loadData(TvShowSearch::instance()->scraperId(), Manager::instance()->tvScrapers().at(0), TvShowSearch::instance()->updateAll());
-        connect(m_show, SIGNAL(sigLoaded(TvShow*)), this, SLOT(onLoadDone(TvShow*)), Qt::UniqueConnection);
+        connect(m_show, SIGNAL(sigLoaded(TvShow*)), this, SLOT(onInfoLoadDone(TvShow*)), Qt::UniqueConnection);
     } else {
         emit sigSetActionSearchEnabled(true, WidgetTvShows);
         emit sigSetActionSaveEnabled(true, WidgetTvShows);
@@ -468,11 +468,29 @@ void TvShowWidgetTvShow::onStartScraperSearch()
 }
 
 /**
+ * @brief TvShowWidgetTvShow::onInfoLoadDone
+ * @param show
+ */
+void TvShowWidgetTvShow::onInfoLoadDone(TvShow *show)
+{
+    QList<int> types;
+    types << TypeClearArt << TypeLogo << TypeCharacterArt;
+    if (!show->tvdbId().isEmpty() && !types.isEmpty()) {
+        Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types);
+        connect(Manager::instance()->fanartTv(), SIGNAL(sigImagesLoaded(TvShow*,QMap<int,QList<Poster> >)), this, SLOT(onLoadDone(TvShow*,QMap<int,QList<Poster> >)), Qt::UniqueConnection);
+    } else {
+        QMap<int, QList<Poster> > map;
+        onLoadDone(show, map);
+    }
+}
+
+/**
  * @brief Called when the search widget finishes
  * Updates infos and starts downloads
  * @param show Tv Show
+ * @param posters
  */
-void TvShowWidgetTvShow::onLoadDone(TvShow *show)
+void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > posters)
 {
     qDebug() << "Entered";
     if (m_show == 0) {
@@ -525,6 +543,45 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show)
         if (m_show == show) {
             ui->banner->setPixmap(QPixmap());
             ui->banner->setMovie(m_loadingMovie);
+        }
+    }
+
+    QMapIterator<int, QList<Poster> > it(posters);
+    while (it.hasNext()) {
+        it.next();
+        if (it.key() == TypeClearArt && !it.value().isEmpty()) {
+            DownloadManagerElement d;
+            d.imageType = TypeClearArt;
+            d.url = it.value().at(0).originalUrl;
+            d.show = show;
+            m_posterDownloadManager->addDownload(d);
+            if (m_show == show) {
+                ui->clearArt->setPixmap(QPixmap());
+                ui->clearArt->setMovie(m_loadingMovie);
+            }
+            downloadsSize++;
+        } else if (it.key() == TypeCharacterArt && !it.value().isEmpty()) {
+            DownloadManagerElement d;
+            d.imageType = TypeCharacterArt;
+            d.url = it.value().at(0).originalUrl;
+            d.show = show;
+            m_posterDownloadManager->addDownload(d);
+            if (m_show == show) {
+                ui->characterArt->setPixmap(QPixmap());
+                ui->characterArt->setMovie(m_loadingMovie);
+            }
+            downloadsSize++;
+        } else if (it.key() == TypeLogo && !it.value().isEmpty()) {
+            DownloadManagerElement d;
+            d.imageType = TypeLogo;
+            d.url = it.value().at(0).originalUrl;
+            d.show = show;
+            m_posterDownloadManager->addDownload(d);
+            if (m_show == show) {
+                ui->logo->setPixmap(QPixmap());
+                ui->logo->setMovie(m_loadingMovie);
+            }
+            downloadsSize++;
         }
     }
 

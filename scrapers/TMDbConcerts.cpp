@@ -29,7 +29,8 @@ TMDbConcerts::TMDbConcerts(QObject *parent)
                       << ConcertScraperInfos::Overview
                       << ConcertScraperInfos::Poster
                       << ConcertScraperInfos::Backdrop
-                      << ConcertScraperInfos::Genres;
+                      << ConcertScraperInfos::Genres
+                      << ConcertScraperInfos::ExtraArts;
 
     m_baseUrl = "http://cf2.imgobject.com/t/p/";
     setup();

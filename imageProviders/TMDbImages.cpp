@@ -138,6 +138,19 @@ void TMDbImages::onLoadImagesFinished()
 }
 
 /**
+ * @brief TMDbImages::movieImages
+ * @param movie
+ * @param tmdbId
+ * @param types
+ */
+void TMDbImages::movieImages(Movie *movie, QString tmdbId, QList<int> types)
+{
+    Q_UNUSED(movie);
+    Q_UNUSED(tmdbId);
+    Q_UNUSED(types);
+}
+
+/**
  * @brief Load movie logos
  * @param tmdbId The Movie DB id
  */
@@ -162,6 +175,19 @@ void TMDbImages::movieClearArts(QString tmdbId)
 void TMDbImages::movieCdArts(QString tmdbId)
 {
     Q_UNUSED(tmdbId);
+}
+
+/**
+ * @brief TMDbImages::concertImages
+ * @param concert
+ * @param tmdbId
+ * @param types
+ */
+void TMDbImages::concertImages(Concert *concert, QString tmdbId, QList<int> types)
+{
+    Q_UNUSED(concert);
+    Q_UNUSED(tmdbId);
+    Q_UNUSED(types);
 }
 
 /**
@@ -200,6 +226,19 @@ void TMDbImages::searchTvShow(QString searchStr, int limit)
 {
     Q_UNUSED(searchStr);
     Q_UNUSED(limit);
+}
+
+/**
+ * @brief TMDbImages::tvShowImages
+ * @param show
+ * @param tvdbId
+ * @param types
+ */
+void TMDbImages::tvShowImages(TvShow *show, QString tvdbId, QList<int> types)
+{
+    Q_UNUSED(show);
+    Q_UNUSED(tvdbId);
+    Q_UNUSED(types);
 }
 
 /**

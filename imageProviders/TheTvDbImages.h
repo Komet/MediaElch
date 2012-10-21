@@ -17,16 +17,19 @@ class TheTvDbImages : public ImageProviderInterface
 public:
     explicit TheTvDbImages(QObject *parent = 0);
     QString name();
+    void movieImages(Movie *movie, QString tmdbId, QList<int> types);
     void moviePosters(QString tmdbId);
     void movieBackdrops(QString tmdbId);
     void movieLogos(QString tmdbId);
     void movieClearArts(QString tmdbId);
     void movieCdArts(QString tmdbId);
+    void concertImages(Concert *concert, QString tmdbId, QList<int> types);
     void concertPosters(QString tmdbId);
     void concertBackdrops(QString tmdbId);
     void concertLogos(QString tmdbId);
     void concertClearArts(QString tmdbId);
     void concertCdArts(QString tmdbId);
+    void tvShowImages(TvShow *show, QString tvdbId, QList<int> types);
     void tvShowPosters(QString tvdbId);
     void tvShowBackdrops(QString tvdbId);
     void tvShowLogos(QString tvdbId);
@@ -45,6 +48,9 @@ public slots:
 signals:
     void sigSearchDone(QList<ScraperSearchResult>);
     void sigImagesLoaded(QList<Poster>);
+    void sigImagesLoaded(Movie *, QMap<int, QList<Poster> >);
+    void sigImagesLoaded(Concert *, QMap<int, QList<Poster> >);
+    void sigImagesLoaded(TvShow *, QMap<int, QList<Poster> >);
 
 private slots:
     void onSearchTvShowFinished(QList<ScraperSearchResult> results);

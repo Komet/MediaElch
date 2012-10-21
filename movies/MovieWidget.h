@@ -3,6 +3,7 @@
 
 #include <QLabel>
 #include <QMenu>
+#include <QMutex>
 #include <QPointer>
 #include <QResizeEvent>
 #include <QTableWidgetItem>
@@ -48,7 +49,8 @@ signals:
 private slots:
     void downloadActorsFinished(Movie *movie);
     void actorDownloadsLeft(int left, DownloadManagerElement elem);
-    void loadDone(Movie *movie);
+    void infoLoadDone(Movie *movie);
+    void loadDone(Movie *movie, QMap<int, QList<Poster> > posters);
     void chooseMoviePoster();
     void chooseMovieBackdrop();
     void chooseMovieLogo();

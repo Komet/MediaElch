@@ -2,6 +2,7 @@
 #define IMAGEPROVIDERINTERFACE_H
 
 #include <QObject>
+#include "data/Concert.h"
 #include "globals/Globals.h"
 
 /**
@@ -11,16 +12,19 @@ class ImageProviderInterface : public QObject
 {
 public:
     virtual QString name() = 0;
+    virtual void movieImages(Movie *movie, QString tmdbId, QList<int> types) = 0;
     virtual void moviePosters(QString tmdbId) = 0;
     virtual void movieBackdrops(QString tmdbId) = 0;
     virtual void movieLogos(QString tmdbId) = 0;
     virtual void movieClearArts(QString tmdbId) = 0;
     virtual void movieCdArts(QString tmdbId) = 0;
+    virtual void concertImages(Concert *concert, QString tmdbId, QList<int> types) = 0;
     virtual void concertPosters(QString tmdbId) = 0;
     virtual void concertBackdrops(QString tmdbId) = 0;
     virtual void concertLogos(QString tmdbId) = 0;
     virtual void concertClearArts(QString tmdbId) = 0;
     virtual void concertCdArts(QString tmdbId) = 0;
+    virtual void tvShowImages(TvShow *show, QString tvdbId, QList<int> types) = 0;
     virtual void tvShowPosters(QString tvdbId) = 0;
     virtual void tvShowBackdrops(QString tvdbId) = 0;
     virtual void tvShowLogos(QString tvdbId) = 0;
@@ -37,7 +41,9 @@ public slots:
 signals:
     virtual void sigSearchDone(QList<ScraperSearchResult>) = 0;
     virtual void sigImagesLoaded(QList<Poster>) = 0;
-
+    virtual void sigImagesLoaded(Movie *, QMap<int, QList<Poster> >) = 0;
+    virtual void sigImagesLoaded(Concert *, QMap<int, QList<Poster> >) = 0;
+    virtual void sigImagesLoaded(TvShow *, QMap<int, QList<Poster> >) = 0;
 };
 
 #endif // IMAGEPROVIDERINTERFACE_H

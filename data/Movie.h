@@ -171,6 +171,7 @@ public:
     void clearImages();
 
     void scraperLoadDone();
+    QList<int> infosToLoad();
 
 signals:
     void loaded(Movie*);
@@ -227,6 +228,7 @@ private:
     bool m_hasLogo;
     bool m_hasClearArt;
     bool m_hasCdArt;
+    QList<int> m_infosToLoad;
 };
 
 QDebug operator<<(QDebug dbg, const Movie &movie);

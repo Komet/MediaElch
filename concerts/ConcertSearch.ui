@@ -213,6 +213,16 @@
          </widget>
         </item>
         <item>
+         <widget class="QCheckBox" name="chkExtraArts">
+          <property name="toolTip">
+           <string>Logo, Clear Art, CD Art</string>
+          </property>
+          <property name="text">
+           <string>Extra Arts</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="Line" name="line">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
@@ -228,19 +238,6 @@
         </item>
         <item>
          <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_3">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>

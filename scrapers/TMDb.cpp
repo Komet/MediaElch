@@ -34,7 +34,8 @@ TMDb::TMDb(QObject *parent)
                       << MovieScraperInfos::Studios
                       << MovieScraperInfos::Countries
                       << MovieScraperInfos::Director
-                      << MovieScraperInfos::Writer;
+                      << MovieScraperInfos::Writer
+                      << MovieScraperInfos::ExtraArts;
 
     m_baseUrl = "http://cf2.imgobject.com/t/p/";
     setup();

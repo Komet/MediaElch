@@ -124,6 +124,19 @@ void TheTvDbImages::onLoadTvShowDataFinished()
 }
 
 /**
+ * @brief TheTvDbImages::tvShowImages
+ * @param show
+ * @param tvdbId
+ * @param types
+ */
+void TheTvDbImages::tvShowImages(TvShow *show, QString tvdbId, QList<int> types)
+{
+    Q_UNUSED(show);
+    Q_UNUSED(tvdbId);
+    Q_UNUSED(types);
+}
+
+/**
  * @brief Load tv show posters
  * @param tvdbId The TV DB id
  */
@@ -178,6 +191,19 @@ void TheTvDbImages::tvShowSeason(QString tvdbId, int season)
 // UNSUPPORTED
 
 /**
+ * @brief TheTvDbImages::movieImages
+ * @param movie
+ * @param tmdbId
+ * @param types
+ */
+void TheTvDbImages::movieImages(Movie *movie, QString tmdbId, QList<int> types)
+{
+    Q_UNUSED(movie);
+    Q_UNUSED(tmdbId);
+    Q_UNUSED(types);
+}
+
+/**
  * @brief Would load movie posters (not supported by fanart.tv)
  * @param tmdbId
  */
@@ -220,6 +246,19 @@ void TheTvDbImages::movieClearArts(QString tmdbId)
 void TheTvDbImages::movieCdArts(QString tmdbId)
 {
     Q_UNUSED(tmdbId);
+}
+
+/**
+ * @brief TheTvDbImages::concertImages
+ * @param concert
+ * @param tmdbId
+ * @param types
+ */
+void TheTvDbImages::concertImages(Concert *concert, QString tmdbId, QList<int> types)
+{
+    Q_UNUSED(concert);
+    Q_UNUSED(tmdbId);
+    Q_UNUSED(types);
 }
 
 /**

@@ -236,7 +236,7 @@ void ConcertWidget::onStartScraperSearch()
         setDisabledTrue();
         m_concert->loadData(ConcertSearch::instance()->scraperId(), Manager::instance()->concertScrapers().at(ConcertSearch::instance()->scraperNo()),
                             ConcertSearch::instance()->infosToLoad());
-        connect(m_concert, SIGNAL(loaded(Concert*)), this, SLOT(loadDone(Concert*)), Qt::UniqueConnection);
+        connect(m_concert, SIGNAL(loaded(Concert*)), this, SLOT(infoLoadDone(Concert*)), Qt::UniqueConnection);
     } else {
         emit setActionSearchEnabled(true, WidgetConcerts);
         emit setActionSaveEnabled(true, WidgetConcerts);
@@ -244,11 +244,30 @@ void ConcertWidget::onStartScraperSearch()
 }
 
 /**
+ * @brief ConcertWidget::infoLoadDone
+ * @param concert
+ */
+void ConcertWidget::infoLoadDone(Concert *concert)
+{
+    QList<int> types;
+    if (concert->infosToLoad().contains(ConcertScraperInfos::ExtraArts))
+        types << TypeClearArt << TypeCdArt << TypeLogo;
+    if (!concert->tmdbId().isEmpty() && !types.isEmpty()) {
+        Manager::instance()->fanartTv()->concertImages(concert, concert->tmdbId(), types);
+        connect(Manager::instance()->fanartTv(), SIGNAL(sigImagesLoaded(Concert*,QMap<int,QList<Poster> >)), this, SLOT(loadDone(Concert*,QMap<int,QList<Poster> >)), Qt::UniqueConnection);
+    } else {
+        QMap<int, QList<Poster> > map;
+        loadDone(concert, map);
+    }
+}
+
+/**
  * @brief Called when the search widget finishes
  * Updates infos and starts downloads
  * @param concert Concert
+ * @param posters
  */
-void ConcertWidget::loadDone(Concert *concert)
+void ConcertWidget::loadDone(Concert *concert, QMap<int, QList<Poster> > posters)
 {
     qDebug() << "Entered";
     if (m_concert == 0) {
@@ -262,7 +281,7 @@ void ConcertWidget::loadDone(Concert *concert)
         qDebug() << "Concert has changed";
     int downloadsSize = 0;
 
-    if (ConcertSearch::instance()->infosToLoad().contains(ConcertScraperInfos::Poster) && concert->posters().size() > 0) {
+    if (concert->infosToLoad().contains(ConcertScraperInfos::Poster) && concert->posters().size() > 0) {
         emit setActionSaveEnabled(false, WidgetConcerts);
         DownloadManagerElement d;
         d.imageType = TypePoster;
@@ -276,7 +295,7 @@ void ConcertWidget::loadDone(Concert *concert)
         downloadsSize++;
     }
 
-    if (ConcertSearch::instance()->infosToLoad().contains(ConcertScraperInfos::Backdrop) && concert->backdrops().size() > 0) {
+    if (concert->infosToLoad().contains(ConcertScraperInfos::Backdrop) && concert->backdrops().size() > 0) {
         emit setActionSaveEnabled(false, WidgetConcerts);
         DownloadManagerElement d;
         d.imageType = TypeBackdrop;
@@ -288,6 +307,45 @@ void ConcertWidget::loadDone(Concert *concert)
             ui->backdrop->setMovie(m_loadingMovie);
         }
         downloadsSize++;
+    }
+
+    QMapIterator<int, QList<Poster> > it(posters);
+    while (it.hasNext()) {
+        it.next();
+        if (it.key() == TypeClearArt && !it.value().isEmpty()) {
+            DownloadManagerElement d;
+            d.imageType = TypeClearArt;
+            d.url = it.value().at(0).originalUrl;
+            d.concert = concert;
+            m_posterDownloadManager->addDownload(d);
+            if (m_concert == concert) {
+                ui->clearArt->setPixmap(QPixmap());
+                ui->clearArt->setMovie(m_loadingMovie);
+            }
+            downloadsSize++;
+        } else if (it.key() == TypeCdArt && !it.value().isEmpty()) {
+            DownloadManagerElement d;
+            d.imageType = TypeCdArt;
+            d.url = it.value().at(0).originalUrl;
+            d.concert = concert;
+            m_posterDownloadManager->addDownload(d);
+            if (m_concert == concert) {
+                ui->cdArt->setPixmap(QPixmap());
+                ui->cdArt->setMovie(m_loadingMovie);
+            }
+            downloadsSize++;
+        } else if (it.key() == TypeLogo && !it.value().isEmpty()) {
+            DownloadManagerElement d;
+            d.imageType = TypeLogo;
+            d.url = it.value().at(0).originalUrl;
+            d.concert = concert;
+            m_posterDownloadManager->addDownload(d);
+            if (m_concert == concert) {
+                ui->logo->setPixmap(QPixmap());
+                ui->logo->setMovie(m_loadingMovie);
+            }
+            downloadsSize++;
+        }
     }
 
     if (m_concert == concert)

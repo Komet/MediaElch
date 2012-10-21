@@ -334,7 +334,7 @@ void MovieWidget::startScraperSearch()
         setDisabledTrue();
         m_movie->loadData(MovieSearch::instance()->scraperId(), Manager::instance()->scrapers().at(MovieSearch::instance()->scraperNo()),
                           MovieSearch::instance()->infosToLoad());
-        connect(this->m_movie, SIGNAL(loaded(Movie*)), this, SLOT(loadDone(Movie*)), Qt::UniqueConnection);
+        connect(m_movie, SIGNAL(loaded(Movie*)), this, SLOT(infoLoadDone(Movie*)), Qt::UniqueConnection);
     } else {
         emit setActionSearchEnabled(true, WidgetMovies);
         emit setActionSaveEnabled(true, WidgetMovies);
@@ -342,11 +342,30 @@ void MovieWidget::startScraperSearch()
 }
 
 /**
+ * @brief MovieWidget::infoLoadDone
+ * @param movie
+ */
+void MovieWidget::infoLoadDone(Movie *movie)
+{
+    QList<int> types;
+    if (movie->infosToLoad().contains(MovieScraperInfos::ExtraArts))
+        types << TypeClearArt << TypeCdArt << TypeLogo;
+    if (!movie->tmdbId().isEmpty() && !types.isEmpty()) {
+        Manager::instance()->fanartTv()->movieImages(movie, movie->tmdbId(), types);
+        connect(Manager::instance()->fanartTv(), SIGNAL(sigImagesLoaded(Movie*,QMap<int,QList<Poster> >)), this, SLOT(loadDone(Movie*,QMap<int,QList<Poster> >)), Qt::UniqueConnection);
+    } else {
+        QMap<int, QList<Poster> > map;
+        loadDone(movie, map);
+    }
+}
+
+/**
  * @brief Called when the search widget finishes
  * Updates infos and starts downloads
  * @param movie Movie
+ * @param posters
  */
-void MovieWidget::loadDone(Movie *movie)
+void MovieWidget::loadDone(Movie *movie, QMap<int, QList<Poster> > posters)
 {
     qDebug() << "Entered";
     if (m_movie == 0) {
@@ -360,7 +379,7 @@ void MovieWidget::loadDone(Movie *movie)
         qDebug() << "Movie has changed";
     int downloadsSize = 0;
 
-    if (MovieSearch::instance()->infosToLoad().contains(MovieScraperInfos::Poster) && movie->posters().size() > 0) {
+    if (movie->infosToLoad().contains(MovieScraperInfos::Poster) && movie->posters().size() > 0) {
         emit setActionSaveEnabled(false, WidgetMovies);
         DownloadManagerElement d;
         d.imageType = TypePoster;
@@ -374,7 +393,7 @@ void MovieWidget::loadDone(Movie *movie)
         downloadsSize++;
     }
 
-    if (MovieSearch::instance()->infosToLoad().contains(MovieScraperInfos::Backdrop) &&movie->backdrops().size() > 0) {
+    if (movie->infosToLoad().contains(MovieScraperInfos::Backdrop) &&movie->backdrops().size() > 0) {
         emit setActionSaveEnabled(false, WidgetMovies);
         DownloadManagerElement d;
         d.imageType = TypeBackdrop;
@@ -388,7 +407,7 @@ void MovieWidget::loadDone(Movie *movie)
         downloadsSize++;
     }
 
-    if (MovieSearch::instance()->infosToLoad().contains(MovieScraperInfos::Actors)) {
+    if (movie->infosToLoad().contains(MovieScraperInfos::Actors)) {
         QList<Actor*> actors = movie->actorsPointer();
         for (int i=0, n=actors.size() ; i<n ; i++) {
             if (actors.at(i)->thumb.isEmpty())
@@ -402,6 +421,46 @@ void MovieWidget::loadDone(Movie *movie)
             downloadsSize++;
         }
     }
+
+    QMapIterator<int, QList<Poster> > it(posters);
+    while (it.hasNext()) {
+        it.next();
+        if (it.key() == TypeClearArt && !it.value().isEmpty()) {
+            DownloadManagerElement d;
+            d.imageType = TypeClearArt;
+            d.url = it.value().at(0).originalUrl;
+            d.movie = movie;
+            m_posterDownloadManager->addDownload(d);
+            if (m_movie == movie) {
+                ui->clearArt->setPixmap(QPixmap());
+                ui->clearArt->setMovie(m_loadingMovie);
+            }
+            downloadsSize++;
+        } else if (it.key() == TypeCdArt && !it.value().isEmpty()) {
+            DownloadManagerElement d;
+            d.imageType = TypeCdArt;
+            d.url = it.value().at(0).originalUrl;
+            d.movie = movie;
+            m_posterDownloadManager->addDownload(d);
+            if (m_movie == movie) {
+                ui->cdArt->setPixmap(QPixmap());
+                ui->cdArt->setMovie(m_loadingMovie);
+            }
+            downloadsSize++;
+        } else if (it.key() == TypeLogo && !it.value().isEmpty()) {
+            DownloadManagerElement d;
+            d.imageType = TypeLogo;
+            d.url = it.value().at(0).originalUrl;
+            d.movie = movie;
+            m_posterDownloadManager->addDownload(d);
+            if (m_movie == movie) {
+                ui->logo->setPixmap(QPixmap());
+                ui->logo->setMovie(m_loadingMovie);
+            }
+            downloadsSize++;
+        }
+    }
+
     if (downloadsSize > 0)
         emit actorDownloadStarted(tr("Downloading Missing Actor Images..."), Constants::MovieProgressMessageId+movie->movieId());
     else if (m_movie == movie)

@@ -44,7 +44,8 @@ signals:
 
 private slots:
     void downloadActorsFinished(Concert *concert);
-    void loadDone(Concert *concert);
+    void infoLoadDone(Concert *concert);
+    void loadDone(Concert *concert, QMap<int, QList<Poster> > posters);
     void chooseConcertPoster();
     void chooseConcertBackdrop();
     void chooseConcertLogo();

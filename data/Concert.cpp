@@ -174,7 +174,19 @@ bool Concert::loadData(MediaCenterInterface *mediaCenterInterface, bool force)
 void Concert::loadData(QString id, ConcertScraperInterface *scraperInterface, QList<int> infos)
 {
     qDebug() << "Entered, id=" << id << "scraperInterface=" << scraperInterface->name();
+    m_infosToLoad = infos;
+    if (scraperInterface->name() == "The Movie DB (Concerts)")
+        setTmdbId(id);
     scraperInterface->loadData(id, this, infos);
+}
+
+/**
+ * @brief Concert::infosToLoad
+ * @return
+ */
+QList<int> Concert::infosToLoad()
+{
+    return m_infosToLoad;
 }
 
 /**
