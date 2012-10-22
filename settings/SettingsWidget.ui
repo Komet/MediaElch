@@ -710,6 +710,25 @@ QTabBar::tab:selected {
         </widget>
        </item>
        <item>
+        <widget class="QLabel" name="labelWarning">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: #B94A48;</string>
+         </property>
+         <property name="text">
+          <string>The MySQL and SQLite interfaces are currently unstable, unmaintained and completely unsupported! Only enable them if you know what you're doing. Don't fill bug reports regarding these interfaces!</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QRadioButton" name="radioXbmcMysql">
          <property name="text">
           <string>XBMC MySQL</string>

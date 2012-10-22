@@ -2285,7 +2285,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="141"/>
-        <location filename="../settings/SettingsWidget.ui" line="860"/>
+        <location filename="../settings/SettingsWidget.ui" line="879"/>
         <source>Path</source>
         <translation>Verzeichnis</translation>
     </message>
@@ -2324,43 +2324,43 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>XBMC XML</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="715"/>
+        <location filename="../settings/SettingsWidget.ui" line="734"/>
         <source>XBMC MySQL</source>
         <translation>XBMC MySQL</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="734"/>
-        <location filename="../settings/SettingsWidget.ui" line="915"/>
+        <location filename="../settings/SettingsWidget.ui" line="753"/>
+        <location filename="../settings/SettingsWidget.ui" line="934"/>
         <source>Host</source>
         <translation>Host</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="751"/>
-        <location filename="../settings/SettingsWidget.ui" line="824"/>
+        <location filename="../settings/SettingsWidget.ui" line="770"/>
+        <location filename="../settings/SettingsWidget.ui" line="843"/>
         <source>Database</source>
         <translation>Datenbank</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="768"/>
-        <location filename="../settings/SettingsWidget.ui" line="929"/>
+        <location filename="../settings/SettingsWidget.ui" line="787"/>
+        <location filename="../settings/SettingsWidget.ui" line="948"/>
         <source>Username</source>
         <translation>Benutzername</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="785"/>
-        <location filename="../settings/SettingsWidget.ui" line="936"/>
+        <location filename="../settings/SettingsWidget.ui" line="804"/>
+        <location filename="../settings/SettingsWidget.ui" line="955"/>
         <source>Password</source>
         <translation>Passwort</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="808"/>
+        <location filename="../settings/SettingsWidget.ui" line="827"/>
         <source>XBMC SQLite</source>
         <translation>XBMC SQLite</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="270"/>
-        <location filename="../settings/SettingsWidget.ui" line="838"/>
-        <location filename="../settings/SettingsWidget.ui" line="874"/>
+        <location filename="../settings/SettingsWidget.ui" line="857"/>
+        <location filename="../settings/SettingsWidget.ui" line="893"/>
         <source>Select</source>
         <translation>Auswählen</translation>
     </message>
@@ -2554,64 +2554,69 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>banner.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="848"/>
+        <location filename="../settings/SettingsWidget.ui" line="724"/>
+        <source>The MySQL and SQLite interfaces are currently unstable, unmaintained and completely unsupported! Only enable them if you know what you&apos;re doing. Don&apos;t fill bug reports regarding these interfaces!</source>
+        <translation>Die MySQL und SQLite Interfaces sind zur Zeit instabil und werden nicht weiterentwickelt! Aktiviere sie nur, wenn du wirklich weißt, was du tust. Bitte melde KEINE Fehler, die du bei der Verwendung dieser Interfaces findest!</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="867"/>
         <source>Set the path where Thumbnails are stored (e.g. ~/.xbmc/userdata/Thumbnails)</source>
         <translation>Wähle das Verzeichnis aus, in dem die XBMC Thumbnails gespeichert werden (z.B. ~/.xbmc/userdata/Thumbnails)</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="889"/>
+        <location filename="../settings/SettingsWidget.ui" line="908"/>
         <source>MediaCenter Settings</source>
         <translation>MediaCenter Einstellungen</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="896"/>
+        <location filename="../settings/SettingsWidget.ui" line="915"/>
         <source>Stores YouTube URLs like &quot;http://www.youtube.com/watch?v=123&quot; as &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</source>
         <translation>Formatiert YouTube URLs wie &quot;http://www.youtube.com/watch?v=123&quot; als &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="899"/>
+        <location filename="../settings/SettingsWidget.ui" line="918"/>
         <source>Store trailer URLs in YouTube Plugin format</source>
         <translation>Speichere Trailer URLs im YouTube Plugin Format</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="907"/>
+        <location filename="../settings/SettingsWidget.ui" line="926"/>
         <source>Proxy</source>
         <translation>Proxy</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="922"/>
+        <location filename="../settings/SettingsWidget.ui" line="941"/>
         <source>Port</source>
         <translation>Port</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="963"/>
+        <location filename="../settings/SettingsWidget.ui" line="982"/>
         <source>Enable Proxy</source>
         <translation>Proxy verwenden</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="970"/>
+        <location filename="../settings/SettingsWidget.ui" line="989"/>
         <source>Type</source>
         <comment>Proxy Type</comment>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="978"/>
+        <location filename="../settings/SettingsWidget.ui" line="997"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="983"/>
+        <location filename="../settings/SettingsWidget.ui" line="1002"/>
         <source>SOCKS 5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1035"/>
+        <location filename="../settings/SettingsWidget.ui" line="1054"/>
         <location filename="../settings/SettingsWidget.cpp" line="558"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1042"/>
+        <location filename="../settings/SettingsWidget.ui" line="1061"/>
         <source>Save Settings</source>
         <translation>Einstellungen Speichern</translation>
     </message>

@@ -599,6 +599,7 @@ void SettingsWidget::dirListRowChanged(int currentRow)
  */
 void SettingsWidget::onMediaCenterXbmcXmlSelected()
 {
+    ui->labelWarning->setVisible(false);
     ui->radioXbmcXml->setChecked(true);
     ui->widgetXbmcXmlFiles->setVisible(true);
     ui->widgetXbmcMysql->setVisible(false);
@@ -611,6 +612,7 @@ void SettingsWidget::onMediaCenterXbmcXmlSelected()
  */
 void SettingsWidget::onMediaCenterXbmcMysqlSelected()
 {
+    ui->labelWarning->setVisible(true);
     ui->radioXbmcMysql->setChecked(true);
     ui->widgetXbmcXmlFiles->setVisible(false);
     ui->widgetXbmcMysql->setVisible(true);
@@ -623,6 +625,7 @@ void SettingsWidget::onMediaCenterXbmcMysqlSelected()
  */
 void SettingsWidget::onMediaCenterXbmcSqliteSelected()
 {
+    ui->labelWarning->setVisible(true);
     ui->radioXbmcSqlite->setChecked(true);
     ui->widgetXbmcXmlFiles->setVisible(false);
     ui->widgetXbmcMysql->setVisible(false);
