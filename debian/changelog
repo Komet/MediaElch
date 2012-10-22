@@ -1,3 +1,23 @@
+mediaelch (1.1-1) unstable; urgency=low
+
+  * Fanart.tv: Support for Logos, Clear Arts, CD Arts and Character Arts
+  * Improved filter widget
+  * Organize movies: move into separate directories (Thanks to googl1)
+  * Prefer locale posters from TMDb (Thanks to jhenkens)
+  * Show new mark on tv show seasons
+  * Added .dat, .ts, .vob and .flv file extensions
+  * Simple caching of scanned folder to speedup scanning for files
+  * Added director and writer fields for movies
+  * A proxy can be used for network request
+  * Episodes with naming pattern 1×01 are now recognized
+  * Highlight new entries in sidebar
+  * Small GUI improvements
+  * Increased maximum season and episode numbers
+  * Bugfix: Fixed memory problem
+  * Bugfix: Handle network timeouts while downloading images
+  
+ -- Daniel Kabel <daniel.kabel@me.com>  Mon, 22 Oct 2012 18:14:25 +0200
+
 mediaelch (1.0-1) unstable; urgency=low
 
   * Added Concert/MusicVideo scraping
