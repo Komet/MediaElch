@@ -77,13 +77,13 @@ bool Helper::isDvd(QString path)
 {
     QDir dir(path);
     QStringList filters;
-    filters << "VIDEO_TS";
-    if (dir.entryList(filters, QDir::Dirs | QDir::NoDotAndDotDot).count() == 1) {
-        dir.setPath(path + QDir::separator() + "VIDEO_TS");
-        filters.clear();
-        filters << "VIDEO_TS.IFO";
-        if (dir.entryList(filters).count() == 1)
-            return true;
+    filters << "VIDEO_TS" << "VIDEO TS";
+    if (dir.entryList(filters, QDir::Dirs | QDir::NoDotAndDotDot).count() > 0) {
+        foreach (const QString filter, filters) {
+            dir.setPath(path + QDir::separator() + filter);
+            if (dir.entryList(QStringList() << "VIDEO_TS.IFO").count() == 1)
+                return true;
+        }
     }
 
     return false;
