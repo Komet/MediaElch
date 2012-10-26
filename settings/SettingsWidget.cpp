@@ -128,9 +128,6 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     m_logFileDialog = new QFileDialog(this, tr("Logfile"), QDir::homePath(), tr("Logfiles (*.log *.txt)"));
     m_logFileDialog->setFileMode(QFileDialog::AnyFile);
     m_logFileDialog->selectFile("MediaElch.log");
-    m_dirDialog = new QFileDialog(this, tr("Choose a directory containing your movies, TV show or concerts"), QDir::homePath());
-    m_dirDialog->setFileMode(QFileDialog::Directory);
-    m_dirDialog->setOption(QFileDialog::ShowDirsOnly, true);
     m_xbmcThumbnailDirDialog = new QFileDialog(this, tr("Choose a directory containing your Thumbnails"), QDir::homePath());;
     m_xbmcThumbnailDirDialog->setFileMode(QFileDialog::Directory);
     m_xbmcThumbnailDirDialog->setOption(QFileDialog::ShowDirsOnly, true);
@@ -138,11 +135,10 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     m_xbmcSqliteDatabaseDialog->setFileMode(QFileDialog::ExistingFile);
 
     connect(m_logFileDialog, SIGNAL(fileSelected(QString)), this, SLOT(onDebugLogPathChosen(QString)));
-    connect(m_dirDialog, SIGNAL(fileSelected(QString)), this, SLOT(addDir(QString)));
     connect(m_xbmcThumbnailDirDialog, SIGNAL(fileSelected(QString)), this, SLOT(onChooseXbmcThumbnailPath(QString)));
     connect(m_xbmcSqliteDatabaseDialog, SIGNAL(fileSelected(QString)), this, SLOT(onChooseMediaCenterXbmcSqliteDatabase(QString)));
 
-    connect(ui->buttonAddDir, SIGNAL(clicked()), m_dirDialog, SLOT(open()));
+    connect(ui->buttonAddDir, SIGNAL(clicked()), this, SLOT(chooseDirToAdd()));
     connect(ui->buttonRemoveDir, SIGNAL(clicked()), this, SLOT(removeDir()));
     connect(ui->buttonMovieFilesToDirs, SIGNAL(clicked()), this, SLOT(organize()));
     connect(ui->dirs, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(dirListRowChanged(int)));
@@ -728,4 +724,14 @@ void SettingsWidget::onUseProxy()
     ui->proxyPort->setEnabled(enabled);
     ui->proxyUsername->setEnabled(enabled);
     ui->proxyPassword->setEnabled(enabled);
+}
+
+/**
+ * @brief Shows a native file dialog and adds the chosen dir
+ */
+void SettingsWidget::chooseDirToAdd()
+{
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a directory containing your movies, TV show or concerts"), QDir::homePath());
+    if (!dir.isEmpty())
+        addDir(dir);
 }

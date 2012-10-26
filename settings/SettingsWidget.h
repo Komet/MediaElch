@@ -36,6 +36,7 @@ public slots:
     void reject();
 
 private slots:
+    void chooseDirToAdd();
     void addDir(QString dir, QString mediaCenterPath = QString(), bool separateFolders = false, SettingsDirType dirType = DirTypeMovies);
     void removeDir();
     void organize();
@@ -58,7 +59,6 @@ private:
     Settings *m_settings;
 
     QFileDialog *m_logFileDialog;
-    QFileDialog *m_dirDialog;
     QFileDialog *m_xbmcThumbnailDirDialog;
     QFileDialog *m_xbmcSqliteDatabaseDialog;
     QMap<ScraperInterface*, QComboBox*> m_scraperCombos;
