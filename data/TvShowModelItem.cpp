@@ -78,7 +78,7 @@ QVariant TvShowModelItem::data(int column) const
         if (!m_season.isEmpty() && m_tvShow)
             return m_tvShow->hasNewEpisodesInSeason(m_season);
         else if (m_tvShow)
-            return m_tvShow->hasNewEpisodes();
+            return m_tvShow->hasNewEpisodes() || !m_tvShow->infoLoaded();
         else if (m_tvShowEpisode)
             return !m_tvShowEpisode->infoLoaded();
         break;
