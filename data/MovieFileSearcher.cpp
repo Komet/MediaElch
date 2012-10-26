@@ -12,7 +12,7 @@
  * @param parent
  */
 MovieFileSearcher::MovieFileSearcher(QObject *parent) :
-    QThread(parent)
+    QObject(parent)
 {
     m_progressMessageId = Constants::MovieFileSearcherProgressMessageId;
 }
@@ -56,11 +56,12 @@ void MovieFileSearcher::run()
             if (index != -1)
                 inSeparateFolder = m_directories[index].separateFolders;
         }
-        Movie *movie = new Movie(files);
+        Movie *movie = new Movie(files, this);
         movie->setInSeparateFolder(inSeparateFolder);
         movie->loadData(Manager::instance()->mediaCenterInterface());
         Manager::instance()->movieModel()->addMovie(movie);
         emit progress(++i, n, m_progressMessageId);
+        qApp->processEvents();
     }
 
     qDebug() << "Searching for movies done";

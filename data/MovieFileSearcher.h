@@ -1,7 +1,7 @@
 #ifndef MOVIEFILESEARCHER_H
 #define MOVIEFILESEARCHER_H
 
-#include <QThread>
+#include <QObject>
 #include <QDir>
 
 #include "data/Movie.h"
@@ -10,16 +10,19 @@
 /**
  * @brief The MovieFileSearcher class
  */
-class MovieFileSearcher : public QThread
+class MovieFileSearcher : public QObject
 {
     Q_OBJECT
 public:
     explicit MovieFileSearcher(QObject *parent = 0);
     ~MovieFileSearcher();
 
-    void run();
+    // void run();
     void setMovieDirectories(QList<SettingsDir> directories);
     void scanDir(QString path, QList<QStringList> &contents, bool separateFolders = false, bool firstScan = false);
+
+public slots:
+    void run();
 
 signals:
     void searchStarted(QString, int);

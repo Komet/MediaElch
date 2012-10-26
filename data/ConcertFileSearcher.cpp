@@ -12,7 +12,7 @@
  * @param parent
  */
 ConcertFileSearcher::ConcertFileSearcher(QObject *parent) :
-    QThread(parent)
+    QObject(parent)
 {
     m_progressMessageId = Constants::ConcertFileSearcherProgressMessageId;
 }
@@ -65,11 +65,12 @@ void ConcertFileSearcher::run()
             if (index != -1)
                 inSeparateFolder = m_directories[index].separateFolders;
         }
-        Concert *concert = new Concert(files);
+        Concert *concert = new Concert(files, this);
         concert->setInSeparateFolder(inSeparateFolder);
         concert->loadData(Manager::instance()->mediaCenterInterface());
         Manager::instance()->concertModel()->addConcert(concert);
         emit progress(++i, n, m_progressMessageId);
+        qApp->processEvents();
     }
 
     qDebug() << "Searching for concerts done";

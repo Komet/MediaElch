@@ -16,7 +16,7 @@
  * @param parent
  */
 TvShowFileSearcher::TvShowFileSearcher(QObject *parent) :
-    QThread(parent)
+    QObject(parent)
 {
     m_progressMessageId = Constants::TvShowSearcherProgressMessageId;
 }
@@ -61,7 +61,7 @@ void TvShowFileSearcher::run()
     it.toFront();
     while (it.hasNext()) {
         it.next();
-        TvShow *show = new TvShow(it.key());
+        TvShow *show = new TvShow(it.key(), this);
         show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
         TvShowModelItem *showItem = Manager::instance()->tvShowModel()->appendChild(show);
         QMap<int, TvShowModelItem*> seasonItems;
@@ -73,8 +73,8 @@ void TvShowFileSearcher::run()
                 seasonItems.insert(episode->season(), showItem->appendChild(episode->seasonString(), show));
             seasonItems.value(episode->season())->appendChild(episode);
             emit progress(++i, n, m_progressMessageId);
+            qApp->processEvents();
         }
-        show->moveToMainThread();
     }
 
     qDebug() << "Searching for tv shows done";

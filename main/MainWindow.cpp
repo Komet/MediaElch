@@ -130,13 +130,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ImagePreviewDialog::instance(ui->centralWidget);
     ConcertSearch::instance(ui->centralWidget);
 
-    // hack. without only the fileScannerDialog pops up and blocks until it has finished
-    show();
-    onMenu(WidgetMovies);
-
-    // Start scanning for files
-    m_fileScannerDialog->exec();
-
 #ifdef Q_WS_WIN
     setStyleSheet(styleSheet() + " #centralWidget { border-bottom: 1px solid rgba(0, 0, 0, 100); } ");
 
@@ -147,6 +140,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->labelConcerts->setFont(font);
     ui->labelShows->setFont(font);
 #endif
+
+    // hack. without only the fileScannerDialog pops up and blocks until it has finished
+    show();
+    onMenu(WidgetMovies);
+
+    // Start scanning for files
+    QTimer::singleShot(0, m_fileScannerDialog, SLOT(exec()));
 }
 
 /**

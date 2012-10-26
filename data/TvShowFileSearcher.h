@@ -2,19 +2,21 @@
 #define TVSHOWFILESEARCHER_H
 
 #include <QDir>
-#include <QThread>
+#include <QObject>
 #include "globals/Globals.h"
 
 /**
  * @brief The TvShowFileSearcher class
  */
-class TvShowFileSearcher : public QThread
+class TvShowFileSearcher : public QObject
 {
     Q_OBJECT
 public:
     explicit TvShowFileSearcher(QObject *parent = 0);
-    void run();
     void setMovieDirectories(QList<SettingsDir> directories);
+
+public slots:
+    void run();
 
 signals:
     void searchStarted(QString, int);

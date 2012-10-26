@@ -2,6 +2,8 @@
 #include "ui_FileScannerDialog.h"
 #include "globals/Manager.h"
 
+#include <QTimer>
+
 /**
  * @brief FileScannerDialog::FileScannerDialog
  * @param parent
@@ -44,9 +46,11 @@ void FileScannerDialog::exec()
     Manager::instance()->tvShowFileSearcher()->setMovieDirectories(Settings::instance()->tvShowDirectories());
     Manager::instance()->concertFileSearcher()->setConcertDirectories(Settings::instance()->concertDirectories());
 
-    onStartMovieScanner();
     adjustSize();
-    QDialog::exec();
+    ui->status->setText(tr("Searching for Movies..."));
+    ui->progressBar->setValue(0);
+    QDialog::show();
+    onStartMovieScanner();
 }
 
 /**
@@ -64,7 +68,7 @@ void FileScannerDialog::onStartMovieScanner()
     ui->status->setText(tr("Searching for Movies..."));
     ui->progressBar->setValue(0);
     Manager::instance()->movieModel()->clear();
-    Manager::instance()->movieFileSearcher()->start();
+    QTimer::singleShot(0, Manager::instance()->movieFileSearcher(), SLOT(run()));
 }
 
 /**
@@ -75,7 +79,7 @@ void FileScannerDialog::onStartTvShowScanner()
     ui->status->setText(tr("Searching for TV Shows..."));
     ui->progressBar->setValue(0);
     Manager::instance()->tvShowModel()->clear();
-    Manager::instance()->tvShowFileSearcher()->start();
+    QTimer::singleShot(0, Manager::instance()->tvShowFileSearcher(), SLOT(run()));
 }
 
 /**
@@ -86,7 +90,7 @@ void FileScannerDialog::onStartConcertScanner()
     ui->status->setText(tr("Searching for Concerts..."));
     ui->progressBar->setValue(0);
     Manager::instance()->concertModel()->clear();
-    Manager::instance()->concertFileSearcher()->start();
+    QTimer::singleShot(0, Manager::instance()->concertFileSearcher(), SLOT(run()));
 }
 
 /**

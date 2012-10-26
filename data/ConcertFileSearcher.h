@@ -3,7 +3,6 @@
 
 #include <QDir>
 #include <QObject>
-#include <QThread>
 
 #include "data/Concert.h"
 #include "globals/Globals.h"
@@ -11,14 +10,15 @@
 /**
  * @brief The ConcertFileSearcher class
  */
-class ConcertFileSearcher : public QThread
+class ConcertFileSearcher : public QObject
 {
     Q_OBJECT
 public:
     explicit ConcertFileSearcher(QObject *parent = 0);
-
-    void run();
     void setConcertDirectories(QList<SettingsDir> directories);
+
+public slots:
+    void run();
 
 signals:
     void searchStarted(QString, int);
