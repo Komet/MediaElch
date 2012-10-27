@@ -15,7 +15,6 @@
 #include "globals/ImageDialog.h"
 #include "globals/ComboDelegate.h"
 #include "movies/MovieSearch.h"
-#include "smallWidgets/DataLineEdit.h"
 
 /**
  * @brief MovieWidget::MovieWidget
