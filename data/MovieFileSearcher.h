@@ -17,9 +17,8 @@ public:
     explicit MovieFileSearcher(QObject *parent = 0);
     ~MovieFileSearcher();
 
-    // void run();
     void setMovieDirectories(QList<SettingsDir> directories);
-    void scanDir(QString path, QList<QStringList> &contents, bool separateFolders = false, bool firstScan = false);
+    void scanDir(QString startPath, QString path, QList<QStringList> &contents, bool separateFolders = false, bool firstScan = false);
 
 public slots:
     void run();
@@ -28,6 +27,7 @@ signals:
     void searchStarted(QString, int);
     void progress(int, int, int);
     void moviesLoaded(int);
+    void currentDir(QString);
 
 private:
     QList<SettingsDir> m_directories;

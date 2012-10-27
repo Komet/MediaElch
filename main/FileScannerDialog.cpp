@@ -19,9 +19,22 @@ FileScannerDialog::FileScannerDialog(QWidget *parent) :
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
 
+    QFont font = ui->currentDir->font();
+#ifdef Q_WS_WIN
+    font.setPointSize(font.pointSize()-1);
+#else
+    font.setPointSize(font.pointSize()-2);
+#endif
+    ui->currentDir->setFont(font);
+
+
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(onProgress(int,int)));
     connect(Manager::instance()->concertFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(onProgress(int,int)));
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(onProgress(int,int)));
+
+    connect(Manager::instance()->movieFileSearcher(), SIGNAL(currentDir(QString)), this, SLOT(onCurrentDir(QString)));
+    connect(Manager::instance()->concertFileSearcher(), SIGNAL(currentDir(QString)), this, SLOT(onCurrentDir(QString)));
+    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(currentDir(QString)), this, SLOT(onCurrentDir(QString)));
 
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded(int)), this, SLOT(onStartTvShowScanner()));
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(onStartConcertScanner()));
@@ -46,9 +59,10 @@ void FileScannerDialog::exec()
     Manager::instance()->tvShowFileSearcher()->setMovieDirectories(Settings::instance()->tvShowDirectories());
     Manager::instance()->concertFileSearcher()->setConcertDirectories(Settings::instance()->concertDirectories());
 
-    adjustSize();
     ui->status->setText(tr("Searching for Movies..."));
     ui->progressBar->setValue(0);
+    ui->currentDir->setText("");
+    adjustSize();
     QDialog::show();
     onStartMovieScanner();
 }
@@ -76,9 +90,11 @@ void FileScannerDialog::onStartMovieScanner()
  */
 void FileScannerDialog::onStartTvShowScanner()
 {
+    ui->currentDir->setText("");
     ui->status->setText(tr("Searching for TV Shows..."));
     ui->progressBar->setValue(0);
     Manager::instance()->tvShowModel()->clear();
+    qApp->processEvents();
     QTimer::singleShot(0, Manager::instance()->tvShowFileSearcher(), SLOT(run()));
 }
 
@@ -87,9 +103,11 @@ void FileScannerDialog::onStartTvShowScanner()
  */
 void FileScannerDialog::onStartConcertScanner()
 {
+    ui->currentDir->setText("");
     ui->status->setText(tr("Searching for Concerts..."));
     ui->progressBar->setValue(0);
     Manager::instance()->concertModel()->clear();
+    qApp->processEvents();
     QTimer::singleShot(0, Manager::instance()->concertFileSearcher(), SLOT(run()));
 }
 
@@ -102,4 +120,14 @@ void FileScannerDialog::onProgress(int current, int max)
 {
     ui->progressBar->setRange(0, max);
     ui->progressBar->setValue(current);
+}
+
+/**
+ * @brief Displays the current directory
+ * @param dir Current directory
+ */
+void FileScannerDialog::onCurrentDir(QString dir)
+{
+    ui->currentDir->setText(dir);
+    qApp->processEvents();
 }

@@ -27,6 +27,7 @@ private slots:
     void onStartTvShowScanner();
     void onStartConcertScanner();
     void onProgress(int current, int max);
+    void onCurrentDir(QString dir);
 
 private:
     Ui::FileScannerDialog *ui;

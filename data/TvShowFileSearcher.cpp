@@ -48,9 +48,11 @@ void TvShowFileSearcher::run()
 
     Manager::instance()->tvShowModel()->clear();
     QMap<QString, QList<QStringList> > contents;
-    foreach (const QString &path, m_directories) {
+    foreach (const QString &path, m_directories)
         getTvShows(path, contents);
-    }
+
+    emit currentDir("");
+
     int i=0;
     int n=0;
     QMapIterator<QString, QList<QStringList> > it(contents);
@@ -92,7 +94,7 @@ void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QList<QStringLis
     QStringList tvShows = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
     foreach (const QString &cDir, tvShows) {
         QList<QStringList> tvShowContents;
-        scanTvShowDir(path + QDir::separator() + cDir, tvShowContents);
+        scanTvShowDir(path, path + QDir::separator() + cDir, tvShowContents);
         contents.insert(QDir::toNativeSeparators(dir.path() + QDir::separator() + cDir), tvShowContents);
     }
 }
@@ -100,11 +102,14 @@ void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QList<QStringLis
 /**
  * @brief Scans the given path for tv show files.
  * Results are in a list which contains a QStringList for every episode.
+ * @param startPath Scanning started at this path
  * @param path Path to scan
  * @param contents List of contents
  */
-void TvShowFileSearcher::scanTvShowDir(QString path, QList<QStringList> &contents)
+void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QList<QStringList> &contents)
 {
+    emit currentDir(path.mid(startPath.length()));
+
     QDir dir(path);
     foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         // Skip "Extras" folder
@@ -122,7 +127,7 @@ void TvShowFileSearcher::scanTvShowDir(QString path, QList<QStringList> &content
             contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/BDMV/index.bdmv"));
             continue;
         }
-        scanTvShowDir(path + "/" + cDir, contents);
+        scanTvShowDir(startPath, path + "/" + cDir, contents);
     }
 
     QStringList files;

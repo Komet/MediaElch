@@ -45,7 +45,9 @@ void ConcertFileSearcher::run()
     Manager::instance()->concertModel()->clear();
     QList<QStringList> contents;
     foreach (SettingsDir dir, m_directories)
-        scanDir(dir.path, contents, dir.separateFolders, true);
+        scanDir(dir.path, dir.path, contents, dir.separateFolders, true);
+
+    emit currentDir("");
 
     int i=0;
     int n=contents.size();
@@ -81,13 +83,16 @@ void ConcertFileSearcher::run()
 /**
  * @brief Scans the given path for concert files.
  * Results are in a list which contains a QStringList for every concert.
+ * @param startPath Scanning started at this path
  * @param path Path to scan
  * @param contents List of contents
  * @param separateFolders Are concerts in separate folders
  * @param firstScan When this is true, subfolders are scanned, regardless of separateFolders
  */
-void ConcertFileSearcher::scanDir(QString path, QList<QStringList> &contents, bool separateFolders, bool firstScan)
+void ConcertFileSearcher::scanDir(QString startPath, QString path, QList<QStringList> &contents, bool separateFolders, bool firstScan)
 {
+    emit currentDir(path.mid(startPath.length()));
+
     QDir dir(path);
     foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         // Skip "Extras" folder
@@ -108,7 +113,7 @@ void ConcertFileSearcher::scanDir(QString path, QList<QStringList> &contents, bo
 
         // Don't scan subfolders when separate folders is checked
         if (!separateFolders || firstScan)
-            scanDir(path + "/" + cDir, contents, separateFolders);
+            scanDir(startPath, path + "/" + cDir, contents, separateFolders);
     }
 
     QStringList files;

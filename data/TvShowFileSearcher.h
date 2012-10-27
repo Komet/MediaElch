@@ -22,12 +22,13 @@ signals:
     void searchStarted(QString, int);
     void progress(int, int, int);
     void tvShowsLoaded(int);
+    void currentDir(QString);
 
 private:
     QStringList m_directories;
     int m_progressMessageId;
     void getTvShows(QString path, QMap<QString, QList<QStringList> > &contents);
-    void scanTvShowDir(QString path, QList<QStringList> &contents);
+    void scanTvShowDir(QString startPath, QString path, QList<QStringList> &contents);
     QStringList getCachedFiles(QString path);
 };
 
