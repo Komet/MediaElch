@@ -35,9 +35,17 @@ FilesWidget::FilesWidget(QWidget *parent) :
     m_movieProxyModel->setDynamicSortFilter(true);
     ui->files->setModel(m_movieProxyModel);
     ui->files->setItemDelegate(m_movieDelegate);
-    ui->files->sortByColumn(0);
+
+    m_baseLabelCss = ui->sortByYear->styleSheet();
+    m_activeLabelCss = ui->sortByNew->styleSheet();
 
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
+
+    connect(ui->sortByNew, SIGNAL(clicked()), this, SLOT(onSortByNew()));
+    connect(ui->sortByName, SIGNAL(clicked()), this, SLOT(onSortByName()));
+    connect(ui->sortByLastAdded, SIGNAL(clicked()), this, SLOT(onSortByAdded()));
+    connect(ui->sortBySeen, SIGNAL(clicked()), this, SLOT(onSortBySeen()));
+    connect(ui->sortByYear, SIGNAL(clicked()), this, SLOT(onSortByYear()));
 }
 
 /**
@@ -103,4 +111,69 @@ void FilesWidget::restoreLastSelection()
 {
     qDebug() << "Entered";
     ui->files->setCurrentIndex(m_lastModelIndex);
+}
+
+/**
+ * @brief Adjusts labels and sets sort by to added
+ */
+void FilesWidget::onSortByAdded()
+{
+    ui->sortByNew->setStyleSheet(m_baseLabelCss);
+    ui->sortByLastAdded->setStyleSheet(m_activeLabelCss);
+    ui->sortByName->setStyleSheet(m_baseLabelCss);
+    ui->sortByYear->setStyleSheet(m_baseLabelCss);
+    ui->sortBySeen->setStyleSheet(m_baseLabelCss);
+    m_movieProxyModel->setSortBy(SortByAdded);
+}
+
+/**
+ * @brief Adjusts labels and sets sort by to name
+ */
+void FilesWidget::onSortByName()
+{
+    ui->sortByNew->setStyleSheet(m_baseLabelCss);
+    ui->sortByLastAdded->setStyleSheet(m_baseLabelCss);
+    ui->sortByName->setStyleSheet(m_activeLabelCss);
+    ui->sortByYear->setStyleSheet(m_baseLabelCss);
+    ui->sortBySeen->setStyleSheet(m_baseLabelCss);
+    m_movieProxyModel->setSortBy(SortByName);
+}
+
+/**
+ * @brief Adjusts labels and sets sort by to name
+ */
+void FilesWidget::onSortByNew()
+{
+    ui->sortByLastAdded->setStyleSheet(m_baseLabelCss);
+    ui->sortByName->setStyleSheet(m_baseLabelCss);
+    ui->sortByYear->setStyleSheet(m_baseLabelCss);
+    ui->sortBySeen->setStyleSheet(m_baseLabelCss);
+    ui->sortByNew->setStyleSheet(m_activeLabelCss);
+    m_movieProxyModel->setSortBy(SortByNew);
+}
+
+/**
+ * @brief Adjusts labels and sets sort by to seen
+ */
+void FilesWidget::onSortBySeen()
+{
+    ui->sortByNew->setStyleSheet(m_baseLabelCss);
+    ui->sortByLastAdded->setStyleSheet(m_baseLabelCss);
+    ui->sortByName->setStyleSheet(m_baseLabelCss);
+    ui->sortByYear->setStyleSheet(m_baseLabelCss);
+    ui->sortBySeen->setStyleSheet(m_activeLabelCss);
+    m_movieProxyModel->setSortBy(SortBySeen);
+}
+
+/**
+ * @brief Adjusts labels and sets sort by to year
+ */
+void FilesWidget::onSortByYear()
+{
+    ui->sortByNew->setStyleSheet(m_baseLabelCss);
+    ui->sortByLastAdded->setStyleSheet(m_baseLabelCss);
+    ui->sortByName->setStyleSheet(m_baseLabelCss);
+    ui->sortByYear->setStyleSheet(m_activeLabelCss);
+    ui->sortBySeen->setStyleSheet(m_baseLabelCss);
+    m_movieProxyModel->setSortBy(SortByYear);
 }

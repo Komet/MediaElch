@@ -207,6 +207,10 @@ namespace ConcertFilters {
     const int Title         = 13;
 }
 
+enum SortBy {
+    SortByName, SortBySeen, SortByAdded, SortByYear, SortByNew
+};
+
 // Debugging
 #if defined( Q_CC_GNU )
 #    if defined( qDebug )

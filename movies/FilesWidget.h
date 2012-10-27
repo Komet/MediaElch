@@ -39,6 +39,11 @@ signals:
 private slots:
     void itemActivated(QModelIndex index, QModelIndex previous);
     void movieSelectedEmitter();
+    void onSortByName();
+    void onSortByAdded();
+    void onSortByYear();
+    void onSortBySeen();
+    void onSortByNew();
 
 private:
     Ui::FilesWidget *ui;
@@ -47,6 +52,8 @@ private:
     Movie *m_lastMovie;
     QModelIndex m_lastModelIndex;
     static FilesWidget *m_instance;
+    QString m_baseLabelCss;
+    QString m_activeLabelCss;
 };
 
 #endif // FILESWIDGET_H

@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QDir>
+#include <QHash>
 
 #include "data/Movie.h"
 #include "globals/Globals.h"
@@ -33,6 +34,7 @@ private:
     QList<SettingsDir> m_directories;
     int m_progressMessageId;
     QStringList getCachedFiles(QString path);
+    QHash<QString, QDateTime> m_lastModifications;
 };
 
 #endif // MOVIEFILESEARCHER_H

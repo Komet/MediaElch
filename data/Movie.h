@@ -111,6 +111,7 @@ public:
     bool hasCdArt() const;
     StreamDetails *streamDetails();
     bool streamDetailsLoaded() const;
+    QDateTime fileLastModified() const;
 
     bool hasChanged() const;
 
@@ -163,6 +164,7 @@ public:
     void setHasClearArt(bool has);
     void setHasCdArt(bool has);
     void setStreamDetailsLoaded(bool loaded);
+    void setFileLastModified(QDateTime modified);
 
     void removeActor(Actor *actor);
     void removeCountry(QString *country);
@@ -237,6 +239,7 @@ private:
     QList<int> m_infosToLoad;
     bool m_streamDetailsLoaded;
     StreamDetails *m_streamDetails;
+    QDateTime m_fileLastModified;
 };
 
 QDebug operator<<(QDebug dbg, const Movie &movie);

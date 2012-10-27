@@ -714,6 +714,31 @@ p, li { white-space: pre-wrap; }
         <source>Refresh</source>
         <translation type="obsolete">Aktualisieren</translation>
     </message>
+    <message>
+        <location filename="../movies/FilesWidget.ui" line="100"/>
+        <source>New</source>
+        <translation>Neu</translation>
+    </message>
+    <message>
+        <location filename="../movies/FilesWidget.ui" line="124"/>
+        <source>Name</source>
+        <translation>Titel</translation>
+    </message>
+    <message>
+        <location filename="../movies/FilesWidget.ui" line="148"/>
+        <source>Date Added</source>
+        <translation>Hinzugefügt</translation>
+    </message>
+    <message>
+        <location filename="../movies/FilesWidget.ui" line="172"/>
+        <source>Seen</source>
+        <translation>Gesehen</translation>
+    </message>
+    <message>
+        <location filename="../movies/FilesWidget.ui" line="196"/>
+        <source>Year</source>
+        <translation>Jahr</translation>
+    </message>
 </context>
 <context>
     <name>FilterWidget</name>
@@ -1081,12 +1106,12 @@ p, li { white-space: pre-wrap; }
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="467"/>
+        <location filename="../globals/ImageDialog.cpp" line="463"/>
         <source>Choose Image</source>
         <translation>Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="467"/>
+        <location filename="../globals/ImageDialog.cpp" line="463"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>Bilder (*.jpg *.jpeg *.png)</translation>
     </message>
@@ -1762,8 +1787,8 @@ Operation abgebrochen.</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="877"/>
-        <location filename="../movies/MovieWidget.cpp" line="763"/>
-        <location filename="../movies/MovieWidget.cpp" line="766"/>
+        <location filename="../movies/MovieWidget.cpp" line="762"/>
+        <location filename="../movies/MovieWidget.cpp" line="765"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -1854,67 +1879,67 @@ Operation abgebrochen.</translation>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="756"/>
-        <location filename="../movies/MovieWidget.cpp" line="790"/>
+        <location filename="../movies/MovieWidget.cpp" line="755"/>
+        <location filename="../movies/MovieWidget.cpp" line="789"/>
         <source>Track %1</source>
         <translation>Spur %1</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="762"/>
-        <location filename="../movies/MovieWidget.cpp" line="765"/>
+        <location filename="../movies/MovieWidget.cpp" line="761"/>
+        <location filename="../movies/MovieWidget.cpp" line="764"/>
+        <location filename="../movies/MovieWidget.cpp" line="792"/>
         <location filename="../movies/MovieWidget.cpp" line="793"/>
-        <location filename="../movies/MovieWidget.cpp" line="794"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="764"/>
-        <location filename="../movies/MovieWidget.cpp" line="767"/>
+        <location filename="../movies/MovieWidget.cpp" line="763"/>
+        <location filename="../movies/MovieWidget.cpp" line="766"/>
         <source>Channels</source>
         <translation>Kanäle</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="782"/>
+        <location filename="../movies/MovieWidget.cpp" line="781"/>
         <source>Subtitles</source>
         <translation>Untertitel</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1053"/>
+        <location filename="../movies/MovieWidget.cpp" line="1052"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1076"/>
+        <location filename="../movies/MovieWidget.cpp" line="1075"/>
         <source>All Movies Saved</source>
         <translation>Alle Filme gespeichert</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1123"/>
+        <location filename="../movies/MovieWidget.cpp" line="1122"/>
         <source>Unknown Actor</source>
         <translation>Unbekannter Schauspieler</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1124"/>
+        <location filename="../movies/MovieWidget.cpp" line="1123"/>
         <source>Unknown Role</source>
         <translation>Unbekannte Rolle</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1177"/>
+        <location filename="../movies/MovieWidget.cpp" line="1176"/>
         <source>Unknown Genre</source>
         <translation>Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1275"/>
+        <location filename="../movies/MovieWidget.cpp" line="1274"/>
         <source>Unknown Country</source>
         <translation>Unbekanntes Land</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1400"/>
+        <location filename="../movies/MovieWidget.cpp" line="1399"/>
         <source>Choose Image</source>
         <translation>Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1400"/>
+        <location filename="../movies/MovieWidget.cpp" line="1399"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
@@ -1927,7 +1952,7 @@ Operation abgebrochen.</translation>
         <translation type="obsolete">Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1226"/>
+        <location filename="../movies/MovieWidget.cpp" line="1225"/>
         <source>Unknown Studio</source>
         <translation>Unbekanntes Studio</translation>
     </message>
@@ -1936,7 +1961,7 @@ Operation abgebrochen.</translation>
         <translation type="obsolete">Unbekanntes Land</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="494"/>
+        <location filename="../movies/MovieWidget.cpp" line="493"/>
         <source>Downloading Missing Actor Images...</source>
         <translation>Lade fehlende Schauspieler Bilder...</translation>
     </message>
@@ -3878,17 +3903,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>XbmcXml</name>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="1284"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="1279"/>
         <source>Could not create actors directory</source>
         <translation>Verzeichnis &quot;actors&quot; konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="1288"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="1283"/>
         <source>Could not create movies directory</source>
         <translation>Verzeichnis &quot;movies&quot; konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="1292"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="1287"/>
         <source>Could not create tv shows directory</source>
         <translation>Verzeichnis &quot;tvshows&quot; konnte nicht erstellt werden</translation>
     </message>

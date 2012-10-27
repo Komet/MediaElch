@@ -11,6 +11,8 @@
 MovieProxyModel::MovieProxyModel(QObject *parent) :
     QSortFilterProxyModel(parent)
 {
+    m_sortBy = SortByNew;
+    sort(0, Qt::AscendingOrder);
 }
 
 /**
@@ -43,12 +45,36 @@ bool MovieProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceP
  */
 bool MovieProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    if (sourceModel()->data(left, Qt::UserRole+1).toBool() && !sourceModel()->data(right, Qt::UserRole+1).toBool() )
-        return true;
-    if (!sourceModel()->data(left, Qt::UserRole+1).toBool() && sourceModel()->data(right, Qt::UserRole+1).toBool() )
-        return false;
     int cmp = QString::compare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString());
-    return !(cmp < 0);
+
+    if (m_sortBy == SortByAdded) {
+        // Qt::UserRole+5
+        return sourceModel()->data(left, Qt::UserRole+5).toDateTime() >= sourceModel()->data(right, Qt::UserRole+5).toDateTime();
+    }
+
+    if (m_sortBy == SortBySeen) {
+        // Qt::UserRole+4
+        if (sourceModel()->data(left, Qt::UserRole+4).toBool() && !sourceModel()->data(right, Qt::UserRole+4).toBool() )
+            return false;
+        if (!sourceModel()->data(left, Qt::UserRole+4).toBool() && sourceModel()->data(right, Qt::UserRole+4).toBool() )
+            return true;
+    }
+
+    if (m_sortBy == SortByYear) {
+        // Qt::UserRole+3
+        if (sourceModel()->data(left, Qt::UserRole+3).toDate().year() != sourceModel()->data(right, Qt::UserRole+3).toDate().year())
+            return sourceModel()->data(left, Qt::UserRole+3).toDate().year() >= sourceModel()->data(right, Qt::UserRole+3).toDate().year();
+    }
+
+    if (m_sortBy == SortByNew) {
+        // Qt::UserRole+1
+        if (sourceModel()->data(left, Qt::UserRole+1).toBool() && !sourceModel()->data(right, Qt::UserRole+1).toBool() )
+            return false;
+        if (!sourceModel()->data(left, Qt::UserRole+1).toBool() && sourceModel()->data(right, Qt::UserRole+1).toBool() )
+            return true;
+    }
+
+    return (cmp < 0);
 }
 
 /**
@@ -60,4 +86,15 @@ void MovieProxyModel::setFilter(QList<Filter*> filters, QString text)
 {
     m_filters = filters;
     m_filterText = text;
+}
+
+/**
+ * @brief Sets sort by
+ * @param sortBy Sort by
+ */
+void MovieProxyModel::setSortBy(SortBy sortBy)
+{
+    m_sortBy = sortBy;
+    invalidate();
+    sort(0, Qt::AscendingOrder);
 }

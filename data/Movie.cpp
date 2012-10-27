@@ -835,6 +835,15 @@ StreamDetails *Movie::streamDetails()
     return m_streamDetails;
 }
 
+/**
+ * @brief The last modification date of the file
+ * @return Last mod date
+ */
+QDateTime Movie::fileLastModified() const
+{
+    return m_fileLastModified;
+}
+
 /*** SETTER ***/
 
 /**
@@ -1244,6 +1253,15 @@ void Movie::setMediaCenterId(int mediaCenterId)
 void Movie::setNumPrimaryLangPosters(int numberPrimaryLangPosters)
 {
     m_numPrimaryLangPosters = numberPrimaryLangPosters;
+}
+
+/**
+ * @brief Sets the last modification date
+ * @param modified Last mod date
+ */
+void Movie::setFileLastModified(QDateTime modified)
+{
+    m_fileLastModified = modified;
 }
 
 /*** ADDER ***/

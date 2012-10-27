@@ -92,6 +92,16 @@ void Manager::setupCacheDatabase()
         qWarning() << "Could not open tv show cache database";
     } else {
         QSqlQuery query(*m_cacheDb);
+
+        query.prepare("SELECT lastModified FROM movieFiles");
+        query.exec();
+        if (!query.next()) {
+            query.prepare("DROP TABLE movieFiles;");
+            query.exec();
+            query.prepare("DROP TABLE movieDirs;");
+            query.exec();
+        }
+
         query.prepare("CREATE TABLE IF NOT EXISTS tvShowDirs ( "
                       "\"idPath\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
                       "\"path\" text NOT NULL, "
@@ -112,7 +122,8 @@ void Manager::setupCacheDatabase()
         query.prepare("CREATE TABLE IF NOT EXISTS movieFiles ( "
                       "\"idFile\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
                       "\"idPath\" integer NOT NULL, "
-                      "\"filename\" text NOT NULL);");
+                      "\"filename\" text NOT NULL, "
+                      "\"lastModified\" integer NOT NULL);");
         query.exec();
         query.prepare("CREATE TABLE IF NOT EXISTS concertDirs ( "
                       "\"idPath\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
