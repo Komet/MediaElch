@@ -1,6 +1,7 @@
 #ifndef XBMCXML_H
 #define XBMCXML_H
 
+#include <QDomDocument>
 #include <QObject>
 #include <QXmlStreamWriter>
 
@@ -80,6 +81,9 @@ private:
     void writeConcertXml(QXmlStreamWriter &xml, Concert *concert, bool writePath = false, QString pathSearch = "", QString pathReplace = "");
     void writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath = false, QString pathSearch = "", QString pathReplace = "", bool writeStartAndEndElement = true);
     void writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode, bool writePath = false, QString pathSearch = "", QString pathReplace = "");
+    void writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDetails);
+    QString nfoFilePath(Movie *movie);
+    bool loadStreamDetails(StreamDetails *streamDetails, QDomDocument domDoc);
 };
 
 #endif // XBMCXML_H

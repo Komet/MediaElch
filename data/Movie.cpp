@@ -14,7 +14,6 @@
 Movie::Movie(QStringList files, QObject *parent) :
     QObject(parent)
 {
-    moveToThread(QApplication::instance()->thread());
     m_files = files;
     m_rating = 0;
     m_runtime = 0;
@@ -42,6 +41,11 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_movieId = ++m_idCounter;
     m_mediaCenterId = -1;
     m_numPrimaryLangPosters = 0;
+    m_streamDetailsLoaded = false;
+    if (!files.isEmpty())
+        m_streamDetails = new StreamDetails(this, files.at(0));
+    else
+        m_streamDetails = new StreamDetails(this, "");
 }
 
 Movie::~Movie()
@@ -123,6 +127,9 @@ void Movie::clear(QList<int> infos)
 bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
 {
     qDebug() << "Entered";
+
+    if (!streamDetailsLoaded())
+        loadStreamDetailsFromFile();
     bool saved = mediaCenterInterface->saveMovie(this);
     qDebug() << "Saved" << saved;
     if (!m_infoLoaded)
@@ -201,6 +208,15 @@ void Movie::loadData(QString id, ScraperInterface *scraperInterface, QList<int> 
     if (scraperInterface->name() == "The Movie DB")
         setTmdbId(id);
     scraperInterface->loadData(id, this, infos);
+}
+
+/**
+ * @brief Tries to load streamdetails from the file
+ */
+void Movie::loadStreamDetailsFromFile()
+{
+    m_streamDetails->loadStreamDetails();
+    setStreamDetailsLoaded(true);
 }
 
 /**
@@ -748,6 +764,17 @@ bool Movie::hasCdArt() const
 }
 
 /**
+ * @property Movie::streamDetailsLoaded
+ * @brief Holds if the stream details were loaded
+ * @return True if the stream details were loaded
+ * @see Movie::setStreamDetailsLoaded
+ */
+bool Movie::streamDetailsLoaded() const
+{
+    return m_streamDetailsLoaded;
+}
+
+/**
  * @brief Holds a unique MediaElch movie id
  * @return MediaElchs id of the movie
  */
@@ -799,6 +826,15 @@ int Movie::mediaCenterId() const
 int Movie::numPrimaryLangPosters() const
 {
     return m_numPrimaryLangPosters;
+}
+
+/**
+ * @brief The stream details object of this movie
+ * @return StreamDetails Object
+ */
+StreamDetails *Movie::streamDetails()
+{
+    return m_streamDetails;
 }
 
 /*** SETTER ***/
@@ -1154,6 +1190,16 @@ void Movie::setHasClearArt(bool has)
 void Movie::setHasCdArt(bool has)
 {
     m_hasCdArt = has;
+}
+
+/**
+ * @brief Sets if the stream details were loaded
+ * @param loaded
+ * @see Movie::streamDetailsLoaded
+ */
+void Movie::setStreamDetailsLoaded(bool loaded)
+{
+    m_streamDetailsLoaded = loaded;
 }
 
 /**

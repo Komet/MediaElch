@@ -48,7 +48,6 @@ Settings::Settings(QObject *parent) :
     m_concertCdArtFiles.append(new DataFile(20, "cdart.png", "cdart.png", 0, true));
     m_concertLogoFiles.append(new DataFile(21, "logo.png", "logo.png", 0, true));
     m_concertClearArtFiles.append(new DataFile(22, "clearart.png", "clearart.png", 0, true));
-
 }
 
 /**
@@ -76,6 +75,7 @@ void Settings::loadSettings()
     m_debugModeActivated = m_settings.value("DebugModeActivated", false).toBool();
     m_debugLogPath = m_settings.value("DebugLogPath").toString();
     m_useCache = m_settings.value("UseCache", true).toBool();
+    m_autoLoadStreamDetails = m_settings.value("AutoLoadStreamDetails", true).toBool();
 
     // Proxy
     m_useProxy = m_settings.value("Proxy/Enable", false).toBool();
@@ -181,6 +181,7 @@ void Settings::saveSettings()
     m_settings.setValue("DebugModeActivated", m_debugModeActivated);
     m_settings.setValue("DebugLogPath", m_debugLogPath);
     m_settings.setValue("UseCache", m_useCache);
+    m_settings.setValue("AutoLoadStreamDetails", m_autoLoadStreamDetails);
 
     m_settings.setValue("XbmcMysql/Host", m_xbmcMysqlHost);
     m_settings.setValue("XbmcMysql/Database", m_xbmcMysqlDatabase);
@@ -843,6 +844,15 @@ QString Settings::proxyPassword()
     return m_proxyPassword;
 }
 
+/**
+ * @brief Settings::autoLoadStreamDetails
+ * @return
+ */
+bool Settings::autoLoadStreamDetails()
+{
+    return m_autoLoadStreamDetails;
+}
+
 /*** SETTER ***/
 
 /**
@@ -1216,4 +1226,13 @@ void Settings::setProxyUsername(QString username)
 void Settings::setProxyPassword(QString password)
 {
     m_proxyPassword = password;
+}
+
+/**
+ * @brief Settings::setAutoLoadStreamDetails
+ * @param autoLoad
+ */
+void Settings::setAutoLoadStreamDetails(bool autoLoad)
+{
+    m_autoLoadStreamDetails = autoLoad;
 }

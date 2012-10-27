@@ -6,6 +6,9 @@
 
 QT       += core gui network script xml sql
 
+LIBS += -lmediainfo -lzen -lz
+DEFINES += UNICODE
+
 TARGET = MediaElch
 TEMPLATE = app
 
@@ -95,7 +98,8 @@ SOURCES += main.cpp\
     imageProviders/FanartTv.cpp \
     imageProviders/TMDbImages.cpp \
     imageProviders/TheTvDbImages.cpp \
-    globals/ComboDelegate.cpp
+    globals/ComboDelegate.cpp \
+    data/StreamDetails.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -171,7 +175,8 @@ HEADERS  += main/MainWindow.h \
     imageProviders/FanartTv.h \
     imageProviders/TMDbImages.h \
     imageProviders/TheTvDbImages.h \
-    globals/ComboDelegate.h
+    globals/ComboDelegate.h \
+    data/StreamDetails.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

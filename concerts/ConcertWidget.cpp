@@ -69,6 +69,7 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     connect(ui->buttonPreviewClearArt, SIGNAL(clicked()), this, SLOT(onPreviewClearArt()));
     connect(ui->buttonPreviewCdArt, SIGNAL(clicked()), this, SLOT(onPreviewCdArt()));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
+    connect(ui->buttonReloadStreamDetails, SIGNAL(clicked()), this, SLOT(onReloadStreamDetails()));
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -92,6 +93,12 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     connect(ui->released, SIGNAL(dateChanged(QDate)), this, SLOT(onReleasedChange(QDate)));
     connect(ui->lastPlayed, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(onLastWatchedChange(QDateTime)));
     connect(ui->overview, SIGNAL(textChanged()), this, SLOT(onOverviewChange()));
+    connect(ui->videoAspectRatio, SIGNAL(valueChanged(double)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoCodec, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoDuration, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoHeight, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoWidth, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoScantype, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
 
     QPixmap zoomIn(":/img/zoom_in.png");
     QPainter p;
@@ -162,6 +169,27 @@ void ConcertWidget::clear()
     ui->logoResolution->setText("");
     ui->clearArtResolution->setText("");
     ui->cdArtResolution->setText("");
+
+    ui->videoCodec->clear();
+    ui->videoScantype->clear();
+
+    bool blocked;
+    blocked = ui->videoAspectRatio->blockSignals(true);
+    ui->videoAspectRatio->clear();
+    ui->videoAspectRatio->blockSignals(blocked);
+
+    blocked = ui->videoDuration->blockSignals(true);
+    ui->videoDuration->clear();
+    ui->videoDuration->blockSignals(blocked);
+
+    blocked = ui->videoHeight->blockSignals(true);
+    ui->videoHeight->clear();
+    ui->videoHeight->blockSignals(blocked);
+
+    blocked = ui->videoWidth->blockSignals(true);
+    ui->videoWidth->clear();
+    ui->videoWidth->blockSignals(blocked);
+
     ui->buttonRevert->setVisible(false);
 }
 
@@ -212,6 +240,8 @@ void ConcertWidget::setConcert(Concert *concert)
     qDebug() << "Entered, concert=" << concert->name();
     concert->loadData(Manager::instance()->mediaCenterInterfaceConcert());
     m_concert = concert;
+    if (!concert->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails())
+        concert->loadStreamDetailsFromFile();
     updateConcertInfo();
     if (concert->downloadsInProgress())
         setDisabledTrue();
@@ -415,6 +445,15 @@ void ConcertWidget::updateConcertInfo()
     }
     ui->genres->blockSignals(false);
 
+    // Streamdetails
+    updateStreamDetails();
+    ui->videoAspectRatio->setEnabled(m_concert->streamDetailsLoaded());
+    ui->videoCodec->setEnabled(m_concert->streamDetailsLoaded());
+    ui->videoDuration->setEnabled(m_concert->streamDetailsLoaded());
+    ui->videoHeight->setEnabled(m_concert->streamDetailsLoaded());
+    ui->videoWidth->setEnabled(m_concert->streamDetailsLoaded());
+    ui->videoScantype->setEnabled(m_concert->streamDetailsLoaded());
+
     if (!m_concert->posterImage()->isNull()) {
         ui->poster->setPixmap(QPixmap::fromImage(*m_concert->posterImage()).scaledToWidth(200, Qt::SmoothTransformation));
         ui->posterResolution->setText(QString("%1x%2").arg(m_concert->posterImage()->width()).arg(m_concert->posterImage()->height()));
@@ -521,6 +560,105 @@ void ConcertWidget::updateConcertInfo()
     ui->watched->setEnabled(Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertWatched));
 
     ui->buttonRevert->setVisible(m_concert->hasChanged());
+}
+
+/**
+ * @brief Fills the widget with streamdetails
+ * @param reloadFromFile If true forces a reload of streamdetails from the file
+ */
+void ConcertWidget::updateStreamDetails(bool reloadFromFile)
+{
+    ui->videoAspectRatio->blockSignals(true);
+    ui->videoDuration->blockSignals(true);
+    ui->videoWidth->blockSignals(true);
+    ui->videoHeight->blockSignals(true);
+
+    if (reloadFromFile)
+        m_concert->loadStreamDetailsFromFile();
+
+    StreamDetails *streamDetails = m_concert->streamDetails();
+    ui->videoWidth->setValue(streamDetails->videoDetails().value("width").toInt());
+    ui->videoHeight->setValue(streamDetails->videoDetails().value("height").toInt());
+    ui->videoAspectRatio->setValue(streamDetails->videoDetails().value("aspect").toDouble());
+    ui->videoCodec->setText(streamDetails->videoDetails().value("codec"));
+    ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
+    ui->videoDuration->setValue(streamDetails->videoDetails().value("durationinseconds").toInt());
+
+    foreach (QWidget *widget, m_streamDetailsWidgets)
+        widget->deleteLater();
+    m_streamDetailsWidgets.clear();
+    m_streamDetailsAudio.clear();
+    m_streamDetailsSubtitles.clear();
+
+    int audioTracks = streamDetails->audioDetails().count();
+    for (int i=0 ; i<audioTracks ; ++i) {
+        QLabel *label = new QLabel(tr("Track %1").arg(i+1));
+        ui->streamDetails->addWidget(label, 7+i, 0);
+        QLineEdit *edit1 = new QLineEdit(streamDetails->audioDetails().at(i).value("language"));
+        QLineEdit *edit2 = new QLineEdit(streamDetails->audioDetails().at(i).value("codec"));
+        QLineEdit *edit3 = new QLineEdit(streamDetails->audioDetails().at(i).value("channels"));
+        edit3->setMaximumWidth(50);
+        edit1->setToolTip(tr("Language"));
+        edit2->setToolTip(tr("Codec"));
+        edit3->setToolTip(tr("Channels"));
+        edit1->setPlaceholderText(tr("Language"));
+        edit2->setPlaceholderText(tr("Codec"));
+        edit2->setPlaceholderText(tr("Channels"));
+        QHBoxLayout *layout = new QHBoxLayout();
+        layout->addWidget(edit1);
+        layout->addWidget(edit2);
+        layout->addWidget(edit3);
+        layout->addStretch(10);
+        ui->streamDetails->addLayout(layout, 7+i, 1);
+        m_streamDetailsWidgets << label << edit1 << edit2 << edit3;
+        m_streamDetailsAudio << (QList<QLineEdit*>() << edit1 << edit2 << edit3);
+        connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+        connect(edit2, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+        connect(edit3, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+    }
+
+    if (!streamDetails->subtitleDetails().isEmpty()) {
+        QLabel *label = new QLabel(tr("Subtitles"));
+        QFont font = label->font();
+        font.setBold(true);
+        label->setFont(font);
+        ui->streamDetails->addWidget(label, 7+audioTracks, 0);
+        m_streamDetailsWidgets << label;
+
+        for (int i=0, n=streamDetails->subtitleDetails().count() ; i<n ; ++i) {
+            QLabel *label = new QLabel(tr("Track %1").arg(i+1));
+            ui->streamDetails->addWidget(label, 8+audioTracks+i, 0);
+            QLineEdit *edit1 = new QLineEdit(streamDetails->subtitleDetails().at(i).value("language"));
+            edit1->setToolTip(tr("Language"));
+            edit1->setPlaceholderText(tr("Language"));
+            QHBoxLayout *layout = new QHBoxLayout();
+            layout->addWidget(edit1);
+            layout->addStretch(10);
+            ui->streamDetails->addLayout(layout, 8+audioTracks+i, 1);
+            m_streamDetailsWidgets << label << edit1;
+            m_streamDetailsSubtitles << (QList<QLineEdit*>() << edit1);
+            connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+        }
+    }
+
+    ui->videoAspectRatio->blockSignals(false);
+    ui->videoDuration->blockSignals(false);
+    ui->videoWidth->blockSignals(false);
+    ui->videoHeight->blockSignals(false);
+}
+
+/**
+ * @brief Forces a reload of stream details
+ */
+void ConcertWidget::onReloadStreamDetails()
+{
+    updateStreamDetails(true);
+    ui->videoAspectRatio->setEnabled(true);
+    ui->videoCodec->setEnabled(true);
+    ui->videoDuration->setEnabled(true);
+    ui->videoHeight->setEnabled(true);
+    ui->videoWidth->setEnabled(true);
+    ui->videoScantype->setEnabled(true);
 }
 
 /**
@@ -1039,3 +1177,29 @@ void ConcertWidget::onOverviewChange()
     m_concert->setOverview(ui->overview->toPlainText());
     ui->buttonRevert->setVisible(true);
 }
+
+/**
+ * @brief Updates all stream details for this concert with values from the widget
+ */
+void ConcertWidget::onStreamDetailsEdited()
+{
+    StreamDetails *details = m_concert->streamDetails();
+    details->setVideoDetail("codec", ui->videoCodec->text());
+    details->setVideoDetail("aspect", ui->videoAspectRatio->text());
+    details->setVideoDetail("width", ui->videoWidth->text());
+    details->setVideoDetail("height", ui->videoHeight->text());
+    details->setVideoDetail("scantype", ui->videoScantype->text());
+    details->setVideoDetail("durationinseconds", QString("%1").arg(ui->videoDuration->value()));
+
+    for (int i=0, n=m_streamDetailsAudio.count() ; i<n ; ++i) {
+        details->setAudioDetail(i, "language", m_streamDetailsAudio[i][0]->text());
+        details->setAudioDetail(i, "codec", m_streamDetailsAudio[i][1]->text());
+        details->setAudioDetail(i, "channels", m_streamDetailsAudio[i][2]->text());
+    }
+    for (int i=0, n=m_streamDetailsSubtitles.count() ; i<n ; ++i)
+        details->setSubtitleDetail(i, "language", m_streamDetailsSubtitles[i][0]->text());
+
+    m_concert->setChanged(true);
+    ui->buttonRevert->setVisible(true);
+}
+

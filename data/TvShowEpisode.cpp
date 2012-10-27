@@ -24,6 +24,11 @@ TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) :
     m_hasChanged = false;
     static int m_idCounter = 0;
     m_episodeId = ++m_idCounter;
+    m_streamDetailsLoaded = false;
+    if (!files.isEmpty())
+        m_streamDetails = new StreamDetails(this, files.at(0));
+    else
+        m_streamDetails = new StreamDetails(this, "");
 }
 
 /**
@@ -89,6 +94,15 @@ void TvShowEpisode::loadData(QString id, TvScraperInterface *tvScraperInterface)
 }
 
 /**
+ * @brief Tries to load streamdetails from the file
+ */
+void TvShowEpisode::loadStreamDetailsFromFile()
+{
+    m_streamDetails->loadStreamDetails();
+    setStreamDetailsLoaded(true);
+}
+
+/**
  * @brief Called from the scraper when loading has finished
  */
 void TvShowEpisode::scraperLoadDone()
@@ -104,6 +118,8 @@ void TvShowEpisode::scraperLoadDone()
 bool TvShowEpisode::saveData(MediaCenterInterface *mediaCenterInterface)
 {
     qDebug() << "Entered";
+    if (!streamDetailsLoaded())
+        loadStreamDetailsFromFile();
     bool saved = mediaCenterInterface->saveTvShowEpisode(this);
     qDebug() << "Saved" << saved;
     if (!m_infoLoaded)
@@ -449,6 +465,26 @@ int TvShowEpisode::episodeId() const
     return m_episodeId;
 }
 
+/**
+ * @property TvShowEpisode::streamDetailsLoaded
+ * @brief Holds if the stream details were loaded
+ * @return True if the stream details were loaded
+ * @see TvShowEpisode::setStreamDetailsLoaded
+ */
+bool TvShowEpisode::streamDetailsLoaded() const
+{
+    return m_streamDetailsLoaded;
+}
+
+/**
+ * @brief The stream details object of this episode
+ * @return StreamDetails Object
+ */
+StreamDetails *TvShowEpisode::streamDetails()
+{
+    return m_streamDetails;
+}
+
 /*** SETTER ***/
 
 /**
@@ -663,6 +699,16 @@ void TvShowEpisode::setChanged(bool changed)
 void TvShowEpisode::setModelItem(TvShowModelItem *item)
 {
     m_modelItem = item;
+}
+
+/**
+ * @brief Sets if the stream details were loaded
+ * @param loaded
+ * @see TvShowEpisode::streamDetailsLoaded
+ */
+void TvShowEpisode::setStreamDetailsLoaded(bool loaded)
+{
+    m_streamDetailsLoaded = loaded;
 }
 
 /*** REMOVER ***/

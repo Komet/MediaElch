@@ -3,7 +3,6 @@
 #include <QApplication>
 #include <QDebug>
 #include <QDir>
-#include <QDomDocument>
 #include <QFileInfo>
 #include <QXmlStreamWriter>
 
@@ -123,6 +122,11 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath,
         xml.writeEndElement();
     }
     xml.writeEndElement();
+
+    xml.writeStartElement("fileinfos");
+    writeStreamDetails(xml, movie->streamDetails());
+    xml.writeEndElement();
+
     xml.writeEndElement();
 }
 
@@ -224,24 +228,23 @@ void XbmcXml::saveAdditionalImages(Movie *movie)
 }
 
 /**
- * @brief Loads movie infos (except images)
- * @param movie Movie to load
- * @return Loading success
+ * @brief Tries to find an nfo file for the movie
+ * @param movie Movie
+ * @return Path to nfo file, if none found returns an empty string
  */
-bool XbmcXml::loadMovie(Movie *movie)
+QString XbmcXml::nfoFilePath(Movie *movie)
 {
-    qDebug() << "Entered, files=" << movie->files();
+    QString nfoFile;
     if (movie->files().size() == 0) {
         qWarning() << "Movie has no files";
-        return false;
+        return nfoFile;
     }
     QFileInfo fi(movie->files().at(0));
     if (!fi.isFile() ) {
         qWarning() << "First file of the movie is not readable" << movie->files().at(0);
-        return false;
+        return nfoFile;
     }
 
-    QString nfoFile;
     foreach (DataFile *dataFile, Settings::instance()->enabledMovieNfoFiles()) {
         QString file = dataFile->saveFileName(fi.fileName());
         QFileInfo nfoFi(fi.absolutePath() + QDir::separator() + file);
@@ -251,10 +254,21 @@ bool XbmcXml::loadMovie(Movie *movie)
         }
     }
 
-    if (nfoFile.isEmpty()) {
-        qDebug() << "No usable nfo file found";
+    return nfoFile;
+}
+
+/**
+ * @brief Loads movie infos (except images)
+ * @param movie Movie to load
+ * @return Loading success
+ */
+bool XbmcXml::loadMovie(Movie *movie)
+{
+    qDebug() << "Entered, files=" << movie->files();
+
+    QString nfoFile = nfoFilePath(movie);
+    if (nfoFile.isEmpty())
         return false;
-    }
 
     qDebug() << "Trying to load nfoFile" << nfoFile;
     QFile file(nfoFile);
@@ -335,6 +349,8 @@ bool XbmcXml::loadMovie(Movie *movie)
         }
     }
 
+    movie->setStreamDetailsLoaded(loadStreamDetails(movie->streamDetails(), domDoc));
+
     file.close();
 
     // Existence of images
@@ -345,6 +361,102 @@ bool XbmcXml::loadMovie(Movie *movie)
     movie->setHasCdArt(!cdArtImageName(movie).isEmpty());
 
     return true;
+}
+
+/**
+ * @brief Loads the stream details from the dom document
+ * @param streamDetails StreamDetails object
+ * @param domDoc Nfo document
+ * @return Infos loaded
+ */
+bool XbmcXml::loadStreamDetails(StreamDetails* streamDetails, QDomDocument domDoc)
+{
+    streamDetails->clear();
+    if (!domDoc.elementsByTagName("streamdetails").isEmpty()) {
+        QDomElement elem = domDoc.elementsByTagName("streamdetails").at(0).toElement();
+        if (!elem.elementsByTagName("video").isEmpty()) {
+            QDomElement videoElem = elem.elementsByTagName("video").at(0).toElement();
+            QStringList details = (QStringList() << "codec" << "aspect" << "width" << "height" << "durationinseconds" << "scantype");
+            foreach (const QString &detail, details) {
+                if (!videoElem.elementsByTagName(detail).isEmpty())
+                    streamDetails->setVideoDetail(detail, videoElem.elementsByTagName(detail).at(0).toElement().text());
+            }
+        }
+        if (!elem.elementsByTagName("audio").isEmpty()) {
+            for (int i=0, n=elem.elementsByTagName("audio").count() ; i<n ; ++i) {
+                QStringList details = QStringList() << "codec" << "language" << "channels";
+                QDomElement audioElem = elem.elementsByTagName("audio").at(i).toElement();
+                foreach (const QString &detail, details) {
+                    if (!audioElem.elementsByTagName(detail).isEmpty())
+                        streamDetails->setAudioDetail(i, detail, audioElem.elementsByTagName(detail).at(0).toElement().text());
+                }
+            }
+        }
+        if (!elem.elementsByTagName("subtitle").isEmpty()) {
+            for (int i=0, n=elem.elementsByTagName("subtitle").count() ; i<n ; ++i) {
+                QStringList details = QStringList() << "language";
+                QDomElement subtitleElem = elem.elementsByTagName("subtitle").at(i).toElement();
+                foreach (const QString &detail, details) {
+                    if (!subtitleElem.elementsByTagName(detail).isEmpty())
+                        streamDetails->setSubtitleDetail(i, detail, subtitleElem.elementsByTagName(detail).at(0).toElement().text());
+                }
+            }
+        }
+        return true;
+    }
+    return false;
+}
+
+/**
+ * @brief Writes streamdetails to xml stream
+ * @param xml XML Stream
+ * @param streamDetails Stream Details object
+ */
+void XbmcXml::writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDetails)
+{
+    xml.writeStartElement("streamdetails");
+
+    xml.writeStartElement("video");
+    QMapIterator<QString, QString> itVideo(streamDetails->videoDetails());
+    while (itVideo.hasNext()) {
+        itVideo.next();
+        if (itVideo.key() == "width" && itVideo.value().toInt() == 0)
+            continue;
+        if (itVideo.key() == "height" && itVideo.value().toInt() == 0)
+            continue;
+        if (itVideo.key() == "durationinseconds" && itVideo.value().toInt() == 0)
+            continue;
+        if (itVideo.value() == "")
+            continue;
+        xml.writeTextElement(itVideo.key(), itVideo.value());
+    }
+    xml.writeEndElement();
+
+    for (int i=0, n=streamDetails->audioDetails().count() ; i<n ; ++i) {
+        xml.writeStartElement("audio");
+        QMapIterator<QString, QString> itAudio(streamDetails->audioDetails().at(i));
+        while (itAudio.hasNext()) {
+            itAudio.next();
+            if (itAudio.value() == "")
+                continue;
+            xml.writeTextElement(itAudio.key(), itAudio.value());
+        }
+        xml.writeEndElement();
+    }
+
+    for (int i=0, n=streamDetails->subtitleDetails().count() ; i<n ; ++i) {
+        xml.writeStartElement("subtitle");
+        QMapIterator<QString, QString> itSubtitle(streamDetails->subtitleDetails().at(i));
+        while (itSubtitle.hasNext()) {
+            itSubtitle.next();
+            if (itSubtitle.value() == "")
+                continue;
+            xml.writeTextElement(itSubtitle.key(), itSubtitle.value());
+        }
+        xml.writeEndElement();
+    }
+
+    xml.writeEndElement();
 }
 
 /**
@@ -587,6 +699,11 @@ void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert, bool writ
         xml.writeEndElement();
     }
     xml.writeEndElement();
+
+    xml.writeStartElement("fileinfos");
+    writeStreamDetails(xml, concert->streamDetails());
+    xml.writeEndElement();
+
     xml.writeEndElement();
 }
 
@@ -763,6 +880,8 @@ bool XbmcXml::loadConcert(Concert *concert)
             concert->addBackdrop(p);
         }
     }
+
+    concert->setStreamDetailsLoaded(loadStreamDetails(concert->streamDetails(), domDoc));
 
     file.close();
 
@@ -1432,6 +1551,8 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode)
     for (int i=0, n=domDoc.elementsByTagName("director").size() ; i<n ; i++)
         episode->addDirector(domDoc.elementsByTagName("director").at(i).toElement().text());
 
+    episode->setStreamDetailsLoaded(loadStreamDetails(episode->streamDetails(), domDoc));
+
     file.close();
 
     return true;
@@ -1718,6 +1839,11 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
             xml.writeEndElement();
         }
     }
+
+    xml.writeStartElement("fileinfos");
+    writeStreamDetails(xml, episode->streamDetails());
+    xml.writeEndElement();
+
     xml.writeEndElement();
 }
 

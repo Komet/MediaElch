@@ -37,7 +37,7 @@ void MovieFilesOrganizer::moveToDirs(QString path)
 
     QList<QStringList> contents;
     MovieFileSearcher *fileSearcher = new MovieFileSearcher(this);
-    fileSearcher->scanDir(path, contents, false, true);
+    fileSearcher->scanDir(path, path, contents, false, true);
     fileSearcher->deleteLater();
 
     int pos = path.lastIndexOf(QDir::separator());

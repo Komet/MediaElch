@@ -39,6 +39,11 @@ Concert::Concert(QStringList files, QObject *parent) :
     static int m_idCounter = 0;
     m_concertId = ++m_idCounter;
     m_mediaCenterId = -1;
+    m_streamDetailsLoaded = false;
+    if (!files.isEmpty())
+        m_streamDetails = new StreamDetails(this, files.at(0));
+    else
+        m_streamDetails = new StreamDetails(this, "");
 }
 
 Concert::~Concert()
@@ -101,6 +106,8 @@ void Concert::clear(QList<int> infos)
 bool Concert::saveData(MediaCenterInterface *mediaCenterInterface)
 {
     qDebug() << "Entered";
+    if (!streamDetailsLoaded())
+        loadStreamDetailsFromFile();
     bool saved = mediaCenterInterface->saveConcert(this);
     qDebug() << "Saved" << saved;
     if (!m_infoLoaded)
@@ -181,6 +188,15 @@ void Concert::loadData(QString id, ConcertScraperInterface *scraperInterface, QL
 }
 
 /**
+ * @brief Tries to load streamdetails from the file
+ */
+void Concert::loadStreamDetailsFromFile()
+{
+    m_streamDetails->loadStreamDetails();
+    setStreamDetailsLoaded(true);
+}
+
+/**
  * @brief Concert::infosToLoad
  * @return
  */
@@ -199,7 +215,7 @@ void Concert::scraperLoadDone()
 }
 
 /**
- * @brief Clears the movie images to save memory
+ * @brief Clears the concert images to save memory
  */
 void Concert::clearImages()
 {
@@ -437,6 +453,17 @@ QString Concert::folderName() const
 }
 
 /**
+ * @property Concert::streamDetailsLoaded
+ * @brief Holds if the stream details were loaded
+ * @return True if the stream details were loaded
+ * @see Concert::setStreamDetailsLoaded
+ */
+bool Concert::streamDetailsLoaded() const
+{
+    return m_streamDetailsLoaded;
+}
+
+/**
  * @brief Holds wether concert infos were loaded from a MediaCenterInterface or ScraperInterface
  * @return Infos were loaded
  */
@@ -577,6 +604,15 @@ QString Concert::tmdbId() const
 QString Concert::id() const
 {
     return m_id;
+}
+
+/**
+ * @brief The stream details object of this concert
+ * @return StreamDetails Object
+ */
+StreamDetails *Concert::streamDetails()
+{
+    return m_streamDetails;
 }
 
 /*** SETTER ***/
@@ -830,6 +866,16 @@ void Concert::setId(QString id)
 {
     m_id = id;
     setChanged(true);
+}
+
+/**
+ * @brief Sets if the stream details were loaded
+ * @param loaded
+ * @see Concert::streamDetailsLoaded
+ */
+void Concert::setStreamDetailsLoaded(bool loaded)
+{
+    m_streamDetailsLoaded = loaded;
 }
 
 /*** ADDER ***/

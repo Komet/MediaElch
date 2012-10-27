@@ -23,7 +23,7 @@ void StreamDetails::loadStreamDetails()
     clear();
 
     MediaInfo MI;
-    MI.Option(QString("Info_Version").toStdWString(), QString("0.7.60;%1;%2").arg(QApplication::applicationName()).arg(QApplication::applicationVersion()).toStdWString());
+    MI.Option(QString("Info_Version").toStdWString(), QString("0.7.61;%1;%2").arg(QApplication::applicationName()).arg(QApplication::applicationVersion()).toStdWString());
     MI.Option(QString("Internet").toStdWString(), QString("no").toStdWString());
     MI.Open(m_file.toStdWString());
     MI.Option(QString("Complete").toStdWString(), QString("1").toStdWString());
@@ -46,7 +46,7 @@ void StreamDetails::loadStreamDetails()
         aspectRatio = QString::fromStdWString(MI.Get(Stream_Video, 0, QString("DisplayAspectRatio").toStdWString())).toDouble();
         width = QString::fromStdWString(MI.Get(Stream_Video, 0, QString("Width").toStdWString())).toInt();
         height = QString::fromStdWString(MI.Get(Stream_Video, 0, QString("Height").toStdWString())).toInt();
-        scanType = QString::fromStdWString(MI.Get(Stream_Video, 0, QString("ScanType").toStdWString())).toLower();
+        scanType = QString::fromStdWString(MI.Get(Stream_Video, 0, QString("ScanType").toStdWString()));
 
         QString codec = QString::fromStdWString(MI.Get(Stream_Video, 0, QString("CodecID/Hint").toStdWString()));
         QString version;
@@ -68,7 +68,7 @@ void StreamDetails::loadStreamDetails()
 
     for (int i=0 ; i<audioCount ; ++i) {
         QString lang = QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Language/String3").toStdWString())).toLower();
-        QString audioCodec = audioFormat(QString::fromStdWString(MI.Get(Stream_Audio, i, QString("CodecID").toStdWString())));
+        QString audioCodec = audioFormat(QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Codec").toStdWString())));
         int channels = QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Channels").toStdWString())).toInt();
         setAudioDetail(i, "language", lang);
         setAudioDetail(i, "codec", audioCodec);
@@ -88,15 +88,12 @@ QString StreamDetails::videoFormat(QString format, QString version)
     if (!format.isEmpty() && format == "mpeg video")
         format = (version.toLower() == "version 2") ? "mpeg2" : "mpeg";
     if (format == "v_mpeg4/iso/avc")
-        format = "avc";
+        format = "h264";
     return format;
 }
 
 QString StreamDetails::audioFormat(QString format)
 {
-    format = format.toLower();
-    if (format == "dts-hd")
-        format = "dtshd_ma";
     return format;
 }
 

@@ -55,6 +55,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     connect(m_posterDownloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onPosterDownloadFinished(DownloadManagerElement)));
     connect(ui->buttonPreviewBackdrop, SIGNAL(clicked()), this, SLOT(onPreviewBackdrop()));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
+    connect(ui->buttonReloadStreamDetails, SIGNAL(clicked()), this, SLOT(onReloadStreamDetails()));
 
     onClear();
 
@@ -70,6 +71,12 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     connect(ui->lastPlayed, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(onLastPlayedChange(QDateTime)));
     connect(ui->studio, SIGNAL(textEdited(QString)), this, SLOT(onStudioChange(QString)));
     connect(ui->overview, SIGNAL(textChanged()), this, SLOT(onOverviewChange()));
+    connect(ui->videoAspectRatio, SIGNAL(valueChanged(double)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoCodec, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoDuration, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoHeight, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoWidth, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoScantype, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -132,6 +139,26 @@ void TvShowWidgetEpisode::onClear()
     ui->studio->clear();
     ui->overview->clear();
     ui->certification->clear();
+    ui->videoCodec->clear();
+    ui->videoScantype->clear();
+
+    bool blocked = false;
+    blocked = ui->videoAspectRatio->blockSignals(true);
+    ui->videoAspectRatio->clear();
+    ui->videoAspectRatio->blockSignals(blocked);
+
+    blocked = ui->videoDuration->blockSignals(true);
+    ui->videoDuration->clear();
+    ui->videoDuration->blockSignals(blocked);
+
+    blocked = ui->videoHeight->blockSignals(true);
+    ui->videoHeight->clear();
+    ui->videoHeight->blockSignals(blocked);
+
+    blocked = ui->videoWidth->blockSignals(true);
+    ui->videoWidth->clear();
+    ui->videoWidth->blockSignals(blocked);
+
     ui->buttonRevert->setVisible(false);
 }
 
@@ -153,6 +180,8 @@ void TvShowWidgetEpisode::setEpisode(TvShowEpisode *episode)
 {
     qDebug() << "Entered, episode=" << episode->name();
     m_episode = episode;
+    if (!episode->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails())
+        episode->loadStreamDetailsFromFile();
     updateEpisodeInfo();
 }
 
@@ -218,6 +247,14 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
         ui->certification->addItem(m_episode->certification());
     }
 
+    // Streamdetails
+    updateStreamDetails();
+    ui->videoAspectRatio->setEnabled(m_episode->streamDetailsLoaded());
+    ui->videoCodec->setEnabled(m_episode->streamDetailsLoaded());
+    ui->videoDuration->setEnabled(m_episode->streamDetailsLoaded());
+    ui->videoHeight->setEnabled(m_episode->streamDetailsLoaded());
+    ui->videoWidth->setEnabled(m_episode->streamDetailsLoaded());
+    ui->videoScantype->setEnabled(m_episode->streamDetailsLoaded());
 
     if (!m_episode->thumbnailImage()->isNull()) {
         ui->thumbnail->setPixmap(QPixmap::fromImage(*m_episode->thumbnailImage()).scaledToWidth(200, Qt::SmoothTransformation));
@@ -249,6 +286,105 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->showTitle->setEnabled(Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeShowTitle));
     ui->studio->setEnabled(Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeNetwork));
     ui->buttonRevert->setVisible(m_episode->hasChanged());
+}
+
+/**
+ * @brief Fills the widget with streamdetails
+ * @param reloadFromFile If true forces a reload of streamdetails from the file
+ */
+void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
+{
+    ui->videoAspectRatio->blockSignals(true);
+    ui->videoDuration->blockSignals(true);
+    ui->videoWidth->blockSignals(true);
+    ui->videoHeight->blockSignals(true);
+
+    if (reloadFromFile)
+        m_episode->loadStreamDetailsFromFile();
+
+    StreamDetails *streamDetails = m_episode->streamDetails();
+    ui->videoWidth->setValue(streamDetails->videoDetails().value("width").toInt());
+    ui->videoHeight->setValue(streamDetails->videoDetails().value("height").toInt());
+    ui->videoAspectRatio->setValue(streamDetails->videoDetails().value("aspect").toDouble());
+    ui->videoCodec->setText(streamDetails->videoDetails().value("codec"));
+    ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
+    ui->videoDuration->setValue(streamDetails->videoDetails().value("durationinseconds").toInt());
+
+    foreach (QWidget *widget, m_streamDetailsWidgets)
+        widget->deleteLater();
+    m_streamDetailsWidgets.clear();
+    m_streamDetailsAudio.clear();
+    m_streamDetailsSubtitles.clear();
+
+    int audioTracks = streamDetails->audioDetails().count();
+    for (int i=0 ; i<audioTracks ; ++i) {
+        QLabel *label = new QLabel(tr("Track %1").arg(i+1));
+        ui->streamDetails->addWidget(label, 7+i, 0);
+        QLineEdit *edit1 = new QLineEdit(streamDetails->audioDetails().at(i).value("language"));
+        QLineEdit *edit2 = new QLineEdit(streamDetails->audioDetails().at(i).value("codec"));
+        QLineEdit *edit3 = new QLineEdit(streamDetails->audioDetails().at(i).value("channels"));
+        edit3->setMaximumWidth(50);
+        edit1->setToolTip(tr("Language"));
+        edit2->setToolTip(tr("Codec"));
+        edit3->setToolTip(tr("Channels"));
+        edit1->setPlaceholderText(tr("Language"));
+        edit2->setPlaceholderText(tr("Codec"));
+        edit2->setPlaceholderText(tr("Channels"));
+        QHBoxLayout *layout = new QHBoxLayout();
+        layout->addWidget(edit1);
+        layout->addWidget(edit2);
+        layout->addWidget(edit3);
+        layout->addStretch(10);
+        ui->streamDetails->addLayout(layout, 7+i, 1);
+        m_streamDetailsWidgets << label << edit1 << edit2 << edit3;
+        m_streamDetailsAudio << (QList<QLineEdit*>() << edit1 << edit2 << edit3);
+        connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+        connect(edit2, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+        connect(edit3, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+    }
+
+    if (!streamDetails->subtitleDetails().isEmpty()) {
+        QLabel *label = new QLabel(tr("Subtitles"));
+        QFont font = label->font();
+        font.setBold(true);
+        label->setFont(font);
+        ui->streamDetails->addWidget(label, 7+audioTracks, 0);
+        m_streamDetailsWidgets << label;
+
+        for (int i=0, n=streamDetails->subtitleDetails().count() ; i<n ; ++i) {
+            QLabel *label = new QLabel(tr("Track %1").arg(i+1));
+            ui->streamDetails->addWidget(label, 8+audioTracks+i, 0);
+            QLineEdit *edit1 = new QLineEdit(streamDetails->subtitleDetails().at(i).value("language"));
+            edit1->setToolTip(tr("Language"));
+            edit1->setPlaceholderText(tr("Language"));
+            QHBoxLayout *layout = new QHBoxLayout();
+            layout->addWidget(edit1);
+            layout->addStretch(10);
+            ui->streamDetails->addLayout(layout, 8+audioTracks+i, 1);
+            m_streamDetailsWidgets << label << edit1;
+            m_streamDetailsSubtitles << (QList<QLineEdit*>() << edit1);
+            connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+        }
+    }
+
+    ui->videoAspectRatio->blockSignals(false);
+    ui->videoDuration->blockSignals(false);
+    ui->videoWidth->blockSignals(false);
+    ui->videoHeight->blockSignals(false);
+}
+
+/**
+ * @brief Forces a reload of stream details
+ */
+void TvShowWidgetEpisode::onReloadStreamDetails()
+{
+    updateStreamDetails(true);
+    ui->videoAspectRatio->setEnabled(true);
+    ui->videoCodec->setEnabled(true);
+    ui->videoDuration->setEnabled(true);
+    ui->videoHeight->setEnabled(true);
+    ui->videoWidth->setEnabled(true);
+    ui->videoScantype->setEnabled(true);
 }
 
 /**
@@ -613,5 +749,30 @@ void TvShowWidgetEpisode::onStudioChange(QString text)
 void TvShowWidgetEpisode::onOverviewChange()
 {
     m_episode->setOverview(ui->overview->toPlainText());
+    ui->buttonRevert->setVisible(true);
+}
+
+/**
+ * @brief Updates all stream details for this episode with values from the widget
+ */
+void TvShowWidgetEpisode::onStreamDetailsEdited()
+{
+    StreamDetails *details = m_episode->streamDetails();
+    details->setVideoDetail("codec", ui->videoCodec->text());
+    details->setVideoDetail("aspect", ui->videoAspectRatio->text());
+    details->setVideoDetail("width", ui->videoWidth->text());
+    details->setVideoDetail("height", ui->videoHeight->text());
+    details->setVideoDetail("scantype", ui->videoScantype->text());
+    details->setVideoDetail("durationinseconds", QString("%1").arg(ui->videoDuration->value()));
+
+    for (int i=0, n=m_streamDetailsAudio.count() ; i<n ; ++i) {
+        details->setAudioDetail(i, "language", m_streamDetailsAudio[i][0]->text());
+        details->setAudioDetail(i, "codec", m_streamDetailsAudio[i][1]->text());
+        details->setAudioDetail(i, "channels", m_streamDetailsAudio[i][2]->text());
+    }
+    for (int i=0, n=m_streamDetailsSubtitles.count() ; i<n ; ++i)
+        details->setSubtitleDetail(i, "language", m_streamDetailsSubtitles[i][0]->text());
+
+    m_episode->setChanged(true);
     ui->buttonRevert->setVisible(true);
 }

@@ -98,6 +98,9 @@ private slots:
     void onCountryEdited(QTableWidgetItem *item);
     void onGenreEdited(QTableWidgetItem *item);
     void onStudioEdited(QTableWidgetItem *item);
+    void onStreamDetailsEdited();
+    void onReloadStreamDetails();
+    void updateStreamDetails(bool reloadFromFile = false);
 
 private:
     Ui::MovieWidget *ui;
@@ -110,6 +113,9 @@ private:
     QImage m_currentLogo;
     QImage m_currentClearArt;
     QImage m_currentCdArt;
+    QList<QWidget*> m_streamDetailsWidgets;
+    QList< QList<QLineEdit*> > m_streamDetailsAudio;
+    QList< QList<QLineEdit*> > m_streamDetailsSubtitles;
     void updateMovieInfo();
 };
 

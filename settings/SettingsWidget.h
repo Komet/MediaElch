@@ -53,6 +53,7 @@ private slots:
     void onActivateCache();
     void onClearCache();
     void onUseProxy();
+    void onAutoLoadStreamDetails();
 
 private:
     Ui::SettingsWidget *ui;

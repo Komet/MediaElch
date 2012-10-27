@@ -60,6 +60,9 @@ private slots:
     void onOverviewChange();
     void onDirectorEdited(QTableWidgetItem *item);
     void onWriterEdited(QTableWidgetItem *item);
+    void onStreamDetailsEdited();
+    void onReloadStreamDetails();
+    void updateStreamDetails(bool reloadFromFile = false);
 
 private:
     Ui::TvShowWidgetEpisode *ui;
@@ -68,6 +71,9 @@ private:
     QMovie *m_loadingMovie;
     DownloadManager *m_posterDownloadManager;
     QImage m_currentBackdrop;
+    QList<QWidget*> m_streamDetailsWidgets;
+    QList< QList<QLineEdit*> > m_streamDetailsAudio;
+    QList< QList<QLineEdit*> > m_streamDetailsSubtitles;
 
     void updateEpisodeInfo();
 };

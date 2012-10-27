@@ -11,9 +11,11 @@
 #include "globals/Globals.h"
 #include "data/MediaCenterInterface.h"
 #include "data/ConcertScraperInterface.h"
+#include "data/StreamDetails.h"
 
 class MediaCenterInterface;
 class ConcertScraperInterface;
+class StreamDetails;
 
 /**
  * @brief The Concert class
@@ -81,6 +83,8 @@ public:
     int mediaCenterId() const;
     QString tmdbId() const;
     QString id() const;
+    StreamDetails *streamDetails();
+    bool streamDetailsLoaded() const;
 
     bool hasChanged() const;
 
@@ -115,12 +119,14 @@ public:
     void setMediaCenterId(int mediaCenterId);
     void setTmdbId(QString id);
     void setId(QString id);
+    void setStreamDetailsLoaded(bool loaded);
 
     void removeGenre(QString *genre);
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false);
     void loadData(QString id, ConcertScraperInterface *scraperInterface, QList<int> infos);
+    void loadStreamDetailsFromFile();
     void clearImages();
 
     void scraperLoadDone();
@@ -167,6 +173,8 @@ private:
     QString m_tmdbId;
     QString m_id;
     QList<int> m_infosToLoad;
+    bool m_streamDetailsLoaded;
+    StreamDetails *m_streamDetails;
 };
 
 #endif // CONCERT_H

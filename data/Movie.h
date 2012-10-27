@@ -11,9 +11,11 @@
 #include "globals/Globals.h"
 #include "data/MediaCenterInterface.h"
 #include "data/ScraperInterface.h"
+#include "data/StreamDetails.h"
 
 class MediaCenterInterface;
 class ScraperInterface;
+class StreamDetails;
 
 /**
  * @brief The Movie class
@@ -107,6 +109,8 @@ public:
     bool hasLogo() const;
     bool hasClearArt() const;
     bool hasCdArt() const;
+    StreamDetails *streamDetails();
+    bool streamDetailsLoaded() const;
 
     bool hasChanged() const;
 
@@ -158,6 +162,7 @@ public:
     void setHasLogo(bool has);
     void setHasClearArt(bool has);
     void setHasCdArt(bool has);
+    void setStreamDetailsLoaded(bool loaded);
 
     void removeActor(Actor *actor);
     void removeCountry(QString *country);
@@ -168,6 +173,7 @@ public:
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false);
     void loadData(QString id, ScraperInterface *scraperInterface, QList<int> infos);
+    void loadStreamDetailsFromFile();
     void clearImages();
 
     void scraperLoadDone();
@@ -229,6 +235,8 @@ private:
     bool m_hasClearArt;
     bool m_hasCdArt;
     QList<int> m_infosToLoad;
+    bool m_streamDetailsLoaded;
+    StreamDetails *m_streamDetails;
 };
 
 QDebug operator<<(QDebug dbg, const Movie &movie);

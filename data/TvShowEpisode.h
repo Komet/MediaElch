@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QStringList>
 #include "data/MediaCenterInterface.h"
+#include "data/StreamDetails.h"
 #include "data/TvScraperInterface.h"
 #include "data/TvShow.h"
 #include "data/TvShowModelItem.h"
@@ -66,6 +67,8 @@ public:
     QList<QString*> directorsPointer();
     bool infoLoaded() const;
     int episodeId() const;
+    StreamDetails *streamDetails();
+    bool streamDetailsLoaded() const;
 
     void setName(QString name);
     void setShowTitle(QString showTitle);
@@ -87,6 +90,7 @@ public:
     void setInfosLoaded(bool loaded);
     void setChanged(bool changed);
     void setModelItem(TvShowModelItem *item);
+    void setStreamDetailsLoaded(bool loaded);
 
     void removeWriter(QString *writer);
     void removeDirector(QString *director);
@@ -94,6 +98,7 @@ public:
     bool loadData(MediaCenterInterface *mediaCenterInterface);
     void loadData(QString id, TvScraperInterface *tvScraperInterface);
     bool saveData(MediaCenterInterface *mediaCenterInterface);
+    void loadStreamDetailsFromFile();
     void clearImages();
 
     void scraperLoadDone();
@@ -125,6 +130,8 @@ private:
     bool m_infoLoaded;
     bool m_hasChanged;
     int m_episodeId;
+    bool m_streamDetailsLoaded;
+    StreamDetails *m_streamDetails;
 };
 
 QDebug operator<<(QDebug dbg, const TvShowEpisode &episode);

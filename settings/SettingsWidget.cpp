@@ -149,6 +149,7 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     connect(ui->chkUseCache, SIGNAL(clicked()), this, SLOT(onActivateCache()));
     connect(ui->btnClearCache, SIGNAL(clicked()), this, SLOT(onClearCache()));
     connect(ui->chkUseProxy, SIGNAL(clicked()), this, SLOT(onUseProxy()));
+    connect(ui->chkAutoLoadStreamDetails, SIGNAL(clicked()), this, SLOT(onAutoLoadStreamDetails()));
 
     connect(ui->radioXbmcXml, SIGNAL(clicked()), this, SLOT(onMediaCenterXbmcXmlSelected()));
     connect(ui->radioXbmcMysql, SIGNAL(clicked()), this, SLOT(onMediaCenterXbmcMysqlSelected()));
@@ -215,6 +216,9 @@ void SettingsWidget::loadSettings()
     // Cache
     ui->chkUseCache->setChecked(m_settings->useCache());
     onActivateCache();
+
+    // Stream Details
+    ui->chkAutoLoadStreamDetails->setChecked(m_settings->autoLoadStreamDetails());
 
     // Proxy
     ui->chkUseProxy->setChecked(m_settings->useProxy());
@@ -734,4 +738,12 @@ void SettingsWidget::chooseDirToAdd()
     QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a directory containing your movies, TV show or concerts"), QDir::homePath());
     if (!dir.isEmpty())
         addDir(dir);
+}
+
+/**
+ * @brief SettingsWidget::onAutoLoadStreamDetails
+ */
+void SettingsWidget::onAutoLoadStreamDetails()
+{
+    m_settings->setAutoLoadStreamDetails(ui->chkAutoLoadStreamDetails->isChecked());
 }

@@ -70,6 +70,7 @@ public:
     QList<DataFile*> enabledConcertPosterFiles();
     QList<DataFile*> enabledConcertFanartFiles();
     bool useCache();
+    bool autoLoadStreamDetails();
 
     void setMainWindowSize(QSize mainWindowSize);
     void setMainWindowPosition(QPoint mainWindowPosition);
@@ -112,6 +113,7 @@ public:
     void setConcertClearArtFiles(QList<DataFile*> files);
     void setMediaCenterInterface(int interface);
     void setUseCache(bool useCache);
+    void setAutoLoadStreamDetails(bool autoLoad);
 
 public slots:
     void saveSettings();
@@ -161,6 +163,7 @@ private:
     QList<DataFile*> m_tvShowClearArtFiles;
     QList<DataFile*> m_tvShowCharacterArtFiles;
     bool m_useCache;
+    bool m_autoLoadStreamDetails;
 
     void setupProxy();
 };
