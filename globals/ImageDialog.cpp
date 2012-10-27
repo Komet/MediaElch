@@ -238,6 +238,7 @@ void ImageDialog::setDownloads(QList<Poster> downloads, bool initial)
         d.thumbUrl = poster.thumbUrl;
         d.downloaded = false;
         d.resolution = poster.originalSize;
+        d.hint = poster.hint;
         m_elements.append(d);
     }
     ui->labelLoading->setVisible(true);
@@ -299,7 +300,7 @@ void ImageDialog::downloadFinished()
     if (!m_elements[m_currentDownloadIndex].pixmap.isNull()) {
         m_elements[m_currentDownloadIndex].scaledPixmap = m_elements[m_currentDownloadIndex].pixmap.scaledToWidth(getColumnWidth()-10, Qt::SmoothTransformation);
         m_elements[m_currentDownloadIndex].cellWidget->setImage(m_elements[m_currentDownloadIndex].scaledPixmap);
-        m_elements[m_currentDownloadIndex].cellWidget->setResolution(m_elements[m_currentDownloadIndex].resolution);
+        m_elements[m_currentDownloadIndex].cellWidget->setHint(m_elements[m_currentDownloadIndex].resolution, m_elements[m_currentDownloadIndex].hint);
     }
     ui->table->resizeRowsToContents();
     m_elements[m_currentDownloadIndex].downloaded = true;
@@ -312,7 +313,6 @@ void ImageDialog::downloadFinished()
  */
 void ImageDialog::renderTable()
 {
-    qDebug() << "Entered";
     int cols = calcColumnCount();
     ui->table->setColumnCount(cols);
     ui->table->setRowCount(0);
@@ -330,7 +330,7 @@ void ImageDialog::renderTable()
         ImageLabel *label = new ImageLabel(ui->table);
         if (!m_elements[i].pixmap.isNull()) {
             label->setImage(m_elements[i].pixmap.scaledToWidth(getColumnWidth()-10, Qt::SmoothTransformation));
-            label->setResolution(m_elements[i].resolution);
+            label->setHint(m_elements[i].resolution, m_elements[i].hint);
         }
         m_elements[i].cellWidget = label;
         ui->table->setItem(row, i%cols, item);
@@ -345,11 +345,9 @@ void ImageDialog::renderTable()
  */
 int ImageDialog::calcColumnCount()
 {
-    qDebug() << "Entered";
     int width = ui->table->size().width();
     int colWidth = getColumnWidth()+4;
     int cols = qFloor((qreal)width/colWidth);
-    qDebug() << "Returning cols=" << cols;
     return cols;
 }
 
@@ -370,7 +368,6 @@ int ImageDialog::getColumnWidth()
  */
 void ImageDialog::imageClicked(int row, int col)
 {
-    qDebug() << "Entered";
     if (ui->table->item(row, col) == 0) {
         qDebug() << "Invalid item";
         return;
@@ -463,7 +460,6 @@ void ImageDialog::cancelDownloads()
  */
 void ImageDialog::chooseLocalImage()
 {
-    qDebug() << "Entered";
     QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), QDir::homePath(), tr("Images (*.jpg *.jpeg *.png)"));
     qDebug() << "Filename=" << fileName;
     if (!fileName.isNull()) {
@@ -477,7 +473,7 @@ void ImageDialog::chooseLocalImage()
         m_elements[index].pixmap = QPixmap(fileName);
         m_elements[index].pixmap = m_elements[index].pixmap.scaledToWidth(getColumnWidth()-10, Qt::SmoothTransformation);
         m_elements[index].cellWidget->setImage(m_elements[index].pixmap);
-        m_elements[index].cellWidget->setResolution(m_elements[index].pixmap.size());
+        m_elements[index].cellWidget->setHint(m_elements[index].pixmap.size());
         ui->table->resizeRowsToContents();
         m_elements[index].downloaded = true;
         m_imageUrl = QUrl(fileName);
@@ -503,7 +499,7 @@ void ImageDialog::onImageDropped(QUrl url)
         m_elements[index].pixmap = QPixmap(url.toLocalFile());
         m_elements[index].pixmap = m_elements[index].pixmap.scaledToWidth(getColumnWidth()-10, Qt::SmoothTransformation);
         m_elements[index].cellWidget->setImage(m_elements[index].pixmap);
-        m_elements[index].cellWidget->setResolution(m_elements[index].pixmap.size());
+        m_elements[index].cellWidget->setHint(m_elements[index].pixmap.size());
     }
     ui->table->resizeRowsToContents();
     m_elements[index].downloaded = true;
@@ -517,7 +513,6 @@ void ImageDialog::onImageDropped(QUrl url)
  */
 void ImageDialog::onPreviewSizeChange(int value)
 {
-    qDebug() << "Entered, value=" << value;
     ui->buttonZoomOut->setDisabled(value == ui->previewSizeSlider->minimum());
     ui->buttonZoomIn->setDisabled(value == ui->previewSizeSlider->maximum());
     QSettings settings;

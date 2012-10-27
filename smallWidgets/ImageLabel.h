@@ -19,8 +19,7 @@ public:
     explicit ImageLabel(QWidget *parent = 0);
     ~ImageLabel();
     void setImage(QPixmap pixmap);
-    void setResolution(QString resolution);
-    void setResolution(QSize resolution);
+    void setHint(QSize resolution, QString hint = "");
 
 private:
     Ui::ImageLabel *ui;

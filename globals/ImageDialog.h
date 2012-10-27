@@ -83,6 +83,7 @@ private:
         bool downloaded;
         ImageLabel *cellWidget;
         QSize resolution;
+        QString hint;
     };
 
     QNetworkAccessManager m_qnam;

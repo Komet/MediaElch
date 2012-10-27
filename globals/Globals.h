@@ -96,6 +96,7 @@ struct Poster {
     QUrl thumbUrl;
     QSize originalSize;
     QString language;
+    QString hint;
 };
 
 enum ImageType {

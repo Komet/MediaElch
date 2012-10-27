@@ -336,6 +336,10 @@ QList<Poster> FanartTv::parseMovieData(QString json, int type)
                     Poster b;
                     b.thumbUrl = vB.property("url").toString() + "/preview";
                     b.originalUrl = vB.property("url").toString();
+                    if (section == "hdmovielogo" || section == "hdmovieclearart")
+                        b.hint = "HD";
+                    else if (section == "movielogo" || section == "movieart")
+                        b.hint = "SD";
                     posters.append(b);
                 }
             }
@@ -558,6 +562,10 @@ QList<Poster> FanartTv::parseTvShowData(QString json, int type)
                     Poster b;
                     b.thumbUrl = vB.property("url").toString() + "/preview";
                     b.originalUrl = vB.property("url").toString();
+                    if (section == "hdtvlogo" || section == "hdclearart")
+                        b.hint = "HD";
+                    else if (section == "clearlogo" || section == "clearart")
+                        b.hint = "SD";
                     posters.append(b);
                 }
             }

@@ -37,23 +37,20 @@ void ImageLabel::setImage(QPixmap pixmap)
 
 /**
  * @brief Sets the resolution text
- * @param resolution Resolution string to set
- */
-void ImageLabel::setResolution(QString resolution)
-{
-    ui->resolution->setText(resolution);
-}
-
-/**
- * @brief Sets the resolution text
  * @param resolution Resolution (QSize) to set
+ * @param hint Hint
  */
-void ImageLabel::setResolution(QSize resolution)
+void ImageLabel::setHint(QSize resolution, QString hint)
 {
-    if (resolution.isNull() || resolution.isEmpty() || !resolution.isValid()) {
-        ui->resolution->setText("");
-        return;
+    QString text;
+    if (!resolution.isNull() && !resolution.isEmpty() && resolution.isValid())
+        text = QString("%1 x %2").arg(resolution.width()).arg(resolution.height());
+    if (!hint.isEmpty()) {
+        if (text.isEmpty())
+            text = hint;
+        else
+            text.append(QString(" (%1)").arg(hint));
     }
 
-    ui->resolution->setText(QString("%1 x %2").arg(resolution.width()).arg(resolution.height()));
+    ui->resolution->setText(hint);
 }
