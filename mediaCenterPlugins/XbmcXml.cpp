@@ -264,13 +264,10 @@ QString XbmcXml::nfoFilePath(Movie *movie)
  */
 bool XbmcXml::loadMovie(Movie *movie)
 {
-    qDebug() << "Entered, files=" << movie->files();
-
     QString nfoFile = nfoFilePath(movie);
     if (nfoFile.isEmpty())
         return false;
 
-    qDebug() << "Trying to load nfoFile" << nfoFile;
     QFile file(nfoFile);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning() << "File" << nfoFile << "could not be opened for reading";
@@ -801,7 +798,6 @@ void XbmcXml::saveAdditionalImages(Concert *concert)
  */
 bool XbmcXml::loadConcert(Concert *concert)
 {
-    qDebug() << "Entered, files=" << concert->files();
     if (concert->files().size() == 0) {
         qWarning() << "Movie has no files";
         return false;
@@ -827,7 +823,6 @@ bool XbmcXml::loadConcert(Concert *concert)
         return false;
     }
 
-    qDebug() << "Trying to load nfoFile" << nfoFile;
     QFile file(nfoFile);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning() << "File" << nfoFile << "could not be opened for reading";
@@ -1410,7 +1405,6 @@ void XbmcXml::exportDatabase(QList<Movie*> movies, QList<TvShow*> shows, QString
  */
 bool XbmcXml::loadTvShow(TvShow *show)
 {
-    qDebug() << "Entered, show=" << show->name();
     if (show->dir().isEmpty()) {
         qWarning() << "Show dir is empty";
         return false;
@@ -1422,7 +1416,6 @@ bool XbmcXml::loadTvShow(TvShow *show)
     }
 
     QFile file(fi.absoluteFilePath());
-    qDebug() << "Trying to load" << fi.absoluteFilePath();
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning() << "Nfo file could not be opened for reading" << fi.absoluteFilePath();
         return false;
@@ -1495,7 +1488,6 @@ bool XbmcXml::loadTvShow(TvShow *show)
  */
 bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode)
 {
-    qDebug() << "Entered, episode=" << episode->name();
     if (episode->files().size() == 0) {
         qWarning() << "Episode has no files";
         return false;
@@ -1507,7 +1499,6 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode)
     }
     QString nfoFile = fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".nfo";
     fi.setFile(nfoFile);
-    qDebug() << "Trying to load" << nfoFile;
     if (!fi.exists()) {
         qDebug() << "Nfo file doesn't exist" << nfoFile;
         return false;

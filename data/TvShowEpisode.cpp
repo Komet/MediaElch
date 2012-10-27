@@ -68,9 +68,7 @@ void TvShowEpisode::clear()
  */
 bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface)
 {
-    qDebug() << "Entered";
     bool infoLoaded = mediaCenterInterface->loadTvShowEpisode(this);
-    qDebug() << "Loaded" << infoLoaded;
     if (!infoLoaded) {
         if (this->files().count() > 0) {
             QFileInfo fi(this->files().at(0));

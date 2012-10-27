@@ -125,12 +125,10 @@ bool Concert::saveData(MediaCenterInterface *mediaCenterInterface)
  */
 bool Concert::loadData(MediaCenterInterface *mediaCenterInterface, bool force)
 {
-    qDebug() << "Entered, force=" << force;
     if ((m_infoLoaded || hasChanged()) && !force)
         return m_infoLoaded;
 
     bool infoLoaded = mediaCenterInterface->loadConcert(this);
-    qDebug() << "Loaded" << infoLoaded;
     if (!infoLoaded) {
         NameFormatter *nameFormat = NameFormatter::instance(this);
         if (this->files().size() > 0) {

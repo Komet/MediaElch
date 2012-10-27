@@ -147,14 +147,12 @@ bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
  */
 bool Movie::loadData(MediaCenterInterface *mediaCenterInterface, bool force)
 {
-    qDebug() << "Entered, force=" << force;
     if ((m_infoLoaded || hasChanged()) && !force)
         return m_infoLoaded;
 
     NameFormatter *nameFormat = NameFormatter::instance(this);
 
     bool infoLoaded = mediaCenterInterface->loadMovie(this);
-    qDebug() << "Loaded" << infoLoaded;
     if (!infoLoaded) {
         if (files().size() > 0) {
             QFileInfo fi(files().at(0));

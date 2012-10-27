@@ -119,8 +119,8 @@ void ConcertFileSearcher::scanDir(QString startPath, QString path, QList<QString
     QStringList files;
     QStringList entries = getCachedFiles(path);
     foreach (const QString &file, entries) {
-        // Skip Trailers
-        if (file.contains("-trailer", Qt::CaseInsensitive))
+        // Skip Trailers and Sample files
+        if (file.contains("-trailer", Qt::CaseInsensitive) || file.contains("-sample", Qt::CaseInsensitive))
             continue;
         files.append(file);
     }

@@ -92,9 +92,7 @@ int TvShow::episodeCount()
  */
 bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface)
 {
-    qDebug() << "Entered";
     bool infoLoaded = mediaCenterInterface->loadTvShow(this);
-    qDebug() << "Loaded" << infoLoaded;
     if (!infoLoaded) {
         QStringList dirParts = this->dir().split(QDir::separator());
         if (dirParts.count() > 0)
