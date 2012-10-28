@@ -5,12 +5,20 @@
 
 using namespace MediaInfoLib;
 
+/**
+ * @brief StreamDetails::StreamDetails
+ * @param parent
+ * @param file
+ */
 StreamDetails::StreamDetails(QObject *parent, QString file) :
     QObject(parent)
 {
     m_file = file;
 }
 
+/**
+ * @brief Clears all information
+ */
 void StreamDetails::clear()
 {
     m_videoDetails.clear();
@@ -18,6 +26,9 @@ void StreamDetails::clear()
     m_subtitles.clear();
 }
 
+/**
+ * @brief Loads stream details from the file
+ */
 void StreamDetails::loadStreamDetails()
 {
     clear();
@@ -82,6 +93,12 @@ void StreamDetails::loadStreamDetails()
     MI.Close();
 }
 
+/**
+ * @brief Modifies a video format name
+ * @param format Original format, given by libstreaminfo
+ * @param version Version, given by libstreaminfo
+ * @return Modified format
+ */
 QString StreamDetails::videoFormat(QString format, QString version)
 {
     format = format.toLower();
@@ -92,6 +109,11 @@ QString StreamDetails::videoFormat(QString format, QString version)
     return format;
 }
 
+/**
+ * @brief Returns a modified audio format
+ * @param format Original format, given by libstreaminfo
+ * @return Modified format
+ */
 QString StreamDetails::audioFormat(QString format)
 {
     if (format == "MPA1L3")
@@ -99,11 +121,22 @@ QString StreamDetails::audioFormat(QString format)
     return format;
 }
 
+/**
+ * @brief Sets a video detail
+ * @param key The key (aspect, width, height...)
+ * @param value The value
+ */
 void StreamDetails::setVideoDetail(QString key, QString value)
 {
     m_videoDetails.insert(key, value);
 }
 
+/**
+ * @brief Sets a audio detail
+ * @param streamNumber Number of the stream
+ * @param key Key (language, codec or channels)
+ * @param value Value
+ */
 void StreamDetails::setAudioDetail(int streamNumber, QString key, QString value)
 {
     if (streamNumber >= m_audioDetails.count())
@@ -113,6 +146,12 @@ void StreamDetails::setAudioDetail(int streamNumber, QString key, QString value)
     m_audioDetails[streamNumber].insert(key, value);
 }
 
+/**
+ * @brief Sets a subtitle detail
+ * @param streamNumber Number of the stream
+ * @param key Key (language)
+ * @param value Language
+ */
 void StreamDetails::setSubtitleDetail(int streamNumber, QString key, QString value)
 {
     if (streamNumber >= m_subtitles.count())
@@ -122,16 +161,28 @@ void StreamDetails::setSubtitleDetail(int streamNumber, QString key, QString val
     m_subtitles[streamNumber].insert(key, value);
 }
 
+/**
+ * @brief Access video details
+ * @return
+ */
 QMap<QString, QString> StreamDetails::videoDetails()
 {
     return m_videoDetails;
 }
 
+/**
+ * @brief Access audio details
+ * @return
+ */
 QList<QMap<QString, QString> > StreamDetails::audioDetails()
 {
     return m_audioDetails;
 }
 
+/**
+ * @brief Access subtitles
+ * @return
+ */
 QList<QMap<QString, QString> > StreamDetails::subtitleDetails()
 {
     return m_subtitles;

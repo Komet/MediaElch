@@ -5,6 +5,11 @@
 #include <QObject>
 #include "data/MediaCenterInterface.h"
 
+/**
+ * @brief The StreamDetails class
+ *        This class makes use of libstreaminfo and handles
+ *        video and audio stream details
+ */
 class StreamDetails : public QObject
 {
     Q_OBJECT
