@@ -211,6 +211,31 @@ enum SortBy {
     SortByName, SortBySeen, SortByAdded, SortByYear, SortByNew
 };
 
+namespace DataFileType {
+    const int MovieNfo           = 1;
+    const int MoviePoster        = 2;
+    const int MovieBackdrop      = 3;
+    const int MovieLogo          = 4;
+    const int MovieClearArt      = 5;
+    const int MovieCdArt         = 6;
+    const int ConcertNfo         = 7;
+    const int ConcertPoster      = 8;
+    const int ConcertBackdrop    = 9;
+    const int ConcertLogo        = 10;
+    const int ConcertClearArt    = 11;
+    const int ConcertCdArt       = 12;
+    const int TvShowNfo          = 13;
+    const int TvShowPoster       = 14;
+    const int TvShowBackdrop     = 15;
+    const int TvShowBanner       = 16;
+    const int TvShowSeasonPoster = 17;
+    const int TvShowLogo         = 18;
+    const int TvShowClearArt     = 19;
+    const int TvShowCharacterArt = 20;
+    const int TvShowEpisodeNfo   = 21;
+    const int TvShowEpisodeThumb = 22;
+}
+
 // Debugging
 #if defined( Q_CC_GNU )
 #    if defined( qDebug )

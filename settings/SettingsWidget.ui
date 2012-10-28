@@ -81,7 +81,7 @@ QTabBar::tab:selected {
       <attribute name="title">
        <string>Global Settings</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0,0,0,0,0,0,0,0,0,0">
+      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0,0,0,0,0,0,0,0">
        <item>
         <widget class="QLabel" name="label_12">
          <property name="font">
@@ -195,45 +195,18 @@ QTabBar::tab:selected {
         </layout>
        </item>
        <item>
-        <widget class="QLabel" name="label_21">
-         <property name="text">
-          <string>&lt;b&gt;Cache&lt;/b&gt; Activating the cache will improve start up speed. In some cases this might not work as aspected. If new files won't show up, try clearing the cache or disabling it completely.</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <item>
-          <widget class="QCheckBox" name="chkUseCache">
-           <property name="text">
-            <string>Use Cache</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnClearCache">
-           <property name="text">
-            <string>Clear Cache</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <widget class="QCheckBox" name="useYoutubePluginUrls">
+         <property name="text">
+          <string>Store trailer URLs in YouTube Plugin format</string>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QCheckBox" name="chkAutoLoadStreamDetails">
@@ -243,28 +216,18 @@ QTabBar::tab:selected {
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_10">
+        <widget class="QCheckBox" name="chkUseCache">
          <property name="text">
-          <string>&lt;b&gt;Debug&lt;/b&gt; When debug mode is activated debug messages are written to logfile you set. Please use this option only if you encountered problems with MediaElch as the logfile can get very big. </string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="chkActivateDebug">
-         <property name="text">
-          <string>Activate debug mode</string>
+          <string>Use File and Folder Cache</string>
          </property>
         </widget>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
-          <widget class="QLabel" name="label_11">
+          <widget class="QCheckBox" name="chkActivateDebug">
            <property name="text">
-            <string>Logfile: </string>
+            <string>Activate debug mode and write log file</string>
            </property>
           </widget>
          </item>
@@ -281,27 +244,40 @@ QTabBar::tab:selected {
         </layout>
        </item>
        <item>
-        <widget class="QLabel" name="label_excludeWords">
-         <property name="text">
-          <string>&lt;b&gt;Exclude&lt;/b&gt; Words to exclude from media names (seperated by commas and non case-sensitive)</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QTextEdit" name="excludeWordsText">
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="toolTip">
-          <string>Words to exclude from media names (seperated by commas and non case-sensitive)</string>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,0">
+         <item>
+          <widget class="QLabel" name="label_excludeWords">
+           <property name="minimumSize">
+            <size>
+             <width>400</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Words to exclude from media names (seperated by commas and non case-sensitive)</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTextEdit" name="excludeWordsText">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="toolTip">
+            <string>Words to exclude from media names (seperated by commas and non case-sensitive)</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <spacer name="verticalSpacer_1">
@@ -387,333 +363,6 @@ QTabBar::tab:selected {
          <property name="text">
           <string>XBMC XML</string>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QWidget" name="widgetXbmcXmlFiles" native="true">
-         <layout class="QVBoxLayout" name="verticalLayout_13">
-          <item>
-           <widget class="QLabel" name="label_18">
-            <property name="text">
-             <string>Select the filenames you wish to use for loading and saving. Enable/disable them using the checkbox in front, set priorities through sorting with drag and drop.</string>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_6">
-            <item>
-             <layout class="QVBoxLayout" name="verticalLayout_10">
-              <item>
-               <widget class="QLabel" name="label_15">
-                <property name="font">
-                 <font>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Movie NFO</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QListWidget" name="xmlNfos">
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>150</height>
-                 </size>
-                </property>
-                <property name="editTriggers">
-                 <set>QAbstractItemView::NoEditTriggers</set>
-                </property>
-                <property name="dragEnabled">
-                 <bool>true</bool>
-                </property>
-                <property name="dragDropMode">
-                 <enum>QAbstractItemView::InternalMove</enum>
-                </property>
-                <property name="defaultDropAction">
-                 <enum>Qt::MoveAction</enum>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>&lt;movie filename&gt;.nfo</string>
-                 </property>
-                 <property name="checkState">
-                  <enum>Checked</enum>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>movie.nfo</string>
-                 </property>
-                 <property name="checkState">
-                  <enum>Unchecked</enum>
-                 </property>
-                </item>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QVBoxLayout" name="verticalLayout_11">
-              <item>
-               <widget class="QLabel" name="label_16">
-                <property name="font">
-                 <font>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Movie Posters</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QListWidget" name="xmlPosters">
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>150</height>
-                 </size>
-                </property>
-                <property name="editTriggers">
-                 <set>QAbstractItemView::NoEditTriggers</set>
-                </property>
-                <property name="dragEnabled">
-                 <bool>true</bool>
-                </property>
-                <property name="dragDropMode">
-                 <enum>QAbstractItemView::InternalMove</enum>
-                </property>
-                <property name="defaultDropAction">
-                 <enum>Qt::MoveAction</enum>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>&lt;movie filename&gt;.tbn</string>
-                 </property>
-                 <property name="checkState">
-                  <enum>Checked</enum>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>movie.jpg</string>
-                 </property>
-                 <property name="checkState">
-                  <enum>Unchecked</enum>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>movie.tbn</string>
-                 </property>
-                 <property name="checkState">
-                  <enum>Unchecked</enum>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>poster.jpg</string>
-                 </property>
-                 <property name="checkState">
-                  <enum>Unchecked</enum>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>poster.tbn</string>
-                 </property>
-                 <property name="checkState">
-                  <enum>Unchecked</enum>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>folder.jpg</string>
-                 </property>
-                 <property name="checkState">
-                  <enum>Unchecked</enum>
-                 </property>
-                </item>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QVBoxLayout" name="verticalLayout_12">
-              <item>
-               <widget class="QLabel" name="label_17">
-                <property name="font">
-                 <font>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Movie Fanarts</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QListWidget" name="xmlFanarts">
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>150</height>
-                 </size>
-                </property>
-                <property name="editTriggers">
-                 <set>QAbstractItemView::NoEditTriggers</set>
-                </property>
-                <property name="dragEnabled">
-                 <bool>true</bool>
-                </property>
-                <property name="dragDropMode">
-                 <enum>QAbstractItemView::InternalMove</enum>
-                </property>
-                <property name="defaultDropAction">
-                 <enum>Qt::MoveAction</enum>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>&lt;movie filename&gt;-fanart.jpg</string>
-                 </property>
-                 <property name="checkState">
-                  <enum>Checked</enum>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>fanart.jpg</string>
-                 </property>
-                 <property name="checkState">
-                  <enum>Unchecked</enum>
-                 </property>
-                </item>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QVBoxLayout" name="verticalLayout_15">
-              <item>
-               <widget class="QLabel" name="label_19">
-                <property name="font">
-                 <font>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>TV Show Poster</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QListWidget" name="xmlTvShowPosters">
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>150</height>
-                 </size>
-                </property>
-                <property name="editTriggers">
-                 <set>QAbstractItemView::NoEditTriggers</set>
-                </property>
-                <property name="dragEnabled">
-                 <bool>true</bool>
-                </property>
-                <property name="dragDropMode">
-                 <enum>QAbstractItemView::InternalMove</enum>
-                </property>
-                <property name="defaultDropAction">
-                 <enum>Qt::MoveAction</enum>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>season-all.tbn</string>
-                 </property>
-                 <property name="checkState">
-                  <enum>Checked</enum>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>poster.jpg</string>
-                 </property>
-                 <property name="checkState">
-                  <enum>Checked</enum>
-                 </property>
-                </item>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QVBoxLayout" name="verticalLayout_16">
-              <item>
-               <widget class="QLabel" name="label_20">
-                <property name="font">
-                 <font>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>TV Show Banner</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QListWidget" name="xmlTvShowBanners">
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>150</height>
-                 </size>
-                </property>
-                <property name="editTriggers">
-                 <set>QAbstractItemView::NoEditTriggers</set>
-                </property>
-                <property name="dragEnabled">
-                 <bool>true</bool>
-                </property>
-                <property name="dragDropMode">
-                 <enum>QAbstractItemView::InternalMove</enum>
-                </property>
-                <property name="defaultDropAction">
-                 <enum>Qt::MoveAction</enum>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>banner.jpg</string>
-                 </property>
-                 <property name="checkState">
-                  <enum>Checked</enum>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>folder.jpg</string>
-                 </property>
-                 <property name="checkState">
-                  <enum>Checked</enum>
-                 </property>
-                </item>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </item>
-         </layout>
         </widget>
        </item>
        <item>
@@ -903,28 +552,601 @@ QTabBar::tab:selected {
          </item>
         </layout>
        </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Movies</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
        <item>
-        <widget class="QLabel" name="label_14">
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
+        <widget class="QLabel" name="label_43">
          <property name="text">
-          <string>MediaCenter Settings</string>
+          <string>Below you see the filenames which are used for loading and saving your movies. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry.</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="useYoutubePluginUrls">
-         <property name="toolTip">
-          <string>Stores YouTube URLs like &quot;http://www.youtube.com/watch?v=123&quot; as &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</string>
-         </property>
+        <widget class="QLabel" name="label_44">
          <property name="text">
-          <string>Store trailer URLs in YouTube Plugin format</string>
+          <string>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</string>
          </property>
         </widget>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="3">
+          <widget class="QLabel" name="label_29">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Logo</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="label_16">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>CD Art</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_28">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Backdrop</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_15">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Clear Art</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="DataFileListWidget" name="movieBackdropList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_26">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>NFO</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_27">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Poster</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="DataFileListWidget" name="movieLogoList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="DataFileListWidget" name="moviePosterList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="DataFileListWidget" name="movieNfoList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="DataFileListWidget" name="movieClearArtList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="DataFileListWidget" name="movieCdArtList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_4">
+      <attribute name="title">
+       <string>TV Shows</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_8">
+       <item>
+        <widget class="QLabel" name="label_45">
+         <property name="text">
+          <string>Below you see the filenames which are used for loading and saving your tv shows. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry.</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_47">
+         <property name="text">
+          <string>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_42">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Episode NFO</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_35">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Backdrop</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_36">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Season Poster</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLabel" name="label_40">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Character Art</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="label_20">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Logo</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLabel" name="label_34">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Banner</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="DataFileListWidget" name="tvShowBackdropList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_37">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Show NFO</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_38">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Poster</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="DataFileListWidget" name="tvShowBannerList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="DataFileListWidget" name="tvShowPosterList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLabel" name="label_41">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Episode Thumbnail</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="DataFileListWidget" name="tvShowNfoList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="DataFileListWidget" name="tvShowSeasonPosterList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="DataFileListWidget" name="tvShowLogoList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLabel" name="label_39">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Clear Art</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="DataFileListWidget" name="tvShowEpisodeNfoList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="DataFileListWidget" name="tvShowEpisodeThumbList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="DataFileListWidget" name="tvShowClearArtList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="DataFileListWidget" name="tvShowCharacterArtList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
+       <string>Concerts</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <item>
+        <widget class="QLabel" name="label_46">
+         <property name="text">
+          <string>Below you see the filenames which are used for loading and saving your concerts. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry.</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_48">
+         <property name="text">
+          <string>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="3">
+          <widget class="QLabel" name="label_30">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Logo</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="label_17">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>CD Art</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_31">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Backdrop</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_19">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Clear Art</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="DataFileListWidget" name="concertBackdropList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_32">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>NFO</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_33">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Poster</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="DataFileListWidget" name="concertLogoList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="DataFileListWidget" name="concertPosterList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="DataFileListWidget" name="concertNfoList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="DataFileListWidget" name="concertClearArtList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="DataFileListWidget" name="concertCdArtList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
@@ -1073,6 +1295,13 @@ QTabBar::tab:selected {
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>DataFileListWidget</class>
+   <extends>QListWidget</extends>
+   <header>settings/DataFileListWidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>

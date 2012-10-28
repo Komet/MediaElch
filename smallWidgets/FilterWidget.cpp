@@ -329,7 +329,6 @@ void FilterWidget::setupMovieFilters()
 
 /**
  * @brief Sets up tv show filters
- * @todo: add more filters
  */
 void FilterWidget::setupTvShowFilters()
 {
@@ -338,7 +337,6 @@ void FilterWidget::setupTvShowFilters()
 
 /**
  * @brief Sets up concert filters
- * @todo: add more filters
  */
 void FilterWidget::setupConcertFilters()
 {

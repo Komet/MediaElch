@@ -51,21 +51,18 @@ private slots:
     void onActivateDebugMode();
     void onSetDebugLogPath(QString path);
     void onActivateCache();
-    void onClearCache();
     void onUseProxy();
     void onAutoLoadStreamDetails();
 
 private:
     Ui::SettingsWidget *ui;
     Settings *m_settings;
-
     QFileDialog *m_logFileDialog;
     QFileDialog *m_xbmcThumbnailDirDialog;
     QFileDialog *m_xbmcSqliteDatabaseDialog;
     QMap<ScraperInterface*, QComboBox*> m_scraperCombos;
     QMap<TvScraperInterface*, QComboBox*> m_tvScraperCombos;
     QMap<ConcertScraperInterface*, QComboBox*> m_concertScraperCombos;
-
     void setXbmcThumbnailPathEnabled(bool enabled);
 };
 

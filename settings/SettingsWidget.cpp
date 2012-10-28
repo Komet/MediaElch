@@ -147,7 +147,6 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     connect(ui->buttonChooseLogfile, SIGNAL(clicked()), m_logFileDialog, SLOT(open()));
     connect(ui->logfilePath, SIGNAL(textChanged(QString)), this, SLOT(onSetDebugLogPath(QString)));
     connect(ui->chkUseCache, SIGNAL(clicked()), this, SLOT(onActivateCache()));
-    connect(ui->btnClearCache, SIGNAL(clicked()), this, SLOT(onClearCache()));
     connect(ui->chkUseProxy, SIGNAL(clicked()), this, SLOT(onUseProxy()));
     connect(ui->chkAutoLoadStreamDetails, SIGNAL(clicked()), this, SLOT(onAutoLoadStreamDetails()));
 
@@ -269,45 +268,29 @@ void SettingsWidget::loadSettings()
     ui->inputThumbnailPath->setToolTip(m_settings->xbmcThumbnailPath());
     m_xbmcThumbnailDirDialog->selectFile(m_settings->xbmcThumbnailPath());
 
-    ui->xmlNfos->clear();
-    ui->xmlPosters->clear();
-    ui->xmlFanarts->clear();
-    ui->xmlTvShowPosters->clear();
-    ui->xmlTvShowBanners->clear();
-    foreach (DataFile *file, m_settings->movieNfoFiles()) {
-        QListWidgetItem *item = new QListWidgetItem(file->name());
-        item->setData(Qt::UserRole, file->id());
-        item->setCheckState((file->enabled()) ? Qt::Checked : Qt::Unchecked);
-        ui->xmlNfos->addItem(item);
-    }
-
-    foreach (DataFile *file, m_settings->moviePosterFiles()) {
-        QListWidgetItem *item = new QListWidgetItem(file->name());
-        item->setData(Qt::UserRole, file->id());
-        item->setCheckState((file->enabled()) ? Qt::Checked : Qt::Unchecked);
-        ui->xmlPosters->addItem(item);
-    }
-
-    foreach (DataFile *file, m_settings->movieFanartFiles()) {
-        QListWidgetItem *item = new QListWidgetItem(file->name());
-        item->setData(Qt::UserRole, file->id());
-        item->setCheckState((file->enabled()) ? Qt::Checked : Qt::Unchecked);
-        ui->xmlFanarts->addItem(item);
-    }
-
-    foreach (DataFile *file, m_settings->tvShowPosterFiles()) {
-        QListWidgetItem *item = new QListWidgetItem(file->name());
-        item->setData(Qt::UserRole, file->id());
-        item->setCheckState((file->enabled()) ? Qt::Checked : Qt::Unchecked);
-        ui->xmlTvShowPosters->addItem(item);
-    }
-
-    foreach (DataFile *file, m_settings->tvShowBannerFiles()) {
-        QListWidgetItem *item = new QListWidgetItem(file->name());
-        item->setData(Qt::UserRole, file->id());
-        item->setCheckState((file->enabled()) ? Qt::Checked : Qt::Unchecked);
-        ui->xmlTvShowBanners->addItem(item);
-    }
+    // Data Files
+    ui->movieNfoList->setDataFiles(m_settings->dataFiles(DataFileType::MovieNfo), DataFileType::MovieNfo);
+    ui->movieBackdropList->setDataFiles(m_settings->dataFiles(DataFileType::MovieBackdrop), DataFileType::MovieBackdrop);
+    ui->movieCdArtList->setDataFiles(m_settings->dataFiles(DataFileType::MovieCdArt), DataFileType::MovieCdArt);
+    ui->movieClearArtList->setDataFiles(m_settings->dataFiles(DataFileType::MovieClearArt), DataFileType::MovieClearArt);
+    ui->movieLogoList->setDataFiles(m_settings->dataFiles(DataFileType::MovieLogo), DataFileType::MovieLogo);
+    ui->moviePosterList->setDataFiles(m_settings->dataFiles(DataFileType::MoviePoster), DataFileType::MoviePoster);
+    ui->concertNfoList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertNfo), DataFileType::ConcertNfo);
+    ui->concertBackdropList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertBackdrop), DataFileType::ConcertBackdrop);
+    ui->concertCdArtList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertCdArt), DataFileType::ConcertCdArt);
+    ui->concertClearArtList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertClearArt), DataFileType::ConcertClearArt);
+    ui->concertLogoList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertLogo), DataFileType::ConcertLogo);
+    ui->concertPosterList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertPoster), DataFileType::ConcertPoster);
+    ui->tvShowNfoList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowNfo), DataFileType::TvShowNfo);
+    ui->tvShowBackdropList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowBackdrop), DataFileType::TvShowBackdrop);
+    ui->tvShowClearArtList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowClearArt), DataFileType::TvShowClearArt);
+    ui->tvShowLogoList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowLogo), DataFileType::TvShowLogo);
+    ui->tvShowPosterList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowPoster), DataFileType::TvShowPoster);
+    ui->tvShowBannerList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowBanner), DataFileType::TvShowBanner);
+    ui->tvShowCharacterArtList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowCharacterArt), DataFileType::TvShowCharacterArt);
+    ui->tvShowSeasonPosterList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowSeasonPoster), DataFileType::TvShowSeasonPoster);
+    ui->tvShowEpisodeNfoList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowEpisodeNfo), DataFileType::TvShowEpisodeNfo);
+    ui->tvShowEpisodeThumbList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowEpisodeThumb), DataFileType::TvShowEpisodeThumb);
 
     // Scrapers
     QMapIterator<ScraperInterface*, QComboBox*> it(m_scraperCombos);
@@ -350,62 +333,16 @@ void SettingsWidget::saveSettings()
         mediaCenterInterface = MediaCenterInterfaces::XbmcSqlite;
     m_settings->setMediaCenterInterface(mediaCenterInterface);
 
-    if (ui->radioXbmcXml->isChecked()) {
-        QList<DataFile*> movieNfoFiles = m_settings->movieNfoFiles();
-        for (int i=0, n=ui->xmlNfos->count() ; i<n ; ++i) {
-            foreach (DataFile *file, movieNfoFiles) {
-                if (file->id() != ui->xmlNfos->item(i)->data(Qt::UserRole).toInt())
-                    continue;
-                file->setEnabled(ui->xmlNfos->item(i)->checkState() == Qt::Checked);
-                file->setPos(i);
-            }
-        }
-        m_settings->setMovieNfoFiles(movieNfoFiles);
-
-        QList<DataFile*> moviePosterFiles = m_settings->moviePosterFiles();
-        for (int i=0, n=ui->xmlPosters->count() ; i<n ; ++i) {
-            foreach (DataFile *file, moviePosterFiles) {
-                if (file->id() != ui->xmlPosters->item(i)->data(Qt::UserRole).toInt())
-                    continue;
-                file->setEnabled(ui->xmlPosters->item(i)->checkState() == Qt::Checked);
-                file->setPos(i);
-            }
-        }
-        m_settings->setMoviePosterFiles(moviePosterFiles);
-
-        QList<DataFile*> movieFanartFiles = m_settings->movieFanartFiles();
-        for (int i=0, n=ui->xmlFanarts->count() ; i<n ; ++i) {
-            foreach (DataFile *file, movieFanartFiles) {
-                if (file->id() != ui->xmlFanarts->item(i)->data(Qt::UserRole).toInt())
-                    continue;
-                file->setEnabled(ui->xmlFanarts->item(i)->checkState() == Qt::Checked);
-                file->setPos(i);
-            }
-        }
-        m_settings->setMovieFanartFiles(movieFanartFiles);
-
-        QList<DataFile*> tvShowPosterFiles = m_settings->tvShowPosterFiles();
-        for (int i=0, n=ui->xmlTvShowPosters->count() ; i<n ; ++i) {
-            foreach (DataFile *file, tvShowPosterFiles) {
-                if (file->id() != ui->xmlTvShowPosters->item(i)->data(Qt::UserRole).toInt())
-                    continue;
-                file->setEnabled(ui->xmlTvShowPosters->item(i)->checkState() == Qt::Checked);
-                file->setPos(i);
-            }
-        }
-        m_settings->setTvShowPosterFiles(tvShowPosterFiles);
-
-        QList<DataFile*> tvShowBannerFiles = m_settings->tvShowBannerFiles();
-        for (int i=0, n=ui->xmlTvShowBanners->count() ; i<n ; ++i) {
-            foreach (DataFile *file, tvShowBannerFiles) {
-                if (file->id() != ui->xmlTvShowBanners->item(i)->data(Qt::UserRole).toInt())
-                    continue;
-                file->setEnabled(ui->xmlTvShowBanners->item(i)->checkState() == Qt::Checked);
-                file->setPos(i);
-            }
-        }
-        m_settings->setTvShowBannerFiles(tvShowBannerFiles);
-    }
+    QList<DataFile> dataFiles;
+    dataFiles << ui->movieNfoList->dataFiles() << ui->movieBackdropList->dataFiles() << ui->movieCdArtList->dataFiles()
+              << ui->movieClearArtList->dataFiles() << ui->movieLogoList->dataFiles() << ui->moviePosterList->dataFiles();
+    dataFiles << ui->tvShowBackdropList->dataFiles() << ui->tvShowBannerList->dataFiles() << ui->tvShowCharacterArtList->dataFiles()
+              << ui->tvShowClearArtList->dataFiles() << ui->tvShowEpisodeNfoList->dataFiles() << ui->tvShowEpisodeThumbList->dataFiles()
+              << ui->tvShowLogoList->dataFiles() << ui->tvShowNfoList->dataFiles() << ui->tvShowPosterList->dataFiles()
+              << ui->tvShowSeasonPosterList->dataFiles();
+    dataFiles << ui->concertNfoList->dataFiles() << ui->concertBackdropList->dataFiles() << ui->concertCdArtList->dataFiles()
+              << ui->concertClearArtList->dataFiles() << ui->concertLogoList->dataFiles() << ui->concertPosterList->dataFiles();
+    m_settings->setDataFiles(dataFiles);
 
     m_settings->setXbmcMysqlHost(ui->inputHost->text());
     m_settings->setXbmcMysqlDatabase(ui->inputDatabase->text());
@@ -458,7 +395,6 @@ void SettingsWidget::saveSettings()
     m_settings->setMovieDirectories(movieDirectories);
     m_settings->setTvShowDirectories(tvShowDirectories);
     m_settings->setConcertDirectories(concertDirectories);
-
 
     // exclude words
     m_settings->setExcludeWords(ui->excludeWordsText->toPlainText());
@@ -601,7 +537,6 @@ void SettingsWidget::onMediaCenterXbmcXmlSelected()
 {
     ui->labelWarning->setVisible(false);
     ui->radioXbmcXml->setChecked(true);
-    ui->widgetXbmcXmlFiles->setVisible(true);
     ui->widgetXbmcMysql->setVisible(false);
     ui->widgetXbmcSqlite->setVisible(false);
     setXbmcThumbnailPathEnabled(false);
@@ -614,7 +549,6 @@ void SettingsWidget::onMediaCenterXbmcMysqlSelected()
 {
     ui->labelWarning->setVisible(true);
     ui->radioXbmcMysql->setChecked(true);
-    ui->widgetXbmcXmlFiles->setVisible(false);
     ui->widgetXbmcMysql->setVisible(true);
     ui->widgetXbmcSqlite->setVisible(false);
     setXbmcThumbnailPathEnabled(true);
@@ -627,7 +561,6 @@ void SettingsWidget::onMediaCenterXbmcSqliteSelected()
 {
     ui->labelWarning->setVisible(true);
     ui->radioXbmcSqlite->setChecked(true);
-    ui->widgetXbmcXmlFiles->setVisible(false);
     ui->widgetXbmcMysql->setVisible(false);
     ui->widgetXbmcSqlite->setVisible(true);
     setXbmcThumbnailPathEnabled(true);
@@ -685,7 +618,6 @@ void SettingsWidget::onActivateDebugMode()
  */
 void SettingsWidget::onActivateCache()
 {
-    ui->btnClearCache->setEnabled(ui->chkUseCache->isChecked());
     m_settings->setUseCache(ui->chkUseCache->isChecked());
 }
 
@@ -707,14 +639,6 @@ void SettingsWidget::onSetDebugLogPath(QString path)
 {
     m_settings->setDebugLogPath(path);
     m_logFileDialog->selectFile(path);
-}
-
-/**
- * @brief Clears the cache database
- */
-void SettingsWidget::onClearCache()
-{
-    Manager::instance()->clearCacheDatabase();
 }
 
 /**

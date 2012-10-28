@@ -513,6 +513,10 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
             movie->addCountry(vC.property("name").toString());
         }
     }
+    if (infos.contains(MovieScraperInfos::Title) && sc.property("belongs_to_collection").isValid()) {
+        if (!sc.property("belongs_to_collection").property("name").toString().isEmpty())
+            movie->setSet(sc.property("belongs_to_collection").property("name").toString());
+    }
 
     // Casts
     if (infos.contains(MovieScraperInfos::Actors) && sc.property("cast").isArray()) {

@@ -9,26 +9,17 @@
 class DataFile
 {
 public:
-    DataFile(int id, QString name, QString fileName, int pos, bool enabled);
-
-    QString name();
-    QString fileName();
+    DataFile(int type, QString fileName, int pos);
+    int type() const;
+    QString fileName() const;
     int pos() const;
-    int id();
-    bool enabled();
-    QString saveFileName(QString fileName);
-
-    void setEnabled(bool enabled);
-    void setPos(int pos);
-
-    static bool lessThan(const DataFile *a, const DataFile *b);
+    QString saveFileName(QString fileName, int season = -1);
+    static bool lessThan(DataFile a, DataFile b);
 
 private:
-    QString m_name;
     QString m_fileName;
     int m_pos;
-    int m_id;
-    bool m_enabled;
+    int m_type;
 };
 
 #endif // DATAFILE_H

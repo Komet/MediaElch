@@ -100,7 +100,8 @@ SOURCES += main.cpp\
     imageProviders/TheTvDbImages.cpp \
     globals/ComboDelegate.cpp \
     data/StreamDetails.cpp \
-    smallWidgets/MediaFlags.cpp
+    smallWidgets/MediaFlags.cpp \
+    settings/DataFileListWidget.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -178,7 +179,8 @@ HEADERS  += main/MainWindow.h \
     imageProviders/TheTvDbImages.h \
     globals/ComboDelegate.h \
     data/StreamDetails.h \
-    smallWidgets/MediaFlags.h
+    smallWidgets/MediaFlags.h \
+    settings/DataFileListWidget.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
