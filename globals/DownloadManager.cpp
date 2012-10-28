@@ -70,7 +70,6 @@ void DownloadManager::startNextDownload()
 {
     qDebug() << "Entered";
     m_timer.stop();
-    m_retries = 0;
     if (m_currentDownloadElement.movie) {
         int numDownloadsLeft = 0;
         for (int i=0, n=m_queue.size() ; i<n ; ++i) {
@@ -107,7 +106,7 @@ void DownloadManager::startNextDownload()
         return;
     }
 
-    m_timer.start(5000);
+    m_timer.start(3000);
     m_downloading = true;
     m_mutex.lock();
     m_currentDownloadElement = m_queue.dequeue();
@@ -149,7 +148,7 @@ void DownloadManager::startNextDownload()
  */
 void DownloadManager::downloadProgress(qint64 received, qint64 total)
 {
-    m_timer.start(5000);
+    m_timer.start(3000);
     m_currentDownloadElement.bytesReceived = received;
     m_currentDownloadElement.bytesTotal = total;
     emit downloadProgress(m_currentDownloadElement);
@@ -166,11 +165,12 @@ void DownloadManager::downloadTimeout()
     m_retries++;
     m_currentReply->abort();
     m_currentReply->deleteLater();
-    if (m_retries <= 3) {
+    if (m_retries <= 2) {
         qDebug() << "Restarting the download";
         m_queue.prepend(m_currentDownloadElement);
     } else {
         qDebug() << "Giving up on this file, tried 3 times";
+        m_retries = 0;
     }
     startNextDownload();
 }
@@ -187,6 +187,7 @@ void DownloadManager::downloadFinished()
         qWarning() << "Network Error" << m_currentReply->errorString();
         return;
     }
+    m_retries = 0;
     QImage img;
     img.loadFromData(m_currentReply->readAll());
     m_currentDownloadElement.image = img;
