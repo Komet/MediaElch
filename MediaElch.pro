@@ -99,7 +99,8 @@ SOURCES += main.cpp\
     imageProviders/TMDbImages.cpp \
     imageProviders/TheTvDbImages.cpp \
     globals/ComboDelegate.cpp \
-    data/StreamDetails.cpp
+    data/StreamDetails.cpp \
+    smallWidgets/MediaFlags.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -176,7 +177,8 @@ HEADERS  += main/MainWindow.h \
     imageProviders/TMDbImages.h \
     imageProviders/TheTvDbImages.h \
     globals/ComboDelegate.h \
-    data/StreamDetails.h
+    data/StreamDetails.h \
+    smallWidgets/MediaFlags.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -203,7 +205,8 @@ FORMS    += main/MainWindow.ui \
     movies/GenreWidget.ui \
     movies/CertificationWidget.ui \
     support/SupportDialog.ui \
-    main/FileScannerDialog.ui
+    main/FileScannerDialog.ui \
+    smallWidgets/MediaFlags.ui
 
 RESOURCES += \
     MediaElch.qrc

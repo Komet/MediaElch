@@ -25,7 +25,7 @@ void StreamDetails::loadStreamDetails()
     MediaInfo MI;
     MI.Option(QString("Info_Version").toStdWString(), QString("0.7.61;%1;%2").arg(QApplication::applicationName()).arg(QApplication::applicationVersion()).toStdWString());
     MI.Option(QString("Internet").toStdWString(), QString("no").toStdWString());
-    MI.Open(m_file.toStdWString());
+    MI.Open(QString(m_file.toUtf8()).toStdWString());
     MI.Option(QString("Complete").toStdWString(), QString("1").toStdWString());
 
     int duration = 0;
@@ -94,6 +94,8 @@ QString StreamDetails::videoFormat(QString format, QString version)
 
 QString StreamDetails::audioFormat(QString format)
 {
+    if (format == "MPA1L3")
+        return "MP3";
     return format;
 }
 

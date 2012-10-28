@@ -367,6 +367,9 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
         }
     }
 
+    // Media Flags
+    ui->mediaFlags->setStreamDetails(streamDetails);
+
     ui->videoAspectRatio->blockSignals(false);
     ui->videoDuration->blockSignals(false);
     ui->videoWidth->blockSignals(false);

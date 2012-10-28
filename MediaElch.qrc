@@ -50,4 +50,38 @@
         <file>img/btn_donate_LG.gif</file>
         <file>img/star.png</file>
     </qresource>
+    <qresource prefix="/media">
+        <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>
+        <file alias="aspect/1.66">mediaFlags/aspect/1.66.png</file>
+        <file alias="aspect/1.78">mediaFlags/aspect/1.78.png</file>
+        <file alias="aspect/1.85">mediaFlags/aspect/1.85.png</file>
+        <file alias="aspect/2.35">mediaFlags/aspect/2.35.png</file>
+        <file alias="aspect/2.39">mediaFlags/aspect/2.39.png</file>
+        <file alias="resolution/480">mediaFlags/resolution/480.png</file>
+        <file alias="resolution/540">mediaFlags/resolution/540.png</file>
+        <file alias="resolution/576">mediaFlags/resolution/576.png</file>
+        <file alias="resolution/720">mediaFlags/resolution/720.png</file>
+        <file alias="resolution/1080">mediaFlags/resolution/1080.png</file>
+        <file alias="channels/2">mediaFlags/audio/2ch.png</file>
+        <file alias="channels/5">mediaFlags/audio/5ch.png</file>
+        <file alias="channels/6">mediaFlags/audio/6ch.png</file>
+        <file alias="channels/7">mediaFlags/audio/7ch.png</file>
+        <file alias="channels/8">mediaFlags/audio/8ch.png</file>
+        <file alias="audio/dolbydigital">mediaFlags/audio/dolbydigital.png</file>
+        <file alias="audio/dolbytruehd">mediaFlags/audio/dolbytruehd.png</file>
+        <file alias="audio/dts">mediaFlags/audio/dts.png</file>
+        <file alias="audio/dtshdma">mediaFlags/audio/dtshdma.png</file>
+        <file alias="audio/flac">mediaFlags/audio/flac.png</file>
+        <file alias="audio/mp2">mediaFlags/audio/mp2.png</file>
+        <file alias="audio/mp3">mediaFlags/audio/mp3.png</file>
+        <file alias="audio/vorbis">mediaFlags/audio/vorbis.png</file>
+        <file alias="source/bluray">mediaFlags/source/bluray.png</file>
+        <file alias="source/dvd">mediaFlags/source/dvd.png</file>
+        <file alias="codec/avc1">mediaFlags/codec/avc1.png</file>
+        <file alias="codec/avchd">mediaFlags/codec/avchd.png</file>
+        <file alias="codec/divx">mediaFlags/codec/divx.png</file>
+        <file alias="codec/flv">mediaFlags/codec/flv.png</file>
+        <file alias="codec/h264">mediaFlags/codec/h264.png</file>
+        <file alias="codec/xvid">mediaFlags/codec/xvid.png</file>
+    </qresource>
 </RCC>
