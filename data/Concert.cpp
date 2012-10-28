@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include "globals/NameFormatter.h"
+#include "settings/Settings.h"
 
 /**
  * @brief Constructs a new concert object
@@ -106,7 +107,7 @@ void Concert::clear(QList<int> infos)
 bool Concert::saveData(MediaCenterInterface *mediaCenterInterface)
 {
     qDebug() << "Entered";
-    if (!streamDetailsLoaded())
+    if (!streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails())
         loadStreamDetailsFromFile();
     bool saved = mediaCenterInterface->saveConcert(this);
     qDebug() << "Saved" << saved;

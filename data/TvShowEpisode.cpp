@@ -5,6 +5,7 @@
 #include <QFileInfo>
 #include <QTime>
 #include "globals/Globals.h"
+#include "settings/Settings.h"
 
 /**
  * @brief TvShowEpisode::TvShowEpisode
@@ -116,7 +117,7 @@ void TvShowEpisode::scraperLoadDone()
 bool TvShowEpisode::saveData(MediaCenterInterface *mediaCenterInterface)
 {
     qDebug() << "Entered";
-    if (!streamDetailsLoaded())
+    if (!streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails())
         loadStreamDetailsFromFile();
     bool saved = mediaCenterInterface->saveTvShowEpisode(this);
     qDebug() << "Saved" << saved;

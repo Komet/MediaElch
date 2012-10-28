@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
+#include "settings/Settings.h"
 
 /**
  * @brief Constructs a new movie object
@@ -128,7 +129,7 @@ bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
 {
     qDebug() << "Entered";
 
-    if (!streamDetailsLoaded())
+    if (!streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails())
         loadStreamDetailsFromFile();
     bool saved = mediaCenterInterface->saveMovie(this);
     qDebug() << "Saved" << saved;

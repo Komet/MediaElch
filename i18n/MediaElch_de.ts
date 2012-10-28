@@ -2584,6 +2584,11 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Bitte klick auf &quot;Neu Laden&quot; nach dem du Verzeichnisse hinzugefügt oder entfernt hast. Wenn du den Debug Modus aktiviert oder deaktiviert hast, starte MediaElch bitte neu.</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.ui" line="241"/>
+        <source>Automatically load and save stream details from files</source>
+        <translation>Streamdetails automatisch laden und speichern</translation>
+    </message>
+    <message>
         <location filename="../settings/SettingsWidget.ui" line="248"/>
         <source>&lt;b&gt;Debug&lt;/b&gt; When debug mode is activated debug messages are written to logfile you set. Please use this option only if you encountered problems with MediaElch as the logfile can get very big. </source>
         <translation>&lt;b&gt;Debug&lt;/b&gt; Wenn der Debug Modus aktiviert ist, werden Debug Ausgaben in die Logdatei geschrieben, die du angegeben hast. Bitte benutze diese Option nur, wenn du ein Problem mit MediaElch entdeckt hast, da die Logdatei schnell sehr groß werden kann.</translation>
@@ -2629,9 +2634,8 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Cache leeren</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="241"/>
         <source>Automatically load stream details from files</source>
-        <translation>Streamdetails automatisch ermitteln</translation>
+        <translation type="obsolete">Streamdetails automatisch ermitteln</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="286"/>

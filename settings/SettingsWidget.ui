@@ -238,7 +238,7 @@ QTabBar::tab:selected {
        <item>
         <widget class="QCheckBox" name="chkAutoLoadStreamDetails">
          <property name="text">
-          <string>Automatically load stream details from files</string>
+          <string>Automatically load and save stream details from files</string>
          </property>
         </widget>
        </item>
