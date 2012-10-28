@@ -2450,34 +2450,44 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Logdateien (*.log *.txt)</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="663"/>
+        <location filename="../settings/SettingsWidget.cpp" line="662"/>
         <source>Choose a directory containing your movies, TV show or concerts</source>
         <translation>Wähle ein Verzeichnis aus, dass deine Filme, Serien oder Konzerte enthält</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="559"/>
-        <location filename="../settings/SettingsWidget.cpp" line="443"/>
+        <location filename="../settings/SettingsWidget.cpp" line="442"/>
         <source>Movies</source>
         <translation>Filme</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.ui" line="565"/>
+        <source>Below you see the filenames which are used for loading and saving your movies. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
+        <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Filme benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste. Um eine Datei umzubennen, klicke doppelt auf sie.</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="731"/>
+        <source>Below you see the filenames which are used for loading and saving your tv shows. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
+        <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Serien benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste. Um eine Datei umzubennen, klicke doppelt auf sie.</translation>
+    </message>
+    <message>
         <location filename="../settings/SettingsWidget.ui" line="986"/>
-        <location filename="../settings/SettingsWidget.cpp" line="443"/>
+        <location filename="../settings/SettingsWidget.cpp" line="442"/>
         <source>Concerts</source>
         <translation>Konzerte</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="482"/>
+        <location filename="../settings/SettingsWidget.cpp" line="481"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
         <translation>Die Verzeichnis-Organisation kann nur auf Filmesammlungen angewandt werden, die nicht schon in separate Verzeichnisse sortiert ist.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="490"/>
+        <location filename="../settings/SettingsWidget.cpp" line="489"/>
         <source>Are you sure?</source>
         <translation>Bist du sicher?</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="491"/>
+        <location filename="../settings/SettingsWidget.cpp" line="490"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
         <translation>Diese Operation sortiert alle Filme in diesem Verzeichnis in separate Unterordner basierend auf dem Dateinamen. Klicke &quot;Ok&quot;, falls du damit einverstanden bist.</translation>
     </message>
@@ -2486,7 +2496,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Diese Operation sortiert alle Filme in diesem Verzeichnis in separate Unterordner. Klicke &quot;Ok&quot;, falls du damit einverstanden bist</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="494"/>
+        <location filename="../settings/SettingsWidget.cpp" line="493"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -2567,6 +2577,11 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <location filename="../settings/SettingsWidget.ui" line="483"/>
         <source>XBMC SQLite</source>
         <translation>XBMC SQLite</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="992"/>
+        <source>Below you see the filenames which are used for loading and saving your concerts. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
+        <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Konzerte benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste. Um eine Datei umzubennen, klicke doppelt auf sie.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="240"/>
@@ -2785,9 +2800,8 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Debug Modus aktivieren und Log Datei schreiben</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="565"/>
         <source>Below you see the filenames which are used for loading and saving your movies. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry.</source>
-        <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Filme benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste.</translation>
+        <translation type="obsolete">Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Filme benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="575"/>
@@ -2836,9 +2850,8 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="731"/>
         <source>Below you see the filenames which are used for loading and saving your tv shows. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry.</source>
-        <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Serien benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste.</translation>
+        <translation type="obsolete">Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Serien benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="741"/>
@@ -2876,9 +2889,8 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Episoden Thumbnail</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="992"/>
         <source>Below you see the filenames which are used for loading and saving your concerts. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry.</source>
-        <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Konzerte benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste.</translation>
+        <translation type="obsolete">Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Konzerte benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="1155"/>
@@ -2913,7 +2925,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="1283"/>
-        <location filename="../settings/SettingsWidget.cpp" line="495"/>
+        <location filename="../settings/SettingsWidget.cpp" line="494"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
@@ -2930,7 +2942,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="725"/>
-        <location filename="../settings/SettingsWidget.cpp" line="443"/>
+        <location filename="../settings/SettingsWidget.cpp" line="442"/>
         <source>TV Shows</source>
         <translation>TV Serien</translation>
     </message>
@@ -2943,7 +2955,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Filme sind in separaten Verzeichnissen</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="408"/>
+        <location filename="../settings/SettingsWidget.cpp" line="407"/>
         <source>Settings saved</source>
         <translation>Einstellungen gespeichert</translation>
     </message>

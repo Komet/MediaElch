@@ -562,7 +562,7 @@ QTabBar::tab:selected {
        <item>
         <widget class="QLabel" name="label_43">
          <property name="text">
-          <string>Below you see the filenames which are used for loading and saving your movies. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry.</string>
+          <string>Below you see the filenames which are used for loading and saving your movies. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -728,7 +728,7 @@ QTabBar::tab:selected {
        <item>
         <widget class="QLabel" name="label_45">
          <property name="text">
-          <string>Below you see the filenames which are used for loading and saving your tv shows. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry.</string>
+          <string>Below you see the filenames which are used for loading and saving your tv shows. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -989,7 +989,7 @@ QTabBar::tab:selected {
        <item>
         <widget class="QLabel" name="label_46">
          <property name="text">
-          <string>Below you see the filenames which are used for loading and saving your concerts. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry.</string>
+          <string>Below you see the filenames which are used for loading and saving your concerts. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
