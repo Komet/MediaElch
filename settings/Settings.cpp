@@ -62,6 +62,7 @@ void Settings::loadSettings()
     // Globals
     m_mainWindowSize = m_settings.value("MainWindowSize").toSize();
     m_mainWindowPosition = m_settings.value("MainWindowPosition").toPoint();
+    m_mainWindowMaximized = m_settings.value("MainWindowMaximized").toBool();
     m_mainSplitterState = m_settings.value("MainSplitterState").toByteArray();
     m_debugModeActivated = m_settings.value("DebugModeActivated", false).toBool();
     m_debugLogPath = m_settings.value("DebugLogPath").toString();
@@ -276,6 +277,15 @@ QSize Settings::mainWindowSize()
 QPoint Settings::mainWindowPosition()
 {
     return m_mainWindowPosition;
+}
+
+/**
+ * @brief Settings::mainWindowMaximized
+ * @return
+ */
+bool Settings::mainWindowMaximized()
+{
+    return m_mainWindowMaximized;
 }
 
 /**
@@ -522,6 +532,16 @@ void Settings::setMainWindowPosition(QPoint mainWindowPosition)
 {
     m_mainWindowPosition = mainWindowPosition;
     m_settings.setValue("MainWindowPosition", mainWindowPosition);
+}
+
+/**
+ * @brief Settings::setMainWindowMaximized
+ * @param max
+ */
+void Settings::setMainWindowMaximized(bool max)
+{
+    m_mainWindowMaximized = max;
+    m_settings.setValue("MainWindowMaximized", max);
 }
 
 /**

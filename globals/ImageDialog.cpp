@@ -96,16 +96,32 @@ int ImageDialog::exec(int type)
     QSettings settings;
     ui->previewSizeSlider->setValue(settings.value(QString("ImageDialog/PreviewSize_%1").arg(m_type), 8).toInt());
 
-    // resize
-    QSize newSize;
-    newSize.setHeight(parentWidget()->size().height()-50);
-    newSize.setWidth(qMin(1200, parentWidget()->size().width()-100));
-    resize(newSize);
+    QSize savedSize = settings.value("ImageDialog/Size").toSize();
+    QPoint savedPos = settings.value("ImageDialog/Pos").toPoint();
 
-    // move to center
-    int xMove = (parentWidget()->size().width()-size().width())/2;
-    QPoint globalPos = parentWidget()->mapToGlobal(parentWidget()->pos());
-    move(globalPos.x()+xMove, globalPos.y());
+    bool isMac = false;
+#ifdef Q_WS_MAC
+    isMac = true;
+#endif
+
+    if (savedSize.isValid() && !savedSize.isNull() && !isMac) {
+        resize(savedSize);
+    } else {
+        // resize
+        QSize newSize;
+        newSize.setHeight(parentWidget()->size().height()-50);
+        newSize.setWidth(qMin(1200, parentWidget()->size().width()-100));
+        resize(newSize);
+    }
+
+    if (!savedPos.isNull() && !isMac) {
+        move(savedPos);
+    } else {
+        // move to center
+        int xMove = (parentWidget()->size().width()-size().width())/2;
+        QPoint globalPos = parentWidget()->mapToGlobal(parentWidget()->pos());
+        move(globalPos.x()+xMove, qMax(0, globalPos.y()-100));
+    }
 
     // get image providers and setup combo box
     bool haveDefault = m_defaultElements.count() > 0;
@@ -156,8 +172,12 @@ void ImageDialog::accept()
 {
     qDebug() << "Entered";
     cancelDownloads();
+#ifndef Q_WS_MAC
     QSettings settings;
     settings.setValue("ImageDialog/Size", size());
+    settings.setValue("ImageDialog/Pos", pos());
+    settings.sync();
+#endif
     QDialog::accept();
 }
 
@@ -168,8 +188,12 @@ void ImageDialog::reject()
 {
     qDebug() << "Entered";
     cancelDownloads();
+#ifndef Q_WS_MAC
     QSettings settings;
     settings.setValue("ImageDialog/Size", size());
+    settings.setValue("ImageDialog/Pos", pos());
+    settings.sync();
+#endif
     QDialog::reject();
 }
 

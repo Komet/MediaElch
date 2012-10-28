@@ -23,6 +23,7 @@ public:
 
     QSize mainWindowSize();
     QPoint mainWindowPosition();
+    bool mainWindowMaximized();
     QByteArray mainSplitterState();
     QList<SettingsDir> movieDirectories();
     QList<SettingsDir> tvShowDirectories();
@@ -51,6 +52,7 @@ public:
 
     void setMainWindowSize(QSize mainWindowSize);
     void setMainWindowPosition(QPoint mainWindowPosition);
+    void setMainWindowMaximized(bool max);
     void setMainSplitterState(QByteArray state);
     void setMovieDirectories(QList<SettingsDir> dirs);
     void setTvShowDirectories(QList<SettingsDir> dirs);
@@ -89,6 +91,7 @@ private:
     QString m_excludeWords;
     QSize m_mainWindowSize;
     QPoint m_mainWindowPosition;
+    bool m_mainWindowMaximized;
     QByteArray m_mainSplitterState;
     int m_mediaCenterInterface;
     QString m_xbmcMysqlHost;
