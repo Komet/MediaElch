@@ -151,7 +151,7 @@ bool Movie::loadData(MediaCenterInterface *mediaCenterInterface, bool force)
     if ((m_infoLoaded || hasChanged()) && !force)
         return m_infoLoaded;
 
-    NameFormatter *nameFormat = NameFormatter::instance(this);
+    NameFormatter *nameFormat = NameFormatter::instance();
 
     bool infoLoaded = mediaCenterInterface->loadMovie(this);
     if (!infoLoaded) {
@@ -162,13 +162,13 @@ bool Movie::loadData(MediaCenterInterface *mediaCenterInterface, bool force)
                 if (pathElements.size() > 0 && QString::compare(pathElements.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0)
                     pathElements.removeLast();
                 if (pathElements.size() > 0)
-                    this->setName(pathElements.last());
+                    setName(nameFormat->formatName(pathElements.last()));
             } else if (QString::compare(fi.fileName(), "index.bdmv", Qt::CaseInsensitive) == 0) {
                     QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
                     if (pathElements.size() > 0 && QString::compare(pathElements.last(), "BDMV", Qt::CaseInsensitive) == 0)
                         pathElements.removeLast();
                     if (pathElements.size() > 0)
-                        setName(pathElements.last());
+                        setName(nameFormat->formatName(pathElements.last()));
             } else if (inSeparateFolder()) {
                 QStringList splitted = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
                 if (!splitted.isEmpty()) {

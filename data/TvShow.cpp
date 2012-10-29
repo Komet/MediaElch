@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QDir>
 #include "globals/Globals.h"
+#include "globals/NameFormatter.h"
 
 /**
  * @brief TvShow::TvShow
@@ -96,7 +97,7 @@ bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface)
     if (!infoLoaded) {
         QStringList dirParts = this->dir().split(QDir::separator());
         if (dirParts.count() > 0)
-            this->setName(dirParts.last());
+            setName(NameFormatter::instance()->formatName(dirParts.last()));
     }
     m_infoLoaded = infoLoaded;
     setChanged(false);

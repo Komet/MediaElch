@@ -8,6 +8,7 @@
 
 #include "concerts/ConcertSearch.h"
 #include "data/MediaCenterInterface.h"
+#include "globals/NameFormatter.h"
 #include "data/ScraperInterface.h"
 #include "globals/Globals.h"
 #include "globals/ImageDialog.h"
@@ -133,6 +134,7 @@ MainWindow::MainWindow(QWidget *parent) :
     MovieListDialog::instance(ui->centralWidget);
     ImagePreviewDialog::instance(ui->centralWidget);
     ConcertSearch::instance(ui->centralWidget);
+    NameFormatter::instance(this);
 
 #ifdef Q_WS_WIN
     setStyleSheet(styleSheet() + " #centralWidget { border-bottom: 1px solid rgba(0, 0, 0, 100); } ");

@@ -35,7 +35,7 @@ QString NameFormatter::excludeWords(QString name)
     int pos;
     QRegExp rx;
     rx.setCaseSensitivity(Qt::CaseInsensitive);
-    foreach (QString word, m_exWords) {
+    foreach (const QString &word, m_exWords) {
         rx.setPattern("(^|[\\(\\s\\-]+)" + word + "([\\s\\-\\)]+|$)");
         pos = rx.indexIn(name);
         while (rx.indexIn(name) >= 0) {
