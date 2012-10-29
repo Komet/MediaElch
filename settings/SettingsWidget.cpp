@@ -513,20 +513,17 @@ void SettingsWidget::organize()
  */
 void SettingsWidget::dirListRowChanged(int currentRow)
 {
-    if (currentRow < 0) {
+    if (currentRow < 0 || currentRow >= ui->dirs->rowCount()) {
         ui->buttonRemoveDir->setDisabled(true);
         ui->buttonMovieFilesToDirs->setDisabled(true);
-
-    }
-    else {
+    } else {
         ui->buttonRemoveDir->setDisabled(false);
-
-        if (static_cast<QComboBox*>(ui->dirs->cellWidget(currentRow, 0))->currentIndex() == 0
+        if (ui->dirs->cellWidget(currentRow, 0) != 0 && static_cast<QComboBox*>(ui->dirs->cellWidget(currentRow, 0))->currentIndex() == 0
                 && ui->dirs->item(currentRow, 3)->checkState() == Qt::Unchecked) {
             ui->buttonMovieFilesToDirs->setDisabled(false);
-        }
-        else
+        } else {
             ui->buttonMovieFilesToDirs->setDisabled(true);
+        }
     }
 }
 
