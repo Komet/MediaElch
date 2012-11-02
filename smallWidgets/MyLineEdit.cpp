@@ -22,6 +22,8 @@ MyLineEdit::MyLineEdit(QWidget *parent) :
     m_moreLabel->setText("...");
     m_moreLabel->setStyleSheet("font-size: 10px; color: #a0a0a0;");
     m_moreLabel->hide();
+    m_loadingLabel = new QLabel(0);
+    m_loadingLabel->hide();
     connect(this, SIGNAL(textChanged(QString)), this, SLOT(myTextChanged(QString)));
 }
 
@@ -107,6 +109,7 @@ void MyLineEdit::setType(LineEditType type)
     m_type = type;
 
     if (type == TypeLoading) {
+        m_loadingLabel->deleteLater();
         m_loadingLabel = new QLabel(this);
         QMovie *movie = new QMovie(":/img/spinner.gif");
         movie->start();
