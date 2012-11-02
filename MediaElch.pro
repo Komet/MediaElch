@@ -214,4 +214,5 @@ RESOURCES += \
     MediaElch.qrc
 
 TRANSLATIONS += \
-    i18n/MediaElch_de.ts
+    i18n/MediaElch_de.ts \
+    i18n/MediaElch_fr.ts

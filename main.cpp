@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 
     QTranslator editTranslator;
     QString filename;
-    filename = QString("MediaElch_%1"). arg(QLocale::system().name());
+    filename = QString("MediaElch_%1").arg(QLocale::system().name());
     editTranslator.load(":/i18n/" + filename);
     a.installTranslator(&editTranslator);
 
