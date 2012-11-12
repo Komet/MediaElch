@@ -64,6 +64,7 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath,
     xml.writeTextElement("rating", QString("%1").arg(movie->rating()));
     xml.writeTextElement("year", movie->released().toString("yyyy"));
     xml.writeTextElement("plot", movie->overview());
+    xml.writeTextElement("outline", movie->overview());
     xml.writeTextElement("tagline", movie->tagline());
     if (movie->runtime() > 0)
         xml.writeTextElement("runtime", QString("%1").arg(movie->runtime()));
@@ -655,6 +656,7 @@ void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert, bool writ
     xml.writeTextElement("rating", QString("%1").arg(concert->rating()));
     xml.writeTextElement("year", concert->released().toString("yyyy"));
     xml.writeTextElement("plot", concert->overview());
+    xml.writeTextElement("outline", concert->overview());
     xml.writeTextElement("tagline", concert->tagline());
     if (concert->runtime() > 0)
         xml.writeTextElement("runtime", QString("%1").arg(concert->runtime()));
@@ -1758,6 +1760,7 @@ void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath
     xml.writeTextElement("rating", QString("%1").arg(show->rating()));
     xml.writeTextElement("episode", QString("%1").arg(show->episodes().count()));
     xml.writeTextElement("plot", show->overview());
+    xml.writeTextElement("outline", show->overview());
     xml.writeTextElement("mpaa", QString("%1").arg(show->certification()));
     xml.writeTextElement("premiered", show->firstAired().toString("yyyy-MM-dd"));
     xml.writeTextElement("studio", show->network());
@@ -1835,6 +1838,7 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
     xml.writeTextElement("season", QString("%1").arg(episode->season()));
     xml.writeTextElement("episode", QString("%1").arg(episode->episode()));
     xml.writeTextElement("plot", episode->overview());
+    xml.writeTextElement("outline", episode->overview());
     xml.writeTextElement("mpaa", episode->certification());
     xml.writeTextElement("playcount", QString("%1").arg(episode->playCount()));
     xml.writeTextElement("lastplayed", episode->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
