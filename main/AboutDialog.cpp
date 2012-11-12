@@ -12,7 +12,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
     ui(new Ui::AboutDialog)
 {
     ui->setupUi(this);
-    ui->labelXbmm->setText(tr("MediaElch %1 - %2").arg(QApplication::applicationVersion()).arg("Andoria"));
+    ui->labelXbmm->setText(tr("MediaElch %1 - %2").arg(QApplication::applicationVersion()).arg("Qo'noS"));
 
 #ifdef Q_WS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);

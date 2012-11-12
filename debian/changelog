@@ -1,3 +1,19 @@
+mediaelch (1.2-1) unstable; urgency=low
+
+  * Support for streamdetails (resolution, codec, audio etc)
+  * Filenames for nfos and images now fully customizable
+  * Added french translation (Many thanks to foX aCe)
+  * Mark HD/SD content from Fanart.tv
+  * Skip -sample files
+  * Change sort order of movies
+  * Minor GUI improvements
+  * Pickup movie set from TMDb
+  * Save episodeguide url in tv show xml
+  * Windows: Added missing SSL libraries (needed by VideoBuster Scraper)
+  * Bugfix: Possible crash when selecting a movie, tv show or concert
+    
+ -- Daniel Kabel <daniel.kabel@me.com>  Mon, 12 Nov 2012 17:51:35 +0100
+
 mediaelch (1.1-1) unstable; urgency=low
 
   * Fanart.tv: Support for Logos, Clear Arts, CD Arts and Character Arts
