@@ -251,6 +251,7 @@ void TheTvDb::loadTvShowData(QString id, TvShow *show, bool updateAllEpisodes)
     m_updateAllEpisodes = updateAllEpisodes;
     QString mirror = m_xmlMirrors.at(qrand()%m_xmlMirrors.count());
     QUrl url(QString("%1/api/%2/series/%3/all/%4.xml").arg(mirror).arg(m_apiKey).arg(id).arg(m_language));
+    show->setEpisodeGuideUrl(QString("%1/api/%2/series/%3/all/%4.zip").arg(mirror).arg(m_apiKey).arg(id).arg(m_language));
     m_loadReply = qnam()->get(QNetworkRequest(url));
     connect(m_loadReply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
 }

@@ -322,6 +322,17 @@ QString TvShow::tvdbId() const
 }
 
 /**
+ * @property TvShow::episodeGuideUrl
+ * @brief The Episode Guide url of the show
+ * @return Episode guide url
+ * @see TvShow::setEpisodeGuideUrl
+ */
+QString TvShow::episodeGuideUrl() const
+{
+    return m_episodeGuideUrl;
+}
+
+/**
  * @brief Constructs a list of all certifications used in child episodes
  * @return List of certifications
  */
@@ -737,6 +748,17 @@ void TvShow::setOverview(QString overview)
 void TvShow::setTvdbId(QString id)
 {
     m_tvdbId = id;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the Episode guide url
+ * @param url
+ * @see TvShow::episodeGuideUrl
+ */
+void TvShow::setEpisodeGuideUrl(QString url)
+{
+    m_episodeGuideUrl = url;
     setChanged(true);
 }
 

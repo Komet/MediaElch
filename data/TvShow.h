@@ -31,6 +31,7 @@ class TvShow : public QObject
     Q_PROPERTY(QList<Poster> backdrops READ backdrops WRITE setBackdrops)
     Q_PROPERTY(QList<Poster> banners READ banners WRITE setBanners)
     Q_PROPERTY(QString tvdbId READ tvdbId WRITE setTvdbId)
+    Q_PROPERTY(QString episodeGuideUrl READ episodeGuideUrl WRITE setEpisodeGuideUrl)
 
 public:
     explicit TvShow(QString dir = QString(), QObject *parent = 0);
@@ -50,6 +51,7 @@ public:
     QString network() const;
     QString overview() const;
     QString tvdbId() const;
+    QString episodeGuideUrl() const;
     QStringList certifications() const;
     QList<Actor> actors() const;
     QList<Actor*> actorsPointer();
@@ -93,6 +95,7 @@ public:
     void setNetwork(QString network);
     void setOverview(QString overview);
     void setTvdbId(QString id);
+    void setEpisodeGuideUrl(QString url);
     void setActors(QList<Actor> actors);
     void addActor(Actor actor);
     void setPosters(QList<Poster> posters);
@@ -143,6 +146,7 @@ private:
     QString m_network;
     QString m_overview;
     QString m_tvdbId;
+    QString m_episodeGuideUrl;
     QList<Actor> m_actors;
     QList<Poster> m_posters;
     QList<Poster> m_backdrops;

@@ -1464,6 +1464,9 @@ bool XbmcXml::loadTvShow(TvShow *show)
         show->setFirstAired(QDate::fromString(domDoc.elementsByTagName("premiered").at(0).toElement().text(), "yyyy-MM-dd"));
     if (!domDoc.elementsByTagName("studio").isEmpty())
         show->setNetwork(domDoc.elementsByTagName("studio").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("episodeguide").isEmpty() && !domDoc.elementsByTagName("episodeguide").at(0).toElement().elementsByTagName("url").isEmpty())
+        show->setEpisodeGuideUrl(domDoc.elementsByTagName("episodeguide").at(0).toElement().elementsByTagName("url").at(0).toElement().text());
+
     for (int i=0, n=domDoc.elementsByTagName("genre").size() ; i<n ; i++)
         show->addGenre(domDoc.elementsByTagName("genre").at(i).toElement().text());
     for (int i=0, n=domDoc.elementsByTagName("actor").size() ; i<n ; i++) {
@@ -1765,6 +1768,12 @@ void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath
     xml.writeTextElement("premiered", show->firstAired().toString("yyyy-MM-dd"));
     xml.writeTextElement("studio", show->network());
     xml.writeTextElement("tvdbid", show->tvdbId());
+
+    if (!show->episodeGuideUrl().isEmpty()) {
+        xml.writeStartElement("episodeguide");
+        xml.writeTextElement("url", show->episodeGuideUrl());
+        xml.writeEndElement();
+    }
 
     foreach (const QString &genre, show->genres())
         xml.writeTextElement("genre", genre);
