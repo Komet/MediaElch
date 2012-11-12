@@ -30,7 +30,8 @@ void MovieDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
     newFont.setPixelSize(10);
     #endif
     QString newInd = tr("new");
-    int newWidth = 21;
+    QFontMetrics metrics(painter->font());
+    int newWidth = metrics.width(newInd);
     int newHeight = newFont.pixelSize();
 
     if (option.state & QStyle::State_Selected)

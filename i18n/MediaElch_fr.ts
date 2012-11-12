@@ -1879,12 +1879,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWidget.ui" line="178"/>
         <source>Organize</source>
-        <translation>Organise</translation>
+        <translation>Organiser</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="207"/>
         <source>Store trailer URLs in YouTube Plugin format</source>
-        <translation>Stokcer bande annonce au formate YouTube plugin</translation>
+        <translation>Stocker les bandes annonce au format YouTube plugin</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="214"/>
@@ -1899,7 +1899,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWidget.ui" line="230"/>
         <source>Activate debug mode and write log file</source>
-        <translation>Activer le mode debug et et écrire dans le fichier journal</translation>
+        <translation>Activer le mode debug et écrire dans le fichier journal</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="240"/>
@@ -2085,7 +2085,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWidget.ui" line="893"/>
         <source>Episode Thumbnail</source>
-        <translation>Épisode Thumbnail</translation>
+        <translation>Épisode Vignette</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="986"/>
@@ -2903,7 +2903,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="726"/>
         <source>Thumbnail</source>
-        <translation>Thumbnai</translation>
+        <translation>Vignette</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="748"/>
@@ -2981,7 +2981,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="117"/>
         <source>Dir</source>
-        <translation>Rép</translation>
+        <translation>Chemin</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="131"/>
@@ -3090,7 +3090,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="490"/>
         <source>Season Posters</source>
-        <translation>Saison Affiches</translation>
+        <translation>Jaquettes Saison</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="656"/>
@@ -3159,7 +3159,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="633"/>
         <source>Downloading Missing Actor Images and Episode Thumbnails...</source>
-        <translation>Téléchargement des images d&apos;acteurset d&apos;épisodes manquantes...</translation>
+        <translation>Téléchargement des images d&apos;acteurset des vigenttes manquantes...</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="990"/>
