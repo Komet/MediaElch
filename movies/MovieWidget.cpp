@@ -1,6 +1,7 @@
 #include "MovieWidget.h"
 #include "ui_MovieWidget.h"
 
+#include <QtCore/qmath.h>
 #include <QDoubleValidator>
 #include <QFileDialog>
 #include <QIntValidator>
@@ -335,8 +336,11 @@ void MovieWidget::setMovie(Movie *movie)
 {
     qDebug() << "Entered, movie=" << movie->name();
     movie->loadData(Manager::instance()->mediaCenterInterface());
-    if (!movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails())
+    if (!movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         movie->loadStreamDetailsFromFile();
+        if (movie->streamDetailsLoaded())
+            movie->setRuntime(qFloor(movie->streamDetails()->videoDetails().value("durationinseconds").toInt()/60));
+    }
     m_movie = movie;
     updateMovieInfo();
     if (movie->downloadsInProgress())
@@ -743,6 +747,8 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoCodec->setText(streamDetails->videoDetails().value("codec"));
     ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
     ui->videoDuration->setValue(streamDetails->videoDetails().value("durationinseconds").toInt());
+    if (reloadFromFile)
+        ui->runtime->setValue(qFloor(streamDetails->videoDetails().value("durationinseconds").toInt()/60));
 
     foreach (QWidget *widget, m_streamDetailsWidgets)
         widget->deleteLater();

@@ -1,6 +1,7 @@
 #include "ConcertWidget.h"
 #include "ui_ConcertWidget.h"
 
+#include <QtCore/qmath.h>
 #include <QDoubleValidator>
 #include <QFileDialog>
 #include <QIntValidator>
@@ -240,8 +241,11 @@ void ConcertWidget::setConcert(Concert *concert)
     qDebug() << "Entered, concert=" << concert->name();
     concert->loadData(Manager::instance()->mediaCenterInterfaceConcert());
     m_concert = concert;
-    if (!concert->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails())
+    if (!concert->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         concert->loadStreamDetailsFromFile();
+        if (concert->streamDetailsLoaded())
+            concert->setRuntime(qFloor(concert->streamDetails()->videoDetails().value("durationinseconds").toInt()/60));
+    }
     updateConcertInfo();
     if (concert->downloadsInProgress())
         setDisabledTrue();
@@ -583,6 +587,8 @@ void ConcertWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoCodec->setText(streamDetails->videoDetails().value("codec"));
     ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
     ui->videoDuration->setValue(streamDetails->videoDetails().value("durationinseconds").toInt());
+    if (reloadFromFile)
+        ui->runtime->setValue(qFloor(streamDetails->videoDetails().value("durationinseconds").toInt()/60));
 
     foreach (QWidget *widget, m_streamDetailsWidgets)
         widget->deleteLater();
