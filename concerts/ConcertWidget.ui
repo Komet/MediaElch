@@ -103,7 +103,7 @@
         <item>
          <widget class="QTabWidget" name="tabWidget">
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="tab">
            <attribute name="title">
@@ -544,7 +544,7 @@
                </widget>
               </item>
               <item row="5" column="1">
-               <widget class="QSpinBox" name="videoDuration">
+               <widget class="QTimeEdit" name="videoDuration">
                 <property name="maximumSize">
                  <size>
                   <width>200</width>
@@ -554,11 +554,8 @@
                 <property name="buttonSymbols">
                  <enum>QAbstractSpinBox::NoButtons</enum>
                 </property>
-                <property name="suffix">
-                 <string> Seconds</string>
-                </property>
-                <property name="maximum">
-                 <number>99999</number>
+                <property name="displayFormat">
+                 <string>HH:mm:ss</string>
                 </property>
                </widget>
               </item>

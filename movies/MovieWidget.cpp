@@ -121,7 +121,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->writer, SIGNAL(textEdited(QString)), this, SLOT(onWriterChange(QString)));
     connect(ui->videoAspectRatio, SIGNAL(valueChanged(double)), this, SLOT(onStreamDetailsEdited()));
     connect(ui->videoCodec, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
-    connect(ui->videoDuration, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->videoDuration, SIGNAL(timeChanged(QTime)), this, SLOT(onStreamDetailsEdited()));
     connect(ui->videoHeight, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
     connect(ui->videoWidth, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
     connect(ui->videoScantype, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
@@ -746,7 +746,9 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoAspectRatio->setValue(streamDetails->videoDetails().value("aspect").toDouble());
     ui->videoCodec->setText(streamDetails->videoDetails().value("codec"));
     ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
-    ui->videoDuration->setValue(streamDetails->videoDetails().value("durationinseconds").toInt());
+    QTime time;
+    time = time.addSecs(streamDetails->videoDetails().value("durationinseconds").toInt());
+    ui->videoDuration->setTime(time);
     if (reloadFromFile)
         ui->runtime->setValue(qFloor(streamDetails->videoDetails().value("durationinseconds").toInt()/60));
 
@@ -1628,7 +1630,7 @@ void MovieWidget::onStreamDetailsEdited()
     details->setVideoDetail("width", ui->videoWidth->text());
     details->setVideoDetail("height", ui->videoHeight->text());
     details->setVideoDetail("scantype", ui->videoScantype->text());
-    details->setVideoDetail("durationinseconds", QString("%1").arg(ui->videoDuration->value()));
+    details->setVideoDetail("durationinseconds", QString("%1").arg(-ui->videoDuration->time().secsTo(QTime(0, 0))));
 
     for (int i=0, n=m_streamDetailsAudio.count() ; i<n ; ++i) {
         details->setAudioDetail(i, "language", m_streamDetailsAudio[i][0]->text());
