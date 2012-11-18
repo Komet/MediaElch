@@ -631,7 +631,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > post
     show->setDownloadsInProgress(downloadsSize > 0);
 
     if (downloadsSize > 0) {
-        emit sigDownloadsStarted(tr("Downloading Missing Actor Images and Episode Thumbnails..."), Constants::TvShowProgressMessageId+show->showId());
+        emit sigDownloadsStarted(tr("Downloading images..."), Constants::TvShowProgressMessageId+show->showId());
         connect(m_posterDownloadManager, SIGNAL(allDownloadsFinished(TvShow*)), this, SLOT(onDownloadsFinished(TvShow*)), Qt::UniqueConnection);
     } else if (show == m_show) {
         onSetEnabled(true);

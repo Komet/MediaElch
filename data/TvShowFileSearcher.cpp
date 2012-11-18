@@ -61,7 +61,7 @@ void TvShowFileSearcher::reload(bool force)
     }
     emit currentDir("");
 
-    emit searchStarted(tr("Loading TV Shows"), m_progressMessageId);
+    emit searchStarted(tr("Loading TV Shows..."), m_progressMessageId);
     int episodeCounter=0;
     int episodeSum=Manager::instance()->database()->episodeCount();
     QMapIterator<QString, QList<QStringList> > it(contents);
