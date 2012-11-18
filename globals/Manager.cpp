@@ -36,6 +36,7 @@ Manager::Manager(QObject *parent) :
     m_tvShowModel = new TvShowModel(this);
     m_tvShowProxyModel = new TvShowProxyModel(this);
     m_concertModel = new ConcertModel(this);
+    m_database = new Database(this);
 
     m_mediaCenters.append(new XbmcXml(this));
     m_mediaCenters.append(new XbmcSql(this, "xbmc"));
@@ -52,8 +53,6 @@ Manager::Manager(QObject *parent) :
     m_imageProviders.append(new FanartTv(this));
     m_imageProviders.append(new TMDbImages(this));
     m_imageProviders.append(new TheTvDbImages(this));
-
-    setupCacheDatabase();
 }
 
 /**
@@ -61,7 +60,6 @@ Manager::Manager(QObject *parent) :
  */
 Manager::~Manager()
 {
-    closeCacheDatabase();
 }
 
 /**
@@ -75,100 +73,6 @@ Manager* Manager::instance()
         m_instance = new Manager(qApp);
     }
     return m_instance;
-}
-
-/**
- * @brief Creates and opens the cache database
- */
-void Manager::setupCacheDatabase()
-{
-    QString dataLocation = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-    QDir dir(dataLocation);
-    if (!dir.exists())
-        dir.mkpath(dataLocation);
-    m_cacheDb = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE", "tvShowCache"));
-    m_cacheDb->setDatabaseName(dataLocation + QDir::separator() + "MediaElch.sqlite");
-    if (!m_cacheDb->open()) {
-        qWarning() << "Could not open tv show cache database";
-    } else {
-        QSqlQuery query(*m_cacheDb);
-
-        query.prepare("SELECT lastModified FROM movieFiles");
-        query.exec();
-        if (!query.next()) {
-            query.prepare("DROP TABLE movieFiles;");
-            query.exec();
-            query.prepare("DROP TABLE movieDirs;");
-            query.exec();
-        }
-
-        query.prepare("CREATE TABLE IF NOT EXISTS tvShowDirs ( "
-                      "\"idPath\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                      "\"path\" text NOT NULL, "
-                      "\"lastModified\" integer NOT NULL, "
-                      "\"parent\" integer NOT NULL);");
-        query.exec();
-        query.prepare("CREATE TABLE IF NOT EXISTS tvShowFiles ( "
-                      "\"idFile\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                      "\"idPath\" integer NOT NULL, "
-                      "\"filename\" text NOT NULL);");
-        query.exec();
-        query.prepare("CREATE TABLE IF NOT EXISTS movieDirs ( "
-                      "\"idPath\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                      "\"path\" text NOT NULL, "
-                      "\"lastModified\" integer NOT NULL, "
-                      "\"parent\" integer NOT NULL);");
-        query.exec();
-        query.prepare("CREATE TABLE IF NOT EXISTS movieFiles ( "
-                      "\"idFile\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                      "\"idPath\" integer NOT NULL, "
-                      "\"filename\" text NOT NULL, "
-                      "\"lastModified\" integer NOT NULL);");
-        query.exec();
-        query.prepare("CREATE TABLE IF NOT EXISTS concertDirs ( "
-                      "\"idPath\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                      "\"path\" text NOT NULL, "
-                      "\"lastModified\" integer NOT NULL, "
-                      "\"parent\" integer NOT NULL);");
-        query.exec();
-        query.prepare("CREATE TABLE IF NOT EXISTS concertFiles ( "
-                      "\"idFile\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                      "\"idPath\" integer NOT NULL, "
-                      "\"filename\" text NOT NULL);");
-        query.exec();
-    }
-}
-
-/**
- * @brief Closes the cache database
- */
-void Manager::closeCacheDatabase()
-{
-    if (m_cacheDb && m_cacheDb->isOpen()) {
-        m_cacheDb->close();
-        delete m_cacheDb;
-        m_cacheDb = 0;
-    }
-}
-
-/**
- * @brief Removes the cache file and reinits the database
- */
-void Manager::clearCacheDatabase()
-{
-    closeCacheDatabase();
-    QString dataLocation = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-    QFile::remove(dataLocation + QDir::separator() + "MediaElch.sqlite");
-    setupCacheDatabase();
-}
-
-/**
- * @brief Returns an object to the cache database
- * @return Cache database object
- */
-QSqlDatabase Manager::cacheDb()
-{
-    return *m_cacheDb;
 }
 
 /**
@@ -404,4 +308,31 @@ QList<ImageProviderInterface*> Manager::imageProviders()
 FanartTv* Manager::fanartTv()
 {
     return static_cast<FanartTv*>(m_imageProviders.at(0));
+}
+
+/**
+ * @brief Manager::database
+ * @return
+ */
+Database *Manager::database()
+{
+    return m_database;
+}
+
+/**
+ * @brief Manager::setTvShowFilesWidget
+ * @param widget
+ */
+void Manager::setTvShowFilesWidget(TvShowFilesWidget *widget)
+{
+    m_tvShowFilesWidget = widget;
+}
+
+/**
+ * @brief Manager::tvShowFilesWidget
+ * @return
+ */
+TvShowFilesWidget *Manager::tvShowFilesWidget()
+{
+    return m_tvShowFilesWidget;
 }

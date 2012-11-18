@@ -101,7 +101,8 @@ SOURCES += main.cpp\
     globals/ComboDelegate.cpp \
     data/StreamDetails.cpp \
     smallWidgets/MediaFlags.cpp \
-    settings/DataFileListWidget.cpp
+    settings/DataFileListWidget.cpp \
+    data/Database.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -180,7 +181,8 @@ HEADERS  += main/MainWindow.h \
     globals/ComboDelegate.h \
     data/StreamDetails.h \
     smallWidgets/MediaFlags.h \
-    settings/DataFileListWidget.h
+    settings/DataFileListWidget.h \
+    data/Database.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

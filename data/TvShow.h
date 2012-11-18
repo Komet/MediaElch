@@ -38,7 +38,6 @@ public:
     void clear();
     void addEpisode(TvShowEpisode *episode);
     int episodeCount();
-    void moveToMainThread();
 
     QString name() const;
     QString showTitle() const;
@@ -84,6 +83,8 @@ public:
     bool downloadsInProgress() const;
     bool hasNewEpisodes() const;
     bool hasNewEpisodesInSeason(QString season) const;
+    QString nfoContent() const;
+    int databaseId() const;
 
     void setName(QString name);
     void setShowTitle(QString title);
@@ -119,11 +120,13 @@ public:
     void setLogoImage(QImage img);
     void setClearArtImage(QImage img);
     void setCharacterArtImage(QImage img);
+    void setNfoContent(QString content);
+    void setDatabaseId(int id);
 
     void removeActor(Actor *actor);
     void removeGenre(QString *genre);
 
-    bool loadData(MediaCenterInterface *mediaCenterInterface);
+    bool loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo = true);
     void loadData(QString id, TvScraperInterface *tvScraperInterface, bool updateAllEpisodes);
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     void clearImages();
@@ -171,7 +174,10 @@ private:
     int m_showId;
     bool m_downloadsInProgress;
     bool m_infoLoaded;
+    bool m_infoFromNfoLoaded;
     bool m_hasChanged;
+    QString m_nfoContent;
+    int m_databaseId;
 };
 
 QDebug operator<<(QDebug dbg, const TvShow &show);

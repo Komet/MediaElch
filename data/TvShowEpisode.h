@@ -36,7 +36,6 @@ class TvShowEpisode : public QObject
 
 public:
     explicit TvShowEpisode(QStringList files = QStringList(), TvShow *parent = 0);
-    void moveToMainThread();
     void clear();
 
     TvShow *tvShow();
@@ -69,7 +68,10 @@ public:
     int episodeId() const;
     StreamDetails *streamDetails();
     bool streamDetailsLoaded() const;
+    QString nfoContent() const;
+    int databaseId() const;
 
+    void setShow(TvShow *show);
     void setName(QString name);
     void setShowTitle(QString showTitle);
     void setRating(qreal rating);
@@ -91,11 +93,13 @@ public:
     void setChanged(bool changed);
     void setModelItem(TvShowModelItem *item);
     void setStreamDetailsLoaded(bool loaded);
+    void setNfoContent(QString content);
+    void setDatabaseId(int id);
 
     void removeWriter(QString *writer);
     void removeDirector(QString *director);
 
-    bool loadData(MediaCenterInterface *mediaCenterInterface);
+    bool loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo = true);
     void loadData(QString id, TvScraperInterface *tvScraperInterface);
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     void loadStreamDetailsFromFile();
@@ -128,10 +132,13 @@ private:
     TvShowModelItem *m_modelItem;
     bool m_thumbnailImageChanged;
     bool m_infoLoaded;
+    bool m_infoFromNfoLoaded;
     bool m_hasChanged;
     int m_episodeId;
     bool m_streamDetailsLoaded;
     StreamDetails *m_streamDetails;
+    QString m_nfoContent;
+    int m_databaseId;
 };
 
 QDebug operator<<(QDebug dbg, const TvShowEpisode &episode);

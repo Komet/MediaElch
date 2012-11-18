@@ -18,7 +18,7 @@ public:
     void setConcertDirectories(QList<SettingsDir> directories);
 
 public slots:
-    void run();
+    void reload(bool force);
 
 signals:
     void searchStarted(QString, int);
@@ -30,7 +30,7 @@ private:
     QList<SettingsDir> m_directories;
     int m_progressMessageId;
     void scanDir(QString startPath, QString path, QList<QStringList> &contents, bool separateFolders = false, bool firstScan = false);
-    QStringList getCachedFiles(QString path);
+    QStringList getFiles(QString path);
 };
 
 #endif // CONCERTFILESEARCHER_H

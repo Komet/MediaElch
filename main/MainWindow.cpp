@@ -454,6 +454,15 @@ void MainWindow::onActionSaveAll()
  */
 void MainWindow::onActionReload()
 {
+    m_fileScannerDialog->setForceReload(true);
+
+    if (ui->stackedWidget->currentIndex() == 0)
+        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeMovies);
+    else if (ui->stackedWidget->currentIndex() == 1)
+        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeTvShows);
+    else if (ui->stackedWidget->currentIndex() == 3)
+        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeConcerts);
+
     m_fileScannerDialog->exec();
 }
 

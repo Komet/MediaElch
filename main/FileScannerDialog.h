@@ -15,22 +15,38 @@ class FileScannerDialog : public QDialog
     Q_OBJECT
 
 public:
+    enum ReloadType {
+        TypeAll, TypeMovies, TypeTvShows, TypeConcerts
+    };
+
     explicit FileScannerDialog(QWidget *parent = 0);
     ~FileScannerDialog();
+    void setForceReload(bool force);
+    void setReloadType(ReloadType type);
 
 public slots:
     void exec();
     void reject();
 
 private slots:
-    void onStartMovieScanner();
-    void onStartTvShowScanner();
-    void onStartConcertScanner();
     void onProgress(int current, int max);
     void onCurrentDir(QString dir);
+    void onStartMovieScanner();
+    void onStartMovieScannerForce();
+    void onStartMovieScannerCache();
+    void onStartTvShowScanner();
+    void onStartTvShowScannerForce();
+    void onStartTvShowScannerCache();
+    void onStartConcertScanner();
+    void onStartConcertScannerForce();
+    void onStartConcertScannerCache();
+    void onLoadDone(int msgId);
 
 private:
     Ui::FileScannerDialog *ui;
+
+    bool m_forceReload;
+    ReloadType m_reloadType;
 };
 
 #endif // FILESCANNERDIALOG_H

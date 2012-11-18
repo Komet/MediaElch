@@ -37,7 +37,7 @@ public slots:
 
 private slots:
     void chooseDirToAdd();
-    void addDir(QString dir, QString mediaCenterPath = QString(), bool separateFolders = false, SettingsDirType dirType = DirTypeMovies);
+    void addDir(QString dir, QString mediaCenterPath = QString(), bool separateFolders = false, bool autoReload = false, SettingsDirType dirType = DirTypeMovies);
     void removeDir();
     void organize();
     void dirListRowChanged(int currentRow);
@@ -50,7 +50,6 @@ private slots:
     void onDebugLogPathChosen(QString file);
     void onActivateDebugMode();
     void onSetDebugLogPath(QString path);
-    void onActivateCache();
     void onUseProxy();
     void onAutoLoadStreamDetails();
 

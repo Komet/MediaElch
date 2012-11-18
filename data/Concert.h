@@ -85,6 +85,8 @@ public:
     QString id() const;
     StreamDetails *streamDetails();
     bool streamDetailsLoaded() const;
+    QString nfoContent() const;
+    int databaseId() const;
 
     bool hasChanged() const;
 
@@ -120,11 +122,13 @@ public:
     void setTmdbId(QString id);
     void setId(QString id);
     void setStreamDetailsLoaded(bool loaded);
+    void setNfoContent(QString content);
+    void setDatabaseId(int id);
 
     void removeGenre(QString *genre);
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
-    bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false);
+    bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
     void loadData(QString id, ConcertScraperInterface *scraperInterface, QList<int> infos);
     void loadStreamDetailsFromFile();
     void clearImages();
@@ -163,6 +167,7 @@ private:
     bool m_clearArtImageChanged;
     bool m_cdArtImageChanged;
     bool m_infoLoaded;
+    bool m_infoFromNfoLoaded;
     bool m_watched;
     bool m_hasChanged;
     int m_concertId;
@@ -175,6 +180,8 @@ private:
     QList<int> m_infosToLoad;
     bool m_streamDetailsLoaded;
     StreamDetails *m_streamDetails;
+    QString m_nfoContent;
+    int m_databaseId;
 };
 
 #endif // CONCERT_H

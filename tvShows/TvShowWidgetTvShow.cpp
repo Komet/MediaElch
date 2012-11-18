@@ -200,6 +200,7 @@ void TvShowWidgetTvShow::onSetEnabled(bool enabled)
 void TvShowWidgetTvShow::setTvShow(TvShow *show)
 {
     qDebug() << "Entered, show=" << show->name();
+    show->loadData(Manager::instance()->mediaCenterInterface());
     m_show = show;
     updateTvShowInfo();
     if (show->downloadsInProgress()) {

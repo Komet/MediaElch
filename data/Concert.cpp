@@ -32,6 +32,7 @@ Concert::Concert(QStringList files, QObject *parent) :
             m_folderName = path.last();
     }
     m_infoLoaded = false;
+    m_infoFromNfoLoaded = false;
     m_watched = false;
     m_hasChanged = false;
     m_downloadsInProgress = false;
@@ -41,6 +42,7 @@ Concert::Concert(QStringList files, QObject *parent) :
     m_concertId = ++m_idCounter;
     m_mediaCenterId = -1;
     m_streamDetailsLoaded = false;
+    m_databaseId = -1;
     if (!files.isEmpty())
         m_streamDetails = new StreamDetails(this, files.at(0));
     else
@@ -69,6 +71,7 @@ void Concert::clear()
           << ConcertScraperInfos::Backdrop
           << ConcertScraperInfos::Genres;
     clear(infos);
+    m_nfoContent.clear();
 }
 
 /**
@@ -124,12 +127,17 @@ bool Concert::saveData(MediaCenterInterface *mediaCenterInterface)
  * @param force Force the loading. If set to false and infos were already loeaded this function just returns
  * @return Loading was successful or not
  */
-bool Concert::loadData(MediaCenterInterface *mediaCenterInterface, bool force)
+bool Concert::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
 {
-    if ((m_infoLoaded || hasChanged()) && !force)
+    if ((m_infoLoaded || hasChanged()) && !force && m_infoFromNfoLoaded)
         return m_infoLoaded;
 
-    bool infoLoaded = mediaCenterInterface->loadConcert(this);
+    bool infoLoaded;
+    if (reloadFromNfo)
+        infoLoaded = mediaCenterInterface->loadConcert(this);
+    else
+        infoLoaded = mediaCenterInterface->loadConcert(this, nfoContent());
+
     if (!infoLoaded) {
         NameFormatter *nameFormat = NameFormatter::instance();
         if (this->files().size() > 0) {
@@ -167,6 +175,7 @@ bool Concert::loadData(MediaCenterInterface *mediaCenterInterface, bool force)
         }
     }
     m_infoLoaded = infoLoaded;
+    m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
     setChanged(false);
     return infoLoaded;
 }
@@ -614,6 +623,24 @@ StreamDetails *Concert::streamDetails()
     return m_streamDetails;
 }
 
+/**
+ * @brief Concert::nfoContent
+ * @return
+ */
+QString Concert::nfoContent() const
+{
+    return m_nfoContent;
+}
+
+/**
+ * @brief Concert::databaseId
+ * @return
+ */
+int Concert::databaseId() const
+{
+    return m_databaseId;
+}
+
 /*** SETTER ***/
 
 /**
@@ -875,6 +902,24 @@ void Concert::setId(QString id)
 void Concert::setStreamDetailsLoaded(bool loaded)
 {
     m_streamDetailsLoaded = loaded;
+}
+
+/**
+ * @brief Concert::setNfoContent
+ * @param content
+ */
+void Concert::setNfoContent(QString content)
+{
+    m_nfoContent = content;
+}
+
+/**
+ * @brief Concert::setDatabaseId
+ * @param id
+ */
+void Concert::setDatabaseId(int id)
+{
+    m_databaseId = id;
 }
 
 /*** ADDER ***/

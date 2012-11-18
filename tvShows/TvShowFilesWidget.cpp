@@ -39,6 +39,7 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
 
     connect(ui->files, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)));
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)));
+    Manager::instance()->setTvShowFilesWidget(this);
 }
 
 /**

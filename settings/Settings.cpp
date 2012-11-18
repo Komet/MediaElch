@@ -66,7 +66,6 @@ void Settings::loadSettings()
     m_mainSplitterState = m_settings.value("MainSplitterState").toByteArray();
     m_debugModeActivated = m_settings.value("DebugModeActivated", false).toBool();
     m_debugLogPath = m_settings.value("DebugLogPath").toString();
-    m_useCache = m_settings.value("UseCache", true).toBool();
     m_autoLoadStreamDetails = m_settings.value("AutoLoadStreamDetails", true).toBool();
 
     // Proxy
@@ -87,6 +86,7 @@ void Settings::loadSettings()
         dir.path = QDir::toNativeSeparators(m_settings.value("path").toString());
         dir.mediaCenterPath = m_settings.value("mediaCenterPath").toString();
         dir.separateFolders = m_settings.value("sepFolders", false).toBool();
+        dir.autoReload = m_settings.value("autoReload", false).toBool();
         m_movieDirectories.append(dir);
     }
     m_settings.endArray();
@@ -100,6 +100,7 @@ void Settings::loadSettings()
         dir.path = QDir::toNativeSeparators(m_settings.value("path").toString());
         dir.mediaCenterPath = m_settings.value("mediaCenterPath").toString();
         dir.separateFolders = m_settings.value("sepFolders", false).toBool();
+        dir.autoReload = m_settings.value("autoReload", false).toBool();
         m_tvShowDirectories.append(dir);
     }
     m_settings.endArray();
@@ -113,6 +114,7 @@ void Settings::loadSettings()
         dir.path = QDir::toNativeSeparators(m_settings.value("path").toString());
         dir.mediaCenterPath = m_settings.value("mediaCenterPath").toString();
         dir.separateFolders = m_settings.value("sepFolders", false).toBool();
+        dir.autoReload = m_settings.value("autoReload", false).toBool();
         m_concertDirectories.append(dir);
     }
     m_settings.endArray();
@@ -168,7 +170,6 @@ void Settings::saveSettings()
 {
     m_settings.setValue("DebugModeActivated", m_debugModeActivated);
     m_settings.setValue("DebugLogPath", m_debugLogPath);
-    m_settings.setValue("UseCache", m_useCache);
     m_settings.setValue("AutoLoadStreamDetails", m_autoLoadStreamDetails);
 
     m_settings.setValue("XbmcMysql/Host", m_xbmcMysqlHost);
@@ -195,6 +196,7 @@ void Settings::saveSettings()
         m_settings.setValue("path", m_movieDirectories.at(i).path);
         m_settings.setValue("mediaCenterPath", m_movieDirectories.at(i).mediaCenterPath);
         m_settings.setValue("sepFolders", m_movieDirectories.at(i).separateFolders);
+        m_settings.setValue("autoReload", m_movieDirectories.at(i).autoReload);
     }
     m_settings.endArray();
 
@@ -203,6 +205,7 @@ void Settings::saveSettings()
         m_settings.setArrayIndex(i);
         m_settings.setValue("path", m_tvShowDirectories.at(i).path);
         m_settings.setValue("mediaCenterPath", m_tvShowDirectories.at(i).mediaCenterPath);
+        m_settings.setValue("autoReload", m_tvShowDirectories.at(i).autoReload);
     }
     m_settings.endArray();
 
@@ -212,6 +215,7 @@ void Settings::saveSettings()
         m_settings.setValue("path", m_concertDirectories.at(i).path);
         m_settings.setValue("mediaCenterPath", m_concertDirectories.at(i).mediaCenterPath);
         m_settings.setValue("sepFolders", m_concertDirectories.at(i).separateFolders);
+        m_settings.setValue("autoReload", m_concertDirectories.at(i).autoReload);
     }
     m_settings.endArray();
 
@@ -422,15 +426,6 @@ QString Settings::debugLogPath()
 bool Settings::useYoutubePluginUrls()
 {
     return m_youtubePluginUrls;
-}
-
-/**
- * @brief Returns true if the cache should be used
- * @return Cache usage
- */
-bool Settings::useCache()
-{
-    return m_useCache;
 }
 
 /**
@@ -688,15 +683,6 @@ void Settings::setDataFiles(QList<DataFile> files)
 void Settings::setMediaCenterInterface(int interface)
 {
     m_mediaCenterInterface = interface;
-}
-
-/**
- * @brief Sets if the cache should be used
- * @param useCache
- */
-void Settings::setUseCache(bool useCache)
-{
-    m_useCache = useCache;
 }
 
 /**
