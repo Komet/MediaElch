@@ -1822,6 +1822,7 @@ void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath
     xml.writeTextElement("premiered", show->firstAired().toString("yyyy-MM-dd"));
     xml.writeTextElement("studio", show->network());
     xml.writeTextElement("tvdbid", show->tvdbId());
+    xml.writeTextElement("id", show->tvdbId());
 
     if (!show->episodeGuideUrl().isEmpty()) {
         xml.writeStartElement("episodeguide");
