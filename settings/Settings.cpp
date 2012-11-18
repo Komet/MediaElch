@@ -18,8 +18,8 @@ Settings::Settings(QObject *parent) :
     m_initialDataFiles.append(DataFile(DataFileType::MoviePoster, "<baseFileName>.tbn", 0));
     m_initialDataFiles.append(DataFile(DataFileType::MovieBackdrop, "<baseFileName>-fanart.jpg", 0));
     m_initialDataFiles.append(DataFile(DataFileType::MovieCdArt, "cdart.png", 0));
-    m_initialDataFiles.append(DataFile(DataFileType::MovieClearArt, "logo.png", 0));
-    m_initialDataFiles.append(DataFile(DataFileType::MovieLogo, "clearart.png", 0));
+    m_initialDataFiles.append(DataFile(DataFileType::MovieClearArt, "clearart.png", 0));
+    m_initialDataFiles.append(DataFile(DataFileType::MovieLogo, "logo.png", 0));
 
     m_initialDataFiles.append(DataFile(DataFileType::TvShowNfo, "tvshow.nfo", 0));
     m_initialDataFiles.append(DataFile(DataFileType::TvShowBackdrop, "fanart.jpg", 0));
@@ -37,8 +37,8 @@ Settings::Settings(QObject *parent) :
     m_initialDataFiles.append(DataFile(DataFileType::ConcertPoster, "<baseFileName>.tbn", 0));
     m_initialDataFiles.append(DataFile(DataFileType::ConcertBackdrop, "<baseFileName>-fanart.jpg", 0));
     m_initialDataFiles.append(DataFile(DataFileType::ConcertCdArt, "cdart.png", 0));
-    m_initialDataFiles.append(DataFile(DataFileType::ConcertClearArt, "logo.png", 0));
-    m_initialDataFiles.append(DataFile(DataFileType::ConcertLogo, "clearart.png", 0));
+    m_initialDataFiles.append(DataFile(DataFileType::ConcertClearArt, "clearart.png", 0));
+    m_initialDataFiles.append(DataFile(DataFileType::ConcertLogo, "logo.png", 0));
 }
 
 /**
