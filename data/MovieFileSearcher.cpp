@@ -212,7 +212,7 @@ QStringList MovieFileSearcher::getFiles(QString path)
     QStringList files;
     QStringList filters;
     filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
-            << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm";
+            << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm" << "*.rmvb";
 
     foreach (const QString &file, QDir(path).entryList(filters, QDir::Files | QDir::System)) {
         m_lastModifications.insert(QDir::toNativeSeparators(path + "/" + file),
