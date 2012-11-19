@@ -11,7 +11,6 @@
 TvShowModelItem::TvShowModelItem(TvShowModelItem *parent) :
     QObject(0)
 {
-    moveToThread(QApplication::instance()->thread());
     m_parentItem = parent;
     m_tvShow = 0;
     m_tvShowEpisode = 0;

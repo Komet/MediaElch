@@ -113,9 +113,9 @@ QModelIndex TvShowModel::index(int row, int column, const QModelIndex &parent) c
 TvShowModelItem *TvShowModel::appendChild(TvShow *show)
 {
     TvShowModelItem *parentItem = m_rootItem;
-    //beginInsertRows(QModelIndex(), parentItem->childCount(), parentItem->childCount());
+    beginInsertRows(QModelIndex(), parentItem->childCount(), parentItem->childCount());
     TvShowModelItem *item = parentItem->appendChild(show);
-    //endInsertRows();
+    endInsertRows();
     connect(item, SIGNAL(sigChanged(TvShowModelItem*,TvShowModelItem*,TvShowModelItem*)), this, SLOT(onSigChanged(TvShowModelItem*,TvShowModelItem*,TvShowModelItem*)));
     connect(show, SIGNAL(sigChanged(TvShow*)), this, SLOT(onShowChanged(TvShow*)));
     return item;
@@ -175,7 +175,9 @@ int TvShowModel::rowCount(const QModelIndex &parent) const
  */
 void TvShowModel::clear()
 {
+    beginRemoveRows(QModelIndex(), 0, m_rootItem->childCount());
     m_rootItem->removeChildren(0, m_rootItem->childCount());
+    endRemoveRows();
 }
 
 /**

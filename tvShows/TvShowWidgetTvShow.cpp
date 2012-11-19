@@ -212,7 +212,6 @@ void TvShowWidgetTvShow::setTvShow(TvShow *show)
         emit sigSetActionSearchEnabled(true, WidgetTvShows);
         emit sigSetActionSaveEnabled(true, WidgetTvShows);
     }
-
 }
 
 /**
