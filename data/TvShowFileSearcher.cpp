@@ -52,11 +52,13 @@ void TvShowFileSearcher::reload(bool force)
     Manager::instance()->tvShowFilesWidget()->renewModel();
     QMap<QString, QList<QStringList> > contents;
     foreach (SettingsDir dir, m_directories) {
-        if (dir.autoReload || force) {
+        QList<TvShow*> showsFromDatabase = Manager::instance()->database()->shows(dir.path);
+        qDebug() << dir.path << dir.autoReload << showsFromDatabase.count();
+        if (dir.autoReload || force || showsFromDatabase.count() == 0) {
             Manager::instance()->database()->clearTvShows(dir.path);
             getTvShows(dir.path, contents);
         } else {
-            dbShows.append(Manager::instance()->database()->shows(dir.path));
+            dbShows.append(showsFromDatabase);
         }
     }
     emit currentDir("");

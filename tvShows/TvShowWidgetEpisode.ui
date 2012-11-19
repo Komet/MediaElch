@@ -651,6 +651,9 @@
               <property name="buttonSymbols">
                <enum>QAbstractSpinBox::NoButtons</enum>
               </property>
+              <property name="displayFormat">
+               <string>HH:mm:ss</string>
+              </property>
              </widget>
             </item>
            </layout>

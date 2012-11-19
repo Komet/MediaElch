@@ -48,11 +48,12 @@ void ConcertFileSearcher::reload(bool force)
     QList<Concert*> dbConcerts;
     QList<QStringList> contents;
     foreach (SettingsDir dir, m_directories) {
-        if (dir.autoReload || force) {
+        QList<Concert*> concertsFromDb = Manager::instance()->database()->concerts(dir.path);
+        if (dir.autoReload || force || concertsFromDb.count() == 0) {
             Manager::instance()->database()->clearConcerts(dir.path);
             scanDir(dir.path, dir.path, contents, dir.separateFolders, true);
         } else {
-            dbConcerts.append(Manager::instance()->database()->concerts(dir.path));
+            dbConcerts.append(concertsFromDb);
         }
     }
     emit currentDir("");

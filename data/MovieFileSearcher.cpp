@@ -39,11 +39,12 @@ void MovieFileSearcher::reload(bool force)
     QList<Movie*> dbMovies;
     QList<QStringList> contents;
     foreach (SettingsDir dir, m_directories) {
-        if (dir.autoReload || force) {
+        QList<Movie*> moviesFromDb = Manager::instance()->database()->movies(dir.path);
+        if (dir.autoReload || force || moviesFromDb.count() == 0) {
             Manager::instance()->database()->clearMovies(dir.path);
             scanDir(dir.path, dir.path, contents, dir.separateFolders, true);
         } else {
-            dbMovies.append(Manager::instance()->database()->movies(dir.path));
+            dbMovies.append(moviesFromDb);
         }
     }
     emit currentDir("");
