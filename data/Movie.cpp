@@ -151,7 +151,7 @@ bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
  */
 bool Movie::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
 {
-    if ((m_infoLoaded || hasChanged()) && !force && m_infoFromNfoLoaded)
+    if ((m_infoLoaded || hasChanged()) && !force && (m_infoFromNfoLoaded || (hasChanged() && !m_infoFromNfoLoaded) ))
         return m_infoLoaded;
 
     NameFormatter *nameFormat = NameFormatter::instance();
