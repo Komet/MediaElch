@@ -338,7 +338,7 @@ void MovieWidget::setMovie(Movie *movie)
     movie->loadData(Manager::instance()->mediaCenterInterface());
     if (!movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         movie->loadStreamDetailsFromFile();
-        if (movie->streamDetailsLoaded())
+        if (movie->streamDetailsLoaded() && movie->streamDetails()->videoDetails().value("durationinseconds").toInt() != 0)
             movie->setRuntime(qFloor(movie->streamDetails()->videoDetails().value("durationinseconds").toInt()/60));
     }
     m_movie = movie;

@@ -243,7 +243,7 @@ void ConcertWidget::setConcert(Concert *concert)
     m_concert = concert;
     if (!concert->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         concert->loadStreamDetailsFromFile();
-        if (concert->streamDetailsLoaded())
+        if (concert->streamDetailsLoaded() && concert->streamDetails()->videoDetails().value("durationinseconds").toInt() != 0)
             concert->setRuntime(qFloor(concert->streamDetails()->videoDetails().value("durationinseconds").toInt()/60));
     }
     updateConcertInfo();
