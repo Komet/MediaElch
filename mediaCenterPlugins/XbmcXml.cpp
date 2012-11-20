@@ -695,6 +695,8 @@ void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert, bool writ
     qDebug() << "Entered, concert=" << concert->name();
     xml.writeStartElement("musicvideo");
     xml.writeTextElement("title", concert->name());
+    xml.writeTextElement("artist", concert->artist());
+    xml.writeTextElement("album", concert->album());
     xml.writeTextElement("id", concert->id());
     xml.writeTextElement("tmdbid", concert->tmdbId());
     xml.writeTextElement("rating", QString("%1").arg(concert->rating()));
@@ -876,6 +878,10 @@ bool XbmcXml::loadConcert(Concert *concert, QString initialNfoContent)
         concert->setTmdbId(domDoc.elementsByTagName("tmdbid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("title").isEmpty() )
         concert->setName(domDoc.elementsByTagName("title").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("artist").isEmpty() )
+        concert->setArtist(domDoc.elementsByTagName("artist").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("album").isEmpty() )
+        concert->setAlbum(domDoc.elementsByTagName("album").at(0).toElement().text());
     if (!domDoc.elementsByTagName("rating").isEmpty())
         concert->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().toFloat());
     if (!domDoc.elementsByTagName("year").isEmpty())

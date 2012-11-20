@@ -248,6 +248,28 @@ QString Concert::name() const
 }
 
 /**
+ * @property Concert::artist
+ * @brief Holds the concerts artist
+ * @return The concerts artist
+ * @see Concert::setArtist
+ */
+QString Concert::artist() const
+{
+    return m_artist;
+}
+
+/**
+ * @property Concert::album
+ * @brief Holds the concerts album
+ * @return The concerts album
+ * @see Concert::setAlbum
+ */
+QString Concert::album() const
+{
+    return m_album;
+}
+
+/**
  * @property Concert::overview
  * @brief Holds the concerts plot
  * @return Plot of the concert
@@ -651,6 +673,28 @@ int Concert::databaseId() const
 void Concert::setName(QString name)
 {
     m_name = name;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the concerts artist
+ * @param artist Artist of the concert
+ * @see Concert::artist
+ */
+void Concert::setArtist(QString artist)
+{
+    m_artist = artist;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the concerts album
+ * @param album Album of the concert
+ * @see Concert::album
+ */
+void Concert::setAlbum(QString album)
+{
+    m_album = album;
     setChanged(true);
 }
 

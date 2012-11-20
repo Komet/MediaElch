@@ -25,6 +25,8 @@ class Concert : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString name READ name WRITE setName)
+    Q_PROPERTY(QString artist READ artist WRITE setArtist)
+    Q_PROPERTY(QString album READ album WRITE setAlbum)
     Q_PROPERTY(qreal rating READ rating WRITE setRating)
     Q_PROPERTY(QDate released READ released WRITE setReleased)
     Q_PROPERTY(QString overview READ overview WRITE setOverview)
@@ -49,6 +51,8 @@ public:
     void clear(QList<int> infos);
 
     QString name() const;
+    QString artist() const;
+    QString album() const;
     QString overview() const;
     qreal rating() const;
     QDate released() const;
@@ -91,6 +95,8 @@ public:
     bool hasChanged() const;
 
     void setName(QString name);
+    void setArtist(QString artist);
+    void setAlbum(QString album);
     void setOverview(QString overview);
     void setRating(qreal rating);
     void setReleased(QDate released);
@@ -144,6 +150,8 @@ private:
     QStringList m_files;
     QString m_folderName;
     QString m_name;
+    QString m_artist;
+    QString m_album;
     QString m_overview;
     qreal m_rating;
     QDate m_released;
