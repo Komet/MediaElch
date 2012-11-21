@@ -1116,6 +1116,21 @@ p, li { white-space: pre-wrap; }
         <source>Support</source>
         <translation>Support</translation>
     </message>
+    <message>
+        <location filename="../main/MainWindow.cpp" line="330"/>
+        <source>Reload all Movies (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main/MainWindow.cpp" line="332"/>
+        <source>Reload all TV Shows (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main/MainWindow.cpp" line="334"/>
+        <source>Reload all Concerts (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MediaFlags</name>

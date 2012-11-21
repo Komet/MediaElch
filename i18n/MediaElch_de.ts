@@ -1300,6 +1300,21 @@ p, li { white-space: pre-wrap; }
         <translation>Support</translation>
     </message>
     <message>
+        <location filename="../main/MainWindow.cpp" line="330"/>
+        <source>Reload all Movies (%1)</source>
+        <translation>Filme neu laden (%1)</translation>
+    </message>
+    <message>
+        <location filename="../main/MainWindow.cpp" line="332"/>
+        <source>Reload all TV Shows (%1)</source>
+        <translation>Serien neu laden (%1)</translation>
+    </message>
+    <message>
+        <location filename="../main/MainWindow.cpp" line="334"/>
+        <source>Reload all Concerts (%1)</source>
+        <translation>Konzerte neu laden (%1)</translation>
+    </message>
+    <message>
         <location filename="../main/MainWindow.cpp" line="214"/>
         <source>Reload</source>
         <translation>Neu laden</translation>
