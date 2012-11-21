@@ -126,7 +126,7 @@ QTabBar::tab:selected {
           <enum>QAbstractItemView::SingleSelection</enum>
          </property>
          <attribute name="horizontalHeaderDefaultSectionSize">
-          <number>100</number>
+          <number>120</number>
          </attribute>
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>
