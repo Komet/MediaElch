@@ -233,3 +233,17 @@ bool TvShowModel::hasNewShowOrEpisode()
     }
     return false;
 }
+
+/**
+ * @brief TvShowModel::removeShow
+ * @param show
+ */
+void TvShowModel::removeShow(TvShow *show)
+{
+    for (int i=0, n=m_rootItem->childCount() ; i<n ; ++i) {
+        if (m_rootItem->child(i)->tvShow() == show) {
+            removeRow(m_rootItem->child(i)->childNumber());
+            return;
+        }
+    }
+}

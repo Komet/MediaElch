@@ -127,7 +127,7 @@ p, li { white-space: pre-wrap; }
         <translation>Supprimer certification</translation>
     </message>
     <message>
-        <location filename="../movies/CertificationWidget.cpp" line="220"/>
+        <location filename="../movies/CertificationWidget.cpp" line="223"/>
         <source>All Movies Saved</source>
         <translation>Tous les films sont sauvegardés</translation>
     </message>
@@ -148,7 +148,7 @@ p, li { white-space: pre-wrap; }
         <translation>Recherche de Concerts...</translation>
     </message>
     <message>
-        <location filename="../data/ConcertFileSearcher.cpp" line="60"/>
+        <location filename="../data/ConcertFileSearcher.cpp" line="61"/>
         <source>Loading Concerts...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -344,86 +344,96 @@ p, li { white-space: pre-wrap; }
         <translation>Synopsis</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="284"/>
+        <location filename="../concerts/ConcertWidget.ui" line="281"/>
+        <source>Artist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="288"/>
+        <source>Album</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="304"/>
         <source>Extended</source>
         <translation>Étendue</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="298"/>
+        <location filename="../concerts/ConcertWidget.ui" line="318"/>
         <source>Genres</source>
         <translation>Genres</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="329"/>
+        <location filename="../concerts/ConcertWidget.ui" line="349"/>
         <source>Genre</source>
         <translation>Genre</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="339"/>
+        <location filename="../concerts/ConcertWidget.ui" line="359"/>
         <source>Add Genre</source>
         <translation>Ajouter Genre</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="353"/>
+        <location filename="../concerts/ConcertWidget.ui" line="373"/>
         <source>Remove Genre</source>
         <translation>Enlever Genre</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="400"/>
+        <location filename="../concerts/ConcertWidget.ui" line="420"/>
         <source>Streamdetails</source>
         <translation>Détails de flux</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="408"/>
+        <location filename="../concerts/ConcertWidget.ui" line="428"/>
         <source>Aspect Ratio</source>
         <translation>Aspect Ratio</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="415"/>
+        <location filename="../concerts/ConcertWidget.ui" line="435"/>
         <source>Scantype</source>
         <translation>Scantype</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="432"/>
-        <location filename="../concerts/ConcertWidget.ui" line="799"/>
-        <location filename="../concerts/ConcertWidget.ui" line="802"/>
-        <location filename="../concerts/ConcertWidget.ui" line="882"/>
-        <location filename="../concerts/ConcertWidget.ui" line="885"/>
-        <location filename="../concerts/ConcertWidget.ui" line="985"/>
-        <location filename="../concerts/ConcertWidget.ui" line="1065"/>
-        <location filename="../concerts/ConcertWidget.ui" line="1145"/>
+        <location filename="../concerts/ConcertWidget.ui" line="452"/>
+        <location filename="../concerts/ConcertWidget.ui" line="819"/>
+        <location filename="../concerts/ConcertWidget.ui" line="822"/>
+        <location filename="../concerts/ConcertWidget.ui" line="902"/>
+        <location filename="../concerts/ConcertWidget.ui" line="905"/>
+        <location filename="../concerts/ConcertWidget.ui" line="1005"/>
+        <location filename="../concerts/ConcertWidget.ui" line="1085"/>
+        <location filename="../concerts/ConcertWidget.ui" line="1165"/>
         <source>Resolution</source>
         <translation>Résolution</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="439"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="610"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="613"/>
+        <location filename="../concerts/ConcertWidget.ui" line="459"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="616"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="619"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="474"/>
+        <location filename="../concerts/ConcertWidget.ui" line="494"/>
         <source>x</source>
         <translation>x</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="512"/>
+        <location filename="../concerts/ConcertWidget.ui" line="532"/>
         <source>Audio</source>
         <translation>Audio</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="525"/>
+        <location filename="../concerts/ConcertWidget.ui" line="545"/>
         <source>Video</source>
         <translation>Vidéo</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="542"/>
+        <location filename="../concerts/ConcertWidget.ui" line="562"/>
         <source>Duration</source>
         <translation>Durée</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="558"/>
+        <location filename="../concerts/ConcertWidget.ui" line="578"/>
         <source>HH:mm:ss</source>
         <translation type="unfinished"></translation>
     </message>
@@ -432,90 +442,90 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Secondes</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="569"/>
+        <location filename="../concerts/ConcertWidget.ui" line="589"/>
         <source>Reload from File</source>
         <translation>Recharger à partir du fichier</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="737"/>
+        <location filename="../concerts/ConcertWidget.ui" line="757"/>
         <source>Poster</source>
         <translation>Affiche</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="759"/>
-        <location filename="../concerts/ConcertWidget.ui" line="842"/>
-        <location filename="../concerts/ConcertWidget.ui" line="945"/>
-        <location filename="../concerts/ConcertWidget.ui" line="1025"/>
-        <location filename="../concerts/ConcertWidget.ui" line="1105"/>
+        <location filename="../concerts/ConcertWidget.ui" line="779"/>
+        <location filename="../concerts/ConcertWidget.ui" line="862"/>
+        <location filename="../concerts/ConcertWidget.ui" line="965"/>
+        <location filename="../concerts/ConcertWidget.ui" line="1045"/>
+        <location filename="../concerts/ConcertWidget.ui" line="1125"/>
         <source>Click to Change</source>
         <translation>Cliquer pour changer</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="780"/>
-        <location filename="../concerts/ConcertWidget.ui" line="863"/>
-        <location filename="../concerts/ConcertWidget.ui" line="966"/>
-        <location filename="../concerts/ConcertWidget.ui" line="1046"/>
-        <location filename="../concerts/ConcertWidget.ui" line="1126"/>
+        <location filename="../concerts/ConcertWidget.ui" line="800"/>
+        <location filename="../concerts/ConcertWidget.ui" line="883"/>
+        <location filename="../concerts/ConcertWidget.ui" line="986"/>
+        <location filename="../concerts/ConcertWidget.ui" line="1066"/>
+        <location filename="../concerts/ConcertWidget.ui" line="1146"/>
         <source>Full preview</source>
         <translation>Aperçu complet</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="820"/>
+        <location filename="../concerts/ConcertWidget.ui" line="840"/>
         <source>Backdrop</source>
         <translation>Fond</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="923"/>
+        <location filename="../concerts/ConcertWidget.ui" line="943"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="1003"/>
+        <location filename="../concerts/ConcertWidget.ui" line="1023"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="1083"/>
+        <location filename="../concerts/ConcertWidget.ui" line="1103"/>
         <source>CD Art</source>
         <translation>CD Art</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="603"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="637"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="609"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="643"/>
         <source>Track %1</source>
         <translation>Piste  %1</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="609"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="612"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="640"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="641"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="615"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="618"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="646"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="647"/>
         <source>Language</source>
         <translation>Langue</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="611"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="614"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="617"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="620"/>
         <source>Channels</source>
         <translation>Canaux</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="629"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="635"/>
         <source>Subtitles</source>
         <translation>Sous-titres</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="902"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="908"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauver</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="925"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="931"/>
         <source>All Concerts Saved</source>
         <translation>Tous les concerts sont sauvegardés</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="960"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="966"/>
         <source>Unknown Genre</source>
         <translation>Genre inconnu</translation>
     </message>
@@ -890,7 +900,7 @@ p, li { white-space: pre-wrap; }
         <translation>Supprimer genre</translation>
     </message>
     <message>
-        <location filename="../movies/GenreWidget.cpp" line="228"/>
+        <location filename="../movies/GenreWidget.cpp" line="231"/>
         <source>All Movies Saved</source>
         <translation>Tous les films sont sauvegardés</translation>
     </message>
@@ -1152,7 +1162,7 @@ p, li { white-space: pre-wrap; }
         <translation>Recherche de Films...</translation>
     </message>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="51"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="52"/>
         <source>Loading Movies...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2678,8 +2688,18 @@ p, li { white-space: pre-wrap; }
         <translation>Recherche de Séries TV...</translation>
     </message>
     <message>
-        <location filename="../data/TvShowFileSearcher.cpp" line="64"/>
+        <location filename="../data/TvShowFileSearcher.cpp" line="65"/>
         <source>Loading TV Shows...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../data/TvShowFileSearcher.cpp" line="141"/>
+        <source>Searching for Episodes...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../data/TvShowFileSearcher.cpp" line="173"/>
+        <source>Loading Episodes...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2690,11 +2710,16 @@ p, li { white-space: pre-wrap; }
         <source>Form</source>
         <translation>Form</translation>
     </message>
+    <message>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="41"/>
+        <source>Search for new episodes</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TvShowModelItem</name>
     <message>
-        <location filename="../data/TvShowModelItem.cpp" line="101"/>
+        <location filename="../data/TvShowModelItem.cpp" line="100"/>
         <source>Season %1</source>
         <translation>Saison %1</translation>
     </message>
@@ -2890,15 +2915,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="529"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="782"/>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="785"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="788"/>
         <source>Resolution</source>
         <translation>Résolution</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="536"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="330"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="333"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="374"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="377"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -2923,66 +2948,71 @@ p, li { white-space: pre-wrap; }
         <translation>Durée</translation>
     </message>
     <message>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="655"/>
+        <source>HH:mm:ss</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source> Seconds</source>
         <translation type="obsolete">Secondes</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="663"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="666"/>
         <source>Reload from File</source>
         <translation>Recharger à partir du fichier</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="720"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="723"/>
         <source>Thumbnail</source>
         <translation>Vignette</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="742"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="745"/>
         <source>Click to Change</source>
         <translation>Cliquer pour Changer</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="763"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="766"/>
         <source>Full Preview</source>
         <translation>Aperçu complet</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="323"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="357"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="367"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="401"/>
         <source>Track %1</source>
         <translation>Piste  %1</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="329"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="332"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="360"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="361"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="373"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="376"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="404"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="405"/>
         <source>Language</source>
         <translation>Langue</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="331"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="334"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="375"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="378"/>
         <source>Channels</source>
         <translation>Canaux</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="349"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="393"/>
         <source>Subtitles</source>
         <translation>Sous-titres</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="412"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="456"/>
         <source>Episode Saved</source>
         <translation>Épisode Sauver</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="557"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="601"/>
         <source>Unknown Director</source>
         <translation>Réalisateur inconnu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="606"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="650"/>
         <source>Unknown Writer</source>
         <translation>Scénariste inconnu</translation>
     </message>
@@ -3134,7 +3164,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="941"/>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1021"/>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1101"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="390"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="389"/>
         <source>Click to Change</source>
         <translation>Cliquer pour Changer</translation>
     </message>
@@ -3178,12 +3208,12 @@ p, li { white-space: pre-wrap; }
         <translation>Character Art</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="387"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="386"/>
         <source>Season %1</source>
         <translation>Saison %1</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="434"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="433"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauver</translation>
     </message>
@@ -3192,32 +3222,32 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Téléchargement des images d&apos;acteurset des vigenttes manquantes...</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="634"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="633"/>
         <source>Downloading images...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="991"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="990"/>
         <source>Unknown Genre</source>
         <translation>Genre inconnu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1043"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1042"/>
         <source>Unknown Actor</source>
         <translation>Acteur inconnu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1044"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1043"/>
         <source>Unknown Role</source>
         <translation>Rôle inconnu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1167"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1166"/>
         <source>Choose Image</source>
         <translation>Choisir image</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1167"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1166"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Images (*.jpg *.jpeg *.png)</translation>
     </message>
@@ -3238,17 +3268,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>XbmcXml</name>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="1335"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="1341"/>
         <source>Could not create actors directory</source>
         <translation>Impossible de créer le répertoire des acteurs</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="1339"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="1345"/>
         <source>Could not create movies directory</source>
         <translation>Impossible de créer le répertoire films</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="1343"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="1349"/>
         <source>Could not create tv shows directory</source>
         <translation>Impossible de créer le répertoire séries tv</translation>
     </message>

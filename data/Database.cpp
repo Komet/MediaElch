@@ -316,6 +316,25 @@ void Database::clearTvShows(QString path)
     }
 }
 
+void Database::clearTvShow(QString showDir)
+{
+    QSqlQuery query(db());
+    query.prepare("SELECT idShow FROM shows WHERE dir=:dir");
+    query.bindValue(":dir", showDir.toUtf8());
+    query.exec();
+    if (!query.next())
+        return;
+    int idShow = query.value(0).toInt();
+
+    query.prepare("DELETE FROM shows WHERE idShow=:idShow");
+    query.bindValue(":idShow", idShow);
+    query.exec();
+
+    query.prepare("DELETE FROM episodes WHERE idShow=:idShow");
+    query.bindValue(":idShow", idShow);
+    query.exec();
+}
+
 int Database::episodeCount()
 {
     QSqlQuery query(db());

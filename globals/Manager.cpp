@@ -336,3 +336,13 @@ TvShowFilesWidget *Manager::tvShowFilesWidget()
 {
     return m_tvShowFilesWidget;
 }
+
+FileScannerDialog *Manager::fileScannerDialog()
+{
+    return m_fileScannerDialog;
+}
+
+void Manager::setFileScannerDialog(FileScannerDialog *dialog)
+{
+    m_fileScannerDialog = dialog;
+}

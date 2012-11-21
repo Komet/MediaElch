@@ -30,6 +30,7 @@ public:
     void update(TvShow *show);
     void update(TvShowEpisode *episode);
     void clearTvShows(QString path = "");
+    void clearTvShow(QString showDir);
     QList<TvShow*> shows(QString path);
     QList<TvShowEpisode*> episodes(int idShow);
     int episodeCount();

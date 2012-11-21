@@ -1,6 +1,7 @@
 #ifndef TVSHOWFILESWIDGET_H
 #define TVSHOWFILESWIDGET_H
 
+#include <QMenu>
 #include <QModelIndex>
 #include <QWidget>
 #include "globals/Globals.h"
@@ -38,12 +39,15 @@ signals:
 private slots:
     void onItemActivated(QModelIndex index, QModelIndex previous);
     void onItemClicked(QModelIndex index);
+    void showContextMenu(QPoint point);
+    void scanForEpisodes();
 
 private:
     Ui::TvShowFilesWidget *ui;
     TvShowProxyModel *m_tvShowProxyModel;
     TvShowDelegate *m_tvShowDelegate;
     static TvShowFilesWidget *m_instance;
+    QMenu *m_contextMenu;
 };
 
 #endif // TVSHOWFILESWIDGET_H

@@ -17,6 +17,7 @@ public:
 
 public slots:
     void reload(bool force);
+    void reloadEpisodes(QString showDir);
 
 signals:
     void searchStarted(QString, int);

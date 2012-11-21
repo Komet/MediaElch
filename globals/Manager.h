@@ -17,6 +17,7 @@
 #include "data/TvShowModel.h"
 #include "data/TvShowProxyModel.h"
 #include "imageProviders/FanartTv.h"
+#include "main/FileScannerDialog.h"
 #include "tvShows/TvShowFilesWidget.h"
 
 /**
@@ -48,12 +49,14 @@ public:
     TvShowModel* tvShowModel();
     TvShowProxyModel *tvShowProxyModel();
     ConcertModel* concertModel();
+    FileScannerDialog *fileScannerDialog();
     void setupMediaCenterInterface();
     void shutdownMediaCenterInterfaces();
     ScraperInterface* getScraperForName(QString name);
     FanartTv* fanartTv();
     TvShowFilesWidget *tvShowFilesWidget();
     void setTvShowFilesWidget(TvShowFilesWidget *widget);
+    void setFileScannerDialog(FileScannerDialog *dialog);
 
 private:
     QList<MediaCenterInterface*> m_mediaCenters;
@@ -73,6 +76,7 @@ private:
     Settings *m_settings;
     Database *m_database;
     TvShowFilesWidget *m_tvShowFilesWidget;
+    FileScannerDialog *m_fileScannerDialog;
 };
 
 #endif // MANAGER_H

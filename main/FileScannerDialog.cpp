@@ -30,6 +30,8 @@ FileScannerDialog::FileScannerDialog(QWidget *parent) :
     m_forceReload = false;
     m_reloadType = TypeAll;
 
+    Manager::instance()->setFileScannerDialog(this);
+
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(onProgress(int,int)));
     connect(Manager::instance()->concertFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(onProgress(int,int)));
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(onProgress(int,int)));
@@ -75,6 +77,8 @@ void FileScannerDialog::exec()
         onStartTvShowScanner();
     else if (m_reloadType == TypeConcerts)
         onStartConcertScanner();
+    else if (m_reloadType == TypeEpisodes)
+        onStartEpisodeScanner();
 }
 
 void FileScannerDialog::setForceReload(bool force)
@@ -141,6 +145,11 @@ void FileScannerDialog::onStartTvShowScannerForce()
     Manager::instance()->tvShowFileSearcher()->reload(true);
 }
 
+void FileScannerDialog::onStartEpisodeScanner()
+{
+    Manager::instance()->tvShowFileSearcher()->reloadEpisodes(m_scanDir);
+}
+
 /**
  * @brief Starts the concert file scanner
  */
@@ -200,4 +209,9 @@ void FileScannerDialog::onLoadDone(int msgId)
     } else if (msgId == Constants::ConcertFileSearcherProgressMessageId) {
         accept();
     }
+}
+
+void FileScannerDialog::setScanDir(QString dir)
+{
+    m_scanDir = dir;
 }

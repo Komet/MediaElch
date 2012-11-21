@@ -53,7 +53,6 @@ void TvShowFileSearcher::reload(bool force)
     QMap<QString, QList<QStringList> > contents;
     foreach (SettingsDir dir, m_directories) {
         QList<TvShow*> showsFromDatabase = Manager::instance()->database()->shows(dir.path);
-        qDebug() << dir.path << dir.autoReload << showsFromDatabase.count();
         if (dir.autoReload || force || showsFromDatabase.count() == 0) {
             Manager::instance()->database()->clearTvShows(dir.path);
             getTvShows(dir.path, contents);
@@ -133,6 +132,62 @@ void TvShowFileSearcher::reload(bool force)
     }
 
     qDebug() << "Searching for tv shows done";
+    emit tvShowsLoaded(m_progressMessageId);
+}
+
+void TvShowFileSearcher::reloadEpisodes(QString showDir)
+{
+    Manager::instance()->database()->clearTvShow(showDir);
+    emit searchStarted(tr("Searching for Episodes..."), m_progressMessageId);
+
+    // remove old show object
+    foreach (TvShow *s, Manager::instance()->tvShowModel()->tvShows()) {
+        if (s->dir() == showDir) {
+            Manager::instance()->tvShowModel()->removeShow(s);
+            break;
+        }
+    }
+
+    // get path
+    QString path;
+    int index = -1;
+    for (int i=0, n=m_directories.count() ; i<n ; ++i) {
+        if (showDir.startsWith(m_directories[i].path)) {
+            if (index == -1)
+                index = i;
+            else if (m_directories[index].path.length() < m_directories[i].path.length())
+                index = i;
+        }
+    }
+    if (index != -1)
+        path = m_directories[index].path;
+
+    // search for contents
+    QList<QStringList> contents;
+    scanTvShowDir(path, showDir, contents);
+    TvShow *show = new TvShow(showDir, this);
+    show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
+    Manager::instance()->database()->add(show, path);
+    TvShowModelItem *showItem = Manager::instance()->tvShowModel()->appendChild(show);
+
+    emit searchStarted(tr("Loading Episodes..."), m_progressMessageId);
+    emit currentDir(show->name());
+
+    int episodeCounter = 0;
+    int episodeSum = contents.count();
+    QMap<int, TvShowModelItem*> seasonItems;
+    foreach (const QStringList &files, contents) {
+        TvShowEpisode *episode = new TvShowEpisode(files, show);
+        episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
+        Manager::instance()->database()->add(episode, path, show->databaseId());
+        show->addEpisode(episode);
+        if (!seasonItems.contains(episode->season()))
+            seasonItems.insert(episode->season(), showItem->appendChild(episode->seasonString(), show));
+        seasonItems.value(episode->season())->appendChild(episode);
+        emit progress(++episodeCounter, episodeSum, m_progressMessageId);
+        qApp->processEvents();
+    }
+
     emit tvShowsLoaded(m_progressMessageId);
 }
 

@@ -31,6 +31,7 @@ public:
     TvShowModelItem *getItem(const QModelIndex &index) const;
     QList<TvShow*> tvShows();
     bool hasNewShowOrEpisode();
+    void removeShow(TvShow *show);
 
 private slots:
     void onSigChanged(TvShowModelItem *showItem, TvShowModelItem *seasonItem, TvShowModelItem *episodeItem);
