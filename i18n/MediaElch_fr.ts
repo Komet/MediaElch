@@ -1410,7 +1410,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/MovieWidget.ui" line="158"/>
         <source>Sort Title</source>
-        <translation>Odre de tri</translation>
+        <translation>Ordre de tri</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="168"/>
@@ -1701,7 +1701,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/MovieWidget.cpp" line="497"/>
         <source>Downloading images...</source>
-        <translation>Téléchargement des images ...</translation>
+        <translation>Téléchargement des images...</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="763"/>
@@ -1812,7 +1812,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="150"/>
         <source>Sorttitle</source>
-        <translation>Sorttitle</translation>
+        <translation>Ordre de tri</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="173"/>
