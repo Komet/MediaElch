@@ -150,7 +150,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../data/ConcertFileSearcher.cpp" line="61"/>
         <source>Loading Concerts...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement Concerts...</translation>
     </message>
 </context>
 <context>
@@ -158,12 +158,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="40"/>
         <source>Mark as watched</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer comme vu</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="41"/>
         <source>Mark as unwatched</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer comme non vu</translation>
     </message>
 </context>
 <context>
@@ -314,7 +314,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="182"/>
         <source>yyyy</source>
-        <translation>yyy</translation>
+        <translation>yyyy</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="189"/>
@@ -359,12 +359,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="281"/>
         <source>Artist</source>
-        <translation type="unfinished"></translation>
+        <translation>Artiste</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="288"/>
         <source>Album</source>
-        <translation type="unfinished"></translation>
+        <translation>Album</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="304"/>
@@ -448,7 +448,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="578"/>
         <source>HH:mm:ss</source>
-        <translation type="unfinished"></translation>
+        <translation>HH:mm:ss</translation>
     </message>
     <message>
         <source> Seconds</source>
@@ -617,12 +617,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/FilesWidget.cpp" line="42"/>
         <source>Mark as watched</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer comme vu</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="43"/>
         <source>Mark as unwatched</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer comme non vu</translation>
     </message>
 </context>
 <context>
@@ -1132,7 +1132,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../main/MainWindow.cpp" line="216"/>
         <source>Reload all files (%1)</source>
-        <translation>Recharger tous les films (%1)</translation>
+        <translation>Recharger tous les fichiers (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="223"/>
@@ -1142,17 +1142,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../main/MainWindow.cpp" line="330"/>
         <source>Reload all Movies (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger tous les films (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="332"/>
         <source>Reload all TV Shows (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger toutes les séries TV (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="334"/>
         <source>Reload all Concerts (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger tous les concerts (%1)</translation>
     </message>
 </context>
 <context>
@@ -1202,7 +1202,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../data/MovieFileSearcher.cpp" line="52"/>
         <source>Loading Movies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement Films...</translation>
     </message>
 </context>
 <context>
@@ -1410,7 +1410,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/MovieWidget.ui" line="158"/>
         <source>Sort Title</source>
-        <translation>Odre de tri</translation>
+        <translation>Ordre de tri</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="168"/>
@@ -1435,7 +1435,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/MovieWidget.ui" line="225"/>
         <source>yyyy</source>
-        <translation>yyy</translation>
+        <translation>yyyy</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="232"/>
@@ -1640,7 +1640,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/MovieWidget.ui" line="1012"/>
         <source>HH:mm:ss</source>
-        <translation type="unfinished"></translation>
+        <translation>HH:mm:ss</translation>
     </message>
     <message>
         <source> Seconds</source>
@@ -1701,7 +1701,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/MovieWidget.cpp" line="497"/>
         <source>Downloading images...</source>
-        <translation type="unfinished"></translation>
+        <translation>Téléchargement des images...</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="763"/>
@@ -1812,7 +1812,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="150"/>
         <source>Sorttitle</source>
-        <translation>Sorttitle</translation>
+        <translation>Ordre de tri</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="173"/>
@@ -1930,7 +1930,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWidget.ui" line="156"/>
         <source>Reload On Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger au démarrage</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="166"/>
@@ -2218,7 +2218,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWidget.cpp" line="35"/>
         <source>Automatically reload contents on start</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger automatiquement le contenu au démarrage</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.cpp" line="57"/>
@@ -2728,17 +2728,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="65"/>
         <source>Loading TV Shows...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement des Séries TV...</translation>
     </message>
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="141"/>
         <source>Searching for Episodes...</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche d&apos;épisodes ...</translation>
     </message>
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="173"/>
         <source>Loading Episodes...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement Épisodes...</translation>
     </message>
 </context>
 <context>
@@ -2751,17 +2751,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="40"/>
         <source>Search for new episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche de nouveaux épisodes</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="41"/>
         <source>Mark as watched</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer comme vu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="42"/>
         <source>Mark as unwatched</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer comme non vu</translation>
     </message>
 </context>
 <context>
@@ -2998,7 +2998,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="655"/>
         <source>HH:mm:ss</source>
-        <translation type="unfinished"></translation>
+        <translation>HH:mm:ss</translation>
     </message>
     <message>
         <source> Seconds</source>
@@ -3272,7 +3272,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="633"/>
         <source>Downloading images...</source>
-        <translation type="unfinished"></translation>
+        <translation>Téléchargement des images ...</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="990"/>
