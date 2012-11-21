@@ -338,7 +338,7 @@ void MovieWidget::setMovie(Movie *movie)
     movie->loadData(Manager::instance()->mediaCenterInterface());
     if (!movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         movie->loadStreamDetailsFromFile();
-        if (movie->streamDetailsLoaded())
+        if (movie->streamDetailsLoaded() && movie->streamDetails()->videoDetails().value("durationinseconds").toInt() != 0)
             movie->setRuntime(qFloor(movie->streamDetails()->videoDetails().value("durationinseconds").toInt()/60));
     }
     m_movie = movie;
@@ -494,7 +494,7 @@ void MovieWidget::loadDone(Movie *movie, QMap<int, QList<Poster> > posters)
     }
 
     if (downloadsSize > 0)
-        emit actorDownloadStarted(tr("Downloading Missing Actor Images..."), Constants::MovieProgressMessageId+movie->movieId());
+        emit actorDownloadStarted(tr("Downloading images..."), Constants::MovieProgressMessageId+movie->movieId());
     else if (m_movie == movie)
         setEnabledTrue();
 

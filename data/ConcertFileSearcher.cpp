@@ -37,22 +37,35 @@ void ConcertFileSearcher::setConcertDirectories(QList<SettingsDir> directories)
 /**
  * @brief Starts the scanning process
  */
-void ConcertFileSearcher::run()
+void ConcertFileSearcher::reload(bool force)
 {
-    qDebug() << "Entered";
-    emit searchStarted(tr("Searching for Concerts..."), m_progressMessageId);
+    if (force)
+        Manager::instance()->database()->clearConcerts();
 
     Manager::instance()->concertModel()->clear();
-    QList<QStringList> contents;
-    foreach (SettingsDir dir, m_directories)
-        scanDir(dir.path, dir.path, contents, dir.separateFolders, true);
+    emit searchStarted(tr("Searching for Concerts..."), m_progressMessageId);
 
+    QList<Concert*> dbConcerts;
+    QList<QStringList> contents;
+    foreach (SettingsDir dir, m_directories) {
+        QList<Concert*> concertsFromDb = Manager::instance()->database()->concerts(dir.path);
+        if (dir.autoReload || force || concertsFromDb.count() == 0) {
+            Manager::instance()->database()->clearConcerts(dir.path);
+            scanDir(dir.path, dir.path, contents, dir.separateFolders, true);
+        } else {
+            dbConcerts.append(concertsFromDb);
+        }
+    }
     emit currentDir("");
 
-    int i=0;
-    int n=contents.size();
+    emit searchStarted(tr("Loading Concerts..."), m_progressMessageId);
+    int concertCounter=0;
+    int concertSum=contents.size()+dbConcerts.size();
+
+    // Setup concerts
     foreach (const QStringList &files, contents) {
         bool inSeparateFolder = false;
+        QString path;
         // get directory
         if (!files.isEmpty()) {
             int index = -1;
@@ -64,19 +77,31 @@ void ConcertFileSearcher::run()
                         index = i;
                 }
             }
-            if (index != -1)
+            if (index != -1) {
                 inSeparateFolder = m_directories[index].separateFolders;
+                path = m_directories[index].path;
+            }
         }
         Concert *concert = new Concert(files, this);
         concert->setInSeparateFolder(inSeparateFolder);
         concert->loadData(Manager::instance()->mediaCenterInterface());
+        emit currentDir(concert->name());
+        Manager::instance()->database()->add(concert, path);
         Manager::instance()->concertModel()->addConcert(concert);
-        emit progress(++i, n, m_progressMessageId);
+        emit progress(++concertCounter, concertSum, m_progressMessageId);
+        qApp->processEvents();
+    }
+
+    // Setup concerts loaded from database
+    foreach (Concert *concert, dbConcerts) {
+        concert->loadData(Manager::instance()->mediaCenterInterface(), false, false);
+        emit currentDir(concert->name());
+        Manager::instance()->concertModel()->addConcert(concert);
+        emit progress(++concertCounter, concertSum, m_progressMessageId);
         qApp->processEvents();
     }
 
     qDebug() << "Searching for concerts done";
-
     emit concertsLoaded(m_progressMessageId);
 }
 
@@ -96,7 +121,8 @@ void ConcertFileSearcher::scanDir(QString startPath, QString path, QList<QString
     QDir dir(path);
     foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         // Skip "Extras" folder
-        if (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0)
+        if (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0 ||
+            QString::compare(cDir, ".actors", Qt::CaseInsensitive) == 0)
             continue;
 
         // Handle DVD
@@ -117,7 +143,7 @@ void ConcertFileSearcher::scanDir(QString startPath, QString path, QList<QString
     }
 
     QStringList files;
-    QStringList entries = getCachedFiles(path);
+    QStringList entries = getFiles(path);
     foreach (const QString &file, entries) {
         // Skip Trailers and Sample files
         if (file.contains("-trailer", Qt::CaseInsensitive) || file.contains("-sample", Qt::CaseInsensitive))
@@ -165,61 +191,14 @@ void ConcertFileSearcher::scanDir(QString startPath, QString path, QList<QString
 
 /**
  * @brief Get a list of files in a directory
- *        Retrieves the contents from the cache if the last
- *        modification matches the on in the database
  * @param path
  * @return
  */
-QStringList ConcertFileSearcher::getCachedFiles(QString path)
+QStringList ConcertFileSearcher::getFiles(QString path)
 {
     QStringList filters;
     filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
-            << "*.dat" << "*.flv" << "*.vob" << "*.ts";
+            << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.rmvb";
 
-    if (!Settings::instance()->useCache())
-        return QDir(path).entryList(filters, QDir::Files | QDir::System);
-
-    int idPath = -1;
-    QStringList files;
-    QFileInfo fi(path);
-    QSqlQuery query(Manager::instance()->cacheDb());
-    query.prepare("SELECT idPath, lastModified FROM concertDirs WHERE path=:path");
-    query.bindValue(":path", path);
-    query.exec();
-    if (query.next()) {
-        idPath = query.value(query.record().indexOf("idPath")).toInt();
-        if (fi.lastModified() != query.value(query.record().indexOf("lastModified")).toDateTime()) {
-            query.prepare("DELETE FROM concertDirs WHERE idPath=:idPath");
-            query.bindValue(":idPath", idPath);
-            query.exec();
-            query.prepare("DELETE FROM concertFiles WHERE idPath=:idPath");
-            query.bindValue(":idPath", idPath);
-            query.exec();
-            idPath = -1;
-        }
-    }
-
-    if (idPath != -1) {
-        query.prepare("SELECT filename FROM concertFiles WHERE idPath=:path");
-        query.bindValue(":path", idPath);
-        query.exec();
-        while (query.next()) {
-            files.append(query.value(query.record().indexOf("filename")).toString());
-        }
-    } else {
-        query.prepare("INSERT INTO concertDirs(path, lastModified, parent) VALUES(:path, :lastModified, 0)");
-        query.bindValue(":path", path);
-        query.bindValue(":lastModified", fi.lastModified());
-        query.exec();
-        idPath = query.lastInsertId().toInt();
-        files = QDir(path).entryList(filters, QDir::Files | QDir::System);
-        foreach (const QString &file, files) {
-            query.prepare("INSERT INTO concertFiles(idPath, filename) VALUES(:idPath, :filename)");
-            query.bindValue(":idPath", idPath);
-            query.bindValue(":filename", file);
-            query.exec();
-        }
-    }
-
-    return files;
+    return QDir(path).entryList(filters, QDir::Files | QDir::System);
 }

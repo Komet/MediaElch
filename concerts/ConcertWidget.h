@@ -65,6 +65,8 @@ private slots:
     void onArtPageTwo();
 
     void onNameChange(QString text);
+    void onArtistChange(QString text);
+    void onAlbumChange(QString text);
     void onTaglineChange(QString text);
     void onRatingChange(double value);
     void onReleasedChange(QDate date);

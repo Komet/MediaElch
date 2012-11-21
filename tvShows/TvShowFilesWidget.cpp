@@ -36,9 +36,17 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     ui->files->setItemDelegate(m_tvShowDelegate);
     ui->files->sortByColumn(0);
     ui->files->setAttribute(Qt::WA_MacShowFocusRect, false);
+    ui->files->setContextMenuPolicy(Qt::CustomContextMenu);
 
+    QAction *actionScanForEpisodes = new QAction(tr("Search for new episodes"), this);
+    m_contextMenu = new QMenu(ui->files);
+    m_contextMenu->addAction(actionScanForEpisodes);
+    connect(actionScanForEpisodes, SIGNAL(triggered()), this, SLOT(scanForEpisodes()));
+
+    connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
     connect(ui->files, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)));
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)));
+    Manager::instance()->setTvShowFilesWidget(this);
 }
 
 /**
@@ -56,6 +64,34 @@ TvShowFilesWidget::~TvShowFilesWidget()
 TvShowFilesWidget *TvShowFilesWidget::instance()
 {
     return m_instance;
+}
+
+/**
+ * @brief Shows the contextmenu
+ * @param point
+ */
+void TvShowFilesWidget::showContextMenu(QPoint point)
+{
+    m_contextMenu->exec(ui->files->mapToGlobal(point));
+}
+
+void TvShowFilesWidget::scanForEpisodes()
+{
+    QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(ui->files->currentIndex());
+    if (!sourceIndex.isValid())
+        return;
+
+    TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(sourceIndex);
+    if (item->type() == TypeTvShow)
+        Manager::instance()->fileScannerDialog()->setScanDir(item->tvShow()->dir());
+    else if (item->type() == TypeSeason)
+        Manager::instance()->fileScannerDialog()->setScanDir(item->tvShow()->dir());
+    else if (item->type() == TypeEpisode)
+        Manager::instance()->fileScannerDialog()->setScanDir(item->tvShowEpisode()->tvShow()->dir());
+    else
+        return;
+    Manager::instance()->fileScannerDialog()->setReloadType(FileScannerDialog::TypeEpisodes);
+    Manager::instance()->fileScannerDialog()->exec();
 }
 
 /**

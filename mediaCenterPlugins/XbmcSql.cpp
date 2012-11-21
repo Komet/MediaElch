@@ -579,7 +579,7 @@ bool XbmcSql::saveMovie(Movie *movie)
  * @param movie The movie to load infos for
  * @return Loading success
  */
-bool XbmcSql::loadMovie(Movie *movie)
+bool XbmcSql::loadMovie(Movie *movie, QString nfoContent)
 {
     qDebug() << "Entered, movie=" << movie->name();
     if (movie->files().size() == 0) {
@@ -1255,7 +1255,7 @@ bool XbmcSql::saveConcert(Concert *concert)
  * @param concert The concert to load infos for
  * @return Loading success
  */
-bool XbmcSql::loadConcert(Concert *concert)
+bool XbmcSql::loadConcert(Concert *concert, QString nfoContent)
 {
     qDebug() << "Entered, concert=" << concert->name();
     if (concert->files().size() == 0) {
@@ -1515,7 +1515,7 @@ void XbmcSql::exportDatabase(QList<Movie *> movies, QList<TvShow *> shows, QStri
  * @param show Show to load infos for
  * @return Loading success
  */
-bool XbmcSql::loadTvShow(TvShow *show)
+bool XbmcSql::loadTvShow(TvShow *show, QString nfoContent)
 {
     qDebug() << "Entered, show=" << show->name();
     if (show->dir().isEmpty()) {
@@ -1742,7 +1742,7 @@ QString XbmcSql::actorImageName(TvShow *show, Actor actor)
  * @param episode Episode to load infos for
  * @return Loading success
  */
-bool XbmcSql::loadTvShowEpisode(TvShowEpisode *episode)
+bool XbmcSql::loadTvShowEpisode(TvShowEpisode *episode, QString nfoContent)
 {
     qDebug() << "Entered, episode=" << episode->name();
     if (episode->files().count() == 0) {

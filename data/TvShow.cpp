@@ -17,6 +17,7 @@ TvShow::TvShow(QString dir, QObject *parent) :
 {
     m_dir = dir;
     m_infoLoaded = false;
+    m_infoFromNfoLoaded = false;
     m_backdropImageChanged = false;
     m_posterImageChanged = false;
     m_bannerImageChanged = false;
@@ -28,16 +29,7 @@ TvShow::TvShow(QString dir, QObject *parent) :
     m_downloadsInProgress = false;
     static int m_idCounter = 0;
     m_showId = ++m_idCounter;
-}
-
-/**
- * @brief Moves this object and all child items to the main thread
- */
-void TvShow::moveToMainThread()
-{
-    moveToThread(QApplication::instance()->thread());
-    for (int i=0, n=m_episodes.count() ; i<n ; ++i)
-        m_episodes[i]->moveToMainThread();
+    m_databaseId = -1;
 }
 
 /**
@@ -91,15 +83,24 @@ int TvShow::episodeCount()
  * @param mediaCenterInterface MediaCenterInterface to use
  * @return Loading was successful or not
  */
-bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface)
+bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo)
 {
-    bool infoLoaded = mediaCenterInterface->loadTvShow(this);
+    if ((m_infoLoaded || hasChanged()) && m_infoFromNfoLoaded)
+        return m_infoLoaded;
+
+    bool infoLoaded;
+    if (reloadFromNfo)
+        infoLoaded = mediaCenterInterface->loadTvShow(this);
+    else
+        infoLoaded = mediaCenterInterface->loadTvShow(this, nfoContent());
+
     if (!infoLoaded) {
         QStringList dirParts = this->dir().split(QDir::separator());
         if (dirParts.count() > 0)
             setName(NameFormatter::instance()->formatName(dirParts.last()));
     }
     m_infoLoaded = infoLoaded;
+    m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
     setChanged(false);
     return infoLoaded;
 }
@@ -639,6 +640,24 @@ bool TvShow::downloadsInProgress() const
     return m_downloadsInProgress;
 }
 
+/**
+ * @brief TvShow::nfoContent
+ * @return
+ */
+QString TvShow::nfoContent() const
+{
+    return m_nfoContent;
+}
+
+/**
+ * @brief TvShow::databaseId
+ * @return
+ */
+int TvShow::databaseId() const
+{
+    return m_databaseId;
+}
+
 /*** SETTER ***/
 
 /**
@@ -1046,6 +1065,24 @@ void TvShow::removeGenre(QString *genre)
         }
     }
     setChanged(true);
+}
+
+/**
+ * @brief TvShow::setNfoContent
+ * @param content
+ */
+void TvShow::setNfoContent(QString content)
+{
+    m_nfoContent = content;
+}
+
+/**
+ * @brief TvShow::setDatabaseId
+ * @param id
+ */
+void TvShow::setDatabaseId(int id)
+{
+    m_databaseId = id;
 }
 
 /*** DEBUG ***/

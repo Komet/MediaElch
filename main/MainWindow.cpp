@@ -324,6 +324,14 @@ void MainWindow::onMenu(MainWidgets widget)
     m_actionSaveAll->setEnabled(m_actions[widget][ActionSaveAll]);
     m_filterWidget->setEnabled(m_actions[widget][ActionFilterWidget]);
     m_filterWidget->setActiveWidget(widget);
+
+    m_actionReload->setEnabled(widget == WidgetMovies || widget == WidgetTvShows || widget == WidgetConcerts);
+    if (widget == WidgetMovies)
+        m_actionReload->setToolTip(tr("Reload all Movies (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+    else if (widget == WidgetTvShows)
+        m_actionReload->setToolTip(tr("Reload all TV Shows (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+    else if (widget == WidgetConcerts)
+        m_actionReload->setToolTip(tr("Reload all Concerts (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
 }
 
 /**
@@ -454,6 +462,15 @@ void MainWindow::onActionSaveAll()
  */
 void MainWindow::onActionReload()
 {
+    m_fileScannerDialog->setForceReload(true);
+
+    if (ui->stackedWidget->currentIndex() == 0)
+        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeMovies);
+    else if (ui->stackedWidget->currentIndex() == 1)
+        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeTvShows);
+    else if (ui->stackedWidget->currentIndex() == 3)
+        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeConcerts);
+
     m_fileScannerDialog->exec();
 }
 

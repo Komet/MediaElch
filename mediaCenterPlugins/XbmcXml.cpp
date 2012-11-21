@@ -8,6 +8,7 @@
 
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "globals/Manager.h"
 #include "settings/Settings.h"
 
 /**
@@ -152,6 +153,9 @@ bool XbmcXml::saveMovie(Movie *movie)
         return false;
     }
 
+    movie->setNfoContent(xmlContent);
+    Manager::instance()->database()->update(movie);
+
     bool saved = false;
     QFileInfo fi(movie->files().at(0));
     foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieNfo)) {
@@ -259,25 +263,65 @@ QString XbmcXml::nfoFilePath(Movie *movie)
 }
 
 /**
+ * @brief Tries to find an nfo file for the concert
+ * @param concert Concert
+ * @return Path to nfo file, if none found returns an empty string
+ */
+QString XbmcXml::nfoFilePath(Concert *concert)
+{
+    QString nfoFile;
+    if (concert->files().size() == 0) {
+        qWarning() << "Concert has no files";
+        return nfoFile;
+    }
+    QFileInfo fi(concert->files().at(0));
+    if (!fi.isFile() ) {
+        qWarning() << "First file of the concert is not readable" << concert->files().at(0);
+        return nfoFile;
+    }
+
+    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertNfo)) {
+        QString file = dataFile.saveFileName(fi.fileName());
+        QFileInfo nfoFi(fi.absolutePath() + QDir::separator() + file);
+        if (nfoFi.exists()) {
+            nfoFile = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return nfoFile;
+}
+
+/**
  * @brief Loads movie infos (except images)
  * @param movie Movie to load
  * @return Loading success
  */
-bool XbmcXml::loadMovie(Movie *movie)
+bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
 {
-    QString nfoFile = nfoFilePath(movie);
-    if (nfoFile.isEmpty())
-        return false;
-
-    QFile file(nfoFile);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qWarning() << "File" << nfoFile << "could not be opened for reading";
-        return false;
-    }
     movie->clear();
     movie->setChanged(false);
+
+    QString nfoContent;
+    if (initialNfoContent.isEmpty()) {
+        QString nfoFile = nfoFilePath(movie);
+        if (nfoFile.isEmpty())
+            return false;
+
+        QFile file(nfoFile);
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            qWarning() << "File" << nfoFile << "could not be opened for reading";
+            return false;
+        }
+        nfoContent = QString::fromUtf8(file.readAll());
+        movie->setNfoContent(nfoContent);
+        file.close();
+    } else {
+        nfoContent = initialNfoContent;
+    }
+
     QDomDocument domDoc;
-    domDoc.setContent(file.readAll());
+    domDoc.setContent(nfoContent);
     if (!domDoc.elementsByTagName("title").isEmpty() )
         movie->setName(domDoc.elementsByTagName("title").at(0).toElement().text());
     if (!domDoc.elementsByTagName("originaltitle").isEmpty())
@@ -349,14 +393,14 @@ bool XbmcXml::loadMovie(Movie *movie)
 
     movie->setStreamDetailsLoaded(loadStreamDetails(movie->streamDetails(), domDoc));
 
-    file.close();
-
     // Existence of images
-    movie->setHasPoster(!posterImageName(movie).isEmpty());
-    movie->setHasBackdrop(!backdropImageName(movie).isEmpty());
-    movie->setHasLogo(!logoImageName(movie).isEmpty());
-    movie->setHasClearArt(!clearArtImageName(movie).isEmpty());
-    movie->setHasCdArt(!cdArtImageName(movie).isEmpty());
+    if (initialNfoContent.isEmpty()) {
+        movie->setHasPoster(!posterImageName(movie).isEmpty());
+        movie->setHasBackdrop(!backdropImageName(movie).isEmpty());
+        movie->setHasLogo(!logoImageName(movie).isEmpty());
+        movie->setHasClearArt(!clearArtImageName(movie).isEmpty());
+        movie->setHasCdArt(!cdArtImageName(movie).isEmpty());
+    }
 
     return true;
 }
@@ -651,6 +695,8 @@ void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert, bool writ
     qDebug() << "Entered, concert=" << concert->name();
     xml.writeStartElement("musicvideo");
     xml.writeTextElement("title", concert->name());
+    xml.writeTextElement("artist", concert->artist());
+    xml.writeTextElement("album", concert->album());
     xml.writeTextElement("id", concert->id());
     xml.writeTextElement("tmdbid", concert->tmdbId());
     xml.writeTextElement("rating", QString("%1").arg(concert->rating()));
@@ -727,6 +773,9 @@ bool XbmcXml::saveConcert(Concert *concert)
         return false;
     }
 
+    concert->setNfoContent(xmlContent);
+    Manager::instance()->database()->update(concert);
+
     bool saved = false;
     QFileInfo fi(concert->files().at(0));
     foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertNfo)) {
@@ -798,48 +847,41 @@ void XbmcXml::saveAdditionalImages(Concert *concert)
  * @param concert Concert to load
  * @return Loading success
  */
-bool XbmcXml::loadConcert(Concert *concert)
+bool XbmcXml::loadConcert(Concert *concert, QString initialNfoContent)
 {
-    if (concert->files().size() == 0) {
-        qWarning() << "Movie has no files";
-        return false;
-    }
-    QFileInfo fi(concert->files().at(0));
-    if (!fi.isFile() ) {
-        qWarning() << "First file of the concert is not readable" << concert->files().at(0);
-        return false;
-    }
-
-    QString nfoFile;
-    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertNfo)) {
-        QString file = dataFile.saveFileName(fi.fileName());
-        QFileInfo nfoFi(fi.absolutePath() + QDir::separator() + file);
-        if (nfoFi.exists()) {
-            nfoFile = fi.absolutePath() + QDir::separator() + file;
-            break;
-        }
-    }
-
-    if (nfoFile.isEmpty()) {
-        qDebug() << "No usable nfo file found";
-        return false;
-    }
-
-    QFile file(nfoFile);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qWarning() << "File" << nfoFile << "could not be opened for reading";
-        return false;
-    }
     concert->clear();
     concert->setChanged(false);
+
+    QString nfoContent;
+    if (initialNfoContent.isEmpty()) {
+        QString nfoFile = nfoFilePath(concert);
+        if (nfoFile.isEmpty())
+            return false;
+
+        QFile file(nfoFile);
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            qWarning() << "File" << nfoFile << "could not be opened for reading";
+            return false;
+        }
+        nfoContent = QString::fromUtf8(file.readAll());
+        concert->setNfoContent(nfoContent);
+        file.close();
+    } else {
+        nfoContent = initialNfoContent;
+    }
+
     QDomDocument domDoc;
-    domDoc.setContent(file.readAll());
+    domDoc.setContent(nfoContent);
     if (!domDoc.elementsByTagName("id").isEmpty() )
         concert->setId(domDoc.elementsByTagName("id").at(0).toElement().text());
     if (!domDoc.elementsByTagName("tmdbid").isEmpty() )
         concert->setTmdbId(domDoc.elementsByTagName("tmdbid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("title").isEmpty() )
         concert->setName(domDoc.elementsByTagName("title").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("artist").isEmpty() )
+        concert->setArtist(domDoc.elementsByTagName("artist").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("album").isEmpty() )
+        concert->setAlbum(domDoc.elementsByTagName("album").at(0).toElement().text());
     if (!domDoc.elementsByTagName("rating").isEmpty())
         concert->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().toFloat());
     if (!domDoc.elementsByTagName("year").isEmpty())
@@ -879,8 +921,6 @@ bool XbmcXml::loadConcert(Concert *concert)
     }
 
     concert->setStreamDetailsLoaded(loadStreamDetails(concert->streamDetails(), domDoc));
-
-    file.close();
 
     return true;
 }
@@ -1425,29 +1465,40 @@ void XbmcXml::exportDatabase(QList<Movie*> movies, QList<TvShow*> shows, QString
  * @param show Show to load
  * @return Loading success
  */
-bool XbmcXml::loadTvShow(TvShow *show)
+bool XbmcXml::loadTvShow(TvShow *show, QString initialNfoContent)
 {
-    if (show->dir().isEmpty())
-        return false;
-
-    QString nfoFile;
-    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowNfo)) {
-        QString file = dataFile.saveFileName("");
-        QFileInfo nfoFi(show->dir() + QDir::separator() + file);
-        if (nfoFi.exists()) {
-            nfoFile = show->dir() + QDir::separator() + file;
-            break;
-        }
-    }
-    QFile file(nfoFile);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qWarning() << "Nfo file could not be opened for reading" << nfoFile;
-        return false;
-    }
-
     show->clear();
+    show->setChanged(false);
+
+    QString nfoContent;
+    if (initialNfoContent.isEmpty()) {
+        if (show->dir().isEmpty())
+            return false;
+
+        QString nfoFile;
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowNfo)) {
+            QString file = dataFile.saveFileName("");
+            QFileInfo nfoFi(show->dir() + QDir::separator() + file);
+            if (nfoFi.exists()) {
+                nfoFile = show->dir() + QDir::separator() + file;
+                break;
+            }
+        }
+        QFile file(nfoFile);
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            qWarning() << "Nfo file could not be opened for reading" << nfoFile;
+            return false;
+        }
+        nfoContent = QString::fromUtf8(file.readAll());
+        show->setNfoContent(nfoContent);
+        file.close();
+    } else {
+        nfoContent = initialNfoContent;
+    }
+
+
     QDomDocument domDoc;
-    domDoc.setContent(file.readAll());
+    domDoc.setContent(nfoContent);
     if (!domDoc.elementsByTagName("tvdbid").isEmpty() )
         show->setTvdbId(domDoc.elementsByTagName("tvdbid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("title").isEmpty() )
@@ -1503,8 +1554,6 @@ bool XbmcXml::loadTvShow(TvShow *show)
         }
     }
 
-    file.close();
-
     return true;
 }
 
@@ -1513,43 +1562,52 @@ bool XbmcXml::loadTvShow(TvShow *show)
  * @param episode Episode to load infos for
  * @return Loading success
  */
-bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode)
+bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoContent)
 {
-    if (episode->files().size() == 0) {
-        qWarning() << "Episode has no files";
-        return false;
-    }
-    QFileInfo fi(episode->files().at(0));
-    if (!fi.isFile() ) {
-        qDebug() << "Episode file 0 is no file" << episode->files();
-        return false;
-    }
-
-    QString nfoFile;
-    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo)) {
-        QString file = dataFile.saveFileName(fi.fileName());
-        QFileInfo nfoFi(fi.absolutePath() + QDir::separator() + file);
-        if (nfoFi.exists()) {
-            nfoFile = fi.absolutePath() + QDir::separator() + file;
-            break;
-        }
-    }
-
-    if (nfoFile.isEmpty()) {
-        qDebug() << "No usable nfo file found";
-        return false;
-    }
-
-    QFile file(nfoFile);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qWarning() << "File" << nfoFile << "could not be opened for reading";
-        return false;
-    }
-
     episode->clear();
+    episode->setChanged(false);
+
+    QString nfoContent;
+    if (initialNfoContent.isEmpty()) {
+        if (episode->files().size() == 0) {
+            qWarning() << "Episode has no files";
+            return false;
+        }
+        QFileInfo fi(episode->files().at(0));
+        if (!fi.isFile() ) {
+            qDebug() << "Episode file 0 is no file" << episode->files();
+            return false;
+        }
+
+        QString nfoFile;
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo)) {
+            QString file = dataFile.saveFileName(fi.fileName());
+            QFileInfo nfoFi(fi.absolutePath() + QDir::separator() + file);
+            if (nfoFi.exists()) {
+                nfoFile = fi.absolutePath() + QDir::separator() + file;
+                break;
+            }
+        }
+
+        if (nfoFile.isEmpty()) {
+            qDebug() << "No usable nfo file found";
+            return false;
+        }
+
+        QFile file(nfoFile);
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            qWarning() << "File" << nfoFile << "could not be opened for reading";
+            return false;
+        }
+        nfoContent = QString::fromUtf8(file.readAll());
+        episode->setNfoContent(nfoContent);
+        file.close();
+    } else {
+        nfoContent = initialNfoContent;
+    }
 
     QDomDocument domDoc;
-    domDoc.setContent(file.readAll());
+    domDoc.setContent(nfoContent);
     if (!domDoc.elementsByTagName("title").isEmpty() )
         episode->setName(domDoc.elementsByTagName("title").at(0).toElement().text());
     if (!domDoc.elementsByTagName("showtitle").isEmpty() )
@@ -1581,8 +1639,6 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode)
 
     episode->setStreamDetailsLoaded(loadStreamDetails(episode->streamDetails(), domDoc));
 
-    file.close();
-
     return true;
 }
 
@@ -1601,10 +1657,11 @@ bool XbmcXml::saveTvShow(TvShow *show)
     writeTvShowXml(xml, show);
     xml.writeEndDocument();
 
-
-
     if (show->dir().isEmpty())
         return false;
+
+    show->setNfoContent(xmlContent);
+    Manager::instance()->database()->update(show);
 
     foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowNfo)) {
         QFile file(show->dir() + QDir::separator() + dataFile.saveFileName(""));
@@ -1720,6 +1777,9 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
         return false;
     }
 
+    episode->setNfoContent(xmlContent);
+    Manager::instance()->database()->update(episode);
+
     QFileInfo fi(episode->files().at(0));
     foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo)) {
         QString saveFileName = dataFile.saveFileName(fi.fileName());
@@ -1768,6 +1828,7 @@ void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath
     xml.writeTextElement("premiered", show->firstAired().toString("yyyy-MM-dd"));
     xml.writeTextElement("studio", show->network());
     xml.writeTextElement("tvdbid", show->tvdbId());
+    xml.writeTextElement("id", show->tvdbId());
 
     if (!show->episodeGuideUrl().isEmpty()) {
         xml.writeStartElement("episodeguide");

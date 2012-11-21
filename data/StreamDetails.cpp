@@ -36,7 +36,11 @@ void StreamDetails::loadStreamDetails()
     MediaInfo MI;
     MI.Option(QString("Info_Version").toStdWString(), QString("0.7.61;%1;%2").arg(QApplication::applicationName()).arg(QApplication::applicationVersion()).toStdWString());
     MI.Option(QString("Internet").toStdWString(), QString("no").toStdWString());
+#ifdef Q_WS_WIN
+    MI.Open(m_file.toStdWString());
+#else
     MI.Open(QString(m_file.toUtf8()).toStdWString());
+#endif
     MI.Option(QString("Complete").toStdWString(), QString("1").toStdWString());
 
     int duration = 0;

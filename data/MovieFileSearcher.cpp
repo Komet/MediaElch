@@ -27,23 +27,36 @@ MovieFileSearcher::~MovieFileSearcher()
 /**
  * @brief Starts the scanning process
  */
-void MovieFileSearcher::run()
+void MovieFileSearcher::reload(bool force)
 {
-    qDebug() << "Entered";
-    emit searchStarted(tr("Searching for Movies..."), m_progressMessageId);
+    if (force)
+        Manager::instance()->database()->clearMovies();
 
     Manager::instance()->movieModel()->clear();
     m_lastModifications.clear();
-    QList<QStringList> contents;
-    foreach (SettingsDir dir, m_directories)
-        scanDir(dir.path, dir.path, contents, dir.separateFolders, true);
 
+    emit searchStarted(tr("Searching for Movies..."), m_progressMessageId);
+    QList<Movie*> dbMovies;
+    QList<QStringList> contents;
+    foreach (SettingsDir dir, m_directories) {
+        QList<Movie*> moviesFromDb = Manager::instance()->database()->movies(dir.path);
+        if (dir.autoReload || force || moviesFromDb.count() == 0) {
+            Manager::instance()->database()->clearMovies(dir.path);
+            scanDir(dir.path, dir.path, contents, dir.separateFolders, true);
+        } else {
+            dbMovies.append(moviesFromDb);
+        }
+    }
     emit currentDir("");
 
-    int i=0;
-    int n=contents.size();
+    emit searchStarted(tr("Loading Movies..."), m_progressMessageId);
+    int movieCounter=0;
+    int movieSum=contents.size()+dbMovies.size();
+
+    // Setup movies
     foreach (const QStringList &files, contents) {
         bool inSeparateFolder = false;
+        QString path;
         // get directory
         if (!files.isEmpty()) {
             int index = -1;
@@ -55,16 +68,30 @@ void MovieFileSearcher::run()
                         index = i;
                 }
             }
-            if (index != -1)
+            if (index != -1) {
                 inSeparateFolder = m_directories[index].separateFolders;
+                path = m_directories[index].path;
+            }
         }
         Movie *movie = new Movie(files, this);
         movie->setInSeparateFolder(inSeparateFolder);
         movie->loadData(Manager::instance()->mediaCenterInterface());
+        emit currentDir(movie->name());
         if (!files.isEmpty())
             movie->setFileLastModified(m_lastModifications.value(files.at(0)));
+
+        Manager::instance()->database()->add(movie, path);
         Manager::instance()->movieModel()->addMovie(movie);
-        emit progress(++i, n, m_progressMessageId);
+        emit progress(++movieCounter, movieSum, m_progressMessageId);
+        qApp->processEvents();
+    }
+
+    // Setup movies loaded from database
+    foreach (Movie *movie, dbMovies) {
+        movie->loadData(Manager::instance()->mediaCenterInterface(), false, false);
+        emit currentDir(movie->name());
+        Manager::instance()->movieModel()->addMovie(movie);
+        emit progress(++movieCounter, movieSum, m_progressMessageId);
         qApp->processEvents();
     }
 
@@ -105,7 +132,8 @@ void MovieFileSearcher::scanDir(QString startPath, QString path, QList<QStringLi
     QDir dir(path);
     foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         // Skip "Extras" folder
-        if (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0)
+        if (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0 ||
+            QString::compare(cDir, ".actors", Qt::CaseInsensitive) == 0)
             continue;
 
         // Handle DVD
@@ -126,7 +154,7 @@ void MovieFileSearcher::scanDir(QString startPath, QString path, QList<QStringLi
     }
 
     QStringList files;
-    QStringList entries = getCachedFiles(path);
+    QStringList entries = getFiles(path);
     foreach (const QString &file, entries) {
         // Skip Trailers and Sample files
         if (file.contains("-trailer", Qt::CaseInsensitive) || file.contains("-sample", Qt::CaseInsensitive))
@@ -177,75 +205,20 @@ void MovieFileSearcher::scanDir(QString startPath, QString path, QList<QStringLi
 
 /**
  * @brief Get a list of files in a directory
- *        Retrieves the contents from the cache if the last
- *        modification matches the on in the database
  * @param path
  * @return
  */
-QStringList MovieFileSearcher::getCachedFiles(QString path)
+QStringList MovieFileSearcher::getFiles(QString path)
 {
     QStringList files;
     QStringList filters;
     filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
-            << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm";
+            << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm" << "*.rmvb";
 
-    if (!Settings::instance()->useCache()) {
-        foreach (const QString &file, QDir(path).entryList(filters, QDir::Files | QDir::System)) {
-            m_lastModifications.insert(QDir::toNativeSeparators(path + "/" + file),
-                                       QFileInfo(path + QDir::separator() + file).lastModified());
-            files.append(file);
-        }
-        return files;
+    foreach (const QString &file, QDir(path).entryList(filters, QDir::Files | QDir::System)) {
+        m_lastModifications.insert(QDir::toNativeSeparators(path + "/" + file),
+                                   QFileInfo(path + QDir::separator() + file).lastModified());
+        files.append(file);
     }
-
-    int idPath = -1;
-    QFileInfo fi(path);
-    QSqlQuery query(Manager::instance()->cacheDb());
-    query.prepare("SELECT idPath, lastModified FROM movieDirs WHERE path=:path");
-    query.bindValue(":path", path);
-    query.exec();
-    if (query.next()) {
-        idPath = query.value(query.record().indexOf("idPath")).toInt();
-        if (fi.lastModified() != query.value(query.record().indexOf("lastModified")).toDateTime()) {
-            query.prepare("DELETE FROM movieDirs WHERE idPath=:idPath");
-            query.bindValue(":idPath", idPath);
-            query.exec();
-            query.prepare("DELETE FROM movieFiles WHERE idPath=:idPath");
-            query.bindValue(":idPath", idPath);
-            query.exec();
-            idPath = -1;
-        }
-    }
-
-    if (idPath != -1) {
-        query.prepare("SELECT filename, lastModified FROM movieFiles WHERE idPath=:path");
-        query.bindValue(":path", idPath);
-        query.exec();
-        while (query.next()) {
-            m_lastModifications.insert(QDir::toNativeSeparators(path + "/" + query.value(query.record().indexOf("filename")).toString()),
-                                       query.value(query.record().indexOf("lastModified")).toDateTime());
-            files.append(query.value(query.record().indexOf("filename")).toString());
-        }
-    } else {
-        query.prepare("INSERT INTO movieDirs(path, lastModified, parent) VALUES(:path, :lastModified, 0)");
-        query.bindValue(":path", path);
-        query.bindValue(":lastModified", fi.lastModified());
-        query.exec();
-        idPath = query.lastInsertId().toInt();
-        files = QDir(path).entryList(filters, QDir::Files | QDir::System);
-        foreach (const QString &file, files) {
-            QDateTime lastMod = QFileInfo(path + QDir::separator() + file).lastModified();
-
-            query.prepare("INSERT INTO movieFiles(idPath, filename, lastModified) VALUES(:idPath, :filename, :lastModified)");
-            query.bindValue(":idPath", idPath);
-            query.bindValue(":filename", file);
-            query.bindValue(":lastModified", lastMod);
-            query.exec();
-
-            m_lastModifications.insert(QDir::toNativeSeparators(path + "/" + file), lastMod);
-            files.append(file);
-        }
-    }
-
     return files;
 }

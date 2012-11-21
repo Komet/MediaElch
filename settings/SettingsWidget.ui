@@ -81,7 +81,7 @@ QTabBar::tab:selected {
       <attribute name="title">
        <string>Global Settings</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0,0,0,0,0,0,0,0">
+      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0,0,0,0,0,0,0">
        <item>
         <widget class="QLabel" name="label_12">
          <property name="font">
@@ -126,7 +126,7 @@ QTabBar::tab:selected {
           <enum>QAbstractItemView::SingleSelection</enum>
          </property>
          <attribute name="horizontalHeaderDefaultSectionSize">
-          <number>100</number>
+          <number>120</number>
          </attribute>
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>
@@ -149,6 +149,11 @@ QTabBar::tab:selected {
          <column>
           <property name="text">
            <string>Sep. folders</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Reload On Start</string>
           </property>
          </column>
         </widget>
@@ -212,13 +217,6 @@ QTabBar::tab:selected {
         <widget class="QCheckBox" name="chkAutoLoadStreamDetails">
          <property name="text">
           <string>Automatically load and save stream details from files</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="chkUseCache">
-         <property name="text">
-          <string>Use File and Folder Cache</string>
          </property>
         </widget>
        </item>

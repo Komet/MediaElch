@@ -27,6 +27,10 @@ FileScannerDialog::FileScannerDialog(QWidget *parent) :
 #endif
     ui->currentDir->setFont(font);
 
+    m_forceReload = false;
+    m_reloadType = TypeAll;
+
+    Manager::instance()->setFileScannerDialog(this);
 
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(onProgress(int,int)));
     connect(Manager::instance()->concertFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(onProgress(int,int)));
@@ -35,11 +39,13 @@ FileScannerDialog::FileScannerDialog(QWidget *parent) :
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(currentDir(QString)), this, SLOT(onCurrentDir(QString)));
     connect(Manager::instance()->concertFileSearcher(), SIGNAL(currentDir(QString)), this, SLOT(onCurrentDir(QString)));
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(currentDir(QString)), this, SLOT(onCurrentDir(QString)));
+    connect(Manager::instance()->movieFileSearcher(), SIGNAL(searchStarted(QString,int)), ui->status, SLOT(setText(QString)));
+    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(searchStarted(QString,int)), ui->status, SLOT(setText(QString)));
+    connect(Manager::instance()->concertFileSearcher(), SIGNAL(searchStarted(QString,int)), ui->status, SLOT(setText(QString)));
 
-    connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded(int)), this, SLOT(onStartTvShowScanner()));
-    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(onStartConcertScanner()));
-
-    connect(Manager::instance()->concertFileSearcher(), SIGNAL(concertsLoaded(int)), this, SLOT(accept()));
+    connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded(int)), this, SLOT(onLoadDone(int)));
+    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(onLoadDone(int)));
+    connect(Manager::instance()->concertFileSearcher(), SIGNAL(concertsLoaded(int)), this, SLOT(onLoadDone(int)));
 }
 
 /**
@@ -59,12 +65,30 @@ void FileScannerDialog::exec()
     Manager::instance()->tvShowFileSearcher()->setMovieDirectories(Settings::instance()->tvShowDirectories());
     Manager::instance()->concertFileSearcher()->setConcertDirectories(Settings::instance()->concertDirectories());
 
-    ui->status->setText(tr("Searching for Movies..."));
+    ui->status->setText("");
     ui->progressBar->setValue(0);
     ui->currentDir->setText("");
     adjustSize();
     QDialog::show();
-    onStartMovieScanner();
+
+    if (m_reloadType == TypeMovies || m_reloadType == TypeAll)
+        onStartMovieScanner();
+    else if (m_reloadType == TypeTvShows)
+        onStartTvShowScanner();
+    else if (m_reloadType == TypeConcerts)
+        onStartConcertScanner();
+    else if (m_reloadType == TypeEpisodes)
+        onStartEpisodeScanner();
+}
+
+void FileScannerDialog::setForceReload(bool force)
+{
+    m_forceReload = force;
+}
+
+void FileScannerDialog::setReloadType(ReloadType type)
+{
+    m_reloadType = type;
 }
 
 /**
@@ -79,10 +103,22 @@ void FileScannerDialog::reject()
  */
 void FileScannerDialog::onStartMovieScanner()
 {
-    ui->status->setText(tr("Searching for Movies..."));
     ui->progressBar->setValue(0);
     Manager::instance()->movieModel()->clear();
-    QTimer::singleShot(0, Manager::instance()->movieFileSearcher(), SLOT(run()));
+    if (m_forceReload)
+        QTimer::singleShot(0, this, SLOT(onStartMovieScannerForce()));
+    else
+        QTimer::singleShot(0, this, SLOT(onStartMovieScannerCache()));
+}
+
+void FileScannerDialog::onStartMovieScannerCache()
+{
+    Manager::instance()->movieFileSearcher()->reload(false);
+}
+
+void FileScannerDialog::onStartMovieScannerForce()
+{
+    Manager::instance()->movieFileSearcher()->reload(true);
 }
 
 /**
@@ -90,12 +126,28 @@ void FileScannerDialog::onStartMovieScanner()
  */
 void FileScannerDialog::onStartTvShowScanner()
 {
-    ui->currentDir->setText("");
-    ui->status->setText(tr("Searching for TV Shows..."));
     ui->progressBar->setValue(0);
     Manager::instance()->tvShowModel()->clear();
     qApp->processEvents();
-    QTimer::singleShot(0, Manager::instance()->tvShowFileSearcher(), SLOT(run()));
+    if (m_forceReload)
+        QTimer::singleShot(0, this, SLOT(onStartTvShowScannerForce()));
+    else
+        QTimer::singleShot(0, this, SLOT(onStartTvShowScannerCache()));
+}
+
+void FileScannerDialog::onStartTvShowScannerCache()
+{
+    Manager::instance()->tvShowFileSearcher()->reload(false);
+}
+
+void FileScannerDialog::onStartTvShowScannerForce()
+{
+    Manager::instance()->tvShowFileSearcher()->reload(true);
+}
+
+void FileScannerDialog::onStartEpisodeScanner()
+{
+    Manager::instance()->tvShowFileSearcher()->reloadEpisodes(m_scanDir);
 }
 
 /**
@@ -103,12 +155,23 @@ void FileScannerDialog::onStartTvShowScanner()
  */
 void FileScannerDialog::onStartConcertScanner()
 {
-    ui->currentDir->setText("");
-    ui->status->setText(tr("Searching for Concerts..."));
     ui->progressBar->setValue(0);
     Manager::instance()->concertModel()->clear();
     qApp->processEvents();
-    QTimer::singleShot(0, Manager::instance()->concertFileSearcher(), SLOT(run()));
+    if (m_forceReload)
+        QTimer::singleShot(0, this, SLOT(onStartConcertScannerForce()));
+    else
+        QTimer::singleShot(0, this, SLOT(onStartConcertScannerCache()));
+}
+
+void FileScannerDialog::onStartConcertScannerCache()
+{
+    Manager::instance()->concertFileSearcher()->reload(false);
+}
+
+void FileScannerDialog::onStartConcertScannerForce()
+{
+    Manager::instance()->concertFileSearcher()->reload(true);
 }
 
 /**
@@ -130,4 +193,25 @@ void FileScannerDialog::onCurrentDir(QString dir)
 {
     ui->currentDir->setText(dir);
     qApp->processEvents();
+}
+
+void FileScannerDialog::onLoadDone(int msgId)
+{
+    if (m_reloadType != TypeAll) {
+        accept();
+        return;
+    }
+
+    if (msgId == Constants::MovieFileSearcherProgressMessageId) {
+        onStartTvShowScanner();
+    } else if (msgId == Constants::TvShowSearcherProgressMessageId) {
+        onStartConcertScanner();
+    } else if (msgId == Constants::ConcertFileSearcherProgressMessageId) {
+        accept();
+    }
+}
+
+void FileScannerDialog::setScanDir(QString dir)
+{
+    m_scanDir = dir;
 }

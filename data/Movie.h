@@ -112,6 +112,8 @@ public:
     StreamDetails *streamDetails();
     bool streamDetailsLoaded() const;
     QDateTime fileLastModified() const;
+    QString nfoContent() const;
+    int databaseId() const;
 
     bool hasChanged() const;
 
@@ -165,6 +167,8 @@ public:
     void setHasCdArt(bool has);
     void setStreamDetailsLoaded(bool loaded);
     void setFileLastModified(QDateTime modified);
+    void setNfoContent(QString content);
+    void setDatabaseId(int id);
 
     void removeActor(Actor *actor);
     void removeCountry(QString *country);
@@ -173,7 +177,7 @@ public:
     void removeGenre(QString genre);
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
-    bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false);
+    bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
     void loadData(QString id, ScraperInterface *scraperInterface, QList<int> infos);
     void loadStreamDetailsFromFile();
     void clearImages();
@@ -222,6 +226,7 @@ private:
     bool m_clearArtImageChanged;
     bool m_cdArtImageChanged;
     bool m_infoLoaded;
+    bool m_infoFromNfoLoaded;
     bool m_imagesLoaded;
     bool m_watched;
     bool m_hasChanged;
@@ -240,6 +245,8 @@ private:
     bool m_streamDetailsLoaded;
     StreamDetails *m_streamDetails;
     QDateTime m_fileLastModified;
+    QString m_nfoContent;
+    int m_databaseId;
 };
 
 QDebug operator<<(QDebug dbg, const Movie &movie);
