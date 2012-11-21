@@ -31,7 +31,6 @@ Movie::Movie(QStringList files, QObject *parent) :
             m_folderName = path.last();
     }
     m_infoLoaded = false;
-    m_infoFromNfoLoaded = false;
     m_watched = false;
     m_hasChanged = false;
     m_hasPoster = false;
@@ -44,7 +43,6 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_mediaCenterId = -1;
     m_numPrimaryLangPosters = 0;
     m_streamDetailsLoaded = false;
-    m_databaseId = -1;
     if (!files.isEmpty())
         m_streamDetails = new StreamDetails(this, files.at(0));
     else
@@ -78,7 +76,6 @@ void Movie::clear()
           << MovieScraperInfos::Writer
           << MovieScraperInfos::Director;
     clear(infos);
-    m_nfoContent.clear();
 }
 
 /**
@@ -149,19 +146,14 @@ bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
  * @param force Force the loading. If set to false and infos were already loeaded this function just returns
  * @return Loading was successful or not
  */
-bool Movie::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
+bool Movie::loadData(MediaCenterInterface *mediaCenterInterface, bool force)
 {
-    if ((m_infoLoaded || hasChanged()) && !force && (m_infoFromNfoLoaded || (hasChanged() && !m_infoFromNfoLoaded) ))
+    if ((m_infoLoaded || hasChanged()) && !force)
         return m_infoLoaded;
 
     NameFormatter *nameFormat = NameFormatter::instance();
 
-    bool infoLoaded;
-    if (reloadFromNfo)
-        infoLoaded = mediaCenterInterface->loadMovie(this);
-    else
-        infoLoaded = mediaCenterInterface->loadMovie(this, nfoContent());
-
+    bool infoLoaded = mediaCenterInterface->loadMovie(this);
     if (!infoLoaded) {
         if (files().size() > 0) {
             QFileInfo fi(files().at(0));
@@ -198,7 +190,6 @@ bool Movie::loadData(MediaCenterInterface *mediaCenterInterface, bool force, boo
         }
     }
     m_infoLoaded = infoLoaded;
-    m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
     setChanged(false);
     return infoLoaded;
 }
@@ -854,24 +845,6 @@ QDateTime Movie::fileLastModified() const
     return m_fileLastModified;
 }
 
-/**
- * @brief Movie::nfoContent
- * @return
- */
-QString Movie::nfoContent() const
-{
-    return m_nfoContent;
-}
-
-/**
- * @brief Movie::databaseId
- * @return
- */
-int Movie::databaseId() const
-{
-    return m_databaseId;
-}
-
 /*** SETTER ***/
 
 /**
@@ -1290,24 +1263,6 @@ void Movie::setNumPrimaryLangPosters(int numberPrimaryLangPosters)
 void Movie::setFileLastModified(QDateTime modified)
 {
     m_fileLastModified = modified;
-}
-
-/**
- * @brief Movie::setNfoContent
- * @param content
- */
-void Movie::setNfoContent(QString content)
-{
-    m_nfoContent = content;
-}
-
-/**
- * @brief Movie::setDatabaseId
- * @param id
- */
-void Movie::setDatabaseId(int id)
-{
-    m_databaseId = id;
 }
 
 /*** ADDER ***/

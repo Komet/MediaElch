@@ -33,7 +33,7 @@ void TvShowFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
         QFileInfo fi(directories.at(i).path);
         if (fi.isDir()) {
             qDebug() << "Adding tv show directory" << directories.at(i).path << "with mediacenter dir" << directories.at(i).mediaCenterPath;
-            m_directories.append(directories.at(i));
+            m_directories.append(directories.at(i).path);
         }
     }
 }
@@ -41,153 +41,45 @@ void TvShowFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
 /**
  * @brief Starts the scan process
  */
-void TvShowFileSearcher::reload(bool force)
+void TvShowFileSearcher::run()
 {
-    if (force)
-        Manager::instance()->database()->clearTvShows();
-
+    qDebug() << "Entered";
     emit searchStarted(tr("Searching for TV Shows..."), m_progressMessageId);
-    QList<TvShow*> dbShows;
+
     Manager::instance()->tvShowModel()->clear();
-    Manager::instance()->tvShowFilesWidget()->renewModel();
     QMap<QString, QList<QStringList> > contents;
-    foreach (SettingsDir dir, m_directories) {
-        QList<TvShow*> showsFromDatabase = Manager::instance()->database()->shows(dir.path);
-        if (dir.autoReload || force || showsFromDatabase.count() == 0) {
-            Manager::instance()->database()->clearTvShows(dir.path);
-            getTvShows(dir.path, contents);
-        } else {
-            dbShows.append(showsFromDatabase);
-        }
-    }
+    foreach (const QString &path, m_directories)
+        getTvShows(path, contents);
+
     emit currentDir("");
 
-    emit searchStarted(tr("Loading TV Shows..."), m_progressMessageId);
-    int episodeCounter=0;
-    int episodeSum=Manager::instance()->database()->episodeCount();
+    int i=0;
+    int n=0;
     QMapIterator<QString, QList<QStringList> > it(contents);
     while (it.hasNext()) {
         it.next();
-        episodeSum += it.value().size();
+        n += it.value().size();
     }
     it.toFront();
-
-    // Setup shows
     while (it.hasNext()) {
         it.next();
-
-        // get path
-        QString path;
-        int index = -1;
-        for (int i=0, n=m_directories.count() ; i<n ; ++i) {
-            if (it.key().startsWith(m_directories[i].path)) {
-                if (index == -1)
-                    index = i;
-                else if (m_directories[index].path.length() < m_directories[i].path.length())
-                    index = i;
-            }
-        }
-        if (index != -1) {
-            path = m_directories[index].path;
-        }
-
         TvShow *show = new TvShow(it.key(), this);
         show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
-        emit currentDir(show->name());
-        Manager::instance()->database()->add(show, path);
         TvShowModelItem *showItem = Manager::instance()->tvShowModel()->appendChild(show);
-
         QMap<int, TvShowModelItem*> seasonItems;
         foreach (const QStringList &files, it.value()) {
             TvShowEpisode *episode = new TvShowEpisode(files, show);
             episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
-            Manager::instance()->database()->add(episode, path, show->databaseId());
             show->addEpisode(episode);
             if (!seasonItems.contains(episode->season()))
                 seasonItems.insert(episode->season(), showItem->appendChild(episode->seasonString(), show));
             seasonItems.value(episode->season())->appendChild(episode);
-            emit progress(++episodeCounter, episodeSum, m_progressMessageId);
-            qApp->processEvents();
-        }
-    }
-
-    // Setup shows loaded from database
-    foreach (TvShow *show, dbShows) {
-        show->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), false);
-        emit currentDir(show->name());
-        TvShowModelItem *showItem = Manager::instance()->tvShowModel()->appendChild(show);
-
-        QMap<int, TvShowModelItem*> seasonItems;
-        QList<TvShowEpisode*> episodes = Manager::instance()->database()->episodes(show->databaseId());
-        foreach (TvShowEpisode *episode, episodes) {
-            episode->setShow(show);
-            episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), false);
-            show->addEpisode(episode);
-            if (!seasonItems.contains(episode->season()))
-                seasonItems.insert(episode->season(), showItem->appendChild(episode->seasonString(), show));
-            seasonItems.value(episode->season())->appendChild(episode);
-            emit progress(++episodeCounter, episodeSum, m_progressMessageId);
+            emit progress(++i, n, m_progressMessageId);
             qApp->processEvents();
         }
     }
 
     qDebug() << "Searching for tv shows done";
-    emit tvShowsLoaded(m_progressMessageId);
-}
-
-void TvShowFileSearcher::reloadEpisodes(QString showDir)
-{
-    Manager::instance()->database()->clearTvShow(showDir);
-    emit searchStarted(tr("Searching for Episodes..."), m_progressMessageId);
-
-    // remove old show object
-    foreach (TvShow *s, Manager::instance()->tvShowModel()->tvShows()) {
-        if (s->dir() == showDir) {
-            Manager::instance()->tvShowModel()->removeShow(s);
-            break;
-        }
-    }
-
-    // get path
-    QString path;
-    int index = -1;
-    for (int i=0, n=m_directories.count() ; i<n ; ++i) {
-        if (showDir.startsWith(m_directories[i].path)) {
-            if (index == -1)
-                index = i;
-            else if (m_directories[index].path.length() < m_directories[i].path.length())
-                index = i;
-        }
-    }
-    if (index != -1)
-        path = m_directories[index].path;
-
-    // search for contents
-    QList<QStringList> contents;
-    scanTvShowDir(path, showDir, contents);
-    TvShow *show = new TvShow(showDir, this);
-    show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
-    Manager::instance()->database()->add(show, path);
-    TvShowModelItem *showItem = Manager::instance()->tvShowModel()->appendChild(show);
-
-    emit searchStarted(tr("Loading Episodes..."), m_progressMessageId);
-    emit currentDir(show->name());
-
-    int episodeCounter = 0;
-    int episodeSum = contents.count();
-    QMap<int, TvShowModelItem*> seasonItems;
-    foreach (const QStringList &files, contents) {
-        TvShowEpisode *episode = new TvShowEpisode(files, show);
-        episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
-        Manager::instance()->database()->add(episode, path, show->databaseId());
-        show->addEpisode(episode);
-        if (!seasonItems.contains(episode->season()))
-            seasonItems.insert(episode->season(), showItem->appendChild(episode->seasonString(), show));
-        seasonItems.value(episode->season())->appendChild(episode);
-        emit progress(++episodeCounter, episodeSum, m_progressMessageId);
-        qApp->processEvents();
-    }
-
     emit tvShowsLoaded(m_progressMessageId);
 }
 
@@ -221,8 +113,7 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QList<QS
     QDir dir(path);
     foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         // Skip "Extras" folder
-        if (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0 ||
-            QString::compare(cDir, ".actors", Qt::CaseInsensitive) == 0)
+        if (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0)
             continue;
 
         // Handle DVD
@@ -240,7 +131,7 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QList<QS
     }
 
     QStringList files;
-    QStringList entries = getFiles(path);
+    QStringList entries = getCachedFiles(path);
     foreach (const QString &file, entries) {
         // Skip Trailers and Sample files
         if (file.contains("-trailer", Qt::CaseInsensitive) || file.contains("-sample", Qt::CaseInsensitive))
@@ -279,13 +170,61 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QList<QS
 
 /**
  * @brief Get a list of files in a directory
+ *        Retrieves the contents from the cache if the last
+ *        modification matches the on in the database
  * @param path
  * @return
  */
-QStringList TvShowFileSearcher::getFiles(QString path)
+QStringList TvShowFileSearcher::getCachedFiles(QString path)
 {
     QStringList filters;
     filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
-            << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.rmvb";
-    return QDir(path).entryList(filters, QDir::Files | QDir::System);
+            << "*.dat" << "*.flv" << "*.vob" << "*.ts";
+
+    if (!Settings::instance()->useCache())
+        return QDir(path).entryList(filters, QDir::Files | QDir::System);
+
+    int idPath = -1;
+    QStringList files;
+    QFileInfo fi(path);
+    QSqlQuery query(Manager::instance()->cacheDb());
+    query.prepare("SELECT idPath, lastModified FROM tvShowDirs WHERE path=:path");
+    query.bindValue(":path", path);
+    query.exec();
+    if (query.next()) {
+        idPath = query.value(query.record().indexOf("idPath")).toInt();
+        if (fi.lastModified() != query.value(query.record().indexOf("lastModified")).toDateTime()) {
+            query.prepare("DELETE FROM tvShowDirs WHERE idPath=:idPath");
+            query.bindValue(":idPath", idPath);
+            query.exec();
+            query.prepare("DELETE FROM tvShowFiles WHERE idPath=:idPath");
+            query.bindValue(":idPath", idPath);
+            query.exec();
+            idPath = -1;
+        }
+    }
+
+    if (idPath != -1) {
+        query.prepare("SELECT filename FROM tvShowFiles WHERE idPath=:path");
+        query.bindValue(":path", idPath);
+        query.exec();
+        while (query.next()) {
+            files.append(query.value(query.record().indexOf("filename")).toString());
+        }
+    } else {
+        query.prepare("INSERT INTO tvShowDirs(path, lastModified, parent) VALUES(:path, :lastModified, 0)");
+        query.bindValue(":path", path);
+        query.bindValue(":lastModified", fi.lastModified());
+        query.exec();
+        idPath = query.lastInsertId().toInt();
+        files = QDir(path).entryList(filters, QDir::Files | QDir::System);
+        foreach (const QString &file, files) {
+            query.prepare("INSERT INTO tvShowFiles(idPath, filename) VALUES(:idPath, :filename)");
+            query.bindValue(":idPath", idPath);
+            query.bindValue(":filename", file);
+            query.exec();
+        }
+    }
+
+    return files;
 }

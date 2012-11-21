@@ -32,7 +32,6 @@ Concert::Concert(QStringList files, QObject *parent) :
             m_folderName = path.last();
     }
     m_infoLoaded = false;
-    m_infoFromNfoLoaded = false;
     m_watched = false;
     m_hasChanged = false;
     m_downloadsInProgress = false;
@@ -42,7 +41,6 @@ Concert::Concert(QStringList files, QObject *parent) :
     m_concertId = ++m_idCounter;
     m_mediaCenterId = -1;
     m_streamDetailsLoaded = false;
-    m_databaseId = -1;
     if (!files.isEmpty())
         m_streamDetails = new StreamDetails(this, files.at(0));
     else
@@ -71,7 +69,6 @@ void Concert::clear()
           << ConcertScraperInfos::Backdrop
           << ConcertScraperInfos::Genres;
     clear(infos);
-    m_nfoContent.clear();
 }
 
 /**
@@ -127,17 +124,12 @@ bool Concert::saveData(MediaCenterInterface *mediaCenterInterface)
  * @param force Force the loading. If set to false and infos were already loeaded this function just returns
  * @return Loading was successful or not
  */
-bool Concert::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
+bool Concert::loadData(MediaCenterInterface *mediaCenterInterface, bool force)
 {
-    if ((m_infoLoaded || hasChanged()) && !force && m_infoFromNfoLoaded)
+    if ((m_infoLoaded || hasChanged()) && !force)
         return m_infoLoaded;
 
-    bool infoLoaded;
-    if (reloadFromNfo)
-        infoLoaded = mediaCenterInterface->loadConcert(this);
-    else
-        infoLoaded = mediaCenterInterface->loadConcert(this, nfoContent());
-
+    bool infoLoaded = mediaCenterInterface->loadConcert(this);
     if (!infoLoaded) {
         NameFormatter *nameFormat = NameFormatter::instance();
         if (this->files().size() > 0) {
@@ -175,7 +167,6 @@ bool Concert::loadData(MediaCenterInterface *mediaCenterInterface, bool force, b
         }
     }
     m_infoLoaded = infoLoaded;
-    m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
     setChanged(false);
     return infoLoaded;
 }
@@ -245,28 +236,6 @@ void Concert::clearImages()
 QString Concert::name() const
 {
     return m_name;
-}
-
-/**
- * @property Concert::artist
- * @brief Holds the concerts artist
- * @return The concerts artist
- * @see Concert::setArtist
- */
-QString Concert::artist() const
-{
-    return m_artist;
-}
-
-/**
- * @property Concert::album
- * @brief Holds the concerts album
- * @return The concerts album
- * @see Concert::setAlbum
- */
-QString Concert::album() const
-{
-    return m_album;
 }
 
 /**
@@ -645,24 +614,6 @@ StreamDetails *Concert::streamDetails()
     return m_streamDetails;
 }
 
-/**
- * @brief Concert::nfoContent
- * @return
- */
-QString Concert::nfoContent() const
-{
-    return m_nfoContent;
-}
-
-/**
- * @brief Concert::databaseId
- * @return
- */
-int Concert::databaseId() const
-{
-    return m_databaseId;
-}
-
 /*** SETTER ***/
 
 /**
@@ -673,28 +624,6 @@ int Concert::databaseId() const
 void Concert::setName(QString name)
 {
     m_name = name;
-    setChanged(true);
-}
-
-/**
- * @brief Sets the concerts artist
- * @param artist Artist of the concert
- * @see Concert::artist
- */
-void Concert::setArtist(QString artist)
-{
-    m_artist = artist;
-    setChanged(true);
-}
-
-/**
- * @brief Sets the concerts album
- * @param album Album of the concert
- * @see Concert::album
- */
-void Concert::setAlbum(QString album)
-{
-    m_album = album;
     setChanged(true);
 }
 
@@ -946,24 +875,6 @@ void Concert::setId(QString id)
 void Concert::setStreamDetailsLoaded(bool loaded)
 {
     m_streamDetailsLoaded = loaded;
-}
-
-/**
- * @brief Concert::setNfoContent
- * @param content
- */
-void Concert::setNfoContent(QString content)
-{
-    m_nfoContent = content;
-}
-
-/**
- * @brief Concert::setDatabaseId
- * @param id
- */
-void Concert::setDatabaseId(int id)
-{
-    m_databaseId = id;
 }
 
 /*** ADDER ***/

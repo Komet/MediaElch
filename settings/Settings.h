@@ -47,6 +47,7 @@ public:
     bool useYoutubePluginUrls();
     QList<DataFile> dataFiles(int type);
 
+    bool useCache();
     bool autoLoadStreamDetails();
 
     void setMainWindowSize(QSize mainWindowSize);
@@ -73,6 +74,7 @@ public:
     void setDebugModeActivated(bool enabled);
     void setDebugLogPath(QString path);
     void setMediaCenterInterface(int interface);
+    void setUseCache(bool useCache);
     void setAutoLoadStreamDetails(bool autoLoad);
     void setDataFiles(QList<DataFile> files);
 
@@ -107,6 +109,7 @@ private:
     bool m_debugModeActivated;
     QString m_debugLogPath;
     bool m_youtubePluginUrls;
+    bool m_useCache;
     bool m_autoLoadStreamDetails;
     QList<DataFile> m_dataFiles;
     QList<DataFile> m_initialDataFiles;

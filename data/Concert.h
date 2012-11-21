@@ -25,8 +25,6 @@ class Concert : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString name READ name WRITE setName)
-    Q_PROPERTY(QString artist READ artist WRITE setArtist)
-    Q_PROPERTY(QString album READ album WRITE setAlbum)
     Q_PROPERTY(qreal rating READ rating WRITE setRating)
     Q_PROPERTY(QDate released READ released WRITE setReleased)
     Q_PROPERTY(QString overview READ overview WRITE setOverview)
@@ -51,8 +49,6 @@ public:
     void clear(QList<int> infos);
 
     QString name() const;
-    QString artist() const;
-    QString album() const;
     QString overview() const;
     qreal rating() const;
     QDate released() const;
@@ -89,14 +85,10 @@ public:
     QString id() const;
     StreamDetails *streamDetails();
     bool streamDetailsLoaded() const;
-    QString nfoContent() const;
-    int databaseId() const;
 
     bool hasChanged() const;
 
     void setName(QString name);
-    void setArtist(QString artist);
-    void setAlbum(QString album);
     void setOverview(QString overview);
     void setRating(qreal rating);
     void setReleased(QDate released);
@@ -128,13 +120,11 @@ public:
     void setTmdbId(QString id);
     void setId(QString id);
     void setStreamDetailsLoaded(bool loaded);
-    void setNfoContent(QString content);
-    void setDatabaseId(int id);
 
     void removeGenre(QString *genre);
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
-    bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
+    bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false);
     void loadData(QString id, ConcertScraperInterface *scraperInterface, QList<int> infos);
     void loadStreamDetailsFromFile();
     void clearImages();
@@ -150,8 +140,6 @@ private:
     QStringList m_files;
     QString m_folderName;
     QString m_name;
-    QString m_artist;
-    QString m_album;
     QString m_overview;
     qreal m_rating;
     QDate m_released;
@@ -175,7 +163,6 @@ private:
     bool m_clearArtImageChanged;
     bool m_cdArtImageChanged;
     bool m_infoLoaded;
-    bool m_infoFromNfoLoaded;
     bool m_watched;
     bool m_hasChanged;
     int m_concertId;
@@ -188,8 +175,6 @@ private:
     QList<int> m_infosToLoad;
     bool m_streamDetailsLoaded;
     StreamDetails *m_streamDetails;
-    QString m_nfoContent;
-    int m_databaseId;
 };
 
 #endif // CONCERT_H

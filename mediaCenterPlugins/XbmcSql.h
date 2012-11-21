@@ -21,12 +21,12 @@ public:
     ~XbmcSql();
 
     bool saveMovie(Movie *movie);
-    bool loadMovie(Movie *movie, QString nfoContent = "");
+    bool loadMovie(Movie *movie);
     bool saveConcert(Concert *concert);
-    bool loadConcert(Concert *concert, QString nfoContent = "");
+    bool loadConcert(Concert *concert);
     void exportDatabase(QList<Movie*> movies, QList<TvShow*> shows, QString exportPath, QString pathSearch, QString pathReplace);
-    bool loadTvShow(TvShow *show, QString nfoContent = "");
-    bool loadTvShowEpisode(TvShowEpisode *episode, QString nfoContent = "");
+    bool loadTvShow(TvShow *show);
+    bool loadTvShowEpisode(TvShowEpisode *episode);
     bool saveTvShow(TvShow *show);
     bool saveTvShowEpisode(TvShowEpisode *episode);
     void connectMysql(QString host, QString database, QString username, QString password);

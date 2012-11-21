@@ -20,12 +20,12 @@ class MediaCenterInterface : public QObject
 {
 public:
     virtual bool saveMovie(Movie *movie) = 0;
-    virtual bool loadMovie(Movie *movie, QString nfoContent = "") = 0;
+    virtual bool loadMovie(Movie *movie) = 0;
     virtual bool saveConcert(Concert *concert) = 0;
-    virtual bool loadConcert(Concert *concert, QString nfoContent = "") = 0;
+    virtual bool loadConcert(Concert *concert) = 0;
     virtual void exportDatabase(QList<Movie*> movies, QList<TvShow*> shows, QString exportPath, QString pathSearch, QString pathReplace) = 0;
-    virtual bool loadTvShow(TvShow *show, QString nfoContent = "") = 0;
-    virtual bool loadTvShowEpisode(TvShowEpisode *episode, QString nfoContent = "") = 0;
+    virtual bool loadTvShow(TvShow *show) = 0;
+    virtual bool loadTvShowEpisode(TvShowEpisode *episode) = 0;
     virtual QImage movieSetPoster(QString setName) = 0;
     virtual QImage movieSetBackdrop(QString setName) = 0;
     virtual void saveMovieSetPoster(QString setName, QImage poster) = 0;

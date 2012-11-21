@@ -32,7 +32,6 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
 
     ui->dirs->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->dirs->horizontalHeaderItem(3)->setToolTip(tr("Items are in separate folders"));
-    ui->dirs->horizontalHeaderItem(4)->setToolTip(tr("Automatically reload contents on start"));
     ui->dirs->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
     ui->dirs->horizontalHeader()->setResizeMode(2, QHeaderView::Stretch);
 
@@ -147,6 +146,7 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     connect(ui->chkActivateDebug, SIGNAL(clicked()), this, SLOT(onActivateDebugMode()));
     connect(ui->buttonChooseLogfile, SIGNAL(clicked()), m_logFileDialog, SLOT(open()));
     connect(ui->logfilePath, SIGNAL(textChanged(QString)), this, SLOT(onSetDebugLogPath(QString)));
+    connect(ui->chkUseCache, SIGNAL(clicked()), this, SLOT(onActivateCache()));
     connect(ui->chkUseProxy, SIGNAL(clicked()), this, SLOT(onUseProxy()));
     connect(ui->chkAutoLoadStreamDetails, SIGNAL(clicked()), this, SLOT(onAutoLoadStreamDetails()));
 
@@ -212,6 +212,10 @@ void SettingsWidget::loadSettings()
     ui->logfilePath->setText(m_settings->debugLogPath());
     onActivateDebugMode();
 
+    // Cache
+    ui->chkUseCache->setChecked(m_settings->useCache());
+    onActivateCache();
+
     // Stream Details
     ui->chkAutoLoadStreamDetails->setChecked(m_settings->autoLoadStreamDetails());
 
@@ -229,13 +233,13 @@ void SettingsWidget::loadSettings()
     ui->dirs->clearContents();
     QList<SettingsDir> movieDirectories = m_settings->movieDirectories();
     for (int i=0, n=movieDirectories.count() ; i<n ; ++i)
-        addDir(movieDirectories.at(i).path, movieDirectories.at(i).mediaCenterPath, movieDirectories.at(i).separateFolders, movieDirectories.at(i).autoReload, DirTypeMovies);
+        addDir(movieDirectories.at(i).path, movieDirectories.at(i).mediaCenterPath, movieDirectories.at(i).separateFolders, DirTypeMovies);
     QList<SettingsDir> tvShowDirectories = m_settings->tvShowDirectories();
     for (int i=0, n=tvShowDirectories.count() ; i<n ; ++i)
-        addDir(tvShowDirectories.at(i).path, tvShowDirectories.at(i).mediaCenterPath, tvShowDirectories.at(i).separateFolders, tvShowDirectories.at(i).autoReload, DirTypeTvShows);
+        addDir(tvShowDirectories.at(i).path, tvShowDirectories.at(i).mediaCenterPath, tvShowDirectories.at(i).separateFolders, DirTypeTvShows);
     QList<SettingsDir> concertDirectories = m_settings->concertDirectories();
     for (int i=0, n=concertDirectories.count() ; i<n ; ++i)
-        addDir(concertDirectories.at(i).path, concertDirectories.at(i).mediaCenterPath, concertDirectories.at(i).separateFolders, concertDirectories.at(i).autoReload, DirTypeConcerts);
+        addDir(concertDirectories.at(i).path, concertDirectories.at(i).mediaCenterPath, concertDirectories.at(i).separateFolders, DirTypeConcerts);
 
     dirListRowChanged(ui->dirs->currentRow());
 
@@ -381,7 +385,6 @@ void SettingsWidget::saveSettings()
         dir.path = ui->dirs->item(row, 1)->text();
         dir.mediaCenterPath = ui->dirs->item(row, 2)->text();
         dir.separateFolders = ui->dirs->item(row, 3)->checkState() == Qt::Checked;
-        dir.autoReload = ui->dirs->item(row, 4)->checkState() == Qt::Checked;
         if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 0)
             movieDirectories.append(dir);
         else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 1)
@@ -413,7 +416,7 @@ void SettingsWidget::saveSettings()
  * @param separateFolders
  * @param dirType
  */
-void SettingsWidget::addDir(QString dir, QString mediaCenterPath, bool separateFolders, bool autoReload, SettingsDirType dirType)
+void SettingsWidget::addDir(QString dir, QString mediaCenterPath, bool separateFolders, SettingsDirType dirType)
 {
     dir = QDir::toNativeSeparators(dir);
     if (!dir.isEmpty()) {
@@ -435,12 +438,6 @@ void SettingsWidget::addDir(QString dir, QString mediaCenterPath, bool separateF
             else
                 itemCheck->setCheckState(Qt::Unchecked);
 
-            QTableWidgetItem *itemCheckReload = new QTableWidgetItem();
-            if (autoReload)
-                itemCheckReload->setCheckState(Qt::Checked);
-            else
-                itemCheckReload->setCheckState(Qt::Unchecked);
-
             QComboBox *box = new QComboBox();
             box->addItems(QStringList() << tr("Movies") << tr("TV Shows") << tr("Concerts"));
             if (dirType == DirTypeMovies)
@@ -454,7 +451,6 @@ void SettingsWidget::addDir(QString dir, QString mediaCenterPath, bool separateF
             ui->dirs->setItem(row, 1, item);
             ui->dirs->setItem(row, 2, new QTableWidgetItem(mediaCenterPath));
             ui->dirs->setItem(row, 3, itemCheck);
-            ui->dirs->setItem(row, 4, itemCheckReload);
         }
     }
 }
@@ -612,6 +608,14 @@ void SettingsWidget::onActivateDebugMode()
     ui->logfilePath->setEnabled(ui->chkActivateDebug->isChecked());
     ui->buttonChooseLogfile->setEnabled(ui->chkActivateDebug->isChecked());
     m_settings->setDebugModeActivated(ui->chkActivateDebug->isChecked());
+}
+
+/**
+ * @brief Toggles status of the clear cache button
+ */
+void SettingsWidget::onActivateCache()
+{
+    m_settings->setUseCache(ui->chkUseCache->isChecked());
 }
 
 /**

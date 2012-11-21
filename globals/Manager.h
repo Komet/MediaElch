@@ -2,11 +2,11 @@
 #define MANAGER_H
 
 #include <QObject>
+#include <QSqlDatabase>
 #include "settings/Settings.h"
 #include "data/ConcertFileSearcher.h"
 #include "data/ConcertModel.h"
 #include "data/ConcertScraperInterface.h"
-#include "data/Database.h"
 #include "data/ImageProviderInterface.h"
 #include "data/MediaCenterInterface.h"
 #include "data/MovieFileSearcher.h"
@@ -17,8 +17,6 @@
 #include "data/TvShowModel.h"
 #include "data/TvShowProxyModel.h"
 #include "imageProviders/FanartTv.h"
-#include "main/FileScannerDialog.h"
-#include "tvShows/TvShowFilesWidget.h"
 
 /**
  * @brief The Manager class
@@ -44,19 +42,16 @@ public:
     MovieFileSearcher* movieFileSearcher();
     TvShowFileSearcher* tvShowFileSearcher();
     ConcertFileSearcher* concertFileSearcher();
-    Database* database();
     MovieModel* movieModel();
     TvShowModel* tvShowModel();
     TvShowProxyModel *tvShowProxyModel();
     ConcertModel* concertModel();
-    FileScannerDialog *fileScannerDialog();
     void setupMediaCenterInterface();
     void shutdownMediaCenterInterfaces();
     ScraperInterface* getScraperForName(QString name);
+    QSqlDatabase cacheDb();
+    void clearCacheDatabase();
     FanartTv* fanartTv();
-    TvShowFilesWidget *tvShowFilesWidget();
-    void setTvShowFilesWidget(TvShowFilesWidget *widget);
-    void setFileScannerDialog(FileScannerDialog *dialog);
 
 private:
     QList<MediaCenterInterface*> m_mediaCenters;
@@ -74,9 +69,9 @@ private:
     TvShowProxyModel* m_tvShowProxyModel;
     ConcertModel* m_concertModel;
     Settings *m_settings;
-    Database *m_database;
-    TvShowFilesWidget *m_tvShowFilesWidget;
-    FileScannerDialog *m_fileScannerDialog;
+    QSqlDatabase *m_cacheDb;
+    void setupCacheDatabase();
+    void closeCacheDatabase();
 };
 
 #endif // MANAGER_H

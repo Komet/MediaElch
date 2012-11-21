@@ -84,8 +84,6 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
 
     // Connect GUI change events to concert object
     connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(onNameChange(QString)));
-    connect(ui->artist, SIGNAL(textEdited(QString)), this, SLOT(onArtistChange(QString)));
-    connect(ui->album, SIGNAL(textEdited(QString)), this, SLOT(onAlbumChange(QString)));
     connect(ui->tagline, SIGNAL(textEdited(QString)), this, SLOT(onTaglineChange(QString)));
     connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
     connect(ui->trailer, SIGNAL(textEdited(QString)), this, SLOT(onTrailerChange(QString)));
@@ -152,8 +150,6 @@ void ConcertWidget::clear()
     ui->concertName->clear();
     ui->files->clear();
     ui->name->clear();
-    ui->artist->clear();
-    ui->album->clear();
     ui->tagline->clear();
     ui->rating->clear();
     ui->released->setDate(QDate::currentDate());
@@ -247,7 +243,7 @@ void ConcertWidget::setConcert(Concert *concert)
     m_concert = concert;
     if (!concert->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         concert->loadStreamDetailsFromFile();
-        if (concert->streamDetailsLoaded() && concert->streamDetails()->videoDetails().value("durationinseconds").toInt() != 0)
+        if (concert->streamDetailsLoaded())
             concert->setRuntime(qFloor(concert->streamDetails()->videoDetails().value("durationinseconds").toInt()/60));
     }
     updateConcertInfo();
@@ -422,8 +418,6 @@ void ConcertWidget::updateConcertInfo()
     ui->files->setText(m_concert->files().join(", "));
     ui->files->setToolTip(m_concert->files().join("\n"));
     ui->name->setText(m_concert->name());
-    ui->artist->setText(m_concert->artist());
-    ui->album->setText(m_concert->album());
     ui->concertName->setText(m_concert->name());
     ui->tagline->setText(m_concert->tagline());
     ui->rating->setValue(m_concert->rating());
@@ -1082,28 +1076,6 @@ void ConcertWidget::onNameChange(QString text)
     if (!m_concert)
         return;
     m_concert->setName(text);
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
- * @brief Marks the concert as changed when the artist has changed
- */
-void ConcertWidget::onArtistChange(QString text)
-{
-    if (!m_concert)
-        return;
-    m_concert->setArtist(text);
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
- * @brief Marks the concert as changed when the album has changed
- */
-void ConcertWidget::onAlbumChange(QString text)
-{
-    if (!m_concert)
-        return;
-    m_concert->setAlbum(text);
     ui->buttonRevert->setVisible(true);
 }
 

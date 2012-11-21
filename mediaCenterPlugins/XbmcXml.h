@@ -22,13 +22,13 @@ public:
     ~XbmcXml();
 
     bool saveMovie(Movie *movie);
-    bool loadMovie(Movie *movie, QString initialNfoContent = "");
+    bool loadMovie(Movie *movie);
     bool saveConcert(Concert *concert);
-    bool loadConcert(Concert *concert, QString initialNfoContent = "");
+    bool loadConcert(Concert *concert);
     void loadConcertImages(Concert *concert);
     void exportDatabase(QList<Movie *> movies, QList<TvShow*> shows, QString exportPath, QString pathSearch, QString pathReplace);
-    bool loadTvShow(TvShow *show, QString initialNfoContent = "");
-    bool loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoContent = "");
+    bool loadTvShow(TvShow *show);
+    bool loadTvShowEpisode(TvShowEpisode *episode);
     bool saveTvShow(TvShow *show);
     bool saveTvShowEpisode(TvShowEpisode *episode);
     void shutdown();
@@ -83,7 +83,6 @@ private:
     void writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode, bool writePath = false, QString pathSearch = "", QString pathReplace = "");
     void writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDetails);
     QString nfoFilePath(Movie *movie);
-    QString nfoFilePath(Concert *concert);
     bool loadStreamDetails(StreamDetails *streamDetails, QDomDocument domDoc);
 };
 

@@ -16,8 +16,7 @@ public:
     void setMovieDirectories(QList<SettingsDir> directories);
 
 public slots:
-    void reload(bool force);
-    void reloadEpisodes(QString showDir);
+    void run();
 
 signals:
     void searchStarted(QString, int);
@@ -26,11 +25,11 @@ signals:
     void currentDir(QString);
 
 private:
-    QList<SettingsDir> m_directories;
+    QStringList m_directories;
     int m_progressMessageId;
     void getTvShows(QString path, QMap<QString, QList<QStringList> > &contents);
     void scanTvShowDir(QString startPath, QString path, QList<QStringList> &contents);
-    QStringList getFiles(QString path);
+    QStringList getCachedFiles(QString path);
 };
 
 #endif // TVSHOWFILESEARCHER_H

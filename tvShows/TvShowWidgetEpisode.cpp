@@ -120,73 +120,29 @@ void TvShowWidgetEpisode::resizeEvent(QResizeEvent *event)
  */
 void TvShowWidgetEpisode::onClear()
 {
-    bool blocked = false;
-
     ui->tabWidget->setCurrentIndex(0);
     ui->directors->setRowCount(0);
     ui->writers->setRowCount(0);
     ui->thumbnailResolution->clear();
     ui->thumbnail->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-
-    blocked = ui->episodeName->blockSignals(true);
     ui->episodeName->clear();
-    ui->episodeName->blockSignals(blocked);
-
     ui->files->clear();
     ui->files->setToolTip("");
-
-    blocked = ui->name->blockSignals(true);
     ui->name->clear();
-    ui->name->blockSignals(blocked);
-
-    blocked = ui->showTitle->blockSignals(true);
     ui->showTitle->clear();
-    ui->showTitle->blockSignals(blocked);
-
-    blocked = ui->season->blockSignals(true);
     ui->season->clear();
-    ui->season->blockSignals(blocked);
-
-    blocked = ui->episode->blockSignals(true);
     ui->episode->clear();
-    ui->episode->blockSignals(blocked);
-
-    blocked = ui->rating->blockSignals(true);
     ui->rating->clear();
-    ui->rating->blockSignals(blocked);
-
-    blocked = ui->firstAired->blockSignals(true);
     ui->firstAired->setDate(QDate::currentDate());
-    ui->firstAired->blockSignals(blocked);
-
-    blocked = ui->playCount->blockSignals(true);
     ui->playCount->clear();
-    ui->playCount->blockSignals(blocked);
-
-    blocked = ui->lastPlayed->blockSignals(true);
     ui->lastPlayed->setDateTime(QDateTime::currentDateTime());
-    ui->lastPlayed->blockSignals(blocked);
-
-    blocked = ui->studio->blockSignals(true);
     ui->studio->clear();
-    ui->studio->blockSignals(blocked);
-
-    blocked = ui->overview->blockSignals(true);
     ui->overview->clear();
-    ui->overview->blockSignals(blocked);
-
-    blocked = ui->certification->blockSignals(true);
     ui->certification->clear();
-    ui->certification->blockSignals(blocked);
-
-    blocked = ui->videoCodec->blockSignals(true);
     ui->videoCodec->clear();
-    ui->videoCodec->blockSignals(blocked);
-
-    blocked = ui->videoScantype->blockSignals(true);
     ui->videoScantype->clear();
-    ui->videoScantype->blockSignals(blocked);
 
+    bool blocked = false;
     blocked = ui->videoAspectRatio->blockSignals(true);
     ui->videoAspectRatio->clear();
     ui->videoAspectRatio->blockSignals(blocked);

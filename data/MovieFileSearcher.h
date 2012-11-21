@@ -22,7 +22,7 @@ public:
     void scanDir(QString startPath, QString path, QList<QStringList> &contents, bool separateFolders = false, bool firstScan = false);
 
 public slots:
-    void reload(bool force);
+    void run();
 
 signals:
     void searchStarted(QString, int);
@@ -31,10 +31,9 @@ signals:
     void currentDir(QString);
 
 private:
-    QStringList getFiles(QString path);
-
     QList<SettingsDir> m_directories;
     int m_progressMessageId;
+    QStringList getCachedFiles(QString path);
     QHash<QString, QDateTime> m_lastModifications;
 };
 

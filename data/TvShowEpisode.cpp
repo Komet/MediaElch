@@ -26,9 +26,6 @@ TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) :
     static int m_idCounter = 0;
     m_episodeId = ++m_idCounter;
     m_streamDetailsLoaded = false;
-    m_infoLoaded = false;
-    m_infoFromNfoLoaded = false;
-    m_databaseId = -1;
     if (!files.isEmpty())
         m_streamDetails = new StreamDetails(this, files.at(0));
     else
@@ -36,13 +33,11 @@ TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) :
 }
 
 /**
- * @brief TvShowEpisode::setShow
- * @param show
+ * @brief Moves this object to the main thread
  */
-void TvShowEpisode::setShow(TvShow *show)
+void TvShowEpisode::moveToMainThread()
 {
-    m_parent = show;
-    setParent(show);
+    moveToThread(QApplication::instance()->thread());
 }
 
 /**
@@ -72,18 +67,9 @@ void TvShowEpisode::clear()
  * @param mediaCenterInterface MediaCenterInterface to use
  * @return Loading was successful
  */
-bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo)
+bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface)
 {
-    if ((m_infoLoaded || hasChanged()) && m_infoFromNfoLoaded)
-        return m_infoLoaded;
-
-    bool infoLoaded;
-    if (reloadFromNfo)
-        infoLoaded = mediaCenterInterface->loadTvShowEpisode(this);
-    else
-        infoLoaded = mediaCenterInterface->loadTvShowEpisode(this, nfoContent());
-
-
+    bool infoLoaded = mediaCenterInterface->loadTvShowEpisode(this);
     if (!infoLoaded) {
         if (this->files().count() > 0) {
             QFileInfo fi(this->files().at(0));
@@ -91,7 +77,6 @@ bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface, bool re
         }
     }
     m_infoLoaded = infoLoaded;
-    m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
     setChanged(false);
     return infoLoaded;
 }
@@ -499,24 +484,6 @@ StreamDetails *TvShowEpisode::streamDetails()
     return m_streamDetails;
 }
 
-/**
- * @brief TvShowEpisode::nfoContent
- * @return
- */
-QString TvShowEpisode::nfoContent() const
-{
-    return m_nfoContent;
-}
-
-/**
- * @brief TvShowEpisode::databaseId
- * @return
- */
-int TvShowEpisode::databaseId() const
-{
-    return m_databaseId;
-}
-
 /*** SETTER ***/
 
 /**
@@ -775,24 +742,6 @@ void TvShowEpisode::removeDirector(QString *director)
         }
     }
     setChanged(true);
-}
-
-/**
- * @brief TvShowEpisode::setNfoContent
- * @param content
- */
-void TvShowEpisode::setNfoContent(QString content)
-{
-    m_nfoContent = content;
-}
-
-/**
- * @brief TvShowEpisode::setDatabaseId
- * @param id
- */
-void TvShowEpisode::setDatabaseId(int id)
-{
-    m_databaseId = id;
 }
 
 /*** DEBUG ***/

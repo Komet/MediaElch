@@ -142,9 +142,6 @@ void GenreWidget::onGenreNameChanged(QTableWidgetItem *item)
 {
     QString newName = item->text();
     QString origName = item->data(Qt::UserRole).toString();
-    if (newName == origName)
-        return;
-
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         if (movie->genres().contains(origName)) {
             movie->removeGenre(origName);

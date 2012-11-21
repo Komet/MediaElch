@@ -118,7 +118,6 @@ struct SettingsDir {
     QString path;
     QString mediaCenterPath;
     bool separateFolders;
-    bool autoReload;
 };
 
 enum SettingsDirType {

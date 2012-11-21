@@ -104,7 +104,7 @@
          <enum>Qt::NoFocus</enum>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="tab1">
          <attribute name="title">
@@ -650,9 +650,6 @@
               </property>
               <property name="buttonSymbols">
                <enum>QAbstractSpinBox::NoButtons</enum>
-              </property>
-              <property name="displayFormat">
-               <string>HH:mm:ss</string>
               </property>
              </widget>
             </item>
