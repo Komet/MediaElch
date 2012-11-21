@@ -262,6 +262,19 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>ConcertFilesWidget</name>
+    <message>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="40"/>
+        <source>Mark as watched</source>
+        <translation>Als gesehen markieren</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="41"/>
+        <source>Mark as unwatched</source>
+        <translation>Als ungesehen markieren</translation>
+    </message>
+</context>
+<context>
     <name>ConcertSearch</name>
     <message>
         <location filename="../concerts/ConcertSearch.ui" line="17"/>
@@ -748,29 +761,39 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Aktualisieren</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="100"/>
+        <location filename="../movies/FilesWidget.ui" line="103"/>
         <source>New</source>
         <translation>Neu</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="124"/>
+        <location filename="../movies/FilesWidget.ui" line="127"/>
         <source>Name</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="148"/>
+        <location filename="../movies/FilesWidget.ui" line="151"/>
         <source>Date Added</source>
         <translation>Hinzugefügt</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="172"/>
+        <location filename="../movies/FilesWidget.ui" line="175"/>
         <source>Seen</source>
         <translation>Gesehen</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="196"/>
+        <location filename="../movies/FilesWidget.ui" line="199"/>
         <source>Year</source>
         <translation>Jahr</translation>
+    </message>
+    <message>
+        <location filename="../movies/FilesWidget.cpp" line="42"/>
+        <source>Mark as watched</source>
+        <translation>Als gesehen markieren</translation>
+    </message>
+    <message>
+        <location filename="../movies/FilesWidget.cpp" line="43"/>
+        <source>Mark as unwatched</source>
+        <translation>Als ungesehen markieren</translation>
     </message>
 </context>
 <context>
@@ -3517,9 +3540,19 @@ p, li { white-space: pre-wrap; }
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="41"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="40"/>
         <source>Search for new episodes</source>
         <translation>Nach neuen Episoden suchen</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="41"/>
+        <source>Mark as watched</source>
+        <translation>Als gesehen markieren</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="42"/>
+        <source>Mark as unwatched</source>
+        <translation>Als ungesehen markieren</translation>
     </message>
 </context>
 <context>

@@ -2,6 +2,7 @@
 #define CONCERTFILESWIDGET_H
 
 #include <QLabel>
+#include <QMenu>
 #include <QWidget>
 #include "data/Concert.h"
 #include "data/ConcertModel.h"
@@ -38,6 +39,9 @@ signals:
 private slots:
     void itemActivated(QModelIndex index, QModelIndex previous);
     void concertSelectedEmitter();
+    void showContextMenu(QPoint point);
+    void markAsWatched();
+    void markAsUnwatched();
 
 private:
     Ui::ConcertFilesWidget *ui;
@@ -46,6 +50,7 @@ private:
     Concert *m_lastConcert;
     QModelIndex m_lastModelIndex;
     static ConcertFilesWidget *m_instance;
+    QMenu *m_contextMenu;
 };
 
 #endif // CONCERTFILESWIDGET_H

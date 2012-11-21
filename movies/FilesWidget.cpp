@@ -39,6 +39,15 @@ FilesWidget::FilesWidget(QWidget *parent) :
     m_baseLabelCss = ui->sortByYear->styleSheet();
     m_activeLabelCss = ui->sortByNew->styleSheet();
 
+    QAction *actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
+    QAction *actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
+    m_contextMenu = new QMenu(ui->files);
+    m_contextMenu->addAction(actionMarkAsWatched);
+    m_contextMenu->addAction(actionMarkAsUnwatched);
+    connect(actionMarkAsWatched, SIGNAL(triggered()), this, SLOT(markAsWatched()));
+    connect(actionMarkAsUnwatched, SIGNAL(triggered()), this, SLOT(markAsUnwatched()));
+
+    connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
 
     connect(ui->sortByNew, SIGNAL(clicked()), this, SLOT(onSortByNew()));
@@ -63,6 +72,40 @@ FilesWidget::~FilesWidget()
 FilesWidget *FilesWidget::instance()
 {
     return m_instance;
+}
+
+void FilesWidget::showContextMenu(QPoint point)
+{
+    m_contextMenu->exec(ui->files->mapToGlobal(point));
+}
+
+void FilesWidget::markAsWatched()
+{
+    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
+        int row = index.model()->data(index, Qt::UserRole).toInt();
+        Movie *movie = Manager::instance()->movieModel()->movie(row);
+        movie->setWatched(true);
+        if (movie->playcount() < 1)
+            movie->setPlayCount(1);
+        if (!movie->lastPlayed().isValid())
+            movie->setLastPlayed(QDateTime::currentDateTime());
+    }
+    if (ui->files->selectionModel()->selectedRows(0).count() > 0)
+        movieSelectedEmitter();
+}
+
+void FilesWidget::markAsUnwatched()
+{
+    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
+        int row = index.model()->data(index, Qt::UserRole).toInt();
+        Movie *movie = Manager::instance()->movieModel()->movie(row);
+        if (movie->watched())
+            movie->setWatched(false);
+        if (movie->playcount() != 0)
+            movie->setPlayCount(0);
+    }
+    if (ui->files->selectionModel()->selectedRows(0).count() > 0)
+        movieSelectedEmitter();
 }
 
 /**

@@ -41,6 +41,8 @@ private slots:
     void onItemClicked(QModelIndex index);
     void showContextMenu(QPoint point);
     void scanForEpisodes();
+    void markAsWatched();
+    void markAsUnwatched();
 
 private:
     Ui::TvShowFilesWidget *ui;

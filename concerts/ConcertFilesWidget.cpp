@@ -37,6 +37,16 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
     ui->files->setItemDelegate(m_concertDelegate);
     ui->files->sortByColumn(0);
 
+    QAction *actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
+    QAction *actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
+    m_contextMenu = new QMenu(ui->files);
+    m_contextMenu->addAction(actionMarkAsWatched);
+    m_contextMenu->addAction(actionMarkAsUnwatched);
+    connect(actionMarkAsWatched, SIGNAL(triggered()), this, SLOT(markAsWatched()));
+    connect(actionMarkAsUnwatched, SIGNAL(triggered()), this, SLOT(markAsUnwatched()));
+
+    connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
+
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
 }
 
@@ -55,6 +65,40 @@ ConcertFilesWidget::~ConcertFilesWidget()
 ConcertFilesWidget *ConcertFilesWidget::instance()
 {
     return m_instance;
+}
+
+void ConcertFilesWidget::showContextMenu(QPoint point)
+{
+    m_contextMenu->exec(ui->files->mapToGlobal(point));
+}
+
+void ConcertFilesWidget::markAsWatched()
+{
+    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
+        int row = index.model()->data(index, Qt::UserRole).toInt();
+        Concert *concert = Manager::instance()->concertModel()->concert(row);
+        concert->setWatched(true);
+        if (concert->playcount() < 1)
+            concert->setPlayCount(1);
+        if (!concert->lastPlayed().isValid())
+            concert->setLastPlayed(QDateTime::currentDateTime());
+    }
+    if (ui->files->selectionModel()->selectedRows(0).count() > 0)
+        concertSelectedEmitter();
+}
+
+void ConcertFilesWidget::markAsUnwatched()
+{
+    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
+        int row = index.model()->data(index, Qt::UserRole).toInt();
+        Concert *concert = Manager::instance()->concertModel()->concert(row);
+        if (concert->watched())
+            concert->setWatched(false);
+        if (concert->playcount() != 0)
+            concert->setPlayCount(0);
+    }
+    if (ui->files->selectionModel()->selectedRows(0).count() > 0)
+        concertSelectedEmitter();
 }
 
 /**

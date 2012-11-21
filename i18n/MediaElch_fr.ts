@@ -154,6 +154,19 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>ConcertFilesWidget</name>
+    <message>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="40"/>
+        <source>Mark as watched</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="41"/>
+        <source>Mark as unwatched</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ConcertSearch</name>
     <message>
         <location filename="../concerts/ConcertSearch.ui" line="17"/>
@@ -577,29 +590,39 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>FilesWidget</name>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="100"/>
+        <location filename="../movies/FilesWidget.ui" line="103"/>
         <source>New</source>
         <translation>Nouveau</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="124"/>
+        <location filename="../movies/FilesWidget.ui" line="127"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="148"/>
+        <location filename="../movies/FilesWidget.ui" line="151"/>
         <source>Date Added</source>
         <translation>Ajouté le</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="172"/>
+        <location filename="../movies/FilesWidget.ui" line="175"/>
         <source>Seen</source>
         <translation>Vu</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="196"/>
+        <location filename="../movies/FilesWidget.ui" line="199"/>
         <source>Year</source>
         <translation>Année</translation>
+    </message>
+    <message>
+        <location filename="../movies/FilesWidget.cpp" line="42"/>
+        <source>Mark as watched</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../movies/FilesWidget.cpp" line="43"/>
+        <source>Mark as unwatched</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2726,8 +2749,18 @@ p, li { white-space: pre-wrap; }
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="41"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="40"/>
         <source>Search for new episodes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="41"/>
+        <source>Mark as watched</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="42"/>
+        <source>Mark as unwatched</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

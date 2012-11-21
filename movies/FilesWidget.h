@@ -2,6 +2,7 @@
 #define FILESWIDGET_H
 
 #include <QLabel>
+#include <QMenu>
 #include <QWidget>
 #include "data/Movie.h"
 #include "data/MovieModel.h"
@@ -44,6 +45,9 @@ private slots:
     void onSortByYear();
     void onSortBySeen();
     void onSortByNew();
+    void showContextMenu(QPoint point);
+    void markAsWatched();
+    void markAsUnwatched();
 
 private:
     Ui::FilesWidget *ui;
@@ -54,6 +58,7 @@ private:
     static FilesWidget *m_instance;
     QString m_baseLabelCss;
     QString m_activeLabelCss;
+    QMenu *m_contextMenu;
 };
 
 #endif // FILESWIDGET_H

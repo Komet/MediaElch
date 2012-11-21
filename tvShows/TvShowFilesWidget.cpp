@@ -36,13 +36,18 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     ui->files->setItemDelegate(m_tvShowDelegate);
     ui->files->sortByColumn(0);
     ui->files->setAttribute(Qt::WA_MacShowFocusRect, false);
-    ui->files->setContextMenuPolicy(Qt::CustomContextMenu);
 
     QAction *actionScanForEpisodes = new QAction(tr("Search for new episodes"), this);
+    QAction *actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
+    QAction *actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
     m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionScanForEpisodes);
+    m_contextMenu->addSeparator();
+    m_contextMenu->addAction(actionMarkAsWatched);
+    m_contextMenu->addAction(actionMarkAsUnwatched);
     connect(actionScanForEpisodes, SIGNAL(triggered()), this, SLOT(scanForEpisodes()));
-
+    connect(actionMarkAsWatched, SIGNAL(triggered()), this, SLOT(markAsWatched()));
+    connect(actionMarkAsUnwatched, SIGNAL(triggered()), this, SLOT(markAsUnwatched()));
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
     connect(ui->files, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)));
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)));
@@ -92,6 +97,62 @@ void TvShowFilesWidget::scanForEpisodes()
         return;
     Manager::instance()->fileScannerDialog()->setReloadType(FileScannerDialog::TypeEpisodes);
     Manager::instance()->fileScannerDialog()->exec();
+}
+
+void TvShowFilesWidget::markAsWatched()
+{
+    foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
+        QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
+        TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
+        if (item->type() == TypeTvShow || item->type() == TypeSeason) {
+            foreach (TvShowEpisode *episode, item->tvShow()->episodes()) {
+                if (item->type() == TypeSeason && episode->season() != item->season().toInt())
+                    continue;
+                if (episode->playCount() < 1)
+                    episode->setPlayCount(1);
+                if (!episode->lastPlayed().isValid())
+                    episode->setLastPlayed(QDateTime::currentDateTime());
+            }
+        } else if (item->type() == TypeEpisode) {
+            if (item->tvShowEpisode()->playCount() < 1)
+                item->tvShowEpisode()->setPlayCount(1);
+            if (!item->tvShowEpisode()->lastPlayed().isValid())
+                item->tvShowEpisode()->setLastPlayed(QDateTime::currentDateTime());
+        }
+    }
+
+    QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(ui->files->currentIndex());
+    if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TypeTvShow) {
+        emit sigTvShowSelected(Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShow());
+    } else if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TypeEpisode) {
+        emit sigEpisodeSelected(Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShowEpisode());
+    }
+}
+
+void TvShowFilesWidget::markAsUnwatched()
+{
+    foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
+        QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
+        TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
+        if (item->type() == TypeTvShow || item->type() == TypeSeason) {
+            foreach (TvShowEpisode *episode, item->tvShow()->episodes()) {
+                if (item->type() == TypeSeason && episode->season() != item->season().toInt())
+                    continue;
+                if (episode->playCount() != 0)
+                    episode->setPlayCount(0);
+            }
+        } else if (item->type() == TypeEpisode) {
+            if (item->tvShowEpisode()->playCount() != 0)
+                item->tvShowEpisode()->setPlayCount(0);
+        }
+    }
+
+    QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(ui->files->currentIndex());
+    if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TypeTvShow) {
+        emit sigTvShowSelected(Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShow());
+    } else if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TypeEpisode) {
+        emit sigEpisodeSelected(Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShowEpisode());
+    }
 }
 
 /**
