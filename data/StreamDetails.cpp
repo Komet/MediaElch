@@ -33,6 +33,9 @@ void StreamDetails::loadStreamDetails()
 {
     clear();
 
+    if (m_file.endsWith(".iso", Qt::CaseInsensitive))
+        return;
+
     MediaInfo MI;
     MI.Option(QString("Info_Version").toStdWString(), QString("0.7.61;%1;%2").arg(QApplication::applicationName()).arg(QApplication::applicationVersion()).toStdWString());
     MI.Option(QString("Internet").toStdWString(), QString("no").toStdWString());
