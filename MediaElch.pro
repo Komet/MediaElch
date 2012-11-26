@@ -102,7 +102,8 @@ SOURCES += main.cpp\
     data/StreamDetails.cpp \
     smallWidgets/MediaFlags.cpp \
     settings/DataFileListWidget.cpp \
-    data/Database.cpp
+    data/Database.cpp \
+    smallWidgets/LoadingStreamDetails.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -182,7 +183,8 @@ HEADERS  += main/MainWindow.h \
     data/StreamDetails.h \
     smallWidgets/MediaFlags.h \
     settings/DataFileListWidget.h \
-    data/Database.h
+    data/Database.h \
+    smallWidgets/LoadingStreamDetails.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -210,7 +212,8 @@ FORMS    += main/MainWindow.ui \
     movies/CertificationWidget.ui \
     support/SupportDialog.ui \
     main/FileScannerDialog.ui \
-    smallWidgets/MediaFlags.ui
+    smallWidgets/MediaFlags.ui \
+    smallWidgets/LoadingStreamDetails.ui
 
 RESOURCES += \
     MediaElch.qrc

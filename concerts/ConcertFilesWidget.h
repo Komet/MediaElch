@@ -42,6 +42,7 @@ private slots:
     void showContextMenu(QPoint point);
     void markAsWatched();
     void markAsUnwatched();
+    void loadStreamDetails();
 
 private:
     Ui::ConcertFilesWidget *ui;

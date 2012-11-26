@@ -4,6 +4,7 @@
 #include <QDebug>
 #include "globals/Manager.h"
 #include "data/TvShowModelItem.h"
+#include "smallWidgets/LoadingStreamDetails.h"
 
 TvShowFilesWidget *TvShowFilesWidget::m_instance;
 
@@ -40,14 +41,18 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     QAction *actionScanForEpisodes = new QAction(tr("Search for new episodes"), this);
     QAction *actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
     QAction *actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
+    QAction *actionLoadStreamDetails = new QAction(tr("Load Stream Details"), this);
     m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionScanForEpisodes);
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(actionMarkAsWatched);
     m_contextMenu->addAction(actionMarkAsUnwatched);
+    m_contextMenu->addSeparator();
+    m_contextMenu->addAction(actionLoadStreamDetails);
     connect(actionScanForEpisodes, SIGNAL(triggered()), this, SLOT(scanForEpisodes()));
     connect(actionMarkAsWatched, SIGNAL(triggered()), this, SLOT(markAsWatched()));
     connect(actionMarkAsUnwatched, SIGNAL(triggered()), this, SLOT(markAsUnwatched()));
+    connect(actionLoadStreamDetails, SIGNAL(triggered()), this, SLOT(loadStreamDetails()));
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
     connect(ui->files, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)));
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)));
@@ -154,6 +159,39 @@ void TvShowFilesWidget::markAsUnwatched()
         emit sigEpisodeSelected(Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShowEpisode());
     }
 }
+
+void TvShowFilesWidget::loadStreamDetails()
+{
+    QList<TvShowEpisode*> episodes;
+
+    foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
+        QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
+        TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
+        if (item->type() == TypeTvShow || item->type() == TypeSeason) {
+            foreach (TvShowEpisode *episode, item->tvShow()->episodes()) {
+                if (item->type() == TypeSeason && episode->season() != item->season().toInt())
+                    continue;
+                episodes.append(episode);
+            }
+        } else if (item->type() == TypeEpisode) {
+            episodes.append(item->tvShowEpisode());
+        }
+    }
+
+    if (episodes.count() == 1) {
+        episodes.at(0)->loadStreamDetailsFromFile();
+        episodes.at(0)->setChanged(true);
+    } else {
+        LoadingStreamDetails *loader = new LoadingStreamDetails(this);
+        loader->loadTvShowEpisodes(episodes);
+        delete loader;
+    }
+    QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(ui->files->currentIndex());
+    if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TypeEpisode) {
+        emit sigEpisodeSelected(Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShowEpisode());
+    }
+}
+
 
 /**
  * @brief Sets the filters

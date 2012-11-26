@@ -43,6 +43,7 @@ private slots:
     void scanForEpisodes();
     void markAsWatched();
     void markAsUnwatched();
+    void loadStreamDetails();
 
 private:
     Ui::TvShowFilesWidget *ui;

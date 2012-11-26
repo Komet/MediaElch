@@ -6,6 +6,7 @@
 #include <QTimer>
 #include "globals/Globals.h"
 #include "globals/Manager.h"
+#include "smallWidgets/LoadingStreamDetails.h"
 
 ConcertFilesWidget *ConcertFilesWidget::m_instance;
 
@@ -39,11 +40,15 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
 
     QAction *actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
     QAction *actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
+    QAction *actionLoadStreamDetails = new QAction(tr("Load Stream Details"), this);
     m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionMarkAsWatched);
     m_contextMenu->addAction(actionMarkAsUnwatched);
+    m_contextMenu->addSeparator();
+    m_contextMenu->addAction(actionLoadStreamDetails);
     connect(actionMarkAsWatched, SIGNAL(triggered()), this, SLOT(markAsWatched()));
     connect(actionMarkAsUnwatched, SIGNAL(triggered()), this, SLOT(markAsUnwatched()));
+    connect(actionLoadStreamDetails, SIGNAL(triggered()), this, SLOT(loadStreamDetails()));
 
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
 
@@ -99,6 +104,25 @@ void ConcertFilesWidget::markAsUnwatched()
     }
     if (ui->files->selectionModel()->selectedRows(0).count() > 0)
         concertSelectedEmitter();
+}
+
+void ConcertFilesWidget::loadStreamDetails()
+{
+    QList<Concert*> concerts;
+    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
+        int row = index.model()->data(index, Qt::UserRole).toInt();
+        Concert *concert = Manager::instance()->concertModel()->concert(row);
+        concerts.append(concert);
+    }
+    if (concerts.count() == 1) {
+        concerts.at(0)->loadStreamDetailsFromFile();
+        concerts.at(0)->setChanged(true);
+    } else {
+        LoadingStreamDetails *loader = new LoadingStreamDetails(this);
+        loader->loadConcerts(concerts);
+        delete loader;
+    }
+    concertSelectedEmitter();
 }
 
 /**
