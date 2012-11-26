@@ -107,6 +107,8 @@ bool Filter::accepts(Movie *movie)
         return (m_hasInfo && movie->watched()) || (!m_hasInfo && !movie->watched());
     if (m_info == MovieFilters::Title)
         return movie->name().contains(m_shortText, Qt::CaseInsensitive);
+    if (m_info == MovieFilters::StreamDetails)
+        return (m_hasInfo && movie->streamDetailsLoaded()) || (!m_hasInfo && !movie->streamDetailsLoaded());
 
     return true;
 }

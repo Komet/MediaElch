@@ -198,14 +198,15 @@ namespace MovieFilters {
     const int Logo          = 9;
     const int ClearArt      = 10;
     const int CdArt         = 11;
+    const int StreamDetails = 12;
 }
 
 namespace TvShowFilters {
-    const int Title         = 12;
+    const int Title         = 13;
 }
 
 namespace ConcertFilters {
-    const int Title         = 13;
+    const int Title         = 14;
 }
 
 enum SortBy {

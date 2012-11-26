@@ -381,6 +381,10 @@ void FilterWidget::initFilters()
                                  QStringList() << tr("Certification"), MovieFilters::Certification, false);
     m_movieFilters << new Filter(tr("Movie has no Genre"), tr("No Genre"),
                                  QStringList() << tr("Genre"), MovieFilters::Genres, false);
+    m_movieFilters << new Filter(tr("Stream Details loaded"), tr("Stream Details"),
+                                 QStringList() << tr("Stream Details"), MovieFilters::StreamDetails, true);
+    m_movieFilters << new Filter(tr("Stream Details not loaded"), tr("No Stream Details"),
+                                 QStringList() << tr("Stream Details"), MovieFilters::StreamDetails, false);
 
     m_tvShowFilters << new Filter(tr("Title"), "", QStringList(), TvShowFilters::Title, true);
 
