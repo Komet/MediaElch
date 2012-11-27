@@ -97,13 +97,13 @@ QList<ScraperSearchResult> VideoBuster::parseSearch(QString html)
     qDebug() << "Entered";
     QList<ScraperSearchResult> results;
     int pos = 0;
-    QRegExp rx("class=\"movietip_yes\">([^<]*)</a>.*<a class=\"more\" href=\"([^\"]*)\">.*<label>Produktion:</label>.*([0-9]+)</div>");
+    QRegExp rx("<div class=\"name\">([^>]*)>([^<]*)</a>.*<a class=\"more\" href=\"([^\"]*)\">.*<label>Produktion</label>.*([0-9]+)</div>");
     rx.setMinimal(true);
     while ((pos = rx.indexIn(html, pos)) != -1) {
         ScraperSearchResult result;
-        result.name     = rx.cap(1);
-        result.id       = rx.cap(2);
-        result.released = QDate::fromString(rx.cap(3), "yyyy");
+        result.name     = rx.cap(2);
+        result.id       = rx.cap(3);
+        result.released = QDate::fromString(rx.cap(4), "yyyy");
         results.append(result);
         pos += rx.matchedLength();
     }
