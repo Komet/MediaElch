@@ -2,6 +2,7 @@
 #include <QTextDocument>
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "settings/Settings.h"
 
 /**
  * @brief Cinefacts::Cinefacts
@@ -254,6 +255,8 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         doc.setHtml(rx.cap(1).trimmed());
         movie->setOverview(doc.toPlainText());
+        if (Settings::instance()->usePlotForOutline())
+            movie->setOutline(doc.toPlainText());
     }
 
     // Backdrops

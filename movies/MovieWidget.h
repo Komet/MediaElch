@@ -93,6 +93,7 @@ private slots:
     void onPlayCountChange(int value);
     void onLastWatchedChange(QDateTime dateTime);
     void onOverviewChange();
+    void onOutlineChange();
 
     void onActorEdited(QTableWidgetItem *item);
     void onCountryEdited(QTableWidgetItem *item);

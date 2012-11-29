@@ -31,6 +31,7 @@ class Movie : public QObject
     Q_PROPERTY(qreal rating READ rating WRITE setRating)
     Q_PROPERTY(QDate released READ released WRITE setReleased)
     Q_PROPERTY(QString tagline READ tagline WRITE setTagline)
+    Q_PROPERTY(QString outline READ outline WRITE setOutline)
     Q_PROPERTY(int runtime READ runtime WRITE setRuntime)
     Q_PROPERTY(QString certification READ certification WRITE setCertification)
     Q_PROPERTY(QString writer READ writer WRITE setWriter)
@@ -64,6 +65,7 @@ public:
     qreal rating() const;
     QDate released() const;
     QString tagline() const;
+    QString outline() const;
     int runtime() const;
     QString certification() const;
     QString writer() const;
@@ -124,6 +126,7 @@ public:
     void setRating(qreal rating);
     void setReleased(QDate released);
     void setTagline(QString tagline);
+    void setOutline(QString outline);
     void setRuntime(int runtime);
     void setCertification(QString certification);
     void setWriter(QString writer);
@@ -199,6 +202,7 @@ private:
     qreal m_rating;
     QDate m_released;
     QString m_tagline;
+    QString m_outline;
     int m_runtime;
     QString m_certification;
     QString m_writer;

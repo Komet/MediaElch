@@ -46,6 +46,7 @@ public:
     QString debugLogPath();
     bool useYoutubePluginUrls();
     QList<DataFile> dataFiles(int type);
+    bool usePlotForOutline();
 
     bool autoLoadStreamDetails();
 
@@ -75,6 +76,7 @@ public:
     void setMediaCenterInterface(int interface);
     void setAutoLoadStreamDetails(bool autoLoad);
     void setDataFiles(QList<DataFile> files);
+    void setUsePlotForOutline(bool use);
 
 public slots:
     void saveSettings();
@@ -110,6 +112,7 @@ private:
     bool m_autoLoadStreamDetails;
     QList<DataFile> m_dataFiles;
     QList<DataFile> m_initialDataFiles;
+    bool m_usePlotForOutline;
 
     void setupProxy();
 };

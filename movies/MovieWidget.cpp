@@ -117,6 +117,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->released, SIGNAL(dateChanged(QDate)), this, SLOT(onReleasedChange(QDate)));
     connect(ui->lastPlayed, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(onLastWatchedChange(QDateTime)));
     connect(ui->overview, SIGNAL(textChanged()), this, SLOT(onOverviewChange()));
+    connect(ui->outline, SIGNAL(textChanged()), this, SLOT(onOutlineChange()));
     connect(ui->director, SIGNAL(textEdited(QString)), this, SLOT(onDirectorChange(QString)));
     connect(ui->writer, SIGNAL(textEdited(QString)), this, SLOT(onWriterChange(QString)));
     connect(ui->videoAspectRatio, SIGNAL(valueChanged(double)), this, SLOT(onStreamDetailsEdited()));
@@ -239,6 +240,10 @@ void MovieWidget::clear()
     blocked = ui->overview->blockSignals(true);
     ui->overview->clear();
     ui->overview->blockSignals(blocked);
+
+    blocked = ui->outline->blockSignals(true);
+    ui->outline->clear();
+    ui->outline->blockSignals(blocked);
 
     blocked = ui->actors->blockSignals(true);
     ui->actors->setRowCount(0);
@@ -525,6 +530,7 @@ void MovieWidget::updateMovieInfo()
     ui->released->blockSignals(true);
     ui->lastPlayed->blockSignals(true);
     ui->overview->blockSignals(true);
+    ui->outline->blockSignals(true);
     ui->actors->blockSignals(true);
     ui->genres->blockSignals(true);
     ui->studios->blockSignals(true);
@@ -546,6 +552,7 @@ void MovieWidget::updateMovieInfo()
     ui->playcount->setValue(m_movie->playcount());
     ui->lastPlayed->setDateTime(m_movie->lastPlayed());
     ui->overview->setPlainText(m_movie->overview());
+    ui->outline->setPlainText(m_movie->outline());
     ui->watched->setChecked(m_movie->watched());
     ui->writer->setText(m_movie->writer());
     ui->director->setText(m_movie->director());
@@ -716,6 +723,7 @@ void MovieWidget::updateMovieInfo()
     ui->released->blockSignals(false);
     ui->lastPlayed->blockSignals(false);
     ui->overview->blockSignals(false);
+    ui->outline->blockSignals(false);
     ui->actors->blockSignals(false);
     ui->genres->blockSignals(false);
     ui->studios->blockSignals(false);
@@ -1616,6 +1624,17 @@ void MovieWidget::onOverviewChange()
     if (!m_movie)
         return;
     m_movie->setOverview(ui->overview->toPlainText());
+    ui->buttonRevert->setVisible(true);
+}
+
+/**
+ * @brief Marks the movie as changed when the outline has changed
+ */
+void MovieWidget::onOutlineChange()
+{
+    if (!m_movie)
+        return;
+    m_movie->setOutline(ui->outline->toPlainText());
     ui->buttonRevert->setVisible(true);
 }
 

@@ -8,6 +8,7 @@
 
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "settings/Settings.h"
 
 /**
  * @brief TMDb::TMDb
@@ -473,8 +474,11 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
         movie->setName(sc.property("title").toString());
     if (infos.contains(MovieScraperInfos::Title) && sc.property("original_title").isValid())
         movie->setOriginalName(sc.property("original_title").toString());
-    if (infos.contains(MovieScraperInfos::Overview) && sc.property("overview").isValid() && !sc.property("overview").isNull())
+    if (infos.contains(MovieScraperInfos::Overview) && sc.property("overview").isValid() && !sc.property("overview").isNull()) {
         movie->setOverview(sc.property("overview").toString());
+        if (Settings::instance()->usePlotForOutline())
+            movie->setOutline(sc.property("overview").toString());
+    }
     if (infos.contains(MovieScraperInfos::Rating) && sc.property("vote_average").isValid())
         movie->setRating(sc.property("vote_average").toNumber());
     if (infos.contains(MovieScraperInfos::Tagline) && sc.property("tagline").isValid() && !sc.property("tagline").isNull())

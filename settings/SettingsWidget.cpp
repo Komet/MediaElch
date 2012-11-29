@@ -224,6 +224,8 @@ void SettingsWidget::loadSettings()
     ui->proxyPassword->setText(m_settings->proxyPassword());
     onUseProxy();
 
+    ui->usePlotForOutline->setChecked(m_settings->usePlotForOutline());
+
     // Directories
     ui->dirs->setRowCount(0);
     ui->dirs->clearContents();
@@ -354,6 +356,8 @@ void SettingsWidget::saveSettings()
     m_settings->setProxyPort(ui->proxyPort->value());
     m_settings->setProxyUsername(ui->proxyUsername->text());
     m_settings->setProxyPassword(ui->proxyPassword->text());
+
+    m_settings->setUsePlotForOutline(ui->usePlotForOutline->isChecked());
 
     // Scrapers
     QMapIterator<ScraperInterface*, QComboBox*> it(m_scraperCombos);

@@ -67,6 +67,7 @@ void Settings::loadSettings()
     m_debugModeActivated = m_settings.value("DebugModeActivated", false).toBool();
     m_debugLogPath = m_settings.value("DebugLogPath").toString();
     m_autoLoadStreamDetails = m_settings.value("AutoLoadStreamDetails", true).toBool();
+    m_usePlotForOutline = m_settings.value("Movies/UsePlotForOutline", true).toBool();
 
     // Proxy
     m_useProxy = m_settings.value("Proxy/Enable", false).toBool();
@@ -180,6 +181,7 @@ void Settings::saveSettings()
     m_settings.setValue("MediaCenterInterface", m_mediaCenterInterface);
     m_settings.setValue("XbmcThumbnailpath", m_xbmcThumbnailPath);
     m_settings.setValue("UseYoutubePluginURLs", m_youtubePluginUrls);
+    m_settings.setValue("Movies/UsePlotForOutline", m_usePlotForOutline);
 
     // Proxy
     m_settings.setValue("Proxy/Enable", m_useProxy);
@@ -507,6 +509,15 @@ QList<DataFile> Settings::dataFiles(int type)
     return files;
 }
 
+/**
+ * @brief Settings::usePlotForOutline
+ * @return
+ */
+bool Settings::usePlotForOutline()
+{
+    return m_usePlotForOutline;
+}
+
 /*** SETTER ***/
 
 /**
@@ -746,4 +757,13 @@ void Settings::setProxyPassword(QString password)
 void Settings::setAutoLoadStreamDetails(bool autoLoad)
 {
     m_autoLoadStreamDetails = autoLoad;
+}
+
+/**
+ * @brief Settings::setUsePlotForOutline
+ * @param use
+ */
+void Settings::setUsePlotForOutline(bool use)
+{
+    m_usePlotForOutline = use;
 }

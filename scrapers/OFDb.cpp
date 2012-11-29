@@ -4,6 +4,7 @@
 #include <QXmlStreamReader>
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "settings/Settings.h"
 
 /**
  * @brief OFDb::OFDb
@@ -285,6 +286,8 @@ void OFDb::parseAndAssignInfos(QString data, Movie *movie, QList<int> infos)
             movie->setOriginalName(xml.readElementText());
         } else if (infos.contains(MovieScraperInfos::Overview) && xml.name() == "beschreibung") {
             movie->setOverview(xml.readElementText());
+            if (Settings::instance()->usePlotForOutline())
+                movie->setOutline(xml.readElementText());
         } else {
             xml.skipCurrentElement();
         }

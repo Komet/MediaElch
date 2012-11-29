@@ -348,14 +348,14 @@
                 </item>
                </layout>
               </item>
-              <item row="17" column="0">
+              <item row="16" column="0">
                <widget class="QLabel" name="label_15">
                 <property name="text">
-                 <string>Overview</string>
+                 <string>Plot</string>
                 </property>
                </widget>
               </item>
-              <item row="17" column="1">
+              <item row="16" column="1">
                <widget class="QTextEdit" name="overview"/>
               </item>
              </layout>
@@ -842,6 +842,23 @@
                <widget class="QLabel" name="label_16">
                 <property name="text">
                  <string>Actors</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="0">
+               <widget class="QLabel" name="label_34">
+                <property name="text">
+                 <string>Outline</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="1">
+               <widget class="QTextEdit" name="outline">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>100</height>
+                 </size>
                 </property>
                </widget>
               </item>
@@ -1663,7 +1680,6 @@ QPushButton::hover {
   <tabstop>watched</tabstop>
   <tabstop>playcount</tabstop>
   <tabstop>lastPlayed</tabstop>
-  <tabstop>overview</tabstop>
   <tabstop>genres</tabstop>
   <tabstop>buttonAddGenre</tabstop>
   <tabstop>buttonRemoveGenre</tabstop>

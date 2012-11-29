@@ -103,8 +103,10 @@ void Movie::clear(QList<int> infos)
         m_studios.clear();
     if (infos.contains(MovieScraperInfos::Title))
         m_originalName = "";
-    if (infos.contains(MovieScraperInfos::Overview))
+    if (infos.contains(MovieScraperInfos::Overview)) {
         m_overview = "";
+        m_outline = "";
+    }
     if (infos.contains(MovieScraperInfos::Rating))
         m_rating = 0;
     if (infos.contains(MovieScraperInfos::Released))
@@ -335,6 +337,17 @@ QDate Movie::released() const
 QString Movie::tagline() const
 {
     return m_tagline;
+}
+
+/**
+ * @property Movie::outline
+ * @brief Holds the movies outline
+ * @return Outline of the movie
+ * @see Movie::setOutline
+ */
+QString Movie::outline() const
+{
+    return m_outline;
 }
 
 /**
@@ -948,6 +961,17 @@ void Movie::setReleased(QDate released)
 void Movie::setTagline(QString tagline)
 {
     m_tagline = tagline;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the movies outline
+ * @param outline Outline of the movie
+ * @see Movie::outline
+ */
+void Movie::setOutline(QString outline)
+{
+    m_outline = outline;
     setChanged(true);
 }
 
