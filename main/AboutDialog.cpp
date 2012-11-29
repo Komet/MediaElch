@@ -2,6 +2,7 @@
 #include "ui_AboutDialog.h"
 
 #include "globals/Globals.h"
+#include "globals/Manager.h"
 
 /**
  * @brief AboutDialog::AboutDialog
@@ -12,7 +13,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
     ui(new Ui::AboutDialog)
 {
     ui->setupUi(this);
-    ui->labelXbmm->setText(tr("MediaElch %1 - %2").arg(QApplication::applicationVersion()).arg("Qo'noS"));
+    ui->labelMediaElch->setText(tr("MediaElch %1 - %2").arg(QApplication::applicationVersion()).arg("Qo'noS"));
 
 #ifdef Q_WS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
@@ -27,4 +28,25 @@ AboutDialog::AboutDialog(QWidget *parent) :
 AboutDialog::~AboutDialog()
 {
     delete ui;
+}
+
+/**
+ * @brief AboutDialog::exec
+ * @return
+ */
+int AboutDialog::exec()
+{
+   adjustSize();
+
+   int episodes = 0;
+   foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
+       episodes += show->episodes().count();
+   }
+
+   ui->numMovies->setText(QString::number(Manager::instance()->movieModel()->movies().count()));
+   ui->numConcerts->setText(QString::number(Manager::instance()->concertModel()->concerts().count()));
+   ui->numShows->setText(QString::number(Manager::instance()->tvShowModel()->tvShows().count()));
+   ui->numEpisodes->setText(QString::number(episodes));
+
+   return QDialog::exec();
 }
