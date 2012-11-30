@@ -18,6 +18,7 @@
 #include "data/TvShowProxyModel.h"
 #include "imageProviders/FanartTv.h"
 #include "main/FileScannerDialog.h"
+#include "trailerProviders/TrailerProvider.h"
 #include "tvShows/TvShowFilesWidget.h"
 
 /**
@@ -38,6 +39,7 @@ public:
     QList<ConcertScraperInterface*> concertScrapers();
     QList<ImageProviderInterface*> imageProviders();
     QList<ImageProviderInterface*> imageProviders(int type);
+    QList<TrailerProvider*> trailerProviders();
     MediaCenterInterface *mediaCenterInterface();
     MediaCenterInterface *mediaCenterInterfaceTvShow();
     MediaCenterInterface *mediaCenterInterfaceConcert();
@@ -66,6 +68,7 @@ private:
     QList<TvScraperInterface*> m_tvScrapers;
     QList<ConcertScraperInterface*> m_concertScrapers;
     QList<ImageProviderInterface*> m_imageProviders;
+    QList<TrailerProvider*> m_trailerProviders;
     MovieFileSearcher* m_movieFileSearcher;
     TvShowFileSearcher* m_tvShowFileSearcher;
     ConcertFileSearcher* m_concertFileSearcher;

@@ -102,6 +102,7 @@ private slots:
     void onStreamDetailsEdited();
     void onReloadStreamDetails();
     void updateStreamDetails(bool reloadFromFile = false);
+    void onDownloadTrailer();
 
 private:
     Ui::MovieWidget *ui;

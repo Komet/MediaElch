@@ -736,7 +736,7 @@ QPushButton::hover {
            </layout>
           </item>
           <item>
-           <widget class="QStackedWidget" name="artStackedWidget">
+           <widget class="SlidingStackedWidget" name="artStackedWidget">
             <property name="currentIndex">
              <number>0</number>
             </property>
@@ -1207,6 +1207,12 @@ QPushButton::hover {
    <class>MediaFlags</class>
    <extends>QWidget</extends>
    <header>smallWidgets/MediaFlags.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SlidingStackedWidget</class>
+   <extends>QStackedWidget</extends>
+   <header>smallWidgets/SlidingStackedWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

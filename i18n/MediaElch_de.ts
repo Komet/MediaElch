@@ -97,6 +97,39 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
+        <location filename="../main/AboutDialog.ui" line="74"/>
+        <source>Your Collection</source>
+        <translation>Deine Sammlung</translation>
+    </message>
+    <message>
+        <location filename="../main/AboutDialog.ui" line="83"/>
+        <source>Movies</source>
+        <translation>Filme</translation>
+    </message>
+    <message>
+        <location filename="../main/AboutDialog.ui" line="90"/>
+        <source>Episodes</source>
+        <translation>Episoden</translation>
+    </message>
+    <message>
+        <location filename="../main/AboutDialog.ui" line="97"/>
+        <source>TV Shows</source>
+        <translation>TV Serien</translation>
+    </message>
+    <message>
+        <location filename="../main/AboutDialog.ui" line="104"/>
+        <source>Concerts</source>
+        <translation>Konzerte</translation>
+    </message>
+    <message>
+        <location filename="../main/AboutDialog.ui" line="111"/>
+        <location filename="../main/AboutDialog.ui" line="134"/>
+        <location filename="../main/AboutDialog.ui" line="144"/>
+        <location filename="../main/AboutDialog.ui" line="154"/>
+        <source>0</source>
+        <translation>0</translation>
+    </message>
+    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -149,7 +182,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">MediaElch %1</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.cpp" line="15"/>
+        <location filename="../main/AboutDialog.cpp" line="16"/>
         <source>MediaElch %1 - %2</source>
         <translation>MediaElch %1 - %2</translation>
     </message>
@@ -264,14 +297,19 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ConcertFilesWidget</name>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="40"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="41"/>
         <source>Mark as watched</source>
         <translation>Als gesehen markieren</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="41"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="42"/>
         <source>Mark as unwatched</source>
         <translation>Als ungesehen markieren</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="43"/>
+        <source>Load Stream Details</source>
+        <translation>Stream Details laden</translation>
     </message>
 </context>
 <context>
@@ -516,8 +554,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="459"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="616"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="619"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="618"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="621"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -611,42 +649,42 @@ p, li { white-space: pre-wrap; }
         <translation>CD Art</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="609"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="643"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="611"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="645"/>
         <source>Track %1</source>
         <translation>Spur %1</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="615"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="618"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="646"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="647"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="617"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="620"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="648"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="649"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="617"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="620"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="619"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="622"/>
         <source>Channels</source>
         <translation>Kanäle</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="635"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="637"/>
         <source>Subtitles</source>
         <translation>Untertitel</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="908"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="910"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="931"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="933"/>
         <source>All Concerts Saved</source>
         <translation>Alle Konzerte gespeichert</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="966"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="968"/>
         <source>Unknown Genre</source>
         <translation>Unbekanntes Genre</translation>
     </message>
@@ -786,14 +824,19 @@ p, li { white-space: pre-wrap; }
         <translation>Jahr</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="42"/>
+        <location filename="../movies/FilesWidget.cpp" line="43"/>
         <source>Mark as watched</source>
         <translation>Als gesehen markieren</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="43"/>
+        <location filename="../movies/FilesWidget.cpp" line="44"/>
         <source>Mark as unwatched</source>
         <translation>Als ungesehen markieren</translation>
+    </message>
+    <message>
+        <location filename="../movies/FilesWidget.cpp" line="45"/>
+        <source>Load Stream Details</source>
+        <translation>Stream Details laden</translation>
     </message>
 </context>
 <context>
@@ -817,8 +860,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="351"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="385"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="387"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="389"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="391"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
@@ -1003,6 +1046,28 @@ p, li { white-space: pre-wrap; }
         <location filename="../smallWidgets/FilterWidget.cpp" line="380"/>
         <source>No Certification</source>
         <translation>Keine Freigabe</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="384"/>
+        <source>Stream Details loaded</source>
+        <translation>Stream Details geladen</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="384"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="385"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="387"/>
+        <source>Stream Details</source>
+        <translation>Stream Details</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="386"/>
+        <source>Stream Details not loaded</source>
+        <translation>Stream Details nicht geladen</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="386"/>
+        <source>No Stream Details</source>
+        <translation>Keine Stream Details</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="318"/>
@@ -1199,6 +1264,24 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>LoadingStreamDetails</name>
+    <message>
+        <location filename="../smallWidgets/LoadingStreamDetails.ui" line="23"/>
+        <source>Loading Stream Details</source>
+        <translation>Lade Stream Details</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/LoadingStreamDetails.ui" line="32"/>
+        <source>Loading Stream Details...</source>
+        <translation>Lade Stream Details...</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/LoadingStreamDetails.ui" line="46"/>
+        <source>File</source>
+        <translation>Datei</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>XBMM</source>
@@ -1266,79 +1349,79 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="467"/>
-        <location filename="../main/MainWindow.cpp" line="218"/>
+        <location filename="../main/MainWindow.cpp" line="220"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="472"/>
-        <location filename="../main/MainWindow.cpp" line="221"/>
+        <location filename="../main/MainWindow.cpp" line="223"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="477"/>
-        <location filename="../main/MainWindow.cpp" line="220"/>
+        <location filename="../main/MainWindow.cpp" line="222"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="201"/>
+        <location filename="../main/MainWindow.cpp" line="203"/>
         <source>Search</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="203"/>
+        <location filename="../main/MainWindow.cpp" line="205"/>
         <source>Search (%1)</source>
         <translation>Suche (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="205"/>
+        <location filename="../main/MainWindow.cpp" line="207"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="207"/>
+        <location filename="../main/MainWindow.cpp" line="209"/>
         <source>Save (%1)</source>
         <translation>Speichern (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="209"/>
+        <location filename="../main/MainWindow.cpp" line="211"/>
         <source>Save All</source>
         <translation>Alle Speichern</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="212"/>
+        <location filename="../main/MainWindow.cpp" line="214"/>
         <source>Save All (%1)</source>
         <translation>Alle Speichern (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="216"/>
+        <location filename="../main/MainWindow.cpp" line="218"/>
         <source>Reload all files (%1)</source>
         <translation>Lädt alle Dateien neu (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="223"/>
+        <location filename="../main/MainWindow.cpp" line="225"/>
         <source>Support</source>
         <translation>Support</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="330"/>
+        <location filename="../main/MainWindow.cpp" line="332"/>
         <source>Reload all Movies (%1)</source>
         <translation>Filme neu laden (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="332"/>
+        <location filename="../main/MainWindow.cpp" line="334"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>Serien neu laden (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="334"/>
+        <location filename="../main/MainWindow.cpp" line="336"/>
         <source>Reload all Concerts (%1)</source>
         <translation>Konzerte neu laden (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="214"/>
+        <location filename="../main/MainWindow.cpp" line="216"/>
         <source>Reload</source>
         <translation>Neu laden</translation>
     </message>
@@ -1505,6 +1588,19 @@ Operation abgebrochen.</translation>
         <location filename="../sets/MovieListDialog.ui" line="89"/>
         <source>Close</source>
         <translation>Schließen</translation>
+    </message>
+</context>
+<context>
+    <name>MovieMaze</name>
+    <message>
+        <location filename="../trailerProviders/MovieMaze.cpp" line="118"/>
+        <source>German</source>
+        <translation>Deutsch</translation>
+    </message>
+    <message>
+        <location filename="../trailerProviders/MovieMaze.cpp" line="120"/>
+        <source>English</source>
+        <translation>Englisch</translation>
     </message>
 </context>
 <context>
@@ -1716,22 +1812,21 @@ Operation abgebrochen.</translation>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="310"/>
+        <location filename="../movies/MovieWidget.ui" line="307"/>
         <source>Play Count</source>
         <translation>Wiedergaben</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="342"/>
+        <location filename="../movies/MovieWidget.ui" line="339"/>
         <source>Last Played</source>
         <translation>Letzte Wiedergabe</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="354"/>
         <source>Overview</source>
-        <translation>Inhalt</translation>
+        <translation type="obsolete">Inhalt</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="296"/>
+        <location filename="../movies/MovieWidget.ui" line="293"/>
         <source>Watched</source>
         <translation>Gesehen</translation>
     </message>
@@ -1760,139 +1855,154 @@ Operation abgebrochen.</translation>
         <translation>Drehbuch</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="367"/>
+        <location filename="../movies/MovieWidget.ui" line="351"/>
+        <source>Plot</source>
+        <translation>Plot</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieWidget.ui" line="369"/>
+        <source>Download Trailer</source>
+        <translation>Trailer herunterladen</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieWidget.ui" line="390"/>
         <source>Extended</source>
         <translation>Erweitert</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="405"/>
+        <location filename="../movies/MovieWidget.ui" line="428"/>
         <source>Genre</source>
         <translation>Genre</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="415"/>
+        <location filename="../movies/MovieWidget.ui" line="438"/>
         <source>Add Genre</source>
         <translation>Genre hinzufügen</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="429"/>
+        <location filename="../movies/MovieWidget.ui" line="452"/>
         <source>Remove Genre</source>
         <translation>Genre entfernen</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="473"/>
+        <location filename="../movies/MovieWidget.ui" line="496"/>
         <source>Genres</source>
         <translation>Genres</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="504"/>
+        <location filename="../movies/MovieWidget.ui" line="527"/>
         <source>Studio</source>
         <translation>Studio</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="514"/>
+        <location filename="../movies/MovieWidget.ui" line="537"/>
         <source>Add Studio</source>
         <translation>Studio hinzufügen</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="528"/>
+        <location filename="../movies/MovieWidget.ui" line="551"/>
         <source>Remove Studio</source>
         <translation>Studio entfernen</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="572"/>
+        <location filename="../movies/MovieWidget.ui" line="595"/>
         <source>Studios</source>
         <translation>Studios</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="603"/>
+        <location filename="../movies/MovieWidget.ui" line="626"/>
         <source>Country</source>
         <translation>Land</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="613"/>
+        <location filename="../movies/MovieWidget.ui" line="636"/>
         <source>Add Country</source>
         <translation>Land hinzufügen</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="627"/>
+        <location filename="../movies/MovieWidget.ui" line="650"/>
         <source>Remove Country</source>
         <translation>Land entfernen</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="671"/>
+        <location filename="../movies/MovieWidget.ui" line="694"/>
         <source>Countries</source>
         <translation>Länder</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="690"/>
+        <location filename="../movies/MovieWidget.ui" line="713"/>
         <source>Actor</source>
         <translation>Schauspieler</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="695"/>
+        <location filename="../movies/MovieWidget.ui" line="718"/>
         <source>Role</source>
         <translation>Rolle</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="710"/>
+        <location filename="../movies/MovieWidget.ui" line="733"/>
         <source>Add Actor</source>
         <translation>Schauspieler hinzufügen</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="741"/>
+        <location filename="../movies/MovieWidget.ui" line="764"/>
         <source>Remove Actor</source>
         <translation>Schauspieler entfernen</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="801"/>
+        <location filename="../movies/MovieWidget.ui" line="824"/>
         <source>Click to change</source>
         <translation>Zum Ändern klicken</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="844"/>
+        <location filename="../movies/MovieWidget.ui" line="867"/>
         <source>Actors</source>
         <translation>Schauspieler</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="854"/>
+        <location filename="../movies/MovieWidget.ui" line="874"/>
+        <source>Outline</source>
+        <translation>Outline</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieWidget.ui" line="894"/>
         <source>Streamdetails</source>
         <translation>Streamdetails</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="862"/>
+        <location filename="../movies/MovieWidget.ui" line="902"/>
         <source>Aspect Ratio</source>
         <translation>Seitenverhältnis</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="869"/>
+        <location filename="../movies/MovieWidget.ui" line="909"/>
         <source>Scantype</source>
         <translation>Scantype</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="893"/>
-        <location filename="../movies/MovieWidget.cpp" line="770"/>
-        <location filename="../movies/MovieWidget.cpp" line="773"/>
+        <location filename="../movies/MovieWidget.ui" line="933"/>
+        <location filename="../movies/MovieWidget.cpp" line="782"/>
+        <location filename="../movies/MovieWidget.cpp" line="785"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="928"/>
+        <location filename="../movies/MovieWidget.ui" line="968"/>
         <source>x</source>
         <translation>x</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="966"/>
+        <location filename="../movies/MovieWidget.ui" line="1006"/>
         <source>Audio</source>
         <translation>Audio</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="979"/>
+        <location filename="../movies/MovieWidget.ui" line="1019"/>
         <source>Video</source>
         <translation>Video</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="996"/>
+        <location filename="../movies/MovieWidget.ui" line="1036"/>
         <source>Duration</source>
         <translation>Spieldauer</translation>
     </message>
@@ -1901,138 +2011,138 @@ Operation abgebrochen.</translation>
         <translation type="obsolete"> Sekunden</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1023"/>
+        <location filename="../movies/MovieWidget.ui" line="1063"/>
         <source>Reload from File</source>
         <translation>Neu Ermitteln</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1191"/>
+        <location filename="../movies/MovieWidget.ui" line="1231"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1213"/>
-        <location filename="../movies/MovieWidget.ui" line="1296"/>
-        <location filename="../movies/MovieWidget.ui" line="1399"/>
-        <location filename="../movies/MovieWidget.ui" line="1479"/>
-        <location filename="../movies/MovieWidget.ui" line="1559"/>
+        <location filename="../movies/MovieWidget.ui" line="1253"/>
+        <location filename="../movies/MovieWidget.ui" line="1336"/>
+        <location filename="../movies/MovieWidget.ui" line="1439"/>
+        <location filename="../movies/MovieWidget.ui" line="1519"/>
+        <location filename="../movies/MovieWidget.ui" line="1599"/>
         <source>Click to Change</source>
         <translation>Zum Ändern klicken</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1234"/>
-        <location filename="../movies/MovieWidget.ui" line="1317"/>
-        <location filename="../movies/MovieWidget.ui" line="1420"/>
-        <location filename="../movies/MovieWidget.ui" line="1500"/>
-        <location filename="../movies/MovieWidget.ui" line="1580"/>
+        <location filename="../movies/MovieWidget.ui" line="1274"/>
+        <location filename="../movies/MovieWidget.ui" line="1357"/>
+        <location filename="../movies/MovieWidget.ui" line="1460"/>
+        <location filename="../movies/MovieWidget.ui" line="1540"/>
+        <location filename="../movies/MovieWidget.ui" line="1620"/>
         <source>Full preview</source>
         <translation>Vorschau</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1377"/>
+        <location filename="../movies/MovieWidget.ui" line="1417"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1457"/>
+        <location filename="../movies/MovieWidget.ui" line="1497"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1537"/>
+        <location filename="../movies/MovieWidget.ui" line="1577"/>
         <source>CD Art</source>
         <translation>CD Art</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="817"/>
-        <location filename="../movies/MovieWidget.ui" line="886"/>
-        <location filename="../movies/MovieWidget.ui" line="1253"/>
-        <location filename="../movies/MovieWidget.ui" line="1256"/>
-        <location filename="../movies/MovieWidget.ui" line="1336"/>
-        <location filename="../movies/MovieWidget.ui" line="1339"/>
-        <location filename="../movies/MovieWidget.ui" line="1439"/>
-        <location filename="../movies/MovieWidget.ui" line="1519"/>
-        <location filename="../movies/MovieWidget.ui" line="1599"/>
+        <location filename="../movies/MovieWidget.ui" line="840"/>
+        <location filename="../movies/MovieWidget.ui" line="926"/>
+        <location filename="../movies/MovieWidget.ui" line="1293"/>
+        <location filename="../movies/MovieWidget.ui" line="1296"/>
+        <location filename="../movies/MovieWidget.ui" line="1376"/>
+        <location filename="../movies/MovieWidget.ui" line="1379"/>
+        <location filename="../movies/MovieWidget.ui" line="1479"/>
+        <location filename="../movies/MovieWidget.ui" line="1559"/>
+        <location filename="../movies/MovieWidget.ui" line="1639"/>
         <source>Resolution</source>
         <translation>Auflösung</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1012"/>
+        <location filename="../movies/MovieWidget.ui" line="1052"/>
         <source>HH:mm:ss</source>
         <translation>HH:mm:ss</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1274"/>
+        <location filename="../movies/MovieWidget.ui" line="1314"/>
         <source>Backdrop</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="497"/>
+        <location filename="../movies/MovieWidget.cpp" line="506"/>
         <source>Downloading images...</source>
         <translation>Lade Bilder...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="763"/>
-        <location filename="../movies/MovieWidget.cpp" line="797"/>
+        <location filename="../movies/MovieWidget.cpp" line="775"/>
+        <location filename="../movies/MovieWidget.cpp" line="809"/>
         <source>Track %1</source>
         <translation>Spur %1</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="769"/>
-        <location filename="../movies/MovieWidget.cpp" line="772"/>
-        <location filename="../movies/MovieWidget.cpp" line="800"/>
-        <location filename="../movies/MovieWidget.cpp" line="801"/>
+        <location filename="../movies/MovieWidget.cpp" line="781"/>
+        <location filename="../movies/MovieWidget.cpp" line="784"/>
+        <location filename="../movies/MovieWidget.cpp" line="812"/>
+        <location filename="../movies/MovieWidget.cpp" line="813"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="771"/>
-        <location filename="../movies/MovieWidget.cpp" line="774"/>
+        <location filename="../movies/MovieWidget.cpp" line="783"/>
+        <location filename="../movies/MovieWidget.cpp" line="786"/>
         <source>Channels</source>
         <translation>Kanäle</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="789"/>
+        <location filename="../movies/MovieWidget.cpp" line="801"/>
         <source>Subtitles</source>
         <translation>Untertitel</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1063"/>
+        <location filename="../movies/MovieWidget.cpp" line="1082"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1086"/>
+        <location filename="../movies/MovieWidget.cpp" line="1105"/>
         <source>All Movies Saved</source>
         <translation>Alle Filme gespeichert</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1133"/>
+        <location filename="../movies/MovieWidget.cpp" line="1152"/>
         <source>Unknown Actor</source>
         <translation>Unbekannter Schauspieler</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1134"/>
+        <location filename="../movies/MovieWidget.cpp" line="1153"/>
         <source>Unknown Role</source>
         <translation>Unbekannte Rolle</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1187"/>
+        <location filename="../movies/MovieWidget.cpp" line="1206"/>
         <source>Unknown Genre</source>
         <translation>Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1285"/>
+        <location filename="../movies/MovieWidget.cpp" line="1304"/>
         <source>Unknown Country</source>
         <translation>Unbekanntes Land</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1410"/>
+        <location filename="../movies/MovieWidget.cpp" line="1429"/>
         <source>Choose Image</source>
         <translation>Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1410"/>
+        <location filename="../movies/MovieWidget.cpp" line="1429"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
@@ -2045,7 +2155,7 @@ Operation abgebrochen.</translation>
         <translation type="obsolete">Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1236"/>
+        <location filename="../movies/MovieWidget.cpp" line="1255"/>
         <source>Unknown Studio</source>
         <translation>Unbekanntes Studio</translation>
     </message>
@@ -2521,13 +2631,13 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Logdateien (*.log *.txt)</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="655"/>
+        <location filename="../settings/SettingsWidget.cpp" line="659"/>
         <source>Choose a directory containing your movies, TV show or concerts</source>
         <translation>Wähle ein Verzeichnis aus, dass deine Filme, Serien oder Konzerte enthält</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="557"/>
-        <location filename="../settings/SettingsWidget.cpp" line="445"/>
+        <location filename="../settings/SettingsWidget.cpp" line="449"/>
         <source>Movies</source>
         <translation>Filme</translation>
     </message>
@@ -2537,28 +2647,28 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Filme benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste. Um eine Datei umzubennen, klicke doppelt auf sie.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="729"/>
+        <location filename="../settings/SettingsWidget.ui" line="736"/>
         <source>Below you see the filenames which are used for loading and saving your tv shows. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
         <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Serien benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste. Um eine Datei umzubennen, klicke doppelt auf sie.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="984"/>
-        <location filename="../settings/SettingsWidget.cpp" line="445"/>
+        <location filename="../settings/SettingsWidget.ui" line="991"/>
+        <location filename="../settings/SettingsWidget.cpp" line="449"/>
         <source>Concerts</source>
         <translation>Konzerte</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="485"/>
+        <location filename="../settings/SettingsWidget.cpp" line="489"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
         <translation>Die Verzeichnis-Organisation kann nur auf Filmesammlungen angewandt werden, die nicht schon in separate Verzeichnisse sortiert ist.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="493"/>
+        <location filename="../settings/SettingsWidget.cpp" line="497"/>
         <source>Are you sure?</source>
         <translation>Bist du sicher?</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="494"/>
+        <location filename="../settings/SettingsWidget.cpp" line="498"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
         <translation>Diese Operation sortiert alle Filme in diesem Verzeichnis in separate Unterordner basierend auf dem Dateinamen. Klicke &quot;Ok&quot;, falls du damit einverstanden bist.</translation>
     </message>
@@ -2567,7 +2677,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Diese Operation sortiert alle Filme in diesem Verzeichnis in separate Unterordner. Klicke &quot;Ok&quot;, falls du damit einverstanden bist</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="497"/>
+        <location filename="../settings/SettingsWidget.cpp" line="501"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -2627,7 +2737,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="407"/>
-        <location filename="../settings/SettingsWidget.ui" line="1161"/>
+        <location filename="../settings/SettingsWidget.ui" line="1168"/>
         <source>Host</source>
         <translation>Host</translation>
     </message>
@@ -2639,13 +2749,13 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="441"/>
-        <location filename="../settings/SettingsWidget.ui" line="1175"/>
+        <location filename="../settings/SettingsWidget.ui" line="1182"/>
         <source>Username</source>
         <translation>Benutzername</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="458"/>
-        <location filename="../settings/SettingsWidget.ui" line="1182"/>
+        <location filename="../settings/SettingsWidget.ui" line="1189"/>
         <source>Password</source>
         <translation>Passwort</translation>
     </message>
@@ -2655,7 +2765,12 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>XBMC SQLite</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="990"/>
+        <location filename="../settings/SettingsWidget.ui" line="722"/>
+        <source>Use plot when outline is not available</source>
+        <translation>Plot benutzen, wenn Outline nicht verfügbar ist</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="997"/>
         <source>Below you see the filenames which are used for loading and saving your concerts. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
         <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Konzerte benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste. Um eine Datei umzubennen, klicke doppelt auf sie.</translation>
     </message>
@@ -2880,47 +2995,47 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="573"/>
-        <location filename="../settings/SettingsWidget.ui" line="1000"/>
+        <location filename="../settings/SettingsWidget.ui" line="1007"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
         <translation>Du kannst den Platzhalter &lt;baseFileName&gt; benutzen (Dateiname ohne Endung).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="588"/>
-        <location filename="../settings/SettingsWidget.ui" line="809"/>
-        <location filename="../settings/SettingsWidget.ui" line="1018"/>
+        <location filename="../settings/SettingsWidget.ui" line="816"/>
+        <location filename="../settings/SettingsWidget.ui" line="1025"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="601"/>
-        <location filename="../settings/SettingsWidget.ui" line="1031"/>
+        <location filename="../settings/SettingsWidget.ui" line="1038"/>
         <source>CD Art</source>
         <translation>CD Art</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="614"/>
-        <location filename="../settings/SettingsWidget.ui" line="770"/>
-        <location filename="../settings/SettingsWidget.ui" line="1044"/>
+        <location filename="../settings/SettingsWidget.ui" line="777"/>
+        <location filename="../settings/SettingsWidget.ui" line="1051"/>
         <source>Backdrop</source>
         <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="627"/>
-        <location filename="../settings/SettingsWidget.ui" line="934"/>
-        <location filename="../settings/SettingsWidget.ui" line="1057"/>
+        <location filename="../settings/SettingsWidget.ui" line="941"/>
+        <location filename="../settings/SettingsWidget.ui" line="1064"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="650"/>
-        <location filename="../settings/SettingsWidget.ui" line="1080"/>
+        <location filename="../settings/SettingsWidget.ui" line="1087"/>
         <source>NFO</source>
         <translation>NFO</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="663"/>
-        <location filename="../settings/SettingsWidget.ui" line="858"/>
-        <location filename="../settings/SettingsWidget.ui" line="1093"/>
+        <location filename="../settings/SettingsWidget.ui" line="865"/>
+        <location filename="../settings/SettingsWidget.ui" line="1100"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
@@ -2929,37 +3044,37 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Serien benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="739"/>
+        <location filename="../settings/SettingsWidget.ui" line="746"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
         <translation>Du kannst den Platzhalter &lt;baseFileName&gt; benutzen (Dateiname ohne Endung) oder für Staffelposter den Platzhalter &lt;seasonNumber&gt; (die Staffelnummer).</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="757"/>
+        <location filename="../settings/SettingsWidget.ui" line="764"/>
         <source>Episode NFO</source>
         <translation>Episoden NFO</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="783"/>
+        <location filename="../settings/SettingsWidget.ui" line="790"/>
         <source>Season Poster</source>
         <translation>Staffelposter</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="796"/>
+        <location filename="../settings/SettingsWidget.ui" line="803"/>
         <source>Character Art</source>
         <translation>Character Art</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="822"/>
+        <location filename="../settings/SettingsWidget.ui" line="829"/>
         <source>Banner</source>
         <translation>Banner</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="845"/>
+        <location filename="../settings/SettingsWidget.ui" line="852"/>
         <source>Show NFO</source>
         <translation>Serien NFO</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="891"/>
+        <location filename="../settings/SettingsWidget.ui" line="898"/>
         <source>Episode Thumbnail</source>
         <translation>Episoden Thumbnail</translation>
     </message>
@@ -2968,44 +3083,44 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Konzerte benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1153"/>
+        <location filename="../settings/SettingsWidget.ui" line="1160"/>
         <source>Proxy</source>
         <translation>Proxy</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1168"/>
+        <location filename="../settings/SettingsWidget.ui" line="1175"/>
         <source>Port</source>
         <translation>Port</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1209"/>
+        <location filename="../settings/SettingsWidget.ui" line="1216"/>
         <source>Enable Proxy</source>
         <translation>Proxy verwenden</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1216"/>
+        <location filename="../settings/SettingsWidget.ui" line="1223"/>
         <source>Type</source>
         <comment>Proxy Type</comment>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1224"/>
+        <location filename="../settings/SettingsWidget.ui" line="1231"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1229"/>
+        <location filename="../settings/SettingsWidget.ui" line="1236"/>
         <source>SOCKS 5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1281"/>
-        <location filename="../settings/SettingsWidget.cpp" line="498"/>
+        <location filename="../settings/SettingsWidget.ui" line="1288"/>
+        <location filename="../settings/SettingsWidget.cpp" line="502"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1288"/>
+        <location filename="../settings/SettingsWidget.ui" line="1295"/>
         <source>Save Settings</source>
         <translation>Einstellungen Speichern</translation>
     </message>
@@ -3016,8 +3131,8 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Scraper</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="723"/>
-        <location filename="../settings/SettingsWidget.cpp" line="445"/>
+        <location filename="../settings/SettingsWidget.ui" line="730"/>
+        <location filename="../settings/SettingsWidget.cpp" line="449"/>
         <source>TV Shows</source>
         <translation>TV Serien</translation>
     </message>
@@ -3030,7 +3145,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Filme sind in separaten Verzeichnissen</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="404"/>
+        <location filename="../settings/SettingsWidget.cpp" line="408"/>
         <source>Settings saved</source>
         <translation>Einstellungen gespeichert</translation>
     </message>
@@ -3110,122 +3225,122 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TMDb</name>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="56"/>
+        <location filename="../scrapers/TMDb.cpp" line="57"/>
         <source>Bulgarian</source>
         <translation>Bulgarisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="57"/>
+        <location filename="../scrapers/TMDb.cpp" line="58"/>
         <source>Chinese</source>
         <translation>Chinesisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="58"/>
+        <location filename="../scrapers/TMDb.cpp" line="59"/>
         <source>Croatian</source>
         <translation>Kroatisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="59"/>
+        <location filename="../scrapers/TMDb.cpp" line="60"/>
         <source>Czech</source>
         <translation>Tschechisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="60"/>
+        <location filename="../scrapers/TMDb.cpp" line="61"/>
         <source>Danish</source>
         <translation>Dänisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="61"/>
+        <location filename="../scrapers/TMDb.cpp" line="62"/>
         <source>Dutch</source>
         <translation>Niederländisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="62"/>
+        <location filename="../scrapers/TMDb.cpp" line="63"/>
         <source>English</source>
         <translation>Englisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="63"/>
+        <location filename="../scrapers/TMDb.cpp" line="64"/>
         <source>Finnish</source>
         <translation>Finnisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="64"/>
+        <location filename="../scrapers/TMDb.cpp" line="65"/>
         <source>French</source>
         <translation>Französisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="65"/>
+        <location filename="../scrapers/TMDb.cpp" line="66"/>
         <source>German</source>
         <translation>Deutsch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="66"/>
+        <location filename="../scrapers/TMDb.cpp" line="67"/>
         <source>Greek</source>
         <translation>Griechisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="67"/>
+        <location filename="../scrapers/TMDb.cpp" line="68"/>
         <source>Hebrew</source>
         <translation>Hebräisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="68"/>
+        <location filename="../scrapers/TMDb.cpp" line="69"/>
         <source>Hungarian</source>
         <translation>Ungarisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="69"/>
+        <location filename="../scrapers/TMDb.cpp" line="70"/>
         <source>Italian</source>
         <translation>Italienisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="70"/>
+        <location filename="../scrapers/TMDb.cpp" line="71"/>
         <source>Japanese</source>
         <translation>Japanisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="71"/>
+        <location filename="../scrapers/TMDb.cpp" line="72"/>
         <source>Korean</source>
         <translation>Koreanisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="72"/>
+        <location filename="../scrapers/TMDb.cpp" line="73"/>
         <source>Norwegian</source>
         <translation>Norwegisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="73"/>
+        <location filename="../scrapers/TMDb.cpp" line="74"/>
         <source>Polish</source>
         <translation>Polnisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="74"/>
+        <location filename="../scrapers/TMDb.cpp" line="75"/>
         <source>Portuguese</source>
         <translation>Portugiesisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="75"/>
+        <location filename="../scrapers/TMDb.cpp" line="76"/>
         <source>Russian</source>
         <translation>Russisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="76"/>
+        <location filename="../scrapers/TMDb.cpp" line="77"/>
         <source>Slovene</source>
         <translation>Slowakisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="77"/>
+        <location filename="../scrapers/TMDb.cpp" line="78"/>
         <source>Spanish</source>
         <translation>Spanisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="78"/>
+        <location filename="../scrapers/TMDb.cpp" line="79"/>
         <source>Swedish</source>
         <translation>Schwedisch</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="79"/>
+        <location filename="../scrapers/TMDb.cpp" line="80"/>
         <source>Turkish</source>
         <translation>Türkisch</translation>
     </message>
@@ -3489,6 +3604,96 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>TrailerDialog</name>
+    <message>
+        <location filename="../globals/TrailerDialog.ui" line="17"/>
+        <source>Trailer</source>
+        <translation>Trailer</translation>
+    </message>
+    <message>
+        <location filename="../globals/TrailerDialog.ui" line="38"/>
+        <source>Scraper</source>
+        <translation>Scraper</translation>
+    </message>
+    <message>
+        <location filename="../globals/TrailerDialog.ui" line="81"/>
+        <source>Result</source>
+        <translation>Ergebnis</translation>
+    </message>
+    <message>
+        <location filename="../globals/TrailerDialog.ui" line="104"/>
+        <location filename="../globals/TrailerDialog.ui" line="195"/>
+        <location filename="../globals/TrailerDialog.ui" line="324"/>
+        <source>Close</source>
+        <translation>Schließen</translation>
+    </message>
+    <message>
+        <location filename="../globals/TrailerDialog.ui" line="155"/>
+        <source>Preview</source>
+        <translation>Vorschau</translation>
+    </message>
+    <message>
+        <location filename="../globals/TrailerDialog.ui" line="160"/>
+        <source>Language</source>
+        <translation>Sprache</translation>
+    </message>
+    <message>
+        <location filename="../globals/TrailerDialog.ui" line="165"/>
+        <source>Title</source>
+        <translation>Titel</translation>
+    </message>
+    <message>
+        <location filename="../globals/TrailerDialog.ui" line="175"/>
+        <source>Back to Search Results</source>
+        <translation>Zurück zum Suchergebnis</translation>
+    </message>
+    <message>
+        <location filename="../globals/TrailerDialog.ui" line="232"/>
+        <source>URL</source>
+        <translation>URL</translation>
+    </message>
+    <message>
+        <location filename="../globals/TrailerDialog.ui" line="263"/>
+        <source>Progress</source>
+        <translation>Fortschritt</translation>
+    </message>
+    <message>
+        <location filename="../globals/TrailerDialog.ui" line="286"/>
+        <source>Download</source>
+        <translation>Download</translation>
+    </message>
+    <message>
+        <location filename="../globals/TrailerDialog.ui" line="293"/>
+        <source>Cancel Download</source>
+        <translation>Download abbrechen</translation>
+    </message>
+    <message>
+        <location filename="../globals/TrailerDialog.ui" line="304"/>
+        <source>Back to Trailers</source>
+        <translation>Zurück zu Trailern</translation>
+    </message>
+    <message>
+        <location filename="../globals/TrailerDialog.cpp" line="273"/>
+        <source>Download Finished</source>
+        <translation>Download abgeschlossen</translation>
+    </message>
+    <message>
+        <location filename="../globals/TrailerDialog.cpp" line="283"/>
+        <source>The file %1 already exists.</source>
+        <translation>Die Datei %1 existiert bereits.</translation>
+    </message>
+    <message>
+        <location filename="../globals/TrailerDialog.cpp" line="284"/>
+        <source>Do you want to overwrite it?</source>
+        <translation>Möchtest du sie überschreiben?</translation>
+    </message>
+    <message>
+        <location filename="../globals/TrailerDialog.cpp" line="296"/>
+        <source>Download Canceled</source>
+        <translation>Download abgebrochen</translation>
+    </message>
+</context>
+<context>
     <name>TvShowDelegate</name>
     <message>
         <location filename="../data/TvShowDelegate.cpp" line="32"/>
@@ -3540,19 +3745,24 @@ p, li { white-space: pre-wrap; }
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="40"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="41"/>
         <source>Search for new episodes</source>
         <translation>Nach neuen Episoden suchen</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="41"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="42"/>
         <source>Mark as watched</source>
         <translation>Als gesehen markieren</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="42"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="43"/>
         <source>Mark as unwatched</source>
         <translation>Als ungesehen markieren</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="44"/>
+        <source>Load Stream Details</source>
+        <translation>Stream Details laden</translation>
     </message>
 </context>
 <context>
@@ -4006,7 +4216,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="941"/>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1021"/>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1101"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="389"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="391"/>
         <source>Click to Change</source>
         <translation>Zum Ändern klicken</translation>
     </message>
@@ -4063,32 +4273,32 @@ p, li { white-space: pre-wrap; }
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="386"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="388"/>
         <source>Season %1</source>
         <translation>Staffel %1</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="633"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="635"/>
         <source>Downloading images...</source>
         <translation>Lade Bilder...</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="990"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="992"/>
         <source>Unknown Genre</source>
         <translation>Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1043"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1045"/>
         <source>Unknown Role</source>
         <translation>Unbekannte Rolle</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1166"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1168"/>
         <source>Choose Image</source>
         <translation>Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1166"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1168"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
@@ -4097,7 +4307,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1042"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1044"/>
         <source>Unknown Actor</source>
         <translation>Unbekannter Schauspieler</translation>
     </message>
@@ -4106,7 +4316,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Unbekannte Rolle</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="433"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="435"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
@@ -4143,17 +4353,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>XbmcXml</name>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="1341"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="1343"/>
         <source>Could not create actors directory</source>
         <translation>Verzeichnis &quot;actors&quot; konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="1345"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="1347"/>
         <source>Could not create movies directory</source>
         <translation>Verzeichnis &quot;movies&quot; konnte nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="1349"/>
+        <location filename="../mediaCenterPlugins/XbmcXml.cpp" line="1351"/>
         <source>Could not create tv shows directory</source>
         <translation>Verzeichnis &quot;tvshows&quot; konnte nicht erstellt werden</translation>
     </message>

@@ -14,6 +14,7 @@
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
+#include "globals/TrailerDialog.h"
 #include "main/MessageBox.h"
 #include "movies/MovieSearch.h"
 #include "tvShows/TvShowSearch.h"
@@ -134,6 +135,7 @@ MainWindow::MainWindow(QWidget *parent) :
     MovieListDialog::instance(ui->centralWidget);
     ImagePreviewDialog::instance(ui->centralWidget);
     ConcertSearch::instance(ui->centralWidget);
+    TrailerDialog::instance(ui->centralWidget);
     NameFormatter::instance(this);
 
 #ifdef Q_WS_WIN

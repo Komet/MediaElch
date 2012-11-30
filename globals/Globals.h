@@ -87,6 +87,15 @@ struct ScraperSearchResult {
     QDate released;
 };
 
+struct TrailerResult {
+    QUrl preview;
+    QString name;
+    QString language;
+    QUrl trailerUrl;
+    QImage previewImage;
+    bool previewImageLoaded;
+};
+
 /**
  * @brief The Poster struct
  */

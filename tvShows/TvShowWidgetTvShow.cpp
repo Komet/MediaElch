@@ -40,6 +40,8 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->buttonPreviewLogo->setEnabled(false);
     ui->buttonPreviewClearArt->setEnabled(false);
     ui->buttonPreviewCharacterArt->setEnabled(false);
+    ui->artStackedWidget->setAnimation(QEasingCurve::OutCubic);
+    ui->artStackedWidget->setSpeed(300);
 
     font = ui->posterResolution->font();
     #ifdef Q_WS_WIN
@@ -1182,7 +1184,7 @@ void TvShowWidgetTvShow::onChangeActorImage()
  */
 void TvShowWidgetTvShow::onArtPageOne()
 {
-    ui->artStackedWidget->setCurrentIndex(0);
+    ui->artStackedWidget->slideInIdx(0);
     ui->buttonArtPageTwo->setChecked(false);
     ui->buttonArtPageOne->setChecked(true);
 }
@@ -1192,7 +1194,7 @@ void TvShowWidgetTvShow::onArtPageOne()
  */
 void TvShowWidgetTvShow::onArtPageTwo()
 {
-    ui->artStackedWidget->setCurrentIndex(1);
+    ui->artStackedWidget->slideInIdx(1);
     ui->buttonArtPageOne->setChecked(false);
     ui->buttonArtPageTwo->setChecked(true);
 }

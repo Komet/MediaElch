@@ -103,7 +103,10 @@ SOURCES += main.cpp\
     smallWidgets/MediaFlags.cpp \
     settings/DataFileListWidget.cpp \
     data/Database.cpp \
-    smallWidgets/LoadingStreamDetails.cpp
+    smallWidgets/LoadingStreamDetails.cpp \
+    trailerProviders/MovieMaze.cpp \
+    globals/TrailerDialog.cpp \
+    smallWidgets/SlidingStackedWidget.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -184,7 +187,11 @@ HEADERS  += main/MainWindow.h \
     smallWidgets/MediaFlags.h \
     settings/DataFileListWidget.h \
     data/Database.h \
-    smallWidgets/LoadingStreamDetails.h
+    smallWidgets/LoadingStreamDetails.h \
+    trailerProviders/TrailerProvider.h \
+    trailerProviders/MovieMaze.h \
+    globals/TrailerDialog.h \
+    smallWidgets/SlidingStackedWidget.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -213,7 +220,8 @@ FORMS    += main/MainWindow.ui \
     support/SupportDialog.ui \
     main/FileScannerDialog.ui \
     smallWidgets/MediaFlags.ui \
-    smallWidgets/LoadingStreamDetails.ui
+    smallWidgets/LoadingStreamDetails.ui \
+    globals/TrailerDialog.ui
 
 RESOURCES += \
     MediaElch.qrc

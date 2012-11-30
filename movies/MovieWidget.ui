@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>934</width>
-    <height>804</height>
+    <height>810</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -287,9 +287,6 @@
                 </property>
                </widget>
               </item>
-              <item row="13" column="1">
-               <widget class="QLineEdit" name="trailer"/>
-              </item>
               <item row="14" column="0">
                <widget class="QLabel" name="label_20">
                 <property name="text">
@@ -357,6 +354,32 @@
               </item>
               <item row="16" column="1">
                <widget class="QTextEdit" name="overview"/>
+              </item>
+              <item row="13" column="1">
+               <layout class="QHBoxLayout" name="horizontalLayout_18">
+                <item>
+                 <widget class="QLineEdit" name="trailer"/>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="buttonDownloadTrailer">
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Download Trailer</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QToolButton {
+	border: none;
+}</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../MediaElch.qrc">
+                    <normaloff>:/img/inbox.png</normaloff>:/img/inbox.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
              </layout>
             </item>
@@ -1187,7 +1210,7 @@ QPushButton::hover {
            </layout>
           </item>
           <item>
-           <widget class="QStackedWidget" name="artStackedWidget">
+           <widget class="SlidingStackedWidget" name="artStackedWidget">
             <property name="currentIndex">
              <number>0</number>
             </property>
@@ -1660,6 +1683,12 @@ QPushButton::hover {
    <header>smallWidgets/MediaFlags.h</header>
    <container>1</container>
   </customwidget>
+  <customwidget>
+   <class>SlidingStackedWidget</class>
+   <extends>QStackedWidget</extends>
+   <header>smallWidgets/SlidingStackedWidget.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>buttonRevert</tabstop>
@@ -1676,7 +1705,6 @@ QPushButton::hover {
   <tabstop>director</tabstop>
   <tabstop>writer</tabstop>
   <tabstop>certification</tabstop>
-  <tabstop>trailer</tabstop>
   <tabstop>watched</tabstop>
   <tabstop>playcount</tabstop>
   <tabstop>lastPlayed</tabstop>

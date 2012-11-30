@@ -32,6 +32,8 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     ui->buttonPreviewLogo->setEnabled(false);
     ui->buttonPreviewClearArt->setEnabled(false);
     ui->buttonPreviewCdArt->setEnabled(false);
+    ui->artStackedWidget->setAnimation(QEasingCurve::OutCubic);
+    ui->artStackedWidget->setSpeed(300);
 
     QFont font = ui->concertName->font();
     font.setPointSize(font.pointSize()+4);
@@ -1057,7 +1059,7 @@ void ConcertWidget::onPreviewCdArt()
  */
 void ConcertWidget::onArtPageOne()
 {
-    ui->artStackedWidget->setCurrentIndex(0);
+    ui->artStackedWidget->slideInIdx(0);
     ui->buttonArtPageTwo->setChecked(false);
     ui->buttonArtPageOne->setChecked(true);
 }
@@ -1067,7 +1069,7 @@ void ConcertWidget::onArtPageOne()
  */
 void ConcertWidget::onArtPageTwo()
 {
-    ui->artStackedWidget->setCurrentIndex(1);
+    ui->artStackedWidget->slideInIdx(1);
     ui->buttonArtPageOne->setChecked(false);
     ui->buttonArtPageTwo->setChecked(true);
 }

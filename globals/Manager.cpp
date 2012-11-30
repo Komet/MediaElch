@@ -15,6 +15,7 @@
 #include "scrapers/TMDb.h"
 #include "scrapers/TMDbConcerts.h"
 #include "scrapers/VideoBuster.h"
+#include "trailerProviders/MovieMaze.h"
 
 /**
  * @brief Manager::Manager
@@ -53,6 +54,8 @@ Manager::Manager(QObject *parent) :
     m_imageProviders.append(new FanartTv(this));
     m_imageProviders.append(new TMDbImages(this));
     m_imageProviders.append(new TheTvDbImages(this));
+
+    m_trailerProviders.append(new MovieMaze(this));
 }
 
 /**
@@ -345,4 +348,9 @@ FileScannerDialog *Manager::fileScannerDialog()
 void Manager::setFileScannerDialog(FileScannerDialog *dialog)
 {
     m_fileScannerDialog = dialog;
+}
+
+QList<TrailerProvider*> Manager::trailerProviders()
+{
+    return m_trailerProviders;
 }

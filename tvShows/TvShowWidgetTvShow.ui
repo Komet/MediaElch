@@ -503,8 +503,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>615</width>
-               <height>615</height>
+               <width>60</width>
+               <height>16</height>
               </rect>
              </property>
              <layout class="QFormLayout" name="seasonsLayout">
@@ -635,7 +635,7 @@ QPushButton::hover {
          </layout>
         </item>
         <item>
-         <widget class="QStackedWidget" name="artStackedWidget">
+         <widget class="SlidingStackedWidget" name="artStackedWidget">
           <property name="currentIndex">
            <number>0</number>
           </property>
@@ -1176,6 +1176,12 @@ QPushButton::hover {
    <class>MyLabel</class>
    <extends>QLabel</extends>
    <header>smallWidgets/MyLabel.h</header>
+  </customwidget>
+  <customwidget>
+   <class>SlidingStackedWidget</class>
+   <extends>QStackedWidget</extends>
+   <header>smallWidgets/SlidingStackedWidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>

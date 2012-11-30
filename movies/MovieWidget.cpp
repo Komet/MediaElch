@@ -16,6 +16,7 @@
 #include "globals/ImageDialog.h"
 #include "globals/ComboDelegate.h"
 #include "movies/MovieSearch.h"
+#include "globals/TrailerDialog.h"
 
 /**
  * @brief MovieWidget::MovieWidget
@@ -37,6 +38,8 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->buttonPreviewLogo->setEnabled(false);
     ui->buttonPreviewClearArt->setEnabled(false);
     ui->buttonPreviewCdArt->setEnabled(false);
+    ui->artStackedWidget->setAnimation(QEasingCurve::OutCubic);
+    ui->artStackedWidget->setSpeed(300);
 
     QFont font = ui->movieName->font();
     font.setPointSize(font.pointSize()+4);
@@ -87,6 +90,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->actor, SIGNAL(clicked()), this, SLOT(onChangeActorImage()));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
     connect(ui->buttonReloadStreamDetails, SIGNAL(clicked()), this, SLOT(onReloadStreamDetails()));
+    connect(ui->buttonDownloadTrailer, SIGNAL(clicked()), this, SLOT(onDownloadTrailer()));
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -1055,6 +1059,13 @@ void MovieWidget::posterDownloadFinished(DownloadManagerElement elem)
     ui->buttonRevert->setVisible(true);
 }
 
+void MovieWidget::onDownloadTrailer()
+{
+    if (!m_movie)
+        return;
+    TrailerDialog::instance()->exec(m_movie);
+}
+
 /**
  * @brief Saves movie information
  */
@@ -1434,7 +1445,7 @@ void MovieWidget::onChangeActorImage()
  */
 void MovieWidget::onArtPageOne()
 {
-    ui->artStackedWidget->setCurrentIndex(0);
+    ui->artStackedWidget->slideInIdx(0);
     ui->buttonArtPageTwo->setChecked(false);
     ui->buttonArtPageOne->setChecked(true);
 }
@@ -1444,7 +1455,7 @@ void MovieWidget::onArtPageOne()
  */
 void MovieWidget::onArtPageTwo()
 {
-    ui->artStackedWidget->setCurrentIndex(1);
+    ui->artStackedWidget->slideInIdx(1);
     ui->buttonArtPageOne->setChecked(false);
     ui->buttonArtPageTwo->setChecked(true);
 }
