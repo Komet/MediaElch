@@ -2171,12 +2171,12 @@ Operation abgebrochen.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="106"/>
+        <location filename="../main.cpp" line="114"/>
         <source>Logfile could not be openened</source>
         <translation>Logdatei konnte nicht geöffnet werden</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="107"/>
+        <location filename="../main.cpp" line="115"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Die Logdatei %1 konnte nicht zum Schreiben geöffnet werden.</translation>
     </message>

@@ -83,7 +83,15 @@ int main(int argc, char *argv[])
     QTranslator editTranslator;
     QString filename;
     filename = QString("MediaElch_%1").arg(QLocale::system().name());
-    editTranslator.load(":/i18n/" + filename);
+
+    QString localFileName = QString("%1%2MediaElch_%3.qm").arg(QCoreApplication::applicationDirPath())
+                                                          .arg(QDir::separator())
+                                                          .arg(QLocale::system().name().left(QLocale::system().name().indexOf("_")));
+    QFileInfo fi(localFileName);
+    if (fi.isFile())
+        editTranslator.load(localFileName);
+    else
+        editTranslator.load(":/i18n/" + filename);
     a.installTranslator(&editTranslator);
 
     QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));

@@ -1887,12 +1887,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="106"/>
+        <location filename="../main.cpp" line="114"/>
         <source>Logfile could not be openened</source>
         <translation>Le fichier journal n&apos;a pas pu être ouvert</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="107"/>
+        <location filename="../main.cpp" line="115"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Le fichier journal %1 n&apos;a pas pu être ouvert en écriture.</translation>
     </message>
