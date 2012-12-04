@@ -51,6 +51,7 @@
         <file>img/star.png</file>
         <file>i18n/MediaElch_fr.qm</file>
         <file>img/inbox.png</file>
+        <file>img/MediaElch.png</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>
