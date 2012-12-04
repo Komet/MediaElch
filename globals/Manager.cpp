@@ -10,6 +10,7 @@
 #include "mediaCenterPlugins/XbmcSql.h"
 #include "mediaCenterPlugins/XbmcXml.h"
 #include "scrapers/Cinefacts.h"
+#include "scrapers/IMDB.h"
 #include "scrapers/OFDb.h"
 #include "scrapers/TheTvDb.h"
 #include "scrapers/TMDb.h"
@@ -25,6 +26,7 @@ Manager::Manager(QObject *parent) :
     QObject(parent)
 {
     m_scrapers.append(new TMDb(this));
+    m_scrapers.append(new IMDB(this));
     m_scrapers.append(new Cinefacts(this));
     m_scrapers.append(new OFDb(this));
     m_scrapers.append(new VideoBuster(this));

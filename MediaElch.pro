@@ -106,7 +106,8 @@ SOURCES += main.cpp\
     smallWidgets/LoadingStreamDetails.cpp \
     trailerProviders/MovieMaze.cpp \
     globals/TrailerDialog.cpp \
-    smallWidgets/SlidingStackedWidget.cpp
+    smallWidgets/SlidingStackedWidget.cpp \
+    scrapers/IMDB.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -191,7 +192,8 @@ HEADERS  += main/MainWindow.h \
     trailerProviders/TrailerProvider.h \
     trailerProviders/MovieMaze.h \
     globals/TrailerDialog.h \
-    smallWidgets/SlidingStackedWidget.h
+    smallWidgets/SlidingStackedWidget.h \
+    scrapers/IMDB.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
