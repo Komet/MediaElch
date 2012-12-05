@@ -29,6 +29,8 @@ class Movie : public QObject
     Q_PROPERTY(QString originalName READ originalName WRITE setOriginalName)
     Q_PROPERTY(QString overview READ overview WRITE setOverview)
     Q_PROPERTY(qreal rating READ rating WRITE setRating)
+    Q_PROPERTY(int votes READ votes WRITE setVotes)
+    Q_PROPERTY(int top250 READ top250 WRITE setTop250)
     Q_PROPERTY(QDate released READ released WRITE setReleased)
     Q_PROPERTY(QString tagline READ tagline WRITE setTagline)
     Q_PROPERTY(QString outline READ outline WRITE setOutline)
@@ -63,6 +65,8 @@ public:
     QString originalName() const;
     QString overview() const;
     qreal rating() const;
+    int votes() const;
+    int top250() const;
     QDate released() const;
     QString tagline() const;
     QString outline() const;
@@ -124,6 +128,8 @@ public:
     void setOriginalName(QString originalName);
     void setOverview(QString overview);
     void setRating(qreal rating);
+    void setVotes(int votes);
+    void setTop250(int top250);
     void setReleased(QDate released);
     void setTagline(QString tagline);
     void setOutline(QString outline);
@@ -200,6 +206,8 @@ private:
     QString m_originalName;
     QString m_overview;
     qreal m_rating;
+    int m_votes;
+    int m_top250;
     QDate m_released;
     QString m_tagline;
     QString m_outline;

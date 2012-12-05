@@ -481,6 +481,8 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
     }
     if (infos.contains(MovieScraperInfos::Rating) && sc.property("vote_average").isValid())
         movie->setRating(sc.property("vote_average").toNumber());
+    if (infos.contains(MovieScraperInfos::Rating) && sc.property("vote_count").isValid())
+        movie->setVotes(sc.property("vote_count").toInteger());
     if (infos.contains(MovieScraperInfos::Tagline) && sc.property("tagline").isValid() && !sc.property("tagline").isNull())
        movie->setTagline(sc.property("tagline").toString());
     if (infos.contains(MovieScraperInfos::Released) && sc.property("release_date").isValid())
