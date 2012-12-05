@@ -233,4 +233,5 @@ RESOURCES += \
 
 TRANSLATIONS += \
     i18n/MediaElch_de.ts \
-    i18n/MediaElch_fr.ts
+    i18n/MediaElch_fr.ts \
+    i18n/MediaElch_pt.ts
