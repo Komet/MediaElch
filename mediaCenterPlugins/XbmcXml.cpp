@@ -64,6 +64,7 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath,
     xml.writeTextElement("originaltitle", movie->originalName());
     xml.writeTextElement("rating", QString("%1").arg(movie->rating()));
     xml.writeTextElement("votes", QString::number(movie->votes()));
+    xml.writeTextElement("top250", QString::number(movie->top250()));
     xml.writeTextElement("year", movie->released().toString("yyyy"));
     xml.writeTextElement("plot", movie->overview());
     xml.writeTextElement("outline", movie->outline());
@@ -331,6 +332,8 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
         movie->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().toFloat());
     if (!domDoc.elementsByTagName("votes").isEmpty())
         movie->setVotes(domDoc.elementsByTagName("votes").at(0).toElement().text().toInt());
+    if (!domDoc.elementsByTagName("top250").isEmpty())
+        movie->setTop250(domDoc.elementsByTagName("top250").at(0).toElement().text().toInt());
     if (!domDoc.elementsByTagName("year").isEmpty())
         movie->setReleased(QDate::fromString(domDoc.elementsByTagName("year").at(0).toElement().text(), "yyyy"));
     if (!domDoc.elementsByTagName("plot").isEmpty())

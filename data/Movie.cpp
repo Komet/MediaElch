@@ -18,6 +18,7 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_files = files;
     m_rating = 0;
     m_votes = 0;
+    m_top250 = 0;
     m_runtime = 0;
     m_playcount = 0;
     m_backdropImageChanged = false;
@@ -328,6 +329,16 @@ qreal Movie::rating() const
 int Movie::votes() const
 {
     return m_votes;
+}
+
+/**
+ * @brief Holds the movies top 250
+ * @return Position of the movie in top 250
+ * @see Movie::setTop250
+ */
+int Movie::top250() const
+{
+    return m_top250;
 }
 
 /**
@@ -963,6 +974,17 @@ void Movie::setRating(qreal rating)
 void Movie::setVotes(int votes)
 {
     m_votes = votes;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the movies top 250 place
+ * @param top250 Top 250 position of the movie
+ * @see Movie::top250
+ */
+void Movie::setTop250(int top250)
+{
+    m_top250 = top250;
     setChanged(true);
 }
 
