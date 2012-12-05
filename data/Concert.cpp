@@ -35,6 +35,7 @@ Concert::Concert(QStringList files, QObject *parent) :
     m_infoFromNfoLoaded = false;
     m_watched = false;
     m_hasChanged = false;
+    m_syncNeeded = false;
     m_downloadsInProgress = false;
     m_downloadsSize = 0;
     m_inSeparateFolder = false;
@@ -118,6 +119,7 @@ bool Concert::saveData(MediaCenterInterface *mediaCenterInterface)
         m_infoLoaded = saved;
     setChanged(false);
     clearImages();
+    setSyncNeeded(true);
     return saved;
 }
 
@@ -202,6 +204,7 @@ void Concert::loadStreamDetailsFromFile()
 {
     m_streamDetails->loadStreamDetails();
     setStreamDetailsLoaded(true);
+    setChanged(true);
 }
 
 /**
@@ -663,6 +666,11 @@ int Concert::databaseId() const
     return m_databaseId;
 }
 
+bool Concert::syncNeeded() const
+{
+    return m_syncNeeded;
+}
+
 /*** SETTER ***/
 
 /**
@@ -1056,6 +1064,11 @@ void Concert::setCdArtImage(QImage img)
     m_cdArtImage = QImage(img);
     m_cdArtImageChanged = true;
     setChanged(true);
+}
+
+void Concert::setSyncNeeded(bool syncNeeded)
+{
+    m_syncNeeded = syncNeeded;
 }
 
 /*** REMOVER ***/

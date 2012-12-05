@@ -68,6 +68,8 @@ void Settings::loadSettings()
     m_debugLogPath = m_settings.value("DebugLogPath").toString();
     m_autoLoadStreamDetails = m_settings.value("AutoLoadStreamDetails", true).toBool();
     m_usePlotForOutline = m_settings.value("Movies/UsePlotForOutline", true).toBool();
+    m_xbmcHost = m_settings.value("XBMC/Host").toString();
+    m_xbmcPort = m_settings.value("XBMC/Port").toInt();
 
     // Proxy
     m_useProxy = m_settings.value("Proxy/Enable", false).toBool();
@@ -518,6 +520,16 @@ bool Settings::usePlotForOutline()
     return m_usePlotForOutline;
 }
 
+QString Settings::xbmcHost()
+{
+    return m_xbmcHost;
+}
+
+int Settings::xbmcPort()
+{
+    return m_xbmcPort;
+}
+
 /*** SETTER ***/
 
 /**
@@ -766,4 +778,18 @@ void Settings::setAutoLoadStreamDetails(bool autoLoad)
 void Settings::setUsePlotForOutline(bool use)
 {
     m_usePlotForOutline = use;
+}
+
+void Settings::setXbmcHost(QString host)
+{
+    m_xbmcHost = host;
+    m_settings.setValue("XBMC/Host", host);
+    m_settings.sync();
+}
+
+void Settings::setXbmcPort(int port)
+{
+    m_xbmcPort = port;
+    m_settings.setValue("XBMC/Port", port);
+    m_settings.sync();
 }

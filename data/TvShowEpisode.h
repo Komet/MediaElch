@@ -70,6 +70,7 @@ public:
     bool streamDetailsLoaded() const;
     QString nfoContent() const;
     int databaseId() const;
+    bool syncNeeded() const;
 
     void setShow(TvShow *show);
     void setName(QString name);
@@ -95,6 +96,7 @@ public:
     void setStreamDetailsLoaded(bool loaded);
     void setNfoContent(QString content);
     void setDatabaseId(int id);
+    void setSyncNeeded(bool syncNeeded);
 
     void removeWriter(QString *writer);
     void removeDirector(QString *director);
@@ -139,6 +141,7 @@ private:
     StreamDetails *m_streamDetails;
     QString m_nfoContent;
     int m_databaseId;
+    bool m_syncNeeded;
 };
 
 QDebug operator<<(QDebug dbg, const TvShowEpisode &episode);

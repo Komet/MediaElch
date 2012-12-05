@@ -20,6 +20,7 @@
 #include "tvShows/TvShowSearch.h"
 #include "sets/MovieListDialog.h"
 #include "settings/Settings.h"
+#include "xbmc/XbmcSync.h"
 
 /**
  * @brief MainWindow::MainWindow
@@ -192,7 +193,8 @@ void MainWindow::setupToolbar()
     QList<QPixmap> icons;
     icons << QPixmap(":/img/spanner.png") << QPixmap(":/img/info.png") << QPixmap(":/img/folder_in.png")
           << QPixmap(":/img/stop.png") << QPixmap(":/img/magnifier.png") <<QPixmap(":/img/save.png")
-          << QPixmap(":/img/storage.png") << QPixmap(":/img/heart.png") << QPixmap(":/img/arrow_circle_right.png");
+          << QPixmap(":/img/storage.png") << QPixmap(":/img/heart.png") << QPixmap(":/img/arrow_circle_right.png")
+          << QPixmap(":/img/xbmc.png");
     for (int i=0, n=icons.count() ; i<n ; ++i) {
         p.begin(&icons[i]);
         p.setCompositionMode(QPainter::CompositionMode_SourceIn);
@@ -219,6 +221,9 @@ void MainWindow::setupToolbar()
 
     m_actionSettings = new QAction(QIcon(icons[0]), tr("Settings"), this);
 
+    m_actionXbmc = new QAction(QIcon(icons[9]), tr("XBMC"), this);
+    m_actionXbmc->setToolTip(tr("Synchronize to XBMC"));
+
     m_actionAbout = new QAction(QIcon(icons[1]), tr("About"), this);
     m_actionQuit = new QAction(QIcon(icons[3]), tr("Quit"), this);
 
@@ -229,6 +234,7 @@ void MainWindow::setupToolbar()
     ui->mainToolBar->addAction(m_actionSaveAll);
     ui->mainToolBar->addAction(m_actionReload);
     ui->mainToolBar->addAction(m_actionSettings);
+    ui->mainToolBar->addAction(m_actionXbmc);
     ui->mainToolBar->addAction(m_actionAbout);
     ui->mainToolBar->addAction(m_actionQuit);
     ui->mainToolBar->addWidget(m_filterWidget);
@@ -244,6 +250,7 @@ void MainWindow::setupToolbar()
     connect(m_actionSettings, SIGNAL(triggered()), m_settingsWidget, SLOT(exec()));
     connect(m_actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(m_actionLike, SIGNAL(triggered()), m_supportDialog, SLOT(exec()));
+    connect(m_actionXbmc, SIGNAL(triggered()), this, SLOT(onActionXbmc()));
 
     m_actionSearch->setEnabled(false);
     m_actionSave->setEnabled(false);
@@ -601,3 +608,9 @@ void MainWindow::setNewMarks()
     ui->buttonTvshows->setIcon(shows);
 }
 
+void MainWindow::onActionXbmc()
+{
+    XbmcSync *xbmc = new XbmcSync(this);
+    xbmc->exec();
+    xbmc->deleteLater();
+}

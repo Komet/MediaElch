@@ -41,6 +41,7 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_downloadsInProgress = false;
     m_downloadsSize = 0;
     m_inSeparateFolder = false;
+    m_syncNeeded = false;
     static int m_idCounter = 0;
     m_movieId = ++m_idCounter;
     m_mediaCenterId = -1;
@@ -146,6 +147,7 @@ bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
         m_infoLoaded = saved;
     setChanged(false);
     clearImages();
+    setSyncNeeded(true);
     return saved;
 }
 
@@ -231,6 +233,7 @@ void Movie::loadStreamDetailsFromFile()
 {
     m_streamDetails->loadStreamDetails();
     setStreamDetailsLoaded(true);
+    setChanged(true);
 }
 
 /**
@@ -909,6 +912,11 @@ int Movie::databaseId() const
     return m_databaseId;
 }
 
+bool Movie::syncNeeded() const
+{
+    return m_syncNeeded;
+}
+
 /*** SETTER ***/
 
 /**
@@ -1378,6 +1386,11 @@ void Movie::setNfoContent(QString content)
 void Movie::setDatabaseId(int id)
 {
     m_databaseId = id;
+}
+
+void Movie::setSyncNeeded(bool syncNeeded)
+{
+    m_syncNeeded = syncNeeded;
 }
 
 /*** ADDER ***/

@@ -30,6 +30,7 @@ TvShow::TvShow(QString dir, QObject *parent) :
     static int m_idCounter = 0;
     m_showId = ++m_idCounter;
     m_databaseId = -1;
+    m_syncNeeded = false;
 }
 
 /**
@@ -132,6 +133,7 @@ bool TvShow::saveData(MediaCenterInterface *mediaCenterInterface)
         m_infoLoaded = saved;
 
     setChanged(false);
+    setSyncNeeded(true);
     clearImages();
     return saved;
 }
@@ -658,6 +660,11 @@ int TvShow::databaseId() const
     return m_databaseId;
 }
 
+bool TvShow::syncNeeded() const
+{
+    return m_syncNeeded;
+}
+
 /*** SETTER ***/
 
 /**
@@ -1083,6 +1090,11 @@ void TvShow::setNfoContent(QString content)
 void TvShow::setDatabaseId(int id)
 {
     m_databaseId = id;
+}
+
+void TvShow::setSyncNeeded(bool syncNeeded)
+{
+    m_syncNeeded = syncNeeded;
 }
 
 /*** DEBUG ***/

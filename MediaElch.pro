@@ -107,7 +107,8 @@ SOURCES += main.cpp\
     trailerProviders/MovieMaze.cpp \
     globals/TrailerDialog.cpp \
     smallWidgets/SlidingStackedWidget.cpp \
-    scrapers/IMDB.cpp
+    scrapers/IMDB.cpp \
+    xbmc/XbmcSync.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -193,7 +194,8 @@ HEADERS  += main/MainWindow.h \
     trailerProviders/MovieMaze.h \
     globals/TrailerDialog.h \
     smallWidgets/SlidingStackedWidget.h \
-    scrapers/IMDB.h
+    scrapers/IMDB.h \
+    xbmc/XbmcSync.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -223,7 +225,8 @@ FORMS    += main/MainWindow.ui \
     main/FileScannerDialog.ui \
     smallWidgets/MediaFlags.ui \
     smallWidgets/LoadingStreamDetails.ui \
-    globals/TrailerDialog.ui
+    globals/TrailerDialog.ui \
+    xbmc/XbmcSync.ui
 
 RESOURCES += \
     MediaElch.qrc

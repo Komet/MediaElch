@@ -120,6 +120,7 @@ public:
     QDateTime fileLastModified() const;
     QString nfoContent() const;
     int databaseId() const;
+    bool syncNeeded() const;
 
     bool hasChanged() const;
 
@@ -178,6 +179,7 @@ public:
     void setFileLastModified(QDateTime modified);
     void setNfoContent(QString content);
     void setDatabaseId(int id);
+    void setSyncNeeded(bool syncNeeded);
 
     void removeActor(Actor *actor);
     void removeCountry(QString *country);
@@ -253,6 +255,7 @@ private:
     bool m_hasLogo;
     bool m_hasClearArt;
     bool m_hasCdArt;
+    bool m_syncNeeded;
     QList<int> m_infosToLoad;
     bool m_streamDetailsLoaded;
     StreamDetails *m_streamDetails;

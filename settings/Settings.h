@@ -36,6 +36,8 @@ public:
     QString xbmcMysqlPassword();
     QString xbmcSqliteDatabase();
     QString xbmcThumbnailPath();
+    QString xbmcHost();
+    int xbmcPort();
     bool useProxy();
     int proxyType();
     QString proxyHost();
@@ -77,6 +79,8 @@ public:
     void setAutoLoadStreamDetails(bool autoLoad);
     void setDataFiles(QList<DataFile> files);
     void setUsePlotForOutline(bool use);
+    void setXbmcHost(QString host);
+    void setXbmcPort(int port);
 
 public slots:
     void saveSettings();
@@ -113,6 +117,8 @@ private:
     QList<DataFile> m_dataFiles;
     QList<DataFile> m_initialDataFiles;
     bool m_usePlotForOutline;
+    QString m_xbmcHost;
+    int m_xbmcPort;
 
     void setupProxy();
 };

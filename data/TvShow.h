@@ -85,6 +85,7 @@ public:
     bool hasNewEpisodesInSeason(QString season) const;
     QString nfoContent() const;
     int databaseId() const;
+    bool syncNeeded() const;
 
     void setName(QString name);
     void setShowTitle(QString title);
@@ -122,6 +123,7 @@ public:
     void setCharacterArtImage(QImage img);
     void setNfoContent(QString content);
     void setDatabaseId(int id);
+    void setSyncNeeded(bool syncNeeded);
 
     void removeActor(Actor *actor);
     void removeGenre(QString *genre);
@@ -178,6 +180,7 @@ private:
     bool m_hasChanged;
     QString m_nfoContent;
     int m_databaseId;
+    bool m_syncNeeded;
 };
 
 QDebug operator<<(QDebug dbg, const TvShow &show);

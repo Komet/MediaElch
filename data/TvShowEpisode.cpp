@@ -29,6 +29,7 @@ TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) :
     m_infoLoaded = false;
     m_infoFromNfoLoaded = false;
     m_databaseId = -1;
+    m_syncNeeded = false;
     if (!files.isEmpty())
         m_streamDetails = new StreamDetails(this, files.at(0));
     else
@@ -114,6 +115,7 @@ void TvShowEpisode::loadStreamDetailsFromFile()
 {
     m_streamDetails->loadStreamDetails();
     setStreamDetailsLoaded(true);
+    setChanged(true);
 }
 
 /**
@@ -139,6 +141,7 @@ bool TvShowEpisode::saveData(MediaCenterInterface *mediaCenterInterface)
     if (!m_infoLoaded)
         m_infoLoaded = saved;
     setChanged(false);
+    setSyncNeeded(true);
     clearImages();
     return saved;
 }
@@ -517,6 +520,11 @@ int TvShowEpisode::databaseId() const
     return m_databaseId;
 }
 
+bool TvShowEpisode::syncNeeded() const
+{
+    return m_syncNeeded;
+}
+
 /*** SETTER ***/
 
 /**
@@ -793,6 +801,11 @@ void TvShowEpisode::setNfoContent(QString content)
 void TvShowEpisode::setDatabaseId(int id)
 {
     m_databaseId = id;
+}
+
+void TvShowEpisode::setSyncNeeded(bool syncNeeded)
+{
+    m_syncNeeded = syncNeeded;
 }
 
 /*** DEBUG ***/

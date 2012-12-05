@@ -50,6 +50,7 @@ private slots:
     void onActionSave();
     void onActionSaveAll();
     void onActionReload();
+    void onActionXbmc();
     void onFilterChanged(QList<Filter*> filters, QString text);
     void onSetSaveEnabled(bool enabled, MainWidgets widget);
     void onSetSearchEnabled(bool enabled, MainWidgets widget);
@@ -64,6 +65,7 @@ private:
     FileScannerDialog *m_fileScannerDialog;
     QAction *m_actionSearch;
     QAction *m_actionSave;
+    QAction *m_actionXbmc;
     QAction *m_actionAbout;
     QAction *m_actionQuit;
     QAction *m_actionSaveAll;
