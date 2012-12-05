@@ -202,16 +202,6 @@
                 </property>
                </widget>
               </item>
-              <item row="7" column="1">
-               <widget class="QDoubleSpinBox" name="rating">
-                <property name="decimals">
-                 <number>1</number>
-                </property>
-                <property name="maximum">
-                 <double>10.000000000000000</double>
-                </property>
-               </widget>
-              </item>
               <item row="8" column="0">
                <widget class="QLabel" name="label_5">
                 <property name="text">
@@ -376,6 +366,50 @@
                   <property name="icon">
                    <iconset resource="../MediaElch.qrc">
                     <normaloff>:/img/inbox.png</normaloff>:/img/inbox.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="7" column="1">
+               <layout class="QHBoxLayout" name="horizontalLayout_19">
+                <item>
+                 <widget class="QDoubleSpinBox" name="rating">
+                  <property name="decimals">
+                   <number>1</number>
+                  </property>
+                  <property name="maximum">
+                   <double>10.000000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_12">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeType">
+                   <enum>QSizePolicy::Fixed</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_35">
+                  <property name="text">
+                   <string>Votes</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="votes">
+                  <property name="maximum">
+                   <number>9999999</number>
                   </property>
                  </widget>
                 </item>
@@ -1699,7 +1733,6 @@ QPushButton::hover {
   <tabstop>sortTitle</tabstop>
   <tabstop>set</tabstop>
   <tabstop>tagline</tabstop>
-  <tabstop>rating</tabstop>
   <tabstop>released</tabstop>
   <tabstop>runtime</tabstop>
   <tabstop>director</tabstop>

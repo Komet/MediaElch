@@ -112,6 +112,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->sortTitle, SIGNAL(textEdited(QString)), this, SLOT(onSortTitleChange(QString)));
     connect(ui->tagline, SIGNAL(textEdited(QString)), this, SLOT(onTaglineChange(QString)));
     connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
+    connect(ui->votes, SIGNAL(valueChanged(int)), this, SLOT(onVotesChange(int)));
     connect(ui->trailer, SIGNAL(textEdited(QString)), this, SLOT(onTrailerChange(QString)));
     connect(ui->runtime, SIGNAL(valueChanged(int)), this, SLOT(onRuntimeChange(int)));
     connect(ui->playcount, SIGNAL(valueChanged(int)), this, SLOT(onPlayCountChange(int)));
@@ -220,6 +221,10 @@ void MovieWidget::clear()
     blocked = ui->rating->blockSignals(true);
     ui->rating->clear();
     ui->rating->blockSignals(blocked);
+
+    blocked = ui->votes->blockSignals(true);
+    ui->votes->clear();
+    ui->votes->blockSignals(blocked);
 
     blocked = ui->released->blockSignals(true);
     ui->released->setDate(QDate::currentDate());
@@ -526,6 +531,7 @@ void MovieWidget::updateMovieInfo()
     }
 
     ui->rating->blockSignals(true);
+    ui->votes->blockSignals(true);
     ui->runtime->blockSignals(true);
     ui->playcount->blockSignals(true);
     ui->set->blockSignals(true);
@@ -550,6 +556,7 @@ void MovieWidget::updateMovieInfo()
     ui->sortTitle->setText(m_movie->sortTitle());
     ui->tagline->setText(m_movie->tagline());
     ui->rating->setValue(m_movie->rating());
+    ui->votes->setValue(m_movie->votes());
     ui->released->setDate(m_movie->released());
     ui->runtime->setValue(m_movie->runtime());
     ui->trailer->setText(m_movie->trailer().toString());
@@ -721,6 +728,7 @@ void MovieWidget::updateMovieInfo()
     }
 
     ui->rating->blockSignals(false);
+    ui->votes->blockSignals(false);
     ui->runtime->blockSignals(false);
     ui->playcount->blockSignals(false);
     ui->watched->blockSignals(false);
@@ -1525,6 +1533,17 @@ void MovieWidget::onRatingChange(double value)
     if (!m_movie)
         return;
     m_movie->setRating(value);
+    ui->buttonRevert->setVisible(true);
+}
+
+/**
+ * @brief Marks the movie as changed when the votes has changed
+ */
+void MovieWidget::onVotesChange(int value)
+{
+    if (!m_movie)
+        return;
+    m_movie->setVotes(value);
     ui->buttonRevert->setVisible(true);
 }
 

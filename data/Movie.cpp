@@ -17,6 +17,7 @@ Movie::Movie(QStringList files, QObject *parent) :
 {
     m_files = files;
     m_rating = 0;
+    m_votes = 0;
     m_runtime = 0;
     m_playcount = 0;
     m_backdropImageChanged = false;
@@ -107,8 +108,10 @@ void Movie::clear(QList<int> infos)
         m_overview = "";
         m_outline = "";
     }
-    if (infos.contains(MovieScraperInfos::Rating))
+    if (infos.contains(MovieScraperInfos::Rating)) {
         m_rating = 0;
+        m_votes = 0;
+    }
     if (infos.contains(MovieScraperInfos::Released))
         m_released = QDate(2000, 02, 30); // invalid date
     if (infos.contains(MovieScraperInfos::Tagline))
@@ -315,6 +318,16 @@ QString Movie::overview() const
 qreal Movie::rating() const
 {
     return m_rating;
+}
+
+/**
+ * @brief Holds the movies votes
+ * @return Votes of the movie
+ * @see Movie::setVotes
+ */
+int Movie::votes() const
+{
+    return m_votes;
 }
 
 /**
@@ -939,6 +952,17 @@ void Movie::setOverview(QString overview)
 void Movie::setRating(qreal rating)
 {
     m_rating = rating;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the movies votes
+ * @param votes Votes of the movie
+ * @see Movie::votes
+ */
+void Movie::setVotes(int votes)
+{
+    m_votes = votes;
     setChanged(true);
 }
 

@@ -19,7 +19,8 @@
   <property name="styleSheet">
    <string notr="true">#MovieSearch {
 	background-image: url(:/img/pattern_dark.png);
-}</string>
+}
+</string>
   </property>
   <property name="modal">
    <bool>true</bool>
