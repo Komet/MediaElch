@@ -23,7 +23,6 @@ public:
     virtual bool loadMovie(Movie *movie, QString nfoContent = "") = 0;
     virtual bool saveConcert(Concert *concert) = 0;
     virtual bool loadConcert(Concert *concert, QString nfoContent = "") = 0;
-    virtual void exportDatabase(QList<Movie*> movies, QList<TvShow*> shows, QString exportPath, QString pathSearch, QString pathReplace) = 0;
     virtual bool loadTvShow(TvShow *show, QString nfoContent = "") = 0;
     virtual bool loadTvShowEpisode(TvShowEpisode *episode, QString nfoContent = "") = 0;
     virtual QImage movieSetPoster(QString setName) = 0;
@@ -54,11 +53,6 @@ public:
     virtual QString clearArtImageName(TvShow *show) = 0;
     virtual QString characterArtImageName(TvShow *show) = 0;
     virtual QString seasonPosterImageName(TvShow *show, int season) = 0;
-signals:
-    virtual void sigExportStarted() = 0;
-    virtual void sigExportProgress(int, int) = 0;
-    virtual void sigExportDone() = 0;
-    virtual void sigExportRaiseError(QString) = 0;
 };
 
 #endif // MEDIACENTERINTERFACE_H

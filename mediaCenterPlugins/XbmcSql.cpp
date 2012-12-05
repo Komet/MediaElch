@@ -1493,24 +1493,6 @@ QString XbmcSql::cdArtImageName(Concert *concert)
 }
 
 /**
- * @brief Exports the database. Disabled till rework
- * @param movies
- * @param shows
- * @param exportPath
- * @param pathSearch
- * @param pathReplace
- * @todo: Remove or reimplement (Export)
- */
-void XbmcSql::exportDatabase(QList<Movie *> movies, QList<TvShow *> shows, QString exportPath, QString pathSearch, QString pathReplace)
-{
-    Q_UNUSED(movies);
-    Q_UNUSED(shows);
-    Q_UNUSED(exportPath);
-    Q_UNUSED(pathSearch);
-    Q_UNUSED(pathReplace);
-}
-
-/**
  * @brief Loads infos for a tv show (except images)
  * @param show Show to load infos for
  * @return Loading success

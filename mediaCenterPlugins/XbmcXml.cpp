@@ -51,12 +51,8 @@ void XbmcXml::shutdown()
  * @brief Writes movie elements to an xml stream
  * @param xml XML stream
  * @param movie Movie to save
- * @param writePath If true the full path of the files will be written (currently unused, just for export)
- * @param pathSearch (currently unused, just for export)
- * @param pathReplace (currently unused, just for export)
- * @todo: Remove last three parameters or reimplement (Export)
  */
-void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath, QString pathSearch, QString pathReplace)
+void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie)
 {
     qDebug() << "Entered, movie=" << movie->name();
     xml.writeStartElement("movie");
@@ -76,23 +72,6 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath,
     xml.writeTextElement("director", movie->director());
     xml.writeTextElement("playcount", QString("%1").arg(movie->playcount()));
     xml.writeTextElement("lastplayed", movie->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
-    if (writePath && movie->files().size() > 0) {
-        QFileInfo fi(movie->files().at(0));
-        xml.writeTextElement("path", fi.absolutePath());
-        if (movie->files().size() == 1) {
-            fi.setFile(movie->files().at(0));
-            xml.writeTextElement("filenameandpath", fi.absoluteFilePath().replace(pathSearch, pathReplace));
-            xml.writeTextElement("basepath", fi.absoluteFilePath().replace(pathSearch, pathReplace));
-        } else {
-            QStringList files;
-            foreach (const QString &file, movie->files()) {
-                fi.setFile(file);
-                files.append(fi.absoluteFilePath().replace(pathSearch, pathReplace));
-            }
-            xml.writeTextElement("filenameandpath", QString("stack://%1").arg(files.join(" , ")));
-            xml.writeTextElement("basepath", QString("stack://%1").arg(files.join(" , ")));
-        }
-    }
     xml.writeTextElement("id", movie->id());
     xml.writeTextElement("tmdbid", movie->tmdbId());
     xml.writeTextElement("set", movie->set());
@@ -693,12 +672,8 @@ QString XbmcXml::cdArtImageNameStatic(Movie *movie)
  * @brief Writes concert elements to an xml stream
  * @param xml XML stream
  * @param concert Concert to save
- * @param writePath If true the full path of the files will be written (currently unused, just for export)
- * @param pathSearch (currently unused, just for export)
- * @param pathReplace (currently unused, just for export)
- * @todo: Remove last three parameters or reimplement (Export)
  */
-void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert, bool writePath, QString pathSearch, QString pathReplace)
+void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert)
 {
     qDebug() << "Entered, concert=" << concert->name();
     xml.writeStartElement("musicvideo");
@@ -717,23 +692,6 @@ void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert, bool writ
     xml.writeTextElement("mpaa", concert->certification());
     xml.writeTextElement("playcount", QString("%1").arg(concert->playcount()));
     xml.writeTextElement("lastplayed", concert->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
-    if (writePath && concert->files().size() > 0) {
-        QFileInfo fi(concert->files().at(0));
-        xml.writeTextElement("path", fi.absolutePath());
-        if (concert->files().size() == 1) {
-            fi.setFile(concert->files().at(0));
-            xml.writeTextElement("filenameandpath", fi.absoluteFilePath().replace(pathSearch, pathReplace));
-            xml.writeTextElement("basepath", fi.absoluteFilePath().replace(pathSearch, pathReplace));
-        } else {
-            QStringList files;
-            foreach (const QString &file, concert->files()) {
-                fi.setFile(file);
-                files.append(fi.absoluteFilePath().replace(pathSearch, pathReplace));
-            }
-            xml.writeTextElement("filenameandpath", QString("stack://%1").arg(files.join(" , ")));
-            xml.writeTextElement("basepath", QString("stack://%1").arg(files.join(" , ")));
-        }
-    }
     xml.writeTextElement("trailer", Helper::formatTrailerUrl(concert->trailer().toString()));
     xml.writeTextElement("watched", (concert->watched()) ? "true" : "false");
     foreach (const QString &genre, concert->genres())
@@ -1331,144 +1289,6 @@ QString XbmcXml::thumbnailImageName(TvShowEpisode *episode)
 }
 
 /**
- * @brief Exports a list of movies and tv shows into a single xml file
- * This is currently unused due to disabled export
- * @param movies List of movies to export
- * @param shows List of shows to export
- * @param exportPath
- * @param pathSearch
- * @param pathReplace
- * @todo: Remove or reimplement (Export)
- */
-void XbmcXml::exportDatabase(QList<Movie*> movies, QList<TvShow*> shows, QString exportPath, QString pathSearch, QString pathReplace)
-{
-    emit sigExportStarted();
-
-    QDir dir(exportPath);
-    if (!dir.mkdir("actors")) {
-        emit sigExportRaiseError(tr("Could not create actors directory"));
-        return;
-    }
-    if (!dir.mkdir("movies")) {
-        emit sigExportRaiseError(tr("Could not create movies directory"));
-        return;
-    }
-    if (!dir.mkdir("tvshows")) {
-        emit sigExportRaiseError(tr("Could not create tv shows directory"));
-        return;
-    }
-
-    int numOfMovies = movies.count();
-    int numOfElements = numOfMovies + shows.size();
-    for (int i=0, n=shows.count() ; i<n ; ++i)
-        numOfElements += shows[i]->episodeCount();
-
-    QByteArray xmlContent;
-    QXmlStreamWriter xml(&xmlContent);
-    xml.setAutoFormatting(true);
-    xml.writeStartDocument("1.0", true);
-    xml.writeStartElement("videodb");
-    xml.writeTextElement("version", "1");
-    for (int i=0, n=movies.size() ; i<n ; ++i) {
-        emit sigExportProgress(i, numOfElements);
-        Movie *movie = movies[i];
-        if (!movie->infoLoaded())
-            continue;
-
-        writeMovieXml(xml, movie, true, pathSearch, pathReplace);
-
-        if (movie->files().size() == 0)
-            continue;
-
-        QFileInfo fi(movie->files().at(0));
-        QString actorPath = fi.absolutePath() + QDir::separator() + ".actors";
-        QDir movieDir(actorPath);
-        QStringList actorFilters;
-        actorFilters << "*.tbn";
-        foreach (QString actorFile, movieDir.entryList(actorFilters, QDir::NoDotAndDotDot | QDir::Files))
-            QFile::copy(actorPath + QDir::separator() + actorFile, exportPath + QDir::separator() + "actors" + QDir::separator() + actorFile.replace(" ", "_"));
-
-        QFileInfo posterFi(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".tbn");
-        QFileInfo backdropFi(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + "-fanart.jpg");
-        QString newPosterName = QString("%1_%2.tbn").arg(movie->name().replace(" ", "_")).arg(movie->released().year());
-        QString newBackdropName = QString("%1_%2-fanart.jpg").arg(movie->name().replace(" ", "_")).arg(movie->released().year());
-        if (posterFi.isFile())
-            QFile::copy(posterFi.absoluteFilePath(), exportPath + QDir::separator() + "movies" + QDir::separator() + newPosterName);
-        if (backdropFi.isFile())
-            QFile::copy(backdropFi.absoluteFilePath(), exportPath + QDir::separator() + "movies" + QDir::separator() + newBackdropName);
-    }
-
-    int progress = numOfMovies;
-    for (int i=0, x=shows.count() ; i<x ; ++i) {
-        emit sigExportProgress(progress++, numOfElements);
-        if (!shows[i]->infoLoaded())
-            continue;
-
-        // create tv show directory
-        QDir tvShowDir(exportPath + QDir::separator() + "tvshows");
-        if (!tvShowDir.mkdir(shows[i]->name().replace(" ", "_")))
-            continue;
-        tvShowDir.setPath(exportPath + QDir::separator() + "tvshows" + QDir::separator() + shows[i]->name().replace(" ", "_"));
-
-        // copy actors
-        QDir actorsDir(shows[i]->dir() + QDir::separator() + ".actors");
-        QStringList actorFilters;
-        actorFilters << "*.tbn";
-        foreach (QString actorFile, actorsDir.entryList(actorFilters, QDir::NoDotAndDotDot | QDir::Files))
-            QFile::copy(actorsDir.absolutePath() + QDir::separator() + actorFile, exportPath + QDir::separator() + "actors" + QDir::separator() + actorFile.replace(" ", "_"));
-
-        // copy poster and backdrop
-        QFileInfo posterFi(shows[i]->dir() + QDir::separator() + "season-all.tbn");
-        QFileInfo backdropFi(shows[i]->dir() + QDir::separator() + "fanart.jpg");
-        if (posterFi.isFile())
-            QFile::copy(posterFi.absoluteFilePath(), tvShowDir.absolutePath() + QDir::separator() + "season-all.tbn");
-        if (backdropFi.isFile())
-            QFile::copy(backdropFi.absoluteFilePath(), tvShowDir.absolutePath() + QDir::separator() + "fanart.jpg");
-
-        // copy season backdrops
-        foreach (int s, shows[i]->seasons()) {
-            QString season = QString::number(s);
-            if (s < 10)
-                season.prepend("0");
-            QFileInfo seasonFi(shows[i]->dir() + QDir::separator() + "season" + season + ".tbn");
-            if (seasonFi.isFile())
-                QFile::copy(seasonFi.absoluteFilePath(), tvShowDir.absolutePath() + QDir::separator() + "season" + season + ".tbn");
-        }
-
-        xml.writeStartElement("tvshow");
-        writeTvShowXml(xml, shows[i], true, pathSearch, pathReplace, false);
-
-        for (int n=0, y=shows[i]->episodes().count() ; n<y ; ++n) {
-            emit sigExportProgress(progress++, numOfElements);
-            TvShowEpisode *episode = shows[i]->episodes().at(n);
-            if (!episode->infoLoaded())
-                continue;
-            if (episode->files().isEmpty())
-                continue;
-
-            QFileInfo fi(episode->files().at(0));
-            QFileInfo thumbFi(fi.absolutePath() + QDir::separator() + fi.completeBaseName() + ".tbn");
-            if (thumbFi.isFile())
-                QFile::copy(thumbFi.absoluteFilePath(), tvShowDir.absolutePath() + QDir::separator() + "s" + episode->seasonString() + "e" + episode->episodeString() + ".tbn");
-
-            writeTvShowEpisodeXml(xml, shows[i]->episodes().at(n), true, pathSearch, pathReplace);
-        }
-        xml.writeEndElement();
-    }
-
-    xml.writeEndElement();
-    xml.writeEndDocument();
-
-    QFile file(exportPath + QDir::separator() + "videodb.xml");
-    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        file.write(xmlContent);
-        file.close();
-    }
-
-    emit sigExportDone();
-}
-
-/**
  * @brief Loads tv show information
  * @param show Show to load
  * @return Loading success
@@ -1815,17 +1635,11 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
  * @brief Writes tv show elements to an xml stream
  * @param xml XML stream
  * @param show Tv show to save
- * @param writePath If true the full path of the files will be written (currently unused, just for export)
- * @param pathSearch (currently unused, just for export)
- * @param pathReplace (currently unused, just for export)
- * @param writeStartAndEndElement
- * @todo: Remove last four parameters or reimplement (Export)
  */
-void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath, QString pathSearch, QString pathReplace, bool writeStartAndEndElement)
+void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show)
 {
     qDebug() << "Entered, show=" << show->name();
-    if (writeStartAndEndElement)
-        xml.writeStartElement("tvshow");
+    xml.writeStartElement("tvshow");
     xml.writeTextElement("title", show->name());
     xml.writeTextElement("showtitle", show->showTitle());
     xml.writeTextElement("rating", QString("%1").arg(show->rating()));
@@ -1885,28 +1699,15 @@ void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath
         }
     }
 
-    if (writePath && !show->dir().isEmpty()) {
-        QString dir = show->dir();
-        xml.writeTextElement("path", dir.replace(pathSearch, pathReplace));
-        xml.writeTextElement("filenameandpath", "");
-        xml.writeTextElement("file", "");
-        xml.writeTextElement("basepath", dir.replace(pathSearch, pathReplace));
-    }
-
-    if (writeStartAndEndElement)
-        xml.writeEndElement();
+    xml.writeEndElement();
 }
 
 /**
  * @brief Writes tv show episode elements to an xml stream
  * @param xml XML stream
  * @param episode Episode to save
- * @param writePath If true the full path of the files will be written (currently unused, just for export)
- * @param pathSearch (currently unused, just for export)
- * @param pathReplace (currently unused, just for export)
- * @todo: Remove last three parameters or reimplement (Export)
  */
-void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode, bool writePath, QString pathSearch, QString pathReplace)
+void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode)
 {
     qDebug() << "Entered, episode=" << episode->name();
     xml.writeStartElement("episodedetails");
@@ -1928,24 +1729,6 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
         xml.writeTextElement("director", director);
     if (!episode->thumbnail().isEmpty())
         xml.writeTextElement("thumb", episode->thumbnail().toString());
-
-    if (writePath && episode->files().size() > 0) {
-        QFileInfo fi(episode->files().at(0));
-        xml.writeTextElement("path", fi.absolutePath());
-        if (episode->files().size() == 1) {
-            fi.setFile(episode->files().at(0));
-            xml.writeTextElement("filenameandpath", fi.absoluteFilePath().replace(pathSearch, pathReplace));
-            xml.writeTextElement("basepath", fi.absoluteFilePath().replace(pathSearch, pathReplace));
-        } else {
-            QStringList files;
-            foreach (const QString &file, episode->files()) {
-                fi.setFile(file);
-                files.append(fi.absoluteFilePath().replace(pathSearch, pathReplace));
-            }
-            xml.writeTextElement("filenameandpath", QString("stack://%1").arg(files.join(" , ")));
-            xml.writeTextElement("basepath", QString("stack://%1").arg(files.join(" , ")));
-        }
-    }
 
     if (episode->tvShow() != 0) {
         foreach (const Actor &actor, episode->tvShow()->actors()) {

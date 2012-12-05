@@ -24,7 +24,6 @@ public:
     bool loadMovie(Movie *movie, QString nfoContent = "");
     bool saveConcert(Concert *concert);
     bool loadConcert(Concert *concert, QString nfoContent = "");
-    void exportDatabase(QList<Movie*> movies, QList<TvShow*> shows, QString exportPath, QString pathSearch, QString pathReplace);
     bool loadTvShow(TvShow *show, QString nfoContent = "");
     bool loadTvShowEpisode(TvShowEpisode *episode, QString nfoContent = "");
     bool saveTvShow(TvShow *show);
@@ -57,12 +56,6 @@ public:
     QString logoImageName(TvShow *show);
     QString clearArtImageName(TvShow *show);
     QString characterArtImageName(TvShow *show);
-
-signals:
-    void sigExportStarted();
-    void sigExportProgress(int, int);
-    void sigExportDone();
-    void sigExportRaiseError(QString);
 
 private:
     QString hash(QString string);

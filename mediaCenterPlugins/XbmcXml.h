@@ -26,7 +26,6 @@ public:
     bool saveConcert(Concert *concert);
     bool loadConcert(Concert *concert, QString initialNfoContent = "");
     void loadConcertImages(Concert *concert);
-    void exportDatabase(QList<Movie *> movies, QList<TvShow*> shows, QString exportPath, QString pathSearch, QString pathReplace);
     bool loadTvShow(TvShow *show, QString initialNfoContent = "");
     bool loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoContent = "");
     bool saveTvShow(TvShow *show);
@@ -70,17 +69,11 @@ public:
     QString clearArtImageName(TvShow *show);
     QString characterArtImageName(TvShow *show);
 
-signals:
-    void sigExportStarted();
-    void sigExportProgress(int, int);
-    void sigExportDone();
-    void sigExportRaiseError(QString);
-
 private:
-    void writeMovieXml(QXmlStreamWriter &xml, Movie *movie, bool writePath = false, QString pathSearch = "", QString pathReplace = "");
-    void writeConcertXml(QXmlStreamWriter &xml, Concert *concert, bool writePath = false, QString pathSearch = "", QString pathReplace = "");
-    void writeTvShowXml(QXmlStreamWriter &xml, TvShow *show, bool writePath = false, QString pathSearch = "", QString pathReplace = "", bool writeStartAndEndElement = true);
-    void writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode, bool writePath = false, QString pathSearch = "", QString pathReplace = "");
+    void writeMovieXml(QXmlStreamWriter &xml, Movie *movie);
+    void writeConcertXml(QXmlStreamWriter &xml, Concert *concert);
+    void writeTvShowXml(QXmlStreamWriter &xml, TvShow *show);
+    void writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode);
     void writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDetails);
     QString nfoFilePath(Movie *movie);
     QString nfoFilePath(Concert *concert);
