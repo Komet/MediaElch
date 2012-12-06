@@ -1220,12 +1220,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../main/MainWindow.cpp" line="224"/>
         <source>XBMC</source>
-        <translation type="unfinished"></translation>
+        <translation>XBMC</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="225"/>
         <source>Synchronize to XBMC</source>
-        <translation type="unfinished"></translation>
+        <translation>Synchroniser avec XBMC</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="230"/>
@@ -1605,12 +1605,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/MovieWidget.ui" line="405"/>
         <source>Votes</source>
-        <translation type="unfinished"></translation>
+        <translation>Votes</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="435"/>
         <source>Top 250</source>
-        <translation type="unfinished"></translation>
+        <translation>Top 250</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="454"/>
@@ -3548,118 +3548,118 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="17"/>
         <source>XBMC Synchronization</source>
-        <translation type="unfinished"></translation>
+        <translation>XBMC Synchronization</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
         <source>This will tell XBMC to remove the changed movies, concerts or shows. Afterwards a XBMC library update is triggered and the removed items will be picked up again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceci indiquera a XBMC d’enlever les films modifiés, les concerts ou les spectacles. Après qu’une mise à jour de la bibliothèque soit déclenchée les éléments supprimés seront remis.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="36"/>
         <source>For this to work you need to have setup your sources in XBMC and enable the Webserver.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pour que cela fonctionne, vous devez avoir configuré vos sources dans XBMC et activer le serveur Web.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="48"/>
         <source>XBMC Host</source>
-        <translation type="unfinished"></translation>
+        <translation>Hôte XBMC</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="55"/>
         <source>Port</source>
-        <translation type="unfinished">Port</translation>
+        <translation>Port</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="62"/>
         <source>http://127.0.0.1</source>
-        <translation type="unfinished"></translation>
+        <translation>http://127.0.0.1</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="69"/>
         <source>8080</source>
-        <translation type="unfinished">8080</translation>
+        <translation>8080</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="78"/>
         <source>Update all movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Mettre à jour tous les films</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="85"/>
         <source>Update all TV Shows</source>
-        <translation type="unfinished"></translation>
+        <translation>Mettre à jour toutes les séries TV</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="92"/>
         <source>Update all concerts</source>
-        <translation type="unfinished"></translation>
+        <translation>Mettre à jour tous les concerts</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="120"/>
         <location filename="../xbmc/XbmcSync.ui" line="127"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="138"/>
         <source>Close</source>
-        <translation type="unfinished">Fermer</translation>
+        <translation>Fermer</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="161"/>
         <source>Synchronize</source>
-        <translation type="unfinished"></translation>
+        <translation>Synchronize</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="90"/>
         <source>Please fill in your XBMC host and port.</source>
-        <translation type="unfinished"></translation>
+        <translation>S&apos;il vous plaît veuillez renseigner votre hôte et le port de XBMC.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="138"/>
         <source>Nothing to synchronize</source>
-        <translation type="unfinished"></translation>
+        <translation>Rien à synchroniser</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="141"/>
         <source>Getting contents from XBMC</source>
-        <translation type="unfinished"></translation>
+        <translation>Obtenir le contenu de XBMC</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="148"/>
         <source>XBMC is not reachable. Please check your settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>XBMC n&apos;est pas accessible. S&apos;il vous plaît vérifier vos paramètres.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="313"/>
         <source>Removing movies from database</source>
-        <translation type="unfinished"></translation>
+        <translation>Suppression des films de la base de données</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="321"/>
         <source>Removing concerts from database</source>
-        <translation type="unfinished"></translation>
+        <translation>Suppressiondes concerts de la base de données</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="329"/>
         <source>Removing TV shows from database</source>
-        <translation type="unfinished"></translation>
+        <translation>Suppression des séries TV de la base de données</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="337"/>
         <source>Removing episodes from database</source>
-        <translation type="unfinished"></translation>
+        <translation>Suppression des épisodes de la base de données</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="358"/>
         <source>Trigger scan for new items</source>
-        <translation type="unfinished"></translation>
+        <translation>Déclencher l&apos;analyse des nouveaux éléments</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="365"/>
         <source>Finished. XBMC is now loading your updated items.</source>
-        <translation type="unfinished"></translation>
+        <translation>Terminer. XBMC a désormais mis à jour tous vos articles.</translation>
     </message>
 </context>
 <context>
