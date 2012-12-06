@@ -43,27 +43,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../main/AboutDialog.ui" line="74"/>
         <source>Your Collection</source>
-        <translation type="unfinished"></translation>
+        <translation>Votre Collection</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="83"/>
         <source>Movies</source>
-        <translation type="unfinished">Films</translation>
+        <translation>Films</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="90"/>
         <source>Episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Épisode</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="97"/>
         <source>TV Shows</source>
-        <translation type="unfinished">Séries TV</translation>
+        <translation>Séries TV</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="104"/>
         <source>Concerts</source>
-        <translation type="unfinished">Concerts</translation>
+        <translation>Concerts</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="111"/>
@@ -71,7 +71,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../main/AboutDialog.ui" line="144"/>
         <location filename="../main/AboutDialog.ui" line="154"/>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.cpp" line="16"/>
@@ -183,7 +183,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../data/ConcertFileSearcher.cpp" line="61"/>
         <source>Loading Concerts...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement Concerts ...</translation>
     </message>
 </context>
 <context>
@@ -191,17 +191,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="41"/>
         <source>Mark as watched</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer comme vu</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="42"/>
         <source>Mark as unwatched</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer comme non vu</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="43"/>
         <source>Load Stream Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement détails des flux</translation>
     </message>
 </context>
 <context>
@@ -352,7 +352,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="182"/>
         <source>yyyy</source>
-        <translation>yyy</translation>
+        <translation>yyyy</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="189"/>
@@ -362,7 +362,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="196"/>
         <source> Minutes</source>
-        <translation>Minutes</translation>
+        <translation> Minutes</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="206"/>
@@ -397,12 +397,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="281"/>
         <source>Artist</source>
-        <translation type="unfinished"></translation>
+        <translation>Artiste</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="288"/>
         <source>Album</source>
-        <translation type="unfinished"></translation>
+        <translation>Album</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="304"/>
@@ -486,7 +486,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="578"/>
         <source>HH:mm:ss</source>
-        <translation type="unfinished"></translation>
+        <translation>HH:mm:ss</translation>
     </message>
     <message>
         <source> Seconds</source>
@@ -568,7 +568,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="910"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauver</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauvegarder</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="933"/>
@@ -655,17 +655,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/FilesWidget.cpp" line="43"/>
         <source>Mark as watched</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer comme vu</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="44"/>
         <source>Mark as unwatched</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer comme non vu</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="45"/>
         <source>Load Stream Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement détails des flux</translation>
     </message>
 </context>
 <context>
@@ -920,24 +920,24 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="384"/>
         <source>Stream Details loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Détails des flux chargés</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="384"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="385"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="387"/>
         <source>Stream Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Détails flux</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="386"/>
         <source>Stream Details not loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Détails des flux non chargés</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="386"/>
         <source>No Stream Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucun détails deflux</translation>
     </message>
 </context>
 <context>
@@ -980,7 +980,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/GenreWidget.ui" line="202"/>
         <source>Please keep in mind that the changes you make here (renaming or deleting genres) will be made for every movie.</source>
-        <translation></translation>
+        <translation>S&apos;il vous plaît gardez à l&apos;esprit que les modifications que vous apportez ici (renommer ou supprimer genres) sera effectué pour chaque film.</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.cpp" line="32"/>
@@ -1096,17 +1096,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="23"/>
         <source>Loading Stream Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement détails des flux</translation>
     </message>
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="32"/>
         <source>Loading Stream Details...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement détails des flux...</translation>
     </message>
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="46"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichier</translation>
     </message>
 </context>
 <context>
@@ -1190,22 +1190,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../main/MainWindow.cpp" line="209"/>
         <source>Save</source>
-        <translation>Sauver</translation>
+        <translation>Sauvegarder</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="211"/>
         <source>Save (%1)</source>
-        <translation>Sauver (%1)</translation>
+        <translation>Sauvegarder (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="213"/>
         <source>Save All</source>
-        <translation>Sauver tous</translation>
+        <translation>Sauvegarder tout</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="216"/>
         <source>Save All (%1)</source>
-        <translation>Sauver tous (%1)</translation>
+        <translation>Sauvegarder tout (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="218"/>
@@ -1235,17 +1235,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../main/MainWindow.cpp" line="339"/>
         <source>Reload all Movies (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger tous les films (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="341"/>
         <source>Reload all TV Shows (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger tous les séries TV (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="343"/>
         <source>Reload all Concerts (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger tous les concerts (%1)</translation>
     </message>
 </context>
 <context>
@@ -1295,7 +1295,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../data/MovieFileSearcher.cpp" line="52"/>
         <source>Loading Movies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement Films...</translation>
     </message>
 </context>
 <context>
@@ -1345,12 +1345,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../trailerProviders/MovieMaze.cpp" line="118"/>
         <source>German</source>
-        <translation type="unfinished">Allemand</translation>
+        <translation>Allemand</translation>
     </message>
     <message>
         <location filename="../trailerProviders/MovieMaze.cpp" line="120"/>
         <source>English</source>
-        <translation type="unfinished">Anglais</translation>
+        <translation>Anglais</translation>
     </message>
 </context>
 <context>
@@ -1541,7 +1541,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/MovieWidget.ui" line="215"/>
         <source>yyyy</source>
-        <translation>yyy</translation>
+        <translation>yyyy</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="222"/>
@@ -1551,7 +1551,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/MovieWidget.ui" line="229"/>
         <source> Minutes</source>
-        <translation>Minutes</translation>
+        <translation> Minutes</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="239"/>
@@ -1595,12 +1595,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/MovieWidget.ui" line="341"/>
         <source>Plot</source>
-        <translation type="unfinished"></translation>
+        <translation>Intrigue</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="359"/>
         <source>Download Trailer</source>
-        <translation type="unfinished"></translation>
+        <translation>Télécharger Bande annonce</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="405"/>
@@ -1723,7 +1723,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/MovieWidget.ui" line="938"/>
         <source>Outline</source>
-        <translation type="unfinished"></translation>
+        <translation>Intrigue</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="958"/>
@@ -1770,7 +1770,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/MovieWidget.ui" line="1116"/>
         <source>HH:mm:ss</source>
-        <translation type="unfinished"></translation>
+        <translation>HH:mm:ss</translation>
     </message>
     <message>
         <source> Seconds</source>
@@ -1831,7 +1831,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/MovieWidget.cpp" line="516"/>
         <source>Downloading images...</source>
-        <translation type="unfinished"></translation>
+        <translation>Téléchargement d&apos;images...</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="791"/>
@@ -1861,7 +1861,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/MovieWidget.cpp" line="1098"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauver</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauvegarder</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="1121"/>
@@ -1942,7 +1942,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="150"/>
         <source>Sorttitle</source>
-        <translation>Sorttitle</translation>
+        <translation>Ordre de Tri</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="173"/>
@@ -2011,7 +2011,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.cpp" line="351"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauver</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauvegarder</translation>
     </message>
 </context>
 <context>
@@ -2029,7 +2029,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWidget.ui" line="94"/>
         <source>Please hit the &quot;Reload&quot; button after adding or removing directories. If you changed the debug mode setting please restart MediaElch.</source>
-        <translation>S&apos;il vous plaît cliquez sur le bouton &quot;Actualiser&quot; après l&apos;ajout ou la suppression de répertoires. Si vous avez changé le réglage du mode debug s&apos;il vous plaît redémarrer MediaElch.</translation>
+        <translation>S&apos;il vous plaît cliquez sur le bouton &quot;Recharger&quot; après l&apos;ajout ou la suppression de répertoires. Si vous avez changé le réglage du mode debug s&apos;il vous plaît redémarrer MediaElch.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="104"/>
@@ -2060,7 +2060,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWidget.ui" line="156"/>
         <source>Reload On Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger au démarrage</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="166"/>
@@ -2244,7 +2244,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWidget.ui" line="722"/>
         <source>Use plot when outline is not available</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser slogan lorsqu’intrigue n&apos;est pas disponible</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="730"/>
@@ -2343,7 +2343,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWidget.ui" line="1295"/>
         <source>Save Settings</source>
-        <translation>Sauver Réglages</translation>
+        <translation>Sauvegarder Réglages</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.cpp" line="34"/>
@@ -2353,7 +2353,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWidget.cpp" line="35"/>
         <source>Automatically reload contents on start</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger automatiquement le contenu au démarrage</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.cpp" line="57"/>
@@ -2841,89 +2841,89 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../globals/TrailerDialog.ui" line="17"/>
         <source>Trailer</source>
-        <translation type="unfinished">Bande-annonce</translation>
+        <translation>Bande-annonce</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="38"/>
         <source>Scraper</source>
-        <translation type="unfinished">Scraper</translation>
+        <translation>Scraper</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="81"/>
         <source>Result</source>
-        <translation type="unfinished">Résultat</translation>
+        <translation>Résultat</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="104"/>
         <location filename="../globals/TrailerDialog.ui" line="195"/>
         <location filename="../globals/TrailerDialog.ui" line="324"/>
         <source>Close</source>
-        <translation type="unfinished">Fermer</translation>
+        <translation>Fermer</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="155"/>
         <source>Preview</source>
-        <translation type="unfinished">Aperçu</translation>
+        <translation>Aperçu</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="160"/>
         <source>Language</source>
-        <translation type="unfinished">Langue</translation>
+        <translation>Langue</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="165"/>
         <source>Title</source>
-        <translation type="unfinished">Titre</translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="175"/>
         <source>Back to Search Results</source>
-        <translation type="unfinished"></translation>
+        <translation>Retour aux résultats</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="232"/>
         <source>URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="263"/>
         <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Progression</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="286"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Télécharger</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="293"/>
         <source>Cancel Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Annuler téléchargement</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="304"/>
         <source>Back to Trailers</source>
-        <translation type="unfinished"></translation>
+        <translation>Retour au Bande-annonce</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="273"/>
         <source>Download Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Téléchargement terminé</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="283"/>
         <source>The file %1 already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le fichiers %1 existe déjà.</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="284"/>
         <source>Do you want to overwrite it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous l&apos;écraser ?</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="296"/>
         <source>Download Canceled</source>
-        <translation type="unfinished"></translation>
+        <translation>Téléchargement annulé</translation>
     </message>
 </context>
 <context>
@@ -2953,17 +2953,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="65"/>
         <source>Loading TV Shows...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement Séries TV...</translation>
     </message>
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="141"/>
         <source>Searching for Episodes...</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche d&apos;Épisodes...</translation>
     </message>
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="173"/>
         <source>Loading Episodes...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement Épisodes...</translation>
     </message>
 </context>
 <context>
@@ -2976,22 +2976,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="41"/>
         <source>Search for new episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche de nouveaux épisodes</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="42"/>
         <source>Mark as watched</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer comme vu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="43"/>
         <source>Mark as unwatched</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer comme non vu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="44"/>
         <source>Load Stream Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement détails des flux</translation>
     </message>
 </context>
 <context>
@@ -3228,7 +3228,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="655"/>
         <source>HH:mm:ss</source>
-        <translation type="unfinished"></translation>
+        <translation>HH:mm:ss</translation>
     </message>
     <message>
         <source> Seconds</source>
@@ -3282,7 +3282,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="456"/>
         <source>Episode Saved</source>
-        <translation>Épisode Sauver</translation>
+        <translation>Épisode sauvegarder</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="601"/>
@@ -3493,7 +3493,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="435"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauver</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauvegarder</translation>
     </message>
     <message>
         <source>Downloading Missing Actor Images and Episode Thumbnails...</source>
@@ -3502,7 +3502,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="635"/>
         <source>Downloading images...</source>
-        <translation type="unfinished"></translation>
+        <translation>Téléchargement d&apos;images...</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="992"/>
@@ -3578,7 +3578,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="69"/>
         <source>8080</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">8080</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="78"/>
