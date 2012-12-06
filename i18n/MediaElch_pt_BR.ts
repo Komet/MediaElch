@@ -1709,12 +1709,12 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieWidget.ui" line="958"/>
         <source>Streamdetails</source>
-        <translation>Detalhes Stream</translation>
+        <translation>Carregar Detalhes do Stream</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="966"/>
         <source>Aspect Ratio</source>
-        <translation>Taxa Aspecto</translation>
+        <translation>Proporção do Aspecto</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="973"/>
@@ -1756,7 +1756,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1127"/>
         <source>Reload from File</source>
-        <translation>Recarregar do arquivo</translation>
+        <translation>Recarregar do Arquivo</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1295"/>
@@ -1834,7 +1834,7 @@ Operação Cancelada.</translation>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="1098"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; Salvo</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvo</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="1121"/>
