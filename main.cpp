@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
     QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
     QCoreApplication::setOrganizationName("Daniel Kabel");
     QCoreApplication::setApplicationName("MediaElch");
-    QCoreApplication::setApplicationVersion("1.2");
+    QCoreApplication::setApplicationVersion("1.3");
 
     if (!useGui || a.arguments().count() > 1) {
         qInstallMsgHandler(cliMessageOutput);
