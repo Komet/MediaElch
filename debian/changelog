@@ -1,3 +1,24 @@
+mediaelch (1.3-1) unstable; urgency=low
+
+  * Ignore .actors folder while scanning
+  * Fixed Fanart.tv scraper
+  * Fixed VideoBuster scraper
+  * Cache the contents of nfo files to speedup start
+  * Fixed switched filenames of clearart and logo
+  * Small GUI and translation fixes
+  * Added support for .rmvb files
+  * Only save really changed movies when merging genres or certifications
+  * Added support for artist and album in concerts
+  * Editable outline in movies
+  * Added Trailer Downloader
+  * Added IMDB Scraper
+  * Added XBMC Sync option
+  * Added Portuguese translation (Thanks to Wanilton Campos)
+  * Added Rating votes and Top 250 fields for movies
+  * Bugfix: Loading of StreamDetails failed in Windows when filenames had special characters
+    
+ -- Daniel Kabel <daniel.kabel@me.com>  Thu, 06 Nov 2012 18:55:47 +0100
+
 mediaelch (1.2-1) unstable; urgency=low
 
   * Support for streamdetails (resolution, codec, audio etc)
