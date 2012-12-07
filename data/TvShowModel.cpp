@@ -66,6 +66,8 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
         return item->data(2);
     } else if (role == TvShowRoles::IsNew) {
         return item->data(3);
+    } else if (role == TvShowRoles::SyncNeeded) {
+        return item->data(4);
     }
     return QVariant();
 }

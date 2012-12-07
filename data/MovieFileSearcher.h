@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QDir>
 #include <QHash>
+#include <QTime>
 
 #include "data/Movie.h"
 #include "globals/Globals.h"

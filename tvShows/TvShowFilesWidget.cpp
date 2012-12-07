@@ -42,6 +42,8 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     QAction *actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
     QAction *actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
     QAction *actionLoadStreamDetails = new QAction(tr("Load Stream Details"), this);
+    QAction *actionMarkForSync = new QAction(tr("Add to Synchronization Queue"), this);
+    QAction *actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
     m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionScanForEpisodes);
     m_contextMenu->addSeparator();
@@ -49,10 +51,15 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     m_contextMenu->addAction(actionMarkAsUnwatched);
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(actionLoadStreamDetails);
+    m_contextMenu->addSeparator();
+    m_contextMenu->addAction(actionMarkForSync);
+    m_contextMenu->addAction(actionUnmarkForSync);
     connect(actionScanForEpisodes, SIGNAL(triggered()), this, SLOT(scanForEpisodes()));
     connect(actionMarkAsWatched, SIGNAL(triggered()), this, SLOT(markAsWatched()));
     connect(actionMarkAsUnwatched, SIGNAL(triggered()), this, SLOT(markAsUnwatched()));
     connect(actionLoadStreamDetails, SIGNAL(triggered()), this, SLOT(loadStreamDetails()));
+    connect(actionMarkForSync, SIGNAL(triggered()), this, SLOT(markForSync()));
+    connect(actionUnmarkForSync, SIGNAL(triggered()), this, SLOT(unmarkForSync()));
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
     connect(ui->files, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)));
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)));
@@ -192,6 +199,50 @@ void TvShowFilesWidget::loadStreamDetails()
     }
 }
 
+void TvShowFilesWidget::markForSync()
+{
+    foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
+        QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
+        TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
+        if (item->type() == TypeTvShow) {
+            item->tvShow()->setSyncNeeded(true);
+        } else if (item->type() == TypeSeason) {
+            foreach (TvShowEpisode *episode, item->tvShow()->episodes()) {
+                if (episode->season() != item->season().toInt())
+                    continue;
+                episode->setSyncNeeded(true);
+            }
+
+            for (int i=0, n=item->childCount() ; i<n ; ++i)
+                ui->files->update(m_tvShowProxyModel->mapFromSource(Manager::instance()->tvShowModel()->index(i, 0, index)));
+        } else if (item->type() == TypeEpisode) {
+            item->tvShowEpisode()->setSyncNeeded(true);
+        }
+        ui->files->update(mIndex);
+    }
+}
+
+void TvShowFilesWidget::unmarkForSync()
+{
+    foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
+        QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
+        TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
+        if (item->type() == TypeTvShow) {
+            item->tvShow()->setSyncNeeded(false);
+        } else if (item->type() == TypeSeason) {
+            foreach (TvShowEpisode *episode, item->tvShow()->episodes()) {
+                if (episode->season() != item->season().toInt())
+                    continue;
+                episode->setSyncNeeded(false);
+            }
+            for (int i=0, n=item->childCount() ; i<n ; ++i)
+                ui->files->update(m_tvShowProxyModel->mapFromSource(Manager::instance()->tvShowModel()->index(i, 0, index)));
+        } else if (item->type() == TypeEpisode) {
+            item->tvShowEpisode()->setSyncNeeded(false);
+        }
+        ui->files->update(mIndex);
+    }
+}
 
 /**
  * @brief Sets the filters

@@ -43,14 +43,21 @@ FilesWidget::FilesWidget(QWidget *parent) :
     QAction *actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
     QAction *actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
     QAction *actionLoadStreamDetails = new QAction(tr("Load Stream Details"), this);
+    QAction *actionMarkForSync = new QAction(tr("Add to Synchronization Queue"), this);
+    QAction *actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
     m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionMarkAsWatched);
     m_contextMenu->addAction(actionMarkAsUnwatched);
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(actionLoadStreamDetails);
+    m_contextMenu->addSeparator();
+    m_contextMenu->addAction(actionMarkForSync);
+    m_contextMenu->addAction(actionUnmarkForSync);
     connect(actionMarkAsWatched, SIGNAL(triggered()), this, SLOT(markAsWatched()));
     connect(actionMarkAsUnwatched, SIGNAL(triggered()), this, SLOT(markAsUnwatched()));
     connect(actionLoadStreamDetails, SIGNAL(triggered()), this, SLOT(loadStreamDetails()));
+    connect(actionMarkForSync, SIGNAL(triggered()), this, SLOT(markForSync()));
+    connect(actionUnmarkForSync, SIGNAL(triggered()), this, SLOT(unmarkForSync()));
 
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
@@ -132,7 +139,26 @@ void FilesWidget::loadStreamDetails()
     movieSelectedEmitter();
     m_movieProxyModel->setSourceModel(0);
     m_movieProxyModel->setSourceModel(Manager::instance()->movieModel());
+}
 
+void FilesWidget::markForSync()
+{
+    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
+        int row = index.model()->data(index, Qt::UserRole).toInt();
+        Movie *movie = Manager::instance()->movieModel()->movie(row);
+        movie->setSyncNeeded(true);
+        ui->files->update(index);
+    }
+}
+
+void FilesWidget::unmarkForSync()
+{
+    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
+        int row = index.model()->data(index, Qt::UserRole).toInt();
+        Movie *movie = Manager::instance()->movieModel()->movie(row);
+        movie->setSyncNeeded(false);
+        ui->files->update(index);
+    }
 }
 
 /**

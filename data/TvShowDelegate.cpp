@@ -77,6 +77,8 @@ void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
         #endif
         painter->setFont(font);
 
+        int xMove = 0;
+        int widthMove = 0;
         if (index.model()->data(index, TvShowRoles::IsNew).toBool()) {
             QRect newRect(option.rect.x(), option.rect.y()+showNameHeight+((option.rect.height()-showNameHeight-newHeight-4)/2)-3, newWidth+4, newHeight+4);
             painter->setPen(QColor(58, 135, 173));
@@ -85,17 +87,31 @@ void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
             painter->drawRoundedRect(newRect, 4, 4);
             painter->setPen(QColor(255, 255, 255));
             painter->drawText(newRect.x(), newRect.y(), newRect.width(), newRect.height()-2, Qt::AlignCenter | Qt::AlignVCenter, newInd);
-            if (option.state & QStyle::State_Selected)
-                painter->setPen(QPen(option.palette.highlightedText().color()));
-            else
-                painter->setPen(QPen(index.data(Qt::ForegroundRole).value<QColor>()));
-
-            painter->drawText(rect.x()+newRect.width()+4, rect.y()+showNameHeight, rect.width()-rect.height()+showNameHeight, rect.height()-showNameHeight,
-                              Qt::AlignTop, QString(tr("%n Episodes", "", episodeCount)));
-        } else {
-            painter->drawText(rect.x(), rect.y()+showNameHeight, rect.width(), rect.height()-showNameHeight,
-                              Qt::AlignTop, QString(tr("%n Episodes", "", episodeCount)));
+            xMove += newRect.width()+4;
+            widthMove += -rect.height()+showNameHeight;
         }
+
+        if (index.model()->data(index, TvShowRoles::SyncNeeded).toBool()) {
+            newWidth = newHeight;
+            QRect newRect(option.rect.x()+xMove, option.rect.y()+showNameHeight+((option.rect.height()-showNameHeight-newHeight-4)/2)-3, newWidth+4, newHeight+4);
+            painter->setPen(QColor(248, 148, 6));
+            painter->setBrush(QBrush(QColor(248, 148, 6)));
+            painter->setRenderHint(QPainter::Antialiasing, true);
+            painter->drawRoundedRect(newRect, 4, 4);
+            painter->drawPixmap(newRect.x()+2, newRect.y()+2, newRect.width()-4, newRect.height()-4,
+                                QPixmap(":/img/sync.png").scaled(newRect.width()-4, newRect.height()-4, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
+            xMove += newRect.width()+4;
+        }
+
+
+        if (option.state & QStyle::State_Selected)
+            painter->setPen(QPen(option.palette.highlightedText().color()));
+        else
+            painter->setPen(QPen(index.data(Qt::ForegroundRole).value<QColor>()));
+
+        painter->drawText(rect.x()+xMove, rect.y()+showNameHeight, rect.width()+widthMove, rect.height()-showNameHeight,
+                          Qt::AlignTop, QString(tr("%n Episodes", "", episodeCount)));
 
         painter->restore();
 
@@ -121,6 +137,7 @@ void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
         }
         painter->setFont(font);
 
+        int xMove = 0;
         if (index.model()->data(index, TvShowRoles::IsNew).toBool()) {
             QRect newRect(option.rect.x(), option.rect.y()+((option.rect.height()-newHeight-4)/2), newWidth+4, newHeight+4);
             painter->setPen(QColor(58, 135, 173));
@@ -129,19 +146,27 @@ void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
             painter->drawRoundedRect(newRect, 4, 4);
             painter->setPen(QColor(255, 255, 255));
             painter->drawText(newRect.x(), newRect.y(), newRect.width(), newRect.height()-2, Qt::AlignCenter | Qt::AlignVCenter, newInd);
-
-            if (option.state & QStyle::State_Selected)
-                painter->setPen(QPen(option.palette.highlightedText().color()));
-            else
-                painter->setPen(QPen(index.data(Qt::ForegroundRole).value<QColor>()));
-            painter->translate(newRect.width()+4, 3);
-            painter->drawText(option.rect, Qt::AlignTop,  index.data().toString());
-
-        } else {
-            painter->translate(0, 3);
-            painter->drawText(option.rect, Qt::AlignTop,  index.data().toString());
+            xMove += newRect.width()+4;
         }
 
+        if (index.model()->data(index, TvShowRoles::SyncNeeded).toBool()) {
+            newWidth = newHeight;
+            QRect newRect(option.rect.x()+xMove, option.rect.y()+((option.rect.height()-newHeight-4)/2), newWidth+4, newHeight+4);
+            painter->setPen(QColor(248, 148, 6));
+            painter->setBrush(QBrush(QColor(248, 148, 6)));
+            painter->setRenderHint(QPainter::Antialiasing, true);
+            painter->drawRoundedRect(newRect, 4, 4);
+            painter->drawPixmap(newRect.x()+2, newRect.y()+2, newRect.width()-4, newRect.height()-4,
+                                QPixmap(":/img/sync.png").scaled(newRect.width()-4, newRect.height()-4, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            xMove += newRect.width()+4;
+        }
+
+        if (option.state & QStyle::State_Selected)
+            painter->setPen(QPen(option.palette.highlightedText().color()));
+        else
+            painter->setPen(QPen(index.data(Qt::ForegroundRole).value<QColor>()));
+        painter->translate(xMove, 3);
+        painter->drawText(option.rect, Qt::AlignTop,  index.data().toString());
         painter->restore();
     } else if (index.model()->data(index, TvShowRoles::Type).toInt() == TypeSeason ) {
         painter->save();

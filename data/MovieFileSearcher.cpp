@@ -83,7 +83,6 @@ void MovieFileSearcher::reload(bool force)
         Manager::instance()->database()->add(movie, path);
         Manager::instance()->movieModel()->addMovie(movie);
         emit progress(++movieCounter, movieSum, m_progressMessageId);
-        qApp->processEvents();
     }
 
     // Setup movies loaded from database
@@ -92,7 +91,6 @@ void MovieFileSearcher::reload(bool force)
         emit currentDir(movie->name());
         Manager::instance()->movieModel()->addMovie(movie);
         emit progress(++movieCounter, movieSum, m_progressMessageId);
-        qApp->processEvents();
     }
 
     qDebug() << "Searching for movies done";
@@ -133,7 +131,8 @@ void MovieFileSearcher::scanDir(QString startPath, QString path, QList<QStringLi
     foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
         // Skip "Extras" folder
         if (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0 ||
-            QString::compare(cDir, ".actors", Qt::CaseInsensitive) == 0)
+            QString::compare(cDir, ".actors", Qt::CaseInsensitive) == 0 ||
+            QString::compare(cDir, ".AppleDouble", Qt::CaseInsensitive) == 0)
             continue;
 
         // Handle DVD

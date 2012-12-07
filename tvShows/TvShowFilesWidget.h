@@ -44,6 +44,8 @@ private slots:
     void markAsWatched();
     void markAsUnwatched();
     void loadStreamDetails();
+    void markForSync();
+    void unmarkForSync();
 
 private:
     Ui::TvShowFilesWidget *ui;

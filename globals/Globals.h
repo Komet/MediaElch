@@ -34,6 +34,7 @@ namespace TvShowRoles {
     const int EpisodeCount = Qt::UserRole+4;
     const int HasChanged = Qt::UserRole+5;
     const int IsNew = Qt::UserRole+6;
+    const int SyncNeeded = Qt::UserRole+7;
 }
 
 namespace MediaCenterInterfaces {

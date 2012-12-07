@@ -89,7 +89,6 @@ void ConcertFileSearcher::reload(bool force)
         Manager::instance()->database()->add(concert, path);
         Manager::instance()->concertModel()->addConcert(concert);
         emit progress(++concertCounter, concertSum, m_progressMessageId);
-        qApp->processEvents();
     }
 
     // Setup concerts loaded from database
@@ -98,7 +97,6 @@ void ConcertFileSearcher::reload(bool force)
         emit currentDir(concert->name());
         Manager::instance()->concertModel()->addConcert(concert);
         emit progress(++concertCounter, concertSum, m_progressMessageId);
-        qApp->processEvents();
     }
 
     qDebug() << "Searching for concerts done";

@@ -50,6 +50,19 @@ void ConcertDelegate::paint(QPainter *painter, const QStyleOptionViewItem &optio
         painter->drawText(newRect.x(), newRect.y(), newRect.width(), newRect.height()-2, Qt::AlignCenter | Qt::AlignVCenter, newInd);
     }
 
+    if (index.data(Qt::UserRole+3).toBool()) {
+        // sync needed
+        newWidth = newHeight;
+        QRect newRect(option.rect.x()+4+xMove-6, option.rect.y()+((option.rect.height()-newHeight-2)/2), newWidth+4, newHeight+4);
+        painter->setPen(QColor(248, 148, 6));
+        painter->setBrush(QBrush(QColor(248, 148, 6)));
+        painter->setRenderHint(QPainter::Antialiasing, true);
+        painter->drawRoundedRect(newRect, 4, 4);
+        painter->drawPixmap(newRect.x()+2, newRect.y()+2, newRect.width()-4, newRect.height()-4,
+                            QPixmap(":/img/sync.png").scaled(newRect.width()-4, newRect.height()-4, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        xMove += newWidth+6;
+    }
+
     QFont font;
     #ifdef Q_WS_MAC
     font.setPointSize(font.pointSize()-2);

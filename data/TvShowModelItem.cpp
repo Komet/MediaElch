@@ -73,6 +73,12 @@ QVariant TvShowModelItem::data(int column) const
 {
     switch (column)
     {
+    case 4:
+        if (m_tvShow)
+            return m_tvShow->syncNeeded();
+        else if (m_tvShowEpisode)
+            return m_tvShowEpisode->syncNeeded();
+        break;
     case 3:
         if (!m_season.isEmpty() && m_tvShow)
             return m_tvShow->hasNewEpisodesInSeason(m_season);

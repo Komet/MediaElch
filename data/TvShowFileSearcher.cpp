@@ -107,7 +107,6 @@ void TvShowFileSearcher::reload(bool force)
                 seasonItems.insert(episode->season(), showItem->appendChild(episode->seasonString(), show));
             seasonItems.value(episode->season())->appendChild(episode);
             emit progress(++episodeCounter, episodeSum, m_progressMessageId);
-            qApp->processEvents();
         }
     }
 
@@ -127,7 +126,6 @@ void TvShowFileSearcher::reload(bool force)
                 seasonItems.insert(episode->season(), showItem->appendChild(episode->seasonString(), show));
             seasonItems.value(episode->season())->appendChild(episode);
             emit progress(++episodeCounter, episodeSum, m_progressMessageId);
-            qApp->processEvents();
         }
     }
 

@@ -99,6 +99,8 @@ QVariant ConcertModel::data(const QModelIndex &index, int role) const
         return concert->infoLoaded();
     } else if (role == Qt::UserRole+2) {
         return concert->hasChanged();
+    } else if (role == Qt::UserRole+3) {
+        return concert->syncNeeded();
     } else if (role == Qt::ForegroundRole) {
         if (concert->hasChanged())
             return QColor(255, 0, 0);
