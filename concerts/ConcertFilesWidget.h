@@ -31,6 +31,7 @@ public:
 public slots:
     void restoreLastSelection();
     void setFilter(QList<Filter*> filters, QString text);
+    void concertSelectedEmitter();
 
 signals:
     void noConcertSelected();
@@ -38,7 +39,6 @@ signals:
 
 private slots:
     void itemActivated(QModelIndex index, QModelIndex previous);
-    void concertSelectedEmitter();
     void showContextMenu(QPoint point);
     void markAsWatched();
     void markAsUnwatched();

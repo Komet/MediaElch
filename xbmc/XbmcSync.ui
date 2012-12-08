@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>628</width>
-    <height>356</height>
+    <height>303</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,27 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="label_5">
+     <property name="text">
+      <string>Please make sure you have setup your sources in XBMC and enabled the webserver.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QRadioButton" name="radioUpdateContents">
+     <property name="text">
+      <string>Update contents</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="labelContents">
      <property name="text">
       <string>This will tell XBMC to remove the changed movies, concerts or shows. Afterwards a XBMC library update is triggered and the removed items will be picked up again.</string>
      </property>
@@ -31,9 +51,16 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_5">
+    <widget class="QRadioButton" name="radioGetWatched">
      <property name="text">
-      <string>For this to work you need to have setup your sources in XBMC and enabled the Webserver.</string>
+      <string>Retrieve watched status</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="labelWatched">
+     <property name="text">
+      <string>The fields last played and playcount will be retrieved from XBMC.</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>

@@ -29,6 +29,7 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
 #ifdef Q_WS_WIN
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
 #endif
+    m_lastConcert = 0;
     m_concertDelegate = new ConcertDelegate(this);
     m_concertProxyModel = new ConcertProxyModel(this);
     m_concertProxyModel->setSourceModel(Manager::instance()->concertModel());
@@ -177,7 +178,8 @@ void ConcertFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
 void ConcertFilesWidget::concertSelectedEmitter()
 {
     qDebug() << "Entered";
-    emit concertSelected(m_lastConcert);
+    if (m_lastConcert)
+        emit concertSelected(m_lastConcert);
 }
 
 /**

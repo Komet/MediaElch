@@ -29,6 +29,7 @@ FilesWidget::FilesWidget(QWidget *parent) :
 #ifdef Q_WS_WIN
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
 #endif
+    m_lastMovie = 0;
     m_movieDelegate = new MovieDelegate(this);
     m_movieProxyModel = new MovieProxyModel(this);
     m_movieProxyModel->setSourceModel(Manager::instance()->movieModel());
@@ -186,7 +187,8 @@ void FilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
 void FilesWidget::movieSelectedEmitter()
 {
     qDebug() << "Entered";
-    emit movieSelected(m_lastMovie);
+    if (m_lastMovie)
+        emit movieSelected(m_lastMovie);
 }
 
 /**

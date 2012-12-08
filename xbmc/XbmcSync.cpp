@@ -18,6 +18,10 @@ XbmcSync::XbmcSync(QWidget *parent) :
 
     connect(ui->buttonSync, SIGNAL(clicked()), this, SLOT(startSync()));
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
+    connect(ui->radioUpdateContents, SIGNAL(clicked()), this, SLOT(onRadioContents()));
+    connect(ui->radioGetWatched, SIGNAL(clicked()), this, SLOT(onRadioWatched()));
+
+    onRadioContents();
 }
 
 XbmcSync::~XbmcSync()
@@ -63,7 +67,7 @@ void XbmcSync::startSync()
     }
 
     foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
-        if (show->syncNeeded()) {
+        if (show->syncNeeded() && m_syncType == SyncContents) {
             m_tvShowsToSync.append(show);
             continue;
         }
@@ -74,9 +78,13 @@ void XbmcSync::startSync()
          */
         foreach (TvShowEpisode *episode, show->episodes()) {
             if (episode->syncNeeded()) {
-                // m_episodesToSync.append(episode);
-                m_tvShowsToSync.append(show);
-                break;
+                if (m_syncType == SyncContents) {
+                    // m_episodesToSync.append(episode);
+                    m_tvShowsToSync.append(show);
+                    break;
+                } else if (m_syncType == SyncWatched) {
+                    m_episodesToSync.append(episode);
+                }
             }
         }
     }
@@ -90,7 +98,7 @@ void XbmcSync::startSync()
     }
 
     QUrl url(QString("%1:%2/jsonrpc").arg(host).arg(port));
-    url.setUserName(Settings.instance()->xbmcUsername());
+    url.setUserName(Settings::instance()->xbmcUsername());
     url.setPassword(Settings::instance()->xbmcPassword());
     m_request.setUrl(url);
     m_request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
@@ -98,28 +106,32 @@ void XbmcSync::startSync()
 
     if (!m_moviesToSync.isEmpty()) {
         m_elements.append(ElementMovies);
-        m_moviesReply = m_qnam->post(m_request, "{ \"jsonrpc\": \"2.0\", \"method\": \"VideoLibrary.GetMovies\", \"id\":1, \"params\": { \"limits\": { \"end\": 100000 }, \"properties\": [\"file\"] } }");
+        m_moviesReply = m_qnam->post(m_request, "{ \"jsonrpc\": \"2.0\", \"method\": \"VideoLibrary.GetMovies\", \"id\":1, " \
+                                                "\"params\": { \"limits\": { \"end\": 100000 }, \"properties\": [\"file\", \"lastplayed\", \"playcount\"] } }");
         connect(m_moviesReply, SIGNAL(finished()), this, SLOT(onMovieListFinished()));
         connect(m_moviesReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(onDownloadProgress()));
     }
 
     if (!m_concertsToSync.isEmpty()) {
         m_elements.append(ElementConcerts);
-        m_concertsReply = m_qnam->post(m_request, "{ \"jsonrpc\": \"2.0\", \"method\": \"VideoLibrary.GetMusicVideos\", \"id\":1, \"params\": { \"limits\": { \"end\": 100000 }, \"properties\": [\"file\"] } }");
+        m_concertsReply = m_qnam->post(m_request, "{ \"jsonrpc\": \"2.0\", \"method\": \"VideoLibrary.GetMusicVideos\", \"id\":1, " \
+                                                  "\"params\": { \"limits\": { \"end\": 100000 }, \"properties\": [\"file\", \"lastplayed\", \"playcount\"] } }");
         connect(m_concertsReply, SIGNAL(finished()), this, SLOT(onConcertListFinished()));
         connect(m_concertsReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(onDownloadProgress()));
     }
 
     if (!m_tvShowsToSync.isEmpty()) {
         m_elements.append(ElementTvShows);
-        m_showReply = m_qnam->post(m_request, "{ \"jsonrpc\": \"2.0\", \"method\": \"VideoLibrary.GetTvShows\", \"id\":1, \"params\": { \"limits\": { \"end\": 100000 }, \"properties\": [\"file\"] } }");
+        m_showReply = m_qnam->post(m_request, "{ \"jsonrpc\": \"2.0\", \"method\": \"VideoLibrary.GetTvShows\", \"id\":1, " \
+                                              "\"params\": { \"limits\": { \"end\": 100000 }, \"properties\": [\"file\", \"lastplayed\", \"playcount\"] } }");
         connect(m_showReply, SIGNAL(finished()), this, SLOT(onTvShowListFinished()));
         connect(m_showReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(onDownloadProgress()));
     }
 
     if (!m_episodesToSync.isEmpty()) {
         m_elements.append(ElementEpisodes);
-        m_episodeReply = m_qnam->post(m_request, "{ \"jsonrpc\": \"2.0\", \"method\": \"VideoLibrary.GetEpisodes\", \"id\":1, \"params\": { \"limits\": { \"end\": 100000 }, \"properties\": [\"file\"] } }");
+        m_episodeReply = m_qnam->post(m_request, "{ \"jsonrpc\": \"2.0\", \"method\": \"VideoLibrary.GetEpisodes\", \"id\":1, " \
+                                                 "\"params\": { \"limits\": { \"end\": 100000 }, \"properties\": [\"file\", \"lastplayed\", \"playcount\"] } }");
         connect(m_episodeReply, SIGNAL(finished()), this, SLOT(onEpisodeListFinished()));
         connect(m_episodeReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(onDownloadProgress()));
     }
@@ -167,7 +179,7 @@ void XbmcSync::onMovieListFinished()
             QScriptValue v = it.value();
             if (v.property("movieid").isNull() || v.property("movieid").toInteger() == 0)
                 continue;
-            m_xbmcMovies.insert(v.property("movieid").toInteger(), v.property("file").toString());
+            m_xbmcMovies.insert(v.property("movieid").toInteger(), parseXbmcDataFromScriptValue(v));
         }
     } else {
         qWarning() << m_moviesReply->errorString();
@@ -191,7 +203,7 @@ void XbmcSync::onConcertListFinished()
             QScriptValue v = it.value();
             if (v.property("musicvideoid").isNull() || v.property("musicvideoid").toInteger() == 0)
                 continue;
-            m_xbmcConcerts.insert(v.property("musicvideoid").toInteger(), v.property("file").toString());
+            m_xbmcConcerts.insert(v.property("musicvideoid").toInteger(), parseXbmcDataFromScriptValue(v));
         }
     } else {
         qWarning() << m_concertsReply->errorString();
@@ -215,7 +227,7 @@ void XbmcSync::onTvShowListFinished()
             QScriptValue v = it.value();
             if (v.property("tvshowid").isNull() || v.property("tvshowid").toInteger() == 0)
                 continue;
-            m_xbmcShows.insert(v.property("tvshowid").toInteger(), v.property("file").toString());
+            m_xbmcShows.insert(v.property("tvshowid").toInteger(), parseXbmcDataFromScriptValue(v));
         }
     } else {
         qWarning() << m_showReply->errorString();
@@ -239,7 +251,7 @@ void XbmcSync::onEpisodeListFinished()
             QScriptValue v = it.value();
             if (v.property("episodeid").isNull() || v.property("episodeid").toInteger() == 0)
                 continue;
-            m_xbmcEpisodes.insert(v.property("episodeid").toInteger(), v.property("file").toString());
+            m_xbmcEpisodes.insert(v.property("episodeid").toInteger(), parseXbmcDataFromScriptValue(v));
         }
     } else {
         qWarning() << m_episodeReply->errorString();
@@ -259,6 +271,16 @@ void XbmcSync::checkIfListsReady(Elements element)
 
     m_allReady = true;
 
+    if (m_syncType == SyncContents) {
+        setupItemsToRemove();
+        removeItems();
+    } else if (m_syncType == SyncWatched) {
+        updateWatched();
+    }
+}
+
+void XbmcSync::setupItemsToRemove()
+{
     foreach (Movie *movie, m_moviesToSync) {
         movie->setSyncNeeded(false);
         int id = findId(movie->files(), m_xbmcMovies);
@@ -293,8 +315,6 @@ void XbmcSync::checkIfListsReady(Elements element)
         if (id > 0)
             m_episodesToRemove.append(id);
     }
-
-    removeItems();
 }
 
 void XbmcSync::removeItems()
@@ -356,7 +376,42 @@ void XbmcSync::onScanFinished()
     ui->buttonSync->setEnabled(true);
 }
 
-int XbmcSync::findId(QStringList files, QMap<int, QString> items)
+void XbmcSync::updateWatched()
+{
+    foreach (Movie *movie, m_moviesToSync) {
+        int id = findId(movie->files(), m_xbmcMovies);
+        if (id > 0) {
+            movie->setWatched(m_xbmcMovies.value(id).playCount > 0);
+            movie->setPlayCount(m_xbmcMovies.value(id).playCount);
+            movie->setLastPlayed(m_xbmcMovies.value(id).lastPlayed);
+        }
+        movie->setSyncNeeded(false);
+    }
+
+    foreach (Concert *concert, m_concertsToSync) {
+        int id = findId(concert->files(), m_xbmcConcerts);
+        if (id > 0) {
+            concert->setWatched(m_xbmcConcerts.value(id).playCount > 0);
+            concert->setPlayCount(m_xbmcConcerts.value(id).playCount);
+            concert->setLastPlayed(m_xbmcConcerts.value(id).lastPlayed);
+        }
+        concert->setSyncNeeded(false);
+    }
+
+    foreach (TvShowEpisode *episode, m_episodesToSync) {
+        int id = findId(episode->files(), m_xbmcEpisodes);
+        if (id > 0) {
+            episode->setPlayCount(m_xbmcEpisodes.value(id).playCount);
+            episode->setLastPlayed(m_xbmcEpisodes.value(id).lastPlayed);
+        }
+        episode->setSyncNeeded(false);
+    }
+
+    ui->status->setText(tr("Finished. Your items play count and last played date have been updated."));
+    ui->buttonSync->setEnabled(true);
+}
+
+int XbmcSync::findId(QStringList files, QMap<int, XbmcData> items)
 {
     if (files.isEmpty())
         return -1;
@@ -366,14 +421,15 @@ int XbmcSync::findId(QStringList files, QMap<int, QString> items)
 
     do {
         matches.clear();
-        QMapIterator<int, QString> it(items);
+        QMapIterator<int, XbmcData> it(items);
         while (it.hasNext()) {
             it.next();
+            QString file = it.value().file;
             QStringList xbmcFiles;
-            if (it.value().startsWith("stack://"))
-                xbmcFiles << it.value().mid(8).split(" , ");
+            if (file.startsWith("stack://"))
+                xbmcFiles << file.mid(8).split(" , ");
             else
-                xbmcFiles << it.value();
+                xbmcFiles << file;
 
             if (compareFiles(files, xbmcFiles, level))
                 matches.append(it.key());
@@ -441,4 +497,27 @@ QStringList XbmcSync::splitFile(QString file)
         return file.split("/");
     else
         return file.split("\\");
+}
+
+void XbmcSync::onRadioContents()
+{
+    ui->labelContents->setVisible(true);
+    ui->labelWatched->setVisible(false);
+    m_syncType = SyncContents;
+}
+
+void XbmcSync::onRadioWatched()
+{
+    ui->labelContents->setVisible(false);
+    ui->labelWatched->setVisible(true);
+    m_syncType = SyncWatched;
+}
+
+XbmcSync::XbmcData XbmcSync::parseXbmcDataFromScriptValue(QScriptValue value)
+{
+    XbmcData d;
+    d.file = value.property("file").toString();
+    d.lastPlayed = QDateTime::fromString(value.property("lastplayed").toString(), "yyyy-MM-dd hh:mm:ss");
+    d.playCount = value.property("playcount").toInteger();
+    return d;
 }

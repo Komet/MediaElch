@@ -28,6 +28,8 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
 #endif
 
+    m_lastTvShow = 0;
+    m_lastEpisode = 0;
     m_tvShowDelegate = new TvShowDelegate(this);
     m_tvShowProxyModel = Manager::instance()->tvShowProxyModel();
     m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
@@ -303,10 +305,22 @@ void TvShowFilesWidget::onItemActivated(QModelIndex index, QModelIndex previous)
         return;
     }
 
+    m_lastEpisode = 0;
+    m_lastTvShow = 0;
     QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(index);
     if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TypeTvShow) {
-        emit sigTvShowSelected(Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShow());
+        m_lastTvShow = Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShow();
+        emit sigTvShowSelected(m_lastTvShow);
     } else if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TypeEpisode) {
-        emit sigEpisodeSelected(Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShowEpisode());
+        m_lastEpisode = Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShowEpisode();
+        emit sigEpisodeSelected(m_lastEpisode);
     }
+}
+
+void TvShowFilesWidget::emitLastSelection()
+{
+    if (m_lastTvShow)
+        emit sigTvShowSelected(m_lastTvShow);
+    else if (m_lastEpisode)
+        emit sigEpisodeSelected(m_lastEpisode);
 }

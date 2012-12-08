@@ -30,6 +30,7 @@ public:
 
 public slots:
     void renewModel();
+    void emitLastSelection();
 
 signals:
     void sigEpisodeSelected(TvShowEpisode *episode);
@@ -53,6 +54,8 @@ private:
     TvShowDelegate *m_tvShowDelegate;
     static TvShowFilesWidget *m_instance;
     QMenu *m_contextMenu;
+    TvShow *m_lastTvShow;
+    TvShowEpisode *m_lastEpisode;
 };
 
 #endif // TVSHOWFILESWIDGET_H

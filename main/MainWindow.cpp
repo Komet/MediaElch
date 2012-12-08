@@ -609,5 +609,8 @@ void MainWindow::onActionXbmc()
 {
     XbmcSync *xbmc = new XbmcSync(this);
     xbmc->exec();
+    ui->filesWidget->movieSelectedEmitter();
+    ui->tvShowFilesWidget->emitLastSelection();
+    ui->concertFilesWidget->concertSelectedEmitter();
     xbmc->deleteLater();
 }

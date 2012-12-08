@@ -32,6 +32,7 @@ public:
 public slots:
     void restoreLastSelection();
     void setFilter(QList<Filter*> filters, QString text);
+    void movieSelectedEmitter();
 
 signals:
     void noMovieSelected();
@@ -39,7 +40,6 @@ signals:
 
 private slots:
     void itemActivated(QModelIndex index, QModelIndex previous);
-    void movieSelectedEmitter();
     void onSortByName();
     void onSortByAdded();
     void onSortByYear();
