@@ -29,15 +29,10 @@ public:
     QList<SettingsDir> tvShowDirectories();
     QList<SettingsDir> concertDirectories();
     QString excludeWords();
-    int mediaCenterInterface();
-    QString xbmcMysqlHost();
-    QString xbmcMysqlDatabase();
-    QString xbmcMysqlUser();
-    QString xbmcMysqlPassword();
-    QString xbmcSqliteDatabase();
-    QString xbmcThumbnailPath();
     QString xbmcHost();
     int xbmcPort();
+    QString xbmcUsername();
+    QString xbmcPassword();
     bool useProxy();
     int proxyType();
     QString proxyHost();
@@ -60,10 +55,6 @@ public:
     void setTvShowDirectories(QList<SettingsDir> dirs);
     void setConcertDirectories(QList<SettingsDir> dirs);
     void setExcludeWords(QString words);
-    void setXbmcMysqlHost(QString host);
-    void setXbmcMysqlDatabase(QString db);
-    void setXbmcMysqlUser(QString user);
-    void setXbmcMysqlPassword(QString password);
     void setUseProxy(bool use);
     void setProxyType(int type);
     void setProxyHost(QString host);
@@ -71,16 +62,15 @@ public:
     void setProxyUsername(QString username);
     void setProxyPassword(QString password);
     void setUseYoutubePluginUrls(bool use);
-    void setXbmcSqliteDatabase(QString file);
-    void setXbmcThumbnailPath(QString path);
     void setDebugModeActivated(bool enabled);
     void setDebugLogPath(QString path);
-    void setMediaCenterInterface(int interface);
     void setAutoLoadStreamDetails(bool autoLoad);
     void setDataFiles(QList<DataFile> files);
     void setUsePlotForOutline(bool use);
     void setXbmcHost(QString host);
     void setXbmcPort(int port);
+    void setXbmcUsername(QString username);
+    void setXbmcPassword(QString password);
 
 public slots:
     void saveSettings();
@@ -97,13 +87,6 @@ private:
     QPoint m_mainWindowPosition;
     bool m_mainWindowMaximized;
     QByteArray m_mainSplitterState;
-    int m_mediaCenterInterface;
-    QString m_xbmcMysqlHost;
-    QString m_xbmcMysqlDatabase;
-    QString m_xbmcMysqlUser;
-    QString m_xbmcMysqlPassword;
-    QString m_xbmcSqliteDatabase;
-    QString m_xbmcThumbnailPath;
     bool m_useProxy;
     int m_proxyType;
     QString m_proxyHost;
@@ -119,6 +102,8 @@ private:
     bool m_usePlotForOutline;
     QString m_xbmcHost;
     int m_xbmcPort;
+    QString m_xbmcUsername;
+    QString m_xbmcPassword;
 
     void setupProxy();
 };

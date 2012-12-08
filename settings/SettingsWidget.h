@@ -42,11 +42,6 @@ private slots:
     void organize();
     void dirListRowChanged(int currentRow);
 
-    void onMediaCenterXbmcXmlSelected();
-    void onMediaCenterXbmcMysqlSelected();
-    void onMediaCenterXbmcSqliteSelected();
-    void onChooseMediaCenterXbmcSqliteDatabase(QString file);
-    void onChooseXbmcThumbnailPath(QString dir);
     void onDebugLogPathChosen(QString file);
     void onActivateDebugMode();
     void onSetDebugLogPath(QString path);
@@ -57,12 +52,9 @@ private:
     Ui::SettingsWidget *ui;
     Settings *m_settings;
     QFileDialog *m_logFileDialog;
-    QFileDialog *m_xbmcThumbnailDirDialog;
-    QFileDialog *m_xbmcSqliteDatabaseDialog;
     QMap<ScraperInterface*, QComboBox*> m_scraperCombos;
     QMap<TvScraperInterface*, QComboBox*> m_tvScraperCombos;
     QMap<ConcertScraperInterface*, QComboBox*> m_concertScraperCombos;
-    void setXbmcThumbnailPathEnabled(bool enabled);
 };
 
 #endif // SETTINGSWIDGET_H

@@ -2,6 +2,7 @@
 #include "ui_SettingsWidget.h"
 
 #include <QComboBox>
+#include <QIntValidator>
 #include <QMessageBox>
 
 #include "movies/FilesWidget.h"
@@ -29,6 +30,8 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
 #endif
 
     m_settings = Settings::instance(this);
+
+    ui->xbmcPort->setValidator(new QIntValidator(0, 99999, ui->xbmcPort));
 
     ui->dirs->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->dirs->horizontalHeaderItem(3)->setToolTip(tr("Items are in separate folders"));
@@ -129,15 +132,8 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     m_logFileDialog = new QFileDialog(this, tr("Logfile"), QDir::homePath(), tr("Logfiles (*.log *.txt)"));
     m_logFileDialog->setFileMode(QFileDialog::AnyFile);
     m_logFileDialog->selectFile("MediaElch.log");
-    m_xbmcThumbnailDirDialog = new QFileDialog(this, tr("Choose a directory containing your Thumbnails"), QDir::homePath());;
-    m_xbmcThumbnailDirDialog->setFileMode(QFileDialog::Directory);
-    m_xbmcThumbnailDirDialog->setOption(QFileDialog::ShowDirsOnly, true);
-    m_xbmcSqliteDatabaseDialog = new QFileDialog(this, tr("SQLite Database *.db"), QDir::homePath());
-    m_xbmcSqliteDatabaseDialog->setFileMode(QFileDialog::ExistingFile);
 
     connect(m_logFileDialog, SIGNAL(fileSelected(QString)), this, SLOT(onDebugLogPathChosen(QString)));
-    connect(m_xbmcThumbnailDirDialog, SIGNAL(fileSelected(QString)), this, SLOT(onChooseXbmcThumbnailPath(QString)));
-    connect(m_xbmcSqliteDatabaseDialog, SIGNAL(fileSelected(QString)), this, SLOT(onChooseMediaCenterXbmcSqliteDatabase(QString)));
 
     connect(ui->buttonAddDir, SIGNAL(clicked()), this, SLOT(chooseDirToAdd()));
     connect(ui->buttonRemoveDir, SIGNAL(clicked()), this, SLOT(removeDir()));
@@ -149,12 +145,6 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     connect(ui->logfilePath, SIGNAL(textChanged(QString)), this, SLOT(onSetDebugLogPath(QString)));
     connect(ui->chkUseProxy, SIGNAL(clicked()), this, SLOT(onUseProxy()));
     connect(ui->chkAutoLoadStreamDetails, SIGNAL(clicked()), this, SLOT(onAutoLoadStreamDetails()));
-
-    connect(ui->radioXbmcXml, SIGNAL(clicked()), this, SLOT(onMediaCenterXbmcXmlSelected()));
-    connect(ui->radioXbmcMysql, SIGNAL(clicked()), this, SLOT(onMediaCenterXbmcMysqlSelected()));
-    connect(ui->radioXbmcSqlite, SIGNAL(clicked()), this, SLOT(onMediaCenterXbmcSqliteSelected()));
-    connect(ui->buttonSelectSqliteDatabase, SIGNAL(clicked()), m_xbmcSqliteDatabaseDialog, SLOT(open()));
-    connect(ui->buttonSelectThumbnailPath, SIGNAL(clicked()), m_xbmcThumbnailDirDialog, SLOT(open()));
 
     loadSettings();
 }
@@ -244,27 +234,16 @@ void SettingsWidget::loadSettings()
     // Exclude words
     ui->excludeWordsText->setPlainText(m_settings->excludeWords());
 
-    // MediaCenterInterface
-    int mediaCenterInterface = m_settings->mediaCenterInterface();
-    if (mediaCenterInterface == MediaCenterInterfaces::XbmcXml)
-        onMediaCenterXbmcXmlSelected();
-    else if (mediaCenterInterface == MediaCenterInterfaces::XbmcMysql)
-        onMediaCenterXbmcMysqlSelected();
-    else if (mediaCenterInterface == MediaCenterInterfaces::XbmcSqlite)
-        onMediaCenterXbmcSqliteSelected();
-
-
-    ui->inputDatabase->setText(m_settings->xbmcMysqlDatabase());
-    ui->inputHost->setText(m_settings->xbmcMysqlHost());
-    ui->inputUsername->setText(m_settings->xbmcMysqlUser());
-    ui->inputPassword->setText(m_settings->xbmcMysqlPassword());
-    ui->inputSqliteDatabase->setText(m_settings->xbmcSqliteDatabase());
-    m_xbmcSqliteDatabaseDialog->selectFile(m_settings->xbmcSqliteDatabase());
     ui->useYoutubePluginUrls->setChecked(m_settings->useYoutubePluginUrls());
 
-    ui->inputThumbnailPath->setText(m_settings->xbmcThumbnailPath());
-    ui->inputThumbnailPath->setToolTip(m_settings->xbmcThumbnailPath());
-    m_xbmcThumbnailDirDialog->selectFile(m_settings->xbmcThumbnailPath());
+    // XBMC
+    ui->xbmcHost->setText(m_settings->xbmcHost());
+    if (m_settings->xbmcPort() != 0)
+        ui->xbmcPort->setText(QString::number(m_settings->xbmcPort()));
+    else
+        ui->xbmcPort->clear();
+    ui->xbmcUsername->setText(m_settings->xbmcUsername());
+    ui->xbmcPassword->setText(m_settings->xbmcPassword());
 
     // Data Files
     ui->movieNfoList->setDataFiles(m_settings->dataFiles(DataFileType::MovieNfo), DataFileType::MovieNfo);
@@ -322,15 +301,6 @@ void SettingsWidget::loadSettings()
  */
 void SettingsWidget::saveSettings()
 {
-    int mediaCenterInterface = -1;
-    if (ui->radioXbmcXml->isChecked())
-        mediaCenterInterface = MediaCenterInterfaces::XbmcXml;
-    else if (ui->radioXbmcMysql->isChecked())
-        mediaCenterInterface = MediaCenterInterfaces::XbmcMysql;
-    else if (ui->radioXbmcSqlite->isChecked())
-        mediaCenterInterface = MediaCenterInterfaces::XbmcSqlite;
-    m_settings->setMediaCenterInterface(mediaCenterInterface);
-
     QList<DataFile> dataFiles;
     dataFiles << ui->movieNfoList->dataFiles() << ui->movieBackdropList->dataFiles() << ui->movieCdArtList->dataFiles()
               << ui->movieClearArtList->dataFiles() << ui->movieLogoList->dataFiles() << ui->moviePosterList->dataFiles();
@@ -342,12 +312,18 @@ void SettingsWidget::saveSettings()
               << ui->concertClearArtList->dataFiles() << ui->concertLogoList->dataFiles() << ui->concertPosterList->dataFiles();
     m_settings->setDataFiles(dataFiles);
 
-    m_settings->setXbmcMysqlHost(ui->inputHost->text());
-    m_settings->setXbmcMysqlDatabase(ui->inputDatabase->text());
-    m_settings->setXbmcMysqlUser(ui->inputUsername->text());
-    m_settings->setXbmcMysqlPassword(ui->inputPassword->text());
-    m_settings->setXbmcSqliteDatabase(ui->inputSqliteDatabase->text());
     m_settings->setUseYoutubePluginUrls(ui->useYoutubePluginUrls->isChecked());
+
+    // XBMC
+    if (ui->xbmcHost->text().endsWith("/"))
+        ui->xbmcHost->setText(ui->xbmcHost->text().remove(ui->xbmcHost->text().length()-1, 1));
+    if (!ui->xbmcHost->text().startsWith("http://"))
+        ui->xbmcHost->setText(QString("http://%1").arg(ui->xbmcHost->text()));
+
+    m_settings->setXbmcHost(ui->xbmcHost->text());
+    m_settings->setXbmcPort(ui->xbmcPort->text().toInt());
+    m_settings->setXbmcUsername(ui->xbmcUsername->text());
+    m_settings->setXbmcPassword(ui->xbmcPassword->text());
 
     // Proxy
     m_settings->setUseProxy(ui->chkUseProxy->isChecked());
@@ -406,8 +382,6 @@ void SettingsWidget::saveSettings()
     Manager::instance()->tvShowFileSearcher()->setMovieDirectories(m_settings->tvShowDirectories());
     Manager::instance()->concertFileSearcher()->setConcertDirectories(m_settings->concertDirectories());
     MessageBox::instance()->showMessage(tr("Settings saved"));
-
-    Manager::instance()->setupMediaCenterInterface();
 }
 
 /**
@@ -533,79 +507,6 @@ void SettingsWidget::dirListRowChanged(int currentRow)
             ui->buttonMovieFilesToDirs->setDisabled(true);
         }
     }
-}
-
-/**
- * @brief Handles status of MediaCenter checkboxes and inputs
- */
-void SettingsWidget::onMediaCenterXbmcXmlSelected()
-{
-    ui->labelWarning->setVisible(false);
-    ui->radioXbmcXml->setChecked(true);
-    ui->widgetXbmcMysql->setVisible(false);
-    ui->widgetXbmcSqlite->setVisible(false);
-    setXbmcThumbnailPathEnabled(false);
-}
-
-/**
- * @brief Handles status of MediaCenter checkboxes and inputs
- */
-void SettingsWidget::onMediaCenterXbmcMysqlSelected()
-{
-    ui->labelWarning->setVisible(true);
-    ui->radioXbmcMysql->setChecked(true);
-    ui->widgetXbmcMysql->setVisible(true);
-    ui->widgetXbmcSqlite->setVisible(false);
-    setXbmcThumbnailPathEnabled(true);
-}
-
-/**
- * @brief Handles status of MediaCenter checkboxes and inputs
- */
-void SettingsWidget::onMediaCenterXbmcSqliteSelected()
-{
-    ui->labelWarning->setVisible(true);
-    ui->radioXbmcSqlite->setChecked(true);
-    ui->widgetXbmcMysql->setVisible(false);
-    ui->widgetXbmcSqlite->setVisible(true);
-    setXbmcThumbnailPathEnabled(true);
-}
-
-/**
- * @brief Sets the SQLite database
- * @param file Database file
- */
-void SettingsWidget::onChooseMediaCenterXbmcSqliteDatabase(QString file)
-{
-    if (!file.isEmpty()) {
-        ui->inputSqliteDatabase->setText(file);
-        m_settings->setXbmcSqliteDatabase(file);
-    }
-}
-
-/**
- * @brief Shows a dialog to choose the thumbnail directory
- * @param dir Thumbnail directory to set
- */
-void SettingsWidget::onChooseXbmcThumbnailPath(QString dir)
-{
-    if (!dir.isEmpty()) {
-        m_settings->setXbmcThumbnailPath(dir);
-        ui->inputThumbnailPath->setText(dir);
-        ui->inputThumbnailPath->setToolTip(dir);
-    }
-}
-
-/**
- * @brief Enables or disables the thumbnail path
- * @param enabled Status
- */
-void SettingsWidget::setXbmcThumbnailPathEnabled(bool enabled)
-{
-    ui->inputThumbnailPath->setVisible(enabled);
-    ui->buttonSelectThumbnailPath->setVisible(enabled);
-    ui->labelXbmcThumbnailPath->setVisible(enabled);
-    ui->labelXbmcThumbnailPathDesc->setVisible(enabled);
 }
 
 /**

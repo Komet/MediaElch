@@ -41,13 +41,6 @@ bool XbmcXml::hasFeature(int feature)
 }
 
 /**
- * @brief Gets called when MediaElch shuts down
- */
-void XbmcXml::shutdown()
-{
-}
-
-/**
  * @brief Writes movie elements to an xml stream
  * @param xml XML stream
  * @param movie Movie to save

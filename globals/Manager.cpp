@@ -7,7 +7,6 @@
 #include "imageProviders/FanartTv.h"
 #include "imageProviders/TMDbImages.h"
 #include "imageProviders/TheTvDbImages.h"
-#include "mediaCenterPlugins/XbmcSql.h"
 #include "mediaCenterPlugins/XbmcXml.h"
 #include "scrapers/Cinefacts.h"
 #include "scrapers/IMDB.h"
@@ -42,16 +41,8 @@ Manager::Manager(QObject *parent) :
     m_database = new Database(this);
 
     m_mediaCenters.append(new XbmcXml(this));
-    m_mediaCenters.append(new XbmcSql(this, "xbmc"));
-    m_mediaCenters.append(new XbmcSql(this, "xbmc"));
-
     m_mediaCentersTvShow.append(new XbmcXml(this));
-    m_mediaCentersTvShow.append(new XbmcSql(this, "xbmcTvShow"));
-    m_mediaCentersTvShow.append(new XbmcSql(this, "xbmcTvShow"));
-
     m_mediaCentersConcert.append(new XbmcXml(this));
-    m_mediaCentersConcert.append(new XbmcSql(this, "xbmcConcert"));
-    m_mediaCentersConcert.append(new XbmcSql(this, "xbmcConcert"));
 
     m_imageProviders.append(new FanartTv(this));
     m_imageProviders.append(new TMDbImages(this));
@@ -81,63 +72,11 @@ Manager* Manager::instance()
 }
 
 /**
- * @brief Sets up the MediaCenterInterfaces based on the settings
- */
-void Manager::setupMediaCenterInterface()
-{
-    qDebug() << "Entered";
-    qDebug() << "Current MediaCenterInterface is";
-    if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcXml)
-        qDebug() << "Xbmc::Xml";
-    else if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcSqlite)
-        qDebug() << "Xbmc::Sqlite";
-    else if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcMysql)
-        qDebug() << "Xbmc::MySQL";
-
-    if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcMysql) {
-        MediaCenterInterface *interface = m_mediaCenters.at(1);
-        static_cast<XbmcSql*>(interface)->connectMysql(Settings::instance()->xbmcMysqlHost(), Settings::instance()->xbmcMysqlDatabase(),
-                                                       Settings::instance()->xbmcMysqlUser(), Settings::instance()->xbmcMysqlPassword());
-        interface = m_mediaCentersTvShow.at(1);
-        static_cast<XbmcSql*>(interface)->connectMysql(Settings::instance()->xbmcMysqlHost(), Settings::instance()->xbmcMysqlDatabase(),
-                                                       Settings::instance()->xbmcMysqlUser(), Settings::instance()->xbmcMysqlPassword());
-        interface = m_mediaCentersConcert.at(1);
-        static_cast<XbmcSql*>(interface)->connectMysql(Settings::instance()->xbmcMysqlHost(), Settings::instance()->xbmcMysqlDatabase(),
-                                                       Settings::instance()->xbmcMysqlUser(), Settings::instance()->xbmcMysqlPassword());
-    } else if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcSqlite) {
-        MediaCenterInterface *interface = m_mediaCenters.at(2);
-        static_cast<XbmcSql*>(interface)->connectSqlite(Settings::instance()->xbmcSqliteDatabase());
-
-        interface = m_mediaCentersTvShow.at(2);
-        static_cast<XbmcSql*>(interface)->connectSqlite(Settings::instance()->xbmcSqliteDatabase());
-
-        interface = m_mediaCentersConcert.at(2);
-        static_cast<XbmcSql*>(interface)->connectSqlite(Settings::instance()->xbmcSqliteDatabase());
-    }
-}
-
-/**
- * @brief Calls the shutdown function in every MediaCenterInterface
- */
-void Manager::shutdownMediaCenterInterfaces()
-{
-    for (int i=0, n=m_mediaCenters.count() ; i<n ; ++i)
-        m_mediaCenters.at(i)->shutdown();
-}
-
-/**
  * @brief Returns the active MediaCenterInterface
  * @return Instance of a MediaCenterInterface
  */
 MediaCenterInterface *Manager::mediaCenterInterface()
 {
-    if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcXml)
-        return m_mediaCenters.at(0);
-    else if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcMysql)
-        return m_mediaCenters.at(1);
-    else if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcSqlite)
-        return m_mediaCenters.at(2);
-
     return m_mediaCenters.at(0);
 }
 
@@ -147,13 +86,6 @@ MediaCenterInterface *Manager::mediaCenterInterface()
  */
 MediaCenterInterface *Manager::mediaCenterInterfaceTvShow()
 {
-    if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcXml)
-        return m_mediaCentersTvShow.at(0);
-    else if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcMysql)
-        return m_mediaCentersTvShow.at(1);
-    else if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcSqlite)
-        return m_mediaCentersTvShow.at(2);
-
     return m_mediaCentersTvShow.at(0);
 }
 
@@ -163,13 +95,6 @@ MediaCenterInterface *Manager::mediaCenterInterfaceTvShow()
  */
 MediaCenterInterface *Manager::mediaCenterInterfaceConcert()
 {
-    if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcXml)
-        return m_mediaCentersConcert.at(0);
-    else if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcMysql)
-        return m_mediaCentersConcert.at(1);
-    else if (Settings::instance()->mediaCenterInterface() == MediaCenterInterfaces::XbmcSqlite)
-        return m_mediaCentersConcert.at(2);
-
     return m_mediaCentersConcert.at(0);
 }
 
@@ -271,11 +196,13 @@ TvShowProxyModel *Manager::tvShowProxyModel()
 ScraperInterface *Manager::getScraperForName(QString name)
 {
     if (name == "ofdb") {
-        return m_scrapers.at(2);
-    } else if (name == "cinefacts") {
-        return m_scrapers.at(1);
-    } else if (name == "videobuster") {
         return m_scrapers.at(3);
+    } else if (name == "cinefacts") {
+        return m_scrapers.at(2);
+    } else if (name == "videobuster") {
+        return m_scrapers.at(4);
+    } else if (name == "imdb") {
+        return m_scrapers.at(1);
     } else {
         // default to TMDb
         return m_scrapers.at(0);

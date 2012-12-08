@@ -52,8 +52,6 @@ public:
     TvShowProxyModel *tvShowProxyModel();
     ConcertModel* concertModel();
     FileScannerDialog *fileScannerDialog();
-    void setupMediaCenterInterface();
-    void shutdownMediaCenterInterfaces();
     ScraperInterface* getScraperForName(QString name);
     FanartTv* fanartTv();
     TvShowFilesWidget *tvShowFilesWidget();

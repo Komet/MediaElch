@@ -31,7 +31,6 @@ public:
     virtual void saveMovieSetBackdrop(QString setName, QImage backdrop) = 0;
     virtual bool saveTvShow(TvShow *show) = 0;
     virtual bool saveTvShowEpisode(TvShowEpisode *episode) = 0;
-    virtual void shutdown() = 0;
     virtual bool hasFeature(int feature) = 0;
     virtual QString posterImageName(Movie *movie) = 0;
     virtual QString backdropImageName(Movie *movie) = 0;

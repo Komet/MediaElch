@@ -128,8 +128,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), ui->tvShowFilesWidget, SLOT(renewModel()));
     connect(m_fileScannerDialog, SIGNAL(accepted()), this, SLOT(setNewMarks()));
 
-    Manager::instance()->setupMediaCenterInterface();
-
     MovieSearch::instance(ui->centralWidget);
     TvShowSearch::instance(ui->centralWidget);
     ImageDialog::instance(ui->centralWidget);
@@ -163,7 +161,6 @@ MainWindow::MainWindow(QWidget *parent) :
  */
 MainWindow::~MainWindow()
 {
-    Manager::instance()->shutdownMediaCenterInterfaces();
     m_settings->setMainWindowSize(size());
     m_settings->setMainWindowPosition(pos());
     m_settings->setMainSplitterState(ui->movieSplitter->saveState());

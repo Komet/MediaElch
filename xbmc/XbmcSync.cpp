@@ -1,7 +1,6 @@
 #include "XbmcSync.h"
 #include "ui_XbmcSync.h"
 
-#include <QIntValidator>
 #include <QScriptEngine>
 #include <QScriptValue>
 #include <QScriptValueIterator>
@@ -14,7 +13,6 @@ XbmcSync::XbmcSync(QWidget *parent) :
     ui(new Ui::XbmcSync)
 {
     ui->setupUi(this);
-    ui->port->setValidator(new QIntValidator(0, 99999, ui->port));
 
     m_qnam = new QNetworkAccessManager(this);
 
@@ -29,9 +27,6 @@ XbmcSync::~XbmcSync()
 
 int XbmcSync::exec()
 {
-    ui->host->setText(Settings::instance()->xbmcHost());
-    if (Settings::instance()->xbmcPort() != 0)
-        ui->port->setText(QString::number(Settings::instance()->xbmcPort()));
     ui->status->clear();
     return QDialog::exec();
 }
@@ -58,17 +53,17 @@ void XbmcSync::startSync()
     m_episodesToRemove.clear();
 
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        if (movie->syncNeeded() || ui->checkUpdateAllMovies->isChecked())
+        if (movie->syncNeeded())
             m_moviesToSync.append(movie);
     }
 
     foreach (Concert *concert, Manager::instance()->concertModel()->concerts()) {
-        if (concert->syncNeeded() || ui->checkUpdateAllConcerts->isChecked())
+        if (concert->syncNeeded())
             m_concertsToSync.append(concert);
     }
 
     foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
-        if (show->syncNeeded() || ui->checkUpdateAllShows->isChecked()) {
+        if (show->syncNeeded()) {
             m_tvShowsToSync.append(show);
             continue;
         }
@@ -86,22 +81,15 @@ void XbmcSync::startSync()
         }
     }
 
-    if (ui->host->text().isEmpty() || ui->port->text().isEmpty()) {
+    QString host = Settings::instance()->xbmcHost();
+    int port = Settings::instance()->xbmcPort();
+
+    if (host.isEmpty() || port == 0) {
         ui->status->setText(tr("Please fill in your XBMC host and port."));
         return;
     }
 
-    if (ui->host->text().endsWith("/"))
-        ui->host->setText(ui->host->text().remove(ui->host->text().length()-1, 1));
-    if (!ui->host->text().startsWith("http://"))
-        ui->host->setText(QString("http://%1").arg(ui->host->text()));
-    if (ui->port->text().isEmpty())
-        ui->port->setText("8080");
-
-    Settings::instance()->setXbmcHost(ui->host->text());
-    Settings::instance()->setXbmcPort(ui->port->text().toInt());
-
-    QUrl url(QString("%1:%2/jsonrpc").arg(ui->host->text()).arg(ui->port->text()));
+    QUrl url(QString("%1:%2/jsonrpc").arg(host).arg(port));
     m_request.setUrl(url);
     m_request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     m_request.setRawHeader("Accept", "application/json");

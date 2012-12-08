@@ -68,8 +68,12 @@ void Settings::loadSettings()
     m_debugLogPath = m_settings.value("DebugLogPath").toString();
     m_autoLoadStreamDetails = m_settings.value("AutoLoadStreamDetails", true).toBool();
     m_usePlotForOutline = m_settings.value("Movies/UsePlotForOutline", true).toBool();
+
+    // XBMC
     m_xbmcHost = m_settings.value("XBMC/Host").toString();
     m_xbmcPort = m_settings.value("XBMC/Port").toInt();
+    m_xbmcUsername = m_settings.value("XBMC/Username").toString();
+    m_xbmcPassword = m_settings.value("XBMC/Password").toString();
 
     // Proxy
     m_useProxy = m_settings.value("Proxy/Enable", false).toBool();
@@ -139,13 +143,6 @@ void Settings::loadSettings()
     }
 
     // Media Centers
-    m_mediaCenterInterface = m_settings.value("MediaCenterInterface", MediaCenterInterfaces::XbmcXml).toInt();
-    m_xbmcMysqlHost        = m_settings.value("XbmcMysql/Host").toString();
-    m_xbmcMysqlDatabase    = m_settings.value("XbmcMysql/Database").toString();
-    m_xbmcMysqlUser        = m_settings.value("XbmcMysql/User").toString();
-    m_xbmcMysqlPassword    = m_settings.value("XbmcMysql/Password").toString();
-    m_xbmcSqliteDatabase   = m_settings.value("XbmcSqlite/Database").toString();
-    m_xbmcThumbnailPath    = m_settings.value("XbmcThumbnailpath").toString();
     m_youtubePluginUrls    = m_settings.value("UseYoutubePluginURLs", false).toBool();
 
     // Data Files
@@ -175,15 +172,14 @@ void Settings::saveSettings()
     m_settings.setValue("DebugLogPath", m_debugLogPath);
     m_settings.setValue("AutoLoadStreamDetails", m_autoLoadStreamDetails);
 
-    m_settings.setValue("XbmcMysql/Host", m_xbmcMysqlHost);
-    m_settings.setValue("XbmcMysql/Database", m_xbmcMysqlDatabase);
-    m_settings.setValue("XbmcMysql/User", m_xbmcMysqlUser);
-    m_settings.setValue("XbmcMysql/Password", m_xbmcMysqlPassword);
-    m_settings.setValue("XbmcSqlite/Database", m_xbmcSqliteDatabase);
-    m_settings.setValue("MediaCenterInterface", m_mediaCenterInterface);
-    m_settings.setValue("XbmcThumbnailpath", m_xbmcThumbnailPath);
     m_settings.setValue("UseYoutubePluginURLs", m_youtubePluginUrls);
     m_settings.setValue("Movies/UsePlotForOutline", m_usePlotForOutline);
+
+    // XBMC
+    m_settings.setValue("XBMC/Host", m_xbmcHost);
+    m_settings.setValue("XBMC/Port", m_xbmcPort);
+    m_settings.setValue("XBMC/Username", m_xbmcUsername);
+    m_settings.setValue("XBMC/Password", m_xbmcPassword);
 
     // Proxy
     m_settings.setValue("Proxy/Enable", m_useProxy);
@@ -343,69 +339,6 @@ QString Settings::excludeWords()
 }
 
 /**
- * @brief Returns the number of the chosen MediaCenterInterface
- * @return Number of the chosen MediaCenterInterface
- */
-int Settings::mediaCenterInterface()
-{
-    return m_mediaCenterInterface;
-}
-
-/**
- * @brief Returns the host of the MySQL database
- * @return Host of the MySQL db
- */
-QString Settings::xbmcMysqlHost()
-{
-    return m_xbmcMysqlHost;
-}
-
-/**
- * @brief Returns the name of the MySQL database
- * @return Name of the MySQL db
- */
-QString Settings::xbmcMysqlDatabase()
-{
-    return m_xbmcMysqlDatabase;
-}
-
-/**
- * @brief Returns the user of the MySQL database
- * @return User of the MySQL db
- */
-QString Settings::xbmcMysqlUser()
-{
-    return m_xbmcMysqlUser;
-}
-
-/**
- * @brief Returns the password of the MySQL database
- * @return Password of the MySQL db
- */
-QString Settings::xbmcMysqlPassword()
-{
-    return m_xbmcMysqlPassword;
-}
-
-/**
- * @brief Returns the path to the SQLite database
- * @return Path to SQLite database
- */
-QString Settings::xbmcSqliteDatabase()
-{
-    return m_xbmcSqliteDatabase;
-}
-
-/**
- * @brief Returns the path to the thumbnails
- * @return Path to thumbnails
- */
-QString Settings::xbmcThumbnailPath()
-{
-    return m_xbmcThumbnailPath;
-}
-
-/**
  * @brief Returns the state of the debug mode
  * @return Debug mode active or not
  */
@@ -530,6 +463,16 @@ int Settings::xbmcPort()
     return m_xbmcPort;
 }
 
+QString Settings::xbmcUsername()
+{
+    return m_xbmcUsername;
+}
+
+QString Settings::xbmcPassword()
+{
+    return m_xbmcPassword;
+}
+
 /*** SETTER ***/
 
 /**
@@ -610,24 +553,6 @@ void Settings::setExcludeWords(QString words)
 }
 
 /**
- * @brief Sets the path to the xbmc sqlite database
- * @param file Database file
- */
-void Settings::setXbmcSqliteDatabase(QString file)
-{
-    m_xbmcSqliteDatabase = file;
-}
-
-/**
- * @brief Sets the path to the xbmc thumbnails
- * @param path Path to thumbnails
- */
-void Settings::setXbmcThumbnailPath(QString path)
-{
-    m_xbmcThumbnailPath = path;
-}
-
-/**
  * @brief Sets state of debug mode
  * @param enabled
  */
@@ -646,42 +571,6 @@ void Settings::setDebugLogPath(QString path)
 }
 
 /**
- * @brief Sets the mysql host
- * @param host
- */
-void Settings::setXbmcMysqlHost(QString host)
-{
-    m_xbmcMysqlHost = host;
-}
-
-/**
- * @brief Sets the mysql database
- * @param db
- */
-void Settings::setXbmcMysqlDatabase(QString db)
-{
-    m_xbmcMysqlDatabase = db;
-}
-
-/**
- * @brief Sets the mysql user
- * @param user
- */
-void Settings::setXbmcMysqlUser(QString user)
-{
-    m_xbmcMysqlUser = user;
-}
-
-/**
- * @brief Sets the mysql password
- * @param password
- */
-void Settings::setXbmcMysqlPassword(QString password)
-{
-    m_xbmcMysqlPassword = password;
-}
-
-/**
  * @brief Convert trailer urls to youtube plugin format
  * @param use
  */
@@ -697,15 +586,6 @@ void Settings::setUseYoutubePluginUrls(bool use)
 void Settings::setDataFiles(QList<DataFile> files)
 {
     m_dataFiles = files;
-}
-
-/**
- * @brief Sets the MediaCenterInterface
- * @param interface
- */
-void Settings::setMediaCenterInterface(int interface)
-{
-    m_mediaCenterInterface = interface;
 }
 
 /**
@@ -783,13 +663,19 @@ void Settings::setUsePlotForOutline(bool use)
 void Settings::setXbmcHost(QString host)
 {
     m_xbmcHost = host;
-    m_settings.setValue("XBMC/Host", host);
-    m_settings.sync();
 }
 
 void Settings::setXbmcPort(int port)
 {
     m_xbmcPort = port;
-    m_settings.setValue("XBMC/Port", port);
-    m_settings.sync();
+}
+
+void Settings::setXbmcUsername(QString username)
+{
+    m_xbmcUsername = username;
+}
+
+void Settings::setXbmcPassword(QString password)
+{
+    m_xbmcPassword = password;
 }

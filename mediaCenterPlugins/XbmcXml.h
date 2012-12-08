@@ -30,7 +30,6 @@ public:
     bool loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoContent = "");
     bool saveTvShow(TvShow *show);
     bool saveTvShowEpisode(TvShowEpisode *episode);
-    void shutdown();
     bool hasFeature(int feature);
     QImage movieSetPoster(QString setName);
     QImage movieSetBackdrop(QString setName);

@@ -65,7 +65,6 @@ SOURCES += main.cpp\
     tvShows/TvShowWidgetTvShow.cpp \
     scrapers/TheTvDb.cpp \
     tvShows/TvShowSearch.cpp \
-    mediaCenterPlugins/XbmcSql.cpp \
     globals/DownloadManagerElement.cpp \
     smallWidgets/ImageLabel.cpp \
     globals/ImagePreviewDialog.cpp \
@@ -149,7 +148,6 @@ HEADERS  += main/MainWindow.h \
     scrapers/TheTvDb.h \
     data/TvScraperInterface.h \
     tvShows/TvShowSearch.h \
-    mediaCenterPlugins/XbmcSql.h \
     globals/DownloadManagerElement.h \
     smallWidgets/ImageLabel.h \
     globals/ImagePreviewDialog.h \
