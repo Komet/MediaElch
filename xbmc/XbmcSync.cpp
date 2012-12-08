@@ -90,6 +90,8 @@ void XbmcSync::startSync()
     }
 
     QUrl url(QString("%1:%2/jsonrpc").arg(host).arg(port));
+    url.setUserName(Settings.instance()->xbmcUsername());
+    url.setPassword(Settings::instance()->xbmcPassword());
     m_request.setUrl(url);
     m_request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     m_request.setRawHeader("Accept", "application/json");
