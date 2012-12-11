@@ -99,7 +99,7 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie)
     }
     xml.writeEndElement();
 
-    xml.writeStartElement("fileinfos");
+    xml.writeStartElement("fileinfo");
     writeStreamDetails(xml, movie->streamDetails());
     xml.writeEndElement();
 
@@ -704,7 +704,7 @@ void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert)
     }
     xml.writeEndElement();
 
-    xml.writeStartElement("fileinfos");
+    xml.writeStartElement("fileinfo");
     writeStreamDetails(xml, concert->streamDetails());
     xml.writeEndElement();
 
@@ -1733,7 +1733,7 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
         }
     }
 
-    xml.writeStartElement("fileinfos");
+    xml.writeStartElement("fileinfo");
     writeStreamDetails(xml, episode->streamDetails());
     xml.writeEndElement();
 
