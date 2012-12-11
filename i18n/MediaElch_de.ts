@@ -297,19 +297,29 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ConcertFilesWidget</name>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="41"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="42"/>
         <source>Mark as watched</source>
         <translation>Als gesehen markieren</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="42"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="43"/>
         <source>Mark as unwatched</source>
         <translation>Als ungesehen markieren</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="43"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="44"/>
         <source>Load Stream Details</source>
         <translation>Stream Details laden</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="45"/>
+        <source>Add to Synchronization Queue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="46"/>
+        <source>Remove from Synchronization Queue</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -824,19 +834,29 @@ p, li { white-space: pre-wrap; }
         <translation>Jahr</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="43"/>
+        <location filename="../movies/FilesWidget.cpp" line="44"/>
         <source>Mark as watched</source>
         <translation>Als gesehen markieren</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="44"/>
+        <location filename="../movies/FilesWidget.cpp" line="45"/>
         <source>Mark as unwatched</source>
         <translation>Als ungesehen markieren</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="45"/>
+        <location filename="../movies/FilesWidget.cpp" line="46"/>
         <source>Load Stream Details</source>
         <translation>Stream Details laden</translation>
+    </message>
+    <message>
+        <location filename="../movies/FilesWidget.cpp" line="47"/>
+        <source>Add to Synchronization Queue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../movies/FilesWidget.cpp" line="48"/>
+        <source>Remove from Synchronization Queue</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1349,89 +1369,89 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="471"/>
-        <location filename="../main/MainWindow.cpp" line="222"/>
+        <location filename="../main/MainWindow.cpp" line="219"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="476"/>
-        <location filename="../main/MainWindow.cpp" line="228"/>
+        <location filename="../main/MainWindow.cpp" line="225"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="481"/>
-        <location filename="../main/MainWindow.cpp" line="227"/>
+        <location filename="../main/MainWindow.cpp" line="224"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="205"/>
+        <location filename="../main/MainWindow.cpp" line="202"/>
         <source>Search</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="207"/>
+        <location filename="../main/MainWindow.cpp" line="204"/>
         <source>Search (%1)</source>
         <translation>Suche (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="209"/>
+        <location filename="../main/MainWindow.cpp" line="206"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="211"/>
+        <location filename="../main/MainWindow.cpp" line="208"/>
         <source>Save (%1)</source>
         <translation>Speichern (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="213"/>
+        <location filename="../main/MainWindow.cpp" line="210"/>
         <source>Save All</source>
         <translation>Alle Speichern</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="216"/>
+        <location filename="../main/MainWindow.cpp" line="213"/>
         <source>Save All (%1)</source>
         <translation>Alle Speichern (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="220"/>
+        <location filename="../main/MainWindow.cpp" line="217"/>
         <source>Reload all files (%1)</source>
         <translation>Lädt alle Dateien neu (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="224"/>
+        <location filename="../main/MainWindow.cpp" line="221"/>
         <source>XBMC</source>
         <translation>XBMC</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="225"/>
+        <location filename="../main/MainWindow.cpp" line="222"/>
         <source>Synchronize to XBMC</source>
         <translation>Synchronisiere XBMC</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="230"/>
+        <location filename="../main/MainWindow.cpp" line="227"/>
         <source>Support</source>
         <translation>Support</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="339"/>
+        <location filename="../main/MainWindow.cpp" line="336"/>
         <source>Reload all Movies (%1)</source>
         <translation>Filme neu laden (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="341"/>
+        <location filename="../main/MainWindow.cpp" line="338"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>Serien neu laden (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="343"/>
+        <location filename="../main/MainWindow.cpp" line="340"/>
         <source>Reload all Concerts (%1)</source>
         <translation>Konzerte neu laden (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="218"/>
+        <location filename="../main/MainWindow.cpp" line="215"/>
         <source>Reload</source>
         <translation>Neu laden</translation>
     </message>
@@ -2624,71 +2644,71 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="34"/>
+        <location filename="../settings/SettingsWidget.cpp" line="37"/>
         <source>Items are in separate folders</source>
         <translation>In separaten Verzeichnissen</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="35"/>
+        <location filename="../settings/SettingsWidget.cpp" line="38"/>
         <source>Automatically reload contents on start</source>
         <translation>Inhalte beim Start automatisch neu laden</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="57"/>
-        <location filename="../settings/SettingsWidget.cpp" line="86"/>
-        <location filename="../settings/SettingsWidget.cpp" line="115"/>
+        <location filename="../settings/SettingsWidget.cpp" line="60"/>
+        <location filename="../settings/SettingsWidget.cpp" line="89"/>
+        <location filename="../settings/SettingsWidget.cpp" line="118"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="129"/>
+        <location filename="../settings/SettingsWidget.cpp" line="132"/>
         <source>Logfile</source>
         <translation>Logdatei</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="129"/>
+        <location filename="../settings/SettingsWidget.cpp" line="132"/>
         <source>Logfiles (*.log *.txt)</source>
         <translation>Logdateien (*.log *.txt)</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="659"/>
+        <location filename="../settings/SettingsWidget.cpp" line="560"/>
         <source>Choose a directory containing your movies, TV show or concerts</source>
         <translation>Wähle ein Verzeichnis aus, dass deine Filme, Serien oder Konzerte enthält</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="557"/>
-        <location filename="../settings/SettingsWidget.cpp" line="449"/>
+        <location filename="../settings/SettingsWidget.ui" line="406"/>
+        <location filename="../settings/SettingsWidget.cpp" line="423"/>
         <source>Movies</source>
         <translation>Filme</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="563"/>
+        <location filename="../settings/SettingsWidget.ui" line="412"/>
         <source>Below you see the filenames which are used for loading and saving your movies. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
         <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Filme benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste. Um eine Datei umzubennen, klicke doppelt auf sie.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="736"/>
+        <location filename="../settings/SettingsWidget.ui" line="585"/>
         <source>Below you see the filenames which are used for loading and saving your tv shows. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
         <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Serien benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste. Um eine Datei umzubennen, klicke doppelt auf sie.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="991"/>
-        <location filename="../settings/SettingsWidget.cpp" line="449"/>
+        <location filename="../settings/SettingsWidget.ui" line="840"/>
+        <location filename="../settings/SettingsWidget.cpp" line="423"/>
         <source>Concerts</source>
         <translation>Konzerte</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="489"/>
+        <location filename="../settings/SettingsWidget.cpp" line="463"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
         <translation>Die Verzeichnis-Organisation kann nur auf Filmesammlungen angewandt werden, die nicht schon in separate Verzeichnisse sortiert ist.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="497"/>
+        <location filename="../settings/SettingsWidget.cpp" line="471"/>
         <source>Are you sure?</source>
         <translation>Bist du sicher?</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="498"/>
+        <location filename="../settings/SettingsWidget.cpp" line="472"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
         <translation>Diese Operation sortiert alle Filme in diesem Verzeichnis in separate Unterordner basierend auf dem Dateinamen. Klicke &quot;Ok&quot;, falls du damit einverstanden bist.</translation>
     </message>
@@ -2697,7 +2717,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Diese Operation sortiert alle Filme in diesem Verzeichnis in separate Unterordner. Klicke &quot;Ok&quot;, falls du damit einverstanden bist</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="501"/>
+        <location filename="../settings/SettingsWidget.cpp" line="475"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -2707,7 +2727,6 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="141"/>
-        <location filename="../settings/SettingsWidget.ui" line="533"/>
         <source>Path</source>
         <translation>Verzeichnis</translation>
     </message>
@@ -2741,63 +2760,55 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">MediaCenter Interface</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="355"/>
         <source>Select the MediaCenter to use.</source>
-        <translation>Wähle ein Interface zu deinem MediaCenter aus.</translation>
+        <translation type="obsolete">Wähle ein Interface zu deinem MediaCenter aus.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="362"/>
         <source>XBMC XML</source>
-        <translation>XBMC XML</translation>
+        <translation type="obsolete">XBMC XML</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="388"/>
         <source>XBMC MySQL</source>
-        <translation>XBMC MySQL</translation>
+        <translation type="obsolete">XBMC MySQL</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="407"/>
-        <location filename="../settings/SettingsWidget.ui" line="1168"/>
+        <location filename="../settings/SettingsWidget.ui" line="351"/>
+        <location filename="../settings/SettingsWidget.ui" line="1017"/>
         <source>Host</source>
         <translation>Host</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="424"/>
-        <location filename="../settings/SettingsWidget.ui" line="497"/>
         <source>Database</source>
-        <translation>Datenbank</translation>
+        <translation type="obsolete">Datenbank</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="441"/>
-        <location filename="../settings/SettingsWidget.ui" line="1182"/>
+        <location filename="../settings/SettingsWidget.ui" line="379"/>
+        <location filename="../settings/SettingsWidget.ui" line="1031"/>
         <source>Username</source>
         <translation>Benutzername</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="458"/>
-        <location filename="../settings/SettingsWidget.ui" line="1189"/>
+        <location filename="../settings/SettingsWidget.ui" line="389"/>
+        <location filename="../settings/SettingsWidget.ui" line="1038"/>
         <source>Password</source>
         <translation>Passwort</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="481"/>
         <source>XBMC SQLite</source>
-        <translation>XBMC SQLite</translation>
+        <translation type="obsolete">XBMC SQLite</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="722"/>
+        <location filename="../settings/SettingsWidget.ui" line="571"/>
         <source>Use plot when outline is not available</source>
         <translation>Plot benutzen, wenn Outline nicht verfügbar ist</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="997"/>
+        <location filename="../settings/SettingsWidget.ui" line="846"/>
         <source>Below you see the filenames which are used for loading and saving your concerts. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
         <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Konzerte benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste. Um eine Datei umzubennen, klicke doppelt auf sie.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="238"/>
-        <location filename="../settings/SettingsWidget.ui" line="511"/>
-        <location filename="../settings/SettingsWidget.ui" line="547"/>
         <source>Select</source>
         <translation>Auswählen</translation>
     </message>
@@ -2896,14 +2907,12 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Von Mediennamen auszuschließende Wörter (durch Kommas getrennt, case insensitive)</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="333"/>
         <source>MediaCenter</source>
-        <translation>MediaCenter</translation>
+        <translation type="obsolete">MediaCenter</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="345"/>
         <source>Please hit the &quot;Reload&quot; button after changing the Media Center Interface.</source>
-        <translation>Bitte klick auf &quot;Neu Laden&quot; nach dem du das Media Center Interface geändert hast.</translation>
+        <translation type="obsolete">Bitte klick auf &quot;Neu Laden&quot; nach dem du das Media Center Interface geändert hast.</translation>
     </message>
     <message>
         <source>Select the filenames you wish to use for loading and saving. Enable/disable them using the checkbox in front, set priorities through sorting with drag and drop.</source>
@@ -2978,14 +2987,12 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">banner.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="378"/>
         <source>The MySQL and SQLite interfaces are currently unstable, unmaintained and completely unsupported! Only enable them if you know what you&apos;re doing. Don&apos;t fill bug reports regarding these interfaces!</source>
-        <translation>Die MySQL und SQLite Interfaces sind zur Zeit instabil und werden nicht weiterentwickelt! Aktiviere sie nur, wenn du wirklich weißt, was du tust. Bitte melde KEINE Fehler, die du bei der Verwendung dieser Interfaces findest!</translation>
+        <translation type="obsolete">Die MySQL und SQLite Interfaces sind zur Zeit instabil und werden nicht weiterentwickelt! Aktiviere sie nur, wenn du wirklich weißt, was du tust. Bitte melde KEINE Fehler, die du bei der Verwendung dieser Interfaces findest!</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="521"/>
         <source>Set the path where Thumbnails are stored (e.g. ~/.xbmc/userdata/Thumbnails)</source>
-        <translation>Wähle das Verzeichnis aus, in dem die XBMC Thumbnails gespeichert werden (z.B. ~/.xbmc/userdata/Thumbnails)</translation>
+        <translation type="obsolete">Wähle das Verzeichnis aus, in dem die XBMC Thumbnails gespeichert werden (z.B. ~/.xbmc/userdata/Thumbnails)</translation>
     </message>
     <message>
         <source>MediaCenter Settings</source>
@@ -3014,48 +3021,48 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Filme benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="573"/>
-        <location filename="../settings/SettingsWidget.ui" line="1007"/>
+        <location filename="../settings/SettingsWidget.ui" line="422"/>
+        <location filename="../settings/SettingsWidget.ui" line="856"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
         <translation>Du kannst den Platzhalter &lt;baseFileName&gt; benutzen (Dateiname ohne Endung).</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="588"/>
-        <location filename="../settings/SettingsWidget.ui" line="816"/>
-        <location filename="../settings/SettingsWidget.ui" line="1025"/>
+        <location filename="../settings/SettingsWidget.ui" line="437"/>
+        <location filename="../settings/SettingsWidget.ui" line="665"/>
+        <location filename="../settings/SettingsWidget.ui" line="874"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="601"/>
-        <location filename="../settings/SettingsWidget.ui" line="1038"/>
+        <location filename="../settings/SettingsWidget.ui" line="450"/>
+        <location filename="../settings/SettingsWidget.ui" line="887"/>
         <source>CD Art</source>
         <translation>CD Art</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="614"/>
-        <location filename="../settings/SettingsWidget.ui" line="777"/>
-        <location filename="../settings/SettingsWidget.ui" line="1051"/>
+        <location filename="../settings/SettingsWidget.ui" line="463"/>
+        <location filename="../settings/SettingsWidget.ui" line="626"/>
+        <location filename="../settings/SettingsWidget.ui" line="900"/>
         <source>Backdrop</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="627"/>
-        <location filename="../settings/SettingsWidget.ui" line="941"/>
-        <location filename="../settings/SettingsWidget.ui" line="1064"/>
+        <location filename="../settings/SettingsWidget.ui" line="476"/>
+        <location filename="../settings/SettingsWidget.ui" line="790"/>
+        <location filename="../settings/SettingsWidget.ui" line="913"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="650"/>
-        <location filename="../settings/SettingsWidget.ui" line="1087"/>
+        <location filename="../settings/SettingsWidget.ui" line="499"/>
+        <location filename="../settings/SettingsWidget.ui" line="936"/>
         <source>NFO</source>
         <translation>NFO</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="663"/>
-        <location filename="../settings/SettingsWidget.ui" line="865"/>
-        <location filename="../settings/SettingsWidget.ui" line="1100"/>
+        <location filename="../settings/SettingsWidget.ui" line="512"/>
+        <location filename="../settings/SettingsWidget.ui" line="714"/>
+        <location filename="../settings/SettingsWidget.ui" line="949"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
@@ -3064,37 +3071,37 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Serien benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="746"/>
+        <location filename="../settings/SettingsWidget.ui" line="595"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
         <translation>Du kannst den Platzhalter &lt;baseFileName&gt; benutzen (Dateiname ohne Endung) oder für Staffelposter den Platzhalter &lt;seasonNumber&gt; (die Staffelnummer).</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="764"/>
+        <location filename="../settings/SettingsWidget.ui" line="613"/>
         <source>Episode NFO</source>
         <translation>Episoden NFO</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="790"/>
+        <location filename="../settings/SettingsWidget.ui" line="639"/>
         <source>Season Poster</source>
         <translation>Staffelposter</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="803"/>
+        <location filename="../settings/SettingsWidget.ui" line="652"/>
         <source>Character Art</source>
         <translation>Character Art</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="829"/>
+        <location filename="../settings/SettingsWidget.ui" line="678"/>
         <source>Banner</source>
         <translation>Banner</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="852"/>
+        <location filename="../settings/SettingsWidget.ui" line="701"/>
         <source>Show NFO</source>
         <translation>Serien NFO</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="898"/>
+        <location filename="../settings/SettingsWidget.ui" line="747"/>
         <source>Episode Thumbnail</source>
         <translation>Episoden Thumbnail</translation>
     </message>
@@ -3103,44 +3110,65 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Konzerte benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1160"/>
+        <location filename="../settings/SettingsWidget.ui" line="1009"/>
         <source>Proxy</source>
         <translation>Proxy</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1175"/>
+        <location filename="../settings/SettingsWidget.ui" line="365"/>
+        <location filename="../settings/SettingsWidget.ui" line="1024"/>
         <source>Port</source>
         <translation>Port</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1216"/>
+        <location filename="../settings/SettingsWidget.ui" line="333"/>
+        <source>XBMC</source>
+        <translation type="unfinished">XBMC</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="339"/>
+        <source>If you want to use the synchronization feature you need to enable the webserver within XBMC and fill in the values below.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="358"/>
+        <source>http://127.0.0.1</source>
+        <translation type="unfinished">http://127.0.0.1</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="372"/>
+        <source>8080</source>
+        <translation type="unfinished">8080</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="1065"/>
         <source>Enable Proxy</source>
         <translation>Proxy verwenden</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1223"/>
+        <location filename="../settings/SettingsWidget.ui" line="1072"/>
         <source>Type</source>
         <comment>Proxy Type</comment>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1231"/>
+        <location filename="../settings/SettingsWidget.ui" line="1080"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1236"/>
+        <location filename="../settings/SettingsWidget.ui" line="1085"/>
         <source>SOCKS 5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1288"/>
-        <location filename="../settings/SettingsWidget.cpp" line="502"/>
+        <location filename="../settings/SettingsWidget.ui" line="1137"/>
+        <location filename="../settings/SettingsWidget.cpp" line="476"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1295"/>
+        <location filename="../settings/SettingsWidget.ui" line="1144"/>
         <source>Save Settings</source>
         <translation>Einstellungen Speichern</translation>
     </message>
@@ -3151,8 +3179,8 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Scraper</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="730"/>
-        <location filename="../settings/SettingsWidget.cpp" line="449"/>
+        <location filename="../settings/SettingsWidget.ui" line="579"/>
+        <location filename="../settings/SettingsWidget.cpp" line="423"/>
         <source>TV Shows</source>
         <translation>TV Serien</translation>
     </message>
@@ -3165,7 +3193,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Filme sind in separaten Verzeichnissen</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="408"/>
+        <location filename="../settings/SettingsWidget.cpp" line="384"/>
         <source>Settings saved</source>
         <translation>Einstellungen gespeichert</translation>
     </message>
@@ -3178,14 +3206,12 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Wähle ein Verzeichnis aus, das deine Serien enthält</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="135"/>
         <source>SQLite Database *.db</source>
-        <translation>SQLite Datenbank *.db</translation>
+        <translation type="obsolete">SQLite Datenbank *.db</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="132"/>
         <source>Choose a directory containing your Thumbnails</source>
-        <translation>Wähle das Verzeichnis aus, in dem die Thumbnails gespeichert werden</translation>
+        <translation type="obsolete">Wähle das Verzeichnis aus, in dem die Thumbnails gespeichert werden</translation>
     </message>
 </context>
 <context>
@@ -3721,8 +3747,7 @@ p, li { white-space: pre-wrap; }
         <translation>neu</translation>
     </message>
     <message numerus="yes">
-        <location filename="../data/TvShowDelegate.cpp" line="94"/>
-        <location filename="../data/TvShowDelegate.cpp" line="97"/>
+        <location filename="../data/TvShowDelegate.cpp" line="114"/>
         <source>%n Episodes</source>
         <translation>
             <numerusform>%n Episode</numerusform>
@@ -3743,12 +3768,12 @@ p, li { white-space: pre-wrap; }
         <translation>Lade Serien...</translation>
     </message>
     <message>
-        <location filename="../data/TvShowFileSearcher.cpp" line="141"/>
+        <location filename="../data/TvShowFileSearcher.cpp" line="139"/>
         <source>Searching for Episodes...</source>
         <translation>Suche nach Episoden...</translation>
     </message>
     <message>
-        <location filename="../data/TvShowFileSearcher.cpp" line="173"/>
+        <location filename="../data/TvShowFileSearcher.cpp" line="171"/>
         <source>Loading Episodes...</source>
         <translation>Lade Episoden...</translation>
     </message>
@@ -3765,30 +3790,40 @@ p, li { white-space: pre-wrap; }
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="41"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="43"/>
         <source>Search for new episodes</source>
         <translation>Nach neuen Episoden suchen</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="42"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="44"/>
         <source>Mark as watched</source>
         <translation>Als gesehen markieren</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="43"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="45"/>
         <source>Mark as unwatched</source>
         <translation>Als ungesehen markieren</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="44"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="46"/>
         <source>Load Stream Details</source>
         <translation>Stream Details laden</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="47"/>
+        <source>Add to Synchronization Queue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="48"/>
+        <source>Remove from Synchronization Queue</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TvShowModelItem</name>
     <message>
-        <location filename="../data/TvShowModelItem.cpp" line="100"/>
+        <location filename="../data/TvShowModelItem.cpp" line="106"/>
         <source>Season %1</source>
         <translation>Staffel %1</translation>
     </message>
@@ -4356,14 +4391,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Verbindung zur XBMC MySQL Datenbank fehlgeschlagen!</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcSql.cpp" line="89"/>
         <source>Connection to XBMC MySQL Database failed! &quot;%1&quot;</source>
-        <translation>Verbindung zur XBMC MySQL Datenbank fehlgeschlagen! &quot;%1&quot;</translation>
+        <translation type="obsolete">Verbindung zur XBMC MySQL Datenbank fehlgeschlagen! &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../mediaCenterPlugins/XbmcSql.cpp" line="108"/>
         <source>Connection to XBMC SQLite Database failed! &quot;%1&quot;</source>
-        <translation>Verbindung zur XBMC SQLite Datenbank fehlgeschlagen! &quot;%1&quot;</translation>
+        <translation type="obsolete">Verbindung zur XBMC SQLite Datenbank fehlgeschlagen! &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Connection to XBMC SQLite Database failed!</source>
@@ -4379,114 +4412,131 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
+        <source>Please make sure you have setup your sources in XBMC and enabled the webserver.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../xbmc/XbmcSync.ui" line="36"/>
+        <source>Update contents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../xbmc/XbmcSync.ui" line="46"/>
         <source>This will tell XBMC to remove the changed movies, concerts or shows. Afterwards a XBMC library update is triggered and the removed items will be picked up again.</source>
         <translation>Hiermit werden geänderte Filme, Serien oder Konzerte aus der XBMC Bibliothek entfernt. Danach wird die XBMC Bibliothek aktualisiert und die entfernten Inhalte werden erneut hinzugefügt.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.ui" line="36"/>
+        <location filename="../xbmc/XbmcSync.ui" line="56"/>
+        <source>Retrieve watched status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../xbmc/XbmcSync.ui" line="63"/>
+        <source>The fields last played and playcount will be retrieved from XBMC.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>For this to work you need to have setup your sources in XBMC and enable the Webserver.</source>
-        <translation>Damit es funktioniert, müssen deine Quellen in XBMC korrekt konfiguriert sein und der Webserver aktiviert sein.</translation>
+        <translation type="obsolete">Damit es funktioniert, müssen deine Quellen in XBMC korrekt konfiguriert sein und der Webserver aktiviert sein.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.ui" line="48"/>
         <source>XBMC Host</source>
-        <translation>XBMC Host</translation>
+        <translation type="obsolete">XBMC Host</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.ui" line="55"/>
         <source>Port</source>
-        <translation>Port</translation>
+        <translation type="obsolete">Port</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.ui" line="62"/>
         <source>http://127.0.0.1</source>
-        <translation>http://127.0.0.1</translation>
+        <translation type="obsolete">http://127.0.0.1</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.ui" line="69"/>
         <source>8080</source>
-        <translation>8080</translation>
+        <translation type="obsolete">8080</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.ui" line="78"/>
         <source>Update all movies</source>
-        <translation>Aktualisiere alle Filme</translation>
+        <translation type="obsolete">Aktualisiere alle Filme</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.ui" line="85"/>
         <source>Update all TV Shows</source>
-        <translation>Aktualisiere alle Serien</translation>
+        <translation type="obsolete">Aktualisiere alle Serien</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.ui" line="92"/>
         <source>Update all concerts</source>
-        <translation>Aktualisiere alle Konzerte</translation>
+        <translation type="obsolete">Aktualisiere alle Konzerte</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.ui" line="120"/>
-        <location filename="../xbmc/XbmcSync.ui" line="127"/>
+        <location filename="../xbmc/XbmcSync.ui" line="94"/>
+        <location filename="../xbmc/XbmcSync.ui" line="101"/>
         <source>Status</source>
         <translation>Status</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.ui" line="138"/>
+        <location filename="../xbmc/XbmcSync.ui" line="112"/>
         <source>Close</source>
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.ui" line="161"/>
+        <location filename="../xbmc/XbmcSync.ui" line="135"/>
         <source>Synchronize</source>
         <translation>Synchronisieren</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="90"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="96"/>
         <source>Please fill in your XBMC host and port.</source>
         <translation>Bitte trage deinen XBMC Host und Port ein.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="138"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="140"/>
         <source>Nothing to synchronize</source>
         <translation>Nichts zu synchronisieren</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="141"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="143"/>
         <source>Getting contents from XBMC</source>
         <translation>Hole Inhalte von XBMC</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="148"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="150"/>
         <source>XBMC is not reachable. Please check your settings.</source>
         <translation>XBMC ist nicht erreichbar. Bitte überprüfe deine Einstellungen.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="313"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="323"/>
         <source>Removing movies from database</source>
         <translation>Entferne Filme aus der Bibliothek</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="321"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="331"/>
         <source>Removing concerts from database</source>
         <translation>Entferne Konzerte aus der Bibliothek</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="329"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="339"/>
         <source>Removing TV shows from database</source>
         <translation>Entferne Serien aus der Bibliothek</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="337"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="347"/>
         <source>Removing episodes from database</source>
         <translation>Entferne Episoden aus der Bibliothek</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="358"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="368"/>
         <source>Trigger scan for new items</source>
         <translation>Löse Aktualisierung der Bibliothek aus</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="365"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="375"/>
         <source>Finished. XBMC is now loading your updated items.</source>
-        <translation>Fertif. XBMC aktualisiert nun die Bibliothek.</translation>
+        <translation>Fertig. XBMC aktualisiert nun die Bibliothek.</translation>
+    </message>
+    <message>
+        <location filename="../xbmc/XbmcSync.cpp" line="410"/>
+        <source>Finished. Your items play count and last played date have been updated.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
