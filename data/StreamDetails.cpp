@@ -33,7 +33,7 @@ void StreamDetails::loadStreamDetails()
 {
     clear();
 
-    if (m_file.endsWith(".iso", Qt::CaseInsensitive))
+    if (m_file.endsWith(".iso", Qt::CaseInsensitive) || m_file.endsWith(".img", Qt::CaseInsensitive))
         return;
 
     MediaInfo MI;
