@@ -63,6 +63,7 @@ void ConcertFileSearcher::reload(bool force)
     int concertSum=contents.size()+dbConcerts.size();
 
     // Setup concerts
+    Manager::instance()->database()->transaction();
     foreach (const QStringList &files, contents) {
         bool inSeparateFolder = false;
         QString path;
@@ -90,6 +91,7 @@ void ConcertFileSearcher::reload(bool force)
         Manager::instance()->concertModel()->addConcert(concert);
         emit progress(++concertCounter, concertSum, m_progressMessageId);
     }
+    Manager::instance()->database()->commit();
 
     // Setup concerts loaded from database
     foreach (Concert *concert, dbConcerts) {

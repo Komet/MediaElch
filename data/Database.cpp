@@ -75,6 +75,12 @@ Database::Database(QObject *parent) :
                       "\"idShow\" integer NOT NULL, "
                       "\"path\" text NOT NULL);");
         query.exec();
+
+        query.prepare("PRAGMA synchronous=0;");
+        query.exec();
+
+        query.prepare("PRAGMA cache_size=20000;");
+        query.exec();
     }
 }
 
@@ -97,6 +103,16 @@ Database::~Database()
 QSqlDatabase Database::db()
 {
     return *m_db;
+}
+
+void Database::transaction()
+{
+    db().transaction();
+}
+
+void Database::commit()
+{
+    db().commit();
 }
 
 void Database::clearMovies(QString path)

@@ -15,6 +15,8 @@ public:
     explicit Database(QObject *parent = 0);
     ~Database();
     QSqlDatabase db();
+    void transaction();
+    void commit();
     void clearMovies(QString path = "");
     void add(Movie *movie, QString path);
     void update(Movie *movie);

@@ -54,6 +54,7 @@ void MovieFileSearcher::reload(bool force)
     int movieSum=contents.size()+dbMovies.size();
 
     // Setup movies
+    Manager::instance()->database()->transaction();
     foreach (const QStringList &files, contents) {
         bool inSeparateFolder = false;
         QString path;
@@ -84,6 +85,7 @@ void MovieFileSearcher::reload(bool force)
         Manager::instance()->movieModel()->addMovie(movie);
         emit progress(++movieCounter, movieSum, m_progressMessageId);
     }
+    Manager::instance()->database()->commit();
 
     // Setup movies loaded from database
     foreach (Movie *movie, dbMovies) {
