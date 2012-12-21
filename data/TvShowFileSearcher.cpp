@@ -97,6 +97,7 @@ void TvShowFileSearcher::reload(bool force)
         Manager::instance()->database()->add(show, path);
         TvShowModelItem *showItem = Manager::instance()->tvShowModel()->appendChild(show);
 
+        Manager::instance()->database()->transaction();
         QMap<int, TvShowModelItem*> seasonItems;
         foreach (const QStringList &files, it.value()) {
             TvShowEpisode *episode = new TvShowEpisode(files, show);
@@ -109,6 +110,7 @@ void TvShowFileSearcher::reload(bool force)
             emit progress(++episodeCounter, episodeSum, m_progressMessageId);
             qApp->processEvents();
         }
+        Manager::instance()->database()->commit();
     }
 
     // Setup shows loaded from database
