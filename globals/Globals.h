@@ -118,7 +118,6 @@ enum ItemType {
  */
 struct SettingsDir {
     QString path;
-    QString mediaCenterPath;
     bool separateFolders;
     bool autoReload;
 };

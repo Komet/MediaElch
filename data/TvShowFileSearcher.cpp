@@ -32,7 +32,7 @@ void TvShowFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
     for (int i=0, n=directories.count() ; i<n ; ++i) {
         QFileInfo fi(directories.at(i).path);
         if (fi.isDir()) {
-            qDebug() << "Adding tv show directory" << directories.at(i).path << "with mediacenter dir" << directories.at(i).mediaCenterPath;
+            qDebug() << "Adding tv show directory" << directories.at(i).path;
             m_directories.append(directories.at(i));
         }
     }

@@ -91,7 +91,6 @@ void Settings::loadSettings()
         m_settings.setArrayIndex(i);
         SettingsDir dir;
         dir.path = QDir::toNativeSeparators(m_settings.value("path").toString());
-        dir.mediaCenterPath = m_settings.value("mediaCenterPath").toString();
         dir.separateFolders = m_settings.value("sepFolders", false).toBool();
         dir.autoReload = m_settings.value("autoReload", false).toBool();
         m_movieDirectories.append(dir);
@@ -105,7 +104,6 @@ void Settings::loadSettings()
         m_settings.setArrayIndex(i);
         SettingsDir dir;
         dir.path = QDir::toNativeSeparators(m_settings.value("path").toString());
-        dir.mediaCenterPath = m_settings.value("mediaCenterPath").toString();
         dir.separateFolders = m_settings.value("sepFolders", false).toBool();
         dir.autoReload = m_settings.value("autoReload", false).toBool();
         m_tvShowDirectories.append(dir);
@@ -119,7 +117,6 @@ void Settings::loadSettings()
         m_settings.setArrayIndex(i);
         SettingsDir dir;
         dir.path = QDir::toNativeSeparators(m_settings.value("path").toString());
-        dir.mediaCenterPath = m_settings.value("mediaCenterPath").toString();
         dir.separateFolders = m_settings.value("sepFolders", false).toBool();
         dir.autoReload = m_settings.value("autoReload", false).toBool();
         m_concertDirectories.append(dir);
@@ -194,7 +191,6 @@ void Settings::saveSettings()
     for (int i=0, n=m_movieDirectories.count() ; i<n ; ++i) {
         m_settings.setArrayIndex(i);
         m_settings.setValue("path", m_movieDirectories.at(i).path);
-        m_settings.setValue("mediaCenterPath", m_movieDirectories.at(i).mediaCenterPath);
         m_settings.setValue("sepFolders", m_movieDirectories.at(i).separateFolders);
         m_settings.setValue("autoReload", m_movieDirectories.at(i).autoReload);
     }
@@ -204,7 +200,6 @@ void Settings::saveSettings()
     for (int i=0, n=m_tvShowDirectories.count() ; i<n ; ++i) {
         m_settings.setArrayIndex(i);
         m_settings.setValue("path", m_tvShowDirectories.at(i).path);
-        m_settings.setValue("mediaCenterPath", m_tvShowDirectories.at(i).mediaCenterPath);
         m_settings.setValue("autoReload", m_tvShowDirectories.at(i).autoReload);
     }
     m_settings.endArray();
@@ -213,7 +208,6 @@ void Settings::saveSettings()
     for (int i=0, n=m_concertDirectories.count() ; i<n ; ++i) {
         m_settings.setArrayIndex(i);
         m_settings.setValue("path", m_concertDirectories.at(i).path);
-        m_settings.setValue("mediaCenterPath", m_concertDirectories.at(i).mediaCenterPath);
         m_settings.setValue("sepFolders", m_concertDirectories.at(i).separateFolders);
         m_settings.setValue("autoReload", m_concertDirectories.at(i).autoReload);
     }

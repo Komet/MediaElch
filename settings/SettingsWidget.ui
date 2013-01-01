@@ -143,11 +143,6 @@ QTabBar::tab:selected {
          </column>
          <column>
           <property name="text">
-           <string>MediaCenter Path</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
            <string>Sep. folders</string>
           </property>
          </column>

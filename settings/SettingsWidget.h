@@ -37,7 +37,7 @@ public slots:
 
 private slots:
     void chooseDirToAdd();
-    void addDir(QString dir, QString mediaCenterPath = QString(), bool separateFolders = false, bool autoReload = false, SettingsDirType dirType = DirTypeMovies);
+    void addDir(QString dir, bool separateFolders = false, bool autoReload = false, SettingsDirType dirType = DirTypeMovies);
     void removeDir();
     void organize();
     void dirListRowChanged(int currentRow);

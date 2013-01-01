@@ -36,14 +36,12 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
 #if QT_VERSION >= 0x050000
     ui->dirs->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->dirs->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
-    ui->dirs->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
 #else
     ui->dirs->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->dirs->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
-    ui->dirs->horizontalHeader()->setResizeMode(2, QHeaderView::Stretch);
 #endif
-    ui->dirs->horizontalHeaderItem(3)->setToolTip(tr("Items are in separate folders"));
-    ui->dirs->horizontalHeaderItem(4)->setToolTip(tr("Automatically reload contents on start"));
+    ui->dirs->horizontalHeaderItem(2)->setToolTip(tr("Items are in separate folders"));
+    ui->dirs->horizontalHeaderItem(3)->setToolTip(tr("Automatically reload contents on start"));
 
     int scraperCounter = 0;
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
@@ -227,13 +225,13 @@ void SettingsWidget::loadSettings()
     ui->dirs->clearContents();
     QList<SettingsDir> movieDirectories = m_settings->movieDirectories();
     for (int i=0, n=movieDirectories.count() ; i<n ; ++i)
-        addDir(movieDirectories.at(i).path, movieDirectories.at(i).mediaCenterPath, movieDirectories.at(i).separateFolders, movieDirectories.at(i).autoReload, DirTypeMovies);
+        addDir(movieDirectories.at(i).path, movieDirectories.at(i).separateFolders, movieDirectories.at(i).autoReload, DirTypeMovies);
     QList<SettingsDir> tvShowDirectories = m_settings->tvShowDirectories();
     for (int i=0, n=tvShowDirectories.count() ; i<n ; ++i)
-        addDir(tvShowDirectories.at(i).path, tvShowDirectories.at(i).mediaCenterPath, tvShowDirectories.at(i).separateFolders, tvShowDirectories.at(i).autoReload, DirTypeTvShows);
+        addDir(tvShowDirectories.at(i).path, tvShowDirectories.at(i).separateFolders, tvShowDirectories.at(i).autoReload, DirTypeTvShows);
     QList<SettingsDir> concertDirectories = m_settings->concertDirectories();
     for (int i=0, n=concertDirectories.count() ; i<n ; ++i)
-        addDir(concertDirectories.at(i).path, concertDirectories.at(i).mediaCenterPath, concertDirectories.at(i).separateFolders, concertDirectories.at(i).autoReload, DirTypeConcerts);
+        addDir(concertDirectories.at(i).path, concertDirectories.at(i).separateFolders, concertDirectories.at(i).autoReload, DirTypeConcerts);
 
     dirListRowChanged(ui->dirs->currentRow());
 
@@ -365,9 +363,8 @@ void SettingsWidget::saveSettings()
     for (int row=0, n=ui->dirs->rowCount() ; row<n ; ++row) {
         SettingsDir dir;
         dir.path = ui->dirs->item(row, 1)->text();
-        dir.mediaCenterPath = ui->dirs->item(row, 2)->text();
-        dir.separateFolders = ui->dirs->item(row, 3)->checkState() == Qt::Checked;
-        dir.autoReload = ui->dirs->item(row, 4)->checkState() == Qt::Checked;
+        dir.separateFolders = ui->dirs->item(row, 2)->checkState() == Qt::Checked;
+        dir.autoReload = ui->dirs->item(row, 3)->checkState() == Qt::Checked;
         if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 0)
             movieDirectories.append(dir);
         else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 1)
@@ -393,11 +390,10 @@ void SettingsWidget::saveSettings()
 /**
  * @brief Adds a directory
  * @param dir Directory to add
- * @param mediaCenterPath Media Center Path
  * @param separateFolders
  * @param dirType
  */
-void SettingsWidget::addDir(QString dir, QString mediaCenterPath, bool separateFolders, bool autoReload, SettingsDirType dirType)
+void SettingsWidget::addDir(QString dir, bool separateFolders, bool autoReload, SettingsDirType dirType)
 {
     dir = QDir::toNativeSeparators(dir);
     if (!dir.isEmpty()) {
@@ -436,9 +432,8 @@ void SettingsWidget::addDir(QString dir, QString mediaCenterPath, bool separateF
 
             ui->dirs->setCellWidget(row, 0, box);
             ui->dirs->setItem(row, 1, item);
-            ui->dirs->setItem(row, 2, new QTableWidgetItem(mediaCenterPath));
-            ui->dirs->setItem(row, 3, itemCheck);
-            ui->dirs->setItem(row, 4, itemCheckReload);
+            ui->dirs->setItem(row, 2, itemCheck);
+            ui->dirs->setItem(row, 3, itemCheckReload);
         }
     }
 }
