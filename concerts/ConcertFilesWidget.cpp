@@ -1,6 +1,7 @@
 #include "ConcertFilesWidget.h"
 #include "ui_ConcertFilesWidget.h"
 
+#include <QDesktopServices>
 #include <QLocale>
 #include <QTableWidget>
 #include <QTimer>
@@ -48,6 +49,7 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
     QAction *actionLoadStreamDetails = new QAction(tr("Load Stream Details"), this);
     QAction *actionMarkForSync = new QAction(tr("Add to Synchronization Queue"), this);
     QAction *actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
+    QAction *actionOpenFolder = new QAction(tr("Open Concert Folder"), this);
     m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionMarkAsWatched);
     m_contextMenu->addAction(actionMarkAsUnwatched);
@@ -56,12 +58,14 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(actionMarkForSync);
     m_contextMenu->addAction(actionUnmarkForSync);
+    m_contextMenu->addSeparator();
+    m_contextMenu->addAction(actionOpenFolder);
     connect(actionMarkAsWatched, SIGNAL(triggered()), this, SLOT(markAsWatched()));
     connect(actionMarkAsUnwatched, SIGNAL(triggered()), this, SLOT(markAsUnwatched()));
     connect(actionLoadStreamDetails, SIGNAL(triggered()), this, SLOT(loadStreamDetails()));
     connect(actionMarkForSync, SIGNAL(triggered()), this, SLOT(markForSync()));
     connect(actionUnmarkForSync, SIGNAL(triggered()), this, SLOT(unmarkForSync()));
-
+    connect(actionOpenFolder, SIGNAL(triggered()), this, SLOT(openFolder()));
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
 
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
@@ -157,6 +161,15 @@ void ConcertFilesWidget::unmarkForSync()
     }
 }
 
+void ConcertFilesWidget::openFolder()
+{
+    int row = ui->files->currentIndex().data(Qt::UserRole).toInt();
+    Concert *concert = Manager::instance()->concertModel()->concert(row);
+    if (concert->files().isEmpty())
+        return;
+    QFileInfo fi(concert->files().at(0));
+    QDesktopServices::openUrl("file://" + QDir::toNativeSeparators(fi.absolutePath()));
+}
 /**
  * @brief Called when an item has selected
  * @param index

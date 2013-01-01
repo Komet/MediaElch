@@ -51,6 +51,7 @@ private slots:
     void loadStreamDetails();
     void markForSync();
     void unmarkForSync();
+    void openFolder();
 
 private:
     Ui::FilesWidget *ui;

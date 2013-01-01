@@ -2,6 +2,7 @@
 #include "ui_TvShowFilesWidget.h"
 
 #include <QDebug>
+#include <QDesktopServices>
 #include "globals/Manager.h"
 #include "data/TvShowModelItem.h"
 #include "smallWidgets/LoadingStreamDetails.h"
@@ -46,6 +47,7 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     QAction *actionLoadStreamDetails = new QAction(tr("Load Stream Details"), this);
     QAction *actionMarkForSync = new QAction(tr("Add to Synchronization Queue"), this);
     QAction *actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
+    QAction *actionOpenFolder = new QAction(tr("Open TV Show Folder"), this);
     m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionScanForEpisodes);
     m_contextMenu->addSeparator();
@@ -56,12 +58,16 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(actionMarkForSync);
     m_contextMenu->addAction(actionUnmarkForSync);
+    m_contextMenu->addSeparator();
+    m_contextMenu->addAction(actionOpenFolder);
+
     connect(actionScanForEpisodes, SIGNAL(triggered()), this, SLOT(scanForEpisodes()));
     connect(actionMarkAsWatched, SIGNAL(triggered()), this, SLOT(markAsWatched()));
     connect(actionMarkAsUnwatched, SIGNAL(triggered()), this, SLOT(markAsUnwatched()));
     connect(actionLoadStreamDetails, SIGNAL(triggered()), this, SLOT(loadStreamDetails()));
     connect(actionMarkForSync, SIGNAL(triggered()), this, SLOT(markForSync()));
     connect(actionUnmarkForSync, SIGNAL(triggered()), this, SLOT(unmarkForSync()));
+    connect(actionOpenFolder, SIGNAL(triggered()), this, SLOT(openFolder()));
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
     connect(ui->files, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)));
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)));
@@ -244,6 +250,25 @@ void TvShowFilesWidget::unmarkForSync()
         }
         ui->files->update(mIndex);
     }
+}
+
+void TvShowFilesWidget::openFolder()
+{
+    QModelIndex index = m_tvShowProxyModel->mapToSource(ui->files->currentIndex());
+    TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
+    QString dir;
+    if (item->type() == TypeTvShow) {
+        dir = item->tvShow()->dir();
+    } else if (item->type() == TypeSeason) {
+        dir = item->tvShow()->dir();
+    } else if (item->type() == TypeEpisode && !item->tvShowEpisode()->files().isEmpty()) {
+        QFileInfo fi(item->tvShowEpisode()->files().at(0));
+        dir = fi.absolutePath();
+    }
+
+    if (dir.isEmpty())
+        return;
+    QDesktopServices::openUrl("file://" + QDir::toNativeSeparators(dir));
 }
 
 /**

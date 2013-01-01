@@ -1,6 +1,7 @@
 #include "FilesWidget.h"
 #include "ui_FilesWidget.h"
 
+#include <QDesktopServices>
 #include <QLocale>
 #include <QTableWidget>
 #include <QTimer>
@@ -50,6 +51,7 @@ FilesWidget::FilesWidget(QWidget *parent) :
     QAction *actionLoadStreamDetails = new QAction(tr("Load Stream Details"), this);
     QAction *actionMarkForSync = new QAction(tr("Add to Synchronization Queue"), this);
     QAction *actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
+    QAction *actionOpenFolder = new QAction(tr("Open Movie Folder"), this);
     m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionMarkAsWatched);
     m_contextMenu->addAction(actionMarkAsUnwatched);
@@ -58,11 +60,14 @@ FilesWidget::FilesWidget(QWidget *parent) :
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(actionMarkForSync);
     m_contextMenu->addAction(actionUnmarkForSync);
+    m_contextMenu->addSeparator();
+    m_contextMenu->addAction(actionOpenFolder);
     connect(actionMarkAsWatched, SIGNAL(triggered()), this, SLOT(markAsWatched()));
     connect(actionMarkAsUnwatched, SIGNAL(triggered()), this, SLOT(markAsUnwatched()));
     connect(actionLoadStreamDetails, SIGNAL(triggered()), this, SLOT(loadStreamDetails()));
     connect(actionMarkForSync, SIGNAL(triggered()), this, SLOT(markForSync()));
     connect(actionUnmarkForSync, SIGNAL(triggered()), this, SLOT(unmarkForSync()));
+    connect(actionOpenFolder, SIGNAL(triggered()), this, SLOT(openFolder()));
 
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
@@ -164,6 +169,16 @@ void FilesWidget::unmarkForSync()
         movie->setSyncNeeded(false);
         ui->files->update(index);
     }
+}
+
+void FilesWidget::openFolder()
+{
+    int row = ui->files->currentIndex().data(Qt::UserRole).toInt();
+    Movie *movie = Manager::instance()->movieModel()->movie(row);
+    if (movie->files().isEmpty())
+        return;
+    QFileInfo fi(movie->files().at(0));
+    QDesktopServices::openUrl("file://" + QDir::toNativeSeparators(fi.absolutePath()));
 }
 
 /**
