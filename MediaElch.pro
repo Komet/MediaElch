@@ -7,6 +7,8 @@
 QT       += core gui network script xml sql
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+greaterThan(QT_MAJOR_VERSION, 4): include(qtmacextras/src/qtmacextras.pri)
+
 LIBS += -lmediainfo -lzen -lz
 DEFINES += UNICODE
 

@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QPainter>
 #include <QTimer>
+#include <QToolBar>
 
 #include "concerts/ConcertSearch.h"
 #include "data/MediaCenterInterface.h"
@@ -21,6 +22,16 @@
 #include "sets/MovieListDialog.h"
 #include "settings/Settings.h"
 #include "xbmc/XbmcSync.h"
+
+#ifdef Q_OS_MAC
+#if QT_VERSION >= 0x050000
+    #define IS_MAC_AND_QT5
+#endif
+#endif
+
+#ifdef IS_MAC_AND_QT5
+#include "qtmacextras/src/qtmacunifiedtoolbar.h"
+#endif
 
 /**
  * @brief MainWindow::MainWindow
@@ -47,7 +58,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_aboutDialog = new AboutDialog(ui->centralWidget);
     m_supportDialog = new SupportDialog(ui->centralWidget);
     m_settingsWidget = new SettingsWidget(ui->centralWidget);
-    m_filterWidget = new FilterWidget(ui->mainToolBar);
+    m_filterWidget = new FilterWidget();
     m_fileScannerDialog = new FileScannerDialog(ui->centralWidget);
     m_settings = Settings::instance(this);
     setupToolbar();
@@ -184,7 +195,12 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 void MainWindow::setupToolbar()
 {
     qDebug() << "Entered";
-    setUnifiedTitleAndToolBarOnMac(true);
+
+#ifdef IS_MAC_AND_QT5
+    QtMacUnifiedToolBar *toolBar = new QtMacUnifiedToolBar(this);
+#else
+    QToolBar *toolBar = new QToolBar(this);
+#endif
 
     QPainter p;
     QList<QPixmap> icons;
@@ -226,17 +242,20 @@ void MainWindow::setupToolbar()
 
     m_actionLike = new QAction(QIcon(icons[7]), tr("Support"), this);
 
-    ui->mainToolBar->addAction(m_actionSearch);
-    ui->mainToolBar->addAction(m_actionSave);
-    ui->mainToolBar->addAction(m_actionSaveAll);
-    ui->mainToolBar->addAction(m_actionReload);
-    ui->mainToolBar->addAction(m_actionSettings);
-    ui->mainToolBar->addAction(m_actionXbmc);
-    ui->mainToolBar->addAction(m_actionAbout);
-    ui->mainToolBar->addAction(m_actionQuit);
-    ui->mainToolBar->addWidget(m_filterWidget);
+    toolBar->addAction(m_actionSearch);
+    toolBar->addAction(m_actionSave);
+    toolBar->addAction(m_actionSaveAll);
+    toolBar->addAction(m_actionReload);
+    toolBar->addAction(m_actionSettings);
+    toolBar->addAction(m_actionXbmc);
+    toolBar->addAction(m_actionAbout);
+    toolBar->addAction(m_actionQuit);
+#ifndef IS_MAC_AND_QT5
+    m_filterWidget->setParent(toolBar);
+    toolBar->addWidget(m_filterWidget);
+#endif
 #ifndef APPSTORE
-    ui->mainToolBar->addAction(m_actionLike);
+    toolBar->addAction(m_actionLike);
 #endif
 
     connect(m_actionSearch, SIGNAL(triggered()), this, SLOT(onActionSearch()));
@@ -253,8 +272,12 @@ void MainWindow::setupToolbar()
     m_actionSave->setEnabled(false);
     m_actionSaveAll->setEnabled(false);
 
+#ifdef IS_MAC_AND_QT5
+    toolBar->showInWindowForWidget(this);
+#endif
+
 #ifdef Q_OS_WIN32
-    ui->mainToolBar->setStyleSheet("QToolButton {border: 0; padding: 5px;} QToolBar { border-bottom: 1px solid rgba(0, 0, 0, 100); }");
+    toolBar->setStyleSheet("QToolButton {border: 0; padding: 5px;} QToolBar { border-bottom: 1px solid rgba(0, 0, 0, 100); }");
 #endif
 }
 
