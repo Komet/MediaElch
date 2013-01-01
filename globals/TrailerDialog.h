@@ -7,6 +7,7 @@
 #include <QNetworkReply>
 #include <QTableWidgetItem>
 #include "globals/Globals.h"
+#include "data/Movie.h"
 
 namespace Ui {
 class TrailerDialog;

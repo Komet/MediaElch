@@ -54,16 +54,16 @@ void cliMessageOutput(QtMsgType type, const char *msg)
 
     switch (type) {
     case QtDebugMsg:
-        // printf("DEBUG: %s", qPrintable(message));
+        fprintf(stderr, "DEBUG: %s", qPrintable(message));
         break;
     case QtWarningMsg:
-        printf("WARNING: %s", qPrintable(message));
+        fprintf(stderr, "WARNING: %s", qPrintable(message));
         break;
     case QtCriticalMsg:
-        printf("CRITICAL: %s", qPrintable(message));
+        fprintf(stderr, "CRITICAL: %s", qPrintable(message));
         break;
     case QtFatalMsg:
-        printf("FATAL: %s", qPrintable(message));
+        fprintf(stderr, "FATAL: %s", qPrintable(message));
         abort();
     }
 }

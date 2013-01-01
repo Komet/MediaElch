@@ -8,13 +8,6 @@
 #include <QString>
 #include <QUrl>
 #include <QVariant>
-#include "data/ImageProviderInterface.h"
-#include "globals/Filter.h"
-
-class Movie;
-class TvShowEpisode;
-class Filter;
-class ImageProviderInterface;
 
 namespace Constants {
     const int MovieFileSearcherProgressMessageId   = 10000;
@@ -76,9 +69,7 @@ struct Actor {
     bool imageHasChanged;
 };
 Q_DECLARE_METATYPE(Actor*)
-Q_DECLARE_METATYPE(Movie*)
 Q_DECLARE_METATYPE(QString*)
-Q_DECLARE_METATYPE(Filter*)
 
 /**
  * @brief The ScraperSearchResult struct

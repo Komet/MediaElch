@@ -7,7 +7,6 @@
 #include <QTime>
 
 #include "data/Movie.h"
-#include "globals/Globals.h"
 
 /**
  * @brief The MovieFileSearcher class

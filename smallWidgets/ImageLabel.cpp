@@ -1,8 +1,6 @@
 #include "ImageLabel.h"
 #include "ui_ImageLabel.h"
 
-#include "globals/Globals.h"
-
 /**
  * @brief ImageLabel::ImageLabel
  * @param parent

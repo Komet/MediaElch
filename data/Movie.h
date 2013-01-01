@@ -16,8 +16,6 @@
 class MediaCenterInterface;
 class ScraperInterface;
 class StreamDetails;
-struct Actor;
-struct Poster;
 
 /**
  * @brief The Movie class
@@ -265,6 +263,8 @@ private:
     QString m_nfoContent;
     int m_databaseId;
 };
+
+Q_DECLARE_METATYPE(Movie*)
 
 QDebug operator<<(QDebug dbg, const Movie &movie);
 QDebug operator<<(QDebug dbg, const Movie *movie);

@@ -198,8 +198,12 @@ void MainWindow::setupToolbar()
 
 #ifdef IS_MAC_AND_QT5
     QtMacUnifiedToolBar *toolBar = new QtMacUnifiedToolBar(this);
+    ui->mainToolBar->setVisible(false);
 #else
-    QToolBar *toolBar = new QToolBar(this);
+    QToolBar *toolBar = ui->mainToolBar;
+#ifdef Q_OS_MAC
+    setUnifiedTitleAndToolBarOnMac(true);
+#endif
 #endif
 
     QPainter p;

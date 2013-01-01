@@ -9,8 +9,6 @@
 #include "data/TvShow.h"
 #include "globals/Globals.h"
 
-class Movie;
-
 /**
  * @brief The Filter class
  */
@@ -34,5 +32,7 @@ private:
     int m_info;
     bool m_hasInfo;
 };
+
+Q_DECLARE_METATYPE(Filter*)
 
 #endif // FILTER_H

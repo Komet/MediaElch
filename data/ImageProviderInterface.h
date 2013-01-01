@@ -51,6 +51,8 @@ signals:
 };
 
 Q_DECLARE_METATYPE(ImageProviderInterface*)
-Q_DECLARE_OPAQUE_POINTER(ImageProviderInterface*)
+#if QT_VERSION >= 0x050000
+    Q_DECLARE_OPAQUE_POINTER(ImageProviderInterface*)
+#endif
 
 #endif // IMAGEPROVIDERINTERFACE_H
