@@ -16,6 +16,8 @@
 class MediaCenterInterface;
 class ScraperInterface;
 class StreamDetails;
+struct Actor;
+struct Poster;
 
 /**
  * @brief The Movie class

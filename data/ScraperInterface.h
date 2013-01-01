@@ -6,6 +6,7 @@
 #include "globals/Globals.h"
 
 class Movie;
+struct ScraperSearchResult;
 
 /**
  * @brief The ScraperInterface class

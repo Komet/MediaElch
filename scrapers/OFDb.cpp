@@ -86,8 +86,7 @@ void OFDb::search(QString searchStr)
     m_currentSearchString = searchStr;
 
     QString encodedSearch = Helper::toLatin1PercentEncoding(searchStr);
-    QUrl url;
-    url.setEncodedUrl(QString("http://www.ofdbgw.org/search/%1").arg(encodedSearch).toUtf8());
+    QUrl url(QString("http://www.ofdbgw.org/search/%1").arg(encodedSearch).toUtf8());
     m_searchReply = this->qnam()->get(QNetworkRequest(url));
     connect(m_searchReply, SIGNAL(finished()), this, SLOT(searchFinished()));
 }

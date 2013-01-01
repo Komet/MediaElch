@@ -9,6 +9,7 @@
 #include "data/TvShowEpisode.h"
 
 class TvShow;
+class TvShowEpisode;
 
 /**
  * @brief The TvShowModelItem class

@@ -10,10 +10,6 @@
 ConcertModel::ConcertModel(QObject *parent) :
     QAbstractItemModel(parent)
 {
-    QHash<int, QByteArray> roles;
-    roles[NameRole] = "name";
-    roles[FileNameRole] = "file";
-    setRoleNames(roles);
 }
 
 /**

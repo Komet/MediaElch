@@ -13,10 +13,14 @@ ConcertSearch::ConcertSearch(QWidget *parent) :
     ui(new Ui::ConcertSearch)
 {
     ui->setupUi(this);
+#if QT_VERSION >= 0x050000
+    ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+#else
     ui->results->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+#endif
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
     setStyleSheet(styleSheet() + " #ConcertSearch { border: 1px solid rgba(0, 0, 0, 100); border-top: none; }");
 #else

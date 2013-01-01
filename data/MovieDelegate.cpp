@@ -24,7 +24,7 @@ void MovieDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
     painter->save();
 
     QFont newFont;
-    #ifdef Q_WS_MAC
+    #ifdef Q_OS_MAC
     newFont.setPixelSize(8);
     #else
     newFont.setPixelSize(10);
@@ -65,7 +65,7 @@ void MovieDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
     }
 
     QFont font;
-    #ifdef Q_WS_MAC
+    #ifdef Q_OS_MAC
     font.setPointSize(font.pointSize()-2);
     #endif
 

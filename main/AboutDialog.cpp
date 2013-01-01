@@ -15,7 +15,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
     ui->setupUi(this);
     ui->labelMediaElch->setText(tr("MediaElch %1 - %2").arg(QApplication::applicationVersion()).arg("Khitomer"));
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
 #else
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);

@@ -7,7 +7,10 @@
 #include "data/MediaCenterInterface.h"
 #include "data/TvScraperInterface.h"
 #include "data/TvShowEpisode.h"
+#include "globals/Globals.h"
 
+struct Actor;
+struct Poster;
 class TvShowEpisode;
 class TvShowModelItem;
 class TvScraperInterface;

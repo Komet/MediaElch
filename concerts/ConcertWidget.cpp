@@ -26,7 +26,11 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->concertName->clear();
+#if QT_VERSION >= 0x050000
+    ui->genres->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+#else
     ui->genres->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+#endif
     ui->buttonPreviewPoster->setEnabled(false);
     ui->buttonPreviewBackdrop->setEnabled(false);
     ui->buttonPreviewLogo->setEnabled(false);
@@ -40,7 +44,7 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     ui->concertName->setFont(font);
 
     font = ui->posterResolution->font();
-    #ifdef Q_WS_WIN
+    #ifdef Q_OS_WIN32
     font.setPointSize(font.pointSize()-1);
     #else
     font.setPointSize(font.pointSize()-2);

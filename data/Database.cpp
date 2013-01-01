@@ -15,7 +15,11 @@
 Database::Database(QObject *parent) :
     QObject(parent)
 {
+#if QT_VERSION >= 0x050000
+    QString dataLocation = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+#else
     QString dataLocation = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+#endif
     QDir dir(dataLocation);
     if (!dir.exists())
         dir.mkpath(dataLocation);

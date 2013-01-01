@@ -28,9 +28,15 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->posterResolution->clear();
     ui->backdropResolution->clear();
     ui->bannerResolution->clear();
+#if QT_VERSION >= 0x050000
+    ui->genres->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->actors->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->actors->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+#else
     ui->genres->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->actors->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     ui->actors->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+#endif
     QFont font = ui->showTitle->font();
     font.setPointSize(font.pointSize()+4);
     ui->showTitle->setFont(font);
@@ -44,7 +50,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->artStackedWidget->setSpeed(300);
 
     font = ui->posterResolution->font();
-    #ifdef Q_WS_WIN
+    #ifdef Q_OS_WIN32
     font.setPointSize(font.pointSize()-1);
     #else
     font.setPointSize(font.pointSize()-2);

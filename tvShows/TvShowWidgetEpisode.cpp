@@ -25,8 +25,13 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
 
     ui->episodeName->clear();
     ui->thumbnailResolution->clear();
+#if QT_VERSION >= 0x050000
+    ui->directors->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->writers->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+#else
     ui->directors->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->writers->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+#endif
     ui->buttonPreviewBackdrop->setEnabled(false);
 
     QFont font = ui->episodeName->font();
@@ -34,7 +39,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     ui->episodeName->setFont(font);
 
     font = ui->thumbnailResolution->font();
-    #ifdef Q_WS_WIN
+    #ifdef Q_OS_WIN32
     font.setPointSize(font.pointSize()-1);
     #else
     font.setPointSize(font.pointSize()-2);

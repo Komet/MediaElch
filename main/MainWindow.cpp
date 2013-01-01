@@ -65,7 +65,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     if (m_settings->mainWindowSize().isValid() && !m_settings->mainWindowPosition().isNull()) {
-        #ifdef Q_WS_MAC
+        #ifdef Q_OS_MAC
             // Ugly workaround from https://bugreports.qt-project.org/browse/QTBUG-3116
             // to fix invisible toolbar on mac
             bool workaround = !isVisible();
@@ -83,7 +83,7 @@ MainWindow::MainWindow(QWidget *parent) :
         resize(m_settings->mainWindowSize());
         move(m_settings->mainWindowPosition());
         #endif
-        #ifdef Q_WS_WIN
+        #ifdef Q_OS_WIN32
         if (m_settings->mainWindowMaximized())
             showMaximized();
         #endif
@@ -137,7 +137,7 @@ MainWindow::MainWindow(QWidget *parent) :
     TrailerDialog::instance(ui->centralWidget);
     NameFormatter::instance(this);
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
     setStyleSheet(styleSheet() + " #centralWidget { border-bottom: 1px solid rgba(0, 0, 0, 100); } ");
 
     QFont font = ui->labelMovies->font();
@@ -253,7 +253,7 @@ void MainWindow::setupToolbar()
     m_actionSave->setEnabled(false);
     m_actionSaveAll->setEnabled(false);
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
     ui->mainToolBar->setStyleSheet("QToolButton {border: 0; padding: 5px;} QToolBar { border-bottom: 1px solid rgba(0, 0, 0, 100); }");
 #endif
 }

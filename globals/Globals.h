@@ -8,6 +8,8 @@
 #include <QString>
 #include <QUrl>
 #include <QVariant>
+#include "data/ImageProviderInterface.h"
+#include "globals/Filter.h"
 
 class Movie;
 class TvShowEpisode;
@@ -73,11 +75,10 @@ struct Actor {
     QImage image;
     bool imageHasChanged;
 };
-Q_DECLARE_METATYPE(Actor*);
-Q_DECLARE_METATYPE(Movie*);
-Q_DECLARE_METATYPE(QString*);
-Q_DECLARE_METATYPE(Filter*);
-Q_DECLARE_METATYPE(ImageProviderInterface*);
+Q_DECLARE_METATYPE(Actor*)
+Q_DECLARE_METATYPE(Movie*)
+Q_DECLARE_METATYPE(QString*)
+Q_DECLARE_METATYPE(Filter*)
 
 /**
  * @brief The ScraperSearchResult struct
@@ -247,14 +248,5 @@ namespace DataFileType {
     const int TvShowEpisodeNfo   = 21;
     const int TvShowEpisodeThumb = 22;
 }
-
-// Debugging
-#if defined( Q_CC_GNU )
-#    if defined( qDebug )
-#        undef qDebug
-#    endif
-#    define DEBUG_FUNCTION_NAME  QString("%1").arg(__PRETTY_FUNCTION__, -70, QLatin1Char(' '))
-#    define qDebug() qDebug() << QString(DEBUG_FUNCTION_NAME + " :")
-#endif
 
 #endif // GLOBALS_H

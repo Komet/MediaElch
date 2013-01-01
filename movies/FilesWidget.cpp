@@ -20,13 +20,17 @@ FilesWidget::FilesWidget(QWidget *parent) :
 {
     m_instance = this;
     ui->setupUi(this);
+#if QT_VERSION >= 0x050000
+    ui->files->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+#else
     ui->files->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#ifdef Q_WS_MAC
+#endif
+#ifdef Q_OS_MAC
     QFont font = ui->files->font();
     font.setPointSize(font.pointSize()-2);
     ui->files->setFont(font);
 #endif
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
 #endif
     m_lastMovie = 0;

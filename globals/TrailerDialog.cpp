@@ -1,6 +1,7 @@
 #include "TrailerDialog.h"
 #include "ui_TrailerDialog.h"
 
+#include <QMessageBox>
 #include "globals/Manager.h"
 #include "trailerProviders/TrailerProvider.h"
 
@@ -10,21 +11,28 @@ TrailerDialog::TrailerDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     QFont font = ui->trailers->font();
     font.setPointSize(font.pointSize()-1);
     ui->trailers->setFont(font);
 #endif
 
+#if QT_VERSION >= 0x050000
+    ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->trailers->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->trailers->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+    ui->trailers->horizontalHeader()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
+#else
     ui->results->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->trailers->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->trailers->horizontalHeader()->setResizeMode(0, QHeaderView::ResizeToContents);
     ui->trailers->horizontalHeader()->setResizeMode(1, QHeaderView::ResizeToContents);
+#endif
     ui->searchString->setType(MyLineEdit::TypeLoading);
     ui->stackedWidget->setAnimation(QEasingCurve::OutCubic);
     ui->stackedWidget->setSpeed(400);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
 #else
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);

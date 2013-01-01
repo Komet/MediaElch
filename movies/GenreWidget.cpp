@@ -14,14 +14,18 @@ GenreWidget::GenreWidget(QWidget *parent) :
     ui(new Ui::GenreWidget)
 {
     ui->setupUi(this);
+#if QT_VERSION >= 0x050000
+    ui->genres->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->movies->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+#else
     ui->genres->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->movies->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-
+#endif
     QFont font = ui->genreName->font();
     font.setPointSize(font.pointSize()+4);
     ui->genreName->setFont(font);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     QFont genresFont = ui->genres->font();
     genresFont.setPointSize(genresFont.pointSize()-2);
     ui->genres->setFont(genresFont);

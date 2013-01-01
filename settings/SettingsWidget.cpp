@@ -23,7 +23,7 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
 #else
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
@@ -33,11 +33,17 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
 
     ui->xbmcPort->setValidator(new QIntValidator(0, 99999, ui->xbmcPort));
 
+#if QT_VERSION >= 0x050000
+    ui->dirs->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->dirs->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
+    ui->dirs->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
+#else
     ui->dirs->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-    ui->dirs->horizontalHeaderItem(3)->setToolTip(tr("Items are in separate folders"));
-    ui->dirs->horizontalHeaderItem(4)->setToolTip(tr("Automatically reload contents on start"));
     ui->dirs->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
     ui->dirs->horizontalHeader()->setResizeMode(2, QHeaderView::Stretch);
+#endif
+    ui->dirs->horizontalHeaderItem(3)->setToolTip(tr("Items are in separate folders"));
+    ui->dirs->horizontalHeaderItem(4)->setToolTip(tr("Automatically reload contents on start"));
 
     int scraperCounter = 0;
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {

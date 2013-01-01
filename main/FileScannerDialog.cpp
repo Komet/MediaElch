@@ -13,14 +13,14 @@ FileScannerDialog::FileScannerDialog(QWidget *parent) :
     ui(new Ui::FileScannerDialog)
 {
     ui->setupUi(this);
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
 #else
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
 
     QFont font = ui->currentDir->font();
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
     font.setPointSize(font.pointSize()-1);
 #else
     font.setPointSize(font.pointSize()-2);
@@ -59,7 +59,7 @@ FileScannerDialog::~FileScannerDialog()
 /**
  * @brief Sets directories and starts scanning
  */
-void FileScannerDialog::exec()
+int FileScannerDialog::exec()
 {
     Manager::instance()->movieFileSearcher()->setMovieDirectories(Settings::instance()->movieDirectories());
     Manager::instance()->tvShowFileSearcher()->setMovieDirectories(Settings::instance()->tvShowDirectories());
@@ -79,6 +79,8 @@ void FileScannerDialog::exec()
         onStartConcertScanner();
     else if (m_reloadType == TypeEpisodes)
         onStartEpisodeScanner();
+
+    return 0;
 }
 
 void FileScannerDialog::setForceReload(bool force)

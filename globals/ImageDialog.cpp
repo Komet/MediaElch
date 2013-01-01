@@ -24,9 +24,13 @@ ImageDialog::ImageDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->searchTerm->setType(MyLineEdit::TypeLoading);
+#if QT_VERSION >= 0x050000
+    ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+#else
     ui->results->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+#endif
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
     setStyleSheet(styleSheet() + " #ImageDialog { border: 1px solid rgba(0, 0, 0, 100); border-top: none; }");
 #else
@@ -100,7 +104,7 @@ int ImageDialog::exec(int type)
     QPoint savedPos = settings.value("ImageDialog/Pos").toPoint();
 
     bool isMac = false;
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     isMac = true;
 #endif
 
@@ -172,7 +176,7 @@ void ImageDialog::accept()
 {
     qDebug() << "Entered";
     cancelDownloads();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
     QSettings settings;
     settings.setValue("ImageDialog/Size", size());
     settings.setValue("ImageDialog/Pos", pos());
@@ -188,7 +192,7 @@ void ImageDialog::reject()
 {
     qDebug() << "Entered";
     cancelDownloads();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
     QSettings settings;
     settings.setValue("ImageDialog/Size", size());
     settings.setValue("ImageDialog/Pos", pos());

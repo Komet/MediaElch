@@ -8,6 +8,7 @@
 
 class TvShow;
 class TvShowEpisode;
+struct ScraperSearchResult;
 
 /**
  * @brief The TvScraperInterface class

@@ -16,6 +16,7 @@
 class MediaCenterInterface;
 class ConcertScraperInterface;
 class StreamDetails;
+struct Poster;
 
 /**
  * @brief The Concert class

@@ -6,6 +6,7 @@
 #include "globals/Globals.h"
 
 class Concert;
+struct ScraperSearchResult;
 
 /**
  * @brief The ConcertScraperInterface class

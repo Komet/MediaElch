@@ -6,7 +6,7 @@ SupportDialog::SupportDialog(QWidget *parent) :
     ui(new Ui::SupportDialog)
 {
     ui->setupUi(this);
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
 #else
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);

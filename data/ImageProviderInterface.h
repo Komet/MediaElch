@@ -3,7 +3,11 @@
 
 #include <QObject>
 #include "data/Concert.h"
+#include "data/Movie.h"
+#include "data/TvShow.h"
 #include "globals/Globals.h"
+
+class TvShow;
 
 /**
  * @brief The ImageProviderInterface class
@@ -45,5 +49,8 @@ signals:
     virtual void sigImagesLoaded(Concert *, QMap<int, QList<Poster> >) = 0;
     virtual void sigImagesLoaded(TvShow *, QMap<int, QList<Poster> >) = 0;
 };
+
+Q_DECLARE_METATYPE(ImageProviderInterface*)
+Q_DECLARE_OPAQUE_POINTER(ImageProviderInterface*)
 
 #endif // IMAGEPROVIDERINTERFACE_H

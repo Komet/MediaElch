@@ -7,14 +7,14 @@ LoadingStreamDetails::LoadingStreamDetails(QWidget *parent) :
 {
     ui->setupUi(this);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
 #else
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
 
     QFont font = ui->currentFile->font();
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
     font.setPointSize(font.pointSize()-1);
 #else
     font.setPointSize(font.pointSize()-2);

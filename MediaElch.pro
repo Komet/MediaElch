@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui network script xml sql
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 LIBS += -lmediainfo -lzen -lz
 DEFINES += UNICODE

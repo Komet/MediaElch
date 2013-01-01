@@ -28,11 +28,20 @@ MovieWidget::MovieWidget(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->movieName->clear();
+
+#if QT_VERSION >= 0x050000
+    ui->actors->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->actors->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->genres->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->countries->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->studios->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+#else
     ui->actors->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     ui->actors->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->genres->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->countries->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->studios->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+#endif
     ui->buttonPreviewPoster->setEnabled(false);
     ui->buttonPreviewBackdrop->setEnabled(false);
     ui->buttonPreviewLogo->setEnabled(false);
@@ -46,7 +55,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->movieName->setFont(font);
 
     font = ui->posterResolution->font();
-    #ifdef Q_WS_WIN
+    #ifdef Q_OS_WIN32
     font.setPointSize(font.pointSize()-1);
     #else
     font.setPointSize(font.pointSize()-2);

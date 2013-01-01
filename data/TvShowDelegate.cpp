@@ -24,7 +24,7 @@ TvShowDelegate::TvShowDelegate(QObject *parent) :
 void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     QFont newFont;
-    #ifdef Q_WS_MAC
+    #ifdef Q_OS_MAC
     newFont.setPixelSize(8);
     #else
     newFont.setPixelSize(8);
@@ -48,7 +48,7 @@ void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
         int showNameHeight = 16;
 
         font.setBold(true);
-        #ifdef Q_WS_MAC
+        #ifdef Q_OS_MAC
             font.setPointSize(12);
         #else
             font.setPixelSize(12);
@@ -70,7 +70,7 @@ void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
             painter->setPen(QPen(option.palette.text().color()));
         int episodeCount = index.data(TvShowRoles::EpisodeCount).toInt();
         font.setBold(false);
-        #ifdef Q_WS_MAC
+        #ifdef Q_OS_MAC
             font.setPointSize(10);
         #else
             font.setPixelSize(11);
@@ -124,7 +124,7 @@ void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
         }
 
         QFont font;
-        #ifdef Q_WS_MAC
+        #ifdef Q_OS_MAC
         font.setPointSize(font.pointSize()-2);
         #endif
 
@@ -176,7 +176,7 @@ void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
             painter->setPen(QPen(option.palette.highlightedText().color()));
         }
         QFont font;
-        #ifdef Q_WS_MAC
+        #ifdef Q_OS_MAC
         font.setPointSize(font.pointSize()-2);
         #endif
         font.setBold(true);

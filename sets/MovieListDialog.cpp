@@ -13,8 +13,12 @@ MovieListDialog::MovieListDialog(QWidget *parent) :
     ui(new Ui::MovieListDialog)
 {
     ui->setupUi(this);
+#if QT_VERSION >= 0x050000
+    ui->movies->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+#else
     ui->movies->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#ifdef Q_WS_MAC
+#endif
+#ifdef Q_OS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
     setStyleSheet(styleSheet() + " #MovieListDialog { border: 1px solid rgba(0, 0, 0, 100); border-top: none; }");
 #else

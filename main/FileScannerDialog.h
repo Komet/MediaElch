@@ -26,7 +26,7 @@ public:
     void setScanDir(QString dir);
 
 public slots:
-    void exec();
+    int exec();
     void reject();
 
 private slots:
