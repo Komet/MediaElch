@@ -30,6 +30,7 @@ Database::Database(QObject *parent) :
     } else {
         QSqlQuery query(*m_db);
 
+        /*
         query.prepare("DROP TABLE IF EXISTS movieFiles;");
         query.exec();
         query.prepare("DROP TABLE IF EXISTS movieDirs;");
@@ -42,10 +43,53 @@ Database::Database(QObject *parent) :
         query.exec();
         query.prepare("DROP TABLE IF EXISTS concertDirs;");
         query.exec();
+        */
+
+        int dbVersion = 1;
+        bool dbIsUpToDate = false;
+
+        query.prepare("SELECT * FROM sqlite_master WHERE name ='settings' and type='table';");
+        query.exec();
+        if (query.next()) {
+            query.prepare("SELECT value FROM settings WHERE idSettings=1");
+            query.exec();
+            if (query.next() && query.value(0).toInt() == dbVersion)
+                dbIsUpToDate = true;
+        }
+
+        qDebug() << "db" << dbIsUpToDate;
+
+        if (!dbIsUpToDate) {
+            query.prepare("DROP TABLE IF EXISTS movies;");
+            query.exec();
+            query.prepare("DROP TABLE IF EXISTS movieFiles;");
+            query.exec();
+            query.prepare("DROP TABLE IF EXISTS concerts;");
+            query.exec();
+            query.prepare("DROP TABLE IF EXISTS concertFiles;");
+            query.exec();
+            query.prepare("DROP TABLE IF EXISTS shows;");
+            query.exec();
+            query.prepare("DROP TABLE IF EXISTS episodes;");
+            query.exec();
+            query.prepare("DROP TABLE IF EXISTS episodeFiles;");
+            query.exec();
+            query.prepare("DROP TABLE IF EXISTS settings;");
+            query.exec();
+
+            query.prepare("CREATE TABLE IF NOT EXISTS settings( "
+                          "\"idSettings\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                          "\"value\" text NOT NULL "
+                          ");");
+            query.exec();
+            query.prepare("INSERT INTO settings(idSettings, value) VALUES(1, :dbVersion)");
+            query.bindValue(":dbVersion", QString::number(dbVersion));
+            query.exec();
+            qDebug() << query.lastError();
+        }
 
         query.prepare("CREATE TABLE IF NOT EXISTS movies ( "
                       "\"idMovie\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                      "\"files\" text NOT NULL, "
                       "\"content\" text NOT NULL, "
                       "\"lastModified\" integer NOT NULL, "
                       "\"inSeparateFolder\" integer NOT NULL, "
@@ -57,12 +101,26 @@ Database::Database(QObject *parent) :
                       "\"path\" text NOT NULL);");
         query.exec();
 
+        query.prepare("CREATE TABLE IF NOT EXISTS movieFiles( "
+                      "\"idFile\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"idMovie\" integer NOT NULL, "
+                      "\"file\" text NOT NULL "
+                      ");");
+        query.exec();
+
         query.prepare("CREATE TABLE IF NOT EXISTS concerts ( "
                       "\"idConcert\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
                       "\"files\" text NOT NULL, "
                       "\"content\" text NOT NULL, "
                       "\"inSeparateFolder\" integer NOT NULL, "
                       "\"path\" text NOT NULL);");
+        query.exec();
+
+        query.prepare("CREATE TABLE IF NOT EXISTS concertFiles( "
+                      "\"idFile\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"idConcert\" integer NOT NULL, "
+                      "\"file\" text NOT NULL "
+                      ");");
         query.exec();
 
         query.prepare("CREATE TABLE IF NOT EXISTS shows ( "
@@ -74,11 +132,18 @@ Database::Database(QObject *parent) :
 
         query.prepare("CREATE TABLE IF NOT EXISTS episodes ( "
                       "\"idEpisode\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                      "\"files\" text NOT NULL, "
                       "\"content\" text NOT NULL, "
                       "\"idShow\" integer NOT NULL, "
                       "\"path\" text NOT NULL);");
         query.exec();
+
+        query.prepare("CREATE TABLE IF NOT EXISTS episodeFiles( "
+                      "\"idFile\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"idEpisode\" integer NOT NULL, "
+                      "\"file\" text NOT NULL "
+                      ");");
+        query.exec();
+
 
         query.prepare("PRAGMA synchronous=0;");
         query.exec();
@@ -123,6 +188,9 @@ void Database::clearMovies(QString path)
 {
     QSqlQuery query(db());
     if (!path.isEmpty()) {
+        query.prepare("DELETE FROM movieFiles WHERE idMovie IN (SELECT idMovie FROM movies WHERE path=:path)");
+        query.bindValue(":path", path.toUtf8());
+        query.exec();
         query.prepare("DELETE FROM movies WHERE path=:path");
         query.bindValue(":path", path.toUtf8());
         query.exec();
@@ -131,15 +199,18 @@ void Database::clearMovies(QString path)
         query.exec();
         query.prepare("DELETE FROM sqlite_sequence WHERE name='movies'");
         query.exec();
+        query.prepare("DELETE FROM movieFiles");
+        query.exec();
+        query.prepare("DELETE FROM sqlite_sequence WHERE name='movieFiles'");
+        query.exec();
     }
 }
 
 void Database::add(Movie *movie, QString path)
 {
     QSqlQuery query(db());
-    query.prepare("INSERT INTO movies(files, content, lastModified, inSeparateFolder, hasPoster, hasBackdrop, hasLogo, hasClearArt, hasCdArt, path) "
-                  "VALUES(:files, :content, :lastModified, :inSeparateFolder, :hasPoster, :hasBackdrop, :hasLogo, :hasClearArt, :hasCdArt, :path)");
-    query.bindValue(":files", movie->files().join(",").toUtf8());
+    query.prepare("INSERT INTO movies(content, lastModified, inSeparateFolder, hasPoster, hasBackdrop, hasLogo, hasClearArt, hasCdArt, path) "
+                  "VALUES(:content, :lastModified, :inSeparateFolder, :hasPoster, :hasBackdrop, :hasLogo, :hasClearArt, :hasCdArt, :path)");
     query.bindValue(":content", movie->nfoContent().isEmpty() ? "" : movie->nfoContent().toUtf8());
     query.bindValue(":lastModified", movie->fileLastModified());
     query.bindValue(":inSeparateFolder", (movie->inSeparateFolder() ? 1 : 0));
@@ -150,7 +221,16 @@ void Database::add(Movie *movie, QString path)
     query.bindValue(":hasCdArt", movie->hasCdArt() ? 1 : 0);
     query.bindValue(":path", path.toUtf8());
     query.exec();
-    movie->setDatabaseId(query.lastInsertId().toInt());
+    int insertId = query.lastInsertId().toInt();
+
+    foreach (const QString &file, movie->files()) {
+        query.prepare("INSERT INTO movieFiles(idMovie, file) VALUES(:idMovie, :file)");
+        query.bindValue(":idMovie", insertId);
+        query.bindValue(":file", file.toUtf8());
+        query.exec();
+    }
+
+    movie->setDatabaseId(insertId);
 }
 
 void Database::update(Movie *movie)
@@ -166,11 +246,19 @@ QList<Movie*> Database::movies(QString path)
 {
     QList<Movie*> movies;
     QSqlQuery query(db());
-    query.prepare("SELECT idMovie, files, content, lastModified, inSeparateFolder, hasPoster, hasBackdrop, hasLogo, hasClearArt, hasCdArt FROM movies WHERE path=:path");
+    QSqlQuery queryFiles(db());
+    query.prepare("SELECT idMovie, content, lastModified, inSeparateFolder, hasPoster, hasBackdrop, hasLogo, hasClearArt, hasCdArt FROM movies WHERE path=:path");
     query.bindValue(":path", path.toUtf8());
     query.exec();
     while (query.next()) {
-        Movie *movie = new Movie(QString::fromUtf8(query.value(query.record().indexOf("files")).toByteArray()).split(","), Manager::instance()->movieFileSearcher());
+        QStringList files;
+        queryFiles.prepare("SELECT file FROM movieFiles WHERE idMovie=:idMovie");
+        queryFiles.bindValue(":idMovie", query.value(query.record().indexOf("idMovie")).toInt());
+        queryFiles.exec();
+        while (queryFiles.next())
+            files << QString::fromUtf8(queryFiles.value(queryFiles.record().indexOf("file")).toByteArray());
+
+        Movie *movie = new Movie(files, Manager::instance()->movieFileSearcher());
         movie->setDatabaseId(query.value(query.record().indexOf("idMovie")).toInt());
         movie->setFileLastModified(query.value(query.record().indexOf("lastModified")).toDateTime());
         movie->setInSeparateFolder(query.value(query.record().indexOf("inSeparateFolder")).toInt() == 1);
@@ -189,6 +277,9 @@ void Database::clearConcerts(QString path)
 {
     QSqlQuery query(db());
     if (!path.isEmpty()) {
+        query.prepare("DELETE FROM concertFiles WHERE idConcert IN (SELECT idConcert FROM concerts WHERE path=:path)");
+        query.bindValue(":path", path.toUtf8());
+        query.exec();
         query.prepare("DELETE FROM concerts WHERE path=:path");
         query.bindValue(":path", path.toUtf8());
         query.exec();
@@ -197,20 +288,31 @@ void Database::clearConcerts(QString path)
         query.exec();
         query.prepare("DELETE FROM sqlite_sequence WHERE name='concerts'");
         query.exec();
+        query.prepare("DELETE FROM concertFiles");
+        query.exec();
+        query.prepare("DELETE FROM sqlite_sequence WHERE name='concertFiles'");
+        query.exec();
     }
 }
 
 void Database::add(Concert *concert, QString path)
 {
     QSqlQuery query(db());
-    query.prepare("INSERT INTO concerts(files, content, inSeparateFolder, path) "
-                  "VALUES(:files, :content, :inSeparateFolder, :path)");
-    query.bindValue(":files", concert->files().join(",").toUtf8());
+    query.prepare("INSERT INTO concerts(content, inSeparateFolder, path) "
+                  "VALUES(:content, :inSeparateFolder, :path)");
     query.bindValue(":content", concert->nfoContent().isEmpty() ? "" : concert->nfoContent().toUtf8());
     query.bindValue(":inSeparateFolder", (concert->inSeparateFolder() ? 1 : 0));
     query.bindValue(":path", path.toUtf8());
     query.exec();
-    concert->setDatabaseId(query.lastInsertId().toInt());
+    int insertId = query.lastInsertId().toInt();
+
+    foreach (const QString &file, concert->files()) {
+        query.prepare("INSERT INTO concertFiles(idConcert, file) VALUES(:idConcert, :file)");
+        query.bindValue(":idConcert", insertId);
+        query.bindValue(":file", file.toUtf8());
+        query.exec();
+    }
+    concert->setDatabaseId(insertId);
 }
 
 void Database::update(Concert *concert)
@@ -226,11 +328,19 @@ QList<Concert*> Database::concerts(QString path)
 {
     QList<Concert*> concerts;
     QSqlQuery query(db());
-    query.prepare("SELECT idConcert, files, content, inSeparateFolder FROM concerts WHERE path=:path");
+    QSqlQuery queryFiles(db());
+    query.prepare("SELECT idConcert, content, inSeparateFolder FROM concerts WHERE path=:path");
     query.bindValue(":path", path.toUtf8());
     query.exec();
     while (query.next()) {
-        Concert *concert = new Concert(QString::fromUtf8(query.value(query.record().indexOf("files")).toByteArray()).split(","), Manager::instance()->concertFileSearcher());
+        QStringList files;
+        queryFiles.prepare("SELECT file FROM concertFiles WHERE idConcert=:idConcert");
+        queryFiles.bindValue(":idConcert", query.value(query.record().indexOf("idConcert")).toInt());
+        queryFiles.exec();
+        while (queryFiles.next())
+            files << QString::fromUtf8(queryFiles.value(queryFiles.record().indexOf("file")).toByteArray());
+
+        Concert *concert = new Concert(files, Manager::instance()->concertFileSearcher());
         concert->setDatabaseId(query.value(query.record().indexOf("idConcert")).toInt());
         concert->setInSeparateFolder(query.value(query.record().indexOf("inSeparateFolder")).toInt() == 1);
         concert->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
@@ -254,14 +364,20 @@ void Database::add(TvShow *show, QString path)
 void Database::add(TvShowEpisode *episode, QString path, int idShow)
 {
     QSqlQuery query(db());
-    query.prepare("INSERT INTO episodes(files, content, idShow, path) "
-                  "VALUES(:files, :content, :idShow, :path)");
-    query.bindValue(":files", episode->files().join(",").toUtf8());
+    query.prepare("INSERT INTO episodes(content, idShow, path) "
+                  "VALUES(:content, :idShow, :path)");
     query.bindValue(":content", episode->nfoContent().isEmpty() ? "" : episode->nfoContent().toUtf8());
     query.bindValue(":idShow", idShow);
     query.bindValue(":path", path.toUtf8());
     query.exec();
-    episode->setDatabaseId(query.lastInsertId().toInt());
+    int insertId = query.lastInsertId().toInt();
+    foreach (const QString &file, episode->files()) {
+        query.prepare("INSERT INTO episodeFiles(idEpisode, file) VALUES(:idEpisode, :file)");
+        query.bindValue(":idEpisode", insertId);
+        query.bindValue(":file", file.toUtf8());
+        query.exec();
+    }
+    episode->setDatabaseId(insertId);
 }
 
 void Database::update(TvShow *show)
@@ -302,11 +418,19 @@ QList<TvShowEpisode*> Database::episodes(int idShow)
 {
     QList<TvShowEpisode*> episodes;
     QSqlQuery query(db());
-    query.prepare("SELECT idEpisode, files, content FROM episodes WHERE idShow=:idShow");
+    QSqlQuery queryFiles(db());
+    query.prepare("SELECT idEpisode, content FROM episodes WHERE idShow=:idShow");
     query.bindValue(":idShow", idShow);
     query.exec();
     while (query.next()) {
-        TvShowEpisode *episode = new TvShowEpisode(QString::fromUtf8(query.value(query.record().indexOf("files")).toByteArray()).split(","));
+        QStringList files;
+        queryFiles.prepare("SELECT file FROM episodeFiles WHERE idEpisode=:idEpisode");
+        queryFiles.bindValue(":idEpisode", query.value(query.record().indexOf("idEpisode")).toInt());
+        queryFiles.exec();
+        while (queryFiles.next())
+            files << QString::fromUtf8(queryFiles.value(queryFiles.record().indexOf("file")).toByteArray());
+
+        TvShowEpisode *episode = new TvShowEpisode(files);
         episode->setDatabaseId(query.value(query.record().indexOf("idEpisode")).toInt());
         episode->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
         episodes.append(episode);
@@ -321,6 +445,9 @@ void Database::clearTvShows(QString path)
         query.prepare("DELETE FROM shows WHERE path=:path");
         query.bindValue(":path", path.toUtf8());
         query.exec();
+        query.prepare("DELETE FROM episodeFiles WHERE idEpisode IN (SELECT idEpisode FROM episodes WHERE path=:path)");
+        query.bindValue(":path", path.toUtf8());
+        query.exec();
         query.prepare("DELETE FROM episodes WHERE path=:path");
         query.bindValue(":path", path.toUtf8());
         query.exec();
@@ -329,9 +456,13 @@ void Database::clearTvShows(QString path)
         query.exec();
         query.prepare("DELETE FROM episodes");
         query.exec();
+        query.prepare("DELETE FROM episodeFiles");
+        query.exec();
         query.prepare("DELETE FROM sqlite_sequence WHERE name='shows'");
         query.exec();
         query.prepare("DELETE FROM sqlite_sequence WHERE name='episodes'");
+        query.exec();
+        query.prepare("DELETE FROM sqlite_sequence WHERE name='episodeFiles'");
         query.exec();
     }
 }
@@ -345,6 +476,10 @@ void Database::clearTvShow(QString showDir)
     if (!query.next())
         return;
     int idShow = query.value(0).toInt();
+
+    query.prepare("DELETE FROM episodeFiles WHERE idEpisode IN (SELECT idEpisode FROM episodes WHERE idShow=:idShow)");
+    query.bindValue(":idShow", idShow);
+    query.exec();
 
     query.prepare("DELETE FROM shows WHERE idShow=:idShow");
     query.bindValue(":idShow", idShow);
