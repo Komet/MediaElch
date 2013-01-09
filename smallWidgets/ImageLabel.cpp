@@ -50,5 +50,5 @@ void ImageLabel::setHint(QSize resolution, QString hint)
             text.append(QString(" (%1)").arg(hint));
     }
 
-    ui->resolution->setText(hint);
+    ui->resolution->setText(text);
 }
