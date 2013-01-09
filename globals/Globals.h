@@ -171,6 +171,25 @@ namespace MovieScraperInfos {
     const int ExtraArts     = 17;
 }
 
+namespace TvShowScraperInfos {
+    const int Actors        = 1;
+    const int Banner        = 2;
+    const int Certification = 3;
+    const int Director      = 4;
+    const int Fanart        = 5;
+    const int FirstAired    = 6;
+    const int Genres        = 7;
+    const int Network       = 8;
+    const int Overview      = 9;
+    const int Poster        = 10;
+    const int Rating        = 11;
+    const int SeasonEpisode = 12;
+    const int SeasonPoster  = 13;
+    const int Thumbnail     = 14;
+    const int Title         = 15;
+    const int Writer        = 16;
+}
+
 namespace ConcertScraperInfos {
     const int Title         = 1;
     const int Tagline       = 2;

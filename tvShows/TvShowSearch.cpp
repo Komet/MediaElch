@@ -2,6 +2,7 @@
 #include "ui_TvShowSearch.h"
 
 #include "globals/Manager.h"
+#include "smallWidgets/MyCheckBox.h"
 
 /**
  * @brief TvShowSearch::TvShowSearch
@@ -30,6 +31,30 @@ TvShowSearch::TvShowSearch(QWidget *parent) :
     connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(onSearch()));
     connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(onResultClicked(QTableWidgetItem*)));
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
+
+    ui->chkActors->setMyData(TvShowScraperInfos::Actors);
+    ui->chkBanner->setMyData(TvShowScraperInfos::Banner);
+    ui->chkCertification->setMyData(TvShowScraperInfos::Certification);
+    ui->chkDirector->setMyData(TvShowScraperInfos::Director);
+    ui->chkFanart->setMyData(TvShowScraperInfos::Fanart);
+    ui->chkFirstAired->setMyData(TvShowScraperInfos::FirstAired);
+    ui->chkGenres->setMyData(TvShowScraperInfos::Genres);
+    ui->chkNetwork->setMyData(TvShowScraperInfos::Network);
+    ui->chkOverview->setMyData(TvShowScraperInfos::Overview);
+    ui->chkPoster->setMyData(TvShowScraperInfos::Poster);
+    ui->chkRating->setMyData(TvShowScraperInfos::Rating);
+    ui->chkSeasonEpisode->setMyData(TvShowScraperInfos::SeasonEpisode);
+    ui->chkSeasonPoster->setMyData(TvShowScraperInfos::SeasonPoster);
+    ui->chkThumbnail->setMyData(TvShowScraperInfos::Thumbnail);
+    ui->chkTitle->setMyData(TvShowScraperInfos::Title);
+    ui->chkWriter->setMyData(TvShowScraperInfos::Writer);
+
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+        if (box->myData().toInt() > 0)
+            connect(box, SIGNAL(clicked()), this, SLOT(onChkToggled()));
+    }
+
+    connect(ui->chkUnCheckAll, SIGNAL(clicked()), this, SLOT(onChkAllToggled()));
 }
 
 /**
@@ -69,6 +94,7 @@ int TvShowSearch::exec(QString searchString)
 
     ui->searchString->setText(searchString);
     onSearch();
+    onChkToggled();
     return QDialog::exec();
 }
 
@@ -152,4 +178,33 @@ bool TvShowSearch::updateAll()
 {
     qDebug() << "Entered, updateAll=" << ui->chkUpdateAllEpisodes->isChecked();
     return ui->chkUpdateAllEpisodes->isChecked();
+}
+
+void TvShowSearch::onChkToggled()
+{
+    m_infosToLoad.clear();
+    bool allToggled = true;
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+        if (box->isChecked() && box->myData().toInt() > 0)
+            m_infosToLoad.append(box->myData().toInt());
+        if (!box->isChecked() && box->myData().toInt() > 0)
+            allToggled = false;
+    }
+
+    ui->chkUnCheckAll->setChecked(allToggled);
+}
+
+void TvShowSearch::onChkAllToggled()
+{
+    bool checked = ui->chkUnCheckAll->isChecked();
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+        if (box->myData().toInt() > 0)
+            box->setChecked(checked);
+    }
+    onChkToggled();
+}
+
+QList<int> TvShowSearch::infosToLoad()
+{
+    return m_infosToLoad;
 }

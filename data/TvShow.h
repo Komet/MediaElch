@@ -132,7 +132,7 @@ public:
     void removeGenre(QString *genre);
 
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo = true);
-    void loadData(QString id, TvScraperInterface *tvScraperInterface, bool updateAllEpisodes);
+    void loadData(QString id, TvScraperInterface *tvScraperInterface, bool updateAllEpisodes, QList<int> infosToLoad);
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     void clearImages();
 

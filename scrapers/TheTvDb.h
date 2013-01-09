@@ -19,8 +19,8 @@ public:
     explicit TheTvDb(QObject *parent = 0);
     QString name();
     void search(QString searchStr);
-    void loadTvShowData(QString id, TvShow *show, bool updateAllEpisodes);
-    void loadTvShowEpisodeData(QString id, TvShowEpisode *episode);
+    void loadTvShowData(QString id, TvShow *show, bool updateAllEpisodes, QList<int> infosToLoad);
+    void loadTvShowEpisodeData(QString id, TvShowEpisode *episode, QList<int> infosToLoad);
     bool hasSettings();
     void loadSettings();
     void saveSettings();
@@ -57,6 +57,7 @@ private:
     TvShowEpisode *m_currentEpisode;
     bool m_updateAllEpisodes;
     QString m_currentId;
+    QList<int> m_infosToLoad;
 
     QNetworkAccessManager *qnam();
     void setMirrors();

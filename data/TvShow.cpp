@@ -112,12 +112,12 @@ bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFro
  * @param tvScraperInterface Scraper to use
  * @param updateAllEpisodes Force update all child episodes (regardless if they already have infos)
  */
-void TvShow::loadData(QString id, TvScraperInterface *tvScraperInterface, bool updateAllEpisodes)
+void TvShow::loadData(QString id, TvScraperInterface *tvScraperInterface, bool updateAllEpisodes, QList<int> infosToLoad)
 {
     qDebug() << "Entered, id=" << id << "scraperInterface" << tvScraperInterface->name() << "updateAllEpisodes" << updateAllEpisodes;
     if (tvScraperInterface->name() == "The TV DB")
         setTvdbId(id);
-    tvScraperInterface->loadTvShowData(id, this, updateAllEpisodes);
+    tvScraperInterface->loadTvShowData(id, this, updateAllEpisodes, infosToLoad);
 }
 
 /**

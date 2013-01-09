@@ -20,6 +20,7 @@ public:
     explicit TvShowSearch(QWidget *parent = 0);
     ~TvShowSearch();
     QString scraperId();
+    QList<int> infosToLoad();
 
 public slots:
     int exec(QString searchString);
@@ -31,11 +32,14 @@ private slots:
     void onSearch();
     void onShowResults(QList<ScraperSearchResult> results);
     void onResultClicked(QTableWidgetItem *item);
+    void onChkToggled();
+    void onChkAllToggled();
 
 private:
     Ui::TvShowSearch *ui;
     void clear();
     QString m_scraperId;
+    QList<int> m_infosToLoad;
 };
 
 #endif // TVSHOWSEARCH_H

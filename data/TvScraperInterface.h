@@ -19,8 +19,8 @@ class TvScraperInterface : public QObject
 public:
     virtual QString name() = 0;
     virtual void search(QString searchStr) = 0;
-    virtual void loadTvShowData(QString id, TvShow *show, bool updateAllEpisodes) = 0;
-    virtual void loadTvShowEpisodeData(QString id, TvShowEpisode *episode) = 0;
+    virtual void loadTvShowData(QString id, TvShow *show, bool updateAllEpisodes, QList<int> infosToLoad) = 0;
+    virtual void loadTvShowEpisodeData(QString id, TvShowEpisode *episode, QList<int> infosToLoad) = 0;
     virtual bool hasSettings() = 0;
     virtual void loadSettings() = 0;
     virtual void saveSettings() = 0;

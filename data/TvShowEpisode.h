@@ -102,7 +102,7 @@ public:
     void removeDirector(QString *director);
 
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo = true);
-    void loadData(QString id, TvScraperInterface *tvScraperInterface);
+    void loadData(QString id, TvScraperInterface *tvScraperInterface, QList<int> infosToLoad);
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     void loadStreamDetailsFromFile();
     void clearImages();

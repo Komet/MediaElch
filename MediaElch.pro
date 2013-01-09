@@ -110,7 +110,8 @@ SOURCES += main.cpp\
     globals/TrailerDialog.cpp \
     smallWidgets/SlidingStackedWidget.cpp \
     scrapers/IMDB.cpp \
-    xbmc/XbmcSync.cpp
+    xbmc/XbmcSync.cpp \
+    smallWidgets/MyCheckBox.cpp
 
 HEADERS  += main/MainWindow.h \
     data/Movie.h \
@@ -196,7 +197,8 @@ HEADERS  += main/MainWindow.h \
     globals/TrailerDialog.h \
     smallWidgets/SlidingStackedWidget.h \
     scrapers/IMDB.h \
-    xbmc/XbmcSync.h
+    xbmc/XbmcSync.h \
+    smallWidgets/MyCheckBox.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

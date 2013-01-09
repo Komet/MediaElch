@@ -92,10 +92,18 @@ void TheTvDbImages::loadTvShowData(QString tvdbId, int type)
 {
     m_currentType = type;
     m_dummyShow->clear();
+
+    QList<int> infosToLoad;
+    infosToLoad.append(TvShowScraperInfos::Thumbnail);
+    infosToLoad.append(TvShowScraperInfos::Banner);
+    infosToLoad.append(TvShowScraperInfos::Fanart);
+    infosToLoad.append(TvShowScraperInfos::Poster);
+    infosToLoad.append(TvShowScraperInfos::SeasonPoster);
+
     if (type == TypeShowThumbnail)
-        m_tvdb->loadTvShowEpisodeData(tvdbId, m_dummyEpisode);
+        m_tvdb->loadTvShowEpisodeData(tvdbId, m_dummyEpisode, infosToLoad);
     else
-        m_tvdb->loadTvShowData(tvdbId, m_dummyShow, false);
+        m_tvdb->loadTvShowData(tvdbId, m_dummyShow, false, infosToLoad);
 }
 
 /**
