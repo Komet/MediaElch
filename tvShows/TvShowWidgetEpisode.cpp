@@ -69,6 +69,8 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     connect(ui->showTitle, SIGNAL(textEdited(QString)), this, SLOT(onShowTitleChange(QString)));
     connect(ui->season, SIGNAL(valueChanged(int)), this, SLOT(onSeasonChange(int)));
     connect(ui->episode, SIGNAL(valueChanged(int)), this, SLOT(onEpisodeChange(int)));
+    connect(ui->displaySeason, SIGNAL(valueChanged(int)), this, SLOT(onDisplaySeasonChange(int)));
+    connect(ui->displayEpisode, SIGNAL(valueChanged(int)), this, SLOT(onDisplayEpisodeChange(int)));
     connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
     connect(ui->certification, SIGNAL(editTextChanged(QString)), this, SLOT(onCertificationChange(QString)));
     connect(ui->firstAired, SIGNAL(dateChanged(QDate)), this, SLOT(onFirstAiredChange(QDate)));
@@ -155,6 +157,14 @@ void TvShowWidgetEpisode::onClear()
     blocked = ui->episode->blockSignals(true);
     ui->episode->clear();
     ui->episode->blockSignals(blocked);
+
+    blocked = ui->displaySeason->blockSignals(true);
+    ui->displaySeason->clear();
+    ui->displaySeason->blockSignals(blocked);
+
+    blocked = ui->displayEpisode->blockSignals(true);
+    ui->displayEpisode->clear();
+    ui->displayEpisode->blockSignals(blocked);
 
     blocked = ui->rating->blockSignals(true);
     ui->rating->clear();
@@ -247,6 +257,8 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
 
     ui->season->blockSignals(true);
     ui->episode->blockSignals(true);
+    ui->displaySeason->blockSignals(true);
+    ui->displayEpisode->blockSignals(true);
     ui->rating->blockSignals(true);
     ui->certification->blockSignals(true);
     ui->firstAired->blockSignals(true);
@@ -262,6 +274,8 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->showTitle->setText(m_episode->showTitle());
     ui->season->setValue(m_episode->season());
     ui->episode->setValue(m_episode->episode());
+    ui->displaySeason->setValue(m_episode->displaySeason());
+    ui->displayEpisode->setValue(m_episode->displayEpisode());
     ui->rating->setValue(m_episode->rating());
     ui->firstAired->setDate(m_episode->firstAired());
     ui->playCount->setValue(m_episode->playCount());
@@ -324,6 +338,8 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
 
     ui->season->blockSignals(false);
     ui->episode->blockSignals(false);
+    ui->displaySeason->blockSignals(false);
+    ui->displayEpisode->blockSignals(false);
     ui->rating->blockSignals(false);
     ui->certification->blockSignals(false);
     ui->firstAired->blockSignals(false);
@@ -740,6 +756,24 @@ void TvShowWidgetEpisode::onSeasonChange(int value)
 void TvShowWidgetEpisode::onEpisodeChange(int value)
 {
     m_episode->setEpisode(value);
+    ui->buttonRevert->setVisible(true);
+}
+
+/**
+ * @brief Marks the episode as changed when the display season has changed
+ */
+void TvShowWidgetEpisode::onDisplaySeasonChange(int value)
+{
+    m_episode->setDisplaySeason(value);
+    ui->buttonRevert->setVisible(true);
+}
+
+/**
+ * @brief Marks the episode as changed when the display episode has changed
+ */
+void TvShowWidgetEpisode::onDisplayEpisodeChange(int value)
+{
+    m_episode->setDisplayEpisode(value);
     ui->buttonRevert->setVisible(true);
 }
 

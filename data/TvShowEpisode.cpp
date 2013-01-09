@@ -19,6 +19,8 @@ TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) :
     m_parent = parent;
     m_season = -2;
     m_episode = -2;
+    m_displaySeason = -1;
+    m_displayEpisode = -1;
     m_playCount = 0;
     m_rating = 0;
     m_thumbnailImageChanged = false;
@@ -55,6 +57,8 @@ void TvShowEpisode::clear()
     m_rating = 0;
     m_season = -2;
     m_episode = -2;
+    m_displaySeason = -1;
+    m_displayEpisode = -1;
     m_overview = "";
     m_writers.clear();
     m_directors.clear();
@@ -263,6 +267,17 @@ int TvShowEpisode::season() const
 }
 
 /**
+ * @property TvShowEpisode::displaySeason
+ * @brief Display Season number
+ * @return Display Season number
+ * @see TvShowEpisode::setDisplaySeasonNumber
+ */
+int TvShowEpisode::displaySeason() const
+{
+    return m_displaySeason;
+}
+
+/**
  * @brief Season number with leading zero
  * @return Formatted Season number
  * @see TvShowEpisode::season
@@ -292,6 +307,17 @@ int TvShowEpisode::episode() const
             return rx.cap(2).toInt();
     }
     return m_episode;
+}
+
+/**
+ * @property TvShowEpisode::displayEpisode
+ * @brief Display Episode number
+ * @return Display Episode number
+ * @see TvShowEpisode::setDisplayEpisode
+ */
+int TvShowEpisode::displayEpisode() const
+{
+    return m_displayEpisode;
 }
 
 /**
@@ -578,6 +604,28 @@ void TvShowEpisode::setSeason(int season)
 void TvShowEpisode::setEpisode(int episode)
 {
     m_episode = episode;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the display season
+ * @param season Display Season number
+ * @see TvShowEpisode::displaySeason
+ */
+void TvShowEpisode::setDisplaySeason(int season)
+{
+    m_displaySeason = season;
+    setChanged(true);
+}
+
+/**
+ * @brief Sets the display episode
+ * @param episode Display Episode number
+ * @see TvShowEpisode::displayEpisode
+ */
+void TvShowEpisode::setDisplayEpisode(int episode)
+{
+    m_displayEpisode = episode;
     setChanged(true);
 }
 

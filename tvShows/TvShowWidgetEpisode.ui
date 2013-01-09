@@ -154,30 +154,57 @@
              <widget class="QLineEdit" name="showTitle"/>
             </item>
             <item row="3" column="0">
-             <widget class="QLabel" name="label_13">
+             <widget class="QLabel" name="label_6">
               <property name="text">
                <string>Season</string>
               </property>
              </widget>
             </item>
             <item row="3" column="1">
-             <widget class="QSpinBox" name="season">
-              <property name="maximum">
-               <number>99999</number>
-              </property>
-             </widget>
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <item>
+               <widget class="QSpinBox" name="season">
+                <property name="maximum">
+                 <number>99999</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_4">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_7">
+                <property name="text">
+                 <string>Episode</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="episode">
+                <property name="maximum">
+                 <number>99999</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
             <item row="4" column="0">
-             <widget class="QLabel" name="label_16">
+             <widget class="QLabel" name="label_13">
               <property name="text">
-               <string>Episode</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QSpinBox" name="episode">
-              <property name="maximum">
-               <number>99999</number>
+               <string>Display Season</string>
               </property>
              </widget>
             </item>
@@ -236,6 +263,9 @@
               </property>
              </widget>
             </item>
+            <item row="8" column="1">
+             <widget class="QSpinBox" name="playCount"/>
+            </item>
             <item row="9" column="0">
              <widget class="QLabel" name="label_11">
               <property name="text">
@@ -270,8 +300,52 @@
             <item row="11" column="1">
              <widget class="QTextEdit" name="overview"/>
             </item>
-            <item row="8" column="1">
-             <widget class="QSpinBox" name="playCount"/>
+            <item row="4" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <item>
+               <widget class="QSpinBox" name="displaySeason">
+                <property name="minimum">
+                 <number>-1</number>
+                </property>
+                <property name="maximum">
+                 <number>99999</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_5">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_12">
+                <property name="text">
+                 <string>Display Episode</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="displayEpisode">
+                <property name="minimum">
+                 <number>-1</number>
+                </property>
+                <property name="maximum">
+                 <number>99999</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
            </layout>
           </item>

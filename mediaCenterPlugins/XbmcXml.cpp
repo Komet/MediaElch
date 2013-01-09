@@ -1437,6 +1437,10 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoConten
         episode->setSeason(domDoc.elementsByTagName("season").at(0).toElement().text().toInt());
     if (!domDoc.elementsByTagName("episode").isEmpty())
         episode->setEpisode(domDoc.elementsByTagName("episode").at(0).toElement().text().toInt());
+    if (!domDoc.elementsByTagName("displayseason").isEmpty())
+        episode->setDisplaySeason(domDoc.elementsByTagName("displayseason").at(0).toElement().text().toInt());
+    if (!domDoc.elementsByTagName("displayepisode").isEmpty())
+        episode->setDisplayEpisode(domDoc.elementsByTagName("displayepisode").at(0).toElement().text().toInt());
     if (!domDoc.elementsByTagName("rating").isEmpty())
         episode->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().toFloat());
     if (!domDoc.elementsByTagName("plot").isEmpty())
@@ -1709,6 +1713,10 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
     xml.writeTextElement("rating", QString("%1").arg(episode->rating()));
     xml.writeTextElement("season", QString("%1").arg(episode->season()));
     xml.writeTextElement("episode", QString("%1").arg(episode->episode()));
+    if (episode->displaySeason() > -1)
+        xml.writeTextElement("displayseason", QString("%1").arg(episode->displaySeason()));
+    if (episode->displayEpisode() > -1)
+        xml.writeTextElement("displayepisode", QString("%1").arg(episode->displayEpisode()));
     xml.writeTextElement("plot", episode->overview());
     xml.writeTextElement("outline", episode->overview());
     xml.writeTextElement("mpaa", episode->certification());

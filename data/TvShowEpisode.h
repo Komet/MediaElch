@@ -25,6 +25,8 @@ class TvShowEpisode : public QObject
     Q_PROPERTY(qreal ratin READ rating WRITE setRating)
     Q_PROPERTY(int season READ season WRITE setSeason)
     Q_PROPERTY(int episode READ episode WRITE setEpisode)
+    Q_PROPERTY(int displaySeason READ displaySeason WRITE setDisplaySeason)
+    Q_PROPERTY(int displayEpisode READ displayEpisode WRITE setDisplayEpisode)
     Q_PROPERTY(QString overview READ overview WRITE setOverview)
     Q_PROPERTY(QStringList writers READ writers WRITE setWriters)
     Q_PROPERTY(QStringList directors READ directors WRITE setDirectors)
@@ -46,6 +48,8 @@ public:
     qreal rating() const;
     int season() const;
     int episode() const;
+    int displaySeason() const;
+    int displayEpisode() const;
     QString overview() const;
     QStringList writers() const;
     QStringList directors() const;
@@ -78,6 +82,8 @@ public:
     void setRating(qreal rating);
     void setSeason(int season);
     void setEpisode(int episode);
+    void setDisplaySeason(int season);
+    void setDisplayEpisode(int episode);
     void setOverview(QString overview);
     void setWriters(QStringList writers);
     void addWriter(QString writer);
@@ -121,6 +127,8 @@ private:
     qreal m_rating;
     int m_season;
     int m_episode;
+    int m_displaySeason;
+    int m_displayEpisode;
     QString m_overview;
     QStringList m_writers;
     QStringList m_directors;
