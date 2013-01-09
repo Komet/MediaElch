@@ -68,7 +68,6 @@ void DownloadManager::setDownloads(QList<DownloadManagerElement> elements)
  */
 void DownloadManager::startNextDownload()
 {
-    qDebug() << "Entered";
     m_timer.stop();
     if (m_currentDownloadElement.movie) {
         int numDownloadsLeft = 0;
@@ -192,7 +191,7 @@ void DownloadManager::downloadFinished()
     img.loadFromData(m_currentReply->readAll());
     m_currentDownloadElement.image = img;
     m_currentReply->deleteLater();
-    if (m_currentDownloadElement.imageType == TypeActor)
+    if (m_currentDownloadElement.imageType == TypeActor && !m_currentDownloadElement.movie)
         m_currentDownloadElement.actor->image = img;
     else if (m_currentDownloadElement.imageType == TypeShowThumbnail)
         m_currentDownloadElement.episode->setThumbnailImage(img);

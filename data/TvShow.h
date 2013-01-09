@@ -11,6 +11,7 @@
 
 struct Actor;
 struct Poster;
+class MediaCenterInterface;
 class TvShowEpisode;
 class TvShowModelItem;
 class TvScraperInterface;

@@ -71,7 +71,7 @@ void CLI::run()
     if (m_scraperId.isEmpty()) {
         m_scraper->search(searchTerm);
     } else {
-        m_movie->loadData(m_scraperId, m_scraper, m_infosToLoad);
+        m_movie->controller()->loadData(m_scraperId, m_scraper, m_infosToLoad);
     }
 }
 
@@ -172,7 +172,7 @@ void CLI::onScraperSearchDone(QList<ScraperSearchResult> results)
         emit finished();
         return;
     }
-    m_movie->loadData(results.first().id, m_scraper, m_infosToLoad);
+    m_movie->controller()->loadData(results.first().id, m_scraper, m_infosToLoad);
 }
 
 /**
@@ -229,7 +229,7 @@ void CLI::onDownloadFinished(DownloadManagerElement elem)
  */
 void CLI::onDownloadsFinished()
 {
-    m_movie->saveData(Manager::instance()->mediaCenterInterface());
+    m_movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
     emit finished();
 }
 

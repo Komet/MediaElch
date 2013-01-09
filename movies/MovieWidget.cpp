@@ -68,15 +68,12 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->actorResolution->setFont(font);
 
     m_movie = 0;
-    m_posterDownloadManager = new DownloadManager(this);
 
     connect(ui->poster, SIGNAL(clicked()), this, SLOT(chooseMoviePoster()));
     connect(ui->backdrop, SIGNAL(clicked()), this, SLOT(chooseMovieBackdrop()));
     connect(ui->logo, SIGNAL(clicked()), this, SLOT(chooseMovieLogo()));
     connect(ui->clearArt, SIGNAL(clicked()), this, SLOT(chooseMovieClearArt()));
     connect(ui->cdArt, SIGNAL(clicked()), this, SLOT(chooseMovieCdArt()));
-    connect(m_posterDownloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(posterDownloadFinished(DownloadManagerElement)));
-    connect(m_posterDownloadManager, SIGNAL(downloadsLeft(int, DownloadManagerElement)), this, SLOT(actorDownloadsLeft(int, DownloadManagerElement)));
     connect(ui->name, SIGNAL(textChanged(QString)), this, SLOT(movieNameChanged(QString)));
     connect(ui->buttonAddActor, SIGNAL(clicked()), this, SLOT(addActor()));
     connect(ui->buttonRemoveActor, SIGNAL(clicked()), this, SLOT(removeActor()));
@@ -336,7 +333,7 @@ void MovieWidget::setEnabledTrue(Movie *movie)
     qDebug() << "Entered";
     if (movie)
         qDebug() << movie->name();
-    if (movie && movie->downloadsInProgress()) {
+    if (movie && movie->controller()->downloadsInProgress()) {
         qDebug() << "Downloads are in progress";
         return;
     }
@@ -363,15 +360,23 @@ void MovieWidget::setDisabledTrue()
 void MovieWidget::setMovie(Movie *movie)
 {
     qDebug() << "Entered, movie=" << movie->name();
-    movie->loadData(Manager::instance()->mediaCenterInterface());
+    movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
     if (!movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
-        movie->loadStreamDetailsFromFile();
+        movie->controller()->loadStreamDetailsFromFile();
         if (movie->streamDetailsLoaded() && movie->streamDetails()->videoDetails().value("durationinseconds").toInt() != 0)
             movie->setRuntime(qFloor(movie->streamDetails()->videoDetails().value("durationinseconds").toInt()/60));
     }
     m_movie = movie;
     updateMovieInfo();
-    if (movie->downloadsInProgress())
+
+    connect(m_movie->controller(), SIGNAL(sigInfoLoadDone(Movie*)), this, SLOT(onInfoLoadDone(Movie*)), Qt::UniqueConnection);
+    connect(m_movie->controller(), SIGNAL(sigLoadDone(Movie*)), this, SLOT(onLoadDone(Movie*)), Qt::UniqueConnection);
+    connect(m_movie->controller(), SIGNAL(sigDownloadProgress(Movie*,int, int)), this, SLOT(onDownloadProgress(Movie*,int,int)), Qt::UniqueConnection);
+    connect(m_movie->controller(), SIGNAL(sigLoadingImages(Movie*,QList<int>)), this, SLOT(onLoadingImages(Movie*,QList<int>)), Qt::UniqueConnection);
+    connect(m_movie->controller(), SIGNAL(sigLoadImagesStarted(Movie*)), this, SLOT(onLoadImagesStarted(Movie*)), Qt::UniqueConnection);
+    connect(m_movie->controller(), SIGNAL(sigImage(Movie*,int,QImage)), this, SLOT(onSetImage(Movie*,int,QImage)), Qt::UniqueConnection);
+
+    if (movie->controller()->downloadsInProgress())
         setDisabledTrue();
     else
         setEnabledTrue();
@@ -392,145 +397,115 @@ void MovieWidget::startScraperSearch()
     MovieSearch::instance()->exec(m_movie->name());
     if (MovieSearch::instance()->result() == QDialog::Accepted) {
         setDisabledTrue();
-        m_movie->loadData(MovieSearch::instance()->scraperId(), Manager::instance()->scrapers().at(MovieSearch::instance()->scraperNo()),
-                          MovieSearch::instance()->infosToLoad());
-        connect(m_movie, SIGNAL(loaded(Movie*)), this, SLOT(infoLoadDone(Movie*)), Qt::UniqueConnection);
+        m_movie->controller()->loadData(MovieSearch::instance()->scraperId(), Manager::instance()->scrapers().at(MovieSearch::instance()->scraperNo()),
+                                        MovieSearch::instance()->infosToLoad());
     } else {
         emit setActionSearchEnabled(true, WidgetMovies);
         emit setActionSaveEnabled(true, WidgetMovies);
     }
 }
 
-/**
- * @brief MovieWidget::infoLoadDone
- * @param movie
- */
-void MovieWidget::infoLoadDone(Movie *movie)
+void MovieWidget::onInfoLoadDone(Movie *movie)
 {
-    QList<int> types;
-    if (movie->infosToLoad().contains(MovieScraperInfos::ExtraArts))
-        types << TypeClearArt << TypeCdArt << TypeLogo;
-    if (!movie->tmdbId().isEmpty() && !types.isEmpty()) {
-        Manager::instance()->fanartTv()->movieImages(movie, movie->tmdbId(), types);
-        connect(Manager::instance()->fanartTv(), SIGNAL(sigImagesLoaded(Movie*,QMap<int,QList<Poster> >)), this, SLOT(loadDone(Movie*,QMap<int,QList<Poster> >)), Qt::UniqueConnection);
-    } else {
-        QMap<int, QList<Poster> > map;
-        loadDone(movie, map);
+    if (m_movie == 0)
+        return;
+    if (m_movie == movie) {
+        updateMovieInfo();
+        ui->buttonRevert->setVisible(true);
+        emit setActionSaveEnabled(false, WidgetMovies);
     }
 }
 
-/**
- * @brief Called when the search widget finishes
- * Updates infos and starts downloads
- * @param movie Movie
- * @param posters
- */
-void MovieWidget::loadDone(Movie *movie, QMap<int, QList<Poster> > posters)
+void MovieWidget::onLoadDone(Movie *movie)
 {
-    qDebug() << "Entered";
-    if (m_movie == 0) {
-        qDebug() << "My movie is invalid";
+    emit actorDownloadFinished(Constants::MovieProgressMessageId+movie->movieId());
+    if (m_movie == 0 || m_movie != movie)
         return;
+    setEnabledTrue();
+}
+
+void MovieWidget::onLoadImagesStarted(Movie *movie)
+{
+    emit actorDownloadStarted(tr("Downloading images..."), Constants::MovieProgressMessageId+movie->movieId());
+}
+
+void MovieWidget::onLoadingImages(Movie *movie, QList<int> imageTypes)
+{
+    if (movie != m_movie)
+        return;
+
+    if (imageTypes.contains(TypePoster)) {
+        ui->poster->setPixmap(QPixmap());
+        ui->poster->setMovie(m_loadingMovie);
+        ui->buttonPreviewPoster->setEnabled(false);
     }
-
-    if (m_movie == movie)
-        updateMovieInfo();
-    else
-        qDebug() << "Movie has changed";
-    int downloadsSize = 0;
-
-    if (movie->infosToLoad().contains(MovieScraperInfos::Poster) && movie->posters().size() > 0) {
-        emit setActionSaveEnabled(false, WidgetMovies);
-        DownloadManagerElement d;
-        d.imageType = TypePoster;
-        d.url = movie->posters().at(0).originalUrl;
-        d.movie = movie;
-        m_posterDownloadManager->addDownload(d);
-        if (m_movie == movie) {
-            ui->poster->setPixmap(QPixmap());
-            ui->poster->setMovie(m_loadingMovie);
-        }
-        downloadsSize++;
+    if (imageTypes.contains(TypeBackdrop)) {
+        ui->backdrop->setPixmap(QPixmap());
+        ui->backdrop->setMovie(m_loadingMovie);
+        ui->buttonPreviewBackdrop->setEnabled(false);
     }
-
-    if (movie->infosToLoad().contains(MovieScraperInfos::Backdrop) &&movie->backdrops().size() > 0) {
-        emit setActionSaveEnabled(false, WidgetMovies);
-        DownloadManagerElement d;
-        d.imageType = TypeBackdrop;
-        d.url = movie->backdrops().at(0).originalUrl;
-        d.movie = movie;
-        m_posterDownloadManager->addDownload(d);
-        if (m_movie == movie) {
-            ui->backdrop->setPixmap(QPixmap());
-            ui->backdrop->setMovie(m_loadingMovie);
-        }
-        downloadsSize++;
+    if (imageTypes.contains(TypeClearArt)) {
+        ui->clearArt->setPixmap(QPixmap());
+        ui->clearArt->setMovie(m_loadingMovie);
+        ui->buttonPreviewClearArt->setEnabled(false);
     }
-
-    if (movie->infosToLoad().contains(MovieScraperInfos::Actors)) {
-        QList<Actor*> actors = movie->actorsPointer();
-        for (int i=0, n=actors.size() ; i<n ; i++) {
-            if (actors.at(i)->thumb.isEmpty())
-                continue;
-            DownloadManagerElement d;
-            d.imageType = TypeActor;
-            d.url = QUrl(actors.at(i)->thumb);
-            d.actor = actors.at(i);
-            d.movie = movie;
-            m_posterDownloadManager->addDownload(d);
-            downloadsSize++;
-        }
+    if (imageTypes.contains(TypeCdArt)) {
+        ui->cdArt->setPixmap(QPixmap());
+        ui->cdArt->setMovie(m_loadingMovie);
+        ui->buttonPreviewCdArt->setEnabled(false);
     }
-
-    QMapIterator<int, QList<Poster> > it(posters);
-    while (it.hasNext()) {
-        it.next();
-        if (it.key() == TypeClearArt && !it.value().isEmpty()) {
-            DownloadManagerElement d;
-            d.imageType = TypeClearArt;
-            d.url = it.value().at(0).originalUrl;
-            d.movie = movie;
-            m_posterDownloadManager->addDownload(d);
-            if (m_movie == movie) {
-                ui->clearArt->setPixmap(QPixmap());
-                ui->clearArt->setMovie(m_loadingMovie);
-            }
-            downloadsSize++;
-        } else if (it.key() == TypeCdArt && !it.value().isEmpty()) {
-            DownloadManagerElement d;
-            d.imageType = TypeCdArt;
-            d.url = it.value().at(0).originalUrl;
-            d.movie = movie;
-            m_posterDownloadManager->addDownload(d);
-            if (m_movie == movie) {
-                ui->cdArt->setPixmap(QPixmap());
-                ui->cdArt->setMovie(m_loadingMovie);
-            }
-            downloadsSize++;
-        } else if (it.key() == TypeLogo && !it.value().isEmpty()) {
-            DownloadManagerElement d;
-            d.imageType = TypeLogo;
-            d.url = it.value().at(0).originalUrl;
-            d.movie = movie;
-            m_posterDownloadManager->addDownload(d);
-            if (m_movie == movie) {
-                ui->logo->setPixmap(QPixmap());
-                ui->logo->setMovie(m_loadingMovie);
-            }
-            downloadsSize++;
-        }
+    if (imageTypes.contains(TypeLogo)) {
+        ui->logo->setPixmap(QPixmap());
+        ui->logo->setMovie(m_loadingMovie);
+        ui->buttonPreviewLogo->setEnabled(false);
     }
+    ui->groupBox_3->update();
+}
 
-    if (downloadsSize > 0)
-        emit actorDownloadStarted(tr("Downloading images..."), Constants::MovieProgressMessageId+movie->movieId());
-    else if (m_movie == movie)
-        setEnabledTrue();
+void MovieWidget::onSetImage(Movie *movie, int type, QImage image)
+{
+    if (movie != m_movie)
+        return;
 
-    movie->setDownloadsInProgress(downloadsSize > 0);
-    movie->setDownloadsSize(downloadsSize);
-    ui->buttonRevert->setVisible(true);
+    switch (type) {
+    case TypePoster:
+        ui->poster->setPixmap(QPixmap::fromImage(image).scaled(200, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->posterResolution->setText(QString("%1x%2").arg(image.width()).arg(image.height()));
+        ui->buttonPreviewPoster->setEnabled(true);
+        m_currentPoster = image;
+        break;
+    case TypeBackdrop:
+        ui->backdrop->setPixmap(QPixmap::fromImage(image).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->backdropResolution->setText(QString("%1x%2").arg(image.width()).arg(image.height()));
+        ui->buttonPreviewBackdrop->setEnabled(true);
+        m_currentBackdrop = image;
+        break;
+    case TypeClearArt:
+        ui->clearArt->setPixmap(QPixmap::fromImage(image).scaled(200, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->clearArtResolution->setText(QString("%1x%2").arg(image.width()).arg(image.height()));
+        ui->buttonPreviewClearArt->setEnabled(true);
+        m_currentClearArt = image;
+        break;
+    case TypeCdArt:
+        ui->cdArt->setPixmap(QPixmap::fromImage(image).scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->cdArtResolution->setText(QString("%1x%2").arg(image.width()).arg(image.height()));
+        ui->buttonPreviewCdArt->setEnabled(true);
+        m_currentCdArt = image;
+        break;
+    case TypeLogo:
+        ui->logo->setPixmap(QPixmap::fromImage(image).scaled(200, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->logoResolution->setText(QString("%1x%2").arg(image.width()).arg(image.height()));
+        ui->buttonPreviewLogo->setEnabled(true);
+        m_currentLogo = image;
+        break;
+    default:
+        break;
+    }
+}
 
-    connect(m_posterDownloadManager, SIGNAL(allDownloadsFinished(Movie*)), this, SLOT(downloadActorsFinished(Movie*)), Qt::UniqueConnection);
+void MovieWidget::onDownloadProgress(Movie *movie, int current, int maximum)
+{
+    emit actorDownloadProgress(maximum-current, maximum, Constants::MovieProgressMessageId+movie->movieId());
 }
 
 /**
@@ -538,11 +513,8 @@ void MovieWidget::loadDone(Movie *movie, QMap<int, QList<Poster> > posters)
  */
 void MovieWidget::updateMovieInfo()
 {
-    qDebug() << "Entered";
-    if (m_movie == 0) {
-        qDebug() << "My movie is invalid";
+    if (m_movie == 0)
         return;
-    }
 
     ui->rating->blockSignals(true);
     ui->votes->blockSignals(true);
@@ -775,7 +747,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoHeight->blockSignals(true);
 
     if (reloadFromFile)
-        m_movie->loadStreamDetailsFromFile();
+        m_movie->controller()->loadStreamDetailsFromFile();
 
     StreamDetails *streamDetails = m_movie->streamDetails();
     ui->videoWidth->setValue(streamDetails->videoDetails().value("width").toInt());
@@ -888,14 +860,7 @@ void MovieWidget::chooseMoviePoster()
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
         emit setActionSaveEnabled(false, WidgetMovies);
-        DownloadManagerElement d;
-        d.imageType = TypePoster;
-        d.url = ImageDialog::instance()->imageUrl();
-        d.movie = m_movie;
-        m_posterDownloadManager->addDownload(d);
-        ui->poster->setPixmap(QPixmap());
-        ui->poster->setMovie(m_loadingMovie);
-        ui->buttonPreviewPoster->setEnabled(false);
+        m_movie->controller()->loadImage(TypePoster, ImageDialog::instance()->imageUrl());
         ui->buttonRevert->setVisible(true);
     }
 }
@@ -905,11 +870,8 @@ void MovieWidget::chooseMoviePoster()
  */
 void MovieWidget::chooseMovieBackdrop()
 {
-    qDebug() << "Entered";
-    if (m_movie == 0) {
-        qDebug() << "My movie is invalid";
+    if (m_movie == 0)
         return;
-    }
 
     ImageDialog::instance()->setImageType(TypeBackdrop);
     ImageDialog::instance()->clear();
@@ -919,14 +881,7 @@ void MovieWidget::chooseMovieBackdrop()
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
         emit setActionSaveEnabled(false, WidgetMovies);
-        DownloadManagerElement d;
-        d.imageType = TypeBackdrop;
-        d.url = ImageDialog::instance()->imageUrl();
-        d.movie = m_movie;
-        m_posterDownloadManager->addDownload(d);
-        ui->backdrop->setPixmap(QPixmap());
-        ui->backdrop->setMovie(m_loadingMovie);
-        ui->buttonPreviewBackdrop->setEnabled(false);
+        m_movie->controller()->loadImage(TypeBackdrop, ImageDialog::instance()->imageUrl());
         ui->buttonRevert->setVisible(true);
     }
 }
@@ -947,14 +902,7 @@ void MovieWidget::chooseMovieLogo()
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
         emit setActionSaveEnabled(false, WidgetMovies);
-        DownloadManagerElement d;
-        d.imageType = TypeLogo;
-        d.url = ImageDialog::instance()->imageUrl();
-        d.movie = m_movie;
-        m_posterDownloadManager->addDownload(d);
-        ui->logo->setPixmap(QPixmap());
-        ui->logo->setMovie(m_loadingMovie);
-        ui->buttonPreviewLogo->setEnabled(false);
+        m_movie->controller()->loadImage(TypeLogo, ImageDialog::instance()->imageUrl());
         ui->buttonRevert->setVisible(true);
     }
 }
@@ -975,14 +923,7 @@ void MovieWidget::chooseMovieClearArt()
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
         emit setActionSaveEnabled(false, WidgetMovies);
-        DownloadManagerElement d;
-        d.imageType = TypeClearArt;
-        d.url = ImageDialog::instance()->imageUrl();
-        d.movie = m_movie;
-        m_posterDownloadManager->addDownload(d);
-        ui->clearArt->setPixmap(QPixmap());
-        ui->clearArt->setMovie(m_loadingMovie);
-        ui->buttonPreviewClearArt->setEnabled(false);
+        m_movie->controller()->loadImage(TypeClearArt, ImageDialog::instance()->imageUrl());
         ui->buttonRevert->setVisible(true);
     }
 }
@@ -1003,85 +944,9 @@ void MovieWidget::chooseMovieCdArt()
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
         emit setActionSaveEnabled(false, WidgetMovies);
-        DownloadManagerElement d;
-        d.imageType = TypeCdArt;
-        d.url = ImageDialog::instance()->imageUrl();
-        d.movie = m_movie;
-        m_posterDownloadManager->addDownload(d);
-        ui->cdArt->setPixmap(QPixmap());
-        ui->cdArt->setMovie(m_loadingMovie);
-        ui->buttonPreviewCdArt->setEnabled(false);
+        m_movie->controller()->loadImage(TypeCdArt, ImageDialog::instance()->imageUrl());
         ui->buttonRevert->setVisible(true);
     }
-}
-
-/**
- * @brief Adjusts the size of the backdrop to common values (1080p or 720p) and shows the image
- * @param elem Downloaded element
- */
-void MovieWidget::posterDownloadFinished(DownloadManagerElement elem)
-{
-    qDebug() << "Entered";
-    if (elem.imageType == TypePoster) {
-        qDebug() << "Got a poster";
-        if (m_movie == elem.movie) {
-            ui->poster->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            ui->posterResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
-            ui->buttonPreviewPoster->setEnabled(true);
-            m_currentPoster = elem.image;
-        }
-        elem.movie->setPosterImage(elem.image);
-    } else if (elem.imageType == TypeBackdrop) {
-        qDebug() << "Got a backdrop";
-        if ((elem.image.width() != 1920 || elem.image.height() != 1080) &&
-            elem.image.width() > 1915 && elem.image.width() < 1925 && elem.image.height() > 1075 && elem.image.height() < 1085)
-            elem.image = elem.image.scaled(1920, 1080, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-
-        if ((elem.image.width() != 1280 || elem.image.height() != 720) &&
-            elem.image.width() > 1275 && elem.image.width() < 1285 && elem.image.height() > 715 && elem.image.height() < 725)
-            elem.image = elem.image.scaled(1280, 720, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-
-        if (m_movie == elem.movie) {
-            ui->backdrop->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            ui->backdropResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
-            ui->buttonPreviewBackdrop->setEnabled(true);
-            m_currentBackdrop = elem.image;
-        }
-        elem.movie->setBackdropImage(elem.image);
-    } else if (elem.imageType == TypeLogo) {
-        qDebug() << "Got a logo";
-        if (m_movie == elem.movie) {
-            ui->logo->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            ui->logoResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
-            ui->buttonPreviewLogo->setEnabled(true);
-            m_currentLogo = elem.image;
-        }
-        elem.movie->setLogoImage(elem.image);
-    } else if (elem.imageType == TypeClearArt) {
-        qDebug() << "Got a clear art";
-        if (m_movie == elem.movie) {
-            ui->clearArt->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            ui->clearArtResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
-            ui->buttonPreviewClearArt->setEnabled(true);
-            m_currentClearArt = elem.image;
-        }
-        elem.movie->setClearArtImage(elem.image);
-    } else if (elem.imageType == TypeCdArt) {
-        qDebug() << "Got a cd art";
-        if (m_movie == elem.movie) {
-            ui->cdArt->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            ui->cdArtResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
-            ui->buttonPreviewCdArt->setEnabled(true);
-            m_currentCdArt = elem.image;
-        }
-        elem.movie->setCdArtImage(elem.image);
-    }
-
-    if (m_posterDownloadManager->downloadQueueSize() == 0) {
-        emit setActionSaveEnabled(true, WidgetMovies);
-        elem.movie->setDownloadsInProgress(false);
-    }
-    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onDownloadTrailer()
@@ -1099,8 +964,8 @@ void MovieWidget::saveInformation()
     qDebug() << "Entered";
     setDisabledTrue();
     m_savingWidget->show();
-    m_movie->saveData(Manager::instance()->mediaCenterInterface());
-    m_movie->loadData(Manager::instance()->mediaCenterInterface(), true);
+    m_movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
+    m_movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
     updateMovieInfo();
     setEnabledTrue();
     m_savingWidget->hide();
@@ -1119,8 +984,8 @@ void MovieWidget::saveAll()
 
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         if (movie->hasChanged()) {
-            movie->saveData(Manager::instance()->mediaCenterInterface());
-            movie->loadData(Manager::instance()->mediaCenterInterface(), true);
+            movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
+            movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
             if (m_movie == movie)
                 updateMovieInfo();
         }
@@ -1136,34 +1001,9 @@ void MovieWidget::saveAll()
  */
 void MovieWidget::onRevertChanges()
 {
-    qDebug() << "Entered";
-    m_movie->loadData(Manager::instance()->mediaCenterInterface(), true);
+    m_movie->clearImages();
+    m_movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
     updateMovieInfo();
-}
-
-/**
- * @brief Toggles enabled state of the widget
- * @param movie
- */
-void MovieWidget::downloadActorsFinished(Movie *movie)
-{
-    qDebug() << "Entered, movie=" << movie->name();
-    emit actorDownloadFinished(Constants::MovieProgressMessageId+movie->movieId());
-    if (movie == m_movie)
-        setEnabledTrue();
-    else
-        qDebug() << "Movie has changed";
-    movie->setDownloadsInProgress(false);
-}
-
-/**
- * @brief Emits the progress signal
- * @param left Number of downloads left
- * @param elem Current downloaded element
- */
-void MovieWidget::actorDownloadsLeft(int left, DownloadManagerElement elem)
-{
-    emit actorDownloadProgress(elem.movie->downloadsSize()-left, elem.movie->downloadsSize(), Constants::MovieProgressMessageId+elem.movie->movieId());
 }
 
 /*** add/remove/edit Actors, Genres, Countries and Studios ***/

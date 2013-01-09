@@ -448,7 +448,7 @@ void TMDb::checkDownloadsFinished()
     m_mutex.lock();
     if (m_loadsLeft.isEmpty() && !m_loadDoneFired) {
         m_loadDoneFired = true;
-        m_currentMovie->scraperLoadDone();
+        m_currentMovie->controller()->scraperLoadDone();
     }
     m_mutex.unlock();
 }

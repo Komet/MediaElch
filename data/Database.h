@@ -5,7 +5,7 @@
 #include <QObject>
 #include <QSqlDatabase>
 #include "data/Concert.h"
-#include "data/Movie.h"
+#include "movies/Movie.h"
 #include "data/TvShow.h"
 
 class Database : public QObject

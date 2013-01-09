@@ -4,7 +4,7 @@
 #include <QThread>
 #include <QDir>
 
-#include "data/Movie.h"
+#include "movies/Movie.h"
 #include "globals/Globals.h"
 
 /**

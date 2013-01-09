@@ -76,7 +76,7 @@ void MovieFileSearcher::reload(bool force)
         }
         Movie *movie = new Movie(files, this);
         movie->setInSeparateFolder(inSeparateFolder);
-        movie->loadData(Manager::instance()->mediaCenterInterface());
+        movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
         emit currentDir(movie->name());
         if (!files.isEmpty())
             movie->setFileLastModified(m_lastModifications.value(files.at(0)));
@@ -89,7 +89,7 @@ void MovieFileSearcher::reload(bool force)
 
     // Setup movies loaded from database
     foreach (Movie *movie, dbMovies) {
-        movie->loadData(Manager::instance()->mediaCenterInterface(), false, false);
+        movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), false, false);
         emit currentDir(movie->name());
         Manager::instance()->movieModel()->addMovie(movie);
         emit progress(++movieCounter, movieSum, m_progressMessageId);

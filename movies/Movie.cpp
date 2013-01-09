@@ -15,6 +15,7 @@
 Movie::Movie(QStringList files, QObject *parent) :
     QObject(parent)
 {
+    m_controller = new MovieController(this);
     m_files = files;
     m_rating = 0;
     m_votes = 0;
@@ -32,14 +33,10 @@ Movie::Movie(QStringList files, QObject *parent) :
         if (!path.isEmpty())
             m_folderName = path.last();
     }
-    m_infoLoaded = false;
-    m_infoFromNfoLoaded = false;
     m_watched = false;
     m_hasChanged = false;
     m_hasPoster = false;
     m_hasBackdrop = false;
-    m_downloadsInProgress = false;
-    m_downloadsSize = 0;
     m_inSeparateFolder = false;
     m_syncNeeded = false;
     static int m_idCounter = 0;
@@ -56,6 +53,11 @@ Movie::Movie(QStringList files, QObject *parent) :
 
 Movie::~Movie()
 {
+}
+
+MovieController *Movie::controller()
+{
+    return m_controller;
 }
 
 /**
@@ -128,130 +130,6 @@ void Movie::clear(QList<int> infos)
         m_writer = "";
     if (infos.contains(MovieScraperInfos::Director))
         m_director = "";
-}
-
-/**
- * @brief Saves the movies infos with the given MediaCenterInterface
- * @param mediaCenterInterface MediaCenterInterface to use for saving
- * @return Saving was successful or not
- */
-bool Movie::saveData(MediaCenterInterface *mediaCenterInterface)
-{
-    qDebug() << "Entered";
-
-    if (!streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails())
-        loadStreamDetailsFromFile();
-    bool saved = mediaCenterInterface->saveMovie(this);
-    qDebug() << "Saved" << saved;
-    if (!m_infoLoaded)
-        m_infoLoaded = saved;
-    setChanged(false);
-    clearImages();
-    setSyncNeeded(true);
-    return saved;
-}
-
-/**
- * @brief Loads the movies infos with the given MediaCenterInterface
- * @param mediaCenterInterface MediaCenterInterface to use for loading
- * @param force Force the loading. If set to false and infos were already loeaded this function just returns
- * @return Loading was successful or not
- */
-bool Movie::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
-{
-    if ((m_infoLoaded || hasChanged()) && !force && (m_infoFromNfoLoaded || (hasChanged() && !m_infoFromNfoLoaded) ))
-        return m_infoLoaded;
-
-    NameFormatter *nameFormat = NameFormatter::instance();
-
-    bool infoLoaded;
-    if (reloadFromNfo)
-        infoLoaded = mediaCenterInterface->loadMovie(this);
-    else
-        infoLoaded = mediaCenterInterface->loadMovie(this, nfoContent());
-
-    if (!infoLoaded) {
-        if (files().size() > 0) {
-            QFileInfo fi(files().at(0));
-            if (QString::compare(fi.fileName(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0) {
-                QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
-                if (pathElements.size() > 0 && QString::compare(pathElements.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0)
-                    pathElements.removeLast();
-                if (pathElements.size() > 0)
-                    setName(nameFormat->formatName(pathElements.last()));
-            } else if (QString::compare(fi.fileName(), "index.bdmv", Qt::CaseInsensitive) == 0) {
-                    QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
-                    if (pathElements.size() > 0 && QString::compare(pathElements.last(), "BDMV", Qt::CaseInsensitive) == 0)
-                        pathElements.removeLast();
-                    if (pathElements.size() > 0)
-                        setName(nameFormat->formatName(pathElements.last()));
-            } else if (inSeparateFolder()) {
-                QStringList splitted = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
-                if (!splitted.isEmpty()) {
-                    setName(nameFormat->formatName(splitted.last()));
-                } else {
-                    if (files().size() > 1)
-                        setName(nameFormat->formatName(
-                                    nameFormat->formatParts(fi.completeBaseName())));
-                    else
-                        setName(nameFormat->formatName(fi.completeBaseName()));
-                }
-            } else {
-                if (files().size() > 1)
-                    setName(nameFormat->formatName(
-                                nameFormat->formatParts(fi.completeBaseName())));
-                else
-                    setName(nameFormat->formatName(fi.completeBaseName()));
-            }
-        }
-    }
-    m_infoLoaded = infoLoaded;
-    m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
-    setChanged(false);
-    return infoLoaded;
-}
-
-/**
- * @brief Loads the movies info from a scraper
- * @param id Id of the movie within the given ScraperInterface
- * @param scraperInterface ScraperInterface to use for loading
- * @param infos List of infos to load
- */
-void Movie::loadData(QString id, ScraperInterface *scraperInterface, QList<int> infos)
-{
-    qDebug() << "Entered, id=" << id << "scraperInterface=" << scraperInterface->name();
-    m_infosToLoad = infos;
-    if (scraperInterface->name() == "The Movie DB")
-        setTmdbId(id);
-    scraperInterface->loadData(id, this, infos);
-}
-
-/**
- * @brief Tries to load streamdetails from the file
- */
-void Movie::loadStreamDetailsFromFile()
-{
-    m_streamDetails->loadStreamDetails();
-    setStreamDetailsLoaded(true);
-    setChanged(true);
-}
-
-/**
- * @brief Movie::infosToLoad
- * @return
- */
-QList<int> Movie::infosToLoad()
-{
-    return m_infosToLoad;
-}
-
-/**
- * @brief Called when a ScraperInterface has finished loading
- *        Emits the loaded signal
- */
-void Movie::scraperLoadDone()
-{
-    emit loaded(this);
 }
 
 /**
@@ -681,15 +559,6 @@ QString Movie::folderName() const
 }
 
 /**
- * @brief Holds wether movie infos were loaded from a MediaCenterInterface or ScraperInterface
- * @return Infos were loaded
- */
-bool Movie::infoLoaded() const
-{
-    return m_infoLoaded;
-}
-
-/**
  * @brief Holds a property indicating if the poster image was changed
  * @return Movies poster image was changed
  */
@@ -829,24 +698,6 @@ bool Movie::streamDetailsLoaded() const
 int Movie::movieId() const
 {
     return m_movieId;
-}
-
-/**
- * @brief Returns true if a download is in progress
- * @return Download is in progress
- */
-bool Movie::downloadsInProgress() const
-{
-    return m_downloadsInProgress;
-}
-
-/**
- * @brief Returns how many downloads are left for this movie
- * @return Number of downloads left
- */
-int Movie::downloadsSize() const
-{
-    return m_downloadsSize;
 }
 
 /**
@@ -1313,24 +1164,6 @@ void Movie::setHasCdArt(bool has)
 void Movie::setStreamDetailsLoaded(bool loaded)
 {
     m_streamDetailsLoaded = loaded;
-}
-
-/**
- * @brief Sets if downloads are in progress
- * @param inProgress Status of downloads
- */
-void Movie::setDownloadsInProgress(bool inProgress)
-{
-    m_downloadsInProgress = inProgress;
-}
-
-/**
- * @brief Sets the number of downloads left
- * @param downloadsLeft Number of downloads left
- */
-void Movie::setDownloadsSize(int downloadsLeft)
-{
-    m_downloadsSize = downloadsLeft;
 }
 
 /**

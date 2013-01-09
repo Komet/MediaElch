@@ -34,7 +34,7 @@ QMAKE_CXXFLAGS += -gdwarf-2
 
 SOURCES += main.cpp\
         main/MainWindow.cpp \
-    data/Movie.cpp \
+    movies/Movie.cpp \
     data/MovieFileSearcher.cpp \
     mediaCenterPlugins/XbmcXml.cpp \
     scrapers/TMDb.cpp \
@@ -111,10 +111,11 @@ SOURCES += main.cpp\
     smallWidgets/SlidingStackedWidget.cpp \
     scrapers/IMDB.cpp \
     xbmc/XbmcSync.cpp \
-    smallWidgets/MyCheckBox.cpp
+    smallWidgets/MyCheckBox.cpp \
+    movies/MovieController.cpp
 
 HEADERS  += main/MainWindow.h \
-    data/Movie.h \
+    movies/Movie.h \
     globals/Globals.h \
     data/MediaCenterInterface.h \
     data/MovieFileSearcher.h \
@@ -198,7 +199,8 @@ HEADERS  += main/MainWindow.h \
     smallWidgets/SlidingStackedWidget.h \
     scrapers/IMDB.h \
     xbmc/XbmcSync.h \
-    smallWidgets/MyCheckBox.h
+    smallWidgets/MyCheckBox.h \
+    movies/MovieController.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

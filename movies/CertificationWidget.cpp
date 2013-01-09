@@ -220,7 +220,7 @@ void CertificationWidget::onSaveInformation()
 {
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         if (movie->hasChanged())
-            movie->saveData(Manager::instance()->mediaCenterInterface());
+            movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
     }
 
     loadCertifications();

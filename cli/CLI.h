@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QStringList>
 
-#include "data/Movie.h"
+#include "movies/Movie.h"
 #include "data/ScraperInterface.h"
 #include "globals/DownloadManager.h"
 #include "globals/DownloadManagerElement.h"

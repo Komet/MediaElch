@@ -159,7 +159,7 @@ void Cinefacts::loadFinished()
         parseAndAssignInfos(msg, m_currentMovie, m_infosToLoad);
     } else {
         qWarning() << "Network Error" << m_loadReply->errorString();
-        m_currentMovie->scraperLoadDone();
+        m_currentMovie->controller()->scraperLoadDone();
     }
     m_loadReply->deleteLater();
 }
@@ -278,7 +278,7 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
         return;
     }
 
-    m_currentMovie->scraperLoadDone();
+    m_currentMovie->controller()->scraperLoadDone();
 }
 
 /**
@@ -304,7 +304,7 @@ void Cinefacts::posterFinished()
         m_backdropReply = this->qnam()->get(QNetworkRequest(m_backdropUrl));
         connect(m_backdropReply, SIGNAL(finished()), this, SLOT(backdropFinished()));
     } else {
-        m_currentMovie->scraperLoadDone();
+        m_currentMovie->controller()->scraperLoadDone();
     }
     m_posterReply->deleteLater();
 }
@@ -330,7 +330,7 @@ void Cinefacts::backdropFinished()
         startNextBackdropDownload();
     } else {
         qWarning() << "Network Error" << m_backdropReply->errorString();
-        m_currentMovie->scraperLoadDone();
+        m_currentMovie->controller()->scraperLoadDone();
     }
     m_backdropReply->deleteLater();
 }
@@ -346,7 +346,7 @@ void Cinefacts::startNextPosterDownload()
             m_backdropReply = this->qnam()->get(QNetworkRequest(m_backdropUrl));
             connect(m_backdropReply, SIGNAL(finished()), this, SLOT(backdropFinished()));
         } else {
-            m_currentMovie->scraperLoadDone();
+            m_currentMovie->controller()->scraperLoadDone();
         }
         return;
     }
@@ -362,7 +362,7 @@ void Cinefacts::startNextBackdropDownload()
 {
     qDebug() << "Entered";
     if (m_backdropQueue.isEmpty()) {
-        m_currentMovie->scraperLoadDone();
+        m_currentMovie->controller()->scraperLoadDone();
         return;
     }
     QUrl url = m_backdropQueue.dequeue();

@@ -4,7 +4,6 @@
 #include <QScriptEngine>
 #include <QScriptValue>
 #include <QScriptValueIterator>
-#include "data/Movie.h"
 #include "globals/Manager.h"
 #include "settings/Settings.h"
 

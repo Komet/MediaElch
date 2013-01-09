@@ -8,8 +8,8 @@
 #include <QUrl>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
-#include "DownloadManagerElement.h"
-#include "Globals.h"
+#include "globals/DownloadManagerElement.h"
+#include "globals/Globals.h"
 #include "data/TvShowEpisode.h"
 
 /**

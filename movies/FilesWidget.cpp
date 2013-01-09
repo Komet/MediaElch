@@ -139,7 +139,7 @@ void FilesWidget::loadStreamDetails()
         movies.append(movie);
     }
     if (movies.count() == 1) {
-        movies.at(0)->loadStreamDetailsFromFile();
+        movies.at(0)->controller()->loadStreamDetailsFromFile();
         movies.at(0)->setChanged(true);
     } else {
         LoadingStreamDetails *loader = new LoadingStreamDetails(this);

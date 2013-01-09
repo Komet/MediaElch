@@ -35,7 +35,7 @@ void LoadingStreamDetails::loadMovies(QList<Movie*> movies)
     adjustSize();
     show();
     foreach (Movie *movie, movies) {
-        movie->loadStreamDetailsFromFile();
+        movie->controller()->loadStreamDetailsFromFile();
         movie->setChanged(true);
         ui->progressBar->setValue(ui->progressBar->value()+1);
         ui->currentFile->setText(movie->name());

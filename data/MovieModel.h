@@ -2,7 +2,7 @@
 #define MOVIEMODEL_H
 
 #include <QAbstractItemModel>
-#include "data/Movie.h"
+#include "movies/Movie.h"
 
 /**
  * @brief The MovieModel class

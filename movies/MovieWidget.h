@@ -9,7 +9,7 @@
 #include <QTableWidgetItem>
 #include <QWidget>
 
-#include "data/Movie.h"
+#include "movies/Movie.h"
 #include "globals/DownloadManager.h"
 
 namespace Ui {
@@ -47,16 +47,18 @@ signals:
     void setActionSaveEnabled(bool, MainWidgets);
 
 private slots:
-    void downloadActorsFinished(Movie *movie);
-    void actorDownloadsLeft(int left, DownloadManagerElement elem);
-    void infoLoadDone(Movie *movie);
-    void loadDone(Movie *movie, QMap<int, QList<Poster> > posters);
+    void onInfoLoadDone(Movie *movie);
+    void onLoadDone(Movie *movie);
+    void onLoadImagesStarted(Movie *movie);
+    void onLoadingImages(Movie *movie, QList<int> imageTypes);
+    void onDownloadProgress(Movie *movie, int current, int maximum);
+    void onSetImage(Movie *movie, int type, QImage image);
+
     void chooseMoviePoster();
     void chooseMovieBackdrop();
     void chooseMovieLogo();
     void chooseMovieClearArt();
     void chooseMovieCdArt();
-    void posterDownloadFinished(DownloadManagerElement elem);
     void movieNameChanged(QString text);
     void addGenre();
     void removeGenre();
@@ -109,7 +111,6 @@ private slots:
 private:
     Ui::MovieWidget *ui;
     Movie *m_movie;
-    DownloadManager *m_posterDownloadManager;
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;
     QImage m_currentPoster;

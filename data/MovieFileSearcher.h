@@ -6,7 +6,7 @@
 #include <QHash>
 #include <QTime>
 
-#include "data/Movie.h"
+#include "movies/Movie.h"
 
 /**
  * @brief The MovieFileSearcher class

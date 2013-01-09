@@ -92,7 +92,7 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
     } else if (index.column() == 1 && role == Qt::DisplayRole) {
         return movie->folderName();
     } else if (role == Qt::UserRole+1) {
-        return movie->infoLoaded();
+        return movie->controller()->infoLoaded();
     } else if (role == Qt::UserRole+2) {
         return movie->hasChanged();
     } else if (role == Qt::UserRole+3) {
@@ -171,7 +171,7 @@ QList<Movie*> MovieModel::movies()
 bool MovieModel::hasNewMovies()
 {
     foreach (Movie *movie, m_movies) {
-        if (!movie->infoLoaded())
+        if (!movie->controller()->infoLoaded())
             return true;
     }
 

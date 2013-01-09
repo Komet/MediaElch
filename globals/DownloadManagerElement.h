@@ -2,7 +2,11 @@
 #define DOWNLOADMANAGERELEMENT_H
 
 #include "globals/Globals.h"
-#include "data/TvShow.h"
+
+class Concert;
+class Movie;
+class TvShow;
+class TvShowEpisode;
 
 /**
  * @brief The DownloadManagerElement class

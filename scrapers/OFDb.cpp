@@ -209,7 +209,7 @@ void OFDb::loadFinished()
         qWarning() << "Network Error" << m_loadReply->errorString();
     }
     m_loadReply->deleteLater();
-    m_currentMovie->scraperLoadDone();
+    m_currentMovie->controller()->scraperLoadDone();
 }
 
 /**

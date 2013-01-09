@@ -7,7 +7,7 @@
 #include <QNetworkReply>
 #include <QScriptValue>
 #include <QTimer>
-#include "data/Movie.h"
+#include "movies/Movie.h"
 
 namespace Ui {
 class XbmcSync;

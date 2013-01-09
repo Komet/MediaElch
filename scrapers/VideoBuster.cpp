@@ -140,7 +140,7 @@ void VideoBuster::loadFinished()
         parseAndAssignInfos(msg, m_currentMovie, m_infosToLoad);
     } else {
         qWarning() << "Network Error" << m_loadReply->errorString();
-        m_currentMovie->scraperLoadDone();
+        m_currentMovie->controller()->scraperLoadDone();
     }
     m_loadReply->deleteLater();
 }
@@ -250,7 +250,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
         m_backdropReply = qnam()->get(QNetworkRequest(backdropUrl));
         connect(m_backdropReply, SIGNAL(finished()), this, SLOT(backdropFinished()));
     } else {
-        m_currentMovie->scraperLoadDone();
+        m_currentMovie->controller()->scraperLoadDone();
     }
 }
 
@@ -281,7 +281,7 @@ void VideoBuster::backdropFinished()
         qWarning() << "Network Error" << m_backdropReply->errorString();
     }
     m_backdropReply->deleteLater();
-    m_currentMovie->scraperLoadDone();
+    m_currentMovie->controller()->scraperLoadDone();
 }
 
 /**

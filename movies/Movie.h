@@ -12,7 +12,9 @@
 #include "data/MediaCenterInterface.h"
 #include "data/ScraperInterface.h"
 #include "data/StreamDetails.h"
+#include "movies/MovieController.h"
 
+class MovieController;
 class MediaCenterInterface;
 class ScraperInterface;
 class StreamDetails;
@@ -57,6 +59,8 @@ public:
     explicit Movie(QStringList files, QObject *parent = 0);
     ~Movie();
 
+    MovieController *controller();
+
     void clear();
     void clear(QList<int> infos);
 
@@ -97,7 +101,6 @@ public:
     QImage *logoImage();
     QImage *clearArtImage();
     QImage *cdArtImage();
-    bool infoLoaded() const;
     bool posterImageChanged() const;
     bool backdropImageChanged() const;
     bool logoImageChanged() const;
@@ -105,8 +108,6 @@ public:
     bool cdArtImageChanged() const;
     bool watched() const;
     int movieId() const;
-    bool downloadsInProgress() const;
-    int downloadsSize() const;
     bool inSeparateFolder() const;
     int mediaCenterId() const;
     int numPrimaryLangPosters() const;
@@ -187,20 +188,13 @@ public:
     void removeGenre(QString *genre);
     void removeGenre(QString genre);
 
-    bool saveData(MediaCenterInterface *mediaCenterInterface);
-    bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void loadData(QString id, ScraperInterface *scraperInterface, QList<int> infos);
-    void loadStreamDetailsFromFile();
     void clearImages();
 
-    void scraperLoadDone();
-    QList<int> infosToLoad();
-
 signals:
-    void loaded(Movie*);
     void sigChanged(Movie*);
 
 private:
+    MovieController *m_controller;
     QStringList m_files;
     QString m_folderName;
     QString m_name;
@@ -245,8 +239,6 @@ private:
     bool m_watched;
     bool m_hasChanged;
     int m_movieId;
-    bool m_downloadsInProgress;
-    int m_downloadsSize;
     bool m_inSeparateFolder;
     int m_mediaCenterId;
     int m_numPrimaryLangPosters;
@@ -256,7 +248,6 @@ private:
     bool m_hasClearArt;
     bool m_hasCdArt;
     bool m_syncNeeded;
-    QList<int> m_infosToLoad;
     bool m_streamDetailsLoaded;
     StreamDetails *m_streamDetails;
     QDateTime m_fileLastModified;

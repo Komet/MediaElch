@@ -4,7 +4,7 @@
 #include <QLabel>
 #include <QMenu>
 #include <QWidget>
-#include "data/Movie.h"
+#include "movies/Movie.h"
 #include "data/MovieModel.h"
 #include "data/MovieProxyModel.h"
 #include "data/MovieDelegate.h"

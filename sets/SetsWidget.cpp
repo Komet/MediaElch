@@ -5,7 +5,6 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include "globals/Globals.h"
-#include "data/Movie.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
 #include "main/MessageBox.h"
@@ -342,7 +341,7 @@ void SetsWidget::saveSet()
     }
     QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
     foreach (Movie *movie, m_moviesToSave[setName])
-        movie->saveData(Manager::instance()->mediaCenterInterface());
+        movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
     m_moviesToSave[setName].clear();
 
     if (!m_setPosters[setName].isNull() && Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages)) {

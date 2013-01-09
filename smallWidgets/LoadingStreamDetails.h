@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include "data/Concert.h"
-#include "data/Movie.h"
+#include "movies/Movie.h"
 #include "data/TvShowEpisode.h"
 
 namespace Ui {

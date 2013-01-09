@@ -2,7 +2,7 @@
 #define SCRAPER_H
 
 #include "data/MediaCenterInterface.h"
-#include "data/Movie.h"
+#include "movies/Movie.h"
 #include "globals/Globals.h"
 
 class Movie;
