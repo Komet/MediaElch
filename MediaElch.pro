@@ -112,7 +112,8 @@ SOURCES += main.cpp\
     scrapers/IMDB.cpp \
     xbmc/XbmcSync.cpp \
     smallWidgets/MyCheckBox.cpp \
-    movies/MovieController.cpp
+    movies/MovieController.cpp \
+    movies/MovieMultiScrapeDialog.cpp
 
 HEADERS  += main/MainWindow.h \
     movies/Movie.h \
@@ -200,7 +201,8 @@ HEADERS  += main/MainWindow.h \
     scrapers/IMDB.h \
     xbmc/XbmcSync.h \
     smallWidgets/MyCheckBox.h \
-    movies/MovieController.h
+    movies/MovieController.h \
+    movies/MovieMultiScrapeDialog.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -231,7 +233,8 @@ FORMS    += main/MainWindow.ui \
     smallWidgets/MediaFlags.ui \
     smallWidgets/LoadingStreamDetails.ui \
     globals/TrailerDialog.ui \
-    xbmc/XbmcSync.ui
+    xbmc/XbmcSync.ui \
+    movies/MovieMultiScrapeDialog.ui
 
 RESOURCES += \
     MediaElch.qrc

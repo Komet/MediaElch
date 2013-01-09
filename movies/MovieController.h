@@ -30,6 +30,7 @@ public:
     bool downloadsInProgress() const;
     int downloadsSize() const;
     void loadImage(int type, QUrl url);
+    void abortDownloads();
 
 signals:
     void sigInfoLoadDone(Movie*);

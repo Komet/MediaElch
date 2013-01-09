@@ -17,6 +17,7 @@
 #include "globals/Manager.h"
 #include "globals/TrailerDialog.h"
 #include "main/MessageBox.h"
+#include "movies/MovieMultiScrapeDialog.h"
 #include "movies/MovieSearch.h"
 #include "tvShows/TvShowSearch.h"
 #include "sets/MovieListDialog.h"
@@ -147,6 +148,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ConcertSearch::instance(ui->centralWidget);
     TrailerDialog::instance(ui->centralWidget);
     NameFormatter::instance(this);
+    MovieMultiScrapeDialog::instance(ui->centralWidget);
 
 #ifdef Q_OS_WIN32
     setStyleSheet(styleSheet() + " #centralWidget { border-bottom: 1px solid rgba(0, 0, 0, 100); } ");

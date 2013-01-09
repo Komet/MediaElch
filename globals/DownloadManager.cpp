@@ -105,7 +105,7 @@ void DownloadManager::startNextDownload()
         return;
     }
 
-    m_timer.start(3000);
+    m_timer.start(5000);
     m_downloading = true;
     m_mutex.lock();
     m_currentDownloadElement = m_queue.dequeue();

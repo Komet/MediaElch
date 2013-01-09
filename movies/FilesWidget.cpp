@@ -7,6 +7,7 @@
 #include <QTimer>
 #include "globals/Globals.h"
 #include "globals/Manager.h"
+#include "movies/MovieMultiScrapeDialog.h"
 #include "smallWidgets/LoadingStreamDetails.h"
 
 FilesWidget *FilesWidget::m_instance;
@@ -46,6 +47,7 @@ FilesWidget::FilesWidget(QWidget *parent) :
     m_baseLabelCss = ui->sortByYear->styleSheet();
     m_activeLabelCss = ui->sortByNew->styleSheet();
 
+    QAction *actionMultiScrape = new QAction(tr("Load Information"), this);
     QAction *actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
     QAction *actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
     QAction *actionLoadStreamDetails = new QAction(tr("Load Stream Details"), this);
@@ -53,6 +55,8 @@ FilesWidget::FilesWidget(QWidget *parent) :
     QAction *actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
     QAction *actionOpenFolder = new QAction(tr("Open Movie Folder"), this);
     m_contextMenu = new QMenu(ui->files);
+    m_contextMenu->addAction(actionMultiScrape);
+    m_contextMenu->addSeparator();
     m_contextMenu->addAction(actionMarkAsWatched);
     m_contextMenu->addAction(actionMarkAsUnwatched);
     m_contextMenu->addSeparator();
@@ -62,6 +66,7 @@ FilesWidget::FilesWidget(QWidget *parent) :
     m_contextMenu->addAction(actionUnmarkForSync);
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(actionOpenFolder);
+    connect(actionMultiScrape, SIGNAL(triggered()), this, SLOT(multiScrape()));
     connect(actionMarkAsWatched, SIGNAL(triggered()), this, SLOT(markAsWatched()));
     connect(actionMarkAsUnwatched, SIGNAL(triggered()), this, SLOT(markAsUnwatched()));
     connect(actionLoadStreamDetails, SIGNAL(triggered()), this, SLOT(loadStreamDetails()));
@@ -99,6 +104,23 @@ FilesWidget *FilesWidget::instance()
 void FilesWidget::showContextMenu(QPoint point)
 {
     m_contextMenu->exec(ui->files->mapToGlobal(point));
+}
+
+void FilesWidget::multiScrape()
+{
+    QList<Movie*> movies;
+    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
+        int row = index.model()->data(index, Qt::UserRole).toInt();
+        movies.append(Manager::instance()->movieModel()->movie(row));
+    }
+
+    if (movies.isEmpty())
+        return;
+
+    MovieMultiScrapeDialog::instance()->setMovies(movies);
+    int result = MovieMultiScrapeDialog::instance()->exec();
+    if (result == QDialog::Accepted)
+        movieSelectedEmitter();
 }
 
 void FilesWidget::markAsWatched()

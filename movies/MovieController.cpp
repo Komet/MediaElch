@@ -280,3 +280,8 @@ bool MovieController::downloadsInProgress() const
 {
     return m_downloadsInProgress;
 }
+
+void MovieController::abortDownloads()
+{
+    m_downloadManager->abortDownloads();
+}

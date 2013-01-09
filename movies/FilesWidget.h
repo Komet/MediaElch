@@ -46,6 +46,7 @@ private slots:
     void onSortBySeen();
     void onSortByNew();
     void showContextMenu(QPoint point);
+    void multiScrape();
     void markAsWatched();
     void markAsUnwatched();
     void loadStreamDetails();
