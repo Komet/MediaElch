@@ -49,6 +49,8 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->buttonPreviewCdArt->setEnabled(false);
     ui->artStackedWidget->setAnimation(QEasingCurve::OutCubic);
     ui->artStackedWidget->setSpeed(300);
+    ui->localTrailer->setBadgeType(Badge::LabelSuccess);
+    ui->localTrailer->setVisible(false);
 
     QFont font = ui->movieName->font();
     font.setPointSize(font.pointSize()+4);
@@ -320,6 +322,7 @@ void MovieWidget::clear()
     ui->cdArtResolution->setText("");
     ui->actorResolution->setText("");
     ui->buttonRevert->setVisible(false);
+    ui->localTrailer->setVisible(false);
 }
 
 /**
@@ -740,6 +743,7 @@ void MovieWidget::updateMovieInfo()
     emit setActionSaveEnabled(true, WidgetMovies);
 
     ui->buttonRevert->setVisible(m_movie->hasChanged());
+    ui->localTrailer->setVisible(m_movie->hasLocalTrailer());
 }
 
 /**
@@ -961,6 +965,7 @@ void MovieWidget::onDownloadTrailer()
     if (!m_movie)
         return;
     TrailerDialog::instance()->exec(m_movie);
+    ui->localTrailer->setVisible(m_movie->hasLocalTrailer());
 }
 
 /**

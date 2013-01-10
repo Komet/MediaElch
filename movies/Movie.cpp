@@ -1434,6 +1434,16 @@ void Movie::removeStudio(QString *studio)
     setChanged(true);
 }
 
+bool Movie::hasLocalTrailer() const
+{
+    if (files().count() == 0)
+        return false;
+    QFileInfo fi(files().first());
+    QString trailerFilter = QString("%1-trailer*").arg(fi.completeBaseName());
+    QDir dir(fi.canonicalPath());
+    return !dir.entryList(QStringList() << trailerFilter).isEmpty();
+}
+
 /*** DEBUG ***/
 
 QDebug operator<<(QDebug dbg, const Movie &movie)

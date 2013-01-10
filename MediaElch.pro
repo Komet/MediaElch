@@ -113,7 +113,8 @@ SOURCES += main.cpp\
     xbmc/XbmcSync.cpp \
     smallWidgets/MyCheckBox.cpp \
     movies/MovieController.cpp \
-    movies/MovieMultiScrapeDialog.cpp
+    movies/MovieMultiScrapeDialog.cpp \
+    smallWidgets/Badge.cpp
 
 HEADERS  += main/MainWindow.h \
     movies/Movie.h \
@@ -202,7 +203,8 @@ HEADERS  += main/MainWindow.h \
     xbmc/XbmcSync.h \
     smallWidgets/MyCheckBox.h \
     movies/MovieController.h \
-    movies/MovieMultiScrapeDialog.h
+    movies/MovieMultiScrapeDialog.h \
+    smallWidgets/Badge.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

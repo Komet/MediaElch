@@ -122,6 +122,7 @@ public:
     QString nfoContent() const;
     int databaseId() const;
     bool syncNeeded() const;
+    bool hasLocalTrailer() const;
 
     bool hasChanged() const;
 
