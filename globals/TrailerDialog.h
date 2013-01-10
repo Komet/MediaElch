@@ -9,6 +9,9 @@
 #include "globals/Globals.h"
 #include "movies/Movie.h"
 
+#include "phonon/MediaObject"
+#include "phonon/VideoWidget"
+
 namespace Ui {
 class TrailerDialog;
 }
@@ -39,6 +42,10 @@ private slots:
     void downloadProgress(qint64 received, qint64 total);
     void downloadFinished();
     void downloadReadyRead();
+    void onTick(qint64 time);
+    void onNewTotalTime(qint64 totalTime);
+    void onStateChanged(Phonon::State newState);
+    void onPlayPause();
 
 private:
     Ui::TrailerDialog *ui;
@@ -52,8 +59,11 @@ private:
     QFile m_output;
     bool m_downloadInProgress;
     QString m_trailerFileName;
-
+    Phonon::MediaObject *m_mediaObject;
+    Phonon::VideoWidget *m_videoWidget;
+    qint64 m_totalTime;
     void clear();
+    void updateTime(qint64 currentTime);
 };
 
 #endif // TRAILERDIALOG_H

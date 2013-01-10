@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network script xml sql
+QT       += core gui network script xml sql phonon
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 greaterThan(QT_MAJOR_VERSION, 4): include(qtmacextras/src/qtmacextras.pri)

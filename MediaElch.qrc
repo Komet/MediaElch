@@ -55,6 +55,8 @@
         <file>img/xbmc.png</file>
         <file>i18n/MediaElch_pt_BR.qm</file>
         <file>img/sync.png</file>
+        <file>img/video_pause_64.png</file>
+        <file>img/video_play_64.png</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>

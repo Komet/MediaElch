@@ -5,6 +5,8 @@
 #include "globals/Manager.h"
 #include "trailerProviders/TrailerProvider.h"
 
+#include "phonon/AudioOutput"
+
 TrailerDialog::TrailerDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::TrailerDialog)
@@ -15,6 +17,7 @@ TrailerDialog::TrailerDialog(QWidget *parent) :
     QFont font = ui->trailers->font();
     font.setPointSize(font.pointSize()-1);
     ui->trailers->setFont(font);
+    ui->time->setFont(font);
 #endif
 
 #if QT_VERSION >= 0x050000
@@ -54,6 +57,22 @@ TrailerDialog::TrailerDialog(QWidget *parent) :
     connect(ui->buttonBackToTrailers, SIGNAL(clicked()), this, SLOT(backToTrailers()));
     connect(ui->buttonDownload, SIGNAL(clicked()), this, SLOT(startDownload()));
     connect(ui->buttonCancelDownload, SIGNAL(clicked()), this, SLOT(cancelDownload()));
+
+    m_mediaObject = new Phonon::MediaObject(this);
+    m_mediaObject->setTickInterval(1000);
+    m_videoWidget = new Phonon::VideoWidget(this);
+    Phonon::createPath(m_mediaObject, m_videoWidget);
+    Phonon::AudioOutput *audioOutput = new Phonon::AudioOutput(Phonon::VideoCategory, this);
+    Phonon::createPath(m_mediaObject, audioOutput);
+    QVBoxLayout *layout = new QVBoxLayout(ui->video);
+    layout->addWidget(m_videoWidget);
+    ui->video->setLayout(layout);
+    ui->seekSlider->setMediaObject(m_mediaObject);
+
+    connect(m_mediaObject, SIGNAL(stateChanged(Phonon::State,Phonon::State)), this, SLOT(onStateChanged(Phonon::State)));
+    connect(m_mediaObject, SIGNAL(totalTimeChanged(qint64)), this, SLOT(onNewTotalTime(qint64)));
+    connect(m_mediaObject, SIGNAL(tick(qint64)), this, SLOT(onTick(qint64)));
+    connect(ui->btnPlayPause, SIGNAL(clicked()), this, SLOT(onPlayPause()));
 }
 
 TrailerDialog::~TrailerDialog()
@@ -81,7 +100,7 @@ void TrailerDialog::clear()
 int TrailerDialog::exec(Movie *movie)
 {
     QSize newSize;
-    newSize.setHeight(qMin(400, parentWidget()->size().height()-200));
+    newSize.setHeight(qMin(600, parentWidget()->size().height()-200));
     newSize.setWidth(qMin(600, parentWidget()->size().width()-400));
     resize(newSize);
 
@@ -97,6 +116,7 @@ void TrailerDialog::reject()
 {
     if (m_downloadInProgress)
         cancelDownload();
+    m_mediaObject->stop();
     QDialog::reject();
 }
 
@@ -191,10 +211,8 @@ void TrailerDialog::trailerClicked(QTableWidgetItem *item)
 
     ui->stackedWidget->slideInIdx(2);
 
-    if (!result.previewImage.isNull())
-        ui->previewImage->setPixmap(QPixmap::fromImage(result.previewImage.scaled(ui->previewImage->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation)));
-    else
-        ui->previewImage->setPixmap(QPixmap(":/img/film_reel.png"));
+    Phonon::MediaSource source(result.trailerUrl);
+    m_mediaObject->setCurrentSource(source);
 }
 
 void TrailerDialog::backToResults()
@@ -204,6 +222,7 @@ void TrailerDialog::backToResults()
 
 void TrailerDialog::backToTrailers()
 {
+    m_mediaObject->stop();
     ui->stackedWidget->slideInIdx(1);
 }
 
@@ -326,4 +345,54 @@ void TrailerDialog::downloadFinished()
 void TrailerDialog::downloadReadyRead()
 {
     m_output.write(m_downloadReply->readAll());
+}
+
+void TrailerDialog::onNewTotalTime(qint64 totalTime)
+{
+    m_totalTime = totalTime;
+    updateTime(m_mediaObject->currentTime());
+}
+
+void TrailerDialog::onTick(qint64 time)
+{
+    updateTime(time);
+}
+
+void TrailerDialog::updateTime(qint64 currentTime)
+{
+    QString tTime = QString("%1:%2").arg(m_totalTime/1000/60).arg((m_totalTime/1000)%60, 2, 10, QChar('0'));
+    QString cTime = QString("%1:%2").arg(currentTime/1000/60).arg((currentTime/1000)%60, 2, 10, QChar('0'));
+    ui->time->setText(QString("%1 / %2").arg(cTime).arg(tTime));
+}
+
+void TrailerDialog::onStateChanged(Phonon::State newState)
+{
+    switch (newState) {
+    case Phonon::PlayingState:
+    case Phonon::LoadingState:
+    case Phonon::BufferingState:
+        ui->btnPlayPause->setIcon(QIcon(":/img/video_pause_64.png"));
+        break;
+    case Phonon::StoppedState:
+    case Phonon::PausedState:
+    case Phonon::ErrorState:
+        ui->btnPlayPause->setIcon(QIcon(":/img/video_play_64.png"));
+        break;
+    }
+}
+
+void TrailerDialog::onPlayPause()
+{
+    switch (m_mediaObject->state()) {
+    case Phonon::PlayingState:
+    case Phonon::LoadingState:
+    case Phonon::BufferingState:
+        m_mediaObject->pause();
+        break;
+    case Phonon::StoppedState:
+    case Phonon::PausedState:
+    case Phonon::ErrorState:
+        m_mediaObject->play();
+        break;
+    }
 }

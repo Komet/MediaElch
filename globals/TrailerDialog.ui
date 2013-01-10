@@ -201,28 +201,54 @@
       </layout>
      </widget>
      <widget class="QWidget" name="page_3">
-      <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,0,0,0">
+      <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,0,0,0,0">
        <property name="margin">
         <number>0</number>
        </property>
        <item>
-        <widget class="QLabel" name="previewImage">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>200</height>
-          </size>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="pixmap">
-          <pixmap resource="../MediaElch.qrc">:/img/film_reel.png</pixmap>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
+        <widget class="QWidget" name="video" native="true"/>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <item>
+          <widget class="QToolButton" name="btnPlayPause">
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton {
+	border: 0;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../MediaElch.qrc">
+             <normaloff>:/img/video_play_64.png</normaloff>:/img/video_play_64.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="Phonon::SeekSlider" name="seekSlider"/>
+         </item>
+         <item>
+          <widget class="QLabel" name="time">
+           <property name="minimumSize">
+            <size>
+             <width>80</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>0:00 / 0:00</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -334,6 +360,11 @@
   </layout>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>Phonon::SeekSlider</class>
+   <extends>QWidget</extends>
+   <header location="global">phonon/seekslider.h</header>
+  </customwidget>
   <customwidget>
    <class>MyLineEdit</class>
    <extends>QLineEdit</extends>
