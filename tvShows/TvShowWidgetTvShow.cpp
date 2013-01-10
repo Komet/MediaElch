@@ -146,6 +146,13 @@ TvShowWidgetTvShow::~TvShowWidgetTvShow()
  */
 void TvShowWidgetTvShow::resizeEvent(QResizeEvent *event)
 {
+    if (width() >= 1100 && !ui->artStackedWidget->isExpanded()) {
+        ui->artStackedWidget->expandToOne();
+        ui->artStackedWidgetButtons->setVisible(false);
+    } else if (width() < 1100 && ui->artStackedWidget->isExpanded()) {
+        ui->artStackedWidget->collapse();
+        ui->artStackedWidgetButtons->setVisible(true);
+    }
     m_savingWidget->move(size().width()/2-m_savingWidget->width(), height()/2-m_savingWidget->height());
     QWidget::resizeEvent(event);
 }

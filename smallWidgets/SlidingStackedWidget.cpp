@@ -16,6 +16,7 @@ SlidingStackedWidget::SlidingStackedWidget(QWidget *parent) :
     m_wrap = false;
     m_pNow = QPoint(0,0);
     m_active = false;
+    m_expanded = false;
 }
 
 
@@ -147,4 +148,61 @@ void SlidingStackedWidget::animationDoneSlot(void)
     widget(m_now)->move(m_pNow);
     m_active = false;
     emit animationFinished();
+}
+
+void SlidingStackedWidget::expandToOne()
+{
+    if (m_expanded)
+        return;
+
+    m_expanded = true;
+
+    setFixedWidth(frameRect().width()*count()+((count()-1)*24));
+
+    m_widgets.clear();
+    for (int i=0, n=count() ; i<n ; ++i)
+        m_widgets.append(widget(i));
+
+    foreach (QWidget *widget, m_widgets)
+        removeWidget(widget);
+
+    QWidget *pWidget = new QWidget();
+    QHBoxLayout *layout = new QHBoxLayout(pWidget);
+    layout->setSpacing(24);
+    layout->setContentsMargins(0, 0, 0, 0);
+
+    foreach (QWidget *w, m_widgets) {
+        w->setParent(pWidget);
+        w->show();
+        layout->addWidget(w);
+    }
+    pWidget->setLayout(layout);
+    addWidget(pWidget);
+}
+
+void SlidingStackedWidget::collapse()
+{
+    if (!m_expanded)
+        return;
+
+    m_expanded = false;
+
+    QList<QWidget*> widgetsToDelete;
+    for (int i=0, n=count() ; i<n ; ++i)
+        widgetsToDelete.append(widget(i));
+
+    setFixedWidth((frameRect().width()-((m_widgets.count()-1)*24))/m_widgets.count());
+
+    foreach (QWidget *w, m_widgets)
+        addWidget(w);
+
+    foreach (QWidget *w, widgetsToDelete) {
+        removeWidget(w);
+        w->deleteLater();
+    }
+}
+
+bool SlidingStackedWidget::isExpanded() const
+{
+    return m_expanded;
 }

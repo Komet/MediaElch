@@ -30,6 +30,7 @@ public:
 
     SlidingStackedWidget(QWidget *parent);
     ~SlidingStackedWidget(void);
+    bool isExpanded() const;
 
 public slots:
     void setSpeed(int speed);
@@ -39,6 +40,8 @@ public slots:
     void slideInNext();
     void slideInPrev();
     void slideInIdx(int idx, enum t_direction direction = AUTOMATIC);
+    void expandToOne();
+    void collapse();
 
 signals:
     void animationFinished(void);
@@ -57,7 +60,8 @@ protected:
     bool m_wrap;
     QPoint m_pNow;
     bool m_active;
-    QList<QWidget*> blockedPageList;
+    QList<QWidget*> m_widgets;
+    bool m_expanded;
 };
 
 #endif // SLIDINGSTACKEDWIDGET_H
