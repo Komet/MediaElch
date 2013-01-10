@@ -147,19 +147,28 @@ void TrailerDialog::resultClicked(QTableWidgetItem *item)
 void TrailerDialog::showTrailers(QList<TrailerResult> trailers)
 {
     m_currentTrailers = trailers;
+    bool hasPreview = false;
+    bool hasLanguage = false;
     for (int i=0, n=trailers.size() ; i<n ; ++i) {
         TrailerResult trailer = trailers.at(i);
         int row = ui->trailers->rowCount();
         ui->trailers->insertRow(row);
         QLabel *trailerPreview = new QLabel(ui->trailers);
         trailerPreview->setMargin(4);
-        trailerPreview->setPixmap(QPixmap::fromImage(trailer.previewImage.scaledToWidth(100, Qt::SmoothTransformation)));
+        if (!trailer.previewImage.isNull()) {
+            trailerPreview->setPixmap(QPixmap::fromImage(trailer.previewImage.scaledToWidth(100, Qt::SmoothTransformation)));
+            hasPreview = true;
+        }
         QTableWidgetItem *item = new QTableWidgetItem(trailer.name);
         item->setData(Qt::UserRole, i);
         ui->trailers->setCellWidget(row, 0, trailerPreview);
         ui->trailers->setItem(row, 1, new QTableWidgetItem(trailer.language));
         ui->trailers->setItem(row, 2, item);
+        if (!trailer.language.isEmpty())
+            hasLanguage = true;
     }
+    ui->trailers->setColumnHidden(0, !hasPreview);
+    ui->trailers->setColumnHidden(1, !hasLanguage);
 }
 
 void TrailerDialog::trailerClicked(QTableWidgetItem *item)

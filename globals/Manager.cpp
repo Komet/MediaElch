@@ -15,6 +15,7 @@
 #include "scrapers/TMDb.h"
 #include "scrapers/TMDbConcerts.h"
 #include "scrapers/VideoBuster.h"
+#include "trailerProviders/HdTrailers.h"
 #include "trailerProviders/MovieMaze.h"
 
 /**
@@ -49,6 +50,7 @@ Manager::Manager(QObject *parent) :
     m_imageProviders.append(new TheTvDbImages(this));
 
     m_trailerProviders.append(new MovieMaze(this));
+    m_trailerProviders.append(new HdTrailers(this));
 }
 
 /**

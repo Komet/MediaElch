@@ -114,7 +114,8 @@ SOURCES += main.cpp\
     smallWidgets/MyCheckBox.cpp \
     movies/MovieController.cpp \
     movies/MovieMultiScrapeDialog.cpp \
-    smallWidgets/Badge.cpp
+    smallWidgets/Badge.cpp \
+    trailerProviders/HdTrailers.cpp
 
 HEADERS  += main/MainWindow.h \
     movies/Movie.h \
@@ -204,7 +205,8 @@ HEADERS  += main/MainWindow.h \
     smallWidgets/MyCheckBox.h \
     movies/MovieController.h \
     movies/MovieMultiScrapeDialog.h \
-    smallWidgets/Badge.h
+    smallWidgets/Badge.h \
+    trailerProviders/HdTrailers.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
