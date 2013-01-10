@@ -46,6 +46,7 @@ private slots:
     void onNewTotalTime(qint64 totalTime);
     void onStateChanged(Phonon::State newState);
     void onPlayPause();
+    void onAnimationFinished();
 
 private:
     Ui::TrailerDialog *ui;

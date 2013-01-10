@@ -57,6 +57,7 @@ TrailerDialog::TrailerDialog(QWidget *parent) :
     connect(ui->buttonBackToTrailers, SIGNAL(clicked()), this, SLOT(backToTrailers()));
     connect(ui->buttonDownload, SIGNAL(clicked()), this, SLOT(startDownload()));
     connect(ui->buttonCancelDownload, SIGNAL(clicked()), this, SLOT(cancelDownload()));
+    connect(ui->stackedWidget, SIGNAL(animationFinished()), this, SLOT(onAnimationFinished()));
 
     m_mediaObject = new Phonon::MediaObject(this);
     m_mediaObject->setTickInterval(1000);
@@ -99,6 +100,7 @@ void TrailerDialog::clear()
 
 int TrailerDialog::exec(Movie *movie)
 {
+    m_videoWidget->hide();
     QSize newSize;
     newSize.setHeight(qMin(600, parentWidget()->size().height()-200));
     newSize.setWidth(qMin(600, parentWidget()->size().width()-400));
@@ -223,6 +225,7 @@ void TrailerDialog::backToResults()
 void TrailerDialog::backToTrailers()
 {
     m_mediaObject->stop();
+    m_videoWidget->hide();
     ui->stackedWidget->slideInIdx(1);
 }
 
@@ -395,4 +398,10 @@ void TrailerDialog::onPlayPause()
         m_mediaObject->play();
         break;
     }
+}
+
+void TrailerDialog::onAnimationFinished()
+{
+    if (ui->stackedWidget->currentIndex() == 2)
+        m_videoWidget->show();
 }
