@@ -25,6 +25,7 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget *parent) :
     ui->movieCounter->setFont(font);
 
     m_executed = false;
+    m_currentMovie = 0;
 
     ui->chkActors->setMyData(MovieScraperInfos::Actors);
     ui->chkBackdrop->setMyData(MovieScraperInfos::Backdrop);
