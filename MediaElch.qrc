@@ -57,6 +57,7 @@
         <file>img/sync.png</file>
         <file>img/video_pause_64.png</file>
         <file>img/video_play_64.png</file>
+        <file>img/checkmark_white_64.png</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>

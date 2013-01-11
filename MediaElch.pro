@@ -115,7 +115,9 @@ SOURCES += main.cpp\
     movies/MovieController.cpp \
     movies/MovieMultiScrapeDialog.cpp \
     smallWidgets/Badge.cpp \
-    trailerProviders/HdTrailers.cpp
+    trailerProviders/HdTrailers.cpp \
+    smallWidgets/TagCloud.cpp \
+    smallWidgets/MyWidget.cpp
 
 HEADERS  += main/MainWindow.h \
     movies/Movie.h \
@@ -206,7 +208,9 @@ HEADERS  += main/MainWindow.h \
     movies/MovieController.h \
     movies/MovieMultiScrapeDialog.h \
     smallWidgets/Badge.h \
-    trailerProviders/HdTrailers.h
+    trailerProviders/HdTrailers.h \
+    smallWidgets/TagCloud.h \
+    smallWidgets/MyWidget.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -238,7 +242,8 @@ FORMS    += main/MainWindow.ui \
     smallWidgets/LoadingStreamDetails.ui \
     globals/TrailerDialog.ui \
     xbmc/XbmcSync.ui \
-    movies/MovieMultiScrapeDialog.ui
+    movies/MovieMultiScrapeDialog.ui \
+    smallWidgets/TagCloud.ui
 
 RESOURCES += \
     MediaElch.qrc
