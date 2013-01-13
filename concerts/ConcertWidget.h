@@ -34,6 +34,7 @@ public slots:
     void onSaveAll();
     void setEnabledTrue(Concert *concert = 0);
     void setDisabledTrue();
+    void setBigWindow(bool bigWindow);
 
 protected:
     void resizeEvent(QResizeEvent *event);
@@ -53,8 +54,8 @@ private slots:
     void chooseConcertCdArt();
     void posterDownloadFinished(DownloadManagerElement elem);
     void concertNameChanged(QString text);
-    void addGenre();
-    void removeGenre();
+    void addGenre(QString genre);
+    void removeGenre(QString genre);
     void onPreviewPoster();
     void onPreviewBackdrop();
     void onPreviewLogo();
@@ -78,7 +79,6 @@ private slots:
     void onLastWatchedChange(QDateTime dateTime);
     void onOverviewChange();
 
-    void onGenreEdited(QTableWidgetItem *item);
     void onStreamDetailsEdited();
     void onReloadStreamDetails();
     void updateStreamDetails(bool reloadFromFile = false);

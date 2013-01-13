@@ -29,6 +29,7 @@ public slots:
     void onClear();
     void onSaveInformation();
     void onStartScraperSearch();
+    void setBigWindow(bool bigWindow);
 
 signals:
     void sigSetActionSearchEnabled(bool, MainWidgets);
@@ -41,8 +42,8 @@ protected:
     void resizeEvent(QResizeEvent *event);
 
 private slots:
-    void onAddGenre();
-    void onRemoveGenre();
+    void onAddGenre(QString genre);
+    void onRemoveGenre(QString removeGenre);
     void onAddActor();
     void onRemoveActor();
     void onInfoLoadDone(TvShow *show);
@@ -76,7 +77,6 @@ private slots:
     void onStudioChange(QString studio);
     void onOverviewChange();
     void onActorEdited(QTableWidgetItem *item);
-    void onGenreEdited(QTableWidgetItem *item);
 
 private:
     Ui::TvShowWidgetTvShow *ui;

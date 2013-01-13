@@ -29,11 +29,9 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->backdropResolution->clear();
     ui->bannerResolution->clear();
 #if QT_VERSION >= 0x050000
-    ui->genres->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->actors->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->actors->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 #else
-    ui->genres->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->actors->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     ui->actors->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
@@ -63,7 +61,10 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->clearArtResolution->setFont(font);
     ui->characterArtResolution->setFont(font);
 
-    ui->genres->setItemDelegate(new ComboDelegate(ui->genres, WidgetTvShows, ComboDelegateGenres));
+    ui->genreCloud->setText(tr("Genres"));
+    ui->genreCloud->setPlaceholder(tr("Add Genre"));
+    connect(ui->genreCloud, SIGNAL(activated(QString)), this, SLOT(onAddGenre(QString)));
+    connect(ui->genreCloud, SIGNAL(deactivated(QString)), this, SLOT(onRemoveGenre(QString)));
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -74,8 +75,6 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     m_posterDownloadManager = new DownloadManager(this);
 
     connect(ui->name, SIGNAL(textChanged(QString)), ui->showTitle, SLOT(setText(QString)));
-    connect(ui->buttonAddGenre, SIGNAL(clicked()), this, SLOT(onAddGenre()));
-    connect(ui->buttonRemoveGenre, SIGNAL(clicked()), this, SLOT(onRemoveGenre()));
     connect(ui->buttonAddActor, SIGNAL(clicked()), this, SLOT(onAddActor()));
     connect(ui->buttonRemoveActor, SIGNAL(clicked()), this, SLOT(onRemoveActor()));
     connect(ui->poster, SIGNAL(clicked()), this, SLOT(onChoosePoster()));
@@ -106,7 +105,6 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     connect(ui->studio, SIGNAL(textEdited(QString)), this, SLOT(onStudioChange(QString)));
     connect(ui->overview, SIGNAL(textChanged()), this, SLOT(onOverviewChange()));
     connect(ui->actors, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onActorEdited(QTableWidgetItem*)));
-    connect(ui->genres, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onGenreEdited(QTableWidgetItem*)));
 
     onSetEnabled(false);
 
@@ -146,16 +144,21 @@ TvShowWidgetTvShow::~TvShowWidgetTvShow()
  */
 void TvShowWidgetTvShow::resizeEvent(QResizeEvent *event)
 {
-    if (width() >= 1100 && !ui->artStackedWidget->isExpanded()) {
-        ui->artStackedWidget->expandToOne();
-        ui->artStackedWidgetButtons->setVisible(false);
-    } else if (width() < 1100 && ui->artStackedWidget->isExpanded()) {
-        ui->artStackedWidget->collapse();
-        ui->artStackedWidgetButtons->setVisible(true);
-    }
     m_savingWidget->move(size().width()/2-m_savingWidget->width(), height()/2-m_savingWidget->height());
     QWidget::resizeEvent(event);
 }
+
+void TvShowWidgetTvShow::setBigWindow(bool bigWindow)
+{
+    if (bigWindow && !ui->artStackedWidget->isExpanded()) {
+        ui->artStackedWidget->expandToOne();
+        ui->artStackedWidgetButtons->setVisible(false);
+    } else if (!bigWindow && ui->artStackedWidget->isExpanded()) {
+        ui->artStackedWidget->collapse();
+        ui->artStackedWidgetButtons->setVisible(true);
+    }
+}
+
 
 /**
  * @brief Clears all contents of the widget
@@ -164,7 +167,6 @@ void TvShowWidgetTvShow::onClear()
 {
     qDebug() << "Entered";
     ui->showTitle->clear();
-    ui->genres->setRowCount(0);
     ui->actors->setRowCount(0);
     ui->dir->clear();
     ui->name->clear();
@@ -185,6 +187,7 @@ void TvShowWidgetTvShow::onClear()
     ui->logoResolution->clear();
     ui->clearArtResolution->clear();
     ui->characterArtResolution->clear();
+    ui->genreCloud->clear();
 
     QMapIterator<int, QList<QWidget*> > it(m_seasonLayoutWidgets);
     while (it.hasNext()) {
@@ -265,14 +268,10 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     }
     ui->actors->blockSignals(false);
 
-    ui->genres->blockSignals(true);
-    foreach (QString *genre, m_show->genresPointer()) {
-        int row = ui->genres->rowCount();
-        ui->genres->insertRow(row);
-        ui->genres->setItem(row, 0, new QTableWidgetItem(*genre));
-        ui->genres->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(genre));
-    }
-    ui->genres->blockSignals(false);
+    QStringList genres;
+    foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows())
+        genres.append(show->genres());
+    ui->genreCloud->setTags(genres, m_show->genres());
 
     QStringList certifications = m_show->certifications();
     certifications.prepend("");
@@ -985,51 +984,24 @@ void TvShowWidgetTvShow::onDownloadsLeft(int left, DownloadManagerElement elem)
 /*** add/remove/edit Actors, Genres, Countries and Studios ***/
 
 /**
- * @brief Stores changed values for genres
- * @param item Edited item
- */
-void TvShowWidgetTvShow::onGenreEdited(QTableWidgetItem *item)
-{
-    QString *genre = ui->genres->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
-    genre->clear();
-    genre->append(item->text());
-    m_show->setChanged(true);
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
  * @brief Adds a genre
  */
-void TvShowWidgetTvShow::onAddGenre()
+void TvShowWidgetTvShow::onAddGenre(QString genre)
 {
-    QString g = tr("Unknown Genre");
-    m_show->addGenre(g);
-    QString *genre = m_show->genresPointer().last();
-
-    ui->genres->blockSignals(true);
-    int row = ui->genres->rowCount();
-    ui->genres->insertRow(row);
-    ui->genres->setItem(row, 0, new QTableWidgetItem(g));
-    ui->genres->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(genre));
-    ui->genres->scrollToBottom();
-    ui->genres->blockSignals(false);
+    if (!m_show)
+        return;
+    m_show->addGenre(genre);
     ui->buttonRevert->setVisible(true);
 }
 
 /**
  * @brief Removes a genre
  */
-void TvShowWidgetTvShow::onRemoveGenre()
+void TvShowWidgetTvShow::onRemoveGenre(QString genre)
 {
-    int row = ui->genres->currentRow();
-    if (row < 0 || row >= ui->genres->rowCount() || !ui->genres->currentItem()->isSelected())
+    if (!m_show)
         return;
-
-    QString *genre = ui->genres->item(row, 0)->data(Qt::UserRole).value<QString*>();
     m_show->removeGenre(genre);
-    ui->genres->blockSignals(true);
-    ui->genres->removeRow(row);
-    ui->genres->blockSignals(false);
     ui->buttonRevert->setVisible(true);
 }
 

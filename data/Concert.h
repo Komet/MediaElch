@@ -134,7 +134,7 @@ public:
     void setDatabaseId(int id);
     void setSyncNeeded(bool syncNeeded);
 
-    void removeGenre(QString *genre);
+    void removeGenre(QString genre);
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);

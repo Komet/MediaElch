@@ -1078,13 +1078,8 @@ void Concert::setSyncNeeded(bool syncNeeded)
  * @param genre
  * @see Concert::genres
  */
-void Concert::removeGenre(QString *genre)
+void Concert::removeGenre(QString genre)
 {
-    for (int i=0, n=m_genres.size() ; i<n ; ++i) {
-        if (&m_genres[i] == genre) {
-            m_genres.removeAt(i);
-            break;
-        }
-    }
+    m_genres.removeAll(genre);
     setChanged(true);
 }

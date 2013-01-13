@@ -30,6 +30,7 @@ public slots:
     void onSaveInformation();
     void onSaveAll();
     void onStartScraperSearch();
+    void setBigWindow(bool bigWindow);
 
 signals:
     void sigSetActionSearchEnabled(bool, MainWidgets);

@@ -187,10 +187,15 @@ MainWindow::~MainWindow()
  */
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    if (event->size().width() >= 1500)
+    if (event->size().width() >= 1500) {
         ui->movieWidget->setBigWindow(true);
-    else if (event->size().width() < 1500)
+        ui->tvShowWidget->setBigWindow(true);
+        ui->concertWidget->setBigWindow(true);
+    } else if (event->size().width() < 1500) {
         ui->movieWidget->setBigWindow(false);
+        ui->tvShowWidget->setBigWindow(false);
+        ui->concertWidget->setBigWindow(false);
+    }
 
     MessageBox::instance()->reposition(event->size());
     QWidget::resizeEvent(event);

@@ -26,11 +26,6 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->concertName->clear();
-#if QT_VERSION >= 0x050000
-    ui->genres->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#else
-    ui->genres->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#endif
     ui->buttonPreviewPoster->setEnabled(false);
     ui->buttonPreviewBackdrop->setEnabled(false);
     ui->buttonPreviewLogo->setEnabled(false);
@@ -55,8 +50,6 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     ui->clearArtResolution->setFont(font);
     ui->cdArtResolution->setFont(font);
 
-    ui->genres->setItemDelegate(new ComboDelegate(ui->genres, WidgetConcerts, ComboDelegateGenres));
-
     m_concert = 0;
     m_posterDownloadManager = new DownloadManager(this);
 
@@ -67,9 +60,6 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     connect(ui->cdArt, SIGNAL(clicked()), this, SLOT(chooseConcertCdArt()));
     connect(m_posterDownloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(posterDownloadFinished(DownloadManagerElement)));
     connect(ui->name, SIGNAL(textChanged(QString)), this, SLOT(concertNameChanged(QString)));
-    connect(ui->buttonAddGenre, SIGNAL(clicked()), this, SLOT(addGenre()));
-    connect(ui->buttonRemoveGenre, SIGNAL(clicked()), this, SLOT(removeGenre()));
-    connect(ui->genres, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onGenreEdited(QTableWidgetItem*)));
     connect(ui->buttonPreviewPoster, SIGNAL(clicked()), this, SLOT(onPreviewPoster()));
     connect(ui->buttonPreviewBackdrop, SIGNAL(clicked()), this, SLOT(onPreviewBackdrop()));
     connect(ui->buttonPreviewLogo, SIGNAL(clicked()), this, SLOT(onPreviewLogo()));
@@ -77,6 +67,11 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     connect(ui->buttonPreviewCdArt, SIGNAL(clicked()), this, SLOT(onPreviewCdArt()));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
     connect(ui->buttonReloadStreamDetails, SIGNAL(clicked()), this, SLOT(onReloadStreamDetails()));
+
+    ui->genreCloud->setText(tr("Genres"));
+    ui->genreCloud->setPlaceholder(tr("Add Genre"));
+    connect(ui->genreCloud, SIGNAL(activated(QString)), this, SLOT(addGenre(QString)));
+    connect(ui->genreCloud, SIGNAL(deactivated(QString)), this, SLOT(removeGenre(QString)));
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -144,15 +139,19 @@ ConcertWidget::~ConcertWidget()
  */
 void ConcertWidget::resizeEvent(QResizeEvent *event)
 {
-    if (width() >= 1100 && !ui->artStackedWidget->isExpanded()) {
+    m_savingWidget->move(size().width()/2-m_savingWidget->width(), height()/2-m_savingWidget->height());
+    QWidget::resizeEvent(event);
+}
+
+void ConcertWidget::setBigWindow(bool bigWindow)
+{
+    if (bigWindow && !ui->artStackedWidget->isExpanded()) {
         ui->artStackedWidget->expandToOne();
         ui->artStackedWidgetButtons->setVisible(false);
-    } else if (width() < 1100 && ui->artStackedWidget->isExpanded()) {
+    } else if (!bigWindow && ui->artStackedWidget->isExpanded()) {
         ui->artStackedWidget->collapse();
         ui->artStackedWidgetButtons->setVisible(true);
     }
-    m_savingWidget->move(size().width()/2-m_savingWidget->width(), height()/2-m_savingWidget->height());
-    QWidget::resizeEvent(event);
 }
 
 /**
@@ -175,7 +174,6 @@ void ConcertWidget::clear()
     ui->playcount->clear();
     ui->lastPlayed->setDateTime(QDateTime::currentDateTime());
     ui->overview->clear();
-    ui->genres->setRowCount(0);
     ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
     ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->logo->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -187,6 +185,7 @@ void ConcertWidget::clear()
     ui->logoResolution->setText("");
     ui->clearArtResolution->setText("");
     ui->cdArtResolution->setText("");
+    ui->genreCloud->clear();
 
     ui->videoCodec->clear();
     ui->videoScantype->clear();
@@ -428,7 +427,6 @@ void ConcertWidget::updateConcertInfo()
     ui->released->blockSignals(true);
     ui->lastPlayed->blockSignals(true);
     ui->overview->blockSignals(true);
-    ui->genres->blockSignals(true);
 
     clear();
 
@@ -459,14 +457,10 @@ void ConcertWidget::updateConcertInfo()
     ui->certification->setCurrentIndex(certifications.indexOf(m_concert->certification()));
     ui->certification->blockSignals(false);
 
-    ui->genres->blockSignals(true);
-    foreach (QString *genre, m_concert->genresPointer()) {
-        int row = ui->genres->rowCount();
-        ui->genres->insertRow(row);
-        ui->genres->setItem(row, 0, new QTableWidgetItem(*genre));
-        ui->genres->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(genre));
-    }
-    ui->genres->blockSignals(false);
+    QStringList genres;
+    foreach (Concert *concert, Manager::instance()->concertModel()->concerts())
+        genres.append(concert->genres());
+    ui->genreCloud->setTags(genres, m_concert->genres());
 
     // Streamdetails
     updateStreamDetails();
@@ -572,7 +566,6 @@ void ConcertWidget::updateConcertInfo()
     ui->released->blockSignals(false);
     ui->lastPlayed->blockSignals(false);
     ui->overview->blockSignals(false);
-    ui->genres->blockSignals(false);
 
     emit setActionSaveEnabled(true, WidgetConcerts);
 
@@ -974,49 +967,22 @@ void ConcertWidget::downloadActorsFinished(Concert *concert)
 /**
  * @brief Adds a genre
  */
-void ConcertWidget::addGenre()
+void ConcertWidget::addGenre(QString genre)
 {
-    QString g = tr("Unknown Genre");
-    m_concert->addGenre(g);
-    QString *genre = m_concert->genresPointer().last();
-
-    ui->genres->blockSignals(true);
-    int row = ui->genres->rowCount();
-    ui->genres->insertRow(row);
-    ui->genres->setItem(row, 0, new QTableWidgetItem(g));
-    ui->genres->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(genre));
-    ui->genres->scrollToBottom();
-    ui->genres->blockSignals(false);
+    if (!m_concert)
+        return;
+    m_concert->addGenre(genre);
     ui->buttonRevert->setVisible(true);
 }
 
 /**
  * @brief Removes a genre
  */
-void ConcertWidget::removeGenre()
+void ConcertWidget::removeGenre(QString genre)
 {
-    int row = ui->genres->currentRow();
-    if (row < 0 || row >= ui->genres->rowCount() || !ui->genres->currentItem()->isSelected())
+    if (!m_concert)
         return;
-
-    QString *genre = ui->genres->item(row, 0)->data(Qt::UserRole).value<QString*>();
     m_concert->removeGenre(genre);
-    ui->genres->blockSignals(true);
-    ui->genres->removeRow(row);
-    ui->genres->blockSignals(false);
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
- * @brief Stores changed values for a genre
- * @param item Edited item
- */
-void ConcertWidget::onGenreEdited(QTableWidgetItem *item)
-{
-    QString *genre = ui->genres->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
-    genre->clear();
-    genre->append(item->text());
-    m_concert->setChanged(true);
     ui->buttonRevert->setVisible(true);
 }
 

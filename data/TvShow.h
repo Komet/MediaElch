@@ -130,7 +130,7 @@ public:
     void setSyncNeeded(bool syncNeeded);
 
     void removeActor(Actor *actor);
-    void removeGenre(QString *genre);
+    void removeGenre(QString genre);
 
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo = true);
     void loadData(QString id, TvScraperInterface *tvScraperInterface, bool updateAllEpisodes, QList<int> infosToLoad);

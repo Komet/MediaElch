@@ -33,6 +33,11 @@ TvShowWidget::~TvShowWidget()
     delete ui;
 }
 
+void TvShowWidget::setBigWindow(bool bigWindow)
+{
+    ui->tvShowWidget->setBigWindow(bigWindow);
+}
+
 /**
  * @brief Clears the subwidgets
  */
