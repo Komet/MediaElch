@@ -21,6 +21,7 @@ public:
     void setFontBold(const bool &bold);
     bool isActive() const;
     bool isClosable() const;
+    void setShowActiveMark(const bool &showActiveMark);
 
 protected:
     void paintEvent(QPaintEvent *event);
@@ -30,6 +31,7 @@ private:
     bool m_active;
     bool m_closable;
     bool m_fontBold;
+    bool m_showActiveMark;
     void applyStyleSheet();
 };
 

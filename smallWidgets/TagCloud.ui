@@ -13,33 +13,19 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QScrollArea" name="scrollArea">
-     <property name="styleSheet">
-      <string notr="true">background-color: transparent;</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Plain</enum>
-     </property>
-     <property name="widgetResizable">
-      <bool>true</bool>
-     </property>
-     <widget class="MyWidget" name="scrollAreaWidgetContents">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>376</width>
-        <height>242</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-   </item>
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>20</number>
+   </property>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0">
      <item>
@@ -53,6 +39,31 @@
       <widget class="QLineEdit" name="lineEdit"/>
      </item>
     </layout>
+   </item>
+   <item>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="styleSheet">
+      <string notr="true">#scrollArea, #scrollAreaWidgetContents {
+	background-color: transparent;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="MyWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>400</width>
+        <height>246</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
    </item>
   </layout>
  </widget>

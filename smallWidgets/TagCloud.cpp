@@ -9,6 +9,7 @@ TagCloud::TagCloud(QWidget *parent) :
     ui(new Ui::TagCloud)
 {
     ui->setupUi(this);
+    m_badgeType = TagCloud::TypeBadge;
     m_horizontalSpace = 4;
     m_verticalSpace = 4;
     connect(ui->scrollAreaWidgetContents, SIGNAL(resized()), this, SLOT(repositionTags()));
@@ -18,6 +19,13 @@ TagCloud::TagCloud(QWidget *parent) :
 TagCloud::~TagCloud()
 {
     delete ui;
+}
+
+void TagCloud::clear()
+{
+    m_tags.clear();
+    m_activeTags.clear();
+    drawTags();
 }
 
 void TagCloud::setTags(const QStringList &tags, const QStringList &activeTags)
@@ -53,9 +61,20 @@ void TagCloud::drawTags()
     int width = ui->scrollAreaWidgetContents->width();
     int heightToAdd = 0;
 
-    foreach (const QString &word, m_tags) {
+    QStringList tags = m_activeTags;
+    foreach (const QString &tag, m_tags) {
+        if (!tags.contains(tag))
+            tags.append(tag);
+    }
+
+    foreach (const QString &word, tags) {
         Badge *badge = new Badge(word, ui->scrollAreaWidgetContents);
-        badge->setBadgeType(Badge::BadgeDefault);
+        if (m_badgeType == TagCloud::TypeSimpleLabel) {
+            badge->setBadgeType(Badge::LabelWarning);
+            badge->setShowActiveMark(true);
+        } else {
+            badge->setBadgeType(Badge::BadgeDefault);
+        }
         if (m_activeTags.contains(word))
             badge->setActive(true);
         badge->show();
@@ -70,6 +89,7 @@ void TagCloud::drawTags()
         x += badge->width() + m_horizontalSpace;
     }
     ui->scrollAreaWidgetContents->setFixedHeight(y+heightToAdd);
+    setMaximumHeight(qMax(80, y+heightToAdd+qMax(30, ui->lineEdit->height())+25));
 }
 
 void TagCloud::repositionTags()
@@ -90,6 +110,7 @@ void TagCloud::repositionTags()
         x += badge->width() + 2;
     }
     ui->scrollAreaWidgetContents->setFixedHeight(y+heightToAdd);
+    setMaximumHeight(qMax(80, y+heightToAdd+qMax(30, ui->lineEdit->height())+25));
 }
 
 void TagCloud::mousePressEvent(QMouseEvent *event)
@@ -99,6 +120,10 @@ void TagCloud::mousePressEvent(QMouseEvent *event)
         return;
 
     child->setActive(!child->isActive());
+    if (child->isActive())
+        emit activated(child->text());
+    else
+        emit deactivated(child->text());
     if (child->isActive()) {
         if (!m_activeTags.contains(child->text()))
             m_activeTags.append(child->text());
@@ -111,7 +136,6 @@ void TagCloud::mousePressEvent(QMouseEvent *event)
 
 void TagCloud::addTag()
 {
-    qDebug() << "add Tag";
     QString word = ui->lineEdit->text();
     ui->lineEdit->clear();
     if (word.isEmpty() || m_activeTags.contains(word))
@@ -130,12 +154,18 @@ void TagCloud::addTag()
         m_tags.append(word);
         m_activeTags.append(word);
         Badge *badge = new Badge(word, ui->scrollAreaWidgetContents);
-        badge->setBadgeType(Badge::BadgeDefault);
+        if (m_badgeType == TagCloud::TypeSimpleLabel) {
+            badge->setBadgeType(Badge::LabelWarning);
+            badge->setShowActiveMark(true);
+        } else {
+            badge->setBadgeType(Badge::BadgeDefault);
+        }
         badge->show();
         badge->setActive(true);
         m_badges.append(badge);
         repositionTags();
     }
+    emit activated(word);
 }
 
 QStringList TagCloud::activeTags() const
@@ -151,4 +181,9 @@ void TagCloud::setText(const QString &text)
 void TagCloud::setPlaceholder(const QString &placeholder)
 {
     ui->lineEdit->setPlaceholderText(placeholder);
+}
+
+void TagCloud::setBadgeType(TagCloud::CloudBadgeType type)
+{
+    m_badgeType = type;
 }

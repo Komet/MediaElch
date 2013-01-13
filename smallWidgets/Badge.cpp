@@ -8,6 +8,7 @@ Badge::Badge(QWidget *parent) :
     m_active = false;
     m_closable = false;
     m_fontBold = true;
+    m_showActiveMark = true;
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
     setBadgeType(Badge::LabelDefault);
 }
@@ -18,6 +19,7 @@ Badge::Badge(const QString &text, QWidget *parent) :
     m_active = false;
     m_closable = false;
     m_fontBold = true;
+    m_showActiveMark = true;
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
     setBadgeType(Badge::LabelDefault);
 }
@@ -49,10 +51,11 @@ void Badge::paintEvent(QPaintEvent *event)
         p.restore();
     }
 
-    if (m_active) {
+    if (m_active && m_showActiveMark) {
+        QImage mark = QImage(":img/checkmark_white_64.png").scaledToWidth(12, Qt::SmoothTransformation);
         QPainter p(this);
         p.save();
-        p.drawImage(7, 2, QImage(":img/checkmark_white_64.png").scaledToWidth(12, Qt::SmoothTransformation));
+        p.drawImage(7, (height()-mark.height())/2, mark);
         p.restore();
     }
 }
@@ -80,7 +83,7 @@ void Badge::setActive(const bool &active)
     case Badge::LabelImportant:
     case Badge::LabelInfo:
     case Badge::LabelInverse:
-        m_badgeType = active ? Badge::LabelInfo : Badge::LabelDefault;
+        m_badgeType = active ? Badge::LabelWarning : Badge::LabelDefault;
         break;
     case Badge::BadgeDefault:
     case Badge::BadgeSuccess:
@@ -97,6 +100,12 @@ void Badge::setActive(const bool &active)
 void Badge::setClosable(const bool &closable)
 {
     m_closable = closable;
+    applyStyleSheet();
+}
+
+void Badge::setShowActiveMark(const bool &showActiveMark)
+{
+    m_showActiveMark = showActiveMark;
     applyStyleSheet();
 }
 
@@ -166,7 +175,7 @@ void Badge::applyStyleSheet()
 
     if (m_fontBold)
         style.append("font-weight: bold;");
-    if (m_active)
+    if (m_active && m_showActiveMark)
         style.append("padding-left: 20px;");
     if (m_closable)
         style.append("padding-right: 20px;");

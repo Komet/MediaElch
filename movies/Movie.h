@@ -185,7 +185,9 @@ public:
 
     void removeActor(Actor *actor);
     void removeCountry(QString *country);
+    void removeCountry(QString country);
     void removeStudio(QString *studio);
+    void removeStudio(QString studio);
     void removeGenre(QString *genre);
     void removeGenre(QString genre);
 

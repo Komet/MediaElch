@@ -18,6 +18,8 @@
 #include "movies/MovieSearch.h"
 #include "globals/TrailerDialog.h"
 
+// @todo: add buttons to manually collapse/expand art widget
+
 /**
  * @brief MovieWidget::MovieWidget
  * @param parent
@@ -27,20 +29,17 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui(new Ui::MovieWidget)
 {
     ui->setupUi(this);
+    m_backgroundLabel = new QLabel(this);
+    m_backgroundLabel->show();
+    m_backgroundLabel->lower();
     ui->movieName->clear();
 
 #if QT_VERSION >= 0x050000
     ui->actors->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->actors->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    ui->genres->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    ui->countries->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    ui->studios->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 #else
     ui->actors->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     ui->actors->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-    ui->genres->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-    ui->countries->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-    ui->studios->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
     ui->buttonPreviewPoster->setEnabled(false);
     ui->buttonPreviewBackdrop->setEnabled(false);
@@ -71,6 +70,22 @@ MovieWidget::MovieWidget(QWidget *parent) :
 
     m_movie = 0;
 
+    ui->genreCloud->setText(tr("Genres"));
+    ui->genreCloud->setPlaceholder(tr("Add Genre"));
+    connect(ui->genreCloud, SIGNAL(activated(QString)), this, SLOT(addGenre(QString)));
+    connect(ui->genreCloud, SIGNAL(deactivated(QString)), this, SLOT(removeGenre(QString)));
+
+    ui->countryCloud->setText(tr("Countries"));
+    ui->countryCloud->setPlaceholder(tr("Add Country"));
+    connect(ui->countryCloud, SIGNAL(activated(QString)), this, SLOT(addCountry(QString)));
+    connect(ui->countryCloud, SIGNAL(deactivated(QString)), this, SLOT(removeCountry(QString)));
+
+    ui->studioCloud->setText(tr("Studios"));
+    ui->studioCloud->setPlaceholder(tr("Add Studio"));
+    ui->studioCloud->setBadgeType(TagCloud::TypeSimpleLabel);
+    connect(ui->studioCloud, SIGNAL(activated(QString)), this, SLOT(addStudio(QString)));
+    connect(ui->studioCloud, SIGNAL(deactivated(QString)), this, SLOT(removeStudio(QString)));
+
     connect(ui->poster, SIGNAL(clicked()), this, SLOT(chooseMoviePoster()));
     connect(ui->backdrop, SIGNAL(clicked()), this, SLOT(chooseMovieBackdrop()));
     connect(ui->logo, SIGNAL(clicked()), this, SLOT(chooseMovieLogo()));
@@ -79,17 +94,8 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->name, SIGNAL(textChanged(QString)), this, SLOT(movieNameChanged(QString)));
     connect(ui->buttonAddActor, SIGNAL(clicked()), this, SLOT(addActor()));
     connect(ui->buttonRemoveActor, SIGNAL(clicked()), this, SLOT(removeActor()));
-    connect(ui->buttonAddCountry, SIGNAL(clicked()), this, SLOT(addCountry()));
-    connect(ui->buttonRemoveCountry, SIGNAL(clicked()), this, SLOT(removeCountry()));
-    connect(ui->buttonAddGenre, SIGNAL(clicked()), this, SLOT(addGenre()));
-    connect(ui->buttonRemoveGenre, SIGNAL(clicked()), this, SLOT(removeGenre()));
-    connect(ui->buttonAddStudio, SIGNAL(clicked()), this, SLOT(addStudio()));
-    connect(ui->buttonRemoveStudio, SIGNAL(clicked()), this, SLOT(removeStudio()));
     connect(ui->actors, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onActorEdited(QTableWidgetItem*)));
     connect(ui->actors, SIGNAL(itemSelectionChanged()), this, SLOT(onActorChanged()));
-    connect(ui->genres, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onGenreEdited(QTableWidgetItem*)));
-    connect(ui->studios, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onStudioEdited(QTableWidgetItem*)));
-    connect(ui->countries, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onCountryEdited(QTableWidgetItem*)));
     connect(ui->buttonPreviewPoster, SIGNAL(clicked()), this, SLOT(onPreviewPoster()));
     connect(ui->buttonPreviewBackdrop, SIGNAL(clicked()), this, SLOT(onPreviewBackdrop()));
     connect(ui->buttonPreviewLogo, SIGNAL(clicked()), this, SLOT(onPreviewLogo()));
@@ -109,10 +115,6 @@ MovieWidget::MovieWidget(QWidget *parent) :
     m_savingWidget = new QLabel(this);
     m_savingWidget->setMovie(m_loadingMovie);
     m_savingWidget->hide();
-
-    ui->genres->setItemDelegate(new ComboDelegate(ui->genres, WidgetMovies, ComboDelegateGenres));
-    ui->studios->setItemDelegate(new ComboDelegate(ui->studios, WidgetMovies, ComboDelegateStudios));
-    ui->countries->setItemDelegate(new ComboDelegate(ui->countries, WidgetMovies, ComboDelegateCountries));
 
     // Connect GUI change events to movie object
     connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(onNameChange(QString)));
@@ -176,15 +178,20 @@ MovieWidget::~MovieWidget()
  */
 void MovieWidget::resizeEvent(QResizeEvent *event)
 {
-    if (width() >= 1100 && !ui->artStackedWidget->isExpanded()) {
+    QTimer::singleShot(0, this, SLOT(updateBackgroundImage()));
+    m_savingWidget->move(size().width()/2-m_savingWidget->width(), height()/2-m_savingWidget->height());
+    QWidget::resizeEvent(event);
+}
+
+void MovieWidget::setBigWindow(bool bigWindow)
+{
+    if (bigWindow && !ui->artStackedWidget->isExpanded()) {
         ui->artStackedWidget->expandToOne();
         ui->artStackedWidgetButtons->setVisible(false);
-    } else if (width() < 1100 && ui->artStackedWidget->isExpanded()) {
+    } else if (!bigWindow && ui->artStackedWidget->isExpanded()) {
         ui->artStackedWidget->collapse();
         ui->artStackedWidgetButtons->setVisible(true);
     }
-    m_savingWidget->move(size().width()/2-m_savingWidget->width(), height()/2-m_savingWidget->height());
-    QWidget::resizeEvent(event);
 }
 
 /**
@@ -278,18 +285,6 @@ void MovieWidget::clear()
     ui->actors->setRowCount(0);
     ui->actors->blockSignals(false);
 
-    blocked = ui->genres->blockSignals(true);
-    ui->genres->setRowCount(0);
-    ui->genres->blockSignals(blocked);
-
-    blocked = ui->studios->blockSignals(true);
-    ui->studios->setRowCount(0);
-    ui->studios->blockSignals(false);
-
-    blocked = ui->countries->blockSignals(true);
-    ui->countries->setRowCount(0);
-    ui->countries->blockSignals(blocked);
-
     ui->videoCodec->clear();
     ui->videoScantype->clear();
 
@@ -321,8 +316,14 @@ void MovieWidget::clear()
     ui->clearArtResolution->setText("");
     ui->cdArtResolution->setText("");
     ui->actorResolution->setText("");
+    ui->genreCloud->clear();
+    ui->countryCloud->clear();
+    ui->studioCloud->clear();
     ui->buttonRevert->setVisible(false);
     ui->localTrailer->setVisible(false);
+
+    m_currentBackdrop = QImage();
+    QTimer::singleShot(0, this, SLOT(updateBackgroundImage()));
 }
 
 /**
@@ -489,6 +490,7 @@ void MovieWidget::onSetImage(Movie *movie, int type, QImage image)
         ui->backdropResolution->setText(QString("%1x%2").arg(image.width()).arg(image.height()));
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = image;
+        updateBackgroundImage();
         break;
     case TypeClearArt:
         ui->clearArt->setPixmap(QPixmap::fromImage(image).scaled(200, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -539,9 +541,6 @@ void MovieWidget::updateMovieInfo()
     ui->overview->blockSignals(true);
     ui->outline->blockSignals(true);
     ui->actors->blockSignals(true);
-    ui->genres->blockSignals(true);
-    ui->studios->blockSignals(true);
-    ui->countries->blockSignals(true);
 
     clear();
 
@@ -587,7 +586,6 @@ void MovieWidget::updateMovieInfo()
     ui->set->blockSignals(false);
     ui->certification->blockSignals(false);
 
-
     ui->actors->blockSignals(true);
     foreach (Actor *actor, m_movie->actorsPointer()) {
         int row = ui->actors->rowCount();
@@ -599,32 +597,17 @@ void MovieWidget::updateMovieInfo()
     }
     ui->actors->blockSignals(false);
 
-    ui->genres->blockSignals(true);
-    foreach (QString *genre, m_movie->genresPointer()) {
-        int row = ui->genres->rowCount();
-        ui->genres->insertRow(row);
-        ui->genres->setItem(row, 0, new QTableWidgetItem(*genre));
-        ui->genres->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(genre));
-    }
-    ui->genres->blockSignals(false);
+    QStringList genres;
+    foreach (Movie *movie, Manager::instance()->movieModel()->movies())
+        genres << movie->genres();
+    ui->genreCloud->setTags(genres, m_movie->genres());
 
-    ui->studios->blockSignals(true);
-    foreach (QString *studio, m_movie->studiosPointer()) {
-        int row = ui->studios->rowCount();
-        ui->studios->insertRow(row);
-        ui->studios->setItem(row, 0, new QTableWidgetItem(*studio));
-        ui->studios->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(studio));
-    }
-    ui->studios->blockSignals(false);
+    QStringList countries;
+    foreach (Movie *movie, Manager::instance()->movieModel()->movies())
+        countries << movie->countries();
+    ui->countryCloud->setTags(countries, m_movie->countries());
 
-    ui->countries->blockSignals(true);
-    foreach (QString *country, m_movie->countriesPointer()) {
-        int row = ui->countries->rowCount();
-        ui->countries->insertRow(row);
-        ui->countries->setItem(row, 0, new QTableWidgetItem(*country));
-        ui->countries->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(country));
-    }
-    ui->countries->blockSignals(false);
+    ui->studioCloud->setTags(m_movie->studios(), m_movie->studios());
 
     // Streamdetails
     updateStreamDetails();
@@ -659,12 +642,14 @@ void MovieWidget::updateMovieInfo()
         ui->backdropResolution->setText(QString("%1x%2").arg(m_movie->backdropImage()->width()).arg(m_movie->backdropImage()->height()));
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = *m_movie->backdropImage();
+        QTimer::singleShot(0, this, SLOT(updateBackgroundImage()));
     } else if (!Manager::instance()->mediaCenterInterface()->backdropImageName(m_movie).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->backdropImageName(m_movie));
         ui->backdrop->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
         ui->backdropResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = p.toImage();
+        QTimer::singleShot(0, this, SLOT(updateBackgroundImage()));
     } else {
         ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->backdropResolution->setText("");
@@ -736,9 +721,6 @@ void MovieWidget::updateMovieInfo()
     ui->overview->blockSignals(false);
     ui->outline->blockSignals(false);
     ui->actors->blockSignals(false);
-    ui->genres->blockSignals(false);
-    ui->studios->blockSignals(false);
-    ui->countries->blockSignals(false);
 
     emit setActionSaveEnabled(true, WidgetMovies);
 
@@ -1076,149 +1058,46 @@ void MovieWidget::onActorEdited(QTableWidgetItem *item)
 }
 
 /**
- * @brief Adds a genre
- */
-void MovieWidget::addGenre()
-{
-    QString g = tr("Unknown Genre");
-    m_movie->addGenre(g);
-    QString *genre = m_movie->genresPointer().last();
-
-    ui->genres->blockSignals(true);
-    int row = ui->genres->rowCount();
-    ui->genres->insertRow(row);
-    ui->genres->setItem(row, 0, new QTableWidgetItem(g));
-    ui->genres->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(genre));
-    ui->genres->scrollToBottom();
-    ui->genres->blockSignals(false);
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
- * @brief Removes a genre
- */
-void MovieWidget::removeGenre()
-{
-    int row = ui->genres->currentRow();
-    if (row < 0 || row >= ui->genres->rowCount() || !ui->genres->currentItem()->isSelected())
-        return;
-
-    QString *genre = ui->genres->item(row, 0)->data(Qt::UserRole).value<QString*>();
-    m_movie->removeGenre(genre);
-    ui->genres->blockSignals(true);
-    ui->genres->removeRow(row);
-    ui->genres->blockSignals(false);
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
- * @brief Stores changed values for a genre
- * @param item Edited item
- */
-void MovieWidget::onGenreEdited(QTableWidgetItem *item)
-{
-    QString *genre = ui->genres->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
-    genre->clear();
-    genre->append(item->text());
-    m_movie->setChanged(true);
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
  * @brief Adds a studio
  */
-void MovieWidget::addStudio()
+void MovieWidget::addStudio(QString studio)
 {
-    QString s = tr("Unknown Studio");
-    m_movie->addStudio(s);
-    QString *studio = m_movie->studiosPointer().last();
-
-    ui->studios->blockSignals(true);
-    int row = ui->studios->rowCount();
-    ui->studios->insertRow(row);
-    ui->studios->setItem(row, 0, new QTableWidgetItem(s));
-    ui->studios->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(studio));
-    ui->studios->scrollToBottom();
-    ui->studios->blockSignals(false);
+    if (!m_movie)
+        return;
+    m_movie->addStudio(studio);
     ui->buttonRevert->setVisible(true);
 }
 
 /**
  * @brief Removes a studio
  */
-void MovieWidget::removeStudio()
+void MovieWidget::removeStudio(QString studio)
 {
-    int row = ui->studios->currentRow();
-    if (row < 0 || row >= ui->studios->rowCount() || !ui->studios->currentItem()->isSelected())
+    if (!m_movie)
         return;
-
-    QString *studio = ui->studios->item(row, 0)->data(Qt::UserRole).value<QString*>();
     m_movie->removeStudio(studio);
-    ui->studios->blockSignals(true);
-    ui->studios->removeRow(row);
-    ui->studios->blockSignals(false);
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
- * @brief Stores changed values for a studio
- * @param item Edited item
- */
-void MovieWidget::onStudioEdited(QTableWidgetItem *item)
-{
-    QString *studio = ui->studios->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
-    studio->clear();
-    studio->append(item->text());
-    m_movie->setChanged(true);
     ui->buttonRevert->setVisible(true);
 }
 
 /**
  * @brief Adds a country
  */
-void MovieWidget::addCountry()
+void MovieWidget::addCountry(QString country)
 {
-    QString c = tr("Unknown Country");
-    m_movie->addCountry(c);
-    QString *country = m_movie->countriesPointer().last();
-
-    ui->countries->blockSignals(true);
-    int row = ui->countries->rowCount();
-    ui->countries->insertRow(row);
-    ui->countries->setItem(row, 0, new QTableWidgetItem(c));
-    ui->countries->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(country));
-    ui->countries->scrollToBottom();
-    ui->countries->blockSignals(false);
+    if (!m_movie)
+        return;
+    m_movie->addCountry(country);
     ui->buttonRevert->setVisible(true);
 }
 
 /**
  * @brief Removes a country
  */
-void MovieWidget::removeCountry()
+void MovieWidget::removeCountry(QString country)
 {
-    int row = ui->countries->currentRow();
-    if (row < 0 || row >= ui->countries->rowCount() || !ui->countries->currentItem()->isSelected())
+    if (!m_movie)
         return;
-
-    QString *country = ui->countries->item(row, 0)->data(Qt::UserRole).value<QString*>();
     m_movie->removeCountry(country);
-    ui->countries->blockSignals(true);
-    ui->countries->removeRow(row);
-    ui->countries->blockSignals(false);
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
- * @brief Stores changed values for a country
- * @param item Edited item
- */
-void MovieWidget::onCountryEdited(QTableWidgetItem *item)
-{
-    QString *country = ui->countries->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
-    country->clear();
-    country->append(item->text());
-    m_movie->setChanged(true);
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1338,6 +1217,22 @@ void MovieWidget::onArtPageTwo()
 }
 
 /*** Pass GUI events to movie object ***/
+
+void MovieWidget::addGenre(QString genre)
+{
+    if (!m_movie)
+        return;
+    m_movie->addGenre(genre);
+    ui->buttonRevert->setVisible(true);
+}
+
+void MovieWidget::removeGenre(QString genre)
+{
+    if (!m_movie)
+        return;
+    m_movie->removeGenre(genre);
+    ui->buttonRevert->setVisible(true);
+}
 
 /**
  * @brief Marks the movie as changed when the name has changed
@@ -1573,3 +1468,14 @@ void MovieWidget::onStreamDetailsEdited()
     ui->buttonRevert->setVisible(true);
 }
 
+void MovieWidget::updateBackgroundImage()
+{
+    // @todo: add config option to disable background image
+    // @todo: make ui->movieName more readable, maybe with text shadow
+    return;
+    m_backgroundLabel->setFixedSize(size());
+    if (m_currentBackdrop.isNull())
+        m_backgroundLabel->setPixmap(QPixmap());
+    else
+        m_backgroundLabel->setPixmap(QPixmap::fromImage(m_currentBackdrop.scaled(size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation)));
+}

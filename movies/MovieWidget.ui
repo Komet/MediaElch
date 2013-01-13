@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>934</width>
-    <height>860</height>
+    <height>940</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -116,7 +116,7 @@
                <enum>QFormLayout::ExpandingFieldsGrow</enum>
               </property>
               <property name="rowWrapPolicy">
-               <enum>QFormLayout::WrapLongRows</enum>
+               <enum>QFormLayout::DontWrapRows</enum>
               </property>
               <item row="0" column="0">
                <widget class="QLabel" name="label">
@@ -209,30 +209,6 @@
                 </property>
                </widget>
               </item>
-              <item row="8" column="1">
-               <widget class="QDateEdit" name="released">
-                <property name="displayFormat">
-                 <string>yyyy</string>
-                </property>
-               </widget>
-              </item>
-              <item row="9" column="0">
-               <widget class="QLabel" name="label_7">
-                <property name="text">
-                 <string>Runtime</string>
-                </property>
-               </widget>
-              </item>
-              <item row="9" column="1">
-               <widget class="QSpinBox" name="runtime">
-                <property name="suffix">
-                 <string> Minutes</string>
-                </property>
-                <property name="maximum">
-                 <number>999</number>
-                </property>
-               </widget>
-              </item>
               <item row="10" column="0">
                <widget class="QLabel" name="label_22">
                 <property name="text">
@@ -277,20 +253,6 @@
                 </property>
                </widget>
               </item>
-              <item row="14" column="0">
-               <widget class="QLabel" name="label_20">
-                <property name="text">
-                 <string>Watched</string>
-                </property>
-               </widget>
-              </item>
-              <item row="14" column="1">
-               <widget class="QCheckBox" name="watched">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
               <item row="15" column="0">
                <widget class="QLabel" name="label_24">
                 <property name="text">
@@ -308,22 +270,6 @@
                  </widget>
                 </item>
                 <item>
-                 <spacer name="horizontalSpacer_6">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeType">
-                   <enum>QSizePolicy::Fixed</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>20</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
                  <widget class="QLabel" name="label_11">
                   <property name="text">
                    <string>Last Played</string>
@@ -332,6 +278,13 @@
                 </item>
                 <item>
                  <widget class="QDateTimeEdit" name="lastPlayed"/>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="watched">
+                  <property name="text">
+                   <string>Watched</string>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </item>
@@ -403,7 +356,7 @@
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
-                    <width>20</width>
+                    <width>5</width>
                     <height>20</height>
                    </size>
                   </property>
@@ -433,7 +386,7 @@
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
-                    <width>20</width>
+                    <width>5</width>
                     <height>20</height>
                    </size>
                   </property>
@@ -455,6 +408,67 @@
                 </item>
                </layout>
               </item>
+              <item row="8" column="1">
+               <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <item>
+                 <widget class="QDateEdit" name="released">
+                  <property name="displayFormat">
+                   <string>yyyy</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_2">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeType">
+                   <enum>QSizePolicy::Fixed</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>5</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_7">
+                  <property name="text">
+                   <string>Runtime</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="runtime">
+                  <property name="suffix">
+                   <string> Minutes</string>
+                  </property>
+                  <property name="maximum">
+                   <number>999</number>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="17" column="0">
+               <widget class="QLabel" name="label_34">
+                <property name="text">
+                 <string>Outline</string>
+                </property>
+               </widget>
+              </item>
+              <item row="17" column="1">
+               <widget class="QTextEdit" name="outline">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>60</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
              </layout>
             </item>
            </layout>
@@ -463,91 +477,79 @@
            <attribute name="title">
             <string>Extended</string>
            </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_3">
+           <layout class="QVBoxLayout" name="verticalLayout_3" stretch="2,2,1,0">
             <item>
-             <layout class="QFormLayout" name="formLayout_2">
-              <property name="fieldGrowthPolicy">
-               <enum>QFormLayout::ExpandingFieldsGrow</enum>
+             <widget class="TagCloud" name="genreCloud" native="true"/>
+            </item>
+            <item>
+             <widget class="TagCloud" name="countryCloud" native="true"/>
+            </item>
+            <item>
+             <widget class="TagCloud" name="studioCloud" native="true"/>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
               </property>
-              <property name="rowWrapPolicy">
-               <enum>QFormLayout::WrapLongRows</enum>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
               </property>
-              <item row="3" column="1">
-               <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,0,0">
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_4">
+           <attribute name="title">
+            <string>Actors</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,0">
+            <item>
+             <widget class="QTableWidget" name="actors">
+              <property name="editTriggers">
+               <set>QAbstractItemView::DoubleClicked</set>
+              </property>
+              <property name="showGrid">
+               <bool>false</bool>
+              </property>
+              <attribute name="verticalHeaderVisible">
+               <bool>false</bool>
+              </attribute>
+              <column>
+               <property name="text">
+                <string>Actor</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Role</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_9">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_9">
                 <item>
-                 <widget class="QTableWidget" name="genres">
-                  <property name="maximumSize">
-                   <size>
-                    <width>300</width>
-                    <height>100</height>
-                   </size>
+                 <widget class="QPushButton" name="buttonRemoveActor">
+                  <property name="toolTip">
+                   <string>Remove Actor</string>
                   </property>
-                  <property name="editTriggers">
-                   <set>QAbstractItemView::DoubleClicked</set>
+                  <property name="text">
+                   <string/>
                   </property>
-                  <property name="showGrid">
-                   <bool>false</bool>
+                  <property name="icon">
+                   <iconset resource="../MediaElch.qrc">
+                    <normaloff>:/img/minus.png</normaloff>:/img/minus.png</iconset>
                   </property>
-                  <attribute name="horizontalHeaderVisible">
-                   <bool>false</bool>
-                  </attribute>
-                  <attribute name="horizontalHeaderStretchLastSection">
-                   <bool>true</bool>
-                  </attribute>
-                  <attribute name="verticalHeaderVisible">
-                   <bool>false</bool>
-                  </attribute>
-                  <column>
-                   <property name="text">
-                    <string>Genre</string>
-                   </property>
-                  </column>
                  </widget>
-                </item>
-                <item>
-                 <layout class="QVBoxLayout" name="verticalLayout_2">
-                  <item>
-                   <widget class="QPushButton" name="buttonAddGenre">
-                    <property name="toolTip">
-                     <string>Add Genre</string>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="../MediaElch.qrc">
-                      <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="buttonRemoveGenre">
-                    <property name="toolTip">
-                     <string>Remove Genre</string>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="../MediaElch.qrc">
-                      <normaloff>:/img/minus.png</normaloff>:/img/minus.png</iconset>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <spacer name="verticalSpacer_2">
-                    <property name="orientation">
-                     <enum>Qt::Vertical</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>20</width>
-                      <height>40</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                 </layout>
                 </item>
                 <item>
                  <spacer name="horizontalSpacer">
@@ -556,408 +558,84 @@
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
-                    <width>40</width>
+                    <width>5</width>
                     <height>20</height>
                    </size>
                   </property>
                  </spacer>
                 </item>
-               </layout>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="label_17">
-                <property name="text">
-                 <string>Genres</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="1">
-               <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,0,0">
                 <item>
-                 <widget class="QTableWidget" name="studios">
-                  <property name="maximumSize">
-                   <size>
-                    <width>300</width>
-                    <height>100</height>
-                   </size>
+                 <widget class="QPushButton" name="buttonAddActor">
+                  <property name="toolTip">
+                   <string>Add Actor</string>
                   </property>
-                  <property name="editTriggers">
-                   <set>QAbstractItemView::DoubleClicked</set>
+                  <property name="text">
+                   <string/>
                   </property>
-                  <property name="showGrid">
-                   <bool>false</bool>
+                  <property name="icon">
+                   <iconset resource="../MediaElch.qrc">
+                    <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
                   </property>
-                  <attribute name="horizontalHeaderVisible">
-                   <bool>false</bool>
-                  </attribute>
-                  <attribute name="horizontalHeaderStretchLastSection">
-                   <bool>true</bool>
-                  </attribute>
-                  <attribute name="verticalHeaderVisible">
-                   <bool>false</bool>
-                  </attribute>
-                  <column>
-                   <property name="text">
-                    <string>Studio</string>
-                   </property>
-                  </column>
                  </widget>
                 </item>
-                <item>
-                 <layout class="QVBoxLayout" name="verticalLayout_7">
-                  <item>
-                   <widget class="QPushButton" name="buttonAddStudio">
-                    <property name="toolTip">
-                     <string>Add Studio</string>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="../MediaElch.qrc">
-                      <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="buttonRemoveStudio">
-                    <property name="toolTip">
-                     <string>Remove Studio</string>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="../MediaElch.qrc">
-                      <normaloff>:/img/minus.png</normaloff>:/img/minus.png</iconset>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <spacer name="verticalSpacer_3">
-                    <property name="orientation">
-                     <enum>Qt::Vertical</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>20</width>
-                      <height>40</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_2">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
                </layout>
               </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="label_18">
-                <property name="text">
-                 <string>Studios</string>
-                </property>
-               </widget>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_8"/>
               </item>
-              <item row="6" column="1">
-               <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="1,0,0">
-                <item>
-                 <widget class="QTableWidget" name="countries">
-                  <property name="maximumSize">
-                   <size>
-                    <width>300</width>
-                    <height>100</height>
-                   </size>
-                  </property>
-                  <property name="editTriggers">
-                   <set>QAbstractItemView::DoubleClicked</set>
-                  </property>
-                  <property name="showGrid">
-                   <bool>false</bool>
-                  </property>
-                  <attribute name="horizontalHeaderVisible">
-                   <bool>false</bool>
-                  </attribute>
-                  <attribute name="horizontalHeaderStretchLastSection">
-                   <bool>true</bool>
-                  </attribute>
-                  <attribute name="verticalHeaderVisible">
-                   <bool>false</bool>
-                  </attribute>
-                  <column>
-                   <property name="text">
-                    <string>Country</string>
-                   </property>
-                  </column>
-                 </widget>
-                </item>
-                <item>
-                 <layout class="QVBoxLayout" name="verticalLayout_8">
-                  <item>
-                   <widget class="QPushButton" name="buttonAddCountry">
-                    <property name="toolTip">
-                     <string>Add Country</string>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="../MediaElch.qrc">
-                      <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="buttonRemoveCountry">
-                    <property name="toolTip">
-                     <string>Remove Country</string>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="../MediaElch.qrc">
-                      <normaloff>:/img/minus.png</normaloff>:/img/minus.png</iconset>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <spacer name="verticalSpacer_4">
-                    <property name="orientation">
-                     <enum>Qt::Vertical</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>20</width>
-                      <height>40</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_3">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item row="6" column="0">
-               <widget class="QLabel" name="label_19">
-                <property name="text">
-                 <string>Countries</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,0">
-                <item>
-                 <widget class="QTableWidget" name="actors">
-                  <property name="editTriggers">
-                   <set>QAbstractItemView::DoubleClicked</set>
-                  </property>
-                  <property name="showGrid">
-                   <bool>false</bool>
-                  </property>
-                  <attribute name="verticalHeaderVisible">
-                   <bool>false</bool>
-                  </attribute>
-                  <column>
-                   <property name="text">
-                    <string>Actor</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Role</string>
-                   </property>
-                  </column>
-                 </widget>
-                </item>
-                <item>
-                 <layout class="QVBoxLayout" name="verticalLayout_9">
-                  <property name="spacing">
-                   <number>0</number>
-                  </property>
-                  <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_9">
-                    <item>
-                     <widget class="QPushButton" name="buttonAddActor">
-                      <property name="toolTip">
-                       <string>Add Actor</string>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="icon">
-                       <iconset resource="../MediaElch.qrc">
-                        <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <spacer name="horizontalSpacer_5">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                   </layout>
-                  </item>
-                  <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_8">
-                    <item>
-                     <widget class="QPushButton" name="buttonRemoveActor">
-                      <property name="toolTip">
-                       <string>Remove Actor</string>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="icon">
-                       <iconset resource="../MediaElch.qrc">
-                        <normaloff>:/img/minus.png</normaloff>:/img/minus.png</iconset>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <spacer name="horizontalSpacer_4">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                   </layout>
-                  </item>
-                  <item>
-                   <spacer name="verticalSpacer_6">
-                    <property name="orientation">
-                     <enum>Qt::Vertical</enum>
-                    </property>
-                    <property name="sizeType">
-                     <enum>QSizePolicy::Fixed</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>20</width>
-                      <height>5</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item>
-                   <widget class="MyLabel" name="actor">
-                    <property name="minimumSize">
-                     <size>
-                      <width>120</width>
-                      <height>180</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>120</width>
-                      <height>180</height>
-                     </size>
-                    </property>
-                    <property name="cursor">
-                     <cursorShape>PointingHandCursor</cursorShape>
-                    </property>
-                    <property name="toolTip">
-                     <string>Click to change</string>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="pixmap">
-                     <pixmap resource="../MediaElch.qrc">:/img/man.png</pixmap>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="actorResolution">
-                    <property name="text">
-                     <string>Resolution</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <spacer name="verticalSpacer_5">
-                    <property name="orientation">
-                     <enum>Qt::Vertical</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>20</width>
-                      <height>40</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                 </layout>
-                </item>
-               </layout>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_16">
-                <property name="text">
-                 <string>Actors</string>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="0">
-               <widget class="QLabel" name="label_34">
-                <property name="text">
-                 <string>Outline</string>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="1">
-               <widget class="QTextEdit" name="outline">
-                <property name="maximumSize">
+              <item>
+               <widget class="MyLabel" name="actor">
+                <property name="minimumSize">
                  <size>
-                  <width>16777215</width>
-                  <height>100</height>
+                  <width>120</width>
+                  <height>180</height>
                  </size>
                 </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>120</width>
+                  <height>180</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="toolTip">
+                 <string>Click to change</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap resource="../MediaElch.qrc">:/img/man.png</pixmap>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
                </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="actorResolution">
+                <property name="text">
+                 <string>Resolution</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
               </item>
              </layout>
             </item>
@@ -1749,6 +1427,12 @@ QPushButton::hover {
  </widget>
  <customwidgets>
   <customwidget>
+   <class>TagCloud</class>
+   <extends>QWidget</extends>
+   <header>smallWidgets/TagCloud.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>MyLabel</class>
    <extends>QLabel</extends>
    <header>smallWidgets/MyLabel.h</header>
@@ -1780,26 +1464,11 @@ QPushButton::hover {
   <tabstop>sortTitle</tabstop>
   <tabstop>set</tabstop>
   <tabstop>tagline</tabstop>
-  <tabstop>released</tabstop>
-  <tabstop>runtime</tabstop>
   <tabstop>director</tabstop>
   <tabstop>writer</tabstop>
   <tabstop>certification</tabstop>
-  <tabstop>watched</tabstop>
   <tabstop>playcount</tabstop>
   <tabstop>lastPlayed</tabstop>
-  <tabstop>genres</tabstop>
-  <tabstop>buttonAddGenre</tabstop>
-  <tabstop>buttonRemoveGenre</tabstop>
-  <tabstop>studios</tabstop>
-  <tabstop>buttonAddStudio</tabstop>
-  <tabstop>buttonRemoveStudio</tabstop>
-  <tabstop>countries</tabstop>
-  <tabstop>buttonAddCountry</tabstop>
-  <tabstop>buttonRemoveCountry</tabstop>
-  <tabstop>actors</tabstop>
-  <tabstop>buttonAddActor</tabstop>
-  <tabstop>buttonRemoveActor</tabstop>
   <tabstop>videoCodec</tabstop>
   <tabstop>videoWidth</tabstop>
   <tabstop>videoHeight</tabstop>

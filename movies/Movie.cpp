@@ -1392,6 +1392,17 @@ void Movie::removeCountry(QString *country)
 }
 
 /**
+ * @brief Removes a production country from the movie
+ * @param country Country to remove
+ * @see Movie::countries
+ */
+void Movie::removeCountry(QString country)
+{
+    m_countries.removeAll(country);
+    setChanged(true);
+}
+
+/**
  * @brief Movie::removeGenre
  * @param genre
  * @see Movie::genres
@@ -1414,7 +1425,7 @@ void Movie::removeGenre(QString *genre)
  */
 void Movie::removeGenre(QString genre)
 {
-    m_genres.removeOne(genre);
+    m_genres.removeAll(genre);
     setChanged(true);
 }
 
@@ -1431,6 +1442,17 @@ void Movie::removeStudio(QString *studio)
             break;
         }
     }
+    setChanged(true);
+}
+
+/**
+ * @brief Removes a studio from the movie
+ * @param studio Studio to remove
+ * @see Movie::studios
+ */
+void Movie::removeStudio(QString studio)
+{
+    m_studios.removeAll(studio);
     setChanged(true);
 }
 

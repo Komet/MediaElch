@@ -35,6 +35,7 @@ public slots:
     void saveAll();
     void setEnabledTrue(Movie *movie = 0);
     void setDisabledTrue();
+    void setBigWindow(bool bigWindow);
 
 protected:
     void resizeEvent(QResizeEvent *event);
@@ -60,14 +61,14 @@ private slots:
     void chooseMovieClearArt();
     void chooseMovieCdArt();
     void movieNameChanged(QString text);
-    void addGenre();
-    void removeGenre();
+    void addGenre(QString genre);
+    void removeGenre(QString genre);
     void addActor();
     void removeActor();
-    void addStudio();
-    void removeStudio();
-    void addCountry();
-    void removeCountry();
+    void addStudio(QString studio);
+    void removeStudio(QString studio);
+    void addCountry(QString country);
+    void removeCountry(QString country);
     void onPreviewPoster();
     void onPreviewBackdrop();
     void onPreviewLogo();
@@ -100,13 +101,11 @@ private slots:
     void onOutlineChange();
 
     void onActorEdited(QTableWidgetItem *item);
-    void onCountryEdited(QTableWidgetItem *item);
-    void onGenreEdited(QTableWidgetItem *item);
-    void onStudioEdited(QTableWidgetItem *item);
     void onStreamDetailsEdited();
     void onReloadStreamDetails();
     void updateStreamDetails(bool reloadFromFile = false);
     void onDownloadTrailer();
+    void updateBackgroundImage();
 
 private:
     Ui::MovieWidget *ui;
@@ -121,6 +120,7 @@ private:
     QList<QWidget*> m_streamDetailsWidgets;
     QList< QList<QLineEdit*> > m_streamDetailsAudio;
     QList< QList<QLineEdit*> > m_streamDetailsSubtitles;
+    QLabel *m_backgroundLabel;
     void updateMovieInfo();
 };
 
