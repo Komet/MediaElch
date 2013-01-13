@@ -421,8 +421,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>615</width>
-               <height>615</height>
+               <width>60</width>
+               <height>16</height>
               </rect>
              </property>
              <layout class="QFormLayout" name="seasonsLayout">
@@ -556,6 +556,18 @@ QPushButton::hover {
         </item>
         <item>
          <widget class="SlidingStackedWidget" name="artStackedWidget">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="currentIndex">
            <number>0</number>
           </property>

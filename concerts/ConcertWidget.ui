@@ -650,6 +650,18 @@ QPushButton::hover {
           </item>
           <item>
            <widget class="SlidingStackedWidget" name="artStackedWidget">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="currentIndex">
              <number>0</number>
             </property>
