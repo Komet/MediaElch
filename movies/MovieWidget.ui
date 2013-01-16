@@ -477,9 +477,12 @@
            <attribute name="title">
             <string>Extended</string>
            </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_3" stretch="2,2,1,0">
+           <layout class="QVBoxLayout" name="verticalLayout_3" stretch="2,2,2,1,0">
             <item>
              <widget class="TagCloud" name="genreCloud" native="true"/>
+            </item>
+            <item>
+             <widget class="TagCloud" name="tagCloud" native="true"/>
             </item>
             <item>
              <widget class="TagCloud" name="countryCloud" native="true"/>

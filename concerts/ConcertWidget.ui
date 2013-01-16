@@ -308,6 +308,9 @@
              <widget class="TagCloud" name="genreCloud" native="true"/>
             </item>
             <item>
+             <widget class="TagCloud" name="tagCloud" native="true"/>
+            </item>
+            <item>
              <spacer name="verticalSpacer_2">
               <property name="orientation">
                <enum>Qt::Vertical</enum>

@@ -2,6 +2,7 @@
 #define TVSHOWWIDGETEPISODE_H
 
 #include <QLabel>
+#include <QPointer>
 #include <QTableWidgetItem>
 #include <QWidget>
 #include "data/TvShowEpisode.h"
@@ -68,7 +69,7 @@ private slots:
 
 private:
     Ui::TvShowWidgetEpisode *ui;
-    TvShowEpisode *m_episode;
+    QPointer<TvShowEpisode> m_episode;
     QLabel *m_savingWidget;
     QMovie *m_loadingMovie;
     DownloadManager *m_posterDownloadManager;

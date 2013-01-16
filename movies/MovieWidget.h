@@ -64,6 +64,8 @@ private slots:
     void movieNameChanged(QString text);
     void addGenre(QString genre);
     void removeGenre(QString genre);
+    void addTag(QString tag);
+    void removeTag(QString tag);
     void addActor();
     void removeActor();
     void addStudio(QString studio);
@@ -110,7 +112,7 @@ private slots:
 
 private:
     Ui::MovieWidget *ui;
-    Movie *m_movie;
+    QPointer<Movie> m_movie;
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;
     QImage m_currentPoster;

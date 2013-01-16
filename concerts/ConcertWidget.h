@@ -4,6 +4,7 @@
 #include <QContextMenuEvent>
 #include <QLabel>
 #include <QMenu>
+#include <QPointer>
 #include <QResizeEvent>
 #include <QTableWidgetItem>
 #include <QWidget>
@@ -56,6 +57,8 @@ private slots:
     void concertNameChanged(QString text);
     void addGenre(QString genre);
     void removeGenre(QString genre);
+    void addTag(QString tag);
+    void removeTag(QString tag);
     void onPreviewPoster();
     void onPreviewBackdrop();
     void onPreviewLogo();
@@ -85,7 +88,7 @@ private slots:
 
 private:
     Ui::ConcertWidget *ui;
-    Concert *m_concert;
+    QPointer<Concert> m_concert;
     DownloadManager *m_posterDownloadManager;
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;

@@ -73,6 +73,11 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     connect(ui->genreCloud, SIGNAL(activated(QString)), this, SLOT(addGenre(QString)));
     connect(ui->genreCloud, SIGNAL(deactivated(QString)), this, SLOT(removeGenre(QString)));
 
+    ui->tagCloud->setText(tr("Tags"));
+    ui->tagCloud->setPlaceholder(tr("Add Tag"));
+    connect(ui->tagCloud, SIGNAL(activated(QString)), this, SLOT(addTag(QString)));
+    connect(ui->tagCloud, SIGNAL(deactivated(QString)), this, SLOT(removeTag(QString)));
+
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
 
@@ -447,20 +452,21 @@ void ConcertWidget::updateConcertInfo()
     ui->watched->setChecked(m_concert->watched());
 
     QStringList certifications;
+    QStringList genres;
+    QStringList tags;
     certifications.append("");
     foreach (Concert *concert, Manager::instance()->concertModel()->concerts()) {
         if (!certifications.contains(concert->certification()) && !concert->certification().isEmpty())
             certifications.append(concert->certification());
+        genres.append(concert->genres());
+        tags.append(concert->tags());
     }
     certifications.sort();
     ui->certification->addItems(certifications);
     ui->certification->setCurrentIndex(certifications.indexOf(m_concert->certification()));
     ui->certification->blockSignals(false);
-
-    QStringList genres;
-    foreach (Concert *concert, Manager::instance()->concertModel()->concerts())
-        genres.append(concert->genres());
     ui->genreCloud->setTags(genres, m_concert->genres());
+    ui->tagCloud->setTags(tags, m_concert->tags());
 
     // Streamdetails
     updateStreamDetails();
@@ -983,6 +989,22 @@ void ConcertWidget::removeGenre(QString genre)
     if (!m_concert)
         return;
     m_concert->removeGenre(genre);
+    ui->buttonRevert->setVisible(true);
+}
+
+void ConcertWidget::addTag(QString tag)
+{
+    if (!m_concert)
+        return;
+    m_concert->addTag(tag);
+    ui->buttonRevert->setVisible(true);
+}
+
+void ConcertWidget::removeTag(QString tag)
+{
+    if (!m_concert)
+        return;
+    m_concert->removeTag(tag);
     ui->buttonRevert->setVisible(true);
 }
 

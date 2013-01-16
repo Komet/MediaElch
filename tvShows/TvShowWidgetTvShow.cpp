@@ -66,6 +66,11 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     connect(ui->genreCloud, SIGNAL(activated(QString)), this, SLOT(onAddGenre(QString)));
     connect(ui->genreCloud, SIGNAL(deactivated(QString)), this, SLOT(onRemoveGenre(QString)));
 
+    ui->tagCloud->setText(tr("Tags"));
+    ui->tagCloud->setPlaceholder(tr("Add Tag"));
+    connect(ui->tagCloud, SIGNAL(activated(QString)), this, SLOT(onAddTag(QString)));
+    connect(ui->tagCloud, SIGNAL(deactivated(QString)), this, SLOT(onRemoveTag(QString)));
+
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
     m_savingWidget = new QLabel(this);
@@ -1002,6 +1007,22 @@ void TvShowWidgetTvShow::onRemoveGenre(QString genre)
     if (!m_show)
         return;
     m_show->removeGenre(genre);
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetTvShow::onAddTag(QString tag)
+{
+    if (!m_show)
+        return;
+    m_show->addTag(tag);
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetTvShow::onRemoveTag(QString tag)
+{
+    if (!m_show)
+        return;
+    m_show->removeTag(tag);
     ui->buttonRevert->setVisible(true);
 }
 

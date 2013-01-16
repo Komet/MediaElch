@@ -75,6 +75,11 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->genreCloud, SIGNAL(activated(QString)), this, SLOT(addGenre(QString)));
     connect(ui->genreCloud, SIGNAL(deactivated(QString)), this, SLOT(removeGenre(QString)));
 
+    ui->tagCloud->setText(tr("Tags"));
+    ui->tagCloud->setPlaceholder(tr("Add Tag"));
+    connect(ui->tagCloud, SIGNAL(activated(QString)), this, SLOT(addTag(QString)));
+    connect(ui->tagCloud, SIGNAL(deactivated(QString)), this, SLOT(removeTag(QString)));
+
     ui->countryCloud->setText(tr("Countries"));
     ui->countryCloud->setPlaceholder(tr("Add Country"));
     connect(ui->countryCloud, SIGNAL(activated(QString)), this, SLOT(addCountry(QString)));
@@ -598,18 +603,18 @@ void MovieWidget::updateMovieInfo()
     ui->actors->blockSignals(false);
 
     QStringList genres;
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies())
-        genres << movie->genres();
-    ui->genreCloud->setTags(genres, m_movie->genres());
-
+    QStringList tags;
     QStringList countries;
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies())
-        countries << movie->countries();
-    ui->countryCloud->setTags(countries, m_movie->countries());
-
     QStringList studios;
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies())
+    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+        genres << movie->genres();
+        tags << movie->tags();
+        countries << movie->countries();
         studios << movie->studios();
+    }
+    ui->genreCloud->setTags(genres, m_movie->genres());
+    ui->tagCloud->setTags(tags, m_movie->tags());
+    ui->countryCloud->setTags(countries, m_movie->countries());
     ui->studioCloud->setTags(m_movie->studios(), m_movie->studios());
     QCompleter *completer = new QCompleter(studios, this);
     completer->setCaseSensitivity(Qt::CaseInsensitive);
@@ -1237,6 +1242,22 @@ void MovieWidget::removeGenre(QString genre)
     if (!m_movie)
         return;
     m_movie->removeGenre(genre);
+    ui->buttonRevert->setVisible(true);
+}
+
+void MovieWidget::addTag(QString tag)
+{
+    if (!m_movie)
+        return;
+    m_movie->addTag(tag);
+    ui->buttonRevert->setVisible(true);
+}
+
+void MovieWidget::removeTag(QString tag)
+{
+    if (!m_movie)
+        return;
+    m_movie->removeTag(tag);
     ui->buttonRevert->setVisible(true);
 }
 

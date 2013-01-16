@@ -3,6 +3,7 @@
 
 #include <QLabel>
 #include <QMovie>
+#include <QPointer>
 #include <QTableWidgetItem>
 #include <QWidget>
 #include "data/TvShow.h"
@@ -44,6 +45,8 @@ protected:
 private slots:
     void onAddGenre(QString genre);
     void onRemoveGenre(QString removeGenre);
+    void onAddTag(QString tag);
+    void onRemoveTag(QString tag);
     void onAddActor();
     void onRemoveActor();
     void onInfoLoadDone(TvShow *show);
@@ -80,7 +83,7 @@ private slots:
 
 private:
     Ui::TvShowWidgetTvShow *ui;
-    TvShow *m_show;
+    QPointer<TvShow> m_show;
     QLabel *m_savingWidget;
     QMovie *m_loadingMovie;
     DownloadManager *m_posterDownloadManager;
