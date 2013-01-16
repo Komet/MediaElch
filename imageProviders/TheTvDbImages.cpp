@@ -103,7 +103,7 @@ void TheTvDbImages::loadTvShowData(QString tvdbId, int type)
     if (type == TypeShowThumbnail)
         m_tvdb->loadTvShowEpisodeData(tvdbId, m_dummyEpisode, infosToLoad);
     else
-        m_tvdb->loadTvShowData(tvdbId, m_dummyShow, false, infosToLoad);
+        m_tvdb->loadTvShowData(tvdbId, m_dummyShow, UpdateShow, infosToLoad);
 }
 
 /**

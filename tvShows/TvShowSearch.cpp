@@ -31,6 +31,7 @@ TvShowSearch::TvShowSearch(QWidget *parent) :
     connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(onSearch()));
     connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(onResultClicked(QTableWidgetItem*)));
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
+    connect(ui->comboUpdate, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboIndexChanged()));
 
     ui->chkActors->setMyData(TvShowScraperInfos::Actors);
     ui->chkBanner->setMyData(TvShowScraperInfos::Banner);
@@ -48,6 +49,7 @@ TvShowSearch::TvShowSearch(QWidget *parent) :
     ui->chkThumbnail->setMyData(TvShowScraperInfos::Thumbnail);
     ui->chkTitle->setMyData(TvShowScraperInfos::Title);
     ui->chkWriter->setMyData(TvShowScraperInfos::Writer);
+    ui->chkExtraArts->setMyData(TvShowScraperInfos::ExtraArts);
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0)
@@ -93,8 +95,8 @@ int TvShowSearch::exec(QString searchString)
     resize(newSize);
 
     ui->searchString->setText(searchString);
-    onSearch();
     onChkToggled();
+    onSearch();
     return QDialog::exec();
 }
 
@@ -149,13 +151,17 @@ void TvShowSearch::onResultClicked(QTableWidgetItem *item)
     this->accept();
 }
 
-/**
- * @brief Toggles the visibility of the "Update all episodes" checkbox
- * @param visible Visibility
- */
-void TvShowSearch::setChkUpdateAllVisible(bool visible)
+void TvShowSearch::setSearchType(TvShowType type)
 {
-    ui->chkUpdateAllEpisodes->setVisible(visible);
+    if (type == TypeTvShow) {
+        ui->comboUpdate->setVisible(true);
+        ui->comboUpdate->setCurrentIndex(0);
+        onComboIndexChanged();
+    } else if (type == TypeEpisode) {
+        ui->comboUpdate->setVisible(false);
+        ui->comboUpdate->setCurrentIndex(2);
+        onComboIndexChanged();
+    }
 }
 
 /*** GETTER ***/
@@ -170,24 +176,14 @@ QString TvShowSearch::scraperId()
     return m_scraperId;
 }
 
-/**
- * @brief Returns the state of the "Update all episodes" checkbox
- * @return Is update all episodes checked
- */
-bool TvShowSearch::updateAll()
-{
-    qDebug() << "Entered, updateAll=" << ui->chkUpdateAllEpisodes->isChecked();
-    return ui->chkUpdateAllEpisodes->isChecked();
-}
-
 void TvShowSearch::onChkToggled()
 {
     m_infosToLoad.clear();
     bool allToggled = true;
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
-        if (box->isChecked() && box->myData().toInt() > 0)
+        if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled())
             m_infosToLoad.append(box->myData().toInt());
-        if (!box->isChecked() && box->myData().toInt() > 0)
+        if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled())
             allToggled = false;
     }
 
@@ -198,7 +194,7 @@ void TvShowSearch::onChkAllToggled()
 {
     bool checked = ui->chkUnCheckAll->isChecked();
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
-        if (box->myData().toInt() > 0)
+        if (box->myData().toInt() > 0 && box->isEnabled())
             box->setChecked(checked);
     }
     onChkToggled();
@@ -207,4 +203,62 @@ void TvShowSearch::onChkAllToggled()
 QList<int> TvShowSearch::infosToLoad()
 {
     return m_infosToLoad;
+}
+
+TvShowUpdateType TvShowSearch::updateType()
+{
+    if (ui->comboUpdate->currentIndex() == 0)
+        return UpdateShow;
+    if (ui->comboUpdate->currentIndex() == 1)
+        return UpdateShowAndNewEpisodes;
+    if (ui->comboUpdate->currentIndex() == 2)
+        return UpdateShowAndAllEpisodes;
+    if (ui->comboUpdate->currentIndex() == 3)
+        return UpdateNewEpisodes;
+    return UpdateAllEpisodes;
+}
+
+void TvShowSearch::onComboIndexChanged()
+{
+    TvShowUpdateType type = updateType();
+    if (type == UpdateShow) {
+        ui->chkGenres->setEnabled(true);
+        ui->chkGenres->setEnabled(true);
+        ui->chkActors->setEnabled(true);
+        ui->chkSeasonPoster->setEnabled(true);
+        ui->chkBanner->setEnabled(true);
+        ui->chkFanart->setEnabled(true);
+        ui->chkPoster->setEnabled(true);
+        ui->chkExtraArts->setEnabled(true);
+        ui->chkThumbnail->setEnabled(false);
+        ui->chkDirector->setEnabled(false);
+        ui->chkSeasonEpisode->setEnabled(false);
+        ui->chkWriter->setEnabled(false);
+    } else if (type == UpdateShowAndAllEpisodes || type == UpdateShowAndNewEpisodes) {
+        ui->chkGenres->setEnabled(true);
+        ui->chkGenres->setEnabled(true);
+        ui->chkActors->setEnabled(true);
+        ui->chkSeasonPoster->setEnabled(true);
+        ui->chkBanner->setEnabled(true);
+        ui->chkFanart->setEnabled(true);
+        ui->chkPoster->setEnabled(true);
+        ui->chkExtraArts->setEnabled(true);
+        ui->chkThumbnail->setEnabled(true);
+        ui->chkDirector->setEnabled(true);
+        ui->chkSeasonEpisode->setEnabled(true);
+        ui->chkWriter->setEnabled(true);
+    } else {
+        ui->chkGenres->setEnabled(false);
+        ui->chkActors->setEnabled(false);
+        ui->chkSeasonPoster->setEnabled(false);
+        ui->chkBanner->setEnabled(false);
+        ui->chkFanart->setEnabled(false);
+        ui->chkPoster->setEnabled(false);
+        ui->chkExtraArts->setEnabled(false);
+        ui->chkThumbnail->setEnabled(true);
+        ui->chkDirector->setEnabled(true);
+        ui->chkSeasonEpisode->setEnabled(true);
+        ui->chkWriter->setEnabled(true);
+    }
+    onChkToggled();
 }

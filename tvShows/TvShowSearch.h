@@ -21,12 +21,12 @@ public:
     ~TvShowSearch();
     QString scraperId();
     QList<int> infosToLoad();
+    void setSearchType(TvShowType type);
+    TvShowUpdateType updateType();
 
 public slots:
     int exec(QString searchString);
     static TvShowSearch *instance(QWidget *parent = 0);
-    void setChkUpdateAllVisible(bool visible);
-    bool updateAll();
 
 private slots:
     void onSearch();
@@ -34,6 +34,7 @@ private slots:
     void onResultClicked(QTableWidgetItem *item);
     void onChkToggled();
     void onChkAllToggled();
+    void onComboIndexChanged();
 
 private:
     Ui::TvShowSearch *ui;

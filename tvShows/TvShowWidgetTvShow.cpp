@@ -474,11 +474,11 @@ void TvShowWidgetTvShow::onStartScraperSearch()
     }
     emit sigSetActionSaveEnabled(false, WidgetTvShows);
     emit sigSetActionSearchEnabled(false, WidgetTvShows);
-    TvShowSearch::instance()->setChkUpdateAllVisible(true);
+    TvShowSearch::instance()->setSearchType(TypeTvShow);
     TvShowSearch::instance()->exec(m_show->name());
     if (TvShowSearch::instance()->result() == QDialog::Accepted) {
         onSetEnabled(false);
-        m_show->loadData(TvShowSearch::instance()->scraperId(), Manager::instance()->tvScrapers().at(0), TvShowSearch::instance()->updateAll(), TvShowSearch::instance()->infosToLoad());
+        m_show->loadData(TvShowSearch::instance()->scraperId(), Manager::instance()->tvScrapers().at(0), TvShowSearch::instance()->updateType(), TvShowSearch::instance()->infosToLoad());
         connect(m_show, SIGNAL(sigLoaded(TvShow*)), this, SLOT(onInfoLoadDone(TvShow*)), Qt::UniqueConnection);
     } else {
         emit sigSetActionSearchEnabled(true, WidgetTvShows);
@@ -494,7 +494,7 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow *show)
 {
     QList<int> types;
     types << TypeClearArt << TypeLogo << TypeCharacterArt;
-    if (!show->tvdbId().isEmpty() && !types.isEmpty()) {
+    if (!show->tvdbId().isEmpty() && !types.isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::ExtraArts)) {
         Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types);
         connect(Manager::instance()->fanartTv(), SIGNAL(sigImagesLoaded(TvShow*,QMap<int,QList<Poster> >)), this, SLOT(onLoadDone(TvShow*,QMap<int,QList<Poster> >)), Qt::UniqueConnection);
     } else {
@@ -523,7 +523,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > post
         qDebug() << "Show has changed";
 
     int downloadsSize = 0;
-    if (show->posters().size() > 0) {
+    if (show->posters().size() > 0 && show->infosToLoad().contains(TvShowScraperInfos::Poster)) {
         emit sigSetActionSaveEnabled(false, WidgetTvShows);
         DownloadManagerElement d;
         d.imageType = TypePoster;
@@ -537,7 +537,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > post
         }
     }
 
-    if (show->backdrops().size() > 0) {
+    if (show->backdrops().size() > 0 && show->infosToLoad().contains(TvShowScraperInfos::Fanart)) {
         emit sigSetActionSaveEnabled(false, WidgetTvShows);
         DownloadManagerElement d;
         d.imageType = TypeBackdrop;
@@ -551,7 +551,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > post
         }
     }
 
-    if (show->banners().size() > 0) {
+    if (show->banners().size() > 0 && show->infosToLoad().contains(TvShowScraperInfos::Banner)) {
         emit sigSetActionSaveEnabled(false, WidgetTvShows);
         DownloadManagerElement d;
         d.imageType = TypeBanner;

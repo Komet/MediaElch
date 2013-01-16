@@ -92,6 +92,7 @@ public:
     QString nfoContent() const;
     int databaseId() const;
     bool syncNeeded() const;
+    QList<int> infosToLoad() const;
 
     void setName(QString name);
     void setShowTitle(QString title);
@@ -137,7 +138,7 @@ public:
     void removeTag(QString tag);
 
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo = true);
-    void loadData(QString id, TvScraperInterface *tvScraperInterface, bool updateAllEpisodes, QList<int> infosToLoad);
+    void loadData(QString id, TvScraperInterface *tvScraperInterface, TvShowUpdateType type, QList<int> infosToLoad);
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     void clearImages();
 
@@ -190,6 +191,7 @@ private:
     QString m_nfoContent;
     int m_databaseId;
     bool m_syncNeeded;
+    QList<int> m_infosToLoad;
 };
 
 QDebug operator<<(QDebug dbg, const TvShow &show);

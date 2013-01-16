@@ -499,7 +499,7 @@ void TvShowWidgetEpisode::onStartScraperSearch()
     }
     emit sigSetActionSearchEnabled(false, WidgetTvShows);
     emit sigSetActionSaveEnabled(false, WidgetTvShows);
-    TvShowSearch::instance()->setChkUpdateAllVisible(false);
+    TvShowSearch::instance()->setSearchType(TypeEpisode);
     TvShowSearch::instance()->exec(m_episode->showTitle());
     if (TvShowSearch::instance()->result() == QDialog::Accepted) {
         onSetEnabled(false);

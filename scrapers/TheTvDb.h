@@ -19,7 +19,7 @@ public:
     explicit TheTvDb(QObject *parent = 0);
     QString name();
     void search(QString searchStr);
-    void loadTvShowData(QString id, TvShow *show, bool updateAllEpisodes, QList<int> infosToLoad);
+    void loadTvShowData(QString id, TvShow *show, TvShowUpdateType updateType, QList<int> infosToLoad);
     void loadTvShowEpisodeData(QString id, TvShowEpisode *episode, QList<int> infosToLoad);
     bool hasSettings();
     void loadSettings();
@@ -55,14 +55,14 @@ private:
     QStringList m_zipMirrors;
     TvShow *m_currentShow;
     TvShowEpisode *m_currentEpisode;
-    bool m_updateAllEpisodes;
+    TvShowUpdateType m_updateType;
     QString m_currentId;
     QList<int> m_infosToLoad;
 
     QNetworkAccessManager *qnam();
     void setMirrors();
     QList<ScraperSearchResult> parseSearch(QString xml);
-    void parseAndAssignInfos(QString xml, TvShow *show, bool updateAllEpisodes);
+    void parseAndAssignInfos(QString xml, TvShow *show, TvShowUpdateType updateType);
     void parseAndAssignActors(QString xml, TvShow *show);
     void parseAndAssignBanners(QString xml, TvShow *show);
     void parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *episode);

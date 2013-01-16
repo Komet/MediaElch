@@ -154,14 +154,13 @@ bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFro
  * @brief Loads the shows data using a scraper
  * @param id ID of the show for the given scraper
  * @param tvScraperInterface Scraper to use
- * @param updateAllEpisodes Force update all child episodes (regardless if they already have infos)
  */
-void TvShow::loadData(QString id, TvScraperInterface *tvScraperInterface, bool updateAllEpisodes, QList<int> infosToLoad)
+void TvShow::loadData(QString id, TvScraperInterface *tvScraperInterface, TvShowUpdateType type, QList<int> infosToLoad)
 {
-    qDebug() << "Entered, id=" << id << "scraperInterface" << tvScraperInterface->name() << "updateAllEpisodes" << updateAllEpisodes;
     if (tvScraperInterface->name() == "The TV DB")
         setTvdbId(id);
-    tvScraperInterface->loadTvShowData(id, this, updateAllEpisodes, infosToLoad);
+    m_infosToLoad = infosToLoad;
+    tvScraperInterface->loadTvShowData(id, this, type, infosToLoad);
 }
 
 /**
@@ -235,6 +234,11 @@ bool TvShow::hasNewEpisodesInSeason(QString season) const
 }
 
 /*** GETTER ***/
+
+QList<int> TvShow::infosToLoad() const
+{
+    return m_infosToLoad;
+}
 
 /**
  * @brief TvShow::infoLoaded

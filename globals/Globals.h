@@ -262,6 +262,10 @@ namespace DataFileType {
     const int TvShowEpisodeThumb = 22;
 }
 
+enum TvShowUpdateType {
+    UpdateShow, UpdateShowAndAllEpisodes, UpdateShowAndNewEpisodes, UpdateNewEpisodes, UpdateAllEpisodes
+};
+
 // Debugging
 #if defined(Q_CC_GNU) && QT_VERSION < 0x050000
 #    if defined( qDebug )

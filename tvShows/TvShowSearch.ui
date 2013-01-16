@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>543</height>
+    <height>564</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -272,6 +272,16 @@
          </widget>
         </item>
         <item>
+         <widget class="MyCheckBox" name="chkExtraArts">
+          <property name="text">
+           <string>Extra Arts</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="Line" name="line">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
@@ -309,10 +319,32 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
-      <widget class="QCheckBox" name="chkUpdateAllEpisodes">
-       <property name="text">
-        <string>Update all episodes</string>
-       </property>
+      <widget class="QComboBox" name="comboUpdate">
+       <item>
+        <property name="text">
+         <string>Update TV Show only</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Update TV Show and new Episodes</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Update TV Show and all Episodes</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Update new Episodes</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Update all episodes</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item>
