@@ -323,7 +323,7 @@ void TheTvDb::onBannersFinished()
  */
 void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, bool updateAllEpisodes)
 {
-    show->clear();
+    show->clear(m_infosToLoad);
     QDomDocument domDoc;
     domDoc.setContent(xml);
     if (!domDoc.elementsByTagName("Series").isEmpty()) {

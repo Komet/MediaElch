@@ -81,7 +81,9 @@ void Movie::clear()
           << MovieScraperInfos::Studios
           << MovieScraperInfos::Countries
           << MovieScraperInfos::Writer
-          << MovieScraperInfos::Director;
+          << MovieScraperInfos::Director
+          << MovieScraperInfos::Tags
+          << MovieScraperInfos::ExtraArts;
     clear(infos);
     m_nfoContent.clear();
 }
@@ -94,14 +96,19 @@ void Movie::clear(QList<int> infos)
 {
     if (infos.contains(MovieScraperInfos::Actors))
         m_actors.clear();
-    if (infos.contains(MovieScraperInfos::Backdrop))
+    if (infos.contains(MovieScraperInfos::Backdrop)) {
         m_backdrops.clear();
+        m_backdropImage = QImage();
+        m_backdropImageChanged = false;
+    }
     if (infos.contains(MovieScraperInfos::Countries))
         m_countries.clear();
     if (infos.contains(MovieScraperInfos::Genres))
         m_genres.clear();
     if (infos.contains(MovieScraperInfos::Poster)){
         m_posters.clear();
+        m_posterImage = QImage();
+        m_posterImageChanged = false;
         m_numPrimaryLangPosters = 0;
     }
     if (infos.contains(MovieScraperInfos::Studios))
@@ -130,6 +137,16 @@ void Movie::clear(QList<int> infos)
         m_writer = "";
     if (infos.contains(MovieScraperInfos::Director))
         m_director = "";
+    if (infos.contains(MovieScraperInfos::Tags))
+        m_tags.clear();
+    if (infos.contains(MovieScraperInfos::ExtraArts)) {
+        m_logoImage = QImage();
+        m_logoImageChanged = false;
+        m_clearArtImage = QImage();
+        m_clearArtImageChanged = false;
+        m_cdArtImage = QImage();
+        m_cdArtImageChanged = false;
+    }
 }
 
 /**
@@ -768,6 +785,11 @@ bool Movie::syncNeeded() const
     return m_syncNeeded;
 }
 
+QStringList Movie::tags() const
+{
+    return m_tags;
+}
+
 /*** SETTER ***/
 
 /**
@@ -1272,6 +1294,12 @@ void Movie::addStudio(QString studio)
     setChanged(true);
 }
 
+void Movie::addTag(QString tag)
+{
+    m_tags.append(tag);
+    setChanged(true);
+}
+
 /**
  * @brief Adds a poster to the movie
  * @param poster Poster to add
@@ -1453,6 +1481,12 @@ void Movie::removeStudio(QString *studio)
 void Movie::removeStudio(QString studio)
 {
     m_studios.removeAll(studio);
+    setChanged(true);
+}
+
+void Movie::removeTag(QString tag)
+{
+    m_tags.removeAll(tag);
     setChanged(true);
 }
 

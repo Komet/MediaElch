@@ -83,6 +83,7 @@ public:
     QStringList countries() const;
     QList<QString*> countriesPointer();
     QStringList studios() const;
+    QStringList tags() const;
     QList<QString*> studiosPointer();
     QUrl trailer() const;
     QList<Actor> actors() const;
@@ -144,6 +145,7 @@ public:
     void setCountries(QStringList countries);
     void setStudios(QStringList studios);
     void addStudio(QString studio);
+    void addTag(QString tag);
     void setTrailer(QUrl trailer);
     void setActors(QList<Actor> actors);
     void addActor(Actor actor);
@@ -190,6 +192,7 @@ public:
     void removeStudio(QString studio);
     void removeGenre(QString *genre);
     void removeGenre(QString genre);
+    void removeTag(QString tag);
 
     void clearImages();
 
@@ -217,6 +220,7 @@ private:
     QStringList m_genres;
     QStringList m_countries;
     QStringList m_studios;
+    QStringList m_tags;
     QUrl m_trailer;
     QList<Actor> m_actors;
     int m_playcount;

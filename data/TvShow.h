@@ -40,6 +40,7 @@ class TvShow : public QObject
 public:
     explicit TvShow(QString dir = QString(), QObject *parent = 0);
     void clear();
+    void clear(QList<int> infos);
     void addEpisode(TvShowEpisode *episode);
     int episodeCount();
 
@@ -49,6 +50,7 @@ public:
     qreal rating() const;
     QDate firstAired() const;
     QStringList genres() const;
+    QStringList tags() const;
     QList<QString*> genresPointer();
     QString certification() const;
     QString network() const;
@@ -97,6 +99,7 @@ public:
     void setFirstAired(QDate aired);
     void setGenres(QStringList genres);
     void addGenre(QString genre);
+    void addTag(QString tag);
     void setCertification(QString certification);
     void setNetwork(QString network);
     void setOverview(QString overview);
@@ -131,6 +134,7 @@ public:
 
     void removeActor(Actor *actor);
     void removeGenre(QString genre);
+    void removeTag(QString tag);
 
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo = true);
     void loadData(QString id, TvScraperInterface *tvScraperInterface, bool updateAllEpisodes, QList<int> infosToLoad);
@@ -151,6 +155,7 @@ private:
     qreal m_rating;
     QDate m_firstAired;
     QStringList m_genres;
+    QStringList m_tags;
     QString m_certification;
     QString m_network;
     QString m_overview;

@@ -61,6 +61,7 @@ public:
     int runtime() const;
     QString certification() const;
     QStringList genres() const;
+    QStringList tags() const;
     QList<QString*> genresPointer();
     QUrl trailer() const;
     QStringList files() const;
@@ -108,6 +109,7 @@ public:
     void setGenres(QStringList genres);
     void setTrailer(QUrl trailer);
     void addGenre(QString genre);
+    void addTag(QString tag);
     void setPlayCount(int playcount);
     void setLastPlayed(QDateTime lastPlayed);
     void setPosters(QList<Poster> posters);
@@ -135,6 +137,7 @@ public:
     void setSyncNeeded(bool syncNeeded);
 
     void removeGenre(QString genre);
+    void removeTag(QString tag);
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
@@ -162,6 +165,7 @@ private:
     int m_runtime;
     QString m_certification;
     QStringList m_genres;
+    QStringList m_tags;
     QUrl m_trailer;
     int m_playcount;
     QDateTime m_lastPlayed;

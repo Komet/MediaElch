@@ -169,6 +169,7 @@ namespace MovieScraperInfos {
     const int Writer        = 15;
     const int Director      = 16;
     const int ExtraArts     = 17;
+    const int Tags          = 18;
 }
 
 namespace TvShowScraperInfos {
@@ -188,6 +189,8 @@ namespace TvShowScraperInfos {
     const int Thumbnail     = 14;
     const int Title         = 15;
     const int Writer        = 16;
+    const int Tags          = 17;
+    const int ExtraArts     = 18;
 }
 
 namespace ConcertScraperInfos {
@@ -203,6 +206,7 @@ namespace ConcertScraperInfos {
     const int Backdrop      = 10;
     const int Genres        = 11;
     const int ExtraArts     = 12;
+    const int Tags          = 13;
 }
 
 // The filter numbers have to unique for MovieFilters, TvShowFilters and ConcertFilters

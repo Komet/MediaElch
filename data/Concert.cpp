@@ -70,7 +70,9 @@ void Concert::clear()
           << ConcertScraperInfos::Overview
           << ConcertScraperInfos::Poster
           << ConcertScraperInfos::Backdrop
-          << ConcertScraperInfos::Genres;
+          << ConcertScraperInfos::Genres
+          << ConcertScraperInfos::Tags
+          << ConcertScraperInfos::ExtraArts;
     clear(infos);
     m_nfoContent.clear();
 }
@@ -81,12 +83,18 @@ void Concert::clear()
  */
 void Concert::clear(QList<int> infos)
 {
-    if (infos.contains(ConcertScraperInfos::Backdrop))
+    if (infos.contains(ConcertScraperInfos::Backdrop)) {
         m_backdrops.clear();
+        m_backdropImage = QImage();
+        m_backdropImageChanged = false;
+    }
     if (infos.contains(ConcertScraperInfos::Genres))
         m_genres.clear();
-    if (infos.contains(ConcertScraperInfos::Poster))
+    if (infos.contains(ConcertScraperInfos::Poster)) {
         m_posters.clear();
+        m_posterImage = QImage();
+        m_posterImageChanged = false;
+    }
     if (infos.contains(ConcertScraperInfos::Overview))
         m_overview = "";
     if (infos.contains(ConcertScraperInfos::Rating))
@@ -101,6 +109,16 @@ void Concert::clear(QList<int> infos)
         m_trailer = "";
     if (infos.contains(ConcertScraperInfos::Certification))
         m_certification = "";
+    if (infos.contains(ConcertScraperInfos::Tags))
+        m_tags.clear();
+    if (infos.contains(ConcertScraperInfos::ExtraArts)) {
+        m_cdArtImage = QImage();
+        m_cdArtImageChanged = false;
+        m_clearArtImage = QImage();
+        m_clearArtImageChanged = false;
+        m_logoImage = QImage();
+        m_logoImageChanged = false;
+    }
 }
 
 /**
@@ -671,6 +689,11 @@ bool Concert::syncNeeded() const
     return m_syncNeeded;
 }
 
+QStringList Concert::tags() const
+{
+    return m_tags;
+}
+
 /*** SETTER ***/
 
 /**
@@ -987,6 +1010,12 @@ void Concert::addGenre(QString genre)
     setChanged(true);
 }
 
+void Concert::addTag(QString tag)
+{
+    m_tags.append(tag);
+    setChanged(true);
+}
+
 /**
  * @brief Adds a poster to the concert
  * @param poster Poster to add
@@ -1081,5 +1110,11 @@ void Concert::setSyncNeeded(bool syncNeeded)
 void Concert::removeGenre(QString genre)
 {
     m_genres.removeAll(genre);
+    setChanged(true);
+}
+
+void Concert::removeTag(QString tag)
+{
+    m_tags.removeAll(tag);
     setChanged(true);
 }

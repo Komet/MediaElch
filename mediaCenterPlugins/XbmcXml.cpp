@@ -77,6 +77,8 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie)
         xml.writeTextElement("genre", genre);
     foreach (const QString &country, movie->countries())
         xml.writeTextElement("country", country);
+    foreach (const QString &tag, movie->tags())
+        xml.writeTextElement("tag", tag);
     foreach (const Actor &actor, movie->actors()) {
         xml.writeStartElement("actor");
         xml.writeTextElement("name", actor.name);
@@ -345,6 +347,8 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
         movie->addGenre(domDoc.elementsByTagName("genre").at(i).toElement().text());
     for (int i=0, n=domDoc.elementsByTagName("country").size() ; i<n ; i++)
         movie->addCountry(domDoc.elementsByTagName("country").at(i).toElement().text());
+    for (int i=0, n=domDoc.elementsByTagName("tag").size() ; i<n ; i++)
+        movie->addTag(domDoc.elementsByTagName("tag").at(i).toElement().text());
     for (int i=0, n=domDoc.elementsByTagName("actor").size() ; i<n ; i++) {
         Actor a;
         a.imageHasChanged = false;
@@ -689,6 +693,8 @@ void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert)
     xml.writeTextElement("watched", (concert->watched()) ? "true" : "false");
     foreach (const QString &genre, concert->genres())
         xml.writeTextElement("genre", genre);
+    foreach (const QString &tag, concert->tags())
+        xml.writeTextElement("tag", tag);
     foreach (const Poster &poster, concert->posters()) {
         xml.writeStartElement("thumb");
         xml.writeAttribute("preview", poster.thumbUrl.toString());
@@ -864,6 +870,8 @@ bool XbmcXml::loadConcert(Concert *concert, QString initialNfoContent)
 
     for (int i=0, n=domDoc.elementsByTagName("genre").size() ; i<n ; i++)
         concert->addGenre(domDoc.elementsByTagName("genre").at(i).toElement().text());
+    for (int i=0, n=domDoc.elementsByTagName("tag").size() ; i<n ; i++)
+        concert->addTag(domDoc.elementsByTagName("tag").at(i).toElement().text());
     for (int i=0, n=domDoc.elementsByTagName("thumb").size() ; i<n ; i++) {
         QString parentTag = domDoc.elementsByTagName("thumb").at(i).parentNode().toElement().tagName();
         if (parentTag == "movie") {
@@ -1341,6 +1349,8 @@ bool XbmcXml::loadTvShow(TvShow *show, QString initialNfoContent)
 
     for (int i=0, n=domDoc.elementsByTagName("genre").size() ; i<n ; i++)
         show->addGenre(domDoc.elementsByTagName("genre").at(i).toElement().text());
+    for (int i=0, n=domDoc.elementsByTagName("tag").size() ; i<n ; i++)
+        show->addTag(domDoc.elementsByTagName("tag").at(i).toElement().text());
     for (int i=0, n=domDoc.elementsByTagName("actor").size() ; i<n ; i++) {
         Actor a;
         a.imageHasChanged = false;
@@ -1657,6 +1667,8 @@ void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show)
 
     foreach (const QString &genre, show->genres())
         xml.writeTextElement("genre", genre);
+    foreach (const QString &tag, show->tags())
+        xml.writeTextElement("tag", tag);
 
     foreach (const Actor &actor, show->actors()) {
         xml.writeStartElement("actor");
