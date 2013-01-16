@@ -1,7 +1,9 @@
 #ifndef TAGCLOUD_H
 #define TAGCLOUD_H
 
+#include <QCompleter>
 #include <QMouseEvent>
+#include <QPointer>
 #include <QWidget>
 #include "smallWidgets/Badge.h"
 
@@ -26,6 +28,7 @@ public:
     void setPlaceholder(const QString &placeholder);
     void setBadgeType(TagCloud::CloudBadgeType type);
     void clear();
+    void setCompleter(QCompleter *completer);
 
 signals:
     void activated(QString);
@@ -46,6 +49,7 @@ private:
     QStringList m_tags;
     QStringList m_activeTags;
     QList<Badge*> m_badges;
+    QPointer<QCompleter> m_completer;
     void drawTags();
 
 };

@@ -23,6 +23,7 @@ TagCloud::~TagCloud()
 
 void TagCloud::clear()
 {
+    ui->lineEdit->clear();
     m_tags.clear();
     m_activeTags.clear();
     drawTags();
@@ -186,4 +187,14 @@ void TagCloud::setPlaceholder(const QString &placeholder)
 void TagCloud::setBadgeType(TagCloud::CloudBadgeType type)
 {
     m_badgeType = type;
+}
+
+void TagCloud::setCompleter(QCompleter *completer)
+{
+    if (m_completer)
+        m_completer->deleteLater();
+    m_completer = completer;
+    ui->lineEdit->setCompleter(m_completer);
+    connect(m_completer, SIGNAL(activated(QString)), this, SLOT(addTag()));
+    connect(m_completer, SIGNAL(activated(QString)), ui->lineEdit, SLOT(clear()), Qt::QueuedConnection);
 }

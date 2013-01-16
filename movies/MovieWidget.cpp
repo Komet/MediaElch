@@ -607,7 +607,13 @@ void MovieWidget::updateMovieInfo()
         countries << movie->countries();
     ui->countryCloud->setTags(countries, m_movie->countries());
 
+    QStringList studios;
+    foreach (Movie *movie, Manager::instance()->movieModel()->movies())
+        studios << movie->studios();
     ui->studioCloud->setTags(m_movie->studios(), m_movie->studios());
+    QCompleter *completer = new QCompleter(studios, this);
+    completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->studioCloud->setCompleter(completer);
 
     // Streamdetails
     updateStreamDetails();

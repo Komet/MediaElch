@@ -1,6 +1,7 @@
 #ifndef MOVIEWIDGET_H
 #define MOVIEWIDGET_H
 
+#include <QCompleter>
 #include <QLabel>
 #include <QMenu>
 #include <QMutex>
