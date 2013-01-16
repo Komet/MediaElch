@@ -1,6 +1,7 @@
 #ifndef MOVIECONTROLLER_H
 #define MOVIECONTROLLER_H
 
+#include <QMutex>
 #include <QObject>
 #include "data/MediaCenterInterface.h"
 #include "data/ScraperInterface.h"
@@ -31,6 +32,8 @@ public:
     int downloadsSize() const;
     void loadImage(int type, QUrl url);
     void abortDownloads();
+    void setLoadsLeft(QList<ScraperData> loadsLeft);
+    void removeFromLoadsLeft(ScraperData load);
 
 signals:
     void sigInfoLoadDone(Movie*);
@@ -54,6 +57,9 @@ private:
     bool m_downloadsInProgress;
     int m_downloadsSize;
     int m_downloadsLeft;
+    QList<ScraperData> m_loadsLeft;
+    bool m_loadDoneFired;
+    QMutex m_loadMutex;
 };
 
 #endif // MOVIECONTROLLER_H

@@ -285,3 +285,20 @@ void MovieController::abortDownloads()
 {
     m_downloadManager->abortDownloads();
 }
+
+void MovieController::setLoadsLeft(QList<ScraperData> loadsLeft)
+{
+    m_loadDoneFired = false;
+    m_loadsLeft = loadsLeft;
+}
+
+void MovieController::removeFromLoadsLeft(ScraperData load)
+{
+    m_loadsLeft.removeOne(load);
+    m_loadMutex.lock();
+    if (m_loadsLeft.isEmpty() && !m_loadDoneFired) {
+        m_loadDoneFired = true;
+        scraperLoadDone();
+    }
+    m_loadMutex.unlock();
+}

@@ -117,7 +117,8 @@ SOURCES += main.cpp\
     smallWidgets/Badge.cpp \
     trailerProviders/HdTrailers.cpp \
     smallWidgets/TagCloud.cpp \
-    smallWidgets/MyWidget.cpp
+    smallWidgets/MyWidget.cpp \
+    data/Storage.cpp
 
 HEADERS  += main/MainWindow.h \
     movies/Movie.h \
@@ -210,7 +211,8 @@ HEADERS  += main/MainWindow.h \
     smallWidgets/Badge.h \
     trailerProviders/HdTrailers.h \
     smallWidgets/TagCloud.h \
-    smallWidgets/MyWidget.h
+    smallWidgets/MyWidget.h \
+    data/Storage.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

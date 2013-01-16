@@ -266,6 +266,10 @@ enum TvShowUpdateType {
     UpdateShow, UpdateShowAndAllEpisodes, UpdateShowAndNewEpisodes, UpdateNewEpisodes, UpdateAllEpisodes
 };
 
+enum ScraperData {
+    DataInfos, DataCasts, DataTrailers, DataImages, DataReleases
+};
+
 // Debugging
 #if defined(Q_CC_GNU) && QT_VERSION < 0x050000
 #    if defined( qDebug )

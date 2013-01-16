@@ -18,8 +18,6 @@
 #include "movies/MovieSearch.h"
 #include "globals/TrailerDialog.h"
 
-// @todo: add buttons to manually collapse/expand art widget
-
 /**
  * @brief MovieWidget::MovieWidget
  * @param parent
