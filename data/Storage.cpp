@@ -6,6 +6,12 @@ Storage::Storage(QObject *parent, Movie *movie) :
     m_movie = QPointer<Movie>(movie);
 }
 
+Storage::Storage(QObject *parent, Concert *concert) :
+    QObject(parent)
+{
+    m_concert = QPointer<Concert>(concert);
+}
+
 Storage::Storage(QObject *parent, QList<ScraperSearchResult> results) :
     QObject(parent)
 {
@@ -19,9 +25,24 @@ Movie *Storage::movie()
     return 0;
 }
 
+Concert *Storage::concert()
+{
+    if (m_concert)
+        return m_concert;
+    return 0;
+}
+
 QVariant Storage::toVariant(QObject *parent, Movie *movie)
 {
     Storage *storage = new Storage(parent, movie);
+    QVariant var;
+    var.setValue(storage);
+    return var;
+}
+
+QVariant Storage::toVariant(QObject *parent, Concert *concert)
+{
+    Storage *storage = new Storage(parent, concert);
     QVariant var;
     var.setValue(storage);
     return var;
