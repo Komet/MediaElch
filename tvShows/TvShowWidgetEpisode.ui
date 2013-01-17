@@ -40,7 +40,9 @@
         <string>Episode has changed. Click to revert changes.</string>
        </property>
        <property name="styleSheet">
-        <string notr="true">border: none;</string>
+        <string notr="true">QToolButton {
+	border: none;
+}</string>
        </property>
        <property name="text">
         <string/>

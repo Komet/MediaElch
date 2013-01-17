@@ -53,23 +53,51 @@ void TvShowEpisode::setShow(TvShow *show)
  */
 void TvShowEpisode::clear()
 {
-    m_showTitle = "";
-    m_rating = 0;
-    m_season = -2;
-    m_episode = -2;
-    m_displaySeason = -1;
-    m_displayEpisode = -1;
-    m_overview = "";
-    m_writers.clear();
-    m_directors.clear();
-    m_playCount = 0;
-    m_lastPlayed = QDateTime(QDate(2000, 02, 30), QTime(0, 0)); // invalid date
-    m_firstAired = QDate(2000, 02, 30); // invalid date;
-    m_certification = "";
-    m_network = "";
-    m_thumbnail = QUrl();
-    m_thumbnailImageChanged = false;
+    QList<int> infos;
+    infos << TvShowScraperInfos::Certification
+          << TvShowScraperInfos::Rating
+          << TvShowScraperInfos::SeasonEpisode
+          << TvShowScraperInfos::Director
+          << TvShowScraperInfos::Writer
+          << TvShowScraperInfos::Overview
+          << TvShowScraperInfos::Network
+          << TvShowScraperInfos::FirstAired
+          << TvShowScraperInfos::Thumbnail;
+    clear(infos);
+    m_nfoContent.clear();
+}
+
+void TvShowEpisode::clear(QList<int> infos)
+{
+    if (infos.contains(TvShowScraperInfos::Certification))
+        m_certification = "";
+    if (infos.contains(TvShowScraperInfos::Rating))
+        m_rating = 0;
+    if (infos.contains(TvShowScraperInfos::SeasonEpisode)) {
+        m_season = -2;
+        m_episode = -2;
+    }
+    if (infos.contains(TvShowScraperInfos::Director))
+        m_directors.clear();
+    if (infos.contains(TvShowScraperInfos::Writer))
+        m_writers.clear();
+    if (infos.contains(TvShowScraperInfos::Overview))
+        m_overview = "";
+    if (infos.contains(TvShowScraperInfos::Network))
+        m_network = "";
+    if (infos.contains(TvShowScraperInfos::FirstAired))
+        m_firstAired = QDate(2000, 02, 30); // invalid date;
+    if (infos.contains(TvShowScraperInfos::Thumbnail)) {
+        m_thumbnail = QUrl();
+        m_thumbnailImageChanged = false;
+    }
+
     m_hasChanged = false;
+}
+
+QList<int> TvShowEpisode::infosToLoad()
+{
+    return m_infosToLoad;
 }
 
 /**
@@ -109,6 +137,7 @@ bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface, bool re
 void TvShowEpisode::loadData(QString id, TvScraperInterface *tvScraperInterface, QList<int> infosToLoad)
 {
     qDebug() << "Entered, id=" << id << "scraperInterface=" << tvScraperInterface->name();
+    m_infosToLoad = infosToLoad;
     tvScraperInterface->loadTvShowEpisodeData(id, this, infosToLoad);
 }
 

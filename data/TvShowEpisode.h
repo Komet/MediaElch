@@ -39,6 +39,7 @@ class TvShowEpisode : public QObject
 public:
     explicit TvShowEpisode(QStringList files = QStringList(), TvShow *parent = 0);
     void clear();
+    void clear(QList<int> infos);
 
     TvShow *tvShow();
     QStringList files() const;
@@ -112,6 +113,7 @@ public:
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     void loadStreamDetailsFromFile();
     void clearImages();
+    QList<int> infosToLoad();
 
     void scraperLoadDone();
 
@@ -150,6 +152,7 @@ private:
     QString m_nfoContent;
     int m_databaseId;
     bool m_syncNeeded;
+    QList<int> m_infosToLoad;
 };
 
 QDebug operator<<(QDebug dbg, const TvShowEpisode &episode);

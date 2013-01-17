@@ -44,28 +44,17 @@ private:
     QString m_apiKey;
     QString m_language;
     QNetworkAccessManager m_qnam;
-    QNetworkReply *m_mirrorsReply;
-    QNetworkReply *m_searchReply;
-    QNetworkReply *m_loadReply;
-    QNetworkReply *m_episodeLoadReply;
-    QNetworkReply *m_actorsReply;
-    QNetworkReply *m_bannersReply;
     QStringList m_xmlMirrors;
     QStringList m_bannerMirrors;
     QStringList m_zipMirrors;
-    TvShow *m_currentShow;
-    TvShowEpisode *m_currentEpisode;
-    TvShowUpdateType m_updateType;
-    QString m_currentId;
-    QList<int> m_infosToLoad;
 
     QNetworkAccessManager *qnam();
     void setMirrors();
     QList<ScraperSearchResult> parseSearch(QString xml);
-    void parseAndAssignInfos(QString xml, TvShow *show, TvShowUpdateType updateType);
+    void parseAndAssignInfos(QString xml, TvShow *show, TvShowUpdateType updateType, QList<int> infosToLoad);
     void parseAndAssignActors(QString xml, TvShow *show);
-    void parseAndAssignBanners(QString xml, TvShow *show);
-    void parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *episode);
+    void parseAndAssignBanners(QString xml, TvShow *show, TvShowUpdateType updateType, QList<int> infosToLoad);
+    void parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *episode, QList<int> infosToLoad);
 };
 
 #endif // THETVDB_H
