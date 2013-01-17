@@ -121,6 +121,23 @@ void Concert::clear(QList<int> infos)
     }
 }
 
+void Concert::setLoadsLeft(QList<ScraperData> loadsLeft)
+{
+    m_loadDoneFired = false;
+    m_loadsLeft = loadsLeft;
+}
+
+void Concert::removeFromLoadsLeft(ScraperData load)
+{
+    m_loadsLeft.removeOne(load);
+    m_loadMutex.lock();
+    if (m_loadsLeft.isEmpty() && !m_loadDoneFired) {
+        m_loadDoneFired = true;
+        scraperLoadDone();
+    }
+    m_loadMutex.unlock();
+}
+
 /**
  * @brief Saves the concert infos with the given MediaCenterInterface
  * @param mediaCenterInterface MediaCenterInterface to use for saving

@@ -3,6 +3,7 @@
 
 #include <QDate>
 #include <QDebug>
+#include <QMutex>
 #include <QPixmap>
 #include <QObject>
 #include <QStringList>
@@ -147,6 +148,8 @@ public:
 
     void scraperLoadDone();
     QList<int> infosToLoad();
+    void setLoadsLeft(QList<ScraperData> loadsLeft);
+    void removeFromLoadsLeft(ScraperData load);
 
 signals:
     void loaded(Concert*);
@@ -198,6 +201,9 @@ private:
     QString m_nfoContent;
     int m_databaseId;
     bool m_syncNeeded;
+    QList<ScraperData> m_loadsLeft;
+    bool m_loadDoneFired;
+    QMutex m_loadMutex;
 };
 
 #endif // CONCERT_H

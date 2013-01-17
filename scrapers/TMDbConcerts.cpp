@@ -6,6 +6,7 @@
 #include <QtScript/QScriptEngine>
 #include <QSettings>
 
+#include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 
@@ -157,8 +158,8 @@ void TMDbConcerts::setup()
     QUrl url(QString("http://api.themoviedb.org/3/configuration?api_key=%1").arg(m_apiKey));
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
-    m_setupReply = this->qnam()->get(request);
-    connect(m_setupReply, SIGNAL(finished()), this, SLOT(setupFinished()));
+    QNetworkReply *reply = qnam()->get(request);
+    connect(reply, SIGNAL(finished()), this, SLOT(setupFinished()));
 }
 
 /**
@@ -167,12 +168,13 @@ void TMDbConcerts::setup()
  */
 void TMDbConcerts::setupFinished()
 {
-    if (m_setupReply->error() != QNetworkReply::NoError ) {
-        m_setupReply->deleteLater();
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    if (reply->error() != QNetworkReply::NoError ) {
+        reply->deleteLater();
         return;
     }
-    QString msg = QString::fromUtf8(m_setupReply->readAll());
-    m_setupReply->deleteLater();
+    QString msg = QString::fromUtf8(reply->readAll());
+    reply->deleteLater();
     QScriptValue sc;
     QScriptEngine engine;
     sc = engine.evaluate("(" + QString(msg) + ")");
@@ -188,14 +190,14 @@ void TMDbConcerts::setupFinished()
 void TMDbConcerts::search(QString searchStr)
 {
     qDebug() << "Entered, searchStr=" << searchStr;
-    m_results.clear();
-    m_searchString = searchStr;
-    QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(m_apiKey).arg(m_language).arg(encodedSearch));
+    searchStr = QUrl::toPercentEncoding(searchStr);
+    QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(m_apiKey).arg(m_language).arg(searchStr));
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
-    m_searchReply = this->qnam()->get(request);
-    connect(m_searchReply, SIGNAL(finished()), this, SLOT(searchFinished()));
+    QNetworkReply *reply = qnam()->get(request);
+    reply->setProperty("searchString", searchStr);
+    reply->setProperty("results", Storage::toVariant(reply, QList<ScraperSearchResult>()));
+    connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
 }
 
 /**
@@ -205,29 +207,32 @@ void TMDbConcerts::search(QString searchStr)
  */
 void TMDbConcerts::searchFinished()
 {
-    qDebug() << "Entered";
-    QList<ScraperSearchResult> results;
-    if (m_searchReply->error() != QNetworkReply::NoError ) {
-        qWarning() << "Network Error" << m_searchReply->errorString();
-        m_searchReply->deleteLater();
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QList<ScraperSearchResult> results = reply->property("results").value<Storage*>()->results();
+
+    if (reply->error() != QNetworkReply::NoError ) {
+        qWarning() << "Network Error" << reply->errorString();
+        reply->deleteLater();
         emit searchDone(results);
         return;
     }
 
-    QString msg = QString::fromUtf8(m_searchReply->readAll());
+    QString searchString = reply->property("searchString").toString();
+    QString msg = QString::fromUtf8(reply->readAll());
     int nextPage = -1;
-    results = parseSearch(msg, &nextPage);
-    m_results.append(results);
-    m_searchReply->deleteLater();
+    results.append(parseSearch(msg, &nextPage));
+    reply->deleteLater();
 
     if (nextPage == -1) {
-        emit searchDone(m_results);
+        emit searchDone(results);
     } else {
-        QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&query=%4").arg(m_apiKey).arg(m_language).arg(nextPage).arg(m_searchString));
+        QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&query=%4").arg(m_apiKey).arg(m_language).arg(nextPage).arg(searchString));
         QNetworkRequest request(url);
         request.setRawHeader("Accept", "application/json");
-        m_searchReply = this->qnam()->get(request);
-        connect(m_searchReply, SIGNAL(finished()), this, SLOT(searchFinished()));
+        QNetworkReply *reply = qnam()->get(request);
+        reply->setProperty("searchString", searchString);
+        reply->setProperty("results", Storage::toVariant(reply, results));
+        connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
     }
 }
 
@@ -284,50 +289,52 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
 {
     qDebug() << "Entered, id=" << id << "concert=" << concert->name();
     concert->setTmdbId(id);
-    m_infosToLoad = infos;
-    m_currentConcert = concert;
-    m_currentConcert->clear(infos);
-    m_currentId = id;
-    m_loadDoneFired = false;
-    m_loadsLeft.clear();
+    concert->clear(infos);
 
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
 
+    QList<ScraperData> loadsLeft;
+
     // Infos
-    m_loadsLeft.append(DataInfos);
+    loadsLeft.append(DataInfos);
     url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(id).arg(m_apiKey).arg(m_language));
     request.setUrl(url);
-    m_loadReply = this->qnam()->get(QNetworkRequest(request));
-    connect(m_loadReply, SIGNAL(finished()), this, SLOT(loadFinished()));
+    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    reply->setProperty("storage", Storage::toVariant(reply, concert));
+    connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
 
     // Trailers
-    if (m_infosToLoad.contains(ConcertScraperInfos::Trailer)) {
-        m_loadsLeft.append(DataTrailers);
-        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/trailers?api_key=%2").arg(m_currentId).arg(m_apiKey));
+    if (infos.contains(ConcertScraperInfos::Trailer)) {
+        loadsLeft.append(DataTrailers);
+        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/trailers?api_key=%2").arg(id).arg(m_apiKey));
         request.setUrl(url);
-        m_trailersReply = this->qnam()->get(QNetworkRequest(request));
-        connect(m_trailersReply, SIGNAL(finished()), this, SLOT(loadTrailersFinished()));
+        QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+        reply->setProperty("storage", Storage::toVariant(reply, concert));
+        connect(reply, SIGNAL(finished()), this, SLOT(loadTrailersFinished()));
     }
 
     // Images
-    if (m_infosToLoad.contains(ConcertScraperInfos::Poster) || m_infosToLoad.contains(ConcertScraperInfos::Backdrop)) {
-        m_loadsLeft.append(DataImages);
-        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/images?api_key=%2").arg(m_currentId).arg(m_apiKey));
+    if (infos.contains(ConcertScraperInfos::Poster) || infos.contains(ConcertScraperInfos::Backdrop)) {
+        loadsLeft.append(DataImages);
+        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/images?api_key=%2").arg(id).arg(m_apiKey));
         request.setUrl(url);
-        m_imagesReply = this->qnam()->get(QNetworkRequest(request));
-        connect(m_imagesReply, SIGNAL(finished()), this, SLOT(loadImagesFinished()));
+        QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+        reply->setProperty("storage", Storage::toVariant(reply, concert));
+        connect(reply, SIGNAL(finished()), this, SLOT(loadImagesFinished()));
     }
 
     // Releases
-    if (m_infosToLoad.contains(ConcertScraperInfos::Certification)) {
-        m_loadsLeft.append(DataReleases);
-        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/releases?api_key=%2").arg(m_currentId).arg(m_apiKey));
+    if (infos.contains(ConcertScraperInfos::Certification)) {
+        loadsLeft.append(DataReleases);
+        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/releases?api_key=%2").arg(id).arg(m_apiKey));
         request.setUrl(url);
-        m_releasesReply = this->qnam()->get(QNetworkRequest(request));
-        connect(m_releasesReply, SIGNAL(finished()), this, SLOT(loadReleasesFinished()));
+        QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+        reply->setProperty("storage", Storage::toVariant(reply, concert));
+        connect(reply, SIGNAL(finished()), this, SLOT(loadReleasesFinished()));
     }
+    concert->setLoadsLeft(loadsLeft);
 }
 
 /**
@@ -336,17 +343,19 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
  */
 void TMDbConcerts::loadFinished()
 {
-    qDebug() << "Entered";
-    if (m_loadReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_loadReply->readAll());
-        qDebug() << msg;
-        parseAndAssignInfos(msg, m_currentConcert, m_infosToLoad);
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    Concert *concert = reply->property("storage").value<Storage*>()->concert();
+    reply->deleteLater();
+    if (!concert)
+        return;
+
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(reply->readAll());
+        parseAndAssignInfos(msg, concert, concert->infosToLoad());
     } else {
-        qWarning() << "Network Error (load)" << m_loadReply->errorString();
+        qWarning() << "Network Error (load)" << reply->errorString();
     }
-    m_loadReply->deleteLater();
-    m_loadsLeft.removeOne(DataInfos);
-    checkDownloadsFinished();
+    concert->removeFromLoadsLeft(DataInfos);
 }
 
 /**
@@ -355,16 +364,19 @@ void TMDbConcerts::loadFinished()
  */
 void TMDbConcerts::loadTrailersFinished()
 {
-    qDebug() << "Entered";
-    if (m_trailersReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_trailersReply->readAll());
-        parseAndAssignInfos(msg, m_currentConcert, m_infosToLoad);
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    Concert *concert = reply->property("storage").value<Storage*>()->concert();
+    reply->deleteLater();
+    if (!concert)
+        return;
+
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(reply->readAll());
+        parseAndAssignInfos(msg, concert, concert->infosToLoad());
     } else {
-        qDebug() << "Network Error (trailers)" << m_trailersReply->errorString();
+        qDebug() << "Network Error (trailers)" << reply->errorString();
     }
-    m_trailersReply->deleteLater();
-    m_loadsLeft.removeOne(DataTrailers);
-    checkDownloadsFinished();
+    concert->removeFromLoadsLeft(DataTrailers);
 }
 
 /**
@@ -373,16 +385,19 @@ void TMDbConcerts::loadTrailersFinished()
  */
 void TMDbConcerts::loadImagesFinished()
 {
-    qDebug() << "Entered";
-    if (m_imagesReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_imagesReply->readAll());
-        parseAndAssignInfos(msg, m_currentConcert, m_infosToLoad);
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    Concert *concert = reply->property("storage").value<Storage*>()->concert();
+    reply->deleteLater();
+    if (!concert)
+        return;
+
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(reply->readAll());
+        parseAndAssignInfos(msg, concert, concert->infosToLoad());
     } else {
-        qWarning() << "Network Error (images)" << m_imagesReply->errorString();
+        qWarning() << "Network Error (images)" << reply->errorString();
     }
-    m_imagesReply->deleteLater();
-    m_loadsLeft.removeOne(DataImages);
-    checkDownloadsFinished();
+    concert->removeFromLoadsLeft(DataImages);
 }
 
 /**
@@ -391,32 +406,19 @@ void TMDbConcerts::loadImagesFinished()
  */
 void TMDbConcerts::loadReleasesFinished()
 {
-    qDebug() << "Entered";
-    if (m_releasesReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_releasesReply->readAll());
-        parseAndAssignInfos(msg, m_currentConcert, m_infosToLoad);
-    } else {
-        qWarning() << "Network Error (releases)" << m_releasesReply->errorString();
-    }
-    m_releasesReply->deleteLater();
-    m_loadsLeft.removeOne(DataReleases);
-    checkDownloadsFinished();
-}
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    Concert *concert = reply->property("storage").value<Storage*>()->concert();
+    reply->deleteLater();
+    if (!concert)
+        return;
 
-/**
- * @brief Called when one of the concert infos has finished loading
- *        Checks if there are downloads left. If all downloads have finished
- *        the concert object is told that the scraper has finished loading
- */
-void TMDbConcerts::checkDownloadsFinished()
-{
-    qDebug() << "Entered";
-    m_mutex.lock();
-    if (m_loadsLeft.isEmpty() && !m_loadDoneFired) {
-        m_loadDoneFired = true;
-        m_currentConcert->scraperLoadDone();
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(reply->readAll());
+        parseAndAssignInfos(msg, concert, concert->infosToLoad());
+    } else {
+        qWarning() << "Network Error (releases)" << reply->errorString();
     }
-    m_mutex.unlock();
+    concert->removeFromLoadsLeft(DataReleases);
 }
 
 /**
