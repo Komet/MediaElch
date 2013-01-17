@@ -33,31 +33,20 @@ signals:
 private slots:
     void searchFinished();
     void loadFinished();
+    void actorsFinished();
+    void imagesFinished();
     void posterFinished();
     void backdropFinished();
-    void startNextPosterDownload();
-    void posterSubFinished();
-    void startNextBackdropDownload();
-    void backdropSubFinished();
 
 private:
-    Movie *m_currentMovie;
     QNetworkAccessManager m_qnam;
-    QNetworkReply *m_searchReply;
-    QNetworkReply *m_loadReply;
-    QNetworkReply *m_posterReply;
-    QNetworkReply *m_backdropReply;
-    QNetworkReply *m_posterSubReply;
-    QNetworkReply *m_backdropSubReply;
-    QQueue<QUrl> m_posterQueue;
-    QQueue<QUrl> m_backdropQueue;
-    QUrl m_backdropUrl;
-    QList<int> m_infosToLoad;
     QList<int> m_scraperSupports;
 
     QNetworkAccessManager *qnam();
     QList<ScraperSearchResult> parseSearch(QString html);
     void parseAndAssignInfos(QString data, Movie *movie, QList<int> infos);
+    void parseAndAssignActors(QString data, Movie *movie, QList<int> infos);
+    void parseImages(QString data, QStringList &posters, QStringList &backgrounds);
 };
 
 #endif // CINEFACTS_H

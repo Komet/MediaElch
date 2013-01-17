@@ -1,5 +1,6 @@
 #include "Cinefacts.h"
 #include <QTextDocument>
+#include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "settings/Settings.h"
@@ -83,9 +84,9 @@ void Cinefacts::search(QString searchStr)
 {
     qDebug() << "Entered, searchStr=" << searchStr;
     QString encodedSearch = Helper::toLatin1PercentEncoding(searchStr);
-    QUrl url(QString("http://www.cinefacts.de/suche/suche.php?name=%1").arg(encodedSearch).toUtf8());
-    m_searchReply = this->qnam()->get(QNetworkRequest(url));
-    connect(m_searchReply, SIGNAL(finished()), this, SLOT(searchFinished()));
+    QUrl url(QString("http://www.cinefacts.de/search/site/q/%1").arg(encodedSearch).toUtf8());
+    QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
 }
 
 /**
@@ -95,15 +96,15 @@ void Cinefacts::search(QString searchStr)
  */
 void Cinefacts::searchFinished()
 {
-    qDebug() << "Entered";
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     QList<ScraperSearchResult> results;
-    if (m_searchReply->error() == QNetworkReply::NoError ) {
-        QString msg = m_searchReply->readAll();
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(reply->readAll());
         results = parseSearch(msg);
     } else {
-        qWarning() << "Network Error" << m_searchReply->errorString();
+        qWarning() << "Network Error" << reply->errorString();
     }
-    m_searchReply->deleteLater();
+    reply->deleteLater();
     emit searchDone(results);
 }
 
@@ -114,16 +115,16 @@ void Cinefacts::searchFinished()
  */
 QList<ScraperSearchResult> Cinefacts::parseSearch(QString html)
 {
-    qDebug() << "Entered";
     QList<ScraperSearchResult> results;
     int pos = 0;
-    QRegExp rx("<a href=\"/kino/([0-9]*)/(.[^/]*)/filmdetails.html\">[^<]*<b title=\"([^\"]*)\" class=\"headline\".*([0-9]{4})");
+    //QRegExp rx("<a href=\"/kino/([0-9]*)/(.[^/]*)/filmdetails.html\">[^<]*<b title=\"([^\"]*)\" class=\"headline\".*([0-9]{4})");
+    QRegExp rx("<a class=\"s_link\" href=\"/Filme/([^\"]*)\">([^<]*)</a></h4><p>.*([0-9]{4}).*</p>");
     rx.setMinimal(true);
     while ((pos = rx.indexIn(html, pos)) != -1) {
         ScraperSearchResult result;
-        result.name     = rx.cap(3);
-        result.id       = rx.cap(1) + "/" + rx.cap(2);
-        result.released = QDate::fromString(rx.cap(4), "yyyy");
+        result.name     = rx.cap(2);
+        result.id       = rx.cap(1);
+        result.released = QDate::fromString(rx.cap(3), "yyyy");
         results.append(result);
         pos += rx.matchedLength();
     }
@@ -140,11 +141,13 @@ QList<ScraperSearchResult> Cinefacts::parseSearch(QString html)
 void Cinefacts::loadData(QString id, Movie *movie, QList<int> infos)
 {
     qDebug() << "Entered, id=" << id << "movie=" << movie->name();
-    m_infosToLoad = infos;
-    m_currentMovie = movie;
-    QUrl url(QString("http://www.cinefacts.de/kino/%1/filmdetails.html").arg(id));
-    m_loadReply = this->qnam()->get(QNetworkRequest(url));
-    connect(m_loadReply, SIGNAL(finished()), this, SLOT(loadFinished()));
+    movie->clear(infos);
+
+    QUrl url(QString("http://www.cinefacts.de/Filme/%1").arg(id));
+    QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    reply->setProperty("storage", Storage::toVariant(reply, movie));
+    reply->setProperty("cinefactsId", id);
+    connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
 }
 
 /**
@@ -153,15 +156,81 @@ void Cinefacts::loadData(QString id, Movie *movie, QList<int> infos)
  */
 void Cinefacts::loadFinished()
 {
-    qDebug() << "Entered";
-    if (m_loadReply->error() == QNetworkReply::NoError ) {
-        QString msg = m_loadReply->readAll();
-        parseAndAssignInfos(msg, m_currentMovie, m_infosToLoad);
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie *movie = reply->property("storage").value<Storage*>()->movie();
+    QString cinefactsId = reply->property("cinefactsId").toString();
+    reply->deleteLater();
+    if (!movie)
+        return;
+
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(reply->readAll());
+        parseAndAssignInfos(msg, movie, movie->controller()->infosToLoad());
+        reply = qnam()->get(QNetworkRequest(QUrl(QString("http://www.cinefacts.de/Filme/%1/Besetzung-Stab").arg(cinefactsId))));
+        reply->setProperty("storage", Storage::toVariant(reply, movie));
+        reply->setProperty("cinefactsId", cinefactsId);
+        connect(reply, SIGNAL(finished()), this, SLOT(actorsFinished()));
     } else {
-        qWarning() << "Network Error" << m_loadReply->errorString();
-        m_currentMovie->controller()->scraperLoadDone();
+        qWarning() << "Network Error" << reply->errorString();
+        movie->controller()->scraperLoadDone();
     }
-    m_loadReply->deleteLater();
+}
+
+void Cinefacts::actorsFinished()
+{
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie *movie = reply->property("storage").value<Storage*>()->movie();
+    QString cinefactsId = reply->property("cinefactsId").toString();
+    reply->deleteLater();
+    if (!movie)
+        return;
+
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(reply->readAll());
+        parseAndAssignActors(msg, movie, movie->controller()->infosToLoad());
+        reply = qnam()->get(QNetworkRequest(QUrl(QString("http://www.cinefacts.de/Filme/%1/Bildergalerie").arg(cinefactsId))));
+        reply->setProperty("storage", Storage::toVariant(reply, movie));
+        reply->setProperty("cinefactsId", cinefactsId);
+        connect(reply, SIGNAL(finished()), this, SLOT(imagesFinished()));
+    } else {
+        qWarning() << "Network Error" << reply->errorString();
+        movie->controller()->scraperLoadDone();
+    }
+}
+
+void Cinefacts::imagesFinished()
+{
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie *movie = reply->property("storage").value<Storage*>()->movie();
+    reply->deleteLater();
+    if (!movie)
+        return;
+
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(reply->readAll());
+        QStringList posters;
+        QStringList backdrops;
+        parseImages(msg, posters, backdrops);
+        if (posters.count() > 0 && movie->controller()->infosToLoad().contains(MovieScraperInfos::Poster)) {
+            reply = qnam()->get(QNetworkRequest(QUrl(QString("http://www.cinefacts.de%1").arg(posters.takeFirst()))));
+            reply->setProperty("storage", Storage::toVariant(reply, movie));
+            reply->setProperty("posters", posters);
+            reply->setProperty("backdrops", backdrops);
+            connect(reply, SIGNAL(finished()), this, SLOT(posterFinished()));
+            return;
+        }
+
+        if (posters.count() > 0 && movie->controller()->infosToLoad().contains(MovieScraperInfos::Backdrop)) {
+            reply = qnam()->get(QNetworkRequest(QUrl(QString("http://www.cinefacts.de%1").arg(backdrops.takeFirst()))));
+            reply->setProperty("storage", Storage::toVariant(reply, movie));
+            reply->setProperty("backdrops", backdrops);
+            connect(reply, SIGNAL(finished()), this, SLOT(backdropFinished()));
+            return;
+        }
+    } else {
+        qWarning() << "Network Error" << reply->errorString();
+    }
+    movie->controller()->scraperLoadDone();
 }
 
 /**
@@ -172,85 +241,54 @@ void Cinefacts::loadFinished()
  */
 void Cinefacts::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
 {
-    qDebug() << "Entered";
-    m_backdropUrl.clear();
-    movie->clear(infos);
     QRegExp rx;
     rx.setMinimal(true);
-    int pos = 0;
     QTextDocument doc;
 
     // Title
-    rx.setPattern("<h1>([^<]*)<");
+    rx.setPattern("<header>.*<h2>([^<]*)<");
     if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1)
         movie->setName(rx.cap(1).trimmed());
 
     // Original Title
-    rx.setPattern("<dt class=\"c1\">Originaltitel:</dt>[^<]*<dd class=\"first\">(.[^<]*)</dd>");
+    rx.setPattern("<p>Originaltitel: (.*)</p>");
     if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1)
         movie->setOriginalName(rx.cap(1).trimmed());
 
     // Genre
-    rx.setPattern("Genre:([^:]*)<dt");
+    rx.setPattern("Genre:(.*)\\|.*<br>");
     if (infos.contains(MovieScraperInfos::Genres) && rx.indexIn(html) != -1) {
-        QString genres = rx.cap(1);
-        pos = 0;
-        rx.setPattern(">*[ A-Za-z]([^<>]*)</a>");
-        while ((pos = rx.indexIn(genres, pos)) != -1) {
-            movie->addGenre(rx.cap(1).trimmed());
-            pos += rx.matchedLength();
-        }
+        foreach (const QString &genre, rx.cap(1).split(",", QString::SkipEmptyParts))
+            movie->addGenre(genre.trimmed());
     }
 
     // Year
-    rx.setPattern("</a> ([0-9]*) </dd>");
+    rx.setPattern("Genre: .* \\| .* ([0-9]{4})");
     if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1)
         movie->setReleased(QDate::fromString(rx.cap(1).trimmed(), "yyyy"));
 
     // Country
-    rx.setPattern("Produktionsland:([^:]*)<dt");
-    if (infos.contains(MovieScraperInfos::Countries) && rx.indexIn(html) != -1) {
-        QString countries = rx.cap(1);
-        pos = 0;
-        rx.setPattern("<a href=\"[^\"]*\">([^<]*)</a>");
-        while ((pos = rx.indexIn(countries, pos)) != -1) {
-            movie->addCountry(rx.cap(1).trimmed());
-            pos += rx.matchedLength();
-        }
-    }
-
-    // Actors
-    rx.setPattern("Darsteller:</td>(.*)</table");
-    if (infos.contains(MovieScraperInfos::Actors) && rx.indexIn(html) != -1) {
-        QString actors = rx.cap(1);
-        pos = 0;
-        rx.setPattern(">([^<>]*)</a></td>+[^<]+<[^>]+> als([ A-Za-z]*)&nbsp;");
-        while ((pos = rx.indexIn(actors, pos)) != -1) {
-            Actor actor;
-            actor.name = rx.cap(1).trimmed();
-            actor.role = rx.cap(2).trimmed();
-            movie->addActor(actor);
-            pos += rx.matchedLength();
-        }
-    }
+    rx.setPattern("Genre: .* \\| (.*) ([0-9]{4})<br>");
+    if (infos.contains(MovieScraperInfos::Countries) && rx.indexIn(html) != -1)
+        movie->addCountry(rx.cap(1).trimmed());
 
     // Studio
-    rx.setPattern("Verleih:([^\\.]*)\\.");
+    rx.setPattern("Verleih:(.*)<br>");
     if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1)
         movie->addStudio(rx.cap(1).trimmed());
 
     // MPAA
-    rx.setPattern("FSK:</dt>[^>]*>ab ([^<]*) Jahren<");
+    rx.setPattern("Freigegeben ab ([0-9]*) Jahren");
     if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1)
         movie->setCertification("FSK " + rx.cap(1));
 
     // Runtime
-    rx.setPattern("L.nge:</dt>[^>]*>([0-9]*) Minuten");
+    rx.setPattern("<br>Freigegeben ab .* \\(([0-9]*) Minuten\\)<br>");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1)
         movie->setRuntime(rx.cap(1).trimmed().toInt());
 
     // Overview
-    rx.setPattern("KURZINHALT</h2></li>.*<li[^>]*>(.*)</li>");
+    rx.setPattern("<p><strong>Inhalt:</strong>(.*)</p>");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         doc.setHtml(rx.cap(1).trimmed());
         movie->setOverview(doc.toPlainText());
@@ -258,28 +296,105 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
             movie->setOutline(doc.toPlainText());
     }
 
+    /*
+    QString backdropUrl;
+
     // Backdrops
     rx.setPattern("<a href=\"/kino/film/([0-9]*)/0/([^/]*)/szenenbilder_seite_1.html\">");
     if (infos.contains(MovieScraperInfos::Backdrop) && rx.indexIn(html) != -1)
-        m_backdropUrl = QUrl(QString("http://www.cinefacts.de/kino/film/%1/0/%2/szenenbilder_seite_1.html").arg(rx.cap(1)).arg(rx.cap(2)));
+        backdropUrl = QString("http://www.cinefacts.de/kino/film/%1/0/%2/szenenbilder_seite_1.html").arg(rx.cap(1)).arg(rx.cap(2));
 
     // Posters
     rx.setPattern("<a href=\"/kino/film/([0-9]*)/([^/]*)/plakate.html\">");
     if (infos.contains(MovieScraperInfos::Poster) && rx.indexIn(html) != -1) {
         QUrl posterUrl(QString("http://www.cinefacts.de/kino/film/%1/%2/plakate.html").arg(rx.cap(1)).arg(rx.cap(2)));
-        m_posterReply = this->qnam()->get(QNetworkRequest(posterUrl));
-        connect(m_posterReply, SIGNAL(finished()), this, SLOT(posterFinished()));
+        QNetworkReply *reply = qnam()->get(QNetworkRequest(posterUrl));
+        reply->setProperty("storage", Storage::toVariant(reply, movie));
+        reply->setProperty("backdropUrl", backdropUrl);
+        connect(reply, SIGNAL(finished()), this, SLOT(posterFinished()));
         return;
     }
 
-    if (!m_backdropUrl.isEmpty()) {
-        m_backdropReply = this->qnam()->get(QNetworkRequest(m_backdropUrl));
-        connect(m_backdropReply, SIGNAL(finished()), this, SLOT(backdropFinished()));
+    if (!backdropUrl.isEmpty()) {
+        QNetworkReply *reply = qnam()->get(QNetworkRequest(backdropUrl));
+        reply->setProperty("storage", Storage::toVariant(reply, movie));
+        reply->setProperty("backdropUrl", backdropUrl);
+        connect(reply, SIGNAL(finished()), this, SLOT(backdropFinished()));
         return;
     }
 
-    m_currentMovie->controller()->scraperLoadDone();
+    movie->controller()->scraperLoadDone();
+    */
 }
+
+void Cinefacts::parseAndAssignActors(QString html, Movie *movie, QList<int> infos)
+{
+    QRegExp rx;
+    rx.setMinimal(true);
+    if (infos.contains(MovieScraperInfos::Director)) {
+        rx.setPattern("<h3>Regie</h3>.*<div class=\"item_content\"><header><h4><a.*>([^<]*)</a></h4>");
+        if (rx.indexIn(html) != 1)
+            movie->setDirector(rx.cap(1));
+    }
+
+    if (infos.contains(MovieScraperInfos::Writer)) {
+        rx.setPattern("<h3>Drehbuch</h3>.*<div class=\"item_content\"><header><h4><a.*>([^<]*)</a></h4>");
+        if (rx.indexIn(html) != 1)
+            movie->setWriter(rx.cap(1));
+    }
+
+    if (infos.contains(MovieScraperInfos::Actors)) {
+        rx.setPattern("<section><header><h3>Darsteller</h3></header><div class=\"teasers teasers_persons  teasers_cast\">(.*)</div></section>");
+        if (rx.indexIn(html) != -1) {
+            QString actors = rx.cap(1);
+            QRegExp rx2("<article><figure class=\"item_img\">.*<img src=\"([^\"]*)\" class=\"thumb\" /></a></figure><div class=\"item_content\">"
+                        "<header><h4><a href=\".*\">(.*)</a>.*<p>Rolle: (.*)</p>");
+            rx2.setMinimal(true);
+            int pos = 0;
+            while ((pos = rx2.indexIn(actors, pos)) != -1) {
+                QString thumb = rx2.cap(1);
+                if (!thumb.startsWith("http://"))
+                    thumb.prepend("http://www.cinefacts.de");
+                Actor a;
+                a.name = rx2.cap(2);
+                a.role = rx2.cap(3);
+                a.thumb = thumb;
+                movie->addActor(a);
+                pos += rx2.matchedLength();
+            }
+        }
+    }
+}
+
+void Cinefacts::parseImages(QString data, QStringList &posters, QStringList &backgrounds)
+{
+    QRegExp rx("<header><h3>Poster</h3></header>.*<ul>(.*)</ul>");
+    rx.setMinimal(true);
+    if (rx.indexIn(data) != -1) {
+        QString poster = rx.cap(1);
+        QRegExp rx2("<li><a href=\"([^\"]*)\">");
+        rx2.setMinimal(true);
+        int pos = 0;
+        while ((pos = rx2.indexIn(poster, pos)) != -1) {
+            posters.append(rx2.cap(1));
+            pos += rx2.matchedLength();
+        }
+    }
+
+    rx.setPattern("<header><h3>Szenenbilder</h3></header>.*<ul>(.*)</ul>");
+    rx.setMinimal(true);
+    if (rx.indexIn(data) != -1) {
+        QString background = rx.cap(1);
+        QRegExp rx2("<li><a href=\"([^\"]*)\">");
+        rx2.setMinimal(true);
+        int pos = 0;
+        while ((pos = rx2.indexIn(background, pos)) != -1) {
+            backgrounds.append(rx2.cap(1));
+            pos += rx2.matchedLength();
+        }
+    }
+}
+
 
 /**
  * @brief Called when poster scraping has finished
@@ -287,26 +402,43 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
  */
 void Cinefacts::posterFinished()
 {
-    qDebug() << "Entered";
-    m_posterQueue.clear();
-    if (m_posterReply->error() == QNetworkReply::NoError ) {
-        QString msg = m_posterReply->readAll();
-        int pos = 0;
-        QRegExp rx("<a href=\"/kino/film/([^\"]+)\">[^<]*<img");
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    reply->deleteLater();
+    Movie *movie = reply->property("storage").value<Storage*>()->movie();
+    QStringList posters = reply->property("posters").toStringList();
+    QStringList backdrops = reply->property("backdrops").toStringList();
+    if (!movie)
+        return;
+
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(reply->readAll());
+        QRegExp rx("<a href=\"([^\"]*)\" target=\"_blank\">Bild in Originalgr..e</a>");
         rx.setMinimal(true);
-        while ((pos = rx.indexIn(msg, pos)) != -1) {
-            QUrl url(QString("http://www.cinefacts.de/kino/film/%1").arg(rx.cap(1)));
-            m_posterQueue.append(url);
-            pos += rx.matchedLength();
+        if (rx.indexIn(msg) != -1) {
+            Poster p;
+            p.thumbUrl = rx.cap(1);
+            p.originalUrl = rx.cap(1);
+            movie->addPoster(p);
         }
-        startNextPosterDownload();
-    } else if (!m_backdropUrl.isEmpty()) {
-        m_backdropReply = this->qnam()->get(QNetworkRequest(m_backdropUrl));
-        connect(m_backdropReply, SIGNAL(finished()), this, SLOT(backdropFinished()));
-    } else {
-        m_currentMovie->controller()->scraperLoadDone();
+
+        if (!posters.isEmpty()) {
+            reply = qnam()->get(QNetworkRequest(QUrl(QString("http://www.cinefacts.de%1").arg(posters.takeFirst()))));
+            reply->setProperty("storage", Storage::toVariant(reply, movie));
+            reply->setProperty("posters", posters);
+            reply->setProperty("backdrops", backdrops);
+            connect(reply, SIGNAL(finished()), this, SLOT(posterFinished()));
+            return;
+        }
+
+        if (!backdrops.isEmpty() && movie->controller()->infosToLoad().contains(MovieScraperInfos::Backdrop)) {
+            reply = qnam()->get(QNetworkRequest(QUrl(QString("http://www.cinefacts.de%1").arg(backdrops.takeFirst()))));
+            reply->setProperty("storage", Storage::toVariant(reply, movie));
+            reply->setProperty("backdrops", backdrops);
+            connect(reply, SIGNAL(finished()), this, SLOT(backdropFinished()));
+            return;
+        }
     }
-    m_posterReply->deleteLater();
+    movie->controller()->scraperLoadDone();
 }
 
 /**
@@ -315,113 +447,33 @@ void Cinefacts::posterFinished()
  */
 void Cinefacts::backdropFinished()
 {
-    qDebug() << "Entered";
-    m_backdropQueue.clear();
-    if (m_backdropReply->error() == QNetworkReply::NoError ) {
-        QString msg = m_backdropReply->readAll();
-        int pos = 0;
-        QRegExp rx("<a href=\"/kino/film/([^\"]+)\">[^<]*<img");
-        rx.setMinimal(true);
-        while ((pos = rx.indexIn(msg, pos)) != -1) {
-            QUrl url(QString("http://www.cinefacts.de/kino/film/%1").arg(rx.cap(1)));
-            m_backdropQueue.append(url);
-            pos += rx.matchedLength();
-        }
-        startNextBackdropDownload();
-    } else {
-        qWarning() << "Network Error" << m_backdropReply->errorString();
-        m_currentMovie->controller()->scraperLoadDone();
-    }
-    m_backdropReply->deleteLater();
-}
-
-/**
- * @brief Starts the next poster download
- */
-void Cinefacts::startNextPosterDownload()
-{
-    qDebug() << "Entered";
-    if (m_posterQueue.isEmpty()) {
-        if (!m_backdropUrl.isEmpty()) {
-            m_backdropReply = this->qnam()->get(QNetworkRequest(m_backdropUrl));
-            connect(m_backdropReply, SIGNAL(finished()), this, SLOT(backdropFinished()));
-        } else {
-            m_currentMovie->controller()->scraperLoadDone();
-        }
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    reply->deleteLater();
+    Movie *movie = reply->property("storage").value<Storage*>()->movie();
+    QStringList backdrops = reply->property("backdrops").toStringList();
+    if (!movie)
         return;
-    }
-    QUrl url = m_posterQueue.dequeue();
-    m_posterSubReply = qnam()->get(QNetworkRequest(url));
-    connect(m_posterSubReply, SIGNAL(finished()), this, SLOT(posterSubFinished()));
-}
 
-/**
- * @brief Starts the next backdrop download
- */
-void Cinefacts::startNextBackdropDownload()
-{
-    qDebug() << "Entered";
-    if (m_backdropQueue.isEmpty()) {
-        m_currentMovie->controller()->scraperLoadDone();
-        return;
-    }
-    QUrl url = m_backdropQueue.dequeue();
-    m_backdropSubReply = qnam()->get(QNetworkRequest(url));
-    connect(m_backdropSubReply, SIGNAL(finished()), this, SLOT(backdropSubFinished()));
-}
-
-/**
- * @brief Called when a poster download has finished
- */
-void Cinefacts::posterSubFinished()
-{
-    qDebug() << "Entered";
-    if (m_posterSubReply->error() == QNetworkReply::NoError ) {
-        QString msg = m_posterSubReply->readAll();
-        QRegExp rx("src=\"/kino/plakat/([^\"]*)\"");
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(reply->readAll());
+        QRegExp rx("<a href=\"([^\"]*)\" target=\"_blank\">Bild in Originalgr..e</a>");
         rx.setMinimal(true);
         if (rx.indexIn(msg) != -1) {
             Poster p;
-            p.thumbUrl = QUrl(QString("http://www.cinefacts.de/kino/plakat/%1").arg(rx.cap(1)));
-            rx.setPattern("<a rel=\"shadowbox\" href=\"/kino/plakat/([^\"]*)\"");
-            if (rx.indexIn(msg) != -1)
-                p.originalUrl = QUrl(QString("http://www.cinefacts.de/kino/plakat/%1").arg(rx.cap(1)));
-            else
-                p.originalUrl = p.thumbUrl;
-            m_currentMovie->addPoster(p);
+            p.thumbUrl = rx.cap(1);
+            p.originalUrl = rx.cap(1);
+            movie->addBackdrop(p);
         }
-    } else {
-        qWarning() << "Network Error" << m_posterSubReply->errorString();
-    }
-    m_posterSubReply->deleteLater();
-    startNextPosterDownload();
-}
 
-/**
- * @brief Called when a backdrop download has finished
- */
-void Cinefacts::backdropSubFinished()
-{
-    qDebug() << "Entered";
-    if (m_backdropSubReply->error() == QNetworkReply::NoError ) {
-        QString msg = m_backdropSubReply->readAll();
-        QRegExp rx("src=\"/kino/bild/([^\"]*)\"");
-        rx.setMinimal(true);
-        if (rx.indexIn(msg) != -1) {
-            Poster p;
-            p.thumbUrl = QUrl(QString("http://www.cinefacts.de/kino/bild/%1").arg(rx.cap(1)));
-            rx.setPattern("<a rel=\"shadowbox\" href=\"/kino/bild/([^\"]*)\"");
-            if (rx.indexIn(msg) != -1)
-                p.originalUrl = QUrl(QString("http://www.cinefacts.de/kino/bild/%1").arg(rx.cap(1)));
-            else
-                p.originalUrl = p.thumbUrl;
-            m_currentMovie->addBackdrop(p);
+        if (!backdrops.isEmpty()) {
+            reply = qnam()->get(QNetworkRequest(QUrl(QString("http://www.cinefacts.de%1").arg(backdrops.takeFirst()))));
+            reply->setProperty("storage", Storage::toVariant(reply, movie));
+            reply->setProperty("backdrops", backdrops);
+            connect(reply, SIGNAL(finished()), this, SLOT(backdropFinished()));
+            return;
         }
-    } else {
-        qWarning() << "Network Error" << m_backdropSubReply->errorString();
     }
-    m_backdropSubReply->deleteLater();
-    startNextBackdropDownload();
+    movie->controller()->scraperLoadDone();
 }
 
 /**
