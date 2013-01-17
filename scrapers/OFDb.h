@@ -34,14 +34,7 @@ private slots:
     void loadFinished();
 
 private:
-    Movie *m_currentMovie;
     QNetworkAccessManager m_qnam;
-    QNetworkReply *m_searchReply;
-    QNetworkReply *m_loadReply;
-    int m_httpNotFoundCounter;
-    QString m_currentSearchString;
-    QString m_currentLoadId;
-    QList<int> m_infosToLoad;
     QList<int> m_scraperSupports;
 
     QNetworkAccessManager *qnam();

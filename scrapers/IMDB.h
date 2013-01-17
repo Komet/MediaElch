@@ -34,11 +34,7 @@ private:
     void parseAndAssignInfos(QString json, Movie *movie, QList<int> infos);
 
     QNetworkAccessManager m_qnam;
-    QNetworkReply *m_searchReply;
-    QNetworkReply *m_loadReply;
-    QList<int> m_infosToLoad;
     QList<int> m_scraperSupports;
-    Movie *m_currentMovie;
 };
 
 #endif // IMDB_H

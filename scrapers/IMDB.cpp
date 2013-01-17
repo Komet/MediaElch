@@ -2,6 +2,7 @@
 
 #include <QScriptEngine>
 #include <QScriptValueIterator>
+#include "data/Storage.h"
 #include "settings/Settings.h"
 
 IMDB::IMDB(QObject *parent)
@@ -69,20 +70,21 @@ void IMDB::search(QString searchStr)
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
     QUrl url(QString("http://imdbapi.org/?q=%1&type=json&plot=full&episode=0&limit=5&yg=0&mt=M&lang=en-US").arg(encodedSearch));
     QNetworkRequest request(url);
-    m_searchReply = qnam()->get(request);
-    connect(m_searchReply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
+    QNetworkReply *reply = qnam()->get(request);
+    connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
 }
 
 void IMDB::onSearchFinished()
 {
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     QList<ScraperSearchResult> results;
-    if (m_searchReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_searchReply->readAll());
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(reply->readAll());
         results = parseSearch(msg);
     } else {
-        qWarning() << "Network Error" << m_searchReply->errorString();
+        qWarning() << "Network Error" << reply->errorString();
     }
-    m_searchReply->deleteLater();
+    reply->deleteLater();
     emit searchDone(results);
 }
 
@@ -112,27 +114,31 @@ QList<ScraperSearchResult> IMDB::parseSearch(QString json)
 
 void IMDB::loadData(QString id, Movie *movie, QList<int> infos)
 {
-    m_currentMovie = movie;
-    m_infosToLoad = infos;
-    m_currentMovie->clear(infos);
-    m_currentMovie->setId(id);
+    movie->clear(infos);
+    movie->setId(id);
 
     QUrl url(QString("http://imdbapi.org/?id=%1&type=json&plot=full&episode=0&lang=en-US").arg(id));
     QNetworkRequest request(url);
-    m_loadReply = qnam()->get(QNetworkRequest(request));
-    connect(m_loadReply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
+    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    reply->setProperty("storage", Storage::toVariant(reply, movie));
+    connect(reply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
 }
 
 void IMDB::onLoadFinished()
 {
-    if (m_loadReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_loadReply->readAll());
-        parseAndAssignInfos(msg, m_currentMovie, m_infosToLoad);
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie *movie = reply->property("storage").value<Storage*>()->movie();
+    if (!movie)
+        return;
+
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(reply->readAll());
+        parseAndAssignInfos(msg, movie, movie->controller()->infosToLoad());
     } else {
-        qWarning() << "Network Error (load)" << m_loadReply->errorString();
+        qWarning() << "Network Error (load)" << reply->errorString();
     }
-    m_loadReply->deleteLater();
-    m_currentMovie->controller()->scraperLoadDone();
+    reply->deleteLater();
+    movie->controller()->scraperLoadDone();
 }
 
 void IMDB::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)

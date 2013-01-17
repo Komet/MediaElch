@@ -2,6 +2,7 @@
 
 #include <QDomDocument>
 #include <QXmlStreamReader>
+#include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "settings/Settings.h"
@@ -13,7 +14,6 @@
 OFDb::OFDb(QObject *parent)
 {
     setParent(parent);
-    m_httpNotFoundCounter = 0;
     m_scraperSupports << MovieScraperInfos::Title
                       << MovieScraperInfos::Released
                       << MovieScraperInfos::Poster
@@ -82,13 +82,13 @@ QList<int> OFDb::scraperSupports()
 void OFDb::search(QString searchStr)
 {
     qDebug() << "Entered, searchStr=" << searchStr;
-    m_httpNotFoundCounter = 0;
-    m_currentSearchString = searchStr;
 
     QString encodedSearch = Helper::toLatin1PercentEncoding(searchStr);
     QUrl url(QString("http://www.ofdbgw.org/search/%1").arg(encodedSearch).toUtf8());
-    m_searchReply = this->qnam()->get(QNetworkRequest(url));
-    connect(m_searchReply, SIGNAL(finished()), this, SLOT(searchFinished()));
+    QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    reply->setProperty("searchString", searchStr);
+    reply->setProperty("notFoundCounter", 0);
+    connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
 }
 
 /**
@@ -98,35 +98,41 @@ void OFDb::search(QString searchStr)
  */
 void OFDb::searchFinished()
 {
-    qDebug() << "Entered";
-    if (m_searchReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
-        m_searchReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
-        qDebug() << "Got redirect" << m_searchReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-        m_searchReply->deleteLater();
-        m_searchReply = this->qnam()->get(QNetworkRequest(m_searchReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
-        connect(m_searchReply, SIGNAL(finished()), this, SLOT(searchFinished()));
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QString searchStr = reply->property("searchString").toString();
+    int notFoundCounter = reply->property("notFoundCounter").toInt();
+
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
+        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+        qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+        reply->deleteLater();
+        reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
+        reply->setProperty("searchString", searchStr);
+        connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
         return;
     }
 
     // try to get another mirror when 404 occurs
-    if (m_searchReply->error() == QNetworkReply::ContentNotFoundError && m_httpNotFoundCounter < 3) {
+    if (reply->error() == QNetworkReply::ContentNotFoundError && notFoundCounter < 3) {
         qWarning() << "Got 404";
-        m_httpNotFoundCounter++;
-        m_searchReply->deleteLater();
-        QUrl url(QString("http://www.ofdbgw.org/search/%1").arg(m_currentSearchString));
-        m_searchReply = this->qnam()->get(QNetworkRequest(url));
-        connect(m_searchReply, SIGNAL(finished()), this, SLOT(searchFinished()));
+        notFoundCounter++;
+        reply->deleteLater();
+        QUrl url(QString("http://www.ofdbgw.org/search/%1").arg(searchStr));
+        reply = qnam()->get(QNetworkRequest(url));
+        reply->setProperty("searchString", searchStr);
+        reply->setProperty("notFoundCounter", notFoundCounter);
+        connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
         return;
     }
 
     QList<ScraperSearchResult> results;
-    if (m_searchReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_searchReply->readAll());
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(reply->readAll());
         results = parseSearch(msg);
     } else {
-        qWarning() << "Network Error" << m_searchReply->errorString();
+        qWarning() << "Network Error" << reply->errorString();
     }
-    m_searchReply->deleteLater();
+    reply->deleteLater();
     emit searchDone(results);
 }
 
@@ -166,13 +172,14 @@ QList<ScraperSearchResult> OFDb::parseSearch(QString xml)
 void OFDb::loadData(QString id, Movie *movie, QList<int> infos)
 {
     qDebug() << "Entered, id=" << id << "movie=" << movie->name();
-    m_infosToLoad = infos;
-    m_httpNotFoundCounter = 0;
-    m_currentLoadId = id;
-    m_currentMovie = movie;
+    movie->clear(infos);
+
     QUrl url(QString("http://ofdbgw.org/movie/%1").arg(id));
-    m_loadReply = this->qnam()->get(QNetworkRequest(url));
-    connect(m_loadReply, SIGNAL(finished()), this, SLOT(loadFinished()));
+    QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    reply->setProperty("storage", Storage::toVariant(reply, movie));
+    reply->setProperty("ofdbId", id);
+    reply->setProperty("notFoundCounter", 0);
+    connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
 }
 
 /**
@@ -181,35 +188,46 @@ void OFDb::loadData(QString id, Movie *movie, QList<int> infos)
  */
 void OFDb::loadFinished()
 {
-    qDebug() << "Entered";
-    if (m_loadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
-        m_loadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
-        qDebug() << "Got redirect" << m_loadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-        m_loadReply->deleteLater();
-        m_loadReply = this->qnam()->get(QNetworkRequest(m_loadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
-        connect(m_loadReply, SIGNAL(finished()), this, SLOT(loadFinished()));
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie *movie = reply->property("storage").value<Storage*>()->movie();
+    QString ofdbId = reply->property("ofdbId").toString();
+    int notFoundCounter = reply->property("notFoundCounter").toInt();
+    if (!movie)
+        return;
+
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
+        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+        qDebug() << "Got redirect" << reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+        reply->deleteLater();
+        reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
+        reply->setProperty("storage", Storage::toVariant(reply, movie));
+        reply->setProperty("ofdbId", ofdbId);
+        connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
         return;
     }
 
-    if (m_loadReply->error() == QNetworkReply::ContentNotFoundError && m_httpNotFoundCounter < 3) {
+    if (reply->error() == QNetworkReply::ContentNotFoundError && notFoundCounter < 3) {
         qWarning() << "Got 404";
-        m_httpNotFoundCounter++;
-        m_loadReply->deleteLater();
-        QUrl url(QString("http://ofdbgw.org/movie/%1").arg(m_currentLoadId));
-        m_loadReply = this->qnam()->get(QNetworkRequest(url));
-        connect(m_loadReply, SIGNAL(finished()), this, SLOT(loadFinished()));
+        notFoundCounter++;
+        reply->deleteLater();
+        QUrl url(QString("http://ofdbgw.org/movie/%1").arg(ofdbId));
+        reply = qnam()->get(QNetworkRequest(url));
+        reply->setProperty("storage", Storage::toVariant(reply, movie));
+        reply->setProperty("ofdbId", ofdbId);
+        reply->setProperty("notFoundCounter", notFoundCounter);
+        connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
         return;
     }
 
 
-    if (m_loadReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_loadReply->readAll());
-        parseAndAssignInfos(msg, m_currentMovie, m_infosToLoad);
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(reply->readAll());
+        parseAndAssignInfos(msg, movie, movie->controller()->infosToLoad());
     } else {
-        qWarning() << "Network Error" << m_loadReply->errorString();
+        qWarning() << "Network Error" << reply->errorString();
     }
-    m_loadReply->deleteLater();
-    m_currentMovie->controller()->scraperLoadDone();
+    reply->deleteLater();
+    movie->controller()->scraperLoadDone();
 }
 
 /**
@@ -221,7 +239,6 @@ void OFDb::loadFinished()
 void OFDb::parseAndAssignInfos(QString data, Movie *movie, QList<int> infos)
 {
     qDebug() << "Entered";
-    movie->clear(infos);
     QXmlStreamReader xml(data);
 
     xml.readNextStartElement();

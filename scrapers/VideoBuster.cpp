@@ -1,5 +1,6 @@
 #include "VideoBuster.h"
 #include <QTextDocument>
+#include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "settings/Settings.h"
@@ -63,8 +64,8 @@ void VideoBuster::search(QString searchStr)
     qDebug() << "Entered, searchStr=" << searchStr;
     QString encodedSearch = Helper::toLatin1PercentEncoding(searchStr);
     QUrl url(QString("https://www.videobuster.de/titlesearch.php?tab_search_content=movies&view=title_list_view_option_list&search_title=%1").arg(encodedSearch).toUtf8());
-    m_searchReply = this->qnam()->get(QNetworkRequest(url));
-    connect(m_searchReply, SIGNAL(finished()), this, SLOT(searchFinished()));
+    QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
 }
 
 /**
@@ -74,16 +75,17 @@ void VideoBuster::search(QString searchStr)
  */
 void VideoBuster::searchFinished()
 {
-    qDebug() << "Entered";
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+
     QList<ScraperSearchResult> results;
-    if (m_searchReply->error() == QNetworkReply::NoError ) {
-        QString msg = m_searchReply->readAll();
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = reply->readAll();
         msg = replaceEntities(msg);
         results = parseSearch(msg);
     } else {
-        qWarning() << "Network Error" << m_searchReply->errorString();
+        qWarning() << "Network Error" << reply->errorString();
     }
-    m_searchReply->deleteLater();
+    reply->deleteLater();
     emit searchDone(results);
 }
 
@@ -120,11 +122,12 @@ QList<ScraperSearchResult> VideoBuster::parseSearch(QString html)
 void VideoBuster::loadData(QString id, Movie *movie, QList<int> infos)
 {
     qDebug() << "Entered, id=" << id << "movie=" << movie->name();
-    m_infosToLoad = infos;
-    m_currentMovie = movie;
+    movie->clear(infos);
+
     QUrl url(QString("https://www.videobuster.de%1").arg(id));
-    m_loadReply = this->qnam()->get(QNetworkRequest(url));
-    connect(m_loadReply, SIGNAL(finished()), this, SLOT(loadFinished()));
+    QNetworkReply *reply = this->qnam()->get(QNetworkRequest(url));
+    reply->setProperty("storage", Storage::toVariant(reply, movie));
+    connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
 }
 
 /**
@@ -133,16 +136,20 @@ void VideoBuster::loadData(QString id, Movie *movie, QList<int> infos)
  */
 void VideoBuster::loadFinished()
 {
-    qDebug() << "Entered";
-    if (m_loadReply->error() == QNetworkReply::NoError ) {
-        QString msg = m_loadReply->readAll();
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie *movie = reply->property("storage").value<Storage*>()->movie();
+    reply->deleteLater();
+    if (!movie)
+        return;
+
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = reply->readAll();
         msg = replaceEntities(msg);
-        parseAndAssignInfos(msg, m_currentMovie, m_infosToLoad);
+        parseAndAssignInfos(msg, movie, movie->controller()->infosToLoad());
     } else {
-        qWarning() << "Network Error" << m_loadReply->errorString();
-        m_currentMovie->controller()->scraperLoadDone();
+        qWarning() << "Network Error" << reply->errorString();
+        movie->controller()->scraperLoadDone();
     }
-    m_loadReply->deleteLater();
 }
 
 /**
@@ -247,10 +254,11 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
     rx.setPattern("<a href=\"/titledtl.php/([^\\?]*)\\?tab=gallery&content_type_idnr=1");
     if (infos.contains(MovieScraperInfos::Backdrop) && rx.indexIn(html) != -1) {
         QUrl backdropUrl(QString("https://www.videobuster.de/titledtl.php/%1?tab=gallery&content_type_idnr=1").arg(rx.cap(1)));
-        m_backdropReply = qnam()->get(QNetworkRequest(backdropUrl));
-        connect(m_backdropReply, SIGNAL(finished()), this, SLOT(backdropFinished()));
+        QNetworkReply *reply = qnam()->get(QNetworkRequest(backdropUrl));
+        reply->setProperty("storage", Storage::toVariant(reply, movie));
+        connect(reply, SIGNAL(finished()), this, SLOT(backdropFinished()));
     } else {
-        m_currentMovie->controller()->scraperLoadDone();
+        movie->controller()->scraperLoadDone();
     }
 }
 
@@ -259,13 +267,17 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
  */
 void VideoBuster::backdropFinished()
 {
-    qDebug() << "Entered";
-    if (m_backdropReply->error() == QNetworkReply::NoError ) {
-        QString msg = m_backdropReply->readAll();
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie *movie = reply->property("storage").value<Storage*>()->movie();
+    reply->deleteLater();
+    if (!movie)
+        return;
+
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = reply->readAll();
         QRegExp rx("href=\"https://gfx.videobuster.de/archive/resized/([^\"]*)\"(.*)([^<]*)<img (.*) src=\"https://gfx.videobuster.de/archive/resized/c110/([^\"]*)\"");
         rx.setMinimal(true);
         int pos = 0;
-        int counter = 0;
         while ((pos = rx.indexIn(msg, pos)) != -1) {
             pos += rx.matchedLength();
             if (rx.cap(2).contains("titledtl_cover_pictures")) {
@@ -274,14 +286,12 @@ void VideoBuster::backdropFinished()
             Poster p;
             p.thumbUrl = QUrl(QString("https://gfx.videobuster.de/archive/resized/w700/%1").arg(rx.cap(5)));
             p.originalUrl = QUrl(QString("https://gfx.videobuster.de/archive/resized/%1").arg(rx.cap(1)));
-            m_currentMovie->addBackdrop(p);
-            counter++;
+            movie->addBackdrop(p);
         }
     } else {
-        qWarning() << "Network Error" << m_backdropReply->errorString();
+        qWarning() << "Network Error" << reply->errorString();
     }
-    m_backdropReply->deleteLater();
-    m_currentMovie->controller()->scraperLoadDone();
+    movie->controller()->scraperLoadDone();
 }
 
 /**

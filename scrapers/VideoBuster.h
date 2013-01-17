@@ -36,12 +36,7 @@ private slots:
     void backdropFinished();
 
 private:
-    Movie *m_currentMovie;
     QNetworkAccessManager m_qnam;
-    QNetworkReply *m_searchReply;
-    QNetworkReply *m_loadReply;
-    QNetworkReply *m_backdropReply;
-    QList<int> m_infosToLoad;
     QList<int> m_scraperSupports;
 
     QNetworkAccessManager *qnam();

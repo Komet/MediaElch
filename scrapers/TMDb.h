@@ -3,7 +3,6 @@
 
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
-#include <QMutex>
 #include <QObject>
 #include <QPointer>
 
