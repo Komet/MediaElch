@@ -149,10 +149,11 @@ void IMDB::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
 
     if (infos.contains(MovieScraperInfos::Title) && sc.property("title").isValid())
         movie->setName(sc.property("title").toString());
-    // @todo: get plot_simple
     if (infos.contains(MovieScraperInfos::Overview) && sc.property("plot").isValid() && !sc.property("plot").isNull()) {
         movie->setOverview(sc.property("plot").toString());
-        if (Settings::instance()->usePlotForOutline())
+        if (sc.property("plot_simple").isValid() && !sc.property("plot_simple").isNull() && !sc.property("plot_simple").toString().isEmpty())
+            movie->setOutline(sc.property("plot_simple").toString());
+        else if (Settings::instance()->usePlotForOutline())
             movie->setOutline(sc.property("plot").toString());
     }
     if (infos.contains(MovieScraperInfos::Rating) && sc.property("rating").isValid())
