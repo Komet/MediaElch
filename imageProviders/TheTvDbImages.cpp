@@ -8,7 +8,7 @@ TheTvDbImages::TheTvDbImages(QObject *parent)
 {
     setParent(parent);
     m_provides << ImageDialogType::TvShowPoster << ImageDialogType::TvShowBackdrop << ImageDialogType::TvShowBanner
-               << ImageDialogType::TvShowSeason << ImageDialogType::TvShowThumb;
+               << ImageDialogType::TvShowSeason << ImageDialogType::TvShowThumb << ImageDialogType::TvShowSeasonBanner;
     m_dummyShow = new TvShow(QString(), this);
     m_dummyEpisode = new TvShowEpisode(QStringList(), m_dummyShow);
     m_tvdb = new TheTvDb(this);
@@ -99,11 +99,12 @@ void TheTvDbImages::loadTvShowData(QString tvdbId, int type)
     infosToLoad.append(TvShowScraperInfos::Fanart);
     infosToLoad.append(TvShowScraperInfos::Poster);
     infosToLoad.append(TvShowScraperInfos::SeasonPoster);
+    infosToLoad.append(TvShowScraperInfos::SeasonBanner);
 
     if (type == TypeShowThumbnail)
         m_tvdb->loadTvShowEpisodeData(tvdbId, m_dummyEpisode, infosToLoad);
     else
-        m_tvdb->loadTvShowData(tvdbId, m_dummyShow, UpdateShow, infosToLoad);
+        m_dummyShow->loadData(tvdbId, m_tvdb, UpdateShow, infosToLoad);
 }
 
 /**
@@ -121,6 +122,8 @@ void TheTvDbImages::onLoadTvShowDataFinished()
         posters = m_dummyShow->banners();
     } else if (m_currentType == TypeSeasonPoster) {
         posters = m_dummyShow->seasonPosters(m_season);
+    } else if (m_currentType == TypeSeasonBanner) {
+        posters = m_dummyShow->seasonBanners(m_season);
     } else if (m_currentType == TypeShowThumbnail && !m_dummyEpisode->thumbnail().isEmpty()) {
         Poster p;
         p.thumbUrl = m_dummyEpisode->thumbnail();
@@ -194,6 +197,12 @@ void TheTvDbImages::tvShowSeason(QString tvdbId, int season)
 {
     m_season = season;
     loadTvShowData(tvdbId, TypeSeasonPoster);
+}
+
+void TheTvDbImages::tvShowSeasonBanners(QString tvdbId, int season)
+{
+    m_season = season;
+    loadTvShowData(tvdbId, TypeSeasonBanner);
 }
 
 // UNSUPPORTED
@@ -339,4 +348,10 @@ void TheTvDbImages::tvShowClearArts(QString tvdbId)
 void TheTvDbImages::tvShowCharacterArts(QString tvdbId)
 {
     Q_UNUSED(tvdbId);
+}
+
+void TheTvDbImages::tvShowSeasonBackdrops(QString tvdbId, int season)
+{
+    Q_UNUSED(tvdbId);
+    Q_UNUSED(season);
 }

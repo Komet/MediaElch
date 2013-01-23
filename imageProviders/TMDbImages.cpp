@@ -318,3 +318,15 @@ void TMDbImages::tvShowSeason(QString tvdbId, int season)
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
 }
+
+void TMDbImages::tvShowSeasonBanners(QString tvdbId, int season)
+{
+    Q_UNUSED(tvdbId);
+    Q_UNUSED(season);
+}
+
+void TMDbImages::tvShowSeasonBackdrops(QString tvdbId, int season)
+{
+    Q_UNUSED(tvdbId);
+    Q_UNUSED(season);
+}

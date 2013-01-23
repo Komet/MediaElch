@@ -596,19 +596,6 @@ QTabBar::tab:selected {
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout_3">
-         <item row="4" column="0">
-          <widget class="QLabel" name="label_42">
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Episode NFO</string>
-           </property>
-          </widget>
-         </item>
          <item row="0" column="2">
           <widget class="QLabel" name="label_35">
            <property name="font">
@@ -619,45 +606,6 @@ QTabBar::tab:selected {
            </property>
            <property name="text">
             <string>Backdrop</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_36">
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Season Poster</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="3">
-          <widget class="QLabel" name="label_40">
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Character Art</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLabel" name="label_20">
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Logo</string>
            </property>
           </widget>
          </item>
@@ -730,19 +678,6 @@ QTabBar::tab:selected {
            </property>
           </widget>
          </item>
-         <item row="4" column="1">
-          <widget class="QLabel" name="label_41">
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Episode Thumbnail</string>
-           </property>
-          </widget>
-         </item>
          <item row="1" column="0">
           <widget class="DataFileListWidget" name="tvShowNfoList">
            <property name="maximumSize">
@@ -754,16 +689,6 @@ QTabBar::tab:selected {
           </widget>
          </item>
          <item row="3" column="0">
-          <widget class="DataFileListWidget" name="tvShowSeasonPosterList">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>70</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
           <widget class="DataFileListWidget" name="tvShowLogoList">
            <property name="maximumSize">
             <size>
@@ -773,7 +698,20 @@ QTabBar::tab:selected {
            </property>
           </widget>
          </item>
-         <item row="2" column="2">
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_20">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Logo</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
           <widget class="QLabel" name="label_39">
            <property name="font">
             <font>
@@ -786,27 +724,7 @@ QTabBar::tab:selected {
            </property>
           </widget>
          </item>
-         <item row="5" column="0">
-          <widget class="DataFileListWidget" name="tvShowEpisodeNfoList">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>70</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="1">
-          <widget class="DataFileListWidget" name="tvShowEpisodeThumbList">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>70</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="2">
+         <item row="3" column="1">
           <widget class="DataFileListWidget" name="tvShowClearArtList">
            <property name="maximumSize">
             <size>
@@ -816,8 +734,136 @@ QTabBar::tab:selected {
            </property>
           </widget>
          </item>
-         <item row="3" column="3">
+         <item row="2" column="2">
+          <widget class="QLabel" name="label_40">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Character Art</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
           <widget class="DataFileListWidget" name="tvShowCharacterArtList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLabel" name="label_42">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Episode NFO</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="DataFileListWidget" name="tvShowEpisodeNfoList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_41">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Episode Thumbnail</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="DataFileListWidget" name="tvShowEpisodeThumbList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLabel" name="label_36">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Season Poster</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="DataFileListWidget" name="tvShowSeasonPosterList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2">
+          <widget class="QLabel" name="label_8">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Season Backdrop</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3">
+          <widget class="QLabel" name="label_10">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Season Banner</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="2">
+          <widget class="DataFileListWidget" name="tvShowSeasonBackdropList">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>70</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="3">
+          <widget class="DataFileListWidget" name="tvShowSeasonBannerList">
            <property name="maximumSize">
             <size>
              <width>16777215</width>

@@ -37,6 +37,8 @@ public:
     virtual void tvShowBanners(QString tvdbId) = 0;
     virtual void tvShowThumb(QString tvdbId, int season, int episode) = 0;
     virtual void tvShowSeason(QString tvdbId, int season) = 0;
+    virtual void tvShowSeasonBanners(QString tvdbId, int season) = 0;
+    virtual void tvShowSeasonBackdrops(QString tvdbId, int season) = 0;
     virtual QList<int> provides() = 0;
 public slots:
     virtual void searchMovie(QString searchStr, int limit) = 0;

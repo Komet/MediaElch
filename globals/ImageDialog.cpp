@@ -128,8 +128,8 @@ int ImageDialog::exec(int type)
     }
 
     // get image providers and setup combo box
-    bool haveDefault = m_defaultElements.count() > 0;
     m_providers = Manager::instance()->imageProviders(type);
+    bool haveDefault = m_defaultElements.count() > 0 || m_providers.isEmpty();
     ui->imageProvider->blockSignals(true);
     ui->imageProvider->clear();
     if (haveDefault) {
@@ -701,6 +701,8 @@ void ImageDialog::loadImagesFromProvider(QString id)
             m_currentProvider->tvShowPosters(id);
         else if (m_type == ImageDialogType::TvShowSeason)
             m_currentProvider->tvShowSeason(id, m_season);
+        else if (m_type == ImageDialogType::TvShowSeasonBanner)
+            m_currentProvider->tvShowSeasonBanners(id, m_season);
     } else if (m_itemType == ItemTvShowEpisode) {
         if (m_type == ImageDialogType::TvShowThumb)
             m_currentProvider->tvShowThumb(id, m_tvShowEpisode->season(), m_tvShowEpisode->episode());

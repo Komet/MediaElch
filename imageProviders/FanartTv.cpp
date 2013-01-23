@@ -528,6 +528,18 @@ void FanartTv::tvShowSeason(QString tvdbId, int season)
     Q_UNUSED(season);
 }
 
+void FanartTv::tvShowSeasonBanners(QString tvdbId, int season)
+{
+    Q_UNUSED(tvdbId);
+    Q_UNUSED(season);
+}
+
+void FanartTv::tvShowSeasonBackdrops(QString tvdbId, int season)
+{
+    Q_UNUSED(tvdbId);
+    Q_UNUSED(season);
+}
+
 /**
  * @brief Parses JSON data for tv shows
  * @param json JSON data

@@ -86,6 +86,16 @@ void TvShow::clear(QList<int> infos)
         m_seasonPosterImages.clear();
         m_seasonPosterImagesChanged.clear();
     }
+    if (infos.contains(TvShowScraperInfos::SeasonBackdrop)) {
+        m_seasonBackdrops.clear();
+        m_seasonBackdropImages.clear();
+        m_seasonBackdropImagesChanged.clear();
+    }
+    if (infos.contains(TvShowScraperInfos::SeasonBanner)) {
+        m_seasonBanners.clear();
+        m_seasonBannerImages.clear();
+        m_seasonBannerImagesChanged.clear();
+    }
     if (infos.contains(TvShowScraperInfos::Title))
         m_showTitle.clear();
     if (infos.contains(TvShowScraperInfos::Tags))
@@ -200,8 +210,11 @@ void TvShow::clearImages()
     m_logoImage = QImage();
     m_clearArtImage = QImage();
     m_characterArtImage = QImage();
-    foreach (int season, seasons())
+    foreach (int season, seasons()) {
         m_seasonPosterImages[season] = QImage();
+        m_seasonBackdropImages[season] = QImage();
+        m_seasonBannerImages[season] = QImage();
+    }
     foreach (Actor *actor, actorsPointer())
         actor->image = QImage();
 }
@@ -543,6 +556,38 @@ QList<Poster> TvShow::seasonPosters(int season) const
     return m_seasonPosters[season];
 }
 
+QImage *TvShow::seasonBackdropImage(int season)
+{
+    if (!m_seasonBackdropImages.contains(season))
+        m_seasonBackdropImages.insert(season, QImage());
+
+    return &m_seasonBackdropImages[season];
+}
+
+QList<Poster> TvShow::seasonBackdrops(int season) const
+{
+    if (!m_seasonBackdrops.contains(season))
+        return QList<Poster>();
+
+    return m_seasonBackdrops[season];
+}
+
+QImage *TvShow::seasonBannerImage(int season)
+{
+    if (!m_seasonBannerImages.contains(season))
+        m_seasonBannerImages.insert(season, QImage());
+
+    return &m_seasonBannerImages[season];
+}
+
+QList<Poster> TvShow::seasonBanners(int season) const
+{
+    if (!m_seasonBanners.contains(season))
+        return QList<Poster>();
+
+    return m_seasonBanners[season];
+}
+
 /**
  * @brief TvShow::episode
  * @param season
@@ -620,6 +665,16 @@ bool TvShow::characterArtImageChanged() const
 bool TvShow::seasonPosterImageChanged(int season) const
 {
     return m_seasonPosterImagesChanged.contains(season);
+}
+
+bool TvShow::seasonBackdropImageChanged(int season) const
+{
+    return m_seasonBackdropImagesChanged.contains(season);
+}
+
+bool TvShow::seasonBannerImageChanged(int season) const
+{
+    return m_seasonBannerImagesChanged.contains(season);
 }
 
 /**
@@ -1059,6 +1114,55 @@ void TvShow::setSeasonPosterImage(int season, QImage poster)
 
     if (!m_seasonPosterImagesChanged.contains(season))
         m_seasonPosterImagesChanged.append(season);
+    setChanged(true);
+}
+
+
+
+
+void TvShow::addSeasonBackdrop(int season, Poster poster)
+{
+    if (!m_seasonBackdrops.contains(season)) {
+        QList<Poster> posters;
+        m_seasonBackdrops.insert(season, posters);
+    }
+
+    m_seasonBackdrops[season].append(poster);
+    setChanged(true);
+}
+
+void TvShow::setSeasonBackdropImage(int season, QImage poster)
+{
+    if (m_seasonBackdropImages.contains(season))
+        m_seasonBackdropImages[season] = poster;
+    else
+        m_seasonBackdropImages.insert(season, poster);
+
+    if (!m_seasonBackdropImagesChanged.contains(season))
+        m_seasonBackdropImagesChanged.append(season);
+    setChanged(true);
+}
+
+void TvShow::addSeasonBanner(int season, Poster poster)
+{
+    if (!m_seasonBanners.contains(season)) {
+        QList<Poster> posters;
+        m_seasonBanners.insert(season, posters);
+    }
+
+    m_seasonBanners[season].append(poster);
+    setChanged(true);
+}
+
+void TvShow::setSeasonBannerImage(int season, QImage poster)
+{
+    if (m_seasonBannerImages.contains(season))
+        m_seasonBannerImages[season] = poster;
+    else
+        m_seasonBannerImages.insert(season, poster);
+
+    if (!m_seasonBannerImagesChanged.contains(season))
+        m_seasonBannerImagesChanged.append(season);
     setChanged(true);
 }
 

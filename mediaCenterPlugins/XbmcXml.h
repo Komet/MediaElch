@@ -52,6 +52,8 @@ public:
     QString bannerImageName(TvShow *show);
     QString actorImageName(TvShow *show, Actor actor);
     QString seasonPosterImageName(TvShow *show, int season);
+    QString seasonBackdropImageName(TvShow *show, int season);
+    QString seasonBannerImageName(TvShow *show, int season);
     static void saveAdditionalImages(Movie *movie);
     static void saveAdditionalImages(Concert *concert);
     static void saveAdditionalImages(TvShow *show);

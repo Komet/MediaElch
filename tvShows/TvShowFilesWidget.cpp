@@ -31,6 +31,7 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
 
     m_lastTvShow = 0;
     m_lastEpisode = 0;
+    m_lastSeason = -1;
     m_tvShowDelegate = new TvShowDelegate(this);
     m_tvShowProxyModel = Manager::instance()->tvShowProxyModel();
     m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
@@ -332,6 +333,7 @@ void TvShowFilesWidget::onItemActivated(QModelIndex index, QModelIndex previous)
 
     m_lastEpisode = 0;
     m_lastTvShow = 0;
+    m_lastSeason = -1;
     QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(index);
     if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TypeTvShow) {
         m_lastTvShow = Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShow();
@@ -339,12 +341,18 @@ void TvShowFilesWidget::onItemActivated(QModelIndex index, QModelIndex previous)
     } else if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TypeEpisode) {
         m_lastEpisode = Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShowEpisode();
         emit sigEpisodeSelected(m_lastEpisode);
+    } else if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TypeSeason) {
+        m_lastTvShow = Manager::instance()->tvShowModel()->getItem(sourceIndex)->tvShow();
+        m_lastSeason = Manager::instance()->tvShowModel()->getItem(sourceIndex)->season().toInt();
+        emit sigSeasonSelected(m_lastTvShow, m_lastSeason);
     }
 }
 
 void TvShowFilesWidget::emitLastSelection()
 {
-    if (m_lastTvShow)
+    if (m_lastTvShow && m_lastSeason != -1)
+        emit sigSeasonSelected(m_lastTvShow, m_lastSeason);
+    else if (m_lastTvShow)
         emit sigTvShowSelected(m_lastTvShow);
     else if (m_lastEpisode)
         emit sigEpisodeSelected(m_lastEpisode);

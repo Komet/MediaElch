@@ -57,7 +57,6 @@ private slots:
     void onChooseLogo();
     void onChooseClearArt();
     void onChooseCharacterArt();
-    void onChooseSeasonPoster(int season);
     void onPosterDownloadFinished(DownloadManagerElement elem);
     void onDownloadsFinished(TvShow *show);
     void onDownloadsLeft(int left, DownloadManagerElement elem);
@@ -87,7 +86,6 @@ private:
     QLabel *m_savingWidget;
     QMovie *m_loadingMovie;
     DownloadManager *m_posterDownloadManager;
-    QMap<int, QList<QWidget*> > m_seasonLayoutWidgets;
     QImage m_currentPoster;
     QImage m_currentBackdrop;
     QImage m_currentBanner;

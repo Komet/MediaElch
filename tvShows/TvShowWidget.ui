@@ -20,10 +20,11 @@
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="TvShowWidgetTvShow" name="tvShowWidget"/>
      <widget class="TvShowWidgetEpisode" name="episodeWidget"/>
+     <widget class="TvShowWidgetSeason" name="seasonWidget"/>
     </widget>
    </item>
   </layout>
@@ -39,6 +40,12 @@
    <class>TvShowWidgetTvShow</class>
    <extends>QWidget</extends>
    <header>tvShows/TvShowWidgetTvShow.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TvShowWidgetSeason</class>
+   <extends>QWidget</extends>
+   <header>tvShows/TvShowWidgetSeason.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

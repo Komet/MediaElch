@@ -18,11 +18,15 @@ TvShowWidget::TvShowWidget(QWidget *parent) :
 
     connect(ui->tvShowWidget, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)));
     connect(ui->tvShowWidget, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)));
-    connect(ui->episodeWidget, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)));
-    connect(ui->episodeWidget, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)));
     connect(ui->tvShowWidget, SIGNAL(sigDownloadsStarted(QString,int)), this, SIGNAL(sigDownloadsStarted(QString,int)));
     connect(ui->tvShowWidget, SIGNAL(sigDownloadsProgress(int,int,int)), this, SIGNAL(sigDownloadsProgress(int,int,int)));
     connect(ui->tvShowWidget, SIGNAL(sigDownloadsFinished(int)), this, SIGNAL(sigDownloadsFinished(int)));
+
+    connect(ui->episodeWidget, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)));
+    connect(ui->episodeWidget, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)));
+
+    connect(ui->seasonWidget, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSaveEnabled(bool,MainWidgets)));
+    connect(ui->seasonWidget, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)), this, SIGNAL(sigSetActionSearchEnabled(bool,MainWidgets)));
 }
 
 /**
@@ -45,6 +49,7 @@ void TvShowWidget::onClear()
 {
     ui->episodeWidget->onClear();
     ui->tvShowWidget->onClear();
+    ui->seasonWidget->onClear();
 }
 
 /**
@@ -56,6 +61,13 @@ void TvShowWidget::onTvShowSelected(TvShow *show)
     qDebug() << "Entered, show=" << show->name();
     ui->stackedWidget->setCurrentIndex(0);
     ui->tvShowWidget->setTvShow(show);
+}
+
+void TvShowWidget::onSeasonSelected(TvShow *show, int season)
+{
+    qDebug() << "Entered, show=" << show->name() << "season=" << season;
+    ui->stackedWidget->setCurrentIndex(2);
+    ui->seasonWidget->setSeason(show, season);
 }
 
 /**
@@ -74,11 +86,6 @@ void TvShowWidget::onEpisodeSelected(TvShowEpisode *episode)
  */
 void TvShowWidget::onSetEnabledTrue(TvShow *show)
 {
-    qDebug() << "Entered";
-    if (show)
-        qDebug() << "show=" << show->name();
-    else
-        qDebug() << "Got no show";
     if (show && show->downloadsInProgress()) {
         qDebug() << "Downloads are in progress";
         return;
@@ -86,6 +93,7 @@ void TvShowWidget::onSetEnabledTrue(TvShow *show)
 
     ui->episodeWidget->onSetEnabled(true);
     ui->tvShowWidget->onSetEnabled(true);
+    ui->seasonWidget->onSetEnabled(true);
     emit sigSetActionSaveEnabled(true, WidgetTvShows);
     emit sigSetActionSearchEnabled(true, WidgetTvShows);
 }
@@ -95,11 +103,6 @@ void TvShowWidget::onSetEnabledTrue(TvShow *show)
  */
 void TvShowWidget::onSetEnabledTrue(TvShowEpisode *episode)
 {
-    qDebug() << "Entered";
-    if (episode)
-         qDebug() << "episode=" << episode->name();
-    else
-        qDebug() << "Got no episode";
     if (episode && episode->tvShow() && episode->tvShow()->downloadsInProgress()) {
         qDebug() << "Downloads are in progress";
         return;
@@ -107,6 +110,7 @@ void TvShowWidget::onSetEnabledTrue(TvShowEpisode *episode)
 
     ui->episodeWidget->onSetEnabled(true);
     ui->tvShowWidget->onSetEnabled(true);
+    ui->seasonWidget->onSetEnabled(true);
     emit sigSetActionSaveEnabled(true, WidgetTvShows);
     emit sigSetActionSearchEnabled(true, WidgetTvShows);
 }
@@ -119,6 +123,7 @@ void TvShowWidget::onSetDisabledTrue()
     qDebug() << "Entered";
     ui->episodeWidget->onSetEnabled(false);
     ui->tvShowWidget->onSetEnabled(false);
+    ui->seasonWidget->onSetEnabled(false);
     emit sigSetActionSaveEnabled(false, WidgetTvShows);
     emit sigSetActionSearchEnabled(false, WidgetTvShows);
 }
@@ -133,6 +138,8 @@ void TvShowWidget::onSaveInformation()
         ui->tvShowWidget->onSaveInformation();
     else if (ui->stackedWidget->currentIndex() == 1)
         ui->episodeWidget->onSaveInformation();
+    else if (ui->stackedWidget->currentIndex() == 2)
+        ui->seasonWidget->onSaveInformation();
 }
 
 /**

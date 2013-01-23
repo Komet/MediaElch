@@ -118,7 +118,8 @@ SOURCES += main.cpp\
     trailerProviders/HdTrailers.cpp \
     smallWidgets/TagCloud.cpp \
     smallWidgets/MyWidget.cpp \
-    data/Storage.cpp
+    data/Storage.cpp \
+    tvShows/TvShowWidgetSeason.cpp
 
 HEADERS  += main/MainWindow.h \
     movies/Movie.h \
@@ -212,7 +213,8 @@ HEADERS  += main/MainWindow.h \
     trailerProviders/HdTrailers.h \
     smallWidgets/TagCloud.h \
     smallWidgets/MyWidget.h \
-    data/Storage.h
+    data/Storage.h \
+    tvShows/TvShowWidgetSeason.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -245,7 +247,8 @@ FORMS    += main/MainWindow.ui \
     globals/TrailerDialog.ui \
     xbmc/XbmcSync.ui \
     movies/MovieMultiScrapeDialog.ui \
-    smallWidgets/TagCloud.ui
+    smallWidgets/TagCloud.ui \
+    tvShows/TvShowWidgetSeason.ui
 
 RESOURCES += \
     MediaElch.qrc

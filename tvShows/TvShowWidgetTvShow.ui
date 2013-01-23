@@ -406,44 +406,6 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="tab_2">
-         <attribute name="title">
-          <string>Season Posters</string>
-         </attribute>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
-          <item>
-           <widget class="QScrollArea" name="scrollArea">
-            <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
-            </property>
-            <property name="widgetResizable">
-             <bool>true</bool>
-            </property>
-            <widget class="QWidget" name="scrollAreaWidgetContents">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>0</y>
-               <width>615</width>
-               <height>615</height>
-              </rect>
-             </property>
-             <layout class="QFormLayout" name="seasonsLayout">
-              <property name="fieldGrowthPolicy">
-               <enum>QFormLayout::ExpandingFieldsGrow</enum>
-              </property>
-              <property name="rowWrapPolicy">
-               <enum>QFormLayout::WrapLongRows</enum>
-              </property>
-              <property name="margin">
-               <number>0</number>
-              </property>
-             </layout>
-            </widget>
-           </widget>
-          </item>
-         </layout>
-        </widget>
        </widget>
       </item>
       <item>
@@ -671,7 +633,7 @@ QPushButton::hover {
                </font>
               </property>
               <property name="text">
-               <string>Backdrop</string>
+               <string>Fanart</string>
               </property>
              </widget>
             </item>
@@ -1108,15 +1070,15 @@ QPushButton::hover {
  </widget>
  <customwidgets>
   <customwidget>
+   <class>MyLabel</class>
+   <extends>QLabel</extends>
+   <header>smallWidgets/MyLabel.h</header>
+  </customwidget>
+  <customwidget>
    <class>TagCloud</class>
    <extends>QWidget</extends>
    <header>smallWidgets/TagCloud.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MyLabel</class>
-   <extends>QLabel</extends>
-   <header>smallWidgets/MyLabel.h</header>
   </customwidget>
   <customwidget>
    <class>SlidingStackedWidget</class>

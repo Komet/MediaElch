@@ -765,7 +765,7 @@ QPushButton::hover {
                  </font>
                 </property>
                 <property name="text">
-                 <string>Backdrop</string>
+                 <string>Fanart</string>
                 </property>
                </widget>
               </item>
@@ -1127,12 +1127,6 @@ QPushButton::hover {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TagCloud</class>
-   <extends>QWidget</extends>
-   <header>smallWidgets/TagCloud.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>MyLabel</class>
    <extends>QLabel</extends>
    <header>smallWidgets/MyLabel.h</header>
@@ -1141,6 +1135,12 @@ QPushButton::hover {
    <class>MediaFlags</class>
    <extends>QWidget</extends>
    <header>smallWidgets/MediaFlags.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TagCloud</class>
+   <extends>QWidget</extends>
+   <header>smallWidgets/TagCloud.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

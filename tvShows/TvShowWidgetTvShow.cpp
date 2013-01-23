@@ -182,6 +182,7 @@ void TvShowWidgetTvShow::onClear()
     ui->overview->clear();
     ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
     ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->banner->setPixmap(QPixmap());
     ui->logo->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->clearArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->characterArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -193,16 +194,6 @@ void TvShowWidgetTvShow::onClear()
     ui->clearArtResolution->clear();
     ui->characterArtResolution->clear();
     ui->genreCloud->clear();
-
-    QMapIterator<int, QList<QWidget*> > it(m_seasonLayoutWidgets);
-    while (it.hasNext()) {
-        it.next();
-        ui->seasonsLayout->removeWidget(it.value().at(0));
-        ui->seasonsLayout->removeWidget(it.value().at(1));
-        it.value().at(0)->deleteLater();
-        it.value().at(1)->deleteLater();
-    }
-    m_seasonLayoutWidgets.clear();
     ui->buttonRevert->setVisible(false);
 }
 
@@ -389,40 +380,6 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         ui->characterArt->setPixmap(QPixmap(":/img/pictures_alt_small.png"));
         ui->characterArtResolution->setText("");
         ui->buttonPreviewCharacterArt->setEnabled(false);
-    }
-
-    QMapIterator<int, QList<QWidget*> > it(m_seasonLayoutWidgets);
-    while (it.hasNext()) {
-        it.next();
-        ui->seasonsLayout->removeWidget(it.value().at(0));
-        ui->seasonsLayout->removeWidget(it.value().at(1));
-        it.value().at(0)->deleteLater();
-        it.value().at(1)->deleteLater();
-    }
-    m_seasonLayoutWidgets.clear();
-    int row=0;
-    foreach (int season, m_show->seasons()) {
-        QLabel *label = new QLabel(tr("Season %1").arg(season));
-        MyLabel *poster = new MyLabel;
-        poster->setMinimumSize(150, 225);
-        poster->setToolTip(tr("Click to Change"));
-        poster->setCursor(Qt::PointingHandCursor);
-        poster->setSeason(season);
-        poster->setAlignment(Qt::AlignCenter);
-        if (!Manager::instance()->mediaCenterInterface()->seasonPosterImageName(m_show, season).isEmpty()) {
-            QPixmap p(Manager::instance()->mediaCenterInterface()->seasonPosterImageName(m_show, season));
-            poster->setPixmap(p.scaledToWidth(150, Qt::SmoothTransformation));
-        } else {
-            poster->setPixmap(QPixmap(":/img/film_reel.png"));
-        }
-        connect(poster, SIGNAL(seasonClicked(int)), this, SLOT(onChooseSeasonPoster(int)));
-        ui->seasonsLayout->setWidget(row, QFormLayout::LabelRole, label);
-        ui->seasonsLayout->setWidget(row, QFormLayout::FieldRole, poster);
-        row++;
-        QList<QWidget*> widgets;
-        widgets.append(label);
-        widgets.append(poster);
-        m_seasonLayoutWidgets.insert(season, widgets);
     }
 
     ui->certification->blockSignals(false);
@@ -627,10 +584,26 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > post
             d.show = show;
             m_posterDownloadManager->addDownload(d);
             downloadsSize++;
-            if (m_show == show && m_seasonLayoutWidgets.contains(season)) {
-                static_cast<MyLabel*>(m_seasonLayoutWidgets[season].at(1))->setPixmap(QPixmap());
-                static_cast<MyLabel*>(m_seasonLayoutWidgets[season].at(1))->setMovie(m_loadingMovie);
-            }
+        }
+        if (!show->seasonBackdrops(season).isEmpty()) {
+            emit sigSetActionSaveEnabled(false, WidgetTvShows);
+            DownloadManagerElement d;
+            d.imageType = TypeSeasonBackdrop;
+            d.url = show->seasonBackdrops(season).at(0).originalUrl;
+            d.season = season;
+            d.show = show;
+            m_posterDownloadManager->addDownload(d);
+            downloadsSize++;
+        }
+        if (!show->seasonBanners(season).isEmpty()) {
+            emit sigSetActionSaveEnabled(false, WidgetTvShows);
+            DownloadManagerElement d;
+            d.imageType = TypeSeasonBanner;
+            d.url = show->seasonBanners(season).at(0).originalUrl;
+            d.season = season;
+            d.show = show;
+            m_posterDownloadManager->addDownload(d);
+            downloadsSize++;
         }
     }
 
@@ -686,39 +659,6 @@ void TvShowWidgetTvShow::onChoosePoster()
         ui->poster->setPixmap(QPixmap());
         ui->poster->setMovie(m_loadingMovie);
         ui->buttonPreviewPoster->setEnabled(false);
-        ui->buttonRevert->setVisible(true);
-    }
-}
-
-/**
- * @brief Shows the MovieImageDialog and after successful execution starts season poster download
- */
-void TvShowWidgetTvShow::onChooseSeasonPoster(int season)
-{
-    qDebug() << "Entered";
-    if (m_show == 0) {
-        qDebug() << "My show is invalid";
-        return;
-    }
-
-    ImageDialog::instance()->setImageType(TypePoster);
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setTvShow(m_show);
-    ImageDialog::instance()->setSeason(season);
-    ImageDialog::instance()->setDownloads(m_show->seasonPosters(season));
-    ImageDialog::instance()->exec(ImageDialogType::TvShowSeason);
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
-        DownloadManagerElement d;
-        d.imageType = TypeSeasonPoster;
-        d.url = ImageDialog::instance()->imageUrl();
-        d.season = season;
-        d.show = m_show;
-        m_posterDownloadManager->addDownload(d);
-        if (m_seasonLayoutWidgets.contains(season)) {
-            static_cast<MyLabel*>(m_seasonLayoutWidgets[season].at(1))->setPixmap(QPixmap());
-            static_cast<MyLabel*>(m_seasonLayoutWidgets[season].at(1))->setMovie(m_loadingMovie);
-        }
         ui->buttonRevert->setVisible(true);
     }
 }
@@ -921,11 +861,13 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
         elem.show->setBannerImage(elem.image);
     } else if (elem.imageType == TypeSeasonPoster) {
         qDebug() << "Got a season poster";
-        int season = elem.season;
-        elem.show->setSeasonPosterImage(season, elem.image);
-        if (m_show == elem.show && m_seasonLayoutWidgets.contains(season)) {
-            static_cast<MyLabel*>(m_seasonLayoutWidgets[season].at(1))->setPixmap(QPixmap::fromImage(elem.image).scaled(150, 225, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        }
+        elem.show->setSeasonPosterImage(elem.season, elem.image);
+    } else if (elem.imageType == TypeSeasonBackdrop) {
+        qDebug() << "Got a season backdrop";
+        elem.show->setSeasonBackdropImage(elem.season, elem.image);
+    } else if (elem.imageType == TypeSeasonBanner) {
+        qDebug() << "Got a season banner";
+        elem.show->setSeasonBannerImage(elem.season, elem.image);
     } else if (elem.imageType == TypeLogo) {
         qDebug() << "Got a logo";
         if (m_show == elem.show) {

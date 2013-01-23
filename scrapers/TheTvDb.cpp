@@ -478,6 +478,18 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show, TvShowUpdateType 
                 int season = elem.elementsByTagName("Season").at(0).toElement().text().toInt();
                 show->addSeasonPoster(season, p);
             }
+        } else if (bannerType == "season" && bannerType2 == "seasonwide" && infosToLoad.contains(TvShowScraperInfos::SeasonBanner)) {
+            Poster p;
+            if (!elem.elementsByTagName("id").isEmpty())
+                p.id = elem.elementsByTagName("id").at(0).toElement().text();
+            if (!elem.elementsByTagName("BannerPath").isEmpty()) {
+                p.originalUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+                p.thumbUrl = QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("BannerPath").at(0).toElement().text());
+            }
+            if (!elem.elementsByTagName("Season").isEmpty()) {
+                int season = elem.elementsByTagName("Season").at(0).toElement().text().toInt();
+                show->addSeasonBanner(season, p);
+            }
         } else if (bannerType == "series" && infosToLoad.contains(TvShowScraperInfos::Banner)) {
             Poster p;
             if (!elem.elementsByTagName("id").isEmpty())

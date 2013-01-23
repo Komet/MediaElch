@@ -52,6 +52,8 @@ public:
     virtual QString clearArtImageName(TvShow *show) = 0;
     virtual QString characterArtImageName(TvShow *show) = 0;
     virtual QString seasonPosterImageName(TvShow *show, int season) = 0;
+    virtual QString seasonBackdropImageName(TvShow *show, int season) = 0;
+    virtual QString seasonBannerImageName(TvShow *show, int season) = 0;
 };
 
 #endif // MEDIACENTERINTERFACE_H

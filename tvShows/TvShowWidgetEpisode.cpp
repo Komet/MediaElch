@@ -93,7 +93,6 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
 
     onSetEnabled(false);
 
-
     QPainter p;
     QPixmap revert(":/img/arrow_circle_left.png");
     p.begin(&revert);

@@ -30,6 +30,8 @@ Settings::Settings(QObject *parent) :
     m_initialDataFiles.append(DataFile(DataFileType::TvShowPoster, "season-all.tbn", 0));
     m_initialDataFiles.append(DataFile(DataFileType::TvShowPoster, "poster.jpg", 1));
     m_initialDataFiles.append(DataFile(DataFileType::TvShowSeasonPoster, "season<seasonNumber>.tbn", 0));
+    m_initialDataFiles.append(DataFile(DataFileType::TvShowSeasonBackdrop, "season<seasonNumber>-fanart.tbn", 0));
+    m_initialDataFiles.append(DataFile(DataFileType::TvShowSeasonBanner, "season<seasonNumber>-banner.tbn", 0));
     m_initialDataFiles.append(DataFile(DataFileType::TvShowEpisodeNfo, "<baseFileName>.nfo", 0));
     m_initialDataFiles.append(DataFile(DataFileType::TvShowEpisodeThumb, "<baseFileName>.tbn", 0));
 

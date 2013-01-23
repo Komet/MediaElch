@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>564</height>
+    <height>606</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -252,6 +252,26 @@
          </widget>
         </item>
         <item>
+         <widget class="MyCheckBox" name="chkSeasonBackdrop">
+          <property name="text">
+           <string>Season Fanart</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkSeasonBanner">
+          <property name="text">
+           <string>Season Banner</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="MyCheckBox" name="chkBanner">
           <property name="text">
            <string>Banner</string>
@@ -274,7 +294,7 @@
         <item>
          <widget class="MyCheckBox" name="chkExtraArts">
           <property name="text">
-           <string>Extra Arts</string>
+           <string>Artwork</string>
           </property>
           <property name="checked">
            <bool>true</bool>

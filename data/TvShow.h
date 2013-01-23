@@ -64,6 +64,8 @@ public:
     QList<Poster> backdrops() const;
     QList<Poster> banners() const;
     QList<Poster> seasonPosters(int season) const;
+    QList<Poster> seasonBackdrops(int season) const;
+    QList<Poster> seasonBanners(int season) const;
     QImage *posterImage();
     QImage *backdropImage();
     QImage *bannerImage();
@@ -71,6 +73,8 @@ public:
     QImage *clearArtImage();
     QImage *characterArtImage();
     QImage *seasonPosterImage(int season);
+    QImage *seasonBackdropImage(int season);
+    QImage *seasonBannerImage(int season);
     bool posterImageChanged() const;
     bool backdropImageChanged() const;
     bool bannerImageChanged() const;
@@ -78,6 +82,8 @@ public:
     bool clearArtImageChanged() const;
     bool characterArtImageChanged() const;
     bool seasonPosterImageChanged(int season) const;
+    bool seasonBackdropImageChanged(int season) const;
+    bool seasonBannerImageChanged(int season) const;
     TvShowEpisode *episode(int season, int episode);
     QList<int> seasons();
     QList<TvShowEpisode*> episodes();
@@ -122,6 +128,10 @@ public:
     void setBannerImage(QImage banner);
     void addSeasonPoster(int season, Poster poster);
     void setSeasonPosterImage(int season, QImage poster);
+    void addSeasonBackdrop(int season, Poster poster);
+    void setSeasonBackdropImage(int season, QImage poster);
+    void addSeasonBanner(int season, Poster poster);
+    void setSeasonBannerImage(int season, QImage poster);
     void setChanged(bool changed);
     void setModelItem(TvShowModelItem *item);
     void setMediaCenterPath(QString path);
@@ -167,6 +177,8 @@ private:
     QList<Poster> m_backdrops;
     QList<Poster> m_banners;
     QMap<int, QList<Poster> > m_seasonPosters;
+    QMap<int, QList<Poster> > m_seasonBackdrops;
+    QMap<int, QList<Poster> > m_seasonBanners;
     QImage m_posterImage;
     QImage m_backdropImage;
     QImage m_bannerImage;
@@ -181,6 +193,10 @@ private:
     bool m_characterArtImageChanged;
     QMap<int, QImage> m_seasonPosterImages;
     QList<int> m_seasonPosterImagesChanged;
+    QMap<int, QImage> m_seasonBackdropImages;
+    QList<int> m_seasonBackdropImagesChanged;
+    QMap<int, QImage> m_seasonBannerImages;
+    QList<int> m_seasonBannerImagesChanged;
     TvShowModelItem *m_modelItem;
     QString m_mediaCenterPath;
     int m_showId;

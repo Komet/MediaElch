@@ -103,7 +103,7 @@ struct Poster {
 };
 
 enum ImageType {
-    TypePoster, TypeBackdrop, TypeBanner, TypeActor, TypeSeasonPoster, TypeShowThumbnail, TypeLogo, TypeClearArt, TypeCdArt, TypeCharacterArt
+    TypePoster, TypeBackdrop, TypeBanner, TypeActor, TypeSeasonPoster, TypeSeasonBanner, TypeSeasonBackdrop, TypeShowThumbnail, TypeLogo, TypeClearArt, TypeCdArt, TypeCharacterArt
 };
 
 enum TvShowType {
@@ -132,24 +132,26 @@ enum ComboDelegateType {
 };
 
 namespace ImageDialogType {
-    const int MoviePoster        = 1;
-    const int MovieBackdrop      = 2;
-    const int TvShowPoster       = 3;
-    const int TvShowBackdrop     = 4;
-    const int TvShowThumb        = 5;
-    const int TvShowSeason       = 6;
-    const int TvShowBanner       = 7;
-    const int ConcertPoster      = 8;
-    const int ConcertBackdrop    = 9;
-    const int MovieLogo          = 10;
-    const int MovieClearArt      = 11;
-    const int MovieCdArt         = 12;
-    const int ConcertLogo        = 13;
-    const int ConcertClearArt    = 14;
-    const int ConcertCdArt       = 15;
-    const int TvShowClearArt     = 16;
-    const int TvShowLogos        = 17;
-    const int TvShowCharacterArt = 18;
+    const int MoviePoster          = 1;
+    const int MovieBackdrop        = 2;
+    const int TvShowPoster         = 3;
+    const int TvShowBackdrop       = 4;
+    const int TvShowThumb          = 5;
+    const int TvShowSeason         = 6;
+    const int TvShowBanner         = 7;
+    const int ConcertPoster        = 8;
+    const int ConcertBackdrop      = 9;
+    const int MovieLogo            = 10;
+    const int MovieClearArt        = 11;
+    const int MovieCdArt           = 12;
+    const int ConcertLogo          = 13;
+    const int ConcertClearArt      = 14;
+    const int ConcertCdArt         = 15;
+    const int TvShowClearArt       = 16;
+    const int TvShowLogos          = 17;
+    const int TvShowCharacterArt   = 18;
+    const int TvShowSeasonBackdrop = 19;
+    const int TvShowSeasonBanner   = 20;
 }
 
 namespace MovieScraperInfos {
@@ -174,24 +176,26 @@ namespace MovieScraperInfos {
 }
 
 namespace TvShowScraperInfos {
-    const int Actors        = 1;
-    const int Banner        = 2;
-    const int Certification = 3;
-    const int Director      = 4;
-    const int Fanart        = 5;
-    const int FirstAired    = 6;
-    const int Genres        = 7;
-    const int Network       = 8;
-    const int Overview      = 9;
-    const int Poster        = 10;
-    const int Rating        = 11;
-    const int SeasonEpisode = 12;
-    const int SeasonPoster  = 13;
-    const int Thumbnail     = 14;
-    const int Title         = 15;
-    const int Writer        = 16;
-    const int Tags          = 17;
-    const int ExtraArts     = 18;
+    const int Actors         = 1;
+    const int Banner         = 2;
+    const int Certification  = 3;
+    const int Director       = 4;
+    const int Fanart         = 5;
+    const int FirstAired     = 6;
+    const int Genres         = 7;
+    const int Network        = 8;
+    const int Overview       = 9;
+    const int Poster         = 10;
+    const int Rating         = 11;
+    const int SeasonEpisode  = 12;
+    const int SeasonPoster   = 13;
+    const int Thumbnail      = 14;
+    const int Title          = 15;
+    const int Writer         = 16;
+    const int Tags           = 17;
+    const int ExtraArts      = 18;
+    const int SeasonBackdrop = 19;
+    const int SeasonBanner   = 20;
 }
 
 namespace ConcertScraperInfos {
@@ -239,28 +243,30 @@ enum SortBy {
 };
 
 namespace DataFileType {
-    const int MovieNfo           = 1;
-    const int MoviePoster        = 2;
-    const int MovieBackdrop      = 3;
-    const int MovieLogo          = 4;
-    const int MovieClearArt      = 5;
-    const int MovieCdArt         = 6;
-    const int ConcertNfo         = 7;
-    const int ConcertPoster      = 8;
-    const int ConcertBackdrop    = 9;
-    const int ConcertLogo        = 10;
-    const int ConcertClearArt    = 11;
-    const int ConcertCdArt       = 12;
-    const int TvShowNfo          = 13;
-    const int TvShowPoster       = 14;
-    const int TvShowBackdrop     = 15;
-    const int TvShowBanner       = 16;
-    const int TvShowSeasonPoster = 17;
-    const int TvShowLogo         = 18;
-    const int TvShowClearArt     = 19;
-    const int TvShowCharacterArt = 20;
-    const int TvShowEpisodeNfo   = 21;
-    const int TvShowEpisodeThumb = 22;
+    const int MovieNfo             = 1;
+    const int MoviePoster          = 2;
+    const int MovieBackdrop        = 3;
+    const int MovieLogo            = 4;
+    const int MovieClearArt        = 5;
+    const int MovieCdArt           = 6;
+    const int ConcertNfo           = 7;
+    const int ConcertPoster        = 8;
+    const int ConcertBackdrop      = 9;
+    const int ConcertLogo          = 10;
+    const int ConcertClearArt      = 11;
+    const int ConcertCdArt         = 12;
+    const int TvShowNfo            = 13;
+    const int TvShowPoster         = 14;
+    const int TvShowBackdrop       = 15;
+    const int TvShowBanner         = 16;
+    const int TvShowSeasonPoster   = 17;
+    const int TvShowLogo           = 18;
+    const int TvShowClearArt       = 19;
+    const int TvShowCharacterArt   = 20;
+    const int TvShowEpisodeNfo     = 21;
+    const int TvShowEpisodeThumb   = 22;
+    const int TvShowSeasonBackdrop = 23;
+    const int TvShowSeasonBanner   = 24;
 }
 
 enum TvShowUpdateType {

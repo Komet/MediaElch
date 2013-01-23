@@ -270,6 +270,8 @@ void SettingsWidget::loadSettings()
     ui->tvShowBannerList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowBanner), DataFileType::TvShowBanner);
     ui->tvShowCharacterArtList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowCharacterArt), DataFileType::TvShowCharacterArt);
     ui->tvShowSeasonPosterList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowSeasonPoster), DataFileType::TvShowSeasonPoster);
+    ui->tvShowSeasonBackdropList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowSeasonBackdrop), DataFileType::TvShowSeasonBackdrop);
+    ui->tvShowSeasonBannerList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowSeasonBanner), DataFileType::TvShowSeasonBanner);
     ui->tvShowEpisodeNfoList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowEpisodeNfo), DataFileType::TvShowEpisodeNfo);
     ui->tvShowEpisodeThumbList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowEpisodeThumb), DataFileType::TvShowEpisodeThumb);
 
@@ -311,7 +313,7 @@ void SettingsWidget::saveSettings()
     dataFiles << ui->tvShowBackdropList->dataFiles() << ui->tvShowBannerList->dataFiles() << ui->tvShowCharacterArtList->dataFiles()
               << ui->tvShowClearArtList->dataFiles() << ui->tvShowEpisodeNfoList->dataFiles() << ui->tvShowEpisodeThumbList->dataFiles()
               << ui->tvShowLogoList->dataFiles() << ui->tvShowNfoList->dataFiles() << ui->tvShowPosterList->dataFiles()
-              << ui->tvShowSeasonPosterList->dataFiles();
+              << ui->tvShowSeasonPosterList->dataFiles() << ui->tvShowSeasonBackdropList->dataFiles() << ui->tvShowSeasonBannerList->dataFiles();
     dataFiles << ui->concertNfoList->dataFiles() << ui->concertBackdropList->dataFiles() << ui->concertCdArtList->dataFiles()
               << ui->concertClearArtList->dataFiles() << ui->concertLogoList->dataFiles() << ui->concertPosterList->dataFiles();
     m_settings->setDataFiles(dataFiles);

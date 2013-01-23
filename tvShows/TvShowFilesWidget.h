@@ -35,6 +35,7 @@ public slots:
 signals:
     void sigEpisodeSelected(TvShowEpisode *episode);
     void sigTvShowSelected(TvShow *show);
+    void sigSeasonSelected(TvShow *show, int season);
     void sigNothingSelected();
 
 private slots:
@@ -57,6 +58,7 @@ private:
     QMenu *m_contextMenu;
     TvShow *m_lastTvShow;
     TvShowEpisode *m_lastEpisode;
+    int m_lastSeason;
 };
 
 #endif // TVSHOWFILESWIDGET_H

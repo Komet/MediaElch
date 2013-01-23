@@ -46,6 +46,8 @@ TvShowSearch::TvShowSearch(QWidget *parent) :
     ui->chkRating->setMyData(TvShowScraperInfos::Rating);
     ui->chkSeasonEpisode->setMyData(TvShowScraperInfos::SeasonEpisode);
     ui->chkSeasonPoster->setMyData(TvShowScraperInfos::SeasonPoster);
+    ui->chkSeasonBackdrop->setMyData(TvShowScraperInfos::SeasonBackdrop);
+    ui->chkSeasonBanner->setMyData(TvShowScraperInfos::SeasonBanner);
     ui->chkThumbnail->setMyData(TvShowScraperInfos::Thumbnail);
     ui->chkTitle->setMyData(TvShowScraperInfos::Title);
     ui->chkWriter->setMyData(TvShowScraperInfos::Writer);
@@ -236,6 +238,8 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkGenres->setEnabled(true);
         ui->chkActors->setEnabled(true);
         ui->chkSeasonPoster->setEnabled(true);
+        ui->chkSeasonBackdrop->setEnabled(true);
+        ui->chkSeasonBanner->setEnabled(true);
         ui->chkBanner->setEnabled(true);
         ui->chkFanart->setEnabled(true);
         ui->chkPoster->setEnabled(true);
@@ -248,6 +252,8 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkGenres->setEnabled(true);
         ui->chkActors->setEnabled(true);
         ui->chkSeasonPoster->setEnabled(true);
+        ui->chkSeasonBackdrop->setEnabled(true);
+        ui->chkSeasonBanner->setEnabled(true);
         ui->chkBanner->setEnabled(true);
         ui->chkFanart->setEnabled(true);
         ui->chkPoster->setEnabled(true);
@@ -260,6 +266,8 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkGenres->setEnabled(false);
         ui->chkActors->setEnabled(false);
         ui->chkSeasonPoster->setEnabled(false);
+        ui->chkSeasonBackdrop->setEnabled(false);
+        ui->chkSeasonBanner->setEnabled(false);
         ui->chkBanner->setEnabled(false);
         ui->chkFanart->setEnabled(false);
         ui->chkPoster->setEnabled(false);

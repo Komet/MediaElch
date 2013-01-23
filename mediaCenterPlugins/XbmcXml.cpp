@@ -1246,6 +1246,40 @@ QString XbmcXml::seasonPosterImageName(TvShow *show, int season)
     return fileName;
 }
 
+QString XbmcXml::seasonBackdropImageName(TvShow *show, int season)
+{
+    QString fileName;
+    if (show->dir().isEmpty())
+        return fileName;
+    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowSeasonBackdrop)) {
+        QString file = dataFile.saveFileName("", season);
+        QFileInfo fi(show->dir() + QDir::separator() + file);
+        if (fi.isFile()) {
+            fileName = show->dir() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return fileName;
+}
+
+QString XbmcXml::seasonBannerImageName(TvShow *show, int season)
+{
+    QString fileName;
+    if (show->dir().isEmpty())
+        return fileName;
+    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowSeasonBanner)) {
+        QString file = dataFile.saveFileName("", season);
+        QFileInfo fi(show->dir() + QDir::separator() + file);
+        if (fi.isFile()) {
+            fileName = show->dir() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return fileName;
+}
+
 /**
  * @brief Get path to actor image
  * @param show
@@ -1551,6 +1585,20 @@ bool XbmcXml::saveTvShow(TvShow *show)
                 QString saveFileName = dataFile.saveFileName("", season);
                 qDebug() << "Saving season poster for season" << season << "to" << show->dir() + QDir::separator() + saveFileName;
                 show->seasonPosterImage(season)->save(show->dir() + QDir::separator() + saveFileName, "jpg", 100);
+            }
+        }
+        if (show->seasonBackdropImageChanged(season) && !show->seasonBackdropImage(season)->isNull()) {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowSeasonBackdrop)) {
+                QString saveFileName = dataFile.saveFileName("", season);
+                qDebug() << "Saving season backdrop for season" << season << "to" << show->dir() + QDir::separator() + saveFileName;
+                show->seasonBackdropImage(season)->save(show->dir() + QDir::separator() + saveFileName, "jpg", 100);
+            }
+        }
+        if (show->seasonBannerImageChanged(season) && !show->seasonBannerImage(season)->isNull()) {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowSeasonBanner)) {
+                QString saveFileName = dataFile.saveFileName("", season);
+                qDebug() << "Saving season banner for season" << season << "to" << show->dir() + QDir::separator() + saveFileName;
+                show->seasonBannerImage(season)->save(show->dir() + QDir::separator() + saveFileName, "jpg", 100);
             }
         }
     }
