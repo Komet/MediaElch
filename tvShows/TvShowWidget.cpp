@@ -84,7 +84,7 @@ void TvShowWidget::onEpisodeSelected(TvShowEpisode *episode)
 /**
  * @brief Sets the subwidgets enabled if there are no downloads
  */
-void TvShowWidget::onSetEnabledTrue(TvShow *show)
+void TvShowWidget::onSetEnabledTrue(TvShow *show, int season)
 {
     if (show && show->downloadsInProgress()) {
         qDebug() << "Downloads are in progress";
@@ -95,7 +95,7 @@ void TvShowWidget::onSetEnabledTrue(TvShow *show)
     ui->tvShowWidget->onSetEnabled(true);
     ui->seasonWidget->onSetEnabled(true);
     emit sigSetActionSaveEnabled(true, WidgetTvShows);
-    emit sigSetActionSearchEnabled(true, WidgetTvShows);
+    emit sigSetActionSearchEnabled(season == -1, WidgetTvShows);
 }
 
 /**

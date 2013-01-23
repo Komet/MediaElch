@@ -46,7 +46,6 @@ private slots:
     void onActivateDebugMode();
     void onSetDebugLogPath(QString path);
     void onUseProxy();
-    void onAutoLoadStreamDetails();
 
 private:
     Ui::SettingsWidget *ui;

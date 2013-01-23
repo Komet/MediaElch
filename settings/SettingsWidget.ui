@@ -81,7 +81,7 @@ QTabBar::tab:selected {
       <attribute name="title">
        <string>Global Settings</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0,0,0,0,0,0,0">
+      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0,0,0,0,0,0,0,0">
        <item>
         <widget class="QLabel" name="label_12">
          <property name="font">
@@ -212,6 +212,13 @@ QTabBar::tab:selected {
         <widget class="QCheckBox" name="chkAutoLoadStreamDetails">
          <property name="text">
           <string>Automatically load and save stream details from files</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="chkDownloadActorImages">
+         <property name="text">
+          <string>Download actor images</string>
          </property>
         </widget>
        </item>

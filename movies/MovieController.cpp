@@ -164,7 +164,7 @@ void MovieController::onFanartLoadDone(Movie *movie, QMap<int, QList<Poster> > p
         posters.insert(TypeBackdrop, QList<Poster>() << m_movie->backdrops().at(0));
 
     QList<DownloadManagerElement> downloads;
-    if (infosToLoad().contains(MovieScraperInfos::Actors)) {
+    if (infosToLoad().contains(MovieScraperInfos::Actors) && Settings::instance()->downloadActorImages()) {
         QList<Actor*> actors = m_movie->actorsPointer();
         for (int i=0, n=actors.size() ; i<n ; i++) {
             if (actors.at(i)->thumb.isEmpty())

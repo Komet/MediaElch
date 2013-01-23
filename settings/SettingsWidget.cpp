@@ -148,7 +148,6 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     connect(ui->buttonChooseLogfile, SIGNAL(clicked()), m_logFileDialog, SLOT(open()));
     connect(ui->logfilePath, SIGNAL(textChanged(QString)), this, SLOT(onSetDebugLogPath(QString)));
     connect(ui->chkUseProxy, SIGNAL(clicked()), this, SLOT(onUseProxy()));
-    connect(ui->chkAutoLoadStreamDetails, SIGNAL(clicked()), this, SLOT(onAutoLoadStreamDetails()));
 
     loadSettings();
 }
@@ -219,6 +218,7 @@ void SettingsWidget::loadSettings()
     onUseProxy();
 
     ui->usePlotForOutline->setChecked(m_settings->usePlotForOutline());
+    ui->chkDownloadActorImages->setChecked(m_settings->downloadActorImages());
 
     // Directories
     ui->dirs->setRowCount(0);
@@ -319,6 +319,8 @@ void SettingsWidget::saveSettings()
     m_settings->setDataFiles(dataFiles);
 
     m_settings->setUseYoutubePluginUrls(ui->useYoutubePluginUrls->isChecked());
+    m_settings->setAutoLoadStreamDetails(ui->chkAutoLoadStreamDetails->isChecked());
+    m_settings->setDownloadActorImages(ui->chkDownloadActorImages->isChecked());
 
     // XBMC
     if (ui->xbmcHost->text().endsWith("/"))
@@ -563,12 +565,4 @@ void SettingsWidget::chooseDirToAdd()
     QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a directory containing your movies, TV show or concerts"), QDir::homePath());
     if (!dir.isEmpty())
         addDir(dir);
-}
-
-/**
- * @brief SettingsWidget::onAutoLoadStreamDetails
- */
-void SettingsWidget::onAutoLoadStreamDetails()
-{
-    m_settings->setAutoLoadStreamDetails(ui->chkAutoLoadStreamDetails->isChecked());
 }

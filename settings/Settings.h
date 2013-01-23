@@ -42,6 +42,7 @@ public:
     bool debugModeActivated();
     QString debugLogPath();
     bool useYoutubePluginUrls();
+    bool downloadActorImages();
     QList<DataFile> dataFiles(int type);
     bool usePlotForOutline();
     QList<int> scraperInfos(MainWidgets widget, int scraperNo);
@@ -63,6 +64,7 @@ public:
     void setProxyUsername(QString username);
     void setProxyPassword(QString password);
     void setUseYoutubePluginUrls(bool use);
+    void setDownloadActorImages(bool download);
     void setDebugModeActivated(bool enabled);
     void setDebugLogPath(QString path);
     void setAutoLoadStreamDetails(bool autoLoad);
@@ -98,6 +100,7 @@ private:
     bool m_debugModeActivated;
     QString m_debugLogPath;
     bool m_youtubePluginUrls;
+    bool m_downloadActorImages;
     bool m_autoLoadStreamDetails;
     QList<DataFile> m_dataFiles;
     QList<DataFile> m_initialDataFiles;

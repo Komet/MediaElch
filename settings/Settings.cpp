@@ -70,6 +70,7 @@ void Settings::loadSettings()
     m_debugLogPath = m_settings.value("DebugLogPath").toString();
     m_autoLoadStreamDetails = m_settings.value("AutoLoadStreamDetails", true).toBool();
     m_usePlotForOutline = m_settings.value("Movies/UsePlotForOutline", true).toBool();
+    m_downloadActorImages = m_settings.value("DownloadActorImages", true).toBool();
 
     // XBMC
     m_xbmcHost = m_settings.value("XBMC/Host").toString();
@@ -173,6 +174,7 @@ void Settings::saveSettings()
 
     m_settings.setValue("UseYoutubePluginURLs", m_youtubePluginUrls);
     m_settings.setValue("Movies/UsePlotForOutline", m_usePlotForOutline);
+    m_settings.setValue("DownloadActorImages", m_downloadActorImages);
 
     // XBMC
     m_settings.setValue("XBMC/Host", m_xbmcHost);
@@ -698,4 +700,14 @@ void Settings::setScraperInfos(MainWidgets widget, int scraperNo, QList<int> ite
     else if (widget == WidgetTvShows)
         item = "TvShows";
     m_settings.setValue(QString("Scrapers/%1/%2").arg(item).arg(scraperNo), QVariant::fromValue<QList<int> >(items));
+}
+
+bool Settings::downloadActorImages()
+{
+    return m_downloadActorImages;
+}
+
+void Settings::setDownloadActorImages(bool download)
+{
+    m_downloadActorImages = download;
 }
