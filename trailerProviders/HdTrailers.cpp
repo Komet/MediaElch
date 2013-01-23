@@ -1,6 +1,7 @@
 #include "HdTrailers.h"
 
 #include <QRegExp>
+#include "globals/Helper.h"
 
 HdTrailers::HdTrailers(QObject *parent)
 {
@@ -37,7 +38,7 @@ HdTrailers::HdTrailers(QObject *parent)
 
 QString HdTrailers::name()
 {
-    return QString("HD Trailers");
+    return QString("HD-Trailers.net");
 }
 
 void HdTrailers::searchMovie(QString searchStr)
@@ -116,7 +117,7 @@ QList<TrailerResult> HdTrailers::parseTrailers(QString html)
             if (rx2.cap(1).contains("http://trailers.apple.com"))
                 continue;
             TrailerResult r;
-            r.trailerUrl = rx2.cap(1);
+            r.trailerUrl = Helper::urlFromEncoded(rx2.cap(1));
             r.name = QString("%2, %1").arg(rx.cap(1)).arg(rx2.cap(2));
             results.append(r);
         }

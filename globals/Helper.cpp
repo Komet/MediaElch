@@ -46,6 +46,12 @@ QString Helper::toLatin1PercentEncoding(QString str)
     return str;
 }
 
+QString Helper::urlFromEncoded(QString str)
+{
+    str = str.replace("&amp;", "&");
+    return str;
+}
+
 /**
  * @brief Changes the format of a trailer url
  * @param url Trailer Url
