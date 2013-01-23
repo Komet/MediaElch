@@ -297,8 +297,8 @@ void TrailerDialog::downloadFinished()
     if (m_downloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
         m_downloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
         qDebug() << "Got redirect" << m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-        m_downloadReply = m_qnam->get(QNetworkRequest(m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         ui->url->setText(m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString());
+        m_downloadReply = m_qnam->get(QNetworkRequest(m_downloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         connect(m_downloadReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
         connect(m_downloadReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(downloadProgress(qint64,qint64)));
         connect(m_downloadReply, SIGNAL(readyRead()), SLOT(downloadReadyRead()));
