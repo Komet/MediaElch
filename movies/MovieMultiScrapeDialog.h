@@ -32,6 +32,7 @@ private slots:
     void onProgress(Movie *movie, int current, int maximum);
     void onChkToggled();
     void onChkAllToggled();
+    void setChkBoxesEnabled();
 
 private:
     Ui::MovieMultiScrapeDialog *ui;

@@ -37,22 +37,24 @@ ConcertSearch::ConcertSearch(QWidget *parent) :
     connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(resultClicked(QTableWidgetItem*)));
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
 
-    connect(ui->chkBackdrop, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkCertification, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkGenres, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkOverview, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkPoster, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkRating, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkReleased, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkRuntime, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkTagline, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkTitle, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkTrailer, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkExtraArts, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkUnCheckAll, SIGNAL(clicked(bool)), this, SLOT(chkAllToggled(bool)));
+    ui->chkBackdrop->setMyData(ConcertScraperInfos::Backdrop);
+    ui->chkCertification->setMyData(ConcertScraperInfos::Certification);
+    ui->chkExtraArts->setMyData(ConcertScraperInfos::ExtraArts);
+    ui->chkGenres->setMyData(ConcertScraperInfos::Genres);
+    ui->chkOverview->setMyData(ConcertScraperInfos::Overview);
+    ui->chkPoster->setMyData(ConcertScraperInfos::Poster);
+    ui->chkRating->setMyData(ConcertScraperInfos::Rating);
+    ui->chkReleased->setMyData(ConcertScraperInfos::Released);
+    ui->chkRuntime->setMyData(ConcertScraperInfos::Runtime);
+    ui->chkTagline->setMyData(ConcertScraperInfos::Tagline);
+    ui->chkTitle->setMyData(ConcertScraperInfos::Title);
+    ui->chkTrailer->setMyData(ConcertScraperInfos::Trailer);
 
-    ui->chkUnCheckAll->setChecked(true);
-    chkAllToggled(true);
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+        if (box->myData().toInt() > 0)
+            connect(box, SIGNAL(clicked()), this, SLOT(chkToggled()));
+    }
+    connect(ui->chkUnCheckAll, SIGNAL(clicked(bool)), this, SLOT(chkAllToggled(bool)));
 }
 
 /**
@@ -163,59 +165,17 @@ void ConcertSearch::resultClicked(QTableWidgetItem *item)
 void ConcertSearch::chkToggled()
 {
     m_infosToLoad.clear();
-    int numOfScraperSupports = 0;
+    bool allToggled = true;
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+        if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled())
+            m_infosToLoad.append(box->myData().toInt());
+        if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled())
+            allToggled = false;
+    }
+    ui->chkUnCheckAll->setChecked(allToggled);
 
-    if (ui->chkBackdrop->isChecked())
-        m_infosToLoad.append(ConcertScraperInfos::Backdrop);
-    if (ui->chkCertification->isChecked())
-        m_infosToLoad.append(ConcertScraperInfos::Certification);
-    if (ui->chkGenres->isChecked())
-        m_infosToLoad.append(ConcertScraperInfos::Genres);
-    if (ui->chkOverview->isChecked())
-        m_infosToLoad.append(ConcertScraperInfos::Overview);
-    if (ui->chkPoster->isChecked())
-        m_infosToLoad.append(ConcertScraperInfos::Poster);
-    if (ui->chkRating->isChecked())
-        m_infosToLoad.append(ConcertScraperInfos::Rating);
-    if (ui->chkReleased->isChecked())
-        m_infosToLoad.append(ConcertScraperInfos::Released);
-    if (ui->chkRuntime->isChecked())
-        m_infosToLoad.append(ConcertScraperInfos::Runtime);
-    if (ui->chkTagline->isChecked())
-        m_infosToLoad.append(ConcertScraperInfos::Tagline);
-    if (ui->chkTitle->isChecked())
-        m_infosToLoad.append(ConcertScraperInfos::Title);
-    if (ui->chkTrailer->isChecked())
-        m_infosToLoad.append(ConcertScraperInfos::Trailer);
-    if (ui->chkExtraArts->isChecked())
-        m_infosToLoad.append(ConcertScraperInfos::ExtraArts);
-
-    if (ui->chkBackdrop->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkCertification->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkGenres->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkOverview->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkPoster->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkRating->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkReleased->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkRuntime->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkTagline->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkTitle->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkTrailer->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkExtraArts->isEnabled())
-        numOfScraperSupports++;
-
-    ui->chkUnCheckAll->setChecked(m_infosToLoad.size() == numOfScraperSupports);
+    int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
+    Settings::instance()->setScraperInfos(WidgetConcerts, scraperNo, m_infosToLoad);
 }
 
 /**
@@ -225,31 +185,10 @@ void ConcertSearch::chkToggled()
  */
 void ConcertSearch::chkAllToggled(bool toggled)
 {
-    bool isChecked = toggled;
-    if (ui->chkBackdrop->isEnabled())
-        ui->chkBackdrop->setChecked(isChecked);
-    if (ui->chkCertification->isEnabled())
-        ui->chkCertification->setChecked(isChecked);
-    if (ui->chkGenres->isEnabled())
-        ui->chkGenres->setChecked(isChecked);
-    if (ui->chkOverview->isEnabled())
-        ui->chkOverview->setChecked(isChecked);
-    if (ui->chkPoster->isEnabled())
-        ui->chkPoster->setChecked(isChecked);
-    if (ui->chkRating->isEnabled())
-        ui->chkRating->setChecked(isChecked);
-    if (ui->chkReleased->isEnabled())
-        ui->chkReleased->setChecked(isChecked);
-    if (ui->chkRuntime->isEnabled())
-        ui->chkRuntime->setChecked(isChecked);
-    if (ui->chkTagline->isEnabled())
-        ui->chkTagline->setChecked(isChecked);
-    if (ui->chkTitle->isEnabled())
-        ui->chkTitle->setChecked(isChecked);
-    if (ui->chkTrailer->isEnabled())
-        ui->chkTrailer->setChecked(isChecked);
-    if (ui->chkExtraArts->isEnabled())
-        ui->chkExtraArts->setChecked(isChecked);
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+        if (box->myData().toInt() > 0 && box->isEnabled())
+            box->setChecked(toggled);
+    }
     chkToggled();
 }
 
@@ -290,43 +229,12 @@ QList<int> ConcertSearch::infosToLoad()
  */
 void ConcertSearch::setChkBoxesEnabled(QList<int> scraperSupports)
 {
-    ui->chkBackdrop->setEnabled(scraperSupports.contains(ConcertScraperInfos::Backdrop));
-    ui->chkCertification->setEnabled(scraperSupports.contains(ConcertScraperInfos::Certification));
-    ui->chkGenres->setEnabled(scraperSupports.contains(ConcertScraperInfos::Genres));
-    ui->chkOverview->setEnabled(scraperSupports.contains(ConcertScraperInfos::Overview));
-    ui->chkPoster->setEnabled(scraperSupports.contains(ConcertScraperInfos::Poster));
-    ui->chkRating->setEnabled(scraperSupports.contains(ConcertScraperInfos::Rating));
-    ui->chkReleased->setEnabled(scraperSupports.contains(ConcertScraperInfos::Released));
-    ui->chkRuntime->setEnabled(scraperSupports.contains(ConcertScraperInfos::Runtime));
-    ui->chkTagline->setEnabled(scraperSupports.contains(ConcertScraperInfos::Tagline));
-    ui->chkTitle->setEnabled(scraperSupports.contains(ConcertScraperInfos::Title));
-    ui->chkTrailer->setEnabled(scraperSupports.contains(ConcertScraperInfos::Trailer));
-    ui->chkExtraArts->setEnabled(scraperSupports.contains(ConcertScraperInfos::ExtraArts));
+    int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
+    QList<int> infos = Settings::instance()->scraperInfos(WidgetConcerts, scraperNo);
 
-    if (!scraperSupports.contains(ConcertScraperInfos::Backdrop))
-        ui->chkBackdrop->setChecked(false);
-    if (!scraperSupports.contains(ConcertScraperInfos::Certification))
-        ui->chkCertification->setChecked(false);
-    if (!scraperSupports.contains(ConcertScraperInfos::Genres))
-        ui->chkGenres->setChecked(false);
-    if (!scraperSupports.contains(ConcertScraperInfos::Overview))
-        ui->chkOverview->setChecked(false);
-    if (!scraperSupports.contains(ConcertScraperInfos::Poster))
-        ui->chkPoster->setChecked(false);
-    if (!scraperSupports.contains(ConcertScraperInfos::Rating))
-        ui->chkRating->setChecked(false);
-    if (!scraperSupports.contains(ConcertScraperInfos::Released))
-        ui->chkReleased->setChecked(false);
-    if (!scraperSupports.contains(ConcertScraperInfos::Runtime))
-        ui->chkRuntime->setChecked(false);
-    if (!scraperSupports.contains(ConcertScraperInfos::Tagline))
-        ui->chkTagline->setChecked(false);
-    if (!scraperSupports.contains(ConcertScraperInfos::Title))
-        ui->chkTitle->setChecked(false);
-    if (!scraperSupports.contains(ConcertScraperInfos::Trailer))
-        ui->chkTrailer->setChecked(false);
-    if (!scraperSupports.contains(ConcertScraperInfos::ExtraArts))
-        ui->chkExtraArts->setChecked(false);
-
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+        box->setEnabled(scraperSupports.contains(box->myData().toInt()));
+        box->setChecked((infos.contains(box->myData().toInt()) || infos.isEmpty()) && scraperSupports.contains(box->myData().toInt()));
+    }
     chkToggled();
 }

@@ -41,6 +41,7 @@ private:
     void clear();
     QString m_scraperId;
     QList<int> m_infosToLoad;
+    TvShowType m_searchType;
 };
 
 #endif // TVSHOWSEARCH_H

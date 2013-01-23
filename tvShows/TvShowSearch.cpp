@@ -153,13 +153,14 @@ void TvShowSearch::onResultClicked(QTableWidgetItem *item)
 
 void TvShowSearch::setSearchType(TvShowType type)
 {
+    m_searchType = type;
     if (type == TypeTvShow) {
         ui->comboUpdate->setVisible(true);
         ui->comboUpdate->setCurrentIndex(0);
         onComboIndexChanged();
     } else if (type == TypeEpisode) {
         ui->comboUpdate->setVisible(false);
-        ui->comboUpdate->setCurrentIndex(2);
+        ui->comboUpdate->setCurrentIndex(4);
         onComboIndexChanged();
     }
 }
@@ -188,6 +189,11 @@ void TvShowSearch::onChkToggled()
     }
 
     ui->chkUnCheckAll->setChecked(allToggled);
+
+    int scraperNo = ui->comboUpdate->currentIndex();
+    if (m_searchType == TypeEpisode)
+        scraperNo = 4;
+    Settings::instance()->setScraperInfos(WidgetTvShows, scraperNo, m_infosToLoad);
 }
 
 void TvShowSearch::onChkAllToggled()
@@ -220,9 +226,13 @@ TvShowUpdateType TvShowSearch::updateType()
 
 void TvShowSearch::onComboIndexChanged()
 {
+    int scraperNo = ui->comboUpdate->currentIndex();
+    if (m_searchType == TypeEpisode)
+        scraperNo = 4;
+    QList<int> infos = Settings::instance()->scraperInfos(WidgetTvShows, scraperNo);
+
     TvShowUpdateType type = updateType();
     if (type == UpdateShow) {
-        ui->chkGenres->setEnabled(true);
         ui->chkGenres->setEnabled(true);
         ui->chkActors->setEnabled(true);
         ui->chkSeasonPoster->setEnabled(true);
@@ -235,7 +245,6 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkSeasonEpisode->setEnabled(false);
         ui->chkWriter->setEnabled(false);
     } else if (type == UpdateShowAndAllEpisodes || type == UpdateShowAndNewEpisodes) {
-        ui->chkGenres->setEnabled(true);
         ui->chkGenres->setEnabled(true);
         ui->chkActors->setEnabled(true);
         ui->chkSeasonPoster->setEnabled(true);
@@ -260,5 +269,8 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkSeasonEpisode->setEnabled(true);
         ui->chkWriter->setEnabled(true);
     }
+
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>())
+        box->setChecked((infos.contains(box->myData().toInt()) || infos.isEmpty()) && box->isEnabled());
     onChkToggled();
 }

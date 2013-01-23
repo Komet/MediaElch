@@ -44,6 +44,7 @@ public:
     bool useYoutubePluginUrls();
     QList<DataFile> dataFiles(int type);
     bool usePlotForOutline();
+    QList<int> scraperInfos(MainWidgets widget, int scraperNo);
 
     bool autoLoadStreamDetails();
 
@@ -71,6 +72,7 @@ public:
     void setXbmcPort(int port);
     void setXbmcUsername(QString username);
     void setXbmcPassword(QString password);
+    void setScraperInfos(MainWidgets widget, int scraperNo, QList<int> items);
 
 public slots:
     void saveSettings();

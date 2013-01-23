@@ -37,27 +37,29 @@ MovieSearch::MovieSearch(QWidget *parent) :
     connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(resultClicked(QTableWidgetItem*)));
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
 
-    connect(ui->chkActors, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkBackdrop, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkCertification, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkCountries, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkGenres, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkOverview, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkPoster, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkRating, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkReleased, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkRuntime, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkStudios, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkTagline, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkTitle, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkTrailer, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkWriter, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkDirector, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkExtraArts, SIGNAL(clicked()), this, SLOT(chkToggled()));
-    connect(ui->chkUnCheckAll, SIGNAL(clicked(bool)), this, SLOT(chkAllToggled(bool)));
+    ui->chkActors->setMyData(MovieScraperInfos::Actors);
+    ui->chkBackdrop->setMyData(MovieScraperInfos::Backdrop);
+    ui->chkCertification->setMyData(MovieScraperInfos::Certification);
+    ui->chkCountries->setMyData(MovieScraperInfos::Countries);
+    ui->chkDirector->setMyData(MovieScraperInfos::Director);
+    ui->chkExtraArts->setMyData(MovieScraperInfos::ExtraArts);
+    ui->chkGenres->setMyData(MovieScraperInfos::Genres);
+    ui->chkOverview->setMyData(MovieScraperInfos::Overview);
+    ui->chkPoster->setMyData(MovieScraperInfos::Poster);
+    ui->chkRating->setMyData(MovieScraperInfos::Rating);
+    ui->chkReleased->setMyData(MovieScraperInfos::Released);
+    ui->chkRuntime->setMyData(MovieScraperInfos::Runtime);
+    ui->chkStudios->setMyData(MovieScraperInfos::Studios);
+    ui->chkTagline->setMyData(MovieScraperInfos::Tagline);
+    ui->chkTitle->setMyData(MovieScraperInfos::Title);
+    ui->chkTrailer->setMyData(MovieScraperInfos::Trailer);
+    ui->chkWriter->setMyData(MovieScraperInfos::Writer);
 
-    ui->chkUnCheckAll->setChecked(true);
-    chkAllToggled(true);
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+        if (box->myData().toInt() > 0)
+            connect(box, SIGNAL(clicked()), this, SLOT(chkToggled()));
+    }
+    connect(ui->chkUnCheckAll, SIGNAL(clicked(bool)), this, SLOT(chkAllToggled(bool)));
 }
 
 /**
@@ -168,79 +170,17 @@ void MovieSearch::resultClicked(QTableWidgetItem *item)
 void MovieSearch::chkToggled()
 {
     m_infosToLoad.clear();
-    int numOfScraperSupports = 0;
+    bool allToggled = true;
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+        if (box->isChecked() && box->myData().toInt() > 0 && box->isEnabled())
+            m_infosToLoad.append(box->myData().toInt());
+        if (!box->isChecked() && box->myData().toInt() > 0 && box->isEnabled())
+            allToggled = false;
+    }
+    ui->chkUnCheckAll->setChecked(allToggled);
 
-    if (ui->chkActors->isChecked())
-        m_infosToLoad.append(MovieScraperInfos::Actors);
-    if (ui->chkBackdrop->isChecked())
-        m_infosToLoad.append(MovieScraperInfos::Backdrop);
-    if (ui->chkCertification->isChecked())
-        m_infosToLoad.append(MovieScraperInfos::Certification);
-    if (ui->chkCountries->isChecked())
-        m_infosToLoad.append(MovieScraperInfos::Countries);
-    if (ui->chkGenres->isChecked())
-        m_infosToLoad.append(MovieScraperInfos::Genres);
-    if (ui->chkOverview->isChecked())
-        m_infosToLoad.append(MovieScraperInfos::Overview);
-    if (ui->chkPoster->isChecked())
-        m_infosToLoad.append(MovieScraperInfos::Poster);
-    if (ui->chkRating->isChecked())
-        m_infosToLoad.append(MovieScraperInfos::Rating);
-    if (ui->chkReleased->isChecked())
-        m_infosToLoad.append(MovieScraperInfos::Released);
-    if (ui->chkRuntime->isChecked())
-        m_infosToLoad.append(MovieScraperInfos::Runtime);
-    if (ui->chkStudios->isChecked())
-        m_infosToLoad.append(MovieScraperInfos::Studios);
-    if (ui->chkTagline->isChecked())
-        m_infosToLoad.append(MovieScraperInfos::Tagline);
-    if (ui->chkTitle->isChecked())
-        m_infosToLoad.append(MovieScraperInfos::Title);
-    if (ui->chkTrailer->isChecked())
-        m_infosToLoad.append(MovieScraperInfos::Trailer);
-    if (ui->chkWriter->isChecked())
-        m_infosToLoad.append(MovieScraperInfos::Writer);
-    if (ui->chkDirector->isChecked())
-        m_infosToLoad.append(MovieScraperInfos::Director);
-    if (ui->chkExtraArts->isChecked())
-        m_infosToLoad.append(MovieScraperInfos::ExtraArts);
-
-    if (ui->chkActors->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkBackdrop->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkCertification->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkCountries->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkGenres->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkOverview->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkPoster->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkRating->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkReleased->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkRuntime->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkStudios->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkTagline->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkTitle->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkTrailer->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkWriter->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkDirector->isEnabled())
-        numOfScraperSupports++;
-    if (ui->chkExtraArts->isEnabled())
-        numOfScraperSupports++;
-
-    ui->chkUnCheckAll->setChecked(m_infosToLoad.size() == numOfScraperSupports);
+    int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
+    Settings::instance()->setScraperInfos(WidgetMovies, scraperNo, m_infosToLoad);
 }
 
 /**
@@ -250,41 +190,10 @@ void MovieSearch::chkToggled()
  */
 void MovieSearch::chkAllToggled(bool toggled)
 {
-    bool isChecked = toggled;
-    if (ui->chkActors->isEnabled())
-        ui->chkActors->setChecked(isChecked);
-    if (ui->chkBackdrop->isEnabled())
-        ui->chkBackdrop->setChecked(isChecked);
-    if (ui->chkCertification->isEnabled())
-        ui->chkCertification->setChecked(isChecked);
-    if (ui->chkCountries->isEnabled())
-        ui->chkCountries->setChecked(isChecked);
-    if (ui->chkGenres->isEnabled())
-        ui->chkGenres->setChecked(isChecked);
-    if (ui->chkOverview->isEnabled())
-        ui->chkOverview->setChecked(isChecked);
-    if (ui->chkPoster->isEnabled())
-        ui->chkPoster->setChecked(isChecked);
-    if (ui->chkRating->isEnabled())
-        ui->chkRating->setChecked(isChecked);
-    if (ui->chkReleased->isEnabled())
-        ui->chkReleased->setChecked(isChecked);
-    if (ui->chkRuntime->isEnabled())
-        ui->chkRuntime->setChecked(isChecked);
-    if (ui->chkStudios->isEnabled())
-        ui->chkStudios->setChecked(isChecked);
-    if (ui->chkTagline->isEnabled())
-        ui->chkTagline->setChecked(isChecked);
-    if (ui->chkTitle->isEnabled())
-        ui->chkTitle->setChecked(isChecked);
-    if (ui->chkTrailer->isEnabled())
-        ui->chkTrailer->setChecked(isChecked);
-    if (ui->chkWriter->isEnabled())
-        ui->chkWriter->setChecked(isChecked);
-    if (ui->chkDirector->isEnabled())
-        ui->chkDirector->setChecked(isChecked);
-    if (ui->chkExtraArts->isEnabled())
-        ui->chkExtraArts->setChecked(isChecked);
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+        if (box->myData().toInt() > 0 && box->isEnabled())
+            box->setChecked(toggled);
+    }
     chkToggled();
 }
 
@@ -325,58 +234,12 @@ QList<int> MovieSearch::infosToLoad()
  */
 void MovieSearch::setChkBoxesEnabled(QList<int> scraperSupports)
 {
-    ui->chkActors->setEnabled(scraperSupports.contains(MovieScraperInfos::Actors));
-    ui->chkBackdrop->setEnabled(scraperSupports.contains(MovieScraperInfos::Backdrop));
-    ui->chkCertification->setEnabled(scraperSupports.contains(MovieScraperInfos::Certification));
-    ui->chkCountries->setEnabled(scraperSupports.contains(MovieScraperInfos::Countries));
-    ui->chkGenres->setEnabled(scraperSupports.contains(MovieScraperInfos::Genres));
-    ui->chkOverview->setEnabled(scraperSupports.contains(MovieScraperInfos::Overview));
-    ui->chkPoster->setEnabled(scraperSupports.contains(MovieScraperInfos::Poster));
-    ui->chkRating->setEnabled(scraperSupports.contains(MovieScraperInfos::Rating));
-    ui->chkReleased->setEnabled(scraperSupports.contains(MovieScraperInfos::Released));
-    ui->chkRuntime->setEnabled(scraperSupports.contains(MovieScraperInfos::Runtime));
-    ui->chkStudios->setEnabled(scraperSupports.contains(MovieScraperInfos::Studios));
-    ui->chkTagline->setEnabled(scraperSupports.contains(MovieScraperInfos::Tagline));
-    ui->chkTitle->setEnabled(scraperSupports.contains(MovieScraperInfos::Title));
-    ui->chkTrailer->setEnabled(scraperSupports.contains(MovieScraperInfos::Trailer));
-    ui->chkWriter->setEnabled(scraperSupports.contains(MovieScraperInfos::Writer));
-    ui->chkDirector->setEnabled(scraperSupports.contains(MovieScraperInfos::Director));
-    ui->chkExtraArts->setEnabled(scraperSupports.contains(MovieScraperInfos::ExtraArts));
+    int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
+    QList<int> infos = Settings::instance()->scraperInfos(WidgetMovies, scraperNo);
 
-    if (!scraperSupports.contains(MovieScraperInfos::Actors))
-        ui->chkActors->setChecked(false);
-    if (!scraperSupports.contains(MovieScraperInfos::Backdrop))
-        ui->chkBackdrop->setChecked(false);
-    if (!scraperSupports.contains(MovieScraperInfos::Certification))
-        ui->chkCertification->setChecked(false);
-    if (!scraperSupports.contains(MovieScraperInfos::Countries))
-        ui->chkCountries->setChecked(false);
-    if (!scraperSupports.contains(MovieScraperInfos::Genres))
-        ui->chkGenres->setChecked(false);
-    if (!scraperSupports.contains(MovieScraperInfos::Overview))
-        ui->chkOverview->setChecked(false);
-    if (!scraperSupports.contains(MovieScraperInfos::Poster))
-        ui->chkPoster->setChecked(false);
-    if (!scraperSupports.contains(MovieScraperInfos::Rating))
-        ui->chkRating->setChecked(false);
-    if (!scraperSupports.contains(MovieScraperInfos::Released))
-        ui->chkReleased->setChecked(false);
-    if (!scraperSupports.contains(MovieScraperInfos::Runtime))
-        ui->chkRuntime->setChecked(false);
-    if (!scraperSupports.contains(MovieScraperInfos::Studios))
-        ui->chkStudios->setChecked(false);
-    if (!scraperSupports.contains(MovieScraperInfos::Tagline))
-        ui->chkTagline->setChecked(false);
-    if (!scraperSupports.contains(MovieScraperInfos::Title))
-        ui->chkTitle->setChecked(false);
-    if (!scraperSupports.contains(MovieScraperInfos::Trailer))
-        ui->chkTrailer->setChecked(false);
-    if (!scraperSupports.contains(MovieScraperInfos::Writer))
-        ui->chkWriter->setChecked(false);
-    if (!scraperSupports.contains(MovieScraperInfos::Director))
-        ui->chkDirector->setChecked(false);
-    if (!scraperSupports.contains(MovieScraperInfos::ExtraArts))
-        ui->chkExtraArts->setChecked(false);
-
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+        box->setEnabled(scraperSupports.contains(box->myData().toInt()));
+        box->setChecked((infos.contains(box->myData().toInt()) || infos.isEmpty()) && scraperSupports.contains(box->myData().toInt()));
+    }
     chkToggled();
 }

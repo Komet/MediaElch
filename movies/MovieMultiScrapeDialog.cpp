@@ -49,13 +49,12 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget *parent) :
         if (box->myData().toInt() > 0)
             connect(box, SIGNAL(clicked()), this, SLOT(onChkToggled()));
     }
-    connect(ui->chkUnCheckAll, SIGNAL(clicked()), this, SLOT(onChkAllToggled()));
-    connect(ui->btnStartScraping, SIGNAL(clicked()), this, SLOT(onStartScraping()));
-
     for (int i=0, n=Manager::instance()->scrapers().count() ; i<n ; ++i)
         ui->comboScraper->addItem(Manager::instance()->scrapers().at(i)->name(), i);
 
-    onChkToggled();
+    connect(ui->chkUnCheckAll, SIGNAL(clicked()), this, SLOT(onChkAllToggled()));
+    connect(ui->btnStartScraping, SIGNAL(clicked()), this, SLOT(onStartScraping()));
+    connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(setChkBoxesEnabled()));
 }
 
 MovieMultiScrapeDialog::~MovieMultiScrapeDialog()
@@ -85,6 +84,7 @@ int MovieMultiScrapeDialog::exec()
     ui->groupBox->setEnabled(true);
     ui->movie->clear();
     m_executed = true;
+    setChkBoxesEnabled();
     return QDialog::exec();
 }
 
@@ -212,6 +212,10 @@ void MovieMultiScrapeDialog::onChkToggled()
     }
 
     ui->chkUnCheckAll->setChecked(allToggled);
+
+    int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
+    Settings::instance()->setScraperInfos(WidgetMovies, scraperNo, m_infosToLoad);
+
     ui->btnStartScraping->setEnabled(!m_infosToLoad.isEmpty());
 }
 
@@ -221,6 +225,19 @@ void MovieMultiScrapeDialog::onChkAllToggled()
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0)
             box->setChecked(checked);
+    }
+    onChkToggled();
+}
+
+void MovieMultiScrapeDialog::setChkBoxesEnabled()
+{
+    int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
+    QList<int> scraperSupports = Manager::instance()->scrapers().at(scraperNo)->scraperSupports();
+    QList<int> infos = Settings::instance()->scraperInfos(WidgetMovies, scraperNo);
+
+    foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
+        box->setEnabled(scraperSupports.contains(box->myData().toInt()));
+        box->setChecked((infos.contains(box->myData().toInt()) || infos.isEmpty()) && scraperSupports.contains(box->myData().toInt()));
     }
     onChkToggled();
 }

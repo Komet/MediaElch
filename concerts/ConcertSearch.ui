@@ -136,84 +136,84 @@
          </spacer>
         </item>
         <item>
-         <widget class="QCheckBox" name="chkTitle">
+         <widget class="MyCheckBox" name="chkTitle">
           <property name="text">
            <string>Title</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="chkTagline">
+         <widget class="MyCheckBox" name="chkTagline">
           <property name="text">
            <string>Tagline</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="chkRating">
+         <widget class="MyCheckBox" name="chkRating">
           <property name="text">
            <string>Rating</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="chkReleased">
+         <widget class="MyCheckBox" name="chkReleased">
           <property name="text">
            <string>Released</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="chkRuntime">
+         <widget class="MyCheckBox" name="chkRuntime">
           <property name="text">
            <string>Runtime</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="chkCertification">
+         <widget class="MyCheckBox" name="chkCertification">
           <property name="text">
            <string>Certification</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="chkTrailer">
+         <widget class="MyCheckBox" name="chkTrailer">
           <property name="text">
            <string>Trailer</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="chkOverview">
+         <widget class="MyCheckBox" name="chkOverview">
           <property name="text">
            <string>Overview</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="chkPoster">
+         <widget class="MyCheckBox" name="chkPoster">
           <property name="text">
            <string>Poster</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="chkBackdrop">
+         <widget class="MyCheckBox" name="chkBackdrop">
           <property name="text">
            <string>Backdrop</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="chkGenres">
+         <widget class="MyCheckBox" name="chkGenres">
           <property name="text">
            <string>Genres</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="chkExtraArts">
+         <widget class="MyCheckBox" name="chkExtraArts">
           <property name="toolTip">
            <string>Logo, Clear Art, CD Art</string>
           </property>
@@ -288,6 +288,11 @@
    <class>MyLineEdit</class>
    <extends>QLineEdit</extends>
    <header>smallWidgets/MyLineEdit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MyCheckBox</class>
+   <extends>QCheckBox</extends>
+   <header location="global">smallWidgets/MyCheckBox.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

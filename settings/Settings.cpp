@@ -673,3 +673,27 @@ void Settings::setXbmcPassword(QString password)
 {
     m_xbmcPassword = password;
 }
+
+QList<int> Settings::scraperInfos(MainWidgets widget, int scraperNo)
+{
+    QString item = "unknown";
+    if (widget == WidgetMovies)
+        item = "Movies";
+    else if (widget == WidgetConcerts)
+        item = "Concerts";
+    else if (widget == WidgetTvShows)
+        item = "TvShows";
+    return m_settings.value(QString("Scrapers/%1/%2").arg(item).arg(scraperNo)).value<QList<int> >();
+}
+
+void Settings::setScraperInfos(MainWidgets widget, int scraperNo, QList<int> items)
+{
+    QString item = "unknown";
+    if (widget == WidgetMovies)
+        item = "Movies";
+    else if (widget == WidgetConcerts)
+        item = "Concerts";
+    else if (widget == WidgetTvShows)
+        item = "TvShows";
+    m_settings.setValue(QString("Scrapers/%1/%2").arg(item).arg(scraperNo), QVariant::fromValue<QList<int> >(items));
+}
