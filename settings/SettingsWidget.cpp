@@ -148,6 +148,8 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     connect(ui->buttonChooseLogfile, SIGNAL(clicked()), m_logFileDialog, SLOT(open()));
     connect(ui->logfilePath, SIGNAL(textChanged(QString)), this, SLOT(onSetDebugLogPath(QString)));
     connect(ui->chkUseProxy, SIGNAL(clicked()), this, SLOT(onUseProxy()));
+    connect(ui->btnDefaultsEden, SIGNAL(clicked()), this, SLOT(onDefaultsEden()));
+    connect(ui->btnDefaultsFrodo, SIGNAL(clicked()), this, SLOT(onDefaultsFrodo()));
 
     loadSettings();
 }
@@ -249,31 +251,7 @@ void SettingsWidget::loadSettings()
     ui->xbmcUsername->setText(m_settings->xbmcUsername());
     ui->xbmcPassword->setText(m_settings->xbmcPassword());
 
-    // Data Files
-    ui->movieNfoList->setDataFiles(m_settings->dataFiles(DataFileType::MovieNfo), DataFileType::MovieNfo);
-    ui->movieBackdropList->setDataFiles(m_settings->dataFiles(DataFileType::MovieBackdrop), DataFileType::MovieBackdrop);
-    ui->movieCdArtList->setDataFiles(m_settings->dataFiles(DataFileType::MovieCdArt), DataFileType::MovieCdArt);
-    ui->movieClearArtList->setDataFiles(m_settings->dataFiles(DataFileType::MovieClearArt), DataFileType::MovieClearArt);
-    ui->movieLogoList->setDataFiles(m_settings->dataFiles(DataFileType::MovieLogo), DataFileType::MovieLogo);
-    ui->moviePosterList->setDataFiles(m_settings->dataFiles(DataFileType::MoviePoster), DataFileType::MoviePoster);
-    ui->concertNfoList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertNfo), DataFileType::ConcertNfo);
-    ui->concertBackdropList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertBackdrop), DataFileType::ConcertBackdrop);
-    ui->concertCdArtList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertCdArt), DataFileType::ConcertCdArt);
-    ui->concertClearArtList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertClearArt), DataFileType::ConcertClearArt);
-    ui->concertLogoList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertLogo), DataFileType::ConcertLogo);
-    ui->concertPosterList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertPoster), DataFileType::ConcertPoster);
-    ui->tvShowNfoList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowNfo), DataFileType::TvShowNfo);
-    ui->tvShowBackdropList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowBackdrop), DataFileType::TvShowBackdrop);
-    ui->tvShowClearArtList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowClearArt), DataFileType::TvShowClearArt);
-    ui->tvShowLogoList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowLogo), DataFileType::TvShowLogo);
-    ui->tvShowPosterList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowPoster), DataFileType::TvShowPoster);
-    ui->tvShowBannerList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowBanner), DataFileType::TvShowBanner);
-    ui->tvShowCharacterArtList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowCharacterArt), DataFileType::TvShowCharacterArt);
-    ui->tvShowSeasonPosterList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowSeasonPoster), DataFileType::TvShowSeasonPoster);
-    ui->tvShowSeasonBackdropList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowSeasonBackdrop), DataFileType::TvShowSeasonBackdrop);
-    ui->tvShowSeasonBannerList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowSeasonBanner), DataFileType::TvShowSeasonBanner);
-    ui->tvShowEpisodeNfoList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowEpisodeNfo), DataFileType::TvShowEpisodeNfo);
-    ui->tvShowEpisodeThumbList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowEpisodeThumb), DataFileType::TvShowEpisodeThumb);
+    fillDataFiles();
 
     // Scrapers
     QMapIterator<ScraperInterface*, QComboBox*> it(m_scraperCombos);
@@ -565,4 +543,45 @@ void SettingsWidget::chooseDirToAdd()
     QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a directory containing your movies, TV show or concerts"), QDir::homePath());
     if (!dir.isEmpty())
         addDir(dir);
+}
+
+void SettingsWidget::onDefaultsEden()
+{
+    m_settings->loadEdenDefaults();
+    fillDataFiles();
+}
+
+void SettingsWidget::onDefaultsFrodo()
+{
+    m_settings->loadFrodoDefaults();
+    fillDataFiles();
+}
+
+void SettingsWidget::fillDataFiles()
+{
+    // Data Files
+    ui->movieNfoList->setDataFiles(m_settings->dataFiles(DataFileType::MovieNfo), DataFileType::MovieNfo);
+    ui->movieBackdropList->setDataFiles(m_settings->dataFiles(DataFileType::MovieBackdrop), DataFileType::MovieBackdrop);
+    ui->movieCdArtList->setDataFiles(m_settings->dataFiles(DataFileType::MovieCdArt), DataFileType::MovieCdArt);
+    ui->movieClearArtList->setDataFiles(m_settings->dataFiles(DataFileType::MovieClearArt), DataFileType::MovieClearArt);
+    ui->movieLogoList->setDataFiles(m_settings->dataFiles(DataFileType::MovieLogo), DataFileType::MovieLogo);
+    ui->moviePosterList->setDataFiles(m_settings->dataFiles(DataFileType::MoviePoster), DataFileType::MoviePoster);
+    ui->concertNfoList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertNfo), DataFileType::ConcertNfo);
+    ui->concertBackdropList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertBackdrop), DataFileType::ConcertBackdrop);
+    ui->concertCdArtList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertCdArt), DataFileType::ConcertCdArt);
+    ui->concertClearArtList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertClearArt), DataFileType::ConcertClearArt);
+    ui->concertLogoList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertLogo), DataFileType::ConcertLogo);
+    ui->concertPosterList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertPoster), DataFileType::ConcertPoster);
+    ui->tvShowNfoList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowNfo), DataFileType::TvShowNfo);
+    ui->tvShowBackdropList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowBackdrop), DataFileType::TvShowBackdrop);
+    ui->tvShowClearArtList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowClearArt), DataFileType::TvShowClearArt);
+    ui->tvShowLogoList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowLogo), DataFileType::TvShowLogo);
+    ui->tvShowPosterList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowPoster), DataFileType::TvShowPoster);
+    ui->tvShowBannerList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowBanner), DataFileType::TvShowBanner);
+    ui->tvShowCharacterArtList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowCharacterArt), DataFileType::TvShowCharacterArt);
+    ui->tvShowSeasonPosterList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowSeasonPoster), DataFileType::TvShowSeasonPoster);
+    ui->tvShowSeasonBackdropList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowSeasonBackdrop), DataFileType::TvShowSeasonBackdrop);
+    ui->tvShowSeasonBannerList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowSeasonBanner), DataFileType::TvShowSeasonBanner);
+    ui->tvShowEpisodeNfoList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowEpisodeNfo), DataFileType::TvShowEpisodeNfo);
+    ui->tvShowEpisodeThumbList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowEpisodeThumb), DataFileType::TvShowEpisodeThumb);
 }

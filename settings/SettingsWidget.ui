@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>973</width>
-    <height>805</height>
+    <height>681</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1167,6 +1167,33 @@ QTabBar::tab:selected {
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_7">
      <item>
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>Default filenames for</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnDefaultsEden">
+       <property name="text">
+        <string>XBMC Eden</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnDefaultsFrodo">
+       <property name="text">
+        <string>XBMC Frodo</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="horizontalSpacer_4">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -1183,6 +1210,9 @@ QTabBar::tab:selected {
       <widget class="QPushButton" name="btnCancel">
        <property name="text">
         <string>Cancel</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
        </property>
       </widget>
      </item>

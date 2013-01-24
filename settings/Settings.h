@@ -20,6 +20,8 @@ public:
 
     static Settings *instance(QObject *parent = 0);
     void loadSettings();
+    void loadEdenDefaults();
+    void loadFrodoDefaults();
 
     QSize mainWindowSize();
     QPoint mainWindowPosition();
@@ -103,7 +105,8 @@ private:
     bool m_downloadActorImages;
     bool m_autoLoadStreamDetails;
     QList<DataFile> m_dataFiles;
-    QList<DataFile> m_initialDataFiles;
+    QList<DataFile> m_initialDataFilesEden;
+    QList<DataFile> m_initialDataFilesFrodo;
     bool m_usePlotForOutline;
     QString m_xbmcHost;
     int m_xbmcPort;

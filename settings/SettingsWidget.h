@@ -46,6 +46,8 @@ private slots:
     void onActivateDebugMode();
     void onSetDebugLogPath(QString path);
     void onUseProxy();
+    void onDefaultsEden();
+    void onDefaultsFrodo();
 
 private:
     Ui::SettingsWidget *ui;
@@ -54,6 +56,7 @@ private:
     QMap<ScraperInterface*, QComboBox*> m_scraperCombos;
     QMap<TvScraperInterface*, QComboBox*> m_tvScraperCombos;
     QMap<ConcertScraperInterface*, QComboBox*> m_concertScraperCombos;
+    void fillDataFiles();
 };
 
 #endif // SETTINGSWIDGET_H
