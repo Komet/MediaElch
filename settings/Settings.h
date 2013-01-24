@@ -46,6 +46,7 @@ public:
     bool useYoutubePluginUrls();
     bool downloadActorImages();
     QList<DataFile> dataFiles(int type);
+    QList<DataFile> dataFilesFrodo(int type = -1);
     bool usePlotForOutline();
     QList<int> scraperInfos(MainWidgets widget, int scraperNo);
 

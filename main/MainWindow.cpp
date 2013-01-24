@@ -61,6 +61,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_settingsWidget = new SettingsWidget(ui->centralWidget);
     m_filterWidget = new FilterWidget();
     m_fileScannerDialog = new FileScannerDialog(ui->centralWidget);
+    m_xbmcSync = new XbmcSync(ui->centralWidget);
     m_settings = Settings::instance(this);
     setupToolbar();
 
@@ -141,6 +142,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), ui->tvShowFilesWidget, SLOT(renewModel()));
     connect(m_fileScannerDialog, SIGNAL(accepted()), this, SLOT(setNewMarks()));
+
+    connect(m_xbmcSync, SIGNAL(sigTriggerReload()), this, SLOT(onTriggerReloadAll()));
+    connect(m_xbmcSync, SIGNAL(sigFinished()), this, SLOT(onXbmcSyncFinished()));
 
     MovieSearch::instance(ui->centralWidget);
     TvShowSearch::instance(ui->centralWidget);
@@ -648,10 +652,19 @@ void MainWindow::setNewMarks()
 
 void MainWindow::onActionXbmc()
 {
-    XbmcSync *xbmc = new XbmcSync(this);
-    xbmc->exec();
+    m_xbmcSync->exec();
+}
+
+void MainWindow::onTriggerReloadAll()
+{
+    m_fileScannerDialog->setForceReload(true);
+    m_fileScannerDialog->setReloadType(FileScannerDialog::TypeAll);
+    m_fileScannerDialog->exec();
+}
+
+void MainWindow::onXbmcSyncFinished()
+{
     ui->filesWidget->movieSelectedEmitter();
     ui->tvShowFilesWidget->emitLastSelection();
     ui->concertFilesWidget->concertSelectedEmitter();
-    xbmc->deleteLater();
 }

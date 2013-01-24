@@ -473,6 +473,20 @@ QList<DataFile> Settings::dataFiles(int type)
     return files;
 }
 
+QList<DataFile> Settings::dataFilesFrodo(int type)
+{
+    if (type == -1)
+        return m_initialDataFilesFrodo;
+
+    QList<DataFile> files;
+    foreach (const DataFile &file, m_initialDataFilesFrodo) {
+        if (file.type() == type)
+            files.append(file);
+    }
+    qSort(files.begin(), files.end(), DataFile::lessThan);
+    return files;
+}
+
 /**
  * @brief Settings::usePlotForOutline
  * @return

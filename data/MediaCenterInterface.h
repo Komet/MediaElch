@@ -6,6 +6,7 @@
 #include "movies/Movie.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
+#include "settings/DataFile.h"
 
 class Concert;
 class Movie;
@@ -32,28 +33,28 @@ public:
     virtual bool saveTvShow(TvShow *show) = 0;
     virtual bool saveTvShowEpisode(TvShowEpisode *episode) = 0;
     virtual bool hasFeature(int feature) = 0;
-    virtual QString posterImageName(Movie *movie) = 0;
-    virtual QString backdropImageName(Movie *movie) = 0;
-    virtual QString logoImageName(Movie *movie) = 0;
-    virtual QString clearArtImageName(Movie *movie) = 0;
-    virtual QString cdArtImageName(Movie *movie) = 0;
+    virtual QString posterImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString backdropImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString logoImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString clearArtImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString cdArtImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString actorImageName(Movie *movie, Actor actor) = 0;
-    virtual QString posterImageName(Concert *concert) = 0;
-    virtual QString backdropImageName(Concert *concert) = 0;
-    virtual QString logoImageName(Concert *concert) = 0;
-    virtual QString clearArtImageName(Concert *concert) = 0;
-    virtual QString cdArtImageName(Concert *concert) = 0;
-    virtual QString thumbnailImageName(TvShowEpisode *episode) = 0;
-    virtual QString posterImageName(TvShow *show) = 0;
-    virtual QString backdropImageName(TvShow *show) = 0;
-    virtual QString bannerImageName(TvShow *show) = 0;
+    virtual QString posterImageName(Concert *concert, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString backdropImageName(Concert *concert, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString logoImageName(Concert *concert, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString clearArtImageName(Concert *concert, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString cdArtImageName(Concert *concert, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString thumbnailImageName(TvShowEpisode *episode, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString posterImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString backdropImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString bannerImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString actorImageName(TvShow *show, Actor actor) = 0;
-    virtual QString logoImageName(TvShow *show) = 0;
-    virtual QString clearArtImageName(TvShow *show) = 0;
-    virtual QString characterArtImageName(TvShow *show) = 0;
-    virtual QString seasonPosterImageName(TvShow *show, int season) = 0;
-    virtual QString seasonBackdropImageName(TvShow *show, int season) = 0;
-    virtual QString seasonBannerImageName(TvShow *show, int season) = 0;
+    virtual QString logoImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString clearArtImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString characterArtImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString seasonPosterImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString seasonBackdropImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString seasonBannerImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
 };
 
 #endif // MEDIACENTERINTERFACE_H

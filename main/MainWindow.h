@@ -13,6 +13,7 @@
 #include "settings/Settings.h"
 #include "settings/SettingsWidget.h"
 #include "support/SupportDialog.h"
+#include "xbmc/XbmcSync.h"
 
 namespace Ui {
 class MainWindow;
@@ -55,6 +56,8 @@ private slots:
     void onSetSaveEnabled(bool enabled, MainWidgets widget);
     void onSetSearchEnabled(bool enabled, MainWidgets widget);
     void moveSplitter(int pos, int index);
+    void onTriggerReloadAll();
+    void onXbmcSyncFinished();
 
 private:
     Ui::MainWindow *ui;
@@ -63,6 +66,7 @@ private:
     AboutDialog *m_aboutDialog;
     SupportDialog *m_supportDialog;
     FileScannerDialog *m_fileScannerDialog;
+    XbmcSync *m_xbmcSync;
     QAction *m_actionSearch;
     QAction *m_actionSave;
     QAction *m_actionXbmc;

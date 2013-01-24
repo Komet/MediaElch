@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>628</width>
-    <height>303</height>
+    <width>667</width>
+    <height>361</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -68,6 +68,23 @@
     </widget>
    </item>
    <item>
+    <widget class="QRadioButton" name="radioRenameArtwork">
+     <property name="text">
+      <string>Rename artwork to Frodo naming conventions</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="labelRenameArtwork">
+     <property name="text">
+      <string>This will rename all your artwork to fit the Frodo naming conventions. Please make sure you have not already set Frodo filenames in MediaElchs settings. Your artwork needs to show up in MediaElch.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -105,6 +122,13 @@
     </layout>
    </item>
    <item>
+    <widget class="QProgressBar" name="progressBar">
+     <property name="value">
+      <number>24</number>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="buttonClose">
@@ -132,7 +156,7 @@
      <item>
       <widget class="QPushButton" name="buttonSync">
        <property name="text">
-        <string>Synchronize</string>
+        <string>Start</string>
        </property>
       </widget>
      </item>
@@ -141,22 +165,5 @@
   </layout>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>buttonClose</sender>
-   <signal>clicked()</signal>
-   <receiver>XbmcSync</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>50</x>
-     <y>255</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>222</x>
-     <y>141</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

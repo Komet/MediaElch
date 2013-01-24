@@ -25,7 +25,7 @@ public:
     };
 
     enum SyncType {
-        SyncContents, SyncWatched
+        SyncContents, SyncWatched, RenameArtwork
     };
 
     struct XbmcData {
@@ -36,6 +36,11 @@ public:
 
 public slots:
     int exec();
+    void reject();
+
+signals:
+    void sigTriggerReload();
+    void sigFinished();
 
 private slots:
     void startSync();
@@ -49,6 +54,8 @@ private slots:
     void onDownloadProgress();
     void onRadioContents();
     void onRadioWatched();
+    void onRadioRenameArtwork();
+    void onButtonClose();
 
 private:
     Ui::XbmcSync *ui;
@@ -77,6 +84,9 @@ private:
     QTimer m_timer;
     bool m_aborted;
     SyncType m_syncType;
+    bool m_cancelRenameArtwork;
+    bool m_renameArtworkInProgress;
+    bool m_artworkWasRenamed;
 
     int findId(QStringList files, QMap<int, XbmcData> items);
     bool compareFiles(QStringList files, QStringList xbmcFiles, int level);
@@ -87,6 +97,7 @@ private:
     void checkIfListsReady(Elements element);
     void triggerReload();
     XbmcSync::XbmcData parseXbmcDataFromScriptValue(QScriptValue value);
+    void renameArtwork();
 };
 
 #endif // XBMCSYNC_H
