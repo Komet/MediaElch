@@ -124,6 +124,9 @@ public:
     int databaseId() const;
     bool syncNeeded() const;
     bool hasLocalTrailer() const;
+    QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
+    QStringList extraFanartsToRemove();
+    QList<QImage> extraFanartImagesToAdd();
 
     bool hasChanged() const;
 
@@ -184,6 +187,10 @@ public:
     void setNfoContent(QString content);
     void setDatabaseId(int id);
     void setSyncNeeded(bool syncNeeded);
+    void addExtraFanart(QImage fanart);
+    void removeExtraFanart(QImage fanart);
+    void removeExtraFanart(QString file);
+    void clearExtraFanartData();
 
     void removeActor(Actor *actor);
     void removeCountry(QString *country);
@@ -235,6 +242,9 @@ private:
     QImage m_logoImage;
     QImage m_clearArtImage;
     QImage m_cdArtImage;
+    QList<QImage> m_extraFanartImagesToAdd;
+    QStringList m_extraFanartsToRemove;
+    QStringList m_extraFanarts;
     bool m_posterImageChanged;
     bool m_backdropImageChanged;
     bool m_logoImageChanged;

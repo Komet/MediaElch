@@ -109,6 +109,10 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->buttonReloadStreamDetails, SIGNAL(clicked()), this, SLOT(onReloadStreamDetails()));
     connect(ui->buttonDownloadTrailer, SIGNAL(clicked()), this, SLOT(onDownloadTrailer()));
 
+    connect(ui->fanarts, SIGNAL(sigRemoveImage(QImage)), this, SLOT(onRemoveExtraFanart(QImage)));
+    connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
+    connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddExtraFanart()));
+
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
 
@@ -324,6 +328,7 @@ void MovieWidget::clear()
     ui->studioCloud->clear();
     ui->buttonRevert->setVisible(false);
     ui->localTrailer->setVisible(false);
+    ui->fanarts->clear();
 
     m_currentBackdrop = QImage();
     QTimer::singleShot(0, this, SLOT(updateBackgroundImage()));
@@ -436,6 +441,7 @@ void MovieWidget::onLoadDone(Movie *movie)
     if (m_movie == 0 || m_movie != movie)
         return;
     setEnabledTrue();
+    ui->fanarts->setLoading(false);
 }
 
 void MovieWidget::onLoadImagesStarted(Movie *movie)
@@ -472,6 +478,9 @@ void MovieWidget::onLoadingImages(Movie *movie, QList<int> imageTypes)
         ui->logo->setPixmap(QPixmap());
         ui->logo->setMovie(m_loadingMovie);
         ui->buttonPreviewLogo->setEnabled(false);
+    }
+    if (imageTypes.contains(TypeExtraFanart)) {
+        ui->fanarts->setLoading(true);
     }
     ui->groupBox_3->update();
 }
@@ -512,6 +521,9 @@ void MovieWidget::onSetImage(Movie *movie, int type, QImage image)
         ui->logoResolution->setText(QString("%1x%2").arg(image.width()).arg(image.height()));
         ui->buttonPreviewLogo->setEnabled(true);
         m_currentLogo = image;
+        break;
+    case TypeExtraFanart:
+        ui->fanarts->addImage(image);
         break;
     default:
         break;
@@ -718,6 +730,8 @@ void MovieWidget::updateMovieInfo()
         ui->cdArtResolution->setText("");
         ui->buttonPreviewCdArt->setEnabled(false);
     }
+
+    ui->fanarts->setImages(m_movie->extraFanarts(Manager::instance()->mediaCenterInterface()));
 
     ui->rating->blockSignals(false);
     ui->votes->blockSignals(false);
@@ -1503,4 +1517,40 @@ void MovieWidget::updateBackgroundImage()
         m_backgroundLabel->setPixmap(QPixmap());
     else
         m_backgroundLabel->setPixmap(QPixmap::fromImage(m_currentBackdrop.scaled(size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation)));
+}
+
+void MovieWidget::onRemoveExtraFanart(const QImage &image)
+{
+    if (!m_movie)
+        return;
+    m_movie->removeExtraFanart(image);
+    ui->buttonRevert->setVisible(true);
+}
+
+void MovieWidget::onRemoveExtraFanart(const QString &file)
+{
+    if (!m_movie)
+        return;
+    m_movie->removeExtraFanart(file);
+    ui->buttonRevert->setVisible(true);
+}
+
+void MovieWidget::onAddExtraFanart()
+{
+    if (!m_movie)
+        return;
+
+    ImageDialog::instance()->setImageType(TypeExtraFanart);
+    ImageDialog::instance()->clear();
+    ImageDialog::instance()->setMultiSelection(true);
+    ImageDialog::instance()->setMovie(m_movie);
+    ImageDialog::instance()->setDownloads(m_movie->backdrops());
+    ImageDialog::instance()->exec(ImageDialogType::MovieBackdrop);
+
+    if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
+        ui->fanarts->setLoading(true);
+        emit setActionSaveEnabled(false, WidgetMovies);
+        m_movie->controller()->loadImages(TypeExtraFanart, ImageDialog::instance()->imageUrls());
+        ui->buttonRevert->setVisible(true);
+    }
 }

@@ -32,10 +32,12 @@ ImageDialog::ImageDialog(QWidget *parent) :
 
 #ifdef Q_OS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
-    setStyleSheet(styleSheet() + " #ImageDialog { border: 1px solid rgba(0, 0, 0, 100); border-top: none; }");
 #else
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
+
+    ui->gallery->setAlignment(Qt::Horizontal);
+    ui->gallery->setShowZoomAndResolution(false);
 
     QSettings settings;
     resize(settings.value("ImageDialog/Size").toSize());
@@ -50,13 +52,18 @@ ImageDialog::ImageDialog(QWidget *parent) :
     connect(ui->searchTerm, SIGNAL(returnPressed()), this, SLOT(onSearch()));
     connect(ui->imageProvider, SIGNAL(currentIndexChanged(int)), this, SLOT(onProviderChanged(int)));
     connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(onResultClicked(QTableWidgetItem*)));
+    connect(ui->gallery, SIGNAL(sigRemoveImage(QString)), this, SLOT(onImageClosed(QString)));
+    connect(ui->btnAcceptImages, SIGNAL(clicked()), this, SLOT(accept()));
+
+    ui->btnAcceptImages->hide();
 
     QMovie *movie = new QMovie(":/img/spinner.gif");
     movie->start();
     ui->labelSpinner->setMovie(movie);
-    clear();
+    clearSearch();
     setImageType(TypePoster);
     m_currentDownloadReply = 0;
+    m_multiSelection = false;
 
     QPixmap zoomOut(":/img/zoom_out.png");
     QPixmap zoomIn(":/img/zoom_in.png");
@@ -220,7 +227,15 @@ ImageDialog *ImageDialog::instance(QWidget *parent)
  */
 void ImageDialog::clear()
 {
-    qDebug() << "Entered";
+    m_imageUrls.clear();
+    setMultiSelection(false);
+    ui->gallery->clear();
+    ui->btnAcceptImages->hide();
+    clearSearch();
+}
+
+void ImageDialog::clearSearch()
+{
     cancelDownloads();
     m_elements.clear();
     ui->table->clearContents();
@@ -402,7 +417,14 @@ void ImageDialog::imageClicked(int row, int col)
     }
     QUrl url = ui->table->item(row, col)->data(Qt::UserRole).toUrl();
     m_imageUrl = url;
-    accept();
+    if (m_multiSelection) {
+        if (ui->table->cellWidget(row, col) && !m_imageUrls.contains(url)) {
+            m_imageUrls.append(url);
+            ui->gallery->addImage(static_cast<ImageLabel*>(ui->table->cellWidget(row, col))->image(), url.toString());
+        }
+    } else {
+        accept();
+    }
 }
 
 /**
@@ -504,8 +526,13 @@ void ImageDialog::chooseLocalImage()
         m_elements[index].cellWidget->setHint(m_elements[index].pixmap.size());
         ui->table->resizeRowsToContents();
         m_elements[index].downloaded = true;
-        m_imageUrl = QUrl(fileName);
-        accept();
+        if (m_multiSelection) {
+            ui->gallery->addImage(QImage(fileName), fileName);
+            m_imageUrls.append(QUrl(fileName));
+        } else {
+            m_imageUrl = QUrl(fileName);
+            accept();
+        }
     }
 }
 
@@ -531,8 +558,13 @@ void ImageDialog::onImageDropped(QUrl url)
     }
     ui->table->resizeRowsToContents();
     m_elements[index].downloaded = true;
-    m_imageUrl = url;
-    accept();
+    if (m_multiSelection) {
+        ui->gallery->addImage(QImage(url.toLocalFile()), url.toLocalFile());
+        m_imageUrls.append(url);
+    } else {
+        m_imageUrl = url;
+        accept();
+    }
 }
 
 /**
@@ -578,7 +610,7 @@ void ImageDialog::onProviderChanged(int index)
         ui->stackedWidget->setCurrentIndex(1);
         ui->searchTerm->setLoading(false);
         ui->searchTerm->setEnabled(false);
-        clear();
+        clearSearch();
         setDownloads(m_defaultElements);
     } else {
         ui->searchTerm->setEnabled(true);
@@ -610,7 +642,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
         id = m_tvShowEpisode->tvShow()->tvdbId();
     }
 
-    clear();
+    clearSearch();
     ui->searchTerm->setLoading(true);
     m_currentProvider = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), Qt::UserRole).value<ImageProviderInterface*>();
     if (!initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && !id.isEmpty()) {
@@ -727,4 +759,21 @@ void ImageDialog::onResultClicked(QTableWidgetItem *item)
 void ImageDialog::onProviderImagesLoaded(QList<Poster> images)
 {
     setDownloads(images, false);
+}
+
+void ImageDialog::setMultiSelection(const bool &enable)
+{
+    m_multiSelection = enable;
+    ui->gallery->setVisible(enable);
+    ui->btnAcceptImages->setVisible(enable);
+}
+
+QList<QUrl> ImageDialog::imageUrls()
+{
+    return m_imageUrls;
+}
+
+void ImageDialog::onImageClosed(const QString &url)
+{
+    m_imageUrls.removeOne(url);
 }

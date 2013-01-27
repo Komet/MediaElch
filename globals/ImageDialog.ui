@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
+    <width>666</width>
     <height>600</height>
    </rect>
   </property>
@@ -17,14 +17,16 @@
    <string>Choose an Image</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#ImageDialog {
+   <string notr="true">/*
+#ImageDialog {
 	background-image: url(:/img/pattern_dark.png);
-}</string>
+}
+*/</string>
   </property>
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1,0,0">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
@@ -98,6 +100,11 @@
          </property>
          <property name="acceptDrops">
           <bool>true</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QTableWidget {
+	selection-background-color: transparent;
+}</string>
          </property>
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
@@ -173,7 +180,23 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,0,1,0,0,0">
+    <widget class="ImageGallery" name="gallery" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>100</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>100</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,0,1,0,0,0,0">
      <item>
       <widget class="QToolButton" name="buttonZoomOut">
        <property name="cursor">
@@ -303,11 +326,27 @@ background: transparent;</string>
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QPushButton" name="btnAcceptImages">
+       <property name="text">
+        <string>Accept Images</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
   </layout>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>ImageGallery</class>
+   <extends>QWidget</extends>
+   <header>smallWidgets/ImageGallery.h</header>
+   <container>1</container>
+  </customwidget>
   <customwidget>
    <class>MyTableWidget</class>
    <extends>QTableWidget</extends>

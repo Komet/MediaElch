@@ -206,6 +206,18 @@ void XbmcXml::saveAdditionalImages(Movie *movie)
             movie->cdArtImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "png", 100);
         }
     }
+
+    if (movie->inSeparateFolder() && !movie->files().isEmpty()) {
+        foreach (const QString &file, movie->extraFanartsToRemove())
+            QFile::remove(file);
+        QDir dir(QFileInfo(movie->files().first()).absolutePath() + "/extrafanart");
+        foreach (QImage img, movie->extraFanartImagesToAdd()) {
+            int num = 1;
+            while (QFileInfo(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num)).exists())
+                ++num;
+            img.save(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num), "jpg", 100);
+        }
+    }
 }
 
 /**
@@ -1782,6 +1794,19 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
     xml.writeEndElement();
 
     xml.writeEndElement();
+}
+
+QStringList XbmcXml::extraFanartNames(Movie *movie)
+{
+    if (movie->files().isEmpty() || !movie->inSeparateFolder())
+        return QStringList();
+    QFileInfo fi(movie->files().first());
+    QDir dir(fi.absolutePath() + "/extrafanart");
+    QStringList files;
+    QStringList filters = QStringList() << "*.jpg" << "*.jpeg" << "*.JPEG" << "*.Jpeg" << "*.JPeg";
+    foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name))
+        files << QDir::toNativeSeparators(dir.path() + "/" + file);
+    return files;
 }
 
 /**

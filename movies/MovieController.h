@@ -31,9 +31,11 @@ public:
     bool downloadsInProgress() const;
     int downloadsSize() const;
     void loadImage(int type, QUrl url);
+    void loadImages(int type, QList<QUrl> urls);
     void abortDownloads();
     void setLoadsLeft(QList<ScraperData> loadsLeft);
     void removeFromLoadsLeft(ScraperData load);
+    void setInfosToLoad(QList<int> infos);
 
 signals:
     void sigInfoLoadDone(Movie*);

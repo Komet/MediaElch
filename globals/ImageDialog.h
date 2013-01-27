@@ -36,8 +36,10 @@ public:
     static ImageDialog *instance(QWidget *parent = 0);
     void setDownloads(QList<Poster> downloads, bool initial = true);
     QUrl imageUrl();
+    QList<QUrl> imageUrls();
     void setImageType(ImageType type);
     void setItemType(ItemType type);
+    void setMultiSelection(const bool &enable);
     void setMovie(Movie *movie);
     void setConcert(Concert *concert);
     void setTvShow(TvShow *show);
@@ -68,6 +70,7 @@ private slots:
     void onSearchFinished(QList<ScraperSearchResult> results);
     void onResultClicked(QTableWidgetItem *item);
     void onProviderImagesLoaded(QList<Poster> images);
+    void onImageClosed(const QString &url);
 
 private:
     Ui::ImageDialog *ui;
@@ -92,6 +95,7 @@ private:
     ImageType m_imageType;
     QList<DownloadElement> m_elements;
     QUrl m_imageUrl;
+    QList<QUrl> m_imageUrls;
     int m_type;
     QList<ImageProviderInterface*> m_providers;
     Concert *m_concert;
@@ -103,12 +107,14 @@ private:
     ImageProviderInterface *m_currentProvider;
     int m_season;
     int m_episode;
+    bool m_multiSelection;
 
     QNetworkAccessManager *qnam();
     void renderTable();
     int calcColumnCount();
     int getColumnWidth();
     void loadImagesFromProvider(QString id);
+    void clearSearch();
 };
 
 #endif // IMAGEDIALOG_H

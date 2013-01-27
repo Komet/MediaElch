@@ -20,6 +20,7 @@ public:
     ~ImageLabel();
     void setImage(QPixmap pixmap);
     void setHint(QSize resolution, QString hint = "");
+    QImage image() const;
 
 private:
     Ui::ImageLabel *ui;

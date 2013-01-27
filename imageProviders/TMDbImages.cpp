@@ -102,6 +102,7 @@ void TMDbImages::movieBackdrops(QString tmdbId)
     m_imageType = TypeBackdrop;
     QList<int> infos;
     infos << MovieScraperInfos::Backdrop;
+    m_dummyMovie->controller()->setInfosToLoad(infos);
     m_tmdb->loadData(tmdbId, m_dummyMovie, infos);
 }
 

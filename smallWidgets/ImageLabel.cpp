@@ -52,3 +52,8 @@ void ImageLabel::setHint(QSize resolution, QString hint)
 
     ui->resolution->setText(text);
 }
+
+QImage ImageLabel::image() const
+{
+    return ui->image->pixmap()->toImage();
+}

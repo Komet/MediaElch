@@ -58,6 +58,11 @@
         <file>img/video_pause_64.png</file>
         <file>img/video_play_64.png</file>
         <file>img/checkmark_white_64.png</file>
+        <file>img/closeImage.png</file>
+        <file>img/imgButtonRight.png</file>
+        <file>img/imgButtonLeft.png</file>
+        <file>img/imgButtonBottom.png</file>
+        <file>img/imgButtonTop.png</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>

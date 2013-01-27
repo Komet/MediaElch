@@ -83,7 +83,8 @@ void Movie::clear()
           << MovieScraperInfos::Writer
           << MovieScraperInfos::Director
           << MovieScraperInfos::Tags
-          << MovieScraperInfos::ExtraArts;
+          << MovieScraperInfos::ExtraArts
+          << MovieScraperInfos::ExtraFanarts;
     clear(infos);
     m_nfoContent.clear();
 }
@@ -147,6 +148,11 @@ void Movie::clear(QList<int> infos)
         m_cdArtImage = QImage();
         m_cdArtImageChanged = false;
     }
+    if (infos.contains(MovieScraperInfos::ExtraFanarts)) {
+        m_extraFanartsToRemove.clear();
+        m_extraFanartImagesToAdd.clear();
+        m_extraFanarts.clear();
+    }
 }
 
 /**
@@ -159,6 +165,7 @@ void Movie::clearImages()
     m_logoImage = QImage();
     m_clearArtImage = QImage();
     m_cdArtImage = QImage();
+    m_extraFanartImagesToAdd.clear();
     foreach (Actor *actor, actorsPointer())
         actor->image = QImage();
 }
@@ -1498,6 +1505,63 @@ bool Movie::hasLocalTrailer() const
     QString trailerFilter = QString("%1-trailer*").arg(fi.completeBaseName());
     QDir dir(fi.canonicalPath());
     return !dir.entryList(QStringList() << trailerFilter).isEmpty();
+}
+
+void Movie::addExtraFanart(QImage fanart)
+{
+    m_extraFanartImagesToAdd.append(fanart);
+    setChanged(true);
+}
+
+void Movie::removeExtraFanart(QImage fanart)
+{
+    m_extraFanartImagesToAdd.removeOne(fanart);
+    setChanged(true);
+}
+
+void Movie::removeExtraFanart(QString file)
+{
+    m_extraFanarts.removeOne(file);
+    m_extraFanartsToRemove.append(file);
+    setChanged(true);
+}
+
+QList<ExtraFanart> Movie::extraFanarts(MediaCenterInterface *mediaCenterInterface)
+{
+    if (m_extraFanarts.isEmpty())
+        m_extraFanarts = mediaCenterInterface->extraFanartNames(this);
+    foreach (const QString &file, m_extraFanartsToRemove)
+        m_extraFanarts.removeOne(file);
+    QList<ExtraFanart> fanarts;
+    foreach (const QString &file, m_extraFanarts) {
+        ExtraFanart f;
+        f.image = QImage(file);
+        f.path = file;
+        fanarts.append(f);
+    }
+    foreach (const QImage &img, m_extraFanartImagesToAdd) {
+        ExtraFanart f;
+        f.image = img;
+        fanarts.append(f);
+    }
+    return fanarts;
+}
+
+QStringList Movie::extraFanartsToRemove()
+{
+    return m_extraFanartsToRemove;
+}
+
+QList<QImage> Movie::extraFanartImagesToAdd()
+{
+    return m_extraFanartImagesToAdd;
+}
+
+void Movie::clearExtraFanartData()
+{
+    m_extraFanartImagesToAdd.clear();
+    m_extraFanartsToRemove.clear();
+    m_extraFanarts.clear();
 }
 
 /*** DEBUG ***/

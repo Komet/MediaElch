@@ -110,6 +110,10 @@ private slots:
     void onDownloadTrailer();
     void updateBackgroundImage();
 
+    void onRemoveExtraFanart(const QString &file);
+    void onRemoveExtraFanart(const QImage &image);
+    void onAddExtraFanart();
+
 private:
     Ui::MovieWidget *ui;
     QPointer<Movie> m_movie;

@@ -39,6 +39,7 @@ bool MovieController::saveData(MediaCenterInterface *mediaCenterInterface)
         m_infoLoaded = saved;
     m_movie->setChanged(false);
     m_movie->clearImages();
+    m_movie->clearExtraFanartData();
     m_movie->setSyncNeeded(true);
     return saved;
 }
@@ -137,6 +138,11 @@ QList<int> MovieController::infosToLoad()
     return m_infosToLoad;
 }
 
+void MovieController::setInfosToLoad(QList<int> infos)
+{
+    m_infosToLoad = infos;
+}
+
 /**
  * @brief Called when a ScraperInterface has finished loading
  *        Emits the loaded signal
@@ -144,14 +150,13 @@ QList<int> MovieController::infosToLoad()
 void MovieController::scraperLoadDone()
 {
     emit sigInfoLoadDone(m_movie);
-    if (!m_movie->tmdbId().isEmpty() && infosToLoad().contains(MovieScraperInfos::ExtraArts)) {
+    if ((!m_movie->tmdbId().isEmpty() || !m_movie->id().isEmpty()) && infosToLoad().contains(MovieScraperInfos::ExtraArts)) {
         connect(Manager::instance()->fanartTv(), SIGNAL(sigImagesLoaded(Movie*,QMap<int,QList<Poster> >)), this, SLOT(onFanartLoadDone(Movie*,QMap<int,QList<Poster> >)));
-        Manager::instance()->fanartTv()->movieImages(m_movie, m_movie->tmdbId(), QList<int>() << TypeClearArt << TypeCdArt << TypeLogo);
+        Manager::instance()->fanartTv()->movieImages(m_movie, (!m_movie->tmdbId().isEmpty()) ? m_movie->tmdbId() : m_movie->id(), QList<int>() << TypeClearArt << TypeCdArt << TypeLogo);
     } else {
         onFanartLoadDone(m_movie, QMap<int, QList<Poster> >());
     }
 }
-
 
 void MovieController::onFanartLoadDone(Movie *movie, QMap<int, QList<Poster> > posters)
 {
@@ -245,6 +250,9 @@ void MovieController::onDownloadFinished(DownloadManagerElement elem)
     case TypeActor:
         elem.actor->image = elem.image;
         break;
+    case TypeExtraFanart:
+        m_movie->addExtraFanart(elem.image);
+        break;
     default:
         break;
     }
@@ -261,6 +269,18 @@ void MovieController::loadImage(int type, QUrl url)
     d.url = url;
     emit sigLoadingImages(m_movie, QList<int>() << type);
     m_downloadManager->addDownload(d);
+}
+
+void MovieController::loadImages(int type, QList<QUrl> urls)
+{
+    foreach (const QUrl &url, urls) {
+        DownloadManagerElement d;
+        d.movie = m_movie;
+        d.imageType = static_cast<ImageType>(type);
+        d.url = url;
+        emit sigLoadingImages(m_movie, QList<int>() << type);
+        m_downloadManager->addDownload(d);
+    }
 }
 
 /**

@@ -103,7 +103,8 @@ struct Poster {
 };
 
 enum ImageType {
-    TypePoster, TypeBackdrop, TypeBanner, TypeActor, TypeSeasonPoster, TypeSeasonBanner, TypeSeasonBackdrop, TypeShowThumbnail, TypeLogo, TypeClearArt, TypeCdArt, TypeCharacterArt
+    TypePoster, TypeBackdrop, TypeBanner, TypeActor, TypeSeasonPoster, TypeSeasonBanner, TypeSeasonBackdrop,
+    TypeShowThumbnail, TypeLogo, TypeClearArt, TypeCdArt, TypeCharacterArt, TypeExtraFanart
 };
 
 enum TvShowType {
@@ -173,6 +174,7 @@ namespace MovieScraperInfos {
     const int Director      = 16;
     const int ExtraArts     = 17;
     const int Tags          = 18;
+    const int ExtraFanarts  = 19;
 }
 
 namespace TvShowScraperInfos {
@@ -275,6 +277,11 @@ enum TvShowUpdateType {
 
 enum ScraperData {
     DataInfos, DataCasts, DataTrailers, DataImages, DataReleases
+};
+
+struct ExtraFanart {
+    QImage image;
+    QString path;
 };
 
 // Debugging

@@ -33,6 +33,7 @@ public:
     virtual bool saveTvShow(TvShow *show) = 0;
     virtual bool saveTvShowEpisode(TvShowEpisode *episode) = 0;
     virtual bool hasFeature(int feature) = 0;
+    virtual QStringList extraFanartNames(Movie *movie) = 0;
     virtual QString posterImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString backdropImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString logoImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;

@@ -119,7 +119,9 @@ SOURCES += main.cpp\
     smallWidgets/TagCloud.cpp \
     smallWidgets/MyWidget.cpp \
     data/Storage.cpp \
-    tvShows/TvShowWidgetSeason.cpp
+    tvShows/TvShowWidgetSeason.cpp \
+    smallWidgets/ImageGallery.cpp \
+    smallWidgets/ClosableImage.cpp
 
 HEADERS  += main/MainWindow.h \
     movies/Movie.h \
@@ -214,7 +216,9 @@ HEADERS  += main/MainWindow.h \
     smallWidgets/TagCloud.h \
     smallWidgets/MyWidget.h \
     data/Storage.h \
-    tvShows/TvShowWidgetSeason.h
+    tvShows/TvShowWidgetSeason.h \
+    smallWidgets/ImageGallery.h \
+    smallWidgets/ClosableImage.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
