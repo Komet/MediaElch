@@ -182,13 +182,13 @@ void DownloadManager::downloadFinished()
 {
     qDebug() << "Entered";
     m_downloading = false;
-    if (m_currentReply->error() != QNetworkReply::NoError) {
-        qWarning() << "Network Error" << m_currentReply->errorString();
-        return;
-    }
     m_retries = 0;
     QImage img;
-    img.loadFromData(m_currentReply->readAll());
+    if (m_currentReply->error() != QNetworkReply::NoError) {
+        qWarning() << "Network Error" << m_currentReply->errorString();
+    } else {
+        img.loadFromData(m_currentReply->readAll());
+    }
     m_currentDownloadElement.image = img;
     m_currentReply->deleteLater();
     if (m_currentDownloadElement.imageType == TypeActor && !m_currentDownloadElement.movie)
