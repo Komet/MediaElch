@@ -32,6 +32,8 @@ public:
     bool saveTvShowEpisode(TvShowEpisode *episode);
     bool hasFeature(int feature);
     QStringList extraFanartNames(Movie *movie);
+    QStringList extraFanartNames(Concert *concert);
+    QStringList extraFanartNames(TvShow *show);
     QImage movieSetPoster(QString setName);
     QImage movieSetBackdrop(QString setName);
     void saveMovieSetPoster(QString setName, QImage poster);

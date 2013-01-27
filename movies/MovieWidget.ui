@@ -691,7 +691,7 @@
               <item>
                <widget class="QPushButton" name="btnAddExtraFanart">
                 <property name="text">
-                 <string>Add Image</string>
+                 <string>Add Images</string>
                 </property>
                </widget>
               </item>

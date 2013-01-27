@@ -11,6 +11,7 @@
 #include "concerts/ConcertSearch.h"
 #include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
@@ -87,6 +88,10 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     m_savingWidget = new QLabel(this);
     m_savingWidget->setMovie(m_loadingMovie);
     m_savingWidget->hide();
+
+    connect(ui->fanarts, SIGNAL(sigRemoveImage(QImage)), this, SLOT(onRemoveExtraFanart(QImage)));
+    connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
+    connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddExtraFanart()));
 
     // Connect GUI change events to concert object
     connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(onNameChange(QString)));
@@ -184,13 +189,13 @@ void ConcertWidget::clear()
     ui->logo->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->clearArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->cdArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->tabWidget->setCurrentIndex(0);
     ui->posterResolution->setText("");
     ui->backdropResolution->setText("");
     ui->logoResolution->setText("");
     ui->clearArtResolution->setText("");
     ui->cdArtResolution->setText("");
     ui->genreCloud->clear();
+    ui->fanarts->clear();
 
     ui->videoCodec->clear();
     ui->videoScantype->clear();
@@ -565,6 +570,8 @@ void ConcertWidget::updateConcertInfo()
         ui->buttonPreviewCdArt->setEnabled(false);
     }
 
+    ui->fanarts->setImages(m_concert->extraFanarts(Manager::instance()->mediaCenterInterfaceConcert()));
+
     ui->rating->blockSignals(false);
     ui->runtime->blockSignals(false);
     ui->playcount->blockSignals(false);
@@ -854,14 +861,7 @@ void ConcertWidget::posterDownloadFinished(DownloadManagerElement elem)
         elem.concert->setPosterImage(elem.image);
     } else if (elem.imageType == TypeBackdrop) {
         qDebug() << "Got a backdrop";
-        if ((elem.image.width() != 1920 || elem.image.height() != 1080) &&
-            elem.image.width() > 1915 && elem.image.width() < 1925 && elem.image.height() > 1075 && elem.image.height() < 1085)
-            elem.image = elem.image.scaled(1920, 1080, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-
-        if ((elem.image.width() != 1280 || elem.image.height() != 720) &&
-            elem.image.width() > 1275 && elem.image.width() < 1285 && elem.image.height() > 715 && elem.image.height() < 725)
-            elem.image = elem.image.scaled(1280, 720, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-
+        Helper::resizeBackdrop(elem.image);
         if (m_concert == elem.concert) {
             ui->backdrop->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             ui->backdropResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
@@ -896,10 +896,16 @@ void ConcertWidget::posterDownloadFinished(DownloadManagerElement elem)
             m_currentCdArt = elem.image;
         }
         elem.concert->setCdArtImage(elem.image);
+    } else if (elem.imageType == TypeExtraFanart) {
+        Helper::resizeBackdrop(elem.image);
+        elem.concert->addExtraFanart(elem.image);
+        if (elem.concert == m_concert)
+            ui->fanarts->addImage(elem.image);
     }
     if (m_posterDownloadManager->downloadQueueSize() == 0) {
         emit setActionSaveEnabled(true, WidgetConcerts);
         elem.concert->setDownloadsInProgress(false);
+        ui->fanarts->setLoading(false);
     }
     ui->buttonRevert->setVisible(true);
 }
@@ -1243,3 +1249,44 @@ void ConcertWidget::onStreamDetailsEdited()
     ui->buttonRevert->setVisible(true);
 }
 
+void ConcertWidget::onRemoveExtraFanart(const QImage &image)
+{
+    if (!m_concert)
+        return;
+    m_concert->removeExtraFanart(image);
+    ui->buttonRevert->setVisible(true);
+}
+
+void ConcertWidget::onRemoveExtraFanart(const QString &file)
+{
+    if (!m_concert)
+        return;
+    m_concert->removeExtraFanart(file);
+    ui->buttonRevert->setVisible(true);
+}
+
+void ConcertWidget::onAddExtraFanart()
+{
+    if (!m_concert)
+        return;
+
+    ImageDialog::instance()->setImageType(TypeExtraFanart);
+    ImageDialog::instance()->clear();
+    ImageDialog::instance()->setMultiSelection(true);
+    ImageDialog::instance()->setConcert(m_concert);
+    ImageDialog::instance()->setDownloads(m_concert->backdrops());
+    ImageDialog::instance()->exec(ImageDialogType::ConcertBackdrop);
+
+    if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
+        ui->fanarts->setLoading(true);
+        emit setActionSaveEnabled(false, WidgetConcerts);
+        foreach (const QUrl &url, ImageDialog::instance()->imageUrls()) {
+            DownloadManagerElement d;
+            d.imageType = TypeExtraFanart;
+            d.url = url;
+            d.concert = m_concert;
+            m_posterDownloadManager->addDownload(d);
+        }
+        ui->buttonRevert->setVisible(true);
+    }
+}

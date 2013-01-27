@@ -52,7 +52,8 @@ void TvShow::clear()
           << TvShowScraperInfos::SeasonPoster
           << TvShowScraperInfos::Title
           << TvShowScraperInfos::Tags
-          << TvShowScraperInfos::ExtraArts;
+          << TvShowScraperInfos::ExtraArts
+          << TvShowScraperInfos::ExtraFanarts;
     clear(infos);
     m_nfoContent.clear();
 }
@@ -111,6 +112,11 @@ void TvShow::clear(QList<int> infos)
         m_clearArtImageChanged = false;
         m_characterArtImage = QImage();
         m_characterArtImageChanged = false;
+    }
+    if (infos.contains(TvShowScraperInfos::ExtraFanarts)) {
+        m_extraFanartsToRemove.clear();
+        m_extraFanartImagesToAdd.clear();
+        m_extraFanarts.clear();
     }
     m_hasChanged = false;
 }
@@ -188,6 +194,7 @@ bool TvShow::saveData(MediaCenterInterface *mediaCenterInterface)
     setChanged(false);
     setSyncNeeded(true);
     clearImages();
+    clearExtraFanartData();
     return saved;
 }
 
@@ -217,6 +224,7 @@ void TvShow::clearImages()
     }
     foreach (Actor *actor, actorsPointer())
         actor->image = QImage();
+    m_extraFanartImagesToAdd.clear();
 }
 
 /**
@@ -1260,6 +1268,64 @@ void TvShow::setSyncNeeded(bool syncNeeded)
 {
     m_syncNeeded = syncNeeded;
 }
+
+void TvShow::addExtraFanart(QImage fanart)
+{
+    m_extraFanartImagesToAdd.append(fanart);
+    setChanged(true);
+}
+
+void TvShow::removeExtraFanart(QImage fanart)
+{
+    m_extraFanartImagesToAdd.removeOne(fanart);
+    setChanged(true);
+}
+
+void TvShow::removeExtraFanart(QString file)
+{
+    m_extraFanarts.removeOne(file);
+    m_extraFanartsToRemove.append(file);
+    setChanged(true);
+}
+
+QList<ExtraFanart> TvShow::extraFanarts(MediaCenterInterface *mediaCenterInterface)
+{
+    if (m_extraFanarts.isEmpty())
+        m_extraFanarts = mediaCenterInterface->extraFanartNames(this);
+    foreach (const QString &file, m_extraFanartsToRemove)
+        m_extraFanarts.removeOne(file);
+    QList<ExtraFanart> fanarts;
+    foreach (const QString &file, m_extraFanarts) {
+        ExtraFanart f;
+        f.image = QImage(file);
+        f.path = file;
+        fanarts.append(f);
+    }
+    foreach (const QImage &img, m_extraFanartImagesToAdd) {
+        ExtraFanart f;
+        f.image = img;
+        fanarts.append(f);
+    }
+    return fanarts;
+}
+
+QStringList TvShow::extraFanartsToRemove()
+{
+    return m_extraFanartsToRemove;
+}
+
+QList<QImage> TvShow::extraFanartImagesToAdd()
+{
+    return m_extraFanartImagesToAdd;
+}
+
+void TvShow::clearExtraFanartData()
+{
+    m_extraFanartImagesToAdd.clear();
+    m_extraFanartsToRemove.clear();
+    m_extraFanarts.clear();
+}
+
 
 /*** DEBUG ***/
 

@@ -89,6 +89,7 @@ void TMDbImages::moviePosters(QString tmdbId)
     m_imageType = TypePoster;
     QList<int> infos;
     infos << MovieScraperInfos::Poster;
+    m_dummyMovie->controller()->setInfosToLoad(infos);
     m_tmdb->loadData(tmdbId, m_dummyMovie, infos);
 }
 

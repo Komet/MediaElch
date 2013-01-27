@@ -152,6 +152,15 @@ public:
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     void clearImages();
 
+    // Extra Fanarts
+    QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
+    QStringList extraFanartsToRemove();
+    QList<QImage> extraFanartImagesToAdd();
+    void addExtraFanart(QImage fanart);
+    void removeExtraFanart(QImage fanart);
+    void removeExtraFanart(QString file);
+    void clearExtraFanartData();
+
     void scraperLoadDone();
 
 signals:
@@ -208,6 +217,9 @@ private:
     int m_databaseId;
     bool m_syncNeeded;
     QList<int> m_infosToLoad;
+    QList<QImage> m_extraFanartImagesToAdd;
+    QStringList m_extraFanartsToRemove;
+    QStringList m_extraFanarts;
 };
 
 QDebug operator<<(QDebug dbg, const TvShow &show);

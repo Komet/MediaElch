@@ -72,7 +72,8 @@ void Concert::clear()
           << ConcertScraperInfos::Backdrop
           << ConcertScraperInfos::Genres
           << ConcertScraperInfos::Tags
-          << ConcertScraperInfos::ExtraArts;
+          << ConcertScraperInfos::ExtraArts
+          << ConcertScraperInfos::ExtraFanarts;
     clear(infos);
     m_nfoContent.clear();
 }
@@ -119,6 +120,11 @@ void Concert::clear(QList<int> infos)
         m_logoImage = QImage();
         m_logoImageChanged = false;
     }
+    if (infos.contains(ConcertScraperInfos::ExtraFanarts)) {
+        m_extraFanartsToRemove.clear();
+        m_extraFanartImagesToAdd.clear();
+        m_extraFanarts.clear();
+    }
 }
 
 void Concert::setLoadsLeft(QList<ScraperData> loadsLeft)
@@ -154,6 +160,7 @@ bool Concert::saveData(MediaCenterInterface *mediaCenterInterface)
         m_infoLoaded = saved;
     setChanged(false);
     clearImages();
+    clearExtraFanartData();
     setSyncNeeded(true);
     return saved;
 }
@@ -270,6 +277,7 @@ void Concert::clearImages()
     m_logoImage = QImage();
     m_clearArtImage = QImage();
     m_cdArtImage = QImage();
+    m_extraFanartImagesToAdd.clear();
 }
 
 /*** GETTER ***/
@@ -1134,4 +1142,61 @@ void Concert::removeTag(QString tag)
 {
     m_tags.removeAll(tag);
     setChanged(true);
+}
+
+void Concert::addExtraFanart(QImage fanart)
+{
+    m_extraFanartImagesToAdd.append(fanart);
+    setChanged(true);
+}
+
+void Concert::removeExtraFanart(QImage fanart)
+{
+    m_extraFanartImagesToAdd.removeOne(fanart);
+    setChanged(true);
+}
+
+void Concert::removeExtraFanart(QString file)
+{
+    m_extraFanarts.removeOne(file);
+    m_extraFanartsToRemove.append(file);
+    setChanged(true);
+}
+
+QList<ExtraFanart> Concert::extraFanarts(MediaCenterInterface *mediaCenterInterface)
+{
+    if (m_extraFanarts.isEmpty())
+        m_extraFanarts = mediaCenterInterface->extraFanartNames(this);
+    foreach (const QString &file, m_extraFanartsToRemove)
+        m_extraFanarts.removeOne(file);
+    QList<ExtraFanart> fanarts;
+    foreach (const QString &file, m_extraFanarts) {
+        ExtraFanart f;
+        f.image = QImage(file);
+        f.path = file;
+        fanarts.append(f);
+    }
+    foreach (const QImage &img, m_extraFanartImagesToAdd) {
+        ExtraFanart f;
+        f.image = img;
+        fanarts.append(f);
+    }
+    return fanarts;
+}
+
+QStringList Concert::extraFanartsToRemove()
+{
+    return m_extraFanartsToRemove;
+}
+
+QList<QImage> Concert::extraFanartImagesToAdd()
+{
+    return m_extraFanartImagesToAdd;
+}
+
+void Concert::clearExtraFanartData()
+{
+    m_extraFanartImagesToAdd.clear();
+    m_extraFanartsToRemove.clear();
+    m_extraFanarts.clear();
 }

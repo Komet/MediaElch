@@ -1,6 +1,7 @@
 #ifndef HELPER_H
 #define HELPER_H
 
+#include <QImage>
 #include <QString>
 
 /**
@@ -14,6 +15,7 @@ public:
     static QString formatTrailerUrl(QString url);
     static bool isDvd(QString path);
     static bool isBluRay(QString path);
+    static QImage &resizeBackdrop(QImage &image);
 };
 
 #endif // HELPER_H

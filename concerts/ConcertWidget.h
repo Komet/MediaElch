@@ -86,6 +86,10 @@ private slots:
     void onReloadStreamDetails();
     void updateStreamDetails(bool reloadFromFile = false);
 
+    void onRemoveExtraFanart(const QString &file);
+    void onRemoveExtraFanart(const QImage &image);
+    void onAddExtraFanart();
+
 private:
     Ui::ConcertWidget *ui;
     QPointer<Concert> m_concert;

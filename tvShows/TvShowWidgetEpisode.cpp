@@ -128,7 +128,6 @@ void TvShowWidgetEpisode::onClear()
 {
     bool blocked = false;
 
-    ui->tabWidget->setCurrentIndex(0);
     ui->directors->setRowCount(0);
     ui->writers->setRowCount(0);
     ui->thumbnailResolution->clear();

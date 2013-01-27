@@ -80,6 +80,10 @@ private slots:
     void onOverviewChange();
     void onActorEdited(QTableWidgetItem *item);
 
+    void onRemoveExtraFanart(const QString &file);
+    void onRemoveExtraFanart(const QImage &image);
+    void onAddExtraFanart();
+
 private:
     Ui::TvShowWidgetTvShow *ui;
     QPointer<TvShow> m_show;

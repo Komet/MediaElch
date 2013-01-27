@@ -140,6 +140,15 @@ public:
     void removeGenre(QString genre);
     void removeTag(QString tag);
 
+    // Extra Fanarts
+    QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
+    QStringList extraFanartsToRemove();
+    QList<QImage> extraFanartImagesToAdd();
+    void addExtraFanart(QImage fanart);
+    void removeExtraFanart(QImage fanart);
+    void removeExtraFanart(QString file);
+    void clearExtraFanartData();
+
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
     void loadData(QString id, ConcertScraperInterface *scraperInterface, QList<int> infos);
@@ -204,6 +213,9 @@ private:
     QList<ScraperData> m_loadsLeft;
     bool m_loadDoneFired;
     QMutex m_loadMutex;
+    QList<QImage> m_extraFanartImagesToAdd;
+    QStringList m_extraFanartsToRemove;
+    QStringList m_extraFanarts;
 };
 
 #endif // CONCERT_H

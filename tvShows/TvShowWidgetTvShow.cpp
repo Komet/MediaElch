@@ -6,6 +6,7 @@
 #include <QPainter>
 #include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
@@ -100,6 +101,10 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     connect(ui->actor, SIGNAL(clicked()), this, SLOT(onChangeActorImage()));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
 
+    connect(ui->fanarts, SIGNAL(sigRemoveImage(QImage)), this, SLOT(onRemoveExtraFanart(QImage)));
+    connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
+    connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddExtraFanart()));
+
     onClear();
 
     // Connect GUI change events to movie object
@@ -186,7 +191,6 @@ void TvShowWidgetTvShow::onClear()
     ui->logo->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->clearArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->characterArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->tabWidget->setCurrentIndex(0);
     ui->posterResolution->clear();
     ui->backdropResolution->clear();
     ui->bannerResolution->clear();
@@ -194,6 +198,7 @@ void TvShowWidgetTvShow::onClear()
     ui->clearArtResolution->clear();
     ui->characterArtResolution->clear();
     ui->genreCloud->clear();
+    ui->fanarts->clear();
     ui->buttonRevert->setVisible(false);
 }
 
@@ -382,6 +387,8 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         ui->buttonPreviewCharacterArt->setEnabled(false);
     }
 
+    ui->fanarts->setImages(m_show->extraFanarts(Manager::instance()->mediaCenterInterfaceTvShow()));
+
     ui->certification->blockSignals(false);
     ui->rating->blockSignals(false);
     ui->firstAired->blockSignals(false);
@@ -403,6 +410,8 @@ void TvShowWidgetTvShow::onSaveInformation()
     onSetEnabled(false);
     m_savingWidget->show();
     m_show->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
+    m_show->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), true);
+    updateTvShowInfo();
     m_savingWidget->hide();
     onSetEnabled(true);
     ui->buttonRevert->setVisible(false);
@@ -899,10 +908,17 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
             m_currentClearArt = elem.image;
         }
         elem.show->setClearArtImage(elem.image);
+    } else if (elem.imageType == TypeExtraFanart) {
+        Helper::resizeBackdrop(elem.image);
+        elem.show->addExtraFanart(elem.image);
+        if (elem.show == m_show)
+            ui->fanarts->addImage(elem.image);
     }
 
-    if (m_posterDownloadManager->downloadsLeftForShow(m_show) == 0)
+    if (m_posterDownloadManager->downloadsLeftForShow(m_show) == 0) {
+        ui->fanarts->setLoading(false);
         emit sigSetActionSaveEnabled(true, WidgetTvShows);
+    }
 }
 
 /**
@@ -1205,4 +1221,46 @@ void TvShowWidgetTvShow::onOverviewChange()
 {
     m_show->setOverview(ui->overview->toPlainText());
     ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetTvShow::onRemoveExtraFanart(const QImage &image)
+{
+    if (!m_show)
+        return;
+    m_show->removeExtraFanart(image);
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetTvShow::onRemoveExtraFanart(const QString &file)
+{
+    if (!m_show)
+        return;
+    m_show->removeExtraFanart(file);
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetTvShow::onAddExtraFanart()
+{
+    if (!m_show)
+        return;
+
+    ImageDialog::instance()->setImageType(TypeExtraFanart);
+    ImageDialog::instance()->clear();
+    ImageDialog::instance()->setMultiSelection(true);
+    ImageDialog::instance()->setTvShow(m_show);
+    ImageDialog::instance()->setDownloads(m_show->backdrops());
+    ImageDialog::instance()->exec(ImageDialogType::TvShowBackdrop);
+
+    if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
+        ui->fanarts->setLoading(true);
+        emit sigSetActionSaveEnabled(false, WidgetTvShows);
+        foreach (const QUrl &url, ImageDialog::instance()->imageUrls()) {
+            DownloadManagerElement d;
+            d.imageType = TypeExtraFanart;
+            d.url = url;
+            d.show = m_show;
+            m_posterDownloadManager->addDownload(d);
+        }
+        ui->buttonRevert->setVisible(true);
+    }
 }

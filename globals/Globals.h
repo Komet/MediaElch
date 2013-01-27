@@ -198,6 +198,7 @@ namespace TvShowScraperInfos {
     const int ExtraArts      = 18;
     const int SeasonBackdrop = 19;
     const int SeasonBanner   = 20;
+    const int ExtraFanarts   = 21;
 }
 
 namespace ConcertScraperInfos {
@@ -214,6 +215,7 @@ namespace ConcertScraperInfos {
     const int Genres        = 11;
     const int ExtraArts     = 12;
     const int Tags          = 13;
+    const int ExtraFanarts  = 14;
 }
 
 // The filter numbers have to unique for MovieFilters, TvShowFilters and ConcertFilters

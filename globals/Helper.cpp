@@ -115,3 +115,16 @@ bool Helper::isBluRay(QString path)
 
     return false;
 }
+
+QImage &Helper::resizeBackdrop(QImage &image)
+{
+    if ((image.width() != 1920 || image.height() != 1080) &&
+        image.width() > 1915 && image.width() < 1925 && image.height() > 1075 && image.height() < 1085)
+        image = image.scaled(1920, 1080, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+
+    if ((image.width() != 1280 || image.height() != 720) &&
+        image.width() > 1275 && image.width() < 1285 && image.height() > 715 && image.height() < 725)
+        image = image.scaled(1280, 720, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+
+    return image;
+}
