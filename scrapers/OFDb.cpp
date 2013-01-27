@@ -179,6 +179,7 @@ void OFDb::loadData(QString id, Movie *movie, QList<int> infos)
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("ofdbId", id);
     reply->setProperty("notFoundCounter", 0);
+    reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
 }
 
@@ -191,6 +192,7 @@ void OFDb::loadFinished()
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage*>()->movie();
     QString ofdbId = reply->property("ofdbId").toString();
+    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
     int notFoundCounter = reply->property("notFoundCounter").toInt();
     if (!movie)
         return;
@@ -202,6 +204,7 @@ void OFDb::loadFinished()
         reply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("ofdbId", ofdbId);
+        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
         return;
     }
@@ -215,6 +218,7 @@ void OFDb::loadFinished()
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("ofdbId", ofdbId);
         reply->setProperty("notFoundCounter", notFoundCounter);
+        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
         return;
     }
@@ -222,7 +226,7 @@ void OFDb::loadFinished()
 
     if (reply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignInfos(msg, movie, movie->controller()->infosToLoad());
+        parseAndAssignInfos(msg, movie, infos);
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }

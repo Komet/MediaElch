@@ -121,6 +121,7 @@ void IMDB::loadData(QString id, Movie *movie, QList<int> infos)
     QNetworkRequest request(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("storage", Storage::toVariant(reply, movie));
+    reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
 }
 
@@ -128,12 +129,13 @@ void IMDB::onLoadFinished()
 {
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage*>()->movie();
+    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
     if (!movie)
         return;
 
     if (reply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignInfos(msg, movie, movie->controller()->infosToLoad());
+        parseAndAssignInfos(msg, movie, infos);
     } else {
         qWarning() << "Network Error (load)" << reply->errorString();
     }

@@ -127,6 +127,7 @@ void VideoBuster::loadData(QString id, Movie *movie, QList<int> infos)
     QUrl url(QString("https://www.videobuster.de%1").arg(id));
     QNetworkReply *reply = this->qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, movie));
+    reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
 }
 
@@ -138,6 +139,7 @@ void VideoBuster::loadFinished()
 {
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage*>()->movie();
+    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
     reply->deleteLater();
     if (!movie)
         return;
@@ -145,7 +147,7 @@ void VideoBuster::loadFinished()
     if (reply->error() == QNetworkReply::NoError ) {
         QString msg = reply->readAll();
         msg = replaceEntities(msg);
-        parseAndAssignInfos(msg, movie, movie->controller()->infosToLoad());
+        parseAndAssignInfos(msg, movie, infos);
     } else {
         qWarning() << "Network Error" << reply->errorString();
         movie->controller()->scraperLoadDone();
@@ -256,6 +258,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
         QUrl backdropUrl(QString("https://www.videobuster.de/titledtl.php/%1?tab=gallery&content_type_idnr=1").arg(rx.cap(1)));
         QNetworkReply *reply = qnam()->get(QNetworkRequest(backdropUrl));
         reply->setProperty("storage", Storage::toVariant(reply, movie));
+        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, SIGNAL(finished()), this, SLOT(backdropFinished()));
     } else {
         movie->controller()->scraperLoadDone();
@@ -269,6 +272,7 @@ void VideoBuster::backdropFinished()
 {
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage*>()->movie();
+    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
     reply->deleteLater();
     if (!movie)
         return;

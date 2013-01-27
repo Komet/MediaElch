@@ -30,6 +30,12 @@ Storage::Storage(QObject *parent, QList<ScraperSearchResult> results) :
     m_results = results;
 }
 
+Storage::Storage(QObject *parent, QList<int> infosToLoad) :
+    QObject(parent)
+{
+    m_infosToLoad = infosToLoad;
+}
+
 Movie *Storage::movie()
 {
     if (m_movie)
@@ -98,7 +104,20 @@ QVariant Storage::toVariant(QObject *parent, QList<ScraperSearchResult> results)
     return var;
 }
 
+QVariant Storage::toVariant(QObject *parent, QList<int> infosToLoad)
+{
+    Storage *storage = new Storage(parent, infosToLoad);
+    QVariant var;
+    var.setValue(storage);
+    return var;
+}
+
 QList<ScraperSearchResult> Storage::results()
 {
     return m_results;
+}
+
+QList<int> Storage::infosToLoad()
+{
+    return m_infosToLoad;
 }

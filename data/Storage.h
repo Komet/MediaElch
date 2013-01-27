@@ -18,16 +18,19 @@ public:
     explicit Storage(QObject *parent, TvShow *show);
     explicit Storage(QObject *parent, TvShowEpisode *episode);
     explicit Storage(QObject *parent, QList<ScraperSearchResult> results);
+    explicit Storage(QObject *parent, QList<int> infosToLoad);
     Movie *movie();
     Concert *concert();
     TvShow *show();
     TvShowEpisode *episode();
     QList<ScraperSearchResult> results();
+    QList<int> infosToLoad();
     static QVariant toVariant(QObject *parent, Movie *movie);
     static QVariant toVariant(QObject *parent, Concert *concert);
     static QVariant toVariant(QObject *parent, TvShow *show);
     static QVariant toVariant(QObject *parent, TvShowEpisode *episode);
     static QVariant toVariant(QObject *parent, QList<ScraperSearchResult> results);
+    static QVariant toVariant(QObject *parent, QList<int> infosToLoad);
 
 private:
     QPointer<Movie> m_movie;
@@ -35,6 +38,7 @@ private:
     QPointer<TvShow> m_show;
     QPointer<TvShowEpisode> m_episode;
     QList<ScraperSearchResult> m_results;
+    QList<int> m_infosToLoad;
 };
 
 Q_DECLARE_METATYPE(Storage*)

@@ -303,6 +303,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("storage", Storage::toVariant(reply, concert));
+    reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
 
     // Trailers
@@ -312,6 +313,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
         reply->setProperty("storage", Storage::toVariant(reply, concert));
+        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, SIGNAL(finished()), this, SLOT(loadTrailersFinished()));
     }
 
@@ -322,6 +324,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
         reply->setProperty("storage", Storage::toVariant(reply, concert));
+        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, SIGNAL(finished()), this, SLOT(loadImagesFinished()));
     }
 
@@ -332,6 +335,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
         reply->setProperty("storage", Storage::toVariant(reply, concert));
+        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, SIGNAL(finished()), this, SLOT(loadReleasesFinished()));
     }
     concert->setLoadsLeft(loadsLeft);
@@ -345,13 +349,14 @@ void TMDbConcerts::loadFinished()
 {
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     Concert *concert = reply->property("storage").value<Storage*>()->concert();
+    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
     reply->deleteLater();
     if (!concert)
         return;
 
     if (reply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignInfos(msg, concert, concert->infosToLoad());
+        parseAndAssignInfos(msg, concert, infos);
     } else {
         qWarning() << "Network Error (load)" << reply->errorString();
     }
@@ -366,13 +371,14 @@ void TMDbConcerts::loadTrailersFinished()
 {
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     Concert *concert = reply->property("storage").value<Storage*>()->concert();
+    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
     reply->deleteLater();
     if (!concert)
         return;
 
     if (reply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignInfos(msg, concert, concert->infosToLoad());
+        parseAndAssignInfos(msg, concert, infos);
     } else {
         qDebug() << "Network Error (trailers)" << reply->errorString();
     }
@@ -387,13 +393,14 @@ void TMDbConcerts::loadImagesFinished()
 {
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     Concert *concert = reply->property("storage").value<Storage*>()->concert();
+    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
     reply->deleteLater();
     if (!concert)
         return;
 
     if (reply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignInfos(msg, concert, concert->infosToLoad());
+        parseAndAssignInfos(msg, concert, infos);
     } else {
         qWarning() << "Network Error (images)" << reply->errorString();
     }
@@ -408,13 +415,14 @@ void TMDbConcerts::loadReleasesFinished()
 {
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     Concert *concert = reply->property("storage").value<Storage*>()->concert();
+    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
     reply->deleteLater();
     if (!concert)
         return;
 
     if (reply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignInfos(msg, concert, concert->infosToLoad());
+        parseAndAssignInfos(msg, concert, infos);
     } else {
         qWarning() << "Network Error (releases)" << reply->errorString();
     }

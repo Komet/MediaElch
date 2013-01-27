@@ -147,6 +147,7 @@ void Cinefacts::loadData(QString id, Movie *movie, QList<int> infos)
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("cinefactsId", id);
+    reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
 }
 
@@ -158,6 +159,7 @@ void Cinefacts::loadFinished()
 {
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage*>()->movie();
+    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
     QString cinefactsId = reply->property("cinefactsId").toString();
     reply->deleteLater();
     if (!movie)
@@ -165,10 +167,11 @@ void Cinefacts::loadFinished()
 
     if (reply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignInfos(msg, movie, movie->controller()->infosToLoad());
+        parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage*>()->infosToLoad());
         reply = qnam()->get(QNetworkRequest(QUrl(QString("http://www.cinefacts.de/Filme/%1/Besetzung-Stab").arg(cinefactsId))));
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("cinefactsId", cinefactsId);
+        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, SIGNAL(finished()), this, SLOT(actorsFinished()));
     } else {
         qWarning() << "Network Error" << reply->errorString();
@@ -180,6 +183,7 @@ void Cinefacts::actorsFinished()
 {
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage*>()->movie();
+    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
     QString cinefactsId = reply->property("cinefactsId").toString();
     reply->deleteLater();
     if (!movie)
@@ -187,10 +191,11 @@ void Cinefacts::actorsFinished()
 
     if (reply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignActors(msg, movie, movie->controller()->infosToLoad());
+        parseAndAssignActors(msg, movie, reply->property("infosToLoad").value<Storage*>()->infosToLoad());
         reply = qnam()->get(QNetworkRequest(QUrl(QString("http://www.cinefacts.de/Filme/%1/Bildergalerie").arg(cinefactsId))));
         reply->setProperty("storage", Storage::toVariant(reply, movie));
         reply->setProperty("cinefactsId", cinefactsId);
+        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, SIGNAL(finished()), this, SLOT(imagesFinished()));
     } else {
         qWarning() << "Network Error" << reply->errorString();
@@ -202,6 +207,7 @@ void Cinefacts::imagesFinished()
 {
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     Movie *movie = reply->property("storage").value<Storage*>()->movie();
+    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
     reply->deleteLater();
     if (!movie)
         return;
@@ -211,19 +217,21 @@ void Cinefacts::imagesFinished()
         QStringList posters;
         QStringList backdrops;
         parseImages(msg, posters, backdrops);
-        if (posters.count() > 0 && movie->controller()->infosToLoad().contains(MovieScraperInfos::Poster)) {
+        if (posters.count() > 0 && infos.contains(MovieScraperInfos::Poster)) {
             reply = qnam()->get(QNetworkRequest(QUrl(QString("http://www.cinefacts.de%1").arg(posters.takeFirst()))));
             reply->setProperty("storage", Storage::toVariant(reply, movie));
             reply->setProperty("posters", posters);
             reply->setProperty("backdrops", backdrops);
+            reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
             connect(reply, SIGNAL(finished()), this, SLOT(posterFinished()));
             return;
         }
 
-        if (posters.count() > 0 && movie->controller()->infosToLoad().contains(MovieScraperInfos::Backdrop)) {
+        if (posters.count() > 0 && infos.contains(MovieScraperInfos::Backdrop)) {
             reply = qnam()->get(QNetworkRequest(QUrl(QString("http://www.cinefacts.de%1").arg(backdrops.takeFirst()))));
             reply->setProperty("storage", Storage::toVariant(reply, movie));
             reply->setProperty("backdrops", backdrops);
+            reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
             connect(reply, SIGNAL(finished()), this, SLOT(backdropFinished()));
             return;
         }
@@ -295,36 +303,6 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
         if (Settings::instance()->usePlotForOutline())
             movie->setOutline(doc.toPlainText());
     }
-
-    /*
-    QString backdropUrl;
-
-    // Backdrops
-    rx.setPattern("<a href=\"/kino/film/([0-9]*)/0/([^/]*)/szenenbilder_seite_1.html\">");
-    if (infos.contains(MovieScraperInfos::Backdrop) && rx.indexIn(html) != -1)
-        backdropUrl = QString("http://www.cinefacts.de/kino/film/%1/0/%2/szenenbilder_seite_1.html").arg(rx.cap(1)).arg(rx.cap(2));
-
-    // Posters
-    rx.setPattern("<a href=\"/kino/film/([0-9]*)/([^/]*)/plakate.html\">");
-    if (infos.contains(MovieScraperInfos::Poster) && rx.indexIn(html) != -1) {
-        QUrl posterUrl(QString("http://www.cinefacts.de/kino/film/%1/%2/plakate.html").arg(rx.cap(1)).arg(rx.cap(2)));
-        QNetworkReply *reply = qnam()->get(QNetworkRequest(posterUrl));
-        reply->setProperty("storage", Storage::toVariant(reply, movie));
-        reply->setProperty("backdropUrl", backdropUrl);
-        connect(reply, SIGNAL(finished()), this, SLOT(posterFinished()));
-        return;
-    }
-
-    if (!backdropUrl.isEmpty()) {
-        QNetworkReply *reply = qnam()->get(QNetworkRequest(backdropUrl));
-        reply->setProperty("storage", Storage::toVariant(reply, movie));
-        reply->setProperty("backdropUrl", backdropUrl);
-        connect(reply, SIGNAL(finished()), this, SLOT(backdropFinished()));
-        return;
-    }
-
-    movie->controller()->scraperLoadDone();
-    */
 }
 
 void Cinefacts::parseAndAssignActors(QString html, Movie *movie, QList<int> infos)
@@ -407,6 +385,7 @@ void Cinefacts::posterFinished()
     Movie *movie = reply->property("storage").value<Storage*>()->movie();
     QStringList posters = reply->property("posters").toStringList();
     QStringList backdrops = reply->property("backdrops").toStringList();
+    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
     if (!movie)
         return;
 
@@ -426,14 +405,16 @@ void Cinefacts::posterFinished()
             reply->setProperty("storage", Storage::toVariant(reply, movie));
             reply->setProperty("posters", posters);
             reply->setProperty("backdrops", backdrops);
+            reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
             connect(reply, SIGNAL(finished()), this, SLOT(posterFinished()));
             return;
         }
 
-        if (!backdrops.isEmpty() && movie->controller()->infosToLoad().contains(MovieScraperInfos::Backdrop)) {
+        if (!backdrops.isEmpty() && reply->property("infosToLoad").value<Storage*>()->infosToLoad().contains(MovieScraperInfos::Backdrop)) {
             reply = qnam()->get(QNetworkRequest(QUrl(QString("http://www.cinefacts.de%1").arg(backdrops.takeFirst()))));
             reply->setProperty("storage", Storage::toVariant(reply, movie));
             reply->setProperty("backdrops", backdrops);
+            reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
             connect(reply, SIGNAL(finished()), this, SLOT(backdropFinished()));
             return;
         }
@@ -451,6 +432,7 @@ void Cinefacts::backdropFinished()
     reply->deleteLater();
     Movie *movie = reply->property("storage").value<Storage*>()->movie();
     QStringList backdrops = reply->property("backdrops").toStringList();
+    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
     if (!movie)
         return;
 
@@ -469,6 +451,7 @@ void Cinefacts::backdropFinished()
             reply = qnam()->get(QNetworkRequest(QUrl(QString("http://www.cinefacts.de%1").arg(backdrops.takeFirst()))));
             reply->setProperty("storage", Storage::toVariant(reply, movie));
             reply->setProperty("backdrops", backdrops);
+            reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
             connect(reply, SIGNAL(finished()), this, SLOT(backdropFinished()));
             return;
         }

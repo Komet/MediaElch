@@ -68,24 +68,18 @@ private:
     QList<int> m_provides;
     QString m_apiKey;
     QNetworkAccessManager m_qnam;
-    QNetworkReply *m_loadReply;
-    int m_currentType;
-    QList<int> m_currentTypes;
     int m_searchResultLimit;
     TheTvDb *m_tvdb;
     TMDb *m_tmdb;
-    Movie *m_currentMovie;
-    Concert *m_currentConcert;
-    TvShow *m_currentShow;
 
     QNetworkAccessManager *qnam();
     QList<Poster> parseMovieData(QString json, int type);
     void loadMovieData(QString tmdbId, int type);
-    void loadMovieData(QString tmdbId, QList<int> types);
-    void loadConcertData(QString tmdbId, QList<int> types);
+    void loadMovieData(QString tmdbId, QList<int> types, Movie *movie);
+    void loadConcertData(QString tmdbId, QList<int> types, Concert *concert);
     QList<Poster> parseTvShowData(QString json, int type);
     void loadTvShowData(QString tvdbId, int type);
-    void loadTvShowData(QString tvdbId, QList<int> types);
+    void loadTvShowData(QString tvdbId, QList<int> types, TvShow *show);
 };
 
 #endif // FANARTTV_H

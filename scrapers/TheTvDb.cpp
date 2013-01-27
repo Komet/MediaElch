@@ -252,6 +252,7 @@ void TheTvDb::loadTvShowData(QString id, TvShow *show, TvShowUpdateType updateTy
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, show));
     reply->setProperty("updateType", updateType);
+    reply->setProperty("infosToLoad", Storage::toVariant(reply, infosToLoad));
     connect(reply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
 }
 
@@ -267,12 +268,13 @@ void TheTvDb::onLoadFinished()
     reply->deleteLater();
     TvShow *show = reply->property("storage").value<Storage*>()->show();
     TvShowUpdateType updateType = static_cast<TvShowUpdateType>(reply->property("updateType").toInt());
+    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
     if (!show)
         return;
 
     if (reply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignInfos(msg, show, updateType, show->infosToLoad());
+        parseAndAssignInfos(msg, show, updateType, infos);
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
@@ -280,6 +282,7 @@ void TheTvDb::onLoadFinished()
     QUrl url(QString("%1/api/%2/series/%3/actors.xml").arg(mirror).arg(m_apiKey).arg(show->tvdbId()));
     reply = qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, show));
+    reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     reply->setProperty("updateType", updateType);
     connect(reply, SIGNAL(finished()), this, SLOT(onActorsFinished()));
 }
@@ -296,6 +299,7 @@ void TheTvDb::onActorsFinished()
     reply->deleteLater();
     TvShow *show = reply->property("storage").value<Storage*>()->show();
     TvShowUpdateType updateType = static_cast<TvShowUpdateType>(reply->property("updateType").toInt());
+    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
     if (!show)
         return;
 
@@ -312,6 +316,7 @@ void TheTvDb::onActorsFinished()
     reply = qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, show));
     reply->setProperty("updateType", updateType);
+    reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, SIGNAL(finished()), this, SLOT(onBannersFinished()));
 }
 
@@ -326,12 +331,13 @@ void TheTvDb::onBannersFinished()
     reply->deleteLater();
     TvShow *show = reply->property("storage").value<Storage*>()->show();
     TvShowUpdateType updateType = static_cast<TvShowUpdateType>(reply->property("updateType").toInt());
+    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
     if (!show)
         return;
 
     if (reply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(reply->readAll());
-        parseAndAssignBanners(msg, show, updateType, show->infosToLoad());
+        parseAndAssignBanners(msg, show, updateType, infos);
     } else {
         qDebug() << "Network Error" << reply->errorString();
     }
@@ -547,6 +553,7 @@ void TheTvDb::loadTvShowEpisodeData(QString id, TvShowEpisode *episode, QList<in
     QUrl url(QString("%1/api/%2/series/%3/all/%4.xml").arg(mirror).arg(m_apiKey).arg(id).arg(m_language));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, episode));
+    reply->setProperty("infosToLoad", Storage::toVariant(reply, infosToLoad));
     connect(reply, SIGNAL(finished()), this, SLOT(onEpisodeLoadFinished()));
 }
 
@@ -557,6 +564,7 @@ void TheTvDb::loadTvShowEpisodeData(QString id, TvShowEpisode *episode, QList<in
 void TheTvDb::onEpisodeLoadFinished()
 {
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
     reply->deleteLater();
     TvShowEpisode *episode = reply->property("storage").value<Storage*>()->episode();
     if (!episode)
@@ -573,7 +581,7 @@ void TheTvDb::onEpisodeLoadFinished()
                 int episodeNumber = elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt();
                 if (episode->season() == seasonNumber && episode->episode() == episodeNumber) {
                     episode->clear(episode->infosToLoad());
-                    parseAndAssignSingleEpisodeInfos(elem, episode, episode->infosToLoad());
+                    parseAndAssignSingleEpisodeInfos(elem, episode, infos);
                 }
             }
         }

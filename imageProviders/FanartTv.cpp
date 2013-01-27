@@ -5,6 +5,7 @@
 #include <QtScript/QScriptValueIterator>
 #include <QtScript/QScriptEngine>
 #include "scrapers/TMDb.h"
+#include "data/Storage.h"
 
 /**
  * @brief FanartTv::FanartTv
@@ -99,8 +100,7 @@ void FanartTv::onSearchMovieFinished(QList<ScraperSearchResult> results)
  */
 void FanartTv::movieImages(Movie *movie, QString tmdbId, QList<int> types)
 {
-    m_currentMovie = movie;
-    loadMovieData(tmdbId, types);
+    loadMovieData(tmdbId, types, movie);
 }
 
 /**
@@ -156,8 +156,7 @@ void FanartTv::movieCdArts(QString tmdbId)
  */
 void FanartTv::concertImages(Concert *concert, QString tmdbId, QList<int> types)
 {
-    m_currentConcert = concert;
-    loadConcertData(tmdbId, types);
+    loadConcertData(tmdbId, types, concert);
 }
 
 /**
@@ -212,14 +211,14 @@ void FanartTv::concertCdArts(QString tmdbId)
  */
 void FanartTv::loadMovieData(QString tmdbId, int type)
 {
-    m_currentType = type;
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("http://api.fanart.tv/webservice/movie/%2/%1/json/all/1/2/").arg(tmdbId).arg(m_apiKey));
     request.setUrl(url);
-    m_loadReply = qnam()->get(QNetworkRequest(request));
-    connect(m_loadReply, SIGNAL(finished()), this, SLOT(onLoadMovieDataFinished()));
+    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    reply->setProperty("infoToLoad", type);
+    connect(reply, SIGNAL(finished()), this, SLOT(onLoadMovieDataFinished()));
 }
 
 /**
@@ -227,16 +226,17 @@ void FanartTv::loadMovieData(QString tmdbId, int type)
  * @param tmdbId
  * @param types
  */
-void FanartTv::loadMovieData(QString tmdbId, QList<int> types)
+void FanartTv::loadMovieData(QString tmdbId, QList<int> types, Movie *movie)
 {
-    m_currentTypes = types;
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("http://api.fanart.tv/webservice/movie/%2/%1/json/all/1/2/").arg(tmdbId).arg(m_apiKey));
     request.setUrl(url);
-    m_loadReply = qnam()->get(QNetworkRequest(request));
-    connect(m_loadReply, SIGNAL(finished()), this, SLOT(onLoadAllMovieDataFinished()));
+    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    reply->setProperty("storage", Storage::toVariant(reply, movie));
+    reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
+    connect(reply, SIGNAL(finished()), this, SLOT(onLoadAllMovieDataFinished()));
 }
 
 /**
@@ -244,16 +244,17 @@ void FanartTv::loadMovieData(QString tmdbId, QList<int> types)
  * @param tmdbId
  * @param types
  */
-void FanartTv::loadConcertData(QString tmdbId, QList<int> types)
+void FanartTv::loadConcertData(QString tmdbId, QList<int> types, Concert *concert)
 {
-    m_currentTypes = types;
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("http://api.fanart.tv/webservice/movie/%2/%1/json/all/1/2/").arg(tmdbId).arg(m_apiKey));
     request.setUrl(url);
-    m_loadReply = qnam()->get(QNetworkRequest(request));
-    connect(m_loadReply, SIGNAL(finished()), this, SLOT(onLoadAllConcertDataFinished()));
+    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
+    reply->setProperty("storage", Storage::toVariant(reply, concert));
+    connect(reply, SIGNAL(finished()), this, SLOT(onLoadAllConcertDataFinished()));
 }
 
 /**
@@ -262,12 +263,13 @@ void FanartTv::loadConcertData(QString tmdbId, QList<int> types)
  */
 void FanartTv::onLoadMovieDataFinished()
 {
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    reply->deleteLater();
     QList<Poster> posters;
-    if (m_loadReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_loadReply->readAll());
-        posters = parseMovieData(msg, m_currentType);
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(reply->readAll());
+        posters = parseMovieData(msg, reply->property("infoToLoad").toInt());
     }
-    m_loadReply->deleteLater();
     emit sigImagesLoaded(posters);
 }
 
@@ -277,14 +279,16 @@ void FanartTv::onLoadMovieDataFinished()
  */
 void FanartTv::onLoadAllMovieDataFinished()
 {
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    Movie *movie = reply->property("storage").value<Storage*>()->movie();
+    reply->deleteLater();
     QMap<int, QList<Poster> > posters;
-    if (m_loadReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_loadReply->readAll());
-        foreach (int type, m_currentTypes)
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(reply->readAll());
+        foreach (int type, reply->property("infosToLoad").value<Storage*>()->infosToLoad())
             posters.insert(type, parseMovieData(msg, type));
     }
-    m_loadReply->deleteLater();
-    emit sigImagesLoaded(m_currentMovie, posters);
+    emit sigImagesLoaded(movie, posters);
 }
 
 /**
@@ -293,14 +297,16 @@ void FanartTv::onLoadAllMovieDataFinished()
  */
 void FanartTv::onLoadAllConcertDataFinished()
 {
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    Concert *concert = reply->property("storage").value<Storage*>()->concert();
+    reply->deleteLater();
     QMap<int, QList<Poster> > posters;
-    if (m_loadReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_loadReply->readAll());
-        foreach (int type, m_currentTypes)
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(reply->readAll());
+        foreach (int type, reply->property("infosToLoad").value<Storage*>()->infosToLoad())
             posters.insert(type, parseMovieData(msg, type));
     }
-    m_loadReply->deleteLater();
-    emit sigImagesLoaded(m_currentConcert, posters);
+    emit sigImagesLoaded(concert, posters);
 }
 
 /**
@@ -381,8 +387,7 @@ void FanartTv::onSearchTvShowFinished(QList<ScraperSearchResult> results)
  */
 void FanartTv::tvShowImages(TvShow *show, QString tvdbId, QList<int> types)
 {
-    m_currentShow = show;
-    loadTvShowData(tvdbId, types);
+    loadTvShowData(tvdbId, types, show);
 }
 
 /**
@@ -392,14 +397,14 @@ void FanartTv::tvShowImages(TvShow *show, QString tvdbId, QList<int> types)
  */
 void FanartTv::loadTvShowData(QString tvdbId, int type)
 {
-    m_currentType = type;
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("http://api.fanart.tv/webservice/series/%2/%1/json/all/1/2/").arg(tvdbId).arg(m_apiKey));
     request.setUrl(url);
-    m_loadReply = qnam()->get(QNetworkRequest(request));
-    connect(m_loadReply, SIGNAL(finished()), this, SLOT(onLoadTvShowDataFinished()));
+    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    reply->setProperty("infoToLoad", type);
+    connect(reply, SIGNAL(finished()), this, SLOT(onLoadTvShowDataFinished()));
 }
 
 /**
@@ -407,16 +412,17 @@ void FanartTv::loadTvShowData(QString tvdbId, int type)
  * @param tvdbId The Tv DB Id
  * @param types
  */
-void FanartTv::loadTvShowData(QString tvdbId, QList<int> types)
+void FanartTv::loadTvShowData(QString tvdbId, QList<int> types, TvShow *show)
 {
-    m_currentTypes = types;
     QUrl url;
     QNetworkRequest request;
     request.setRawHeader("Accept", "application/json");
     url.setUrl(QString("http://api.fanart.tv/webservice/series/%2/%1/json/all/1/2/").arg(tvdbId).arg(m_apiKey));
     request.setUrl(url);
-    m_loadReply = qnam()->get(QNetworkRequest(request));
-    connect(m_loadReply, SIGNAL(finished()), this, SLOT(onLoadAllTvShowDataFinished()));
+    QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    reply->setProperty("infosToLoad", Storage::toVariant(reply, types));
+    reply->setProperty("storage", Storage::toVariant(reply, show));
+    connect(reply, SIGNAL(finished()), this, SLOT(onLoadAllTvShowDataFinished()));
 }
 
 /**
@@ -425,12 +431,13 @@ void FanartTv::loadTvShowData(QString tvdbId, QList<int> types)
  */
 void FanartTv::onLoadTvShowDataFinished()
 {
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    reply->deleteLater();
     QList<Poster> posters;
-    if (m_loadReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_loadReply->readAll());
-        posters = parseTvShowData(msg, m_currentType);
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(reply->readAll());
+        posters = parseTvShowData(msg, reply->property("infoToLoad").toInt());
     }
-    m_loadReply->deleteLater();
     emit sigImagesLoaded(posters);
 }
 
@@ -440,14 +447,17 @@ void FanartTv::onLoadTvShowDataFinished()
  */
 void FanartTv::onLoadAllTvShowDataFinished()
 {
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    TvShow *show = reply->property("storage").value<Storage*>()->show();
+    reply->deleteLater();
     QMap<int, QList<Poster> > posters;
-    if (m_loadReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_loadReply->readAll());
-        foreach (int type, m_currentTypes)
+    if (reply->error() == QNetworkReply::NoError ) {
+        QString msg = QString::fromUtf8(reply->readAll());
+        foreach (int type, reply->property("infosToLoad").value<Storage*>()->infosToLoad())
             posters.insert(type, parseTvShowData(msg, type));
     }
-    m_loadReply->deleteLater();
-    emit sigImagesLoaded(m_currentShow, posters);
+    reply->deleteLater();
+    emit sigImagesLoaded(show, posters);
 }
 
 /**
