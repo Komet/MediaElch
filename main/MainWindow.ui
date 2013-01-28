@@ -305,7 +305,7 @@ margin-top: 15px;</string>
        <number>0</number>
       </property>
       <widget class="QWidget" name="page">
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QHBoxLayout" name="horizontalLayout">
         <property name="margin">
          <number>0</number>
         </property>
@@ -314,20 +314,10 @@ margin-top: 15px;</string>
           <property name="styleSheet">
            <string notr="true">QSplitter::handle {
 	background-color: transparent;
-}
-</string>
-          </property>
-          <property name="lineWidth">
-           <number>0</number>
+}</string>
           </property>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="handleWidth">
-           <number>1</number>
-          </property>
-          <property name="childrenCollapsible">
-           <bool>false</bool>
           </property>
           <widget class="FilesWidget" name="filesWidget" native="true">
            <property name="minimumSize">
@@ -337,13 +327,49 @@ margin-top: 15px;</string>
             </size>
            </property>
           </widget>
-          <widget class="MovieWidget" name="movieWidget" native="true"/>
+          <widget class="QScrollArea" name="scrollArea">
+           <property name="styleSheet">
+            <string notr="true">QScrollArea, #scrollAreaWidgetContents_2 {
+	background-color: transparent;
+}</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
+           </property>
+           <property name="lineWidth">
+            <number>0</number>
+           </property>
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="scrollAreaWidgetContents_2">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>76</width>
+              <height>735</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="MovieWidget" name="movieWidget" native="true"/>
+             </item>
+            </layout>
+           </widget>
+          </widget>
          </widget>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="page_2">
-       <layout class="QVBoxLayout" name="verticalLayout_3">
+       <layout class="QVBoxLayout" name="verticalLayout_8">
         <property name="margin">
          <number>0</number>
         </property>
@@ -352,20 +378,10 @@ margin-top: 15px;</string>
           <property name="styleSheet">
            <string notr="true">QSplitter::handle {
 	background-color: transparent;
-}
-</string>
-          </property>
-          <property name="lineWidth">
-           <number>0</number>
+}</string>
           </property>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="handleWidth">
-           <number>1</number>
-          </property>
-          <property name="childrenCollapsible">
-           <bool>false</bool>
           </property>
           <widget class="TvShowFilesWidget" name="tvShowFilesWidget" native="true">
            <property name="minimumSize">
@@ -378,7 +394,43 @@ margin-top: 15px;</string>
             <enum>Qt::NoFocus</enum>
            </property>
           </widget>
-          <widget class="TvShowWidget" name="tvShowWidget" native="true"/>
+          <widget class="QScrollArea" name="scrollArea_2">
+           <property name="styleSheet">
+            <string notr="true">QScrollArea, #scrollAreaWidgetContents_3 {
+	background-color: transparent;
+}</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
+           </property>
+           <property name="lineWidth">
+            <number>0</number>
+           </property>
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="scrollAreaWidgetContents_3">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>76</width>
+              <height>735</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_3">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="TvShowWidget" name="tvShowWidget" native="true"/>
+             </item>
+            </layout>
+           </widget>
+          </widget>
          </widget>
         </item>
        </layout>
@@ -394,7 +446,7 @@ margin-top: 15px;</string>
        </layout>
       </widget>
       <widget class="QWidget" name="concerts">
-       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <layout class="QVBoxLayout" name="verticalLayout_9">
         <property name="margin">
          <number>0</number>
         </property>
@@ -403,8 +455,7 @@ margin-top: 15px;</string>
           <property name="styleSheet">
            <string notr="true">QSplitter::handle {
 	background-color: transparent;
-}
-</string>
+}</string>
           </property>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
@@ -417,7 +468,43 @@ margin-top: 15px;</string>
             </size>
            </property>
           </widget>
-          <widget class="ConcertWidget" name="concertWidget" native="true"/>
+          <widget class="QScrollArea" name="scrollArea_3">
+           <property name="styleSheet">
+            <string notr="true">QScrollArea, #scrollAreaWidgetContents_4 {
+	background-color: transparent;
+}</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
+           </property>
+           <property name="lineWidth">
+            <number>0</number>
+           </property>
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="scrollAreaWidgetContents_4">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>76</width>
+              <height>735</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="ConcertWidget" name="concertWidget" native="true"/>
+             </item>
+            </layout>
+           </widget>
+          </widget>
          </widget>
         </item>
        </layout>
