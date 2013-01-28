@@ -1037,7 +1037,7 @@ QString XbmcXml::cdArtImageName(Concert *concert, QList<DataFile> dataFiles, boo
     QFileInfo fi(concert->files().at(0));
 
     if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::ConcertClearArt);
+        dataFiles = Settings::instance()->dataFiles(DataFileType::ConcertCdArt);
 
     foreach (DataFile dataFile, dataFiles) {
         QString file = dataFile.saveFileName(fi.fileName());
