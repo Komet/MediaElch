@@ -5,6 +5,7 @@
 #include <QSqlQuery>
 #include "globals/Globals.h"
 #include "imageProviders/FanartTv.h"
+#include "imageProviders/FanartTvMusicArtists.h"
 #include "imageProviders/TMDbImages.h"
 #include "imageProviders/TheTvDbImages.h"
 #include "mediaCenterPlugins/XbmcXml.h"
@@ -46,6 +47,7 @@ Manager::Manager(QObject *parent) :
     m_mediaCentersConcert.append(new XbmcXml(this));
 
     m_imageProviders.append(new FanartTv(this));
+    m_imageProviders.append(new FanartTvMusicArtists(this));
     m_imageProviders.append(new TMDbImages(this));
     m_imageProviders.append(new TheTvDbImages(this));
 

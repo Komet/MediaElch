@@ -673,7 +673,11 @@ void ImageDialog::onSearchFinished(QList<ScraperSearchResult> results)
 {
     ui->searchTerm->setLoading(false);
     foreach (const ScraperSearchResult &result, results) {
-        QTableWidgetItem *item = new QTableWidgetItem(QString("%1 (%2)").arg(result.name).arg(result.released.toString("yyyy")));
+        QString name = result.name;
+        if (!result.released.isNull())
+            name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
+
+        QTableWidgetItem *item = new QTableWidgetItem(name);
         item->setData(Qt::UserRole, result.id);
         int row = ui->results->rowCount();
         ui->results->insertRow(row);

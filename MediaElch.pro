@@ -98,6 +98,7 @@ SOURCES += main.cpp\
     data/MovieFilesOrganizer.cpp \
     globals/NameFormatter.cpp \
     imageProviders/FanartTv.cpp \
+    imageProviders/FanartTvMusicArtists.cpp \
     imageProviders/TMDbImages.cpp \
     imageProviders/TheTvDbImages.cpp \
     globals/ComboDelegate.cpp \
@@ -194,6 +195,7 @@ HEADERS  += main/MainWindow.h \
     globals/NameFormatter.h \
     data/ImageProviderInterface.h \
     imageProviders/FanartTv.h \
+    imageProviders/FanartTvMusicArtists.h \
     imageProviders/TMDbImages.h \
     imageProviders/TheTvDbImages.h \
     globals/ComboDelegate.h \
