@@ -9,9 +9,8 @@ NameFormatter *NameFormatter::m_instance = 0;
 NameFormatter::NameFormatter(QObject *parent) :
     QObject(parent)
 {
-    QString exWords = Settings::instance()->excludeWords()
-            .remove(" ");
-    m_exWords = exWords.split(",", QString::SkipEmptyParts);
+    m_exWords = Settings::instance()->excludeWords()
+            .remove(" ").split(",", QString::SkipEmptyParts);
 }
 
 /**
