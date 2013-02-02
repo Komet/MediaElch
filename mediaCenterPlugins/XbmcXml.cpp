@@ -211,7 +211,7 @@ void XbmcXml::saveAdditionalImages(Movie *movie)
         foreach (const QString &file, movie->extraFanartsToRemove())
             QFile::remove(file);
         QDir dir(QFileInfo(movie->files().first()).absolutePath() + "/extrafanart");
-        if (!dir.exists())
+        if (!dir.exists() && !movie->extraFanartImagesToAdd().isEmpty())
             QDir(QFileInfo(movie->files().first()).absolutePath()).mkdir("extrafanart");
         foreach (QImage img, movie->extraFanartImagesToAdd()) {
             int num = 1;
@@ -830,12 +830,11 @@ void XbmcXml::saveAdditionalImages(Concert *concert)
         }
     }
 
-    qDebug() << "CONCERT" << concert->inSeparateFolder() << concert->files();
     if (concert->inSeparateFolder() && !concert->files().isEmpty()) {
         foreach (const QString &file, concert->extraFanartsToRemove())
             QFile::remove(file);
         QDir dir(QFileInfo(concert->files().first()).absolutePath() + "/extrafanart");
-        if (!dir.exists())
+        if (!dir.exists() && !concert->extraFanartImagesToAdd().isEmpty())
             QDir(QFileInfo(concert->files().first()).absolutePath()).mkdir("extrafanart");
         foreach (QImage img, concert->extraFanartImagesToAdd()) {
             int num = 1;
@@ -1651,7 +1650,7 @@ void XbmcXml::saveAdditionalImages(TvShow *show)
         foreach (const QString &file, show->extraFanartsToRemove())
             QFile::remove(file);
         QDir dir(show->dir() + "/extrafanart");
-        if (!dir.exists())
+        if (!dir.exists() && !show->extraFanartImagesToAdd().isEmpty())
             QDir(show->dir()).mkdir("extrafanart");
         foreach (QImage img, show->extraFanartImagesToAdd()) {
             int num = 1;
