@@ -437,12 +437,10 @@ void SettingsWidget::removeDir()
 void SettingsWidget::organize()
 {
     MovieFilesOrganizer* organizer = new MovieFilesOrganizer(this);
-    qDebug() << "Organize Button clicked!" << ui->dirs
-                ->item(ui->dirs->currentRow(), 1)->text();
 
     int row = ui->dirs->currentRow();
     if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() != 0
-            || ui->dirs->item(row, 3)->checkState() == Qt::Checked) {
+            || ui->dirs->item(row, 2)->checkState() == Qt::Checked) {
         organizer->canceled(tr("Organizing movies does only work on " \
                                       "movies, not already sorted to " \
                                       "separate folders."));
@@ -463,7 +461,7 @@ void SettingsWidget::organize()
     switch (ret) {
       case QMessageBox::Ok:
         organizer->moveToDirs(ui->dirs->item(ui->dirs->currentRow(), 1)->text());
-        ui->dirs->item(ui->dirs->currentRow(), 3)->setCheckState(Qt::Checked);
+        ui->dirs->item(ui->dirs->currentRow(), 2)->setCheckState(Qt::Checked);
         break;
       case QMessageBox::Cancel:
         break;
@@ -483,8 +481,9 @@ void SettingsWidget::dirListRowChanged(int currentRow)
         ui->buttonMovieFilesToDirs->setDisabled(true);
     } else {
         ui->buttonRemoveDir->setDisabled(false);
-        if (ui->dirs->cellWidget(currentRow, 0) != 0 && static_cast<QComboBox*>(ui->dirs->cellWidget(currentRow, 0))->currentIndex() == 0
-                && ui->dirs->item(currentRow, 3)->checkState() == Qt::Unchecked) {
+        if (ui->dirs->cellWidget(currentRow, 0) != 0
+                && static_cast<QComboBox*>(ui->dirs->cellWidget(currentRow, 0))->currentIndex() == 0
+                && ui->dirs->item(currentRow, 2)->checkState() == Qt::Unchecked) {
             ui->buttonMovieFilesToDirs->setDisabled(false);
         } else {
             ui->buttonMovieFilesToDirs->setDisabled(true);

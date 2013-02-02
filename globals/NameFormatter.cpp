@@ -9,7 +9,8 @@ NameFormatter *NameFormatter::m_instance = 0;
 NameFormatter::NameFormatter(QObject *parent) :
     QObject(parent)
 {
-    m_exWords = Settings::instance()->excludeWords().split(",", QString::SkipEmptyParts);
+    m_exWords = Settings::instance()->excludeWords()
+            .remove(" ").split(",", QString::SkipEmptyParts);
 }
 
 /**
@@ -36,9 +37,10 @@ QString NameFormatter::excludeWords(QString name)
     QRegExp rx;
     rx.setCaseSensitivity(Qt::CaseInsensitive);
     foreach (const QString &word, m_exWords) {
+        pos = 0;
         rx.setPattern("(^|[\\(\\s\\-]+)" + word + "([\\s\\-\\)]+|$)");
         pos = rx.indexIn(name);
-        while (rx.indexIn(name) >= 0) {
+        while (pos >= 0) {
             name = name.remove(pos, rx.cap(0).length());
             name = name.insert(pos, ' ');
             pos = rx.indexIn(name);
