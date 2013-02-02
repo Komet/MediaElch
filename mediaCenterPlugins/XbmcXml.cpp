@@ -151,14 +151,14 @@ bool XbmcXml::saveMovie(Movie *movie)
 
     if (movie->posterImageChanged() && !movie->posterImage()->isNull()) {
         foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MoviePoster)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName());
+            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
             qDebug() << "Saving poster to" << fi.absolutePath() + QDir::separator() + saveFileName;
             movie->posterImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "jpg", 100);
         }
     }
     if (movie->backdropImageChanged() && !movie->backdropImage()->isNull()) {
         foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieBackdrop)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName());
+            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
             qDebug() << "Saving fanart to" << fi.absolutePath() + QDir::separator() + saveFileName;
             movie->backdropImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "jpg", 100);
         }
@@ -241,6 +241,31 @@ QString XbmcXml::nfoFilePath(Movie *movie)
     }
 
     foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieNfo)) {
+        QString file = dataFile.saveFileName(fi.fileName());
+        QFileInfo nfoFi(fi.absolutePath() + QDir::separator() + file);
+        if (nfoFi.exists()) {
+            nfoFile = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return nfoFile;
+}
+
+QString XbmcXml::nfoFilePath(TvShowEpisode *episode)
+{
+    QString nfoFile;
+    if (episode->files().size() == 0) {
+        qWarning() << "Episode has no files";
+        return nfoFile;
+    }
+    QFileInfo fi(episode->files().at(0));
+    if (!fi.isFile() ) {
+        qWarning() << "First file of the episode is not readable" << episode->files().at(0);
+        return nfoFile;
+    }
+
+    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo)) {
         QString file = dataFile.saveFileName(fi.fileName());
         QFileInfo nfoFi(fi.absolutePath() + QDir::separator() + file);
         if (nfoFi.exists()) {
@@ -537,7 +562,7 @@ QString XbmcXml::posterImageName(Movie *movie, QList<DataFile> dataFiles, bool c
         dataFiles = Settings::instance()->dataFiles(DataFileType::MoviePoster);
 
     foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName());
+        QString file = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
         QFileInfo pFi(fi.absolutePath() + QDir::separator() + file);
         if (pFi.isFile() || constructName) {
             posterFileName = fi.absolutePath() + QDir::separator() + file;
@@ -566,7 +591,7 @@ QString XbmcXml::backdropImageName(Movie *movie, QList<DataFile> dataFiles, bool
         dataFiles = Settings::instance()->dataFiles(DataFileType::MovieBackdrop);
 
     foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName());
+        QString file = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
         QFileInfo bFi(fi.absolutePath() + QDir::separator() + file);
         if (bFi.isFile() || constructName) {
             fanartFileName = fi.absolutePath() + QDir::separator() + file;
@@ -1439,30 +1464,9 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoConten
 
     QString nfoContent;
     if (initialNfoContent.isEmpty()) {
-        if (episode->files().size() == 0) {
-            qWarning() << "Episode has no files";
+        QString nfoFile = nfoFilePath(episode);
+        if (nfoFile.isEmpty())
             return false;
-        }
-        QFileInfo fi(episode->files().at(0));
-        if (!fi.isFile() ) {
-            qDebug() << "Episode file 0 is no file" << episode->files();
-            return false;
-        }
-
-        QString nfoFile;
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo)) {
-            QString file = dataFile.saveFileName(fi.fileName());
-            QFileInfo nfoFi(fi.absolutePath() + QDir::separator() + file);
-            if (nfoFi.exists()) {
-                nfoFile = fi.absolutePath() + QDir::separator() + file;
-                break;
-            }
-        }
-
-        if (nfoFile.isEmpty()) {
-            qDebug() << "No usable nfo file found";
-            return false;
-        }
 
         QFile file(nfoFile);
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {

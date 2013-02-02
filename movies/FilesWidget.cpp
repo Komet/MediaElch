@@ -213,6 +213,7 @@ void FilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
     qDebug() << "Entered";
     if (!index.isValid()) {
         qDebug() << "Index is invalid";
+        m_lastMovie = 0;
         emit noMovieSelected();
         return;
     }
@@ -315,4 +316,16 @@ void FilesWidget::onSortByYear()
     ui->sortByYear->setStyleSheet(m_activeLabelCss);
     ui->sortBySeen->setStyleSheet(m_baseLabelCss);
     m_movieProxyModel->setSortBy(SortByYear);
+}
+
+QList<Movie*> FilesWidget::selectedMovies()
+{
+    QList<Movie*> movies;
+    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
+        int row = index.model()->data(index, Qt::UserRole).toInt();
+        movies.append(Manager::instance()->movieModel()->movie(row));
+    }
+    if (movies.isEmpty())
+        movies << m_lastMovie;
+    return movies;
 }

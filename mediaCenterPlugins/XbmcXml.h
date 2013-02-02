@@ -63,6 +63,9 @@ public:
     QString logoImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString clearArtImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString characterArtImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+    QString nfoFilePath(Movie *movie);
+    QString nfoFilePath(Concert *concert);
+    QString nfoFilePath(TvShowEpisode *episode);
 
 private:
     void writeMovieXml(QXmlStreamWriter &xml, Movie *movie);
@@ -70,8 +73,6 @@ private:
     void writeTvShowXml(QXmlStreamWriter &xml, TvShow *show);
     void writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode);
     void writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDetails);
-    QString nfoFilePath(Movie *movie);
-    QString nfoFilePath(Concert *concert);
     bool loadStreamDetails(StreamDetails *streamDetails, QDomDocument domDoc);
 };
 

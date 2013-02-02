@@ -269,6 +269,8 @@ void FanartTvMusicArtists::movieCdArts(QString tmdbId)
 void FanartTvMusicArtists::concertImages(Concert *concert, QString tmdbId, QList<int> types)
 {
     Q_UNUSED(tmdbId);
+    Q_UNUSED(concert);
+    Q_UNUSED(types);
 }
 
 void FanartTvMusicArtists::concertPosters(QString tmdbId)

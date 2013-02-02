@@ -58,6 +58,9 @@ public:
     virtual QString seasonPosterImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString seasonBackdropImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString seasonBannerImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString nfoFilePath(Movie *movie) = 0;
+    virtual QString nfoFilePath(Concert *concert) = 0;
+    virtual QString nfoFilePath(TvShowEpisode *episode) = 0;
 };
 
 #endif // MEDIACENTERINTERFACE_H

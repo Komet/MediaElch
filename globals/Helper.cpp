@@ -128,3 +128,12 @@ QImage &Helper::resizeBackdrop(QImage &image)
 
     return image;
 }
+
+
+QString &Helper::sanitizeFileName(QString &fileName)
+{
+    fileName.replace("/", "_");
+    fileName.replace("\\", "_");
+    fileName.replace("$", "_");
+    return fileName;
+}

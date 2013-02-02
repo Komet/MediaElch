@@ -27,6 +27,8 @@ public:
     ~TvShowFilesWidget();
     void setFilter(QList<Filter*> filters, QString text);
     static TvShowFilesWidget *instance();
+    QList<TvShowEpisode*> selectedEpisodes();
+    QList<TvShow*> selectedShows();
 
 public slots:
     void renewModel();

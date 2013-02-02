@@ -329,7 +329,7 @@ void TMDb::loadData(QString id, Movie *movie, QList<int> infos)
     // Trailers
     if (infos.contains(MovieScraperInfos::Trailer)) {
         loadsLeft.append(DataTrailers);
-        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/trailers?api_key=%2").arg(id).arg(m_apiKey));
+        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/trailers?api_key=%2&language=%3").arg(id).arg(m_apiKey).arg(m_language));
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
         reply->setProperty("storage", Storage::toVariant(reply, movie));

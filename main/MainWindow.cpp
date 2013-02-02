@@ -62,6 +62,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_filterWidget = new FilterWidget();
     m_fileScannerDialog = new FileScannerDialog(ui->centralWidget);
     m_xbmcSync = new XbmcSync(ui->centralWidget);
+    m_renamer = new Renamer(ui->centralWidget);
     m_settings = Settings::instance(this);
     setupToolbar();
 
@@ -146,6 +147,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_xbmcSync, SIGNAL(sigTriggerReload()), this, SLOT(onTriggerReloadAll()));
     connect(m_xbmcSync, SIGNAL(sigFinished()), this, SLOT(onXbmcSyncFinished()));
 
+    connect(m_renamer, SIGNAL(sigFilesRenamed(Renamer::RenameType)), this, SLOT(onFilesRenamed(Renamer::RenameType)));
+
     MovieSearch::instance(ui->centralWidget);
     TvShowSearch::instance(ui->centralWidget);
     ImageDialog::instance(ui->centralWidget);
@@ -229,7 +232,7 @@ void MainWindow::setupToolbar()
     icons << QPixmap(":/img/spanner.png") << QPixmap(":/img/info.png") << QPixmap(":/img/folder_in.png")
           << QPixmap(":/img/stop.png") << QPixmap(":/img/magnifier.png") <<QPixmap(":/img/save.png")
           << QPixmap(":/img/storage.png") << QPixmap(":/img/heart.png") << QPixmap(":/img/arrow_circle_right.png")
-          << QPixmap(":/img/xbmc.png");
+          << QPixmap(":/img/xbmc.png") << QPixmap(":/img/folder_64.png");
     for (int i=0, n=icons.count() ; i<n ; ++i) {
         p.begin(&icons[i]);
         p.setCompositionMode(QPainter::CompositionMode_SourceIn);
@@ -254,6 +257,9 @@ void MainWindow::setupToolbar()
     m_actionReload->setShortcut(QKeySequence::Refresh);
     m_actionReload->setToolTip(tr("Reload all files (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
 
+    m_actionRename = new QAction(QIcon(icons[10]), tr("Rename"), this);
+    m_actionRename->setToolTip(tr("Rename selected files"));
+
     m_actionSettings = new QAction(QIcon(icons[0]), tr("Settings"), this);
 
     m_actionXbmc = new QAction(QIcon(icons[9]), tr("XBMC"), this);
@@ -268,6 +274,7 @@ void MainWindow::setupToolbar()
     toolBar->addAction(m_actionSave);
     toolBar->addAction(m_actionSaveAll);
     toolBar->addAction(m_actionReload);
+    toolBar->addAction(m_actionRename);
     toolBar->addAction(m_actionSettings);
     toolBar->addAction(m_actionXbmc);
     toolBar->addAction(m_actionAbout);
@@ -289,10 +296,12 @@ void MainWindow::setupToolbar()
     connect(m_actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(m_actionLike, SIGNAL(triggered()), m_supportDialog, SLOT(exec()));
     connect(m_actionXbmc, SIGNAL(triggered()), this, SLOT(onActionXbmc()));
+    connect(m_actionRename, SIGNAL(triggered()), this, SLOT(onActionRename()));
 
     m_actionSearch->setEnabled(false);
     m_actionSave->setEnabled(false);
     m_actionSaveAll->setEnabled(false);
+    m_actionRename->setEnabled(false);
 
 #ifdef IS_MAC_AND_QT5
     toolBar->showInWindowForWidget(this);
@@ -373,6 +382,7 @@ void MainWindow::onMenu(MainWidgets widget)
     m_actionSearch->setEnabled(m_actions[widget][ActionSearch]);
     m_actionSave->setEnabled(m_actions[widget][ActionSave]);
     m_actionSaveAll->setEnabled(m_actions[widget][ActionSaveAll]);
+    m_actionRename->setEnabled(m_actions[widget][ActionRename]);
     m_filterWidget->setEnabled(m_actions[widget][ActionFilterWidget]);
     m_filterWidget->setActiveWidget(widget);
 
@@ -525,6 +535,24 @@ void MainWindow::onActionReload()
     m_fileScannerDialog->exec();
 }
 
+void MainWindow::onActionRename()
+{
+    if (ui->stackedWidget->currentIndex() == 0) {
+        m_renamer->setRenameType(Renamer::TypeMovies);
+        m_renamer->setMovies(ui->filesWidget->selectedMovies());
+    } else if (ui->stackedWidget->currentIndex() == 1) {
+        m_renamer->setRenameType(Renamer::TypeTvShows);
+        m_renamer->setShows(ui->tvShowFilesWidget->selectedShows());
+        m_renamer->setEpisodes(ui->tvShowFilesWidget->selectedEpisodes());
+    } else if (ui->stackedWidget->currentIndex() == 3) {
+        m_renamer->setRenameType(Renamer::TypeConcerts);
+        m_renamer->setConcerts(ui->concertFilesWidget->selectedConcerts());
+    } else {
+        return;
+    }
+    m_renamer->exec();
+}
+
 /**
  * @brief Called when the filter text was changed or a filter was added/removed
  * Delegates the event down to the current subwidget
@@ -552,14 +580,17 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
     qDebug() << "Entered, enabled=" << enabled;
 
     m_actions[widget][ActionSave] = enabled;
-    if (widget != WidgetMovieSets && widget != WidgetCertifications)
+    if (widget != WidgetMovieSets && widget != WidgetCertifications) {
         m_actions[widget][ActionSaveAll] = enabled;
+        m_actions[widget][ActionRename] = enabled;
+    }
 
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
         (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1) ||
         (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 3)) {
         m_actionSave->setEnabled(enabled);
         m_actionSaveAll->setEnabled(enabled);
+        m_actionRename->setEnabled(enabled);
     }
     if ((widget == WidgetMovieSets && ui->stackedWidget->currentIndex() == 2) ||
         (widget == WidgetCertifications && ui->stackedWidget->currentIndex() == 5) ||
@@ -667,4 +698,16 @@ void MainWindow::onXbmcSyncFinished()
     ui->filesWidget->movieSelectedEmitter();
     ui->tvShowFilesWidget->emitLastSelection();
     ui->concertFilesWidget->concertSelectedEmitter();
+}
+
+void MainWindow::onFilesRenamed(Renamer::RenameType type)
+{
+    m_fileScannerDialog->setForceReload(true);
+    if (type == Renamer::TypeMovies)
+        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeMovies);
+    else if (type == Renamer::TypeConcerts)
+        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeConcerts);
+    else if (type == Renamer::TypeTvShows)
+        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeTvShows);
+    m_fileScannerDialog->exec();
 }

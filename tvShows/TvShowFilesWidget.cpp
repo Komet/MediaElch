@@ -357,3 +357,38 @@ void TvShowFilesWidget::emitLastSelection()
     else if (m_lastEpisode)
         emit sigEpisodeSelected(m_lastEpisode);
 }
+
+QList<TvShowEpisode*> TvShowFilesWidget::selectedEpisodes()
+{
+    QList<TvShowEpisode*> episodes;
+    foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
+        QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
+        TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
+        if (item->type() == TypeEpisode) {
+            episodes.append(item->tvShowEpisode());
+        } else if (item->type() == TypeSeason) {
+            foreach (TvShowEpisode *episode, item->tvShow()->episodes()) {
+                if (!episodes.contains(episode) && episode->season() == item->season().toInt())
+                    episodes.append(episode);
+            }
+        } else if (item->type() == TypeTvShow) {
+            foreach (TvShowEpisode *episode, item->tvShow()->episodes()) {
+                if (!episodes.contains(episode))
+                    episodes.append(episode);
+            }
+        }
+    }
+    return episodes;
+}
+
+QList<TvShow*> TvShowFilesWidget::selectedShows()
+{
+    QList<TvShow*> shows;
+    foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
+        QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
+        TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
+        if (item->type() == TypeTvShow)
+            shows.append(item->tvShow());
+    }
+    return shows;
+}

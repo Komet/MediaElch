@@ -49,6 +49,8 @@ public:
     QList<DataFile> dataFilesFrodo(int type = -1);
     bool usePlotForOutline();
     QList<int> scraperInfos(MainWidgets widget, int scraperNo);
+    void renamePatterns(int renameType, QString &fileNamePattern, QString &fileNamePatternMulti, QString &directoryPattern, QString &seasonPattern);
+    void renamings(int renameType, bool &files, bool &folders, bool &seasonDirectories);
 
     bool autoLoadStreamDetails();
 
@@ -78,6 +80,8 @@ public:
     void setXbmcUsername(QString username);
     void setXbmcPassword(QString password);
     void setScraperInfos(MainWidgets widget, int scraperNo, QList<int> items);
+    void setRenamePatterns(int renameType, QString fileNamePattern, QString fileNamePatternMulti, QString directoryPattern, QString seasonPattern);
+    void setRenamings(int renameType, bool files, bool folders, bool seasonDirectories);
 
 public slots:
     void saveSettings();

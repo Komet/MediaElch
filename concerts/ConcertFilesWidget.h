@@ -27,6 +27,7 @@ public:
     explicit ConcertFilesWidget(QWidget *parent = 0);
     ~ConcertFilesWidget();
     static ConcertFilesWidget *instance();
+    QList<Concert*> selectedConcerts();
 
 public slots:
     void restoreLastSelection();

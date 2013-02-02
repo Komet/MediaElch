@@ -15,7 +15,6 @@ Settings::Settings(QObject *parent) :
 {
     // Eden
     m_initialDataFilesEden.append(DataFile(DataFileType::MovieNfo, "<baseFileName>.nfo", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::MovieNfo, "movie.nfo", 1));
     m_initialDataFilesEden.append(DataFile(DataFileType::MoviePoster, "<baseFileName>.tbn", 0));
     m_initialDataFilesEden.append(DataFile(DataFileType::MovieBackdrop, "<baseFileName>-fanart.jpg", 0));
     m_initialDataFilesEden.append(DataFile(DataFileType::MovieCdArt, "cdart.png", 0));
@@ -45,7 +44,6 @@ Settings::Settings(QObject *parent) :
 
     // Frodo
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieNfo, "<baseFileName>.nfo", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieNfo, "movie.nfo", 1));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MoviePoster, "<baseFileName>-poster.jpg", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieBackdrop, "<baseFileName>-fanart.jpg", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieCdArt, "cdart.png", 0));
@@ -765,4 +763,34 @@ void Settings::loadEdenDefaults()
 void Settings::loadFrodoDefaults()
 {
     m_dataFiles = m_initialDataFilesFrodo;
+}
+
+void Settings::renamePatterns(int renameType, QString &fileNamePattern, QString &fileNamePatternMulti, QString &directoryPattern, QString &seasonPattern)
+{
+    fileNamePattern = m_settings.value(QString("RenamePattern/%1/FileName").arg(renameType), "<title>.<extension>").toString();
+    fileNamePatternMulti = m_settings.value(QString("RenamePattern/%1/FileNameMulti").arg(renameType), "<title>-part<partNo>.<extension>").toString();
+    directoryPattern = m_settings.value(QString("RenamePattern/%1/DirectoryPattern").arg(renameType), "<title> (<year>)").toString();
+    seasonPattern = m_settings.value(QString("RenamePattern/%1/SeasonPattern").arg(renameType), "Season <season>").toString();
+}
+
+void Settings::setRenamePatterns(int renameType, QString fileNamePattern, QString fileNamePatternMulti, QString directoryPattern, QString seasonPattern)
+{
+    m_settings.setValue(QString("RenamePattern/%1/FileName").arg(renameType), fileNamePattern);
+    m_settings.setValue(QString("RenamePattern/%1/FileNameMulti").arg(renameType), fileNamePatternMulti);
+    m_settings.setValue(QString("RenamePattern/%1/DirectoryPattern").arg(renameType), directoryPattern);
+    m_settings.setValue(QString("RenamePattern/%1/SeasonPattern").arg(renameType), seasonPattern);
+}
+
+void Settings::setRenamings(int renameType, bool files, bool folders, bool seasonDirectories)
+{
+    m_settings.setValue(QString("RenamePattern/%1/RenameFiles").arg(renameType), files);
+    m_settings.setValue(QString("RenamePattern/%1/RenameFolders").arg(renameType), folders);
+    m_settings.setValue(QString("RenamePattern/%1/UseSeasonDirectories").arg(renameType), seasonDirectories);
+}
+
+void Settings::renamings(int renameType, bool &files, bool &folders, bool &seasonDirectories)
+{
+    files = m_settings.value(QString("RenamePattern/%1/RenameFiles").arg(renameType), true).toBool();
+    folders = m_settings.value(QString("RenamePattern/%1/RenameFolders").arg(renameType), true).toBool();
+    seasonDirectories = m_settings.value(QString("RenamePattern/%1/UseSeasonDirectories").arg(renameType), true).toBool();
 }

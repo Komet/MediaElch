@@ -9,6 +9,7 @@
 #include "data/MovieFileSearcher.h"
 #include "main/AboutDialog.h"
 #include "main/FileScannerDialog.h"
+#include "renamer/Renamer.h"
 #include "smallWidgets/FilterWidget.h"
 #include "settings/Settings.h"
 #include "settings/SettingsWidget.h"
@@ -52,12 +53,14 @@ private slots:
     void onActionSaveAll();
     void onActionReload();
     void onActionXbmc();
+    void onActionRename();
     void onFilterChanged(QList<Filter*> filters, QString text);
     void onSetSaveEnabled(bool enabled, MainWidgets widget);
     void onSetSearchEnabled(bool enabled, MainWidgets widget);
     void moveSplitter(int pos, int index);
     void onTriggerReloadAll();
     void onXbmcSyncFinished();
+    void onFilesRenamed(Renamer::RenameType type);
 
 private:
     Ui::MainWindow *ui;
@@ -67,6 +70,7 @@ private:
     SupportDialog *m_supportDialog;
     FileScannerDialog *m_fileScannerDialog;
     XbmcSync *m_xbmcSync;
+    Renamer *m_renamer;
     QAction *m_actionSearch;
     QAction *m_actionSave;
     QAction *m_actionXbmc;
@@ -76,6 +80,7 @@ private:
     QAction *m_actionSettings;
     QAction *m_actionLike;
     QAction *m_actionReload;
+    QAction *m_actionRename;
     QMap<MainWidgets, QMap<MainActions, bool> > m_actions;
     QMap<MainWidgets, QIcon> m_icons;
     FilterWidget *m_filterWidget;

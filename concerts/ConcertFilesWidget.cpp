@@ -180,6 +180,7 @@ void ConcertFilesWidget::itemActivated(QModelIndex index, QModelIndex previous)
     qDebug() << "Entered";
     if (!index.isValid()) {
         qDebug() << "Index is invalid";
+        m_lastConcert = 0;
         emit noConcertSelected();
         return;
     }
@@ -217,4 +218,16 @@ void ConcertFilesWidget::restoreLastSelection()
 {
     qDebug() << "Entered";
     ui->files->setCurrentIndex(m_lastModelIndex);
+}
+
+QList<Concert*> ConcertFilesWidget::selectedConcerts()
+{
+    QList<Concert*> concerts;
+    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
+        int row = index.model()->data(index, Qt::UserRole).toInt();
+        concerts.append(Manager::instance()->concertModel()->concert(row));
+    }
+    if (concerts.isEmpty())
+        concerts << m_lastConcert;
+    return concerts;
 }

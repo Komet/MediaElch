@@ -28,6 +28,7 @@ public:
     explicit FilesWidget(QWidget *parent = 0);
     ~FilesWidget();
     static FilesWidget *instance();
+    QList<Movie*> selectedMovies();
 
 public slots:
     void restoreLastSelection();

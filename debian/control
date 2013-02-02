@@ -9,7 +9,7 @@ Vcs-Git: git://github.com/Komet/MediaElch.git
 
 Package: mediaelch
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libqt4-sql, libqt4-sql-sqlite, libqt4-sql-mysql, libqt4-script, libqt4-xml, libqt4-core, libqt4-gui, libqt4-network, libmysqlclient18, libmediainfo0, zlib1g, libzen0, libphonon4
+Depends: ${shlibs:Depends}, ${misc:Depends}, libqt4-sql, libqt4-sql-sqlite, libqt4-script, libqt4-xml, libqt4-core, libqt4-gui, libqt4-network, libmysqlclient18, libmediainfo0, zlib1g, libzen0, libphonon4
 Description: XBMC Media Manager
  MediaElch is your Media Manager for handling Movies and TV Shows in XBMC. 
  It is designed to gather information from various movie databases on the internet and store these information directly to XBMCs database or in nfo files. 

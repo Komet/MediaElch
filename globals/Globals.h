@@ -51,7 +51,7 @@ namespace MediaCenterFeatures {
 }
 
 enum MainActions {
-    ActionSearch, ActionSave, ActionSaveAll, ActionFilterWidget, ActionExport
+    ActionSearch, ActionSave, ActionSaveAll, ActionFilterWidget, ActionRename, ActionExport
 };
 
 enum MainWidgets {

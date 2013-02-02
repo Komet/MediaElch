@@ -122,7 +122,8 @@ SOURCES += main.cpp\
     data/Storage.cpp \
     tvShows/TvShowWidgetSeason.cpp \
     smallWidgets/ImageGallery.cpp \
-    smallWidgets/ClosableImage.cpp
+    smallWidgets/ClosableImage.cpp \
+    renamer/Renamer.cpp
 
 HEADERS  += main/MainWindow.h \
     movies/Movie.h \
@@ -220,7 +221,8 @@ HEADERS  += main/MainWindow.h \
     data/Storage.h \
     tvShows/TvShowWidgetSeason.h \
     smallWidgets/ImageGallery.h \
-    smallWidgets/ClosableImage.h
+    smallWidgets/ClosableImage.h \
+    renamer/Renamer.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -254,7 +256,8 @@ FORMS    += main/MainWindow.ui \
     xbmc/XbmcSync.ui \
     movies/MovieMultiScrapeDialog.ui \
     smallWidgets/TagCloud.ui \
-    tvShows/TvShowWidgetSeason.ui
+    tvShows/TvShowWidgetSeason.ui \
+    renamer/Renamer.ui
 
 RESOURCES += \
     MediaElch.qrc
