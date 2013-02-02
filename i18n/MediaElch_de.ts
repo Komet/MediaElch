@@ -299,12 +299,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ConcertFileSearcher</name>
     <message>
-        <location filename="../data/ConcertFileSearcher.cpp" line="46"/>
+        <location filename="../data/ConcertFileSearcher.cpp" line="48"/>
         <source>Searching for Concerts...</source>
         <translation>Suche nach Konzerten...</translation>
     </message>
     <message>
-        <location filename="../data/ConcertFileSearcher.cpp" line="61"/>
+        <location filename="../data/ConcertFileSearcher.cpp" line="66"/>
         <source>Loading Concerts...</source>
         <translation>Lade Konzerte...</translation>
     </message>
@@ -1591,12 +1591,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MovieFileSearcher</name>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="38"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="40"/>
         <source>Searching for Movies...</source>
         <translation>Suche nach Filmen...</translation>
     </message>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="52"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="56"/>
         <source>Loading Movies...</source>
         <translation>Lade Filme...</translation>
     </message>
@@ -2512,58 +2512,316 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="38"/>
-        <source>Directory naming</source>
+        <location filename="../renamer/Renamer.ui" line="36"/>
+        <source>Placeholders</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="45"/>
-        <source>File naming</source>
+        <location filename="../renamer/Renamer.ui" line="44"/>
+        <source>&lt;extension&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="58"/>
-        <source>Rename directories</source>
+        <location filename="../renamer/Renamer.ui" line="57"/>
+        <source>&lt;originalTitle&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="69"/>
+        <location filename="../renamer/Renamer.ui" line="70"/>
+        <source>&lt;year&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="83"/>
+        <source>&lt;title&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="96"/>
+        <source>&lt;season&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="115"/>
+        <source>Placeholder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="125"/>
+        <source>&lt;episode&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="138"/>
+        <source>&lt;partNo&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="148"/>
+        <source>&lt;album&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="158"/>
+        <source>&lt;artist&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="168"/>
+        <source>&lt;showTitle&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="175"/>
+        <source>File extension</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="185"/>
+        <source>Part number of the current file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="198"/>
+        <source>Title</source>
+        <translation type="unfinished">Titel</translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="208"/>
+        <source>Original Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="218"/>
+        <source>Year</source>
+        <translation type="unfinished">Jahr</translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="228"/>
+        <source>Episode Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="238"/>
+        <source>Season Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="248"/>
+        <source>Title of the show</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="255"/>
+        <source>Artist</source>
+        <translation type="unfinished">Interpret</translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="265"/>
+        <source>Album</source>
+        <translation type="unfinished">Album</translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="281"/>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="298"/>
+        <source>Use Season Directories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="308"/>
+        <source>Multi-File Naming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="315"/>
+        <source>&lt;title&gt; (&lt;year&gt;)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="322"/>
+        <source>Rename Directories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="332"/>
+        <source>Rename Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="342"/>
+        <source>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="349"/>
+        <source>Directory Naming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="356"/>
+        <source>&lt;title&gt;.&lt;extension&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="363"/>
+        <source>File Naming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="370"/>
+        <source>Season Directory Naming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="377"/>
+        <source>Season &lt;season&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="389"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="402"/>
         <source>Close</source>
         <translation type="unfinished">Schließen</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.ui" line="92"/>
+        <location filename="../renamer/Renamer.ui" line="425"/>
+        <source>Dry Run</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.ui" line="435"/>
         <source>Rename</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="26"/>
-        <source>%n Movies will be renamed</source>
+        <location filename="../renamer/Renamer.cpp" line="37"/>
+        <source>%n Movie(s) will be renamed</source>
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="29"/>
-        <source>%n Concerts will be renamed</source>
+        <location filename="../renamer/Renamer.cpp" line="40"/>
+        <source>%n Concert(s) will be renamed</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../renamer/Renamer.cpp" line="43"/>
+        <source>%n TV Show(s) and %1</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../renamer/Renamer.cpp" line="43"/>
+        <source>%n Episode(s) will be renamed</source>
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="32"/>
-        <source>%n TV Shows and %1</source>
+        <location filename="../renamer/Renamer.cpp" line="165"/>
+        <location filename="../renamer/Renamer.cpp" line="182"/>
+        <source>Finished</source>
         <translation type="unfinished"></translation>
     </message>
-    <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="32"/>
-        <source>%n Episodes will be renamed</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+    <message>
+        <location filename="../renamer/Renamer.cpp" line="221"/>
+        <location filename="../renamer/Renamer.cpp" line="334"/>
+        <location filename="../renamer/Renamer.cpp" line="484"/>
+        <source>&lt;b&gt;Rename File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.cpp" line="224"/>
+        <location filename="../renamer/Renamer.cpp" line="241"/>
+        <location filename="../renamer/Renamer.cpp" line="259"/>
+        <location filename="../renamer/Renamer.cpp" line="277"/>
+        <location filename="../renamer/Renamer.cpp" line="297"/>
+        <location filename="../renamer/Renamer.cpp" line="337"/>
+        <location filename="../renamer/Renamer.cpp" line="355"/>
+        <location filename="../renamer/Renamer.cpp" line="373"/>
+        <location filename="../renamer/Renamer.cpp" line="389"/>
+        <location filename="../renamer/Renamer.cpp" line="399"/>
+        <location filename="../renamer/Renamer.cpp" line="407"/>
+        <location filename="../renamer/Renamer.cpp" line="414"/>
+        <location filename="../renamer/Renamer.cpp" line="441"/>
+        <location filename="../renamer/Renamer.cpp" line="487"/>
+        <location filename="../renamer/Renamer.cpp" line="504"/>
+        <location filename="../renamer/Renamer.cpp" line="522"/>
+        <location filename="../renamer/Renamer.cpp" line="540"/>
+        <location filename="../renamer/Renamer.cpp" line="561"/>
+        <source>Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.cpp" line="238"/>
+        <location filename="../renamer/Renamer.cpp" line="352"/>
+        <location filename="../renamer/Renamer.cpp" line="501"/>
+        <source>&lt;b&gt;Rename NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.cpp" line="256"/>
+        <location filename="../renamer/Renamer.cpp" line="519"/>
+        <source>&lt;b&gt;Rename Poster&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.cpp" line="274"/>
+        <location filename="../renamer/Renamer.cpp" line="537"/>
+        <source>&lt;b&gt;Rename Fanart&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.cpp" line="290"/>
+        <location filename="../renamer/Renamer.cpp" line="436"/>
+        <location filename="../renamer/Renamer.cpp" line="554"/>
+        <source>&lt;b&gt;Rename Directory&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.cpp" line="370"/>
+        <source>&lt;b&gt;Rename Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.cpp" line="386"/>
+        <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.cpp" line="396"/>
+        <source>&lt;b&gt;Move Episode&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.cpp" line="404"/>
+        <source>&lt;b&gt;Move NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.cpp" line="411"/>
+        <source>&lt;b&gt;Move Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2995,7 +3253,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Logdateien (*.log *.txt)</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="543"/>
+        <location filename="../settings/SettingsWidget.cpp" line="542"/>
         <source>Choose a directory containing your movies, TV show or concerts</source>
         <translation>Wähle ein Verzeichnis aus, dass deine Filme, Serien oder Konzerte enthält</translation>
     </message>
@@ -3022,17 +3280,17 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation>Konzerte</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="446"/>
+        <location filename="../settings/SettingsWidget.cpp" line="444"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
         <translation>Die Verzeichnis-Organisation kann nur auf Filmesammlungen angewandt werden, die nicht schon in separate Verzeichnisse sortiert ist.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="454"/>
+        <location filename="../settings/SettingsWidget.cpp" line="452"/>
         <source>Are you sure?</source>
         <translation>Bist du sicher?</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="455"/>
+        <location filename="../settings/SettingsWidget.cpp" line="453"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
         <translation>Diese Operation sortiert alle Filme in diesem Verzeichnis in separate Unterordner basierend auf dem Dateinamen. Klicke &quot;Ok&quot;, falls du damit einverstanden bist.</translation>
     </message>
@@ -3041,7 +3299,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <translation type="obsolete">Diese Operation sortiert alle Filme in diesem Verzeichnis in separate Unterordner. Klicke &quot;Ok&quot;, falls du damit einverstanden bist</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="458"/>
+        <location filename="../settings/SettingsWidget.cpp" line="456"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -3516,7 +3774,7 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="1212"/>
-        <location filename="../settings/SettingsWidget.cpp" line="459"/>
+        <location filename="../settings/SettingsWidget.cpp" line="457"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
@@ -4129,22 +4387,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TvShowFileSearcher</name>
     <message>
-        <location filename="../data/TvShowFileSearcher.cpp" line="49"/>
+        <location filename="../data/TvShowFileSearcher.cpp" line="51"/>
         <source>Searching for TV Shows...</source>
         <translation>Suche nach Serien...</translation>
     </message>
     <message>
-        <location filename="../data/TvShowFileSearcher.cpp" line="65"/>
+        <location filename="../data/TvShowFileSearcher.cpp" line="70"/>
         <source>Loading TV Shows...</source>
         <translation>Lade Serien...</translation>
     </message>
     <message>
-        <location filename="../data/TvShowFileSearcher.cpp" line="141"/>
+        <location filename="../data/TvShowFileSearcher.cpp" line="153"/>
         <source>Searching for Episodes...</source>
         <translation>Suche nach Episoden...</translation>
     </message>
     <message>
-        <location filename="../data/TvShowFileSearcher.cpp" line="173"/>
+        <location filename="../data/TvShowFileSearcher.cpp" line="191"/>
         <source>Loading Episodes...</source>
         <translation>Lade Episoden...</translation>
     </message>
