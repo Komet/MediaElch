@@ -98,6 +98,21 @@ void FileScannerDialog::setReloadType(ReloadType type)
  */
 void FileScannerDialog::reject()
 {
+    if (m_reloadType == TypeMovies || m_reloadType == TypeAll) {
+        Manager::instance()->movieFileSearcher()->abort();
+        Manager::instance()->movieModel()->clear();
+    }
+    if (m_reloadType == TypeTvShows || m_reloadType == TypeAll) {
+        Manager::instance()->tvShowFileSearcher()->abort();
+        Manager::instance()->tvShowModel()->clear();
+        Manager::instance()->tvShowFilesWidget()->renewModel();
+    }
+    if (m_reloadType == TypeConcerts || m_reloadType == TypeAll) {
+        Manager::instance()->concertFileSearcher()->abort();
+        Manager::instance()->concertModel()->clear();
+    }
+
+    QDialog::reject();
 }
 
 /**

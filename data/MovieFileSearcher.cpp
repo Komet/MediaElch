@@ -29,6 +29,8 @@ MovieFileSearcher::~MovieFileSearcher()
  */
 void MovieFileSearcher::reload(bool force)
 {
+    m_aborted = false;
+
     if (force)
         Manager::instance()->database()->clearMovies();
 
@@ -39,6 +41,8 @@ void MovieFileSearcher::reload(bool force)
     QList<Movie*> dbMovies;
     QList<QStringList> contents;
     foreach (SettingsDir dir, m_directories) {
+        if (m_aborted)
+            return;
         QList<Movie*> moviesFromDb = Manager::instance()->database()->movies(dir.path);
         if (dir.autoReload || force || moviesFromDb.count() == 0) {
             Manager::instance()->database()->clearMovies(dir.path);
@@ -56,6 +60,9 @@ void MovieFileSearcher::reload(bool force)
     // Setup movies
     Manager::instance()->database()->transaction();
     foreach (const QStringList &files, contents) {
+        if (m_aborted)
+            return;
+
         bool inSeparateFolder = false;
         QString path;
         // get directory
@@ -89,6 +96,8 @@ void MovieFileSearcher::reload(bool force)
 
     // Setup movies loaded from database
     foreach (Movie *movie, dbMovies) {
+        if (m_aborted)
+            return;
         movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), false, false);
         emit currentDir(movie->name());
         Manager::instance()->movieModel()->addMovie(movie);
@@ -96,7 +105,8 @@ void MovieFileSearcher::reload(bool force)
     }
 
     qDebug() << "Searching for movies done";
-    emit moviesLoaded(m_progressMessageId);
+    if (!m_aborted)
+        emit moviesLoaded(m_progressMessageId);
 }
 
 /**
@@ -131,10 +141,14 @@ void MovieFileSearcher::scanDir(QString startPath, QString path, QList<QStringLi
 
     QDir dir(path);
     foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+        if (m_aborted)
+            return;
+
         // Skip "Extras" folder
         if (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0 ||
             QString::compare(cDir, ".actors", Qt::CaseInsensitive) == 0 ||
-            QString::compare(cDir, ".AppleDouble", Qt::CaseInsensitive) == 0)
+            QString::compare(cDir, ".AppleDouble", Qt::CaseInsensitive) == 0 ||
+            QString::compare(cDir, "extrafanarts", Qt::CaseInsensitive) == 0)
             continue;
 
         // Handle DVD
@@ -157,6 +171,9 @@ void MovieFileSearcher::scanDir(QString startPath, QString path, QList<QStringLi
     QStringList files;
     QStringList entries = getFiles(path);
     foreach (const QString &file, entries) {
+        if (m_aborted)
+            return;
+
         // Skip Trailers and Sample files
         if (file.contains("-trailer", Qt::CaseInsensitive) || file.contains("-sample", Qt::CaseInsensitive))
             continue;
@@ -178,6 +195,9 @@ void MovieFileSearcher::scanDir(QString startPath, QString path, QList<QStringLi
                "[\\-_\\s\\.\\(\\)]*\\d+))[\\-_\\s\\.\\(\\)]+)",
                Qt::CaseInsensitive);
     for (int i=0, n=files.size() ; i<n ; i++) {
+        if (m_aborted)
+            return;
+
         QStringList movieFiles;
         QString file = files.at(i);
         if (file.isEmpty())
@@ -223,4 +243,9 @@ QStringList MovieFileSearcher::getFiles(QString path)
         files.append(file);
     }
     return files;
+}
+
+void MovieFileSearcher::abort()
+{
+    m_aborted = true;
 }

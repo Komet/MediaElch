@@ -23,6 +23,7 @@ public:
 
 public slots:
     void reload(bool force);
+    void abort();
 
 signals:
     void searchStarted(QString, int);
@@ -36,6 +37,7 @@ private:
     QList<SettingsDir> m_directories;
     int m_progressMessageId;
     QHash<QString, QDateTime> m_lastModifications;
+    bool m_aborted;
 };
 
 #endif // MOVIEFILESEARCHER_H

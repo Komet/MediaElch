@@ -39,6 +39,8 @@ void ConcertFileSearcher::setConcertDirectories(QList<SettingsDir> directories)
  */
 void ConcertFileSearcher::reload(bool force)
 {
+    m_aborted = false;
+
     if (force)
         Manager::instance()->database()->clearConcerts();
 
@@ -48,6 +50,9 @@ void ConcertFileSearcher::reload(bool force)
     QList<Concert*> dbConcerts;
     QList<QStringList> contents;
     foreach (SettingsDir dir, m_directories) {
+        if (m_aborted)
+            return;
+
         QList<Concert*> concertsFromDb = Manager::instance()->database()->concerts(dir.path);
         if (dir.autoReload || force || concertsFromDb.count() == 0) {
             Manager::instance()->database()->clearConcerts(dir.path);
@@ -65,6 +70,9 @@ void ConcertFileSearcher::reload(bool force)
     // Setup concerts
     Manager::instance()->database()->transaction();
     foreach (const QStringList &files, contents) {
+        if (m_aborted)
+            return;
+
         bool inSeparateFolder = false;
         QString path;
         // get directory
@@ -95,6 +103,9 @@ void ConcertFileSearcher::reload(bool force)
 
     // Setup concerts loaded from database
     foreach (Concert *concert, dbConcerts) {
+        if (m_aborted)
+            return;
+
         concert->loadData(Manager::instance()->mediaCenterInterface(), false, false);
         emit currentDir(concert->name());
         Manager::instance()->concertModel()->addConcert(concert);
@@ -102,7 +113,8 @@ void ConcertFileSearcher::reload(bool force)
     }
 
     qDebug() << "Searching for concerts done";
-    emit concertsLoaded(m_progressMessageId);
+    if (!m_aborted)
+        emit concertsLoaded(m_progressMessageId);
 }
 
 /**
@@ -120,9 +132,13 @@ void ConcertFileSearcher::scanDir(QString startPath, QString path, QList<QString
 
     QDir dir(path);
     foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+        if (m_aborted)
+            return;
+
         // Skip "Extras" folder
         if (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0 ||
-            QString::compare(cDir, ".actors", Qt::CaseInsensitive) == 0)
+            QString::compare(cDir, ".actors", Qt::CaseInsensitive) == 0 ||
+            QString::compare(cDir, "extrafanarts", Qt::CaseInsensitive) == 0)
             continue;
 
         // Handle DVD
@@ -145,6 +161,9 @@ void ConcertFileSearcher::scanDir(QString startPath, QString path, QList<QString
     QStringList files;
     QStringList entries = getFiles(path);
     foreach (const QString &file, entries) {
+        if (m_aborted)
+            return;
+
         // Skip Trailers and Sample files
         if (file.contains("-trailer", Qt::CaseInsensitive) || file.contains("-sample", Qt::CaseInsensitive))
             continue;
@@ -163,6 +182,9 @@ void ConcertFileSearcher::scanDir(QString startPath, QString path, QList<QString
 
     QRegExp rx("((part|cd)[\\s_]*)(\\d+)", Qt::CaseInsensitive);
     for (int i=0, n=files.size() ; i<n ; i++) {
+        if (m_aborted)
+            return;
+
         QStringList concertFiles;
         QString file = files.at(i);
         if (file.isEmpty())
@@ -201,4 +223,9 @@ QStringList ConcertFileSearcher::getFiles(QString path)
             << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.rmvb" << "*.img" << "*.wmv" << "*.ogm" << "*.mov" << "*.divx";
 
     return QDir(path).entryList(filters, QDir::Files | QDir::System);
+}
+
+void ConcertFileSearcher::abort()
+{
+    m_aborted = true;
 }

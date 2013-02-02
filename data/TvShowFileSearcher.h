@@ -18,6 +18,7 @@ public:
 public slots:
     void reload(bool force);
     void reloadEpisodes(QString showDir);
+    void abort();
 
 signals:
     void searchStarted(QString, int);
@@ -31,6 +32,7 @@ private:
     void getTvShows(QString path, QMap<QString, QList<QStringList> > &contents);
     void scanTvShowDir(QString startPath, QString path, QList<QStringList> &contents);
     QStringList getFiles(QString path);
+    bool m_aborted;
 };
 
 #endif // TVSHOWFILESEARCHER_H

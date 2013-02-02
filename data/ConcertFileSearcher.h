@@ -19,6 +19,7 @@ public:
 
 public slots:
     void reload(bool force);
+    void abort();
 
 signals:
     void searchStarted(QString, int);
@@ -31,6 +32,7 @@ private:
     int m_progressMessageId;
     void scanDir(QString startPath, QString path, QList<QStringList> &contents, bool separateFolders = false, bool firstScan = false);
     QStringList getFiles(QString path);
+    bool m_aborted;
 };
 
 #endif // CONCERTFILESEARCHER_H

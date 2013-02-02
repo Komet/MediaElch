@@ -43,6 +43,8 @@ void TvShowFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
  */
 void TvShowFileSearcher::reload(bool force)
 {
+    m_aborted = false;
+
     if (force)
         Manager::instance()->database()->clearTvShows();
 
@@ -52,6 +54,9 @@ void TvShowFileSearcher::reload(bool force)
     Manager::instance()->tvShowFilesWidget()->renewModel();
     QMap<QString, QList<QStringList> > contents;
     foreach (SettingsDir dir, m_directories) {
+        if (m_aborted)
+            return;
+
         QList<TvShow*> showsFromDatabase = Manager::instance()->database()->shows(dir.path);
         if (dir.autoReload || force || showsFromDatabase.count() == 0) {
             Manager::instance()->database()->clearTvShows(dir.path);
@@ -74,6 +79,9 @@ void TvShowFileSearcher::reload(bool force)
 
     // Setup shows
     while (it.hasNext()) {
+        if (m_aborted)
+            return;
+
         it.next();
 
         // get path
@@ -114,6 +122,9 @@ void TvShowFileSearcher::reload(bool force)
 
     // Setup shows loaded from database
     foreach (TvShow *show, dbShows) {
+        if (m_aborted)
+            return;
+
         show->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), false);
         emit currentDir(show->name());
         TvShowModelItem *showItem = Manager::instance()->tvShowModel()->appendChild(show);
@@ -132,7 +143,8 @@ void TvShowFileSearcher::reload(bool force)
     }
 
     qDebug() << "Searching for tv shows done";
-    emit tvShowsLoaded(m_progressMessageId);
+    if (!m_aborted)
+        emit tvShowsLoaded(m_progressMessageId);
 }
 
 void TvShowFileSearcher::reloadEpisodes(QString showDir)
@@ -142,6 +154,9 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
 
     // remove old show object
     foreach (TvShow *s, Manager::instance()->tvShowModel()->tvShows()) {
+        if (m_aborted)
+            return;
+
         if (s->dir() == showDir) {
             Manager::instance()->tvShowModel()->removeShow(s);
             break;
@@ -152,6 +167,9 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
     QString path;
     int index = -1;
     for (int i=0, n=m_directories.count() ; i<n ; ++i) {
+        if (m_aborted)
+            return;
+
         if (showDir.startsWith(m_directories[i].path)) {
             if (index == -1)
                 index = i;
@@ -177,6 +195,9 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
     int episodeSum = contents.count();
     QMap<int, TvShowModelItem*> seasonItems;
     foreach (const QStringList &files, contents) {
+        if (m_aborted)
+            return;
+
         TvShowEpisode *episode = new TvShowEpisode(files, show);
         episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
         Manager::instance()->database()->add(episode, path, show->databaseId());
@@ -201,6 +222,9 @@ void TvShowFileSearcher::getTvShows(QString path, QMap<QString, QList<QStringLis
     QDir dir(path);
     QStringList tvShows = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
     foreach (const QString &cDir, tvShows) {
+        if (m_aborted)
+            return;
+
         QList<QStringList> tvShowContents;
         scanTvShowDir(path, path + QDir::separator() + cDir, tvShowContents);
         contents.insert(QDir::toNativeSeparators(dir.path() + QDir::separator() + cDir), tvShowContents);
@@ -220,9 +244,13 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QList<QS
 
     QDir dir(path);
     foreach (const QString &cDir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+        if (m_aborted)
+            return;
+
         // Skip "Extras" folder
         if (QString::compare(cDir, "Extras", Qt::CaseInsensitive) == 0 ||
-            QString::compare(cDir, ".actors", Qt::CaseInsensitive) == 0)
+            QString::compare(cDir, ".actors", Qt::CaseInsensitive) == 0 ||
+            QString::compare(cDir, "extrafanarts", Qt::CaseInsensitive) == 0)
             continue;
 
         // Handle DVD
@@ -251,6 +279,9 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QList<QS
 
     QRegExp rx("((part|cd)[\\s_]*)(\\d+)", Qt::CaseInsensitive);
     for (int i=0, n=files.size() ; i<n ; i++) {
+        if (m_aborted)
+            return;
+
         QStringList tvShowFiles;
         QString file = files.at(i);
         if (file.isEmpty())
@@ -288,4 +319,9 @@ QStringList TvShowFileSearcher::getFiles(QString path)
     filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
             << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.rmvb" << "*.wmv" << "*.ogm" << "*.mov" << "*.divx";
     return QDir(path).entryList(filters, QDir::Files | QDir::System);
+}
+
+void TvShowFileSearcher::abort()
+{
+    m_aborted = true;
 }
