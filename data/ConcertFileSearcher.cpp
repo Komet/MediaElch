@@ -47,6 +47,7 @@ void ConcertFileSearcher::reload(bool force)
     Manager::instance()->concertModel()->clear();
     emit searchStarted(tr("Searching for Concerts..."), m_progressMessageId);
 
+    QList<Concert*> concerts;
     QList<Concert*> dbConcerts;
     QList<QStringList> contents;
     foreach (SettingsDir dir, m_directories) {
@@ -96,7 +97,7 @@ void ConcertFileSearcher::reload(bool force)
         concert->loadData(Manager::instance()->mediaCenterInterface());
         emit currentDir(concert->name());
         Manager::instance()->database()->add(concert, path);
-        Manager::instance()->concertModel()->addConcert(concert);
+        concerts.append(concert);
         emit progress(++concertCounter, concertSum, m_progressMessageId);
     }
     Manager::instance()->database()->commit();
@@ -108,9 +109,12 @@ void ConcertFileSearcher::reload(bool force)
 
         concert->loadData(Manager::instance()->mediaCenterInterface(), false, false);
         emit currentDir(concert->name());
-        Manager::instance()->concertModel()->addConcert(concert);
+        concerts.append(concert);
         emit progress(++concertCounter, concertSum, m_progressMessageId);
     }
+
+    foreach (Concert *concert, concerts)
+        Manager::instance()->concertModel()->addConcert(concert);
 
     qDebug() << "Searching for concerts done";
     if (!m_aborted)

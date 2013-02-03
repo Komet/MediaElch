@@ -3,6 +3,7 @@
 #include <QFileInfo>
 #include <QRegExp>
 #include <QStringList>
+#include "globals/Helper.h"
 
 /**
  * @brief DataFile::DataFile
@@ -41,14 +42,16 @@ int DataFile::pos() const
  * @param season Season number
  * @return
  */
-QString DataFile::saveFileName(QString fileName, int season, bool stacked)
+QString DataFile::saveFileName(const QString &fileName, int season, bool stacked)
 {
     QFileInfo fi(fileName);
     QString newFileName = m_fileName;
 
     QString baseName = fi.completeBaseName();
-    if (stacked)
-        baseName = stackedBaseName(fileName);
+    if (stacked) {
+        QString f = fileName;
+        baseName = Helper::stackedBaseName(f);
+    }
     newFileName.replace("<baseFileName>", baseName);
 
     if (season != -1) {
@@ -79,33 +82,4 @@ int DataFile::type() const
 bool DataFile::lessThan(DataFile a, DataFile b)
 {
     return a.pos() < b.pos();
-}
-
-QString DataFile::stackedBaseName(QString fileName)
-{
-    QString baseName = fileName;
-    QRegExp rx1a("(.*)([ _\\.-]*(?:cd|dvd|p(?:ar)?t|dis[ck])[ _\\.-]*[0-9]+)(.*)(\\.[^.]+)$", Qt::CaseInsensitive);
-    QRegExp rx1b("(.*)([ _\\.-]+)$");
-    QRegExp rx2a("(.*)([ _\\.-]*(?:cd|dvd|p(?:ar)?t|dis[ck])[ _.-]*[a-d])(.*)(\\.[^.]+)$", Qt::CaseInsensitive);
-    QRegExp rx2b("(.*)([ _\\.-]+)$");
-
-    QList<QList<QRegExp> > regex;
-    regex << (QList<QRegExp>() << rx1a << rx1b);
-    regex << (QList<QRegExp>() << rx2a << rx2b);
-
-    foreach (QList<QRegExp> rx, regex) {
-        if (rx.at(0).indexIn(fileName) != -1) {
-            QString title = rx.at(0).cap(1);
-            QString volume = rx.at(0).cap(2);
-            /*QString ignore = rx.at(0).cap(3);
-            QString extension = rx.at(0).cap(4);*/
-            while (rx.at(1).indexIn(title) != -1) {
-                title = rx.at(1).capturedTexts().at(1);
-                volume.prepend(rx.at(1).capturedTexts().at(2));
-            }
-            baseName = title;
-        }
-    }
-
-    return baseName;
 }

@@ -2,6 +2,7 @@
 
 #include <QApplication>
 #include <QDebug>
+#include <QDirIterator>
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include "globals/Helper.h"
@@ -24,12 +25,10 @@ MovieFileSearcher::~MovieFileSearcher()
 {
 }
 
-/**
- * @brief Starts the scanning process
- */
 void MovieFileSearcher::reload(bool force)
 {
     m_aborted = false;
+    emit searchStarted(tr("Searching for Movies..."), m_progressMessageId);
 
     if (force)
         Manager::instance()->database()->clearMovies();
@@ -37,74 +36,163 @@ void MovieFileSearcher::reload(bool force)
     Manager::instance()->movieModel()->clear();
     m_lastModifications.clear();
 
-    emit searchStarted(tr("Searching for Movies..."), m_progressMessageId);
+    QStringList filters;
+    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
+            << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm" << "*.rmvb" << "*.img" << "*.wmv"
+            << "*.mov" << "*.divx" << "VIDEO_TS.IFO" << "index.bdmv";
+
+    QList<MovieContents> c;
     QList<Movie*> dbMovies;
-    QList<QStringList> contents;
+    QStringList bluRays;
+    int movieSum = 0;
+    int movieCounter = 0;
+
     foreach (SettingsDir dir, m_directories) {
         if (m_aborted)
             return;
-        QList<Movie*> moviesFromDb = Manager::instance()->database()->movies(dir.path);
+
+        QList<Movie*> moviesFromDb;
+        if (!dir.autoReload && !force)
+            moviesFromDb = Manager::instance()->database()->movies(dir.path);
+
         if (dir.autoReload || force || moviesFromDb.count() == 0) {
             Manager::instance()->database()->clearMovies(dir.path);
-            scanDir(dir.path, dir.path, contents, dir.separateFolders, true);
+            QMap<QString, QStringList> contents;
+            QDirIterator it(dir.path, filters, QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files, QDirIterator::Subdirectories);
+            while (it.hasNext()) {
+                if (m_aborted)
+                    return;
+                it.next();
+                if (it.fileName().contains("-trailer", Qt::CaseInsensitive) || it.fileName().contains("-sample", Qt::CaseInsensitive))
+                    continue;
+
+                // Skip extras folder
+                QString dirName = it.fileInfo().dir().dirName();
+                if (QString::compare("extras", dirName, Qt::CaseInsensitive) == 0)
+                    continue;
+                // Skip BluRay backup folder
+                if (QString::compare("backup", dirName, Qt::CaseInsensitive) == 0 && QString::compare("index.bdmv", it.fileName(), Qt::CaseInsensitive) == 0)
+                    continue;
+
+                if (QString::compare("index.bdmv", it.fileName(), Qt::CaseInsensitive) == 0) {
+                    QDir dir(it.fileInfo().dir());
+                    dir.cdUp();
+                    bluRays << dir.path();
+                }
+
+                QString path = it.fileInfo().path();
+                if (!contents.contains(path))
+                    contents.insert(path, QStringList());
+                contents[path].append(it.filePath());
+                m_lastModifications.insert(it.filePath(), it.fileInfo().lastModified());
+                emit currentDir("/" + it.fileInfo().dir().dirName());
+            }
+            movieSum += contents.count();
+            MovieContents con;
+            con.path = dir.path;
+            con.inSeparateFolder = dir.separateFolders;
+            con.contents = contents;
+            c.append(con);
         } else {
             dbMovies.append(moviesFromDb);
+            movieSum += moviesFromDb.count();
         }
     }
-    emit currentDir("");
 
     emit searchStarted(tr("Loading Movies..."), m_progressMessageId);
-    int movieCounter=0;
-    int movieSum=contents.size()+dbMovies.size();
 
-    // Setup movies
-    Manager::instance()->database()->transaction();
-    foreach (const QStringList &files, contents) {
-        if (m_aborted)
-            return;
+    QList<Movie*> movies;
+    foreach (const MovieContents &con, c) {
+        Manager::instance()->database()->transaction();
+        QMapIterator<QString, QStringList> itContents(con.contents);
+        while (itContents.hasNext()) {
+            if (m_aborted) {
+                Manager::instance()->database()->commit();
+                return;
+            }
+            itContents.next();
+            QStringList files = itContents.value();
 
-        bool inSeparateFolder = false;
-        QString path;
-        // get directory
-        if (!files.isEmpty()) {
-            int index = -1;
-            for (int i=0, n=m_directories.count() ; i<n ; ++i) {
-                if (files.at(0).startsWith(m_directories[i].path)) {
-                    if (index == -1)
-                        index = i;
-                    else if (m_directories[index].path.length() < m_directories[i].path.length())
-                        index = i;
+            // BluRay handling
+            foreach (const QString &path, bluRays) {
+                if (!files.isEmpty() && files.first().startsWith(path)) {
+                    QStringList f;
+                    foreach (const QString &file, files) {
+                        if (file.endsWith("index.bdmv", Qt::CaseInsensitive))
+                            f.append(file);
+                    }
+                    files = f;
                 }
             }
-            if (index != -1) {
-                inSeparateFolder = m_directories[index].separateFolders;
-                path = m_directories[index].path;
+
+            // DVD handling
+            if (files.count() > 1) {
+                foreach (const QString &file, files) {
+                    if (file.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
+                        files = QStringList() << file;
+                        break;
+                    }
+                }
             }
+
+            if (files.isEmpty())
+                continue;
+
+            if (files.count() == 1 || con.inSeparateFolder) {
+                // single file or in separate folder
+                Movie *movie = new Movie(files, this);
+                movie->setInSeparateFolder(con.inSeparateFolder);
+                movie->setFileLastModified(m_lastModifications.value(files.at(0)));
+                movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
+                Manager::instance()->database()->add(movie, con.path);
+                movies.append(movie);
+                emit currentDir(movie->name());
+            } else {
+                QMap<QString, QStringList> stacked;
+                while (!files.isEmpty()) {
+                    QString file = files.takeLast();
+                    QString stackedBase = Helper::stackedBaseName(file);
+                    stacked.insert(stackedBase, QStringList() << file);
+                    foreach (const QString &f, files) {
+                        if (Helper::stackedBaseName(f) == stackedBase) {
+                            stacked[stackedBase].append(f);
+                            files.removeOne(f);
+                        }
+                    }
+                }
+                QMapIterator<QString, QStringList> it(stacked);
+                while (it.hasNext()) {
+                    it.next();
+                    if (it.value().isEmpty())
+                        continue;
+                    Movie *movie = new Movie(it.value(), this);
+                    movie->setInSeparateFolder(con.inSeparateFolder);
+                    movie->setFileLastModified(m_lastModifications.value(it.value().at(0)));
+                    movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
+                    Manager::instance()->database()->add(movie, con.path);
+                    movies.append(movie);
+                    emit currentDir(movie->name());
+                }
+            }
+            emit progress(++movieCounter, movieSum, m_progressMessageId);
         }
-        Movie *movie = new Movie(files, this);
-        movie->setInSeparateFolder(inSeparateFolder);
-        movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
-        emit currentDir(movie->name());
-        if (!files.isEmpty())
-            movie->setFileLastModified(m_lastModifications.value(files.at(0)));
-
-        Manager::instance()->database()->add(movie, path);
-        Manager::instance()->movieModel()->addMovie(movie);
-        emit progress(++movieCounter, movieSum, m_progressMessageId);
+        Manager::instance()->database()->commit();
     }
-    Manager::instance()->database()->commit();
 
-    // Setup movies loaded from database
+    emit currentDir("");
+
     foreach (Movie *movie, dbMovies) {
         if (m_aborted)
             return;
         movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), false, false);
+        movies.append(movie);
         emit currentDir(movie->name());
-        Manager::instance()->movieModel()->addMovie(movie);
         emit progress(++movieCounter, movieSum, m_progressMessageId);
     }
 
-    qDebug() << "Searching for movies done";
+    foreach (Movie *movie, movies)
+        Manager::instance()->movieModel()->addMovie(movie);
+
     if (!m_aborted)
         emit moviesLoaded(m_progressMessageId);
 }
@@ -134,6 +222,7 @@ void MovieFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
  * @param contents List of contents
  * @param separateFolders Are concerts in separate folders
  * @param firstScan When this is true, subfolders are scanned, regardless of separateFolders
+ * @deprecated
  */
 void MovieFileSearcher::scanDir(QString startPath, QString path, QList<QStringList> &contents, bool separateFolders, bool firstScan)
 {

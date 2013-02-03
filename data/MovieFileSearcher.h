@@ -38,6 +38,12 @@ private:
     int m_progressMessageId;
     QHash<QString, QDateTime> m_lastModifications;
     bool m_aborted;
+
+    struct MovieContents {
+        QString path;
+        bool inSeparateFolder;
+        QMap<QString, QStringList> contents;
+    };
 };
 
 #endif // MOVIEFILESEARCHER_H
