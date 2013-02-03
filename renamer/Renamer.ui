@@ -457,8 +457,13 @@ p, li { white-space: pre-wrap; }
   </layout>
  </widget>
  <tabstops>
+  <tabstop>chkFileNaming</tabstop>
+  <tabstop>fileNaming</tabstop>
+  <tabstop>fileNamingMulti</tabstop>
   <tabstop>chkDirectoryNaming</tabstop>
   <tabstop>directoryNaming</tabstop>
+  <tabstop>chkSeasonDirectories</tabstop>
+  <tabstop>seasonNaming</tabstop>
   <tabstop>results</tabstop>
   <tabstop>btnClose</tabstop>
   <tabstop>btnDryRun</tabstop>
