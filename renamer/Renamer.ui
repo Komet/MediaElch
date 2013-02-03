@@ -14,7 +14,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Renamer</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../MediaElch.qrc">
+    <normaloff>:/img/MediaElch.png</normaloff>:/img/MediaElch.png</iconset>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -41,7 +45,7 @@
         <item row="1" column="0">
          <widget class="QLabel" name="labelExtension">
           <property name="text">
-           <string>&lt;extension&gt;</string>
+           <string notr="true">&lt;extension&gt;</string>
           </property>
           <property name="textFormat">
            <enum>Qt::PlainText</enum>
@@ -54,7 +58,7 @@
         <item row="4" column="0">
          <widget class="QLabel" name="labelOriginalTitle">
           <property name="text">
-           <string>&lt;originalTitle&gt;</string>
+           <string notr="true">&lt;originalTitle&gt;</string>
           </property>
           <property name="textFormat">
            <enum>Qt::PlainText</enum>
@@ -67,7 +71,7 @@
         <item row="5" column="0">
          <widget class="QLabel" name="label_4">
           <property name="text">
-           <string>&lt;year&gt;</string>
+           <string notr="true">&lt;year&gt;</string>
           </property>
           <property name="textFormat">
            <enum>Qt::PlainText</enum>
@@ -80,7 +84,7 @@
         <item row="3" column="0">
          <widget class="QLabel" name="label_3">
           <property name="text">
-           <string>&lt;title&gt;</string>
+           <string notr="true">&lt;title&gt;</string>
           </property>
           <property name="textFormat">
            <enum>Qt::PlainText</enum>
@@ -93,7 +97,7 @@
         <item row="7" column="0">
          <widget class="QLabel" name="labelSeason">
           <property name="text">
-           <string>&lt;season&gt;</string>
+           <string notr="true">&lt;season&gt;</string>
           </property>
           <property name="textFormat">
            <enum>Qt::PlainText</enum>
@@ -122,7 +126,7 @@
         <item row="6" column="0">
          <widget class="QLabel" name="labelEpisode">
           <property name="text">
-           <string>&lt;episode&gt;</string>
+           <string notr="true">&lt;episode&gt;</string>
           </property>
           <property name="textFormat">
            <enum>Qt::PlainText</enum>
@@ -135,7 +139,7 @@
         <item row="2" column="0">
          <widget class="QLabel" name="label_16">
           <property name="text">
-           <string>&lt;partNo&gt;</string>
+           <string notr="true">&lt;partNo&gt;</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -145,7 +149,7 @@
         <item row="10" column="0">
          <widget class="QLabel" name="labelAlbum">
           <property name="text">
-           <string>&lt;album&gt;</string>
+           <string notr="true">&lt;album&gt;</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -155,7 +159,7 @@
         <item row="9" column="0">
          <widget class="QLabel" name="labelArtist">
           <property name="text">
-           <string>&lt;artist&gt;</string>
+           <string notr="true">&lt;artist&gt;</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -165,7 +169,7 @@
         <item row="8" column="0">
          <widget class="QLabel" name="labelShowTitle">
           <property name="text">
-           <string>&lt;showTitle&gt;</string>
+           <string notr="true">&lt;showTitle&gt;</string>
           </property>
          </widget>
         </item>
@@ -311,6 +315,9 @@
      </item>
      <item row="4" column="1">
       <widget class="QLineEdit" name="directoryNaming">
+       <property name="inputMask">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>&lt;title&gt; (&lt;year&gt;)</string>
        </property>
@@ -338,6 +345,9 @@
      </item>
      <item row="2" column="1">
       <widget class="QLineEdit" name="fileNamingMulti">
+       <property name="inputMask">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</string>
        </property>
@@ -352,6 +362,9 @@
      </item>
      <item row="1" column="1">
       <widget class="QLineEdit" name="fileNaming">
+       <property name="inputMask">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>&lt;title&gt;.&lt;extension&gt;</string>
        </property>
@@ -451,7 +464,9 @@ p, li { white-space: pre-wrap; }
   <tabstop>btnDryRun</tabstop>
   <tabstop>btnRename</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../MediaElch.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>btnClose</sender>

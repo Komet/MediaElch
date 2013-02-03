@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>Settings</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../MediaElch.qrc">
+    <normaloff>:/img/MediaElch.png</normaloff>:/img/MediaElch.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
@@ -1234,7 +1238,9 @@ QTabBar::tab:selected {
    <header>settings/DataFileListWidget.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../MediaElch.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>btnCancel</sender>

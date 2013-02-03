@@ -14,7 +14,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Movie Multi Scrape</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../MediaElch.qrc">
+    <normaloff>:/img/MediaElch.png</normaloff>:/img/MediaElch.png</iconset>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -390,7 +394,9 @@
    <header location="global">smallWidgets/MyCheckBox.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../MediaElch.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>btnCancel</sender>

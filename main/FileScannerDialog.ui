@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>File Scanner</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../MediaElch.qrc">
+    <normaloff>:/img/MediaElch.png</normaloff>:/img/MediaElch.png</iconset>
+  </property>
   <property name="modal">
    <bool>true</bool>
   </property>
@@ -55,6 +59,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../MediaElch.qrc"/>
+ </resources>
  <connections/>
 </ui>

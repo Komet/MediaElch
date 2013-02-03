@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>Search Result</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../MediaElch.qrc">
+    <normaloff>:/img/MediaElch.png</normaloff>:/img/MediaElch.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">#MovieSearch {
 	background-image: url(:/img/pattern_dark.png);
@@ -321,16 +325,18 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MyLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>smallWidgets/MyLineEdit.h</header>
-  </customwidget>
-  <customwidget>
    <class>MyCheckBox</class>
    <extends>QCheckBox</extends>
    <header location="global">smallWidgets/MyCheckBox.h</header>
   </customwidget>
+  <customwidget>
+   <class>MyLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>smallWidgets/MyLineEdit.h</header>
+  </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../MediaElch.qrc"/>
+ </resources>
  <connections/>
 </ui>

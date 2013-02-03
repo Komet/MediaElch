@@ -1129,10 +1129,6 @@ Operação Cancelada.</translation>
 <context>
     <name>MovieMultiScrapeDialog</name>
     <message>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Please select the scraper and the infos you want to be loaded. MediaElch will use the best result for each movie you selected.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1242,6 +1238,10 @@ Operação Cancelada.</translation>
     </message>
     <message>
         <source>Scraping of %1 movies has finished.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movie Multi Scrape</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1709,10 +1709,6 @@ Operação Cancelada.</translation>
 <context>
     <name>Renamer</name>
     <message>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Info</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1721,47 +1717,7 @@ Operação Cancelada.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;extension&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;originalTitle&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;year&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;title&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;season&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Placeholder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;episode&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;partNo&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;album&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;artist&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;showTitle&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1948,6 +1904,10 @@ p, li { white-space: pre-wrap; }
         <source>&lt;b&gt;Move Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Renamer</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetsWidget</name>
@@ -2005,7 +1965,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>MediaElch</source>
-        <translation>MediaElch</translation>
+        <translation type="obsolete">MediaElch</translation>
     </message>
     <message>
         <source>Click to Change</source>
@@ -2013,7 +1973,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Setting Posters and Backdrops is only possible with XBMC MySQL and SQLite interfaces.</source>
-        <translation>Ajustar Poster e Imagem de Fundo somente é possivel com XBMC e interfaces MySQL e SQLite.</translation>
+        <translation type="obsolete">Ajustar Poster e Imagem de Fundo somente é possivel com XBMC e interfaces MySQL e SQLite.</translation>
     </message>
     <message>
         <source>Set Name</source>
