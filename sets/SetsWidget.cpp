@@ -41,6 +41,15 @@ SetsWidget::SetsWidget(QWidget *parent) :
     ui->sets->setFont(setsFont);
 #endif
 
+    font = ui->posterResolution->font();
+    #ifdef Q_OS_WIN32
+    font.setPointSize(font.pointSize()-1);
+    #else
+    font.setPointSize(font.pointSize()-2);
+    #endif
+    ui->posterResolution->setFont(font);
+    ui->backdropResolution->setFont(font);
+
     connect(ui->sets, SIGNAL(itemSelectionChanged()), this, SLOT(onSetSelected()));
     connect(ui->movies, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onSortTitleChanged(QTableWidgetItem*)));
     connect(ui->buttonAddMovie, SIGNAL(clicked()), this, SLOT(onAddMovie()));
@@ -276,13 +285,6 @@ void SetsWidget::chooseSetPoster()
         return;
     }
 
-    if (!Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages)) {
-        QMessageBox::information(this, tr("MediaElch"),
-                                       tr("Setting Posters and Backdrops is only possible with XBMC MySQL and SQLite interfaces."),
-                                 QMessageBox::Close, QMessageBox::Close);
-        return;
-    }
-
     QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
     QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), QDir::homePath(), tr("Images (*.jpg *.jpeg)"));
     if (!fileName.isNull()) {
@@ -305,13 +307,6 @@ void SetsWidget::chooseSetBackdrop()
     qDebug() << "Entered";
     if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
         qDebug() << "Invalid current row in sets";
-        return;
-    }
-
-    if (!Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages)) {
-        QMessageBox::information(this, tr("MediaElch"),
-                                       tr("Setting Posters and Backdrops is only possible with XBMC MySQL and SQLite interfaces."),
-                                 QMessageBox::Close, QMessageBox::Close);
         return;
     }
 

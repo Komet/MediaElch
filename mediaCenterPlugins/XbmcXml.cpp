@@ -34,9 +34,7 @@ XbmcXml::~XbmcXml()
  */
 bool XbmcXml::hasFeature(int feature)
 {
-    if (feature == MediaCenterFeatures::HandleMovieSetImages)
-        return false;
-
+    Q_UNUSED(feature);
     return true;
 }
 
@@ -1875,7 +1873,14 @@ QStringList XbmcXml::extraFanartNames(TvShow *show)
  */
 QImage XbmcXml::movieSetPoster(QString setName)
 {
-    Q_UNUSED(setName);
+    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+        if (movie->set() == setName) {
+            if (movie->files().isEmpty())
+                continue;
+            QFileInfo fi(movie->files().first());
+            return QImage(fi.absolutePath() + "/movieset-poster.jpg");
+        }
+    }
     return QImage();
 }
 
@@ -1886,28 +1891,47 @@ QImage XbmcXml::movieSetPoster(QString setName)
  */
 QImage XbmcXml::movieSetBackdrop(QString setName)
 {
-    Q_UNUSED(setName);
+    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+        if (movie->set() == setName) {
+            if (movie->files().isEmpty())
+                continue;
+            QFileInfo fi(movie->files().first());
+            return QImage(fi.absolutePath() + "/movieset-fanart.jpg");
+        }
+    }
     return QImage();
 }
 
 /**
- * @brief Saving of movie set posters is not possible with nfos
+ * @brief Save movie set poster
  * @param setName
  * @param poster
  */
 void XbmcXml::saveMovieSetPoster(QString setName, QImage poster)
 {
-    Q_UNUSED(setName);
-    Q_UNUSED(poster);
+    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+        if (movie->set() == setName) {
+            if (movie->files().isEmpty())
+                continue;
+            QFileInfo fi(movie->files().first());
+            poster.save(fi.absolutePath() + "/movieset-poster.jpg", "jpg", 100);
+        }
+    }
 }
 
 /**
- * @brief Saving of movie set backdrops is not possible with nfos
+ * @brief Save movie set backdrop
  * @param setName
  * @param backdrop
  */
 void XbmcXml::saveMovieSetBackdrop(QString setName, QImage backdrop)
 {
-    Q_UNUSED(setName);
-    Q_UNUSED(backdrop);
+    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+        if (movie->set() == setName) {
+            if (movie->files().isEmpty())
+                continue;
+            QFileInfo fi(movie->files().first());
+            backdrop.save(fi.absolutePath() + "/movieset-fanart.jpg", "jpg", 100);
+        }
+    }
 }
