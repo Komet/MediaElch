@@ -8,34 +8,23 @@
         <translation>0</translation>
     </message>
     <message>
-        <source>Movies</source>
-        <translation>Filmes</translation>
-    </message>
-    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch was built using &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Icon Sets used are &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; and &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch Icon by &lt;a href=&quot;mailto:kathrin.luckner@me.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Kathrin Luckner&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Always have a look at &lt;a href=&quot;http://mediaelch.kvibes.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://mediaelch.kvibes.net&lt;/span&gt;&lt;/a&gt; to get the latest version.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch foi criado usando &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Conjunto de Ícones usados &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; and &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt;por &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch Ícone por &lt;a href=&quot;mailto:kathrin.luckner@me.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Kathrin Luckner&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Sempre visite nosso site&lt;a href=&quot;http://mediaelch.kvibes.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://mediaelch.kvibes.net&lt;/span&gt;&lt;/a&gt; para ter acesso a versão mais atual.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Always have a look at &lt;a href=&quot;http://www.mediaelch.de&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.mediaelch.de&lt;/span&gt;&lt;/a&gt; to get the latest version.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt; &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt; p, li { white-space: pre-wrap; } &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt; &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch foi criado usando &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt; &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt; &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt; Sets de Ícones usados &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; e &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt; &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;br /&gt;&lt;/p&gt; &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch Icone por &lt;a href=&quot;mailto:kathrin.luckner@me.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Kathrin Luckner&lt;/span&gt;&lt;/a&gt;&lt;/p&gt; &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;br /&gt;&lt;/p&gt; &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Sempre verifique o site &lt;a href=&quot;http://www.mediaelch.de&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.mediaelch.de&lt;/span&gt;&lt;/a&gt; para obter a versão mais recente.&lt;/p&gt; &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Movies</source>
+        <translation>Filmes</translation>
     </message>
     <message>
         <source>Concerts</source>
@@ -64,21 +53,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Your Collection</source>
         <translation>Sua Coleção</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch was built using &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Icon Sets used are &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; and &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch Icon by &lt;a href=&quot;mailto:kathrin.luckner@me.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Kathrin Luckner&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Always have a look at &lt;a href=&quot;http://www.mediaelch.de&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.mediaelch.de&lt;/span&gt;&lt;/a&gt; to get the latest version.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt; &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt; p, li { white-space: pre-wrap; } &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt; &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch foi criado usando &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt; &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt; &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt; Sets de Ícones usados &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; e &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt; &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;br /&gt;&lt;/p&gt; &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch Icone por &lt;a href=&quot;mailto:kathrin.luckner@me.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Kathrin Luckner&lt;/span&gt;&lt;/a&gt;&lt;/p&gt; &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;br /&gt;&lt;/p&gt; &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Sempre verifique o site &lt;a href=&quot;http://www.mediaelch.de&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.mediaelch.de&lt;/span&gt;&lt;/a&gt; para obter a versão mais recente.&lt;/p&gt; &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -172,28 +146,28 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ConcertFilesWidget</name>
     <message>
+        <source>Open Concert Folder</source>
+        <translation>Abrir Pasta de Concertos</translation>
+    </message>
+    <message>
         <source>Load Stream Details</source>
         <translation>Carregar Detalhes Stream</translation>
-    </message>
-    <message>
-        <source>Mark as watched</source>
-        <translation>Marcado como assistido</translation>
-    </message>
-    <message>
-        <source>Mark as unwatched</source>
-        <translation>Marcado por assistir</translation>
     </message>
     <message>
         <source>Add to Synchronization Queue</source>
         <translation>Adicionar para Fila de Sincronização</translation>
     </message>
     <message>
+        <source>Mark as watched</source>
+        <translation>Marcado como assistido</translation>
+    </message>
+    <message>
         <source>Remove from Synchronization Queue</source>
         <translation>Remover da Fila de Sincronização</translation>
     </message>
     <message>
-        <source>Open Concert Folder</source>
-        <translation>Abrir Pasta de Concertos</translation>
+        <source>Mark as unwatched</source>
+        <translation>Marcado por assistir</translation>
     </message>
 </context>
 <context>
@@ -235,8 +209,8 @@ p, li { white-space: pre-wrap; }
         <translation>Imagem de Fundo</translation>
     </message>
     <message>
-        <source>Extra Arts</source>
-        <translation type="obsolete">Extra Arts</translation>
+        <source>Artwork</source>
+        <translation>Artes</translation>
     </message>
     <message>
         <source>Scraper</source>
@@ -274,10 +248,6 @@ p, li { white-space: pre-wrap; }
         <source>Logo, Clear Art, CD Art</source>
         <translation>Logo, Clear Art, CD Art</translation>
     </message>
-    <message>
-        <source>Artwork</source>
-        <translation>Artes</translation>
-    </message>
 </context>
 <context>
     <name>ConcertWidget</name>
@@ -296,6 +266,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Name</source>
         <translation>Nome</translation>
+    </message>
+    <message>
+        <source>Tags</source>
+        <translation>Tags</translation>
     </message>
     <message>
         <source>yyyy</source>
@@ -318,10 +292,6 @@ p, li { white-space: pre-wrap; }
         <translation>Arquivos</translation>
     </message>
     <message>
-        <source>Genre</source>
-        <translation type="obsolete">Gênero</translation>
-    </message>
-    <message>
         <source>Video</source>
         <translation>Vídeo</translation>
     </message>
@@ -334,8 +304,8 @@ p, li { white-space: pre-wrap; }
         <translation>Recarregar do Arquivo</translation>
     </message>
     <message>
-        <source>Remove Genre</source>
-        <translation type="obsolete">Remover Gênero</translation>
+        <source>Extra Fanarts</source>
+        <translation>Extra Fanarts</translation>
     </message>
     <message>
         <source>Aspect Ratio</source>
@@ -358,8 +328,16 @@ p, li { white-space: pre-wrap; }
         <translation>Artista</translation>
     </message>
     <message>
+        <source>Fanart</source>
+        <translation>Fanart</translation>
+    </message>
+    <message>
         <source>Genres</source>
         <translation>Gêneros</translation>
+    </message>
+    <message>
+        <source>Add Images</source>
+        <translation>Adicionar Imagens</translation>
     </message>
     <message>
         <source>Last Played</source>
@@ -390,8 +368,8 @@ p, li { white-space: pre-wrap; }
         <translation>Todos os Concertos foram Salvos</translation>
     </message>
     <message>
-        <source>Backdrop</source>
-        <translation type="obsolete">Imagem de Fundo</translation>
+        <source>Add Tag</source>
+        <translation>Adicionar Tag</translation>
     </message>
     <message>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
@@ -446,10 +424,6 @@ p, li { white-space: pre-wrap; }
         <translation>HH:mm:ss</translation>
     </message>
     <message>
-        <source>Unknown Genre</source>
-        <translation type="obsolete">Gênero Desconhecido</translation>
-    </message>
-    <message>
         <source>Released</source>
         <translation>Lançado</translation>
     </message>
@@ -470,6 +444,10 @@ p, li { white-space: pre-wrap; }
         <translation>Nome Concerto</translation>
     </message>
     <message>
+        <source>Hint: Closed images will be deleted on save.</source>
+        <translation>Dica: Imagens Marcadas irão ser deletadas ao salvar.</translation>
+    </message>
+    <message>
         <source>Channels</source>
         <translation>Canais</translation>
     </message>
@@ -480,30 +458,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Extended</source>
         <translation>Extendido</translation>
-    </message>
-    <message>
-        <source>Extra Fanarts</source>
-        <translation>Extra Fanarts</translation>
-    </message>
-    <message>
-        <source>Hint: Closed images will be deleted on save.</source>
-        <translation>Dica: Imagens Marcadas irão ser deletadas ao salvar.</translation>
-    </message>
-    <message>
-        <source>Add Images</source>
-        <translation>Adicionar Imagens</translation>
-    </message>
-    <message>
-        <source>Fanart</source>
-        <translation>Fanart</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation>Tags</translation>
-    </message>
-    <message>
-        <source>Add Tag</source>
-        <translation>Adicionar Tag</translation>
     </message>
 </context>
 <context>
@@ -551,8 +505,16 @@ p, li { white-space: pre-wrap; }
         <translation>Ano</translation>
     </message>
     <message>
+        <source>Open Movie Folder</source>
+        <translation>Abrir Pasta de Filmes</translation>
+    </message>
+    <message>
         <source>Load Stream Details</source>
         <translation>Carregar Detalhes Stream</translation>
+    </message>
+    <message>
+        <source>Add to Synchronization Queue</source>
+        <translation>Adicionar para Fila de Sincronização</translation>
     </message>
     <message>
         <source>Mark as watched</source>
@@ -563,24 +525,16 @@ p, li { white-space: pre-wrap; }
         <translation>Data Adição</translation>
     </message>
     <message>
+        <source>Remove from Synchronization Queue</source>
+        <translation>Remover da Fila de Sincronização</translation>
+    </message>
+    <message>
         <source>Mark as unwatched</source>
         <translation>Marcado por assistir</translation>
     </message>
     <message>
         <source>Load Information</source>
         <translation>Carregar Informação</translation>
-    </message>
-    <message>
-        <source>Add to Synchronization Queue</source>
-        <translation>Adicionar para Fila de Sincronização</translation>
-    </message>
-    <message>
-        <source>Remove from Synchronization Queue</source>
-        <translation>Remover da Fila de Sincronização</translation>
-    </message>
-    <message>
-        <source>Open Movie Folder</source>
-        <translation>Abrir Pasta de Filmes</translation>
     </message>
 </context>
 <context>
@@ -848,6 +802,10 @@ p, li { white-space: pre-wrap; }
         <translation>Imagens (*.jpg*.jpeg)</translation>
     </message>
     <message>
+        <source>Accept Images</source>
+        <translation>Aceitar Imagens</translation>
+    </message>
+    <message>
         <source>Choose Image</source>
         <translation>Escolha Imagem</translation>
     </message>
@@ -878,10 +836,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Choose Local Image</source>
         <translation>Escolha Imagem Local</translation>
-    </message>
-    <message>
-        <source>Accept Images</source>
-        <translation>Aceitar Imagens</translation>
     </message>
 </context>
 <context>
@@ -972,6 +926,10 @@ p, li { white-space: pre-wrap; }
         <translation>Recarregar</translation>
     </message>
     <message>
+        <source>Rename</source>
+        <translation>Renomear</translation>
+    </message>
+    <message>
         <source>Search</source>
         <translation>Procurar</translation>
     </message>
@@ -982,6 +940,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Concerts</source>
         <translation>Concertos</translation>
+    </message>
+    <message>
+        <source>Rename selected files</source>
+        <translation>Renomear arquivos selecionados</translation>
     </message>
     <message>
         <source>Reload all Movies (%1)</source>
@@ -1026,14 +988,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Movie Sets</source>
         <translation>Coletâneas</translation>
-    </message>
-    <message>
-        <source>Rename</source>
-        <translation>Renomear</translation>
-    </message>
-    <message>
-        <source>Rename selected files</source>
-        <translation>Renomear arquivos selecionados</translation>
     </message>
 </context>
 <context>
@@ -1129,6 +1083,78 @@ Operação Cancelada.</translation>
 <context>
     <name>MovieMultiScrapeDialog</name>
     <message>
+        <source>Start Scraping</source>
+        <translation>Iniciar Scraping</translation>
+    </message>
+    <message>
+        <source>1/20</source>
+        <translation>1/20</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Fechar</translation>
+    </message>
+    <message>
+        <source>Movie</source>
+        <translation>Filme</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation>Título</translation>
+    </message>
+    <message>
+        <source>Director</source>
+        <translation>Diretor</translation>
+    </message>
+    <message>
+        <source>Scraping of %1 movies has finished.</source>
+        <translation>Scraping de %1 filmes finalizado.</translation>
+    </message>
+    <message>
+        <source>Actors</source>
+        <translation>Atores</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancelar</translation>
+    </message>
+    <message>
+        <source>Genres</source>
+        <translation>Gêneros</translation>
+    </message>
+    <message>
+        <source>Poster</source>
+        <translation>Poster</translation>
+    </message>
+    <message>
+        <source>Rating</source>
+        <translation>Nota</translation>
+    </message>
+    <message>
+        <source>Writer</source>
+        <translation>Escritor</translation>
+    </message>
+    <message>
+        <source>Certification</source>
+        <translation>Classificação Indicativa</translation>
+    </message>
+    <message>
+        <source>(Un)Check all</source>
+        <translation>(Des)Marcar Tudo</translation>
+    </message>
+    <message>
+        <source>Movie Multi Scrape</source>
+        <translation>Multi Scrape em Filmes</translation>
+    </message>
+    <message>
+        <source>Backdrop</source>
+        <translation>Pano de Fundo</translation>
+    </message>
+    <message>
+        <source>Extra Arts</source>
+        <translation>Artes Extras</translation>
+    </message>
+    <message>
         <source>Please select the scraper and the infos you want to be loaded. MediaElch will use the best result for each movie you selected.</source>
         <translation>Por favor selecione o scraper e as infos que você deseja carregar. MediaElch irá usar o melhor resultado possivel para cada filme que você selecionou.</translation>
     </message>
@@ -1137,16 +1163,20 @@ Operação Cancelada.</translation>
         <translation>Scraper</translation>
     </message>
     <message>
+        <source>Runtime</source>
+        <translation>Duração</translation>
+    </message>
+    <message>
+        <source>Tagline</source>
+        <translation>Tagline</translation>
+    </message>
+    <message>
+        <source>Studios</source>
+        <translation>Estúdios</translation>
+    </message>
+    <message>
         <source>Infos to load</source>
         <translation>Infos para carregar</translation>
-    </message>
-    <message>
-        <source>Certification</source>
-        <translation>Classificação Indicativa</translation>
-    </message>
-    <message>
-        <source>Rating</source>
-        <translation>Nota</translation>
     </message>
     <message>
         <source>Trailer</source>
@@ -1157,92 +1187,16 @@ Operação Cancelada.</translation>
         <translation>Lançado</translation>
     </message>
     <message>
-        <source>Title</source>
-        <translation>Título</translation>
-    </message>
-    <message>
-        <source>Genres</source>
-        <translation>Gêneros</translation>
-    </message>
-    <message>
-        <source>Director</source>
-        <translation>Diretor</translation>
-    </message>
-    <message>
-        <source>Tagline</source>
-        <translation>Tagline</translation>
-    </message>
-    <message>
-        <source>Actors</source>
-        <translation>Atores</translation>
-    </message>
-    <message>
-        <source>Poster</source>
-        <translation>Poster</translation>
-    </message>
-    <message>
-        <source>Runtime</source>
-        <translation>Duração</translation>
-    </message>
-    <message>
-        <source>Studios</source>
-        <translation>Estúdios</translation>
-    </message>
-    <message>
-        <source>Backdrop</source>
-        <translation>Pano de Fundo</translation>
-    </message>
-    <message>
-        <source>Writer</source>
-        <translation>Escritor</translation>
+        <source>Countries</source>
+        <translation>Países</translation>
     </message>
     <message>
         <source>Overview</source>
         <translation>Resumo</translation>
     </message>
     <message>
-        <source>Countries</source>
-        <translation>Países</translation>
-    </message>
-    <message>
         <source>Logo, Clear Art, CD Art</source>
         <translation>Logo, Clear Art, CD Art</translation>
-    </message>
-    <message>
-        <source>Extra Arts</source>
-        <translation>Artes Extras</translation>
-    </message>
-    <message>
-        <source>(Un)Check all</source>
-        <translation>(Des)Marcar Tudo</translation>
-    </message>
-    <message>
-        <source>1/20</source>
-        <translation>1/20</translation>
-    </message>
-    <message>
-        <source>Movie</source>
-        <translation>Filme</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation>Cancelar</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation>Fechar</translation>
-    </message>
-    <message>
-        <source>Start Scraping</source>
-        <translation>Iniciar Scraping</translation>
-    </message>
-    <message>
-        <source>Scraping of %1 movies has finished.</source>
-        <translation>Scraping de %1 filmes finalizado.</translation>
-    </message>
-    <message>
-        <source>Movie Multi Scrape</source>
-        <translation>Multi Scrape em Filmes</translation>
     </message>
 </context>
 <context>
@@ -1296,8 +1250,8 @@ Operação Cancelada.</translation>
         <translation>Imagem de Fundo</translation>
     </message>
     <message>
-        <source>Extra Arts</source>
-        <translation type="obsolete">Extra Artes</translation>
+        <source>Artwork</source>
+        <translation>Artes</translation>
     </message>
     <message>
         <source>Scraper</source>
@@ -1343,10 +1297,6 @@ Operação Cancelada.</translation>
         <source>Logo, Clear Art, CD Art</source>
         <translation>Logo, Clear Art, CD Art</translation>
     </message>
-    <message>
-        <source>Artwork</source>
-        <translation>Artes</translation>
-    </message>
 </context>
 <context>
     <name>MovieWidget</name>
@@ -1379,6 +1329,10 @@ Operação Cancelada.</translation>
         <translation>Papel</translation>
     </message>
     <message>
+        <source>Tags</source>
+        <translation>Tags</translation>
+    </message>
+    <message>
         <source>yyyy</source>
         <translation>yyyy</translation>
     </message>
@@ -1403,10 +1357,6 @@ Operação Cancelada.</translation>
         <translation>Arquivos</translation>
     </message>
     <message>
-        <source>Genre</source>
-        <translation type="obsolete">Gênero</translation>
-    </message>
-    <message>
         <source>Video</source>
         <translation>Vídeo</translation>
     </message>
@@ -1427,8 +1377,8 @@ Operação Cancelada.</translation>
         <translation>Diretor</translation>
     </message>
     <message>
-        <source>Unknown Studio</source>
-        <translation type="obsolete">Estúdio Desconhecido</translation>
+        <source>Extra Fanarts</source>
+        <translation>Extra Fanarts</translation>
     </message>
     <message>
         <source>Original Name</source>
@@ -1437,10 +1387,6 @@ Operação Cancelada.</translation>
     <message>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Imagens (*.jpg *.jpeg)</translation>
-    </message>
-    <message>
-        <source>Remove Genre</source>
-        <translation type="obsolete">Remover Gênero</translation>
     </message>
     <message>
         <source>Remove Actor</source>
@@ -1471,8 +1417,16 @@ Operação Cancelada.</translation>
         <translation>Atores</translation>
     </message>
     <message>
+        <source>Fanart</source>
+        <translation>Fanart</translation>
+    </message>
+    <message>
         <source>Genres</source>
         <translation>Gêneros</translation>
+    </message>
+    <message>
+        <source>Add Images</source>
+        <translation>Adicionar Imagens</translation>
     </message>
     <message>
         <source>Last Played</source>
@@ -1487,10 +1441,6 @@ Operação Cancelada.</translation>
         <translation>Nota</translation>
     </message>
     <message>
-        <source>Studio</source>
-        <translation type="obsolete">Estúdio</translation>
-    </message>
-    <message>
         <source>Add Studio</source>
         <translation>Adicionar Estúdio</translation>
     </message>
@@ -1501,10 +1451,6 @@ Operação Cancelada.</translation>
     <message>
         <source>Writer</source>
         <translation>Escritor</translation>
-    </message>
-    <message>
-        <source>Remove Country</source>
-        <translation type="obsolete">Remover Pais</translation>
     </message>
     <message>
         <source>Resolution</source>
@@ -1531,8 +1477,8 @@ Operação Cancelada.</translation>
         <translation>Delinear</translation>
     </message>
     <message>
-        <source>Backdrop</source>
-        <translation type="obsolete">Imagem de Fundo</translation>
+        <source>Add Tag</source>
+        <translation>Adicionar Tag</translation>
     </message>
     <message>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
@@ -1545,6 +1491,10 @@ Operação Cancelada.</translation>
     <message>
         <source>Track %1</source>
         <translation>Faixa %1</translation>
+    </message>
+    <message>
+        <source>Local Trailer</source>
+        <translation>Trailer Local</translation>
     </message>
     <message>
         <source>Click to change</source>
@@ -1575,10 +1525,6 @@ Operação Cancelada.</translation>
         <translation>Adicionar País</translation>
     </message>
     <message>
-        <source>Country</source>
-        <translation type="obsolete">Pais</translation>
-    </message>
-    <message>
         <source>Tagline</source>
         <translation>Tagline</translation>
     </message>
@@ -1589,6 +1535,10 @@ Operação Cancelada.</translation>
     <message>
         <source>Click to Change</source>
         <translation>Clique para Alterar</translation>
+    </message>
+    <message>
+        <source>Local trailer is available</source>
+        <translation>Trailer Local está disponível</translation>
     </message>
     <message>
         <source>Play Count</source>
@@ -1615,16 +1565,8 @@ Operação Cancelada.</translation>
         <translation>Ator Desconhecido</translation>
     </message>
     <message>
-        <source>Unknown Genre</source>
-        <translation type="obsolete">Gênero Desconhecido</translation>
-    </message>
-    <message>
         <source>Released</source>
         <translation>Lançado</translation>
-    </message>
-    <message>
-        <source>Unknown Country</source>
-        <translation type="obsolete">País Desconhecido</translation>
     </message>
     <message>
         <source>Countries</source>
@@ -1635,12 +1577,12 @@ Operação Cancelada.</translation>
         <translation>Duração</translation>
     </message>
     <message>
-        <source>Remove Studio</source>
-        <translation type="obsolete">Remover Estúdio</translation>
-    </message>
-    <message>
         <source>Watched</source>
         <translation>Assistido</translation>
+    </message>
+    <message>
+        <source>Hint: Closed images will be deleted on save.</source>
+        <translation>Dica: Imagens marcadas serão deletadas ao salvar.</translation>
     </message>
     <message>
         <source>Channels</source>
@@ -1662,38 +1604,6 @@ Operação Cancelada.</translation>
         <source>Extended</source>
         <translation>Extendido</translation>
     </message>
-    <message>
-        <source>Local trailer is available</source>
-        <translation>Trailer Local está disponível</translation>
-    </message>
-    <message>
-        <source>Local Trailer</source>
-        <translation>Trailer Local</translation>
-    </message>
-    <message>
-        <source>Extra Fanarts</source>
-        <translation>Extra Fanarts</translation>
-    </message>
-    <message>
-        <source>Hint: Closed images will be deleted on save.</source>
-        <translation>Dica: Imagens marcadas serão deletadas ao salvar.</translation>
-    </message>
-    <message>
-        <source>Add Images</source>
-        <translation>Adicionar Imagens</translation>
-    </message>
-    <message>
-        <source>Fanart</source>
-        <translation>Fanart</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation>Tags</translation>
-    </message>
-    <message>
-        <source>Add Tag</source>
-        <translation>Adicionar Tag</translation>
-    </message>
 </context>
 <context>
     <name>QObject</name>
@@ -1713,80 +1623,31 @@ Operação Cancelada.</translation>
         <translation>Info</translation>
     </message>
     <message>
-        <source>Placeholders</source>
-        <translation>Espaços Vagos</translation>
-    </message>
-    <message>
-        <source>Placeholder</source>
-        <translation>Espaço Vago</translation>
-    </message>
-    <message>
-        <source>File extension</source>
-        <translation>Extensão do Arquivo</translation>
-    </message>
-    <message>
-        <source>Part number of the current file</source>
-        <translation>Número da parte do arquivo atual</translation>
-    </message>
-    <message>
-        <source>Title</source>
-        <translation>Título</translation>
-    </message>
-    <message>
-        <source>Original Title</source>
-        <translation>Título Original</translation>
-    </message>
-    <message>
         <source>Year</source>
         <translation>Ano</translation>
-    </message>
-    <message>
-        <source>Episode Number</source>
-        <translation>Número do Episódio</translation>
-    </message>
-    <message>
-        <source>Season Number</source>
-        <translation>Número da Temporada</translation>
-    </message>
-    <message>
-        <source>Title of the show</source>
-        <translation>Título do show</translation>
-    </message>
-    <message>
-        <source>Artist</source>
-        <translation>Artista</translation>
     </message>
     <message>
         <source>Album</source>
         <translation>Álbum</translation>
     </message>
     <message>
-        <source>Description</source>
-        <translation>Descrição</translation>
+        <source>Close</source>
+        <translation>Fechar</translation>
     </message>
     <message>
-        <source>Use Season Directories</source>
-        <translation>Usar Diretórios de Temporadas</translation>
+        <source>Finished</source>
+        <translation>Finalizado</translation>
     </message>
     <message>
-        <source>Multi-File Naming</source>
-        <translation>Nomeando Multi-Arquivos</translation>
+        <source>Title</source>
+        <translation>Título</translation>
     </message>
-    <message>
-        <source>&lt;title&gt; (&lt;year&gt;)</source>
-        <translation>&lt;title&gt; (&lt;year&gt;)</translation>
-    </message>
-    <message>
-        <source>Rename Directories</source>
-        <translation>Renomar Diretórios</translation>
-    </message>
-    <message>
-        <source>Rename Files</source>
-        <translation>Renomear Arquivos</translation>
-    </message>
-    <message>
-        <source>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</source>
-        <translation>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</translation>
+    <message numerus="yes">
+        <source>%n Movie(s) will be renamed</source>
+        <translation>
+            <numerusform>%n Filme será renomeado</numerusform>
+            <numerusform>%n Filmes serão renomeados</numerusform>
+        </translation>
     </message>
     <message>
         <source>Directory Naming</source>
@@ -1797,16 +1658,58 @@ Operação Cancelada.</translation>
         <translation>&lt;title&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
-        <source>File Naming</source>
-        <translation>Nomeando Arquivo</translation>
-    </message>
-    <message>
-        <source>Season Directory Naming</source>
-        <translation>Nomeando Diretório de Temporada</translation>
-    </message>
-    <message>
         <source>Season &lt;season&gt;</source>
         <translation>Temporada &lt;season&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Move Episode&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <translation>&lt;b&gt;Mover Episódio&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
+    </message>
+    <message>
+        <source>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</source>
+        <translation>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%1&quot;</source>
+        <translation>&lt;b&gt;Criar Diretório&lt;/b&gt; &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Rename Poster&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <translation>&lt;b&gt;Renomear Poster&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n Episode(s) will be renamed</source>
+        <translation>
+            <numerusform>%n Episódio será renomeado</numerusform>
+            <numerusform>%n Episódios serão renomeados</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Rename Directory&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <translation>&lt;b&gt;Renomear Diretório&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
+    </message>
+    <message>
+        <source>Rename Files</source>
+        <translation>Renomear Arquivos</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n Concert(s) will be renamed</source>
+        <translation>
+            <numerusform>%n Concerto será renomeado</numerusform>
+            <numerusform>%n Concertos serão renomeados</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Rename NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <translation>&lt;b&gt;Renomear NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
+    </message>
+    <message>
+        <source>Episode Number</source>
+        <translation>Número do Episódio</translation>
+    </message>
+    <message>
+        <source>Artist</source>
+        <translation>Artista</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1817,30 +1720,60 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt; &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt; p, li { white-space: pre-wrap; } &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt; &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <source>Close</source>
-        <translation>Fechar</translation>
+        <source>Failed</source>
+        <translation>Falhou</translation>
     </message>
     <message>
-        <source>Dry Run</source>
-        <translation>Executar</translation>
+        <source>File Naming</source>
+        <translation>Nomeando Arquivo</translation>
     </message>
     <message>
         <source>Rename</source>
         <translation>Renomear</translation>
     </message>
-    <message numerus="yes">
-        <source>%n Movie(s) will be renamed</source>
-        <translation>
-            <numerusform>%n Filme será renomeado</numerusform>
-            <numerusform>%n Filmes serão renomeados</numerusform>
-        </translation>
+    <message>
+        <source>Original Title</source>
+        <translation>Título Original</translation>
     </message>
-    <message numerus="yes">
-        <source>%n Concert(s) will be renamed</source>
-        <translation>
-            <numerusform>%n Concerto será renomeado</numerusform>
-            <numerusform>%n Concertos serão renomeados</numerusform>
-        </translation>
+    <message>
+        <source>&lt;b&gt;Rename Fanart&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <translation>&lt;b&gt;Renomear Fanart&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Move NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <translation>&lt;b&gt;Mover NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
+    </message>
+    <message>
+        <source>Rename Directories</source>
+        <translation>Renomar Diretórios</translation>
+    </message>
+    <message>
+        <source>Renamer</source>
+        <translation>Renomear</translation>
+    </message>
+    <message>
+        <source>&lt;title&gt; (&lt;year&gt;)</source>
+        <translation>&lt;title&gt; (&lt;year&gt;)</translation>
+    </message>
+    <message>
+        <source>Part number of the current file</source>
+        <translation>Número da parte do arquivo atual</translation>
+    </message>
+    <message>
+        <source>Multi-File Naming</source>
+        <translation>Nomeando Multi-Arquivos</translation>
+    </message>
+    <message>
+        <source>Title of the show</source>
+        <translation>Título do show</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Rename Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <translation>&lt;b&gt;Renomear Miniatura&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Descrição</translation>
     </message>
     <message numerus="yes">
         <source>%n TV Show(s) and %1</source>
@@ -1849,64 +1782,41 @@ p, li { white-space: pre-wrap; }
             <numerusform>%n Seriados e %1</numerusform>
         </translation>
     </message>
-    <message numerus="yes">
-        <source>%n Episode(s) will be renamed</source>
-        <translation>
-            <numerusform>%n Episódio será renomeado</numerusform>
-            <numerusform>%n Episódios serão renomeados</numerusform>
-        </translation>
+    <message>
+        <source>File extension</source>
+        <translation>Extensão do Arquivo</translation>
     </message>
     <message>
-        <source>Finished</source>
-        <translation>Finalizado</translation>
+        <source>Season Directory Naming</source>
+        <translation>Nomeando Diretório de Temporada</translation>
     </message>
     <message>
-        <source>&lt;b&gt;Rename File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Renomear Arquivo&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
+        <source>Dry Run</source>
+        <translation>Dry Run</translation>
     </message>
     <message>
-        <source>Failed</source>
-        <translation>Falhou</translation>
+        <source>Placeholder</source>
+        <translation>Espaço Vago</translation>
     </message>
     <message>
-        <source>&lt;b&gt;Rename NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Renomear NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Rename Poster&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Renomear Poster&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Rename Fanart&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Renomear Fanart&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Rename Directory&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Renomear Diretório&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Rename Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Renomear Miniatura&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%1&quot;</source>
-        <translation>&lt;b&gt;Criar Diretório&lt;/b&gt; &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Move Episode&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Mover Episódio&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Move NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Mover NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
+        <source>Placeholders</source>
+        <translation>Espaços Vagos</translation>
     </message>
     <message>
         <source>&lt;b&gt;Move Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Mover Miniatura&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Renamer</source>
-        <translation>Renomear</translation>
+        <source>&lt;b&gt;Rename File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <translation>&lt;b&gt;Renomear Arquivo&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
+    </message>
+    <message>
+        <source>Season Number</source>
+        <translation>Número da Temporada</translation>
+    </message>
+    <message>
+        <source>Use Season Directories</source>
+        <translation>Usar Diretórios de Temporadas</translation>
     </message>
 </context>
 <context>
@@ -1964,16 +1874,8 @@ p, li { white-space: pre-wrap; }
         <translation>Ordenar Título</translation>
     </message>
     <message>
-        <source>MediaElch</source>
-        <translation type="obsolete">MediaElch</translation>
-    </message>
-    <message>
         <source>Click to Change</source>
         <translation>Clique para Alterar</translation>
-    </message>
-    <message>
-        <source>Setting Posters and Backdrops is only possible with XBMC MySQL and SQLite interfaces.</source>
-        <translation type="obsolete">Ajustar Poster e Imagem de Fundo somente é possivel com XBMC e interfaces MySQL e SQLite.</translation>
     </message>
     <message>
         <source>Set Name</source>
@@ -1993,6 +1895,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>NFO</source>
         <translation>NFO</translation>
+    </message>
+    <message>
+        <source>8080</source>
+        <translation>8080</translation>
     </message>
     <message>
         <source>HTTP</source>
@@ -2019,6 +1925,10 @@ p, li { white-space: pre-wrap; }
         <translation>Tipo</translation>
     </message>
     <message>
+        <source>XBMC</source>
+        <translation>XBMC</translation>
+    </message>
+    <message>
         <source>Proxy</source>
         <translation>Proxy</translation>
     </message>
@@ -2035,6 +1945,10 @@ p, li { white-space: pre-wrap; }
         <translation>Itens estão em pastas separadas</translation>
     </message>
     <message>
+        <source>XBMC Eden</source>
+        <translation>XBMC Eden</translation>
+    </message>
+    <message>
         <source>Automatically load and save stream details from files</source>
         <translation>Carregar e salvar automaticamente detalhes de stream dos arquivos</translation>
     </message>
@@ -2047,12 +1961,12 @@ p, li { white-space: pre-wrap; }
         <translation>Recarregar ao Iniciar</translation>
     </message>
     <message>
-        <source>MediaCenter Path</source>
-        <translation type="obsolete">Caminho MediaCenter</translation>
-    </message>
-    <message>
         <source>Character Art</source>
         <translation>Character Art</translation>
+    </message>
+    <message>
+        <source>Default filenames for</source>
+        <translation>Nome dos arquivos padrão para</translation>
     </message>
     <message>
         <source>Logfile</source>
@@ -2103,8 +2017,8 @@ p, li { white-space: pre-wrap; }
         <translation>Filmes</translation>
     </message>
     <message>
-        <source>XBMC MySQL</source>
-        <translation type="obsolete">XBMC MySQL</translation>
+        <source>XBMC Frodo</source>
+        <translation>XBMC Frodo</translation>
     </message>
     <message>
         <source>Poster</source>
@@ -2119,18 +2033,6 @@ p, li { white-space: pre-wrap; }
         <translation>Selecione</translation>
     </message>
     <message>
-        <source>SQLite Database *.db</source>
-        <translation type="obsolete">Banco do Dados SQLite *.db</translation>
-    </message>
-    <message>
-        <source>MediaCenter</source>
-        <translation type="obsolete">MediaCenter</translation>
-    </message>
-    <message>
-        <source>XBMC SQLite</source>
-        <translation type="obsolete">XBMC SQLite</translation>
-    </message>
-    <message>
         <source>Episode NFO</source>
         <translation>NFO Episódio</translation>
     </message>
@@ -2143,24 +2045,16 @@ p, li { white-space: pre-wrap; }
         <translation>Armazenar URLs de Trailers no formato do Plugin do YouTube</translation>
     </message>
     <message>
-        <source>Select the MediaCenter to use.</source>
-        <translation type="obsolete">Selecione o MediaCenter para uso.</translation>
-    </message>
-    <message>
-        <source>XBMC XML</source>
-        <translation type="obsolete">XBMC XML</translation>
-    </message>
-    <message>
         <source>Add one or more directories containing your movies, TV Shows or concerts. TV Show Episodes have to be in subfolders with the name of the show.</source>
         <translation>Adicione um ou mais diretórios contendo seus filmes, Seriados ou concertos. Episódios de Seriados devem estar em subpastas com o nome do seriado.</translation>
     </message>
     <message>
-        <source>The MySQL and SQLite interfaces are currently unstable, unmaintained and completely unsupported! Only enable them if you know what you&apos;re doing. Don&apos;t fill bug reports regarding these interfaces!</source>
-        <translation type="obsolete">As interfaces MySQL e SQLite estão atualmente instáveis, sem manutenação e completamente sem suporte!  Somente ative se você souber o que fazer. Não envie relatórios de bugs acerca destas interfaces!</translation>
-    </message>
-    <message>
         <source>Backdrop</source>
         <translation>Imagem de  Fundo</translation>
+    </message>
+    <message>
+        <source>If you want to use the synchronization feature you need to enable the webserver within XBMC and fill in the values below.</source>
+        <translation>Se você deseja usar o recurso de sincronização, você precisa ativar o Servidor Web  no XBMC e preencher os valores abaixo.</translation>
     </message>
     <message>
         <source>SOCKS 5</source>
@@ -2175,10 +2069,6 @@ p, li { white-space: pre-wrap; }
         <translation>Seriados</translation>
     </message>
     <message>
-        <source>Database</source>
-        <translation type="obsolete">Banco de Dados</translation>
-    </message>
-    <message>
         <source>Password</source>
         <translation>Senha</translation>
     </message>
@@ -2189,10 +2079,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Global Settings</source>
         <translation>Ajustes Globais</translation>
-    </message>
-    <message>
-        <source>Set the path where Thumbnails are stored (e.g. ~/.xbmc/userdata/Thumbnails)</source>
-        <translation type="obsolete">Sete o caminho onde Miniaturas foram armazenada (igual~/.xbmc/userdata/Thumbnails)</translation>
     </message>
     <message>
         <source>Settings saved</source>
@@ -2219,6 +2105,10 @@ p, li { white-space: pre-wrap; }
         <translation>Clear Art</translation>
     </message>
     <message>
+        <source>http://127.0.0.1</source>
+        <translation>http://127.0.0.1</translation>
+    </message>
+    <message>
         <source>Use plot when outline is not available</source>
         <translation>Usar enredo quando resumo não esta disponível</translation>
     </message>
@@ -2243,16 +2133,20 @@ p, li { white-space: pre-wrap; }
         <translation>Poster da Temporada</translation>
     </message>
     <message>
-        <source>Please hit the &quot;Reload&quot; button after changing the Media Center Interface.</source>
-        <translation type="obsolete">Por favor pressione o botão &quot;Recarregar! após efeturar alterações na interface do MediaCenter.</translation>
+        <source>Season Banner</source>
+        <translation>Banner de Temporada</translation>
     </message>
     <message>
         <source>Activate debug mode and write log file</source>
         <translation>Ativar Modo debug e escrita no arquivo de log</translation>
     </message>
     <message>
-        <source>Choose a directory containing your Thumbnails</source>
-        <translation type="obsolete">Escolha um diretório contendo suas Miniaturas</translation>
+        <source>Download actor images</source>
+        <translation>Download imagens dos atores</translation>
+    </message>
+    <message>
+        <source>Season Backdrop</source>
+        <translation>Imagem de Fundo da Temporada</translation>
     </message>
     <message>
         <source>Show NFO</source>
@@ -2274,46 +2168,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Are you sure?</source>
         <translation>Você tem certeza?</translation>
-    </message>
-    <message>
-        <source>Download actor images</source>
-        <translation>Download imagens dos atores</translation>
-    </message>
-    <message>
-        <source>XBMC</source>
-        <translation>XBMC</translation>
-    </message>
-    <message>
-        <source>If you want to use the synchronization feature you need to enable the webserver within XBMC and fill in the values below.</source>
-        <translation>Se você deseja usar o recurso de sincronização, você precisa ativar o Servidor Web  no XBMC e preencher os valores abaixo.</translation>
-    </message>
-    <message>
-        <source>http://127.0.0.1</source>
-        <translation>http://127.0.0.1</translation>
-    </message>
-    <message>
-        <source>8080</source>
-        <translation>8080</translation>
-    </message>
-    <message>
-        <source>Season Backdrop</source>
-        <translation>Imagem de Fundo da Temporada</translation>
-    </message>
-    <message>
-        <source>Season Banner</source>
-        <translation>Banner de Temporada</translation>
-    </message>
-    <message>
-        <source>Default filenames for</source>
-        <translation>Nome dos arquivos padrão para</translation>
-    </message>
-    <message>
-        <source>XBMC Eden</source>
-        <translation>XBMC Eden</translation>
-    </message>
-    <message>
-        <source>XBMC Frodo</source>
-        <translation>XBMC Frodo</translation>
     </message>
 </context>
 <context>
@@ -2563,12 +2417,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TagCloud</name>
     <message>
-        <source>Form</source>
-        <translation>Formulário</translation>
-    </message>
-    <message>
         <source>Tag</source>
         <translation>Tag</translation>
+    </message>
+    <message>
+        <source>Form</source>
+        <translation>Formulário</translation>
     </message>
 </context>
 <context>
@@ -2693,6 +2547,10 @@ p, li { white-space: pre-wrap; }
         <translation>Cancelar Download</translation>
     </message>
     <message>
+        <source>0:00 / 0:00</source>
+        <translation>0:00 / 0:00</translation>
+    </message>
+    <message>
         <source>Do you want to overwrite it?</source>
         <translation>Você deseja sobrescrevê-lo?</translation>
     </message>
@@ -2740,10 +2598,6 @@ p, li { white-space: pre-wrap; }
         <source>Back to Search Results</source>
         <translation>Voltar para Resultados da Busca</translation>
     </message>
-    <message>
-        <source>0:00 / 0:00</source>
-        <translation>0:00 / 0:00</translation>
-    </message>
 </context>
 <context>
     <name>TvShowDelegate</name>
@@ -2789,6 +2643,10 @@ p, li { white-space: pre-wrap; }
         <translation>Carregar Detalhes do Stream</translation>
     </message>
     <message>
+        <source>Add to Synchronization Queue</source>
+        <translation>Addcionar para Fila de Sincronização</translation>
+    </message>
+    <message>
         <source>Mark as watched</source>
         <translation>Marcar como assistido</translation>
     </message>
@@ -2797,20 +2655,16 @@ p, li { white-space: pre-wrap; }
         <translation>Procurar por novos episódios</translation>
     </message>
     <message>
-        <source>Mark as unwatched</source>
-        <translation>Marcar como por assistir</translation>
-    </message>
-    <message>
-        <source>Add to Synchronization Queue</source>
-        <translation>Addcionar para Fila de Sincronização</translation>
-    </message>
-    <message>
         <source>Remove from Synchronization Queue</source>
         <translation>Remover da Fila de Sincronização</translation>
     </message>
     <message>
         <source>Open TV Show Folder</source>
         <translation>Abrir Pasta Seriados</translation>
+    </message>
+    <message>
+        <source>Mark as unwatched</source>
+        <translation>Marcar como por assistir</translation>
     </message>
 </context>
 <context>
@@ -2823,124 +2677,124 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TvShowSearch</name>
     <message>
+        <source>Update TV Show and all Episodes</source>
+        <translation>Atualizar Seriado e todos os Episódios</translation>
+    </message>
+    <message>
         <source>Close</source>
         <translation>Fechar</translation>
-    </message>
-    <message>
-        <source>Result</source>
-        <translation>Resultado</translation>
-    </message>
-    <message>
-        <source>Search Result</source>
-        <translation>Resultado Busca</translation>
-    </message>
-    <message>
-        <source>Update all episodes</source>
-        <translation>Atualizar todos os episódios</translation>
-    </message>
-    <message>
-        <source>Infos to load</source>
-        <translation>Informações por carregar</translation>
     </message>
     <message>
         <source>Title</source>
         <translation>Título</translation>
     </message>
     <message>
-        <source>Rating</source>
-        <translation>Nota</translation>
-    </message>
-    <message>
-        <source>First aired</source>
-        <translation>Ao ar em</translation>
-    </message>
-    <message>
         <source>Director</source>
         <translation>Diretor</translation>
-    </message>
-    <message>
-        <source>Writer</source>
-        <translation>Escritor</translation>
-    </message>
-    <message>
-        <source>Certification</source>
-        <translation>Classificação Indicativa</translation>
-    </message>
-    <message>
-        <source>Overview</source>
-        <translation>Resumo</translation>
-    </message>
-    <message>
-        <source>Genres</source>
-        <translation>Gêneros</translation>
-    </message>
-    <message>
-        <source>Network</source>
-        <translation>Rede</translation>
-    </message>
-    <message>
-        <source>Logo, Clear Art, CD Art</source>
-        <translation>Logo, Clear Art, CD Art</translation>
-    </message>
-    <message>
-        <source>Season/Episode</source>
-        <translation>Temporada/Episódio</translation>
     </message>
     <message>
         <source>Actors</source>
         <translation>Atores</translation>
     </message>
     <message>
+        <source>Banner</source>
+        <translation>Banner</translation>
+    </message>
+    <message>
         <source>Fanart</source>
         <translation>Fanart</translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation>Rede</translation>
+    </message>
+    <message>
+        <source>Genres</source>
+        <translation>Gêneros</translation>
     </message>
     <message>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <source>Season Poster</source>
-        <translation>Poster da Temporada</translation>
+        <source>Rating</source>
+        <translation>Nota</translation>
     </message>
     <message>
-        <source>Season Fanart</source>
-        <translation>Fanart da Temporada</translation>
+        <source>Result</source>
+        <translation>Resultado</translation>
     </message>
     <message>
-        <source>Season Banner</source>
-        <translation>Banner da Temporada</translation>
+        <source>Writer</source>
+        <translation>Escritor</translation>
     </message>
     <message>
-        <source>Banner</source>
-        <translation>Banner</translation>
+        <source>First aired</source>
+        <translation>Ao ar em</translation>
     </message>
     <message>
-        <source>Thumbnail</source>
-        <translation>Miniatura</translation>
-    </message>
-    <message>
-        <source>Artwork</source>
-        <translation>Arte</translation>
+        <source>Certification</source>
+        <translation>Classificação Indicativa</translation>
     </message>
     <message>
         <source>(Un)Check all</source>
         <translation>(Des)marcar todos</translation>
     </message>
     <message>
-        <source>Update TV Show only</source>
-        <translation>Atualizar Seriado somente</translation>
+        <source>Season/Episode</source>
+        <translation>Temporada/Episódio</translation>
+    </message>
+    <message>
+        <source>Artwork</source>
+        <translation>Arte</translation>
+    </message>
+    <message>
+        <source>Infos to load</source>
+        <translation>Informações por carregar</translation>
+    </message>
+    <message>
+        <source>Search Result</source>
+        <translation>Resultado Busca</translation>
+    </message>
+    <message>
+        <source>Thumbnail</source>
+        <translation>Miniatura</translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation>Resumo</translation>
+    </message>
+    <message>
+        <source>Season Poster</source>
+        <translation>Poster da Temporada</translation>
+    </message>
+    <message>
+        <source>Update all episodes</source>
+        <translation>Atualizar todos os episódios</translation>
     </message>
     <message>
         <source>Update TV Show and new Episodes</source>
         <translation>Atualizar Seriado e novos Episódios</translation>
     </message>
     <message>
-        <source>Update TV Show and all Episodes</source>
-        <translation>Atualizar Seriado e todos os Episódios</translation>
+        <source>Season Banner</source>
+        <translation>Banner da Temporada</translation>
+    </message>
+    <message>
+        <source>Season Fanart</source>
+        <translation>Fanart da Temporada</translation>
+    </message>
+    <message>
+        <source>Logo, Clear Art, CD Art</source>
+        <translation>Logo, Clear Art, CD Art</translation>
     </message>
     <message>
         <source>Update new Episodes</source>
         <translation>Atualizar novos Episódios</translation>
+    </message>
+    <message>
+        <source>Update TV Show only</source>
+        <translation>Atualizar Seriado somente</translation>
     </message>
 </context>
 <context>
@@ -3025,6 +2879,10 @@ p, li { white-space: pre-wrap; }
         <translation>Adicionar Diretor</translation>
     </message>
     <message>
+        <source>Display Season</source>
+        <translation>Mostrar Temporada</translation>
+    </message>
+    <message>
         <source>Last Played</source>
         <translation>Última Reprodução</translation>
     </message>
@@ -3051,6 +2909,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>First Aired</source>
         <translation>Foi ao ar em</translation>
+    </message>
+    <message>
+        <source>Display Episode</source>
+        <translation>Mostrar Episódio</translation>
     </message>
     <message>
         <source>Resolution</source>
@@ -3148,14 +3010,6 @@ p, li { white-space: pre-wrap; }
         <source>Extended</source>
         <translation>Extendido</translation>
     </message>
-    <message>
-        <source>Display Season</source>
-        <translation>Mostrar Temporada</translation>
-    </message>
-    <message>
-        <source>Display Episode</source>
-        <translation>Mostrar Episódio</translation>
-    </message>
 </context>
 <context>
     <name>TvShowWidgetSeason</name>
@@ -3164,48 +3018,48 @@ p, li { white-space: pre-wrap; }
         <translation>Formulário</translation>
     </message>
     <message>
-        <source>Episode has changed. Click to revert changes.</source>
-        <translation>Episódio foi alterado. Clique para reverter alterações.</translation>
-    </message>
-    <message>
         <source>Title</source>
         <translation>Título</translation>
-    </message>
-    <message>
-        <source>Poster</source>
-        <translation>Poster</translation>
-    </message>
-    <message>
-        <source>Click to Change</source>
-        <translation>Clique para Alterar</translation>
     </message>
     <message>
         <source>Full Preview</source>
         <translation>Preview em tela cheia</translation>
     </message>
     <message>
-        <source>Resolution</source>
-        <translation>Resolução</translation>
+        <source>Banner</source>
+        <translation>Banner</translation>
     </message>
     <message>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <source>Banner</source>
-        <translation>Banner</translation>
+        <source>Poster</source>
+        <translation>Poster</translation>
     </message>
     <message>
-        <source>Click to change</source>
-        <translation>Clique para alterar</translation>
+        <source>Resolution</source>
+        <translation>Resolução</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvo</translation>
     </message>
     <message>
         <source>Season %1</source>
         <translation>Temporada %1</translation>
     </message>
     <message>
-        <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvo</translation>
+        <source>Click to change</source>
+        <translation>Clique para alterar</translation>
+    </message>
+    <message>
+        <source>Episode has changed. Click to revert changes.</source>
+        <translation>Episódio foi alterado. Clique para reverter alterações.</translation>
+    </message>
+    <message>
+        <source>Click to Change</source>
+        <translation>Clique para Alterar</translation>
     </message>
 </context>
 <context>
@@ -3231,12 +3085,16 @@ p, li { white-space: pre-wrap; }
         <translation>Papel</translation>
     </message>
     <message>
+        <source>Tags</source>
+        <translation>Tags</translation>
+    </message>
+    <message>
         <source>Actor</source>
         <translation>Ator</translation>
     </message>
     <message>
-        <source>Genre</source>
-        <translation type="obsolete">Gênero</translation>
+        <source>Extra Fanarts</source>
+        <translation>Extra fanarts</translation>
     </message>
     <message>
         <source>Images (*.jpg *.jpeg)</source>
@@ -3245,10 +3103,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>dd.MM.yyyy</source>
         <translation>dd.MM.yyyy</translation>
-    </message>
-    <message>
-        <source>Remove Genre</source>
-        <translation type="obsolete">Remover Gênero</translation>
     </message>
     <message>
         <source>Remove Actor</source>
@@ -3279,8 +3133,16 @@ p, li { white-space: pre-wrap; }
         <translation>Banner</translation>
     </message>
     <message>
+        <source>Fanart</source>
+        <translation>Fanart</translation>
+    </message>
+    <message>
         <source>Genres</source>
         <translation>Gêneros</translation>
+    </message>
+    <message>
+        <source>Add Images</source>
+        <translation>Adicionar Imagens</translation>
     </message>
     <message>
         <source>Poster</source>
@@ -3319,16 +3181,12 @@ p, li { white-space: pre-wrap; }
         <translation>Classificação Indicativa</translation>
     </message>
     <message>
-        <source>Backdrop</source>
-        <translation type="obsolete">Imagem de Fundo</translation>
+        <source>Add Tag</source>
+        <translation>Adicionar Tag</translation>
     </message>
     <message>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salva</translation>
-    </message>
-    <message>
-        <source>Season %1</source>
-        <translation type="obsolete">Temporada %1</translation>
     </message>
     <message>
         <source>Click to change</source>
@@ -3359,10 +3217,6 @@ p, li { white-space: pre-wrap; }
         <translation>Ator Desconhecido</translation>
     </message>
     <message>
-        <source>Unknown Genre</source>
-        <translation type="obsolete">Gênero Desconhecido</translation>
-    </message>
-    <message>
         <source>TV Show has changed. Click to revert changes.</source>
         <translation>Seriado foi alterado. Clique para reverter alterações.</translation>
     </message>
@@ -3371,90 +3225,47 @@ p, li { white-space: pre-wrap; }
         <translation>Resumo</translation>
     </message>
     <message>
-        <source>Season Posters</source>
-        <translation type="obsolete">Posters de Temporadas</translation>
+        <source>Hint: Closed images will be deleted on save.</source>
+        <translation>Dica: Imagens Marcadas serão deletadas ao salvar.</translation>
     </message>
     <message>
         <source>Extended</source>
         <translation>Extendido</translation>
     </message>
-    <message>
-        <source>Extra Fanarts</source>
-        <translation>Extra fanarts</translation>
-    </message>
-    <message>
-        <source>Hint: Closed images will be deleted on save.</source>
-        <translation>Dica: Imagens que você fechar serão deletadas ao salvar.</translation>
-    </message>
-    <message>
-        <source>Add Images</source>
-        <translation>Adicionar Imagens</translation>
-    </message>
-    <message>
-        <source>Fanart</source>
-        <translation>Fanart</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation>Tags</translation>
-    </message>
-    <message>
-        <source>Add Tag</source>
-        <translation>Adicionar Tag</translation>
-    </message>
-</context>
-<context>
-    <name>XbmcSql</name>
-    <message>
-        <source>Connection to XBMC MySQL Database failed! &quot;%1&quot;</source>
-        <translation type="obsolete">Conexão para o XBMC MySQL banco de dados falhou! %1&quot;</translation>
-    </message>
-    <message>
-        <source>Connection to XBMC SQLite Database failed! &quot;%1&quot;</source>
-        <translation type="obsolete">Conexão para XBMC SQLite banco de dados falhou!&quot;%1&quot;</translation>
-    </message>
 </context>
 <context>
     <name>XbmcSync</name>
-    <message>
-        <source>8080</source>
-        <translation type="obsolete">8080</translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation type="obsolete">Porta</translation>
-    </message>
     <message>
         <source>Close</source>
         <translation>Fechar</translation>
     </message>
     <message>
-        <source>Update all concerts</source>
-        <translation type="obsolete">Atualizar todos os concertos</translation>
+        <source>Start</source>
+        <translation>Início</translation>
     </message>
     <message>
         <source>Removing concerts from database</source>
         <translation>Removendo concertos do banco de dados</translation>
     </message>
     <message>
+        <source>Retrieve watched status</source>
+        <translation>Recuperar estatus assistido</translation>
+    </message>
+    <message>
         <source>Removing movies from database</source>
         <translation>Removendo filmes do banco de dados</translation>
+    </message>
+    <message>
+        <source>Update contents</source>
+        <translation>Atualizar Conteúdos</translation>
     </message>
     <message>
         <source>Removing TV shows from database</source>
         <translation>Removendo Seriados do banco de dados</translation>
     </message>
     <message>
-        <source>XBMC Host</source>
-        <translation type="obsolete">XBMC Host</translation>
-    </message>
-    <message>
         <source>Nothing to synchronize</source>
         <translation>Nada para sincronizar</translation>
-    </message>
-    <message>
-        <source>Update all TV Shows</source>
-        <translation type="obsolete">Atualizar todos os Seriados</translation>
     </message>
     <message>
         <source>XBMC is not reachable. Please check your settings.</source>
@@ -3465,32 +3276,56 @@ p, li { white-space: pre-wrap; }
         <translation>Removendo episódios do banco de dados</translation>
     </message>
     <message>
+        <source>Finished. All artwork has been renamed.</source>
+        <translation>Fim. Todas as suas artes foram renomeadas.</translation>
+    </message>
+    <message>
         <source>XBMC Synchronization</source>
         <translation>XBMC Sincronização</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancelar</translation>
+    </message>
+    <message>
+        <source>Canceled.</source>
+        <translation>Cancelado.</translation>
+    </message>
+    <message>
+        <source>Renaming Concert Artwork...</source>
+        <translation>Renomeando as Artes em Concertos...</translation>
+    </message>
+    <message>
+        <source>Renaming TV Show and Episode Artwork...</source>
+        <translation>Renomeando artes em Seriados e Episódios...</translation>
     </message>
     <message>
         <source>Status</source>
         <translation>Estatus</translation>
     </message>
     <message>
+        <source>Please make sure you have setup your sources in XBMC and enabled the webserver.</source>
+        <translation>Porfaov tenha certeza que adicionou suas fontes de vídeo no XBMC e ativou o servidor web</translation>
+    </message>
+    <message>
+        <source>Rename artwork to Frodo naming conventions</source>
+        <translation>Renomear as artes para os nomes convencionados no XBMC Frodo</translation>
+    </message>
+    <message>
+        <source>The fields last played and playcount will be retrieved from XBMC.</source>
+        <translation>Os campos última reprodução e contador de reprodução serão obtidos do XBMC.</translation>
+    </message>
+    <message>
         <source>Getting contents from XBMC</source>
         <translation>Obtendo conteúdo do XBMC</translation>
     </message>
     <message>
-        <source>http://127.0.0.1</source>
-        <translation type="obsolete">http://127.0.0.1</translation>
-    </message>
-    <message>
-        <source>For this to work you need to have setup your sources in XBMC and enable the Webserver.</source>
-        <translation type="obsolete">Para isto funcionar você precisa ajustar suas fontes no XBMC e ativar o Webserver.</translation>
+        <source>Finished. Your items play count and last played date have been updated.</source>
+        <translation>Finalizado. Contador de Reprodução e data da última reprodução de seus itens foram atualizados.</translation>
     </message>
     <message>
         <source>This will tell XBMC to remove the changed movies, concerts or shows. Afterwards a XBMC library update is triggered and the removed items will be picked up again.</source>
         <translation>Isto irá dizer ao XBMC para remover os filmes, concertos ou shows alterados.  Após disparo de atualização da coleção no XBMC e remoção dos itens, eles serão reinseridos novamente.</translation>
-    </message>
-    <message>
-        <source>Update all movies</source>
-        <translation type="obsolete">Atualizar todos os filmes</translation>
     </message>
     <message>
         <source>Trigger scan for new items</source>
@@ -3505,64 +3340,12 @@ p, li { white-space: pre-wrap; }
         <translation>Por favor preenha no XBMC host e porta.</translation>
     </message>
     <message>
-        <source>Synchronize</source>
-        <translation type="obsolete">Sincronizar</translation>
-    </message>
-    <message>
-        <source>Please make sure you have setup your sources in XBMC and enabled the webserver.</source>
-        <translation>Porfaov tenha certeza que adicionou suas fontes de vídeo no XBMC e ativou o servidor web</translation>
-    </message>
-    <message>
-        <source>Update contents</source>
-        <translation>Atualizar Conteúdos</translation>
-    </message>
-    <message>
-        <source>Retrieve watched status</source>
-        <translation>Recuperar estatus assistido</translation>
-    </message>
-    <message>
-        <source>The fields last played and playcount will be retrieved from XBMC.</source>
-        <translation>Os campos última reprodução e contador de reprodução serão obtidos do XBMC.</translation>
-    </message>
-    <message>
-        <source>Rename artwork to Frodo naming conventions</source>
-        <translation>Renomear as artes para os nomes convencionados no XBMC Frodo</translation>
-    </message>
-    <message>
-        <source>This will rename all your artwork to fit the Frodo naming conventions. Please make sure you have not already set Frodo filenames in MediaElchs settings. Your artwork needs to show up in MediaElch.</source>
-        <translation>Isto irá renomear todas as suas artes para a nova nomenclatura do XBMC Frodo. Por favos tenha certeza que você não setou Nomenclatura do aquivos - Frodo  nos ajustes do MeciaElchs. Suas artes  serão apresentadas na interface do MediaElch.</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation>Início</translation>
-    </message>
-    <message>
-        <source>Finished. Your items play count and last played date have been updated.</source>
-        <translation>Finalizado. Contador de Reprodução e data da última reprodução de seus itens foram atualizados.</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation>Cancelar</translation>
-    </message>
-    <message>
         <source>Renaming Movie Artwork...</source>
         <translation>Renomeando artes em Filmes...</translation>
     </message>
     <message>
-        <source>Renaming TV Show and Episode Artwork...</source>
-        <translation>Renomeando artes em Seriados e Episódios...</translation>
-    </message>
-    <message>
-        <source>Renaming Concert Artwork...</source>
-        <translation>Renomeando as Artes em Concertos...</translation>
-    </message>
-    <message>
-        <source>Canceled.</source>
-        <translation>Cancelado.</translation>
-    </message>
-    <message>
-        <source>Finished. All artwork has been renamed.</source>
-        <translation>Fim. Todas as suas artes foram renomeadas.</translation>
+        <source>This will rename all your artwork to fit the Frodo naming conventions. Please make sure you have not already set Frodo filenames in MediaElchs settings. Your artwork needs to show up in MediaElch.</source>
+        <translation>Isto irá renomear todas as suas artes para a nova nomenclatura do XBMC Frodo. Por favos tenha certeza que você não setou Nomenclatura do aquivos - Frodo  nos ajustes do MeciaElchs. Suas artes  serão apresentadas na interface do MediaElch.</translation>
     </message>
 </context>
 </TS>
