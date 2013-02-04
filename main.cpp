@@ -138,9 +138,8 @@ int main(int argc, char *argv[])
     QString filename;
     filename = QString("MediaElch_%1").arg(QLocale::system().name());
 
-    QString localFileName = QString("%1%2MediaElch_%3.qm").arg(QCoreApplication::applicationDirPath())
-                                                          .arg(QDir::separator())
-                                                          .arg(QLocale::system().name().left(QLocale::system().name().indexOf("_")));
+    QString localFileName = QString("%1%2MediaElch_local.qm").arg(QCoreApplication::applicationDirPath())
+                                                          .arg(QDir::separator());
     QFileInfo fi(localFileName);
     if (fi.isFile())
         editTranslator.load(localFileName);
