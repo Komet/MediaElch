@@ -2479,12 +2479,12 @@ Operation abgebrochen.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="174"/>
+        <location filename="../main.cpp" line="173"/>
         <source>Logfile could not be openened</source>
         <translation>Logdatei konnte nicht geöffnet werden</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="175"/>
+        <location filename="../main.cpp" line="174"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Die Logdatei %1 konnte nicht zum Schreiben geöffnet werden.</translation>
     </message>
@@ -2869,19 +2869,19 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Das Setzen von Postern und Fanarts ist nur mit den XBMC MySQL und SQLite Interfaces möglich.</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="289"/>
-        <location filename="../sets/SetsWidget.cpp" line="314"/>
+        <location filename="../sets/SetsWidget.cpp" line="292"/>
+        <location filename="../sets/SetsWidget.cpp" line="320"/>
         <source>Choose Image</source>
         <translation>Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="289"/>
-        <location filename="../sets/SetsWidget.cpp" line="314"/>
+        <location filename="../sets/SetsWidget.cpp" line="292"/>
+        <location filename="../sets/SetsWidget.cpp" line="320"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="351"/>
+        <location filename="../sets/SetsWidget.cpp" line="357"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
