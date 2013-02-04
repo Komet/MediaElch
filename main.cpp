@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
 #endif
     QCoreApplication::setOrganizationName("Daniel Kabel");
     QCoreApplication::setApplicationName("MediaElch");
-    QCoreApplication::setApplicationVersion("1.3");
+    QCoreApplication::setApplicationVersion("1.4");
 
     if (!useGui || a.arguments().count() > 1) {
 #if QT_VERSION >= 0x050000
