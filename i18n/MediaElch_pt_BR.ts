@@ -445,7 +445,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Hint: Closed images will be deleted on save.</source>
-        <translation>Dica: Imagens Marcadas irão ser deletadas ao salvar.</translation>
+        <translation>Dica: Clicando em fechar imagem, as mesmas serão deletadas ao salvar.</translation>
     </message>
     <message>
         <source>Channels</source>
@@ -1582,7 +1582,7 @@ Operação Cancelada.</translation>
     </message>
     <message>
         <source>Hint: Closed images will be deleted on save.</source>
-        <translation>Dica: Imagens marcadas serão deletadas ao salvar.</translation>
+        <translation>Dica: Clicando em fechar imagem, as mesmas serão deletadas ao salvar.</translation>
     </message>
     <message>
         <source>Channels</source>
@@ -3066,7 +3066,7 @@ p, li { white-space: pre-wrap; }
     <name>TvShowWidgetTvShow</name>
     <message>
         <source>Dir</source>
-        <translation>Dir</translation>
+        <translation>Diretório</translation>
     </message>
     <message>
         <source>Form</source>
@@ -3226,7 +3226,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Hint: Closed images will be deleted on save.</source>
-        <translation>Dica: Imagens Marcadas serão deletadas ao salvar.</translation>
+        <translation>Dica: Clicando em fechar imagem, as mesmas serão deletadas ao salvar.</translation>
     </message>
     <message>
         <source>Extended</source>
