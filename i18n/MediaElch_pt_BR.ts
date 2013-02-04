@@ -114,7 +114,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Double click a certification to rename it, right click to delete. If you want to merge two certifications just give them the same name.</source>
-        <translation>Duplo clique na classificação indicativa para renomeá-la, clique direta para deletar. Se você deseje unir duas classificações, basta somente usar o mesmo nome.</translation>
+        <translation>Duplo clique na classificação indicativa para renomeá-la, clique direita para deletar. Se você deseje unir duas classificações, basta somente usar o mesmo nome.</translation>
     </message>
     <message>
         <source>Please keep in mind that the changes you make here (renaming or deleting certifications) will be made for every movie.</source>
@@ -159,7 +159,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Mark as watched</source>
-        <translation>Marcado como assistido</translation>
+        <translation>Marcar como assistido</translation>
     </message>
     <message>
         <source>Remove from Synchronization Queue</source>
@@ -167,7 +167,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Mark as unwatched</source>
-        <translation>Marcado por assistir</translation>
+        <translation>Marcar como  por assistir</translation>
     </message>
 </context>
 <context>
@@ -226,7 +226,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Infos to load</source>
-        <translation>Infor para carregar</translation>
+        <translation>Informações por carregar</translation>
     </message>
     <message>
         <source>Trailer</source>
@@ -389,7 +389,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Scantype</source>
-        <translation>Tipo Scan</translation>
+        <translation>Varredura</translation>
     </message>
     <message>
         <source>Subtitles</source>
@@ -409,7 +409,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Play Count</source>
-        <translation>Contador Execução</translation>
+        <translation>Contador de Reprodução</translation>
     </message>
     <message>
         <source>Clear Art</source>
@@ -518,7 +518,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Mark as watched</source>
-        <translation>Marcado como assistido</translation>
+        <translation>Marcar como assistido</translation>
     </message>
     <message>
         <source>Date Added</source>
@@ -530,11 +530,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Mark as unwatched</source>
-        <translation>Marcado por assistir</translation>
+        <translation>Marcar como  por assistir</translation>
     </message>
     <message>
         <source>Load Information</source>
-        <translation>Carregar Informação</translation>
+        <translation>Buscar Informações</translation>
     </message>
 </context>
 <context>
@@ -1144,7 +1144,7 @@ Operação Cancelada.</translation>
     </message>
     <message>
         <source>Movie Multi Scrape</source>
-        <translation>Multi Scrape em Filmes</translation>
+        <translation>Filmes Multi Scrape</translation>
     </message>
     <message>
         <source>Backdrop</source>
@@ -1176,7 +1176,7 @@ Operação Cancelada.</translation>
     </message>
     <message>
         <source>Infos to load</source>
-        <translation>Infos para carregar</translation>
+        <translation>Informações por carregar</translation>
     </message>
     <message>
         <source>Trailer</source>
@@ -1271,7 +1271,7 @@ Operação Cancelada.</translation>
     </message>
     <message>
         <source>Infos to load</source>
-        <translation>Infos para carregar</translation>
+        <translation>Informações por carregar</translation>
     </message>
     <message>
         <source>Trailer</source>
@@ -1470,11 +1470,11 @@ Operação Cancelada.</translation>
     </message>
     <message>
         <source>Sort Title</source>
-        <translation>Ordenar Título</translation>
+        <translation>Título para Ordenar</translation>
     </message>
     <message>
         <source>Outline</source>
-        <translation>Delinear</translation>
+        <translation>Sinopse</translation>
     </message>
     <message>
         <source>Add Tag</source>
@@ -1502,11 +1502,11 @@ Operação Cancelada.</translation>
     </message>
     <message>
         <source>Information</source>
-        <translation>Informação</translation>
+        <translation>Informações</translation>
     </message>
     <message>
         <source>Scantype</source>
-        <translation>Tipo Scan</translation>
+        <translation>Varredura</translation>
     </message>
     <message>
         <source>Subtitles</source>
@@ -1542,7 +1542,7 @@ Operação Cancelada.</translation>
     </message>
     <message>
         <source>Play Count</source>
-        <translation>Contador Execuções</translation>
+        <translation>Contador de Reprodução</translation>
     </message>
     <message>
         <source>Top 250</source>
@@ -1792,15 +1792,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Dry Run</source>
-        <translation>Dry Run</translation>
+        <translation>Executar</translation>
     </message>
     <message>
         <source>Placeholder</source>
-        <translation>Espaço Vago</translation>
+        <translation>Marcador</translation>
     </message>
     <message>
         <source>Placeholders</source>
-        <translation>Espaços Vagos</translation>
+        <translation>Marcadores</translation>
     </message>
     <message>
         <source>&lt;b&gt;Move Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
@@ -1871,7 +1871,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Sorttitle</source>
-        <translation>Ordenar Título</translation>
+        <translation>Título para Ordenar</translation>
     </message>
     <message>
         <source>Click to Change</source>
@@ -2094,7 +2094,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Sep. folders</source>
-        <translation>Sep. Pastas</translation>
+        <translation>Pastas Separadas</translation>
     </message>
     <message>
         <source>Automatically reload contents on start</source>
@@ -2730,7 +2730,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>First aired</source>
-        <translation>Ao ar em</translation>
+        <translation>Estreou</translation>
     </message>
     <message>
         <source>Certification</source>
@@ -2908,7 +2908,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>First Aired</source>
-        <translation>Foi ao ar em</translation>
+        <translation>Estreou</translation>
     </message>
     <message>
         <source>Display Episode</source>
@@ -2948,7 +2948,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Scantype</source>
-        <translation>Tipo Scan</translation>
+        <translation>Varredura</translation>
     </message>
     <message>
         <source>Subtitles</source>
@@ -2972,7 +2972,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Play Count</source>
-        <translation>Contador de Assistido</translation>
+        <translation>Contador de Reprodução</translation>
     </message>
     <message>
         <source>HH:mm:ss</source>
@@ -3162,7 +3162,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>First Aired</source>
-        <translation>Primeira Exibição</translation>
+        <translation>Estreou</translation>
     </message>
     <message>
         <source>Resolution</source>
@@ -3186,7 +3186,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salva</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvo</translation>
     </message>
     <message>
         <source>Click to change</source>
@@ -3194,7 +3194,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Show Title</source>
-        <translation>Título Seriado</translation>
+        <translation>Mostrar Título</translation>
     </message>
     <message>
         <source>Information</source>
@@ -3345,7 +3345,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>This will rename all your artwork to fit the Frodo naming conventions. Please make sure you have not already set Frodo filenames in MediaElchs settings. Your artwork needs to show up in MediaElch.</source>
-        <translation>Isto irá renomear todas as suas artes para a nova nomenclatura do XBMC Frodo. Por favos tenha certeza que você não setou Nomenclatura do aquivos - Frodo  nos ajustes do MeciaElchs. Suas artes  serão apresentadas na interface do MediaElch.</translation>
+        <translation>Isto irá renomear todas as suas artes para a nova nomenclatura do XBMC Frodo. Por favor tenha certeza que você não setou Nomenclatura do aquivos - Frodo  nos ajustes do MeciaElchs. Suas artes  serão apresentadas na interface do MediaElch.</translation>
     </message>
 </context>
 </TS>
