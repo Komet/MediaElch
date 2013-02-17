@@ -45,7 +45,7 @@ bool MovieProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceP
  */
 bool MovieProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    int cmp = QString::compare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString());
+    int cmp = QString::compare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString(), Qt::CaseInsensitive);
 
     if (m_sortBy == SortByAdded) {
         // Qt::UserRole+5
