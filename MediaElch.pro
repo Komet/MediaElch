@@ -124,7 +124,8 @@ SOURCES += main.cpp\
     tvShows/TvShowWidgetSeason.cpp \
     smallWidgets/ImageGallery.cpp \
     smallWidgets/ClosableImage.cpp \
-    renamer/Renamer.cpp
+    renamer/Renamer.cpp \
+    smallWidgets/MySpinBox.cpp
 
 HEADERS  += main/MainWindow.h \
     movies/Movie.h \
@@ -223,7 +224,8 @@ HEADERS  += main/MainWindow.h \
     tvShows/TvShowWidgetSeason.h \
     smallWidgets/ImageGallery.h \
     smallWidgets/ClosableImage.h \
-    renamer/Renamer.h
+    renamer/Renamer.h \
+    smallWidgets/MySpinBox.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

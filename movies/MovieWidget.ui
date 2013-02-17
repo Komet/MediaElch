@@ -370,7 +370,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QSpinBox" name="votes">
+                 <widget class="MySpinBox" name="votes">
                   <property name="maximum">
                    <number>9999999</number>
                   </property>
@@ -1529,6 +1529,11 @@ QPushButton::hover {
    <extends>QWidget</extends>
    <header>smallWidgets/ImageGallery.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MySpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>smallWidgets/MySpinBox.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
