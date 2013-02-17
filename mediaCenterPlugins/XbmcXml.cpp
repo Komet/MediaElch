@@ -365,8 +365,12 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
         movie->setDirector(domDoc.elementsByTagName("director").at(0).toElement().text());
     if (!domDoc.elementsByTagName("playcount").isEmpty())
         movie->setPlayCount(domDoc.elementsByTagName("playcount").at(0).toElement().text().toInt());
-    if (!domDoc.elementsByTagName("lastplayed").isEmpty())
-        movie->setLastPlayed(QDateTime::fromString(domDoc.elementsByTagName("lastplayed").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss"));
+    if (!domDoc.elementsByTagName("lastplayed").isEmpty()) {
+        QDateTime lastPlayed = QDateTime::fromString(domDoc.elementsByTagName("lastplayed").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss");
+        if (!lastPlayed.isValid())
+            lastPlayed = QDateTime::fromString(domDoc.elementsByTagName("lastplayed").at(0).toElement().text(), "yyyy-MM-dd");
+        movie->setLastPlayed(lastPlayed);
+    }
     if (!domDoc.elementsByTagName("id").isEmpty())
         movie->setId(domDoc.elementsByTagName("id").at(0).toElement().text());
     if (!domDoc.elementsByTagName("tmdbid").isEmpty())
@@ -377,8 +381,11 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
         movie->setSortTitle(domDoc.elementsByTagName("sorttitle").at(0).toElement().text());
     if (!domDoc.elementsByTagName("trailer").isEmpty())
         movie->setTrailer(QUrl(domDoc.elementsByTagName("trailer").at(0).toElement().text()));
-    if (!domDoc.elementsByTagName("watched").isEmpty())
+    if (!domDoc.elementsByTagName("watched").isEmpty()) {
         movie->setWatched(domDoc.elementsByTagName("watched").at(0).toElement().text() == "true" ? true : false);
+    } else {
+        movie->setWatched(movie->playcount() > 0);
+    }
 
     for (int i=0, n=domDoc.elementsByTagName("studio").size() ; i<n ; i++)
         movie->addStudio(domDoc.elementsByTagName("studio").at(i).toElement().text());
