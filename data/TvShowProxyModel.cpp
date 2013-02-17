@@ -42,7 +42,7 @@ bool TvShowProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &source
  */
 bool TvShowProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    int cmp = QString::compare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString());
+    int cmp = QString::compare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString(), Qt::CaseInsensitive);
     return !(cmp < 0);
 }
 
