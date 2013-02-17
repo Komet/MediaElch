@@ -17,7 +17,7 @@ Settings::Settings(QObject *parent) :
     m_initialDataFilesEden.append(DataFile(DataFileType::MovieNfo, "<baseFileName>.nfo", 0));
     m_initialDataFilesEden.append(DataFile(DataFileType::MoviePoster, "<baseFileName>.tbn", 0));
     m_initialDataFilesEden.append(DataFile(DataFileType::MovieBackdrop, "<baseFileName>-fanart.jpg", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::MovieCdArt, "cdart.png", 0));
+    m_initialDataFilesEden.append(DataFile(DataFileType::MovieCdArt, "disc.png", 0));
     m_initialDataFilesEden.append(DataFile(DataFileType::MovieClearArt, "clearart.png", 0));
     m_initialDataFilesEden.append(DataFile(DataFileType::MovieLogo, "logo.png", 0));
 
@@ -38,7 +38,7 @@ Settings::Settings(QObject *parent) :
     m_initialDataFilesEden.append(DataFile(DataFileType::ConcertNfo, "<baseFileName>.nfo", 0));
     m_initialDataFilesEden.append(DataFile(DataFileType::ConcertPoster, "<baseFileName>.tbn", 0));
     m_initialDataFilesEden.append(DataFile(DataFileType::ConcertBackdrop, "<baseFileName>-fanart.jpg", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::ConcertCdArt, "cdart.png", 0));
+    m_initialDataFilesEden.append(DataFile(DataFileType::ConcertCdArt, "disc.png", 0));
     m_initialDataFilesEden.append(DataFile(DataFileType::ConcertClearArt, "clearart.png", 0));
     m_initialDataFilesEden.append(DataFile(DataFileType::ConcertLogo, "logo.png", 0));
 
@@ -46,7 +46,7 @@ Settings::Settings(QObject *parent) :
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieNfo, "<baseFileName>.nfo", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MoviePoster, "<baseFileName>-poster.jpg", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieBackdrop, "<baseFileName>-fanart.jpg", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieCdArt, "cdart.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieCdArt, "disc.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieClearArt, "clearart.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieLogo, "logo.png", 0));
 
@@ -67,7 +67,7 @@ Settings::Settings(QObject *parent) :
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertNfo, "<baseFileName>.nfo", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertPoster, "<baseFileName>-poster.jpg", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertBackdrop, "<baseFileName>-fanart.jpg", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertCdArt, "cdart.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertCdArt, "disc.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertClearArt, "clearart.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertLogo, "logo.png", 0));
 }
