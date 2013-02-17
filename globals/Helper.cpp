@@ -143,13 +143,13 @@ QString &Helper::sanitizeFileName(QString &fileName)
 {
     fileName.replace("/", " ");
     fileName.replace("\\", " ");
-    fileName.replace("$", " ");
-    fileName.replace("<", " ");
-    fileName.replace(">", " ");
-    fileName.replace(":", " ");
-    fileName.replace("\"", " ");
-    fileName.replace("?", " ");
-    fileName.replace("*", " ");
+    fileName.replace("$", "");
+    fileName.replace("<", "");
+    fileName.replace(">", "");
+    fileName.replace(":", "");
+    fileName.replace("\"", "");
+    fileName.replace("?", "");
+    fileName.replace("*", "");
     fileName = fileName.trimmed();
     return fileName;
 }
