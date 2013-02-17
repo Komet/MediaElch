@@ -16,6 +16,7 @@ public:
     static bool isDvd(QString path);
     static bool isBluRay(QString path);
     static QImage &resizeBackdrop(QImage &image);
+    static QByteArray &resizeBackdrop(QByteArray &image);
     static QString &sanitizeFileName(QString &fileName);
     static QString stackedBaseName(const QString &fileName);
 };

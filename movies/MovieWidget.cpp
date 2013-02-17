@@ -393,7 +393,7 @@ void MovieWidget::setMovie(Movie *movie)
     connect(m_movie->controller(), SIGNAL(sigDownloadProgress(Movie*,int, int)), this, SLOT(onDownloadProgress(Movie*,int,int)), Qt::UniqueConnection);
     connect(m_movie->controller(), SIGNAL(sigLoadingImages(Movie*,QList<int>)), this, SLOT(onLoadingImages(Movie*,QList<int>)), Qt::UniqueConnection);
     connect(m_movie->controller(), SIGNAL(sigLoadImagesStarted(Movie*)), this, SLOT(onLoadImagesStarted(Movie*)), Qt::UniqueConnection);
-    connect(m_movie->controller(), SIGNAL(sigImage(Movie*,int,QImage)), this, SLOT(onSetImage(Movie*,int,QImage)), Qt::UniqueConnection);
+    connect(m_movie->controller(), SIGNAL(sigImage(Movie*,int,QByteArray)), this, SLOT(onSetImage(Movie*,int,QByteArray)), Qt::UniqueConnection);
 
     if (movie->controller()->downloadsInProgress())
         setDisabledTrue();
@@ -485,11 +485,12 @@ void MovieWidget::onLoadingImages(Movie *movie, QList<int> imageTypes)
     ui->groupBox_3->update();
 }
 
-void MovieWidget::onSetImage(Movie *movie, int type, QImage image)
+void MovieWidget::onSetImage(Movie *movie, int type, QByteArray data)
 {
     if (movie != m_movie)
         return;
 
+    QImage image = QImage::fromData(data);
     switch (type) {
     case TypePoster:
         ui->poster->setPixmap(QPixmap::fromImage(image).scaled(200, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -640,11 +641,11 @@ void MovieWidget::updateMovieInfo()
     ui->videoScantype->setEnabled(m_movie->streamDetailsLoaded());
 
     // Poster
-    if (!m_movie->posterImage()->isNull()) {
-        ui->poster->setPixmap(QPixmap::fromImage(*m_movie->posterImage()).scaledToWidth(200, Qt::SmoothTransformation));
-        ui->posterResolution->setText(QString("%1x%2").arg(m_movie->posterImage()->width()).arg(m_movie->posterImage()->height()));
+    if (!m_movie->posterImage().isNull()) {
+        ui->poster->setPixmap(QPixmap::fromImage(m_movie->posterImage()).scaledToWidth(200, Qt::SmoothTransformation));
+        ui->posterResolution->setText(QString("%1x%2").arg(m_movie->posterImage().width()).arg(m_movie->posterImage().height()));
         ui->buttonPreviewPoster->setEnabled(true);
-        m_currentPoster = *m_movie->posterImage();
+        m_currentPoster = m_movie->posterImage();
     } else if (!Manager::instance()->mediaCenterInterface()->posterImageName(m_movie).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->posterImageName(m_movie));
         ui->poster->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
@@ -658,11 +659,11 @@ void MovieWidget::updateMovieInfo()
     }
 
     // Backdrop
-    if (!m_movie->backdropImage()->isNull()) {
-        ui->backdrop->setPixmap(QPixmap::fromImage(*m_movie->backdropImage()).scaledToWidth(200, Qt::SmoothTransformation));
-        ui->backdropResolution->setText(QString("%1x%2").arg(m_movie->backdropImage()->width()).arg(m_movie->backdropImage()->height()));
+    if (!m_movie->backdropImage().isNull()) {
+        ui->backdrop->setPixmap(QPixmap::fromImage(m_movie->backdropImage()).scaledToWidth(200, Qt::SmoothTransformation));
+        ui->backdropResolution->setText(QString("%1x%2").arg(m_movie->backdropImage().width()).arg(m_movie->backdropImage().height()));
         ui->buttonPreviewBackdrop->setEnabled(true);
-        m_currentBackdrop = *m_movie->backdropImage();
+        m_currentBackdrop = m_movie->backdropImage();
         QTimer::singleShot(0, this, SLOT(updateBackgroundImage()));
     } else if (!Manager::instance()->mediaCenterInterface()->backdropImageName(m_movie).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->backdropImageName(m_movie));
@@ -678,11 +679,11 @@ void MovieWidget::updateMovieInfo()
     }
 
     // Logo
-    if (!m_movie->logoImage()->isNull()) {
-        ui->logo->setPixmap(QPixmap::fromImage(*m_movie->logoImage()).scaled(200, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->logoResolution->setText(QString("%1x%2").arg(m_movie->logoImage()->width()).arg(m_movie->logoImage()->height()));
+    if (!m_movie->logoImage().isNull()) {
+        ui->logo->setPixmap(QPixmap::fromImage(m_movie->logoImage()).scaled(200, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->logoResolution->setText(QString("%1x%2").arg(m_movie->logoImage().width()).arg(m_movie->logoImage().height()));
         ui->buttonPreviewLogo->setEnabled(true);
-        m_currentLogo = *m_movie->logoImage();
+        m_currentLogo = m_movie->logoImage();
     } else if (!Manager::instance()->mediaCenterInterface()->logoImageName(m_movie).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->logoImageName(m_movie));
         ui->logo->setPixmap(p.scaled(200, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -696,11 +697,11 @@ void MovieWidget::updateMovieInfo()
     }
 
     // Clear art
-    if (!m_movie->clearArtImage()->isNull()) {
-        ui->clearArt->setPixmap(QPixmap::fromImage(*m_movie->clearArtImage()).scaled(200, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->clearArtResolution->setText(QString("%1x%2").arg(m_movie->clearArtImage()->width()).arg(m_movie->clearArtImage()->height()));
+    if (!m_movie->clearArtImage().isNull()) {
+        ui->clearArt->setPixmap(QPixmap::fromImage(m_movie->clearArtImage()).scaled(200, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->clearArtResolution->setText(QString("%1x%2").arg(m_movie->clearArtImage().width()).arg(m_movie->clearArtImage().height()));
         ui->buttonPreviewClearArt->setEnabled(true);
-        m_currentClearArt = *m_movie->clearArtImage();
+        m_currentClearArt = m_movie->clearArtImage();
     } else if (!Manager::instance()->mediaCenterInterface()->clearArtImageName(m_movie).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->clearArtImageName(m_movie));
         ui->clearArt->setPixmap(p.scaled(200, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -714,11 +715,11 @@ void MovieWidget::updateMovieInfo()
     }
 
     // CD Art
-    if (!m_movie->cdArtImage()->isNull()) {
-        ui->cdArt->setPixmap(QPixmap::fromImage(*m_movie->cdArtImage()).scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->cdArtResolution->setText(QString("%1x%2").arg(m_movie->cdArtImage()->width()).arg(m_movie->cdArtImage()->height()));
+    if (!m_movie->cdArtImage().isNull()) {
+        ui->cdArt->setPixmap(QPixmap::fromImage(m_movie->cdArtImage()).scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->cdArtResolution->setText(QString("%1x%2").arg(m_movie->cdArtImage().width()).arg(m_movie->cdArtImage().height()));
         ui->buttonPreviewCdArt->setEnabled(true);
-        m_currentCdArt = *m_movie->cdArtImage();
+        m_currentCdArt = m_movie->cdArtImage();
     } else if (!Manager::instance()->mediaCenterInterface()->cdArtImageName(m_movie).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->cdArtImageName(m_movie));
         ui->cdArt->setPixmap(p.scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -1183,8 +1184,9 @@ void MovieWidget::onActorChanged()
 
     Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
     if (!actor->image.isNull()) {
-        ui->actor->setPixmap(QPixmap::fromImage(actor->image).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->actorResolution->setText(QString("%1 x %2").arg(actor->image.width()).arg(actor->image.height()));
+        QImage img = QImage::fromData(actor->image);
+        ui->actor->setPixmap(QPixmap::fromImage(img).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->actorResolution->setText(QString("%1 x %2").arg(img.width()).arg(img.height()));
     } else if (!Manager::instance()->mediaCenterInterface()->actorImageName(m_movie, *actor).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->actorImageName(m_movie, *actor));
         ui->actor->setPixmap(p.scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -1209,8 +1211,11 @@ void MovieWidget::onChangeActorImage()
     if (!fileName.isNull()) {
         QImage img(fileName);
         if (!img.isNull()) {
+            QByteArray ba;
+            QBuffer buffer(&ba);
+            img.save(&buffer, "jpg", 100);
             Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
-            actor->image.load(fileName);
+            actor->image = ba;
             actor->imageHasChanged = true;
             onActorChanged();
             m_movie->setChanged(true);

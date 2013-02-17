@@ -43,7 +43,7 @@ signals:
     void sigLoadImagesStarted(Movie*);
     void sigDownloadProgress(Movie*, int, int);
     void sigLoadingImages(Movie*, QList<int>);
-    void sigImage(Movie*,int,QImage);
+    void sigImage(Movie*,int,QByteArray);
 
 private slots:
     void onFanartLoadDone(Movie* movie, QMap<int, QList<Poster> > posters);

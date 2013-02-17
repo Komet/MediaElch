@@ -79,12 +79,15 @@ int MovieMultiScrapeDialog::exec()
     ui->btnClose->setVisible(false);
     ui->btnStartScraping->setVisible(true);
     ui->btnStartScraping->setEnabled(true);
+    ui->chkAutoSave->setEnabled(true);
     ui->progressAll->setValue(0);
     ui->progressMovie->setValue(0);
     ui->groupBox->setEnabled(true);
     ui->movie->clear();
+    m_currentMovie = 0;
     m_executed = true;
     setChkBoxesEnabled();
+    adjustSize();
     return QDialog::exec();
 }
 
@@ -114,6 +117,7 @@ void MovieMultiScrapeDialog::onStartScraping()
     ui->groupBox->setEnabled(false);
     ui->comboScraper->setEnabled(false);
     ui->btnStartScraping->setEnabled(false);
+    ui->chkAutoSave->setEnabled(false);
 
     m_scraperInterface = Manager::instance()->scrapers().at(ui->comboScraper->itemData(ui->comboScraper->currentIndex()).toInt());
     m_isTmdb = m_scraperInterface->name() == "The Movie DB";
@@ -147,6 +151,10 @@ void MovieMultiScrapeDialog::scrapeNext()
     if (m_queue.isEmpty()) {
         onScrapingFinished();
         return;
+    }
+
+    if (m_currentMovie && ui->chkAutoSave->isChecked()) {
+        m_currentMovie->controller()->saveData(Manager::instance()->mediaCenterInterface());
     }
 
     m_currentMovie = m_queue.dequeue();

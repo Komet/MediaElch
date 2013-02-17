@@ -1,5 +1,6 @@
 #include "Helper.h"
 
+#include <QBuffer>
 #include <QDir>
 #include <QRegExp>
 #include "globals/Globals.h"
@@ -129,6 +130,14 @@ QImage &Helper::resizeBackdrop(QImage &image)
     return image;
 }
 
+QByteArray &Helper::resizeBackdrop(QByteArray &image)
+{
+    QImage img = QImage::fromData(image);
+    Helper::resizeBackdrop(img);
+    QBuffer buffer(&image);
+    img.save(&buffer, "jpg", 100);
+    return image;
+}
 
 QString &Helper::sanitizeFileName(QString &fileName)
 {

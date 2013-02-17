@@ -99,7 +99,7 @@ void Movie::clear(QList<int> infos)
         m_actors.clear();
     if (infos.contains(MovieScraperInfos::Backdrop)) {
         m_backdrops.clear();
-        m_backdropImage = QImage();
+        m_backdropImage = QByteArray();
         m_backdropImageChanged = false;
     }
     if (infos.contains(MovieScraperInfos::Countries))
@@ -108,7 +108,7 @@ void Movie::clear(QList<int> infos)
         m_genres.clear();
     if (infos.contains(MovieScraperInfos::Poster)){
         m_posters.clear();
-        m_posterImage = QImage();
+        m_posterImage = QByteArray();
         m_posterImageChanged = false;
         m_numPrimaryLangPosters = 0;
     }
@@ -141,11 +141,11 @@ void Movie::clear(QList<int> infos)
     if (infos.contains(MovieScraperInfos::Tags))
         m_tags.clear();
     if (infos.contains(MovieScraperInfos::ExtraArts)) {
-        m_logoImage = QImage();
+        m_logoImage = QByteArray();
         m_logoImageChanged = false;
-        m_clearArtImage = QImage();
+        m_clearArtImage = QByteArray();
         m_clearArtImageChanged = false;
-        m_cdArtImage = QImage();
+        m_cdArtImage = QByteArray();
         m_cdArtImageChanged = false;
     }
     if (infos.contains(MovieScraperInfos::ExtraFanarts)) {
@@ -160,14 +160,14 @@ void Movie::clear(QList<int> infos)
  */
 void Movie::clearImages()
 {
-    m_posterImage = QImage();
-    m_backdropImage = QImage();
-    m_logoImage = QImage();
-    m_clearArtImage = QImage();
-    m_cdArtImage = QImage();
+    m_posterImage = QByteArray();
+    m_backdropImage = QByteArray();
+    m_logoImage = QByteArray();
+    m_clearArtImage = QByteArray();
+    m_cdArtImage = QByteArray();
     m_extraFanartImagesToAdd.clear();
     foreach (Actor *actor, actorsPointer())
-        actor->image = QImage();
+        actor->image = QByteArray();
 }
 
 /*** GETTER ***/
@@ -532,45 +532,45 @@ QList<Poster> Movie::backdrops() const
  * @brief Holds the current movie poster
  * @return Current movie poster
  */
-QImage *Movie::posterImage()
+QImage Movie::posterImage()
 {
-    return &m_posterImage;
+    return QImage::fromData(m_posterImage);
 }
 
 /**
  * @brief Holds the current movie backdrop
  * @return Current movie backdrop
  */
-QImage *Movie::backdropImage()
+QImage Movie::backdropImage()
 {
-    return &m_backdropImage;
+    return QImage::fromData(m_backdropImage);
 }
 
 /**
  * @brief Holds the current movie logo
  * @return Current movie logo
  */
-QImage *Movie::logoImage()
+QImage Movie::logoImage()
 {
-    return &m_logoImage;
+    return QImage::fromData(m_logoImage);
 }
 
 /**
  * @brief Holds the current movie clear art
  * @return Current movie clear art
  */
-QImage *Movie::clearArtImage()
+QImage Movie::clearArtImage()
 {
-    return &m_clearArtImage;
+    return QImage::fromData(m_clearArtImage);
 }
 
 /**
  * @brief Holds the current movie cd art
  * @return Current movie cd art
  */
-QImage *Movie::cdArtImage()
+QImage Movie::cdArtImage()
 {
-    return &m_cdArtImage;
+    return QImage::fromData(m_cdArtImage);
 }
 
 /**
@@ -1340,9 +1340,9 @@ void Movie::addBackdrop(Poster backdrop)
  * @param poster Current poster image
  * @see Movie::posters
  */
-void Movie::setPosterImage(QImage poster)
+void Movie::setPosterImage(QByteArray poster)
 {
-    m_posterImage = QImage(poster);
+    m_posterImage = poster;
     m_posterImageChanged = true;
     setChanged(true);
 }
@@ -1352,9 +1352,9 @@ void Movie::setPosterImage(QImage poster)
  * @param backdrop Current backdrop image
  * @see Movie::backdrops
  */
-void Movie::setBackdropImage(QImage backdrop)
+void Movie::setBackdropImage(QByteArray backdrop)
 {
-    m_backdropImage = QImage(backdrop);
+    m_backdropImage = backdrop;
     m_backdropImageChanged = true;
     setChanged(true);
 }
@@ -1363,9 +1363,9 @@ void Movie::setBackdropImage(QImage backdrop)
  * @brief Sets the current logo image
  * @param img Current logo image
  */
-void Movie::setLogoImage(QImage img)
+void Movie::setLogoImage(QByteArray img)
 {
-    m_logoImage = QImage(img);
+    m_logoImage = img;
     m_logoImageChanged = true;
     setChanged(true);
 }
@@ -1374,9 +1374,9 @@ void Movie::setLogoImage(QImage img)
  * @brief Sets the current clear art image
  * @param img Current clear art image
  */
-void Movie::setClearArtImage(QImage img)
+void Movie::setClearArtImage(QByteArray img)
 {
-    m_clearArtImage = QImage(img);
+    m_clearArtImage = img;
     m_clearArtImageChanged = true;
     setChanged(true);
 }
@@ -1385,9 +1385,9 @@ void Movie::setClearArtImage(QImage img)
  * @brief Sets the current cd art image
  * @param img Current cd art image
  */
-void Movie::setCdArtImage(QImage img)
+void Movie::setCdArtImage(QByteArray img)
 {
-    m_cdArtImage = QImage(img);
+    m_cdArtImage = img;
     m_cdArtImageChanged = true;
     setChanged(true);
 }

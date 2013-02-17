@@ -2,6 +2,7 @@
 #define MOVIEMULTISCRAPEDIALOG_H
 
 #include <QDialog>
+#include <QPointer>
 #include <QQueue>
 #include "movies/Movie.h"
 
@@ -38,7 +39,7 @@ private:
     Ui::MovieMultiScrapeDialog *ui;
     QList<Movie*> m_movies;
     QQueue<Movie*> m_queue;
-    Movie *m_currentMovie;
+    QPointer<Movie> m_currentMovie;
     ScraperInterface *m_scraperInterface;
     bool m_isImdb;
     bool m_isTmdb;

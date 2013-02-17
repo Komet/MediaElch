@@ -149,18 +149,18 @@ bool XbmcXml::saveMovie(Movie *movie)
     if (!saved)
         return false;
 
-    if (movie->posterImageChanged() && !movie->posterImage()->isNull()) {
+    if (movie->posterImageChanged() && !movie->posterImage().isNull()) {
         foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MoviePoster)) {
             QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
             qDebug() << "Saving poster to" << fi.absolutePath() + QDir::separator() + saveFileName;
-            movie->posterImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "jpg", 100);
+            movie->posterImage().save(fi.absolutePath() + QDir::separator() + saveFileName, "jpg", 100);
         }
     }
-    if (movie->backdropImageChanged() && !movie->backdropImage()->isNull()) {
+    if (movie->backdropImageChanged() && !movie->backdropImage().isNull()) {
         foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieBackdrop)) {
             QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
             qDebug() << "Saving fanart to" << fi.absolutePath() + QDir::separator() + saveFileName;
-            movie->backdropImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "jpg", 100);
+            movie->backdropImage().save(fi.absolutePath() + QDir::separator() + saveFileName, "jpg", 100);
         }
     }
     saveAdditionalImages(movie);
@@ -171,7 +171,7 @@ bool XbmcXml::saveMovie(Movie *movie)
             dir.mkdir(fi.absolutePath() + QDir::separator() + ".actors");
             QString actorName = actor.name;
             actorName = actorName.replace(" ", "_");
-            actor.image.save(fi.absolutePath() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn", "jpg", 100);
+            QImage::fromData(actor.image).save(fi.absolutePath() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn", "jpg", 100);
         }
     }
 
@@ -185,25 +185,25 @@ bool XbmcXml::saveMovie(Movie *movie)
 void XbmcXml::saveAdditionalImages(Movie *movie)
 {
     QFileInfo fi(movie->files().at(0));
-    if (movie->logoImageChanged() && !movie->logoImage()->isNull()) {
+    if (movie->logoImageChanged() && !movie->logoImage().isNull()) {
         foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieLogo)) {
             QString saveFileName = dataFile.saveFileName(fi.fileName());
             qDebug() << "Saving logo to" << fi.absolutePath() + QDir::separator() + saveFileName;
-            movie->logoImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "png", 100);
+            movie->logoImage().save(fi.absolutePath() + QDir::separator() + saveFileName, "png", 100);
         }
     }
-    if (movie->clearArtImageChanged() && !movie->clearArtImage()->isNull()) {
+    if (movie->clearArtImageChanged() && !movie->clearArtImage().isNull()) {
         foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieClearArt)) {
             QString saveFileName = dataFile.saveFileName(fi.fileName());
             qDebug() << "Saving clear art to" << fi.absolutePath() + QDir::separator() + saveFileName;
-            movie->clearArtImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "png", 100);
+            movie->clearArtImage().save(fi.absolutePath() + QDir::separator() + saveFileName, "png", 100);
         }
     }
-    if (movie->cdArtImageChanged() && !movie->cdArtImage()->isNull()) {
+    if (movie->cdArtImageChanged() && !movie->cdArtImage().isNull()) {
         foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieCdArt)) {
             QString saveFileName = dataFile.saveFileName(fi.fileName());
             qDebug() << "Saving cd art to" << fi.absolutePath() + QDir::separator() + saveFileName;
-            movie->cdArtImage()->save(fi.absolutePath() + QDir::separator() + saveFileName, "png", 100);
+            movie->cdArtImage().save(fi.absolutePath() + QDir::separator() + saveFileName, "png", 100);
         }
     }
 
@@ -1583,7 +1583,8 @@ bool XbmcXml::saveTvShow(TvShow *show)
             dir.mkdir(show->dir() + QDir::separator() + ".actors");
             QString actorName = actor.name;
             actorName = actorName.replace(" ", "_");
-            actor.image.save(show->dir() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn", "jpg", 100);
+            QImage img = QImage::fromData(actor.image);
+            img.save(show->dir() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn", "jpg", 100);
         }
     }
 

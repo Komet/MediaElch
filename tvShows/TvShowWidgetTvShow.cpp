@@ -1111,8 +1111,9 @@ void TvShowWidgetTvShow::onActorChanged()
 
     Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
     if (!actor->image.isNull()) {
-        ui->actor->setPixmap(QPixmap::fromImage(actor->image).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->actorResolution->setText(QString("%1 x %2").arg(actor->image.width()).arg(actor->image.height()));
+        QImage img = QImage::fromData(actor->image);
+        ui->actor->setPixmap(QPixmap::fromImage(img).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->actorResolution->setText(QString("%1 x %2").arg(img.width()).arg(img.height()));
     } else if (!Manager::instance()->mediaCenterInterface()->actorImageName(m_show, *actor).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->actorImageName(m_show, *actor));
         ui->actor->setPixmap(p.scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -1137,8 +1138,11 @@ void TvShowWidgetTvShow::onChangeActorImage()
     if (!fileName.isNull()) {
         QImage img(fileName);
         if (!img.isNull()) {
+            QByteArray ba;
+            QBuffer buffer(&ba);
+            img.save(&buffer, "jpg", 100);
             Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
-            actor->image.load(fileName);
+            actor->image = ba;
             actor->imageHasChanged = true;
             onActorChanged();
             m_show->setChanged(true);

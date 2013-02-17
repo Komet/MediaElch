@@ -4,6 +4,7 @@
 #include <QFileInfo>
 
 #include "globals/DownloadManagerElement.h"
+#include "globals/Helper.h"
 #include "globals/NameFormatter.h"
 #include "globals/Manager.h"
 #include "settings/Settings.h"
@@ -226,29 +227,23 @@ void MovieController::onDownloadFinished(DownloadManagerElement elem)
 
     switch (elem.imageType) {
     case TypePoster:
-        m_movie->setPosterImage(elem.image);
+        m_movie->setPosterImage(elem.data);
         break;
     case TypeBackdrop:
-        if ((elem.image.width() != 1920 || elem.image.height() != 1080) &&
-            elem.image.width() > 1915 && elem.image.width() < 1925 && elem.image.height() > 1075 && elem.image.height() < 1085)
-            elem.image = elem.image.scaled(1920, 1080, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-
-        if ((elem.image.width() != 1280 || elem.image.height() != 720) &&
-            elem.image.width() > 1275 && elem.image.width() < 1285 && elem.image.height() > 715 && elem.image.height() < 725)
-            elem.image = elem.image.scaled(1280, 720, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-        m_movie->setBackdropImage(elem.image);
+        Helper::resizeBackdrop(elem.data);
+        m_movie->setBackdropImage(elem.data);
         break;
     case TypeLogo:
-        m_movie->setLogoImage(elem.image);
+        m_movie->setLogoImage(elem.data);
         break;
     case TypeClearArt:
-        m_movie->setClearArtImage(elem.image);
+        m_movie->setClearArtImage(elem.data);
         break;
     case TypeCdArt:
-        m_movie->setCdArtImage(elem.image);
+        m_movie->setCdArtImage(elem.data);
         break;
     case TypeActor:
-        elem.actor->image = elem.image;
+        elem.actor->image = elem.data;
         break;
     case TypeExtraFanart:
         m_movie->addExtraFanart(elem.image);
@@ -258,7 +253,7 @@ void MovieController::onDownloadFinished(DownloadManagerElement elem)
     }
 
     if (elem.imageType != TypeActor)
-        emit sigImage(m_movie, elem.imageType, elem.image);
+        emit sigImage(m_movie, elem.imageType, elem.data);
 }
 
 void MovieController::loadImage(int type, QUrl url)

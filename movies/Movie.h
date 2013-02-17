@@ -95,28 +95,11 @@ public:
     QString id() const;
     QString tmdbId() const;
     QString set() const;
-    QList<Poster> posters() const;
-    QList<Poster> backdrops() const;
-    QImage *posterImage();
-    QImage *backdropImage();
-    QImage *logoImage();
-    QImage *clearArtImage();
-    QImage *cdArtImage();
-    bool posterImageChanged() const;
-    bool backdropImageChanged() const;
-    bool logoImageChanged() const;
-    bool clearArtImageChanged() const;
-    bool cdArtImageChanged() const;
     bool watched() const;
     int movieId() const;
     bool inSeparateFolder() const;
     int mediaCenterId() const;
     int numPrimaryLangPosters() const;
-    bool hasPoster() const;
-    bool hasBackdrop() const;
-    bool hasLogo() const;
-    bool hasClearArt() const;
-    bool hasCdArt() const;
     StreamDetails *streamDetails();
     bool streamDetailsLoaded() const;
     QDateTime fileLastModified() const;
@@ -124,9 +107,6 @@ public:
     int databaseId() const;
     bool syncNeeded() const;
     bool hasLocalTrailer() const;
-    QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
-    QStringList extraFanartsToRemove();
-    QList<QImage> extraFanartImagesToAdd();
 
     bool hasChanged() const;
 
@@ -159,17 +139,6 @@ public:
     void setId(QString id);
     void setTmdbId(QString id);
     void setSet(QString set);
-    void setPosters(QList<Poster> posters);
-    void setPoster(int index, Poster poster);
-    void addPoster(Poster poster,bool primaryLang = false);
-    void setBackdrops(QList<Poster> backdrops);
-    void setBackdrop(int index, Poster backdrop);
-    void addBackdrop(Poster backdrop);
-    void setPosterImage(QImage poster);
-    void setBackdropImage(QImage backdrop);
-    void setLogoImage(QImage img);
-    void setClearArtImage(QImage img);
-    void setCdArtImage(QImage img);
     void setWatched(bool watched);
     void setChanged(bool changed);
     void setDownloadsInProgress(bool inProgress);
@@ -177,20 +146,11 @@ public:
     void setInSeparateFolder(bool inSepFolder);
     void setMediaCenterId(int mediaCenterId);
     void setNumPrimaryLangPosters(int numberPrimaryLangPosters);
-    void setHasPoster(bool has);
-    void setHasBackdrop(bool has);
-    void setHasLogo(bool has);
-    void setHasClearArt(bool has);
-    void setHasCdArt(bool has);
     void setStreamDetailsLoaded(bool loaded);
     void setFileLastModified(QDateTime modified);
     void setNfoContent(QString content);
     void setDatabaseId(int id);
     void setSyncNeeded(bool syncNeeded);
-    void addExtraFanart(QImage fanart);
-    void removeExtraFanart(QImage fanart);
-    void removeExtraFanart(QString file);
-    void clearExtraFanartData();
 
     void removeActor(Actor *actor);
     void removeCountry(QString *country);
@@ -201,7 +161,54 @@ public:
     void removeGenre(QString genre);
     void removeTag(QString tag);
 
+
+    // Images
+    bool hasPoster() const;
+    bool hasBackdrop() const;
+    bool hasLogo() const;
+    bool hasClearArt() const;
+    bool hasCdArt() const;
+    void setHasPoster(bool has);
+    void setHasBackdrop(bool has);
+    void setHasLogo(bool has);
+    void setHasClearArt(bool has);
+    void setHasCdArt(bool has);
+
+    QList<Poster> posters() const;
+    QList<Poster> backdrops() const;
+    QImage backdropImage();
+    QImage logoImage();
+    QImage clearArtImage();
+    QImage cdArtImage();
+    bool posterImageChanged() const;
+    bool backdropImageChanged() const;
+    bool logoImageChanged() const;
+    bool clearArtImageChanged() const;
+    bool cdArtImageChanged() const;
+    QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
+    QStringList extraFanartsToRemove();
+    QList<QImage> extraFanartImagesToAdd();
+
+    void setPosters(QList<Poster> posters);
+    void setPoster(int index, Poster poster);
+    void addPoster(Poster poster,bool primaryLang = false);
+    void setBackdrops(QList<Poster> backdrops);
+    void setBackdrop(int index, Poster backdrop);
+    void addBackdrop(Poster backdrop);
+    void setBackdropImage(QByteArray backdrop);
+    void setLogoImage(QByteArray img);
+    void setClearArtImage(QByteArray img);
+    void setCdArtImage(QByteArray img);
+    void addExtraFanart(QImage fanart);
+    void removeExtraFanart(QImage fanart);
+    void removeExtraFanart(QString file);
+    void clearExtraFanartData();
     void clearImages();
+
+    // Images new
+    void setPosterImage(QByteArray poster);
+    QImage posterImage();
+
 
 signals:
     void sigChanged(Movie*);
@@ -237,12 +244,6 @@ private:
     QString m_set;
     QList<Poster> m_posters;
     QList<Poster> m_backdrops;
-    QImage m_posterImage;
-    QImage m_backdropImage;
-    QImage m_logoImage;
-    QImage m_clearArtImage;
-    QImage m_cdArtImage;
-    QList<QImage> m_extraFanartImagesToAdd;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
     bool m_posterImageChanged;
@@ -270,6 +271,15 @@ private:
     QDateTime m_fileLastModified;
     QString m_nfoContent;
     int m_databaseId;
+
+    // Images
+    QByteArray m_posterImage;
+    QByteArray m_backdropImage;
+    QByteArray m_logoImage;
+    QByteArray m_clearArtImage;
+    QByteArray m_cdArtImage;
+    QList<QImage> m_extraFanartImagesToAdd;
+
 };
 
 Q_DECLARE_METATYPE(Movie*)

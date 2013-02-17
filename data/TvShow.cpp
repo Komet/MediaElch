@@ -223,7 +223,7 @@ void TvShow::clearImages()
         m_seasonBannerImages[season] = QImage();
     }
     foreach (Actor *actor, actorsPointer())
-        actor->image = QImage();
+        actor->image = QByteArray();
     m_extraFanartImagesToAdd.clear();
 }
 

@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>592</width>
-    <height>458</height>
+    <width>632</width>
+    <height>519</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -296,6 +296,13 @@
       </size>
      </property>
     </spacer>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="chkAutoSave">
+     <property name="text">
+      <string>Automatically save each movie after scraping</string>
+     </property>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,1">

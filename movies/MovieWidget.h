@@ -54,7 +54,7 @@ private slots:
     void onLoadImagesStarted(Movie *movie);
     void onLoadingImages(Movie *movie, QList<int> imageTypes);
     void onDownloadProgress(Movie *movie, int current, int maximum);
-    void onSetImage(Movie *movie, int type, QImage image);
+    void onSetImage(Movie *movie, int type, QByteArray data);
 
     void chooseMoviePoster();
     void chooseMovieBackdrop();

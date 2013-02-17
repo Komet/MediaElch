@@ -28,6 +28,7 @@ INSTALLS += icon
 
 ICON = MediaElch.icns
 RC_FILE = MediaElch.rc
+QMAKE_INFO_PLIST = MediaElch.plist
 
 QMAKE_CFLAGS += -gdwarf-2
 QMAKE_CXXFLAGS += -gdwarf-2
