@@ -107,6 +107,7 @@ public:
     int databaseId() const;
     bool syncNeeded() const;
     bool hasLocalTrailer() const;
+    QDateTime dateAdded() const;
 
     bool hasChanged() const;
 
@@ -151,6 +152,7 @@ public:
     void setNfoContent(QString content);
     void setDatabaseId(int id);
     void setSyncNeeded(bool syncNeeded);
+    void setDateAdded(QDateTime date);
 
     void removeActor(Actor *actor);
     void removeCountry(QString *country);
@@ -271,6 +273,7 @@ private:
     QDateTime m_fileLastModified;
     QString m_nfoContent;
     int m_databaseId;
+    QDateTime m_dateAdded;
 
     // Images
     QByteArray m_posterImage;

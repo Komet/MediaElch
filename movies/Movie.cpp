@@ -1564,6 +1564,16 @@ void Movie::clearExtraFanartData()
     m_extraFanarts.clear();
 }
 
+void Movie::setDateAdded(QDateTime date)
+{
+    m_dateAdded = date;
+}
+
+QDateTime Movie::dateAdded() const
+{
+    return m_dateAdded;
+}
+
 /*** DEBUG ***/
 
 QDebug operator<<(QDebug dbg, const Movie &movie)

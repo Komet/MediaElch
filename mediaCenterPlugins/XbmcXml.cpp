@@ -65,6 +65,9 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie)
     xml.writeTextElement("director", movie->director());
     xml.writeTextElement("playcount", QString("%1").arg(movie->playcount()));
     xml.writeTextElement("lastplayed", movie->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
+    if (!movie->dateAdded().isNull()) {
+        xml.writeTextElement("dateadded", movie->dateAdded().toString("yyyy-MM-dd HH:mm:ss"));
+    }
     xml.writeTextElement("id", movie->id());
     xml.writeTextElement("tmdbid", movie->tmdbId());
     xml.writeTextElement("set", movie->set());
@@ -371,6 +374,8 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
             lastPlayed = QDateTime::fromString(domDoc.elementsByTagName("lastplayed").at(0).toElement().text(), "yyyy-MM-dd");
         movie->setLastPlayed(lastPlayed);
     }
+    if (!domDoc.elementsByTagName("dateadded").isEmpty())
+        movie->setDateAdded(QDateTime::fromString(domDoc.elementsByTagName("dateadded").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss"));
     if (!domDoc.elementsByTagName("id").isEmpty())
         movie->setId(domDoc.elementsByTagName("id").at(0).toElement().text());
     if (!domDoc.elementsByTagName("tmdbid").isEmpty())
