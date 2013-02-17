@@ -570,7 +570,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > post
         }
     }
 
-    if (show->infosToLoad().contains(TvShowScraperInfos::Actors)) {
+    if (show->infosToLoad().contains(TvShowScraperInfos::Actors) && Settings::instance()->downloadActorImages()) {
         QList<Actor*> actors = show->actorsPointer();
         for (int i=0, n=actors.size() ; i<n ; ++i) {
             if (actors.at(i)->thumb.isEmpty())
