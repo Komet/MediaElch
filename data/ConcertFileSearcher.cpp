@@ -224,7 +224,8 @@ QStringList ConcertFileSearcher::getFiles(QString path)
 {
     QStringList filters;
     filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
-            << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.rmvb" << "*.img" << "*.wmv" << "*.ogm" << "*.mov" << "*.divx";
+            << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.rmvb" << "*.img" << "*.wmv" << "*.ogm" << "*.mov" << "*.divx"
+            << "*.wtv";
 
     return QDir(path).entryList(filters, QDir::Files | QDir::System);
 }

@@ -39,7 +39,7 @@ void MovieFileSearcher::reload(bool force)
     QStringList filters;
     filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
             << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm" << "*.rmvb" << "*.img" << "*.wmv"
-            << "*.mov" << "*.divx" << "VIDEO_TS.IFO" << "index.bdmv";
+            << "*.mov" << "*.divx" << "VIDEO_TS.IFO" << "index.bdmv" << "*.wtv";
 
     QList<MovieContents> c;
     QList<Movie*> dbMovies;
@@ -324,7 +324,7 @@ QStringList MovieFileSearcher::getFiles(QString path)
     QStringList filters;
     filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
             << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm" << "*.rmvb" << "*.img" << "*.wmv"
-            << "*.mov" << "*.divx";
+            << "*.mov" << "*.divx" << "*.wtv";
 
     foreach (const QString &file, QDir(path).entryList(filters, QDir::Files | QDir::System)) {
         m_lastModifications.insert(QDir::toNativeSeparators(path + "/" + file),
