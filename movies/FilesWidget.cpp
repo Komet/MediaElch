@@ -200,7 +200,7 @@ void FilesWidget::openFolder()
     if (movie->files().isEmpty())
         return;
     QFileInfo fi(movie->files().at(0));
-    QDesktopServices::openUrl("file://" + QDir::toNativeSeparators(fi.absolutePath()));
+    QDesktopServices::openUrl(QUrl("file:///" + fi.absolutePath(), QUrl::TolerantMode));
 }
 
 /**

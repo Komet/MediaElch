@@ -168,7 +168,7 @@ void ConcertFilesWidget::openFolder()
     if (concert->files().isEmpty())
         return;
     QFileInfo fi(concert->files().at(0));
-    QDesktopServices::openUrl("file://" + QDir::toNativeSeparators(fi.absolutePath()));
+    QDesktopServices::openUrl(QUrl("file:///" + fi.absolutePath(), QUrl::TolerantMode));
 }
 /**
  * @brief Called when an item has selected
