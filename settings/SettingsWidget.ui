@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>973</width>
-    <height>681</height>
+    <height>645</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,7 +26,7 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1,0">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0">
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="focusPolicy">
@@ -85,7 +85,7 @@ QTabBar::tab:selected {
       <attribute name="title">
        <string>Global Settings</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0,0,0,0,0,0,0,0">
+      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0,0,0,0,0,0,0,1">
        <item>
         <widget class="QLabel" name="label_12">
          <property name="font">
@@ -248,53 +248,30 @@ QTabBar::tab:selected {
         </layout>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,0">
-         <item>
-          <widget class="QLabel" name="label_excludeWords">
-           <property name="minimumSize">
-            <size>
-             <width>400</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Words to exclude from media names (seperated by commas and non case-sensitive)</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-           </property>
-           <property name="wordWrap">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QTextEdit" name="excludeWordsText">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="toolTip">
-            <string>Words to exclude from media names (seperated by commas and non case-sensitive)</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <spacer name="verticalSpacer_1">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
+        <widget class="QLabel" name="label_excludeWords">
+         <property name="minimumSize">
           <size>
-           <width>20</width>
-           <height>40</height>
+           <width>400</width>
+           <height>0</height>
           </size>
          </property>
-        </spacer>
+         <property name="text">
+          <string>Words to exclude from media names (seperated by commas and non case-sensitive)</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="excludeWordsText">
+         <property name="toolTip">
+          <string>Words to exclude from media names (seperated by commas and non case-sensitive)</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -1154,19 +1131,6 @@ QTabBar::tab:selected {
       </layout>
      </widget>
     </widget>
-   </item>
-   <item>
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_7">

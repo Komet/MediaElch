@@ -156,6 +156,10 @@ void Settings::loadSettings()
     m_settings.endArray();
 
     m_excludeWords = m_settings.value("excludeWords").toString();
+    if (m_excludeWords.isEmpty())
+        m_excludeWords = "ac3,dts,custom,dc,divx,divx5,dsr,dsrip,dutch,dvd,dvdrip,dvdscr,dvdscreener,screener,dvdivx,cam,fragment,fs,hdtv,hdrip,hdtvrip,internal,limited,"
+                         "multisubs,ntsc,ogg,ogm,pal,pdtv,proper,repack,rerip,retail,r3,r5,bd5,se,svcd,swedish,german,read.nfo,nfofix,unrated,ws,telesync,ts,telecine,tc,"
+                         "brrip,bdrip,480p,480i,576p,576i,720p,720i,1080p,1080i,hrhd,hrhdtv,hddvd,bluray,x264,h264,xvid,xvidvd,xxx,www";
 
     // Scrapers
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
