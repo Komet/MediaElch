@@ -51,6 +51,7 @@ public:
     QList<int> scraperInfos(MainWidgets widget, int scraperNo);
     void renamePatterns(int renameType, QString &fileNamePattern, QString &fileNamePatternMulti, QString &directoryPattern, QString &seasonPattern);
     void renamings(int renameType, bool &files, bool &folders, bool &seasonDirectories);
+    int tvShowUpdateOption();
 
     bool autoLoadStreamDetails();
 
@@ -82,6 +83,7 @@ public:
     void setScraperInfos(MainWidgets widget, int scraperNo, QList<int> items);
     void setRenamePatterns(int renameType, QString fileNamePattern, QString fileNamePatternMulti, QString directoryPattern, QString seasonPattern);
     void setRenamings(int renameType, bool files, bool folders, bool seasonDirectories);
+    void setTvShowUpdateOption(int option);
 
 public slots:
     void saveSettings();

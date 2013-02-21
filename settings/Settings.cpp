@@ -794,3 +794,13 @@ void Settings::renamings(int renameType, bool &files, bool &folders, bool &seaso
     folders = m_settings.value(QString("RenamePattern/%1/RenameFolders").arg(renameType), true).toBool();
     seasonDirectories = m_settings.value(QString("RenamePattern/%1/UseSeasonDirectories").arg(renameType), true).toBool();
 }
+
+int Settings::tvShowUpdateOption()
+{
+    return m_settings.value("TvShowUpdateOption", 0).toInt();
+}
+
+void Settings::setTvShowUpdateOption(int option)
+{
+    m_settings.setValue("TvShowUpdateOption", option);
+}
