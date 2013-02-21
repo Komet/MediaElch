@@ -57,9 +57,9 @@ public:
     QString seasonPosterImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString seasonBackdropImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString seasonBannerImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    static void saveAdditionalImages(Movie *movie);
-    static void saveAdditionalImages(Concert *concert);
-    static void saveAdditionalImages(TvShow *show);
+    void saveAdditionalImages(Movie *movie);
+    void saveAdditionalImages(Concert *concert);
+    void saveAdditionalImages(TvShow *show);
     QString logoImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString clearArtImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString characterArtImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
@@ -74,6 +74,7 @@ private:
     void writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode);
     void writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDetails);
     bool loadStreamDetails(StreamDetails *streamDetails, QDomDocument domDoc);
+    bool saveFile(QString filename, QByteArray data);
 };
 
 #endif // XBMCXML_H

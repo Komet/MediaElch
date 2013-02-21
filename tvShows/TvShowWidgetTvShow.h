@@ -81,7 +81,7 @@ private slots:
     void onActorEdited(QTableWidgetItem *item);
 
     void onRemoveExtraFanart(const QString &file);
-    void onRemoveExtraFanart(const QImage &image);
+    void onRemoveExtraFanart(const QByteArray &image);
     void onAddExtraFanart();
 
 private:

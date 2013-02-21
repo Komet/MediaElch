@@ -123,7 +123,7 @@ void ImageGallery::setImages(QList<ExtraFanart> images)
     positionImages();
 }
 
-void ImageGallery::addImage(const QImage &img, const QString &url)
+void ImageGallery::addImage(const QByteArray &img, const QString &url)
 {
     ClosableImage *label = new ClosableImage(m_imagesWidget);
     label->hide();

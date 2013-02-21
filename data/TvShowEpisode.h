@@ -63,7 +63,7 @@ public:
     QString episodeString() const;
     bool isValid() const;
     QUrl thumbnail() const;
-    QImage *thumbnailImage();
+    QByteArray thumbnailImage();
     bool thumbnailImageChanged() const;
     TvShowModelItem *modelItem();
     bool hasChanged() const;
@@ -96,7 +96,7 @@ public:
     void setCertification(QString certification);
     void setNetwork(QString network);
     void setThumbnail(QUrl url);
-    void setThumbnailImage(QImage thumbnail);
+    void setThumbnailImage(QByteArray thumbnail);
     void setInfosLoaded(bool loaded);
     void setChanged(bool changed);
     void setModelItem(TvShowModelItem *item);
@@ -140,7 +140,7 @@ private:
     QString m_certification;
     QString m_network;
     QUrl m_thumbnail;
-    QImage m_thumbnailImage;
+    QByteArray m_thumbnailImage;
     TvShowModelItem *m_modelItem;
     bool m_thumbnailImageChanged;
     bool m_infoLoaded;

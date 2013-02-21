@@ -17,7 +17,6 @@ public:
     DownloadManagerElement();
     ImageType imageType;
     QUrl url;
-    QImage image;
     QByteArray data;
     qint64 bytesReceived;
     qint64 bytesTotal;

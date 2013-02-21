@@ -194,7 +194,7 @@ void DownloadManager::downloadFinished()
     if (m_currentDownloadElement.imageType == TypeActor && !m_currentDownloadElement.movie)
         m_currentDownloadElement.actor->image = data;
     else if (m_currentDownloadElement.imageType == TypeShowThumbnail)
-        m_currentDownloadElement.episode->setThumbnailImage(QImage::fromData(data));
+        m_currentDownloadElement.episode->setThumbnailImage(data);
     else
         emit downloadFinished(m_currentDownloadElement);
     startNextDownload();

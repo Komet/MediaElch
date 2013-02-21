@@ -1,6 +1,7 @@
 #include "ImageDialog.h"
 #include "ui_ImageDialog.h"
 
+#include <QBuffer>
 #include <QDebug>
 #include <QFileDialog>
 #include <QSettings>
@@ -420,7 +421,11 @@ void ImageDialog::imageClicked(int row, int col)
     if (m_multiSelection) {
         if (ui->table->cellWidget(row, col) && !m_imageUrls.contains(url)) {
             m_imageUrls.append(url);
-            ui->gallery->addImage(static_cast<ImageLabel*>(ui->table->cellWidget(row, col))->image(), url.toString());
+            QByteArray ba;
+            QBuffer buffer(&ba);
+            QImage img = static_cast<ImageLabel*>(ui->table->cellWidget(row, col))->image();
+            img.save(&buffer, "jpg", 100);
+            ui->gallery->addImage(ba, url.toString());
         }
     } else {
         accept();
@@ -527,7 +532,13 @@ void ImageDialog::chooseLocalImage()
         ui->table->resizeRowsToContents();
         m_elements[index].downloaded = true;
         if (m_multiSelection) {
-            ui->gallery->addImage(QImage(fileName), fileName);
+            QByteArray ba;
+            QFile file(fileName);
+            if (file.open(QIODevice::ReadOnly)) {
+                ba = file.readAll();
+                file.close();
+            }
+            ui->gallery->addImage(ba, fileName);
             m_imageUrls.append(QUrl(fileName));
         } else {
             m_imageUrl = QUrl(fileName);
@@ -559,7 +570,13 @@ void ImageDialog::onImageDropped(QUrl url)
     ui->table->resizeRowsToContents();
     m_elements[index].downloaded = true;
     if (m_multiSelection) {
-        ui->gallery->addImage(QImage(url.toLocalFile()), url.toLocalFile());
+        QByteArray ba;
+        QFile file(url.toLocalFile());
+        if (file.open(QIODevice::ReadOnly)) {
+            ba = file.readAll();
+            file.close();
+        }
+        ui->gallery->addImage(ba, url.toLocalFile());
         m_imageUrls.append(url);
     } else {
         m_imageUrl = url;

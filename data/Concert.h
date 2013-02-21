@@ -71,11 +71,11 @@ public:
     QDateTime lastPlayed() const;
     QList<Poster> posters() const;
     QList<Poster> backdrops() const;
-    QImage *posterImage();
-    QImage *backdropImage();
-    QImage *logoImage();
-    QImage *clearArtImage();
-    QImage *cdArtImage();
+    QByteArray posterImage();
+    QByteArray backdropImage();
+    QByteArray logoImage();
+    QByteArray clearArtImage();
+    QByteArray cdArtImage();
     bool infoLoaded() const;
     bool posterImageChanged() const;
     bool backdropImageChanged() const;
@@ -119,11 +119,11 @@ public:
     void setBackdrops(QList<Poster> backdrops);
     void setBackdrop(int index, Poster backdrop);
     void addBackdrop(Poster backdrop);
-    void setPosterImage(QImage poster);
-    void setBackdropImage(QImage backdrop);
-    void setLogoImage(QImage img);
-    void setClearArtImage(QImage img);
-    void setCdArtImage(QImage img);
+    void setPosterImage(QByteArray poster);
+    void setBackdropImage(QByteArray backdrop);
+    void setLogoImage(QByteArray img);
+    void setClearArtImage(QByteArray img);
+    void setCdArtImage(QByteArray img);
     void setWatched(bool watched);
     void setChanged(bool changed);
     void setDownloadsInProgress(bool inProgress);
@@ -143,9 +143,9 @@ public:
     // Extra Fanarts
     QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
     QStringList extraFanartsToRemove();
-    QList<QImage> extraFanartImagesToAdd();
-    void addExtraFanart(QImage fanart);
-    void removeExtraFanart(QImage fanart);
+    QList<QByteArray> extraFanartImagesToAdd();
+    void addExtraFanart(QByteArray fanart);
+    void removeExtraFanart(QByteArray fanart);
     void removeExtraFanart(QString file);
     void clearExtraFanartData();
 
@@ -183,11 +183,11 @@ private:
     QDateTime m_lastPlayed;
     QList<Poster> m_posters;
     QList<Poster> m_backdrops;
-    QImage m_posterImage;
-    QImage m_backdropImage;
-    QImage m_logoImage;
-    QImage m_clearArtImage;
-    QImage m_cdArtImage;
+    QByteArray m_posterImage;
+    QByteArray m_backdropImage;
+    QByteArray m_logoImage;
+    QByteArray m_clearArtImage;
+    QByteArray m_cdArtImage;
     bool m_posterImageChanged;
     bool m_backdropImageChanged;
     bool m_logoImageChanged;
@@ -213,7 +213,7 @@ private:
     QList<ScraperData> m_loadsLeft;
     bool m_loadDoneFired;
     QMutex m_loadMutex;
-    QList<QImage> m_extraFanartImagesToAdd;
+    QList<QByteArray> m_extraFanartImagesToAdd;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
 };

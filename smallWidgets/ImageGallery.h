@@ -15,13 +15,13 @@ public:
     explicit ImageGallery(QWidget *parent = 0);
     void clear();
     void setImages(QList<ExtraFanart> images);
-    void addImage(const QImage &img, const QString &url = QString());
+    void addImage(const QByteArray &img, const QString &url = QString());
     void setLoading(const bool &loading);
     void setAlignment(const int &alignment);
     void setShowZoomAndResolution(const bool &show);
 
 signals:
-    void sigRemoveImage(QImage);
+    void sigRemoveImage(QByteArray);
     void sigRemoveImage(QString);
 
 protected:

@@ -246,7 +246,7 @@ void MovieController::onDownloadFinished(DownloadManagerElement elem)
         elem.actor->image = elem.data;
         break;
     case TypeExtraFanart:
-        m_movie->addExtraFanart(elem.image);
+        m_movie->addExtraFanart(elem.data);
         break;
     default:
         break;

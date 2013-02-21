@@ -282,7 +282,7 @@ enum ScraperData {
 };
 
 struct ExtraFanart {
-    QImage image;
+    QByteArray image;
     QString path;
 };
 

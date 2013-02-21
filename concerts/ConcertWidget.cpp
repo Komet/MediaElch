@@ -89,7 +89,7 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     m_savingWidget->setMovie(m_loadingMovie);
     m_savingWidget->hide();
 
-    connect(ui->fanarts, SIGNAL(sigRemoveImage(QImage)), this, SLOT(onRemoveExtraFanart(QImage)));
+    connect(ui->fanarts, SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
     connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddExtraFanart()));
 
@@ -482,11 +482,12 @@ void ConcertWidget::updateConcertInfo()
     ui->videoWidth->setEnabled(m_concert->streamDetailsLoaded());
     ui->videoScantype->setEnabled(m_concert->streamDetailsLoaded());
 
-    if (!m_concert->posterImage()->isNull()) {
-        ui->poster->setPixmap(QPixmap::fromImage(*m_concert->posterImage()).scaledToWidth(200, Qt::SmoothTransformation));
-        ui->posterResolution->setText(QString("%1x%2").arg(m_concert->posterImage()->width()).arg(m_concert->posterImage()->height()));
+    if (!m_concert->posterImage().isNull()) {
+        QImage img = QImage::fromData(m_concert->posterImage());
+        ui->poster->setPixmap(QPixmap::fromImage(img).scaledToWidth(200, Qt::SmoothTransformation));
+        ui->posterResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
         ui->buttonPreviewPoster->setEnabled(true);
-        m_currentPoster = *m_concert->posterImage();
+        m_currentPoster = img;
     } else if (!Manager::instance()->mediaCenterInterface()->posterImageName(m_concert).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->posterImageName(m_concert));
         ui->poster->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
@@ -499,11 +500,12 @@ void ConcertWidget::updateConcertInfo()
         ui->buttonPreviewPoster->setEnabled(false);
     }
 
-    if (!m_concert->backdropImage()->isNull()) {
-        ui->backdrop->setPixmap(QPixmap::fromImage(*m_concert->backdropImage()).scaledToWidth(200, Qt::SmoothTransformation));
-        ui->backdropResolution->setText(QString("%1x%2").arg(m_concert->backdropImage()->width()).arg(m_concert->backdropImage()->height()));
+    if (!m_concert->backdropImage().isNull()) {
+        QImage img = QImage::fromData(m_concert->backdropImage());
+        ui->backdrop->setPixmap(QPixmap::fromImage(img).scaledToWidth(200, Qt::SmoothTransformation));
+        ui->backdropResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
         ui->buttonPreviewBackdrop->setEnabled(true);
-        m_currentBackdrop = *m_concert->backdropImage();
+        m_currentBackdrop = img;
     } else if (!Manager::instance()->mediaCenterInterface()->backdropImageName(m_concert).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->backdropImageName(m_concert));
         ui->backdrop->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
@@ -517,11 +519,12 @@ void ConcertWidget::updateConcertInfo()
     }
 
     // Logo
-    if (!m_concert->logoImage()->isNull()) {
-        ui->logo->setPixmap(QPixmap::fromImage(*m_concert->logoImage()).scaled(200, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->logoResolution->setText(QString("%1x%2").arg(m_concert->logoImage()->width()).arg(m_concert->logoImage()->height()));
+    if (!m_concert->logoImage().isNull()) {
+        QImage img = QImage::fromData(m_concert->logoImage());
+        ui->logo->setPixmap(QPixmap::fromImage(img).scaled(200, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->logoResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
         ui->buttonPreviewLogo->setEnabled(true);
-        m_currentLogo = *m_concert->logoImage();
+        m_currentLogo = img;
     } else if (!Manager::instance()->mediaCenterInterface()->logoImageName(m_concert).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->logoImageName(m_concert));
         ui->logo->setPixmap(p.scaled(200, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -535,11 +538,12 @@ void ConcertWidget::updateConcertInfo()
     }
 
     // Clear art
-    if (!m_concert->clearArtImage()->isNull()) {
-        ui->clearArt->setPixmap(QPixmap::fromImage(*m_concert->clearArtImage()).scaled(200, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->clearArtResolution->setText(QString("%1x%2").arg(m_concert->clearArtImage()->width()).arg(m_concert->clearArtImage()->height()));
+    if (!m_concert->clearArtImage().isNull()) {
+        QImage img = QImage::fromData(m_concert->clearArtImage());
+        ui->clearArt->setPixmap(QPixmap::fromImage(img).scaled(200, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->clearArtResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
         ui->buttonPreviewClearArt->setEnabled(true);
-        m_currentClearArt = *m_concert->clearArtImage();
+        m_currentClearArt = img;
     } else if (!Manager::instance()->mediaCenterInterface()->clearArtImageName(m_concert).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->clearArtImageName(m_concert));
         ui->clearArt->setPixmap(p.scaled(200, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -553,11 +557,12 @@ void ConcertWidget::updateConcertInfo()
     }
 
     // CD Art
-    if (!m_concert->cdArtImage()->isNull()) {
-        ui->cdArt->setPixmap(QPixmap::fromImage(*m_concert->cdArtImage()).scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->cdArtResolution->setText(QString("%1x%2").arg(m_concert->cdArtImage()->width()).arg(m_concert->cdArtImage()->height()));
+    if (!m_concert->cdArtImage().isNull()) {
+        QImage img = QImage::fromData(m_concert->cdArtImage());
+        ui->cdArt->setPixmap(QPixmap::fromImage(img).scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->cdArtResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
         ui->buttonPreviewCdArt->setEnabled(true);
-        m_currentCdArt = *m_concert->cdArtImage();
+        m_currentCdArt = img;
     } else if (!Manager::instance()->mediaCenterInterface()->cdArtImageName(m_concert).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->cdArtImageName(m_concert));
         ui->cdArt->setPixmap(p.scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -853,54 +858,59 @@ void ConcertWidget::posterDownloadFinished(DownloadManagerElement elem)
     if (elem.imageType == TypePoster) {
         qDebug() << "Got a poster";
         if (m_concert == elem.concert) {
-            ui->poster->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            ui->posterResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+            QImage img = QImage::fromData(elem.data);
+            ui->poster->setPixmap(QPixmap::fromImage(img).scaled(200, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->posterResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
             ui->buttonPreviewPoster->setEnabled(true);
-            m_currentPoster = elem.image;
+            m_currentPoster = img;
         }
-        elem.concert->setPosterImage(elem.image);
+        elem.concert->setPosterImage(elem.data);
     } else if (elem.imageType == TypeBackdrop) {
         qDebug() << "Got a backdrop";
-        Helper::resizeBackdrop(elem.image);
+        Helper::resizeBackdrop(elem.data);
+        QImage img = QImage::fromData(elem.data);
         if (m_concert == elem.concert) {
-            ui->backdrop->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            ui->backdropResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+            ui->backdrop->setPixmap(QPixmap::fromImage(img).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->backdropResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
             ui->buttonPreviewBackdrop->setEnabled(true);
-            m_currentBackdrop = elem.image;
+            m_currentBackdrop = img;
         }
-        elem.concert->setBackdropImage(elem.image);
+        elem.concert->setBackdropImage(elem.data);
     } else if (elem.imageType == TypeLogo) {
         qDebug() << "Got a logo";
         if (m_concert == elem.concert) {
-            ui->logo->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            ui->logoResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+            QImage img = QImage::fromData(elem.data);
+            ui->logo->setPixmap(QPixmap::fromImage(img).scaled(200, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->logoResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
             ui->buttonPreviewLogo->setEnabled(true);
-            m_currentLogo = elem.image;
+            m_currentLogo = img;
         }
-        elem.concert->setLogoImage(elem.image);
+        elem.concert->setLogoImage(elem.data);
     } else if (elem.imageType == TypeClearArt) {
         qDebug() << "Got a clear art";
         if (m_concert == elem.concert) {
-            ui->clearArt->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            ui->clearArtResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+            QImage img = QImage::fromData(elem.data);
+            ui->clearArt->setPixmap(QPixmap::fromImage(img).scaled(200, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->clearArtResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
             ui->buttonPreviewClearArt->setEnabled(true);
-            m_currentClearArt = elem.image;
+            m_currentClearArt = img;
         }
-        elem.concert->setClearArtImage(elem.image);
+        elem.concert->setClearArtImage(elem.data);
     } else if (elem.imageType == TypeCdArt) {
         qDebug() << "Got a cd art";
         if (m_concert == elem.concert) {
-            ui->cdArt->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            ui->cdArtResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+            QImage img = QImage::fromData(elem.data);
+            ui->cdArt->setPixmap(QPixmap::fromImage(img).scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->cdArtResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
             ui->buttonPreviewCdArt->setEnabled(true);
-            m_currentCdArt = elem.image;
+            m_currentCdArt = img;
         }
-        elem.concert->setCdArtImage(elem.image);
+        elem.concert->setCdArtImage(elem.data);
     } else if (elem.imageType == TypeExtraFanart) {
-        Helper::resizeBackdrop(elem.image);
-        elem.concert->addExtraFanart(elem.image);
+        Helper::resizeBackdrop(elem.data);
+        elem.concert->addExtraFanart(elem.data);
         if (elem.concert == m_concert)
-            ui->fanarts->addImage(elem.image);
+            ui->fanarts->addImage(elem.data);
     }
     if (m_posterDownloadManager->downloadQueueSize() == 0) {
         emit setActionSaveEnabled(true, WidgetConcerts);
@@ -1249,7 +1259,7 @@ void ConcertWidget::onStreamDetailsEdited()
     ui->buttonRevert->setVisible(true);
 }
 
-void ConcertWidget::onRemoveExtraFanart(const QImage &image)
+void ConcertWidget::onRemoveExtraFanart(const QByteArray &image)
 {
     if (!m_concert)
         return;

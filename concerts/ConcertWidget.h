@@ -87,7 +87,7 @@ private slots:
     void updateStreamDetails(bool reloadFromFile = false);
 
     void onRemoveExtraFanart(const QString &file);
-    void onRemoveExtraFanart(const QImage &image);
+    void onRemoveExtraFanart(const QByteArray &image);
     void onAddExtraFanart();
 
 private:

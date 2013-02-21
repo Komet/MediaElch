@@ -47,7 +47,7 @@ void ClosableImage::mousePressEvent(QMouseEvent *ev)
         anim->start(QPropertyAnimation::DeleteWhenStopped);
         connect(anim, SIGNAL(finished()), this, SIGNAL(sigClose()));
     } else if (m_showZoomAndResolution && zoomRect.contains(ev->pos()) && m_pixmap.isNull()) {
-        emit sigZoom(m_image);
+        emit sigZoom(QImage::fromData(m_image));
     }
 }
 
@@ -71,13 +71,14 @@ void ClosableImage::paintEvent(QPaintEvent *event)
         p.drawPixmap(m_mySize, (height()-h)/2, m_pixmap.scaledToWidth(width()-2*m_mySize));
         return;
     }
+    QImage img = QImage::fromData(m_image);
     QRect r = rect();
-    p.drawImage(0, 7, m_image.scaledToWidth(width()-9, Qt::SmoothTransformation));
+    p.drawImage(0, 7, img.scaledToWidth(width()-9, Qt::SmoothTransformation));
     p.drawImage(r.width()-25, 0, QImage(":/img/closeImage.png"));
 
     if (m_showZoomAndResolution) {
         p.setFont(m_font);
-        p.drawText(0, height()-20, width()-9, 20, Qt::AlignRight | Qt::AlignBottom, QString("%1x%2").arg(m_image.width()).arg(m_image.height()));
+        p.drawText(0, height()-20, width()-9, 20, Qt::AlignRight | Qt::AlignBottom, QString("%1x%2").arg(img.width()).arg(img.height()));
         p.drawPixmap(0, height()-16, 16, 16, m_zoomIn);
     }
 }
@@ -92,22 +93,23 @@ void ClosableImage::setMyData(const QVariant &data)
     m_myData = data;
 }
 
-void ClosableImage::setImage(const QImage &image)
+void ClosableImage::setImage(const QByteArray &image)
 {
+    QImage img = QImage::fromData(image);
     m_image = image;
     int zoomSpace = (m_showZoomAndResolution) ? 20 : 0;
     if (m_scaleTo == Qt::Horizontal) {
         // scale to width
         setFixedWidth(m_fixedSize);
-        setFixedHeight(qCeil((((qreal)width()-9)/m_image.width())*m_image.height()+7+zoomSpace));
+        setFixedHeight(qCeil((((qreal)width()-9)/img.width())*img.height()+7+zoomSpace));
     } else {
         // scale to height
         setFixedHeight(m_fixedSize);
-        setFixedWidth(qCeil((((qreal)height()-7-zoomSpace)/m_image.height())*m_image.width()+9));
+        setFixedWidth(qCeil((((qreal)height()-7-zoomSpace)/img.height())*img.width()+9));
     }
 }
 
-QImage ClosableImage::image() const
+QByteArray ClosableImage::image() const
 {
     return m_image;
 }

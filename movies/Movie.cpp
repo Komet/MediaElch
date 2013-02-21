@@ -532,45 +532,45 @@ QList<Poster> Movie::backdrops() const
  * @brief Holds the current movie poster
  * @return Current movie poster
  */
-QImage Movie::posterImage()
+QByteArray Movie::posterImage()
 {
-    return QImage::fromData(m_posterImage);
+    return m_posterImage;
 }
 
 /**
  * @brief Holds the current movie backdrop
  * @return Current movie backdrop
  */
-QImage Movie::backdropImage()
+QByteArray Movie::backdropImage()
 {
-    return QImage::fromData(m_backdropImage);
+    return m_backdropImage;
 }
 
 /**
  * @brief Holds the current movie logo
  * @return Current movie logo
  */
-QImage Movie::logoImage()
+QByteArray Movie::logoImage()
 {
-    return QImage::fromData(m_logoImage);
+    return m_logoImage;
 }
 
 /**
  * @brief Holds the current movie clear art
  * @return Current movie clear art
  */
-QImage Movie::clearArtImage()
+QByteArray Movie::clearArtImage()
 {
-    return QImage::fromData(m_clearArtImage);
+    return m_clearArtImage;
 }
 
 /**
  * @brief Holds the current movie cd art
  * @return Current movie cd art
  */
-QImage Movie::cdArtImage()
+QByteArray Movie::cdArtImage()
 {
-    return QImage::fromData(m_cdArtImage);
+    return m_cdArtImage;
 }
 
 /**
@@ -1507,13 +1507,13 @@ bool Movie::hasLocalTrailer() const
     return !dir.entryList(QStringList() << trailerFilter).isEmpty();
 }
 
-void Movie::addExtraFanart(QImage fanart)
+void Movie::addExtraFanart(QByteArray fanart)
 {
     m_extraFanartImagesToAdd.append(fanart);
     setChanged(true);
 }
 
-void Movie::removeExtraFanart(QImage fanart)
+void Movie::removeExtraFanart(QByteArray fanart)
 {
     m_extraFanartImagesToAdd.removeOne(fanart);
     setChanged(true);
@@ -1535,11 +1535,15 @@ QList<ExtraFanart> Movie::extraFanarts(MediaCenterInterface *mediaCenterInterfac
     QList<ExtraFanart> fanarts;
     foreach (const QString &file, m_extraFanarts) {
         ExtraFanart f;
-        f.image = QImage(file);
+        QFile fi(file);
+        if (fi.open(QIODevice::ReadOnly)) {
+            f.image = fi.readAll();
+            fi.close();
+        }
         f.path = file;
         fanarts.append(f);
     }
-    foreach (const QImage &img, m_extraFanartImagesToAdd) {
+    foreach (const QByteArray &img, m_extraFanartImagesToAdd) {
         ExtraFanart f;
         f.image = img;
         fanarts.append(f);
@@ -1552,7 +1556,7 @@ QStringList Movie::extraFanartsToRemove()
     return m_extraFanartsToRemove;
 }
 
-QList<QImage> Movie::extraFanartImagesToAdd()
+QList<QByteArray> Movie::extraFanartImagesToAdd()
 {
     return m_extraFanartImagesToAdd;
 }

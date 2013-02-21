@@ -15,8 +15,8 @@ public:
     explicit ClosableImage(QWidget *parent = 0);
     void setMyData(const QVariant &data);
     QVariant myData() const;
-    void setImage(const QImage &image);
-    QImage image() const;
+    void setImage(const QByteArray &image);
+    QByteArray image() const;
     int mySize() const;
     void setMySize(const int &size);
     void setShowZoomAndResolution(const bool &show);
@@ -33,7 +33,7 @@ protected:
 
 private:
     QVariant m_myData;
-    QImage m_image;
+    QByteArray m_image;
     QPixmap m_pixmap;
     int m_mySize;
     QFont m_font;

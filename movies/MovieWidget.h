@@ -111,7 +111,7 @@ private slots:
     void updateBackgroundImage();
 
     void onRemoveExtraFanart(const QString &file);
-    void onRemoveExtraFanart(const QImage &image);
+    void onRemoveExtraFanart(const QByteArray &image);
     void onAddExtraFanart();
 
 private:

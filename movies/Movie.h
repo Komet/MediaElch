@@ -178,10 +178,6 @@ public:
 
     QList<Poster> posters() const;
     QList<Poster> backdrops() const;
-    QImage backdropImage();
-    QImage logoImage();
-    QImage clearArtImage();
-    QImage cdArtImage();
     bool posterImageChanged() const;
     bool backdropImageChanged() const;
     bool logoImageChanged() const;
@@ -189,7 +185,7 @@ public:
     bool cdArtImageChanged() const;
     QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
     QStringList extraFanartsToRemove();
-    QList<QImage> extraFanartImagesToAdd();
+    QList<QByteArray> extraFanartImagesToAdd();
 
     void setPosters(QList<Poster> posters);
     void setPoster(int index, Poster poster);
@@ -201,16 +197,18 @@ public:
     void setLogoImage(QByteArray img);
     void setClearArtImage(QByteArray img);
     void setCdArtImage(QByteArray img);
-    void addExtraFanart(QImage fanart);
-    void removeExtraFanart(QImage fanart);
+    void addExtraFanart(QByteArray fanart);
+    void removeExtraFanart(QByteArray fanart);
     void removeExtraFanart(QString file);
     void clearExtraFanartData();
     void clearImages();
 
-    // Images new
     void setPosterImage(QByteArray poster);
-    QImage posterImage();
-
+    QByteArray posterImage();
+    QByteArray backdropImage();
+    QByteArray logoImage();
+    QByteArray clearArtImage();
+    QByteArray cdArtImage();
 
 signals:
     void sigChanged(Movie*);
@@ -281,7 +279,7 @@ private:
     QByteArray m_logoImage;
     QByteArray m_clearArtImage;
     QByteArray m_cdArtImage;
-    QList<QImage> m_extraFanartImagesToAdd;
+    QList<QByteArray> m_extraFanartImagesToAdd;
 
 };
 

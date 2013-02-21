@@ -202,7 +202,7 @@ bool TvShowEpisode::isValid() const
  */
 void TvShowEpisode::clearImages()
 {
-    m_thumbnailImage = QImage();
+    m_thumbnailImage = QByteArray();
 }
 
 /*** GETTER ***/
@@ -472,9 +472,9 @@ QUrl TvShowEpisode::thumbnail() const
  * @brief Holds the current thumbnail image
  * @return Image of the thumbnail
  */
-QImage *TvShowEpisode::thumbnailImage()
+QByteArray TvShowEpisode::thumbnailImage()
 {
-    return &m_thumbnailImage;
+    return m_thumbnailImage;
 }
 
 /**
@@ -783,7 +783,7 @@ void TvShowEpisode::setThumbnail(QUrl url)
  * @brief TvShowEpisode::setThumbnailImage
  * @param thumbnail
  */
-void TvShowEpisode::setThumbnailImage(QImage thumbnail)
+void TvShowEpisode::setThumbnailImage(QByteArray thumbnail)
 {
     m_thumbnailImage = thumbnail;
     m_thumbnailImageChanged = true;

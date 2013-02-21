@@ -166,6 +166,7 @@ void TvShowWidget::onSaveAll()
 
     for (int i=0, n=shows.count() ; i<n ; ++i) {
         if (shows[i]->hasChanged()) {
+            qDebug() << "SAVING TV SHOW" << shows[i]->name();
             shows[i]->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
             MessageBox::instance()->progressBarProgress(++episodesSaved, episodesToSave, Constants::TvShowWidgetSaveProgressMessageId);
             qApp->processEvents(QEventLoop::ExcludeUserInputEvents);

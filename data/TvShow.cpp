@@ -106,11 +106,11 @@ void TvShow::clear(QList<int> infos)
         m_backdropImageChanged = false;
     }
     if (infos.contains(TvShowScraperInfos::ExtraArts)) {
-        m_logoImage = QImage();
+        m_logoImage = QByteArray();
         m_logoImageChanged = false;
-        m_clearArtImage = QImage();
+        m_clearArtImage = QByteArray();
         m_clearArtImageChanged = false;
-        m_characterArtImage = QImage();
+        m_characterArtImage = QByteArray();
         m_characterArtImageChanged = false;
     }
     if (infos.contains(TvShowScraperInfos::ExtraFanarts)) {
@@ -211,16 +211,16 @@ void TvShow::scraperLoadDone()
  */
 void TvShow::clearImages()
 {
-    m_posterImage = QImage();
-    m_backdropImage = QImage();
-    m_bannerImage = QImage();
-    m_logoImage = QImage();
-    m_clearArtImage = QImage();
-    m_characterArtImage = QImage();
+    m_posterImage = QByteArray();
+    m_backdropImage = QByteArray();
+    m_bannerImage = QByteArray();
+    m_logoImage = QByteArray();
+    m_clearArtImage = QByteArray();
+    m_characterArtImage = QByteArray();
     foreach (int season, seasons()) {
-        m_seasonPosterImages[season] = QImage();
-        m_seasonBackdropImages[season] = QImage();
-        m_seasonBannerImages[season] = QImage();
+        m_seasonPosterImages[season] = QByteArray();
+        m_seasonBackdropImages[season] = QByteArray();
+        m_seasonBannerImages[season] = QByteArray();
     }
     foreach (Actor *actor, actorsPointer())
         actor->image = QByteArray();
@@ -488,54 +488,54 @@ QList<Poster> TvShow::backdrops() const
  * @brief TvShow::posterImage
  * @return
  */
-QImage *TvShow::posterImage()
+QByteArray TvShow::posterImage()
 {
-    return &m_posterImage;
+    return m_posterImage;
 }
 
 /**
  * @brief TvShow::backdropImage
  * @return
  */
-QImage *TvShow::backdropImage()
+QByteArray TvShow::backdropImage()
 {
-    return &m_backdropImage;
+    return m_backdropImage;
 }
 
 /**
  * @brief TvShow::bannerImage
  * @return
  */
-QImage *TvShow::bannerImage()
+QByteArray TvShow::bannerImage()
 {
-    return &m_bannerImage;
+    return m_bannerImage;
 }
 
 /**
  * @brief TvShow::logoImage
  * @return
  */
-QImage *TvShow::logoImage()
+QByteArray TvShow::logoImage()
 {
-    return &m_logoImage;
+    return m_logoImage;
 }
 
 /**
  * @brief TvShow::clearArtImage
  * @return
  */
-QImage *TvShow::clearArtImage()
+QByteArray TvShow::clearArtImage()
 {
-    return &m_clearArtImage;
+    return m_clearArtImage;
 }
 
 /**
  * @brief TvShow::characterArtImage
  * @return
  */
-QImage *TvShow::characterArtImage()
+QByteArray TvShow::characterArtImage()
 {
-    return &m_characterArtImage;
+    return m_characterArtImage;
 }
 
 /**
@@ -543,12 +543,12 @@ QImage *TvShow::characterArtImage()
  * @param season
  * @return
  */
-QImage *TvShow::seasonPosterImage(int season)
+QByteArray TvShow::seasonPosterImage(int season)
 {
     if (!m_seasonPosterImages.contains(season))
-        m_seasonPosterImages.insert(season, QImage());
+        m_seasonPosterImages.insert(season, QByteArray());
 
-    return &m_seasonPosterImages[season];
+    return m_seasonPosterImages[season];
 }
 
 /**
@@ -564,12 +564,12 @@ QList<Poster> TvShow::seasonPosters(int season) const
     return m_seasonPosters[season];
 }
 
-QImage *TvShow::seasonBackdropImage(int season)
+QByteArray TvShow::seasonBackdropImage(int season)
 {
     if (!m_seasonBackdropImages.contains(season))
-        m_seasonBackdropImages.insert(season, QImage());
+        m_seasonBackdropImages.insert(season, QByteArray());
 
-    return &m_seasonBackdropImages[season];
+    return m_seasonBackdropImages[season];
 }
 
 QList<Poster> TvShow::seasonBackdrops(int season) const
@@ -580,12 +580,12 @@ QList<Poster> TvShow::seasonBackdrops(int season) const
     return m_seasonBackdrops[season];
 }
 
-QImage *TvShow::seasonBannerImage(int season)
+QByteArray TvShow::seasonBannerImage(int season)
 {
     if (!m_seasonBannerImages.contains(season))
-        m_seasonBannerImages.insert(season, QImage());
+        m_seasonBannerImages.insert(season, QByteArray());
 
-    return &m_seasonBannerImages[season];
+    return m_seasonBannerImages[season];
 }
 
 QList<Poster> TvShow::seasonBanners(int season) const
@@ -1030,9 +1030,9 @@ void TvShow::addBackdrop(Poster backdrop)
  * @brief Sets the poster image
  * @param poster
  */
-void TvShow::setPosterImage(QImage poster)
+void TvShow::setPosterImage(QByteArray poster)
 {
-    m_posterImage = QImage(poster);
+    m_posterImage = poster;
     m_posterImageChanged = true;
     setChanged(true);
 }
@@ -1041,9 +1041,9 @@ void TvShow::setPosterImage(QImage poster)
  * @brief Sets the banner image
  * @param banner
  */
-void TvShow::setBannerImage(QImage banner)
+void TvShow::setBannerImage(QByteArray banner)
 {
-    m_bannerImage = QImage(banner);
+    m_bannerImage = banner;
     m_bannerImageChanged = true;
     setChanged(true);
 }
@@ -1052,9 +1052,9 @@ void TvShow::setBannerImage(QImage banner)
  * @brief Sets the logo image
  * @param img
  */
-void TvShow::setLogoImage(QImage img)
+void TvShow::setLogoImage(QByteArray img)
 {
-    m_logoImage = QImage(img);
+    m_logoImage = img;
     m_logoImageChanged = true;
     setChanged(true);
 }
@@ -1063,9 +1063,9 @@ void TvShow::setLogoImage(QImage img)
  * @brief Sets the clear art image
  * @param img
  */
-void TvShow::setClearArtImage(QImage img)
+void TvShow::setClearArtImage(QByteArray img)
 {
-    m_clearArtImage = QImage(img);
+    m_clearArtImage = img;
     m_clearArtImageChanged = true;
     setChanged(true);
 }
@@ -1074,9 +1074,9 @@ void TvShow::setClearArtImage(QImage img)
  * @brief Sets the character art image
  * @param img
  */
-void TvShow::setCharacterArtImage(QImage img)
+void TvShow::setCharacterArtImage(QByteArray img)
 {
-    m_characterArtImage = QImage(img);
+    m_characterArtImage = img;
     m_characterArtImageChanged = true;
     setChanged(true);
 }
@@ -1085,9 +1085,9 @@ void TvShow::setCharacterArtImage(QImage img)
  * @brief Sets the backdrop image
  * @param backdrop
  */
-void TvShow::setBackdropImage(QImage backdrop)
+void TvShow::setBackdropImage(QByteArray backdrop)
 {
-    m_backdropImage = QImage(backdrop);
+    m_backdropImage = backdrop;
     m_backdropImageChanged = true;
     setChanged(true);
 }
@@ -1113,7 +1113,7 @@ void TvShow::addSeasonPoster(int season, Poster poster)
  * @param season Number of the season
  * @param poster Season poster image
  */
-void TvShow::setSeasonPosterImage(int season, QImage poster)
+void TvShow::setSeasonPosterImage(int season, QByteArray poster)
 {
     if (m_seasonPosterImages.contains(season))
         m_seasonPosterImages[season] = poster;
@@ -1139,7 +1139,7 @@ void TvShow::addSeasonBackdrop(int season, Poster poster)
     setChanged(true);
 }
 
-void TvShow::setSeasonBackdropImage(int season, QImage poster)
+void TvShow::setSeasonBackdropImage(int season, QByteArray poster)
 {
     if (m_seasonBackdropImages.contains(season))
         m_seasonBackdropImages[season] = poster;
@@ -1162,7 +1162,7 @@ void TvShow::addSeasonBanner(int season, Poster poster)
     setChanged(true);
 }
 
-void TvShow::setSeasonBannerImage(int season, QImage poster)
+void TvShow::setSeasonBannerImage(int season, QByteArray poster)
 {
     if (m_seasonBannerImages.contains(season))
         m_seasonBannerImages[season] = poster;
@@ -1269,13 +1269,13 @@ void TvShow::setSyncNeeded(bool syncNeeded)
     m_syncNeeded = syncNeeded;
 }
 
-void TvShow::addExtraFanart(QImage fanart)
+void TvShow::addExtraFanart(QByteArray fanart)
 {
     m_extraFanartImagesToAdd.append(fanart);
     setChanged(true);
 }
 
-void TvShow::removeExtraFanart(QImage fanart)
+void TvShow::removeExtraFanart(QByteArray fanart)
 {
     m_extraFanartImagesToAdd.removeOne(fanart);
     setChanged(true);
@@ -1297,11 +1297,15 @@ QList<ExtraFanart> TvShow::extraFanarts(MediaCenterInterface *mediaCenterInterfa
     QList<ExtraFanart> fanarts;
     foreach (const QString &file, m_extraFanarts) {
         ExtraFanart f;
-        f.image = QImage(file);
+        QFile fi(file);
+        if (fi.open(QIODevice::ReadOnly)) {
+            f.image = fi.readAll();
+            fi.close();
+        }
         f.path = file;
         fanarts.append(f);
     }
-    foreach (const QImage &img, m_extraFanartImagesToAdd) {
+    foreach (const QByteArray &img, m_extraFanartImagesToAdd) {
         ExtraFanart f;
         f.image = img;
         fanarts.append(f);
@@ -1314,7 +1318,7 @@ QStringList TvShow::extraFanartsToRemove()
     return m_extraFanartsToRemove;
 }
 
-QList<QImage> TvShow::extraFanartImagesToAdd()
+QList<QByteArray> TvShow::extraFanartImagesToAdd()
 {
     return m_extraFanartImagesToAdd;
 }

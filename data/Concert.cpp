@@ -86,14 +86,14 @@ void Concert::clear(QList<int> infos)
 {
     if (infos.contains(ConcertScraperInfos::Backdrop)) {
         m_backdrops.clear();
-        m_backdropImage = QImage();
+        m_backdropImage = QByteArray();
         m_backdropImageChanged = false;
     }
     if (infos.contains(ConcertScraperInfos::Genres))
         m_genres.clear();
     if (infos.contains(ConcertScraperInfos::Poster)) {
         m_posters.clear();
-        m_posterImage = QImage();
+        m_posterImage = QByteArray();
         m_posterImageChanged = false;
     }
     if (infos.contains(ConcertScraperInfos::Overview))
@@ -113,11 +113,11 @@ void Concert::clear(QList<int> infos)
     if (infos.contains(ConcertScraperInfos::Tags))
         m_tags.clear();
     if (infos.contains(ConcertScraperInfos::ExtraArts)) {
-        m_cdArtImage = QImage();
+        m_cdArtImage = QByteArray();
         m_cdArtImageChanged = false;
-        m_clearArtImage = QImage();
+        m_clearArtImage = QByteArray();
         m_clearArtImageChanged = false;
-        m_logoImage = QImage();
+        m_logoImage = QByteArray();
         m_logoImageChanged = false;
     }
     if (infos.contains(ConcertScraperInfos::ExtraFanarts)) {
@@ -272,11 +272,11 @@ void Concert::scraperLoadDone()
  */
 void Concert::clearImages()
 {
-    m_posterImage = QImage();
-    m_backdropImage = QImage();
-    m_logoImage = QImage();
-    m_clearArtImage = QImage();
-    m_cdArtImage = QImage();
+    m_posterImage = QByteArray();
+    m_backdropImage = QByteArray();
+    m_logoImage = QByteArray();
+    m_clearArtImage = QByteArray();
+    m_cdArtImage = QByteArray();
     m_extraFanartImagesToAdd.clear();
 }
 
@@ -478,45 +478,45 @@ QList<Poster> Concert::backdrops() const
  * @brief Holds the current concert poster
  * @return Current concert poster
  */
-QImage *Concert::posterImage()
+QByteArray Concert::posterImage()
 {
-    return &m_posterImage;
+    return m_posterImage;
 }
 
 /**
  * @brief Holds the current concert backdrop
  * @return Current concert backdrop
  */
-QImage *Concert::backdropImage()
+QByteArray Concert::backdropImage()
 {
-    return &m_backdropImage;
+    return m_backdropImage;
 }
 
 /**
  * @brief Holds the current concert logo
  * @return Current concert logo
  */
-QImage *Concert::logoImage()
+QByteArray Concert::logoImage()
 {
-    return &m_logoImage;
+    return m_logoImage;
 }
 
 /**
  * @brief Holds the current concert clear art
  * @return Current concert clear art
  */
-QImage *Concert::clearArtImage()
+QByteArray Concert::clearArtImage()
 {
-    return &m_clearArtImage;
+    return m_clearArtImage;
 }
 
 /**
  * @brief Holds the current concert cd art
  * @return Current concert cd art
  */
-QImage *Concert::cdArtImage()
+QByteArray Concert::cdArtImage()
 {
-    return &m_cdArtImage;
+    return m_cdArtImage;
 }
 
 /**
@@ -1068,9 +1068,9 @@ void Concert::addBackdrop(Poster backdrop)
  * @param poster Current poster image
  * @see Concert::posters
  */
-void Concert::setPosterImage(QImage poster)
+void Concert::setPosterImage(QByteArray poster)
 {
-    m_posterImage = QImage(poster);
+    m_posterImage = poster;
     m_posterImageChanged = true;
     setChanged(true);
 }
@@ -1080,9 +1080,9 @@ void Concert::setPosterImage(QImage poster)
  * @param backdrop Current backdrop image
  * @see Concert::backdrops
  */
-void Concert::setBackdropImage(QImage backdrop)
+void Concert::setBackdropImage(QByteArray backdrop)
 {
-    m_backdropImage = QImage(backdrop);
+    m_backdropImage = backdrop;
     m_backdropImageChanged = true;
     setChanged(true);
 }
@@ -1091,9 +1091,9 @@ void Concert::setBackdropImage(QImage backdrop)
  * @brief Sets the current logo image
  * @param img Current logo image
  */
-void Concert::setLogoImage(QImage img)
+void Concert::setLogoImage(QByteArray img)
 {
-    m_logoImage = QImage(img);
+    m_logoImage = img;
     m_logoImageChanged = true;
     setChanged(true);
 }
@@ -1102,9 +1102,9 @@ void Concert::setLogoImage(QImage img)
  * @brief Sets the current clear art image
  * @param img Current clear art image
  */
-void Concert::setClearArtImage(QImage img)
+void Concert::setClearArtImage(QByteArray img)
 {
-    m_clearArtImage = QImage(img);
+    m_clearArtImage = img;
     m_clearArtImageChanged = true;
     setChanged(true);
 }
@@ -1113,9 +1113,9 @@ void Concert::setClearArtImage(QImage img)
  * @brief Sets the current cd art image
  * @param img Current cd art image
  */
-void Concert::setCdArtImage(QImage img)
+void Concert::setCdArtImage(QByteArray img)
 {
-    m_cdArtImage = QImage(img);
+    m_cdArtImage = img;
     m_cdArtImageChanged = true;
     setChanged(true);
 }
@@ -1144,13 +1144,13 @@ void Concert::removeTag(QString tag)
     setChanged(true);
 }
 
-void Concert::addExtraFanart(QImage fanart)
+void Concert::addExtraFanart(QByteArray fanart)
 {
     m_extraFanartImagesToAdd.append(fanart);
     setChanged(true);
 }
 
-void Concert::removeExtraFanart(QImage fanart)
+void Concert::removeExtraFanart(QByteArray fanart)
 {
     m_extraFanartImagesToAdd.removeOne(fanart);
     setChanged(true);
@@ -1172,11 +1172,15 @@ QList<ExtraFanart> Concert::extraFanarts(MediaCenterInterface *mediaCenterInterf
     QList<ExtraFanart> fanarts;
     foreach (const QString &file, m_extraFanarts) {
         ExtraFanart f;
-        f.image = QImage(file);
+        QFile fi(file);
+        if (fi.open(QIODevice::ReadOnly)) {
+            f.image = fi.readAll();
+            fi.close();
+        }
         f.path = file;
         fanarts.append(f);
     }
-    foreach (const QImage &img, m_extraFanartImagesToAdd) {
+    foreach (const QByteArray &img, m_extraFanartImagesToAdd) {
         ExtraFanart f;
         f.image = img;
         fanarts.append(f);
@@ -1189,7 +1193,7 @@ QStringList Concert::extraFanartsToRemove()
     return m_extraFanartsToRemove;
 }
 
-QList<QImage> Concert::extraFanartImagesToAdd()
+QList<QByteArray> Concert::extraFanartImagesToAdd()
 {
     return m_extraFanartImagesToAdd;
 }

@@ -15,7 +15,7 @@ public:
     static QString formatTrailerUrl(QString url);
     static bool isDvd(QString path);
     static bool isBluRay(QString path);
-    static QImage &resizeBackdrop(QImage &image);
+    static QImage &resizeBackdrop(QImage &image, bool &resized);
     static QByteArray &resizeBackdrop(QByteArray &image);
     static QString &sanitizeFileName(QString &fileName);
     static QString stackedBaseName(const QString &fileName);

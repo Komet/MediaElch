@@ -317,11 +317,12 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->videoWidth->setEnabled(m_episode->streamDetailsLoaded());
     ui->videoScantype->setEnabled(m_episode->streamDetailsLoaded());
 
-    if (!m_episode->thumbnailImage()->isNull()) {
-        ui->thumbnail->setPixmap(QPixmap::fromImage(*m_episode->thumbnailImage()).scaledToWidth(200, Qt::SmoothTransformation));
-        ui->thumbnailResolution->setText(QString("%1x%2").arg(m_episode->thumbnailImage()->width()).arg(m_episode->thumbnailImage()->height()));
+    if (!m_episode->thumbnailImage().isNull()) {
+        QImage img = QImage::fromData(m_episode->thumbnailImage());
+        ui->thumbnail->setPixmap(QPixmap::fromImage(img).scaledToWidth(200, Qt::SmoothTransformation));
+        ui->thumbnailResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
         ui->buttonPreviewBackdrop->setEnabled(true);
-        m_currentBackdrop = *m_episode->thumbnailImage();
+        m_currentBackdrop = img;
     } else if (!Manager::instance()->mediaCenterInterface()->thumbnailImageName(m_episode).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->thumbnailImageName(m_episode));
         ui->thumbnail->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
@@ -588,21 +589,14 @@ void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
     qDebug() << "Entered";
     if (elem.imageType == TypeBackdrop) {
         qDebug() << "Got a backdrop";
-        if ((elem.image.width() != 1920 || elem.image.height() != 1080) &&
-            elem.image.width() > 1915 && elem.image.width() < 1925 && elem.image.height() > 1075 && elem.image.height() < 1085)
-            elem.image = elem.image.scaled(1920, 1080, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-
-        if ((elem.image.width() != 1280 || elem.image.height() != 720) &&
-            elem.image.width() > 1275 && elem.image.width() < 1285 && elem.image.height() > 715 && elem.image.height() < 725)
-            elem.image = elem.image.scaled(1280, 720, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-
         if (m_episode == elem.episode) {
-            ui->thumbnail->setPixmap(QPixmap::fromImage(elem.image).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            ui->thumbnailResolution->setText(QString("%1x%2").arg(elem.image.width()).arg(elem.image.height()));
+            QImage img = QImage::fromData(elem.data);
+            ui->thumbnail->setPixmap(QPixmap::fromImage(img).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            ui->thumbnailResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
             ui->buttonPreviewBackdrop->setEnabled(true);
-            m_currentBackdrop = elem.image;
+            m_currentBackdrop = img;
         }
-        elem.episode->setThumbnailImage(elem.image);
+        elem.episode->setThumbnailImage(elem.data);
     }
     if (m_posterDownloadManager->downloadQueueSize() == 0) {
         emit sigSetActionSaveEnabled(true, WidgetTvShows);
