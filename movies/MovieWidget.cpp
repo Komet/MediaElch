@@ -981,12 +981,14 @@ void MovieWidget::saveInformation()
 {
     qDebug() << "Entered";
     setDisabledTrue();
+    int id = MessageBox::instance()->showMessage(tr("Saving movie..."));
     m_savingWidget->show();
     m_movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
     m_movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
     updateMovieInfo();
     setEnabledTrue();
     m_savingWidget->hide();
+    MessageBox::instance()->removeMessage(id);
     MessageBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_movie->name()));
     ui->buttonRevert->setVisible(false);
 }
@@ -1000,8 +1002,20 @@ void MovieWidget::saveAll()
     setDisabledTrue();
     m_savingWidget->show();
 
+    int counter = 0;
+    int moviesToSave = 0;
+    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+        if (movie->hasChanged())
+            moviesToSave++;
+    }
+
+    MessageBox::instance()->showProgressBar(tr("Saving movies..."), Constants::MovieWidgetProgressMessageId);
+    MessageBox::instance()->progressBarProgress(0, moviesToSave, Constants::MovieWidgetProgressMessageId);
+    qApp->processEvents();
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         if (movie->hasChanged()) {
+            MessageBox::instance()->progressBarProgress(counter++, moviesToSave, Constants::MovieWidgetProgressMessageId);
+            qApp->processEvents();
             movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
             movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
             if (m_movie == movie)
@@ -1010,6 +1024,7 @@ void MovieWidget::saveAll()
     }
     setEnabledTrue();
     m_savingWidget->hide();
+    MessageBox::instance()->hideProgressBar(Constants::MovieWidgetProgressMessageId);
     MessageBox::instance()->showMessage(tr("All Movies Saved"));
     ui->buttonRevert->setVisible(false);
 }

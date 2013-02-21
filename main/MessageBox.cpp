@@ -81,6 +81,7 @@ int MessageBox::showMessage(QString message, int timeout)
     ui->layoutMessages->addWidget(msg);
     show();
     connect(msg, SIGNAL(sigHideMessage(int)), this, SLOT(removeMessage(int)));
+    qApp->processEvents(QEventLoop::WaitForMoreEvents);
     return m_msgCounter;
 }
 

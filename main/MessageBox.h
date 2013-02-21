@@ -28,7 +28,7 @@ public:
     void showProgressBar(QString message, int id);
     void hideProgressBar(int id);
     void progressBarProgress(int current, int max, int id);
-private slots:
+public slots:
     void removeMessage(int id);
 private:
     Ui::MessageBox *ui;
