@@ -174,7 +174,7 @@ bool XbmcXml::saveMovie(Movie *movie)
             dir.mkdir(fi.absolutePath() + QDir::separator() + ".actors");
             QString actorName = actor.name;
             actorName = actorName.replace(" ", "_");
-            saveFile(fi.absolutePath() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn", actor.image);
+            saveFile(fi.absolutePath() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".jpg", actor.image);
         }
     }
 
@@ -549,7 +549,7 @@ QString XbmcXml::actorImageName(Movie *movie, Actor actor)
     QFileInfo fi(movie->files().at(0));
     QString actorName = actor.name;
     actorName = actorName.replace(" ", "_");
-    QString path = fi.absolutePath() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn";
+    QString path = fi.absolutePath() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".jpg";
     fi.setFile(path);
     if (fi.isFile())
         return path;
@@ -1330,7 +1330,7 @@ QString XbmcXml::actorImageName(TvShow *show, Actor actor)
         return QString();
     QString actorName = actor.name;
     actorName = actorName.replace(" ", "_");
-    QString fileName = show->dir() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn";
+    QString fileName = show->dir() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".jpg";
     QFileInfo fi(fileName);
     if (fi.isFile())
         return fileName;
@@ -1595,7 +1595,7 @@ bool XbmcXml::saveTvShow(TvShow *show)
             dir.mkdir(show->dir() + QDir::separator() + ".actors");
             QString actorName = actor.name;
             actorName = actorName.replace(" ", "_");
-            saveFile(show->dir() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".tbn", actor.image);
+            saveFile(show->dir() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".jpg", actor.image);
         }
     }
 
