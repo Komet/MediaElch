@@ -44,6 +44,7 @@ void MovieFileSearcher::reload(bool force)
     QList<MovieContents> c;
     QList<Movie*> dbMovies;
     QStringList bluRays;
+    QStringList dvds;
     int movieSum = 0;
     int movieCounter = 0;
 
@@ -78,6 +79,11 @@ void MovieFileSearcher::reload(bool force)
                     QDir dir(it.fileInfo().dir());
                     dir.cdUp();
                     bluRays << dir.path();
+                }
+                if (QString::compare("VIDEO_TS.IFO", it.fileName(), Qt::CaseInsensitive) == 0) {
+                    QDir dir(it.fileInfo().dir());
+                    dir.cdUp();
+                    dvds << dir.path();
                 }
 
                 QString path = it.fileInfo().path();
@@ -129,13 +135,15 @@ void MovieFileSearcher::reload(bool force)
             }
 
             // DVD handling
-            if (files.count() > 1) {
-                foreach (const QString &file, files) {
-                    if (file.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
-                        files = QStringList() << file;
-                        discType = DiscDvd;
-                        break;
+            foreach (const QString &path, dvds) {
+                if (!files.isEmpty() && files.first().startsWith(path)) {
+                    QStringList f;
+                    foreach (const QString &file, files) {
+                        if (file.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive))
+                            f.append(file);
                     }
+                    files = f;
+                    discType = DiscDvd;
                 }
             }
 
