@@ -210,6 +210,9 @@ public:
     QByteArray clearArtImage();
     QByteArray cdArtImage();
 
+    DiscType discType();
+    void setDiscType(DiscType type);
+
 signals:
     void sigChanged(Movie*);
 
@@ -272,6 +275,7 @@ private:
     QString m_nfoContent;
     int m_databaseId;
     QDateTime m_dateAdded;
+    DiscType m_discType;
 
     // Images
     QByteArray m_posterImage;

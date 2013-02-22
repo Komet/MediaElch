@@ -45,6 +45,7 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_numPrimaryLangPosters = 0;
     m_streamDetailsLoaded = false;
     m_databaseId = -1;
+    m_discType = DiscSingle;
     if (!files.isEmpty())
         m_streamDetails = new StreamDetails(this, files.at(0));
     else
@@ -1576,6 +1577,16 @@ void Movie::setDateAdded(QDateTime date)
 QDateTime Movie::dateAdded() const
 {
     return m_dateAdded;
+}
+
+void Movie::setDiscType(DiscType type)
+{
+    m_discType = type;
+}
+
+DiscType Movie::discType()
+{
+    return m_discType;
 }
 
 /*** DEBUG ***/

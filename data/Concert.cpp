@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
+#include "globals/Helper.h"
 #include "globals/NameFormatter.h"
 #include "settings/Settings.h"
 
@@ -1203,4 +1204,15 @@ void Concert::clearExtraFanartData()
     m_extraFanartImagesToAdd.clear();
     m_extraFanartsToRemove.clear();
     m_extraFanarts.clear();
+}
+
+DiscType Concert::discType()
+{
+    if (files().isEmpty())
+        return DiscSingle;
+    if (Helper::isDvd(files().first()))
+        return DiscDvd;
+    if (Helper::isBluRay(files().first()))
+        return DiscBluRay;
+    return DiscSingle;
 }

@@ -113,6 +113,8 @@ void MovieFileSearcher::reload(bool force)
             itContents.next();
             QStringList files = itContents.value();
 
+            DiscType discType = DiscSingle;
+
             // BluRay handling
             foreach (const QString &path, bluRays) {
                 if (!files.isEmpty() && files.first().startsWith(path)) {
@@ -122,6 +124,7 @@ void MovieFileSearcher::reload(bool force)
                             f.append(file);
                     }
                     files = f;
+                    discType = DiscBluRay;
                 }
             }
 
@@ -130,6 +133,7 @@ void MovieFileSearcher::reload(bool force)
                 foreach (const QString &file, files) {
                     if (file.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
                         files = QStringList() << file;
+                        discType = DiscDvd;
                         break;
                     }
                 }
@@ -143,6 +147,7 @@ void MovieFileSearcher::reload(bool force)
                 Movie *movie = new Movie(files, this);
                 movie->setInSeparateFolder(con.inSeparateFolder);
                 movie->setFileLastModified(m_lastModifications.value(files.at(0)));
+                movie->setDiscType(discType);
                 movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
                 Manager::instance()->database()->add(movie, con.path);
                 movies.append(movie);

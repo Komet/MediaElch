@@ -160,6 +160,9 @@ public:
     void setLoadsLeft(QList<ScraperData> loadsLeft);
     void removeFromLoadsLeft(ScraperData load);
 
+    void setDiscType(DiscType type);
+    DiscType discType();
+
 signals:
     void loaded(Concert*);
     void sigChanged(Concert*);

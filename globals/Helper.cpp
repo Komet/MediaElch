@@ -82,6 +82,10 @@ QString Helper::formatTrailerUrl(QString url)
  */
 bool Helper::isDvd(QString path)
 {
+    if (path.endsWith("VIDEO_TS.IFO")) {
+        QFileInfo fi(path);
+        return fi.absolutePath().endsWith("VIDEO_TS");
+    }
     QDir dir(path);
     QStringList filters;
     filters << "VIDEO_TS" << "VIDEO TS";
@@ -103,6 +107,11 @@ bool Helper::isDvd(QString path)
  */
 bool Helper::isBluRay(QString path)
 {
+    if (path.endsWith("index.bdmv")) {
+        QFileInfo fi(path);
+        return fi.absolutePath().endsWith("BDMV");
+    }
+
     QDir dir(path);
     QStringList filters;
     filters << "BDMV";

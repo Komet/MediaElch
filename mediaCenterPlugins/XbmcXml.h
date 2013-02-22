@@ -75,6 +75,8 @@ private:
     void writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDetails);
     bool loadStreamDetails(StreamDetails *streamDetails, QDomDocument domDoc);
     bool saveFile(QString filename, QByteArray data);
+    QString getPath(Movie *movie);
+    QString getPath(Concert *concert);
 };
 
 #endif // XBMCXML_H

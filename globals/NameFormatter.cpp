@@ -49,7 +49,7 @@ QString NameFormatter::excludeWords(QString name)
 
     // remove " - _" at the end of a name
     rx.setPattern("[\\-\\s_]");
-    while (rx.lastIndexIn(name) == name.length() -1)
+    while (rx.lastIndexIn(name) == name.length()-1 && name.length() > 0)
         name.chop(1);
 
     return name;
@@ -79,7 +79,7 @@ QString NameFormatter::formatName(QString name)
 
     // remove " - " at the end of a name
     rx.setPattern("[\\-\\s]");
-    while (rx.lastIndexIn(name) == name.length() -1)
+    while (rx.lastIndexIn(name) == name.length()-1 && name.length() > 0)
         name.chop(1);
     return name;
 }

@@ -115,6 +115,10 @@ enum ItemType {
     ItemMovie, ItemTvShow, ItemTvShowEpisode, ItemConcert
 };
 
+enum DiscType {
+    DiscSingle, DiscBluRay, DiscDvd
+};
+
 /**
  * @brief The SettingsDir struct
  */
