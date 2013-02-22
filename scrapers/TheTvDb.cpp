@@ -532,7 +532,8 @@ void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *
         episode->setSeason(elem.elementsByTagName("SeasonNumber").at(0).toElement().text().toInt());
     if (infosToLoad.contains(TvShowScraperInfos::Writer) && !elem.elementsByTagName("Writer").isEmpty())
         episode->setWriters(elem.elementsByTagName("Writer").at(0).toElement().text().split("|", QString::SkipEmptyParts));
-    if (infosToLoad.contains(TvShowScraperInfos::Thumbnail) && !elem.elementsByTagName("filename").isEmpty()) {
+    if (infosToLoad.contains(TvShowScraperInfos::Thumbnail) && !elem.elementsByTagName("filename").isEmpty() &&
+            !elem.elementsByTagName("filename").at(0).toElement().text().isEmpty()) {
         QString mirror = m_bannerMirrors.at(qrand()%m_bannerMirrors.count());
         episode->setThumbnail(QUrl(QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("filename").at(0).toElement().text())));
     }

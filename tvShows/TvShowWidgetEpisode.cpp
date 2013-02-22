@@ -586,7 +586,6 @@ void TvShowWidgetEpisode::onChooseThumbnail()
  */
 void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
 {
-    qDebug() << "Entered";
     if (elem.imageType == TypeBackdrop) {
         qDebug() << "Got a backdrop";
         if (m_episode == elem.episode) {

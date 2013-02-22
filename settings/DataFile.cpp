@@ -55,10 +55,14 @@ QString DataFile::saveFileName(const QString &fileName, int season, bool stacked
     newFileName.replace("<baseFileName>", baseName);
 
     if (season != -1) {
-        QString s = QString("%1").arg(season);
-        if (season < 10)
-            s.prepend("0");
-        newFileName.replace("<seasonNumber>", s);
+        if (season == 0) {
+            newFileName.replace("<seasonNumber>", "-specials");
+        } else {
+            QString s = QString("%1").arg(season);
+            if (season < 10)
+                s.prepend("0");
+            newFileName.replace("<seasonNumber>", s);
+        }
     }
 
     return newFileName;
