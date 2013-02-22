@@ -8,7 +8,8 @@ TheTvDbImages::TheTvDbImages(QObject *parent)
 {
     setParent(parent);
     m_provides << ImageDialogType::TvShowPoster << ImageDialogType::TvShowBackdrop << ImageDialogType::TvShowBanner
-               << ImageDialogType::TvShowSeason << ImageDialogType::TvShowThumb << ImageDialogType::TvShowSeasonBanner;
+               << ImageDialogType::TvShowSeason << ImageDialogType::TvShowThumb << ImageDialogType::TvShowSeasonBanner
+               << ImageDialogType::TvShowSeasonBackdrop;
     m_dummyShow = new TvShow(QString(), this);
     m_dummyEpisode = new TvShowEpisode(QStringList(), m_dummyShow);
     m_tvdb = new TheTvDb(this);
@@ -100,6 +101,7 @@ void TheTvDbImages::loadTvShowData(QString tvdbId, int type)
     infosToLoad.append(TvShowScraperInfos::Poster);
     infosToLoad.append(TvShowScraperInfos::SeasonPoster);
     infosToLoad.append(TvShowScraperInfos::SeasonBanner);
+    infosToLoad.append(TvShowScraperInfos::SeasonBackdrop);
 
     if (type == TypeShowThumbnail)
         m_tvdb->loadTvShowEpisodeData(tvdbId, m_dummyEpisode, infosToLoad);
@@ -352,6 +354,6 @@ void TheTvDbImages::tvShowCharacterArts(QString tvdbId)
 
 void TheTvDbImages::tvShowSeasonBackdrops(QString tvdbId, int season)
 {
-    Q_UNUSED(tvdbId);
     Q_UNUSED(season);
+    loadTvShowData(tvdbId, TypeBackdrop);
 }
