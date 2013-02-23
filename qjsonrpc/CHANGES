@@ -1,0 +1,2 @@
+QJsonRpc 1.0 (UNRELEASED)
+ * added support for Compact wire format

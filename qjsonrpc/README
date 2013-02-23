@@ -1,0 +1,20 @@
+The qjsonrpc library is a Qt implementation of 
+JSON-RPC ( http://jsonrpc.org/ ) protocol, licensed under LGPLv3.
+
+For commercial support please see AUTHORS file.
+
+The library is tested on mac and linux with Qt 4.8.x
+
+To build on unix run :
+qmake
+make
+
+This includes building of qjsonrpc library,
+client sample in examples/client directory,
+server sample in examples/server directory,
+and unit tests from test. 
+
+To generate the documentation run
+doxygen qjsonrpc.doxy
+
+Check doc/html/index.html for the generated documentation.
