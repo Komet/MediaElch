@@ -77,7 +77,6 @@ void XbmcSync::startSync()
     m_aborted = false;
 
     ui->progressBar->setVisible(false);
-    m_directoriesToSync.clear();
 
     m_moviesToSync.clear();
     m_concertsToSync.clear();
@@ -94,8 +93,6 @@ void XbmcSync::startSync()
     m_tvShowsToRemove.clear();
     m_episodesToRemove.clear();
 
-    m_directoriesToSync.append("");
-
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         if (movie->syncNeeded())
             m_moviesToSync.append(movie);
@@ -109,16 +106,19 @@ void XbmcSync::startSync()
     foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
         if (show->syncNeeded() && m_syncType == SyncContents) {
             m_tvShowsToSync.append(show);
-            if (!m_directoriesToSync.contains(show->dir()))
-                m_directoriesToSync.append(show->dir());
             continue;
         }
+        /* @todo: Enable updating single episodes
+         * Syncing single episodes is currently disabled:
+         * XBMC doesn't pickup new episodes when VideoLibrary.Scan is called
+         * so removing the whole show is needed.
+         */
         foreach (TvShowEpisode *episode, show->episodes()) {
             if (episode->syncNeeded()) {
                 if (m_syncType == SyncContents) {
-                    m_episodesToSync.append(episode);
-                    if (!m_directoriesToSync.contains(episode->tvShow()->dir()))
-                        m_directoriesToSync.append(episode->tvShow()->dir());
+                    //m_episodesToSync.append(episode);
+                    m_tvShowsToSync.append(show);
+                    break;
                 } else if (m_syncType == SyncWatched) {
                     m_episodesToSync.append(episode);
                 }
@@ -379,7 +379,7 @@ void XbmcSync::removeItems()
         return;
     }
 
-    QTimer::singleShot(m_reloadTimeOut, this, SLOT(triggerReload()));
+    triggerReload();
 }
 
 void XbmcSync::onRemoveFinished()
@@ -394,37 +394,18 @@ void XbmcSync::onRemoveFinished()
     if (!m_moviesToRemove.isEmpty() || !m_concertsToRemove.isEmpty() || !m_tvShowsToRemove.isEmpty() || !m_episodesToRemove.isEmpty())
         removeItems();
     else
-        QTimer::singleShot(m_reloadTimeOut, this, SLOT(triggerReload()));
+        triggerReload();
 }
 
 void XbmcSync::triggerReload()
 {
-    // should not happen
-    if (m_directoriesToSync.isEmpty()) {
-        onScanFinished();
-        return;
-    }
-
     ui->status->setText(tr("Trigger scan for new items"));
-    QString dir = m_directoriesToSync.takeLast();
-    QJsonRpcServiceReply *reply;
-    if (dir.isEmpty()) {
-        reply = m_client->invokeRemoteMethod("VideoLibrary.Scan");
-    } else {
-        QVariantMap params;
-        params.insert("directory", dir);
-        reply = m_client->invokeRemoteMethod("VideoLibrary.Scan", params);
-    }
+    QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.Scan");
     connect(reply, SIGNAL(finished()), this, SLOT(onScanFinished()));
 }
 
 void XbmcSync::onScanFinished()
 {
-    if (!m_directoriesToSync.isEmpty()) {
-        QTimer::singleShot(m_reloadTimeOut, this, SLOT(triggerReload()));
-        return;
-    }
-
     ui->status->setText(tr("Finished. XBMC is now loading your updated items."));
     ui->buttonSync->setEnabled(true);
 }
@@ -722,6 +703,6 @@ void XbmcSync::renameArtwork()
 
 void XbmcSync::processMessage(QJsonRpcMessage msg)
 {
-    if (msg.method() == "VideoLibrary.OnScanFinished" && m_directoriesToSync.isEmpty())
+    if (msg.method() == "VideoLibrary.OnScanFinished")
         MessageBox::instance()->showMessage(tr("XBMC Library Scan has finished"));
 }

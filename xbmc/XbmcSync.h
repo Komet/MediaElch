@@ -82,7 +82,6 @@ private:
     bool m_cancelRenameArtwork;
     bool m_renameArtworkInProgress;
     bool m_artworkWasRenamed;
-    QStringList m_directoriesToSync;
     int m_reloadTimeOut;
 
     int findId(QStringList files, QMap<int, XbmcData> items);
