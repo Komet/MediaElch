@@ -248,8 +248,6 @@ void SettingsWidget::loadSettings()
         ui->xbmcPort->setText(QString::number(m_settings->xbmcPort()));
     else
         ui->xbmcPort->clear();
-    ui->xbmcUsername->setText(m_settings->xbmcUsername());
-    ui->xbmcPassword->setText(m_settings->xbmcPassword());
 
     fillDataFiles();
 
@@ -300,16 +298,8 @@ void SettingsWidget::saveSettings()
     m_settings->setAutoLoadStreamDetails(ui->chkAutoLoadStreamDetails->isChecked());
     m_settings->setDownloadActorImages(ui->chkDownloadActorImages->isChecked());
 
-    // XBMC
-    if (ui->xbmcHost->text().endsWith("/"))
-        ui->xbmcHost->setText(ui->xbmcHost->text().remove(ui->xbmcHost->text().length()-1, 1));
-    if (!ui->xbmcHost->text().startsWith("http://"))
-        ui->xbmcHost->setText(QString("http://%1").arg(ui->xbmcHost->text()));
-
     m_settings->setXbmcHost(ui->xbmcHost->text());
     m_settings->setXbmcPort(ui->xbmcPort->text().toInt());
-    m_settings->setXbmcUsername(ui->xbmcUsername->text());
-    m_settings->setXbmcPassword(ui->xbmcPassword->text());
 
     // Proxy
     m_settings->setUseProxy(ui->chkUseProxy->isChecked());

@@ -33,8 +33,6 @@ public:
     QString excludeWords();
     QString xbmcHost();
     int xbmcPort();
-    QString xbmcUsername();
-    QString xbmcPassword();
     bool useProxy();
     int proxyType();
     QString proxyHost();
@@ -78,8 +76,6 @@ public:
     void setUsePlotForOutline(bool use);
     void setXbmcHost(QString host);
     void setXbmcPort(int port);
-    void setXbmcUsername(QString username);
-    void setXbmcPassword(QString password);
     void setScraperInfos(MainWidgets widget, int scraperNo, QList<int> items);
     void setRenamePatterns(int renameType, QString fileNamePattern, QString fileNamePatternMulti, QString directoryPattern, QString seasonPattern);
     void setRenamings(int renameType, bool files, bool folders, bool seasonDirectories);
@@ -117,8 +113,6 @@ private:
     bool m_usePlotForOutline;
     QString m_xbmcHost;
     int m_xbmcPort;
-    QString m_xbmcUsername;
-    QString m_xbmcPassword;
 
     void setupProxy();
 };

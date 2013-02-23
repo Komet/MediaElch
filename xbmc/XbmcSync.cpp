@@ -5,6 +5,7 @@
 #include <QScriptValue>
 #include <QScriptValueIterator>
 #include "globals/Manager.h"
+#include "main/MessageBox.h"
 #include "settings/Settings.h"
 
 XbmcSync::XbmcSync(QWidget *parent) :
@@ -13,14 +14,15 @@ XbmcSync::XbmcSync(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    m_qnam = new QNetworkAccessManager(this);
     m_renameArtworkInProgress = false;
     m_cancelRenameArtwork = false;
     m_artworkWasRenamed = false;
+    m_reloadTimeOut = 2000;
+    m_client = 0;
+    m_socket = new QTcpSocket(this);
 
     connect(ui->buttonSync, SIGNAL(clicked()), this, SLOT(startSync()));
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(onButtonClose()));
-    connect(&m_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
     connect(ui->radioUpdateContents, SIGNAL(clicked()), this, SLOT(onRadioContents()));
     connect(ui->radioGetWatched, SIGNAL(clicked()), this, SLOT(onRadioWatched()));
     connect(ui->radioRenameArtwork, SIGNAL(clicked()), this, SLOT(onRadioRenameArtwork()));
@@ -74,6 +76,9 @@ void XbmcSync::startSync()
     m_elements.clear();
     m_aborted = false;
 
+    ui->progressBar->setVisible(false);
+    m_directoriesToSync.clear();
+
     m_moviesToSync.clear();
     m_concertsToSync.clear();
     m_tvShowsToSync.clear();
@@ -89,6 +94,8 @@ void XbmcSync::startSync()
     m_tvShowsToRemove.clear();
     m_episodesToRemove.clear();
 
+    m_directoriesToSync.append("");
+
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         if (movie->syncNeeded())
             m_moviesToSync.append(movie);
@@ -102,19 +109,16 @@ void XbmcSync::startSync()
     foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
         if (show->syncNeeded() && m_syncType == SyncContents) {
             m_tvShowsToSync.append(show);
+            if (!m_directoriesToSync.contains(show->dir()))
+                m_directoriesToSync.append(show->dir());
             continue;
         }
-        /* @todo: Enable updating single episodes
-         * Syncing single episodes is currently disabled:
-         * XBMC doesn't pickup new episodes when VideoLibrary.Scan is called
-         * so removing of the whole show is needed.
-         */
         foreach (TvShowEpisode *episode, show->episodes()) {
             if (episode->syncNeeded()) {
                 if (m_syncType == SyncContents) {
-                    // m_episodesToSync.append(episode);
-                    m_tvShowsToSync.append(show);
-                    break;
+                    m_episodesToSync.append(episode);
+                    if (!m_directoriesToSync.contains(episode->tvShow()->dir()))
+                        m_directoriesToSync.append(episode->tvShow()->dir());
                 } else if (m_syncType == SyncWatched) {
                     m_episodesToSync.append(episode);
                 }
@@ -130,167 +134,145 @@ void XbmcSync::startSync()
         return;
     }
 
-    QUrl url(QString("%1:%2/jsonrpc").arg(host).arg(port));
-    url.setUserName(Settings::instance()->xbmcUsername());
-    url.setPassword(Settings::instance()->xbmcPassword());
-    m_request.setUrl(url);
-    m_request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    m_request.setRawHeader("Accept", "application/json");
+    if (!m_socket->isOpen())
+        m_socket->connectToHost(host, port);
+    if (!m_socket->waitForConnected()) {
+        qDebug() << "could not connect to server: " << m_socket->errorString();
+        ui->status->setText(tr("Could not connect to XBMC: %1").arg(m_socket->errorString()));
+        return;
+    }
+
+    if (!m_client) {
+        m_client = new QJsonRpcSocket(m_socket, this);
+        connect(m_client, SIGNAL(messageReceived(QJsonRpcMessage)), this, SLOT(processMessage(QJsonRpcMessage)));
+    }
+    QVariantMap limits;
+    limits.insert("end", 100000);
+    QVariantMap params;
+    params.insert("limits", limits);
+    params.insert("properties", QStringList() << "file" << "lastplayed" << "playcount");
 
     if (!m_moviesToSync.isEmpty()) {
         m_elements.append(ElementMovies);
-        m_moviesReply = m_qnam->post(m_request, "{ \"jsonrpc\": \"2.0\", \"method\": \"VideoLibrary.GetMovies\", \"id\":1, " \
-                                                "\"params\": { \"limits\": { \"end\": 100000 }, \"properties\": [\"file\", \"lastplayed\", \"playcount\"] } }");
-        connect(m_moviesReply, SIGNAL(finished()), this, SLOT(onMovieListFinished()));
-        connect(m_moviesReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(onDownloadProgress()));
+        QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.GetMovies", params);
+        connect(reply, SIGNAL(finished()), this, SLOT(onMovieListFinished()));
     }
 
     if (!m_concertsToSync.isEmpty()) {
         m_elements.append(ElementConcerts);
-        m_concertsReply = m_qnam->post(m_request, "{ \"jsonrpc\": \"2.0\", \"method\": \"VideoLibrary.GetMusicVideos\", \"id\":1, " \
-                                                  "\"params\": { \"limits\": { \"end\": 100000 }, \"properties\": [\"file\", \"lastplayed\", \"playcount\"] } }");
-        connect(m_concertsReply, SIGNAL(finished()), this, SLOT(onConcertListFinished()));
-        connect(m_concertsReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(onDownloadProgress()));
+        QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.GetMusicVideos", params);
+        connect(reply, SIGNAL(finished()), this, SLOT(onConcertListFinished()));
     }
 
     if (!m_tvShowsToSync.isEmpty()) {
         m_elements.append(ElementTvShows);
-        m_showReply = m_qnam->post(m_request, "{ \"jsonrpc\": \"2.0\", \"method\": \"VideoLibrary.GetTvShows\", \"id\":1, " \
-                                              "\"params\": { \"limits\": { \"end\": 100000 }, \"properties\": [\"file\", \"lastplayed\", \"playcount\"] } }");
-        connect(m_showReply, SIGNAL(finished()), this, SLOT(onTvShowListFinished()));
-        connect(m_showReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(onDownloadProgress()));
+        QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.GetTvShows", params);
+        connect(reply, SIGNAL(finished()), this, SLOT(onTvShowListFinished()));
     }
 
     if (!m_episodesToSync.isEmpty()) {
         m_elements.append(ElementEpisodes);
-        m_episodeReply = m_qnam->post(m_request, "{ \"jsonrpc\": \"2.0\", \"method\": \"VideoLibrary.GetEpisodes\", \"id\":1, " \
-                                                 "\"params\": { \"limits\": { \"end\": 100000 }, \"properties\": [\"file\", \"lastplayed\", \"playcount\"] } }");
-        connect(m_episodeReply, SIGNAL(finished()), this, SLOT(onEpisodeListFinished()));
-        connect(m_episodeReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(onDownloadProgress()));
+        QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.GetEpisodes", params);
+        connect(reply, SIGNAL(finished()), this, SLOT(onEpisodeListFinished()));
     }
 
     if (m_moviesToSync.isEmpty() && m_concertsToSync.isEmpty() && m_tvShowsToSync.isEmpty() && m_episodesToSync.isEmpty()) {
-        ui->status->setText(tr("Nothing to synchronize"));
+        triggerReload();
     } else {
-        m_timer.start(5000);
         ui->status->setText(tr("Getting contents from XBMC"));
         ui->buttonSync->setEnabled(false);
     }
 }
 
-void XbmcSync::onTimeout()
-{
-    ui->status->setText(tr("XBMC is not reachable. Please check your settings."));
-    ui->buttonSync->setEnabled(true);
-    m_aborted = true;
-    if (!m_moviesToSync.isEmpty() && m_moviesReply)
-        m_moviesReply->abort();
-    if (!m_concertsToSync.isEmpty() && m_concertsReply)
-        m_concertsReply->abort();
-    if (!m_tvShowsToSync.isEmpty() && m_showReply)
-        m_showReply->abort();
-    if (!m_episodesToSync.isEmpty() && m_episodeReply)
-        m_episodeReply->abort();
-}
-
-void XbmcSync::onDownloadProgress()
-{
-    m_timer.stop();
-}
-
 void XbmcSync::onMovieListFinished()
 {
-    m_timer.stop();
-    if (m_moviesReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_moviesReply->readAll());
-        QScriptValue sc;
-        QScriptEngine engine;
-        sc = engine.evaluate("(" + QString(msg) + ")");
-        QScriptValueIterator it(sc.property("result").property("movies"));
-        while (it.hasNext()) {
-            it.next();
-            QScriptValue v = it.value();
-            if (v.property("movieid").isNull() || v.property("movieid").toInteger() == 0)
-                continue;
-            m_xbmcMovies.insert(v.property("movieid").toInteger(), parseXbmcDataFromScriptValue(v));
-        }
-    } else {
-        qWarning() << m_moviesReply->errorString();
-        onTimeout();
+    QJsonRpcServiceReply *reply = static_cast<QJsonRpcServiceReply *>(sender());
+    if (!reply) {
+        qDebug() << "invalid response received";
+        return;
     }
-    m_moviesReply->deleteLater();
+    reply->deleteLater();
+
+    QMapIterator<QString, QVariant> it(reply->response().result().toMap());
+    while (it.hasNext()) {
+        it.next();
+        if (it.key() == "movies" && it.value().toList().size() > 0) {
+            foreach (QVariant var, it.value().toList()) {
+                if (var.toMap().value("movieid").toInt() == 0)
+                    continue;
+                m_xbmcMovies.insert(var.toMap().value("movieid").toInt(), parseXbmcDataFromMap(var.toMap()));
+            }
+        }
+    }
     checkIfListsReady(ElementMovies);
 }
 
 void XbmcSync::onConcertListFinished()
 {
-    m_timer.stop();
-    if (m_concertsReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_concertsReply->readAll());
-        QScriptValue sc;
-        QScriptEngine engine;
-        sc = engine.evaluate("(" + QString(msg) + ")");
-        QScriptValueIterator it(sc.property("result").property("musicvideos"));
-        while (it.hasNext()) {
-            it.next();
-            QScriptValue v = it.value();
-            if (v.property("musicvideoid").isNull() || v.property("musicvideoid").toInteger() == 0)
-                continue;
-            m_xbmcConcerts.insert(v.property("musicvideoid").toInteger(), parseXbmcDataFromScriptValue(v));
-        }
-    } else {
-        qWarning() << m_concertsReply->errorString();
-        onTimeout();
+    QJsonRpcServiceReply *reply = static_cast<QJsonRpcServiceReply *>(sender());
+    if (!reply) {
+        qDebug() << "invalid response received";
+        return;
     }
-    m_concertsReply->deleteLater();
+    reply->deleteLater();
+
+    QMapIterator<QString, QVariant> it(reply->response().result().toMap());
+    while (it.hasNext()) {
+        it.next();
+        if (it.key() == "musicvideos" && it.value().toList().size() > 0) {
+            foreach (QVariant var, it.value().toList()) {
+                if (var.toMap().value("musicvideoid").toInt() == 0)
+                    continue;
+                m_xbmcConcerts.insert(var.toMap().value("musicvideoid").toInt(), parseXbmcDataFromMap(var.toMap()));
+            }
+        }
+    }
     checkIfListsReady(ElementConcerts);
 }
 
 void XbmcSync::onTvShowListFinished()
 {
-    m_timer.stop();
-    if (m_showReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_showReply->readAll());
-        QScriptValue sc;
-        QScriptEngine engine;
-        sc = engine.evaluate("(" + QString(msg) + ")");
-        QScriptValueIterator it(sc.property("result").property("tvshows"));
-        while (it.hasNext()) {
-            it.next();
-            QScriptValue v = it.value();
-            if (v.property("tvshowid").isNull() || v.property("tvshowid").toInteger() == 0)
-                continue;
-            m_xbmcShows.insert(v.property("tvshowid").toInteger(), parseXbmcDataFromScriptValue(v));
-        }
-    } else {
-        qWarning() << m_showReply->errorString();
-        onTimeout();
+    QJsonRpcServiceReply *reply = static_cast<QJsonRpcServiceReply *>(sender());
+    if (!reply) {
+        qDebug() << "invalid response received";
+        return;
     }
-    m_showReply->deleteLater();
+    reply->deleteLater();
+
+    QMapIterator<QString, QVariant> it(reply->response().result().toMap());
+    while (it.hasNext()) {
+        it.next();
+        if (it.key() == "tvshows" && it.value().toList().size() > 0) {
+            foreach (QVariant var, it.value().toList()) {
+                if (var.toMap().value("tvshowid").toInt() == 0)
+                    continue;
+                m_xbmcShows.insert(var.toMap().value("tvshowid").toInt(), parseXbmcDataFromMap(var.toMap()));
+            }
+        }
+    }
     checkIfListsReady(ElementTvShows);
 }
 
 void XbmcSync::onEpisodeListFinished()
 {
-    m_timer.stop();
-    if (m_episodeReply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(m_episodeReply->readAll());
-        QScriptValue sc;
-        QScriptEngine engine;
-        sc = engine.evaluate("(" + QString(msg) + ")");
-        QScriptValueIterator it(sc.property("result").property("episodes"));
-        while (it.hasNext()) {
-            it.next();
-            QScriptValue v = it.value();
-            if (v.property("episodeid").isNull() || v.property("episodeid").toInteger() == 0)
-                continue;
-            m_xbmcEpisodes.insert(v.property("episodeid").toInteger(), parseXbmcDataFromScriptValue(v));
-        }
-    } else {
-        qWarning() << m_episodeReply->errorString();
-        onTimeout();
+    QJsonRpcServiceReply *reply = static_cast<QJsonRpcServiceReply *>(sender());
+    if (!reply) {
+        qDebug() << "invalid response received";
+        return;
     }
-    m_episodeReply->deleteLater();
+    reply->deleteLater();
+
+    QMapIterator<QString, QVariant> it(reply->response().result().toMap());
+    while (it.hasNext()) {
+        it.next();
+        if (it.key() == "episodes" && it.value().toList().size() > 0) {
+            foreach (QVariant var, it.value().toList()) {
+                if (var.toMap().value("episodeid").toInt() == 0)
+                    continue;
+                m_xbmcEpisodes.insert(var.toMap().value("episodeid").toInt(), parseXbmcDataFromMap(var.toMap()));
+            }
+        }
+    }
     checkIfListsReady(ElementEpisodes);
 }
 
@@ -306,6 +288,11 @@ void XbmcSync::checkIfListsReady(Elements element)
 
     if (m_syncType == SyncContents) {
         setupItemsToRemove();
+        if (!m_moviesToRemove.isEmpty() || !m_episodesToRemove.isEmpty() || !m_tvShowsToRemove.isEmpty() || !m_concertsToRemove.isEmpty()) {
+            ui->progressBar->setMaximum(m_moviesToRemove.count() + m_episodesToRemove.count() + m_tvShowsToRemove.count() + m_concertsToRemove.count());
+            ui->progressBar->setValue(0);
+            ui->progressBar->setVisible(true);
+        }
         removeItems();
     } else if (m_syncType == SyncWatched) {
         updateWatched();
@@ -355,56 +342,89 @@ void XbmcSync::removeItems()
     if (!m_moviesToRemove.isEmpty()) {
         ui->status->setText(tr("Removing movies from database"));
         int id = m_moviesToRemove.takeFirst();
-        m_reply = m_qnam->post(m_request, QString("{ \"jsonrpc\": \"2.0\", \"method\": \"VideoLibrary.RemoveMovie\", \"id\":1, \"params\": { \"movieid\": %1 } }").arg(id).toUtf8());
-        connect(m_reply, SIGNAL(finished()), this, SLOT(onRemoveFinished()));
+        QVariantMap params;
+        params.insert("movieid", id);
+        QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.RemoveMovie", params);
+        connect(reply, SIGNAL(finished()), this, SLOT(onRemoveFinished()));
         return;
     }
 
     if (!m_concertsToRemove.isEmpty()) {
         ui->status->setText(tr("Removing concerts from database"));
         int id = m_concertsToRemove.takeFirst();
-        m_reply = m_qnam->post(m_request, QString("{ \"jsonrpc\": \"2.0\", \"method\": \"VideoLibrary.RemoveMusicVideo\", \"id\":1, \"params\": { \"musicvideoid\": %1 } }").arg(id).toUtf8());
-        connect(m_reply, SIGNAL(finished()), this, SLOT(onRemoveFinished()));
+        QVariantMap params;
+        params.insert("musicvideoid", id);
+        QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.RemoveMusicVideo", params);
+        connect(reply, SIGNAL(finished()), this, SLOT(onRemoveFinished()));
         return;
     }
 
     if (!m_tvShowsToRemove.isEmpty()) {
         ui->status->setText(tr("Removing TV shows from database"));
         int id = m_tvShowsToRemove.takeFirst();
-        m_reply = m_qnam->post(m_request, QString("{ \"jsonrpc\": \"2.0\", \"method\": \"VideoLibrary.RemoveTVShow\", \"id\":1, \"params\": { \"tvshowid\": %1 } }").arg(id).toUtf8());
-        connect(m_reply, SIGNAL(finished()), this, SLOT(onRemoveFinished()));
+        QVariantMap params;
+        params.insert("tvshowid", id);
+        QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.RemoveTVShow", params);
+        connect(reply, SIGNAL(finished()), this, SLOT(onRemoveFinished()));
         return;
     }
 
     if (!m_episodesToRemove.isEmpty()) {
         ui->status->setText(tr("Removing episodes from database"));
         int id = m_episodesToRemove.takeFirst();
-        m_reply = m_qnam->post(m_request, QString("{ \"jsonrpc\": \"2.0\", \"method\": \"VideoLibrary.RemoveEpisode\", \"id\":1, \"params\": { \"episodeid\": %1 } }").arg(id).toUtf8());
-        connect(m_reply, SIGNAL(finished()), this, SLOT(onRemoveFinished()));
+        QVariantMap params;
+        params.insert("episodeid", id);
+        QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.RemoveEpisode", params);
+        connect(reply, SIGNAL(finished()), this, SLOT(onRemoveFinished()));
         return;
     }
 
-    triggerReload();
+    QTimer::singleShot(m_reloadTimeOut, this, SLOT(triggerReload()));
 }
 
 void XbmcSync::onRemoveFinished()
 {
-    m_reply->deleteLater();
+    QJsonRpcServiceReply *reply = static_cast<QJsonRpcServiceReply *>(sender());
+    if (reply)
+        reply->deleteLater();
+
+    ui->progressBar->setValue(ui->progressBar->maximum()-(m_moviesToRemove.count() + m_episodesToRemove.count() + m_tvShowsToRemove.count() + m_concertsToRemove.count()));
+    qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
+
     if (!m_moviesToRemove.isEmpty() || !m_concertsToRemove.isEmpty() || !m_tvShowsToRemove.isEmpty() || !m_episodesToRemove.isEmpty())
         removeItems();
     else
-        triggerReload();
+        QTimer::singleShot(m_reloadTimeOut, this, SLOT(triggerReload()));
 }
 
 void XbmcSync::triggerReload()
 {
+    // should not happen
+    if (m_directoriesToSync.isEmpty()) {
+        onScanFinished();
+        return;
+    }
+
     ui->status->setText(tr("Trigger scan for new items"));
-    m_reply = m_qnam->post(m_request, "{ \"jsonrpc\": \"2.0\", \"method\": \"VideoLibrary.Scan\", \"id\":1}");
-    connect(m_reply, SIGNAL(finished()), this, SLOT(onScanFinished()));
+    QString dir = m_directoriesToSync.takeLast();
+    QJsonRpcServiceReply *reply;
+    if (dir.isEmpty()) {
+        reply = m_client->invokeRemoteMethod("VideoLibrary.Scan");
+    } else {
+        QVariantMap params;
+        params.insert("directory", dir);
+        reply = m_client->invokeRemoteMethod("VideoLibrary.Scan", params);
+    }
+    connect(reply, SIGNAL(finished()), this, SLOT(onScanFinished()));
 }
 
 void XbmcSync::onScanFinished()
 {
+    if (!m_directoriesToSync.isEmpty()) {
+        QTimer::singleShot(m_reloadTimeOut, this, SLOT(triggerReload()));
+        return;
+    }
+
     ui->status->setText(tr("Finished. XBMC is now loading your updated items."));
     ui->buttonSync->setEnabled(true);
 }
@@ -485,7 +505,6 @@ bool XbmcSync::compareFiles(QStringList files, QStringList xbmcFiles, int level)
         for (int i=0 ; i<=level ; ++i) {
             if (file.isEmpty() || xbmcFile.isEmpty())
                 return false;
-
             if (QString::compare(file.takeLast(), xbmcFile.takeLast(), Qt::CaseInsensitive) != 0)
                 return false;
         }
@@ -556,12 +575,12 @@ void XbmcSync::onRadioRenameArtwork()
     m_syncType = RenameArtwork;
 }
 
-XbmcSync::XbmcData XbmcSync::parseXbmcDataFromScriptValue(QScriptValue value)
+XbmcSync::XbmcData XbmcSync::parseXbmcDataFromMap(QMap<QString, QVariant> map)
 {
     XbmcData d;
-    d.file = value.property("file").toString();
-    d.lastPlayed = QDateTime::fromString(value.property("lastplayed").toString(), "yyyy-MM-dd hh:mm:ss");
-    d.playCount = value.property("playcount").toInteger();
+    d.file = map.value("file").toString().normalized(QString::NormalizationForm_C);
+    d.lastPlayed = map.value("lastplayed").toDateTime();
+    d.playCount = map.value("playcount").toInt();
     return d;
 }
 
@@ -699,4 +718,10 @@ void XbmcSync::renameArtwork()
     ui->buttonClose->setEnabled(true);
     ui->buttonClose->setText(tr("Close"));
     ui->buttonSync->setEnabled(true);
+}
+
+void XbmcSync::processMessage(QJsonRpcMessage msg)
+{
+    if (msg.method() == "VideoLibrary.OnScanFinished" && m_directoriesToSync.isEmpty())
+        MessageBox::instance()->showMessage(tr("XBMC Library Scan has finished"));
 }

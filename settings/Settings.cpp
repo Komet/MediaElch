@@ -102,10 +102,8 @@ void Settings::loadSettings()
     m_downloadActorImages = m_settings.value("DownloadActorImages", true).toBool();
 
     // XBMC
-    m_xbmcHost = m_settings.value("XBMC/Host").toString();
-    m_xbmcPort = m_settings.value("XBMC/Port").toInt();
-    m_xbmcUsername = m_settings.value("XBMC/Username").toString();
-    m_xbmcPassword = m_settings.value("XBMC/Password").toString();
+    m_xbmcHost = m_settings.value("XBMC/RemoteHost").toString();
+    m_xbmcPort = m_settings.value("XBMC/RemotePort", 9090).toInt();
 
     // Proxy
     m_useProxy = m_settings.value("Proxy/Enable", false).toBool();
@@ -210,10 +208,8 @@ void Settings::saveSettings()
     m_settings.setValue("DownloadActorImages", m_downloadActorImages);
 
     // XBMC
-    m_settings.setValue("XBMC/Host", m_xbmcHost);
-    m_settings.setValue("XBMC/Port", m_xbmcPort);
-    m_settings.setValue("XBMC/Username", m_xbmcUsername);
-    m_settings.setValue("XBMC/Password", m_xbmcPassword);
+    m_settings.setValue("XBMC/RemoteHost", m_xbmcHost);
+    m_settings.setValue("XBMC/RemotePort", m_xbmcPort);
 
     // Proxy
     m_settings.setValue("Proxy/Enable", m_useProxy);
@@ -508,16 +504,6 @@ int Settings::xbmcPort()
     return m_xbmcPort;
 }
 
-QString Settings::xbmcUsername()
-{
-    return m_xbmcUsername;
-}
-
-QString Settings::xbmcPassword()
-{
-    return m_xbmcPassword;
-}
-
 /*** SETTER ***/
 
 /**
@@ -713,16 +699,6 @@ void Settings::setXbmcHost(QString host)
 void Settings::setXbmcPort(int port)
 {
     m_xbmcPort = port;
-}
-
-void Settings::setXbmcUsername(QString username)
-{
-    m_xbmcUsername = username;
-}
-
-void Settings::setXbmcPassword(QString password)
-{
-    m_xbmcPassword = password;
 }
 
 QList<int> Settings::scraperInfos(MainWidgets widget, int scraperNo)

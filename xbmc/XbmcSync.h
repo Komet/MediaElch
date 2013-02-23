@@ -3,11 +3,11 @@
 
 #include <QDialog>
 #include <QMutex>
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
 #include <QScriptValue>
+#include <QTcpSocket>
 #include <QTimer>
 #include "movies/Movie.h"
+#include "qjsonrpcservice.h"
 
 namespace Ui {
 class XbmcSync;
@@ -50,21 +50,18 @@ private slots:
     void onEpisodeListFinished();
     void onRemoveFinished();
     void onScanFinished();
-    void onTimeout();
-    void onDownloadProgress();
     void onRadioContents();
     void onRadioWatched();
     void onRadioRenameArtwork();
     void onButtonClose();
+    void processMessage(QJsonRpcMessage msg);
+    void triggerReload();
 
 private:
     Ui::XbmcSync *ui;
-    QNetworkAccessManager *m_qnam;
-    QNetworkReply *m_moviesReply;
-    QNetworkReply *m_concertsReply;
-    QNetworkReply *m_showReply;
-    QNetworkReply *m_episodeReply;
-    QNetworkReply *m_reply;
+
+    QTcpSocket *m_socket;
+    QJsonRpcSocket *m_client;
     QList<Movie*> m_moviesToSync;
     QList<Concert*> m_concertsToSync;
     QList<TvShow*> m_tvShowsToSync;
@@ -80,13 +77,13 @@ private:
     QList<int> m_episodesToRemove;
     QMutex m_mutex;
     bool m_allReady;
-    QNetworkRequest m_request;
-    QTimer m_timer;
     bool m_aborted;
     SyncType m_syncType;
     bool m_cancelRenameArtwork;
     bool m_renameArtworkInProgress;
     bool m_artworkWasRenamed;
+    QStringList m_directoriesToSync;
+    int m_reloadTimeOut;
 
     int findId(QStringList files, QMap<int, XbmcData> items);
     bool compareFiles(QStringList files, QStringList xbmcFiles, int level);
@@ -95,8 +92,7 @@ private:
     void removeItems();
     void updateWatched();
     void checkIfListsReady(Elements element);
-    void triggerReload();
-    XbmcSync::XbmcData parseXbmcDataFromScriptValue(QScriptValue value);
+    XbmcSync::XbmcData parseXbmcDataFromMap(QMap<QString, QVariant> map);
     void renameArtwork();
 };
 
