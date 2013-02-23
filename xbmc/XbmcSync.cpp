@@ -94,18 +94,24 @@ void XbmcSync::startSync()
     m_episodesToRemove.clear();
 
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        if (movie->syncNeeded())
+        if (movie->syncNeeded()) {
             m_moviesToSync.append(movie);
+            if (m_syncType == SyncContents)
+                updateFolderLastModified(movie);
+        }
     }
 
     foreach (Concert *concert, Manager::instance()->concertModel()->concerts()) {
         if (concert->syncNeeded())
             m_concertsToSync.append(concert);
+        if (m_syncType == SyncContents)
+            updateFolderLastModified(concert);
     }
 
     foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
         if (show->syncNeeded() && m_syncType == SyncContents) {
             m_tvShowsToSync.append(show);
+            updateFolderLastModified(show);
             continue;
         }
         /* @todo: Enable updating single episodes
@@ -117,6 +123,7 @@ void XbmcSync::startSync()
             if (episode->syncNeeded()) {
                 if (m_syncType == SyncContents) {
                     //m_episodesToSync.append(episode);
+                    //updateFolderLastModified(episode);
                     m_tvShowsToSync.append(show);
                     break;
                 } else if (m_syncType == SyncWatched) {
@@ -177,7 +184,7 @@ void XbmcSync::startSync()
     }
 
     if (m_moviesToSync.isEmpty() && m_concertsToSync.isEmpty() && m_tvShowsToSync.isEmpty() && m_episodesToSync.isEmpty()) {
-        triggerReload();
+        QTimer::singleShot(m_reloadTimeOut, this, SLOT(triggerReload()));
     } else {
         ui->status->setText(tr("Getting contents from XBMC"));
         ui->buttonSync->setEnabled(false);
@@ -379,7 +386,7 @@ void XbmcSync::removeItems()
         return;
     }
 
-    triggerReload();
+    QTimer::singleShot(m_reloadTimeOut, this, SLOT(triggerReload()));
 }
 
 void XbmcSync::onRemoveFinished()
@@ -394,7 +401,7 @@ void XbmcSync::onRemoveFinished()
     if (!m_moviesToRemove.isEmpty() || !m_concertsToRemove.isEmpty() || !m_tvShowsToRemove.isEmpty() || !m_episodesToRemove.isEmpty())
         removeItems();
     else
-        triggerReload();
+        QTimer::singleShot(m_reloadTimeOut, this, SLOT(triggerReload()));
 }
 
 void XbmcSync::triggerReload()
@@ -705,4 +712,68 @@ void XbmcSync::processMessage(QJsonRpcMessage msg)
 {
     if (msg.method() == "VideoLibrary.OnScanFinished")
         MessageBox::instance()->showMessage(tr("XBMC Library Scan has finished"));
+}
+
+void XbmcSync::updateFolderLastModified(Movie *movie)
+{
+    if (movie->files().isEmpty())
+        return;
+
+    QFileInfo fi(movie->files().first());
+    QDir dir = fi.dir();
+    if (movie->discType() == DiscBluRay || movie->discType() == DiscDvd) {
+        dir = fi.dir();
+        dir.cdUp();
+    }
+    QFile file(dir.absolutePath() + "/.update");
+    if (!file.exists()) {
+        file.open(QIODevice::WriteOnly);
+        file.close();
+        file.remove();
+    }
+}
+
+void XbmcSync::updateFolderLastModified(Concert *concert)
+{
+    if (concert->files().isEmpty())
+        return;
+
+    QFileInfo fi(concert->files().first());
+    QDir dir = fi.dir();
+    if (concert->discType() == DiscBluRay || concert->discType() == DiscDvd) {
+        dir = fi.dir();
+        dir.cdUp();
+    }
+    QFile file(dir.absolutePath() + "/.update");
+    if (!file.exists()) {
+        file.open(QIODevice::WriteOnly);
+        file.close();
+        file.remove();
+    }
+}
+
+void XbmcSync::updateFolderLastModified(TvShow *show)
+{
+    QDir dir(show->dir());
+    QFile file(dir.absolutePath() + "/.update");
+    if (!file.exists()) {
+        file.open(QIODevice::WriteOnly);
+        file.close();
+        file.remove();
+    }
+}
+
+void XbmcSync::updateFolderLastModified(TvShowEpisode *episode)
+{
+    if (episode->files().isEmpty())
+        return;
+
+    QFileInfo fi(episode->files().first());
+    QDir dir = fi.dir();
+    QFile file(dir.absolutePath() + "/.update");
+    if (!file.exists()) {
+        file.open(QIODevice::WriteOnly);
+        file.close();
+        file.remove();
+    }
 }

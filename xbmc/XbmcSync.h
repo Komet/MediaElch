@@ -93,6 +93,10 @@ private:
     void checkIfListsReady(Elements element);
     XbmcSync::XbmcData parseXbmcDataFromMap(QMap<QString, QVariant> map);
     void renameArtwork();
+    void updateFolderLastModified(Movie *movie);
+    void updateFolderLastModified(Concert *concert);
+    void updateFolderLastModified(TvShow *show);
+    void updateFolderLastModified(TvShowEpisode *episode);
 };
 
 #endif // XBMCSYNC_H
