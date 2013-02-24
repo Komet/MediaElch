@@ -47,7 +47,7 @@ bool ConcertProxyModel::lessThan(const QModelIndex &left, const QModelIndex &rig
         return true;
     if (!sourceModel()->data(left, Qt::UserRole+1).toBool() && sourceModel()->data(right, Qt::UserRole+1).toBool() )
         return false;
-    int cmp = QString::compare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString(), Qt::CaseInsensitive);
+    int cmp = QString::localeAwareCompare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString());
     return !(cmp < 0);
 }
 
