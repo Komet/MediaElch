@@ -33,12 +33,16 @@ private slots:
     void onSetSelected();
     void clear();
     void onSortTitleChanged(QTableWidgetItem *item);
+    void onAddMovieSet();
+    void onRemoveMovieSet();
     void onAddMovie();
     void onRemoveMovie();
     void chooseSetPoster();
     void chooseSetBackdrop();
     void onPreviewPoster();
     void onPreviewBackdrop();
+    void showSetsContextMenu(QPoint point);
+    void onSetNameChanged(QTableWidgetItem *item);
 
 private:
     Ui::SetsWidget *ui;
@@ -48,6 +52,8 @@ private:
     QMap<QString, QImage> m_setBackdrops;
     QImage m_currentPoster;
     QImage m_currentBackdrop;
+    QStringList m_addedSets;
+    QMenu *m_tableContextMenu;
 
     void loadSet(QString set);
 };

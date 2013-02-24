@@ -31,6 +31,7 @@ public slots:
     QSplitter *splitter();
 
 private slots:
+    void addCertification();
     void deleteCertification();
     void onCertificationNameChanged(QTableWidgetItem *item);
     void onCertificationSelected();
@@ -41,6 +42,7 @@ private slots:
 private:
     Ui::CertificationWidget *ui;
     QMenu *m_tableContextMenu;
+    QStringList m_addedCertifications;
 
     void clear();
 };

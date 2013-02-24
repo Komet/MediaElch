@@ -81,6 +81,7 @@ void GenreWidget::clear()
     ui->movies->clearContents();
     ui->movies->setRowCount(0);
     ui->genreName->clear();
+    m_addedGenres.clear();
 }
 
 /**
@@ -168,7 +169,8 @@ void GenreWidget::onGenreNameChanged(QTableWidgetItem *item)
     item->setData(Qt::UserRole, newName);
     if (m_addedGenres.contains(origName)) {
         m_addedGenres.removeOne(origName);
-        m_addedGenres.append(newName);
+        if (!m_addedGenres.contains(newName))
+            m_addedGenres.append(newName);
     }
     loadGenres();
 }

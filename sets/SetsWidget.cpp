@@ -51,6 +51,7 @@ SetsWidget::SetsWidget(QWidget *parent) :
     ui->backdropResolution->setFont(font);
 
     connect(ui->sets, SIGNAL(itemSelectionChanged()), this, SLOT(onSetSelected()));
+    connect(ui->sets, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onSetNameChanged(QTableWidgetItem*)));
     connect(ui->movies, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onSortTitleChanged(QTableWidgetItem*)));
     connect(ui->buttonAddMovie, SIGNAL(clicked()), this, SLOT(onAddMovie()));
     connect(ui->buttonRemoveMovie, SIGNAL(clicked()), this, SLOT(onRemoveMovie()));
@@ -58,6 +59,16 @@ SetsWidget::SetsWidget(QWidget *parent) :
     connect(ui->backdrop, SIGNAL(clicked()), this, SLOT(chooseSetBackdrop()));
     connect(ui->buttonPreviewPoster, SIGNAL(clicked()), this, SLOT(onPreviewPoster()));
     connect(ui->buttonPreviewBackdrop, SIGNAL(clicked()), this, SLOT(onPreviewBackdrop()));
+
+    ui->sets->setContextMenuPolicy(Qt::CustomContextMenu);
+    m_tableContextMenu = new QMenu(ui->sets);
+    QAction *actionAddSet = new QAction(tr("Add Movie Set"), this);
+    QAction *actionDeleteSet = new QAction(tr("Delete Movie Set"), this);
+    m_tableContextMenu->addAction(actionAddSet);
+    m_tableContextMenu->addAction(actionDeleteSet);
+    connect(actionAddSet, SIGNAL(triggered()), this, SLOT(onAddMovieSet()));
+    connect(actionDeleteSet, SIGNAL(triggered()), this, SLOT(onRemoveMovieSet()));
+    connect(ui->sets, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showSetsContextMenu(QPoint)));
 
     clear();
 }
@@ -77,6 +88,11 @@ SetsWidget::~SetsWidget()
 QSplitter *SetsWidget::splitter()
 {
     return ui->splitter;
+}
+
+void SetsWidget::showSetsContextMenu(QPoint point)
+{
+    m_tableContextMenu->exec(ui->sets->mapToGlobal(point));
 }
 
 /**
@@ -108,6 +124,14 @@ void SetsWidget::loadSets()
                 m_setPosters.insert(movie->set(), QImage());
                 m_setBackdrops.insert(movie->set(), QImage());
             }
+        }
+    }
+    foreach (const QString &set, m_addedSets) {
+        if (!set.isEmpty() && !m_sets.contains(set)) {
+            m_sets.insert(set, QList<Movie*>());
+            m_moviesToSave.insert(set, QList<Movie*>());
+            m_setPosters.insert(set, QImage());
+            m_setBackdrops.insert(set, QImage());
         }
     }
     QMapIterator<QString, QList<Movie*> > it(m_sets);
@@ -152,6 +176,7 @@ void SetsWidget::clear()
     ui->posterResolution->clear();
     m_currentBackdrop = QImage();
     m_currentPoster = QImage();
+    m_addedSets.clear();
 }
 
 /**
@@ -375,4 +400,106 @@ void SetsWidget::onPreviewPoster()
     qDebug() << "Entered";
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentPoster));
     ImagePreviewDialog::instance()->exec();
+}
+
+void SetsWidget::onAddMovieSet()
+{
+    QString setName = tr("New Movie Set");
+    int adder = -1;
+    bool setExists;
+    do {
+        adder++;
+        setExists = false;
+        for (int i=0, n=ui->sets->rowCount() ; i<n ; ++i) {
+            if ((adder == 0 && ui->sets->item(i, 0)->text() == setName) ||
+                (adder > 0 && ui->sets->item(i, 0)->text() == QString("%1 %2").arg(setName).arg(adder))) {
+                setExists = true;
+                break;
+            }
+        }
+    } while(setExists);
+
+    if (adder > 0)
+        setName.append(QString(" %1").arg(adder));
+
+    m_addedSets << setName;
+
+    QList<Movie*> l;
+    QList<Movie*> el;
+    m_sets.insert(setName, l);
+    m_moviesToSave.insert(setName, el);
+    m_setPosters.insert(setName, QImage());
+    m_setBackdrops.insert(setName, QImage());
+
+    ui->sets->blockSignals(true);
+    int row = ui->sets->rowCount();
+    ui->sets->insertRow(row);
+    ui->sets->setItem(row, 0, new QTableWidgetItem(setName));
+    ui->sets->item(row, 0)->setData(Qt::UserRole, setName);
+    ui->sets->blockSignals(false);
+}
+
+void SetsWidget::onRemoveMovieSet()
+{
+    if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
+        qWarning() << "Invalid row" << ui->sets->currentRow();
+        return;
+    }
+
+    QString setName = ui->sets->item(ui->sets->currentRow(), 0)->text();
+    QString origSetName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
+    ui->sets->removeRow(ui->sets->currentRow());
+
+    foreach (Movie *movie, m_sets[origSetName]) {
+        movie->setSet("");
+        movie->setSortTitle("");
+    }
+    m_sets.remove(setName);
+    m_setPosters.remove(setName);
+    m_setBackdrops.remove(setName);
+    m_addedSets.removeOne(setName);
+}
+
+void SetsWidget::onSetNameChanged(QTableWidgetItem *item)
+{
+    QString newName = item->text();
+    QString origSetName = item->data(Qt::UserRole).toString();
+    if (newName == origSetName)
+        return;
+
+    for (int i=0, n=ui->sets->rowCount() ; i<n ; ++i) {
+        if (i != item->row() && ui->sets->item(i, 0)->text() == newName) {
+            ui->sets->removeRow(i);
+            break;
+        }
+    }
+
+    if (!m_moviesToSave.contains(newName))
+        m_moviesToSave.insert(newName, QList<Movie*>());
+
+    foreach (Movie *movie, m_sets[origSetName]) {
+        m_moviesToSave[newName].append(movie);
+        movie->setSet(newName);
+    }
+
+    m_moviesToSave[origSetName].clear();
+
+    if (!m_sets.contains(newName))
+        m_sets[newName].append(QList<Movie*>());
+
+    m_sets[newName].append(m_sets[origSetName]);
+    m_sets.remove(origSetName);
+
+    if (!m_setPosters.contains(newName))
+        m_setPosters.insert(newName, QImage());
+    if (!m_setBackdrops.contains(newName))
+        m_setBackdrops.insert(newName, QImage());
+
+    if (m_addedSets.contains(newName)) {
+        m_addedSets.removeOne(origSetName);
+        if (!m_addedSets.contains(newName))
+            m_addedSets.append(newName);
+    }
+
+    loadSet(newName);
 }
