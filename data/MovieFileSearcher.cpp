@@ -36,11 +36,6 @@ void MovieFileSearcher::reload(bool force)
     Manager::instance()->movieModel()->clear();
     m_lastModifications.clear();
 
-    QStringList filters;
-    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
-            << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm" << "*.rmvb" << "*.img" << "*.wmv"
-            << "*.mov" << "*.divx" << "VIDEO_TS.IFO" << "index.bdmv" << "*.wtv";
-
     QList<MovieContents> c;
     QList<Movie*> dbMovies;
     QStringList bluRays;
@@ -59,7 +54,9 @@ void MovieFileSearcher::reload(bool force)
         if (dir.autoReload || force || moviesFromDb.count() == 0) {
             Manager::instance()->database()->clearMovies(dir.path);
             QMap<QString, QStringList> contents;
-            QDirIterator it(dir.path, filters, QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files, QDirIterator::Subdirectories);
+            if (Settings::instance()->advanced()->movieFilters().isEmpty())
+                continue;
+            QDirIterator it(dir.path, Settings::instance()->advanced()->movieFilters(), QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files, QDirIterator::Subdirectories);
             while (it.hasNext()) {
                 if (m_aborted)
                     return;
@@ -334,12 +331,7 @@ void MovieFileSearcher::scanDir(QString startPath, QString path, QList<QStringLi
 QStringList MovieFileSearcher::getFiles(QString path)
 {
     QStringList files;
-    QStringList filters;
-    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
-            << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm" << "*.rmvb" << "*.img" << "*.wmv"
-            << "*.mov" << "*.divx" << "*.wtv";
-
-    foreach (const QString &file, QDir(path).entryList(filters, QDir::Files | QDir::System)) {
+    foreach (const QString &file, QDir(path).entryList(Settings::instance()->advanced()->movieFilters(), QDir::Files | QDir::System)) {
         m_lastModifications.insert(QDir::toNativeSeparators(path + "/" + file),
                                    QFileInfo(path + QDir::separator() + file).lastModified());
         files.append(file);

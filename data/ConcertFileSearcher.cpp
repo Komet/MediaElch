@@ -222,12 +222,10 @@ void ConcertFileSearcher::scanDir(QString startPath, QString path, QList<QString
  */
 QStringList ConcertFileSearcher::getFiles(QString path)
 {
-    QStringList filters;
-    filters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
-            << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.rmvb" << "*.img" << "*.wmv" << "*.ogm" << "*.mov" << "*.divx"
-            << "*.wtv";
+    if (Settings::instance()->advanced()->concertFilters().isEmpty())
+        return QStringList();
 
-    return QDir(path).entryList(filters, QDir::Files | QDir::System);
+    return QDir(path).entryList(Settings::instance()->advanced()->concertFilters(), QDir::Files | QDir::System);
 }
 
 void ConcertFileSearcher::abort()

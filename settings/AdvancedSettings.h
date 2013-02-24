@@ -18,18 +18,25 @@ public:
     QString logFile() const;
     QStringList sortTokens() const;
     QHash<QString, QString> genreMappings() const;
+    QStringList movieFilters() const;
+    QStringList concertFilters() const;
+    QStringList tvShowFilters() const;
 
 private:
     bool m_debugLog;
     QString m_logFile;
     QStringList m_sortTokens;
     QHash<QString, QString> m_genreMappings;
+    QStringList m_movieFilters;
+    QStringList m_concertFilters;
+    QStringList m_tvShowFilters;
 
     void loadSettings();
     void reset();
     void loadLog(QXmlStreamReader &xml);
     void loadSortTokens(QXmlStreamReader &xml);
     void loadGenreMappings(QXmlStreamReader &xml);
+    void loadFilters(QXmlStreamReader &xml);
 
 };
 
