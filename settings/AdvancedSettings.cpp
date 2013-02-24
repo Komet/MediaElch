@@ -20,6 +20,8 @@ void AdvancedSettings::reset()
     m_logFile = "";
     m_sortTokens = QStringList() << "Der" << "Die" << "Das" << "The" << "Le" << "La" << "Les" << "Un" << "Une" << "Des";
     m_genreMappings.clear();
+    m_audioCodecMappings.clear();
+    m_videoCodecMappings.clear();
 
     m_movieFilters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
                    << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm" << "*.rmvb" << "*.img" << "*.wmv"
@@ -30,6 +32,9 @@ void AdvancedSettings::reset()
     m_concertFilters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
                      << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.rmvb" << "*.img" << "*.wmv" << "*.ogm" << "*.mov" << "*.divx"
                      << "*.wtv";
+
+    m_audioCodecMappings.insert("MPA1L3", "MP3");
+    m_videoCodecMappings.insert("v_mpeg4/iso/avc", "h264");
 }
 
 void AdvancedSettings::loadSettings()
@@ -59,18 +64,24 @@ void AdvancedSettings::loadSettings()
             loadGenreMappings(xml);
         else if (xml.name() == "fileFilters")
             loadFilters(xml);
+        else if (xml.name() == "audioCodecs")
+            loadAudioCodecMappings(xml);
+        else if (xml.name() == "videoCodecs")
+            loadVideoCodecMappings(xml);
         else
             xml.skipCurrentElement();
     }
 
     qDebug() << "Advanced settings";
-    qDebug() << "    debugLog       " << m_debugLog;
-    qDebug() << "    logFile        " << m_logFile;
-    qDebug() << "    sortTokens     " << m_sortTokens;
-    qDebug() << "    genreMappings  " << m_genreMappings;
-    qDebug() << "    movieFilters   " << m_movieFilters;
-    qDebug() << "    concertFilters " << m_concertFilters;
-    qDebug() << "    tvShowFilters  " << m_tvShowFilters;
+    qDebug() << "    debugLog           " << m_debugLog;
+    qDebug() << "    logFile            " << m_logFile;
+    qDebug() << "    sortTokens         " << m_sortTokens;
+    qDebug() << "    genreMappings      " << m_genreMappings;
+    qDebug() << "    movieFilters       " << m_movieFilters;
+    qDebug() << "    concertFilters     " << m_concertFilters;
+    qDebug() << "    tvShowFilters      " << m_tvShowFilters;
+    qDebug() << "    audioCodecMappings " << m_audioCodecMappings;
+    qDebug() << "    videoCodecMappings " << m_videoCodecMappings;
 }
 
 void AdvancedSettings::loadLog(QXmlStreamReader &xml)
@@ -102,6 +113,7 @@ void AdvancedSettings::loadGenreMappings(QXmlStreamReader &xml)
         if (xml.name() == "map") {
             if (!xml.attributes().value("from").isEmpty())
                 m_genreMappings.insert(xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
+            xml.readElementText();
         } else {
             xml.skipCurrentElement();
         }
@@ -124,6 +136,32 @@ void AdvancedSettings::loadFilters(QXmlStreamReader &xml)
             m_tvShowFilters.clear();
             foreach (const QString &filter, xml.readElementText().split(",", QString::SkipEmptyParts))
                 m_tvShowFilters << filter.trimmed();
+        } else {
+            xml.skipCurrentElement();
+        }
+    }
+}
+
+void AdvancedSettings::loadAudioCodecMappings(QXmlStreamReader &xml)
+{
+    while (xml.readNextStartElement()) {
+        if (xml.name() == "map") {
+            if (!xml.attributes().value("from").isEmpty())
+                m_audioCodecMappings.insert(xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
+            xml.readElementText();
+        } else {
+            xml.skipCurrentElement();
+        }
+    }
+}
+
+void AdvancedSettings::loadVideoCodecMappings(QXmlStreamReader &xml)
+{
+    while (xml.readNextStartElement()) {
+        if (xml.name() == "map") {
+            if (!xml.attributes().value("from").isEmpty())
+                m_videoCodecMappings.insert(xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
+            xml.readElementText();
         } else {
             xml.skipCurrentElement();
         }
@@ -164,3 +202,14 @@ QStringList AdvancedSettings::tvShowFilters() const
 {
     return m_tvShowFilters;
 }
+
+QHash<QString, QString> AdvancedSettings::audioCodecMappings() const
+{
+    return m_audioCodecMappings;
+}
+
+QHash<QString, QString> AdvancedSettings::videoCodecMappings() const
+{
+    return m_videoCodecMappings;
+}
+

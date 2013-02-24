@@ -2,6 +2,7 @@
 
 #include <QApplication>
 #include "MediaInfo/MediaInfo.h"
+#include "settings/Settings.h"
 
 using namespace MediaInfoLib;
 
@@ -111,8 +112,8 @@ QString StreamDetails::videoFormat(QString format, QString version)
     format = format.toLower();
     if (!format.isEmpty() && format == "mpeg video")
         format = (version.toLower() == "version 2") ? "mpeg2" : "mpeg";
-    if (format == "v_mpeg4/iso/avc")
-        format = "h264";
+    if (Settings::instance()->advanced()->videoCodecMappings().contains(format))
+        return Settings::instance()->advanced()->videoCodecMappings().value(format);
     return format;
 }
 
@@ -121,10 +122,10 @@ QString StreamDetails::videoFormat(QString format, QString version)
  * @param format Original format, given by libstreaminfo
  * @return Modified format
  */
-QString StreamDetails::audioFormat(QString format)
+QString StreamDetails::audioFormat(const QString &format)
 {
-    if (format == "MPA1L3")
-        return "MP3";
+    if (Settings::instance()->advanced()->audioCodecMappings().contains(format))
+        return Settings::instance()->advanced()->audioCodecMappings().value(format);
     return format;
 }
 
