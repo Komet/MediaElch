@@ -347,7 +347,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
             QString newNfoFileName;
             if (!nfo.isEmpty()) {
                 QString nfoFileName = QFileInfo(nfo).fileName();
-                QList<DataFile> nfoFiles = Settings::instance()->dataFiles(DataFileType::MovieNfo);
+                QList<DataFile> nfoFiles = Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo);
                 if (!nfoFiles.isEmpty()) {
                     newNfoFileName = nfoFiles.first().saveFileName(newFileName);
                     Helper::sanitizeFileName(newNfoFileName);
