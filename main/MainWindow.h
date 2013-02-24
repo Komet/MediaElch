@@ -60,7 +60,7 @@ private slots:
     void moveSplitter(int pos, int index);
     void onTriggerReloadAll();
     void onXbmcSyncFinished();
-    void onFilesRenamed(Renamer::RenameType type);
+    void onFilesRenamed(Renamer::RenameType type = Renamer::TypeAll);
     void onRenewModels();
 
 private:

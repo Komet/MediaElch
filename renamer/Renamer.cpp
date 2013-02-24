@@ -42,6 +42,8 @@ int Renamer::exec()
     case TypeTvShows:
         ui->infoLabel->setText(tr("%n TV Show(s) and %1", "", m_shows.count()).arg(tr("%n Episode(s) will be renamed", "", m_episodes.count())));
         break;
+    default:
+        break;
     }
 
     QString fileName;

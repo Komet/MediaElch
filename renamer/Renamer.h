@@ -17,7 +17,7 @@ class Renamer : public QDialog
 
 public:
     enum RenameType {
-        TypeMovies, TypeTvShows, TypeConcerts
+        TypeMovies, TypeTvShows, TypeConcerts, TypeAll
     };
 
     explicit Renamer(QWidget *parent = 0);

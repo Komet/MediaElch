@@ -85,23 +85,7 @@ QTabBar::tab:selected {
       <attribute name="title">
        <string>Global Settings</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0,0,0,0,0,0,0,1">
-       <item>
-        <widget class="QLabel" name="label_12">
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Please hit the &quot;Reload&quot; button after adding or removing directories. If you changed the debug mode setting please restart MediaElch.</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
+      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0,0,0,0,0,0,1">
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
