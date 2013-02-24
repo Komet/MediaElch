@@ -269,7 +269,7 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
     rx.setPattern("Genre:(.*)\\|.*<br>");
     if (infos.contains(MovieScraperInfos::Genres) && rx.indexIn(html) != -1) {
         foreach (const QString &genre, rx.cap(1).split(",", QString::SkipEmptyParts))
-            movie->addGenre(genre.trimmed());
+            movie->addGenre(Helper::mapGenre(genre.trimmed()));
     }
 
     // Year

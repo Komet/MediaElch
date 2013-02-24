@@ -463,7 +463,7 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<int
             QScriptValue vC = itC.value();
             if (vC.property("id").toString().isEmpty())
                 continue;
-            concert->addGenre(vC.property("name").toString());
+            concert->addGenre(Helper::mapGenre(vC.property("name").toString()));
         }
     }
 

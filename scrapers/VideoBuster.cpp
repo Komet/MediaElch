@@ -225,7 +225,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
     // Genres
     rx.setPattern("<a href='/genrelist.php/.*>([^<]*)</a>");
     if (infos.contains(MovieScraperInfos::Genres) && rx.indexIn(html) != -1)
-        movie->addGenre(rx.cap(1).trimmed());
+        movie->addGenre(Helper::mapGenre(rx.cap(1).trimmed()));
 
     // Tagline
     rx.setPattern("class=\"long_name\">([^<]*)</p>");

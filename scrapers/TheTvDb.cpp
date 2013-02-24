@@ -9,6 +9,7 @@
 
 #include "data/Storage.h"
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 
 /**
  * @brief TheTvDb::TheTvDb
@@ -362,7 +363,7 @@ void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, TvShowUpdateType up
             if (infosToLoad.contains(TvShowScraperInfos::FirstAired) && !elem.elementsByTagName("FirstAired").isEmpty())
                 show->setFirstAired(QDate::fromString(elem.elementsByTagName("FirstAired").at(0).toElement().text(), "yyyy-MM-dd"));
             if (infosToLoad.contains(TvShowScraperInfos::Genres) && !elem.elementsByTagName("Genre").isEmpty())
-                show->setGenres(elem.elementsByTagName("Genre").at(0).toElement().text().split("|", QString::SkipEmptyParts));
+                show->setGenres(Helper::mapGenre(elem.elementsByTagName("Genre").at(0).toElement().text().split("|", QString::SkipEmptyParts)));
             if (infosToLoad.contains(TvShowScraperInfos::Network) && !elem.elementsByTagName("Network").isEmpty())
                 show->setNetwork(elem.elementsByTagName("Network").at(0).toElement().text());
             if (infosToLoad.contains(TvShowScraperInfos::Overview) && !elem.elementsByTagName("Overview").isEmpty())

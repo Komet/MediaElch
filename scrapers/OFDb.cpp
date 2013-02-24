@@ -276,7 +276,7 @@ void OFDb::parseAndAssignInfos(QString data, Movie *movie, QList<int> infos)
         } else if (infos.contains(MovieScraperInfos::Genres) && xml.name() == "genre") {
             while (xml.readNextStartElement()) {
                 if (xml.name() == "titel")
-                    movie->addGenre(xml.readElementText());
+                    movie->addGenre(Helper::mapGenre(xml.readElementText()));
                 else
                     xml.skipCurrentElement();
             }

@@ -20,6 +20,8 @@ public:
     static QString &sanitizeFileName(QString &fileName);
     static QString stackedBaseName(const QString &fileName);
     static QString appendArticle(const QString &text);
+    static QString mapGenre(const QString &text);
+    static QStringList mapGenre(const QStringList &genres);
 };
 
 #endif // HELPER_H

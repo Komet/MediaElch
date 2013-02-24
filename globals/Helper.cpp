@@ -214,3 +214,24 @@ QString Helper::appendArticle(const QString &text)
     }
     return name;
 }
+
+QString Helper::mapGenre(const QString &text)
+{
+    if (Settings::instance()->advanced()->genreMappings().isEmpty())
+        return text;
+
+    if (Settings::instance()->advanced()->genreMappings().contains(text))
+        return Settings::instance()->advanced()->genreMappings().value(text);
+    return text;
+}
+
+QStringList Helper::mapGenre(const QStringList &genres)
+{
+    if (Settings::instance()->advanced()->genreMappings().isEmpty())
+        return genres;
+
+    QStringList mappedGenres;
+    foreach (const QString &genre, genres)
+        mappedGenres << Helper::mapGenre(genre);
+    return mappedGenres;
+}

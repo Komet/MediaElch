@@ -512,7 +512,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
             QScriptValue vC = itC.value();
             if (vC.property("id").toString().isEmpty())
                 continue;
-            movie->addGenre(vC.property("name").toString());
+            movie->addGenre(Helper::mapGenre(vC.property("name").toString()));
         }
     }
     if (infos.contains(MovieScraperInfos::Studios) && sc.property("production_companies").isArray()) {

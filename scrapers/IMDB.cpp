@@ -3,6 +3,7 @@
 #include <QScriptEngine>
 #include <QScriptValueIterator>
 #include "data/Storage.h"
+#include "globals/Helper.h"
 #include "settings/Settings.h"
 
 IMDB::IMDB(QObject *parent)
@@ -187,7 +188,7 @@ void IMDB::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
         while (itC.hasNext()) {
             itC.next();
             if (itC.hasNext())
-                movie->addGenre(itC.value().toString());
+                movie->addGenre(Helper::mapGenre(itC.value().toString()));
         }
     }
 
