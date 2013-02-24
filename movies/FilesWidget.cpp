@@ -3,6 +3,7 @@
 
 #include <QDesktopServices>
 #include <QLocale>
+#include <QScrollBar>
 #include <QTableWidget>
 #include <QTimer>
 #include "globals/Globals.h"
@@ -44,6 +45,7 @@ FilesWidget::FilesWidget(QWidget *parent) :
     ui->files->setModel(m_movieProxyModel);
     ui->files->setItemDelegate(m_movieDelegate);
 
+    m_alphaList = new AlphabeticalList(this);
     m_baseLabelCss = ui->sortByYear->styleSheet();
     m_activeLabelCss = ui->sortByNew->styleSheet();
 
@@ -76,6 +78,9 @@ FilesWidget::FilesWidget(QWidget *parent) :
 
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
+    connect(ui->files->model(), SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(setAlphaListData()));
+
+    connect(m_alphaList, SIGNAL(sigAlphaClicked(QString)), this, SLOT(scrollToAlpha(QString)));
 
     connect(ui->sortByNew, SIGNAL(clicked()), this, SLOT(onSortByNew()));
     connect(ui->sortByName, SIGNAL(clicked()), this, SLOT(onSortByName()));
@@ -99,6 +104,17 @@ FilesWidget::~FilesWidget()
 FilesWidget *FilesWidget::instance()
 {
     return m_instance;
+}
+
+void FilesWidget::resizeEvent(QResizeEvent *event)
+{
+    Q_UNUSED(event);
+    int scrollBarWidth = 0;
+    if (ui->files->verticalScrollBar()->isVisible())
+        scrollBarWidth = ui->files->verticalScrollBar()->width();
+    m_alphaList->setRightSpace(scrollBarWidth+5);
+    m_alphaList->setBottomSpace(ui->widget->height()+10);
+    m_alphaList->adjustSize();
 }
 
 void FilesWidget::showContextMenu(QPoint point)
@@ -328,4 +344,45 @@ QList<Movie*> FilesWidget::selectedMovies()
     if (movies.isEmpty())
         movies << m_lastMovie;
     return movies;
+}
+
+void FilesWidget::enterEvent(QEvent *event)
+{
+    Q_UNUSED(event);
+    m_alphaList->show();
+}
+
+void FilesWidget::leaveEvent(QEvent *event)
+{
+    Q_UNUSED(event);
+    m_alphaList->hide();
+}
+
+void FilesWidget::setAlphaListData()
+{
+    QStringList alphas;
+    for (int i=0, n=ui->files->model()->rowCount() ; i<n ; ++i) {
+        QString title = ui->files->model()->data(ui->files->model()->index(i, 0)).toString();
+        QString first = title.left(1).toUpper();
+        if (!alphas.contains(first))
+            alphas.append(first);
+    }
+    int scrollBarWidth = 0;
+    if (ui->files->verticalScrollBar()->isVisible())
+        scrollBarWidth = ui->files->verticalScrollBar()->width();
+    m_alphaList->setRightSpace(scrollBarWidth+5);
+    m_alphaList->setAlphas(alphas);
+}
+
+void FilesWidget::scrollToAlpha(QString alpha)
+{
+    for (int i=0, n=ui->files->model()->rowCount() ; i<n ; ++i) {
+        QModelIndex index = ui->files->model()->index(i, 0);
+        QString title = ui->files->model()->data(index).toString();
+        QString first = title.left(1).toUpper();
+        if (first == alpha) {
+            ui->files->scrollTo(index, QAbstractItemView::PositionAtTop);
+            return;
+        }
+    }
 }

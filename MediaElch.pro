@@ -126,7 +126,8 @@ SOURCES += main.cpp\
     smallWidgets/ClosableImage.cpp \
     renamer/Renamer.cpp \
     smallWidgets/MySpinBox.cpp \
-    settings/AdvancedSettings.cpp
+    settings/AdvancedSettings.cpp \
+    smallWidgets/AlphabeticalList.cpp
 
 HEADERS  += main/MainWindow.h \
     movies/Movie.h \
@@ -227,7 +228,8 @@ HEADERS  += main/MainWindow.h \
     smallWidgets/ClosableImage.h \
     renamer/Renamer.h \
     smallWidgets/MySpinBox.h \
-    settings/AdvancedSettings.h
+    settings/AdvancedSettings.h \
+    smallWidgets/AlphabeticalList.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

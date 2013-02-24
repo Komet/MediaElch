@@ -1,14 +1,17 @@
 #ifndef FILESWIDGET_H
 #define FILESWIDGET_H
 
+#include <QEvent>
 #include <QLabel>
 #include <QMenu>
+#include <QResizeEvent>
 #include <QWidget>
 #include "movies/Movie.h"
 #include "data/MovieModel.h"
 #include "data/MovieProxyModel.h"
 #include "data/MovieDelegate.h"
 #include "globals/Filter.h"
+#include "smallWidgets/AlphabeticalList.h"
 
 namespace Ui {
 class FilesWidget;
@@ -39,6 +42,11 @@ signals:
     void noMovieSelected();
     void movieSelected(Movie*);
 
+protected:
+    void enterEvent(QEvent *event);
+    void leaveEvent(QEvent *event);
+    void resizeEvent(QResizeEvent *event);
+
 private slots:
     void itemActivated(QModelIndex index, QModelIndex previous);
     void onSortByName();
@@ -54,6 +62,8 @@ private slots:
     void markForSync();
     void unmarkForSync();
     void openFolder();
+    void setAlphaListData();
+    void scrollToAlpha(QString alpha);
 
 private:
     Ui::FilesWidget *ui;
@@ -65,6 +75,7 @@ private:
     QString m_baseLabelCss;
     QString m_activeLabelCss;
     QMenu *m_contextMenu;
+    AlphabeticalList *m_alphaList;
 };
 
 #endif // FILESWIDGET_H

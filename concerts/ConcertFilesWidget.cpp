@@ -3,6 +3,7 @@
 
 #include <QDesktopServices>
 #include <QLocale>
+#include <QScrollBar>
 #include <QTableWidget>
 #include <QTimer>
 #include "globals/Globals.h"
@@ -34,6 +35,7 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
 #ifdef Q_OS_WIN32
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
 #endif
+    m_alphaList = new AlphabeticalList(this);
     m_lastConcert = 0;
     m_concertDelegate = new ConcertDelegate(this);
     m_concertProxyModel = new ConcertProxyModel(this);
@@ -69,6 +71,9 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
 
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
+    connect(ui->files->model(), SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(setAlphaListData()));
+
+    connect(m_alphaList, SIGNAL(sigAlphaClicked(QString)), this, SLOT(scrollToAlpha(QString)));
 }
 
 /**
@@ -230,4 +235,56 @@ QList<Concert*> ConcertFilesWidget::selectedConcerts()
     if (concerts.isEmpty())
         concerts << m_lastConcert;
     return concerts;
+}
+
+void ConcertFilesWidget::resizeEvent(QResizeEvent *event)
+{
+    Q_UNUSED(event);
+    int scrollBarWidth = 0;
+    if (ui->files->verticalScrollBar()->isVisible())
+        scrollBarWidth = ui->files->verticalScrollBar()->width();
+    m_alphaList->setBottomSpace(10);
+    m_alphaList->setRightSpace(scrollBarWidth+5);
+    m_alphaList->adjustSize();
+}
+
+void ConcertFilesWidget::enterEvent(QEvent *event)
+{
+    Q_UNUSED(event);
+    m_alphaList->show();
+}
+
+void ConcertFilesWidget::leaveEvent(QEvent *event)
+{
+    Q_UNUSED(event);
+    m_alphaList->hide();
+}
+
+void ConcertFilesWidget::setAlphaListData()
+{
+    QStringList alphas;
+    for (int i=0, n=ui->files->model()->rowCount() ; i<n ; ++i) {
+        QString title = ui->files->model()->data(ui->files->model()->index(i, 0)).toString();
+        QString first = title.left(1).toUpper();
+        if (!alphas.contains(first))
+            alphas.append(first);
+    }
+    int scrollBarWidth = 0;
+    if (ui->files->verticalScrollBar()->isVisible())
+        scrollBarWidth = ui->files->verticalScrollBar()->width();
+    m_alphaList->setRightSpace(scrollBarWidth+5);
+    m_alphaList->setAlphas(alphas);
+}
+
+void ConcertFilesWidget::scrollToAlpha(QString alpha)
+{
+    for (int i=0, n=ui->files->model()->rowCount() ; i<n ; ++i) {
+        QModelIndex index = ui->files->model()->index(i, 0);
+        QString title = ui->files->model()->data(index).toString();
+        QString first = title.left(1).toUpper();
+        if (first == alpha) {
+            ui->files->scrollTo(index, QAbstractItemView::PositionAtTop);
+            return;
+        }
+    }
 }

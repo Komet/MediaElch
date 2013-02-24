@@ -8,6 +8,7 @@
 #include "data/ConcertModel.h"
 #include "data/ConcertProxyModel.h"
 #include "data/ConcertDelegate.h"
+#include "smallWidgets/AlphabeticalList.h"
 
 namespace Ui {
 class ConcertFilesWidget;
@@ -38,6 +39,11 @@ signals:
     void noConcertSelected();
     void concertSelected(Concert*);
 
+protected:
+    void enterEvent(QEvent *event);
+    void leaveEvent(QEvent *event);
+    void resizeEvent(QResizeEvent *event);
+
 private slots:
     void itemActivated(QModelIndex index, QModelIndex previous);
     void showContextMenu(QPoint point);
@@ -47,6 +53,8 @@ private slots:
     void markForSync();
     void unmarkForSync();
     void openFolder();
+    void setAlphaListData();
+    void scrollToAlpha(QString alpha);
 
 private:
     Ui::ConcertFilesWidget *ui;
@@ -56,6 +64,7 @@ private:
     QModelIndex m_lastModelIndex;
     static ConcertFilesWidget *m_instance;
     QMenu *m_contextMenu;
+    AlphabeticalList *m_alphaList;
 };
 
 #endif // CONCERTFILESWIDGET_H
