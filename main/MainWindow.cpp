@@ -149,6 +149,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(m_renamer, SIGNAL(sigFilesRenamed(Renamer::RenameType)), this, SLOT(onFilesRenamed(Renamer::RenameType)));
 
+    connect(m_settingsWidget, SIGNAL(accepted()), this, SLOT(onRenewModels()));
+
     MovieSearch::instance(ui->centralWidget);
     TvShowSearch::instance(ui->centralWidget);
     ImageDialog::instance(ui->centralWidget);
@@ -710,4 +712,11 @@ void MainWindow::onFilesRenamed(Renamer::RenameType type)
     else if (type == Renamer::TypeTvShows)
         m_fileScannerDialog->setReloadType(FileScannerDialog::TypeTvShows);
     m_fileScannerDialog->exec();
+}
+
+void MainWindow::onRenewModels()
+{
+    ui->filesWidget->renewModel();
+    ui->tvShowFilesWidget->renewModel();
+    ui->concertFilesWidget->renewModel();
 }

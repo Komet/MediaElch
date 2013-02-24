@@ -288,3 +288,8 @@ void ConcertFilesWidget::scrollToAlpha(QString alpha)
         }
     }
 }
+
+void ConcertFilesWidget::renewModel()
+{
+    m_concertProxyModel->setSourceModel(Manager::instance()->concertModel());
+}

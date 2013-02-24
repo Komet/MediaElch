@@ -61,6 +61,7 @@ private slots:
     void onTriggerReloadAll();
     void onXbmcSyncFinished();
     void onFilesRenamed(Renamer::RenameType type);
+    void onRenewModels();
 
 private:
     Ui::MainWindow *ui;

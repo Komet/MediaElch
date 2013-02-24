@@ -386,3 +386,8 @@ void FilesWidget::scrollToAlpha(QString alpha)
         }
     }
 }
+
+void FilesWidget::renewModel()
+{
+    m_movieProxyModel->setSourceModel(Manager::instance()->movieModel());
+}

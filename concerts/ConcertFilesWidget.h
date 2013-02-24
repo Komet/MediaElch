@@ -29,6 +29,7 @@ public:
     ~ConcertFilesWidget();
     static ConcertFilesWidget *instance();
     QList<Concert*> selectedConcerts();
+    void renewModel();
 
 public slots:
     void restoreLastSelection();
