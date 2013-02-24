@@ -31,6 +31,7 @@ public slots:
     QSplitter *splitter();
 
 private slots:
+    void addGenre();
     void deleteGenre();
     void onGenreNameChanged(QTableWidgetItem *item);
     void onGenreSelected();
@@ -41,6 +42,7 @@ private slots:
 private:
     Ui::GenreWidget *ui;
     QMenu *m_tableContextMenu;
+    QStringList m_addedGenres;
 
     void clear();
 };

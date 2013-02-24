@@ -33,8 +33,11 @@ GenreWidget::GenreWidget(QWidget *parent) :
 
     ui->genres->setContextMenuPolicy(Qt::CustomContextMenu);
     m_tableContextMenu = new QMenu(ui->genres);
+    QAction *actionAddGenre = new QAction(tr("Add Genre"), this);
     QAction *actionDeleteGenre = new QAction(tr("Delete Genre"), this);
+    m_tableContextMenu->addAction(actionAddGenre);
     m_tableContextMenu->addAction(actionDeleteGenre);
+    connect(actionAddGenre, SIGNAL(triggered()), this, SLOT(addGenre()));
     connect(actionDeleteGenre, SIGNAL(triggered()), this, SLOT(deleteGenre()));
     connect(ui->genres, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showGenresContextMenu(QPoint)));
 
@@ -95,6 +98,11 @@ void GenreWidget::loadGenres()
                 genres.append(genre);;
         }
     }
+    foreach (const QString &genre, m_addedGenres) {
+        if (!genre.isEmpty() && !genres.contains(genre))
+            genres.append(genre);
+    }
+
     genres.sort();
 
     foreach (const QString &genre, genres) {
@@ -158,7 +166,42 @@ void GenreWidget::onGenreNameChanged(QTableWidgetItem *item)
     }
     ui->genreName->setText(newName);
     item->setData(Qt::UserRole, newName);
+    if (m_addedGenres.contains(origName)) {
+        m_addedGenres.removeOne(origName);
+        m_addedGenres.append(newName);
+    }
     loadGenres();
+}
+
+void GenreWidget::addGenre()
+{
+    QString genreName = tr("New Genre");
+    int adder = -1;
+    bool genreExists;
+    do {
+        adder++;
+        genreExists = false;
+        for (int i=0, n=ui->genres->rowCount() ; i<n ; ++i) {
+            if ((adder == 0 && ui->genres->item(i, 0)->text() == genreName) ||
+                (adder > 0 && ui->genres->item(i, 0)->text() == QString("%1 %2").arg(genreName).arg(adder))) {
+                genreExists = true;
+                break;
+            }
+        }
+    } while(genreExists);
+
+    if (adder > 0)
+        genreName.append(QString(" %1").arg(adder));
+
+    m_addedGenres << genreName;
+
+    ui->genres->blockSignals(true);
+    QTableWidgetItem *item = new QTableWidgetItem(genreName);
+    item->setData(Qt::UserRole, genreName);
+    int row = ui->genres->rowCount();
+    ui->genres->insertRow(row);
+    ui->genres->setItem(row, 0, item);
+    ui->genres->blockSignals(false);
 }
 
 /**
@@ -172,12 +215,15 @@ void GenreWidget::deleteGenre()
     }
 
     QString genreName = ui->genres->item(ui->genres->currentRow(), 0)->text();
+    QString origGenreName = ui->genres->item(ui->genres->currentRow(), 0)->data(Qt::UserRole).toString();
     ui->genres->removeRow(ui->genres->currentRow());
 
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         if (movie->genres().contains(genreName))
             movie->removeGenre(genreName);
     }
+
+    m_addedGenres.removeOne(origGenreName);
 }
 
 /**
@@ -231,6 +277,7 @@ void GenreWidget::onSaveInformation()
             movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
     }
 
+    m_addedGenres.clear();
     loadGenres();
     MessageBox::instance()->showMessage(tr("All Movies Saved"));
 }
