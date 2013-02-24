@@ -14,8 +14,8 @@ public:
     void search(QString searchStr);
     void loadData(QString id, Movie *movie, QList<int> infos);
     bool hasSettings();
-    void loadSettings();
-    void saveSettings();
+    void loadSettings(QSettings &settings);
+    void saveSettings(QSettings &settings);
     QList<int> scraperSupports();
     QMap<QString, QString> languages();
     QString language();

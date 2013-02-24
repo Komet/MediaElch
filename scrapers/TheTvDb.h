@@ -22,8 +22,8 @@ public:
     void loadTvShowData(QString id, TvShow *show, TvShowUpdateType updateType, QList<int> infosToLoad);
     void loadTvShowEpisodeData(QString id, TvShowEpisode *episode, QList<int> infosToLoad);
     bool hasSettings();
-    void loadSettings();
-    void saveSettings();
+    void loadSettings(QSettings &settings);
+    void saveSettings(QSettings &settings);
     QMap<QString, QString> languages();
     QString language();
     void setLanguage(QString language);

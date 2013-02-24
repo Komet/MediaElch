@@ -46,15 +46,17 @@ bool Cinefacts::hasSettings()
 /**
  * @brief Loads scrapers settings
  */
-void Cinefacts::loadSettings()
+void Cinefacts::loadSettings(QSettings &settings)
 {
+    Q_UNUSED(settings);
 }
 
 /**
  * @brief Saves scrapers settings
  */
-void Cinefacts::saveSettings()
+void Cinefacts::saveSettings(QSettings &settings)
 {
+    Q_UNUSED(settings);
 }
 
 /**

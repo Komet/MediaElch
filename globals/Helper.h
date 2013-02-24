@@ -19,6 +19,7 @@ public:
     static QByteArray &resizeBackdrop(QByteArray &image);
     static QString &sanitizeFileName(QString &fileName);
     static QString stackedBaseName(const QString &fileName);
+    static QString appendArticle(const QString &text);
 };
 
 #endif // HELPER_H

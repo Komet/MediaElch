@@ -227,25 +227,11 @@ QTabBar::tab:selected {
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QCheckBox" name="chkActivateDebug">
-           <property name="text">
-            <string>Activate debug mode and write log file</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="logfilePath"/>
-         </item>
-         <item>
-          <widget class="QPushButton" name="buttonChooseLogfile">
-           <property name="text">
-            <string>Select</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <widget class="QCheckBox" name="chkIgnoreArticlesWhenSorting">
+         <property name="text">
+          <string>Ignore articles when sorting (&quot;The&quot;)</string>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_excludeWords">

@@ -52,12 +52,14 @@ bool IMDB::hasSettings()
     return false;
 }
 
-void IMDB::loadSettings()
+void IMDB::loadSettings(QSettings &settings)
 {
+    Q_UNUSED(settings);
 }
 
-void IMDB::saveSettings()
+void IMDB::saveSettings(QSettings &settings)
 {
+    Q_UNUSED(settings);
 }
 
 QList<int> IMDB::scraperSupports()

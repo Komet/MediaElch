@@ -13,6 +13,8 @@ Settings *Settings::m_instance = 0;
 Settings::Settings(QObject *parent) :
     QObject(parent)
 {
+    m_advancedSettings = new AdvancedSettings(parent);
+
     // Eden
     m_initialDataFilesEden.append(DataFile(DataFileType::MovieNfo, "<baseFileName>.nfo", 0));
     m_initialDataFilesEden.append(DataFile(DataFileType::MoviePoster, "<baseFileName>.tbn", 0));
@@ -85,75 +87,89 @@ Settings *Settings::instance(QObject *parent)
     return m_instance;
 }
 
+void Settings::loadSettings()
+{
+    // Load old settings
+    bool firstTime = m_settings.value("FirstTimeStartup", true).toBool();
+    if (firstTime) {
+        m_settings.setValue("FirstTimeStartup", false);
+        QSettings settings("Daniel Kabel", "MediaElch");
+        loadSettings(settings);
+        saveSettings();
+        return;
+    }
+    loadSettings(m_settings);
+}
 /**
  * @brief Loads all settings
  */
-void Settings::loadSettings()
+void Settings::loadSettings(QSettings &settings)
 {
     // Globals
-    m_mainWindowSize = m_settings.value("MainWindowSize").toSize();
-    m_mainWindowPosition = m_settings.value("MainWindowPosition").toPoint();
-    m_mainWindowMaximized = m_settings.value("MainWindowMaximized").toBool();
-    m_mainSplitterState = m_settings.value("MainSplitterState").toByteArray();
-    m_debugModeActivated = m_settings.value("DebugModeActivated", false).toBool();
-    m_debugLogPath = m_settings.value("DebugLogPath").toString();
-    m_autoLoadStreamDetails = m_settings.value("AutoLoadStreamDetails", true).toBool();
-    m_usePlotForOutline = m_settings.value("Movies/UsePlotForOutline", true).toBool();
-    m_downloadActorImages = m_settings.value("DownloadActorImages", true).toBool();
+    m_mainWindowSize = settings.value("MainWindowSize").toSize();
+    m_mainWindowPosition = settings.value("MainWindowPosition").toPoint();
+    m_mainWindowMaximized = settings.value("MainWindowMaximized").toBool();
+    m_mainSplitterState = settings.value("MainSplitterState").toByteArray();
+    m_debugModeActivated = settings.value("DebugModeActivated", false).toBool();
+    m_debugLogPath = settings.value("DebugLogPath").toString();
+    m_autoLoadStreamDetails = settings.value("AutoLoadStreamDetails", true).toBool();
+    m_usePlotForOutline = settings.value("Movies/UsePlotForOutline", true).toBool();
+    m_downloadActorImages = settings.value("DownloadActorImages", true).toBool();
+    m_ignoreArticlesWhenSorting = settings.value("IgnoreArticlesWhenSorting", false).toBool();
 
     // XBMC
-    m_xbmcHost = m_settings.value("XBMC/RemoteHost").toString();
-    m_xbmcPort = m_settings.value("XBMC/RemotePort", 9090).toInt();
+    m_xbmcHost = settings.value("XBMC/RemoteHost").toString();
+    m_xbmcPort = settings.value("XBMC/RemotePort", 9090).toInt();
 
     // Proxy
-    m_useProxy = m_settings.value("Proxy/Enable", false).toBool();
-    m_proxyType = m_settings.value("Proxy/Type", 0).toInt();
-    m_proxyHost = m_settings.value("Proxy/Host").toString();
-    m_proxyPort = m_settings.value("Proxy/Port", 0).toInt();
-    m_proxyUsername = m_settings.value("Proxy/Username").toString();
-    m_proxyPassword = m_settings.value("Proxy/Password").toString();
+    m_useProxy = settings.value("Proxy/Enable", false).toBool();
+    m_proxyType = settings.value("Proxy/Type", 0).toInt();
+    m_proxyHost = settings.value("Proxy/Host").toString();
+    m_proxyPort = settings.value("Proxy/Port", 0).toInt();
+    m_proxyUsername = settings.value("Proxy/Username").toString();
+    m_proxyPassword = settings.value("Proxy/Password").toString();
     setupProxy();
 
     // Movie Directories
     m_movieDirectories.clear();
-    int moviesSize = m_settings.beginReadArray("Directories/Movies");
+    int moviesSize = settings.beginReadArray("Directories/Movies");
     for (int i=0 ; i<moviesSize ; ++i) {
-        m_settings.setArrayIndex(i);
+        settings.setArrayIndex(i);
         SettingsDir dir;
-        dir.path = QDir::toNativeSeparators(m_settings.value("path").toString());
-        dir.separateFolders = m_settings.value("sepFolders", false).toBool();
-        dir.autoReload = m_settings.value("autoReload", false).toBool();
+        dir.path = QDir::toNativeSeparators(settings.value("path").toString());
+        dir.separateFolders = settings.value("sepFolders", false).toBool();
+        dir.autoReload = settings.value("autoReload", false).toBool();
         m_movieDirectories.append(dir);
     }
-    m_settings.endArray();
+    settings.endArray();
 
     // TV Show Directories
     m_tvShowDirectories.clear();
-    int tvShowSize = m_settings.beginReadArray("Directories/TvShows");
+    int tvShowSize = settings.beginReadArray("Directories/TvShows");
     for (int i=0 ; i<tvShowSize ; ++i) {
-        m_settings.setArrayIndex(i);
+        settings.setArrayIndex(i);
         SettingsDir dir;
-        dir.path = QDir::toNativeSeparators(m_settings.value("path").toString());
-        dir.separateFolders = m_settings.value("sepFolders", false).toBool();
-        dir.autoReload = m_settings.value("autoReload", false).toBool();
+        dir.path = QDir::toNativeSeparators(settings.value("path").toString());
+        dir.separateFolders = settings.value("sepFolders", false).toBool();
+        dir.autoReload = settings.value("autoReload", false).toBool();
         m_tvShowDirectories.append(dir);
     }
-    m_settings.endArray();
+    settings.endArray();
 
     // Concert Directories
     m_concertDirectories.clear();
-    int concertsSize = m_settings.beginReadArray("Directories/Concerts");
+    int concertsSize = settings.beginReadArray("Directories/Concerts");
     for (int i=0 ; i<concertsSize ; ++i) {
-        m_settings.setArrayIndex(i);
+        settings.setArrayIndex(i);
         SettingsDir dir;
-        dir.path = QDir::toNativeSeparators(m_settings.value("path").toString());
-        dir.separateFolders = m_settings.value("sepFolders", false).toBool();
-        dir.autoReload = m_settings.value("autoReload", false).toBool();
+        dir.path = QDir::toNativeSeparators(settings.value("path").toString());
+        dir.separateFolders = settings.value("sepFolders", false).toBool();
+        dir.autoReload = settings.value("autoReload", false).toBool();
         m_concertDirectories.append(dir);
     }
-    m_settings.endArray();
+    settings.endArray();
 
-    m_excludeWords = m_settings.value("excludeWords").toString();
+    m_excludeWords = settings.value("excludeWords").toString();
     if (m_excludeWords.isEmpty())
         m_excludeWords = "ac3,dts,custom,dc,divx,divx5,dsr,dsrip,dutch,dvd,dvdrip,dvdscr,dvdscreener,screener,dvdivx,cam,fragment,fs,hdtv,hdrip,hdtvrip,internal,limited,"
                          "multisubs,ntsc,ogg,ogm,pal,pdtv,proper,repack,rerip,retail,r3,r5,bd5,se,svcd,swedish,german,read.nfo,nfofix,unrated,ws,telesync,ts,telecine,tc,"
@@ -162,32 +178,32 @@ void Settings::loadSettings()
     // Scrapers
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
         if (scraper->hasSettings())
-            scraper->loadSettings();
+            scraper->loadSettings(settings);
     }
     foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers()) {
         if (scraper->hasSettings())
-            scraper->loadSettings();
+            scraper->loadSettings(settings);
     }
     foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers()) {
         if (scraper->hasSettings())
-            scraper->loadSettings();
+            scraper->loadSettings(settings);
     }
 
     // Media Centers
-    m_youtubePluginUrls    = m_settings.value("UseYoutubePluginURLs", false).toBool();
+    m_youtubePluginUrls    = settings.value("UseYoutubePluginURLs", false).toBool();
 
     // Data Files
     QList<DataFile> dataFiles;
-    int dataFileSize = m_settings.beginReadArray("AllDataFiles");
+    int dataFileSize = settings.beginReadArray("AllDataFiles");
     for (int i=0 ; i<dataFileSize ; ++i) {
-        m_settings.setArrayIndex(i);
-        int type = m_settings.value("type").toInt();
-        QString fileName = m_settings.value("fileName").toString();
-        int pos = m_settings.value("pos").toInt();
+        settings.setArrayIndex(i);
+        int type = settings.value("type").toInt();
+        QString fileName = settings.value("fileName").toString();
+        int pos = settings.value("pos").toInt();
         DataFile f(type, fileName, pos);
         dataFiles.append(f);
     }
-    m_settings.endArray();
+    settings.endArray();
     if (dataFiles.isEmpty())
         m_dataFiles = m_initialDataFilesFrodo;
     else
@@ -206,6 +222,7 @@ void Settings::saveSettings()
     m_settings.setValue("UseYoutubePluginURLs", m_youtubePluginUrls);
     m_settings.setValue("Movies/UsePlotForOutline", m_usePlotForOutline);
     m_settings.setValue("DownloadActorImages", m_downloadActorImages);
+    m_settings.setValue("IgnoreArticlesWhenSorting", m_ignoreArticlesWhenSorting);
 
     // XBMC
     m_settings.setValue("XBMC/RemoteHost", m_xbmcHost);
@@ -250,15 +267,15 @@ void Settings::saveSettings()
 
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
         if (scraper->hasSettings())
-            scraper->saveSettings();
+            scraper->saveSettings(m_settings);
     }
     foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers()) {
         if (scraper->hasSettings())
-            scraper->saveSettings();
+            scraper->saveSettings(m_settings);
     }
     foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers()) {
         if (scraper->hasSettings())
-            scraper->saveSettings();
+            scraper->saveSettings(m_settings);
     }
 
     m_settings.beginWriteArray("AllDataFiles");
@@ -783,4 +800,19 @@ int Settings::tvShowUpdateOption()
 void Settings::setTvShowUpdateOption(int option)
 {
     m_settings.setValue("TvShowUpdateOption", option);
+}
+
+AdvancedSettings *Settings::advanced()
+{
+    return m_advancedSettings;
+}
+
+bool Settings::ignoreArticlesWhenSorting() const
+{
+    return m_ignoreArticlesWhenSorting;
+}
+
+void Settings::setIgnoreArticlesWhenSorting(bool ignore)
+{
+    m_ignoreArticlesWhenSorting = ignore;
 }

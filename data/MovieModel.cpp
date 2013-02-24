@@ -2,6 +2,7 @@
 
 #include <QPainter>
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 
 /**
  * @brief MovieModel::MovieModel
@@ -84,7 +85,7 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
 
     Movie *movie = m_movies[index.row()];
     if (index.column() == 0 && role == Qt::DisplayRole) {
-        return movie->name();
+        return Helper::appendArticle(movie->name());
     } else if (index.column() == 0 && role == Qt::ToolTipRole) {
         if (movie->files().size() == 0)
             return QVariant();

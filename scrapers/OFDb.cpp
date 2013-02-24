@@ -45,15 +45,17 @@ bool OFDb::hasSettings()
 /**
  * @brief Loads scrapers settings
  */
-void OFDb::loadSettings()
+void OFDb::loadSettings(QSettings &settings)
 {
+    Q_UNUSED(settings);
 }
 
 /**
  * @brief Saves scrapers settings
  */
-void OFDb::saveSettings()
+void OFDb::saveSettings(QSettings &settings)
 {
+    Q_UNUSED(settings);
 }
 
 /**

@@ -116,18 +116,16 @@ bool TMDbConcerts::hasSettings()
 /**
  * @brief Loads scrapers settings
  */
-void TMDbConcerts::loadSettings()
+void TMDbConcerts::loadSettings(QSettings &settings)
 {
-    QSettings settings;
     m_language = settings.value("Scrapers/TMDbConcerts/Language", "en").toString();
 }
 
 /**
  * @brief Saves scrapers settings
  */
-void TMDbConcerts::saveSettings()
+void TMDbConcerts::saveSettings(QSettings &settings)
 {
-    QSettings settings;
     settings.setValue("Scrapers/TMDbConcerts/Language", m_language);
 }
 

@@ -2,6 +2,7 @@
 
 #include <QPainter>
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 
 /**
  * @brief ConcertModel::ConcertModel
@@ -84,7 +85,7 @@ QVariant ConcertModel::data(const QModelIndex &index, int role) const
 
     Concert *concert = m_concerts[index.row()];
     if (index.column() == 0 && role == Qt::DisplayRole) {
-        return concert->name();
+        return Helper::appendArticle(concert->name());
     } else if (index.column() == 0 && role == Qt::ToolTipRole) {
         if (concert->files().size() == 0)
             return QVariant();

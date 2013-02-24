@@ -1,6 +1,7 @@
 #ifndef TVSCRAPERINTERFACE_H
 #define TVSCRAPERINTERFACE_H
 
+#include <QSettings>
 #include "data/MediaCenterInterface.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
@@ -22,8 +23,8 @@ public:
     virtual void loadTvShowData(QString id, TvShow *show, TvShowUpdateType updateType, QList<int> infosToLoad) = 0;
     virtual void loadTvShowEpisodeData(QString id, TvShowEpisode *episode, QList<int> infosToLoad) = 0;
     virtual bool hasSettings() = 0;
-    virtual void loadSettings() = 0;
-    virtual void saveSettings() = 0;
+    virtual void loadSettings(QSettings &settings) = 0;
+    virtual void saveSettings(QSettings &settings) = 0;
     virtual QMap<QString, QString> languages() = 0;
     virtual QString language() = 0;
     virtual void setLanguage(QString language) = 0;

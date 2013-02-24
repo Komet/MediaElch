@@ -132,21 +132,11 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
         }
     }
 
-    // Setup file dialogs
-    m_logFileDialog = new QFileDialog(this, tr("Logfile"), QDir::homePath(), tr("Logfiles (*.log *.txt)"));
-    m_logFileDialog->setFileMode(QFileDialog::AnyFile);
-    m_logFileDialog->selectFile("MediaElch.log");
-
-    connect(m_logFileDialog, SIGNAL(fileSelected(QString)), this, SLOT(onDebugLogPathChosen(QString)));
-
     connect(ui->buttonAddDir, SIGNAL(clicked()), this, SLOT(chooseDirToAdd()));
     connect(ui->buttonRemoveDir, SIGNAL(clicked()), this, SLOT(removeDir()));
     connect(ui->buttonMovieFilesToDirs, SIGNAL(clicked()), this, SLOT(organize()));
     connect(ui->dirs, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(dirListRowChanged(int)));
 
-    connect(ui->chkActivateDebug, SIGNAL(clicked()), this, SLOT(onActivateDebugMode()));
-    connect(ui->buttonChooseLogfile, SIGNAL(clicked()), m_logFileDialog, SLOT(open()));
-    connect(ui->logfilePath, SIGNAL(textChanged(QString)), this, SLOT(onSetDebugLogPath(QString)));
     connect(ui->chkUseProxy, SIGNAL(clicked()), this, SLOT(onUseProxy()));
     connect(ui->btnDefaultsEden, SIGNAL(clicked()), this, SLOT(onDefaultsEden()));
     connect(ui->btnDefaultsFrodo, SIGNAL(clicked()), this, SLOT(onDefaultsFrodo()));
@@ -202,11 +192,6 @@ void SettingsWidget::loadSettings()
 {
     m_settings->loadSettings();
 
-    // Debug
-    ui->chkActivateDebug->setChecked(m_settings->debugModeActivated());
-    ui->logfilePath->setText(m_settings->debugLogPath());
-    onActivateDebugMode();
-
     // Stream Details
     ui->chkAutoLoadStreamDetails->setChecked(m_settings->autoLoadStreamDetails());
 
@@ -221,6 +206,7 @@ void SettingsWidget::loadSettings()
 
     ui->usePlotForOutline->setChecked(m_settings->usePlotForOutline());
     ui->chkDownloadActorImages->setChecked(m_settings->downloadActorImages());
+    ui->chkIgnoreArticlesWhenSorting->setChecked(m_settings->ignoreArticlesWhenSorting());
 
     // Directories
     ui->dirs->setRowCount(0);
@@ -297,6 +283,7 @@ void SettingsWidget::saveSettings()
     m_settings->setUseYoutubePluginUrls(ui->useYoutubePluginUrls->isChecked());
     m_settings->setAutoLoadStreamDetails(ui->chkAutoLoadStreamDetails->isChecked());
     m_settings->setDownloadActorImages(ui->chkDownloadActorImages->isChecked());
+    m_settings->setIgnoreArticlesWhenSorting(ui->chkIgnoreArticlesWhenSorting->isChecked());
 
     m_settings->setXbmcHost(ui->xbmcHost->text());
     m_settings->setXbmcPort(ui->xbmcPort->text().toInt());
@@ -479,36 +466,6 @@ void SettingsWidget::dirListRowChanged(int currentRow)
             ui->buttonMovieFilesToDirs->setDisabled(true);
         }
     }
-}
-
-/**
- * @brief Toggles the status of logfile input and logfile select button based on the state of the checkbox
- */
-void SettingsWidget::onActivateDebugMode()
-{
-    ui->logfilePath->setEnabled(ui->chkActivateDebug->isChecked());
-    ui->buttonChooseLogfile->setEnabled(ui->chkActivateDebug->isChecked());
-    m_settings->setDebugModeActivated(ui->chkActivateDebug->isChecked());
-}
-
-/**
- * @brief Sets the path to the logfile
- */
-void SettingsWidget::onDebugLogPathChosen(QString file)
-{
-    file = QDir::toNativeSeparators(file);
-    ui->logfilePath->setText(file);
-}
-
-
-/**
- * @brief Sets the path to the logfile
- * @param path Path to logfile
- */
-void SettingsWidget::onSetDebugLogPath(QString path)
-{
-    m_settings->setDebugLogPath(path);
-    m_logFileDialog->selectFile(path);
 }
 
 /**

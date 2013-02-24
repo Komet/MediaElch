@@ -1,6 +1,7 @@
 #ifndef SCRAPER_H
 #define SCRAPER_H
 
+#include <QSettings>
 #include "data/MediaCenterInterface.h"
 #include "movies/Movie.h"
 #include "globals/Globals.h"
@@ -19,8 +20,8 @@ public:
     virtual void search(QString searchStr) = 0;
     virtual void loadData(QString id, Movie *movie, QList<int> infos) = 0;
     virtual bool hasSettings() = 0;
-    virtual void loadSettings() = 0;
-    virtual void saveSettings() = 0;
+    virtual void loadSettings(QSettings &settings) = 0;
+    virtual void saveSettings(QSettings &settings) = 0;
     virtual QList<int> scraperSupports() = 0;
     virtual QMap<QString, QString> languages() = 0;
     virtual QString language() = 0;

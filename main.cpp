@@ -150,7 +150,7 @@ int main(int argc, char *argv[])
 #if QT_VERSION < 0x050000
     QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
 #endif
-    QCoreApplication::setOrganizationName("Daniel Kabel");
+    QCoreApplication::setOrganizationName("kvibes");
     QCoreApplication::setApplicationName("MediaElch");
     QCoreApplication::setApplicationVersion("1.4");
 
@@ -166,12 +166,13 @@ int main(int argc, char *argv[])
         return a.exec();
     }
 
-    QSettings settings;
-    if (settings.value("DebugModeActivated", false).toBool() && !settings.value("DebugLogPath").toString().isEmpty()) {
-        data.setFileName(settings.value("DebugLogPath").toString());
+
+    Settings::instance(qApp);
+    if (Settings::instance()->advanced()->debugLog() && !Settings::instance()->advanced()->logFile().isEmpty()) {
+        data.setFileName(Settings::instance()->advanced()->logFile());
         if (!data.open(QFile::WriteOnly | QFile::Truncate))
             QMessageBox::critical(0, QObject::tr("Logfile could not be openened"),
-                                  QObject::tr("The logfile %1 could not be openend for writing.").arg(settings.value("DebugLogPath").toString()));
+                                  QObject::tr("The logfile %1 could not be openend for writing.").arg(Settings::instance()->advanced()->logFile()));
 #if QT_VERSION >= 0x050000
         qInstallMessageHandler(messageOutput);
 #else

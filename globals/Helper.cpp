@@ -199,3 +199,18 @@ QString Helper::stackedBaseName(const QString &fileName)
 
     return baseName;
 }
+
+QString Helper::appendArticle(const QString &text)
+{
+    if (!Settings::instance()->ignoreArticlesWhenSorting())
+        return text;
+
+    QString name = text;
+    foreach (const QString &article, Settings::instance()->advanced()->sortTokens()) {
+        if (text.startsWith(article + " ", Qt::CaseInsensitive) && text.length() > article.length()) {
+            name = text.mid(article.length()+1) + ", " + text.mid(0, article.length());
+            break;
+        }
+    }
+    return name;
+}

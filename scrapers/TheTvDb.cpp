@@ -110,18 +110,16 @@ bool TheTvDb::hasSettings()
 /**
  * @brief Loads scrapers settings
  */
-void TheTvDb::loadSettings()
+void TheTvDb::loadSettings(QSettings &settings)
 {
-    QSettings settings;
     m_language = settings.value("Scrapers/TheTvDb/Language", "en").toString();
 }
 
 /**
  * @brief Saves scrapers settings
  */
-void TheTvDb::saveSettings()
+void TheTvDb::saveSettings(QSettings &settings)
 {
-    QSettings settings;
     settings.setValue("Scrapers/TheTvDb/Language", m_language);
 }
 

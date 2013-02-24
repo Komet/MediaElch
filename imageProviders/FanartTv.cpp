@@ -20,10 +20,11 @@ FanartTv::FanartTv(QObject *parent)
                << ImageDialogType::ConcertBackdrop << ImageDialogType::ConcertLogo << ImageDialogType::ConcertClearArt << ImageDialogType::ConcertCdArt;
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_searchResultLimit = 0;
+    QSettings settings;
     m_tvdb = new TheTvDb(this);
-    m_tvdb->loadSettings();
+    m_tvdb->loadSettings(settings);
     m_tmdb = new TMDb(this);
-    m_tmdb->loadSettings();
+    m_tmdb->loadSettings(settings);
     connect(m_tvdb, SIGNAL(sigSearchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchTvShowFinished(QList<ScraperSearchResult>)));
     connect(m_tmdb, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchMovieFinished(QList<ScraperSearchResult>)));
 }

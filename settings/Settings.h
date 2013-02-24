@@ -7,6 +7,7 @@
 #include <QSize>
 
 #include "globals/Globals.h"
+#include "settings/AdvancedSettings.h"
 #include "settings/DataFile.h"
 
 /**
@@ -19,7 +20,9 @@ public:
     explicit Settings(QObject *parent = 0);
 
     static Settings *instance(QObject *parent = 0);
+    AdvancedSettings* advanced();
     void loadSettings();
+    void loadSettings(QSettings &settings);
     void loadEdenDefaults();
     void loadFrodoDefaults();
 
@@ -50,6 +53,7 @@ public:
     void renamePatterns(int renameType, QString &fileNamePattern, QString &fileNamePatternMulti, QString &directoryPattern, QString &seasonPattern);
     void renamings(int renameType, bool &files, bool &folders, bool &seasonDirectories);
     int tvShowUpdateOption();
+    bool ignoreArticlesWhenSorting() const;
 
     bool autoLoadStreamDetails();
 
@@ -80,6 +84,7 @@ public:
     void setRenamePatterns(int renameType, QString fileNamePattern, QString fileNamePatternMulti, QString directoryPattern, QString seasonPattern);
     void setRenamings(int renameType, bool files, bool folders, bool seasonDirectories);
     void setTvShowUpdateOption(int option);
+    void setIgnoreArticlesWhenSorting(bool ignore);
 
 public slots:
     void saveSettings();
@@ -87,6 +92,7 @@ public slots:
 private:
     static Settings *m_instance;
     QSettings m_settings;
+    AdvancedSettings *m_advancedSettings;
 
     QList<SettingsDir> m_movieDirectories;
     QList<SettingsDir> m_tvShowDirectories;
@@ -113,6 +119,7 @@ private:
     bool m_usePlotForOutline;
     QString m_xbmcHost;
     int m_xbmcPort;
+    bool m_ignoreArticlesWhenSorting;
 
     void setupProxy();
 };

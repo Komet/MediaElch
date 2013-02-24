@@ -1,10 +1,11 @@
 #include <QtGui>
+#include <QDebug>
 
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "TvShowModel.h"
 #include "TvShowModelItem.h"
-#include <QDebug>
 
 /**
  * @brief TvShowModel::TvShowModel
@@ -48,7 +49,7 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
 
     TvShowModelItem *item = getItem(index);
     if (role == Qt::DisplayRole) {
-        return item->data(0);
+        return Helper::appendArticle(item->data(0).toString());
     } else if (role == TvShowRoles::Type) {
         return item->type();
     } else if (role == TvShowRoles::EpisodeCount && item->type() == TypeTvShow) {

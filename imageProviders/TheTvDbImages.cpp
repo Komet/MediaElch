@@ -12,8 +12,9 @@ TheTvDbImages::TheTvDbImages(QObject *parent)
                << ImageDialogType::TvShowSeasonBackdrop;
     m_dummyShow = new TvShow(QString(), this);
     m_dummyEpisode = new TvShowEpisode(QStringList(), m_dummyShow);
+    QSettings settings;
     m_tvdb = new TheTvDb(this);
-    m_tvdb->loadSettings();
+    m_tvdb->loadSettings(settings);
     m_searchResultLimit = 0;
     connect(m_tvdb, SIGNAL(sigSearchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchTvShowFinished(QList<ScraperSearchResult>)));
     connect(m_dummyShow, SIGNAL(sigLoaded(TvShow*)), this, SLOT(onLoadTvShowDataFinished()));

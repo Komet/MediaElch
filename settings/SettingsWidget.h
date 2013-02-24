@@ -42,9 +42,6 @@ private slots:
     void organize();
     void dirListRowChanged(int currentRow);
 
-    void onDebugLogPathChosen(QString file);
-    void onActivateDebugMode();
-    void onSetDebugLogPath(QString path);
     void onUseProxy();
     void onDefaultsEden();
     void onDefaultsFrodo();
@@ -52,7 +49,6 @@ private slots:
 private:
     Ui::SettingsWidget *ui;
     Settings *m_settings;
-    QFileDialog *m_logFileDialog;
     QMap<ScraperInterface*, QComboBox*> m_scraperCombos;
     QMap<TvScraperInterface*, QComboBox*> m_tvScraperCombos;
     QMap<ConcertScraperInterface*, QComboBox*> m_concertScraperCombos;

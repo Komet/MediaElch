@@ -1,6 +1,7 @@
 #ifndef CONCERTSCRAPERINTERFACE_H
 #define CONCERTSCRAPERINTERFACE_H
 
+#include <QSettings>
 #include "data/MediaCenterInterface.h"
 #include "data/Concert.h"
 #include "globals/Globals.h"
@@ -19,8 +20,8 @@ public:
     virtual void search(QString searchStr) = 0;
     virtual void loadData(QString id, Concert *concert, QList<int> infos) = 0;
     virtual bool hasSettings() = 0;
-    virtual void loadSettings() = 0;
-    virtual void saveSettings() = 0;
+    virtual void loadSettings(QSettings &settings) = 0;
+    virtual void saveSettings(QSettings &settings) = 0;
     virtual QList<int> scraperSupports() = 0;
     virtual QMap<QString, QString> languages() = 0;
     virtual QString language() = 0;

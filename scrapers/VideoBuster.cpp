@@ -310,15 +310,17 @@ bool VideoBuster::hasSettings()
 /**
  * @brief Loads scrapers settings
  */
-void VideoBuster::loadSettings()
+void VideoBuster::loadSettings(QSettings &settings)
 {
+    Q_UNUSED(settings);
 }
 
 /**
  * @brief Saves scrapers settings
  */
-void VideoBuster::saveSettings()
+void VideoBuster::saveSettings(QSettings &settings)
 {
+    Q_UNUSED(settings);
 }
 
 /**

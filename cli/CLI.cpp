@@ -61,9 +61,10 @@ void CLI::run()
             searchTerm = path.last();
     }
 
+    QSettings settings;
     m_movie = new Movie(QStringList() << m_movieFile, this);
     m_scraper = Manager::instance()->getScraperForName(m_scraperName);
-    m_scraper->loadSettings();
+    m_scraper->loadSettings(settings);
 
     connect(m_scraper, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(onScraperSearchDone(QList<ScraperSearchResult>)));
     connect(m_movie, SIGNAL(loaded(Movie*)), this, SLOT(onScraperLoadDone()));
