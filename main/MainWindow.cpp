@@ -475,7 +475,10 @@ void MainWindow::onActionSearch()
 {
     qDebug() << "Entered, currentIndex=" << ui->stackedWidget->currentIndex();
     if (ui->stackedWidget->currentIndex() == 0) {
-        QTimer::singleShot(0, ui->movieWidget, SLOT(startScraperSearch()));
+        if (ui->filesWidget->selectedMovies().count() > 1)
+            ui->filesWidget->multiScrape();
+        else
+            QTimer::singleShot(0, ui->movieWidget, SLOT(startScraperSearch()));
     } else if (ui->stackedWidget->currentIndex() == 1) {
         QTimer::singleShot(0, ui->tvShowWidget, SLOT(onStartScraperSearch()));
     } else if (ui->stackedWidget->currentIndex() == 3) {

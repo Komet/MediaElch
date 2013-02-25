@@ -124,12 +124,7 @@ void FilesWidget::showContextMenu(QPoint point)
 
 void FilesWidget::multiScrape()
 {
-    QList<Movie*> movies;
-    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
-        int row = index.model()->data(index, Qt::UserRole).toInt();
-        movies.append(Manager::instance()->movieModel()->movie(row));
-    }
-
+    QList<Movie*> movies = selectedMovies();
     if (movies.isEmpty())
         return;
 

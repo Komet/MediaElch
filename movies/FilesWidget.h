@@ -38,6 +38,7 @@ public slots:
     void restoreLastSelection();
     void setFilter(QList<Filter*> filters, QString text);
     void movieSelectedEmitter();
+    void multiScrape();
 
 signals:
     void noMovieSelected();
@@ -56,7 +57,6 @@ private slots:
     void onSortBySeen();
     void onSortByNew();
     void showContextMenu(QPoint point);
-    void multiScrape();
     void markAsWatched();
     void markAsUnwatched();
     void loadStreamDetails();
