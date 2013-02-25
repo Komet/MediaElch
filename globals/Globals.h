@@ -179,6 +179,7 @@ namespace MovieScraperInfos {
     const int ExtraArts     = 17;
     const int Tags          = 18;
     const int ExtraFanarts  = 19;
+    const int Set           = 20;
 }
 
 namespace TvShowScraperInfos {

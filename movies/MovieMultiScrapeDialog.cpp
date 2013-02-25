@@ -39,6 +39,7 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget *parent) :
     ui->chkRating->setMyData(MovieScraperInfos::Rating);
     ui->chkReleased->setMyData(MovieScraperInfos::Released);
     ui->chkRuntime->setMyData(MovieScraperInfos::Runtime);
+    ui->chkSet->setMyData(MovieScraperInfos::Set);
     ui->chkStudios->setMyData(MovieScraperInfos::Studios);
     ui->chkTagline->setMyData(MovieScraperInfos::Tagline);
     ui->chkTitle->setMyData(MovieScraperInfos::Title);

@@ -148,6 +148,13 @@
          </widget>
         </item>
         <item>
+         <widget class="MyCheckBox" name="chkSet">
+          <property name="text">
+           <string>Set</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="MyCheckBox" name="chkTagline">
           <property name="text">
            <string>Tagline</string>

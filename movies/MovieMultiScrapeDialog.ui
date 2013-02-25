@@ -95,46 +95,6 @@
       </item>
       <item>
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="2" column="1">
-         <widget class="MyCheckBox" name="chkCertification">
-          <property name="text">
-           <string>Certification</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="MyCheckBox" name="chkRating">
-          <property name="text">
-           <string>Rating</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
-         <widget class="MyCheckBox" name="chkTrailer">
-          <property name="text">
-           <string>Trailer</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="MyCheckBox" name="chkReleased">
-          <property name="text">
-           <string>Released</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="0">
          <widget class="MyCheckBox" name="chkTitle">
           <property name="text">
@@ -145,107 +105,20 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="1">
-         <widget class="MyCheckBox" name="chkGenres">
+        <item row="5" column="2">
+         <widget class="MyCheckBox" name="chkExtraArts">
+          <property name="toolTip">
+           <string>Logo, Clear Art, CD Art</string>
+          </property>
           <property name="text">
-           <string>Genres</string>
+           <string>Extra Arts</string>
           </property>
           <property name="checked">
            <bool>true</bool>
           </property>
          </widget>
         </item>
-        <item row="1" column="2">
-         <widget class="MyCheckBox" name="chkDirector">
-          <property name="text">
-           <string>Director</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="MyCheckBox" name="chkTagline">
-          <property name="text">
-           <string>Tagline</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="MyCheckBox" name="chkActors">
-          <property name="text">
-           <string>Actors</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="MyCheckBox" name="chkPoster">
-          <property name="text">
-           <string>Poster</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="MyCheckBox" name="chkRuntime">
-          <property name="text">
-           <string>Runtime</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="2">
-         <widget class="MyCheckBox" name="chkStudios">
-          <property name="text">
-           <string>Studios</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="2">
-         <widget class="MyCheckBox" name="chkBackdrop">
-          <property name="text">
-           <string>Backdrop</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="MyCheckBox" name="chkWriter">
-          <property name="text">
-           <string>Writer</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="MyCheckBox" name="chkOverview">
-          <property name="text">
-           <string>Overview</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
+        <item row="5" column="1">
          <widget class="MyCheckBox" name="chkCountries">
           <property name="text">
            <string>Countries</string>
@@ -255,13 +128,150 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="1">
-         <widget class="MyCheckBox" name="chkExtraArts">
-          <property name="toolTip">
-           <string>Logo, Clear Art, CD Art</string>
-          </property>
+        <item row="5" column="0">
+         <widget class="MyCheckBox" name="chkStudios">
           <property name="text">
-           <string>Extra Arts</string>
+           <string>Studios</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2">
+         <widget class="MyCheckBox" name="chkGenres">
+          <property name="text">
+           <string>Genres</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="MyCheckBox" name="chkActors">
+          <property name="text">
+           <string>Actors</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="MyCheckBox" name="chkBackdrop">
+          <property name="text">
+           <string>Backdrop</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="MyCheckBox" name="chkPoster">
+          <property name="text">
+           <string>Poster</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="MyCheckBox" name="chkOverview">
+          <property name="text">
+           <string>Overview</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="MyCheckBox" name="chkTrailer">
+          <property name="text">
+           <string>Trailer</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="MyCheckBox" name="chkCertification">
+          <property name="text">
+           <string>Certification</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="MyCheckBox" name="chkWriter">
+          <property name="text">
+           <string>Writer</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="MyCheckBox" name="chkDirector">
+          <property name="text">
+           <string>Director</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="MyCheckBox" name="chkRuntime">
+          <property name="text">
+           <string>Runtime</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="MyCheckBox" name="chkReleased">
+          <property name="text">
+           <string>Released</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="MyCheckBox" name="chkRating">
+          <property name="text">
+           <string>Rating</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="MyCheckBox" name="chkTagline">
+          <property name="text">
+           <string>Tagline</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="MyCheckBox" name="chkSet">
+          <property name="text">
+           <string>Set</string>
           </property>
           <property name="checked">
            <bool>true</bool>

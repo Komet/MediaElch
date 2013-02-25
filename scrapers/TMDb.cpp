@@ -37,7 +37,8 @@ TMDb::TMDb(QObject *parent)
                       << MovieScraperInfos::Countries
                       << MovieScraperInfos::Director
                       << MovieScraperInfos::Writer
-                      << MovieScraperInfos::ExtraArts;
+                      << MovieScraperInfos::ExtraArts
+                      << MovieScraperInfos::Set;
 
     m_baseUrl = "http://cf2.imgobject.com/t/p/";
     setup();
@@ -488,6 +489,8 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
         movie->setId(sc.property("imdb_id").toString());
     if (infos.contains(MovieScraperInfos::Title) && sc.property("title").isValid())
         movie->setName(sc.property("title").toString());
+    if (infos.contains(MovieScraperInfos::Set) && !sc.property("belongs_to_collection").isNull())
+        movie->setSet(sc.property("belongs_to_collection").property("name").toString());
     if (infos.contains(MovieScraperInfos::Title) && sc.property("original_title").isValid())
         movie->setOriginalName(sc.property("original_title").toString());
     if (infos.contains(MovieScraperInfos::Overview) && sc.property("overview").isValid() && !sc.property("overview").isNull()) {
