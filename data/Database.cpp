@@ -239,7 +239,7 @@ QList<Movie*> Database::movies(QString path)
     query.exec();
     while (query.next()) {
         QStringList files;
-        queryFiles.prepare("SELECT file FROM movieFiles WHERE idMovie=:idMovie");
+        queryFiles.prepare("SELECT file FROM movieFiles WHERE idMovie=:idMovie ORDER BY file");
         queryFiles.bindValue(":idMovie", query.value(query.record().indexOf("idMovie")).toInt());
         queryFiles.exec();
         while (queryFiles.next())

@@ -149,6 +149,7 @@ void MovieFileSearcher::reload(bool force)
 
             if (files.count() == 1 || con.inSeparateFolder) {
                 // single file or in separate folder
+                files.sort();
                 Movie *movie = new Movie(files, this);
                 movie->setInSeparateFolder(con.inSeparateFolder);
                 movie->setFileLastModified(m_lastModifications.value(files.at(0)));
