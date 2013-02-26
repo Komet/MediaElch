@@ -56,6 +56,7 @@ QMap<QString, QString> TMDbConcerts::languages()
     m.insert(tr("Danish"), "da");
     m.insert(tr("Dutch"), "nl");
     m.insert(tr("English"), "en");
+    m.insert(tr("English (US)"), "en_US");
     m.insert(tr("Finnish"), "fi");
     m.insert(tr("French"), "fr");
     m.insert(tr("German"), "de");
@@ -118,7 +119,13 @@ bool TMDbConcerts::hasSettings()
  */
 void TMDbConcerts::loadSettings(QSettings &settings)
 {
-    m_language = settings.value("Scrapers/TMDbConcerts/Language", "en").toString();
+    QString lang = settings.value("Scrapers/TMDbConcerts/Language", "en").toString();
+    m_language = lang;
+    m_language2 = "";
+    if (m_language.split("_").count() > 1) {
+        m_language = lang.split("_").at(0);
+        m_language2 = lang.split("_").at(1);
+    }
 }
 
 /**
@@ -126,7 +133,7 @@ void TMDbConcerts::loadSettings(QSettings &settings)
  */
 void TMDbConcerts::saveSettings(QSettings &settings)
 {
-    settings.setValue("Scrapers/TMDbConcerts/Language", m_language);
+    settings.setValue("Scrapers/TMDbConcerts/Language", language());
 }
 
 /**
@@ -529,12 +536,16 @@ void TMDbConcerts::parseAndAssignInfos(QString json, Concert *concert, QList<int
             if (vB.property("iso_3166_1").toString().toLower() == m_language)
                 locale = vB.property("certification").toString();
         }
-        if (!locale.isEmpty())
-            concert->setCertification(locale);
-        else if (!us.isEmpty())
-            concert->setCertification(us);
-        else if (!gb.isEmpty())
-            concert->setCertification(gb);
-    }
 
+        if (m_language2 == "US" && !us.isEmpty())
+            concert->setCertification(Helper::mapCertification(us));
+        else if (m_language == "en" && m_language2 == "" && !gb.isEmpty())
+            concert->setCertification(Helper::mapCertification(gb));
+        else if (!locale.isEmpty())
+            concert->setCertification(Helper::mapCertification(locale));
+        else if (!us.isEmpty())
+            concert->setCertification(Helper::mapCertification(us));
+        else if (!gb.isEmpty())
+            concert->setCertification(Helper::mapCertification(gb));
+    }
 }

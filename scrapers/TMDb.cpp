@@ -656,16 +656,16 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
                 locale = vB.property("certification").toString();
         }
 
-        if (m_language2 == "US")
-            movie->setCertification(us);
-        else if (m_language == "en" && m_language2 == "")
-            movie->setCertification(gb);
+        if (m_language2 == "US" && !us.isEmpty())
+            movie->setCertification(Helper::mapCertification(us));
+        else if (m_language == "en" && m_language2 == "" && !gb.isEmpty())
+            movie->setCertification(Helper::mapCertification(gb));
         else if (!locale.isEmpty())
-            movie->setCertification(locale);
+            movie->setCertification(Helper::mapCertification(locale));
         else if (!us.isEmpty())
-            movie->setCertification(us);
+            movie->setCertification(Helper::mapCertification(us));
         else if (!gb.isEmpty())
-            movie->setCertification(gb);
+            movie->setCertification(Helper::mapCertification(gb));
     }
 
 }

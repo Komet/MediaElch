@@ -195,7 +195,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
     // MPAA
     rx.setPattern("FSK ab ([0-9]+) ");
     if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1)
-        movie->setCertification("FSK " + rx.cap(1));
+        movie->setCertification(Helper::mapCertification("FSK " + rx.cap(1)));
 
     // Actors
     pos = 0;

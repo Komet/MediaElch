@@ -22,6 +22,7 @@ public:
     static QString appendArticle(const QString &text);
     static QString mapGenre(const QString &text);
     static QStringList mapGenre(const QStringList &genres);
+    static QString mapCertification(const QString &text);
 };
 
 #endif // HELPER_H

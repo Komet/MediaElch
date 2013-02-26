@@ -235,3 +235,13 @@ QStringList Helper::mapGenre(const QStringList &genres)
         mappedGenres << Helper::mapGenre(genre);
     return mappedGenres;
 }
+
+QString Helper::mapCertification(const QString &text)
+{
+    if (Settings::instance()->advanced()->certificationMappings().isEmpty())
+        return text;
+
+    if (Settings::instance()->advanced()->certificationMappings().contains(text))
+        return Settings::instance()->advanced()->certificationMappings().value(text);
+    return text;
+}

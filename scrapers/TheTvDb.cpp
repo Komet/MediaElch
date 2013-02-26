@@ -359,7 +359,7 @@ void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, TvShowUpdateType up
         if (!domDoc.elementsByTagName("Series").isEmpty()) {
             QDomElement elem = domDoc.elementsByTagName("Series").at(0).toElement();
             if (infosToLoad.contains(TvShowScraperInfos::Certification) && !elem.elementsByTagName("ContentRating").isEmpty())
-                show->setCertification(elem.elementsByTagName("ContentRating").at(0).toElement().text());
+                show->setCertification(Helper::mapCertification(elem.elementsByTagName("ContentRating").at(0).toElement().text()));
             if (infosToLoad.contains(TvShowScraperInfos::FirstAired) && !elem.elementsByTagName("FirstAired").isEmpty())
                 show->setFirstAired(QDate::fromString(elem.elementsByTagName("FirstAired").at(0).toElement().text(), "yyyy-MM-dd"));
             if (infosToLoad.contains(TvShowScraperInfos::Genres) && !elem.elementsByTagName("Genre").isEmpty())

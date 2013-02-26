@@ -166,7 +166,7 @@ void IMDB::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
     if (infos.contains(MovieScraperInfos::Rating) && sc.property("rating_count").isValid())
         movie->setVotes(sc.property("rating_count").toInteger());
     if (infos.contains(MovieScraperInfos::Certification) && sc.property("rated").isValid())
-        movie->setCertification(sc.property("rated").toString());
+        movie->setCertification(Helper::mapCertification(sc.property("rated").toString()));
     if (infos.contains(MovieScraperInfos::Released) && sc.property("release_date").isValid())
         movie->setReleased(QDate::fromString(sc.property("release_date").toString(), "yyyyMMdd"));
     if (infos.contains(MovieScraperInfos::Runtime) && sc.property("runtime").isArray()) {

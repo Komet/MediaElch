@@ -23,6 +23,7 @@ public:
     QStringList tvShowFilters() const;
     QHash<QString, QString> audioCodecMappings() const;
     QHash<QString, QString> videoCodecMappings() const;
+    QHash<QString, QString> certificationMappings() const;
 
 private:
     bool m_debugLog;
@@ -34,6 +35,7 @@ private:
     QStringList m_tvShowFilters;
     QHash<QString, QString> m_audioCodecMappings;
     QHash<QString, QString> m_videoCodecMappings;
+    QHash<QString, QString> m_certificationMappings;
 
     void loadSettings();
     void reset();
@@ -43,6 +45,7 @@ private:
     void loadFilters(QXmlStreamReader &xml);
     void loadAudioCodecMappings(QXmlStreamReader &xml);
     void loadVideoCodecMappings(QXmlStreamReader &xml);
+    void loadCertificationMappings(QXmlStreamReader &xml);
 };
 
 #endif // ADVANCEDSETTINGS_H

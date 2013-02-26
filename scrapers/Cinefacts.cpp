@@ -290,7 +290,7 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
     // MPAA
     rx.setPattern("Freigegeben ab ([0-9]*) Jahren");
     if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1)
-        movie->setCertification("FSK " + rx.cap(1));
+        movie->setCertification(Helper::mapCertification("FSK " + rx.cap(1)));
 
     // Runtime
     rx.setPattern("<br>Freigegeben ab .* \\(([0-9]*) Minuten\\)<br>");

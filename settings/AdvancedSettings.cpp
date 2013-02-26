@@ -22,6 +22,7 @@ void AdvancedSettings::reset()
     m_genreMappings.clear();
     m_audioCodecMappings.clear();
     m_videoCodecMappings.clear();
+    m_certificationMappings.clear();
 
     m_movieFilters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
                    << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm" << "*.rmvb" << "*.img" << "*.wmv"
@@ -68,20 +69,23 @@ void AdvancedSettings::loadSettings()
             loadAudioCodecMappings(xml);
         else if (xml.name() == "videoCodecs")
             loadVideoCodecMappings(xml);
+        else if (xml.name() == "certifications")
+            loadCertificationMappings(xml);
         else
             xml.skipCurrentElement();
     }
 
     qDebug() << "Advanced settings";
-    qDebug() << "    debugLog           " << m_debugLog;
-    qDebug() << "    logFile            " << m_logFile;
-    qDebug() << "    sortTokens         " << m_sortTokens;
-    qDebug() << "    genreMappings      " << m_genreMappings;
-    qDebug() << "    movieFilters       " << m_movieFilters;
-    qDebug() << "    concertFilters     " << m_concertFilters;
-    qDebug() << "    tvShowFilters      " << m_tvShowFilters;
-    qDebug() << "    audioCodecMappings " << m_audioCodecMappings;
-    qDebug() << "    videoCodecMappings " << m_videoCodecMappings;
+    qDebug() << "    debugLog              " << m_debugLog;
+    qDebug() << "    logFile               " << m_logFile;
+    qDebug() << "    sortTokens            " << m_sortTokens;
+    qDebug() << "    genreMappings         " << m_genreMappings;
+    qDebug() << "    movieFilters          " << m_movieFilters;
+    qDebug() << "    concertFilters        " << m_concertFilters;
+    qDebug() << "    tvShowFilters         " << m_tvShowFilters;
+    qDebug() << "    audioCodecMappings    " << m_audioCodecMappings;
+    qDebug() << "    videoCodecMappings    " << m_videoCodecMappings;
+    qDebug() << "    certificationMappings " << m_certificationMappings;
 }
 
 void AdvancedSettings::loadLog(QXmlStreamReader &xml)
@@ -168,6 +172,19 @@ void AdvancedSettings::loadVideoCodecMappings(QXmlStreamReader &xml)
     }
 }
 
+void AdvancedSettings::loadCertificationMappings(QXmlStreamReader &xml)
+{
+    while (xml.readNextStartElement()) {
+        if (xml.name() == "map") {
+            if (!xml.attributes().value("from").isEmpty())
+                m_certificationMappings.insert(xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
+            xml.readElementText();
+        } else {
+            xml.skipCurrentElement();
+        }
+    }
+}
+
 bool AdvancedSettings::debugLog() const
 {
     return m_debugLog;
@@ -211,5 +228,10 @@ QHash<QString, QString> AdvancedSettings::audioCodecMappings() const
 QHash<QString, QString> AdvancedSettings::videoCodecMappings() const
 {
     return m_videoCodecMappings;
+}
+
+QHash<QString, QString> AdvancedSettings::certificationMappings() const
+{
+    return m_certificationMappings;
 }
 
