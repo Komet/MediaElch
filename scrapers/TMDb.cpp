@@ -63,6 +63,7 @@ QMap<QString, QString> TMDb::languages()
     m.insert(tr("Danish"), "da");
     m.insert(tr("Dutch"), "nl");
     m.insert(tr("English"), "en");
+    m.insert(tr("English (US)"), "en_US");
     m.insert(tr("Finnish"), "fi");
     m.insert(tr("French"), "fr");
     m.insert(tr("German"), "de");
@@ -90,6 +91,8 @@ QMap<QString, QString> TMDb::languages()
  */
 QString TMDb::language()
 {
+    if (m_language2 != "")
+        return m_language + "_" + m_language2;
     return m_language;
 }
 
@@ -116,7 +119,13 @@ bool TMDb::hasSettings()
  */
 void TMDb::loadSettings(QSettings &settings)
 {
-    m_language = settings.value("Scrapers/TMDb/Language", "en").toString();
+    QString lang = settings.value("Scrapers/TMDb/Language", "en").toString();
+    m_language = lang;
+    m_language2 = "";
+    if (m_language.split("_").count() > 1) {
+        m_language = lang.split("_").at(0);
+        m_language2 = lang.split("_").at(1);
+    }
 }
 
 /**
@@ -124,7 +133,7 @@ void TMDb::loadSettings(QSettings &settings)
  */
 void TMDb::saveSettings(QSettings &settings)
 {
-    settings.setValue("Scrapers/TMDb/Language", m_language);
+    settings.setValue("Scrapers/TMDb/Language", language());
 }
 
 /**
@@ -646,7 +655,12 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
             if (vB.property("iso_3166_1").toString().toLower() == m_language)
                 locale = vB.property("certification").toString();
         }
-        if (!locale.isEmpty())
+
+        if (m_language2 == "US")
+            movie->setCertification(us);
+        else if (m_language == "en" && m_language2 == "")
+            movie->setCertification(gb);
+        else if (!locale.isEmpty())
             movie->setCertification(locale);
         else if (!us.isEmpty())
             movie->setCertification(us);

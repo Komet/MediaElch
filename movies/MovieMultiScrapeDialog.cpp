@@ -137,7 +137,7 @@ void MovieMultiScrapeDialog::onStartScraping()
 void MovieMultiScrapeDialog::onScrapingFinished()
 {
     ui->movieCounter->setVisible(false);
-    ui->movie->setText(tr("Scraping of %1 movies has finished.").arg(m_movies.count()));
+    ui->movie->setText(tr("Scraping of %n movies has finished.").arg(m_movies.count()));
     ui->progressAll->setValue(ui->progressAll->maximum());
     ui->btnCancel->setVisible(false);
     ui->btnClose->setVisible(true);

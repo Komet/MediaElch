@@ -45,6 +45,7 @@ private:
     QString m_apiKey;
     QNetworkAccessManager m_qnam;
     QString m_language;
+    QString m_language2;
     QString m_baseUrl;
     QMutex m_mutex;
     QList<int> m_scraperSupports;
