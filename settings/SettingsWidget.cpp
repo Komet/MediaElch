@@ -132,11 +132,15 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
         }
     }
 
+    ui->comboMovieSetArtwork->setItemData(0, MovieSetArtworkSingleSetFolder);
+    ui->comboMovieSetArtwork->setItemData(1, MovieSetArtworkSingleArtworkFolder);
+
     connect(ui->buttonAddDir, SIGNAL(clicked()), this, SLOT(chooseDirToAdd()));
     connect(ui->buttonRemoveDir, SIGNAL(clicked()), this, SLOT(removeDir()));
     connect(ui->buttonMovieFilesToDirs, SIGNAL(clicked()), this, SLOT(organize()));
     connect(ui->dirs, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(dirListRowChanged(int)));
-
+    connect(ui->comboMovieSetArtwork, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboMovieSetArtworkChanged()));
+    connect(ui->btnMovieSetArtworkDir, SIGNAL(clicked()), this, SLOT(onChooseMovieSetArtworkDir()));
     connect(ui->chkUseProxy, SIGNAL(clicked()), this, SLOT(onUseProxy()));
     connect(ui->btnDefaultsEden, SIGNAL(clicked()), this, SLOT(onDefaultsEden()));
     connect(ui->btnDefaultsFrodo, SIGNAL(clicked()), this, SLOT(onDefaultsFrodo()));
@@ -262,6 +266,18 @@ void SettingsWidget::loadSettings()
                 itC.value()->setCurrentIndex(i);
         }
     }
+
+    // Movie set artwork
+    for (int i=0, n=ui->comboMovieSetArtwork->count() ; i<n ; ++i) {
+        if (ui->comboMovieSetArtwork->itemData(i).toInt() == m_settings->movieSetArtworkType()) {
+            ui->comboMovieSetArtwork->setCurrentIndex(i);
+            break;
+        }
+    }
+    ui->movieSetArtworkDir->setText(m_settings->movieSetArtworkDirectory());
+    ui->movieSetPosterFileName->setText(m_settings->movieSetPosterFileName());
+    ui->movieSetFanartFileName->setText(m_settings->movieSetFanartFileName());
+    onComboMovieSetArtworkChanged();
 }
 
 /**
@@ -337,6 +353,12 @@ void SettingsWidget::saveSettings()
 
     // exclude words
     m_settings->setExcludeWords(ui->excludeWordsText->toPlainText());
+
+    // Movie set artwork
+    m_settings->setMovieSetArtworkType(static_cast<MovieSetArtworkType>(ui->comboMovieSetArtwork->itemData(ui->comboMovieSetArtwork->currentIndex()).toInt()));
+    m_settings->setMovieSetArtworkDirectory(ui->movieSetArtworkDir->text());
+    m_settings->setMovieSetPosterFileName(ui->movieSetPosterFileName->text());
+    m_settings->setMovieSetFanartFileName(ui->movieSetFanartFileName->text());
 
     m_settings->saveSettings();
 
@@ -530,4 +552,17 @@ void SettingsWidget::fillDataFiles()
     ui->tvShowSeasonBannerList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowSeasonBanner), DataFileType::TvShowSeasonBanner);
     ui->tvShowEpisodeNfoList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowEpisodeNfo), DataFileType::TvShowEpisodeNfo);
     ui->tvShowEpisodeThumbList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowEpisodeThumb), DataFileType::TvShowEpisodeThumb);
+}
+
+void SettingsWidget::onComboMovieSetArtworkChanged()
+{
+    ui->btnMovieSetArtworkDir->setEnabled(ui->comboMovieSetArtwork->itemData(ui->comboMovieSetArtwork->currentIndex()).toInt() == MovieSetArtworkSingleArtworkFolder);
+    ui->movieSetArtworkDir->setEnabled(ui->comboMovieSetArtwork->itemData(ui->comboMovieSetArtwork->currentIndex()).toInt() == MovieSetArtworkSingleArtworkFolder);
+}
+
+void SettingsWidget::onChooseMovieSetArtworkDir()
+{
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a directory where your movie set artwork is stored"), QDir::homePath());
+    if (!dir.isEmpty())
+        ui->movieSetArtworkDir->setText(dir);
 }

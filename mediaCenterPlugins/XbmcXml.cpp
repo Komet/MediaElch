@@ -34,9 +34,7 @@ XbmcXml::~XbmcXml()
  */
 bool XbmcXml::hasFeature(int feature)
 {
-    if (feature == MediaCenterFeatures::HandleMovieSetImages)
-        return false;
-
+    Q_UNUSED(feature);
     return true;
 }
 
@@ -1914,15 +1912,11 @@ QStringList XbmcXml::extraFanartNames(TvShow *show)
  */
 QImage XbmcXml::movieSetPoster(QString setName)
 {
-    return QImage();
-
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        if (movie->set() == setName) {
-            if (movie->files().isEmpty())
-                continue;
-            QFileInfo fi(movie->files().first());
-            return QImage(fi.absolutePath() + "/movieset-poster.jpg");
-        }
+    QString fileName = movieSetFileName(setName, Settings::instance()->movieSetPosterFileName());
+    if (!fileName.isEmpty()) {
+        QFileInfo fi(fileName);
+        if (fi.exists())
+            return QImage(fi.absoluteFilePath());
     }
     return QImage();
 }
@@ -1935,15 +1929,11 @@ QImage XbmcXml::movieSetPoster(QString setName)
  */
 QImage XbmcXml::movieSetBackdrop(QString setName)
 {
-    return QImage();
-
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        if (movie->set() == setName) {
-            if (movie->files().isEmpty())
-                continue;
-            QFileInfo fi(movie->files().first());
-            return QImage(fi.absolutePath() + "/movieset-fanart.jpg");
-        }
+    QString fileName = movieSetFileName(setName, Settings::instance()->movieSetFanartFileName());
+    if (!fileName.isEmpty()) {
+        QFileInfo fi(fileName);
+        if (fi.exists())
+            return QImage(fi.absoluteFilePath());
     }
     return QImage();
 }
@@ -1956,16 +1946,9 @@ QImage XbmcXml::movieSetBackdrop(QString setName)
  */
 void XbmcXml::saveMovieSetPoster(QString setName, QImage poster)
 {
-    return;
-
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        if (movie->set() == setName) {
-            if (movie->files().isEmpty())
-                continue;
-            QFileInfo fi(movie->files().first());
-            poster.save(fi.absolutePath() + "/movieset-poster.jpg", "jpg", 100);
-        }
-    }
+    QString fileName = movieSetFileName(setName, Settings::instance()->movieSetPosterFileName());
+    if (!fileName.isEmpty())
+        poster.save(fileName, "jpg", 100);
 }
 
 /**
@@ -1976,16 +1959,9 @@ void XbmcXml::saveMovieSetPoster(QString setName, QImage poster)
  */
 void XbmcXml::saveMovieSetBackdrop(QString setName, QImage backdrop)
 {
-    return;
-
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        if (movie->set() == setName) {
-            if (movie->files().isEmpty())
-                continue;
-            QFileInfo fi(movie->files().first());
-            backdrop.save(fi.absolutePath() + "/movieset-fanart.jpg", "jpg", 100);
-        }
-    }
+    QString fileName = movieSetFileName(setName, Settings::instance()->movieSetFanartFileName());
+    if (!fileName.isEmpty())
+        backdrop.save(fileName, "jpg", 100);
 }
 
 bool XbmcXml::saveFile(QString filename, QByteArray data)
@@ -2023,4 +1999,28 @@ QString XbmcXml::getPath(Concert *concert)
         return dir.absolutePath();
     }
     return fi.absolutePath();
+}
+
+QString XbmcXml::movieSetFileName(QString setName, QString name)
+{
+    if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkSingleArtworkFolder) {
+        QDir dir(Settings::instance()->movieSetArtworkDirectory());
+        QString fileName = setName + "-" + name;
+        Helper::sanitizeFileName(fileName);
+        return dir.absolutePath() + "/" + fileName;
+    } else if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkSingleSetFolder) {
+        foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
+            if (movie->set() == setName && !movie->files().isEmpty()) {
+                QFileInfo fi(movie->files().first());
+                QDir dir = fi.dir();
+                if (movie->inSeparateFolder())
+                    dir.cdUp();
+                if (movie->discType() == DiscDvd || movie->discType() == DiscBluRay)
+                    dir.cdUp();
+                return dir.absolutePath() + "/" + name;
+            }
+        }
+    }
+
+    return QString();
 }

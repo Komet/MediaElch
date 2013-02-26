@@ -119,6 +119,10 @@ enum DiscType {
     DiscSingle, DiscBluRay, DiscDvd
 };
 
+enum MovieSetArtworkType {
+    MovieSetArtworkSingleSetFolder, MovieSetArtworkSingleArtworkFolder
+};
+
 /**
  * @brief The SettingsDir struct
  */

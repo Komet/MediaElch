@@ -1,6 +1,7 @@
 #ifndef SETSWIDGET_H
 #define SETSWIDGET_H
 
+#include <QMovie>
 #include <QSplitter>
 #include <QTableWidgetItem>
 #include <QWidget>
@@ -43,6 +44,7 @@ private slots:
     void onPreviewBackdrop();
     void showSetsContextMenu(QPoint point);
     void onSetNameChanged(QTableWidgetItem *item);
+    void onDownloadFinished(DownloadManagerElement elem);
 
 private:
     Ui::SetsWidget *ui;
@@ -54,6 +56,8 @@ private:
     QImage m_currentBackdrop;
     QStringList m_addedSets;
     QMenu *m_tableContextMenu;
+    DownloadManager *m_downloadManager;
+    QMovie *m_loadingMovie;
 
     void loadSet(QString set);
 };

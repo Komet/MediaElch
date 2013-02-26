@@ -41,7 +41,8 @@ private slots:
     void removeDir();
     void organize();
     void dirListRowChanged(int currentRow);
-
+    void onComboMovieSetArtworkChanged();
+    void onChooseMovieSetArtworkDir();
     void onUseProxy();
     void onDefaultsEden();
     void onDefaultsFrodo();

@@ -54,6 +54,10 @@ public:
     void renamings(int renameType, bool &files, bool &folders, bool &seasonDirectories);
     int tvShowUpdateOption();
     bool ignoreArticlesWhenSorting() const;
+    MovieSetArtworkType movieSetArtworkType() const;
+    QString movieSetArtworkDirectory() const;
+    QString movieSetPosterFileName() const;
+    QString movieSetFanartFileName() const;
 
     bool autoLoadStreamDetails();
 
@@ -85,6 +89,10 @@ public:
     void setRenamings(int renameType, bool files, bool folders, bool seasonDirectories);
     void setTvShowUpdateOption(int option);
     void setIgnoreArticlesWhenSorting(bool ignore);
+    void setMovieSetArtworkType(MovieSetArtworkType type);
+    void setMovieSetArtworkDirectory(QString dir);
+    void setMovieSetPosterFileName(QString fileName);
+    void setMovieSetFanartFileName(QString fileName);
 
 public slots:
     void saveSettings();
@@ -120,6 +128,10 @@ private:
     QString m_xbmcHost;
     int m_xbmcPort;
     bool m_ignoreArticlesWhenSorting;
+    int m_movieSetArtworkType;
+    QString m_movieSetArtworkDirectory;
+    QString m_movieSetPosterFileName;
+    QString m_movieSetFanartFileName;
 
     void setupProxy();
 };

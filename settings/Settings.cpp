@@ -208,6 +208,12 @@ void Settings::loadSettings(QSettings &settings)
         m_dataFiles = m_initialDataFilesFrodo;
     else
         m_dataFiles = dataFiles;
+
+    // Movie set artwork
+    m_movieSetArtworkType = settings.value("MovieSetArtwork/Type", 0).toInt();
+    m_movieSetArtworkDirectory = settings.value("MovieSetArtwork/Directory").toString();
+    m_movieSetPosterFileName = settings.value("MovieSetArtwork/PosterFileName", "folder.jpg").toString();
+    m_movieSetFanartFileName = settings.value("MovieSetArtwork/FanartFileName", "fanart.jpg").toString();
 }
 
 /**
@@ -286,6 +292,11 @@ void Settings::saveSettings()
         m_settings.setValue("pos", m_dataFiles.at(i).pos());
     }
     m_settings.endArray();
+
+    m_settings.setValue("MovieSetArtwork/Type", m_movieSetArtworkType);
+    m_settings.setValue("MovieSetArtwork/Directory", m_movieSetArtworkDirectory);
+    m_settings.setValue("MovieSetArtwork/PosterFileName", m_movieSetPosterFileName);
+    m_settings.setValue("MovieSetArtwork/FanartFileName", m_movieSetFanartFileName);
 }
 
 /**
@@ -815,4 +826,44 @@ bool Settings::ignoreArticlesWhenSorting() const
 void Settings::setIgnoreArticlesWhenSorting(bool ignore)
 {
     m_ignoreArticlesWhenSorting = ignore;
+}
+
+void Settings::setMovieSetArtworkType(MovieSetArtworkType type)
+{
+    m_movieSetArtworkType = type;
+}
+
+MovieSetArtworkType Settings::movieSetArtworkType() const
+{
+    return static_cast<MovieSetArtworkType>(m_movieSetArtworkType);
+}
+
+void Settings::setMovieSetArtworkDirectory(QString dir)
+{
+    m_movieSetArtworkDirectory = dir;
+}
+
+QString Settings::movieSetArtworkDirectory() const
+{
+    return m_movieSetArtworkDirectory;
+}
+
+void Settings::setMovieSetPosterFileName(QString fileName)
+{
+    m_movieSetPosterFileName = fileName;
+}
+
+QString Settings::movieSetPosterFileName() const
+{
+    return m_movieSetPosterFileName;
+}
+
+void Settings::setMovieSetFanartFileName(QString fileName)
+{
+    m_movieSetFanartFileName = fileName;
+}
+
+QString Settings::movieSetFanartFileName() const
+{
+    return m_movieSetFanartFileName;
 }

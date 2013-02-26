@@ -5,6 +5,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include "globals/Globals.h"
+#include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
 #include "main/MessageBox.h"
@@ -50,6 +51,10 @@ SetsWidget::SetsWidget(QWidget *parent) :
     ui->posterResolution->setFont(font);
     ui->backdropResolution->setFont(font);
 
+    m_loadingMovie = new QMovie(":/img/spinner.gif");
+    m_loadingMovie->start();
+    m_downloadManager = new DownloadManager(this);
+
     connect(ui->sets, SIGNAL(itemSelectionChanged()), this, SLOT(onSetSelected()));
     connect(ui->sets, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onSetNameChanged(QTableWidgetItem*)));
     connect(ui->movies, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onSortTitleChanged(QTableWidgetItem*)));
@@ -59,6 +64,7 @@ SetsWidget::SetsWidget(QWidget *parent) :
     connect(ui->backdrop, SIGNAL(clicked()), this, SLOT(chooseSetBackdrop()));
     connect(ui->buttonPreviewPoster, SIGNAL(clicked()), this, SLOT(onPreviewPoster()));
     connect(ui->buttonPreviewBackdrop, SIGNAL(clicked()), this, SLOT(onPreviewBackdrop()));
+    connect(m_downloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onDownloadFinished(DownloadManagerElement)));
 
     ui->sets->setContextMenuPolicy(Qt::CustomContextMenu);
     m_tableContextMenu = new QMenu(ui->sets);
@@ -105,6 +111,7 @@ void SetsWidget::loadSets()
     clear();
     ui->buttonPreviewBackdrop->setEnabled(false);
     ui->buttonPreviewPoster->setEnabled(false);
+    int currentRow = (ui->sets->currentRow() >= 0 && ui->sets->currentRow() < ui->sets->rowCount()) ? ui->sets->currentRow() : 0;
     ui->sets->clear();
     ui->sets->setRowCount(0);
     m_sets.clear();
@@ -142,6 +149,8 @@ void SetsWidget::loadSets()
         ui->sets->setItem(row, 0, new QTableWidgetItem(it.key()));
         ui->sets->item(row, 0)->setData(Qt::UserRole, it.key());
     }
+    if (ui->sets->rowCount() > 0 && currentRow < ui->sets->rowCount())
+        ui->sets->setCurrentItem(ui->sets->item(currentRow, 0));
     emit setActionSaveEnabled(true, WidgetMovieSets);
 }
 
@@ -202,7 +211,13 @@ void SetsWidget::loadSet(QString set)
     }
     ui->movies->sortByColumn(1, Qt::AscendingOrder);
 
-    if (m_setPosters[set].isNull() && Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages) &&
+    if (!m_setPosters[set].isNull()) {
+        QImage poster = m_setPosters[set];
+        ui->poster->setPixmap(QPixmap::fromImage(poster).scaled(200, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->posterResolution->setText(QString("%1x%2").arg(poster.width()).arg(poster.height()));
+        ui->buttonPreviewPoster->setEnabled(true);
+        m_currentPoster = poster;
+    } else if (Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages) &&
         !Manager::instance()->mediaCenterInterface()->movieSetPoster(set).isNull()) {
         QImage poster = Manager::instance()->mediaCenterInterface()->movieSetPoster(set);
         ui->poster->setPixmap(QPixmap::fromImage(poster).scaled(200, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -214,7 +229,13 @@ void SetsWidget::loadSet(QString set)
         ui->buttonPreviewPoster->setEnabled(false);
     }
 
-    if (m_setBackdrops[set].isNull() && Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages) &&
+    if (!m_setBackdrops[set].isNull()) {
+        QImage backdrop = m_setBackdrops[set];
+        ui->backdrop->setPixmap(QPixmap::fromImage(backdrop).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->backdropResolution->setText(QString("%1x%2").arg(backdrop.width()).arg(backdrop.height()));
+        ui->buttonPreviewBackdrop->setEnabled(true);
+        m_currentBackdrop = backdrop;
+    } else if (Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages) &&
         !Manager::instance()->mediaCenterInterface()->movieSetBackdrop(set).isNull()) {
         QImage backdrop = Manager::instance()->mediaCenterInterface()->movieSetBackdrop(set);
         ui->backdrop->setPixmap(QPixmap::fromImage(backdrop).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -314,16 +335,21 @@ void SetsWidget::chooseSetPoster()
         return;
 
     QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
-    QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), QDir::homePath(), tr("Images (*.jpg *.jpeg)"));
-    if (!fileName.isNull()) {
-        QImage img(fileName);
-        if (!img.isNull()) {
-            ui->poster->setPixmap(QPixmap::fromImage(img).scaled(200, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            ui->posterResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
-            ui->buttonPreviewPoster->setEnabled(true);
-            m_setPosters[setName] = img;
-            m_currentPoster = img;
-        }
+    Movie *movie = new Movie(QStringList());
+    movie->setName(setName);
+    ImageDialog::instance()->setImageType(TypePoster);
+    ImageDialog::instance()->clear();
+    ImageDialog::instance()->setMovie(movie);
+    ImageDialog::instance()->exec(ImageDialogType::MoviePoster);
+    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+        DownloadManagerElement d;
+        d.movie = movie;
+        d.imageType = static_cast<ImageType>(TypePoster);
+        d.url = ImageDialog::instance()->imageUrl();
+        m_downloadManager->addDownload(d);
+        ui->poster->setPixmap(QPixmap());
+        ui->poster->setMovie(m_loadingMovie);
+        ui->buttonPreviewPoster->setEnabled(false);
     }
 }
 
@@ -342,16 +368,21 @@ void SetsWidget::chooseSetBackdrop()
         return;
 
     QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
-    QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), QDir::homePath(), tr("Images (*.jpg *.jpeg)"));
-    if (!fileName.isNull()) {
-        QImage img(fileName);
-        if (!img.isNull()) {
-            ui->backdrop->setPixmap(QPixmap::fromImage(img).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            ui->backdropResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
-            ui->buttonPreviewBackdrop->setEnabled(true);
-            m_setBackdrops[setName] = img;
-            m_currentBackdrop = img;
-        }
+    Movie *movie = new Movie(QStringList());
+    movie->setName(setName);
+    ImageDialog::instance()->setImageType(TypeBackdrop);
+    ImageDialog::instance()->clear();
+    ImageDialog::instance()->setMovie(movie);
+    ImageDialog::instance()->exec(ImageDialogType::MovieBackdrop);
+    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+        DownloadManagerElement d;
+        d.movie = movie;
+        d.imageType = static_cast<ImageType>(TypeBackdrop);
+        d.url = ImageDialog::instance()->imageUrl();
+        m_downloadManager->addDownload(d);
+        ui->backdrop->setPixmap(QPixmap());
+        ui->backdrop->setMovie(m_loadingMovie);
+        ui->buttonPreviewBackdrop->setEnabled(false);
     }
 }
 
@@ -502,4 +533,22 @@ void SetsWidget::onSetNameChanged(QTableWidgetItem *item)
     }
 
     loadSet(newName);
+}
+
+void SetsWidget::onDownloadFinished(DownloadManagerElement elem)
+{
+    QString setName = elem.movie->name();
+    if (elem.imageType == TypePoster) {
+        if (m_setPosters.contains(setName))
+            m_setPosters[setName] = QImage::fromData(elem.data);
+        if (ui->sets->currentRow() >= 0 && ui->sets->currentRow() < ui->sets->rowCount() && ui->sets->item(ui->sets->currentRow(), 0)->text() == setName)
+            loadSet(setName);
+    } else if (elem.imageType == TypeBackdrop) {
+        if (m_setBackdrops.contains(setName))
+            m_setBackdrops[setName] = QImage::fromData(elem.data);
+        if (ui->sets->currentRow() >= 0 && ui->sets->currentRow() < ui->sets->rowCount() && ui->sets->item(ui->sets->currentRow(), 0)->text() == setName)
+            loadSet(setName);
+    }
+    if (elem.movie)
+        delete elem.movie;
 }
