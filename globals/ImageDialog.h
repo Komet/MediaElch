@@ -115,6 +115,7 @@ private:
     int getColumnWidth();
     void loadImagesFromProvider(QString id);
     void clearSearch();
+    QString formatSearchText(const QString &text);
 };
 
 #endif // IMAGEDIALOG_H

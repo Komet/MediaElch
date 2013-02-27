@@ -159,13 +159,13 @@ int ImageDialog::exec(int type)
     ui->stackedWidget->setCurrentIndex(1);
 
     if (m_itemType == ItemMovie)
-        ui->searchTerm->setText(m_movie->name().replace("-", " "));
+        ui->searchTerm->setText(formatSearchText(m_movie->name()));
     else if (m_itemType == ItemConcert)
-        ui->searchTerm->setText(m_concert->name().replace("-", " "));
+        ui->searchTerm->setText(formatSearchText(m_concert->name()));
     else if (m_itemType == ItemTvShow)
-        ui->searchTerm->setText(m_tvShow->name().replace("-", " "));
+        ui->searchTerm->setText(formatSearchText(m_tvShow->name()));
     else if (m_itemType == ItemTvShowEpisode)
-        ui->searchTerm->setText(m_tvShowEpisode->tvShow()->name().replace("-", " "));
+        ui->searchTerm->setText(formatSearchText(m_tvShowEpisode->tvShow()->name()));
     else
         ui->searchTerm->clear();
 
@@ -799,4 +799,13 @@ QList<QUrl> ImageDialog::imageUrls()
 void ImageDialog::onImageClosed(const QString &url)
 {
     m_imageUrls.removeOne(url);
+}
+
+QString ImageDialog::formatSearchText(const QString &text)
+{
+    QString fText = text;
+    fText.replace(" - ", " ");
+    fText.replace("-", " ");
+    fText = NameFormatter::instance()->formatName(fText);
+    return fText;
 }
