@@ -632,6 +632,7 @@ void ImageDialog::onProviderChanged(int index)
     } else {
         ui->searchTerm->setEnabled(true);
         ui->searchTerm->setFocus();
+        onSearch();
     }
 }
 
