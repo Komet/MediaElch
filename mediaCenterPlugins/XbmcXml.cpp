@@ -1908,7 +1908,6 @@ QStringList XbmcXml::extraFanartNames(TvShow *show)
  * @brief Loading of movie set posters is not possible with nfos
  * @param setName
  * @return
- * @todo: Find a solution for loading movie set poster
  */
 QImage XbmcXml::movieSetPoster(QString setName)
 {
@@ -1925,7 +1924,6 @@ QImage XbmcXml::movieSetPoster(QString setName)
  * @brief Loading of movie set backdrops is not possible with nfos
  * @param setName
  * @return
- * @todo: Find a solution for loading movie set fanart
  */
 QImage XbmcXml::movieSetBackdrop(QString setName)
 {
@@ -1942,7 +1940,6 @@ QImage XbmcXml::movieSetBackdrop(QString setName)
  * @brief Save movie set poster
  * @param setName
  * @param poster
- * @todo: Find a solution for storing movie set poster
  */
 void XbmcXml::saveMovieSetPoster(QString setName, QImage poster)
 {
@@ -1955,7 +1952,6 @@ void XbmcXml::saveMovieSetPoster(QString setName, QImage poster)
  * @brief Save movie set backdrop
  * @param setName
  * @param backdrop
- * @todo: Find a solution for storing movie set fanart
  */
 void XbmcXml::saveMovieSetBackdrop(QString setName, QImage backdrop)
 {

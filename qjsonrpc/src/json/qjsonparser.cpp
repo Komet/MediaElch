@@ -356,7 +356,17 @@ void Parser::ParsedObject::insert(uint offset) {
     if (min < offsets.size() && *entryAt(min) == *newEntry) {
         offsets[min] = offset;
     } else {
+#if QT_VERSION < QT_VERSION_CHECK(4, 8, 0)
+        QVarLengthArray<uint, 64> offsetsN;
+        for (int i=0, n=offsets.size() ; i<n ; ++i) {
+            if (i == min)
+                offsetsN.append(offsets[i]);
+            offsetsN.append(offsets[i]);
+        }
+        offsets = offsetsN;
+#else
         offsets.insert(min, offset);
+#endif
     }
 }
 
