@@ -35,6 +35,7 @@ public slots:
     void restoreLastSelection();
     void setFilter(QList<Filter*> filters, QString text);
     void concertSelectedEmitter();
+    void setAlphaListData();
 
 signals:
     void noConcertSelected();
@@ -54,7 +55,6 @@ private slots:
     void markForSync();
     void unmarkForSync();
     void openFolder();
-    void setAlphaListData();
     void scrollToAlpha(QString alpha);
 
 private:

@@ -685,6 +685,9 @@ void MainWindow::setNewMarks()
     ui->buttonMovies->setIcon(movies);
     ui->buttonConcerts->setIcon(concerts);
     ui->buttonTvshows->setIcon(shows);
+
+    ui->filesWidget->setAlphaListData();
+    ui->concertFilesWidget->setAlphaListData();
 }
 
 void MainWindow::onActionXbmc()

@@ -39,6 +39,7 @@ public slots:
     void setFilter(QList<Filter*> filters, QString text);
     void movieSelectedEmitter();
     void multiScrape();
+    void setAlphaListData();
 
 signals:
     void noMovieSelected();
@@ -63,7 +64,6 @@ private slots:
     void markForSync();
     void unmarkForSync();
     void openFolder();
-    void setAlphaListData();
     void scrollToAlpha(QString alpha);
 
 private:

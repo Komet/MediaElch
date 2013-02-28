@@ -362,6 +362,7 @@ void FilesWidget::setAlphaListData()
         if (!alphas.contains(first))
             alphas.append(first);
     }
+    alphas.sort();
     int scrollBarWidth = 0;
     if (ui->files->verticalScrollBar()->isVisible())
         scrollBarWidth = ui->files->verticalScrollBar()->width();
