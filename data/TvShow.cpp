@@ -393,6 +393,16 @@ QString TvShow::tvdbId() const
     return m_tvdbId;
 }
 
+QString TvShow::id() const
+{
+    return m_id;
+}
+
+QString TvShow::imdbId() const
+{
+    return m_imdbId;
+}
+
 /**
  * @property TvShow::episodeGuideUrl
  * @brief The Episode Guide url of the show
@@ -896,6 +906,18 @@ void TvShow::setOverview(QString overview)
 void TvShow::setTvdbId(QString id)
 {
     m_tvdbId = id;
+    setChanged(true);
+}
+
+void TvShow::setId(QString id)
+{
+    m_id = id;
+    setChanged(true);
+}
+
+void TvShow::setImdbId(QString id)
+{
+    m_imdbId = id;
     setChanged(true);
 }
 

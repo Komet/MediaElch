@@ -56,6 +56,8 @@ public:
     QString network() const;
     QString overview() const;
     QString tvdbId() const;
+    QString id() const;
+    QString imdbId() const;
     QString episodeGuideUrl() const;
     QStringList certifications() const;
     QList<Actor> actors() const;
@@ -102,6 +104,8 @@ public:
     void setNetwork(QString network);
     void setOverview(QString overview);
     void setTvdbId(QString id);
+    void setId(QString id);
+    void setImdbId(QString id);
     void setEpisodeGuideUrl(QString url);
     void setActors(QList<Actor> actors);
     void addActor(Actor actor);
@@ -182,6 +186,8 @@ private:
     QString m_network;
     QString m_overview;
     QString m_tvdbId;
+    QString m_id;
+    QString m_imdbId;
     QString m_episodeGuideUrl;
     QList<Actor> m_actors;
     QList<Poster> m_posters;

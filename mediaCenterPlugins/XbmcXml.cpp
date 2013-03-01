@@ -1428,8 +1428,12 @@ bool XbmcXml::loadTvShow(TvShow *show, QString initialNfoContent)
 
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
+    if (!domDoc.elementsByTagName("id").isEmpty() )
+        show->setId(domDoc.elementsByTagName("id").at(0).toElement().text());
     if (!domDoc.elementsByTagName("tvdbid").isEmpty() )
         show->setTvdbId(domDoc.elementsByTagName("tvdbid").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("imdbid").isEmpty() )
+        show->setImdbId(domDoc.elementsByTagName("imdbid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("title").isEmpty() )
         show->setName(domDoc.elementsByTagName("title").at(0).toElement().text());
     if (!domDoc.elementsByTagName("showtitle").isEmpty() )
@@ -1764,7 +1768,8 @@ void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show)
     xml.writeTextElement("premiered", show->firstAired().toString("yyyy-MM-dd"));
     xml.writeTextElement("studio", show->network());
     xml.writeTextElement("tvdbid", show->tvdbId());
-    xml.writeTextElement("id", show->tvdbId());
+    xml.writeTextElement("id", show->id());
+    xml.writeTextElement("imdbId", show->imdbId());
 
     if (!show->episodeGuideUrl().isEmpty()) {
         xml.writeStartElement("episodeguide");
