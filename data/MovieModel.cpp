@@ -149,7 +149,7 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
         }
 
         if (!icon.isEmpty())
-            return QIcon(QPixmap(":mediaStatus/" + icon).scaled(12, 12, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            return QIcon(QPixmap(":mediaStatus/" + icon));
 
     } else if (role == Qt::ToolTipRole) {
         return MovieModel::mediaStatusToText(MovieModel::columnToMediaStatus(index.column()));
