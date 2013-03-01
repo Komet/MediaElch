@@ -21,6 +21,10 @@ MovieDelegate::MovieDelegate(QObject *parent) :
  */
 void MovieDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+    if (index.column() > 0) {
+        QStyledItemDelegate::paint(painter, option, index);
+        return;
+    }
     painter->save();
 
     QFont newFont;
@@ -75,7 +79,7 @@ void MovieDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
     if (option.state & QStyle::State_Selected)
         painter->setPen(QPen(option.palette.highlightedText().color()));
     painter->setFont(font);
-    painter->drawText(option.rect.x()+xMove, option.rect.y(), option.rect.width()-xMove, option.rect.height(), Qt::AlignVCenter, index.data().toString());
+    painter->drawText(option.rect.x()+xMove, option.rect.y(), option.rect.width()-xMove-20, option.rect.height(), Qt::AlignVCenter, index.data().toString());
 
     painter->restore();
 }

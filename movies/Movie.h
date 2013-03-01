@@ -170,11 +170,13 @@ public:
     bool hasLogo() const;
     bool hasClearArt() const;
     bool hasCdArt() const;
+    bool hasExtraFanarts() const;
     void setHasPoster(bool has);
     void setHasBackdrop(bool has);
     void setHasLogo(bool has);
     void setHasClearArt(bool has);
     void setHasCdArt(bool has);
+    void setHasExtraFanarts(bool has);
 
     QList<Poster> posters() const;
     QList<Poster> backdrops() const;
@@ -268,6 +270,7 @@ private:
     bool m_hasLogo;
     bool m_hasClearArt;
     bool m_hasCdArt;
+    bool m_hasExtraFanarts;
     bool m_syncNeeded;
     bool m_streamDetailsLoaded;
     StreamDetails *m_streamDetails;

@@ -89,6 +89,10 @@ bool Filter::accepts(Movie *movie)
         return (m_hasInfo && movie->hasPoster()) || (!m_hasInfo && !movie->hasPoster());
     if (m_info == MovieFilters::Backdrop)
         return (m_hasInfo && movie->hasBackdrop()) || (!m_hasInfo && !movie->hasBackdrop());
+    if (m_info == MovieFilters::ExtraFanarts)
+        return (m_hasInfo && movie->hasExtraFanarts()) || (!m_hasInfo && !movie->hasExtraFanarts());
+    if (m_info == MovieFilters::Actors)
+        return (m_hasInfo && !movie->actors().isEmpty()) || (!m_hasInfo && movie->actors().isEmpty());
     if (m_info == MovieFilters::Logo)
         return (m_hasInfo && movie->hasLogo()) || (!m_hasInfo && !movie->hasLogo());
     if (m_info == MovieFilters::ClearArt)

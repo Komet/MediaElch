@@ -99,4 +99,21 @@
         <file alias="codec/h264">mediaFlags/codec/h264.png</file>
         <file alias="codec/xvid">mediaFlags/codec/xvid.png</file>
     </qresource>
+    <qresource prefix="/mediaStatus">
+        <file alias="actors/green">img/mediaStatus/actors_green.png</file>
+        <file alias="actors/red">img/mediaStatus/actors_red.png</file>
+        <file alias="extraArts/green">img/mediaStatus/extraarts_green.png</file>
+        <file alias="extraArts/red">img/mediaStatus/extraarts_red.png</file>
+        <file alias="extraArts/yellow">img/mediaStatus/extraarts_yellow.png</file>
+        <file alias="fanart/green">img/mediaStatus/fanart_green.png</file>
+        <file alias="fanart/red">img/mediaStatus/fanart_red.png</file>
+        <file alias="poster/green">img/mediaStatus/poster_green.png</file>
+        <file alias="poster/red">img/mediaStatus/poster_red.png</file>
+        <file alias="trailer/green">img/mediaStatus/trailers_green.png</file>
+        <file alias="trailer/red">img/mediaStatus/trailers_red.png</file>
+        <file alias="extraFanarts/green">img/mediaStatus/extrafanarts_green.png</file>
+        <file alias="extraFanarts/red">img/mediaStatus/extrafanarts_red.png</file>
+        <file alias="streamDetails/green">img/mediaStatus/streamdetails_green.png</file>
+        <file alias="streamDetails/red">img/mediaStatus/streamdetails_red.png</file>
+    </qresource>
 </RCC>

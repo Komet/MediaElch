@@ -353,6 +353,10 @@ void FilterWidget::initFilters()
                                  QStringList() << tr("Poster"), MovieFilters::Poster, true);
     m_movieFilters << new Filter(tr("Movie has no Poster"), tr("No Poster"),
                                  QStringList() << tr("Poster"), MovieFilters::Poster, false);
+    m_movieFilters << new Filter(tr("Movie has Extra Fanarts"), tr("Extra Fanarts"),
+                                 QStringList() << tr("Extra Fanarts"), MovieFilters::ExtraFanarts, true);
+    m_movieFilters << new Filter(tr("Movie has no Extra Fanarts"), tr("No Extra Fanarts"),
+                                 QStringList() << tr("Extra Fanarts"), MovieFilters::ExtraFanarts, false);
     m_movieFilters << new Filter(tr("Movie has Backdrop"), tr("Backdrop"),
                                  QStringList() << tr("Backdrop") << tr("Fanart"), MovieFilters::Backdrop, true);
     m_movieFilters << new Filter(tr("Movie has no Backdrop"), tr("No Backdrop"),
@@ -385,6 +389,10 @@ void FilterWidget::initFilters()
                                  QStringList() << tr("Stream Details"), MovieFilters::StreamDetails, true);
     m_movieFilters << new Filter(tr("Stream Details not loaded"), tr("No Stream Details"),
                                  QStringList() << tr("Stream Details"), MovieFilters::StreamDetails, false);
+    m_movieFilters << new Filter(tr("Movie has Actors"), tr("Actors"),
+                                 QStringList() << tr("Poster"), MovieFilters::Actors, true);
+    m_movieFilters << new Filter(tr("Movie has no Actors"), tr("No Actors"),
+                                 QStringList() << tr("Actors"), MovieFilters::Actors, false);
 
     m_tvShowFilters << new Filter(tr("Title"), "", QStringList(), TvShowFilters::Title, true);
 

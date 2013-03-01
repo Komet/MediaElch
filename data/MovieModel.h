@@ -26,6 +26,9 @@ public:
     QModelIndex index(int row, int column, const QModelIndex &parent) const;
     QModelIndex parent(const QModelIndex &child) const;
     bool hasNewMovies();
+    static int mediaStatusToColumn(MediaStatusColumns column);
+    static QString mediaStatusToText(MediaStatusColumns column);
+    static MediaStatusColumns columnToMediaStatus(int column);
 
 private slots:
     void onMovieChanged(Movie *movie);

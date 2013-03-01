@@ -72,6 +72,8 @@ Settings::Settings(QObject *parent) :
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertCdArt, "disc.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertClearArt, "clearart.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertLogo, "logo.png", 0));
+
+    loadSettings();
 }
 
 /**
@@ -214,6 +216,12 @@ void Settings::loadSettings(QSettings &settings)
     m_movieSetArtworkDirectory = settings.value("MovieSetArtwork/Directory").toString();
     m_movieSetPosterFileName = settings.value("MovieSetArtwork/PosterFileName", "folder.jpg").toString();
     m_movieSetFanartFileName = settings.value("MovieSetArtwork/FanartFileName", "fanart.jpg").toString();
+
+    // Media Status Columns
+    m_mediaStatusColumns.clear();
+    foreach (const QVariant &column, settings.value("MediaStatusColumns").toList())
+        m_mediaStatusColumns.append(static_cast<MediaStatusColumns>(column.toInt()));
+
 }
 
 /**
@@ -297,6 +305,11 @@ void Settings::saveSettings()
     m_settings.setValue("MovieSetArtwork/Directory", m_movieSetArtworkDirectory);
     m_settings.setValue("MovieSetArtwork/PosterFileName", m_movieSetPosterFileName);
     m_settings.setValue("MovieSetArtwork/FanartFileName", m_movieSetFanartFileName);
+
+    QList<QVariant> columns;
+    foreach (const MediaStatusColumns &column, m_mediaStatusColumns)
+        columns.append(column);
+    m_settings.setValue("MediaStatusColumns", columns);
 }
 
 /**
@@ -866,4 +879,14 @@ void Settings::setMovieSetFanartFileName(QString fileName)
 QString Settings::movieSetFanartFileName() const
 {
     return m_movieSetFanartFileName;
+}
+
+void Settings::setMediaStatusColumns(QList<MediaStatusColumns> columns)
+{
+    m_mediaStatusColumns = columns;
+}
+
+QList<MediaStatusColumns> Settings::mediaStatusColumns() const
+{
+    return m_mediaStatusColumns;
 }

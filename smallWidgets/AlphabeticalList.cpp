@@ -2,17 +2,18 @@
 
 #include <QDebug>
 #include <QPainter>
-#include <QPropertyAnimation>
 #include <QStyleOption>
 #include <QToolButton>
 
-AlphabeticalList::AlphabeticalList(QWidget *parent) :
+AlphabeticalList::AlphabeticalList(QWidget *parent, MyTableView *parentTableView) :
     QWidget(parent)
 {
+    m_tableView = parentTableView;
     m_animDuration = 100;
     m_topSpace = 10;
     m_bottomSpace = 10;
     m_rightSpace = 10;
+    m_leftSpace = 10;
     m_layout = new QVBoxLayout(this);
     m_layout->setMargin(0);
     setContentsMargins(0, 0, 0, 0);
@@ -24,9 +25,8 @@ AlphabeticalList::AlphabeticalList(QWidget *parent) :
 
 void AlphabeticalList::adjustSize()
 {
-    int parentWidth = static_cast<QWidget*>(parent())->size().width();
     int parentHeight = static_cast<QWidget*>(parent())->size().height();
-    move(parentWidth, m_topSpace);
+    move(-width(), m_topSpace);
     setFixedHeight(parentHeight-m_topSpace-m_bottomSpace);
 }
 
@@ -41,36 +41,34 @@ void AlphabeticalList::paintEvent(QPaintEvent *event)
 
 void AlphabeticalList::show()
 {
-    if (outAnim)
-        outAnim->stop();
+    if (m_outAnim)
+        m_outAnim->stop();
 
-    int parentWidth = static_cast<QWidget*>(parent())->size().width();
     int duration = m_animDuration;
-    if (size().width()+m_rightSpace != 0)
-        duration *= (1-(qreal)(parentWidth-pos().x())/(size().width()+m_rightSpace));
+    if (width()+m_leftSpace != 0)
+        duration *= 1-((pos().x()+width())/(width()+m_leftSpace));
 
-    inAnim = new QPropertyAnimation(this, "pos");
-    inAnim->setDuration(duration);
-    inAnim->setStartValue(QPoint(pos().x(), m_topSpace));
-    inAnim->setEndValue(QPoint(parentWidth-size().width()-m_rightSpace, m_topSpace));
-    inAnim->start(QAbstractAnimation::DeleteWhenStopped);
+    m_inAnim = new QPropertyAnimation(this, "pos");
+    m_inAnim->setDuration(duration);
+    m_inAnim->setStartValue(QPoint(pos().x(), m_topSpace));
+    m_inAnim->setEndValue(QPoint(m_leftSpace, m_topSpace));
+    m_inAnim->start(QAbstractAnimation::DeleteWhenStopped);
 }
 
 void AlphabeticalList::hide()
 {
-    if (inAnim)
-        inAnim->stop();
+    if (m_inAnim)
+        m_inAnim->stop();
 
-    int parentWidth = static_cast<QWidget*>(parent())->size().width();
     int duration = m_animDuration;
-    if (size().width()+m_rightSpace != 0)
-        duration *= (qreal)(parentWidth-pos().x())/(size().width()+m_rightSpace);
+    if (width()+m_leftSpace != 0)
+        duration *= (pos().x()+width())/(width()+m_leftSpace);
 
-    outAnim = new QPropertyAnimation(this, "pos");
-    outAnim->setDuration(duration);
-    outAnim->setStartValue(QPoint(pos().x(), m_topSpace));
-    outAnim->setEndValue(QPoint(parentWidth, m_topSpace));
-    outAnim->start(QAbstractAnimation::DeleteWhenStopped);
+    m_outAnim = new QPropertyAnimation(this, "pos");
+    m_outAnim->setDuration(duration);
+    m_outAnim->setStartValue(QPoint(pos().x(), m_topSpace));
+    m_outAnim->setEndValue(QPoint(-width(), m_topSpace));
+    m_outAnim->start(QAbstractAnimation::DeleteWhenStopped);
 }
 
 void AlphabeticalList::setTopSpace(const int space)
@@ -110,4 +108,9 @@ void AlphabeticalList::onAlphaClicked()
     if (!button)
         return;
     emit sigAlphaClicked(button->text());
+}
+
+int AlphabeticalList::fullWidth() const
+{
+    return m_rightSpace+width();
 }

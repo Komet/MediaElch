@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>973</width>
-    <height>625</height>
+    <height>717</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -357,6 +357,19 @@ QTabBar::tab:selected {
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="4">
+          <widget class="QLabel" name="label_15">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Clear Art</string>
+           </property>
+          </widget>
+         </item>
          <item row="0" column="3">
           <widget class="QLabel" name="label_29">
            <property name="font">
@@ -370,19 +383,6 @@ QTabBar::tab:selected {
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
-          <widget class="QLabel" name="label_16">
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>CD Art</string>
-           </property>
-          </widget>
-         </item>
          <item row="0" column="2">
           <widget class="QLabel" name="label_28">
            <property name="font">
@@ -393,19 +393,6 @@ QTabBar::tab:selected {
            </property>
            <property name="text">
             <string>Backdrop</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_15">
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Clear Art</string>
            </property>
           </widget>
          </item>
@@ -447,9 +434,15 @@ QTabBar::tab:selected {
          </item>
          <item row="1" column="3">
           <widget class="DataFileListWidget" name="movieLogoList">
+           <property name="minimumSize">
+            <size>
+             <width>120</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
+             <width>120</width>
              <height>70</height>
             </size>
            </property>
@@ -475,21 +468,46 @@ QTabBar::tab:selected {
            </property>
           </widget>
          </item>
-         <item row="3" column="0">
+         <item row="1" column="4">
           <widget class="DataFileListWidget" name="movieClearArtList">
+           <property name="minimumSize">
+            <size>
+             <width>120</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
+             <width>120</width>
              <height>70</height>
             </size>
            </property>
           </widget>
          </item>
-         <item row="3" column="1">
+         <item row="0" column="5">
+          <widget class="QLabel" name="label_16">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>CD Art</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="5">
           <widget class="DataFileListWidget" name="movieCdArtList">
+           <property name="minimumSize">
+            <size>
+             <width>120</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
+             <width>120</width>
              <height>70</height>
             </size>
            </property>
@@ -510,16 +528,6 @@ QTabBar::tab:selected {
           <widget class="QLabel" name="labelMovieSetArtworkDir">
            <property name="text">
             <string>Artwork directory</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QLineEdit" name="movieSetArtworkDir"/>
-         </item>
-         <item row="5" column="1">
-          <widget class="QPushButton" name="btnMovieSetArtworkDir">
-           <property name="text">
-            <string>Choose directory</string>
            </property>
           </widget>
          </item>
@@ -592,20 +600,31 @@ QTabBar::tab:selected {
            </property>
           </widget>
          </item>
+         <item row="4" column="1">
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLineEdit" name="movieSetArtworkDir"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnMovieSetArtworkDir">
+             <property name="text">
+              <string>Choose directory</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_18">
+           <property name="text">
+            <string>Media Status Columns</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QListWidget" name="mediaStatusColumns"/>
+         </item>
         </layout>
-       </item>
-       <item>
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </widget>

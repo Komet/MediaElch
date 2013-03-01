@@ -58,6 +58,7 @@ public:
     QString movieSetArtworkDirectory() const;
     QString movieSetPosterFileName() const;
     QString movieSetFanartFileName() const;
+    QList<MediaStatusColumns> mediaStatusColumns() const;
 
     bool autoLoadStreamDetails();
 
@@ -93,6 +94,7 @@ public:
     void setMovieSetArtworkDirectory(QString dir);
     void setMovieSetPosterFileName(QString fileName);
     void setMovieSetFanartFileName(QString fileName);
+    void setMediaStatusColumns(QList<MediaStatusColumns> columns);
 
 public slots:
     void saveSettings();
@@ -132,6 +134,7 @@ private:
     QString m_movieSetArtworkDirectory;
     QString m_movieSetPosterFileName;
     QString m_movieSetFanartFileName;
+    QList<MediaStatusColumns> m_mediaStatusColumns;
 
     void setupProxy();
 };

@@ -37,6 +37,7 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_hasChanged = false;
     m_hasPoster = false;
     m_hasBackdrop = false;
+    m_hasExtraFanarts = false;
     m_inSeparateFolder = false;
     m_syncNeeded = false;
     static int m_idCounter = 0;
@@ -1587,6 +1588,16 @@ void Movie::setDiscType(DiscType type)
 DiscType Movie::discType()
 {
     return m_discType;
+}
+
+void Movie::setHasExtraFanarts(bool has)
+{
+    m_hasExtraFanarts = has;
+}
+
+bool Movie::hasExtraFanarts() const
+{
+    return m_hasExtraFanarts;
 }
 
 /*** DEBUG ***/

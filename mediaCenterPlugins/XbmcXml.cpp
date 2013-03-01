@@ -437,6 +437,7 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
         movie->setHasLogo(!logoImageName(movie).isEmpty());
         movie->setHasClearArt(!clearArtImageName(movie).isEmpty());
         movie->setHasCdArt(!cdArtImageName(movie).isEmpty());
+        movie->setHasExtraFanarts(!extraFanartNames(movie).isEmpty());
     }
 
     return true;

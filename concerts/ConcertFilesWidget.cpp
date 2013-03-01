@@ -214,6 +214,7 @@ void ConcertFilesWidget::setFilter(QList<Filter*> filters, QString text)
 {
     m_concertProxyModel->setFilter(filters, text);
     m_concertProxyModel->setFilterWildcard("*" + text + "*");
+    setAlphaListData();
 }
 
 /**

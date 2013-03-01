@@ -241,14 +241,16 @@ namespace MovieFilters {
     const int ClearArt      = 10;
     const int CdArt         = 11;
     const int StreamDetails = 12;
+    const int ExtraFanarts  = 13;
+    const int Actors        = 14;
 }
 
 namespace TvShowFilters {
-    const int Title         = 13;
+    const int Title         = 15;
 }
 
 namespace ConcertFilters {
-    const int Title         = 14;
+    const int Title         = 16;
 }
 
 enum SortBy {
@@ -293,6 +295,20 @@ enum ScraperData {
 struct ExtraFanart {
     QByteArray image;
     QString path;
+};
+
+enum MediaStatusColumns {
+    MediaStatusStreamDetails,
+    MediaStatusTrailer,
+    MediaStatusPoster,
+    MediaStatusFanart,
+    MediaStatusExtraArts,
+    MediaStatusExtraFanarts,
+    MediaStatusActors,
+    MediaStatusUnknown,
+
+    MediaStatusFirst = MediaStatusStreamDetails,
+    MediaStatusLast = MediaStatusActors
 };
 
 // Debugging

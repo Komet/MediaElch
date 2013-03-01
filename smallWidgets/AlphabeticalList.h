@@ -8,16 +8,18 @@
 #include <QVBoxLayout>
 #include <QWidget>
 #include "globals/Globals.h"
+#include "smallWidgets/MyTableView.h"
 
 class AlphabeticalList : public QWidget
 {
     Q_OBJECT
 public:
-    explicit AlphabeticalList(QWidget *parent = 0);
+    explicit AlphabeticalList(QWidget *parent = 0, MyTableView *parentTableView = 0);
     void setTopSpace(const int space);
     void setBottomSpace(const int space);
     void setRightSpace(const int space);
     void setAlphas(QStringList alphas);
+    int fullWidth() const;
 
 public slots:
     void show();
@@ -34,13 +36,15 @@ private slots:
     void onAlphaClicked();
 
 private:
-    QPointer<QPropertyAnimation> inAnim;
-    QPointer<QPropertyAnimation> outAnim;
+    QPointer<QPropertyAnimation> m_inAnim;
+    QPointer<QPropertyAnimation> m_outAnim;
     QVBoxLayout *m_layout;
     int m_bottomSpace;
     int m_topSpace;
     int m_rightSpace;
+    int m_leftSpace;
     int m_animDuration;
+    MyTableView *m_tableView;
 };
 
 #endif // ALPHABETICALLIST_H

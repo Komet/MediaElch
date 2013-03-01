@@ -3,6 +3,7 @@
 
 #include <QDesktopServices>
 #include <QLocale>
+#include <QPropertyAnimation>
 #include <QScrollBar>
 #include <QTableWidget>
 #include <QTimer>
@@ -23,19 +24,16 @@ FilesWidget::FilesWidget(QWidget *parent) :
 {
     m_instance = this;
     ui->setupUi(this);
-#if QT_VERSION >= 0x050000
-    ui->files->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#else
-    ui->files->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#endif
 #ifdef Q_OS_MAC
     QFont font = ui->files->font();
     font.setPointSize(font.pointSize()-2);
     ui->files->setFont(font);
 #endif
+
 #ifdef Q_OS_WIN32
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
 #endif
+
     m_lastMovie = 0;
     m_movieDelegate = new MovieDelegate(this);
     m_movieProxyModel = new MovieProxyModel(this);
@@ -44,8 +42,22 @@ FilesWidget::FilesWidget(QWidget *parent) :
     m_movieProxyModel->setDynamicSortFilter(true);
     ui->files->setModel(m_movieProxyModel);
     ui->files->setItemDelegate(m_movieDelegate);
+    for (int i=1, n=ui->files->model()->columnCount() ; i<n ; ++i) {
+        ui->files->setColumnWidth(i, 24);
+        ui->files->setColumnHidden(i, true);
+    }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+    ui->files->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->files->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+#else
+    ui->files->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    ui->files->horizontalHeader()->setResizeMode(0, QHeaderView::Stretch);
+#endif
 
-    m_alphaList = new AlphabeticalList(this);
+    foreach (const MediaStatusColumns &column, Settings::instance()->mediaStatusColumns())
+        ui->files->setColumnHidden(MovieModel::mediaStatusToColumn(column), false);
+
+    m_alphaList = new AlphabeticalList(this, ui->files);
     m_baseLabelCss = ui->sortByYear->styleSheet();
     m_activeLabelCss = ui->sortByNew->styleSheet();
 
@@ -253,6 +265,7 @@ void FilesWidget::setFilter(QList<Filter*> filters, QString text)
 {
     m_movieProxyModel->setFilter(filters, text);
     m_movieProxyModel->setFilterWildcard("*" + text + "*");
+    setAlphaListData();
 }
 
 /**
@@ -386,4 +399,8 @@ void FilesWidget::scrollToAlpha(QString alpha)
 void FilesWidget::renewModel()
 {
     m_movieProxyModel->setSourceModel(Manager::instance()->movieModel());
+    for (int i=1, n=ui->files->model()->columnCount() ; i<n ; ++i)
+        ui->files->setColumnHidden(i, true);
+    foreach (const MediaStatusColumns &column, Settings::instance()->mediaStatusColumns())
+        ui->files->setColumnHidden(MovieModel::mediaStatusToColumn(column), false);
 }
