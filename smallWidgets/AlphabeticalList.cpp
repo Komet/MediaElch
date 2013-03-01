@@ -44,6 +44,9 @@ void AlphabeticalList::show()
     if (m_outAnim)
         m_outAnim->stop();
 
+    if (pos().x() == m_leftSpace)
+        return;
+
     int duration = m_animDuration;
     if (width()+m_leftSpace != 0)
         duration *= 1-((pos().x()+width())/(width()+m_leftSpace));
@@ -59,6 +62,9 @@ void AlphabeticalList::hide()
 {
     if (m_inAnim)
         m_inAnim->stop();
+
+    if (pos().x() == -width())
+        return;
 
     int duration = m_animDuration;
     if (width()+m_leftSpace != 0)
@@ -110,7 +116,7 @@ void AlphabeticalList::onAlphaClicked()
     emit sigAlphaClicked(button->text());
 }
 
-int AlphabeticalList::fullWidth() const
+int AlphabeticalList::leftSpace() const
 {
-    return m_rightSpace+width();
+    return m_leftSpace;
 }

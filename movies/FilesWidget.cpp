@@ -35,6 +35,7 @@ FilesWidget::FilesWidget(QWidget *parent) :
 #endif
 
     m_lastMovie = 0;
+    m_mouseIsIn = false;
     m_movieDelegate = new MovieDelegate(this);
     m_movieProxyModel = new MovieProxyModel(this);
     m_movieProxyModel->setSourceModel(Manager::instance()->movieModel());
@@ -91,6 +92,7 @@ FilesWidget::FilesWidget(QWidget *parent) :
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
     connect(ui->files->model(), SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(setAlphaListData()));
+    connect(ui->files, SIGNAL(sigLeftEdge(bool)), this, SLOT(onLeftEdge(bool)));
 
     connect(m_alphaList, SIGNAL(sigAlphaClicked(QString)), this, SLOT(scrollToAlpha(QString)));
 
@@ -357,12 +359,13 @@ QList<Movie*> FilesWidget::selectedMovies()
 void FilesWidget::enterEvent(QEvent *event)
 {
     Q_UNUSED(event);
-    m_alphaList->show();
+    m_mouseIsIn = true;
 }
 
 void FilesWidget::leaveEvent(QEvent *event)
 {
     Q_UNUSED(event);
+    m_mouseIsIn = false;
     m_alphaList->hide();
 }
 
@@ -403,4 +406,12 @@ void FilesWidget::renewModel()
         ui->files->setColumnHidden(i, true);
     foreach (const MediaStatusColumns &column, Settings::instance()->mediaStatusColumns())
         ui->files->setColumnHidden(MovieModel::mediaStatusToColumn(column), false);
+}
+
+void FilesWidget::onLeftEdge(bool isEdge)
+{
+    if (isEdge && m_mouseIsIn)
+        m_alphaList->show();
+    else
+        m_alphaList->hide();
 }

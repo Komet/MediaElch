@@ -1,6 +1,7 @@
 #ifndef MYTABLEVIEW_H
 #define MYTABLEVIEW_H
 
+#include <QMouseEvent>
 #include <QTableView>
 
 class MyTableView : public QTableView
@@ -14,6 +15,15 @@ public:
     void setLastColumnWidth(int &width);
     int firstColumnWidth() const;
     void setFirstColumnWidth(int &width);
+
+signals:
+    void sigLeftEdge(bool);
+
+protected:
+    void mouseMoveEvent(QMouseEvent *event);
+
+private:
+    bool m_mouseInLeftEdge;
 };
 
 #endif // MYTABLEVIEW_H

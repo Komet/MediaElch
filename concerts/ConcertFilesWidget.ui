@@ -21,12 +21,15 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QTableView" name="files">
+    <widget class="MyTableView" name="files">
      <property name="minimumSize">
       <size>
        <width>200</width>
        <height>0</height>
       </size>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
      </property>
      <property name="contextMenuPolicy">
       <enum>Qt::CustomContextMenu</enum>
@@ -66,6 +69,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyTableView</class>
+   <extends>QTableView</extends>
+   <header>smallWidgets/MyTableView.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

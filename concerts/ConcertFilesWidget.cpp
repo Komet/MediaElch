@@ -35,6 +35,7 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
 #ifdef Q_OS_WIN32
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
 #endif
+    m_mouseIsIn = false;
     m_alphaList = new AlphabeticalList(this);
     m_lastConcert = 0;
     m_concertDelegate = new ConcertDelegate(this);
@@ -72,6 +73,7 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
 
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
     connect(ui->files->model(), SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(setAlphaListData()));
+    connect(ui->files, SIGNAL(sigLeftEdge(bool)), this, SLOT(onLeftEdge(bool)));
 
     connect(m_alphaList, SIGNAL(sigAlphaClicked(QString)), this, SLOT(scrollToAlpha(QString)));
 }
@@ -252,12 +254,13 @@ void ConcertFilesWidget::resizeEvent(QResizeEvent *event)
 void ConcertFilesWidget::enterEvent(QEvent *event)
 {
     Q_UNUSED(event);
-    m_alphaList->show();
+    m_mouseIsIn = true;
 }
 
 void ConcertFilesWidget::leaveEvent(QEvent *event)
 {
     Q_UNUSED(event);
+    m_mouseIsIn = false;
     m_alphaList->hide();
 }
 
@@ -294,4 +297,12 @@ void ConcertFilesWidget::scrollToAlpha(QString alpha)
 void ConcertFilesWidget::renewModel()
 {
     m_concertProxyModel->setSourceModel(Manager::instance()->concertModel());
+}
+
+void ConcertFilesWidget::onLeftEdge(bool isEdge)
+{
+    if (isEdge && m_mouseIsIn)
+        m_alphaList->show();
+    else
+        m_alphaList->hide();
 }

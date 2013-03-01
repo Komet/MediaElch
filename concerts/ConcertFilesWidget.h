@@ -56,6 +56,7 @@ private slots:
     void unmarkForSync();
     void openFolder();
     void scrollToAlpha(QString alpha);
+    void onLeftEdge(bool isEdge);
 
 private:
     Ui::ConcertFilesWidget *ui;
@@ -66,6 +67,7 @@ private:
     static ConcertFilesWidget *m_instance;
     QMenu *m_contextMenu;
     AlphabeticalList *m_alphaList;
+    bool m_mouseIsIn;
 };
 
 #endif // CONCERTFILESWIDGET_H

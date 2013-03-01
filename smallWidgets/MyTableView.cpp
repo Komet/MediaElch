@@ -25,3 +25,18 @@ int MyTableView::firstColumnWidth() const
 {
     return columnWidth(0);
 }
+
+void MyTableView::mouseMoveEvent(QMouseEvent *event)
+{
+    if (event->pos().x() > 0 && event->pos().x() < 30) {
+        if (!m_mouseInLeftEdge) {
+            m_mouseInLeftEdge = true;
+            emit sigLeftEdge(true);
+        }
+    } else {
+        if (m_mouseInLeftEdge) {
+            m_mouseInLeftEdge = false;
+            emit sigLeftEdge(false);
+        }
+    }
+}

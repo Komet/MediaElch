@@ -18,8 +18,9 @@ public:
     void setTopSpace(const int space);
     void setBottomSpace(const int space);
     void setRightSpace(const int space);
+    void setLeftSpace(const int space);
     void setAlphas(QStringList alphas);
-    int fullWidth() const;
+    int leftSpace() const;
 
 public slots:
     void show();

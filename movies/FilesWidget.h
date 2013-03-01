@@ -4,6 +4,7 @@
 #include <QEvent>
 #include <QLabel>
 #include <QMenu>
+#include <QMouseEvent>
 #include <QResizeEvent>
 #include <QWidget>
 #include "movies/Movie.h"
@@ -65,6 +66,7 @@ private slots:
     void unmarkForSync();
     void openFolder();
     void scrollToAlpha(QString alpha);
+    void onLeftEdge(bool isEdge);
 
 private:
     Ui::FilesWidget *ui;
@@ -77,6 +79,7 @@ private:
     QString m_activeLabelCss;
     QMenu *m_contextMenu;
     AlphabeticalList *m_alphaList;
+    bool m_mouseIsIn;
 };
 
 #endif // FILESWIDGET_H

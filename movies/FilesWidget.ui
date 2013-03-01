@@ -31,6 +31,9 @@
        <height>0</height>
       </size>
      </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
      <property name="contextMenuPolicy">
       <enum>Qt::CustomContextMenu</enum>
      </property>
