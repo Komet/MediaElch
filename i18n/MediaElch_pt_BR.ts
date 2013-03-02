@@ -124,6 +124,14 @@ p, li { white-space: pre-wrap; }
         <source>TextLabel</source>
         <translation>Texto Etiqueta</translation>
     </message>
+    <message>
+        <source>Add Certification</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Certification</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConcertDelegate</name>
@@ -735,6 +743,38 @@ p, li { white-space: pre-wrap; }
         <source>Movie has no Poster</source>
         <translation>Filme não tem poster</translation>
     </message>
+    <message>
+        <source>Movie has Extra Fanarts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Extra Fanarts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movie has no Extra Fanarts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Extra Fanarts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movie has Actors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Actors</source>
+        <translation type="unfinished">Atores</translation>
+    </message>
+    <message>
+        <source>Movie has no Actors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Actors</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GenreWidget</name>
@@ -777,6 +817,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>TextLabel</source>
         <translation>Texto Etiqueta</translation>
+    </message>
+    <message>
+        <source>Add Genre</source>
+        <translation type="unfinished">Adicionar Gênero</translation>
+    </message>
+    <message>
+        <source>New Genre</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1081,6 +1129,37 @@ Operação Cancelada.</translation>
     </message>
 </context>
 <context>
+    <name>MovieModel</name>
+    <message>
+        <source>Actors</source>
+        <translation type="unfinished">Atores</translation>
+    </message>
+    <message>
+        <source>Extra Arts</source>
+        <translation type="unfinished">Artes Extras</translation>
+    </message>
+    <message>
+        <source>Extra Fanarts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fanart</source>
+        <translation type="unfinished">Fanart</translation>
+    </message>
+    <message>
+        <source>Poster</source>
+        <translation type="unfinished">Poster</translation>
+    </message>
+    <message>
+        <source>Stream Details</source>
+        <translation type="unfinished">Detalhes Stream</translation>
+    </message>
+    <message>
+        <source>Trailer</source>
+        <translation type="unfinished">Trailer</translation>
+    </message>
+</context>
+<context>
     <name>MovieMultiScrapeDialog</name>
     <message>
         <source>Start Scraping</source>
@@ -1108,7 +1187,7 @@ Operação Cancelada.</translation>
     </message>
     <message>
         <source>Scraping of %1 movies has finished.</source>
-        <translation>Scraping de %1 filmes finalizado.</translation>
+        <translation type="obsolete">Scraping de %1 filmes finalizado.</translation>
     </message>
     <message>
         <source>Actors</source>
@@ -1197,6 +1276,18 @@ Operação Cancelada.</translation>
     <message>
         <source>Logo, Clear Art, CD Art</source>
         <translation>Logo, Clear Art, CD Art</translation>
+    </message>
+    <message>
+        <source>Set</source>
+        <translation type="unfinished">Coletânea</translation>
+    </message>
+    <message>
+        <source>Automatically save each movie after scraping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scraping of %n movies has finished.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1296,6 +1387,10 @@ Operação Cancelada.</translation>
     <message>
         <source>Logo, Clear Art, CD Art</source>
         <translation>Logo, Clear Art, CD Art</translation>
+    </message>
+    <message>
+        <source>Set</source>
+        <translation type="unfinished">Coletânea</translation>
     </message>
 </context>
 <context>
@@ -1604,6 +1699,69 @@ Operação Cancelada.</translation>
         <source>Extended</source>
         <translation>Extendido</translation>
     </message>
+    <message>
+        <source>Saving movie...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saving movies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QJsonParseError</name>
+    <message>
+        <source>no error occurred</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>unterminated object</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>missing name separator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>unterminated array</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>missing value separator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>illegal value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>invalid termination by number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>illegal number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>invalid escape sequence</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>invalid UTF8 string</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>unterminated string</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>object is missing after a comma</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>too deeply nested document</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QObject</name>
@@ -1839,7 +1997,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Images (*.jpg *.jpeg)</source>
-        <translation>Imagens (*.jpg*.jpeg)</translation>
+        <translation type="obsolete">Imagens (*.jpg*.jpeg)</translation>
     </message>
     <message>
         <source>Full preview</source>
@@ -1847,7 +2005,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Choose Image</source>
-        <translation>Escolha Imagem</translation>
+        <translation type="obsolete">Escolha Imagem</translation>
     </message>
     <message>
         <source>Poster</source>
@@ -1881,6 +2039,18 @@ p, li { white-space: pre-wrap; }
         <source>Set Name</source>
         <translation>Nome da Coletânea</translation>
     </message>
+    <message>
+        <source>Add Movie Set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Movie Set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Movie Set</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsWidget</name>
@@ -1898,7 +2068,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>8080</source>
-        <translation>8080</translation>
+        <translation type="obsolete">8080</translation>
     </message>
     <message>
         <source>HTTP</source>
@@ -1970,7 +2140,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Logfile</source>
-        <translation>Arquivo de Log</translation>
+        <translation type="obsolete">Arquivo de Log</translation>
     </message>
     <message>
         <source>Enable Proxy</source>
@@ -1982,7 +2152,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please hit the &quot;Reload&quot; button after adding or removing directories. If you changed the debug mode setting please restart MediaElch.</source>
-        <translation>Por favor pressione o botão &quot;Recarregar&quot; após adicionar ou remover diretórios. Se você alterar os ajustes no modo debug, por favor reinicie o MediaElch.</translation>
+        <translation type="obsolete">Por favor pressione o botão &quot;Recarregar&quot; após adicionar ou remover diretórios. Se você alterar os ajustes no modo debug, por favor reinicie o MediaElch.</translation>
     </message>
     <message>
         <source>CD Art</source>
@@ -2006,7 +2176,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Logfiles (*.log *.txt)</source>
-        <translation>Arquivo Log (*.log*.txt)</translation>
+        <translation type="obsolete">Arquivo Log (*.log*.txt)</translation>
     </message>
     <message>
         <source>Save Settings</source>
@@ -2030,7 +2200,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Select</source>
-        <translation>Selecione</translation>
+        <translation type="obsolete">Selecione</translation>
     </message>
     <message>
         <source>Episode NFO</source>
@@ -2054,7 +2224,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>If you want to use the synchronization feature you need to enable the webserver within XBMC and fill in the values below.</source>
-        <translation>Se você deseja usar o recurso de sincronização, você precisa ativar o Servidor Web  no XBMC e preencher os valores abaixo.</translation>
+        <translation type="obsolete">Se você deseja usar o recurso de sincronização, você precisa ativar o Servidor Web  no XBMC e preencher os valores abaixo.</translation>
     </message>
     <message>
         <source>SOCKS 5</source>
@@ -2106,7 +2276,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>http://127.0.0.1</source>
-        <translation>http://127.0.0.1</translation>
+        <translation type="obsolete">http://127.0.0.1</translation>
     </message>
     <message>
         <source>Use plot when outline is not available</source>
@@ -2138,7 +2308,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Activate debug mode and write log file</source>
-        <translation>Ativar Modo debug e escrita no arquivo de log</translation>
+        <translation type="obsolete">Ativar Modo debug e escrita no arquivo de log</translation>
     </message>
     <message>
         <source>Download actor images</source>
@@ -2168,6 +2338,70 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Are you sure?</source>
         <translation>Você tem certeza?</translation>
+    </message>
+    <message>
+        <source>Ignore articles when sorting (&quot;The&quot;)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you want to use the synchronization feature you need to enable &quot;Allow programs on other systems to control XBMC&quot; within XBMC (Settings -&gt; Services -&gt; Remote Control).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>127.0.0.1</source>
+        <translation type="unfinished">127.0.0.1</translation>
+    </message>
+    <message>
+        <source>9090</source>
+        <translation type="unfinished">9090</translation>
+    </message>
+    <message>
+        <source>Artwork directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movie Set Artwork</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Artwork next to movies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Separate artwork directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movie outline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movie Set Poster Filename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movie Set Fanart Filname</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>folder.jpg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>fanart.jpg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Media Status Columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose a directory where your movie set artwork is stored</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2314,6 +2548,10 @@ p, li { white-space: pre-wrap; }
         <source>Finnish</source>
         <translation>Finlandês</translation>
     </message>
+    <message>
+        <source>English (US)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TMDbConcerts</name>
@@ -2412,6 +2650,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Finnish</source>
         <translation>Finlandês</translation>
+    </message>
+    <message>
+        <source>English (US)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3265,11 +3507,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Nothing to synchronize</source>
-        <translation>Nada para sincronizar</translation>
+        <translation type="obsolete">Nada para sincronizar</translation>
     </message>
     <message>
         <source>XBMC is not reachable. Please check your settings.</source>
-        <translation>XBMC não está disponível. Por favor verifique seus ajustes.</translation>
+        <translation type="obsolete">XBMC não está disponível. Por favor verifique seus ajustes.</translation>
     </message>
     <message>
         <source>Removing episodes from database</source>
@@ -3346,6 +3588,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>This will rename all your artwork to fit the Frodo naming conventions. Please make sure you have not already set Frodo filenames in MediaElchs settings. Your artwork needs to show up in MediaElch.</source>
         <translation>Isto irá renomear todas as suas artes para a nova nomenclatura do XBMC Frodo. Por favor tenha certeza que você não setou Nomenclatura do aquivos - Frodo  nos ajustes do MeciaElchs. Suas artes  serão apresentadas na interface do MediaElch.</translation>
+    </message>
+    <message>
+        <source>Could not connect to XBMC: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>XBMC Library Scan has finished</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
