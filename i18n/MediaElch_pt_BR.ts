@@ -126,11 +126,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar Classificação Indicativa</translation>
     </message>
     <message>
         <source>New Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Nova Classificação Indicativa</translation>
     </message>
 </context>
 <context>
@@ -745,35 +745,35 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Movie has Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>Filme possui Extra Fanarts</translation>
     </message>
     <message>
         <source>Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>Extra Fanarts</translation>
     </message>
     <message>
         <source>Movie has no Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>Filme não possuí Extra Fanarts</translation>
     </message>
     <message>
         <source>No Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem Extra Fanarts</translation>
     </message>
     <message>
         <source>Movie has Actors</source>
-        <translation type="unfinished"></translation>
+        <translation>Filmes possui Atores</translation>
     </message>
     <message>
         <source>Actors</source>
-        <translation type="unfinished">Atores</translation>
+        <translation>Atores</translation>
     </message>
     <message>
         <source>Movie has no Actors</source>
-        <translation type="unfinished"></translation>
+        <translation>Filme não possuí Atores</translation>
     </message>
     <message>
         <source>No Actors</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem Atores</translation>
     </message>
 </context>
 <context>
@@ -820,11 +820,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add Genre</source>
-        <translation type="unfinished">Adicionar Gênero</translation>
+        <translation>Adicionar Gênero</translation>
     </message>
     <message>
         <source>New Genre</source>
-        <translation type="unfinished"></translation>
+        <translation>Novo Gênero</translation>
     </message>
 </context>
 <context>
@@ -1132,31 +1132,31 @@ Operação Cancelada.</translation>
     <name>MovieModel</name>
     <message>
         <source>Actors</source>
-        <translation type="unfinished">Atores</translation>
+        <translation>Atores</translation>
     </message>
     <message>
         <source>Extra Arts</source>
-        <translation type="unfinished">Artes Extras</translation>
+        <translation>Artes Extras</translation>
     </message>
     <message>
         <source>Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>Extra Fanarts</translation>
     </message>
     <message>
         <source>Fanart</source>
-        <translation type="unfinished">Fanart</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <source>Poster</source>
-        <translation type="unfinished">Poster</translation>
+        <translation>Poster</translation>
     </message>
     <message>
         <source>Stream Details</source>
-        <translation type="unfinished">Detalhes Stream</translation>
+        <translation>Detalhes Stream</translation>
     </message>
     <message>
         <source>Trailer</source>
-        <translation type="unfinished">Trailer</translation>
+        <translation>Trailer</translation>
     </message>
 </context>
 <context>
@@ -1279,15 +1279,15 @@ Operação Cancelada.</translation>
     </message>
     <message>
         <source>Set</source>
-        <translation type="unfinished">Coletânea</translation>
+        <translation>Coletânea</translation>
     </message>
     <message>
         <source>Automatically save each movie after scraping</source>
-        <translation type="unfinished"></translation>
+        <translation>Automaticamente salvar cada filme após scraping</translation>
     </message>
     <message>
         <source>Scraping of %n movies has finished.</source>
-        <translation type="unfinished"></translation>
+        <translation>Scraping de %n filmes finalizado.</translation>
     </message>
 </context>
 <context>
@@ -1390,7 +1390,7 @@ Operação Cancelada.</translation>
     </message>
     <message>
         <source>Set</source>
-        <translation type="unfinished">Coletânea</translation>
+        <translation>Coletânea</translation>
     </message>
 </context>
 <context>
@@ -1701,66 +1701,66 @@ Operação Cancelada.</translation>
     </message>
     <message>
         <source>Saving movie...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvando filme...</translation>
     </message>
     <message>
         <source>Saving movies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvando filmes...</translation>
     </message>
 </context>
 <context>
     <name>QJsonParseError</name>
     <message>
         <source>no error occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhum erro ocorreu</translation>
     </message>
     <message>
         <source>unterminated object</source>
-        <translation type="unfinished"></translation>
+        <translation>objeto sem término</translation>
     </message>
     <message>
         <source>missing name separator</source>
-        <translation type="unfinished"></translation>
+        <translation>separador de nome ausente</translation>
     </message>
     <message>
         <source>unterminated array</source>
-        <translation type="unfinished"></translation>
+        <translation>conjunto sem término</translation>
     </message>
     <message>
         <source>missing value separator</source>
-        <translation type="unfinished"></translation>
+        <translation>separador de valor ausente</translation>
     </message>
     <message>
         <source>illegal value</source>
-        <translation type="unfinished"></translation>
+        <translation>valor ilegal</translation>
     </message>
     <message>
         <source>invalid termination by number</source>
-        <translation type="unfinished"></translation>
+        <translation>término inválido por número</translation>
     </message>
     <message>
         <source>illegal number</source>
-        <translation type="unfinished"></translation>
+        <translation>número ilegal</translation>
     </message>
     <message>
         <source>invalid escape sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>sequência de escape inválida</translation>
     </message>
     <message>
         <source>invalid UTF8 string</source>
-        <translation type="unfinished"></translation>
+        <translation>String inválida UTF8</translation>
     </message>
     <message>
         <source>unterminated string</source>
-        <translation type="unfinished"></translation>
+        <translation>string sem término</translation>
     </message>
     <message>
         <source>object is missing after a comma</source>
-        <translation type="unfinished"></translation>
+        <translation>objeto está ausente após a vírgula</translation>
     </message>
     <message>
         <source>too deeply nested document</source>
-        <translation type="unfinished"></translation>
+        <translation>Muito profundo documento aninhado</translation>
     </message>
 </context>
 <context>
@@ -2041,15 +2041,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add Movie Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar Coletânea</translation>
     </message>
     <message>
         <source>Delete Movie Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Deletar Coletânea</translation>
     </message>
     <message>
         <source>New Movie Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Nova Coletânea</translation>
     </message>
 </context>
 <context>
@@ -2341,67 +2341,67 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Ignore articles when sorting (&quot;The&quot;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorar artigos quando ordenar (&quot;The&quot;)</translation>
     </message>
     <message>
         <source>If you want to use the synchronization feature you need to enable &quot;Allow programs on other systems to control XBMC&quot; within XBMC (Settings -&gt; Services -&gt; Remote Control).</source>
-        <translation type="unfinished"></translation>
+        <translation>se você deseja usar o recurso de sincronização, voê precisa ativar no XBMC &quot;Permitir programas remotos controlem o XBMC&quot; (Ajustes-&gt;Serviços-&gt;Controle Remoto) </translation>
     </message>
     <message>
         <source>127.0.0.1</source>
-        <translation type="unfinished">127.0.0.1</translation>
+        <translation>127.0.0.1</translation>
     </message>
     <message>
         <source>9090</source>
-        <translation type="unfinished">9090</translation>
+        <translation>9090</translation>
     </message>
     <message>
         <source>Artwork directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório Artwork</translation>
     </message>
     <message>
         <source>Movie Set Artwork</source>
-        <translation type="unfinished"></translation>
+        <translation>Artwork para coletâneas</translation>
     </message>
     <message>
         <source>Artwork next to movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Artwork junto aos filmes</translation>
     </message>
     <message>
         <source>Separate artwork directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório artwork separado</translation>
     </message>
     <message>
         <source>Movie outline</source>
-        <translation type="unfinished"></translation>
+        <translation>Sinopse Filme</translation>
     </message>
     <message>
         <source>Movie Set Poster Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome do arquivo Poster em coletânea</translation>
     </message>
     <message>
         <source>Movie Set Fanart Filname</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome do arquivo  Fanart em Coletânea</translation>
     </message>
     <message>
         <source>folder.jpg</source>
-        <translation type="unfinished"></translation>
+        <translation>folder.jpg</translation>
     </message>
     <message>
         <source>fanart.jpg</source>
-        <translation type="unfinished"></translation>
+        <translation>fanart.jpg</translation>
     </message>
     <message>
         <source>Choose directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha diretório</translation>
     </message>
     <message>
         <source>Media Status Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Colinas Estaturs de Mídia</translation>
     </message>
     <message>
         <source>Choose a directory where your movie set artwork is stored</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha um diretório onde seus artworks de coletâneas serão armazenados</translation>
     </message>
 </context>
 <context>
@@ -2550,7 +2550,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>English (US)</source>
-        <translation type="unfinished"></translation>
+        <translation>English (US)</translation>
     </message>
 </context>
 <context>
@@ -2653,7 +2653,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>English (US)</source>
-        <translation type="unfinished"></translation>
+        <translation>English (US)</translation>
     </message>
 </context>
 <context>
@@ -3591,11 +3591,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Could not connect to XBMC: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude me conectar ao XBMC:%1</translation>
     </message>
     <message>
         <source>XBMC Library Scan has finished</source>
-        <translation type="unfinished"></translation>
+        <translation>XBMC Escanear Coleção Finalizado</translation>
     </message>
 </context>
 </TS>
