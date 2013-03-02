@@ -56,28 +56,39 @@ void MovieFileSearcher::reload(bool force)
             QMap<QString, QStringList> contents;
             if (Settings::instance()->advanced()->movieFilters().isEmpty())
                 continue;
+            qDebug() << "Scanning directory" << dir.path;
+            qDebug() << "Filters are" << Settings::instance()->advanced()->movieFilters();
             QDirIterator it(dir.path, Settings::instance()->advanced()->movieFilters(), QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files, QDirIterator::Subdirectories);
             while (it.hasNext()) {
                 if (m_aborted)
                     return;
                 it.next();
-                if (it.fileName().contains("-trailer", Qt::CaseInsensitive) || it.fileName().contains("-sample", Qt::CaseInsensitive))
+                qDebug() << "Scanned file" << it.filePath();
+                if (it.fileName().contains("-trailer", Qt::CaseInsensitive) || it.fileName().contains("-sample", Qt::CaseInsensitive)) {
+                    qDebug() << "Skipping file, is trailer or sample";
                     continue;
+                }
 
                 // Skip extras folder
                 QString dirName = it.fileInfo().dir().dirName();
-                if (QString::compare("extras", dirName, Qt::CaseInsensitive) == 0)
+                if (QString::compare("extras", dirName, Qt::CaseInsensitive) == 0) {
+                    qDebug() << "Skipping file, is in extras folder";
                     continue;
+                }
                 // Skip BluRay backup folder
-                if (QString::compare("backup", dirName, Qt::CaseInsensitive) == 0 && QString::compare("index.bdmv", it.fileName(), Qt::CaseInsensitive) == 0)
+                if (QString::compare("backup", dirName, Qt::CaseInsensitive) == 0 && QString::compare("index.bdmv", it.fileName(), Qt::CaseInsensitive) == 0) {
+                    qDebug() << "Skipping file, is in backup folder";
                     continue;
+                }
 
                 if (QString::compare("index.bdmv", it.fileName(), Qt::CaseInsensitive) == 0) {
+                    qDebug() << "Found BluRay structure";
                     QDir dir(it.fileInfo().dir());
                     dir.cdUp();
                     bluRays << dir.path();
                 }
                 if (QString::compare("VIDEO_TS.IFO", it.fileName(), Qt::CaseInsensitive) == 0) {
+                    qDebug() << "Found DVD structure";
                     QDir dir(it.fileInfo().dir());
                     dir.cdUp();
                     dvds << dir.path();
@@ -104,6 +115,7 @@ void MovieFileSearcher::reload(bool force)
 
     emit searchStarted(tr("Loading Movies..."), m_progressMessageId);
 
+    qDebug() << "Now processing files";
     QList<Movie*> movies;
     foreach (const MovieContents &con, c) {
         Manager::instance()->database()->transaction();
@@ -115,6 +127,7 @@ void MovieFileSearcher::reload(bool force)
             }
             itContents.next();
             QStringList files = itContents.value();
+            qDebug() << "Files are" << files;
 
             DiscType discType = DiscSingle;
 
@@ -128,6 +141,7 @@ void MovieFileSearcher::reload(bool force)
                     }
                     files = f;
                     discType = DiscBluRay;
+                    qDebug() << "It's a BluRay structure";
                 }
             }
 
@@ -141,6 +155,7 @@ void MovieFileSearcher::reload(bool force)
                     }
                     files = f;
                     discType = DiscDvd;
+                    qDebug() << "It's a DVD structure";
                 }
             }
 
