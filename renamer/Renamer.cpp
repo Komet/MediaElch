@@ -226,7 +226,7 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                 if (fi.fileName() != newFileName) {
                     ui->results->append(tr("<b>Rename File</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(newFileName));
                     if (!dryRun) {
-                        if (!QFile(file).rename(fi.canonicalPath() + "/" + newFileName))
+                        if (!rename(file, fi.canonicalPath() + "/" + newFileName))
                             ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                     }
                 }
@@ -242,7 +242,7 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                     if (newNfoFileName != nfoFileName) {
                         ui->results->append(tr("<b>Rename NFO</b> \"%1\" to \"%2\"").arg(nfoFileName).arg(newNfoFileName));
                         if (!dryRun) {
-                            if (!QFile(nfo).rename(fiCanonicalPath + "/" + newNfoFileName))
+                            if (!rename(nfo, fiCanonicalPath + "/" + newNfoFileName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                         }
                     }
@@ -259,7 +259,7 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                     if (newPosterFileName != posterFileName) {
                         ui->results->append(tr("<b>Rename Poster</b> \"%1\" to \"%2\"").arg(posterFileName).arg(newPosterFileName));
                         if (!dryRun) {
-                            if (!QFile(poster).rename(fiCanonicalPath + "/" + newPosterFileName))
+                            if (!rename(poster, fiCanonicalPath + "/" + newPosterFileName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                         }
                     }
@@ -276,7 +276,7 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                     if (newFanartFileName != fanartFileName) {
                         ui->results->append(tr("<b>Rename Fanart</b> \"%1\" to \"%2\"").arg(fanartFileName).arg(newFanartFileName));
                         if (!dryRun) {
-                            if (!QFile(fanart).rename(fiCanonicalPath + "/" + newFanartFileName))
+                            if (!rename(fanart, fiCanonicalPath + "/" + newFanartFileName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                         }
                     }
@@ -296,7 +296,7 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
         if (!dryRun && dir.dirName() != newFolderName && renameDirectories && movie->inSeparateFolder()) {
             QDir parentDir(dir.path());
             parentDir.cdUp();
-            if (!dir.rename(dir.path(), parentDir.path() + "/" + newFolderName))
+            if (!rename(dir, parentDir.path() + "/" + newFolderName))
                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
         }
     }
@@ -336,7 +336,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
                 if (fi.fileName() != newFileName) {
                     ui->results->append(tr("<b>Rename File</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(newFileName));
                     if (!dryRun) {
-                        if (!QFile(file).rename(fi.canonicalPath() + "/" + newFileName))
+                        if (!rename(file, fi.canonicalPath() + "/" + newFileName))
                             ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                     }
                 }
@@ -354,7 +354,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
                     if (newNfoFileName != nfoFileName) {
                         ui->results->append(tr("<b>Rename NFO</b> \"%1\" to \"%2\"").arg(nfoFileName).arg(newNfoFileName));
                         if (!dryRun) {
-                            if (!QFile(nfo).rename(fiCanonicalPath + "/" + newNfoFileName))
+                            if (!rename(nfo, fiCanonicalPath + "/" + newNfoFileName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                         }
                     }
@@ -372,7 +372,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
                     if (newThumbnailFileName != thumbnailFileName) {
                         ui->results->append(tr("<b>Rename Thumbnail</b> \"%1\" to \"%2\"").arg(thumbnailFileName).arg(newThumbnailFileName));
                         if (!dryRun) {
-                            if (!QFile(thumbnail).rename(fiCanonicalPath + "/" + newThumbnailFileName))
+                            if (!rename(thumbnail, fiCanonicalPath + "/" + newThumbnailFileName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                         }
                     }
@@ -398,7 +398,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
                         QFileInfo fi(fileName);
                         ui->results->append(tr("<b>Move Episode</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(seasonDirName));
                         if (!dryRun) {
-                            if (!QFile::rename(fileName, seasonDir.path() + "/" + fi.fileName()))
+                            if (!rename(fileName, seasonDir.path() + "/" + fi.fileName()))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                         }
                     }
@@ -406,14 +406,14 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
                     if (!newNfoFileName.isEmpty() && !nfo.isEmpty()) {
                         ui->results->append(tr("<b>Move NFO</b> \"%1\" to \"%2\"").arg(newNfoFileName).arg(seasonDirName));
                         if (!dryRun) {
-                            if (!QFile::rename(fiCanonicalPath + "/" + newNfoFileName, seasonDir.path() + "/" + newNfoFileName))
+                            if (!rename(fiCanonicalPath + "/" + newNfoFileName, seasonDir.path() + "/" + newNfoFileName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                         }
                     }
                     if (!thumbnail.isEmpty() && !newThumbnailFileName.isEmpty()) {
                         ui->results->append(tr("<b>Move Thumbnail</b> \"%1\" to \"%2\"").arg(newThumbnailFileName).arg(seasonDirName));
                         if (!dryRun) {
-                            if (!QFile::rename(fiCanonicalPath + "/" + newThumbnailFileName, seasonDir.path() + "/" + newThumbnailFileName))
+                            if (!rename(fiCanonicalPath + "/" + newThumbnailFileName, seasonDir.path() + "/" + newThumbnailFileName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                         }
                     }
@@ -443,7 +443,7 @@ void Renamer::renameShows(QList<TvShow *> shows, const QString &directoryPattern
             QDir parentDir(dir.path());
             parentDir.cdUp();
             if (!dryRun) {
-                if (!dir.rename(dir.path(), parentDir.path() + "/" + newFolderName))
+                if (!rename(dir, parentDir.path() + "/" + newFolderName))
                     ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
             }
         }
@@ -493,7 +493,7 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
                 if (fi.fileName() != newFileName) {
                     ui->results->append(tr("<b>Rename File</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(newFileName));
                     if (!dryRun) {
-                        if (!QFile(file).rename(fi.canonicalPath() + "/" + newFileName))
+                        if (!rename(file, fi.canonicalPath() + "/" + newFileName))
                             ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                     }
                 }
@@ -509,7 +509,7 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
                     if (newNfoFileName != nfoFileName) {
                         ui->results->append(tr("<b>Rename NFO</b> \"%1\" to \"%2\"").arg(nfoFileName).arg(newNfoFileName));
                         if (!dryRun) {
-                            if (!QFile(nfo).rename(fiCanonicalPath + "/" + newNfoFileName))
+                            if (!rename(nfo, fiCanonicalPath + "/" + newNfoFileName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                         }
                     }
@@ -526,7 +526,7 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
                     if (newPosterFileName != posterFileName) {
                         ui->results->append(tr("<b>Rename Poster</b> \"%1\" to \"%2\"").arg(posterFileName).arg(newPosterFileName));
                         if (!dryRun) {
-                            if (!QFile(poster).rename(fiCanonicalPath + "/" + newPosterFileName))
+                            if (!rename(poster, fiCanonicalPath + "/" + newPosterFileName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                         }
                     }
@@ -543,7 +543,7 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
                     if (newFanartFileName != fanartFileName) {
                         ui->results->append(tr("<b>Rename Fanart</b> \"%1\" to \"%2\"").arg(fanartFileName).arg(newFanartFileName));
                         if (!dryRun) {
-                            if (!QFile(fanart).rename(fiCanonicalPath + "/" + newFanartFileName))
+                            if (!rename(fanart, fiCanonicalPath + "/" + newFanartFileName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                         }
                     }
@@ -564,8 +564,27 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
         if (!dryRun && dir.dirName() != newFolderName && renameDirectories && concert->inSeparateFolder()) {
             QDir parentDir(dir.path());
             parentDir.cdUp();
-            if (!dir.rename(dir.path(), parentDir.path() + "/" + newFolderName))
+            if (!rename(dir, parentDir.path() + "/" + newFolderName))
                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
         }
     }
+}
+
+bool Renamer::rename(const QString &file, const QString &newName)
+{
+    QFile f(file);
+    if (!f.exists())
+        return false;
+
+    QFile newFile(newName);
+    if (newFile.exists())
+        return false;
+
+    return f.rename(newName);
+}
+
+bool Renamer::rename(QDir &dir, QString newName)
+{
+    QDir tmpDir;
+    return tmpDir.rename(dir.path(), newName);
 }

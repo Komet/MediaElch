@@ -2,6 +2,8 @@
 #define RENAMER_H
 
 #include <QDialog>
+#include <QDir>
+#include <QFile>
 #include "data/Concert.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
@@ -59,6 +61,9 @@ private:
     void renameEpisodes(QList<TvShowEpisode*> episodes, const QString &filePattern, const QString &filePatternMulti, const QString &seasonPattern, const bool &renameFiles,
                         const bool &useSeasonDirectories, const bool &dryRun = false);
     void renameShows(QList<TvShow*> shows, const QString &directoryPattern, const bool &renameDirectories, const bool &dryRun = false);
+
+    bool rename(const QString &file, const QString &newName);
+    bool rename(QDir &dir, QString newName);
 };
 
 #endif // RENAMER_H
