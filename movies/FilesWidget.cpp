@@ -194,7 +194,6 @@ void FilesWidget::loadStreamDetails()
         delete loader;
     }
     movieSelectedEmitter();
-    m_movieProxyModel->setSourceModel(0);
     m_movieProxyModel->setSourceModel(Manager::instance()->movieModel());
 }
 

@@ -1285,9 +1285,12 @@ Operação Cancelada.</translation>
         <source>Automatically save each movie after scraping</source>
         <translation>Automaticamente salvar cada filme após scraping</translation>
     </message>
-    <message>
+    <message numerus="yes">
         <source>Scraping of %n movies has finished.</source>
-        <translation>Scraping de %n filmes finalizado.</translation>
+        <translation>
+            <numerusform>Scrapeamento de %n filmes finalizado.</numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>

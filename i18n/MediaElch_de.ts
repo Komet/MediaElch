@@ -1977,10 +1977,13 @@ Operation abgebrochen.</translation>
         <source>Scraping of %1 movies has finished.</source>
         <translation type="obsolete">Informationen für %1 Filme wurden geladen.</translation>
     </message>
-    <message>
+    <message numerus="yes">
         <location filename="../movies/MovieMultiScrapeDialog.cpp" line="140"/>
         <source>Scraping of %n movies has finished.</source>
-        <translation>Informationen für %n Filme wurden geladen.</translation>
+        <translation>
+            <numerusform>Informationen für %n Film wurde geladen.</numerusform>
+            <numerusform>Informationen für %n Filme wurden geladen.</numerusform>
+        </translation>
     </message>
 </context>
 <context>

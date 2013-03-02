@@ -1717,10 +1717,13 @@ p, li { white-space: pre-wrap; }
         <source>Scraping of %1 movies has finished.</source>
         <translation type="obsolete">Scraping de %1 des films est terminée.</translation>
     </message>
-    <message>
+    <message numerus="yes">
         <location filename="../movies/MovieMultiScrapeDialog.cpp" line="140"/>
         <source>Scraping of %n movies has finished.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
