@@ -166,7 +166,7 @@ void MovieController::onFanartLoadDone(Movie *movie, QMap<int, QList<Poster> > p
 
     if (infosToLoad().contains(MovieScraperInfos::Poster) && !m_movie->posters().isEmpty())
         posters.insert(TypePoster, QList<Poster>() << m_movie->posters().at(0));
-    if (infosToLoad().contains(MovieScraperInfos::Backdrop && !m_movie->backdrops().isEmpty()))
+    if (infosToLoad().contains(MovieScraperInfos::Backdrop) && !m_movie->backdrops().isEmpty())
         posters.insert(TypeBackdrop, QList<Poster>() << m_movie->backdrops().at(0));
 
     QList<DownloadManagerElement> downloads;
