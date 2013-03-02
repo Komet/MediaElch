@@ -2397,7 +2397,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Media Status Columns</source>
-        <translation>Colinas Estaturs de Mídia</translation>
+        <translation>Sinalizar Estatus de Mídia</translation>
     </message>
     <message>
         <source>Choose a directory where your movie set artwork is stored</source>
