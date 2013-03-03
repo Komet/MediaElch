@@ -188,7 +188,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
     pos = 0;
     rx.setPattern("Produktion:</div>.*<div class=\"content\">(.*)([0-9]+|</div>)");
     while (infos.contains(MovieScraperInfos::Countries) && (pos = rx.indexIn(html, pos)) != -1) {
-        movie->addCountry(rx.cap(1).trimmed());
+        movie->addCountry(Helper::mapCountry(rx.cap(1).trimmed()));
         pos += rx.matchedLength();
     }
 
@@ -210,7 +210,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
     // Studio
     rx.setPattern("Studio:</div>.*<div class=\"content\">([^<]*)</div>");
     if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1)
-        movie->addStudio(rx.cap(1).trimmed());
+        movie->addStudio(Helper::mapStudio(rx.cap(1).trimmed()));
 
     // Runtime
     rx.setPattern("Laufzeit ca. ([0-9]*) Minuten");

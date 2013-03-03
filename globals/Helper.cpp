@@ -245,3 +245,23 @@ QString Helper::mapCertification(const QString &text)
         return Settings::instance()->advanced()->certificationMappings().value(text);
     return text;
 }
+
+QString Helper::mapStudio(const QString &text)
+{
+    if (Settings::instance()->advanced()->studioMappings().isEmpty())
+        return text;
+
+    if (Settings::instance()->advanced()->studioMappings().contains(text))
+        return Settings::instance()->advanced()->studioMappings().value(text);
+    return text;
+}
+
+QString Helper::mapCountry(const QString &text)
+{
+    if (Settings::instance()->advanced()->countryMappings().isEmpty())
+        return text;
+
+    if (Settings::instance()->advanced()->countryMappings().contains(text))
+        return Settings::instance()->advanced()->countryMappings().value(text);
+    return text;
+}

@@ -534,7 +534,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
             QScriptValue vS = itS.value();
             if (vS.property("id").toString().isEmpty())
                 continue;
-            movie->addStudio(vS.property("name").toString());
+            movie->addStudio(Helper::mapStudio(vS.property("name").toString()));
         }
     }
     if (infos.contains(MovieScraperInfos::Countries) && sc.property("production_countries").isArray()) {
@@ -544,7 +544,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
             QScriptValue vC = itC.value();
             if (vC.property("name").toString().isEmpty())
                 continue;
-            movie->addCountry(vC.property("name").toString());
+            movie->addCountry(Helper::mapCountry(vC.property("name").toString()));
         }
     }
     if (infos.contains(MovieScraperInfos::Title) && sc.property("belongs_to_collection").isValid()) {

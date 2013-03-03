@@ -280,12 +280,12 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
     // Country
     rx.setPattern("Genre: .* \\| (.*) ([0-9]{4})<br>");
     if (infos.contains(MovieScraperInfos::Countries) && rx.indexIn(html) != -1)
-        movie->addCountry(rx.cap(1).trimmed());
+        movie->addCountry(Helper::mapCountry(rx.cap(1).trimmed()));
 
     // Studio
     rx.setPattern("Verleih:(.*)<br>");
     if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1)
-        movie->addStudio(rx.cap(1).trimmed());
+        movie->addStudio(Helper::mapStudio(rx.cap(1).trimmed()));
 
     // MPAA
     rx.setPattern("Freigegeben ab ([0-9]*) Jahren");

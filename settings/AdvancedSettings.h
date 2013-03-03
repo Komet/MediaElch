@@ -24,6 +24,8 @@ public:
     QHash<QString, QString> audioCodecMappings() const;
     QHash<QString, QString> videoCodecMappings() const;
     QHash<QString, QString> certificationMappings() const;
+    QHash<QString, QString> studioMappings() const;
+    QHash<QString, QString> countryMappings() const;
 
 private:
     bool m_debugLog;
@@ -36,6 +38,8 @@ private:
     QHash<QString, QString> m_audioCodecMappings;
     QHash<QString, QString> m_videoCodecMappings;
     QHash<QString, QString> m_certificationMappings;
+    QHash<QString, QString> m_studioMappings;
+    QHash<QString, QString> m_countryMappings;
 
     void loadSettings();
     void reset();
@@ -46,6 +50,8 @@ private:
     void loadAudioCodecMappings(QXmlStreamReader &xml);
     void loadVideoCodecMappings(QXmlStreamReader &xml);
     void loadCertificationMappings(QXmlStreamReader &xml);
+    void loadStudioMappings(QXmlStreamReader &xml);
+    void loadCountryMappings(QXmlStreamReader &xml);
 };
 
 #endif // ADVANCEDSETTINGS_H

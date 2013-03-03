@@ -219,7 +219,7 @@ void IMDB::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
         while (itC.hasNext()) {
             itC.next();
             if (itC.hasNext())
-                movie->addCountry(itC.value().toString());
+                movie->addCountry(Helper::mapCountry(itC.value().toString()));
         }
     }
 

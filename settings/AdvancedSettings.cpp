@@ -23,6 +23,8 @@ void AdvancedSettings::reset()
     m_audioCodecMappings.clear();
     m_videoCodecMappings.clear();
     m_certificationMappings.clear();
+    m_studioMappings.clear();
+    m_countryMappings.clear();
 
     m_movieFilters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
                    << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm" << "*.rmvb" << "*.img" << "*.wmv"
@@ -71,6 +73,10 @@ void AdvancedSettings::loadSettings()
             loadVideoCodecMappings(xml);
         else if (xml.name() == "certifications")
             loadCertificationMappings(xml);
+        else if (xml.name() == "studios")
+            loadStudioMappings(xml);
+        else if (xml.name() == "countries")
+            loadCountryMappings(xml);
         else
             xml.skipCurrentElement();
     }
@@ -86,6 +92,8 @@ void AdvancedSettings::loadSettings()
     qDebug() << "    audioCodecMappings    " << m_audioCodecMappings;
     qDebug() << "    videoCodecMappings    " << m_videoCodecMappings;
     qDebug() << "    certificationMappings " << m_certificationMappings;
+    qDebug() << "    studioMappings        " << m_studioMappings;
+    qDebug() << "    countryMappings       " << m_countryMappings;
 }
 
 void AdvancedSettings::loadLog(QXmlStreamReader &xml)
@@ -185,6 +193,32 @@ void AdvancedSettings::loadCertificationMappings(QXmlStreamReader &xml)
     }
 }
 
+void AdvancedSettings::loadStudioMappings(QXmlStreamReader &xml)
+{
+    while (xml.readNextStartElement()) {
+        if (xml.name() == "map") {
+            if (!xml.attributes().value("from").isEmpty())
+                m_studioMappings.insert(xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
+            xml.readElementText();
+        } else {
+            xml.skipCurrentElement();
+        }
+    }
+}
+
+void AdvancedSettings::loadCountryMappings(QXmlStreamReader &xml)
+{
+    while (xml.readNextStartElement()) {
+        if (xml.name() == "map") {
+            if (!xml.attributes().value("from").isEmpty())
+                m_countryMappings.insert(xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
+            xml.readElementText();
+        } else {
+            xml.skipCurrentElement();
+        }
+    }
+}
+
 bool AdvancedSettings::debugLog() const
 {
     return m_debugLog;
@@ -235,3 +269,12 @@ QHash<QString, QString> AdvancedSettings::certificationMappings() const
     return m_certificationMappings;
 }
 
+QHash<QString, QString> AdvancedSettings::studioMappings() const
+{
+    return m_studioMappings;
+}
+
+QHash<QString, QString> AdvancedSettings::countryMappings() const
+{
+    return m_countryMappings;
+}

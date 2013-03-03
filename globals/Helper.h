@@ -23,6 +23,8 @@ public:
     static QString mapGenre(const QString &text);
     static QStringList mapGenre(const QStringList &genres);
     static QString mapCertification(const QString &text);
+    static QString mapStudio(const QString &text);
+    static QString mapCountry(const QString &text);
 };
 
 #endif // HELPER_H

@@ -300,7 +300,7 @@ void OFDb::parseAndAssignInfos(QString data, Movie *movie, QList<int> infos)
         } else if (infos.contains(MovieScraperInfos::Countries) && xml.name() == "produktionsland") {
             while (xml.readNextStartElement()) {
                 if (xml.name() == "name")
-                    movie->addCountry(xml.readElementText());
+                    movie->addCountry(Helper::mapCountry(xml.readElementText()));
                 else
                     xml.skipCurrentElement();
             }
