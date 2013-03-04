@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
 #endif
     QCoreApplication::setOrganizationName("kvibes");
     QCoreApplication::setApplicationName("MediaElch");
-    QCoreApplication::setApplicationVersion("1.4");
+    QCoreApplication::setApplicationVersion("1.5");
 
     if (!useGui || a.arguments().count() > 1) {
 #if QT_VERSION >= 0x050000
