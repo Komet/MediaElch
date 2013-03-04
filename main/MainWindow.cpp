@@ -239,7 +239,7 @@ void MainWindow::setupToolbar()
     for (int i=0, n=icons.count() ; i<n ; ++i) {
         p.begin(&icons[i]);
         p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-        p.fillRect(icons[i].rect(), QColor(0, 0, 0, 100));
+        p.fillRect(icons[i].rect(), QColor(127, 127, 127, 255));
         p.end();
     }
 

@@ -623,7 +623,6 @@ void MovieWidget::updateMovieInfo()
         countries << movie->countries();
         studios << movie->studios();
     }
-    studios.removeDuplicates();
     ui->genreCloud->setTags(genres, m_movie->genres());
     ui->tagCloud->setTags(tags, m_movie->tags());
     ui->countryCloud->setTags(countries, m_movie->countries());

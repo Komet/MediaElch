@@ -100,6 +100,9 @@
         <string/>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,0">
+        <property name="spacing">
+         <number>0</number>
+        </property>
         <item>
          <widget class="QTabWidget" name="tabWidget">
           <property name="currentIndex">
@@ -327,7 +330,7 @@
           </widget>
           <widget class="QWidget" name="tab_4">
            <attribute name="title">
-            <string>Extra Fanarts</string>
+            <string>Extra Fanart</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,0">
             <property name="leftMargin">
@@ -594,7 +597,7 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,1">
           <property name="spacing">
-           <number>0</number>
+           <number>6</number>
           </property>
           <property name="leftMargin">
            <number>10</number>

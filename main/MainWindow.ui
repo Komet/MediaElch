@@ -51,38 +51,20 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <property name="spacing">
-        <number>12</number>
+        <number>0</number>
        </property>
        <property name="leftMargin">
-        <number>6</number>
+        <number>2</number>
        </property>
        <property name="topMargin">
         <number>20</number>
        </property>
        <property name="rightMargin">
-        <number>6</number>
+        <number>2</number>
        </property>
        <property name="bottomMargin">
         <number>0</number>
        </property>
-       <item>
-        <widget class="QLabel" name="labelMovies">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgba(255, 255, 255, 200);</string>
-         </property>
-         <property name="text">
-          <string>Movies</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
        <item>
         <widget class="QToolButton" name="buttonMovies">
          <property name="toolTip">
@@ -91,8 +73,9 @@
          <property name="styleSheet">
           <string notr="true">QToolButton {
 	border: 0;
-	margin-left: 10px;
-	margin-right: 10px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px
 }</string>
          </property>
          <property name="text">
@@ -104,8 +87,8 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>24</width>
-           <height>24</height>
+           <width>52</width>
+           <height>52</height>
           </size>
          </property>
         </widget>
@@ -118,8 +101,9 @@
          <property name="styleSheet">
           <string notr="true">QToolButton {
 	border: 0;
-	margin-left: 10px;
-	margin-right: 10px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px
 }</string>
          </property>
          <property name="text">
@@ -131,8 +115,8 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>24</width>
-           <height>24</height>
+           <width>52</width>
+           <height>52</height>
           </size>
          </property>
         </widget>
@@ -145,8 +129,9 @@
          <property name="styleSheet">
           <string notr="true">QToolButton {
 	border: 0;
-	margin-left: 10px;
-	margin-right: 10px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px
 }</string>
          </property>
          <property name="text">
@@ -158,8 +143,8 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>24</width>
-           <height>24</height>
+           <width>52</width>
+           <height>52</height>
           </size>
          </property>
         </widget>
@@ -172,8 +157,9 @@
          <property name="styleSheet">
           <string notr="true">QToolButton {
 	border: 0;
-	margin-left: 10px;
-	margin-right: 10px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px
 }</string>
          </property>
          <property name="text">
@@ -185,28 +171,9 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>24</width>
-           <height>24</height>
+           <width>52</width>
+           <height>52</height>
           </size>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="labelShows">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgba(255, 255, 255, 200);
-margin-top: 15px;</string>
-         </property>
-         <property name="text">
-          <string>Shows</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -218,8 +185,9 @@ margin-top: 15px;</string>
          <property name="styleSheet">
           <string notr="true">QToolButton {
 	border: 0;
-	margin-left: 10px;
-	margin-right: 10px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px
 }</string>
          </property>
          <property name="text">
@@ -231,28 +199,9 @@ margin-top: 15px;</string>
          </property>
          <property name="iconSize">
           <size>
-           <width>24</width>
-           <height>24</height>
+           <width>52</width>
+           <height>52</height>
           </size>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="labelConcerts">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgba(255, 255, 255, 200);
-margin-top: 15px;</string>
-         </property>
-         <property name="text">
-          <string>Concerts</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -264,8 +213,9 @@ margin-top: 15px;</string>
          <property name="styleSheet">
           <string notr="true">QToolButton {
 	border: 0;
-	margin-left: 10px;
-	margin-right: 10px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px
 }</string>
          </property>
          <property name="text">
@@ -277,8 +227,8 @@ margin-top: 15px;</string>
          </property>
          <property name="iconSize">
           <size>
-           <width>24</width>
-           <height>24</height>
+           <width>52</width>
+           <height>52</height>
           </size>
          </property>
         </widget>
@@ -350,7 +300,7 @@ margin-top: 15px;</string>
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>76</width>
+              <width>82</width>
               <height>735</height>
              </rect>
             </property>
@@ -417,7 +367,7 @@ margin-top: 15px;</string>
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>76</width>
+              <width>82</width>
               <height>735</height>
              </rect>
             </property>
@@ -491,8 +441,8 @@ margin-top: 15px;</string>
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>76</width>
-              <height>735</height>
+              <width>100</width>
+              <height>30</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -539,8 +489,8 @@ margin-top: 15px;</string>
    </property>
    <property name="iconSize">
     <size>
-     <width>24</width>
-     <height>24</height>
+     <width>34</width>
+     <height>34</height>
     </size>
    </property>
    <property name="toolButtonStyle">

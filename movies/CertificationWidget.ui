@@ -104,6 +104,9 @@
          <property name="title">
           <string/>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
          <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,0,0">
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -188,8 +191,23 @@
            <layout class="QVBoxLayout" name="verticalLayout">
             <item>
              <widget class="QLabel" name="label_3">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>350</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="text">
                <string>Double click a certification to rename it, right click to delete. If you want to merge two certifications just give them the same name.</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
               <property name="wordWrap">
                <bool>true</bool>
@@ -198,8 +216,17 @@
             </item>
             <item>
              <widget class="QLabel" name="label_2">
+              <property name="minimumSize">
+               <size>
+                <width>350</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="text">
                <string>Please keep in mind that the changes you make here (renaming or deleting certifications) will be made for every movie.</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
               <property name="wordWrap">
                <bool>true</bool>
