@@ -227,7 +227,7 @@
         <item>
          <widget class="MyCheckBox" name="chkBackdrop">
           <property name="text">
-           <string>Backdrop</string>
+           <string>Fanart</string>
           </property>
          </widget>
         </item>

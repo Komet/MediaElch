@@ -89,7 +89,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Infos to load</string>
+         <string>Info to load</string>
         </property>
        </widget>
       </item>
@@ -111,7 +111,7 @@
            <string>Logo, Clear Art, CD Art</string>
           </property>
           <property name="text">
-           <string>Extra Arts</string>
+           <string>Extra Art</string>
           </property>
           <property name="checked">
            <bool>true</bool>
@@ -161,7 +161,7 @@
         <item row="4" column="0">
          <widget class="MyCheckBox" name="chkBackdrop">
           <property name="text">
-           <string>Backdrop</string>
+           <string>Fanart</string>
           </property>
           <property name="checked">
            <bool>true</bool>

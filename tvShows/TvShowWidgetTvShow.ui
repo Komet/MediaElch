@@ -99,7 +99,7 @@
          <enum>Qt::NoFocus</enum>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="tab1">
          <attribute name="title">
@@ -117,7 +117,7 @@
             <item row="0" column="0">
              <widget class="QLabel" name="label">
               <property name="text">
-               <string>Dir</string>
+               <string>Filename</string>
               </property>
              </widget>
             </item>
@@ -131,7 +131,7 @@
             <item row="1" column="0">
              <widget class="QLabel" name="label_2">
               <property name="text">
-               <string>Name</string>
+               <string>Title</string>
               </property>
              </widget>
             </item>

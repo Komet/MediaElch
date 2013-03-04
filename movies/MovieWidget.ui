@@ -112,7 +112,7 @@
         <item>
          <widget class="QTabWidget" name="tabWidget">
           <property name="currentIndex">
-           <number>4</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="tab">
            <attribute name="title">
@@ -130,7 +130,7 @@
               <item row="0" column="0">
                <widget class="QLabel" name="label">
                 <property name="text">
-                 <string>Files</string>
+                 <string>Filename</string>
                 </property>
                </widget>
               </item>
@@ -144,7 +144,7 @@
               <item row="2" column="0">
                <widget class="QLabel" name="label_2">
                 <property name="text">
-                 <string>Name</string>
+                 <string>Title</string>
                 </property>
                </widget>
               </item>
@@ -154,7 +154,7 @@
               <item row="3" column="0">
                <widget class="QLabel" name="label_3">
                 <property name="text">
-                 <string>Original Name</string>
+                 <string>Original Title</string>
                 </property>
                </widget>
               </item>
@@ -710,7 +710,7 @@
           </widget>
           <widget class="QWidget" name="tab_3">
            <attribute name="title">
-            <string>Streamdetails</string>
+            <string>Stream Details</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_12">
             <item>
