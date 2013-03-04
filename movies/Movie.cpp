@@ -69,6 +69,7 @@ void Movie::clear()
 {
     QList<int> infos;
     infos << MovieScraperInfos::Title
+          << MovieScraperInfos::Set
           << MovieScraperInfos::Tagline
           << MovieScraperInfos::Rating
           << MovieScraperInfos::Released
@@ -118,6 +119,8 @@ void Movie::clear(QList<int> infos)
         m_studios.clear();
     if (infos.contains(MovieScraperInfos::Title))
         m_originalName = "";
+    if (infos.contains(MovieScraperInfos::Set))
+        m_set = "";
     if (infos.contains(MovieScraperInfos::Overview)) {
         m_overview = "";
         m_outline = "";
