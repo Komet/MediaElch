@@ -1,3 +1,49 @@
+mediaelch (1.5-1) unstable; urgency=low
+
+  * Bugfix: Replace illegal characters in filenames on Windows
+  * Reduced memory usage when multi scrape movies
+  * Sort lists case insensitive
+  * Added .wtv files to scanners
+  * Changed default filename from cdart.png to disc.png
+  * Movies -> Votes: Display thousands separator
+  * Bugfix: Skip downloading of actor images in tv shows if set in settings
+  * Correct naming of nfo files and images in stacked movies
+  * Fixed opening of movie folders in Windows
+  * Save TV Show update option
+  * Default exclude words set
+  * Show saving progress
+  * Bugfix: Saving of poster and fanarts for DVD and BluRay structures
+  * Skip extra files in DVD structures
+  * Show all fanarts from The TV Db when choosing season fanart
+  * Save tv show specials season artwork as season-special-*.jpg
+  * Use JSON RPC to communicate with XBMC
+  * Fixed XBMC sync
+  * Moved advanced settings to advancedsettings.xml
+  * Option to ignore articles when sorting
+  * Map genres while scraping to custom genres
+  * Extensions for file scanners are now customizable
+  * Added alphabetical scroll list
+  * Automatically reload files after saving settings
+  * Use correct nfo filename when renaming episodes
+  * StreamDetails: Map audio and video codecs to custom values
+  * Add genres in genre widget
+  * Add certifications in certifications widget
+  * Add movie sets in sets widget
+  * Remove movie sets in sets widget
+  * Rename movie sets in sets widget
+  * Bugfix: Correct sorting of stacked files
+  * Show multi scrape dialog when multiple movies are selected
+  * Map certifications while scraping to custom certifications
+  * Choose between English GB and English US certifications for The Movie DB
+  * Handling of movie set posters and fanarts (compatible with “Movie Set Artwork Automator”)
+  * Media Status Columns added
+  * TV Shows: ID Tag get’s no longer removed
+  * Bugfix: Loading only fanarts was not possible
+  * Bugfix: Studios autocompleter showed duplicates
+  * Map Studios and Countries to custom values while scraping
+    
+ -- Daniel Kabel <daniel.kabel@me.com>  Mon, 04 Mar 2013 19:38:58 +0100
+
 mediaelch (1.4-1) unstable; urgency=low
 
   * Added option to set username and password for XBMC webserver

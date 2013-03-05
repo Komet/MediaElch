@@ -183,7 +183,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="36"/>
         <source>Add Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter Certification</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="37"/>
@@ -193,7 +193,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="176"/>
         <source>New Certification</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouvelle Certification</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="275"/>
@@ -852,24 +852,24 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="356"/>
         <source>Movie has Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>Film possède  Extra Fanarts</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="356"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="357"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="359"/>
         <source>Extra Fanarts</source>
-        <translation type="unfinished">Extra Fanarts</translation>
+        <translation>Extra Fanarts</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="358"/>
         <source>Movie has no Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>Film ne possède pas d&apos;Extra Fanarts</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="358"/>
         <source>No Extra Fanarts</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucun Extra Fanarts</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="360"/>
@@ -1066,23 +1066,23 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="392"/>
         <source>Movie has Actors</source>
-        <translation type="unfinished"></translation>
+        <translation>Film possède Acteurs</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="392"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="395"/>
         <source>Actors</source>
-        <translation type="unfinished">Acteurs</translation>
+        <translation>Acteurs</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="394"/>
         <source>Movie has no Actors</source>
-        <translation type="unfinished"></translation>
+        <translation>Film ne possède pas d&apos; Acteurs</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="394"/>
         <source>No Actors</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucun Acteur</translation>
     </message>
 </context>
 <context>
@@ -1130,7 +1130,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/GenreWidget.cpp" line="36"/>
         <source>Add Genre</source>
-        <translation type="unfinished">Ajouter Genre</translation>
+        <translation>Ajouter Genre</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.cpp" line="37"/>
@@ -1140,7 +1140,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/GenreWidget.cpp" line="180"/>
         <source>New Genre</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouveau Genre</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.cpp" line="284"/>
@@ -1463,7 +1463,7 @@ p, li { white-space: pre-wrap; }
         <translation>Recherche de Films...</translation>
     </message>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="105"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="116"/>
         <source>Loading Movies...</source>
         <translation>Chargement Films...</translation>
     </message>
@@ -1528,37 +1528,37 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../data/MovieModel.cpp" line="266"/>
         <source>Actors</source>
-        <translation type="unfinished">Acteurs</translation>
+        <translation>Acteurs</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="269"/>
         <source>Extra Arts</source>
-        <translation type="unfinished">Extra Arts</translation>
+        <translation>Extra Arts</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="272"/>
         <source>Extra Fanarts</source>
-        <translation type="unfinished">Extra Fanarts</translation>
+        <translation>Extra Fanarts</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="275"/>
         <source>Fanart</source>
-        <translation type="unfinished">Fanart</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="278"/>
         <source>Poster</source>
-        <translation type="unfinished">Affiche</translation>
+        <translation>Affiche</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="281"/>
         <source>Stream Details</source>
-        <translation type="unfinished">Détails flux</translation>
+        <translation>Détails flux</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="284"/>
         <source>Trailer</source>
-        <translation type="unfinished">Bande-annonce</translation>
+        <translation>Bande-annonce</translation>
     </message>
 </context>
 <context>
@@ -1676,7 +1676,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="274"/>
         <source>Set</source>
-        <translation type="unfinished">Saga</translation>
+        <translation>Saga</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="293"/>
@@ -1686,7 +1686,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="319"/>
         <source>Automatically save each movie after scraping</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer automatiquement chaque film après analyse</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="334"/>
@@ -1721,7 +1721,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../movies/MovieMultiScrapeDialog.cpp" line="140"/>
         <source>Scraping of %n movies has finished.</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
+            <numerusform>Analyse %n des films est terminée.</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -1756,7 +1756,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../movies/MovieSearch.ui" line="153"/>
         <source>Set</source>
-        <translation type="unfinished">Saga</translation>
+        <translation>Saga</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearch.ui" line="160"/>
@@ -2148,8 +2148,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="743"/>
-        <location filename="../movies/MovieWidget.cpp" line="801"/>
-        <location filename="../movies/MovieWidget.cpp" line="804"/>
+        <location filename="../movies/MovieWidget.cpp" line="802"/>
+        <location filename="../movies/MovieWidget.cpp" line="805"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -2249,57 +2249,57 @@ p, li { white-space: pre-wrap; }
         <translation>Téléchargement d&apos;images...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="794"/>
-        <location filename="../movies/MovieWidget.cpp" line="828"/>
+        <location filename="../movies/MovieWidget.cpp" line="795"/>
+        <location filename="../movies/MovieWidget.cpp" line="829"/>
         <source>Track %1</source>
         <translation>Piste  %1</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="800"/>
-        <location filename="../movies/MovieWidget.cpp" line="803"/>
-        <location filename="../movies/MovieWidget.cpp" line="831"/>
+        <location filename="../movies/MovieWidget.cpp" line="801"/>
+        <location filename="../movies/MovieWidget.cpp" line="804"/>
         <location filename="../movies/MovieWidget.cpp" line="832"/>
+        <location filename="../movies/MovieWidget.cpp" line="833"/>
         <source>Language</source>
         <translation>Langue</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="802"/>
-        <location filename="../movies/MovieWidget.cpp" line="805"/>
+        <location filename="../movies/MovieWidget.cpp" line="803"/>
+        <location filename="../movies/MovieWidget.cpp" line="806"/>
         <source>Channels</source>
         <translation>Canaux</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="820"/>
+        <location filename="../movies/MovieWidget.cpp" line="821"/>
         <source>Subtitles</source>
         <translation>Sous-titres</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="989"/>
+        <location filename="../movies/MovieWidget.cpp" line="990"/>
         <source>Saving movie...</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrement film ...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="997"/>
+        <location filename="../movies/MovieWidget.cpp" line="998"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauvegarder</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1017"/>
+        <location filename="../movies/MovieWidget.cpp" line="1018"/>
         <source>Saving movies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrement film ...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1033"/>
+        <location filename="../movies/MovieWidget.cpp" line="1034"/>
         <source>All Movies Saved</source>
         <translation>Tous les films sont sauvegardés</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1055"/>
+        <location filename="../movies/MovieWidget.cpp" line="1056"/>
         <source>Unknown Actor</source>
         <translation>Acteur inconnu</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1056"/>
+        <location filename="../movies/MovieWidget.cpp" line="1057"/>
         <source>Unknown Role</source>
         <translation>Rôle inconnu</translation>
     </message>
@@ -2316,12 +2316,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Pays inconnu</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1230"/>
+        <location filename="../movies/MovieWidget.cpp" line="1231"/>
         <source>Choose Image</source>
         <translation>Choisir image</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1230"/>
+        <location filename="../movies/MovieWidget.cpp" line="1231"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Images (*.jpg *.jpeg *.png)</translation>
     </message>
@@ -2331,67 +2331,67 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="66"/>
         <source>no error occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>aucune erreur n&apos;est apparue</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="67"/>
         <source>unterminated object</source>
-        <translation type="unfinished"></translation>
+        <translation>objet non terminé</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="68"/>
         <source>missing name separator</source>
-        <translation type="unfinished"></translation>
+        <translation>manque séparateur de nom</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="69"/>
         <source>unterminated array</source>
-        <translation type="unfinished"></translation>
+        <translation>ensemble non terminé</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="70"/>
         <source>missing value separator</source>
-        <translation type="unfinished"></translation>
+        <translation>manque séparateur de valeurs</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="71"/>
         <source>illegal value</source>
-        <translation type="unfinished"></translation>
+        <translation>valeur illégale</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="72"/>
         <source>invalid termination by number</source>
-        <translation type="unfinished"></translation>
+        <translation>invalide terminaison pa  nombre</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="73"/>
         <source>illegal number</source>
-        <translation type="unfinished"></translation>
+        <translation>nombre illégal</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="74"/>
         <source>invalid escape sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>séquence de sortie non valide</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="75"/>
         <source>invalid UTF8 string</source>
-        <translation type="unfinished"></translation>
+        <translation>chaîne UTF8 invalide</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="76"/>
         <source>unterminated string</source>
-        <translation type="unfinished"></translation>
+        <translation>chaîne non terminé</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="77"/>
         <source>object is missing after a comma</source>
-        <translation type="unfinished"></translation>
+        <translation>objet est manquante après une virgule</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="78"/>
         <source>too deeply nested document</source>
-        <translation type="unfinished"></translation>
+        <translation>document trop imbriquée</translation>
     </message>
 </context>
 <context>
@@ -2772,12 +2772,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.cpp" line="71"/>
         <source>Add Movie Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter saga Film</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.cpp" line="72"/>
         <source>Delete Movie Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer saga Film</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.cpp" line="413"/>
@@ -2787,7 +2787,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.cpp" line="438"/>
         <source>New Movie Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouvelle saga Film</translation>
     </message>
 </context>
 <context>
@@ -2981,22 +2981,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWidget.ui" line="216"/>
         <source>Ignore articles when sorting (&quot;The&quot;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorer articles quand vous triez (&quot;Le&quot;)</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="292"/>
         <source>If you want to use the synchronization feature you need to enable &quot;Allow programs on other systems to control XBMC&quot; within XBMC (Settings -&gt; Services -&gt; Remote Control).</source>
-        <translation type="unfinished"></translation>
+        <translation>Si vous souhaitez utiliser la fonction de synchronisation, vous devez activer «Autoriser les programmes sur d&apos;autres systèmes pour contrôler XBMC&quot; dans XBMC (Paramètres -&gt; Services -&gt; Remote Control).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="314"/>
         <source>127.0.0.1</source>
-        <translation type="unfinished">127.0.0.1</translation>
+        <translation>127.0.0.1</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="328"/>
         <source>9090</source>
-        <translation type="unfinished">9090</translation>
+        <translation>9090</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="369"/>
@@ -3021,22 +3021,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWidget.ui" line="530"/>
         <source>Artwork directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire des Artwork</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="537"/>
         <source>Movie Set Artwork</source>
-        <translation type="unfinished"></translation>
+        <translation>Artwork des sagas</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="545"/>
         <source>Artwork next to movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Artwork suivant des films</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="550"/>
         <source>Separate artwork directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Séparer repertoire artwork</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="558"/>
@@ -3046,39 +3046,39 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWidget.ui" line="565"/>
         <source>Movie outline</source>
-        <translation type="unfinished"></translation>
+        <translation>Films intrigue</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="572"/>
         <source>Movie Set Poster Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom de l&apos;affiche de la saga</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="579"/>
         <source>Movie Set Fanart Filname</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom du Fanart de la saga</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="586"/>
         <location filename="../settings/SettingsWidget.ui" line="589"/>
         <source>folder.jpg</source>
-        <translation type="unfinished"></translation>
+        <translation>folder.jpg</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="596"/>
         <location filename="../settings/SettingsWidget.ui" line="599"/>
         <source>fanart.jpg</source>
-        <translation type="unfinished"></translation>
+        <translation>fanart.jpg</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="611"/>
         <source>Choose directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir répertoire</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="620"/>
         <source>Media Status Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Colonnes d&apos;état des médias</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="633"/>
@@ -3293,7 +3293,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWidget.cpp" line="587"/>
         <source>Choose a directory where your movie set artwork is stored</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisissez un répertoire où votre artwork du film est stocké</translation>
     </message>
 </context>
 <context>
@@ -3390,7 +3390,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="66"/>
         <source>English (US)</source>
-        <translation type="unfinished"></translation>
+        <translation>Anglais (US)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="67"/>
@@ -3518,7 +3518,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="59"/>
         <source>English (US)</source>
-        <translation type="unfinished"></translation>
+        <translation>Anglais (US)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="60"/>
@@ -4815,7 +4815,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="148"/>
         <source>Could not connect to XBMC: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de se connecter à XBMC: %1</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="350"/>
@@ -4885,7 +4885,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="714"/>
         <source>XBMC Library Scan has finished</source>
-        <translation type="unfinished"></translation>
+        <translation>XBMC Library Scan a terminé</translation>
     </message>
 </context>
 <context>

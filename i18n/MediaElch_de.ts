@@ -1671,7 +1671,7 @@ p, li { white-space: pre-wrap; }
         <translation>Suche nach Filmen...</translation>
     </message>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="105"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="116"/>
         <source>Loading Movies...</source>
         <translation>Lade Filme...</translation>
     </message>
@@ -2402,8 +2402,8 @@ Operation abgebrochen.</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="743"/>
-        <location filename="../movies/MovieWidget.cpp" line="801"/>
-        <location filename="../movies/MovieWidget.cpp" line="804"/>
+        <location filename="../movies/MovieWidget.cpp" line="802"/>
+        <location filename="../movies/MovieWidget.cpp" line="805"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -2517,57 +2517,57 @@ Operation abgebrochen.</translation>
         <translation>Lade Bilder...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="794"/>
-        <location filename="../movies/MovieWidget.cpp" line="828"/>
+        <location filename="../movies/MovieWidget.cpp" line="795"/>
+        <location filename="../movies/MovieWidget.cpp" line="829"/>
         <source>Track %1</source>
         <translation>Spur %1</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="800"/>
-        <location filename="../movies/MovieWidget.cpp" line="803"/>
-        <location filename="../movies/MovieWidget.cpp" line="831"/>
+        <location filename="../movies/MovieWidget.cpp" line="801"/>
+        <location filename="../movies/MovieWidget.cpp" line="804"/>
         <location filename="../movies/MovieWidget.cpp" line="832"/>
+        <location filename="../movies/MovieWidget.cpp" line="833"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="802"/>
-        <location filename="../movies/MovieWidget.cpp" line="805"/>
+        <location filename="../movies/MovieWidget.cpp" line="803"/>
+        <location filename="../movies/MovieWidget.cpp" line="806"/>
         <source>Channels</source>
         <translation>Kanäle</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="820"/>
+        <location filename="../movies/MovieWidget.cpp" line="821"/>
         <source>Subtitles</source>
         <translation>Untertitel</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="989"/>
+        <location filename="../movies/MovieWidget.cpp" line="990"/>
         <source>Saving movie...</source>
         <translation>Speichere Film...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="997"/>
+        <location filename="../movies/MovieWidget.cpp" line="998"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1017"/>
+        <location filename="../movies/MovieWidget.cpp" line="1018"/>
         <source>Saving movies...</source>
         <translation>Speichere Filme...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1033"/>
+        <location filename="../movies/MovieWidget.cpp" line="1034"/>
         <source>All Movies Saved</source>
         <translation>Alle Filme gespeichert</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1055"/>
+        <location filename="../movies/MovieWidget.cpp" line="1056"/>
         <source>Unknown Actor</source>
         <translation>Unbekannter Schauspieler</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1056"/>
+        <location filename="../movies/MovieWidget.cpp" line="1057"/>
         <source>Unknown Role</source>
         <translation>Unbekannte Rolle</translation>
     </message>
@@ -2580,12 +2580,12 @@ Operation abgebrochen.</translation>
         <translation type="obsolete">Unbekanntes Land</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1230"/>
+        <location filename="../movies/MovieWidget.cpp" line="1231"/>
         <source>Choose Image</source>
         <translation>Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1230"/>
+        <location filename="../movies/MovieWidget.cpp" line="1231"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
