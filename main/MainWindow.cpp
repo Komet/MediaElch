@@ -232,7 +232,7 @@ void MainWindow::setupToolbar()
 
     QPainter p;
     QList<QPixmap> icons;
-    icons << QPixmap(":/img/spanner.png") << QPixmap(":/img/info.png") << QPixmap(":/img/folder_in.png")
+    icons << QPixmap(":/img/spanner.png") << QPixmap(":/img/info.png") << QPixmap(":/img/folder_64.png")
           << QPixmap(":/img/stop.png") << QPixmap(":/img/magnifier.png") <<QPixmap(":/img/save.png")
           << QPixmap(":/img/storage.png") << QPixmap(":/img/heart.png") << QPixmap(":/img/arrow_circle_right.png")
           << QPixmap(":/img/xbmc.png") << QPixmap(":/img/folder_64.png");
