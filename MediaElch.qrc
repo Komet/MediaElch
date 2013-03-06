@@ -53,6 +53,9 @@
         <file>img/actor.png</file>
         <file>img/missing_art_small.png</file>
         <file>img/missing_art.png</file>
+        <file>img/thetvdb.png</file>
+        <file>img/tmdb.png</file>
+        <file>img/support_dialog.png</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>
