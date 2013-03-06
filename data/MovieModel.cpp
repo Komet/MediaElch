@@ -266,10 +266,10 @@ QString MovieModel::mediaStatusToText(MediaStatusColumns column)
         return tr("Actors");
         break;
     case MediaStatusExtraArts:
-        return tr("Extra Arts");
+        return tr("Extra Art");
         break;
     case MediaStatusExtraFanarts:
-        return tr("Extra Fanarts");
+        return tr("Extra Fanart");
         break;
     case MediaStatusFanart:
         return tr("Fanart");

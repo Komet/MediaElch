@@ -52,7 +52,7 @@ void Badge::paintEvent(QPaintEvent *event)
     }
 
     if (m_active && m_showActiveMark) {
-        QImage mark = QImage(":img/checkmark_white_64.png").scaledToWidth(12, Qt::SmoothTransformation);
+        QImage mark = QImage(":img/checkmark.png").scaledToWidth(12, Qt::SmoothTransformation);
         QPainter p(this);
         p.save();
         p.drawImage(7, (height()-mark.height())/2, mark);

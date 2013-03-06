@@ -89,7 +89,7 @@ QTabBar::tab:selected {
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Add one or more directories containing your movies, TV Shows or concerts. TV Show Episodes have to be in subfolders with the name of the show.</string>
+          <string>Add one or more directories containing Movies, TV Shows or Concerts. TV Show Episodes must be in subfolders with the name of the show.</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -289,7 +289,7 @@ QTabBar::tab:selected {
        <item>
         <widget class="QLabel" name="label_7">
          <property name="text">
-          <string>If you want to use the synchronization feature you need to enable &quot;Allow programs on other systems to control XBMC&quot; within XBMC (Settings -&gt; Services -&gt; Remote Control).</string>
+          <string>You must enable &quot;Allow programs on other systems to control XBMC&quot; within XBMC (Settings -&gt; Services -&gt; Remote Control) in order to use the synchronization feature.</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -341,7 +341,7 @@ QTabBar::tab:selected {
        <item>
         <widget class="QLabel" name="label_43">
          <property name="text">
-          <string>Below you see the filenames which are used for loading and saving your movies. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</string>
+          <string>The filenames which are used for loading and saving your Movies are listed below.  To add or remove an entry right click on it and choose add/remove.  To edit a filename double click on it.</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -392,7 +392,7 @@ QTabBar::tab:selected {
             </font>
            </property>
            <property name="text">
-            <string>Backdrop</string>
+            <string>Fanart</string>
            </property>
           </widget>
          </item>
@@ -527,7 +527,7 @@ QTabBar::tab:selected {
          <item row="4" column="0">
           <widget class="QLabel" name="labelMovieSetArtworkDir">
            <property name="text">
-            <string>Artwork directory</string>
+            <string>Artwork Directory</string>
            </property>
           </widget>
          </item>
@@ -562,7 +562,7 @@ QTabBar::tab:selected {
          <item row="0" column="0">
           <widget class="QLabel" name="label_12">
            <property name="text">
-            <string>Movie outline</string>
+            <string>Movie Outline</string>
            </property>
           </widget>
          </item>
@@ -636,7 +636,7 @@ QTabBar::tab:selected {
        <item>
         <widget class="QLabel" name="label_45">
          <property name="text">
-          <string>Below you see the filenames which are used for loading and saving your tv shows. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</string>
+          <string>The filenames which are used for loading and saving your TV Shows are listed below.  To add or remove an entry right click on it and choose add/remove.  To edit a filename double click on it.</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -664,7 +664,7 @@ QTabBar::tab:selected {
             </font>
            </property>
            <property name="text">
-            <string>Backdrop</string>
+            <string>Fanart</string>
            </property>
           </widget>
          </item>
@@ -894,7 +894,7 @@ QTabBar::tab:selected {
             </font>
            </property>
            <property name="text">
-            <string>Season Backdrop</string>
+            <string>Season Fanart</string>
            </property>
           </widget>
          </item>
@@ -956,7 +956,7 @@ QTabBar::tab:selected {
        <item>
         <widget class="QLabel" name="label_46">
          <property name="text">
-          <string>Below you see the filenames which are used for loading and saving your concerts. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</string>
+          <string>The filenames which are used for loading and saving your Concerts are listed below.  To add or remove an entry right click on it and choose add/remove.  To edit a filename double click on it.</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -1010,7 +1010,7 @@ QTabBar::tab:selected {
             </font>
            </property>
            <property name="text">
-            <string>Backdrop</string>
+            <string>Fanart</string>
            </property>
           </widget>
          </item>

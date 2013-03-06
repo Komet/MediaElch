@@ -232,46 +232,46 @@ void MainWindow::setupToolbar()
 
     QPainter p;
     QList<QPixmap> icons;
-    icons << QPixmap(":/img/spanner.png") << QPixmap(":/img/info.png") << QPixmap(":/img/folder_in.png")
-          << QPixmap(":/img/stop.png") << QPixmap(":/img/magnifier.png") <<QPixmap(":/img/save.png")
-          << QPixmap(":/img/storage.png") << QPixmap(":/img/heart.png") << QPixmap(":/img/arrow_circle_right.png")
-          << QPixmap(":/img/xbmc.png") << QPixmap(":/img/folder_64.png");
+    icons << QPixmap(":/img/magnifier.png") << QPixmap(":/img/save.png") << QPixmap(":/img/save_all")
+          << QPixmap(":/img/reload.png") << QPixmap(":/img/rename.png") <<QPixmap(":/img/settings.png")
+          << QPixmap(":/img/xbmc.png") << QPixmap(":/img/about.png") << QPixmap(":/img/quit.png")
+          << QPixmap(":/img/support.png");
     for (int i=0, n=icons.count() ; i<n ; ++i) {
         p.begin(&icons[i]);
         p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-        p.fillRect(icons[i].rect(), QColor(0, 0, 0, 100));
+        p.fillRect(icons[i].rect(), QColor(127, 127, 127, 255));
         p.end();
     }
 
-    m_actionSearch = new QAction(QIcon(icons[4]), tr("Search"), this);
+    m_actionSearch = new QAction(QIcon(icons[0]), tr("Search"), this);
     m_actionSearch->setShortcut(QKeySequence::Find);
     m_actionSearch->setToolTip(tr("Search (%1)").arg(QKeySequence(QKeySequence::Find).toString(QKeySequence::NativeText)));
 
-    m_actionSave = new QAction(QIcon(icons[5]), tr("Save"), this);
+    m_actionSave = new QAction(QIcon(icons[1]), tr("Save"), this);
     m_actionSave->setShortcut(QKeySequence::Save);
     m_actionSave->setToolTip(tr("Save (%1)").arg(QKeySequence(QKeySequence::Save).toString(QKeySequence::NativeText)));
 
-    m_actionSaveAll = new QAction(QIcon(icons[6]), tr("Save All"), this);
+    m_actionSaveAll = new QAction(QIcon(icons[2]), tr("Save All"), this);
     QKeySequence seqSaveAll(Qt::CTRL+Qt::ShiftModifier+Qt::Key_S);
     m_actionSaveAll->setShortcut(seqSaveAll);
     m_actionSaveAll->setToolTip(tr("Save All (%1)").arg(seqSaveAll.toString(QKeySequence::NativeText)));
 
-    m_actionReload = new QAction(QIcon(icons[8]), tr("Reload"), this);
+    m_actionReload = new QAction(QIcon(icons[3]), tr("Reload"), this);
     m_actionReload->setShortcut(QKeySequence::Refresh);
     m_actionReload->setToolTip(tr("Reload all files (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
 
-    m_actionRename = new QAction(QIcon(icons[10]), tr("Rename"), this);
+    m_actionRename = new QAction(QIcon(icons[4]), tr("Rename"), this);
     m_actionRename->setToolTip(tr("Rename selected files"));
 
-    m_actionSettings = new QAction(QIcon(icons[0]), tr("Settings"), this);
+    m_actionSettings = new QAction(QIcon(icons[5]), tr("Settings"), this);
 
-    m_actionXbmc = new QAction(QIcon(icons[9]), tr("XBMC"), this);
+    m_actionXbmc = new QAction(QIcon(icons[6]), tr("XBMC"), this);
     m_actionXbmc->setToolTip(tr("Synchronize to XBMC"));
 
-    m_actionAbout = new QAction(QIcon(icons[1]), tr("About"), this);
-    m_actionQuit = new QAction(QIcon(icons[3]), tr("Quit"), this);
+    m_actionAbout = new QAction(QIcon(icons[7]), tr("About"), this);
+    m_actionQuit = new QAction(QIcon(icons[8]), tr("Quit"), this);
 
-    m_actionLike = new QAction(QIcon(icons[7]), tr("Support"), this);
+    m_actionLike = new QAction(QIcon(icons[9]), tr("Support"), this);
 
     toolBar->addAction(m_actionSearch);
     toolBar->addAction(m_actionSave);
@@ -354,7 +354,7 @@ void MainWindow::progressFinished(int id)
 void MainWindow::onMenu(MainWidgets widget)
 {
     m_icons.insert(WidgetMovies, QIcon(":/img/video_menu.png"));
-    m_icons.insert(WidgetTvShows, QIcon(":/img/display_on_menu.png"));
+    m_icons.insert(WidgetTvShows, QIcon(":/img/tv_menu.png"));
     m_icons.insert(WidgetMovieSets, QIcon(":/img/movieSets_menu.png"));
     m_icons.insert(WidgetGenres, QIcon(":/img/genre_menu.png"));
     m_icons.insert(WidgetCertifications, QIcon(":/img/certification2_menu.png"));
@@ -363,7 +363,7 @@ void MainWindow::onMenu(MainWidgets widget)
     if (widget == WidgetMovies)
         m_icons.insert(widget, QIcon(":/img/video_menuActive.png"));
     else if (widget == WidgetTvShows)
-        m_icons.insert(widget, QIcon(":/img/display_on_menuActive.png"));
+        m_icons.insert(widget, QIcon(":/img/tv_menuActive.png"));
     else if (widget == WidgetConcerts)
         m_icons.insert(widget, QIcon(":/img/concerts_menuActive.png"));
     else if (widget == WidgetGenres)

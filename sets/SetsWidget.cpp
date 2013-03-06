@@ -225,7 +225,7 @@ void SetsWidget::loadSet(QString set)
         ui->buttonPreviewPoster->setEnabled(true);
         m_currentPoster = poster;
     } else {
-        ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
+        ui->poster->setPixmap(QPixmap(":/img/poster.png"));
         ui->buttonPreviewPoster->setEnabled(false);
     }
 
@@ -243,7 +243,7 @@ void SetsWidget::loadSet(QString set)
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = backdrop;
     } else {
-        ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->backdrop->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->buttonPreviewBackdrop->setEnabled(false);
     }
     ui->movies->blockSignals(false);

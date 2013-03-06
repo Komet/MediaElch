@@ -162,7 +162,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->buttonPreviewClearArt->setIcon(QIcon(zoomIn));
     ui->buttonPreviewCdArt->setIcon(QIcon(zoomIn));
 
-    QPixmap revert(":/img/arrow_circle_left.png");
+    QPixmap revert(":/img/reload.png");
     p.begin(&revert);
     p.setCompositionMode(QPainter::CompositionMode_SourceIn);
     p.fillRect(revert.rect(), QColor(0, 0, 0, 200));
@@ -311,12 +311,12 @@ void MovieWidget::clear()
     ui->videoWidth->clear();
     ui->videoWidth->blockSignals(blocked);
 
-    ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
-    ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->logo->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->clearArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->cdArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->actor->setPixmap(QPixmap(":/img/man.png"));
+    ui->poster->setPixmap(QPixmap(":/img/poster.png"));
+    ui->backdrop->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->logo->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->clearArt->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->cdArt->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->actor->setPixmap(QPixmap(":/img/actor.png"));
     ui->posterResolution->setText("");
     ui->backdropResolution->setText("");
     ui->logoResolution->setText("");
@@ -623,7 +623,6 @@ void MovieWidget::updateMovieInfo()
         countries << movie->countries();
         studios << movie->studios();
     }
-    studios.removeDuplicates();
     ui->genreCloud->setTags(genres, m_movie->genres());
     ui->tagCloud->setTags(tags, m_movie->tags());
     ui->countryCloud->setTags(countries, m_movie->countries());
@@ -655,7 +654,7 @@ void MovieWidget::updateMovieInfo()
         ui->buttonPreviewPoster->setEnabled(true);
         m_currentPoster = p.toImage();
     } else {
-        ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
+        ui->poster->setPixmap(QPixmap(":/img/poster.png"));
         ui->posterResolution->setText("");
         ui->buttonPreviewPoster->setEnabled(false);
     }
@@ -676,7 +675,7 @@ void MovieWidget::updateMovieInfo()
         m_currentBackdrop = p.toImage();
         QTimer::singleShot(0, this, SLOT(updateBackgroundImage()));
     } else {
-        ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->backdrop->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->backdropResolution->setText("");
         ui->buttonPreviewBackdrop->setEnabled(false);
     }
@@ -695,7 +694,7 @@ void MovieWidget::updateMovieInfo()
         ui->buttonPreviewLogo->setEnabled(true);
         m_currentLogo = p.toImage();
     } else {
-        ui->logo->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->logo->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->logoResolution->setText("");
         ui->buttonPreviewLogo->setEnabled(false);
     }
@@ -714,7 +713,7 @@ void MovieWidget::updateMovieInfo()
         ui->buttonPreviewClearArt->setEnabled(true);
         m_currentClearArt = p.toImage();
     } else {
-        ui->clearArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->clearArt->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->clearArtResolution->setText("");
         ui->buttonPreviewClearArt->setEnabled(false);
     }
@@ -733,7 +732,7 @@ void MovieWidget::updateMovieInfo()
         ui->buttonPreviewCdArt->setEnabled(true);
         m_currentCdArt = p.toImage();
     } else {
-        ui->cdArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->cdArt->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->cdArtResolution->setText("");
         ui->buttonPreviewCdArt->setEnabled(false);
     }
@@ -1198,7 +1197,7 @@ void MovieWidget::onActorChanged()
 {
     if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount() ||
         ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
-        ui->actor->setPixmap(QPixmap(":/img/man.png"));
+        ui->actor->setPixmap(QPixmap(":/img/actor.png"));
         ui->actorResolution->setText("");
         return;
     }
@@ -1213,7 +1212,7 @@ void MovieWidget::onActorChanged()
         ui->actor->setPixmap(p.scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
     } else {
-        ui->actor->setPixmap(QPixmap(":/img/man.png"));
+        ui->actor->setPixmap(QPixmap(":/img/actor.png"));
         ui->actorResolution->setText("");
     }
 }

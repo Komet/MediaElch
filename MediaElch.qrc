@@ -1,69 +1,61 @@
 <RCC>
     <qresource prefix="/">
         <file>img/spinner.gif</file>
-        <file>img/film_reel.png</file>
         <file>img/pattern.png</file>
-        <file>img/pictures_alt.png</file>
         <file>img/delete.png</file>
-        <file>img/stop.png</file>
-        <file>img/reload.png</file>
         <file>img/magnifier.png</file>
         <file>img/pattern_dark.png</file>
         <file>img/minus.png</file>
         <file>img/plus.png</file>
         <file>img/save.png</file>
-        <file>img/arrow_circle_right.png</file>
-        <file>img/warning1.png</file>
-        <file>img/gear.png</file>
-        <file>img/info.png</file>
-        <file>img/spanner.png</file>
         <file>img/pattern2.png</file>
-        <file>img/folder_in.png</file>
         <file>i18n/MediaElch_de.qm</file>
-        <file>img/display_off.png</file>
-        <file>img/display_on.png</file>
         <file>img/video.png</file>
-        <file>img/display_on_menu.png</file>
-        <file>img/display_on_menuActive.png</file>
-        <file>img/spanner_menu.png</file>
-        <file>img/spanner_menuActive.png</file>
-        <file>img/video_menu.png</file>
         <file>img/video_menuActive.png</file>
-        <file>img/storage.png</file>
         <file>img/zoom_in.png</file>
         <file>img/zoom_out.png</file>
-        <file>img/pictures_alt_small.png</file>
-        <file>img/man.png</file>
-        <file>img/book_menu.png</file>
-        <file>img/book_menuActive.png</file>
         <file>img/movieSets_menu.png</file>
         <file>img/movieSets_menuActive.png</file>
-        <file>img/star_24.png</file>
-        <file>img/arrow_circle_left.png</file>
         <file>img/concerts_menu.png</file>
         <file>img/concerts_menuActive.png</file>
         <file>img/genre_menu.png</file>
         <file>img/genre_menuActive.png</file>
         <file>img/certification2_menu.png</file>
         <file>img/certification2_menuActive.png</file>
-        <file>img/heart.png</file>
-        <file>img/btn_donate_LG.gif</file>
         <file>img/star.png</file>
         <file>i18n/MediaElch_fr.qm</file>
-        <file>img/inbox.png</file>
         <file>img/MediaElch.png</file>
         <file>img/xbmc.png</file>
         <file>i18n/MediaElch_pt_BR.qm</file>
         <file>img/sync.png</file>
         <file>img/video_pause_64.png</file>
         <file>img/video_play_64.png</file>
-        <file>img/checkmark_white_64.png</file>
         <file>img/closeImage.png</file>
         <file>img/imgButtonRight.png</file>
         <file>img/imgButtonLeft.png</file>
         <file>img/imgButtonBottom.png</file>
         <file>img/imgButtonTop.png</file>
-        <file>img/folder_64.png</file>
+        <file>img/video_menu.png</file>
+        <file>img/qtcreator.png</file>
+        <file>img/save_all.png</file>
+        <file>img/reload.png</file>
+        <file>img/rename.png</file>
+        <file>img/settings.png</file>
+        <file>img/about.png</file>
+        <file>img/quit.png</file>
+        <file>img/support.png</file>
+        <file>img/donate.gif</file>
+        <file>img/checkmark.png</file>
+        <file>img/poster.png</file>
+        <file>img/view_trailer.png</file>
+        <file>img/tv_menu.png</file>
+        <file>img/tv_menuActive.png</file>
+        <file>img/actor.png</file>
+        <file>img/missing_art_small.png</file>
+        <file>img/missing_art.png</file>
+        <file>img/thetvdb.png</file>
+        <file>img/tmdb.png</file>
+        <file>img/support_dialog.png</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>
@@ -100,8 +92,6 @@
         <file alias="codec/xvid">mediaFlags/codec/xvid.png</file>
     </qresource>
     <qresource prefix="/mediaStatus">
-        <file alias="actors/green">img/mediaStatus/actors_green.png</file>
-        <file alias="actors/red">img/mediaStatus/actors_red.png</file>
         <file alias="extraArts/green">img/mediaStatus/extraarts_green.png</file>
         <file alias="extraArts/red">img/mediaStatus/extraarts_red.png</file>
         <file alias="extraArts/yellow">img/mediaStatus/extraarts_yellow.png</file>

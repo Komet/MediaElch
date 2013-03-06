@@ -33,7 +33,7 @@
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Please select the scraper and the infos you want to be loaded. MediaElch will use the best result for each movie you selected.</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please select the scraper and the info you want to be loaded. MediaElch will use the best result for each movie you selected.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -89,7 +89,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Infos to load</string>
+         <string>Info to load</string>
         </property>
        </widget>
       </item>
@@ -111,7 +111,7 @@
            <string>Logo, Clear Art, CD Art</string>
           </property>
           <property name="text">
-           <string>Extra Arts</string>
+           <string>Extra Art</string>
           </property>
           <property name="checked">
            <bool>true</bool>
@@ -161,7 +161,7 @@
         <item row="4" column="0">
          <widget class="MyCheckBox" name="chkBackdrop">
           <property name="text">
-           <string>Backdrop</string>
+           <string>Fanart</string>
           </property>
           <property name="checked">
            <bool>true</bool>

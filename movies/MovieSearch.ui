@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>679</width>
-    <height>637</height>
+    <height>721</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -120,7 +120,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Infos to load</string>
+           <string>Info to load</string>
           </property>
          </widget>
         </item>
@@ -227,7 +227,7 @@
         <item>
          <widget class="MyCheckBox" name="chkBackdrop">
           <property name="text">
-           <string>Backdrop</string>
+           <string>Fanart</string>
           </property>
          </widget>
         </item>

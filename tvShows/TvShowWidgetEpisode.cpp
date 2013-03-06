@@ -94,7 +94,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     onSetEnabled(false);
 
     QPainter p;
-    QPixmap revert(":/img/arrow_circle_left.png");
+    QPixmap revert(":/img/reload.png");
     p.begin(&revert);
     p.setCompositionMode(QPainter::CompositionMode_SourceIn);
     p.fillRect(revert.rect(), QColor(0, 0, 0, 200));
@@ -131,7 +131,7 @@ void TvShowWidgetEpisode::onClear()
     ui->directors->setRowCount(0);
     ui->writers->setRowCount(0);
     ui->thumbnailResolution->clear();
-    ui->thumbnail->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->thumbnail->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     blocked = ui->episodeName->blockSignals(true);
     ui->episodeName->clear();
@@ -330,7 +330,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = p.toImage();
     } else {
-        ui->thumbnail->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->thumbnail->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->thumbnailResolution->setText("");
         ui->buttonPreviewBackdrop->setEnabled(false);
     }

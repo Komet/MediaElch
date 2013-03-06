@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>606</height>
+    <height>714</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -92,7 +92,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Infos to load</string>
+           <string>Info to load</string>
           </property>
          </widget>
         </item>
