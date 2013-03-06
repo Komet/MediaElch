@@ -54,6 +54,7 @@
         <file>img/imgButtonTop.png</file>
         <file>img/folder_64.png</file>
         <file>img/video_menu.png</file>
+        <file>img/qtcreator.png</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>
