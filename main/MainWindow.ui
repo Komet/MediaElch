@@ -195,7 +195,7 @@
          </property>
          <property name="icon">
           <iconset resource="../MediaElch.qrc">
-           <normaloff>:/img/display_on_menu.png</normaloff>:/img/display_on_menu.png</iconset>
+           <normaloff>:/img/tv_menu.png</normaloff>:/img/tv_menu.png</iconset>
          </property>
          <property name="iconSize">
           <size>

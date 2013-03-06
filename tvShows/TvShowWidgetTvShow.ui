@@ -55,7 +55,7 @@
        </property>
        <property name="icon">
         <iconset resource="../MediaElch.qrc">
-         <normaloff>:/img/arrow_circle_left.png</normaloff>:/img/arrow_circle_left.png</iconset>
+         <normaloff>:/img/reload.png</normaloff>:/img/reload.png</iconset>
        </property>
       </widget>
      </item>
@@ -352,7 +352,7 @@
                    <string/>
                   </property>
                   <property name="pixmap">
-                   <pixmap resource="../MediaElch.qrc">:/img/man.png</pixmap>
+                   <pixmap resource="../MediaElch.qrc">:/img/actor.png</pixmap>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
@@ -636,7 +636,7 @@ QPushButton::hover {
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../MediaElch.qrc">:/img/film_reel.png</pixmap>
+               <pixmap resource="../MediaElch.qrc">:/img/poster.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -719,7 +719,7 @@ QPushButton::hover {
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../MediaElch.qrc">:/img/pictures_alt.png</pixmap>
+               <pixmap resource="../MediaElch.qrc">:/img/missing_art.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -899,7 +899,7 @@ QPushButton::hover {
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../MediaElch.qrc">:/img/pictures_alt.png</pixmap>
+               <pixmap resource="../MediaElch.qrc">:/img/missing_art.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -979,7 +979,7 @@ QPushButton::hover {
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../MediaElch.qrc">:/img/pictures_alt.png</pixmap>
+               <pixmap resource="../MediaElch.qrc">:/img/missing_art.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -1059,7 +1059,7 @@ QPushButton::hover {
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../MediaElch.qrc">:/img/pictures_alt.png</pixmap>
+               <pixmap resource="../MediaElch.qrc">:/img/missing_art.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>

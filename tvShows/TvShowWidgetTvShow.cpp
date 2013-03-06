@@ -131,7 +131,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->buttonPreviewClearArt->setIcon(QIcon(zoomIn));
     ui->buttonPreviewCharacterArt->setIcon(QIcon(zoomIn));
 
-    QPixmap revert(":/img/arrow_circle_left.png");
+    QPixmap revert(":/img/reload.png");
     p.begin(&revert);
     p.setCompositionMode(QPainter::CompositionMode_SourceIn);
     p.fillRect(revert.rect(), QColor(0, 0, 0, 200));
@@ -185,12 +185,12 @@ void TvShowWidgetTvShow::onClear()
     ui->firstAired->setDate(QDate::currentDate());
     ui->studio->clear();
     ui->overview->clear();
-    ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
-    ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->poster->setPixmap(QPixmap(":/img/poster.png"));
+    ui->backdrop->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->banner->setPixmap(QPixmap());
-    ui->logo->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->clearArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->characterArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->logo->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->clearArt->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->characterArt->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->posterResolution->clear();
     ui->backdropResolution->clear();
     ui->bannerResolution->clear();
@@ -293,7 +293,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         ui->buttonPreviewPoster->setEnabled(true);
         m_currentPoster = p.toImage();
     } else {
-        ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
+        ui->poster->setPixmap(QPixmap(":/img/poster.png"));
         ui->posterResolution->setText("");
         ui->buttonPreviewPoster->setEnabled(false);
     }
@@ -312,7 +312,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = p.toImage();
     } else {
-        ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->backdrop->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->backdropResolution->setText("");
         ui->buttonPreviewBackdrop->setEnabled(false);
     }
@@ -331,7 +331,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         ui->buttonPreviewBanner->setEnabled(true);
         m_currentBanner = p.toImage();
     } else {
-        ui->banner->setPixmap(QPixmap(":/img/pictures_alt_small.png"));
+        ui->banner->setPixmap(QPixmap(":/img/missing_art_small.png"));
         ui->bannerResolution->setText("");
         ui->buttonPreviewBanner->setEnabled(false);
     }
@@ -350,7 +350,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         ui->buttonPreviewLogo->setEnabled(true);
         m_currentLogo = p.toImage();
     } else {
-        ui->logo->setPixmap(QPixmap(":/img/pictures_alt_small.png"));
+        ui->logo->setPixmap(QPixmap(":/img/missing_art_small.png"));
         ui->logoResolution->setText("");
         ui->buttonPreviewBanner->setEnabled(false);
     }
@@ -369,7 +369,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         ui->buttonPreviewClearArt->setEnabled(true);
         m_currentClearArt = p.toImage();
     } else {
-        ui->clearArt->setPixmap(QPixmap(":/img/pictures_alt_small.png"));
+        ui->clearArt->setPixmap(QPixmap(":/img/missing_art_small.png"));
         ui->clearArtResolution->setText("");
         ui->buttonPreviewClearArt->setEnabled(false);
     }
@@ -388,7 +388,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         ui->buttonPreviewCharacterArt->setEnabled(true);
         m_currentCharacterArt = p.toImage();
     } else {
-        ui->characterArt->setPixmap(QPixmap(":/img/pictures_alt_small.png"));
+        ui->characterArt->setPixmap(QPixmap(":/img/missing_art_small.png"));
         ui->characterArtResolution->setText("");
         ui->buttonPreviewCharacterArt->setEnabled(false);
     }
@@ -1109,7 +1109,7 @@ void TvShowWidgetTvShow::onActorChanged()
 {
     if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount() ||
         ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
-        ui->actor->setPixmap(QPixmap(":/img/man.png"));
+        ui->actor->setPixmap(QPixmap(":/img/actor.png"));
         ui->actorResolution->setText("");
         return;
     }
@@ -1124,7 +1124,7 @@ void TvShowWidgetTvShow::onActorChanged()
         ui->actor->setPixmap(p.scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
     } else {
-        ui->actor->setPixmap(QPixmap(":/img/man.png"));
+        ui->actor->setPixmap(QPixmap(":/img/actor.png"));
         ui->actorResolution->setText("");
     }
 }

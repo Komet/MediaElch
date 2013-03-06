@@ -59,7 +59,7 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
     ui->buttonPreviewPoster->setIcon(QIcon(zoomIn));
     ui->buttonPreviewBanner->setIcon(QIcon(zoomIn));
 
-    QPixmap revert(":/img/arrow_circle_left.png");
+    QPixmap revert(":/img/reload.png");
     p.begin(&revert);
     p.setCompositionMode(QPainter::CompositionMode_SourceIn);
     p.fillRect(revert.rect(), QColor(0, 0, 0, 200));
@@ -111,7 +111,7 @@ void TvShowWidgetSeason::setSeason(TvShow *show, int season)
         ui->buttonPreviewPoster->setEnabled(true);
         m_currentPoster = p.toImage();
     } else {
-        ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
+        ui->poster->setPixmap(QPixmap(":/img/poster.png"));
         ui->posterResolution->clear();
         ui->buttonPreviewPoster->setEnabled(false);
     }
@@ -129,7 +129,7 @@ void TvShowWidgetSeason::setSeason(TvShow *show, int season)
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = p.toImage();
     } else {
-        ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->backdrop->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->backdropResolution->clear();
         ui->buttonPreviewBackdrop->setEnabled(false);
     }
@@ -147,7 +147,7 @@ void TvShowWidgetSeason::setSeason(TvShow *show, int season)
         ui->buttonPreviewBanner->setEnabled(true);
         m_currentBanner = p.toImage();
     } else {
-        ui->banner->setPixmap(QPixmap(":/img/pictures_alt_small.png"));
+        ui->banner->setPixmap(QPixmap(":/img/missing_art_small.png"));
         ui->bannerResolution->clear();
         ui->buttonPreviewBanner->setEnabled(false);
     }
@@ -159,8 +159,8 @@ void TvShowWidgetSeason::setSeason(TvShow *show, int season)
 void TvShowWidgetSeason::onClear()
 {
     ui->title->clear();
-    ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
-    ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->poster->setPixmap(QPixmap(":/img/poster.png"));
+    ui->backdrop->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->banner->setPixmap(QPixmap());
     ui->posterResolution->clear();
     ui->backdropResolution->clear();

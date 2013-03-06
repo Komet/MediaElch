@@ -126,7 +126,7 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     ui->buttonPreviewClearArt->setIcon(QIcon(zoomIn));
     ui->buttonPreviewCdArt->setIcon(QIcon(zoomIn));
 
-    QPixmap revert(":/img/arrow_circle_left.png");
+    QPixmap revert(":/img/reload.png");
     p.begin(&revert);
     p.setCompositionMode(QPainter::CompositionMode_SourceIn);
     p.fillRect(revert.rect(), QColor(0, 0, 0, 200));
@@ -184,11 +184,11 @@ void ConcertWidget::clear()
     ui->playcount->clear();
     ui->lastPlayed->setDateTime(QDateTime::currentDateTime());
     ui->overview->clear();
-    ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
-    ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->logo->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->clearArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->cdArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->poster->setPixmap(QPixmap(":/img/poster.png"));
+    ui->backdrop->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->logo->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->clearArt->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->cdArt->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->posterResolution->setText("");
     ui->backdropResolution->setText("");
     ui->logoResolution->setText("");
@@ -495,7 +495,7 @@ void ConcertWidget::updateConcertInfo()
         ui->buttonPreviewPoster->setEnabled(true);
         m_currentPoster = p.toImage();
     } else {
-        ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
+        ui->poster->setPixmap(QPixmap(":/img/poster.png"));
         ui->posterResolution->setText("");
         ui->buttonPreviewPoster->setEnabled(false);
     }
@@ -513,7 +513,7 @@ void ConcertWidget::updateConcertInfo()
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = p.toImage();
     } else {
-        ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->backdrop->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->backdropResolution->setText("");
         ui->buttonPreviewBackdrop->setEnabled(false);
     }
@@ -532,7 +532,7 @@ void ConcertWidget::updateConcertInfo()
         ui->buttonPreviewLogo->setEnabled(true);
         m_currentLogo = p.toImage();
     } else {
-        ui->logo->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->logo->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->logoResolution->setText("");
         ui->buttonPreviewLogo->setEnabled(false);
     }
@@ -551,7 +551,7 @@ void ConcertWidget::updateConcertInfo()
         ui->buttonPreviewClearArt->setEnabled(true);
         m_currentClearArt = p.toImage();
     } else {
-        ui->clearArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->clearArt->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->clearArtResolution->setText("");
         ui->buttonPreviewClearArt->setEnabled(false);
     }
@@ -570,7 +570,7 @@ void ConcertWidget::updateConcertInfo()
         ui->buttonPreviewCdArt->setEnabled(true);
         m_currentCdArt = p.toImage();
     } else {
-        ui->cdArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->cdArt->setPixmap(QPixmap(":/img/missing_art.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->cdArtResolution->setText("");
         ui->buttonPreviewCdArt->setEnabled(false);
     }
