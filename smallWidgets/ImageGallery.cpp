@@ -115,7 +115,10 @@ void ImageGallery::setImages(QList<ExtraFanart> images)
         else
             label->setFixedSize(Qt::Vertical, m_imageHeight);
         label->setMyData(fanart.path);
-        label->setImage(fanart.image);
+        if (!fanart.image.isNull())
+            label->setImage(fanart.image);
+        else
+            label->setImage(fanart.path);
         connect(label, SIGNAL(sigClose()), this, SLOT(onCloseImage()));
         connect(label, SIGNAL(sigZoom(QImage)), this, SLOT(onZoomImage(QImage)));
         m_imageLabels.append(label);

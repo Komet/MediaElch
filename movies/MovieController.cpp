@@ -2,7 +2,7 @@
 
 #include <QDir>
 #include <QFileInfo>
-
+#include "data/ImageCache.h"
 #include "globals/DownloadManagerElement.h"
 #include "globals/Helper.h"
 #include "globals/NameFormatter.h"
@@ -229,19 +229,24 @@ void MovieController::onDownloadFinished(DownloadManagerElement elem)
 
     switch (elem.imageType) {
     case TypePoster:
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->posterImageName(m_movie));
         m_movie->setPosterImage(elem.data);
         break;
     case TypeBackdrop:
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->backdropImageName(m_movie));
         Helper::resizeBackdrop(elem.data);
         m_movie->setBackdropImage(elem.data);
         break;
     case TypeLogo:
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->logoImageName(m_movie));
         m_movie->setLogoImage(elem.data);
         break;
     case TypeClearArt:
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->clearArtImageName(m_movie));
         m_movie->setClearArtImage(elem.data);
         break;
     case TypeCdArt:
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->cdArtImageName(m_movie));
         m_movie->setCdArtImage(elem.data);
         break;
     case TypeActor:

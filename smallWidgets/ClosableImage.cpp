@@ -6,6 +6,7 @@
 #include <QPropertyAnimation>
 #include <QToolTip>
 #include <qmath.h>
+#include "data/ImageCache.h"
 
 ClosableImage::ClosableImage(QWidget *parent) :
     QLabel(parent)
@@ -47,7 +48,10 @@ void ClosableImage::mousePressEvent(QMouseEvent *ev)
         anim->start(QPropertyAnimation::DeleteWhenStopped);
         connect(anim, SIGNAL(finished()), this, SIGNAL(sigClose()));
     } else if (m_showZoomAndResolution && zoomRect.contains(ev->pos()) && m_pixmap.isNull()) {
-        emit sigZoom(QImage::fromData(m_image));
+        if (!m_image.isNull())
+            emit sigZoom(QImage::fromData(m_image));
+        else
+            emit sigZoom(QImage(m_imagePath));
     }
 }
 
@@ -71,14 +75,24 @@ void ClosableImage::paintEvent(QPaintEvent *event)
         p.drawPixmap(m_mySize, (height()-h)/2, m_pixmap.scaledToWidth(width()-2*m_mySize));
         return;
     }
-    QImage img = QImage::fromData(m_image);
-    QRect r = rect();
-    p.drawImage(0, 7, img.scaledToWidth(width()-9, Qt::SmoothTransformation));
-    p.drawImage(r.width()-25, 0, QImage(":/img/closeImage.png"));
 
+    QImage img;
+    int origWidth;
+    int origHeight;
+    if (!m_image.isNull()) {
+        img = QImage::fromData(m_image);
+        origWidth = img.width();
+        origHeight = img.height();
+        img = img.scaledToWidth(width()-9, Qt::SmoothTransformation);
+    } else {
+        img = ImageCache::instance()->image(m_imagePath, width()-9, 0, origWidth, origHeight);
+    }
+    QRect r = rect();
+    p.drawImage(0, 7, img);
+    p.drawImage(r.width()-25, 0, QImage(":/img/closeImage.png"));
     if (m_showZoomAndResolution) {
         p.setFont(m_font);
-        p.drawText(0, height()-20, width()-9, 20, Qt::AlignRight | Qt::AlignBottom, QString("%1x%2").arg(img.width()).arg(img.height()));
+        p.drawText(0, height()-20, width()-9, 20, Qt::AlignRight | Qt::AlignBottom, QString("%1x%2").arg(origWidth).arg(origHeight));
         p.drawPixmap(0, height()-16, 16, 16, m_zoomIn);
     }
 }
@@ -109,8 +123,34 @@ void ClosableImage::setImage(const QByteArray &image)
     }
 }
 
-QByteArray ClosableImage::image() const
+void ClosableImage::setImage(const QString &image)
 {
+    m_image = QByteArray();
+    m_imagePath = image;
+    QSize size = ImageCache::instance()->imageSize(image);
+    int imageWidth = size.width();
+    int imageHeight = size.height();
+    int zoomSpace = (m_showZoomAndResolution) ? 20 : 0;
+    if (m_scaleTo == Qt::Horizontal) {
+        // scale to width
+        setFixedWidth(m_fixedSize);
+        setFixedHeight(qCeil((((qreal)width()-9)/imageWidth)*imageHeight+7+zoomSpace));
+    } else {
+        // scale to height
+        setFixedHeight(m_fixedSize);
+        setFixedWidth(qCeil((((qreal)height()-7-zoomSpace)/imageHeight)*imageWidth+9));
+    }
+}
+
+QByteArray ClosableImage::image()
+{
+    if (m_image.isNull()) {
+        QFile file(m_imagePath);
+        if (file.open(QIODevice::ReadOnly)) {
+            m_image = file.readAll();
+            file.close();
+        }
+    }
     return m_image;
 }
 
