@@ -338,6 +338,9 @@
                <layout class="QHBoxLayout" name="horizontalLayout_19">
                 <item>
                  <widget class="QDoubleSpinBox" name="rating">
+                  <property name="buttonSymbols">
+                   <enum>QAbstractSpinBox::NoButtons</enum>
+                  </property>
                   <property name="decimals">
                    <number>1</number>
                   </property>
@@ -371,6 +374,9 @@
                 </item>
                 <item>
                  <widget class="MySpinBox" name="votes">
+                  <property name="buttonSymbols">
+                   <enum>QAbstractSpinBox::NoButtons</enum>
+                  </property>
                   <property name="maximum">
                    <number>9999999</number>
                   </property>
@@ -401,6 +407,9 @@
                 </item>
                 <item>
                  <widget class="QSpinBox" name="top250">
+                  <property name="buttonSymbols">
+                   <enum>QAbstractSpinBox::NoButtons</enum>
+                  </property>
                   <property name="maximum">
                    <number>250</number>
                   </property>
