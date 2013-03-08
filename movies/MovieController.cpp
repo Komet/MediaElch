@@ -56,6 +56,7 @@ bool MovieController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
     if ((m_infoLoaded || m_movie->hasChanged()) && !force && (m_infoFromNfoLoaded || (m_movie->hasChanged() && !m_infoFromNfoLoaded) ))
         return m_infoLoaded;
 
+    m_movie->blockSignals(true);
     NameFormatter *nameFormat = NameFormatter::instance();
 
     bool infoLoaded;
@@ -101,6 +102,7 @@ bool MovieController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
     }
     m_infoLoaded = infoLoaded;
     m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
+    m_movie->blockSignals(false);
     m_movie->setChanged(false);
     return infoLoaded;
 }
