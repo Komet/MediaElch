@@ -598,12 +598,26 @@ QByteArray TvShow::seasonBannerImage(int season)
     return m_seasonBannerImages[season];
 }
 
-QList<Poster> TvShow::seasonBanners(int season) const
+QList<Poster> TvShow::seasonBanners(int season, bool returnAll) const
 {
-    if (!m_seasonBanners.contains(season))
+    if (!m_seasonBanners.contains(season) && !returnAll)
         return QList<Poster>();
 
-    return m_seasonBanners[season];
+    if (!returnAll)
+        return m_seasonBanners[season];
+
+    QList<Poster> banners;
+    if (m_seasonBanners.contains(season))
+        banners = m_seasonBanners[season];
+
+    QMapIterator<int, QList<Poster> > it(m_seasonBanners);
+    while (it.hasNext()) {
+        it.next();
+        if (it.key() == season)
+            continue;
+        banners << it.value();
+    }
+    return banners;
 }
 
 /**
