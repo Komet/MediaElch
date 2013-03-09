@@ -3,6 +3,7 @@
 
 #include <QMovie>
 #include <QPainter>
+#include "data/ImageCache.h"
 #include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
 #include "globals/ImageDialog.h"
@@ -324,11 +325,13 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = img;
     } else if (!Manager::instance()->mediaCenterInterface()->thumbnailImageName(m_episode).isEmpty()) {
-        QPixmap p(Manager::instance()->mediaCenterInterface()->thumbnailImageName(m_episode));
-        ui->thumbnail->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
-        ui->thumbnailResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        int w = 0;
+        int h = 0;
+        QImage img = ImageCache::instance()->image(Manager::instance()->mediaCenterInterface()->thumbnailImageName(m_episode), 200, 0, w, h);
+        ui->thumbnail->setPixmap(QPixmap::fromImage(img));
+        ui->thumbnailResolution->setText(QString("%1x%2").arg(w).arg(h));
         ui->buttonPreviewBackdrop->setEnabled(true);
-        m_currentBackdrop = p.toImage();
+        m_currentBackdrop = QImage();
     } else {
         ui->thumbnail->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->thumbnailResolution->setText("");
@@ -595,6 +598,7 @@ void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
             ui->buttonPreviewBackdrop->setEnabled(true);
             m_currentBackdrop = img;
         }
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->thumbnailImageName(elem.episode));
         elem.episode->setThumbnailImage(elem.data);
     }
     if (m_posterDownloadManager->downloadQueueSize() == 0) {
@@ -708,6 +712,8 @@ void TvShowWidgetEpisode::onWriterEdited(QTableWidgetItem *item)
  */
 void TvShowWidgetEpisode::onPreviewBackdrop()
 {
+    if (m_currentBackdrop.isNull())
+        m_currentBackdrop = QImage(Manager::instance()->mediaCenterInterface()->thumbnailImageName(m_episode));
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentBackdrop));
     ImagePreviewDialog::instance()->exec();
 }

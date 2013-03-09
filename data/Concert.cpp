@@ -1173,11 +1173,6 @@ QList<ExtraFanart> Concert::extraFanarts(MediaCenterInterface *mediaCenterInterf
     QList<ExtraFanart> fanarts;
     foreach (const QString &file, m_extraFanarts) {
         ExtraFanart f;
-        QFile fi(file);
-        if (fi.open(QIODevice::ReadOnly)) {
-            f.image = fi.readAll();
-            fi.close();
-        }
         f.path = file;
         fanarts.append(f);
     }

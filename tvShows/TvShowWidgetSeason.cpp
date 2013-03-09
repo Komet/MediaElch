@@ -2,6 +2,7 @@
 #include "ui_TvShowWidgetSeason.h"
 
 #include <QPainter>
+#include "data/ImageCache.h"
 #include "globals/Helper.h"
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
@@ -105,11 +106,13 @@ void TvShowWidgetSeason::setSeason(TvShow *show, int season)
         ui->buttonPreviewPoster->setEnabled(true);
         m_currentPoster = img;
     } else if (!Manager::instance()->mediaCenterInterfaceTvShow()->seasonPosterImageName(m_show, season).isEmpty()) {
-        QPixmap p(Manager::instance()->mediaCenterInterfaceTvShow()->seasonPosterImageName(m_show, season));
-        ui->poster->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
-        ui->posterResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        int w = 0;
+        int h = 0;
+        QImage img = ImageCache::instance()->image(Manager::instance()->mediaCenterInterface()->seasonPosterImageName(m_show, season), 200, 0, w, h);
+        ui->poster->setPixmap(QPixmap::fromImage(img));
+        ui->posterResolution->setText(QString("%1x%2").arg(w).arg(h));
         ui->buttonPreviewPoster->setEnabled(true);
-        m_currentPoster = p.toImage();
+        m_currentPoster = QImage();
     } else {
         ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
         ui->posterResolution->clear();
@@ -123,11 +126,13 @@ void TvShowWidgetSeason::setSeason(TvShow *show, int season)
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = img;
     } else if (!Manager::instance()->mediaCenterInterfaceTvShow()->seasonBackdropImageName(m_show, season).isEmpty()) {
-        QPixmap p(Manager::instance()->mediaCenterInterfaceTvShow()->seasonBackdropImageName(m_show, season));
-        ui->backdrop->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
-        ui->backdropResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        int w = 0;
+        int h = 0;
+        QImage img = ImageCache::instance()->image(Manager::instance()->mediaCenterInterface()->seasonBackdropImageName(m_show, season), 200, 0, w, h);
+        ui->backdrop->setPixmap(QPixmap::fromImage(img));
+        ui->backdropResolution->setText(QString("%1x%2").arg(w).arg(h));
         ui->buttonPreviewBackdrop->setEnabled(true);
-        m_currentBackdrop = p.toImage();
+        m_currentBackdrop = QImage();
     } else {
         ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->backdropResolution->clear();
@@ -141,11 +146,13 @@ void TvShowWidgetSeason::setSeason(TvShow *show, int season)
         ui->buttonPreviewBanner->setEnabled(true);
         m_currentBanner = img;
     } else if (!Manager::instance()->mediaCenterInterfaceTvShow()->seasonBannerImageName(m_show, season).isEmpty()) {
-        QPixmap p(Manager::instance()->mediaCenterInterfaceTvShow()->seasonBannerImageName(m_show, season));
-        ui->banner->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
-        ui->bannerResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        int w = 0;
+        int h = 0;
+        QImage img = ImageCache::instance()->image(Manager::instance()->mediaCenterInterface()->seasonBannerImageName(m_show, season), 200, 0, w, h);
+        ui->banner->setPixmap(QPixmap::fromImage(img));
+        ui->bannerResolution->setText(QString("%1x%2").arg(w).arg(h));
         ui->buttonPreviewBanner->setEnabled(true);
-        m_currentBanner = p.toImage();
+        m_currentBanner = QImage();
     } else {
         ui->banner->setPixmap(QPixmap(":/img/pictures_alt_small.png"));
         ui->bannerResolution->clear();
@@ -265,18 +272,24 @@ void TvShowWidgetSeason::onChooseBanner()
 
 void TvShowWidgetSeason::onPreviewPoster()
 {
+    if (m_currentPoster.isNull())
+        m_currentPoster = QImage(Manager::instance()->mediaCenterInterface()->seasonPosterImageName(m_show, m_season));
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentPoster));
     ImagePreviewDialog::instance()->exec();
 }
 
 void TvShowWidgetSeason::onPreviewBackdrop()
 {
+    if (m_currentBackdrop.isNull())
+        m_currentBackdrop = QImage(Manager::instance()->mediaCenterInterface()->seasonBackdropImageName(m_show, m_season));
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentBackdrop));
     ImagePreviewDialog::instance()->exec();
 }
 
 void TvShowWidgetSeason::onPreviewBanner()
 {
+    if (m_currentBanner.isNull())
+        m_currentBanner = QImage(Manager::instance()->mediaCenterInterface()->seasonBannerImageName(m_show, m_season));
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentBanner));
     ImagePreviewDialog::instance()->exec();
 }
@@ -296,6 +309,7 @@ void TvShowWidgetSeason::onDownloadFinished(DownloadManagerElement elem)
             ui->buttonPreviewPoster->setEnabled(true);
             m_currentPoster = img;
         }
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->seasonPosterImageName(elem.show, elem.season));
         elem.show->setSeasonPosterImage(elem.season, elem.data);
     } else if (elem.imageType == TypeSeasonBackdrop) {
         Helper::resizeBackdrop(elem.data);
@@ -306,6 +320,7 @@ void TvShowWidgetSeason::onDownloadFinished(DownloadManagerElement elem)
             ui->buttonPreviewBackdrop->setEnabled(true);
             m_currentBackdrop = img;
         }
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->seasonBackdropImageName(elem.show, elem.season));
         elem.show->setSeasonBackdropImage(elem.season, elem.data);
     } else if (elem.imageType == TypeSeasonBanner) {
         if (m_show == elem.show) {
@@ -315,6 +330,7 @@ void TvShowWidgetSeason::onDownloadFinished(DownloadManagerElement elem)
             ui->buttonPreviewBanner->setEnabled(true);
             m_currentBanner = img;
         }
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->seasonBannerImageName(elem.show, elem.season));
         elem.show->setSeasonBannerImage(elem.season, elem.data);
     }
 

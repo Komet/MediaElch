@@ -4,6 +4,7 @@
 #include <QFileDialog>
 #include <QMovie>
 #include <QPainter>
+#include "data/ImageCache.h"
 #include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -287,11 +288,13 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         ui->buttonPreviewPoster->setEnabled(true);
         m_currentPoster = img;
     } else if (!Manager::instance()->mediaCenterInterface()->posterImageName(m_show).isEmpty()) {
-        QPixmap p(Manager::instance()->mediaCenterInterface()->posterImageName(m_show));
-        ui->poster->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
-        ui->posterResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        int w = 0;
+        int h = 0;
+        QImage img = ImageCache::instance()->image(Manager::instance()->mediaCenterInterface()->posterImageName(m_show), 200, 0, w, h);
+        ui->poster->setPixmap(QPixmap::fromImage(img));
+        ui->posterResolution->setText(QString("%1x%2").arg(w).arg(h));
         ui->buttonPreviewPoster->setEnabled(true);
-        m_currentPoster = p.toImage();
+        m_currentPoster = QImage();
     } else {
         ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
         ui->posterResolution->setText("");
@@ -306,11 +309,13 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = img;
     } else if (!Manager::instance()->mediaCenterInterface()->backdropImageName(m_show).isEmpty()) {
-        QPixmap p(Manager::instance()->mediaCenterInterface()->backdropImageName(m_show));
-        ui->backdrop->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
-        ui->backdropResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        int w = 0;
+        int h = 0;
+        QImage img = ImageCache::instance()->image(Manager::instance()->mediaCenterInterface()->backdropImageName(m_show), 200, 0, w, h);
+        ui->backdrop->setPixmap(QPixmap::fromImage(img));
+        ui->backdropResolution->setText(QString("%1x%2").arg(w).arg(h));
         ui->buttonPreviewBackdrop->setEnabled(true);
-        m_currentBackdrop = p.toImage();
+        m_currentBackdrop = QImage();
     } else {
         ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->backdropResolution->setText("");
@@ -325,11 +330,13 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         ui->buttonPreviewBanner->setEnabled(true);
         m_currentBanner = img;
     } else if (!Manager::instance()->mediaCenterInterface()->bannerImageName(m_show).isEmpty()) {
-        QPixmap p(Manager::instance()->mediaCenterInterface()->bannerImageName(m_show));
-        ui->banner->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
-        ui->bannerResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        int w = 0;
+        int h = 0;
+        QImage img = ImageCache::instance()->image(Manager::instance()->mediaCenterInterface()->bannerImageName(m_show), 200, 0, w, h);
+        ui->banner->setPixmap(QPixmap::fromImage(img));
+        ui->bannerResolution->setText(QString("%1x%2").arg(w).arg(h));
         ui->buttonPreviewBanner->setEnabled(true);
-        m_currentBanner = p.toImage();
+        m_currentBanner = QImage();
     } else {
         ui->banner->setPixmap(QPixmap(":/img/pictures_alt_small.png"));
         ui->bannerResolution->setText("");
@@ -344,11 +351,13 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         ui->buttonPreviewLogo->setEnabled(true);
         m_currentLogo = img;
     } else if (!Manager::instance()->mediaCenterInterface()->logoImageName(m_show).isEmpty()) {
-        QPixmap p(Manager::instance()->mediaCenterInterface()->logoImageName(m_show));
-        ui->logo->setPixmap(p.scaled(200, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->logoResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        int w = 0;
+        int h = 0;
+        QImage img = ImageCache::instance()->image(Manager::instance()->mediaCenterInterface()->logoImageName(m_show), 200, 100, w, h);
+        ui->logo->setPixmap(QPixmap::fromImage(img));
+        ui->logoResolution->setText(QString("%1x%2").arg(w).arg(h));
         ui->buttonPreviewLogo->setEnabled(true);
-        m_currentLogo = p.toImage();
+        m_currentLogo = QImage();
     } else {
         ui->logo->setPixmap(QPixmap(":/img/pictures_alt_small.png"));
         ui->logoResolution->setText("");
@@ -363,11 +372,13 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         ui->buttonPreviewClearArt->setEnabled(true);
         m_currentClearArt = img;
     } else if (!Manager::instance()->mediaCenterInterface()->clearArtImageName(m_show).isEmpty()) {
-        QPixmap p(Manager::instance()->mediaCenterInterface()->clearArtImageName(m_show));
-        ui->clearArt->setPixmap(p.scaled(200, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->clearArtResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        int w = 0;
+        int h = 0;
+        QImage img = ImageCache::instance()->image(Manager::instance()->mediaCenterInterface()->clearArtImageName(m_show), 200, 150, w, h);
+        ui->clearArt->setPixmap(QPixmap::fromImage(img));
+        ui->clearArtResolution->setText(QString("%1x%2").arg(w).arg(h));
         ui->buttonPreviewClearArt->setEnabled(true);
-        m_currentClearArt = p.toImage();
+        m_currentClearArt = QImage();
     } else {
         ui->clearArt->setPixmap(QPixmap(":/img/pictures_alt_small.png"));
         ui->clearArtResolution->setText("");
@@ -382,11 +393,13 @@ void TvShowWidgetTvShow::updateTvShowInfo()
         ui->buttonPreviewCharacterArt->setEnabled(true);
         m_currentCharacterArt = img;
     } else if (!Manager::instance()->mediaCenterInterface()->characterArtImageName(m_show).isEmpty()) {
-        QPixmap p(Manager::instance()->mediaCenterInterface()->characterArtImageName(m_show));
-        ui->characterArt->setPixmap(p.scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->characterArtResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        int w = 0;
+        int h = 0;
+        QImage img = ImageCache::instance()->image(Manager::instance()->mediaCenterInterface()->characterArtImageName(m_show), 200, 200, w, h);
+        ui->characterArt->setPixmap(QPixmap::fromImage(img));
+        ui->characterArtResolution->setText(QString("%1x%2").arg(w).arg(h));
         ui->buttonPreviewCharacterArt->setEnabled(true);
-        m_currentCharacterArt = p.toImage();
+        m_currentCharacterArt = QImage();
     } else {
         ui->characterArt->setPixmap(QPixmap(":/img/pictures_alt_small.png"));
         ui->characterArtResolution->setText("");
@@ -852,6 +865,7 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
             ui->buttonPreviewPoster->setEnabled(true);
             m_currentPoster = img;
         }
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->posterImageName(elem.show));
         elem.show->setPosterImage(elem.data);
     } else if (elem.imageType == TypeBackdrop) {
         qDebug() << "Got a backdop";
@@ -863,6 +877,7 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
             ui->buttonPreviewBackdrop->setEnabled(true);
             m_currentBackdrop = img;
         }
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->backdropImageName(elem.show));
         elem.show->setBackdropImage(elem.data);
     } else if (elem.imageType == TypeBanner) {
         qDebug() << "Got a banner";
@@ -873,16 +888,8 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
             ui->buttonPreviewBanner->setEnabled(true);
             m_currentBanner = img;
         }
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->bannerImageName(elem.show));
         elem.show->setBannerImage(elem.data);
-    } else if (elem.imageType == TypeSeasonPoster) {
-        qDebug() << "Got a season poster";
-        elem.show->setSeasonPosterImage(elem.season, elem.data);
-    } else if (elem.imageType == TypeSeasonBackdrop) {
-        qDebug() << "Got a season backdrop";
-        elem.show->setSeasonBackdropImage(elem.season, elem.data);
-    } else if (elem.imageType == TypeSeasonBanner) {
-        qDebug() << "Got a season banner";
-        elem.show->setSeasonBannerImage(elem.season, elem.data);
     } else if (elem.imageType == TypeLogo) {
         qDebug() << "Got a logo";
         if (m_show == elem.show) {
@@ -892,6 +899,7 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
             ui->buttonPreviewLogo->setEnabled(true);
             m_currentLogo = img;
         }
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->logoImageName(elem.show));
         elem.show->setLogoImage(elem.data);
     } else if (elem.imageType == TypeCharacterArt) {
         qDebug() << "Got a character art";
@@ -902,6 +910,7 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
             ui->buttonPreviewCharacterArt->setEnabled(true);
             m_currentCharacterArt = img;
         }
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->characterArtImageName(elem.show));
         elem.show->setCharacterArtImage(elem.data);
     } else if (elem.imageType == TypeClearArt) {
         qDebug() << "Got a clear art";
@@ -912,6 +921,7 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
             ui->buttonPreviewClearArt->setEnabled(true);
             m_currentClearArt = img;
         }
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->clearArtImageName(elem.show));
         elem.show->setClearArtImage(elem.data);
     } else if (elem.imageType == TypeExtraFanart) {
         Helper::resizeBackdrop(elem.data);
@@ -1053,6 +1063,8 @@ void TvShowWidgetTvShow::onRemoveActor()
  */
 void TvShowWidgetTvShow::onPreviewBackdrop()
 {
+    if (m_currentBackdrop.isNull())
+        m_currentBackdrop = QImage(Manager::instance()->mediaCenterInterface()->backdropImageName(m_show));
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentBackdrop));
     ImagePreviewDialog::instance()->exec();
 }
@@ -1062,6 +1074,8 @@ void TvShowWidgetTvShow::onPreviewBackdrop()
  */
 void TvShowWidgetTvShow::onPreviewPoster()
 {
+    if (m_currentPoster.isNull())
+        m_currentPoster = QImage(Manager::instance()->mediaCenterInterface()->posterImageName(m_show));
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentPoster));
     ImagePreviewDialog::instance()->exec();
 }
@@ -1071,6 +1085,8 @@ void TvShowWidgetTvShow::onPreviewPoster()
  */
 void TvShowWidgetTvShow::onPreviewBanner()
 {
+    if (m_currentBanner.isNull())
+        m_currentBanner = QImage(Manager::instance()->mediaCenterInterface()->bannerImageName(m_show));
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentBanner));
     ImagePreviewDialog::instance()->exec();
 }
@@ -1080,6 +1096,8 @@ void TvShowWidgetTvShow::onPreviewBanner()
  */
 void TvShowWidgetTvShow::onPreviewLogo()
 {
+    if (m_currentLogo.isNull())
+        m_currentLogo = QImage(Manager::instance()->mediaCenterInterface()->logoImageName(m_show));
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentLogo));
     ImagePreviewDialog::instance()->exec();
 }
@@ -1089,6 +1107,8 @@ void TvShowWidgetTvShow::onPreviewLogo()
  */
 void TvShowWidgetTvShow::onPreviewClearArt()
 {
+    if (m_currentClearArt.isNull())
+        m_currentClearArt = QImage(Manager::instance()->mediaCenterInterface()->clearArtImageName(m_show));
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentClearArt));
     ImagePreviewDialog::instance()->exec();
 }
@@ -1098,6 +1118,8 @@ void TvShowWidgetTvShow::onPreviewClearArt()
  */
 void TvShowWidgetTvShow::onPreviewCharacterArt()
 {
+    if (m_currentCharacterArt.isNull())
+        m_currentCharacterArt = QImage(Manager::instance()->mediaCenterInterface()->characterArtImageName(m_show));
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentCharacterArt));
     ImagePreviewDialog::instance()->exec();
 }
