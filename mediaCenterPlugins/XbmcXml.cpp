@@ -703,7 +703,7 @@ QString XbmcXml::cdArtImageName(Movie *movie, QList<DataFile> dataFiles, bool co
     foreach (DataFile dataFile, dataFiles) {
         QString file = dataFile.saveFileName(fi.fileName());
         QString path = getPath(movie);
-        QFileInfo bFi(fi.absolutePath() + QDir::separator() + file);
+        QFileInfo bFi(path + QDir::separator() + file);
         if (bFi.isFile() || constructName) {
             cdArtFileName = path + QDir::separator() + file;
             break;
