@@ -2,6 +2,7 @@
 
 #include <QDir>
 #include <QFileInfo>
+#include <QtCore/qmath.h>
 #include "data/ImageCache.h"
 #include "globals/DownloadManagerElement.h"
 #include "globals/Helper.h"
@@ -128,6 +129,7 @@ void MovieController::loadData(QString id, ScraperInterface *scraperInterface, Q
 void MovieController::loadStreamDetailsFromFile()
 {
     m_movie->streamDetails()->loadStreamDetails();
+    m_movie->setRuntime(qFloor(m_movie->streamDetails()->videoDetails().value("durationinseconds").toInt()/60));
     m_movie->setStreamDetailsLoaded(true);
     m_movie->setChanged(true);
 }
