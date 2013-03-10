@@ -122,7 +122,7 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
             icon = (movie->actors().isEmpty()) ? "actors/red" : "actors/green";
             break;
         case MediaStatusTrailer:
-            icon = (movie->trailer().isEmpty()) ? "trailer/red" : "trailer/green";
+            icon = (movie->trailer().isEmpty() && !movie->hasLocalTrailer()) ? "trailer/red" : "trailer/green";
             break;
         case MediaStatusPoster:
             icon = (movie->hasPoster()) ? "poster/green" : "poster/red";
