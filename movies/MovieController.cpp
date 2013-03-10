@@ -103,8 +103,8 @@ bool MovieController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
     }
     m_infoLoaded = infoLoaded;
     m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
-    m_movie->blockSignals(false);
     m_movie->setChanged(false);
+    m_movie->blockSignals(false);
     return infoLoaded;
 }
 
