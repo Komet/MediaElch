@@ -6,6 +6,7 @@
 #include <QDesktopServices>
 #include <QDir>
 #include <QFileInfo>
+#include "globals/Globals.h"
 
 ImageCache::ImageCache(QObject *parent) :
     QObject(parent)
@@ -21,7 +22,7 @@ ImageCache::ImageCache(QObject *parent) :
         exists = dir.mkdir(location);
     if (exists)
         m_cacheDir = location;
-    qDebug() << "CACHE DIR" << m_cacheDir;
+    qDebug() << "Cache dir" << m_cacheDir;
 }
 
 ImageCache *ImageCache::instance(QObject *parent)
