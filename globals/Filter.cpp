@@ -101,6 +101,8 @@ bool Filter::accepts(Movie *movie)
         return (m_hasInfo && movie->hasCdArt()) || (!m_hasInfo && !movie->hasCdArt());
     if (m_info == MovieFilters::Trailer)
         return (m_hasInfo && !movie->trailer().isEmpty()) || (!m_hasInfo && movie->trailer().isEmpty());
+    if (m_info == MovieFilters::LocalTrailer)
+        return (m_hasInfo && movie->hasLocalTrailer()) || (!m_hasInfo && !movie->hasLocalTrailer());
     if (m_info == MovieFilters::Certification)
         return (m_hasInfo && movie->certification() == m_shortText) || (!m_hasInfo && movie->certification().isEmpty());
     if (m_info == MovieFilters::Genres)
