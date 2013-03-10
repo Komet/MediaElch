@@ -144,6 +144,9 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
         case MediaStatusExtraFanarts:
             icon = (movie->hasExtraFanarts()) ? "extraFanarts/green" : "extraFanarts/red";
             break;
+        case MediaStatusId:
+            icon = (movie->id().isEmpty()) ? "id/red" : "id/green";
+            break;
         default:
             break;
         }
@@ -224,25 +227,28 @@ int MovieModel::mediaStatusToColumn(MediaStatusColumns column)
 {
     switch (column) {
     case MediaStatusActors:
-        return 7;
+        return 8;
         break;
     case MediaStatusExtraArts:
-        return 4;
+        return 5;
         break;
     case MediaStatusExtraFanarts:
-        return 3;
+        return 4;
         break;
     case MediaStatusFanart:
-        return 2;
+        return 3;
         break;
     case MediaStatusPoster:
-        return 1;
+        return 2;
         break;
     case MediaStatusStreamDetails:
-        return 6;
+        return 7;
         break;
     case MediaStatusTrailer:
-        return 5;
+        return 6;
+        break;
+    case MediaStatusId:
+        return 1;
         break;
     default:
         return -1;
@@ -282,6 +288,9 @@ QString MovieModel::mediaStatusToText(MediaStatusColumns column)
         break;
     case MediaStatusTrailer:
         return tr("Trailer");
+        break;
+    case MediaStatusId:
+        return tr("IMDB ID");
         break;
     default:
         return QString();

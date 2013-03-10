@@ -299,6 +299,7 @@ struct ExtraFanart {
 };
 
 enum MediaStatusColumns {
+    MediaStatusId,
     MediaStatusStreamDetails,
     MediaStatusTrailer,
     MediaStatusPoster,
@@ -308,7 +309,7 @@ enum MediaStatusColumns {
     MediaStatusActors,
     MediaStatusUnknown,
 
-    MediaStatusFirst = MediaStatusStreamDetails,
+    MediaStatusFirst = MediaStatusId,
     MediaStatusLast = MediaStatusActors
 };
 
