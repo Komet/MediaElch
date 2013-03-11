@@ -132,6 +132,9 @@ void Settings::loadSettings(QSettings &settings)
     m_proxyPassword = settings.value("Proxy/Password").toString();
     setupProxy();
 
+    // Tv Shows
+    m_tvShowDvdOrder = settings.value("TvShows/DvdOrder", false).toBool();
+
     // Movie Directories
     m_movieDirectories.clear();
     int moviesSize = settings.beginReadArray("Directories/Movies");
@@ -250,6 +253,9 @@ void Settings::saveSettings()
     m_settings.setValue("Proxy/Username", m_proxyUsername);
     m_settings.setValue("Proxy/Password", m_proxyPassword);
     setupProxy();
+
+    // Tv Shows
+    m_settings.setValue("TvShows/DvdOrder", m_tvShowDvdOrder);
 
     m_settings.beginWriteArray("Directories/Movies");
     for (int i=0, n=m_movieDirectories.count() ; i<n ; ++i) {
@@ -889,4 +895,15 @@ void Settings::setMediaStatusColumns(QList<MediaStatusColumns> columns)
 QList<MediaStatusColumns> Settings::mediaStatusColumns() const
 {
     return m_mediaStatusColumns;
+}
+
+bool Settings::tvShowDvdOrder() const
+{
+    return m_tvShowDvdOrder;
+}
+
+void Settings::setTvShowDvdOrder(bool order)
+{
+    m_tvShowDvdOrder = order;
+    saveSettings();
 }

@@ -243,14 +243,15 @@ namespace MovieFilters {
     const int StreamDetails = 12;
     const int ExtraFanarts  = 13;
     const int Actors        = 14;
+    const int LocalTrailer  = 15;
 }
 
 namespace TvShowFilters {
-    const int Title         = 15;
+    const int Title         = 16;
 }
 
 namespace ConcertFilters {
-    const int Title         = 16;
+    const int Title         = 17;
 }
 
 enum SortBy {
@@ -298,6 +299,7 @@ struct ExtraFanart {
 };
 
 enum MediaStatusColumns {
+    MediaStatusId,
     MediaStatusStreamDetails,
     MediaStatusTrailer,
     MediaStatusPoster,
@@ -307,7 +309,7 @@ enum MediaStatusColumns {
     MediaStatusActors,
     MediaStatusUnknown,
 
-    MediaStatusFirst = MediaStatusStreamDetails,
+    MediaStatusFirst = MediaStatusId,
     MediaStatusLast = MediaStatusActors
 };
 

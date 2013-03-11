@@ -32,6 +32,7 @@ TvShowSearch::TvShowSearch(QWidget *parent) :
     connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(onResultClicked(QTableWidgetItem*)));
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
     connect(ui->comboUpdate, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboIndexChanged()));
+    connect(ui->chkDvdOrder, SIGNAL(clicked()), this, SLOT(onChkDvdOrderToggled()));
 
     ui->chkActors->setMyData(TvShowScraperInfos::Actors);
     ui->chkBanner->setMyData(TvShowScraperInfos::Banner);
@@ -59,6 +60,8 @@ TvShowSearch::TvShowSearch(QWidget *parent) :
     }
 
     connect(ui->chkUnCheckAll, SIGNAL(clicked()), this, SLOT(onChkAllToggled()));
+
+    ui->chkDvdOrder->setChecked(Settings::instance()->tvShowDvdOrder());
 }
 
 /**
@@ -283,4 +286,9 @@ void TvShowSearch::onComboIndexChanged()
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>())
         box->setChecked((infos.contains(box->myData().toInt()) || infos.isEmpty()) && box->isEnabled());
     onChkToggled();
+}
+
+void TvShowSearch::onChkDvdOrderToggled()
+{
+    Settings::instance()->setTvShowDvdOrder(ui->chkDvdOrder->isChecked());
 }

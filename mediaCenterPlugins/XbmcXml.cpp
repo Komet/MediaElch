@@ -703,7 +703,7 @@ QString XbmcXml::cdArtImageName(Movie *movie, QList<DataFile> dataFiles, bool co
     foreach (DataFile dataFile, dataFiles) {
         QString file = dataFile.saveFileName(fi.fileName());
         QString path = getPath(movie);
-        QFileInfo bFi(fi.absolutePath() + QDir::separator() + file);
+        QFileInfo bFi(path + QDir::separator() + file);
         if (bFi.isFile() || constructName) {
             cdArtFileName = path + QDir::separator() + file;
             break;
@@ -1982,9 +1982,15 @@ QString XbmcXml::getPath(Movie *movie)
     if (movie->files().isEmpty())
         return QString();
     QFileInfo fi(movie->files().first());
-    if (movie->discType() == DiscBluRay || movie->discType() == DiscDvd) {
+    if (movie->discType() == DiscBluRay) {
         QDir dir = fi.dir();
-        dir.cdUp();
+        if (QString::compare(dir.dirName(), "BDMV", Qt::CaseInsensitive) == 0)
+            dir.cdUp();
+        return dir.absolutePath();
+    } else if (movie->discType() == DiscDvd) {
+        QDir dir = fi.dir();
+        if (QString::compare(dir.dirName(), "VIDEO_TS", Qt::CaseInsensitive) == 0)
+            dir.cdUp();
         return dir.absolutePath();
     }
     return fi.absolutePath();

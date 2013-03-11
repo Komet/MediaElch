@@ -9,14 +9,15 @@
 #include <QPainter>
 #include <QPixmapCache>
 #include <QScrollBar>
+#include "data/ImageCache.h"
+#include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
+#include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
-#include "main/MessageBox.h"
-#include "globals/ImageDialog.h"
-#include "globals/ComboDelegate.h"
-#include "movies/MovieSearch.h"
 #include "globals/TrailerDialog.h"
+#include "main/MessageBox.h"
+#include "movies/MovieSearch.h"
 
 /**
  * @brief MovieWidget::MovieWidget
@@ -649,11 +650,13 @@ void MovieWidget::updateMovieInfo()
         ui->buttonPreviewPoster->setEnabled(true);
         m_currentPoster = img;
     } else if (!Manager::instance()->mediaCenterInterface()->posterImageName(m_movie).isEmpty()) {
-        QPixmap p(Manager::instance()->mediaCenterInterface()->posterImageName(m_movie));
-        ui->poster->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
-        ui->posterResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        int w = 0;
+        int h = 0;
+        QImage img = ImageCache::instance()->image(Manager::instance()->mediaCenterInterface()->posterImageName(m_movie), 200, 0, w, h);
+        ui->poster->setPixmap(QPixmap::fromImage(img));
+        ui->posterResolution->setText(QString("%1x%2").arg(w).arg(h));
         ui->buttonPreviewPoster->setEnabled(true);
-        m_currentPoster = p.toImage();
+        m_currentPoster = QImage();
     } else {
         ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
         ui->posterResolution->setText("");
@@ -669,11 +672,13 @@ void MovieWidget::updateMovieInfo()
         m_currentBackdrop = img;
         QTimer::singleShot(0, this, SLOT(updateBackgroundImage()));
     } else if (!Manager::instance()->mediaCenterInterface()->backdropImageName(m_movie).isEmpty()) {
-        QPixmap p(Manager::instance()->mediaCenterInterface()->backdropImageName(m_movie));
-        ui->backdrop->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
-        ui->backdropResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        int w = 0;
+        int h = 0;
+        QImage img = ImageCache::instance()->image(Manager::instance()->mediaCenterInterface()->backdropImageName(m_movie), 200, 0, w, h);
+        ui->backdrop->setPixmap(QPixmap::fromImage(img));
+        ui->backdropResolution->setText(QString("%1x%2").arg(w).arg(h));
         ui->buttonPreviewBackdrop->setEnabled(true);
-        m_currentBackdrop = p.toImage();
+        m_currentBackdrop = QImage();
         QTimer::singleShot(0, this, SLOT(updateBackgroundImage()));
     } else {
         ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -689,11 +694,13 @@ void MovieWidget::updateMovieInfo()
         ui->buttonPreviewLogo->setEnabled(true);
         m_currentLogo = img;
     } else if (!Manager::instance()->mediaCenterInterface()->logoImageName(m_movie).isEmpty()) {
-        QPixmap p(Manager::instance()->mediaCenterInterface()->logoImageName(m_movie));
-        ui->logo->setPixmap(p.scaled(200, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->logoResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        int w = 0;
+        int h = 0;
+        QImage img = ImageCache::instance()->image(Manager::instance()->mediaCenterInterface()->logoImageName(m_movie), 200, 100, w, h);
+        ui->logo->setPixmap(QPixmap::fromImage(img));
+        ui->logoResolution->setText(QString("%1x%2").arg(w).arg(h));
         ui->buttonPreviewLogo->setEnabled(true);
-        m_currentLogo = p.toImage();
+        m_currentLogo = QImage();
     } else {
         ui->logo->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->logoResolution->setText("");
@@ -708,11 +715,13 @@ void MovieWidget::updateMovieInfo()
         ui->buttonPreviewClearArt->setEnabled(true);
         m_currentClearArt = img;
     } else if (!Manager::instance()->mediaCenterInterface()->clearArtImageName(m_movie).isEmpty()) {
-        QPixmap p(Manager::instance()->mediaCenterInterface()->clearArtImageName(m_movie));
-        ui->clearArt->setPixmap(p.scaled(200, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->clearArtResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        int w = 0;
+        int h = 0;
+        QImage img = ImageCache::instance()->image(Manager::instance()->mediaCenterInterface()->clearArtImageName(m_movie), 200, 150, w, h);
+        ui->clearArt->setPixmap(QPixmap::fromImage(img));
+        ui->clearArtResolution->setText(QString("%1x%2").arg(w).arg(h));
         ui->buttonPreviewClearArt->setEnabled(true);
-        m_currentClearArt = p.toImage();
+        m_currentClearArt = QImage();
     } else {
         ui->clearArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->clearArtResolution->setText("");
@@ -727,11 +736,13 @@ void MovieWidget::updateMovieInfo()
         ui->buttonPreviewCdArt->setEnabled(true);
         m_currentCdArt = img;
     } else if (!Manager::instance()->mediaCenterInterface()->cdArtImageName(m_movie).isEmpty()) {
-        QPixmap p(Manager::instance()->mediaCenterInterface()->cdArtImageName(m_movie));
-        ui->cdArt->setPixmap(p.scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->cdArtResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
+        int w = 0;
+        int h = 0;
+        QImage img = ImageCache::instance()->image(Manager::instance()->mediaCenterInterface()->cdArtImageName(m_movie), 200, 200, w, h);
+        ui->cdArt->setPixmap(QPixmap::fromImage(img));
+        ui->cdArtResolution->setText(QString("%1x%2").arg(w).arg(h));
         ui->buttonPreviewCdArt->setEnabled(true);
-        m_currentCdArt = p.toImage();
+        m_currentCdArt = QImage();
     } else {
         ui->cdArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         ui->cdArtResolution->setText("");
@@ -1151,6 +1162,8 @@ void MovieWidget::removeCountry(QString country)
  */
 void MovieWidget::onPreviewBackdrop()
 {
+    if (m_currentBackdrop.isNull())
+        m_currentBackdrop = QImage(Manager::instance()->mediaCenterInterface()->backdropImageName(m_movie));
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentBackdrop));
     ImagePreviewDialog::instance()->exec();
 }
@@ -1160,6 +1173,8 @@ void MovieWidget::onPreviewBackdrop()
  */
 void MovieWidget::onPreviewPoster()
 {
+    if (m_currentPoster.isNull())
+        m_currentPoster = QImage(Manager::instance()->mediaCenterInterface()->posterImageName(m_movie));
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentPoster));
     ImagePreviewDialog::instance()->exec();
 }
@@ -1169,6 +1184,8 @@ void MovieWidget::onPreviewPoster()
  */
 void MovieWidget::onPreviewLogo()
 {
+    if (m_currentLogo.isNull())
+        m_currentLogo = QImage(Manager::instance()->mediaCenterInterface()->logoImageName(m_movie));
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentLogo));
     ImagePreviewDialog::instance()->exec();
 }
@@ -1178,6 +1195,8 @@ void MovieWidget::onPreviewLogo()
  */
 void MovieWidget::onPreviewClearArt()
 {
+    if (m_currentClearArt.isNull())
+        m_currentClearArt = QImage(Manager::instance()->mediaCenterInterface()->clearArtImageName(m_movie));
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentClearArt));
     ImagePreviewDialog::instance()->exec();
 }
@@ -1187,6 +1206,8 @@ void MovieWidget::onPreviewClearArt()
  */
 void MovieWidget::onPreviewCdArt()
 {
+    if (m_currentCdArt.isNull())
+        m_currentCdArt= QImage(Manager::instance()->mediaCenterInterface()->cdArtImageName(m_movie));
     ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentCdArt));
     ImagePreviewDialog::instance()->exec();
 }

@@ -67,7 +67,7 @@ public:
     QList<Poster> banners() const;
     QList<Poster> seasonPosters(int season) const;
     QList<Poster> seasonBackdrops(int season) const;
-    QList<Poster> seasonBanners(int season) const;
+    QList<Poster> seasonBanners(int season, bool returnAll = false) const;
     bool posterImageChanged() const;
     bool backdropImageChanged() const;
     bool bannerImageChanged() const;

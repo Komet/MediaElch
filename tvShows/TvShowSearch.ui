@@ -372,6 +372,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QCheckBox" name="chkDvdOrder">
+       <property name="text">
+        <string>DVD Order</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="horizontalSpacer_4">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>

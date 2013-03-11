@@ -128,7 +128,8 @@ SOURCES += main.cpp\
     smallWidgets/MySpinBox.cpp \
     settings/AdvancedSettings.cpp \
     smallWidgets/AlphabeticalList.cpp \
-    smallWidgets/MyTableView.cpp
+    smallWidgets/MyTableView.cpp \
+    data/ImageCache.cpp
 
 HEADERS  += main/MainWindow.h \
     movies/Movie.h \
@@ -231,7 +232,8 @@ HEADERS  += main/MainWindow.h \
     smallWidgets/MySpinBox.h \
     settings/AdvancedSettings.h \
     smallWidgets/AlphabeticalList.h \
-    smallWidgets/MyTableView.h
+    smallWidgets/MyTableView.h \
+    data/ImageCache.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

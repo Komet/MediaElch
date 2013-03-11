@@ -2,7 +2,8 @@
 
 #include <QDir>
 #include <QFileInfo>
-
+#include <QtCore/qmath.h>
+#include "data/ImageCache.h"
 #include "globals/DownloadManagerElement.h"
 #include "globals/Helper.h"
 #include "globals/NameFormatter.h"
@@ -56,6 +57,7 @@ bool MovieController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
     if ((m_infoLoaded || m_movie->hasChanged()) && !force && (m_infoFromNfoLoaded || (m_movie->hasChanged() && !m_infoFromNfoLoaded) ))
         return m_infoLoaded;
 
+    m_movie->blockSignals(true);
     NameFormatter *nameFormat = NameFormatter::instance();
 
     bool infoLoaded;
@@ -102,6 +104,7 @@ bool MovieController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
     m_infoLoaded = infoLoaded;
     m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
     m_movie->setChanged(false);
+    m_movie->blockSignals(false);
     return infoLoaded;
 }
 
@@ -126,6 +129,7 @@ void MovieController::loadData(QString id, ScraperInterface *scraperInterface, Q
 void MovieController::loadStreamDetailsFromFile()
 {
     m_movie->streamDetails()->loadStreamDetails();
+    m_movie->setRuntime(qFloor(m_movie->streamDetails()->videoDetails().value("durationinseconds").toInt()/60));
     m_movie->setStreamDetailsLoaded(true);
     m_movie->setChanged(true);
 }
@@ -227,19 +231,24 @@ void MovieController::onDownloadFinished(DownloadManagerElement elem)
 
     switch (elem.imageType) {
     case TypePoster:
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->posterImageName(m_movie));
         m_movie->setPosterImage(elem.data);
         break;
     case TypeBackdrop:
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->backdropImageName(m_movie));
         Helper::resizeBackdrop(elem.data);
         m_movie->setBackdropImage(elem.data);
         break;
     case TypeLogo:
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->logoImageName(m_movie));
         m_movie->setLogoImage(elem.data);
         break;
     case TypeClearArt:
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->clearArtImageName(m_movie));
         m_movie->setClearArtImage(elem.data);
         break;
     case TypeCdArt:
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->cdArtImageName(m_movie));
         m_movie->setCdArtImage(elem.data);
         break;
     case TypeActor:

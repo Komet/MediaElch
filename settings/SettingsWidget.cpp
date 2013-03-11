@@ -136,7 +136,7 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     ui->comboMovieSetArtwork->setItemData(1, MovieSetArtworkSingleArtworkFolder);
 
     // Media Status Columns
-    for (int i=MediaStatusFirst, n=MediaStatusLast ; i<n ; ++i) {
+    for (int i=MediaStatusFirst, n=MediaStatusLast ; i<=n ; ++i) {
         QListWidgetItem *item = new QListWidgetItem(MovieModel::mediaStatusToText(static_cast<MediaStatusColumns>(i)));
         item->setData(Qt::UserRole, i);
         item->setCheckState(Qt::Unchecked);

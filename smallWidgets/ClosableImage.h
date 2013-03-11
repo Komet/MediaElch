@@ -16,7 +16,8 @@ public:
     void setMyData(const QVariant &data);
     QVariant myData() const;
     void setImage(const QByteArray &image);
-    QByteArray image() const;
+    void setImage(const QString &image);
+    QByteArray image();
     int mySize() const;
     void setMySize(const int &size);
     void setShowZoomAndResolution(const bool &show);
@@ -34,6 +35,7 @@ protected:
 private:
     QVariant m_myData;
     QByteArray m_image;
+    QString m_imagePath;
     QPixmap m_pixmap;
     int m_mySize;
     QFont m_font;

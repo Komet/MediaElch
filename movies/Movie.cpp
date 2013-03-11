@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
+#include "data/ImageCache.h"
 #include "settings/Settings.h"
 
 /**
@@ -1540,11 +1541,6 @@ QList<ExtraFanart> Movie::extraFanarts(MediaCenterInterface *mediaCenterInterfac
     QList<ExtraFanart> fanarts;
     foreach (const QString &file, m_extraFanarts) {
         ExtraFanart f;
-        QFile fi(file);
-        if (fi.open(QIODevice::ReadOnly)) {
-            f.image = fi.readAll();
-            fi.close();
-        }
         f.path = file;
         fanarts.append(f);
     }

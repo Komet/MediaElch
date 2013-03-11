@@ -149,13 +149,12 @@ void MovieMultiScrapeDialog::scrapeNext()
     if (!isExecuted())
         return;
 
+    if (m_currentMovie && ui->chkAutoSave->isChecked())
+        m_currentMovie->controller()->saveData(Manager::instance()->mediaCenterInterface());
+
     if (m_queue.isEmpty()) {
         onScrapingFinished();
         return;
-    }
-
-    if (m_currentMovie && ui->chkAutoSave->isChecked()) {
-        m_currentMovie->controller()->saveData(Manager::instance()->mediaCenterInterface());
     }
 
     m_currentMovie = m_queue.dequeue();

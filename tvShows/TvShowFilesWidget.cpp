@@ -269,7 +269,13 @@ void TvShowFilesWidget::openFolder()
 
     if (dir.isEmpty())
         return;
-    QDesktopServices::openUrl(QUrl("file:///" + dir, QUrl::TolerantMode));
+
+    QUrl url;
+    if (dir.startsWith("\\\\") || dir.startsWith("//"))
+        url.setUrl(QDir::toNativeSeparators(dir));
+    else
+        url = QUrl::fromLocalFile(dir);
+    QDesktopServices::openUrl(url);
 }
 
 /**
