@@ -1981,6 +1981,7 @@ QString XbmcXml::getPath(Movie *movie)
 {
     if (movie->files().isEmpty())
         return QString();
+    /*
     QFileInfo fi(movie->files().first());
     if (movie->discType() == DiscBluRay) {
         QDir dir = fi.dir();
@@ -1993,6 +1994,7 @@ QString XbmcXml::getPath(Movie *movie)
             dir.cdUp();
         return dir.absolutePath();
     }
+    */
     return fi.absolutePath();
 }
 
@@ -2001,11 +2003,13 @@ QString XbmcXml::getPath(Concert *concert)
     if (concert->files().isEmpty())
         return QString();
     QFileInfo fi(concert->files().first());
+    /*
     if (concert->discType() == DiscBluRay || concert->discType() == DiscDvd) {
         QDir dir = fi.dir();
         dir.cdUp();
         return dir.absolutePath();
     }
+    */
     return fi.absolutePath();
 }
 
