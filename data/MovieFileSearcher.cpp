@@ -252,6 +252,7 @@ void MovieFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
  */
 void MovieFileSearcher::scanDir(QString startPath, QString path, QList<QStringList> &contents, bool separateFolders, bool firstScan)
 {
+    m_aborted = false;
     emit currentDir(path.mid(startPath.length()));
 
     QDir dir(path);
