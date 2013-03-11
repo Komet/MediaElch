@@ -44,7 +44,6 @@ private slots:
     void downloadTimeout();
 
 private:
-    QNetworkAccessManager m_qnam;
     QNetworkReply *m_currentReply;
     DownloadManagerElement m_currentDownloadElement;
     QQueue<DownloadManagerElement> m_queue;
