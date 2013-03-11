@@ -1981,8 +1981,8 @@ QString XbmcXml::getPath(Movie *movie)
 {
     if (movie->files().isEmpty())
         return QString();
-    /*
     QFileInfo fi(movie->files().first());
+    /*
     if (movie->discType() == DiscBluRay) {
         QDir dir = fi.dir();
         if (QString::compare(dir.dirName(), "BDMV", Qt::CaseInsensitive) == 0)
