@@ -316,6 +316,7 @@ void Settings::saveSettings()
     foreach (const MediaStatusColumns &column, m_mediaStatusColumns)
         columns.append(column);
     m_settings.setValue("MediaStatusColumns", columns);
+    m_settings.sync();
 }
 
 /**
