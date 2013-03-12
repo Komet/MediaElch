@@ -120,7 +120,6 @@ void ImageGallery::setImages(QList<ExtraFanart> images)
         else
             label->setImage(fanart.path);
         connect(label, SIGNAL(sigClose()), this, SLOT(onCloseImage()));
-        connect(label, SIGNAL(sigZoom(QImage)), this, SLOT(onZoomImage(QImage)));
         m_imageLabels.append(label);
     }
     positionImages();
@@ -138,7 +137,6 @@ void ImageGallery::addImage(const QByteArray &img, const QString &url)
     label->setImage(img);
     label->setMyData(url);
     connect(label, SIGNAL(sigClose()), this, SLOT(onCloseImage()));
-    connect(label, SIGNAL(sigZoom(QImage)), this, SLOT(onZoomImage(QImage)));
     m_imageLabels.append(label);
     positionImages();
     if (m_alignment == Qt::Vertical)
@@ -195,12 +193,6 @@ void ImageGallery::onCloseImage()
         emit sigRemoveImage(label->myData().toString());
     else
         emit sigRemoveImage(label->image());
-}
-
-void ImageGallery::onZoomImage(QImage img)
-{
-    ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(img));
-    ImagePreviewDialog::instance()->exec();
 }
 
 void ImageGallery::setLoading(const bool &loading)

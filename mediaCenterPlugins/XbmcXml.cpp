@@ -159,6 +159,15 @@ bool XbmcXml::saveMovie(Movie *movie)
             saveFile(path + QDir::separator() + saveFileName, movie->posterImage());
         }
     }
+    if (movie->imagesToRemove().contains(TypePoster)) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MoviePoster)) {
+            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
+            if (movie->discType() == DiscBluRay || movie->discType() == DiscDvd)
+                saveFileName = "poster.jpg";
+            QString path = getPath(movie);
+            QFile(path + QDir::separator() + saveFileName).remove();
+        }
+    }
     if (movie->backdropImageChanged() && !movie->backdropImage().isNull()) {
         foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieBackdrop)) {
             QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
@@ -166,6 +175,15 @@ bool XbmcXml::saveMovie(Movie *movie)
                 saveFileName = "fanart.jpg";
             QString path = getPath(movie);
             saveFile(path + QDir::separator() + saveFileName, movie->backdropImage());
+        }
+    }
+    if (movie->imagesToRemove().contains(TypeBackdrop)) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieBackdrop)) {
+            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
+            if (movie->discType() == DiscBluRay || movie->discType() == DiscDvd)
+                saveFileName = "fanart.jpg";
+            QString path = getPath(movie);
+            QFile(path + QDir::separator() + saveFileName).remove();
         }
     }
     saveAdditionalImages(movie);
@@ -197,6 +215,14 @@ void XbmcXml::saveAdditionalImages(Movie *movie)
             saveFile(path + QDir::separator() + saveFileName, movie->logoImage());
         }
     }
+    if (movie->imagesToRemove().contains(TypeLogo)) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieLogo)) {
+            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
+            QString path = getPath(movie);
+            QFile(path + QDir::separator() + saveFileName).remove();
+        }
+    }
+
     if (movie->clearArtImageChanged() && !movie->clearArtImage().isNull()) {
         foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieClearArt)) {
             QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
@@ -204,11 +230,26 @@ void XbmcXml::saveAdditionalImages(Movie *movie)
             saveFile(path + QDir::separator() + saveFileName, movie->clearArtImage());
         }
     }
+    if (movie->imagesToRemove().contains(TypeClearArt)) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieClearArt)) {
+            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
+            QString path = getPath(movie);
+            QFile(path + QDir::separator() + saveFileName).remove();
+        }
+    }
+
     if (movie->cdArtImageChanged() && !movie->cdArtImage().isNull()) {
         foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieCdArt)) {
             QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
             QString path = getPath(movie);
             saveFile(path + QDir::separator() + saveFileName, movie->cdArtImage());
+        }
+    }
+    if (movie->imagesToRemove().contains(TypeCdArt)) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieCdArt)) {
+            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
+            QString path = getPath(movie);
+            QFile(path + QDir::separator() + saveFileName).remove();
         }
     }
 
@@ -1982,7 +2023,6 @@ QString XbmcXml::getPath(Movie *movie)
     if (movie->files().isEmpty())
         return QString();
     QFileInfo fi(movie->files().first());
-    /*
     if (movie->discType() == DiscBluRay) {
         QDir dir = fi.dir();
         if (QString::compare(dir.dirName(), "BDMV", Qt::CaseInsensitive) == 0)
@@ -1994,7 +2034,6 @@ QString XbmcXml::getPath(Movie *movie)
             dir.cdUp();
         return dir.absolutePath();
     }
-    */
     return fi.absolutePath();
 }
 
@@ -2003,13 +2042,17 @@ QString XbmcXml::getPath(Concert *concert)
     if (concert->files().isEmpty())
         return QString();
     QFileInfo fi(concert->files().first());
-    /*
-    if (concert->discType() == DiscBluRay || concert->discType() == DiscDvd) {
+    if (concert->discType() == DiscBluRay) {
         QDir dir = fi.dir();
-        dir.cdUp();
+        if (QString::compare(dir.dirName(), "BDMV", Qt::CaseInsensitive) == 0)
+            dir.cdUp();
+        return dir.absolutePath();
+    } else if (concert->discType() == DiscDvd) {
+        QDir dir = fi.dir();
+        if (QString::compare(dir.dirName(), "VIDEO_TS", Qt::CaseInsensitive) == 0)
+            dir.cdUp();
         return dir.absolutePath();
     }
-    */
     return fi.absolutePath();
 }
 

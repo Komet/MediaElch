@@ -135,6 +135,9 @@ void Settings::loadSettings(QSettings &settings)
     // Tv Shows
     m_tvShowDvdOrder = settings.value("TvShows/DvdOrder", false).toBool();
 
+    // Warnings
+    m_dontShowDeleteImageConfirm = settings.value("Warnings/DontShowDeleteImageConfirm", false).toBool();
+
     // Movie Directories
     m_movieDirectories.clear();
     int moviesSize = settings.beginReadArray("Directories/Movies");
@@ -256,6 +259,9 @@ void Settings::saveSettings()
 
     // Tv Shows
     m_settings.setValue("TvShows/DvdOrder", m_tvShowDvdOrder);
+
+    // Warnings
+    m_settings.setValue("Warnings/DontShowDeleteImageConfirm", m_dontShowDeleteImageConfirm);
 
     m_settings.beginWriteArray("Directories/Movies");
     for (int i=0, n=m_movieDirectories.count() ; i<n ; ++i) {
@@ -907,4 +913,15 @@ void Settings::setTvShowDvdOrder(bool order)
 {
     m_tvShowDvdOrder = order;
     saveSettings();
+}
+
+void Settings::setDontShowDeleteImageConfirm(bool show)
+{
+    m_dontShowDeleteImageConfirm = show;
+    saveSettings();
+}
+
+bool Settings::dontShowDeleteImageConfirm() const
+{
+    return m_dontShowDeleteImageConfirm;
 }

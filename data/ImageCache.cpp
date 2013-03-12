@@ -106,7 +106,7 @@ QSize ImageCache::imageSize(QString path)
         return QImage(path).size();
 
     QStringList parts = files.first().split("_");
-    int lastMod = QFileInfo(m_cacheDir + "/" + files.first()).lastModified().toTime_t();
+    int lastMod = QFileInfo(path).lastModified().toTime_t();
     if (lastMod != parts.at(5).toInt())
         return QImage(path).size();
 
