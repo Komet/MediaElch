@@ -255,6 +255,7 @@ void MovieController::onDownloadFinished(DownloadManagerElement elem)
         elem.actor->image = elem.data;
         break;
     case TypeExtraFanart:
+        Helper::resizeBackdrop(elem.data);
         m_movie->addExtraFanart(elem.data);
         break;
     default:
