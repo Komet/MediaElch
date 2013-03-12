@@ -86,16 +86,19 @@ void TvShow::clear(QList<int> infos)
         m_seasonPosters.clear();
         m_seasonPosterImages.clear();
         m_seasonPosterImagesChanged.clear();
+        m_imagesToRemove.remove(TypeSeasonPoster);
     }
     if (infos.contains(TvShowScraperInfos::SeasonBackdrop)) {
         m_seasonBackdrops.clear();
         m_seasonBackdropImages.clear();
         m_seasonBackdropImagesChanged.clear();
+        m_imagesToRemove.remove(TypeSeasonBackdrop);
     }
     if (infos.contains(TvShowScraperInfos::SeasonBanner)) {
         m_seasonBanners.clear();
         m_seasonBannerImages.clear();
         m_seasonBannerImagesChanged.clear();
+        m_imagesToRemove.remove(TypeSeasonBanner);
     }
     if (infos.contains(TvShowScraperInfos::Title))
         m_showTitle.clear();
@@ -112,6 +115,9 @@ void TvShow::clear(QList<int> infos)
         m_clearArtImageChanged = false;
         m_characterArtImage = QByteArray();
         m_characterArtImageChanged = false;
+        m_imagesToRemove.remove(TypeLogo);
+        m_imagesToRemove.remove(TypeClearArt);
+        m_imagesToRemove.remove(TypeCdArt);
     }
     if (infos.contains(TvShowScraperInfos::ExtraFanarts)) {
         m_extraFanartsToRemove.clear();
@@ -1361,6 +1367,97 @@ void TvShow::clearExtraFanartData()
     m_extraFanarts.clear();
 }
 
+QMap<ImageType, QList<int> > TvShow::imagesToRemove() const
+{
+    return m_imagesToRemove;
+}
+
+void TvShow::removeImage(ImageType type, int season)
+{
+    switch (type) {
+    case TypePoster:
+        if (!m_posterImage.isNull()) {
+            m_posterImage = QByteArray();
+            m_posterImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.insert(type, QList<int>() << -2);
+        }
+        break;
+    case TypeBackdrop:
+        if (!m_backdropImage.isNull()) {
+            m_backdropImage = QByteArray();
+            m_backdropImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.insert(type, QList<int>() << -2);
+        }
+        break;
+    case TypeBanner:
+        if (!m_bannerImage.isNull()) {
+            m_bannerImage = QByteArray();
+            m_bannerImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.insert(type, QList<int>() << -2);
+        }
+        break;
+    case TypeSeasonPoster:
+        if (m_seasonPosterImages.contains(season) && !m_seasonPosterImages[season].isNull()) {
+            m_seasonPosterImages[season] = QByteArray();
+            m_seasonPosterImagesChanged.removeOne(season);
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.insert(type, QList<int>() << season);
+        } else if (m_imagesToRemove.contains(type) && !m_imagesToRemove[type].contains(season)) {
+            m_imagesToRemove[type].append(season);
+        }
+        break;
+    case TypeSeasonBackdrop:
+        if (m_seasonBackdropImages.contains(season) && !m_seasonBackdropImages[season].isNull()) {
+            m_seasonBackdropImages[season] = QByteArray();
+            m_seasonBackdropImagesChanged.removeOne(season);
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.insert(type, QList<int>() << season);
+        } else if (m_imagesToRemove.contains(type) && !m_imagesToRemove[type].contains(season)) {
+            m_imagesToRemove[type].append(season);
+        }
+        break;
+    case TypeSeasonBanner:
+        if (m_seasonBannerImages.contains(season) && !m_seasonBannerImages[season].isNull()) {
+            m_seasonBannerImages[season] = QByteArray();
+            m_seasonBannerImagesChanged.removeOne(season);
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.insert(type, QList<int>() << season);
+        } else if (m_imagesToRemove.contains(type) && !m_imagesToRemove[type].contains(season)) {
+            m_imagesToRemove[type].append(season);
+        }
+        break;
+    case TypeLogo:
+        if (!m_logoImage.isNull()) {
+            m_logoImage = QByteArray();
+            m_logoImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.insert(type, QList<int>() << -2);
+        }
+        break;
+    case TypeClearArt:
+        if (!m_clearArtImage.isNull()) {
+            m_clearArtImage = QByteArray();
+            m_clearArtImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.insert(type, QList<int>() << -2);
+        }
+        break;
+    case TypeCharacterArt:
+        if (!m_characterArtImage.isNull()) {
+            m_characterArtImage = QByteArray();
+            m_characterArtImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.insert(type, QList<int>() << -2);
+        }
+        break;
+    default:
+        break;
+    }
+    setChanged(true);
+}
 
 /*** DEBUG ***/
 

@@ -90,6 +90,7 @@ void TvShowEpisode::clear(QList<int> infos)
     if (infos.contains(TvShowScraperInfos::Thumbnail)) {
         m_thumbnail = QUrl();
         m_thumbnailImageChanged = false;
+        m_imagesToRemove.removeOne(TypeShowThumbnail);
     }
 
     m_hasChanged = false;
@@ -889,6 +890,28 @@ void TvShowEpisode::setDatabaseId(int id)
 void TvShowEpisode::setSyncNeeded(bool syncNeeded)
 {
     m_syncNeeded = syncNeeded;
+}
+
+QList<ImageType> TvShowEpisode::imagesToRemove() const
+{
+    return m_imagesToRemove;
+}
+
+void TvShowEpisode::removeImage(ImageType type)
+{
+    switch (type) {
+    case TypeShowThumbnail:
+        if (!m_thumbnailImage.isNull()) {
+            m_thumbnailImage = QByteArray();
+            m_thumbnailImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.append(type);
+        }
+        break;
+    default:
+        break;
+    }
+    setChanged(true);
 }
 
 /*** DEBUG ***/

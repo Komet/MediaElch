@@ -801,17 +801,17 @@
          </widget>
         </item>
         <item>
-         <widget class="MyLabel" name="thumbnail">
+         <widget class="ClosableImage" name="thumbnail">
           <property name="minimumSize">
            <size>
             <width>200</width>
-            <height>112</height>
+            <height>132</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
             <width>200</width>
-            <height>112</height>
+            <height>132</height>
            </size>
           </property>
           <property name="cursor">
@@ -829,46 +829,13 @@
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
+          <property name="clickable" stdset="0">
+           <bool>true</bool>
+          </property>
+          <property name="myFixedHeight" stdset="0">
+           <number>132</number>
+          </property>
          </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <widget class="QToolButton" name="buttonPreviewBackdrop">
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="toolTip">
-             <string>Full Preview</string>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QToolButton {
-	border: none;
-}</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="../MediaElch.qrc">
-              <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="thumbnailResolution">
-            <property name="toolTip">
-             <string>Resolution</string>
-            </property>
-            <property name="text">
-             <string>Resolution</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
         </item>
         <item>
          <spacer name="verticalSpacer">
@@ -892,15 +859,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MyLabel</class>
-   <extends>QLabel</extends>
-   <header>smallWidgets/MyLabel.h</header>
-  </customwidget>
-  <customwidget>
    <class>MediaFlags</class>
    <extends>QWidget</extends>
    <header>smallWidgets/MediaFlags.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ClosableImage</class>
+   <extends>QLabel</extends>
+   <header>smallWidgets/ClosableImage.h</header>
   </customwidget>
  </customwidgets>
  <resources>

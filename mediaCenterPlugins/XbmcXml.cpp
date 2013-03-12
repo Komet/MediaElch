@@ -1682,6 +1682,12 @@ bool XbmcXml::saveTvShow(TvShow *show)
             saveFile(show->dir() + QDir::separator() + saveFileName, show->posterImage());
         }
     }
+    if (show->imagesToRemove().contains(TypePoster)) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowPoster)) {
+            QString saveFileName = dataFile.saveFileName("");
+            QFile(show->dir() + QDir::separator() + saveFileName).remove();
+        }
+    }
 
     if (show->backdropImageChanged() && !show->backdropImage().isNull()) {
         qDebug() << "Backdrop image has changed";
@@ -1691,6 +1697,12 @@ bool XbmcXml::saveTvShow(TvShow *show)
             saveFile(show->dir() + QDir::separator() + saveFileName, show->backdropImage());
         }
     }
+    if (show->imagesToRemove().contains(TypeBackdrop)) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowBackdrop)) {
+            QString saveFileName = dataFile.saveFileName("");
+            QFile(show->dir() + QDir::separator() + saveFileName).remove();
+        }
+    }
 
     if (show->bannerImageChanged() && !show->bannerImage().isNull()) {
         qDebug() << "Banner image has changed";
@@ -1698,6 +1710,12 @@ bool XbmcXml::saveTvShow(TvShow *show)
             QString saveFileName = dataFile.saveFileName("");
             qDebug() << "Saving banner to" << show->dir() + QDir::separator() + saveFileName;
             saveFile(show->dir() + QDir::separator() + saveFileName, show->bannerImage());
+        }
+    }
+    if (show->imagesToRemove().contains(TypeBanner)) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowBanner)) {
+            QString saveFileName = dataFile.saveFileName("");
+            QFile(show->dir() + QDir::separator() + saveFileName).remove();
         }
     }
 
@@ -1719,6 +1737,13 @@ bool XbmcXml::saveTvShow(TvShow *show)
                 saveFile(show->dir() + QDir::separator() + saveFileName, show->seasonPosterImage(season));
             }
         }
+        if (show->imagesToRemove().contains(TypeSeasonPoster) &&  show->imagesToRemove().value(TypeSeasonPoster).contains(season)) {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowSeasonPoster)) {
+                QString saveFileName = dataFile.saveFileName("", season);
+                QFile(show->dir() + QDir::separator() + saveFileName).remove();
+            }
+        }
+
         if (show->seasonBackdropImageChanged(season) && !show->seasonBackdropImage(season).isNull()) {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowSeasonBackdrop)) {
                 QString saveFileName = dataFile.saveFileName("", season);
@@ -1726,6 +1751,13 @@ bool XbmcXml::saveTvShow(TvShow *show)
                 saveFile(show->dir() + QDir::separator() + saveFileName, show->seasonBackdropImage(season));
             }
         }
+        if (show->imagesToRemove().contains(TypeSeasonBackdrop) &&  show->imagesToRemove().value(TypeSeasonBackdrop).contains(season)) {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowSeasonBackdrop)) {
+                QString saveFileName = dataFile.saveFileName("", season);
+                QFile(show->dir() + QDir::separator() + saveFileName).remove();
+            }
+        }
+
         if (show->seasonBannerImageChanged(season) && !show->seasonBannerImage(season).isNull()) {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowSeasonBanner)) {
                 QString saveFileName = dataFile.saveFileName("", season);
@@ -1733,7 +1765,14 @@ bool XbmcXml::saveTvShow(TvShow *show)
                 saveFile(show->dir() + QDir::separator() + saveFileName, show->seasonBannerImage(season));
             }
         }
+        if (show->imagesToRemove().contains(TypeSeasonBanner) &&  show->imagesToRemove().value(TypeSeasonBanner).contains(season)) {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowSeasonBanner)) {
+                QString saveFileName = dataFile.saveFileName("", season);
+                QFile(show->dir() + QDir::separator() + saveFileName).remove();
+            }
+        }
     }
+
     saveAdditionalImages(show);
 
     return true;
@@ -1753,6 +1792,13 @@ void XbmcXml::saveAdditionalImages(TvShow *show)
             saveFile(show->dir() + QDir::separator() + saveFileName, show->logoImage());
         }
     }
+    if (show->imagesToRemove().contains(TypeLogo)) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowLogo)) {
+            QString saveFileName = dataFile.saveFileName("");
+            QFile(show->dir() + QDir::separator() + saveFileName).remove();
+        }
+    }
+
     if (show->clearArtImageChanged() && !show->clearArtImage().isNull()) {
         qDebug() << "Clear art image has changed";
         foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowClearArt)) {
@@ -1761,12 +1807,25 @@ void XbmcXml::saveAdditionalImages(TvShow *show)
             saveFile(show->dir() + QDir::separator() + saveFileName, show->clearArtImage());
         }
     }
+    if (show->imagesToRemove().contains(TypeClearArt)) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowClearArt)) {
+            QString saveFileName = dataFile.saveFileName("");
+            QFile(show->dir() + QDir::separator() + saveFileName).remove();
+        }
+    }
+
     if (show->characterArtImageChanged() && !show->characterArtImage().isNull()) {
         qDebug() << "Character art image has changed";
         foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowCharacterArt)) {
             QString saveFileName = dataFile.saveFileName("");
             qDebug() << "Saving character art to" << show->dir() + QDir::separator() + saveFileName;
             saveFile(show->dir() + QDir::separator() + saveFileName, show->characterArtImage());
+        }
+    }
+    if (show->imagesToRemove().contains(TypeCharacterArt)) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowCharacterArt)) {
+            QString saveFileName = dataFile.saveFileName("");
+            QFile(show->dir() + QDir::separator() + saveFileName).remove();
         }
     }
 
@@ -1828,6 +1887,14 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
             saveFile(fi.absolutePath() + QDir::separator() + saveFileName, episode->thumbnailImage());
         }
     }
+
+    if (episode->imagesToRemove().contains(TypeShowThumbnail)) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
+            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, episode->files().count() > 1);
+            QFile(fi.absolutePath() + QDir::separator() + saveFileName).remove();
+        }
+    }
+
 
     return true;
 }
