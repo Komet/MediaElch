@@ -255,6 +255,7 @@ void ClosableImage::setLoading(const bool &loading)
         setMovie(m_loadingMovie);
         m_image = QByteArray();
         m_imagePath.clear();
+        update();
     } else {
         setMovie(0);
     }
@@ -267,6 +268,8 @@ void ClosableImage::clear()
     m_imagePath.clear();
     m_image = QByteArray();
     m_pixmap = QPixmap();
+    m_loading = false;
+    setMovie(0);
     update();
 }
 

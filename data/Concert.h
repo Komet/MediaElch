@@ -154,6 +154,8 @@ public:
     void loadData(QString id, ConcertScraperInterface *scraperInterface, QList<int> infos);
     void loadStreamDetailsFromFile();
     void clearImages();
+    void removeImage(ImageType type);
+    QList<ImageType> imagesToRemove() const;
 
     void scraperLoadDone();
     QList<int> infosToLoad();
@@ -219,6 +221,7 @@ private:
     QList<QByteArray> m_extraFanartImagesToAdd;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
+    QList<ImageType> m_imagesToRemove;
 };
 
 #endif // CONCERT_H

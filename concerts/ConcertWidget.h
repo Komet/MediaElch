@@ -53,17 +53,17 @@ private slots:
     void chooseConcertLogo();
     void chooseConcertClearArt();
     void chooseConcertCdArt();
+    void deleteConcertPoster();
+    void deleteConcertBackdrop();
+    void deleteConcertLogo();
+    void deleteConcertClearArt();
+    void deleteConcertCdArt();
     void posterDownloadFinished(DownloadManagerElement elem);
     void concertNameChanged(QString text);
     void addGenre(QString genre);
     void removeGenre(QString genre);
     void addTag(QString tag);
     void removeTag(QString tag);
-    void onPreviewPoster();
-    void onPreviewBackdrop();
-    void onPreviewLogo();
-    void onPreviewClearArt();
-    void onPreviewCdArt();
     void onRevertChanges();
     void onArtPageOne();
     void onArtPageTwo();
@@ -96,15 +96,11 @@ private:
     DownloadManager *m_posterDownloadManager;
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;
-    QImage m_currentPoster;
-    QImage m_currentBackdrop;
-    QImage m_currentLogo;
-    QImage m_currentClearArt;
-    QImage m_currentCdArt;
     QList<QWidget*> m_streamDetailsWidgets;
     QList< QList<QLineEdit*> > m_streamDetailsAudio;
     QList< QList<QLineEdit*> > m_streamDetailsSubtitles;
     void updateConcertInfo();
+    void updateImages(QList<ImageType> images);
 };
 
 #endif // CONCERTWIDGET_H

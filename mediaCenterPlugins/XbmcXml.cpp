@@ -856,6 +856,16 @@ bool XbmcXml::saveConcert(Concert *concert)
             saveFile(path + QDir::separator() + saveFileName, concert->posterImage());
         }
     }
+    if (concert->imagesToRemove().contains(TypePoster)) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertPoster)) {
+            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
+            if (concert->discType() == DiscBluRay || concert->discType() == DiscDvd)
+                saveFileName = "poster.jpg";
+            QString path = getPath(concert);
+            QFile(path + QDir::separator() + saveFileName).remove();
+        }
+    }
+
     if (concert->backdropImageChanged() && !concert->backdropImage().isNull()) {
         foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertBackdrop)) {
             QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
@@ -863,6 +873,15 @@ bool XbmcXml::saveConcert(Concert *concert)
                 saveFileName = "fanart.jpg";
             QString path = getPath(concert);
             saveFile(path + QDir::separator() + saveFileName, concert->backdropImage());
+        }
+    }
+    if (concert->imagesToRemove().contains(TypeBackdrop)) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertBackdrop)) {
+            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
+            if (concert->discType() == DiscBluRay || concert->discType() == DiscDvd)
+                saveFileName = "fanart.jpg";
+            QString path = getPath(concert);
+            QFile(path + QDir::separator() + saveFileName).remove();
         }
     }
     saveAdditionalImages(concert);
@@ -884,6 +903,14 @@ void XbmcXml::saveAdditionalImages(Concert *concert)
             saveFile(path + QDir::separator() + saveFileName, concert->logoImage());
         }
     }
+    if (concert->imagesToRemove().contains(TypeLogo)) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertLogo)) {
+            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
+            QString path = getPath(concert);
+            QFile(path + QDir::separator() + saveFileName).remove();
+        }
+    }
+
     if (concert->clearArtImageChanged() && !concert->clearArtImage().isNull()) {
         foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertClearArt)) {
             QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
@@ -891,11 +918,26 @@ void XbmcXml::saveAdditionalImages(Concert *concert)
             saveFile(path + QDir::separator() + saveFileName, concert->clearArtImage());
         }
     }
+    if (concert->imagesToRemove().contains(TypeClearArt)) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertClearArt)) {
+            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
+            QString path = getPath(concert);
+            QFile(path + QDir::separator() + saveFileName).remove();
+        }
+    }
+
     if (concert->cdArtImageChanged() && !concert->cdArtImage().isNull()) {
         foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertCdArt)) {
             QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
             QString path = getPath(concert);
             saveFile(path + QDir::separator() + saveFileName, concert->cdArtImage());
+        }
+    }
+    if (concert->imagesToRemove().contains(TypeCdArt)) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertCdArt)) {
+            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
+            QString path = getPath(concert);
+            QFile(path + QDir::separator() + saveFileName).remove();
         }
     }
 
