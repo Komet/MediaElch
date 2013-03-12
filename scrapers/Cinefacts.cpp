@@ -273,12 +273,12 @@ void Cinefacts::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
     }
 
     // Year
-    rx.setPattern("Genre: .* \\| .* ([0-9]{4})");
+    rx.setPattern("Genre: .* \\| .* \\(([0-9]{4})\\)<br>");
     if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1)
         movie->setReleased(QDate::fromString(rx.cap(1).trimmed(), "yyyy"));
 
     // Country
-    rx.setPattern("Genre: .* \\| (.*) ([0-9]{4})<br>");
+    rx.setPattern("Genre: .* \\| (.*) \\(([0-9]{4})\\)<br>");
     if (infos.contains(MovieScraperInfos::Countries) && rx.indexIn(html) != -1)
         movie->addCountry(Helper::mapCountry(rx.cap(1).trimmed()));
 
