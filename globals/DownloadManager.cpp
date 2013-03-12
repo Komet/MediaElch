@@ -22,7 +22,8 @@ DownloadManager::DownloadManager(QObject *parent) :
  */
 QNetworkAccessManager *DownloadManager::qnam()
 {
-    return &m_qnam;
+    static QNetworkAccessManager *qnam = new QNetworkAccessManager(this);
+    return qnam;
 }
 
 /**

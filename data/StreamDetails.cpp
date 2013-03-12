@@ -1,6 +1,8 @@
 #include "StreamDetails.h"
 
 #include <QApplication>
+#include <QDir>
+#include <QFileInfo>
 #include "MediaInfo/MediaInfo.h"
 #include "settings/Settings.h"
 
@@ -37,9 +39,37 @@ void StreamDetails::loadStreamDetails()
     if (m_file.endsWith(".iso", Qt::CaseInsensitive) || m_file.endsWith(".img", Qt::CaseInsensitive))
         return;
 
+    // If it's a DVD structure, compute the biggest part (main movie) and use this IFO file
+    if (m_file.endsWith("VIDEO_TS.IFO")) {
+        QMap<QString, qint64> sizes;
+        QString biggest;
+        qint64 biggestSize = 0;
+        QFileInfo fi(m_file);
+        foreach (const QFileInfo &fiVob, fi.dir().entryInfoList(QStringList() << "VTS_*.VOB" << "vts_*.vob", QDir::Files, QDir::Name)) {
+            QRegExp rx("VTS_([0-9]*)_[0-9]*.VOB");
+            rx.setMinimal(true);
+            rx.setCaseSensitivity(Qt::CaseInsensitive);
+            if (rx.indexIn(fiVob.fileName()) != -1) {
+                if (!sizes.contains(rx.cap(1)))
+                    sizes.insert(rx.cap(1), 0);
+                sizes[rx.cap(1)] += fiVob.size();
+                if (sizes[rx.cap(1)] > biggestSize) {
+                    biggestSize = sizes[rx.cap(1)];
+                    biggest = rx.cap(1);
+                }
+            }
+        }
+        if (!biggest.isEmpty()) {
+            QFileInfo fiNew(fi.absolutePath() + "/VTS_" + biggest + "_0.IFO");
+            if (fiNew.isFile() && fiNew.exists())
+                m_file = fiNew.absoluteFilePath();
+        }
+    }
+
     MediaInfo MI;
     MI.Option(QString("Info_Version").toStdWString(), QString("0.7.61;%1;%2").arg(QApplication::applicationName()).arg(QApplication::applicationVersion()).toStdWString());
     MI.Option(QString("Internet").toStdWString(), QString("no").toStdWString());
+
 #ifdef Q_OS_WIN32
     MI.Open(m_file.toStdWString());
 #else

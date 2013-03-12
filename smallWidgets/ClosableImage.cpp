@@ -135,11 +135,17 @@ void ClosableImage::setImage(const QString &image)
     if (m_scaleTo == Qt::Horizontal) {
         // scale to width
         setFixedWidth(m_fixedSize);
-        setFixedHeight(qCeil((((qreal)width()-9)/imageWidth)*imageHeight+7+zoomSpace));
+        if (imageWidth == 0 || imageHeight == 0)
+            setFixedHeight(135);
+        else
+            setFixedHeight(qCeil((((qreal)width()-9)/imageWidth)*imageHeight+7+zoomSpace));
     } else {
         // scale to height
         setFixedHeight(m_fixedSize);
-        setFixedWidth(qCeil((((qreal)height()-7-zoomSpace)/imageHeight)*imageWidth+9));
+        if (imageWidth == 0 || imageHeight == 0)
+            setFixedWidth(200);
+        else
+            setFixedWidth(qCeil((((qreal)height()-7-zoomSpace)/imageHeight)*imageWidth+9));
     }
 }
 
