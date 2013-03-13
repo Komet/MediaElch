@@ -3,6 +3,7 @@
 #include <QNetworkProxy>
 #include "data/ScraperInterface.h"
 #include "globals/Manager.h"
+#include "renamer/Renamer.h"
 
 Settings *Settings::m_instance = 0;
 
@@ -801,8 +802,14 @@ void Settings::loadFrodoDefaults()
 
 void Settings::renamePatterns(int renameType, QString &fileNamePattern, QString &fileNamePatternMulti, QString &directoryPattern, QString &seasonPattern)
 {
-    fileNamePattern = m_settings.value(QString("RenamePattern/%1/FileName").arg(renameType), "<title>.<extension>").toString();
-    fileNamePatternMulti = m_settings.value(QString("RenamePattern/%1/FileNameMulti").arg(renameType), "<title>-part<partNo>.<extension>").toString();
+    QString fileNamePatternDefault = "<title>.<extension>";
+    QString fileNamePatternMultiDefault = "<title>-part<partNo>.<extension>";
+    if (renameType == Renamer::TypeTvShows) {
+        fileNamePatternDefault = "S<season>E<episode> - <title>.<extension>";
+        fileNamePatternMultiDefault = "S<season>E<episode> - <title>-part<partNo>.<extension>";
+    }
+    fileNamePattern = m_settings.value(QString("RenamePattern/%1/FileName").arg(renameType), fileNamePatternDefault).toString();
+    fileNamePatternMulti = m_settings.value(QString("RenamePattern/%1/FileNameMulti").arg(renameType), fileNamePatternMultiDefault).toString();
     directoryPattern = m_settings.value(QString("RenamePattern/%1/DirectoryPattern").arg(renameType), "<title> (<year>)").toString();
     seasonPattern = m_settings.value(QString("RenamePattern/%1/SeasonPattern").arg(renameType), "Season <season>").toString();
 }
