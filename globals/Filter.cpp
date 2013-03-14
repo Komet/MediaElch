@@ -24,7 +24,7 @@ Filter::Filter(QString text, QString shortText, QStringList filterText, int info
  */
 bool Filter::accepts(QString text) const
 {
-    if (m_info == MovieFilters::Title || m_info == TvShowFilters::Title || m_info == ConcertFilters::Title)
+    if (m_info == MovieFilters::Title || m_info == MovieFilters::Path || m_info == TvShowFilters::Title || m_info == ConcertFilters::Title)
         return true;
     foreach (const QString &filterText, m_filterText) {
         if (filterText.startsWith(text, Qt::CaseInsensitive))
@@ -115,6 +115,17 @@ bool Filter::accepts(Movie *movie)
         return movie->name().contains(m_shortText, Qt::CaseInsensitive);
     if (m_info == MovieFilters::StreamDetails)
         return (m_hasInfo && movie->streamDetailsLoaded()) || (!m_hasInfo && !movie->streamDetailsLoaded());
+    if (m_info == MovieFilters::Studio)
+        return (m_hasInfo && movie->studios().contains(m_shortText)) || (!m_hasInfo && movie->studios().isEmpty());
+    if (m_info == MovieFilters::Country)
+        return (m_hasInfo && movie->countries().contains(m_shortText)) || (!m_hasInfo && movie->countries().isEmpty());
+    if (m_info == MovieFilters::Path) {
+        foreach (const QString &file, movie->files()) {
+            if (file.contains(m_shortText, Qt::CaseInsensitive))
+                return true;
+        }
+        return false;
+    }
 
     return true;
 }

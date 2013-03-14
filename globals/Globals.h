@@ -244,14 +244,17 @@ namespace MovieFilters {
     const int ExtraFanarts  = 13;
     const int Actors        = 14;
     const int LocalTrailer  = 15;
+    const int Country       = 16;
+    const int Studio        = 17;
+    const int Path          = 18;
 }
 
 namespace TvShowFilters {
-    const int Title         = 16;
+    const int Title         = 19;
 }
 
 namespace ConcertFilters {
-    const int Title         = 17;
+    const int Title         = 20;
 }
 
 enum SortBy {

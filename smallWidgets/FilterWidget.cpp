@@ -118,6 +118,12 @@ void FilterWidget::onFilterTextChanged(QString text)
             filter->setShortText(text);
         }
 
+        if ((filter->info() == MovieFilters::Path)
+            && !m_activeFilters.contains(filter)) {
+            filter->setText(tr("Filename contains \"%1\"").arg(text));
+            filter->setShortText(text);
+        }
+
         QListWidgetItem *item = new QListWidgetItem(filter->text(), m_list);
         item->setData(Qt::UserRole, QVariant::fromValue(filter));
         item->setBackgroundColor(QColor(255, 255, 255, 200));
@@ -141,7 +147,7 @@ void FilterWidget::onFilterTextChanged(QString text)
         m_list->addItem(bottomItem);
         height += m_list->sizeHintForRow(m_list->count()-1);
 
-        m_list->setFixedHeight(height);
+        m_list->setFixedHeight(qMin(300, height));
         m_list->setFixedWidth(m_list->sizeHintForColumn(0)+5);
         m_list->move(ui->lineEdit->mapToGlobal(QPoint(ui->lineEdit->paddingLeft(), ui->lineEdit->height())));
         m_list->show();
@@ -233,10 +239,20 @@ void FilterWidget::setupMovieFilters()
     QStringList years;
     QStringList genres;
     QStringList certifications;
+    QStringList studios;
+    QStringList countries;
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         foreach (const QString &genre, movie->genres()) {
             if (!genre.isEmpty() && !genres.contains(genre))
                 genres.append(genre);
+        }
+        foreach (const QString &studio, movie->studios()) {
+            if (!studio.isEmpty() && !studios.contains(studio))
+                studios.append(studio);
+        }
+        foreach (const QString &country, movie->countries()) {
+            if (!country.isEmpty() && !countries.contains(country))
+                countries.append(country);
         }
         if (movie->released().isValid() && !years.contains(QString("%1").arg(movie->released().year())))
             years.append(QString("%1").arg(movie->released().year()));
@@ -246,6 +262,8 @@ void FilterWidget::setupMovieFilters()
     certifications.sort();
     genres.sort();
     years.sort();
+    studios.sort();
+    countries.sort();
 
     // Clear out all filters which doesn't exist
     foreach (Filter *filter, m_movieGenreFilters) {
@@ -285,6 +303,42 @@ void FilterWidget::setupMovieFilters()
     }
     m_movieGenreFilters = genreFilters;
 
+    QList<Filter*> studioFilters;
+    // Add new filters
+    foreach (const QString &studio, studios) {
+        Filter *f = 0;
+        foreach (Filter *filter, m_movieStudioFilters) {
+            if (filter->shortText() == studio) {
+                f = filter;
+                break;
+            }
+        }
+        if (f)
+            studioFilters << f;
+        else
+            studioFilters << new Filter(tr("Studio \"%1\"").arg(studio), studio,
+                                       QStringList() << tr("Studio") << studio, MovieFilters::Studio, true);
+    }
+    m_movieStudioFilters = studioFilters;
+
+    QList<Filter*> countryFilters;
+    // Add new filters
+    foreach (const QString &country, countries) {
+        Filter *f = 0;
+        foreach (Filter *filter, m_movieCountryFilters) {
+            if (filter->shortText() == country) {
+                f = filter;
+                break;
+            }
+        }
+        if (f)
+            countryFilters << f;
+        else
+            countryFilters << new Filter(tr("Country \"%1\"").arg(country), country,
+                                       QStringList() << tr("Country") << country, MovieFilters::Country, true);
+    }
+    m_movieCountryFilters = countryFilters;
+
     QList<Filter*> yearFilters;
     foreach (const QString &year, years) {
         Filter *f = 0;
@@ -322,6 +376,8 @@ void FilterWidget::setupMovieFilters()
     QList<Filter*> filters;
     filters << m_movieFilters
             << m_movieGenreFilters
+            << m_movieStudioFilters
+            << m_movieCountryFilters
             << m_movieYearFilters
             << m_movieCertificationFilters;
     m_filters = filters;
@@ -349,6 +405,7 @@ void FilterWidget::setupConcertFilters()
 void FilterWidget::initFilters()
 {
     m_movieFilters << new Filter(tr("Title"), "", QStringList(), MovieFilters::Title, true);
+    m_movieFilters << new Filter(tr("Filename"), "", QStringList(), MovieFilters::Path, true);
     m_movieFilters << new Filter(tr("Movie has Poster"), tr("Poster"),
                                  QStringList() << tr("Poster"), MovieFilters::Poster, true);
     m_movieFilters << new Filter(tr("Movie has no Poster"), tr("No Poster"),
@@ -397,6 +454,10 @@ void FilterWidget::initFilters()
                                  QStringList() << tr("Poster"), MovieFilters::Actors, true);
     m_movieFilters << new Filter(tr("Movie has no Actors"), tr("No Actors"),
                                  QStringList() << tr("Actors"), MovieFilters::Actors, false);
+    m_movieFilters << new Filter(tr("Movie has no Studio"), tr("No Studio"),
+                                 QStringList() << tr("Studio"), MovieFilters::Studio, false);
+    m_movieFilters << new Filter(tr("Movie has no Country"), tr("No Country"),
+                                 QStringList() << tr("Country"), MovieFilters::Country, false);
 
     m_tvShowFilters << new Filter(tr("Title"), "", QStringList(), TvShowFilters::Title, true);
 

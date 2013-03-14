@@ -3,6 +3,7 @@
 #include <QNetworkProxy>
 #include "data/ScraperInterface.h"
 #include "globals/Manager.h"
+#include "renamer/Renamer.h"
 
 Settings *Settings::m_instance = 0;
 
@@ -135,6 +136,9 @@ void Settings::loadSettings(QSettings &settings)
     // Tv Shows
     m_tvShowDvdOrder = settings.value("TvShows/DvdOrder", false).toBool();
 
+    // Warnings
+    m_dontShowDeleteImageConfirm = settings.value("Warnings/DontShowDeleteImageConfirm", false).toBool();
+
     // Movie Directories
     m_movieDirectories.clear();
     int moviesSize = settings.beginReadArray("Directories/Movies");
@@ -256,6 +260,9 @@ void Settings::saveSettings()
 
     // Tv Shows
     m_settings.setValue("TvShows/DvdOrder", m_tvShowDvdOrder);
+
+    // Warnings
+    m_settings.setValue("Warnings/DontShowDeleteImageConfirm", m_dontShowDeleteImageConfirm);
 
     m_settings.beginWriteArray("Directories/Movies");
     for (int i=0, n=m_movieDirectories.count() ; i<n ; ++i) {
@@ -795,8 +802,14 @@ void Settings::loadFrodoDefaults()
 
 void Settings::renamePatterns(int renameType, QString &fileNamePattern, QString &fileNamePatternMulti, QString &directoryPattern, QString &seasonPattern)
 {
-    fileNamePattern = m_settings.value(QString("RenamePattern/%1/FileName").arg(renameType), "<title>.<extension>").toString();
-    fileNamePatternMulti = m_settings.value(QString("RenamePattern/%1/FileNameMulti").arg(renameType), "<title>-part<partNo>.<extension>").toString();
+    QString fileNamePatternDefault = "<title>.<extension>";
+    QString fileNamePatternMultiDefault = "<title>-part<partNo>.<extension>";
+    if (renameType == Renamer::TypeTvShows) {
+        fileNamePatternDefault = "S<season>E<episode> - <title>.<extension>";
+        fileNamePatternMultiDefault = "S<season>E<episode> - <title>-part<partNo>.<extension>";
+    }
+    fileNamePattern = m_settings.value(QString("RenamePattern/%1/FileName").arg(renameType), fileNamePatternDefault).toString();
+    fileNamePatternMulti = m_settings.value(QString("RenamePattern/%1/FileNameMulti").arg(renameType), fileNamePatternMultiDefault).toString();
     directoryPattern = m_settings.value(QString("RenamePattern/%1/DirectoryPattern").arg(renameType), "<title> (<year>)").toString();
     seasonPattern = m_settings.value(QString("RenamePattern/%1/SeasonPattern").arg(renameType), "Season <season>").toString();
 }
@@ -907,4 +920,15 @@ void Settings::setTvShowDvdOrder(bool order)
 {
     m_tvShowDvdOrder = order;
     saveSettings();
+}
+
+void Settings::setDontShowDeleteImageConfirm(bool show)
+{
+    m_dontShowDeleteImageConfirm = show;
+    saveSettings();
+}
+
+bool Settings::dontShowDeleteImageConfirm() const
+{
+    return m_dontShowDeleteImageConfirm;
 }

@@ -43,9 +43,9 @@ private slots:
     void onAddWriter();
     void onRemoveWriter();
     void onChooseThumbnail();
+    void onDeleteThumbnail();
     void onPosterDownloadFinished(DownloadManagerElement elem);
     void onLoadDone();
-    void onPreviewBackdrop();
     void onRevertChanges();
 
     void onNameChange(QString text);
@@ -73,7 +73,6 @@ private:
     QLabel *m_savingWidget;
     QMovie *m_loadingMovie;
     DownloadManager *m_posterDownloadManager;
-    QImage m_currentBackdrop;
     QList<QWidget*> m_streamDetailsWidgets;
     QList< QList<QLineEdit*> > m_streamDetailsAudio;
     QList< QList<QLineEdit*> > m_streamDetailsSubtitles;

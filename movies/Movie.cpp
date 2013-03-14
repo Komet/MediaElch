@@ -105,6 +105,7 @@ void Movie::clear(QList<int> infos)
         m_backdrops.clear();
         m_backdropImage = QByteArray();
         m_backdropImageChanged = false;
+        m_imagesToRemove.removeOne(TypeBackdrop);
     }
     if (infos.contains(MovieScraperInfos::Countries))
         m_countries.clear();
@@ -115,6 +116,7 @@ void Movie::clear(QList<int> infos)
         m_posterImage = QByteArray();
         m_posterImageChanged = false;
         m_numPrimaryLangPosters = 0;
+        m_imagesToRemove.removeOne(TypePoster);
     }
     if (infos.contains(MovieScraperInfos::Studios))
         m_studios.clear();
@@ -153,6 +155,9 @@ void Movie::clear(QList<int> infos)
         m_clearArtImageChanged = false;
         m_cdArtImage = QByteArray();
         m_cdArtImageChanged = false;
+        m_imagesToRemove.removeOne(TypeLogo);
+        m_imagesToRemove.removeOne(TypeClearArt);
+        m_imagesToRemove.removeOne(TypeCdArt);
     }
     if (infos.contains(MovieScraperInfos::ExtraFanarts)) {
         m_extraFanartsToRemove.clear();
@@ -1597,6 +1602,60 @@ void Movie::setHasExtraFanarts(bool has)
 bool Movie::hasExtraFanarts() const
 {
     return m_hasExtraFanarts;
+}
+
+QList<ImageType> Movie::imagesToRemove() const
+{
+    return m_imagesToRemove;
+}
+
+void Movie::removeImage(ImageType type)
+{
+    switch (type) {
+    case TypePoster:
+        if (!m_posterImage.isNull()) {
+            m_posterImage = QByteArray();
+            m_posterImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.append(type);
+        }
+        break;
+    case TypeBackdrop:
+        if (!m_backdropImage.isNull()) {
+            m_backdropImage = QByteArray();
+            m_backdropImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.append(type);
+        }
+        break;
+    case TypeLogo:
+        if (!m_logoImage.isNull()) {
+            m_logoImage = QByteArray();
+            m_logoImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.append(type);
+        }
+        break;
+    case TypeClearArt:
+        if (!m_clearArtImage.isNull()) {
+            m_clearArtImage = QByteArray();
+            m_clearArtImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.append(type);
+        }
+        break;
+    case TypeCdArt:
+        if (!m_cdArtImage.isNull()) {
+            m_cdArtImage = QByteArray();
+            m_cdArtImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.append(type);
+        }
+        break;
+    default:
+        break;
+    }
+    setChanged(true);
 }
 
 /*** DEBUG ***/
