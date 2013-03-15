@@ -1,4 +1,4 @@
-mediaelch (1.5-1) unstable; urgency=low
+mediaelch (1.5-1) precise; urgency=low
 
   * Bugfix: Replace illegal characters in filenames on Windows
   * Reduced memory usage when multi scrape movies
