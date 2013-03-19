@@ -1,5 +1,5 @@
 Source: mediaelch
-Section: unknown
+Section: misc
 Priority: extra
 Maintainer: Daniel Kabel <daniel.kabel@me.com>
 Build-Depends: debhelper (>= 8.0.0), libqt4-dev, qt4-qmake, cdbs, libmediainfo0, libmediainfo-dev, zlib1g-dev, libzen-dev, libphonon-dev
