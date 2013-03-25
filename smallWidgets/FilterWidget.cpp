@@ -439,7 +439,7 @@ void FilterWidget::initFilters()
     m_movieFilters << new Filter(tr("Movie has no local Trailer"), tr("No local Trailer"),
                                  QStringList() << tr("Trailer") << tr("Local Trailer"), MovieFilters::LocalTrailer, false);
     m_movieFilters << new Filter(tr("Movie is Watched"), tr("Watched"),
-                                 QStringList() << tr("Watched") << tr("Seen"), MovieFilters::Watched, false);
+                                 QStringList() << tr("Watched") << tr("Seen"), MovieFilters::Watched, true);
     m_movieFilters << new Filter(tr("Movie is Unwatched"), tr("Unwatched"),
                                  QStringList() << tr("Watched") << tr("Seen") << tr("Unwatched") << tr("Unseen"), MovieFilters::Watched, false);
     m_movieFilters << new Filter(tr("Movie has no Certification"), tr("No Certification"),
