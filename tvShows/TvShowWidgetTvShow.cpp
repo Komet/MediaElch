@@ -174,6 +174,7 @@ void TvShowWidgetTvShow::onClear()
     ui->logo->clear();
     ui->clearArt->clear();
     ui->characterArt->clear();
+    ui->tagCloud->clear();
     ui->buttonRevert->setVisible(false);
 }
 
@@ -245,9 +246,13 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->actors->blockSignals(false);
 
     QStringList genres;
-    foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows())
+    QStringList tags;
+    foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
         genres.append(show->genres());
+        tags.append(show->tags());
+    }
     ui->genreCloud->setTags(genres, m_show->genres());
+    ui->tagCloud->setTags(tags, m_show->tags());
 
     QStringList certifications = m_show->certifications();
     certifications.prepend("");

@@ -169,6 +169,7 @@ void ConcertWidget::clear()
     ui->clearArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->cdArt->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->genreCloud->clear();
+    ui->tagCloud->clear();
 
     ui->fanarts->clear();
     ui->poster->clear();

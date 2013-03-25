@@ -301,6 +301,7 @@ void MovieWidget::clear()
     ui->genreCloud->clear();
     ui->countryCloud->clear();
     ui->studioCloud->clear();
+    ui->tagCloud->clear();
     ui->buttonRevert->setVisible(false);
     ui->localTrailer->setVisible(false);
     ui->fanarts->clear();
