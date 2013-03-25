@@ -451,7 +451,7 @@ void FilterWidget::initFilters()
     m_movieFilters << new Filter(tr("Stream Details not loaded"), tr("No Stream Details"),
                                  QStringList() << tr("Stream Details"), MovieFilters::StreamDetails, false);
     m_movieFilters << new Filter(tr("Movie has Actors"), tr("Actors"),
-                                 QStringList() << tr("Poster"), MovieFilters::Actors, true);
+                                 QStringList() << tr("Actors"), MovieFilters::Actors, true);
     m_movieFilters << new Filter(tr("Movie has no Actors"), tr("No Actors"),
                                  QStringList() << tr("Actors"), MovieFilters::Actors, false);
     m_movieFilters << new Filter(tr("Movie has no Studio"), tr("No Studio"),
