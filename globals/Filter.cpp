@@ -119,6 +119,11 @@ bool Filter::accepts(Movie *movie)
         return (m_hasInfo && movie->studios().contains(m_shortText)) || (!m_hasInfo && movie->studios().isEmpty());
     if (m_info == MovieFilters::Country)
         return (m_hasInfo && movie->countries().contains(m_shortText)) || (!m_hasInfo && movie->countries().isEmpty());
+    if (m_info == MovieFilters::Tags)
+        return (m_hasInfo && movie->tags().contains(m_shortText)) || (!m_hasInfo && movie->tags().isEmpty());
+    if (m_info == MovieFilters::Director)
+        return (m_hasInfo && movie->director() == m_shortText) || (!m_hasInfo && movie->director().isEmpty());
+
     if (m_info == MovieFilters::Path) {
         foreach (const QString &file, movie->files()) {
             if (file.contains(m_shortText, Qt::CaseInsensitive))

@@ -247,14 +247,16 @@ namespace MovieFilters {
     const int Country       = 16;
     const int Studio        = 17;
     const int Path          = 18;
+    const int Director      = 19;
+    const int Tags          = 20;
 }
 
 namespace TvShowFilters {
-    const int Title         = 19;
+    const int Title         = 21;
 }
 
 namespace ConcertFilters {
-    const int Title         = 20;
+    const int Title         = 22;
 }
 
 enum SortBy {

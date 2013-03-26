@@ -874,6 +874,42 @@ p, li { white-space: pre-wrap; }
         <source>No Country</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Tag &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tag</source>
+        <translation type="unfinished">Tag</translation>
+    </message>
+    <message>
+        <source>Director &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Director</source>
+        <translation type="unfinished">Diretor</translation>
+    </message>
+    <message>
+        <source>Movie has no Director</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Director</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movie has no Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tags</source>
+        <translation type="unfinished">Tags</translation>
+    </message>
 </context>
 <context>
     <name>GenreWidget</name>

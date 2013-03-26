@@ -43,6 +43,8 @@ private:
     QList<Filter*> m_movieCountryFilters;
     QList<Filter*> m_movieYearFilters;
     QList<Filter*> m_movieCertificationFilters;
+    QList<Filter*> m_movieDirectorFilters;
+    QList<Filter*> m_movieTagsFilters;
     QList<Filter*> m_tvShowFilters;
     QList<Filter*> m_concertFilters;
     QListWidget *m_list;
