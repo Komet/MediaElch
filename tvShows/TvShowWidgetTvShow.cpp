@@ -731,48 +731,66 @@ void TvShowWidgetTvShow::onChooseCharacterArt()
 void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
 {
     qDebug() << "Entered";
-    if (elem.imageType == TypePoster) {
-        qDebug() << "Got a poster";
+
+    switch (elem.imageType) {
+    case TypePoster:
         if (m_show == elem.show)
             ui->poster->setImage(elem.data);
         ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->posterImageName(elem.show));
         elem.show->setPosterImage(elem.data);
-    } else if (elem.imageType == TypeBackdrop) {
-        qDebug() << "Got a backdop";
+        break;
+    case TypeBackdrop:
         Helper::resizeBackdrop(elem.data);
         if (m_show == elem.show)
             ui->backdrop->setImage(elem.data);
         ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->backdropImageName(elem.show));
         elem.show->setBackdropImage(elem.data);
-    } else if (elem.imageType == TypeBanner) {
-        qDebug() << "Got a banner";
+        break;
+    case TypeBanner:
         if (m_show == elem.show)
             ui->banner->setImage(elem.data);
         ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->bannerImageName(elem.show));
         elem.show->setBannerImage(elem.data);
-    } else if (elem.imageType == TypeLogo) {
-        qDebug() << "Got a logo";
+        break;
+    case TypeLogo:
         if (m_show == elem.show)
             ui->logo->setImage(elem.data);
         ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->logoImageName(elem.show));
         elem.show->setLogoImage(elem.data);
-    } else if (elem.imageType == TypeCharacterArt) {
-        qDebug() << "Got a character art";
+        break;
+    case TypeCharacterArt:
         if (m_show == elem.show)
             ui->characterArt->setImage(elem.data);
         ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->characterArtImageName(elem.show));
         elem.show->setCharacterArtImage(elem.data);
-    } else if (elem.imageType == TypeClearArt) {
-        qDebug() << "Got a clear art";
+        break;
+    case TypeClearArt:
         if (m_show == elem.show)
             ui->clearArt->setImage(elem.data);
         ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->clearArtImageName(elem.show));
         elem.show->setClearArtImage(elem.data);
-    } else if (elem.imageType == TypeExtraFanart) {
+        break;
+    case TypeExtraFanart:
         Helper::resizeBackdrop(elem.data);
         elem.show->addExtraFanart(elem.data);
         if (elem.show == m_show)
             ui->fanarts->addImage(elem.data);
+        break;
+    case TypeSeasonPoster:
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->seasonPosterImageName(elem.show, elem.season));
+        elem.show->setSeasonPosterImage(elem.season, elem.data);
+        break;
+    case TypeSeasonBackdrop:
+        Helper::resizeBackdrop(elem.data);
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->seasonBackdropImageName(elem.show, elem.season));
+        elem.show->setSeasonBackdropImage(elem.season, elem.data);
+        break;
+    case TypeSeasonBanner:
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->seasonBannerImageName(elem.show, elem.season));
+        elem.show->setSeasonBannerImage(elem.season, elem.data);
+        break;
+    default:
+        break;
     }
 
     if (m_posterDownloadManager->downloadsLeftForShow(m_show) == 0) {

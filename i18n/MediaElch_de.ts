@@ -4918,17 +4918,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="251"/>
         <source>Season Poster</source>
-        <translation>Staffelposter</translation>
+        <translation>Staffel-Poster</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="261"/>
         <source>Season Fanart</source>
-        <translation>Staffel Fanart</translation>
+        <translation>Staffel-Fanart</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="271"/>
         <source>Season Banner</source>
-        <translation>Staffel Banner</translation>
+        <translation>Staffel-Banner</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="281"/>
