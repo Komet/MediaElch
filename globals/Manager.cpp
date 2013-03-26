@@ -53,6 +53,8 @@ Manager::Manager(QObject *parent) :
 
     m_trailerProviders.append(new MovieMaze(this));
     m_trailerProviders.append(new HdTrailers(this));
+
+    m_tvTunes = new TvTunes(this);
 }
 
 /**
@@ -286,4 +288,9 @@ void Manager::setFileScannerDialog(FileScannerDialog *dialog)
 QList<TrailerProvider*> Manager::trailerProviders()
 {
     return m_trailerProviders;
+}
+
+TvTunes* Manager::tvTunes()
+{
+    return m_tvTunes;
 }

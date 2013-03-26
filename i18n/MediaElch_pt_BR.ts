@@ -3624,6 +3624,69 @@ p, li { white-space: pre-wrap; }
         <source>Extended</source>
         <translation>Extendido</translation>
     </message>
+    <message>
+        <source>TV Tune</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Existing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Missing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TvTunesDialog</name>
+    <message>
+        <source>Result</source>
+        <translation type="unfinished">Resultado</translation>
+    </message>
+    <message>
+        <source>0:00 / 0:00</source>
+        <translation type="unfinished">0:00 / 0:00</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Progresso</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished">Download</translation>
+    </message>
+    <message>
+        <source>Cancel Download</source>
+        <translation type="unfinished">Cancelar Download</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished">Fechar</translation>
+    </message>
+    <message>
+        <source>Download Finished</source>
+        <translation type="unfinished">Download Finalizado</translation>
+    </message>
+    <message>
+        <source>The file %1 already exists.</source>
+        <translation type="unfinished">O arquivo %1 já existe.</translation>
+    </message>
+    <message>
+        <source>Do you want to overwrite it?</source>
+        <translation type="unfinished">Você deseja sobrescrevê-lo?</translation>
+    </message>
+    <message>
+        <source>Download Canceled</source>
+        <translation type="unfinished">Download Cancelado</translation>
+    </message>
+    <message>
+        <source>TV Tunes</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>XbmcSync</name>

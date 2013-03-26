@@ -92,6 +92,7 @@ public:
     int databaseId() const;
     bool syncNeeded() const;
     QList<int> infosToLoad() const;
+    bool hasTune() const;
 
     void setName(QString name);
     void setShowTitle(QString title);
@@ -128,6 +129,7 @@ public:
     void setNfoContent(QString content);
     void setDatabaseId(int id);
     void setSyncNeeded(bool syncNeeded);
+    void setHasTune(bool hasTune);
 
     void removeActor(Actor *actor);
     void removeGenre(QString genre);
@@ -210,6 +212,7 @@ private:
     bool m_logoImageChanged;
     bool m_clearArtImageChanged;
     bool m_characterArtImageChanged;
+    bool m_hasTune;
     QMap<int, QByteArray> m_seasonPosterImages;
     QList<int> m_seasonPosterImagesChanged;
     QMap<int, QByteArray> m_seasonBackdropImages;

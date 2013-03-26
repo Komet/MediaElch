@@ -1572,6 +1572,9 @@ bool XbmcXml::loadTvShow(TvShow *show, QString initialNfoContent)
         }
     }
 
+    QFileInfo fi(show->dir() + "/theme.mp3");
+    show->setHasTune(fi.isFile());
+
     return true;
 }
 

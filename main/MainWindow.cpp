@@ -19,9 +19,10 @@
 #include "main/MessageBox.h"
 #include "movies/MovieMultiScrapeDialog.h"
 #include "movies/MovieSearch.h"
-#include "tvShows/TvShowSearch.h"
 #include "sets/MovieListDialog.h"
 #include "settings/Settings.h"
+#include "tvShows/TvShowSearch.h"
+#include "tvShows/TvTunesDialog.h"
 #include "xbmc/XbmcSync.h"
 
 #ifdef Q_OS_MAC
@@ -159,6 +160,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ImagePreviewDialog::instance(ui->centralWidget);
     ConcertSearch::instance(ui->centralWidget);
     TrailerDialog::instance(ui->centralWidget);
+    TvTunesDialog::instance(ui->centralWidget);
     NameFormatter::instance(this);
     MovieMultiScrapeDialog::instance(ui->centralWidget);
 

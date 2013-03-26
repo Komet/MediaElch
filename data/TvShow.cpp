@@ -31,6 +31,7 @@ TvShow::TvShow(QString dir, QObject *parent) :
     m_showId = ++m_idCounter;
     m_databaseId = -1;
     m_syncNeeded = false;
+    m_hasTune = false;
 }
 
 /**
@@ -1457,6 +1458,16 @@ void TvShow::removeImage(ImageType type, int season)
         break;
     }
     setChanged(true);
+}
+
+void TvShow::setHasTune(bool hasTune)
+{
+    m_hasTune = hasTune;
+}
+
+bool TvShow::hasTune() const
+{
+    return m_hasTune;
 }
 
 /*** DEBUG ***/

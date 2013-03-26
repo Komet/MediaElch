@@ -129,7 +129,9 @@ SOURCES += main.cpp\
     settings/AdvancedSettings.cpp \
     smallWidgets/AlphabeticalList.cpp \
     smallWidgets/MyTableView.cpp \
-    data/ImageCache.cpp
+    data/ImageCache.cpp \
+    scrapers/TvTunes.cpp \
+    tvShows/TvTunesDialog.cpp
 
 HEADERS  += main/MainWindow.h \
     movies/Movie.h \
@@ -233,7 +235,9 @@ HEADERS  += main/MainWindow.h \
     settings/AdvancedSettings.h \
     smallWidgets/AlphabeticalList.h \
     smallWidgets/MyTableView.h \
-    data/ImageCache.h
+    data/ImageCache.h \
+    scrapers/TvTunes.h \
+    tvShows/TvTunesDialog.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -268,7 +272,8 @@ FORMS    += main/MainWindow.ui \
     movies/MovieMultiScrapeDialog.ui \
     smallWidgets/TagCloud.ui \
     tvShows/TvShowWidgetSeason.ui \
-    renamer/Renamer.ui
+    renamer/Renamer.ui \
+    tvShows/TvTunesDialog.ui
 
 RESOURCES += \
     MediaElch.qrc

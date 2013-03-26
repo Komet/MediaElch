@@ -1671,99 +1671,99 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="558"/>
-        <location filename="../main/MainWindow.cpp" line="266"/>
+        <location filename="../main/MainWindow.cpp" line="268"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="563"/>
-        <location filename="../main/MainWindow.cpp" line="272"/>
+        <location filename="../main/MainWindow.cpp" line="274"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="568"/>
-        <location filename="../main/MainWindow.cpp" line="271"/>
+        <location filename="../main/MainWindow.cpp" line="273"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="246"/>
+        <location filename="../main/MainWindow.cpp" line="248"/>
         <source>Search</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="248"/>
+        <location filename="../main/MainWindow.cpp" line="250"/>
         <source>Search (%1)</source>
         <translation>Suche (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="250"/>
+        <location filename="../main/MainWindow.cpp" line="252"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="252"/>
+        <location filename="../main/MainWindow.cpp" line="254"/>
         <source>Save (%1)</source>
         <translation>Speichern (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="254"/>
+        <location filename="../main/MainWindow.cpp" line="256"/>
         <source>Save All</source>
         <translation>Alle Speichern</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="257"/>
+        <location filename="../main/MainWindow.cpp" line="259"/>
         <source>Save All (%1)</source>
         <translation>Alle Speichern (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="261"/>
+        <location filename="../main/MainWindow.cpp" line="263"/>
         <source>Reload all files (%1)</source>
         <translation>Lädt alle Dateien neu (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="263"/>
+        <location filename="../main/MainWindow.cpp" line="265"/>
         <source>Rename</source>
         <translation>Umbenennen</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="264"/>
+        <location filename="../main/MainWindow.cpp" line="266"/>
         <source>Rename selected files</source>
         <translation>Ausgewählte Dateien umbenennen</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="268"/>
+        <location filename="../main/MainWindow.cpp" line="270"/>
         <source>XBMC</source>
         <translation>XBMC</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="269"/>
+        <location filename="../main/MainWindow.cpp" line="271"/>
         <source>Synchronize to XBMC</source>
         <translation>Synchronisiere XBMC</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="274"/>
+        <location filename="../main/MainWindow.cpp" line="276"/>
         <source>Support</source>
         <translation>Support</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="394"/>
+        <location filename="../main/MainWindow.cpp" line="396"/>
         <source>Reload all Movies (%1)</source>
         <translation>Filme neu laden (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="396"/>
+        <location filename="../main/MainWindow.cpp" line="398"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>Serien neu laden (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="398"/>
+        <location filename="../main/MainWindow.cpp" line="400"/>
         <source>Reload all Concerts (%1)</source>
         <translation>Konzerte neu laden (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="259"/>
+        <location filename="../main/MainWindow.cpp" line="261"/>
         <source>Reload</source>
         <translation>Neu laden</translation>
     </message>
@@ -2836,12 +2836,12 @@ Operation abgebrochen.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="174"/>
+        <location filename="../main.cpp" line="175"/>
         <source>Logfile could not be openened</source>
         <translation>Logdatei konnte nicht geöffnet werden</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="175"/>
+        <location filename="../main.cpp" line="176"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Die Logdatei %1 konnte nicht zum Schreiben geöffnet werden.</translation>
     </message>
@@ -5450,27 +5450,47 @@ p, li { white-space: pre-wrap; }
         <translation>Inhalt</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="205"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="202"/>
+        <source>TV Tune</source>
+        <translation>TV Theme</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="211"/>
+        <source>Existing</source>
+        <translation>Vorhanden</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="218"/>
+        <source>Missing</source>
+        <translation>Fehlt</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="228"/>
+        <source>Download Theme</source>
+        <translation>Theme downloaden</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="252"/>
         <source>Extended</source>
         <translation>Erweitert</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="411"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="458"/>
         <source>Extra Fanarts</source>
         <translation>Extra Fanarts</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="433"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="480"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation>Hinweis: Geschlossene Bilder werden beim Speichern gelöscht.</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="456"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="503"/>
         <source>Add Images</source>
         <translation>Bilder hinzufügen</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="58"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="62"/>
         <source>Genres</source>
         <translation>Genres</translation>
     </message>
@@ -5479,7 +5499,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Genre</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="59"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="63"/>
         <source>Add Genre</source>
         <translation>Genre hinzufügen</translation>
     </message>
@@ -5488,33 +5508,33 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Genre entfernen</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="235"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="282"/>
         <source>Actor</source>
         <translation>Schauspieler</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="240"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="287"/>
         <source>Role</source>
         <translation>Rolle</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="255"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="302"/>
         <source>Add Actor</source>
         <translation>Schauspieler hinzufügen</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="286"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="333"/>
         <source>Remove Actor</source>
         <translation>Schauspieler entfernen</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="346"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="730"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="393"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="777"/>
         <source>Click to change</source>
         <translation>Zum Ändern klicken</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="216"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="263"/>
         <source>Actors</source>
         <translation>Schauspieler</translation>
     </message>
@@ -5523,16 +5543,16 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Staffelposter</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="608"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="655"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="630"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="680"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="797"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="847"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="897"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="677"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="727"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="844"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="894"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="944"/>
         <source>Click to Change</source>
         <translation>Zum Ändern klicken</translation>
     </message>
@@ -5541,17 +5561,17 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Vorschau</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="658"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="705"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="708"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="755"/>
         <source>Banner</source>
         <translation>Banner</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="775"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="822"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
@@ -5560,17 +5580,17 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Vorschau</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="825"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="872"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="875"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="922"/>
         <source>Character Art</source>
         <translation>Character Art</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="362"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="409"/>
         <source>Resolution</source>
         <translation>Auflösung</translation>
     </message>
@@ -5583,7 +5603,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Staffel %1</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="544"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="554"/>
         <source>Downloading images...</source>
         <translation>Lade Bilder...</translation>
     </message>
@@ -5592,27 +5612,27 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="63"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="67"/>
         <source>Tags</source>
         <translation>Tags</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="64"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="68"/>
         <source>Add Tag</source>
         <translation>Tag hinzufügen</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="891"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="901"/>
         <source>Unknown Role</source>
         <translation>Unbekannte Rolle</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1003"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1013"/>
         <source>Choose Image</source>
         <translation>Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1003"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1013"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
@@ -5621,7 +5641,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Unbekanntes Genre</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="890"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="900"/>
         <source>Unknown Actor</source>
         <translation>Unbekannter Schauspieler</translation>
     </message>
@@ -5630,7 +5650,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Unbekannte Rolle</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="336"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="346"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
@@ -5641,6 +5661,68 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>TV Show and all Episodes Saved</source>
         <translation type="obsolete">Serie und alle Episoden gespeichert</translation>
+    </message>
+</context>
+<context>
+    <name>TvTunesDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation type="obsolete">TV Tunes</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvTunesDialog.ui" line="17"/>
+        <source>TV Tunes</source>
+        <translation>TV Tunes</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvTunesDialog.ui" line="57"/>
+        <source>Result</source>
+        <translation>Ergebnis</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvTunesDialog.ui" line="95"/>
+        <source>0:00 / 0:00</source>
+        <translation>0:00 / 0:00</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvTunesDialog.ui" line="122"/>
+        <source>Progress</source>
+        <translation>Fortschritt</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvTunesDialog.ui" line="145"/>
+        <source>Download</source>
+        <translation>Download</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvTunesDialog.ui" line="152"/>
+        <source>Cancel Download</source>
+        <translation>Download abbrechen</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvTunesDialog.ui" line="176"/>
+        <source>Close</source>
+        <translation>Schließen</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvTunesDialog.cpp" line="260"/>
+        <source>Download Finished</source>
+        <translation>Download abgeschlossen</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvTunesDialog.cpp" line="265"/>
+        <source>The file %1 already exists.</source>
+        <translation>Die Datei %1 existiert bereits.</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvTunesDialog.cpp" line="266"/>
+        <source>Do you want to overwrite it?</source>
+        <translation>Möchtest du sie überschreiben?</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvTunesDialog.cpp" line="280"/>
+        <source>Download Canceled</source>
+        <translation>Download abgebrochen</translation>
     </message>
 </context>
 <context>

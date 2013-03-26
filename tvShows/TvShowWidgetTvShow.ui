@@ -186,15 +186,62 @@
             <item row="5" column="1">
              <widget class="QLineEdit" name="studio"/>
             </item>
-            <item row="6" column="0">
+            <item row="7" column="0">
              <widget class="QLabel" name="label_15">
               <property name="text">
                <string>Overview</string>
               </property>
              </widget>
             </item>
-            <item row="6" column="1">
+            <item row="7" column="1">
              <widget class="QTextEdit" name="overview"/>
+            </item>
+            <item row="6" column="0">
+             <widget class="QLabel" name="label_10">
+              <property name="text">
+               <string>TV Tune</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="Badge" name="badgeTuneExisting">
+                <property name="text">
+                 <string>Existing</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="Badge" name="badgeTuneMissing">
+                <property name="text">
+                 <string>Missing</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="btnDownloadTune">
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="toolTip">
+                 <string>Download Theme</string>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QToolButton {
+	border: 0;
+}</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../MediaElch.qrc">
+                  <normaloff>:/img/inbox.png</normaloff>:/img/inbox.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
            </layout>
           </item>
@@ -939,6 +986,12 @@ QPushButton::hover {
  </widget>
  <customwidgets>
   <customwidget>
+   <class>SlidingStackedWidget</class>
+   <extends>QStackedWidget</extends>
+   <header>smallWidgets/SlidingStackedWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>MyLabel</class>
    <extends>QLabel</extends>
    <header>smallWidgets/MyLabel.h</header>
@@ -950,10 +1003,9 @@ QPushButton::hover {
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>SlidingStackedWidget</class>
-   <extends>QStackedWidget</extends>
-   <header>smallWidgets/SlidingStackedWidget.h</header>
-   <container>1</container>
+   <class>Badge</class>
+   <extends>QLabel</extends>
+   <header>smallWidgets/Badge.h</header>
   </customwidget>
   <customwidget>
    <class>ImageGallery</class>

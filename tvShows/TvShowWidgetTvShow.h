@@ -71,6 +71,7 @@ private slots:
     void onRevertChanges();
     void onArtPageOne();
     void onArtPageTwo();
+    void onDownloadTune();
 
     void onNameChange(QString text);
     void onCertificationChange(QString text);

@@ -13,6 +13,7 @@
 #include "globals/Manager.h"
 #include "main/MessageBox.h"
 #include "tvShows/TvShowSearch.h"
+#include "tvShows/TvTunesDialog.h"
 
 /**
  * @brief TvShowWidgetTvShow::TvShowWidgetTvShow
@@ -55,6 +56,9 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     #endif
     ui->actorResolution->setFont(font);
 
+    ui->badgeTuneExisting->setBadgeType(Badge::LabelSuccess);
+    ui->badgeTuneMissing->setBadgeType(Badge::LabelWarning);
+
     ui->genreCloud->setText(tr("Genres"));
     ui->genreCloud->setPlaceholder(tr("Add Genre"));
     connect(ui->genreCloud, SIGNAL(activated(QString)), this, SLOT(onAddGenre(QString)));
@@ -93,6 +97,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     connect(ui->actors, SIGNAL(itemSelectionChanged()), this, SLOT(onActorChanged()));
     connect(ui->actor, SIGNAL(clicked()), this, SLOT(onChangeActorImage()));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
+    connect(ui->btnDownloadTune, SIGNAL(clicked()), this, SLOT(onDownloadTune()));
 
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
@@ -175,6 +180,8 @@ void TvShowWidgetTvShow::onClear()
     ui->clearArt->clear();
     ui->characterArt->clear();
     ui->tagCloud->clear();
+    ui->badgeTuneExisting->setVisible(false);
+    ui->badgeTuneMissing->setVisible(true);
     ui->buttonRevert->setVisible(false);
 }
 
@@ -261,6 +268,9 @@ void TvShowWidgetTvShow::updateTvShowInfo()
 
     updateImages(QList<ImageType>() << TypePoster << TypeBackdrop << TypeBanner << TypeCharacterArt << TypeClearArt << TypeLogo);
     ui->fanarts->setImages(m_show->extraFanarts(Manager::instance()->mediaCenterInterfaceTvShow()));
+
+    ui->badgeTuneExisting->setVisible(m_show->hasTune());
+    ui->badgeTuneMissing->setVisible(!m_show->hasTune());
 
     ui->certification->blockSignals(false);
     ui->rating->blockSignals(false);
@@ -1132,5 +1142,15 @@ void TvShowWidgetTvShow::onAddExtraFanart()
             m_posterDownloadManager->addDownload(d);
         }
         ui->buttonRevert->setVisible(true);
+    }
+}
+
+void TvShowWidgetTvShow::onDownloadTune()
+{
+    TvTunesDialog::instance()->setTvShow(m_show);
+    int result = TvTunesDialog::instance()->exec();
+    if (result == QDialog::Accepted) {
+        ui->badgeTuneExisting->setVisible(true);
+        ui->badgeTuneMissing->setVisible(false);
     }
 }

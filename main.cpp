@@ -133,6 +133,7 @@ int main(int argc, char *argv[])
     QTranslator qtTranslator;
     qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     a.installTranslator(&qtTranslator);
+    qDebug() << QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 
     QTranslator editTranslator;
     QString filename;
