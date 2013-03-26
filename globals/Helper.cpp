@@ -47,9 +47,17 @@ QString Helper::toLatin1PercentEncoding(QString str)
     return str;
 }
 
-QString Helper::urlFromEncoded(QString str)
+QString Helper::urlDecode(QString str)
 {
     str = str.replace("&amp;", "&");
+    return str;
+}
+
+QString Helper::urlEncode(QString str)
+{
+    QUrl url(str);
+    str = url.toEncoded();
+    str = str.replace("%26", "&amp;");
     return str;
 }
 
