@@ -64,6 +64,9 @@
         <file>img/imgButtonBottom.png</file>
         <file>img/imgButtonTop.png</file>
         <file>img/folder_64.png</file>
+        <file>i18n/qt_de.qm</file>
+        <file>i18n/qt_fr.qm</file>
+        <file>i18n/qt_pt.qm</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>

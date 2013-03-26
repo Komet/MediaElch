@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv, useGui);
 
     QTranslator qtTranslator;
-    qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    qtTranslator.load(":/i18n/qt_" + QLocale::system().name());
     a.installTranslator(&qtTranslator);
     qDebug() << QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 
