@@ -1041,6 +1041,12 @@ void ConcertWidget::onWatchedChange(int state)
     if (!m_concert)
         return;
     m_concert->setWatched(state == Qt::Checked);
+    if (state == Qt::Checked) {
+        if (m_concert->playcount() < 1)
+            ui->playcount->setValue(1);
+        if (!m_concert->lastPlayed().isValid())
+            ui->lastPlayed->setDateTime(QDateTime::currentDateTime());
+    }
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1052,6 +1058,7 @@ void ConcertWidget::onPlayCountChange(int value)
     if (!m_concert)
         return;
     m_concert->setPlayCount(value);
+    ui->watched->setChecked(value > 0);
     ui->buttonRevert->setVisible(true);
 }
 

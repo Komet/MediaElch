@@ -1308,6 +1308,12 @@ void MovieWidget::onWatchedChange(int state)
     if (!m_movie)
         return;
     m_movie->setWatched(state == Qt::Checked);
+    if (state == Qt::Checked) {
+        if (m_movie->playcount() < 1)
+            ui->playcount->setValue(1);
+        if (!m_movie->lastPlayed().isValid())
+            ui->lastPlayed->setDateTime(QDateTime::currentDateTime());
+    }
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1319,6 +1325,7 @@ void MovieWidget::onPlayCountChange(int value)
     if (!m_movie)
         return;
     m_movie->setPlayCount(value);
+    ui->watched->setChecked(value > 0);
     ui->buttonRevert->setVisible(true);
 }
 
