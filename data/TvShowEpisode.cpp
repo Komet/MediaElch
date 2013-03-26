@@ -335,6 +335,9 @@ int TvShowEpisode::episode() const
         QRegExp rx("S(\\d+)[._]?E(\\d+)", Qt::CaseInsensitive);
         if (rx.indexIn(filename) != -1)
             return rx.cap(2).toInt();
+        rx.setPattern("S(\\d+)EP(\\d+)");
+        if (rx.indexIn(filename) != -1)
+            return rx.cap(2).toInt();
         rx.setPattern("(\\d+)x(\\d+)");
         if (rx.indexIn(filename) != -1)
             return rx.cap(2).toInt();
