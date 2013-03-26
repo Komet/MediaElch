@@ -194,6 +194,7 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
         if (movie->files().isEmpty() || (movie->files().count() > 1 && filePatternMulti.isEmpty()) || movie->hasChanged())
             continue;
 
+        qApp->processEvents();
         QFileInfo fi(movie->files().first());
         QString fiCanonicalPath = fi.canonicalPath();
         QDir dir(fi.canonicalPath());
@@ -313,6 +314,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
             continue;
 
         if (renameFiles) {
+            qApp->processEvents();
             QFileInfo fi(episode->files().first());
             QString fiCanonicalPath = fi.canonicalPath();
             QString newFileName;
@@ -460,6 +462,7 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
         if (concert->files().isEmpty() || (concert->files().count() > 1 && filePatternMulti.isEmpty()) || concert->hasChanged())
             continue;
 
+        qApp->processEvents();
         QFileInfo fi(concert->files().first());
         QString fiCanonicalPath = fi.canonicalPath();
         QDir dir(fi.canonicalPath());
