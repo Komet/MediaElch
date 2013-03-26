@@ -29,6 +29,7 @@ public slots:
 
 signals:
     void setActionSaveEnabled(bool, MainWidgets);
+    void sigJumpToMovie(Movie *movie);
 
 private slots:
     void onSetSelected();
@@ -45,6 +46,7 @@ private slots:
     void showSetsContextMenu(QPoint point);
     void onSetNameChanged(QTableWidgetItem *item);
     void onDownloadFinished(DownloadManagerElement elem);
+    void onJumpToMovie(QTableWidgetItem *item);
 
 private:
     Ui::SetsWidget *ui;

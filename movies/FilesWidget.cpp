@@ -419,3 +419,10 @@ void FilesWidget::onLeftEdge(bool isEdge)
     else
         m_alphaList->hide();
 }
+
+void FilesWidget::selectMovie(Movie *movie)
+{
+    int row = Manager::instance()->movieModel()->movies().indexOf(movie);
+    QModelIndex index = Manager::instance()->movieModel()->index(row, 0, QModelIndex());
+    ui->files->selectRow(m_movieProxyModel->mapFromSource(index).row());
+}

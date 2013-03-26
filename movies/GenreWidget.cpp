@@ -40,6 +40,7 @@ GenreWidget::GenreWidget(QWidget *parent) :
     connect(actionAddGenre, SIGNAL(triggered()), this, SLOT(addGenre()));
     connect(actionDeleteGenre, SIGNAL(triggered()), this, SLOT(deleteGenre()));
     connect(ui->genres, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showGenresContextMenu(QPoint)));
+    connect(ui->movies, SIGNAL(itemDoubleClicked(QTableWidgetItem*)), this, SLOT(onJumpToMovie(QTableWidgetItem*)));
 
     connect(ui->genres, SIGNAL(itemSelectionChanged()), this, SLOT(onGenreSelected()));
     connect(ui->genres, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onGenreNameChanged(QTableWidgetItem*)));
@@ -258,7 +259,6 @@ void GenreWidget::addMovie()
         return;
     }
 
-
     if (MovieListDialog::instance()->execWithoutGenre(ui->genres->item(ui->genres->currentRow(), 0)->text()) == QDialog::Accepted) {
         Movie *movie = MovieListDialog::instance()->selectedMovie();
         QString genreName = ui->genres->item(ui->genres->currentRow(), 0)->text();
@@ -282,4 +282,10 @@ void GenreWidget::onSaveInformation()
     m_addedGenres.clear();
     loadGenres();
     MessageBox::instance()->showMessage(tr("All Movies Saved"));
+}
+
+void GenreWidget::onJumpToMovie(QTableWidgetItem *item)
+{
+    Movie *movie = item->data(Qt::UserRole).value<Movie*>();
+    emit sigJumpToMovie(movie);
 }

@@ -153,6 +153,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_settingsWidget, SIGNAL(accepted()), this, SLOT(onRenewModels()));
     connect(m_settingsWidget, SIGNAL(accepted()), this, SLOT(onFilesRenamed()));
 
+    connect(ui->setsWidget, SIGNAL(sigJumpToMovie(Movie*)), this, SLOT(onJumpToMovie(Movie*)));
+    connect(ui->certificationWidget, SIGNAL(sigJumpToMovie(Movie*)), this, SLOT(onJumpToMovie(Movie*)));
+    connect(ui->genreWidget, SIGNAL(sigJumpToMovie(Movie*)), this, SLOT(onJumpToMovie(Movie*)));
+
     MovieSearch::instance(ui->centralWidget);
     TvShowSearch::instance(ui->centralWidget);
     ImageDialog::instance(ui->centralWidget);
@@ -730,4 +734,10 @@ void MainWindow::onRenewModels()
     ui->filesWidget->renewModel();
     ui->tvShowFilesWidget->renewModel();
     ui->concertFilesWidget->renewModel();
+}
+
+void MainWindow::onJumpToMovie(Movie *movie)
+{
+    onMenuMovies();
+    ui->filesWidget->selectMovie(movie);
 }

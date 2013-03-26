@@ -62,6 +62,7 @@ private slots:
     void onXbmcSyncFinished();
     void onFilesRenamed(Renamer::RenameType type = Renamer::TypeAll);
     void onRenewModels();
+    void onJumpToMovie(Movie *movie);
 
 private:
     Ui::MainWindow *ui;
