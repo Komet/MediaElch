@@ -20,7 +20,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Always have a look at &lt;a href=&quot;http://www.mediaelch.de&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.mediaelch.de&lt;/span&gt;&lt;/a&gt; to get the latest version.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt; &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt; p, li { white-space: pre-wrap; } &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt; &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch foi criado usando &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt; &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt; &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt; Sets de Ícones usados &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; e &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt; &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;br /&gt;&lt;/p&gt; &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch Icone por &lt;a href=&quot;mailto:kathrin.luckner@me.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Kathrin Luckner&lt;/span&gt;&lt;/a&gt;&lt;/p&gt; &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;br /&gt;&lt;/p&gt; &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Sempre verifique o site &lt;a href=&quot;http://www.mediaelch.de&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.mediaelch.de&lt;/span&gt;&lt;/a&gt; para obter a versão mais recente.&lt;/p&gt; &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt; &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt; p, li { white-space: pre-wrap; } &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt; &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch foi criado usando &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt; &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt; &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt; Sets de Ícones usados &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; e &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt; &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;br /&gt;&lt;/p&gt; &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch Icone por &lt;a href=&quot;mailto:kathrin.luckner@me.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Kathrin Luckner&lt;/span&gt;&lt;/a&gt;&lt;/p&gt; &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;br /&gt;&lt;/p&gt; &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Sempre verifique o site &lt;a href=&quot;http://www.mediaelch.de&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.mediaelch.de&lt;/span&gt;&lt;/a&gt; para obter a versão mais recente.&lt;/p&gt; &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Movies</source>
@@ -53,6 +53,26 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Your Collection</source>
         <translation>Sua Coleção</translation>
+    </message>
+    <message>
+        <source>MediaElch was built with &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Icon Sets: Retina by &quot;The Working Group&quot; and &quot;Capital Suite&quot; by &quot;capital18 (Jugal Paryani)&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MediaElch Icon by Kathrin Luckner</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stream Details detection with &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -131,6 +151,29 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>New Certification</source>
         <translation>Nova Classificação Indicativa</translation>
+    </message>
+</context>
+<context>
+    <name>ClosableImage</name>
+    <message>
+        <source>Delete Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select another image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Really delete image?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this image?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -321,7 +364,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Full preview</source>
-        <translation>Preview em tela cheia</translation>
+        <translation type="obsolete">Preview em tela cheia</translation>
     </message>
     <message>
         <source> Minutes</source>
@@ -775,6 +818,62 @@ p, li { white-space: pre-wrap; }
         <source>No Actors</source>
         <translation>Sem Atores</translation>
     </message>
+    <message>
+        <source>Filename contains &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Studio &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Studio</source>
+        <translation type="unfinished">Estúdio</translation>
+    </message>
+    <message>
+        <source>Country &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Country</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movie has local Trailer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Local Trailer</source>
+        <translation type="unfinished">Trailer Local</translation>
+    </message>
+    <message>
+        <source>Movie has no local Trailer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No local Trailer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movie has no Studio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Studio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movie has no Country</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Country</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GenreWidget</name>
@@ -1158,6 +1257,10 @@ Operação Cancelada.</translation>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
+    <message>
+        <source>IMDB ID</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MovieMultiScrapeDialog</name>
@@ -1496,7 +1599,7 @@ Operação Cancelada.</translation>
     </message>
     <message>
         <source>Full preview</source>
-        <translation>Preview em tela cheia</translation>
+        <translation type="obsolete">Preview em tela cheia</translation>
     </message>
     <message>
         <source>Choose Image</source>
@@ -1775,6 +1878,10 @@ Operação Cancelada.</translation>
     <message>
         <source>Logfile could not be openened</source>
         <translation>Arquivo de log não pode ser aberto</translation>
+    </message>
+    <message>
+        <source>Do not ask again</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3041,6 +3148,10 @@ p, li { white-space: pre-wrap; }
         <source>Update TV Show only</source>
         <translation>Atualizar Seriado somente</translation>
     </message>
+    <message>
+        <source>DVD Order</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TvShowWidget</name>
@@ -3113,7 +3224,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Full Preview</source>
-        <translation>Preview em tela cheia</translation>
+        <translation type="obsolete">Preview em tela cheia</translation>
     </message>
     <message>
         <source>Remove Director</source>
@@ -3268,7 +3379,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Full Preview</source>
-        <translation>Preview em tela cheia</translation>
+        <translation type="obsolete">Preview em tela cheia</translation>
     </message>
     <message>
         <source>Banner</source>
@@ -3284,7 +3395,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Resolution</source>
-        <translation>Resolução</translation>
+        <translation type="obsolete">Resolução</translation>
     </message>
     <message>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
@@ -3359,11 +3470,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Full Preview</source>
-        <translation>Preview em tela cheia</translation>
+        <translation type="obsolete">Preview em tela cheia</translation>
     </message>
     <message>
         <source>Full preview</source>
-        <translation>Preview em tela cheia</translation>
+        <translation type="obsolete">Preview em tela cheia</translation>
     </message>
     <message>
         <source>Choose Image</source>
@@ -3550,7 +3661,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please make sure you have setup your sources in XBMC and enabled the webserver.</source>
-        <translation>Porfaov tenha certeza que adicionou suas fontes de vídeo no XBMC e ativou o servidor web</translation>
+        <translation type="obsolete">Porfaov tenha certeza que adicionou suas fontes de vídeo no XBMC e ativou o servidor web</translation>
     </message>
     <message>
         <source>Rename artwork to Frodo naming conventions</source>
@@ -3599,6 +3710,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>XBMC Library Scan has finished</source>
         <translation>XBMC Escanear Coleção Finalizado</translation>
+    </message>
+    <message>
+        <source>Please make sure you have setup your sources in XBMC and that &quot;Allow programs on other systems to control XBMC&quot; is enabled (Remote Control).</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
