@@ -1,6 +1,7 @@
 #include "CertificationWidget.h"
 #include "ui_CertificationWidget.h"
 
+#include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "main/MessageBox.h"
 #include "sets/MovieListDialog.h"
@@ -104,7 +105,7 @@ void CertificationWidget::loadCertifications()
             certifications.append(certification);
     }
 
-    certifications.sort();
+    qSort(certifications.begin(), certifications.end(), LocaleStringCompare());
 
     foreach (const QString &certification, certifications) {
         QTableWidgetItem *item = new QTableWidgetItem(certification);

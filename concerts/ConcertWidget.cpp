@@ -15,6 +15,7 @@
 #include "globals/Helper.h"
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
+#include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "main/MessageBox.h"
 
@@ -437,7 +438,7 @@ void ConcertWidget::updateConcertInfo()
         genres.append(concert->genres());
         tags.append(concert->tags());
     }
-    certifications.sort();
+    qSort(certifications.begin(), certifications.end(), LocaleStringCompare());
     ui->certification->addItems(certifications);
     ui->certification->setCurrentIndex(certifications.indexOf(m_concert->certification()));
     ui->certification->blockSignals(false);

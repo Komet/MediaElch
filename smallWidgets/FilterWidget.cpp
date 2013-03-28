@@ -2,6 +2,7 @@
 #include "ui_FilterWidget.h"
 
 #include "globals/Globals.h"
+#include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 
 /**
@@ -267,13 +268,13 @@ void FilterWidget::setupMovieFilters()
         if (!movie->certification().isEmpty() && !certifications.contains(movie->certification()))
             certifications.append(movie->certification());
     }
-    certifications.sort();
-    genres.sort();
-    years.sort();
-    studios.sort();
-    countries.sort();
-    tags.sort();
-    directors.sort();
+    qSort(certifications.begin(), certifications.end(), LocaleStringCompare());
+    qSort(genres.begin(), genres.end(), LocaleStringCompare());
+    qSort(years.begin(), years.end(), LocaleStringCompare());
+    qSort(studios.begin(), studios.end(), LocaleStringCompare());
+    qSort(countries.begin(), countries.end(), LocaleStringCompare());
+    qSort(tags.begin(), tags.end(), LocaleStringCompare());
+    qSort(directors.begin(), directors.end(), LocaleStringCompare());
 
     // Clear out all filters which doesn't exist
     foreach (Filter *filter, m_movieGenreFilters) {

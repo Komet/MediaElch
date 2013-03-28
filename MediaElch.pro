@@ -237,7 +237,8 @@ HEADERS  += main/MainWindow.h \
     smallWidgets/MyTableView.h \
     data/ImageCache.h \
     scrapers/TvTunes.h \
-    tvShows/TvTunesDialog.h
+    tvShows/TvTunesDialog.h \
+    globals/LocaleStringCompare.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

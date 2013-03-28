@@ -1,6 +1,7 @@
 #include "GenreWidget.h"
 #include "ui_GenreWidget.h"
 
+#include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "main/MessageBox.h"
 #include "sets/MovieListDialog.h"
@@ -105,7 +106,7 @@ void GenreWidget::loadGenres()
             genres.append(genre);
     }
 
-    genres.sort();
+    qSort(genres.begin(), genres.end(), LocaleStringCompare());
 
     foreach (const QString &genre, genres) {
         QTableWidgetItem *item = new QTableWidgetItem(genre);

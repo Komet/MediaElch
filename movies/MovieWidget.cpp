@@ -14,6 +14,7 @@
 #include "globals/Globals.h"
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
+#include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "globals/TrailerDialog.h"
 #include "main/MessageBox.h"
@@ -542,8 +543,8 @@ void MovieWidget::updateMovieInfo()
         if (!certifications.contains(movie->certification()) && !movie->certification().isEmpty())
             certifications.append(movie->certification());
     }
-    sets.sort();
-    certifications.sort();
+    qSort(sets.begin(), sets.end(), LocaleStringCompare());
+    qSort(certifications.begin(), certifications.end(), LocaleStringCompare());
     ui->certification->addItems(certifications);
     ui->set->addItems(sets);
 

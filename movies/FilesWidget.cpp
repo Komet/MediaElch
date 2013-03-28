@@ -8,6 +8,7 @@
 #include <QTableWidget>
 #include <QTimer>
 #include "globals/Globals.h"
+#include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "movies/MovieMultiScrapeDialog.h"
 #include "smallWidgets/LoadingStreamDetails.h"
@@ -382,7 +383,7 @@ void FilesWidget::setAlphaListData()
         if (!alphas.contains(first))
             alphas.append(first);
     }
-    alphas.sort();
+    qSort(alphas.begin(), alphas.end(), LocaleStringCompare());
     int scrollBarWidth = 0;
     if (ui->files->verticalScrollBar()->isVisible())
         scrollBarWidth = ui->files->verticalScrollBar()->width();

@@ -3,6 +3,7 @@
 #include <QComboBox>
 #include <QDebug>
 #include <QLineEdit>
+#include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 
 /**
@@ -98,7 +99,7 @@ void ComboDelegate::setEditorData(QWidget *editor, const QModelIndex &index) con
             }
         }
     }
-    items.sort();
+    qSort(items.begin(), items.end(), LocaleStringCompare());
     box->addItems(items);
     box->lineEdit()->setText(value);
 }
