@@ -301,12 +301,14 @@ bool ClosableImage::confirmDeleteImage()
     if (Settings::instance()->dontShowDeleteImageConfirm())
         return true;
 
-    QMessageBox msgBox(QMessageBox::Question, tr("Really delete image?"), tr("Are you sure you want to delete this image?"), 0, this);
+    QMessageBox msgBox;
+    msgBox.setIcon(QMessageBox::Question);
+    msgBox.setWindowTitle(tr("Really delete image?"));
+    msgBox.setText(tr("Are you sure you want to delete this image?"));
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     QCheckBox dontPrompt(QObject::tr("Do not ask again"), &msgBox);
     dontPrompt.blockSignals(true);
     msgBox.addButton(&dontPrompt, QMessageBox::ActionRole);
-    msgBox.addButton(QMessageBox::Yes);
-    msgBox.addButton(QMessageBox::No);
     int ret = msgBox.exec();
     if (dontPrompt.checkState() == Qt::Checked && ret == QMessageBox::Yes)
         Settings::instance()->setDontShowDeleteImageConfirm(true);
