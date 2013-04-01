@@ -926,6 +926,8 @@ void TvShow::setOverview(QString overview)
  */
 void TvShow::setTvdbId(QString id)
 {
+    if (m_id.isEmpty())
+        m_id = id;
     m_tvdbId = id;
     setChanged(true);
 }
