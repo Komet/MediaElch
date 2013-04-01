@@ -88,9 +88,11 @@ QString Helper::formatTrailerUrl(QString url)
  * @param path
  * @return
  */
-bool Helper::isDvd(QString path)
+bool Helper::isDvd(QString path, bool noSubFolder)
 {
     if (path.endsWith("VIDEO_TS.IFO")) {
+        if (noSubFolder)
+            return true;
         QFileInfo fi(path);
         return fi.absolutePath().endsWith("VIDEO_TS");
     }

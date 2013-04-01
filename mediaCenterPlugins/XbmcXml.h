@@ -74,6 +74,7 @@ private:
     void writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode);
     void writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDetails);
     bool loadStreamDetails(StreamDetails *streamDetails, QDomDocument domDoc);
+    void loadStreamDetails(StreamDetails *streamDetails, QDomElement elem);
     bool saveFile(QString filename, QByteArray data);
     QString getPath(Movie *movie);
     QString getPath(Concert *concert);

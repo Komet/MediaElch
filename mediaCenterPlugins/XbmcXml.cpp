@@ -1,6 +1,7 @@
 #include "XbmcXml.h"
 
 #include <QApplication>
+#include <QBuffer>
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
@@ -10,6 +11,9 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "settings/Settings.h"
+
+// @todo: getting thumbs for episodes in dvd/bluray structures
+// @todo: saving thumbs for episodes in dvd/bluray structures
 
 /**
  * @brief XbmcXml::XbmcXml
@@ -495,37 +499,42 @@ bool XbmcXml::loadStreamDetails(StreamDetails* streamDetails, QDomDocument domDo
     streamDetails->clear();
     if (!domDoc.elementsByTagName("streamdetails").isEmpty()) {
         QDomElement elem = domDoc.elementsByTagName("streamdetails").at(0).toElement();
-        if (!elem.elementsByTagName("video").isEmpty()) {
-            QDomElement videoElem = elem.elementsByTagName("video").at(0).toElement();
-            QStringList details = (QStringList() << "codec" << "aspect" << "width" << "height" << "durationinseconds" << "scantype");
-            foreach (const QString &detail, details) {
-                if (!videoElem.elementsByTagName(detail).isEmpty())
-                    streamDetails->setVideoDetail(detail, videoElem.elementsByTagName(detail).at(0).toElement().text());
-            }
-        }
-        if (!elem.elementsByTagName("audio").isEmpty()) {
-            for (int i=0, n=elem.elementsByTagName("audio").count() ; i<n ; ++i) {
-                QStringList details = QStringList() << "codec" << "language" << "channels";
-                QDomElement audioElem = elem.elementsByTagName("audio").at(i).toElement();
-                foreach (const QString &detail, details) {
-                    if (!audioElem.elementsByTagName(detail).isEmpty())
-                        streamDetails->setAudioDetail(i, detail, audioElem.elementsByTagName(detail).at(0).toElement().text());
-                }
-            }
-        }
-        if (!elem.elementsByTagName("subtitle").isEmpty()) {
-            for (int i=0, n=elem.elementsByTagName("subtitle").count() ; i<n ; ++i) {
-                QStringList details = QStringList() << "language";
-                QDomElement subtitleElem = elem.elementsByTagName("subtitle").at(i).toElement();
-                foreach (const QString &detail, details) {
-                    if (!subtitleElem.elementsByTagName(detail).isEmpty())
-                        streamDetails->setSubtitleDetail(i, detail, subtitleElem.elementsByTagName(detail).at(0).toElement().text());
-                }
-            }
-        }
+        loadStreamDetails(streamDetails, elem);
         return true;
     }
     return false;
+}
+
+void XbmcXml::loadStreamDetails(StreamDetails* streamDetails, QDomElement elem)
+{
+    if (!elem.elementsByTagName("video").isEmpty()) {
+        QDomElement videoElem = elem.elementsByTagName("video").at(0).toElement();
+        QStringList details = (QStringList() << "codec" << "aspect" << "width" << "height" << "durationinseconds" << "scantype");
+        foreach (const QString &detail, details) {
+            if (!videoElem.elementsByTagName(detail).isEmpty())
+                streamDetails->setVideoDetail(detail, videoElem.elementsByTagName(detail).at(0).toElement().text());
+        }
+    }
+    if (!elem.elementsByTagName("audio").isEmpty()) {
+        for (int i=0, n=elem.elementsByTagName("audio").count() ; i<n ; ++i) {
+            QStringList details = QStringList() << "codec" << "language" << "channels";
+            QDomElement audioElem = elem.elementsByTagName("audio").at(i).toElement();
+            foreach (const QString &detail, details) {
+                if (!audioElem.elementsByTagName(detail).isEmpty())
+                    streamDetails->setAudioDetail(i, detail, audioElem.elementsByTagName(detail).at(0).toElement().text());
+            }
+        }
+    }
+    if (!elem.elementsByTagName("subtitle").isEmpty()) {
+        for (int i=0, n=elem.elementsByTagName("subtitle").count() ; i<n ; ++i) {
+            QStringList details = QStringList() << "language";
+            QDomElement subtitleElem = elem.elementsByTagName("subtitle").at(i).toElement();
+            foreach (const QString &detail, details) {
+                if (!subtitleElem.elementsByTagName(detail).isEmpty())
+                    streamDetails->setSubtitleDetail(i, detail, subtitleElem.elementsByTagName(detail).at(0).toElement().text());
+            }
+        }
+    }
 }
 
 /**
@@ -1582,6 +1591,7 @@ bool XbmcXml::loadTvShow(TvShow *show, QString initialNfoContent)
  * @brief Loads tv show episode information
  * @param episode Episode to load infos for
  * @return Loading success
+ * @todo: check splitting of nfo contents (line delimiter)
  */
 bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoContent)
 {
@@ -1606,42 +1616,81 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoConten
         nfoContent = initialNfoContent;
     }
 
+    QString def;
+    QStringList baseNfoContent;
+    foreach (const QString &line, nfoContent.split("\n")) {
+        if (!line.startsWith("<?xml"))
+            baseNfoContent << line;
+        else
+            def = line;
+    }
+    QString nfoContentWithRoot = QString("%1\n<root>%2</root>").arg(def).arg(baseNfoContent.join("\n"));
     QDomDocument domDoc;
-    domDoc.setContent(nfoContent);
-    if (!domDoc.elementsByTagName("title").isEmpty() )
-        episode->setName(domDoc.elementsByTagName("title").at(0).toElement().text());
-    if (!domDoc.elementsByTagName("showtitle").isEmpty() )
-        episode->setShowTitle(domDoc.elementsByTagName("showtitle").at(0).toElement().text());
-    if (!domDoc.elementsByTagName("season").isEmpty())
-        episode->setSeason(domDoc.elementsByTagName("season").at(0).toElement().text().toInt());
-    if (!domDoc.elementsByTagName("episode").isEmpty())
-        episode->setEpisode(domDoc.elementsByTagName("episode").at(0).toElement().text().toInt());
-    if (!domDoc.elementsByTagName("displayseason").isEmpty())
-        episode->setDisplaySeason(domDoc.elementsByTagName("displayseason").at(0).toElement().text().toInt());
-    if (!domDoc.elementsByTagName("displayepisode").isEmpty())
-        episode->setDisplayEpisode(domDoc.elementsByTagName("displayepisode").at(0).toElement().text().toInt());
-    if (!domDoc.elementsByTagName("rating").isEmpty())
-        episode->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().toFloat());
-    if (!domDoc.elementsByTagName("plot").isEmpty())
-        episode->setOverview(domDoc.elementsByTagName("plot").at(0).toElement().text());
-    if (!domDoc.elementsByTagName("mpaa").isEmpty())
-        episode->setCertification(domDoc.elementsByTagName("mpaa").at(0).toElement().text());
-    if (!domDoc.elementsByTagName("aired").isEmpty())
-        episode->setFirstAired(QDate::fromString(domDoc.elementsByTagName("aired").at(0).toElement().text(), "yyyy-MM-dd"));
-    if (!domDoc.elementsByTagName("playcount").isEmpty())
-        episode->setPlayCount(domDoc.elementsByTagName("playcount").at(0).toElement().text().toInt());
-    if (!domDoc.elementsByTagName("lastplayed").isEmpty())
-        episode->setLastPlayed(QDateTime::fromString(domDoc.elementsByTagName("lastplayed").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss"));
-    if (!domDoc.elementsByTagName("studio").isEmpty())
-        episode->setNetwork(domDoc.elementsByTagName("studio").at(0).toElement().text());
-    if (!domDoc.elementsByTagName("thumb").isEmpty())
-        episode->setThumbnail(QUrl(domDoc.elementsByTagName("thumb").at(0).toElement().text()));
-    for (int i=0, n=domDoc.elementsByTagName("credits").size() ; i<n ; i++)
-        episode->addWriter(domDoc.elementsByTagName("credits").at(i).toElement().text());
-    for (int i=0, n=domDoc.elementsByTagName("director").size() ; i<n ; i++)
-        episode->addDirector(domDoc.elementsByTagName("director").at(i).toElement().text());
+    domDoc.setContent(nfoContentWithRoot);
 
-    episode->setStreamDetailsLoaded(loadStreamDetails(episode->streamDetails(), domDoc));
+    QDomNodeList episodeDetailsList = domDoc.elementsByTagName("episodedetails");
+    if (episodeDetailsList.isEmpty())
+        return false;
+
+    QDomElement episodeDetails;
+    if (episodeDetailsList.count() > 1) {
+        bool found = false;
+        for (int i=0, n=episodeDetailsList.count() ; i<n ; ++i) {
+            episodeDetails = episodeDetailsList.at(i).toElement();
+            if (!episodeDetails.elementsByTagName("season").isEmpty() &&
+                    episodeDetails.elementsByTagName("season").at(0).toElement().text().toInt() == episode->season() &&
+                    !episodeDetails.elementsByTagName("episode").isEmpty() &&
+                    episodeDetails.elementsByTagName("episode").at(0).toElement().text().toInt() == episode->episode()) {
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+            return false;
+
+    } else {
+        episodeDetails = episodeDetailsList.at(0).toElement();
+    }
+
+    if (!episodeDetails.elementsByTagName("title").isEmpty() )
+        episode->setName(episodeDetails.elementsByTagName("title").at(0).toElement().text());
+    if (!episodeDetails.elementsByTagName("showtitle").isEmpty() )
+        episode->setShowTitle(episodeDetails.elementsByTagName("showtitle").at(0).toElement().text());
+    if (!episodeDetails.elementsByTagName("season").isEmpty())
+        episode->setSeason(episodeDetails.elementsByTagName("season").at(0).toElement().text().toInt());
+    if (!episodeDetails.elementsByTagName("episode").isEmpty())
+        episode->setEpisode(episodeDetails.elementsByTagName("episode").at(0).toElement().text().toInt());
+    if (!episodeDetails.elementsByTagName("displayseason").isEmpty())
+        episode->setDisplaySeason(episodeDetails.elementsByTagName("displayseason").at(0).toElement().text().toInt());
+    if (!episodeDetails.elementsByTagName("displayepisode").isEmpty())
+        episode->setDisplayEpisode(episodeDetails.elementsByTagName("displayepisode").at(0).toElement().text().toInt());
+    if (!episodeDetails.elementsByTagName("rating").isEmpty())
+        episode->setRating(episodeDetails.elementsByTagName("rating").at(0).toElement().text().toFloat());
+    if (!episodeDetails.elementsByTagName("plot").isEmpty())
+        episode->setOverview(episodeDetails.elementsByTagName("plot").at(0).toElement().text());
+    if (!episodeDetails.elementsByTagName("mpaa").isEmpty())
+        episode->setCertification(episodeDetails.elementsByTagName("mpaa").at(0).toElement().text());
+    if (!episodeDetails.elementsByTagName("aired").isEmpty())
+        episode->setFirstAired(QDate::fromString(episodeDetails.elementsByTagName("aired").at(0).toElement().text(), "yyyy-MM-dd"));
+    if (!episodeDetails.elementsByTagName("playcount").isEmpty())
+        episode->setPlayCount(episodeDetails.elementsByTagName("playcount").at(0).toElement().text().toInt());
+    if (!episodeDetails.elementsByTagName("lastplayed").isEmpty())
+        episode->setLastPlayed(QDateTime::fromString(episodeDetails.elementsByTagName("lastplayed").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss"));
+    if (!episodeDetails.elementsByTagName("studio").isEmpty())
+        episode->setNetwork(episodeDetails.elementsByTagName("studio").at(0).toElement().text());
+    if (!episodeDetails.elementsByTagName("thumb").isEmpty())
+        episode->setThumbnail(QUrl(episodeDetails.elementsByTagName("thumb").at(0).toElement().text()));
+    for (int i=0, n=episodeDetails.elementsByTagName("credits").size() ; i<n ; i++)
+        episode->addWriter(episodeDetails.elementsByTagName("credits").at(i).toElement().text());
+    for (int i=0, n=episodeDetails.elementsByTagName("director").size() ; i<n ; i++)
+        episode->addDirector(episodeDetails.elementsByTagName("director").at(i).toElement().text());
+
+    if (episodeDetails.elementsByTagName("streamdetails").count() > 0) {
+        loadStreamDetails(episode->streamDetails(), episodeDetails.elementsByTagName("streamdetails").at(0).toElement());
+        episode->setStreamDetailsLoaded(true);
+    } else {
+        episode->setStreamDetailsLoaded(false);
+    }
 
     return true;
 }
@@ -1856,11 +1905,23 @@ void XbmcXml::saveAdditionalImages(TvShow *show)
 bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
 {
     qDebug() << "Entered, episode=" << episode->name();
+
+    // Multi-Episode handling
+    QList<TvShowEpisode*> episodes;
+    foreach (TvShowEpisode *subEpisode, episode->tvShow()->episodes()) {
+        if (episode->files() == subEpisode->files())
+            episodes.append(subEpisode);
+    }
+
     QByteArray xmlContent;
     QXmlStreamWriter xml(&xmlContent);
     xml.setAutoFormatting(true);
     xml.writeStartDocument("1.0", true);
-    writeTvShowEpisodeXml(xml, episode);
+    foreach (TvShowEpisode *subEpisode, episodes) {
+        writeTvShowEpisodeXml(xml, subEpisode);
+        subEpisode->setChanged(false);
+        subEpisode->setSyncNeeded(true);
+    }
     xml.writeEndDocument();
 
     if (episode->files().isEmpty()) {
@@ -1868,8 +1929,10 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
         return false;
     }
 
-    episode->setNfoContent(xmlContent);
-    Manager::instance()->database()->update(episode);
+    foreach (TvShowEpisode *subEpisode, episodes) {
+        subEpisode->setNfoContent(xmlContent);
+        Manager::instance()->database()->update(subEpisode);
+    }
 
     QFileInfo fi(episode->files().at(0));
     foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo)) {
