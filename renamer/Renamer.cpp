@@ -309,19 +309,36 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
     if (renameFiles && filePattern.isEmpty())
         return;
 
+    QList<TvShowEpisode*> episodesRenamed;
+
     foreach (TvShowEpisode *episode, episodes) {
-        if (episode->files().isEmpty() || (episode->files().count() > 1 && filePatternMulti.isEmpty()) || episode->hasChanged())
+        if (episode->files().isEmpty() || (episode->files().count() > 1 && filePatternMulti.isEmpty()) ||
+                episode->hasChanged() || episodesRenamed.contains(episode))
             continue;
 
-        if (renameFiles) {
-            qApp->processEvents();
-            QFileInfo fi(episode->files().first());
-            QString fiCanonicalPath = fi.canonicalPath();
-            QString newFileName;
-            QStringList episodeFiles;
+        QList<TvShowEpisode*> multiEpisodes;
+        foreach (TvShowEpisode *subEpisode, episode->tvShow()->episodes()) {
+            if (subEpisode->files() == episode->files()) {
+                multiEpisodes.append(subEpisode);
+                episodesRenamed.append(subEpisode);
+            }
+        }
 
-            QString thumbnail = Manager::instance()->mediaCenterInterface()->thumbnailImageName(episode);
-            QString nfo = Manager::instance()->mediaCenterInterface()->nfoFilePath(episode);
+        bool isBluRay = Helper::isBluRay(episode->files().at(0));
+        bool isDvd = Helper::isDvd(episode->files().at(0));
+        bool isDvdWithoutSub = Helper::isDvd(episode->files().at(0), true);
+        QFileInfo fi(episode->files().first());
+        QString fiCanonicalPath = fi.canonicalPath();
+        QStringList episodeFiles = episode->files();
+        QString nfo = Manager::instance()->mediaCenterInterface()->nfoFilePath(episode);
+        QString newNfoFileName = nfo;
+        QString thumbnail = Manager::instance()->mediaCenterInterface()->thumbnailImageName(episode);
+        QString newThumbnailFileName = thumbnail;
+
+        if (!isBluRay && !isDvd && !isDvdWithoutSub && renameFiles) {
+            qApp->processEvents();
+            QString newFileName;
+            episodeFiles.clear();
 
             int partNo = 0;
             foreach (const QString &file, episode->files()) {
@@ -331,9 +348,19 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
                 newFileName.replace("<showTitle>", episode->showTitle());
                 newFileName.replace("<year>", episode->firstAired().toString("yyyy"));
                 newFileName.replace("<extension>", fi.suffix());
-                newFileName.replace("<episode>", episode->episodeString());
                 newFileName.replace("<season>", episode->seasonString());
                 newFileName.replace("<partNo>", QString::number(++partNo));
+
+                if (multiEpisodes.count() > 1) {
+                    QStringList episodeStrings;
+                    foreach (TvShowEpisode *subEpisode, multiEpisodes)
+                        episodeStrings.append(subEpisode->episodeString());
+                    qSort(episodeStrings);
+                    newFileName.replace("<episode>", episodeStrings.join("-"));
+                } else {
+                    newFileName.replace("<episode>", episode->episodeString());
+                }
+
                 Helper::sanitizeFileName(newFileName);
                 if (fi.fileName() != newFileName) {
                     ui->results->append(tr("<b>Rename File</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(newFileName));
@@ -346,7 +373,6 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
             }
 
             // Rename nfo
-            QString newNfoFileName;
             if (!nfo.isEmpty()) {
                 QString nfoFileName = QFileInfo(nfo).fileName();
                 QList<DataFile> nfoFiles = Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo);
@@ -364,7 +390,6 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
             }
 
             // Rename Thumbnail
-            QString newThumbnailFileName;
             if (!thumbnail.isEmpty()) {
                 QString thumbnailFileName = QFileInfo(thumbnail).fileName();
                 QList<DataFile> thumbnailFiles = Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb);
@@ -380,44 +405,58 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
                     }
                 }
             }
+        }
 
-            if (useSeasonDirectories) {
-                QDir showDir(episode->tvShow()->dir());
-                QString seasonDirName = seasonPattern;
-                seasonDirName.replace("<season>", episode->seasonString());
-                Helper::sanitizeFileName(seasonDirName);
-                QDir seasonDir(showDir.path() + "/" + seasonDirName);
-                if (!seasonDir.exists()) {
-                    ui->results->append(tr("<b>Create Directory</b> \"%1\"").arg(seasonDirName));
+        if (useSeasonDirectories) {
+            QDir showDir(episode->tvShow()->dir());
+            QString seasonDirName = seasonPattern;
+            seasonDirName.replace("<season>", episode->seasonString());
+            Helper::sanitizeFileName(seasonDirName);
+            QDir seasonDir(showDir.path() + "/" + seasonDirName);
+            if (!seasonDir.exists()) {
+                ui->results->append(tr("<b>Create Directory</b> \"%1\"").arg(seasonDirName));
+                if (!dryRun) {
+                    if (!showDir.mkdir(seasonDirName))
+                        ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                }
+            }
+
+            if (isBluRay || isDvd || isDvdWithoutSub) {
+                QDir dir = fi.dir();
+                if (isDvd || isBluRay)
+                    dir.cdUp();
+
+                QDir parentDir = dir;
+                parentDir.cdUp();
+                if (parentDir != seasonDir) {
+                    ui->results->append(tr("<b>Move Episode</b> \"%1\" to \"%2\"").arg(dir.dirName()).arg(seasonDirName));
                     if (!dryRun) {
-                        if (!showDir.mkdir(seasonDirName))
+                        if (!rename(dir, seasonDir.absolutePath() + "/" + dir.dirName()))
+                            ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                    }
+                }
+            } else if (fi.dir() != seasonDir) {
+                foreach (const QString &fileName, episodeFiles) {
+                    QFileInfo fi(fileName);
+                    ui->results->append(tr("<b>Move Episode</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(seasonDirName));
+                    if (!dryRun) {
+                        if (!rename(fileName, seasonDir.path() + "/" + fi.fileName()))
                             ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                     }
                 }
 
-                if (fi.dir() != seasonDir) {
-                    foreach (const QString &fileName, episodeFiles) {
-                        QFileInfo fi(fileName);
-                        ui->results->append(tr("<b>Move Episode</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(seasonDirName));
-                        if (!dryRun) {
-                            if (!rename(fileName, seasonDir.path() + "/" + fi.fileName()))
-                                ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
-                        }
+                if (!newNfoFileName.isEmpty() && !nfo.isEmpty()) {
+                    ui->results->append(tr("<b>Move NFO</b> \"%1\" to \"%2\"").arg(newNfoFileName).arg(seasonDirName));
+                    if (!dryRun) {
+                        if (!rename(fiCanonicalPath + "/" + newNfoFileName, seasonDir.path() + "/" + newNfoFileName))
+                            ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                     }
-
-                    if (!newNfoFileName.isEmpty() && !nfo.isEmpty()) {
-                        ui->results->append(tr("<b>Move NFO</b> \"%1\" to \"%2\"").arg(newNfoFileName).arg(seasonDirName));
-                        if (!dryRun) {
-                            if (!rename(fiCanonicalPath + "/" + newNfoFileName, seasonDir.path() + "/" + newNfoFileName))
-                                ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
-                        }
-                    }
-                    if (!thumbnail.isEmpty() && !newThumbnailFileName.isEmpty()) {
-                        ui->results->append(tr("<b>Move Thumbnail</b> \"%1\" to \"%2\"").arg(newThumbnailFileName).arg(seasonDirName));
-                        if (!dryRun) {
-                            if (!rename(fiCanonicalPath + "/" + newThumbnailFileName, seasonDir.path() + "/" + newThumbnailFileName))
-                                ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
-                        }
+                }
+                if (!thumbnail.isEmpty() && !newThumbnailFileName.isEmpty()) {
+                    ui->results->append(tr("<b>Move Thumbnail</b> \"%1\" to \"%2\"").arg(newThumbnailFileName).arg(seasonDirName));
+                    if (!dryRun) {
+                        if (!rename(fiCanonicalPath + "/" + newThumbnailFileName, seasonDir.path() + "/" + newThumbnailFileName))
+                            ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                     }
                 }
             }

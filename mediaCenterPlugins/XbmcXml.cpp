@@ -12,9 +12,6 @@
 #include "globals/Manager.h"
 #include "settings/Settings.h"
 
-// @todo: getting thumbs for episodes in dvd/bluray structures
-// @todo: saving thumbs for episodes in dvd/bluray structures
-
 /**
  * @brief XbmcXml::XbmcXml
  * @param parent
@@ -1461,10 +1458,23 @@ QString XbmcXml::actorImageName(TvShow *show, Actor actor)
  */
 QString XbmcXml::thumbnailImageName(TvShowEpisode *episode, QList<DataFile> dataFiles, bool constructName)
 {
+    if (episode->files().isEmpty())
+        return "";
+
     QString fileName;
-    if (episode->files().size() == 0)
-        return fileName;
     QFileInfo fi(episode->files().at(0));
+
+    if (Helper::isBluRay(episode->files().at(0)) || Helper::isDvd(episode->files().at(0))) {
+        QDir dir = fi.dir();
+        dir.cdUp();
+        fi.setFile(dir.absolutePath() + "/thumb.jpg");
+        return fi.exists() ? fi.absoluteFilePath() : "";
+    }
+
+    if (Helper::isDvd(episode->files().at(0), true)) {
+        fi.setFile(fi.dir().absolutePath() + "/thumb.jpg");
+        return fi.exists() ? fi.absoluteFilePath() : "";
+    }
 
     if (!constructName)
         dataFiles = Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb);
@@ -1591,7 +1601,6 @@ bool XbmcXml::loadTvShow(TvShow *show, QString initialNfoContent)
  * @brief Loads tv show episode information
  * @param episode Episode to load infos for
  * @return Loading success
- * @todo: check splitting of nfo contents (line delimiter)
  */
 bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoContent)
 {
@@ -1946,21 +1955,37 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
         file.close();
     }
 
+    fi.setFile(episode->files().at(0));
     if (episode->thumbnailImageChanged() && !episode->thumbnailImage().isNull()) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, episode->files().count() > 1);
-            qDebug() << "Thumbnail image has changed, saving to" << fi.absolutePath() + QDir::separator() + saveFileName;
-            saveFile(fi.absolutePath() + QDir::separator() + saveFileName, episode->thumbnailImage());
+        if (Helper::isBluRay(episode->files().at(0)) || Helper::isDvd(episode->files().at(0))) {
+            QDir dir = fi.dir();
+            dir.cdUp();
+            saveFile(dir.absolutePath() + "/thumb.jpg", episode->thumbnailImage());
+        } else if (Helper::isDvd(episode->files().at(0), true)) {
+            saveFile(fi.dir().absolutePath() + "/thumb.jpg", episode->thumbnailImage());
+        } else {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
+                QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, episode->files().count() > 1);
+                saveFile(fi.absolutePath() + QDir::separator() + saveFileName, episode->thumbnailImage());
+            }
         }
     }
 
+    fi.setFile(episode->files().at(0));
     if (episode->imagesToRemove().contains(TypeShowThumbnail)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, episode->files().count() > 1);
-            QFile(fi.absolutePath() + QDir::separator() + saveFileName).remove();
+        if (Helper::isBluRay(episode->files().at(0)) || Helper::isDvd(episode->files().at(0))) {
+            QDir dir = fi.dir();
+            dir.cdUp();
+            QFile(dir.absolutePath() + "/thumb.jpg").remove();
+        } else if (Helper::isDvd(episode->files().at(0), true)) {
+            QFile(fi.dir().absolutePath() + "/thumb.jpg").remove();
+        } else {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
+                QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, episode->files().count() > 1);
+                QFile(fi.absolutePath() + QDir::separator() + saveFileName).remove();
+            }
         }
     }
-
 
     return true;
 }
