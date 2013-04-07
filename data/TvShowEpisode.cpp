@@ -73,10 +73,6 @@ void TvShowEpisode::clear(QList<int> infos)
         m_certification = "";
     if (infos.contains(TvShowScraperInfos::Rating))
         m_rating = 0;
-    if (infos.contains(TvShowScraperInfos::SeasonEpisode)) {
-        m_season = -2;
-        m_episode = -2;
-    }
     if (infos.contains(TvShowScraperInfos::Director))
         m_directors.clear();
     if (infos.contains(TvShowScraperInfos::Writer))
