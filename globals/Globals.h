@@ -198,7 +198,6 @@ namespace TvShowScraperInfos {
     const int Overview       = 9;
     const int Poster         = 10;
     const int Rating         = 11;
-    const int SeasonEpisode  = 12;
     const int SeasonPoster   = 13;
     const int Thumbnail      = 14;
     const int Title          = 15;

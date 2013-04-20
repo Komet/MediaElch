@@ -45,7 +45,6 @@ TvShowSearch::TvShowSearch(QWidget *parent) :
     ui->chkOverview->setMyData(TvShowScraperInfos::Overview);
     ui->chkPoster->setMyData(TvShowScraperInfos::Poster);
     ui->chkRating->setMyData(TvShowScraperInfos::Rating);
-    ui->chkSeasonEpisode->setMyData(TvShowScraperInfos::SeasonEpisode);
     ui->chkSeasonPoster->setMyData(TvShowScraperInfos::SeasonPoster);
     ui->chkSeasonBackdrop->setMyData(TvShowScraperInfos::SeasonBackdrop);
     ui->chkSeasonBanner->setMyData(TvShowScraperInfos::SeasonBanner);
@@ -251,7 +250,6 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkExtraArts->setEnabled(true);
         ui->chkThumbnail->setEnabled(false);
         ui->chkDirector->setEnabled(false);
-        ui->chkSeasonEpisode->setEnabled(false);
         ui->chkWriter->setEnabled(false);
     } else if (type == UpdateShowAndAllEpisodes || type == UpdateShowAndNewEpisodes) {
         ui->chkGenres->setEnabled(true);
@@ -265,7 +263,6 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkExtraArts->setEnabled(true);
         ui->chkThumbnail->setEnabled(true);
         ui->chkDirector->setEnabled(true);
-        ui->chkSeasonEpisode->setEnabled(true);
         ui->chkWriter->setEnabled(true);
     } else {
         ui->chkGenres->setEnabled(false);
@@ -279,7 +276,6 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkExtraArts->setEnabled(false);
         ui->chkThumbnail->setEnabled(true);
         ui->chkDirector->setEnabled(true);
-        ui->chkSeasonEpisode->setEnabled(true);
         ui->chkWriter->setEnabled(true);
     }
 

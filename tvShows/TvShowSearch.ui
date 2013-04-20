@@ -203,19 +203,6 @@
          </widget>
         </item>
         <item>
-         <widget class="MyCheckBox" name="chkSeasonEpisode">
-          <property name="toolTip">
-           <string>Logo, Clear Art, CD Art</string>
-          </property>
-          <property name="text">
-           <string>Season/Episode</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="MyCheckBox" name="chkActors">
           <property name="text">
            <string>Actors</string>

@@ -520,16 +520,12 @@ void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *
         episode->setDirectors(elem.elementsByTagName("Director").at(0).toElement().text().split("|", QString::SkipEmptyParts));
     if (infosToLoad.contains(TvShowScraperInfos::Title) && !elem.elementsByTagName("EpisodeName").isEmpty())
         episode->setName(elem.elementsByTagName("EpisodeName").at(0).toElement().text());
-    if (infosToLoad.contains(TvShowScraperInfos::SeasonEpisode) && !elem.elementsByTagName("EpisodeNumber").isEmpty())
-        episode->setEpisode(elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt());
     if (infosToLoad.contains(TvShowScraperInfos::FirstAired) && !elem.elementsByTagName("FirstAired").isEmpty())
         episode->setFirstAired(QDate::fromString(elem.elementsByTagName("FirstAired").at(0).toElement().text(), "yyyy-MM-dd"));
     if (infosToLoad.contains(TvShowScraperInfos::Overview) && !elem.elementsByTagName("Overview").isEmpty())
         episode->setOverview(elem.elementsByTagName("Overview").at(0).toElement().text());
     if (infosToLoad.contains(TvShowScraperInfos::Rating) && !elem.elementsByTagName("Rating").isEmpty())
         episode->setRating(elem.elementsByTagName("Rating").at(0).toElement().text().toFloat());
-    if (infosToLoad.contains(TvShowScraperInfos::SeasonEpisode) && !elem.elementsByTagName("SeasonNumber").isEmpty())
-        episode->setSeason(elem.elementsByTagName("SeasonNumber").at(0).toElement().text().toInt());
     if (infosToLoad.contains(TvShowScraperInfos::Writer) && !elem.elementsByTagName("Writer").isEmpty())
         episode->setWriters(elem.elementsByTagName("Writer").at(0).toElement().text().split("|", QString::SkipEmptyParts));
     if (infosToLoad.contains(TvShowScraperInfos::Thumbnail) && !elem.elementsByTagName("filename").isEmpty() &&
