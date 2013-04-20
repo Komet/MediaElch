@@ -63,10 +63,10 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie)
     xml.writeTextElement("credits", movie->writer());
     xml.writeTextElement("director", movie->director());
     xml.writeTextElement("playcount", QString("%1").arg(movie->playcount()));
-    xml.writeTextElement("lastplayed", movie->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
-    if (!movie->dateAdded().isNull()) {
+    if (!movie->lastPlayed().isNull())
+        xml.writeTextElement("lastplayed", movie->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
+    if (!movie->dateAdded().isNull())
         xml.writeTextElement("dateadded", movie->dateAdded().toString("yyyy-MM-dd HH:mm:ss"));
-    }
     xml.writeTextElement("id", movie->id());
     xml.writeTextElement("tmdbid", movie->tmdbId());
     xml.writeTextElement("set", movie->set());
@@ -391,7 +391,7 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
     if (!domDoc.elementsByTagName("rating").isEmpty())
         movie->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().toFloat());
     if (!domDoc.elementsByTagName("votes").isEmpty())
-        movie->setVotes(domDoc.elementsByTagName("votes").at(0).toElement().text().toInt());
+        movie->setVotes(domDoc.elementsByTagName("votes").at(0).toElement().text().replace(",", "").replace(".", "").toInt());
     if (!domDoc.elementsByTagName("top250").isEmpty())
         movie->setTop250(domDoc.elementsByTagName("top250").at(0).toElement().text().toInt());
     if (!domDoc.elementsByTagName("year").isEmpty())
