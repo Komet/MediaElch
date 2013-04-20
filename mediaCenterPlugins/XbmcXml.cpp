@@ -103,9 +103,7 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie)
     }
     xml.writeEndElement();
 
-    xml.writeStartElement("fileinfo");
     writeStreamDetails(xml, movie->streamDetails());
-    xml.writeEndElement();
 
     xml.writeEndElement();
 }
@@ -541,6 +539,10 @@ void XbmcXml::loadStreamDetails(StreamDetails* streamDetails, QDomElement elem)
  */
 void XbmcXml::writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDetails)
 {
+    if (streamDetails->videoDetails().isEmpty() && streamDetails->audioDetails().isEmpty() && streamDetails->subtitleDetails().isEmpty())
+        return;
+
+    xml.writeStartElement("fileinfo");
     xml.writeStartElement("streamdetails");
 
     xml.writeStartElement("video");
@@ -583,6 +585,7 @@ void XbmcXml::writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDet
         xml.writeEndElement();
     }
 
+    xml.writeEndElement();
     xml.writeEndElement();
 }
 
