@@ -106,6 +106,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
     connect(ui->buttonReloadStreamDetails, SIGNAL(clicked()), this, SLOT(onReloadStreamDetails()));
     connect(ui->buttonDownloadTrailer, SIGNAL(clicked()), this, SLOT(onDownloadTrailer()));
+    connect(ui->buttonYoutubeDummy, SIGNAL(clicked()), this, SLOT(onInsertYoutubeLink()));
 
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
@@ -1457,4 +1458,13 @@ void MovieWidget::deleteMovieCdArt()
     m_movie->removeImage(TypeCdArt);
     updateImages(QList<ImageType>() << TypeCdArt);
     ui->buttonRevert->setVisible(true);
+}
+
+void MovieWidget::onInsertYoutubeLink()
+{
+    if (Settings::instance()->useYoutubePluginUrls())
+        ui->trailer->setText("plugin://plugin.video.youtube/?action=play_video&videoid=");
+    else
+        ui->trailer->setText("http://www.youtube.com/watch?v=");
+    ui->trailer->setFocus();
 }

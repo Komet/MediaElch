@@ -304,6 +304,28 @@
                  <widget class="QLineEdit" name="trailer"/>
                 </item>
                 <item>
+                 <widget class="QToolButton" name="buttonYoutubeDummy">
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Insert YouTube Dummy Link</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QToolButton {
+	border: none;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../MediaElch.qrc">
+                    <normaloff>:/img/pencil.png</normaloff>:/img/pencil.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QToolButton" name="buttonDownloadTrailer">
                   <property name="cursor">
                    <cursorShape>PointingHandCursor</cursorShape>
