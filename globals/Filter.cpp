@@ -124,6 +124,20 @@ bool Filter::accepts(Movie *movie)
     if (m_info == MovieFilters::Director)
         return (m_hasInfo && movie->director() == m_shortText) || (!m_hasInfo && movie->director().isEmpty());
 
+    if (m_info == MovieFilters::Quality) {
+        if (m_shortText == "1080p") {
+            return movie->streamDetails()->videoDetails().value("width").toInt() == 1920;
+        } else if (m_shortText == "720p") {
+            return movie->streamDetails()->videoDetails().value("width").toInt() == 1280;
+        } else if (m_shortText == "SD") {
+            return movie->streamDetails()->videoDetails().value("width").toInt() > 0 && movie->streamDetails()->videoDetails().value("width").toInt() <= 720;
+        } else if (m_shortText == "BluRay") {
+            return movie->discType() == DiscBluRay;
+        } else if (m_shortText == "DVD") {
+            return movie->discType() == DiscDvd;
+        }
+    }
+
     if (m_info == MovieFilters::Path) {
         foreach (const QString &file, movie->files()) {
             if (file.contains(m_shortText, Qt::CaseInsensitive))

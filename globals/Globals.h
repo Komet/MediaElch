@@ -250,14 +250,15 @@ namespace MovieFilters {
     const int Path          = 18;
     const int Director      = 19;
     const int Tags          = 20;
+    const int Quality       = 21;
 }
 
 namespace TvShowFilters {
-    const int Title         = 21;
+    const int Title         = 22;
 }
 
 namespace ConcertFilters {
-    const int Title         = 22;
+    const int Title         = 23;
 }
 
 enum SortBy {

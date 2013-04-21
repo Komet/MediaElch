@@ -535,6 +535,17 @@ void FilterWidget::initFilters()
     m_movieFilters << new Filter(tr("Movie has no Tags"), tr("No Tags"),
                                  QStringList() << tr("Tags"), MovieFilters::Tags, false);
 
+    m_movieFilters << new Filter(tr("Resolution 720p"), tr("720p"),
+                                 QStringList() << tr("Resolution") << tr("720p"), MovieFilters::Quality, true);
+    m_movieFilters << new Filter(tr("Resolution 1080p"), tr("1080p"),
+                                 QStringList() << tr("Resolution") << tr("1080p"), MovieFilters::Quality, true);
+    m_movieFilters << new Filter(tr("Resolution SD"), tr("SD"),
+                                 QStringList() << tr("Resolution") << tr("SD"), MovieFilters::Quality, true);
+    m_movieFilters << new Filter(tr("Format DVD"), tr("DVD"),
+                                 QStringList() << tr("Format") << tr("DVD"), MovieFilters::Quality, true);
+    m_movieFilters << new Filter(tr("BluRay Format"), tr("BluRay"),
+                                 QStringList() << tr("Format") << tr("BluRay"), MovieFilters::Quality, true);
+
     m_tvShowFilters << new Filter(tr("Title"), "", QStringList(), TvShowFilters::Title, true);
 
     m_concertFilters << new Filter(tr("Title"), "", QStringList(), ConcertFilters::Title, true);
