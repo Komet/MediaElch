@@ -155,9 +155,17 @@ void MovieController::setInfosToLoad(QList<int> infos)
 void MovieController::scraperLoadDone()
 {
     emit sigInfoLoadDone(m_movie);
-    if ((!m_movie->tmdbId().isEmpty() || !m_movie->id().isEmpty()) && infosToLoad().contains(MovieScraperInfos::ExtraArts)) {
+    if ((!m_movie->tmdbId().isEmpty() || !m_movie->id().isEmpty()) &&
+            (infosToLoad().contains(MovieScraperInfos::Logo) || infosToLoad().contains(MovieScraperInfos::ClearArt) || infosToLoad().contains(MovieScraperInfos::CdArt))) {
+        QList<int> images;
+        if (infosToLoad().contains(MovieScraperInfos::Logo))
+            images << TypeLogo;
+        if (infosToLoad().contains(MovieScraperInfos::ClearArt))
+            images << TypeClearArt;
+        if (infosToLoad().contains(MovieScraperInfos::CdArt))
+            images << TypeCdArt;
         connect(Manager::instance()->fanartTv(), SIGNAL(sigImagesLoaded(Movie*,QMap<int,QList<Poster> >)), this, SLOT(onFanartLoadDone(Movie*,QMap<int,QList<Poster> >)));
-        Manager::instance()->fanartTv()->movieImages(m_movie, (!m_movie->tmdbId().isEmpty()) ? m_movie->tmdbId() : m_movie->id(), QList<int>() << TypeClearArt << TypeCdArt << TypeLogo);
+        Manager::instance()->fanartTv()->movieImages(m_movie, (!m_movie->tmdbId().isEmpty()) ? m_movie->tmdbId() : m_movie->id(), images);
     } else {
         onFanartLoadDone(m_movie, QMap<int, QList<Poster> >());
     }

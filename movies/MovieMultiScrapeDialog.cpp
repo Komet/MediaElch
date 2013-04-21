@@ -32,7 +32,6 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget *parent) :
     ui->chkCertification->setMyData(MovieScraperInfos::Certification);
     ui->chkCountries->setMyData(MovieScraperInfos::Countries);
     ui->chkDirector->setMyData(MovieScraperInfos::Director);
-    ui->chkExtraArts->setMyData(MovieScraperInfos::ExtraArts);
     ui->chkGenres->setMyData(MovieScraperInfos::Genres);
     ui->chkOverview->setMyData(MovieScraperInfos::Overview);
     ui->chkPoster->setMyData(MovieScraperInfos::Poster);
@@ -45,6 +44,9 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget *parent) :
     ui->chkTitle->setMyData(MovieScraperInfos::Title);
     ui->chkTrailer->setMyData(MovieScraperInfos::Trailer);
     ui->chkWriter->setMyData(MovieScraperInfos::Writer);
+    ui->chkLogo->setMyData(MovieScraperInfos::Logo);
+    ui->chkClearArt->setMyData(MovieScraperInfos::ClearArt);
+    ui->chkCdArt->setMyData(MovieScraperInfos::CdArt);
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0)

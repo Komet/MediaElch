@@ -180,10 +180,12 @@ namespace MovieScraperInfos {
     const int Countries     = 14;
     const int Writer        = 15;
     const int Director      = 16;
-    const int ExtraArts     = 17;
     const int Tags          = 18;
     const int ExtraFanarts  = 19;
     const int Set           = 20;
+    const int Logo          = 21;
+    const int CdArt         = 22;
+    const int ClearArt      = 23;
 }
 
 namespace TvShowScraperInfos {

@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>679</width>
-    <height>637</height>
+    <height>663</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -260,12 +260,23 @@
          </widget>
         </item>
         <item>
-         <widget class="MyCheckBox" name="chkExtraArts">
-          <property name="toolTip">
-           <string>Logo, Clear Art, CD Art</string>
-          </property>
+         <widget class="MyCheckBox" name="chkLogo">
           <property name="text">
-           <string>Artwork</string>
+           <string>Logo</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkClearArt">
+          <property name="text">
+           <string>Clear Art</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkCdArt">
+          <property name="text">
+           <string>CD Art</string>
           </property>
          </widget>
         </item>

@@ -87,8 +87,10 @@ void Movie::clear()
           << MovieScraperInfos::Writer
           << MovieScraperInfos::Director
           << MovieScraperInfos::Tags
-          << MovieScraperInfos::ExtraArts
-          << MovieScraperInfos::ExtraFanarts;
+          << MovieScraperInfos::ExtraFanarts
+          << MovieScraperInfos::Logo
+          << MovieScraperInfos::CdArt
+          << MovieScraperInfos::ClearArt;
     clear(infos);
     m_nfoContent.clear();
 }
@@ -148,17 +150,24 @@ void Movie::clear(QList<int> infos)
         m_director = "";
     if (infos.contains(MovieScraperInfos::Tags))
         m_tags.clear();
-    if (infos.contains(MovieScraperInfos::ExtraArts)) {
+
+    if (infos.contains(MovieScraperInfos::Logo)) {
         m_logoImage = QByteArray();
         m_logoImageChanged = false;
+        m_imagesToRemove.removeOne(TypeLogo);
+    }
+    if (infos.contains(MovieScraperInfos::ClearArt)) {
         m_clearArtImage = QByteArray();
         m_clearArtImageChanged = false;
+        m_imagesToRemove.removeOne(TypeClearArt);
+    }
+
+    if (infos.contains(MovieScraperInfos::CdArt)) {
         m_cdArtImage = QByteArray();
         m_cdArtImageChanged = false;
-        m_imagesToRemove.removeOne(TypeLogo);
-        m_imagesToRemove.removeOne(TypeClearArt);
         m_imagesToRemove.removeOne(TypeCdArt);
     }
+
     if (infos.contains(MovieScraperInfos::ExtraFanarts)) {
         m_extraFanartsToRemove.clear();
         m_extraFanartImagesToAdd.clear();
