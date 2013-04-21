@@ -410,7 +410,7 @@ void SettingsWidget::addDir(QString dir, bool separateFolders, bool autoReload, 
             int row = ui->dirs->rowCount();
             ui->dirs->insertRow(row);
             QTableWidgetItem *item = new QTableWidgetItem(dir);
-            item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsEditable);
             item->setToolTip(dir);
             QTableWidgetItem *itemCheck = new QTableWidgetItem();
             if (separateFolders)
