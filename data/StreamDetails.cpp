@@ -118,10 +118,15 @@ void StreamDetails::loadStreamDetails()
     for (int i=0 ; i<audioCount ; ++i) {
         QString lang = QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Language/String3").toStdWString())).toLower();
         QString audioCodec = audioFormat(QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Codec").toStdWString())));
-        int channels = QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Channels").toStdWString())).toInt();
+        QString channels = QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Channels").toStdWString()));
+        QRegExp rx("^(\\d*)\\D*");
+        if (rx.indexIn(QString("%1").arg(channels), 0) != -1)
+            channels = rx.cap(1);
+        else
+            channels = "";
         setAudioDetail(i, "language", lang);
         setAudioDetail(i, "codec", audioCodec);
-        setAudioDetail(i, "channels", QString("%1").arg(channels));
+        setAudioDetail(i, "channels", channels);
     }
 
     for (int i=0 ; i<textCount ; ++i) {
