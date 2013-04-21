@@ -40,6 +40,8 @@ void AdvancedSettings::reset()
 
     m_audioCodecMappings.insert("MPA1L3", "MP3");
     m_videoCodecMappings.insert("v_mpeg4/iso/avc", "h264");
+
+    m_useFirstStudioOnly = false;
 }
 
 void AdvancedSettings::loadSettings()
@@ -95,6 +97,7 @@ void AdvancedSettings::loadSettings()
     qDebug() << "    videoCodecMappings    " << m_videoCodecMappings;
     qDebug() << "    certificationMappings " << m_certificationMappings;
     qDebug() << "    studioMappings        " << m_studioMappings;
+    qDebug() << "    useFirstStudioOnly    " << m_useFirstStudioOnly;
     qDebug() << "    countryMappings       " << m_countryMappings;
 }
 
@@ -202,6 +205,8 @@ void AdvancedSettings::loadStudioMappings(QXmlStreamReader &xml)
             if (!xml.attributes().value("from").isEmpty())
                 m_studioMappings.insert(xml.attributes().value("from").toString(), xml.attributes().value("to").toString());
             xml.readElementText();
+        } else if (xml.name() == "useFirstStudioOnly") {
+            m_useFirstStudioOnly = (xml.readElementText() == "true");
         } else {
             xml.skipCurrentElement();
         }

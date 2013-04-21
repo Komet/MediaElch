@@ -73,8 +73,11 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie)
     xml.writeTextElement("sorttitle", movie->sortTitle());
     xml.writeTextElement("trailer", Helper::formatTrailerUrl(movie->trailer().toString()));
     xml.writeTextElement("watched", (movie->watched()) ? "true" : "false");
-    foreach (const QString &studio, movie->studios())
+    foreach (const QString &studio, movie->studios()) {
         xml.writeTextElement("studio", studio);
+        if (Settings::instance()->advanced()->useFirstStudioOnly())
+            break;
+    }
     foreach (const QString &genre, movie->genres())
         xml.writeTextElement("genre", genre);
     foreach (const QString &country, movie->countries())
