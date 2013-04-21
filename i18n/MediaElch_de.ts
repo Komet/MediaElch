@@ -1379,70 +1379,70 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="538"/>
         <source>Resolution 720p</source>
-        <translation type="unfinished"></translation>
+        <translation>Auflösung 720p</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="538"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="539"/>
         <source>720p</source>
-        <translation type="unfinished">720p</translation>
+        <translation>720p</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="539"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="541"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="543"/>
         <source>Resolution</source>
-        <translation type="unfinished">Auflösung</translation>
+        <translation>Auflösung</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="540"/>
         <source>Resolution 1080p</source>
-        <translation type="unfinished"></translation>
+        <translation>Auflösung 1080p</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="540"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="541"/>
         <source>1080p</source>
-        <translation type="unfinished">1080p</translation>
+        <translation>1080p</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="542"/>
         <source>Resolution SD</source>
-        <translation type="unfinished"></translation>
+        <translation>Auflösung SD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="542"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="543"/>
         <source>SD</source>
-        <translation type="unfinished"></translation>
+        <translation>SD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="544"/>
         <source>Format DVD</source>
-        <translation type="unfinished"></translation>
+        <translation>Format DVD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="544"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="545"/>
         <source>DVD</source>
-        <translation type="unfinished"></translation>
+        <translation>DVD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="545"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="547"/>
         <source>Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Format</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="546"/>
         <source>BluRay Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Format BluRay</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="546"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="547"/>
         <source>BluRay</source>
-        <translation type="unfinished"></translation>
+        <translation>BluRay</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="407"/>
@@ -2081,7 +2081,7 @@ Operation abgebrochen.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="131"/>
         <source>Logo</source>
-        <translation type="unfinished">Logo</translation>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="191"/>
@@ -2179,12 +2179,12 @@ Operation abgebrochen.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="281"/>
         <source>Clear Art</source>
-        <translation type="unfinished">Clear Art</translation>
+        <translation>Clear Art</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="291"/>
         <source>CD Art</source>
-        <translation type="unfinished">CD Art</translation>
+        <translation>CD Art</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="310"/>
@@ -2299,17 +2299,17 @@ Operation abgebrochen.</translation>
     <message>
         <location filename="../movies/MovieSearch.ui" line="265"/>
         <source>Logo</source>
-        <translation type="unfinished">Logo</translation>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearch.ui" line="272"/>
         <source>Clear Art</source>
-        <translation type="unfinished">Clear Art</translation>
+        <translation>Clear Art</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearch.ui" line="279"/>
         <source>CD Art</source>
-        <translation type="unfinished">CD Art</translation>
+        <translation>CD Art</translation>
     </message>
     <message>
         <source>Artwork</source>
@@ -2864,7 +2864,7 @@ Operation abgebrochen.</translation>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="66"/>
         <source>no error occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Fehler aufgetreten</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="67"/>
