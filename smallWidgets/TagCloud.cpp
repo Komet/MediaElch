@@ -73,9 +73,10 @@ void TagCloud::drawTags()
         Badge *badge = new Badge(word, ui->scrollAreaWidgetContents);
         if (m_badgeType == TagCloud::TypeSimpleLabel) {
             badge->setBadgeType(Badge::LabelWarning);
-            badge->setShowActiveMark(true);
+            badge->setShowActiveMark(false);
         } else {
             badge->setBadgeType(Badge::BadgeDefault);
+            badge->setShowActiveMark(false);
         }
         if (m_activeTags.contains(word))
             badge->setActive(true);
@@ -158,9 +159,10 @@ void TagCloud::addTag()
         Badge *badge = new Badge(word, ui->scrollAreaWidgetContents);
         if (m_badgeType == TagCloud::TypeSimpleLabel) {
             badge->setBadgeType(Badge::LabelWarning);
-            badge->setShowActiveMark(true);
+            badge->setShowActiveMark(false);
         } else {
             badge->setBadgeType(Badge::BadgeDefault);
+            badge->setShowActiveMark(false);
         }
         badge->show();
         badge->setActive(true);
