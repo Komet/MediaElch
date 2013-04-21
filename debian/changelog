@@ -1,3 +1,48 @@
+mediaelch (1.6-1) precise; urgency=low
+
+  * Added filter for local trailers
+  * Media Status Column “Trailer” now regards local trailers
+  * Bulk loading of streamdetails now overwrites movie runtime
+  * Bugfix: Also saved last movie while multi scraping
+  * Added media status columns for actors and IMDB Id
+  * Bugfix: Correctly load CD art for BluRay and DVD structures
+  * Added local image cache
+  * Improved matching of season/episode in filenames
+  * Bugfix: Skipping of extra files in BluRay and DVD structures
+  * Small GUI changes
+  * TV Shows: Show all banners not just season specific
+  * Bugfix: Opening movie folders in network shares
+  * Option to use DVD order when scraping tv shows
+  * Save DVD and BluRay fanart inside the directory structures
+  * Correctly detect stream details in DVD structures
+  * Bugfix: Cinefacts scraper didn’t find year and countries
+  * Option to delete images
+  * Changed default rename pattern for tv show episodes
+  * Added filter items for studios, countries and filename
+  * Fixed tag cloud UI bug
+  * Bugfix: “Watched” Filter showed unwatched movies
+  * Automatically set playcount when watched flag changes
+  * Bugfix: Downloading season artwork
+  * Added director and tags filter
+  * Added downloading of tv themes
+  * Bugfix: Missing Qt translation added
+  * Double click movie in Genre, Certification or Sets Widget jumps to movie
+  * Use locale aware sorting in lists
+  * Bugfix: Store tvdbid also in id tag
+  * Added support for multi-episode files
+  * NFO parser is more tolerant with thousands separators
+  * Bugfix: Don’t write illegal last played date
+  * Bugfix: Don’t write empty stream details
+  * Artwork can be loaded separately
+  * Settings: Directory string editable manually
+  * Filters for Resolution and format
+  * Added option in advancedsettings to only store the first studio (helpful for displaying studio logos in XBMC)
+  * Added button to set YouTube dummy link
+  * Bugfix: Channel count detection wrong for DTS-HD and others
+  * Bugfix: Use correct info labels for audio formats
+    
+ -- Daniel Kabel <daniel.kabel@me.com>  Mon, 21 Apr 2013 19:46:42 +0200
+
 mediaelch (1.5-1) precise; urgency=low
 
   * Bugfix: Replace illegal characters in filenames on Windows
