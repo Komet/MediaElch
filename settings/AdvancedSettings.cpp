@@ -38,7 +38,6 @@ void AdvancedSettings::reset()
                      << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm" << "*.rmvb" << "*.img" << "*.wmv"
                      << "*.mov" << "*.divx" << "VIDEO_TS.IFO" << "index.bdmv" << "*.wtv";
 
-    m_audioCodecMappings.insert("MPA1L3", "MP3");
     m_videoCodecMappings.insert("v_mpeg4/iso/avc", "h264");
 
     m_useFirstStudioOnly = false;

@@ -117,7 +117,8 @@ void StreamDetails::loadStreamDetails()
 
     for (int i=0 ; i<audioCount ; ++i) {
         QString lang = QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Language/String3").toStdWString())).toLower();
-        QString audioCodec = audioFormat(QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Codec").toStdWString())));
+        QString audioCodec = audioFormat(QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Codec").toStdWString())),
+                                         QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Format_Profile").toStdWString())));
         QString channels = QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Channels").toStdWString()));
         QRegExp rx("^(\\d*)\\D*");
         if (rx.indexIn(QString("%1").arg(channels), 0) != -1)
@@ -157,11 +158,29 @@ QString StreamDetails::videoFormat(QString format, QString version)
  * @param format Original format, given by libstreaminfo
  * @return Modified format
  */
-QString StreamDetails::audioFormat(const QString &format)
+QString StreamDetails::audioFormat(const QString &codec, const QString &profile)
 {
-    if (Settings::instance()->advanced()->audioCodecMappings().contains(format))
-        return Settings::instance()->advanced()->audioCodecMappings().value(format);
-    return format;
+    QString xbmcFormat;
+    if (codec == "DTS-HD" && profile == "MA / Core")
+        xbmcFormat = "dtshd_ma";
+    else if (codec == "DTS-HD" && profile == "HRA / Core")
+        xbmcFormat = "dtshd_hra";
+    else if (codec == "AC3")
+        xbmcFormat = "ac3";
+    else if (codec == "AC3+" || codec == "E-AC-3")
+        xbmcFormat = "eac3";
+    else if (codec == "TrueHD / AC3")
+        xbmcFormat = "truehd";
+    else if (codec == "FLAC")
+        xbmcFormat = "flac";
+    else if (codec == "MPA1L3")
+        xbmcFormat = "mp3";
+    else
+        xbmcFormat = codec;
+
+    if (Settings::instance()->advanced()->audioCodecMappings().contains(xbmcFormat))
+        return Settings::instance()->advanced()->audioCodecMappings().value(xbmcFormat);
+    return xbmcFormat;
 }
 
 /**
