@@ -285,3 +285,8 @@ QHash<QString, QString> AdvancedSettings::countryMappings() const
 {
     return m_countryMappings;
 }
+
+bool AdvancedSettings::useFirstStudioOnly() const
+{
+    return m_useFirstStudioOnly;
+}
