@@ -2107,188 +2107,193 @@
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="312"/>
+        <source>Insert YouTube Dummy Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieWidget.ui" line="334"/>
         <source>Download Trailer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="328"/>
+        <location filename="../movies/MovieWidget.ui" line="350"/>
         <source>Local trailer is available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="331"/>
+        <location filename="../movies/MovieWidget.ui" line="353"/>
         <source>Local Trailer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="371"/>
+        <location filename="../movies/MovieWidget.ui" line="393"/>
         <source>Votes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="404"/>
+        <location filename="../movies/MovieWidget.ui" line="426"/>
         <source>Top 250</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="425"/>
+        <location filename="../movies/MovieWidget.ui" line="447"/>
         <source>yyyy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="448"/>
+        <location filename="../movies/MovieWidget.ui" line="470"/>
         <source>Runtime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="455"/>
+        <location filename="../movies/MovieWidget.ui" line="477"/>
         <source> Minutes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="467"/>
+        <location filename="../movies/MovieWidget.ui" line="489"/>
         <source>Outline</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="487"/>
+        <location filename="../movies/MovieWidget.ui" line="509"/>
         <source>Extended</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="519"/>
+        <location filename="../movies/MovieWidget.ui" line="541"/>
         <source>Actors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="535"/>
+        <location filename="../movies/MovieWidget.ui" line="557"/>
         <source>Actor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="540"/>
+        <location filename="../movies/MovieWidget.ui" line="562"/>
         <source>Role</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="555"/>
+        <location filename="../movies/MovieWidget.ui" line="577"/>
         <source>Remove Actor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="582"/>
+        <location filename="../movies/MovieWidget.ui" line="604"/>
         <source>Add Actor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="616"/>
+        <location filename="../movies/MovieWidget.ui" line="638"/>
         <source>Click to change</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="632"/>
-        <location filename="../movies/MovieWidget.ui" line="745"/>
+        <location filename="../movies/MovieWidget.ui" line="654"/>
+        <location filename="../movies/MovieWidget.ui" line="767"/>
         <source>Resolution</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="658"/>
+        <location filename="../movies/MovieWidget.ui" line="680"/>
         <source>Extra Fanarts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="680"/>
+        <location filename="../movies/MovieWidget.ui" line="702"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="703"/>
+        <location filename="../movies/MovieWidget.ui" line="725"/>
         <source>Add Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="713"/>
+        <location filename="../movies/MovieWidget.ui" line="735"/>
         <source>Streamdetails</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="721"/>
+        <location filename="../movies/MovieWidget.ui" line="743"/>
         <source>Aspect Ratio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="728"/>
+        <location filename="../movies/MovieWidget.ui" line="750"/>
         <source>Scantype</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="752"/>
-        <location filename="../movies/MovieWidget.cpp" line="697"/>
-        <location filename="../movies/MovieWidget.cpp" line="700"/>
+        <location filename="../movies/MovieWidget.ui" line="774"/>
+        <location filename="../movies/MovieWidget.cpp" line="698"/>
+        <location filename="../movies/MovieWidget.cpp" line="701"/>
         <source>Codec</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="787"/>
+        <location filename="../movies/MovieWidget.ui" line="809"/>
         <source>x</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="825"/>
+        <location filename="../movies/MovieWidget.ui" line="847"/>
         <source>Audio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="838"/>
+        <location filename="../movies/MovieWidget.ui" line="860"/>
         <source>Video</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="855"/>
+        <location filename="../movies/MovieWidget.ui" line="877"/>
         <source>Duration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="871"/>
+        <location filename="../movies/MovieWidget.ui" line="893"/>
         <source>HH:mm:ss</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="882"/>
+        <location filename="../movies/MovieWidget.ui" line="904"/>
         <source>Reload from File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1064"/>
+        <location filename="../movies/MovieWidget.ui" line="1086"/>
         <source>Poster</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1086"/>
-        <location filename="../movies/MovieWidget.ui" line="1136"/>
-        <location filename="../movies/MovieWidget.ui" line="1206"/>
-        <location filename="../movies/MovieWidget.ui" line="1256"/>
-        <location filename="../movies/MovieWidget.ui" line="1306"/>
+        <location filename="../movies/MovieWidget.ui" line="1108"/>
+        <location filename="../movies/MovieWidget.ui" line="1158"/>
+        <location filename="../movies/MovieWidget.ui" line="1228"/>
+        <location filename="../movies/MovieWidget.ui" line="1278"/>
+        <location filename="../movies/MovieWidget.ui" line="1328"/>
         <source>Click to Change</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1114"/>
+        <location filename="../movies/MovieWidget.ui" line="1136"/>
         <source>Fanart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1184"/>
+        <location filename="../movies/MovieWidget.ui" line="1206"/>
         <source>Logo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1234"/>
+        <location filename="../movies/MovieWidget.ui" line="1256"/>
         <source>Clear Art</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1284"/>
+        <location filename="../movies/MovieWidget.ui" line="1306"/>
         <source>CD Art</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2333,72 +2338,72 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="429"/>
+        <location filename="../movies/MovieWidget.cpp" line="430"/>
         <source>Downloading images...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="690"/>
-        <location filename="../movies/MovieWidget.cpp" line="724"/>
+        <location filename="../movies/MovieWidget.cpp" line="691"/>
+        <location filename="../movies/MovieWidget.cpp" line="725"/>
         <source>Track %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="696"/>
-        <location filename="../movies/MovieWidget.cpp" line="699"/>
-        <location filename="../movies/MovieWidget.cpp" line="727"/>
+        <location filename="../movies/MovieWidget.cpp" line="697"/>
+        <location filename="../movies/MovieWidget.cpp" line="700"/>
         <location filename="../movies/MovieWidget.cpp" line="728"/>
+        <location filename="../movies/MovieWidget.cpp" line="729"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="698"/>
-        <location filename="../movies/MovieWidget.cpp" line="701"/>
+        <location filename="../movies/MovieWidget.cpp" line="699"/>
+        <location filename="../movies/MovieWidget.cpp" line="702"/>
         <source>Channels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="716"/>
+        <location filename="../movies/MovieWidget.cpp" line="717"/>
         <source>Subtitles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="885"/>
+        <location filename="../movies/MovieWidget.cpp" line="886"/>
         <source>Saving movie...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="893"/>
+        <location filename="../movies/MovieWidget.cpp" line="894"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="913"/>
+        <location filename="../movies/MovieWidget.cpp" line="914"/>
         <source>Saving movies...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="929"/>
+        <location filename="../movies/MovieWidget.cpp" line="930"/>
         <source>All Movies Saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="951"/>
+        <location filename="../movies/MovieWidget.cpp" line="952"/>
         <source>Unknown Actor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="952"/>
+        <location filename="../movies/MovieWidget.cpp" line="953"/>
         <source>Unknown Role</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1081"/>
+        <location filename="../movies/MovieWidget.cpp" line="1082"/>
         <source>Choose Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1081"/>
+        <location filename="../movies/MovieWidget.cpp" line="1082"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation type="unfinished"></translation>
     </message>

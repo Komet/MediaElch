@@ -1921,6 +1921,10 @@ Operação Cancelada.</translation>
         <source>Saving movies...</source>
         <translation>Salvando filmes...</translation>
     </message>
+    <message>
+        <source>Insert YouTube Dummy Link</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QJsonParseError</name>
