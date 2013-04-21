@@ -910,6 +910,54 @@ p, li { white-space: pre-wrap; }
         <source>Tags</source>
         <translation type="unfinished">Tags</translation>
     </message>
+    <message>
+        <source>Resolution 720p</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>720p</source>
+        <translation type="unfinished">720p</translation>
+    </message>
+    <message>
+        <source>Resolution</source>
+        <translation type="unfinished">Resolução</translation>
+    </message>
+    <message>
+        <source>Resolution 1080p</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1080p</source>
+        <translation type="unfinished">1080p</translation>
+    </message>
+    <message>
+        <source>Resolution SD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Format DVD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BluRay Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BluRay</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GenreWidget</name>
@@ -1370,7 +1418,7 @@ Operação Cancelada.</translation>
     </message>
     <message>
         <source>Extra Arts</source>
-        <translation>Artes Extras</translation>
+        <translation type="obsolete">Artes Extras</translation>
     </message>
     <message>
         <source>Please select the scraper and the infos you want to be loaded. MediaElch will use the best result for each movie you selected.</source>
@@ -1414,7 +1462,7 @@ Operação Cancelada.</translation>
     </message>
     <message>
         <source>Logo, Clear Art, CD Art</source>
-        <translation>Logo, Clear Art, CD Art</translation>
+        <translation type="obsolete">Logo, Clear Art, CD Art</translation>
     </message>
     <message>
         <source>Set</source>
@@ -1430,6 +1478,18 @@ Operação Cancelada.</translation>
             <numerusform>Scrapeamento de %n filmes finalizado.</numerusform>
             <numerusform></numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Logo</source>
+        <translation type="unfinished">Logo</translation>
+    </message>
+    <message>
+        <source>Clear Art</source>
+        <translation type="unfinished">Clear Art</translation>
+    </message>
+    <message>
+        <source>CD Art</source>
+        <translation type="unfinished">CD Art</translation>
     </message>
 </context>
 <context>
@@ -1484,7 +1544,7 @@ Operação Cancelada.</translation>
     </message>
     <message>
         <source>Artwork</source>
-        <translation>Artes</translation>
+        <translation type="obsolete">Artes</translation>
     </message>
     <message>
         <source>Scraper</source>
@@ -1528,11 +1588,23 @@ Operação Cancelada.</translation>
     </message>
     <message>
         <source>Logo, Clear Art, CD Art</source>
-        <translation>Logo, Clear Art, CD Art</translation>
+        <translation type="obsolete">Logo, Clear Art, CD Art</translation>
     </message>
     <message>
         <source>Set</source>
         <translation>Coletânea</translation>
+    </message>
+    <message>
+        <source>Logo</source>
+        <translation type="unfinished">Logo</translation>
+    </message>
+    <message>
+        <source>Clear Art</source>
+        <translation type="unfinished">Clear Art</translation>
+    </message>
+    <message>
+        <source>CD Art</source>
+        <translation type="unfinished">CD Art</translation>
     </message>
 </context>
 <context>
@@ -3130,7 +3202,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Season/Episode</source>
-        <translation>Temporada/Episódio</translation>
+        <translation type="obsolete">Temporada/Episódio</translation>
     </message>
     <message>
         <source>Artwork</source>
@@ -3174,7 +3246,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Logo, Clear Art, CD Art</source>
-        <translation>Logo, Clear Art, CD Art</translation>
+        <translation type="obsolete">Logo, Clear Art, CD Art</translation>
     </message>
     <message>
         <source>Update new Episodes</source>
