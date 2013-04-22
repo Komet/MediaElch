@@ -11,9 +11,10 @@ class Helper
 {
 public:
     static QString toLatin1PercentEncoding(QString str);
-    static QString urlFromEncoded(QString str);
+    static QString urlDecode(QString str);
+    static QString urlEncode(QString str);
     static QString formatTrailerUrl(QString url);
-    static bool isDvd(QString path);
+    static bool isDvd(QString path, bool noSubFolder = false);
     static bool isBluRay(QString path);
     static QImage &resizeBackdrop(QImage &image, bool &resized);
     static QByteArray &resizeBackdrop(QByteArray &image);

@@ -70,8 +70,9 @@ QList<int> IMDB::scraperSupports()
 
 void IMDB::search(QString searchStr)
 {
-    QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QUrl url(QString("http://imdbapi.org/?q=%1&type=json&plot=full&episode=0&limit=5&yg=0&mt=M&lang=en-US").arg(encodedSearch));
+    QString encodedSearch = Helper::urlEncode(searchStr);
+    QUrl url;
+    url.setEncodedUrl(QString("http://imdbapi.org/?q=%1&type=json&plot=full&episode=0&limit=5&yg=0&mt=M&lang=en-US").arg(encodedSearch).toUtf8());
     QNetworkRequest request(url);
     QNetworkReply *reply = qnam()->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
@@ -105,7 +106,7 @@ QList<ScraperSearchResult> IMDB::parseSearch(QString json)
             if (it.value().property("imdb_id").toString().isEmpty())
                 continue;
             ScraperSearchResult result;
-            result.name     = it.value().property("title").toString();
+            result.name     = Helper::urlDecode(it.value().property("title").toString());
             result.id       = it.value().property("imdb_id").toString();
             result.released = QDate::fromString(it.value().property("year").toString(), "yyyy");
             results.append(result);
@@ -153,7 +154,7 @@ void IMDB::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
     sc = engine.evaluate("(" + QString(json) + ")");
 
     if (infos.contains(MovieScraperInfos::Title) && sc.property("title").isValid())
-        movie->setName(sc.property("title").toString());
+        movie->setName(Helper::urlDecode(sc.property("title").toString()));
     if (infos.contains(MovieScraperInfos::Overview) && sc.property("plot").isValid() && !sc.property("plot").isNull()) {
         movie->setOverview(sc.property("plot").toString());
         if (sc.property("plot_simple").isValid() && !sc.property("plot_simple").isNull() && !sc.property("plot_simple").toString().isEmpty())
@@ -188,7 +189,7 @@ void IMDB::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
         while (itC.hasNext()) {
             itC.next();
             if (itC.hasNext())
-                movie->addGenre(Helper::mapGenre(itC.value().toString()));
+                movie->addGenre(Helper::mapGenre(Helper::urlDecode(itC.value().toString())));
         }
     }
 
@@ -198,7 +199,7 @@ void IMDB::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
         while (itC.hasNext()) {
             itC.next();
             if (itC.hasNext())
-                directors << itC.value().toString();
+                directors << Helper::urlDecode(itC.value().toString());
         }
         movie->setDirector(directors.join(", "));
     }
@@ -209,7 +210,7 @@ void IMDB::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
         while (itC.hasNext()) {
             itC.next();
             if (itC.hasNext())
-                writers << itC.value().toString();
+                writers << Helper::urlDecode(itC.value().toString());
         }
         movie->setWriter(writers.join(", "));
     }
@@ -219,7 +220,7 @@ void IMDB::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
         while (itC.hasNext()) {
             itC.next();
             if (itC.hasNext())
-                movie->addCountry(Helper::mapCountry(itC.value().toString()));
+                movie->addCountry(Helper::mapCountry(Helper::urlDecode(itC.value().toString())));
         }
     }
 
@@ -228,7 +229,7 @@ void IMDB::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
         while (itC.hasNext()) {
             itC.next();
             Actor a;
-            a.name = itC.value().toString();
+            a.name = Helper::urlDecode(itC.value().toString());
             if (itC.hasNext())
                 movie->addActor(a);
         }

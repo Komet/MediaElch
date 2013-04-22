@@ -10,6 +10,7 @@
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "settings/Settings.h"
 
 /**
  * @brief TheTvDb::TheTvDb
@@ -519,16 +520,12 @@ void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *
         episode->setDirectors(elem.elementsByTagName("Director").at(0).toElement().text().split("|", QString::SkipEmptyParts));
     if (infosToLoad.contains(TvShowScraperInfos::Title) && !elem.elementsByTagName("EpisodeName").isEmpty())
         episode->setName(elem.elementsByTagName("EpisodeName").at(0).toElement().text());
-    if (infosToLoad.contains(TvShowScraperInfos::SeasonEpisode) && !elem.elementsByTagName("EpisodeNumber").isEmpty())
-        episode->setEpisode(elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt());
     if (infosToLoad.contains(TvShowScraperInfos::FirstAired) && !elem.elementsByTagName("FirstAired").isEmpty())
         episode->setFirstAired(QDate::fromString(elem.elementsByTagName("FirstAired").at(0).toElement().text(), "yyyy-MM-dd"));
     if (infosToLoad.contains(TvShowScraperInfos::Overview) && !elem.elementsByTagName("Overview").isEmpty())
         episode->setOverview(elem.elementsByTagName("Overview").at(0).toElement().text());
     if (infosToLoad.contains(TvShowScraperInfos::Rating) && !elem.elementsByTagName("Rating").isEmpty())
         episode->setRating(elem.elementsByTagName("Rating").at(0).toElement().text().toFloat());
-    if (infosToLoad.contains(TvShowScraperInfos::SeasonEpisode) && !elem.elementsByTagName("SeasonNumber").isEmpty())
-        episode->setSeason(elem.elementsByTagName("SeasonNumber").at(0).toElement().text().toInt());
     if (infosToLoad.contains(TvShowScraperInfos::Writer) && !elem.elementsByTagName("Writer").isEmpty())
         episode->setWriters(elem.elementsByTagName("Writer").at(0).toElement().text().split("|", QString::SkipEmptyParts));
     if (infosToLoad.contains(TvShowScraperInfos::Thumbnail) && !elem.elementsByTagName("filename").isEmpty() &&
@@ -574,16 +571,34 @@ void TheTvDb::onEpisodeLoadFinished()
         QString msg = QString::fromUtf8(reply->readAll());
         QDomDocument domDoc;
         domDoc.setContent(msg);
+        QDomElement dvdElem;
+        QDomElement airedElem;
         for (int i=0, n=domDoc.elementsByTagName("Episode").count() ; i<n ; ++i) {
             QDomElement elem = domDoc.elementsByTagName("Episode").at(i).toElement();
             if (!elem.elementsByTagName("SeasonNumber").isEmpty() && !elem.elementsByTagName("EpisodeNumber").isEmpty()) {
                 int seasonNumber = elem.elementsByTagName("SeasonNumber").at(0).toElement().text().toInt();
                 int episodeNumber = elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt();
-                if (episode->season() == seasonNumber && episode->episode() == episodeNumber) {
-                    episode->clear(episode->infosToLoad());
-                    parseAndAssignSingleEpisodeInfos(elem, episode, infos);
-                }
+                if (episode->season() == seasonNumber && episode->episode() == episodeNumber)
+                    airedElem = elem;
             }
+            if (!elem.elementsByTagName("DVD_season").isEmpty() && !elem.elementsByTagName("DVD_episodenumber").isEmpty()) {
+                int seasonNumber = elem.elementsByTagName("DVD_season").at(0).toElement().text().toInt();
+                int episodeNumber = elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text().toInt();
+                if (episode->season() == seasonNumber && episode->episode() == episodeNumber)
+                    dvdElem = elem;
+            }
+            if (!dvdElem.isNull() && !airedElem.isNull())
+                break;
+        }
+
+        qDebug() << "DVD ORDER" << Settings::instance()->tvShowDvdOrder();
+
+        if (Settings::instance()->tvShowDvdOrder() && !dvdElem.isNull()) {
+            episode->clear(infos);
+            parseAndAssignSingleEpisodeInfos(dvdElem, episode, infos);
+        } else if (!airedElem.isNull()) {
+            episode->clear(infos);
+            parseAndAssignSingleEpisodeInfos(airedElem, episode, infos);
         }
     } else {
         qWarning() << "Network Error" << reply->errorString();

@@ -115,6 +115,9 @@ public:
     void clearImages();
     QList<int> infosToLoad();
 
+    QList<ImageType> imagesToRemove() const;
+    void removeImage(ImageType type);
+
     void scraperLoadDone();
 
 signals:
@@ -153,6 +156,7 @@ private:
     int m_databaseId;
     bool m_syncNeeded;
     QList<int> m_infosToLoad;
+    QList<ImageType> m_imagesToRemove;
 };
 
 QDebug operator<<(QDebug dbg, const TvShowEpisode &episode);

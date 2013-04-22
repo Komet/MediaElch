@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include "Badge.h"
+#include "globals/LocaleStringCompare.h"
 
 TagCloud::TagCloud(QWidget *parent) :
     QWidget(parent),
@@ -46,8 +47,8 @@ void TagCloud::setTags(const QStringList &tags, const QStringList &activeTags)
             m_activeTags.append(tag);
     }
 
-    qSort(m_tags);
-    qSort(m_activeTags);
+    qSort(m_tags.begin(), m_tags.end(), LocaleStringCompare());
+    qSort(m_activeTags.begin(), m_activeTags.end(), LocaleStringCompare());
     drawTags();
 }
 
@@ -72,9 +73,10 @@ void TagCloud::drawTags()
         Badge *badge = new Badge(word, ui->scrollAreaWidgetContents);
         if (m_badgeType == TagCloud::TypeSimpleLabel) {
             badge->setBadgeType(Badge::LabelWarning);
-            badge->setShowActiveMark(true);
+            badge->setShowActiveMark(false);
         } else {
             badge->setBadgeType(Badge::BadgeDefault);
+            badge->setShowActiveMark(false);
         }
         if (m_activeTags.contains(word))
             badge->setActive(true);
@@ -157,9 +159,10 @@ void TagCloud::addTag()
         Badge *badge = new Badge(word, ui->scrollAreaWidgetContents);
         if (m_badgeType == TagCloud::TypeSimpleLabel) {
             badge->setBadgeType(Badge::LabelWarning);
-            badge->setShowActiveMark(true);
+            badge->setShowActiveMark(false);
         } else {
             badge->setBadgeType(Badge::BadgeDefault);
+            badge->setShowActiveMark(false);
         }
         badge->show();
         badge->setActive(true);

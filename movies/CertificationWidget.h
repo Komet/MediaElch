@@ -6,6 +6,7 @@
 #include <QTableWidgetItem>
 #include <QWidget>
 #include "globals/Globals.h"
+#include "movies/Movie.h"
 
 namespace Ui {
 class CertificationWidget;
@@ -24,6 +25,7 @@ public:
 
 signals:
     void setActionSaveEnabled(bool, MainWidgets);
+    void sigJumpToMovie(Movie*);
 
 public slots:
     void onSaveInformation();
@@ -38,6 +40,7 @@ private slots:
     void addMovie();
     void removeMovie();
     void showCertificationsContextMenu(QPoint point);
+    void onJumpToMovie(QTableWidgetItem *item);
 
 private:
     Ui::CertificationWidget *ui;

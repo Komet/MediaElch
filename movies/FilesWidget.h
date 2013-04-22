@@ -34,6 +34,7 @@ public:
     static FilesWidget *instance();
     QList<Movie*> selectedMovies();
     void renewModel();
+    void selectMovie(Movie *movie);
 
 public slots:
     void restoreLastSelection();

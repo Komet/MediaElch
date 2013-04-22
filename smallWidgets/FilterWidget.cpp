@@ -2,6 +2,7 @@
 #include "ui_FilterWidget.h"
 
 #include "globals/Globals.h"
+#include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 
 /**
@@ -118,6 +119,12 @@ void FilterWidget::onFilterTextChanged(QString text)
             filter->setShortText(text);
         }
 
+        if ((filter->info() == MovieFilters::Path)
+            && !m_activeFilters.contains(filter)) {
+            filter->setText(tr("Filename contains \"%1\"").arg(text));
+            filter->setShortText(text);
+        }
+
         QListWidgetItem *item = new QListWidgetItem(filter->text(), m_list);
         item->setData(Qt::UserRole, QVariant::fromValue(filter));
         item->setBackgroundColor(QColor(255, 255, 255, 200));
@@ -141,7 +148,7 @@ void FilterWidget::onFilterTextChanged(QString text)
         m_list->addItem(bottomItem);
         height += m_list->sizeHintForRow(m_list->count()-1);
 
-        m_list->setFixedHeight(height);
+        m_list->setFixedHeight(qMin(300, height));
         m_list->setFixedWidth(m_list->sizeHintForColumn(0)+5);
         m_list->move(ui->lineEdit->mapToGlobal(QPoint(ui->lineEdit->paddingLeft(), ui->lineEdit->height())));
         m_list->show();
@@ -233,19 +240,41 @@ void FilterWidget::setupMovieFilters()
     QStringList years;
     QStringList genres;
     QStringList certifications;
+    QStringList studios;
+    QStringList countries;
+    QStringList tags;
+    QStringList directors;
     foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
         foreach (const QString &genre, movie->genres()) {
             if (!genre.isEmpty() && !genres.contains(genre))
                 genres.append(genre);
         }
+        foreach (const QString &studio, movie->studios()) {
+            if (!studio.isEmpty() && !studios.contains(studio))
+                studios.append(studio);
+        }
+        foreach (const QString &country, movie->countries()) {
+            if (!country.isEmpty() && !countries.contains(country))
+                countries.append(country);
+        }
+        foreach (const QString &tag, movie->tags()) {
+            if (!tag.isEmpty() && !tags.contains(tag))
+                tags.append(tag);
+        }
+        if (!directors.contains(movie->director()))
+            directors.append(movie->director());
         if (movie->released().isValid() && !years.contains(QString("%1").arg(movie->released().year())))
             years.append(QString("%1").arg(movie->released().year()));
         if (!movie->certification().isEmpty() && !certifications.contains(movie->certification()))
             certifications.append(movie->certification());
     }
-    certifications.sort();
-    genres.sort();
-    years.sort();
+    qSort(certifications.begin(), certifications.end(), LocaleStringCompare());
+    qSort(genres.begin(), genres.end(), LocaleStringCompare());
+    qSort(years.begin(), years.end(), LocaleStringCompare());
+    qSort(studios.begin(), studios.end(), LocaleStringCompare());
+    qSort(countries.begin(), countries.end(), LocaleStringCompare());
+    qSort(tags.begin(), tags.end(), LocaleStringCompare());
+    qSort(directors.begin(), directors.end(), LocaleStringCompare());
 
     // Clear out all filters which doesn't exist
     foreach (Filter *filter, m_movieGenreFilters) {
@@ -263,6 +292,30 @@ void FilterWidget::setupMovieFilters()
     foreach (Filter *filter, m_movieYearFilters) {
         if (!years.contains(filter->shortText())) {
             m_movieYearFilters.removeOne(filter);
+            delete filter;
+        }
+    }
+    foreach (Filter *filter, m_movieStudioFilters) {
+        if (!studios.contains(filter->shortText())) {
+            m_movieStudioFilters.removeOne(filter);
+            delete filter;
+        }
+    }
+    foreach (Filter *filter, m_movieCountryFilters) {
+        if (!countries.contains(filter->shortText())) {
+            m_movieCountryFilters.removeOne(filter);
+            delete filter;
+        }
+    }
+    foreach (Filter *filter, m_movieDirectorFilters) {
+        if (!directors.contains(filter->shortText())) {
+            m_movieDirectorFilters.removeOne(filter);
+            delete filter;
+        }
+    }
+    foreach (Filter *filter, m_movieTagsFilters) {
+        if (!tags.contains(filter->shortText())) {
+            m_movieTagsFilters.removeOne(filter);
             delete filter;
         }
     }
@@ -284,6 +337,42 @@ void FilterWidget::setupMovieFilters()
                                        QStringList() << tr("Genre") << genre, MovieFilters::Genres, true);
     }
     m_movieGenreFilters = genreFilters;
+
+    QList<Filter*> studioFilters;
+    // Add new filters
+    foreach (const QString &studio, studios) {
+        Filter *f = 0;
+        foreach (Filter *filter, m_movieStudioFilters) {
+            if (filter->shortText() == studio) {
+                f = filter;
+                break;
+            }
+        }
+        if (f)
+            studioFilters << f;
+        else
+            studioFilters << new Filter(tr("Studio \"%1\"").arg(studio), studio,
+                                       QStringList() << tr("Studio") << studio, MovieFilters::Studio, true);
+    }
+    m_movieStudioFilters = studioFilters;
+
+    QList<Filter*> countryFilters;
+    // Add new filters
+    foreach (const QString &country, countries) {
+        Filter *f = 0;
+        foreach (Filter *filter, m_movieCountryFilters) {
+            if (filter->shortText() == country) {
+                f = filter;
+                break;
+            }
+        }
+        if (f)
+            countryFilters << f;
+        else
+            countryFilters << new Filter(tr("Country \"%1\"").arg(country), country,
+                                       QStringList() << tr("Country") << country, MovieFilters::Country, true);
+    }
+    m_movieCountryFilters = countryFilters;
 
     QList<Filter*> yearFilters;
     foreach (const QString &year, years) {
@@ -319,11 +408,50 @@ void FilterWidget::setupMovieFilters()
     }
     m_movieCertificationFilters = certificationFilters;
 
+    QList<Filter*> tagsFilters;
+    foreach (const QString &tag, tags) {
+        Filter *f = 0;
+        foreach (Filter *filter, m_movieTagsFilters) {
+            if (filter->shortText() == tag) {
+                f = filter;
+                break;
+            }
+        }
+        if (f)
+            tagsFilters << f;
+        else
+            tagsFilters << new Filter(tr("Tag \"%1\"").arg(tag), tag,
+                                      QStringList() << tr("Tag") << tag, MovieFilters::Tags, true);
+    }
+    m_movieTagsFilters = tagsFilters;
+
+    QList<Filter*> directorFilters;
+    foreach (const QString &director, directors) {
+        Filter *f = 0;
+        foreach (Filter *filter, m_movieDirectorFilters) {
+            if (filter->shortText() == director) {
+                f = filter;
+                break;
+            }
+        }
+        if (f)
+            directorFilters << f;
+        else
+            directorFilters << new Filter(tr("Director \"%1\"").arg(director), director,
+                                      QStringList() << tr("Director") << director, MovieFilters::Director, true);
+    }
+    m_movieDirectorFilters = directorFilters;
+
+
     QList<Filter*> filters;
     filters << m_movieFilters
             << m_movieGenreFilters
+            << m_movieStudioFilters
+            << m_movieCountryFilters
             << m_movieYearFilters
-            << m_movieCertificationFilters;
+            << m_movieCertificationFilters
+            << m_movieTagsFilters
+            << m_movieDirectorFilters;
     m_filters = filters;
 }
 
@@ -349,6 +477,7 @@ void FilterWidget::setupConcertFilters()
 void FilterWidget::initFilters()
 {
     m_movieFilters << new Filter(tr("Title"), "", QStringList(), MovieFilters::Title, true);
+    m_movieFilters << new Filter(tr("Filename"), "", QStringList(), MovieFilters::Path, true);
     m_movieFilters << new Filter(tr("Movie has Poster"), tr("Poster"),
                                  QStringList() << tr("Poster"), MovieFilters::Poster, true);
     m_movieFilters << new Filter(tr("Movie has no Poster"), tr("No Poster"),
@@ -377,8 +506,12 @@ void FilterWidget::initFilters()
                                  QStringList() << tr("Trailer"), MovieFilters::Trailer, true);
     m_movieFilters << new Filter(tr("Movie has no Trailer"), tr("No Trailer"),
                                  QStringList() << tr("Trailer"), MovieFilters::Trailer, false);
+    m_movieFilters << new Filter(tr("Movie has local Trailer"), tr("Local Trailer"),
+                                 QStringList() << tr("Trailer") << tr("Local Trailer"), MovieFilters::LocalTrailer, true);
+    m_movieFilters << new Filter(tr("Movie has no local Trailer"), tr("No local Trailer"),
+                                 QStringList() << tr("Trailer") << tr("Local Trailer"), MovieFilters::LocalTrailer, false);
     m_movieFilters << new Filter(tr("Movie is Watched"), tr("Watched"),
-                                 QStringList() << tr("Watched") << tr("Seen"), MovieFilters::Watched, false);
+                                 QStringList() << tr("Watched") << tr("Seen"), MovieFilters::Watched, true);
     m_movieFilters << new Filter(tr("Movie is Unwatched"), tr("Unwatched"),
                                  QStringList() << tr("Watched") << tr("Seen") << tr("Unwatched") << tr("Unseen"), MovieFilters::Watched, false);
     m_movieFilters << new Filter(tr("Movie has no Certification"), tr("No Certification"),
@@ -390,9 +523,28 @@ void FilterWidget::initFilters()
     m_movieFilters << new Filter(tr("Stream Details not loaded"), tr("No Stream Details"),
                                  QStringList() << tr("Stream Details"), MovieFilters::StreamDetails, false);
     m_movieFilters << new Filter(tr("Movie has Actors"), tr("Actors"),
-                                 QStringList() << tr("Poster"), MovieFilters::Actors, true);
+                                 QStringList() << tr("Actors"), MovieFilters::Actors, true);
     m_movieFilters << new Filter(tr("Movie has no Actors"), tr("No Actors"),
                                  QStringList() << tr("Actors"), MovieFilters::Actors, false);
+    m_movieFilters << new Filter(tr("Movie has no Studio"), tr("No Studio"),
+                                 QStringList() << tr("Studio"), MovieFilters::Studio, false);
+    m_movieFilters << new Filter(tr("Movie has no Country"), tr("No Country"),
+                                 QStringList() << tr("Country"), MovieFilters::Country, false);
+    m_movieFilters << new Filter(tr("Movie has no Director"), tr("No Director"),
+                                 QStringList() << tr("Director"), MovieFilters::Director, false);
+    m_movieFilters << new Filter(tr("Movie has no Tags"), tr("No Tags"),
+                                 QStringList() << tr("Tags"), MovieFilters::Tags, false);
+
+    m_movieFilters << new Filter(tr("Resolution 720p"), tr("720p"),
+                                 QStringList() << tr("Resolution") << tr("720p"), MovieFilters::Quality, true);
+    m_movieFilters << new Filter(tr("Resolution 1080p"), tr("1080p"),
+                                 QStringList() << tr("Resolution") << tr("1080p"), MovieFilters::Quality, true);
+    m_movieFilters << new Filter(tr("Resolution SD"), tr("SD"),
+                                 QStringList() << tr("Resolution") << tr("SD"), MovieFilters::Quality, true);
+    m_movieFilters << new Filter(tr("Format DVD"), tr("DVD"),
+                                 QStringList() << tr("Format") << tr("DVD"), MovieFilters::Quality, true);
+    m_movieFilters << new Filter(tr("BluRay Format"), tr("BluRay"),
+                                 QStringList() << tr("Format") << tr("BluRay"), MovieFilters::Quality, true);
 
     m_tvShowFilters << new Filter(tr("Title"), "", QStringList(), TvShowFilters::Title, true);
 

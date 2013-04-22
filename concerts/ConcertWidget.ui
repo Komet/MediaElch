@@ -132,34 +132,110 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="0">
+              <item row="1" column="0">
                <widget class="QLabel" name="label_2">
                 <property name="text">
                  <string>Name</string>
                 </property>
                </widget>
               </item>
-              <item row="2" column="1">
-               <widget class="QLineEdit" name="name"/>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_3">
+                <property name="text">
+                 <string>Artist</string>
+                </property>
+               </widget>
               </item>
-              <item row="5" column="0">
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_16">
+                <property name="text">
+                 <string>Album</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
                <widget class="QLabel" name="label_6">
                 <property name="text">
                  <string>Tagline</string>
                 </property>
                </widget>
               </item>
-              <item row="5" column="1">
-               <widget class="QLineEdit" name="tagline"/>
-              </item>
-              <item row="6" column="0">
+              <item row="5" column="0">
                <widget class="QLabel" name="label_4">
                 <property name="text">
                  <string>Rating</string>
                 </property>
                </widget>
               </item>
-              <item row="6" column="1">
+              <item row="6" column="0">
+               <widget class="QLabel" name="label_5">
+                <property name="text">
+                 <string>Released</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="0">
+               <widget class="QLabel" name="label_7">
+                <property name="text">
+                 <string>Runtime</string>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="0">
+               <widget class="QLabel" name="label_8">
+                <property name="text">
+                 <string>Certification</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0">
+               <widget class="QLabel" name="label_9">
+                <property name="text">
+                 <string>Trailer</string>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="0">
+               <widget class="QLabel" name="label_20">
+                <property name="text">
+                 <string>Watched</string>
+                </property>
+               </widget>
+              </item>
+              <item row="11" column="0">
+               <widget class="QLabel" name="label_10">
+                <property name="text">
+                 <string>Play Count</string>
+                </property>
+               </widget>
+              </item>
+              <item row="12" column="0">
+               <widget class="QLabel" name="label_11">
+                <property name="text">
+                 <string>Last Played</string>
+                </property>
+               </widget>
+              </item>
+              <item row="13" column="0">
+               <widget class="QLabel" name="label_15">
+                <property name="text">
+                 <string>Overview</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="name"/>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLineEdit" name="artist"/>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLineEdit" name="album"/>
+              </item>
+              <item row="4" column="1">
+               <widget class="QLineEdit" name="tagline"/>
+              </item>
+              <item row="5" column="1">
                <widget class="QDoubleSpinBox" name="rating">
                 <property name="decimals">
                  <number>1</number>
@@ -169,28 +245,14 @@
                 </property>
                </widget>
               </item>
-              <item row="7" column="0">
-               <widget class="QLabel" name="label_5">
-                <property name="text">
-                 <string>Released</string>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="1">
+              <item row="6" column="1">
                <widget class="QDateEdit" name="released">
                 <property name="displayFormat">
                  <string>yyyy</string>
                 </property>
                </widget>
               </item>
-              <item row="8" column="0">
-               <widget class="QLabel" name="label_7">
-                <property name="text">
-                 <string>Runtime</string>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="1">
+              <item row="7" column="1">
                <widget class="QSpinBox" name="runtime">
                 <property name="suffix">
                  <string> Minutes</string>
@@ -200,14 +262,7 @@
                 </property>
                </widget>
               </item>
-              <item row="10" column="0">
-               <widget class="QLabel" name="label_8">
-                <property name="text">
-                 <string>Certification</string>
-                </property>
-               </widget>
-              </item>
-              <item row="10" column="1">
+              <item row="8" column="1">
                <widget class="QComboBox" name="certification">
                 <property name="editable">
                  <bool>true</bool>
@@ -217,83 +272,28 @@
                 </property>
                </widget>
               </item>
-              <item row="11" column="0">
-               <widget class="QLabel" name="label_9">
-                <property name="text">
-                 <string>Trailer</string>
-                </property>
-               </widget>
-              </item>
-              <item row="11" column="1">
+              <item row="9" column="1">
                <widget class="QLineEdit" name="trailer"/>
               </item>
-              <item row="12" column="0">
-               <widget class="QLabel" name="label_20">
-                <property name="text">
-                 <string>Watched</string>
-                </property>
-               </widget>
-              </item>
-              <item row="12" column="1">
+              <item row="10" column="1">
                <widget class="QCheckBox" name="watched">
                 <property name="text">
                  <string/>
                 </property>
                </widget>
               </item>
-              <item row="13" column="0">
-               <widget class="QLabel" name="label_10">
-                <property name="text">
-                 <string>Play Count</string>
-                </property>
-               </widget>
-              </item>
-              <item row="13" column="1">
+              <item row="11" column="1">
                <widget class="QSpinBox" name="playcount">
                 <property name="maximum">
                  <number>99</number>
                 </property>
                </widget>
               </item>
-              <item row="14" column="0">
-               <widget class="QLabel" name="label_11">
-                <property name="text">
-                 <string>Last Played</string>
-                </property>
-               </widget>
-              </item>
-              <item row="14" column="1">
+              <item row="12" column="1">
                <widget class="QDateTimeEdit" name="lastPlayed"/>
               </item>
-              <item row="15" column="0">
-               <widget class="QLabel" name="label_15">
-                <property name="text">
-                 <string>Overview</string>
-                </property>
-               </widget>
-              </item>
-              <item row="15" column="1">
+              <item row="13" column="1">
                <widget class="QTextEdit" name="overview"/>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="label_3">
-                <property name="text">
-                 <string>Artist</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="label_16">
-                <property name="text">
-                 <string>Album</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1">
-               <widget class="QLineEdit" name="artist"/>
-              </item>
-              <item row="4" column="1">
-               <widget class="QLineEdit" name="album"/>
               </item>
              </layout>
             </item>
@@ -742,17 +742,17 @@ QPushButton::hover {
                </widget>
               </item>
               <item>
-               <widget class="MyLabel" name="poster">
+               <widget class="ClosableImage" name="poster">
                 <property name="minimumSize">
                  <size>
                   <width>200</width>
-                  <height>300</height>
+                  <height>320</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>200</width>
-                  <height>300</height>
+                  <height>320</height>
                  </size>
                 </property>
                 <property name="cursor">
@@ -770,46 +770,13 @@ QPushButton::hover {
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
+                <property name="clickable" stdset="0">
+                 <bool>true</bool>
+                </property>
+                <property name="myFixedHeight" stdset="0">
+                 <number>320</number>
+                </property>
                </widget>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout">
-                <item>
-                 <widget class="QToolButton" name="buttonPreviewPoster">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Full preview</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QToolButton {
-	border: none;
-}</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../MediaElch.qrc">
-                    <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="posterResolution">
-                  <property name="toolTip">
-                   <string>Resolution</string>
-                  </property>
-                  <property name="text">
-                   <string>Resolution</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
               </item>
               <item>
                <widget class="QLabel" name="label_14">
@@ -825,17 +792,17 @@ QPushButton::hover {
                </widget>
               </item>
               <item>
-               <widget class="MyLabel" name="backdrop">
+               <widget class="ClosableImage" name="backdrop">
                 <property name="minimumSize">
                  <size>
                   <width>200</width>
-                  <height>112</height>
+                  <height>132</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>200</width>
-                  <height>112</height>
+                  <height>132</height>
                  </size>
                 </property>
                 <property name="cursor">
@@ -853,46 +820,13 @@ QPushButton::hover {
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
+                <property name="clickable" stdset="0">
+                 <bool>true</bool>
+                </property>
+                <property name="myFixedHeight" stdset="0">
+                 <number>132</number>
+                </property>
                </widget>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_7">
-                <item>
-                 <widget class="QToolButton" name="buttonPreviewBackdrop">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Full preview</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QToolButton {
-	border: none;
-}</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../MediaElch.qrc">
-                    <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="backdropResolution">
-                  <property name="toolTip">
-                   <string>Resolution</string>
-                  </property>
-                  <property name="text">
-                   <string>Resolution</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
               </item>
               <item>
                <spacer name="verticalSpacer">
@@ -928,17 +862,17 @@ QPushButton::hover {
                </widget>
               </item>
               <item>
-               <widget class="MyLabel" name="logo">
+               <widget class="ClosableImage" name="logo">
                 <property name="minimumSize">
                  <size>
                   <width>200</width>
-                  <height>100</height>
+                  <height>120</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>200</width>
-                  <height>100</height>
+                  <height>120</height>
                  </size>
                 </property>
                 <property name="cursor">
@@ -956,43 +890,13 @@ QPushButton::hover {
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
+                <property name="clickable" stdset="0">
+                 <bool>true</bool>
+                </property>
+                <property name="myFixedHeight" stdset="0">
+                 <number>120</number>
+                </property>
                </widget>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_13">
-                <item>
-                 <widget class="QToolButton" name="buttonPreviewLogo">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Full preview</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QToolButton {
-	border: none;
-}</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../MediaElch.qrc">
-                    <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="logoResolution">
-                  <property name="text">
-                   <string>Resolution</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
               </item>
               <item>
                <widget class="QLabel" name="label_25">
@@ -1008,17 +912,17 @@ QPushButton::hover {
                </widget>
               </item>
               <item>
-               <widget class="MyLabel" name="clearArt">
+               <widget class="ClosableImage" name="clearArt">
                 <property name="minimumSize">
                  <size>
                   <width>200</width>
-                  <height>150</height>
+                  <height>170</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>200</width>
-                  <height>150</height>
+                  <height>170</height>
                  </size>
                 </property>
                 <property name="cursor">
@@ -1036,43 +940,13 @@ QPushButton::hover {
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
+                <property name="clickable" stdset="0">
+                 <bool>true</bool>
+                </property>
+                <property name="myFixedHeight" stdset="0">
+                 <number>170</number>
+                </property>
                </widget>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_14">
-                <item>
-                 <widget class="QToolButton" name="buttonPreviewClearArt">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Full preview</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QToolButton {
-	border: none;
-}</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../MediaElch.qrc">
-                    <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="clearArtResolution">
-                  <property name="text">
-                   <string>Resolution</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
               </item>
               <item>
                <widget class="QLabel" name="label_26">
@@ -1088,17 +962,17 @@ QPushButton::hover {
                </widget>
               </item>
               <item>
-               <widget class="MyLabel" name="cdArt">
+               <widget class="ClosableImage" name="cdArt">
                 <property name="minimumSize">
                  <size>
                   <width>200</width>
-                  <height>200</height>
+                  <height>220</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>200</width>
-                  <height>200</height>
+                  <height>220</height>
                  </size>
                 </property>
                 <property name="cursor">
@@ -1116,43 +990,13 @@ QPushButton::hover {
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
+                <property name="clickable" stdset="0">
+                 <bool>true</bool>
+                </property>
+                <property name="myFixedHeight" stdset="0">
+                 <number>220</number>
+                </property>
                </widget>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_15">
-                <item>
-                 <widget class="QToolButton" name="buttonPreviewCdArt">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Full preview</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QToolButton {
-	border: none;
-}</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../MediaElch.qrc">
-                    <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="cdArtResolution">
-                  <property name="text">
-                   <string>Resolution</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
               </item>
               <item>
                <spacer name="verticalSpacer_7">
@@ -1182,11 +1026,6 @@ QPushButton::hover {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MyLabel</class>
-   <extends>QLabel</extends>
-   <header>smallWidgets/MyLabel.h</header>
-  </customwidget>
-  <customwidget>
    <class>MediaFlags</class>
    <extends>QWidget</extends>
    <header>smallWidgets/MediaFlags.h</header>
@@ -1209,6 +1048,11 @@ QPushButton::hover {
    <extends>QWidget</extends>
    <header>smallWidgets/ImageGallery.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ClosableImage</class>
+   <extends>QLabel</extends>
+   <header>smallWidgets/ClosableImage.h</header>
   </customwidget>
  </customwidgets>
  <resources>

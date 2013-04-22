@@ -10,6 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 greaterThan(QT_MAJOR_VERSION, 4): include(qtmacextras/src/qtmacextras.pri)
 
 LIBS += -lmediainfo -lzen -lz
+unix:LIBS += -lcurl
 DEFINES += UNICODE
 
 TARGET = MediaElch
@@ -128,7 +129,10 @@ SOURCES += main.cpp\
     smallWidgets/MySpinBox.cpp \
     settings/AdvancedSettings.cpp \
     smallWidgets/AlphabeticalList.cpp \
-    smallWidgets/MyTableView.cpp
+    smallWidgets/MyTableView.cpp \
+    data/ImageCache.cpp \
+    scrapers/TvTunes.cpp \
+    tvShows/TvTunesDialog.cpp
 
 HEADERS  += main/MainWindow.h \
     movies/Movie.h \
@@ -231,7 +235,11 @@ HEADERS  += main/MainWindow.h \
     smallWidgets/MySpinBox.h \
     settings/AdvancedSettings.h \
     smallWidgets/AlphabeticalList.h \
-    smallWidgets/MyTableView.h
+    smallWidgets/MyTableView.h \
+    data/ImageCache.h \
+    scrapers/TvTunes.h \
+    tvShows/TvTunesDialog.h \
+    globals/LocaleStringCompare.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -266,12 +274,14 @@ FORMS    += main/MainWindow.ui \
     movies/MovieMultiScrapeDialog.ui \
     smallWidgets/TagCloud.ui \
     tvShows/TvShowWidgetSeason.ui \
-    renamer/Renamer.ui
+    renamer/Renamer.ui \
+    tvShows/TvTunesDialog.ui
 
 RESOURCES += \
     MediaElch.qrc
 
 TRANSLATIONS += \
+    i18n/MediaElch_en.ts \
     i18n/MediaElch_de.ts \
     i18n/MediaElch_fr.ts \
     i18n/MediaElch_pt_BR.ts

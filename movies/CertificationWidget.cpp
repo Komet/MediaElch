@@ -1,6 +1,7 @@
 #include "CertificationWidget.h"
 #include "ui_CertificationWidget.h"
 
+#include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "main/MessageBox.h"
 #include "sets/MovieListDialog.h"
@@ -43,6 +44,7 @@ CertificationWidget::CertificationWidget(QWidget *parent) :
 
     connect(ui->certifications, SIGNAL(itemSelectionChanged()), this, SLOT(onCertificationSelected()));
     connect(ui->certifications, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onCertificationNameChanged(QTableWidgetItem*)));
+    connect(ui->movies, SIGNAL(itemDoubleClicked(QTableWidgetItem*)), this, SLOT(onJumpToMovie(QTableWidgetItem*)));
 }
 
 /**
@@ -103,7 +105,7 @@ void CertificationWidget::loadCertifications()
             certifications.append(certification);
     }
 
-    certifications.sort();
+    qSort(certifications.begin(), certifications.end(), LocaleStringCompare());
 
     foreach (const QString &certification, certifications) {
         QTableWidgetItem *item = new QTableWidgetItem(certification);
@@ -273,4 +275,10 @@ void CertificationWidget::onSaveInformation()
     m_addedCertifications.clear();
     loadCertifications();
     MessageBox::instance()->showMessage(tr("All Movies Saved"));
+}
+
+void CertificationWidget::onJumpToMovie(QTableWidgetItem *item)
+{
+    Movie *movie = item->data(Qt::UserRole).value<Movie*>();
+    emit sigJumpToMovie(movie);
 }

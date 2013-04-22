@@ -136,7 +136,7 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     ui->comboMovieSetArtwork->setItemData(1, MovieSetArtworkSingleArtworkFolder);
 
     // Media Status Columns
-    for (int i=MediaStatusFirst, n=MediaStatusLast ; i<n ; ++i) {
+    for (int i=MediaStatusFirst, n=MediaStatusLast ; i<=n ; ++i) {
         QListWidgetItem *item = new QListWidgetItem(MovieModel::mediaStatusToText(static_cast<MediaStatusColumns>(i)));
         item->setData(Qt::UserRole, i);
         item->setCheckState(Qt::Unchecked);
@@ -410,7 +410,7 @@ void SettingsWidget::addDir(QString dir, bool separateFolders, bool autoReload, 
             int row = ui->dirs->rowCount();
             ui->dirs->insertRow(row);
             QTableWidgetItem *item = new QTableWidgetItem(dir);
-            item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsEditable);
             item->setToolTip(dir);
             QTableWidgetItem *itemCheck = new QTableWidgetItem();
             if (separateFolders)

@@ -32,6 +32,7 @@ TvShowSearch::TvShowSearch(QWidget *parent) :
     connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(onResultClicked(QTableWidgetItem*)));
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
     connect(ui->comboUpdate, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboIndexChanged()));
+    connect(ui->chkDvdOrder, SIGNAL(clicked()), this, SLOT(onChkDvdOrderToggled()));
 
     ui->chkActors->setMyData(TvShowScraperInfos::Actors);
     ui->chkBanner->setMyData(TvShowScraperInfos::Banner);
@@ -44,7 +45,6 @@ TvShowSearch::TvShowSearch(QWidget *parent) :
     ui->chkOverview->setMyData(TvShowScraperInfos::Overview);
     ui->chkPoster->setMyData(TvShowScraperInfos::Poster);
     ui->chkRating->setMyData(TvShowScraperInfos::Rating);
-    ui->chkSeasonEpisode->setMyData(TvShowScraperInfos::SeasonEpisode);
     ui->chkSeasonPoster->setMyData(TvShowScraperInfos::SeasonPoster);
     ui->chkSeasonBackdrop->setMyData(TvShowScraperInfos::SeasonBackdrop);
     ui->chkSeasonBanner->setMyData(TvShowScraperInfos::SeasonBanner);
@@ -59,6 +59,8 @@ TvShowSearch::TvShowSearch(QWidget *parent) :
     }
 
     connect(ui->chkUnCheckAll, SIGNAL(clicked()), this, SLOT(onChkAllToggled()));
+
+    ui->chkDvdOrder->setChecked(Settings::instance()->tvShowDvdOrder());
 }
 
 /**
@@ -248,7 +250,6 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkExtraArts->setEnabled(true);
         ui->chkThumbnail->setEnabled(false);
         ui->chkDirector->setEnabled(false);
-        ui->chkSeasonEpisode->setEnabled(false);
         ui->chkWriter->setEnabled(false);
     } else if (type == UpdateShowAndAllEpisodes || type == UpdateShowAndNewEpisodes) {
         ui->chkGenres->setEnabled(true);
@@ -262,7 +263,6 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkExtraArts->setEnabled(true);
         ui->chkThumbnail->setEnabled(true);
         ui->chkDirector->setEnabled(true);
-        ui->chkSeasonEpisode->setEnabled(true);
         ui->chkWriter->setEnabled(true);
     } else {
         ui->chkGenres->setEnabled(false);
@@ -276,11 +276,15 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkExtraArts->setEnabled(false);
         ui->chkThumbnail->setEnabled(true);
         ui->chkDirector->setEnabled(true);
-        ui->chkSeasonEpisode->setEnabled(true);
         ui->chkWriter->setEnabled(true);
     }
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>())
         box->setChecked((infos.contains(box->myData().toInt()) || infos.isEmpty()) && box->isEnabled());
     onChkToggled();
+}
+
+void TvShowSearch::onChkDvdOrderToggled()
+{
+    Settings::instance()->setTvShowDvdOrder(ui->chkDvdOrder->isChecked());
 }

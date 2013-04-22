@@ -19,9 +19,10 @@
 #include "main/MessageBox.h"
 #include "movies/MovieMultiScrapeDialog.h"
 #include "movies/MovieSearch.h"
-#include "tvShows/TvShowSearch.h"
 #include "sets/MovieListDialog.h"
 #include "settings/Settings.h"
+#include "tvShows/TvShowSearch.h"
+#include "tvShows/TvTunesDialog.h"
 #include "xbmc/XbmcSync.h"
 
 #ifdef Q_OS_MAC
@@ -152,6 +153,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_settingsWidget, SIGNAL(accepted()), this, SLOT(onRenewModels()));
     connect(m_settingsWidget, SIGNAL(accepted()), this, SLOT(onFilesRenamed()));
 
+    connect(ui->setsWidget, SIGNAL(sigJumpToMovie(Movie*)), this, SLOT(onJumpToMovie(Movie*)));
+    connect(ui->certificationWidget, SIGNAL(sigJumpToMovie(Movie*)), this, SLOT(onJumpToMovie(Movie*)));
+    connect(ui->genreWidget, SIGNAL(sigJumpToMovie(Movie*)), this, SLOT(onJumpToMovie(Movie*)));
+
     MovieSearch::instance(ui->centralWidget);
     TvShowSearch::instance(ui->centralWidget);
     ImageDialog::instance(ui->centralWidget);
@@ -159,6 +164,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ImagePreviewDialog::instance(ui->centralWidget);
     ConcertSearch::instance(ui->centralWidget);
     TrailerDialog::instance(ui->centralWidget);
+    TvTunesDialog::instance(ui->centralWidget);
     NameFormatter::instance(this);
     MovieMultiScrapeDialog::instance(ui->centralWidget);
 
@@ -728,4 +734,10 @@ void MainWindow::onRenewModels()
     ui->filesWidget->renewModel();
     ui->tvShowFilesWidget->renewModel();
     ui->concertFilesWidget->renewModel();
+}
+
+void MainWindow::onJumpToMovie(Movie *movie)
+{
+    onMenuMovies();
+    ui->filesWidget->selectMovie(movie);
 }

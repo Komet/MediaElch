@@ -8,6 +8,7 @@
 #include <QTableWidget>
 #include <QTimer>
 #include "globals/Globals.h"
+#include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "movies/MovieMultiScrapeDialog.h"
 #include "smallWidgets/LoadingStreamDetails.h"
@@ -224,7 +225,12 @@ void FilesWidget::openFolder()
     if (movie->files().isEmpty())
         return;
     QFileInfo fi(movie->files().at(0));
-    QDesktopServices::openUrl(QUrl("file:///" + fi.absolutePath(), QUrl::TolerantMode));
+    QUrl url;
+    if (fi.absolutePath().startsWith("\\\\") || fi.absolutePath().startsWith("//"))
+        url.setUrl(QDir::toNativeSeparators(fi.absolutePath()));
+    else
+        url = QUrl::fromLocalFile(fi.absolutePath());
+    QDesktopServices::openUrl(url);
 }
 
 /**
@@ -377,7 +383,7 @@ void FilesWidget::setAlphaListData()
         if (!alphas.contains(first))
             alphas.append(first);
     }
-    alphas.sort();
+    qSort(alphas.begin(), alphas.end(), LocaleStringCompare());
     int scrollBarWidth = 0;
     if (ui->files->verticalScrollBar()->isVisible())
         scrollBarWidth = ui->files->verticalScrollBar()->width();
@@ -413,4 +419,11 @@ void FilesWidget::onLeftEdge(bool isEdge)
         m_alphaList->show();
     else
         m_alphaList->hide();
+}
+
+void FilesWidget::selectMovie(Movie *movie)
+{
+    int row = Manager::instance()->movieModel()->movies().indexOf(movie);
+    QModelIndex index = Manager::instance()->movieModel()->index(row, 0, QModelIndex());
+    ui->files->selectRow(m_movieProxyModel->mapFromSource(index).row());
 }

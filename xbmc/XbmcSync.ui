@@ -23,7 +23,7 @@
    <item>
     <widget class="QLabel" name="label_5">
      <property name="text">
-      <string>Please make sure you have setup your sources in XBMC and enabled the webserver.</string>
+      <string>Please make sure you have setup your sources in XBMC and that &quot;Allow programs on other systems to control XBMC&quot; is enabled (Remote Control).</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>

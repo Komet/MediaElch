@@ -35,6 +35,7 @@ private slots:
     void onChkToggled();
     void onChkAllToggled();
     void onComboIndexChanged();
+    void onChkDvdOrderToggled();
 
 private:
     Ui::TvShowSearch *ui;

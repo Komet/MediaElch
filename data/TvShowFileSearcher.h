@@ -32,6 +32,8 @@ private:
     void getTvShows(QString path, QMap<QString, QList<QStringList> > &contents);
     void scanTvShowDir(QString startPath, QString path, QList<QStringList> &contents);
     QStringList getFiles(QString path);
+    int getSeasonNumber(QStringList files);
+    QList<int> getEpisodeNumbers(QStringList files);
     bool m_aborted;
 };
 

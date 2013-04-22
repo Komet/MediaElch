@@ -26,6 +26,7 @@ public:
     QHash<QString, QString> certificationMappings() const;
     QHash<QString, QString> studioMappings() const;
     QHash<QString, QString> countryMappings() const;
+    bool useFirstStudioOnly() const;
 
 private:
     bool m_debugLog;
@@ -40,6 +41,7 @@ private:
     QHash<QString, QString> m_certificationMappings;
     QHash<QString, QString> m_studioMappings;
     QHash<QString, QString> m_countryMappings;
+    bool m_useFirstStudioOnly;
 
     void loadSettings();
     void reset();

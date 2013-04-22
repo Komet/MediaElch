@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
+#include "data/ImageCache.h"
 #include "settings/Settings.h"
 
 /**
@@ -86,8 +87,10 @@ void Movie::clear()
           << MovieScraperInfos::Writer
           << MovieScraperInfos::Director
           << MovieScraperInfos::Tags
-          << MovieScraperInfos::ExtraArts
-          << MovieScraperInfos::ExtraFanarts;
+          << MovieScraperInfos::ExtraFanarts
+          << MovieScraperInfos::Logo
+          << MovieScraperInfos::CdArt
+          << MovieScraperInfos::ClearArt;
     clear(infos);
     m_nfoContent.clear();
 }
@@ -104,6 +107,7 @@ void Movie::clear(QList<int> infos)
         m_backdrops.clear();
         m_backdropImage = QByteArray();
         m_backdropImageChanged = false;
+        m_imagesToRemove.removeOne(TypeBackdrop);
     }
     if (infos.contains(MovieScraperInfos::Countries))
         m_countries.clear();
@@ -114,6 +118,7 @@ void Movie::clear(QList<int> infos)
         m_posterImage = QByteArray();
         m_posterImageChanged = false;
         m_numPrimaryLangPosters = 0;
+        m_imagesToRemove.removeOne(TypePoster);
     }
     if (infos.contains(MovieScraperInfos::Studios))
         m_studios.clear();
@@ -145,14 +150,24 @@ void Movie::clear(QList<int> infos)
         m_director = "";
     if (infos.contains(MovieScraperInfos::Tags))
         m_tags.clear();
-    if (infos.contains(MovieScraperInfos::ExtraArts)) {
+
+    if (infos.contains(MovieScraperInfos::Logo)) {
         m_logoImage = QByteArray();
         m_logoImageChanged = false;
+        m_imagesToRemove.removeOne(TypeLogo);
+    }
+    if (infos.contains(MovieScraperInfos::ClearArt)) {
         m_clearArtImage = QByteArray();
         m_clearArtImageChanged = false;
+        m_imagesToRemove.removeOne(TypeClearArt);
+    }
+
+    if (infos.contains(MovieScraperInfos::CdArt)) {
         m_cdArtImage = QByteArray();
         m_cdArtImageChanged = false;
+        m_imagesToRemove.removeOne(TypeCdArt);
     }
+
     if (infos.contains(MovieScraperInfos::ExtraFanarts)) {
         m_extraFanartsToRemove.clear();
         m_extraFanartImagesToAdd.clear();
@@ -1540,11 +1555,6 @@ QList<ExtraFanart> Movie::extraFanarts(MediaCenterInterface *mediaCenterInterfac
     QList<ExtraFanart> fanarts;
     foreach (const QString &file, m_extraFanarts) {
         ExtraFanart f;
-        QFile fi(file);
-        if (fi.open(QIODevice::ReadOnly)) {
-            f.image = fi.readAll();
-            fi.close();
-        }
         f.path = file;
         fanarts.append(f);
     }
@@ -1601,6 +1611,60 @@ void Movie::setHasExtraFanarts(bool has)
 bool Movie::hasExtraFanarts() const
 {
     return m_hasExtraFanarts;
+}
+
+QList<ImageType> Movie::imagesToRemove() const
+{
+    return m_imagesToRemove;
+}
+
+void Movie::removeImage(ImageType type)
+{
+    switch (type) {
+    case TypePoster:
+        if (!m_posterImage.isNull()) {
+            m_posterImage = QByteArray();
+            m_posterImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.append(type);
+        }
+        break;
+    case TypeBackdrop:
+        if (!m_backdropImage.isNull()) {
+            m_backdropImage = QByteArray();
+            m_backdropImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.append(type);
+        }
+        break;
+    case TypeLogo:
+        if (!m_logoImage.isNull()) {
+            m_logoImage = QByteArray();
+            m_logoImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.append(type);
+        }
+        break;
+    case TypeClearArt:
+        if (!m_clearArtImage.isNull()) {
+            m_clearArtImage = QByteArray();
+            m_clearArtImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.append(type);
+        }
+        break;
+    case TypeCdArt:
+        if (!m_cdArtImage.isNull()) {
+            m_cdArtImage = QByteArray();
+            m_cdArtImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.append(type);
+        }
+        break;
+    default:
+        break;
+    }
+    setChanged(true);
 }
 
 /*** DEBUG ***/

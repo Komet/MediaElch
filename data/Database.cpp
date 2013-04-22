@@ -30,7 +30,7 @@ Database::Database(QObject *parent) :
     } else {
         QSqlQuery query(*m_db);
 
-        int dbVersion = 3;
+        int dbVersion = 4;
         bool dbIsUpToDate = false;
 
         query.prepare("SELECT * FROM sqlite_master WHERE name ='settings' and type='table';");
@@ -119,6 +119,8 @@ Database::Database(QObject *parent) :
                       "\"idEpisode\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
                       "\"content\" text NOT NULL, "
                       "\"idShow\" integer NOT NULL, "
+                      "\"seasonNumber\" integer NOT NULL, "
+                      "\"episodeNumber\" integer NOT NULL, "
                       "\"path\" text NOT NULL);");
         query.exec();
 
@@ -353,11 +355,13 @@ void Database::add(TvShow *show, QString path)
 void Database::add(TvShowEpisode *episode, QString path, int idShow)
 {
     QSqlQuery query(db());
-    query.prepare("INSERT INTO episodes(content, idShow, path) "
-                  "VALUES(:content, :idShow, :path)");
+    query.prepare("INSERT INTO episodes(content, idShow, path, seasonNumber, episodeNumber) "
+                  "VALUES(:content, :idShow, :path, :seasonNumber, :episodeNumber)");
     query.bindValue(":content", episode->nfoContent().isEmpty() ? "" : episode->nfoContent().toUtf8());
     query.bindValue(":idShow", idShow);
     query.bindValue(":path", path.toUtf8());
+    query.bindValue(":seasonNumber", episode->season());
+    query.bindValue(":episodeNumber", episode->episode());
     query.exec();
     int insertId = query.lastInsertId().toInt();
     foreach (const QString &file, episode->files()) {
@@ -408,7 +412,7 @@ QList<TvShowEpisode*> Database::episodes(int idShow)
     QList<TvShowEpisode*> episodes;
     QSqlQuery query(db());
     QSqlQuery queryFiles(db());
-    query.prepare("SELECT idEpisode, content FROM episodes WHERE idShow=:idShow");
+    query.prepare("SELECT idEpisode, content, seasonNumber, episodeNumber FROM episodes WHERE idShow=:idShow");
     query.bindValue(":idShow", idShow);
     query.exec();
     while (query.next()) {
@@ -420,6 +424,8 @@ QList<TvShowEpisode*> Database::episodes(int idShow)
             files << QString::fromUtf8(queryFiles.value(queryFiles.record().indexOf("file")).toByteArray());
 
         TvShowEpisode *episode = new TvShowEpisode(files);
+        episode->setSeason(query.value(query.record().indexOf("seasonNumber")).toInt());
+        episode->setEpisode(query.value(query.record().indexOf("episodeNumber")).toInt());
         episode->setDatabaseId(query.value(query.record().indexOf("idEpisode")).toInt());
         episode->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
         episodes.append(episode);

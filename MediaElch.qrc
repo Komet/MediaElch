@@ -64,6 +64,10 @@
         <file>img/imgButtonBottom.png</file>
         <file>img/imgButtonTop.png</file>
         <file>img/folder_64.png</file>
+        <file>i18n/qt_de.qm</file>
+        <file>i18n/qt_fr.qm</file>
+        <file>i18n/qt_pt.qm</file>
+        <file>img/pencil.png</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>
@@ -115,5 +119,7 @@
         <file alias="extraFanarts/red">img/mediaStatus/extrafanarts_red.png</file>
         <file alias="streamDetails/green">img/mediaStatus/streamdetails_green.png</file>
         <file alias="streamDetails/red">img/mediaStatus/streamdetails_red.png</file>
+        <file alias="id/green">img/mediaStatus/id_green.png</file>
+        <file alias="id/red">img/mediaStatus/id_red.png</file>
     </qresource>
 </RCC>

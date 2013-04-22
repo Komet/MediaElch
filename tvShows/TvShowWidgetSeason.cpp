@@ -2,6 +2,7 @@
 #include "ui_TvShowWidgetSeason.h"
 
 #include <QPainter>
+#include "data/ImageCache.h"
 #include "globals/Helper.h"
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
@@ -17,25 +18,13 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
     m_season = -1;
 
     ui->title->clear();
-    ui->posterResolution->clear();
-    ui->backdropResolution->clear();
-    ui->bannerResolution->clear();
     QFont font = ui->title->font();
     font.setPointSize(font.pointSize()+4);
     ui->title->setFont(font);
-    ui->buttonPreviewBackdrop->setEnabled(false);
-    ui->buttonPreviewPoster->setEnabled(false);
-    ui->buttonPreviewBanner->setEnabled(false);
 
-    font = ui->posterResolution->font();
-    #ifdef Q_OS_WIN32
-    font.setPointSize(font.pointSize()-1);
-    #else
-    font.setPointSize(font.pointSize()-2);
-    #endif
-    ui->posterResolution->setFont(font);
-    ui->backdropResolution->setFont(font);
-    ui->bannerResolution->setFont(font);
+    ui->poster->setDefaultPixmap(QPixmap(":/img/film_reel.png"));
+    ui->backdrop->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->banner->setDefaultPixmap(QPixmap());
 
     m_downloadManager = new DownloadManager(this);
 
@@ -49,16 +38,7 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
     onSetEnabled(false);
     onClear();
 
-    QPixmap zoomIn(":/img/zoom_in.png");
     QPainter p;
-    p.begin(&zoomIn);
-    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    p.fillRect(zoomIn.rect(), QColor(0, 0, 0, 150));
-    p.end();
-    ui->buttonPreviewBackdrop->setIcon(QIcon(zoomIn));
-    ui->buttonPreviewPoster->setIcon(QIcon(zoomIn));
-    ui->buttonPreviewBanner->setIcon(QIcon(zoomIn));
-
     QPixmap revert(":/img/arrow_circle_left.png");
     p.begin(&revert);
     p.setCompositionMode(QPainter::CompositionMode_SourceIn);
@@ -70,9 +50,9 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
     connect(ui->poster, SIGNAL(clicked()), this, SLOT(onChoosePoster()));
     connect(ui->backdrop, SIGNAL(clicked()), this, SLOT(onChooseBackdrop()));
     connect(ui->banner, SIGNAL(clicked()), this, SLOT(onChooseBanner()));
-    connect(ui->buttonPreviewPoster, SIGNAL(clicked()), this, SLOT(onPreviewPoster()));
-    connect(ui->buttonPreviewBackdrop, SIGNAL(clicked()), this, SLOT(onPreviewBackdrop()));
-    connect(ui->buttonPreviewBanner, SIGNAL(clicked()), this, SLOT(onPreviewBanner()));
+    connect(ui->poster, SIGNAL(sigClose()), this, SLOT(onDeletePoster()));
+    connect(ui->backdrop, SIGNAL(sigClose()), this, SLOT(onDeleteBackdrop()));
+    connect(ui->banner, SIGNAL(sigClose()), this, SLOT(onDeleteBanner()));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
     connect(m_downloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onDownloadFinished(DownloadManagerElement)));
 }
@@ -98,73 +78,45 @@ void TvShowWidgetSeason::setSeason(TvShow *show, int season)
     emit sigSetActionSearchEnabled(false, WidgetTvShows);
     ui->title->setText(QString(show->name()) + " - " + tr("Season %1").arg(season));
 
-    if (!m_show->seasonPosterImage(season).isNull()) {
-        QImage img = QImage::fromData(m_show->seasonPosterImage(season));
-        ui->poster->setPixmap(QPixmap::fromImage(img).scaledToWidth(200, Qt::SmoothTransformation));
-        ui->posterResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
-        ui->buttonPreviewPoster->setEnabled(true);
-        m_currentPoster = img;
-    } else if (!Manager::instance()->mediaCenterInterfaceTvShow()->seasonPosterImageName(m_show, season).isEmpty()) {
-        QPixmap p(Manager::instance()->mediaCenterInterfaceTvShow()->seasonPosterImageName(m_show, season));
-        ui->poster->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
-        ui->posterResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
-        ui->buttonPreviewPoster->setEnabled(true);
-        m_currentPoster = p.toImage();
-    } else {
-        ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
-        ui->posterResolution->clear();
-        ui->buttonPreviewPoster->setEnabled(false);
-    }
-
-    if (!m_show->seasonBackdropImage(season).isNull()) {
-        QImage img = QImage::fromData(m_show->seasonBackdropImage(season));
-        ui->backdrop->setPixmap(QPixmap::fromImage(img).scaledToWidth(200, Qt::SmoothTransformation));
-        ui->backdropResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
-        ui->buttonPreviewBackdrop->setEnabled(true);
-        m_currentBackdrop = img;
-    } else if (!Manager::instance()->mediaCenterInterfaceTvShow()->seasonBackdropImageName(m_show, season).isEmpty()) {
-        QPixmap p(Manager::instance()->mediaCenterInterfaceTvShow()->seasonBackdropImageName(m_show, season));
-        ui->backdrop->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
-        ui->backdropResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
-        ui->buttonPreviewBackdrop->setEnabled(true);
-        m_currentBackdrop = p.toImage();
-    } else {
-        ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->backdropResolution->clear();
-        ui->buttonPreviewBackdrop->setEnabled(false);
-    }
-
-    if (!m_show->seasonBannerImage(season).isNull()) {
-        QImage img = QImage::fromData(m_show->seasonBannerImage(season));
-        ui->banner->setPixmap(QPixmap::fromImage(img).scaledToWidth(200, Qt::SmoothTransformation));
-        ui->bannerResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
-        ui->buttonPreviewBanner->setEnabled(true);
-        m_currentBanner = img;
-    } else if (!Manager::instance()->mediaCenterInterfaceTvShow()->seasonBannerImageName(m_show, season).isEmpty()) {
-        QPixmap p(Manager::instance()->mediaCenterInterfaceTvShow()->seasonBannerImageName(m_show, season));
-        ui->banner->setPixmap(p.scaledToWidth(200, Qt::SmoothTransformation));
-        ui->bannerResolution->setText(QString("%1x%2").arg(p.width()).arg(p.height()));
-        ui->buttonPreviewBanner->setEnabled(true);
-        m_currentBanner = p.toImage();
-    } else {
-        ui->banner->setPixmap(QPixmap(":/img/pictures_alt_small.png"));
-        ui->bannerResolution->clear();
-        ui->buttonPreviewBanner->setEnabled(false);
-    }
+    updateImages(QList<ImageType>() << TypeSeasonPoster << TypeSeasonBackdrop << TypeSeasonBanner);
 
     onSetEnabled(!show->downloadsInProgress());
     emit sigSetActionSaveEnabled(!show->downloadsInProgress(), WidgetTvShows);
 }
 
+void TvShowWidgetSeason::updateImages(QList<ImageType> images)
+{
+    if (images.contains(TypeSeasonPoster)) {
+        if (!m_show->seasonPosterImage(m_season).isNull())
+            ui->poster->setImage(m_show->seasonPosterImage(m_season));
+        else if (!Manager::instance()->mediaCenterInterfaceTvShow()->seasonPosterImageName(m_show, m_season).isEmpty() &&
+                (!m_show->imagesToRemove().contains(TypeSeasonPoster) || !m_show->imagesToRemove().value(TypeSeasonPoster).contains(m_season)))
+            ui->poster->setImage(Manager::instance()->mediaCenterInterfaceTvShow()->seasonPosterImageName(m_show, m_season));
+    }
+
+    if (images.contains(TypeSeasonBackdrop)) {
+        if (!m_show->seasonBackdropImage(m_season).isNull())
+            ui->backdrop->setImage(m_show->seasonBackdropImage(m_season));
+        else if (!Manager::instance()->mediaCenterInterfaceTvShow()->seasonPosterImageName(m_show, m_season).isEmpty() &&
+                (!m_show->imagesToRemove().contains(TypeSeasonBackdrop) || !m_show->imagesToRemove().value(TypeSeasonBackdrop).contains(m_season)))
+            ui->backdrop->setImage(Manager::instance()->mediaCenterInterfaceTvShow()->seasonBackdropImageName(m_show, m_season));
+    }
+
+    if (images.contains(TypeSeasonBanner)) {
+        if (!m_show->seasonBannerImage(m_season).isNull())
+            ui->banner->setImage(m_show->seasonBannerImage(m_season));
+        else if (!Manager::instance()->mediaCenterInterfaceTvShow()->seasonBannerImageName(m_show, m_season).isEmpty() &&
+                (!m_show->imagesToRemove().contains(TypeSeasonBanner) || !m_show->imagesToRemove().value(TypeSeasonBanner).contains(m_season)))
+            ui->banner->setImage(Manager::instance()->mediaCenterInterfaceTvShow()->seasonBannerImageName(m_show, m_season));
+    }
+}
+
 void TvShowWidgetSeason::onClear()
 {
     ui->title->clear();
-    ui->poster->setPixmap(QPixmap(":/img/film_reel.png"));
-    ui->backdrop->setPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->banner->setPixmap(QPixmap());
-    ui->posterResolution->clear();
-    ui->backdropResolution->clear();
-    ui->bannerResolution->clear();
+    ui->poster->clear();
+    ui->backdrop->clear();
+    ui->banner->clear();
     ui->buttonRevert->setVisible(false);
 }
 
@@ -204,10 +156,7 @@ void TvShowWidgetSeason::onChoosePoster()
         d.season = m_season;
         d.show = m_show;
         m_downloadManager->addDownload(d);
-        ui->poster->setPixmap(QPixmap());
-        ui->poster->setMovie(m_loadingMovie);
-        ui->posterResolution->clear();
-        ui->buttonPreviewPoster->setEnabled(false);
+        ui->poster->setLoading(true);
     }
 }
 
@@ -230,10 +179,7 @@ void TvShowWidgetSeason::onChooseBackdrop()
         d.season = m_season;
         d.show = m_show;
         m_downloadManager->addDownload(d);
-        ui->backdrop->setPixmap(QPixmap());
-        ui->backdrop->setMovie(m_loadingMovie);
-        ui->backdropResolution->clear();
-        ui->buttonPreviewBackdrop->setEnabled(false);
+        ui->backdrop->setLoading(true);
     }
 }
 
@@ -256,29 +202,26 @@ void TvShowWidgetSeason::onChooseBanner()
         d.season = m_season;
         d.show = m_show;
         m_downloadManager->addDownload(d);
-        ui->banner->setPixmap(QPixmap());
-        ui->banner->setMovie(m_loadingMovie);
-        ui->bannerResolution->clear();
-        ui->buttonPreviewBanner->setEnabled(false);
+        ui->banner->setLoading(true);
     }
 }
 
-void TvShowWidgetSeason::onPreviewPoster()
+void TvShowWidgetSeason::onDeletePoster()
 {
-    ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentPoster));
-    ImagePreviewDialog::instance()->exec();
+    m_show->removeImage(TypeSeasonPoster, m_season);
+    updateImages(QList<ImageType>() << TypeSeasonPoster);
 }
 
-void TvShowWidgetSeason::onPreviewBackdrop()
+void TvShowWidgetSeason::onDeleteBackdrop()
 {
-    ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentBackdrop));
-    ImagePreviewDialog::instance()->exec();
+    m_show->removeImage(TypeSeasonBackdrop, m_season);
+    updateImages(QList<ImageType>() << TypeSeasonBackdrop);
 }
 
-void TvShowWidgetSeason::onPreviewBanner()
+void TvShowWidgetSeason::onDeleteBanner()
 {
-    ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(m_currentBanner));
-    ImagePreviewDialog::instance()->exec();
+    m_show->removeImage(TypeSeasonBanner, m_season);
+    updateImages(QList<ImageType>() << TypeSeasonBanner);
 }
 
 void TvShowWidgetSeason::onRevertChanges()
@@ -289,32 +232,20 @@ void TvShowWidgetSeason::onRevertChanges()
 void TvShowWidgetSeason::onDownloadFinished(DownloadManagerElement elem)
 {
     if (elem.imageType == TypeSeasonPoster) {
-        if (m_show == elem.show) {
-            QImage img = QImage::fromData(elem.data);
-            ui->poster->setPixmap(QPixmap::fromImage(img).scaled(200, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            ui->posterResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
-            ui->buttonPreviewPoster->setEnabled(true);
-            m_currentPoster = img;
-        }
+        if (m_show == elem.show)
+            ui->poster->setImage(elem.data);
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->seasonPosterImageName(elem.show, elem.season));
         elem.show->setSeasonPosterImage(elem.season, elem.data);
     } else if (elem.imageType == TypeSeasonBackdrop) {
         Helper::resizeBackdrop(elem.data);
-        if (m_show == elem.show) {
-            QImage img = QImage::fromData(elem.data);
-            ui->backdrop->setPixmap(QPixmap::fromImage(img).scaled(200, 112, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            ui->backdropResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
-            ui->buttonPreviewBackdrop->setEnabled(true);
-            m_currentBackdrop = img;
-        }
+        if (m_show == elem.show)
+            ui->backdrop->setImage(elem.data);
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->seasonBackdropImageName(elem.show, elem.season));
         elem.show->setSeasonBackdropImage(elem.season, elem.data);
     } else if (elem.imageType == TypeSeasonBanner) {
-        if (m_show == elem.show) {
-            QImage img = QImage::fromData(elem.data);
-            ui->banner->setPixmap(QPixmap::fromImage(img).scaled(200, 37, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            ui->bannerResolution->setText(QString("%1x%2").arg(img.width()).arg(img.height()));
-            ui->buttonPreviewBanner->setEnabled(true);
-            m_currentBanner = img;
-        }
+        if (m_show == elem.show)
+            ui->banner->setImage(elem.data);
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->seasonBannerImageName(elem.show, elem.season));
         elem.show->setSeasonBannerImage(elem.season, elem.data);
     }
 

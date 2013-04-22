@@ -18,6 +18,7 @@
 #include "data/TvShowProxyModel.h"
 #include "imageProviders/FanartTv.h"
 #include "main/FileScannerDialog.h"
+#include "scrapers/TvTunes.h"
 #include "trailerProviders/TrailerProvider.h"
 #include "tvShows/TvShowFilesWidget.h"
 
@@ -55,6 +56,7 @@ public:
     ScraperInterface* getScraperForName(QString name);
     FanartTv* fanartTv();
     TvShowFilesWidget *tvShowFilesWidget();
+    TvTunes* tvTunes();
     void setTvShowFilesWidget(TvShowFilesWidget *widget);
     void setFileScannerDialog(FileScannerDialog *dialog);
 
@@ -78,6 +80,7 @@ private:
     Database *m_database;
     TvShowFilesWidget *m_tvShowFilesWidget;
     FileScannerDialog *m_fileScannerDialog;
+    TvTunes *m_tvTunes;
 };
 
 #endif // MANAGER_H

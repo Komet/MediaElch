@@ -122,7 +122,7 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
             icon = (movie->actors().isEmpty()) ? "actors/red" : "actors/green";
             break;
         case MediaStatusTrailer:
-            icon = (movie->trailer().isEmpty()) ? "trailer/red" : "trailer/green";
+            icon = (movie->trailer().isEmpty() && !movie->hasLocalTrailer()) ? "trailer/red" : "trailer/green";
             break;
         case MediaStatusPoster:
             icon = (movie->hasPoster()) ? "poster/green" : "poster/red";
@@ -143,6 +143,9 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
             break;
         case MediaStatusExtraFanarts:
             icon = (movie->hasExtraFanarts()) ? "extraFanarts/green" : "extraFanarts/red";
+            break;
+        case MediaStatusId:
+            icon = (movie->id().isEmpty()) ? "id/red" : "id/green";
             break;
         default:
             break;
@@ -192,7 +195,7 @@ void MovieModel::clear()
         return;
     beginRemoveRows(QModelIndex(), 0, m_movies.size()-1);
     foreach (Movie *movie, m_movies)
-        delete movie;
+        movie->deleteLater();
     m_movies.clear();
     endRemoveRows();
 }
@@ -224,25 +227,28 @@ int MovieModel::mediaStatusToColumn(MediaStatusColumns column)
 {
     switch (column) {
     case MediaStatusActors:
-        return 7;
+        return 8;
         break;
     case MediaStatusExtraArts:
-        return 4;
+        return 5;
         break;
     case MediaStatusExtraFanarts:
-        return 3;
+        return 4;
         break;
     case MediaStatusFanart:
-        return 2;
+        return 3;
         break;
     case MediaStatusPoster:
-        return 1;
+        return 2;
         break;
     case MediaStatusStreamDetails:
-        return 6;
+        return 7;
         break;
     case MediaStatusTrailer:
-        return 5;
+        return 6;
+        break;
+    case MediaStatusId:
+        return 1;
         break;
     default:
         return -1;
@@ -252,7 +258,7 @@ int MovieModel::mediaStatusToColumn(MediaStatusColumns column)
 
 MediaStatusColumns MovieModel::columnToMediaStatus(int column)
 {
-    for (int i=MediaStatusFirst, n=MediaStatusLast ; i<n ; ++i) {
+    for (int i=MediaStatusFirst, n=MediaStatusLast ; i<=n ; ++i) {
         if (MovieModel::mediaStatusToColumn(static_cast<MediaStatusColumns>(i)) == column)
             return static_cast<MediaStatusColumns>(i);
     }
@@ -282,6 +288,9 @@ QString MovieModel::mediaStatusToText(MediaStatusColumns column)
         break;
     case MediaStatusTrailer:
         return tr("Trailer");
+        break;
+    case MediaStatusId:
+        return tr("IMDB ID");
         break;
     default:
         return QString();

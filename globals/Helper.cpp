@@ -47,9 +47,17 @@ QString Helper::toLatin1PercentEncoding(QString str)
     return str;
 }
 
-QString Helper::urlFromEncoded(QString str)
+QString Helper::urlDecode(QString str)
 {
     str = str.replace("&amp;", "&");
+    return str;
+}
+
+QString Helper::urlEncode(QString str)
+{
+    QUrl url(str);
+    str = url.toEncoded();
+    str = str.replace("%26", "&amp;");
     return str;
 }
 
@@ -80,9 +88,11 @@ QString Helper::formatTrailerUrl(QString url)
  * @param path
  * @return
  */
-bool Helper::isDvd(QString path)
+bool Helper::isDvd(QString path, bool noSubFolder)
 {
     if (path.endsWith("VIDEO_TS.IFO")) {
+        if (noSubFolder)
+            return true;
         QFileInfo fi(path);
         return fi.absolutePath().endsWith("VIDEO_TS");
     }

@@ -1,6 +1,8 @@
 #include "StreamDetails.h"
 
 #include <QApplication>
+#include <QDir>
+#include <QFileInfo>
 #include "MediaInfo/MediaInfo.h"
 #include "settings/Settings.h"
 
@@ -37,9 +39,37 @@ void StreamDetails::loadStreamDetails()
     if (m_file.endsWith(".iso", Qt::CaseInsensitive) || m_file.endsWith(".img", Qt::CaseInsensitive))
         return;
 
+    // If it's a DVD structure, compute the biggest part (main movie) and use this IFO file
+    if (m_file.endsWith("VIDEO_TS.IFO")) {
+        QMap<QString, qint64> sizes;
+        QString biggest;
+        qint64 biggestSize = 0;
+        QFileInfo fi(m_file);
+        foreach (const QFileInfo &fiVob, fi.dir().entryInfoList(QStringList() << "VTS_*.VOB" << "vts_*.vob", QDir::Files, QDir::Name)) {
+            QRegExp rx("VTS_([0-9]*)_[0-9]*.VOB");
+            rx.setMinimal(true);
+            rx.setCaseSensitivity(Qt::CaseInsensitive);
+            if (rx.indexIn(fiVob.fileName()) != -1) {
+                if (!sizes.contains(rx.cap(1)))
+                    sizes.insert(rx.cap(1), 0);
+                sizes[rx.cap(1)] += fiVob.size();
+                if (sizes[rx.cap(1)] > biggestSize) {
+                    biggestSize = sizes[rx.cap(1)];
+                    biggest = rx.cap(1);
+                }
+            }
+        }
+        if (!biggest.isEmpty()) {
+            QFileInfo fiNew(fi.absolutePath() + "/VTS_" + biggest + "_0.IFO");
+            if (fiNew.isFile() && fiNew.exists())
+                m_file = fiNew.absoluteFilePath();
+        }
+    }
+
     MediaInfo MI;
     MI.Option(QString("Info_Version").toStdWString(), QString("0.7.61;%1;%2").arg(QApplication::applicationName()).arg(QApplication::applicationVersion()).toStdWString());
     MI.Option(QString("Internet").toStdWString(), QString("no").toStdWString());
+
 #ifdef Q_OS_WIN32
     MI.Open(m_file.toStdWString());
 #else
@@ -87,11 +117,17 @@ void StreamDetails::loadStreamDetails()
 
     for (int i=0 ; i<audioCount ; ++i) {
         QString lang = QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Language/String3").toStdWString())).toLower();
-        QString audioCodec = audioFormat(QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Codec").toStdWString())));
-        int channels = QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Channels").toStdWString())).toInt();
+        QString audioCodec = audioFormat(QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Codec").toStdWString())),
+                                         QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Format_Profile").toStdWString())));
+        QString channels = QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Channels").toStdWString()));
+        QRegExp rx("^(\\d*)\\D*");
+        if (rx.indexIn(QString("%1").arg(channels), 0) != -1)
+            channels = rx.cap(1);
+        else
+            channels = "";
         setAudioDetail(i, "language", lang);
         setAudioDetail(i, "codec", audioCodec);
-        setAudioDetail(i, "channels", QString("%1").arg(channels));
+        setAudioDetail(i, "channels", channels);
     }
 
     for (int i=0 ; i<textCount ; ++i) {
@@ -122,11 +158,29 @@ QString StreamDetails::videoFormat(QString format, QString version)
  * @param format Original format, given by libstreaminfo
  * @return Modified format
  */
-QString StreamDetails::audioFormat(const QString &format)
+QString StreamDetails::audioFormat(const QString &codec, const QString &profile)
 {
-    if (Settings::instance()->advanced()->audioCodecMappings().contains(format))
-        return Settings::instance()->advanced()->audioCodecMappings().value(format);
-    return format;
+    QString xbmcFormat;
+    if (codec == "DTS-HD" && profile == "MA / Core")
+        xbmcFormat = "dtshd_ma";
+    else if (codec == "DTS-HD" && profile == "HRA / Core")
+        xbmcFormat = "dtshd_hra";
+    else if (codec == "AC3")
+        xbmcFormat = "ac3";
+    else if (codec == "AC3+" || codec == "E-AC-3")
+        xbmcFormat = "eac3";
+    else if (codec == "TrueHD / AC3")
+        xbmcFormat = "truehd";
+    else if (codec == "FLAC")
+        xbmcFormat = "flac";
+    else if (codec == "MPA1L3")
+        xbmcFormat = "mp3";
+    else
+        xbmcFormat = codec;
+
+    if (Settings::instance()->advanced()->audioCodecMappings().contains(xbmcFormat))
+        return Settings::instance()->advanced()->audioCodecMappings().value(xbmcFormat);
+    return xbmcFormat;
 }
 
 /**

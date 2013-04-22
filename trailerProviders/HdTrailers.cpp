@@ -117,7 +117,7 @@ QList<TrailerResult> HdTrailers::parseTrailers(QString html)
             if (rx2.cap(1).contains("http://trailers.apple.com"))
                 continue;
             TrailerResult r;
-            r.trailerUrl = Helper::urlFromEncoded(rx2.cap(1));
+            r.trailerUrl = Helper::urlDecode(rx2.cap(1));
             r.name = QString("%2, %1").arg(rx.cap(1)).arg(rx2.cap(2));
             results.append(r);
         }

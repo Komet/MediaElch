@@ -5,6 +5,7 @@
 #include <QFileInfo>
 #include <QTime>
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 #include "settings/Settings.h"
 
 /**
@@ -56,7 +57,6 @@ void TvShowEpisode::clear()
     QList<int> infos;
     infos << TvShowScraperInfos::Certification
           << TvShowScraperInfos::Rating
-          << TvShowScraperInfos::SeasonEpisode
           << TvShowScraperInfos::Director
           << TvShowScraperInfos::Writer
           << TvShowScraperInfos::Overview
@@ -73,10 +73,6 @@ void TvShowEpisode::clear(QList<int> infos)
         m_certification = "";
     if (infos.contains(TvShowScraperInfos::Rating))
         m_rating = 0;
-    if (infos.contains(TvShowScraperInfos::SeasonEpisode)) {
-        m_season = -2;
-        m_episode = -2;
-    }
     if (infos.contains(TvShowScraperInfos::Director))
         m_directors.clear();
     if (infos.contains(TvShowScraperInfos::Writer))
@@ -90,6 +86,7 @@ void TvShowEpisode::clear(QList<int> infos)
     if (infos.contains(TvShowScraperInfos::Thumbnail)) {
         m_thumbnail = QUrl();
         m_thumbnailImageChanged = false;
+        m_imagesToRemove.removeOne(TypeShowThumbnail);
     }
 
     m_hasChanged = false;
@@ -118,9 +115,19 @@ bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface, bool re
 
 
     if (!infoLoaded) {
-        if (this->files().count() > 0) {
-            QFileInfo fi(this->files().at(0));
-            this->setName(fi.completeBaseName().replace(".", " ").replace("_", " "));
+        if (files().count() > 0) {
+            QStringList filenameParts = files().at(0).split(QDir::separator());
+            QString filename = filenameParts.last();
+            if (filename.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
+                if (filenameParts.count() > 1 && Helper::isDvd(files().at(0)))
+                    filename = filenameParts.at(filenameParts.count()-3);
+                else if (filenameParts.count() > 2 && Helper::isDvd(files().at(0), true))
+                    filename = filenameParts.at(filenameParts.count()-2);
+            } else if (filename.endsWith("index.bdmv", Qt::CaseInsensitive)) {
+                if (filenameParts.count() > 2)
+                    filename = filenameParts.at(filenameParts.count()-3);
+            }
+            setName(filename.replace(".", " ").replace("_", " "));
         }
     }
     m_infoLoaded = infoLoaded;
@@ -233,11 +240,9 @@ QString TvShowEpisode::name() const
  */
 QString TvShowEpisode::completeEpisodeName() const
 {
-    if (m_infoLoaded)
-        return QString("S%1E%2 %3").arg(seasonString())
-                                   .arg(episodeString())
-                                   .arg(name());
-    return name();
+    return QString("S%1E%2 %3").arg(seasonString())
+                               .arg(episodeString())
+                               .arg(name());
 }
 
 /**
@@ -283,15 +288,6 @@ qreal TvShowEpisode::rating() const
  */
 int TvShowEpisode::season() const
 {
-    if (m_season == -2 && files().count() > 0) {
-        QString filename = files().at(0).split(QDir::separator()).last();
-        QRegExp rx("S(\\d+)[.]?E", Qt::CaseInsensitive);
-        if (rx.indexIn(filename) != -1)
-            return rx.cap(1).toInt();
-        rx.setPattern("(\\d+)?x(\\d+)");
-        if (rx.indexIn(filename) != -1)
-            return rx.cap(1).toInt();
-    }
     return m_season;
 }
 
@@ -326,15 +322,6 @@ QString TvShowEpisode::seasonString() const
  */
 int TvShowEpisode::episode() const
 {
-    if (m_episode == -2 && files().count() > 0) {
-        QString filename = files().at(0).split(QDir::separator()).last();
-        QRegExp rx("S(\\d+)[.]?E(\\d+)", Qt::CaseInsensitive);
-        if (rx.indexIn(filename) != -1)
-            return rx.cap(2).toInt();
-        rx.setPattern("(\\d+)x(\\d+)");
-        if (rx.indexIn(filename) != -1)
-            return rx.cap(2).toInt();
-    }
     return m_episode;
 }
 
@@ -883,6 +870,28 @@ void TvShowEpisode::setDatabaseId(int id)
 void TvShowEpisode::setSyncNeeded(bool syncNeeded)
 {
     m_syncNeeded = syncNeeded;
+}
+
+QList<ImageType> TvShowEpisode::imagesToRemove() const
+{
+    return m_imagesToRemove;
+}
+
+void TvShowEpisode::removeImage(ImageType type)
+{
+    switch (type) {
+    case TypeShowThumbnail:
+        if (!m_thumbnailImage.isNull()) {
+            m_thumbnailImage = QByteArray();
+            m_thumbnailImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.append(type);
+        }
+        break;
+    default:
+        break;
+    }
+    setChanged(true);
 }
 
 /*** DEBUG ***/

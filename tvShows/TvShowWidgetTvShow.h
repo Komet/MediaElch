@@ -60,17 +60,18 @@ private slots:
     void onPosterDownloadFinished(DownloadManagerElement elem);
     void onDownloadsFinished(TvShow *show);
     void onDownloadsLeft(int left, DownloadManagerElement elem);
-    void onPreviewPoster();
-    void onPreviewBackdrop();
-    void onPreviewBanner();
-    void onPreviewLogo();
-    void onPreviewClearArt();
-    void onPreviewCharacterArt();
+    void onDeletePoster();
+    void onDeleteBackdrop();
+    void onDeleteBanner();
+    void onDeleteLogo();
+    void onDeleteClearArt();
+    void onDeleteCharacterArt();
     void onActorChanged();
     void onChangeActorImage();
     void onRevertChanges();
     void onArtPageOne();
     void onArtPageTwo();
+    void onDownloadTune();
 
     void onNameChange(QString text);
     void onCertificationChange(QString text);
@@ -90,14 +91,8 @@ private:
     QLabel *m_savingWidget;
     QMovie *m_loadingMovie;
     DownloadManager *m_posterDownloadManager;
-    QImage m_currentPoster;
-    QImage m_currentBackdrop;
-    QImage m_currentBanner;
-    QImage m_currentLogo;
-    QImage m_currentClearArt;
-    QImage m_currentCharacterArt;
-
     void updateTvShowInfo();
+    void updateImages(QList<ImageType> images);
 };
 
 #endif // TVSHOWWIDGETTVSHOW_H

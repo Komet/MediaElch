@@ -7,6 +7,7 @@
 #include <QTableWidget>
 #include <QTimer>
 #include "globals/Globals.h"
+#include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "smallWidgets/LoadingStreamDetails.h"
 
@@ -175,7 +176,12 @@ void ConcertFilesWidget::openFolder()
     if (concert->files().isEmpty())
         return;
     QFileInfo fi(concert->files().at(0));
-    QDesktopServices::openUrl(QUrl("file:///" + fi.absolutePath(), QUrl::TolerantMode));
+    QUrl url;
+    if (fi.absolutePath().startsWith("\\\\") || fi.absolutePath().startsWith("//"))
+        url.setUrl(QDir::toNativeSeparators(fi.absolutePath()));
+    else
+        url = QUrl::fromLocalFile(fi.absolutePath());
+    QDesktopServices::openUrl(url);
 }
 /**
  * @brief Called when an item has selected
@@ -273,7 +279,7 @@ void ConcertFilesWidget::setAlphaListData()
         if (!alphas.contains(first))
             alphas.append(first);
     }
-    alphas.sort();
+    qSort(alphas.begin(), alphas.end(), LocaleStringCompare());
     int scrollBarWidth = 0;
     if (ui->files->verticalScrollBar()->isVisible())
         scrollBarWidth = ui->files->verticalScrollBar()->width();

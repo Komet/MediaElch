@@ -61,6 +61,11 @@ private slots:
     void chooseMovieLogo();
     void chooseMovieClearArt();
     void chooseMovieCdArt();
+    void deleteMoviePoster();
+    void deleteMovieBackdrop();
+    void deleteMovieLogo();
+    void deleteMovieClearArt();
+    void deleteMovieCdArt();
     void movieNameChanged(QString text);
     void addGenre(QString genre);
     void removeGenre(QString genre);
@@ -72,11 +77,6 @@ private slots:
     void removeStudio(QString studio);
     void addCountry(QString country);
     void removeCountry(QString country);
-    void onPreviewPoster();
-    void onPreviewBackdrop();
-    void onPreviewLogo();
-    void onPreviewClearArt();
-    void onPreviewCdArt();
     void onActorChanged();
     void onChangeActorImage();
     void onRevertChanges();
@@ -108,7 +108,7 @@ private slots:
     void onReloadStreamDetails();
     void updateStreamDetails(bool reloadFromFile = false);
     void onDownloadTrailer();
-    void updateBackgroundImage();
+    void onInsertYoutubeLink();
 
     void onRemoveExtraFanart(const QString &file);
     void onRemoveExtraFanart(const QByteArray &image);
@@ -119,16 +119,12 @@ private:
     QPointer<Movie> m_movie;
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;
-    QImage m_currentPoster;
-    QImage m_currentBackdrop;
-    QImage m_currentLogo;
-    QImage m_currentClearArt;
-    QImage m_currentCdArt;
     QList<QWidget*> m_streamDetailsWidgets;
     QList< QList<QLineEdit*> > m_streamDetailsAudio;
     QList< QList<QLineEdit*> > m_streamDetailsSubtitles;
     QLabel *m_backgroundLabel;
     void updateMovieInfo();
+    void updateImages(QList<ImageType> images);
 };
 
 #endif // MOVIEWIDGET_H

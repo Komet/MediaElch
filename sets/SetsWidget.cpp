@@ -58,6 +58,7 @@ SetsWidget::SetsWidget(QWidget *parent) :
     connect(ui->sets, SIGNAL(itemSelectionChanged()), this, SLOT(onSetSelected()));
     connect(ui->sets, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onSetNameChanged(QTableWidgetItem*)));
     connect(ui->movies, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onSortTitleChanged(QTableWidgetItem*)));
+    connect(ui->movies, SIGNAL(itemDoubleClicked(QTableWidgetItem*)), this, SLOT(onJumpToMovie(QTableWidgetItem*)));
     connect(ui->buttonAddMovie, SIGNAL(clicked()), this, SLOT(onAddMovie()));
     connect(ui->buttonRemoveMovie, SIGNAL(clicked()), this, SLOT(onRemoveMovie()));
     connect(ui->poster, SIGNAL(clicked()), this, SLOT(chooseSetPoster()));
@@ -551,4 +552,13 @@ void SetsWidget::onDownloadFinished(DownloadManagerElement elem)
     }
     if (elem.movie)
         delete elem.movie;
+}
+
+void SetsWidget::onJumpToMovie(QTableWidgetItem *item)
+{
+    if (item->column() != 0)
+        return;
+
+    Movie *movie = item->data(Qt::UserRole).value<Movie*>();
+    emit sigJumpToMovie(movie);
 }

@@ -304,6 +304,28 @@
                  <widget class="QLineEdit" name="trailer"/>
                 </item>
                 <item>
+                 <widget class="QToolButton" name="buttonYoutubeDummy">
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Insert YouTube Dummy Link</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QToolButton {
+	border: none;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../MediaElch.qrc">
+                    <normaloff>:/img/pencil.png</normaloff>:/img/pencil.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QToolButton" name="buttonDownloadTrailer">
                   <property name="cursor">
                    <cursorShape>PointingHandCursor</cursorShape>
@@ -338,6 +360,9 @@
                <layout class="QHBoxLayout" name="horizontalLayout_19">
                 <item>
                  <widget class="QDoubleSpinBox" name="rating">
+                  <property name="buttonSymbols">
+                   <enum>QAbstractSpinBox::NoButtons</enum>
+                  </property>
                   <property name="decimals">
                    <number>1</number>
                   </property>
@@ -371,6 +396,9 @@
                 </item>
                 <item>
                  <widget class="MySpinBox" name="votes">
+                  <property name="buttonSymbols">
+                   <enum>QAbstractSpinBox::NoButtons</enum>
+                  </property>
                   <property name="maximum">
                    <number>9999999</number>
                   </property>
@@ -401,6 +429,9 @@
                 </item>
                 <item>
                  <widget class="QSpinBox" name="top250">
+                  <property name="buttonSymbols">
+                   <enum>QAbstractSpinBox::NoButtons</enum>
+                  </property>
                   <property name="maximum">
                    <number>250</number>
                   </property>
@@ -1057,17 +1088,17 @@ QPushButton::hover {
                </widget>
               </item>
               <item>
-               <widget class="MyLabel" name="poster">
+               <widget class="ClosableImage" name="poster">
                 <property name="minimumSize">
                  <size>
                   <width>200</width>
-                  <height>300</height>
+                  <height>320</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>200</width>
-                  <height>300</height>
+                  <height>320</height>
                  </size>
                 </property>
                 <property name="cursor">
@@ -1085,46 +1116,13 @@ QPushButton::hover {
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
+                <property name="clickable" stdset="0">
+                 <bool>true</bool>
+                </property>
+                <property name="myFixedHeight" stdset="0">
+                 <number>320</number>
+                </property>
                </widget>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout">
-                <item>
-                 <widget class="QToolButton" name="buttonPreviewPoster">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Full preview</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QToolButton {
-	border: none;
-}</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../MediaElch.qrc">
-                    <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="posterResolution">
-                  <property name="toolTip">
-                   <string>Resolution</string>
-                  </property>
-                  <property name="text">
-                   <string>Resolution</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
               </item>
               <item>
                <widget class="QLabel" name="label_14">
@@ -1140,17 +1138,17 @@ QPushButton::hover {
                </widget>
               </item>
               <item>
-               <widget class="MyLabel" name="backdrop">
+               <widget class="ClosableImage" name="backdrop">
                 <property name="minimumSize">
                  <size>
                   <width>200</width>
-                  <height>112</height>
+                  <height>132</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>200</width>
-                  <height>112</height>
+                  <height>132</height>
                  </size>
                 </property>
                 <property name="cursor">
@@ -1168,46 +1166,13 @@ QPushButton::hover {
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
+                <property name="clickable" stdset="0">
+                 <bool>true</bool>
+                </property>
+                <property name="myFixedHeight" stdset="0">
+                 <number>132</number>
+                </property>
                </widget>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_7">
-                <item>
-                 <widget class="QToolButton" name="buttonPreviewBackdrop">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Full preview</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QToolButton {
-	border: none;
-}</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../MediaElch.qrc">
-                    <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="backdropResolution">
-                  <property name="toolTip">
-                   <string>Resolution</string>
-                  </property>
-                  <property name="text">
-                   <string>Resolution</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
               </item>
               <item>
                <spacer name="verticalSpacer">
@@ -1243,17 +1208,17 @@ QPushButton::hover {
                </widget>
               </item>
               <item>
-               <widget class="MyLabel" name="logo">
+               <widget class="ClosableImage" name="logo">
                 <property name="minimumSize">
                  <size>
                   <width>200</width>
-                  <height>100</height>
+                  <height>120</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>200</width>
-                  <height>100</height>
+                  <height>120</height>
                  </size>
                 </property>
                 <property name="cursor">
@@ -1271,43 +1236,13 @@ QPushButton::hover {
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
+                <property name="clickable" stdset="0">
+                 <bool>true</bool>
+                </property>
+                <property name="myFixedHeight" stdset="0">
+                 <number>120</number>
+                </property>
                </widget>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_13">
-                <item>
-                 <widget class="QToolButton" name="buttonPreviewLogo">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Full preview</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QToolButton {
-	border: none;
-}</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../MediaElch.qrc">
-                    <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="logoResolution">
-                  <property name="text">
-                   <string>Resolution</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
               </item>
               <item>
                <widget class="QLabel" name="label_25">
@@ -1323,17 +1258,17 @@ QPushButton::hover {
                </widget>
               </item>
               <item>
-               <widget class="MyLabel" name="clearArt">
+               <widget class="ClosableImage" name="clearArt">
                 <property name="minimumSize">
                  <size>
                   <width>200</width>
-                  <height>150</height>
+                  <height>170</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>200</width>
-                  <height>150</height>
+                  <height>170</height>
                  </size>
                 </property>
                 <property name="cursor">
@@ -1351,43 +1286,13 @@ QPushButton::hover {
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
+                <property name="clickable" stdset="0">
+                 <bool>true</bool>
+                </property>
+                <property name="myFixedHeight" stdset="0">
+                 <number>170</number>
+                </property>
                </widget>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_14">
-                <item>
-                 <widget class="QToolButton" name="buttonPreviewClearArt">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Full preview</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QToolButton {
-	border: none;
-}</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../MediaElch.qrc">
-                    <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="clearArtResolution">
-                  <property name="text">
-                   <string>Resolution</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
               </item>
               <item>
                <widget class="QLabel" name="label_26">
@@ -1403,17 +1308,17 @@ QPushButton::hover {
                </widget>
               </item>
               <item>
-               <widget class="MyLabel" name="cdArt">
+               <widget class="ClosableImage" name="cdArt">
                 <property name="minimumSize">
                  <size>
                   <width>200</width>
-                  <height>200</height>
+                  <height>220</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>200</width>
-                  <height>200</height>
+                  <height>220</height>
                  </size>
                 </property>
                 <property name="cursor">
@@ -1431,43 +1336,13 @@ QPushButton::hover {
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
+                <property name="clickable" stdset="0">
+                 <bool>true</bool>
+                </property>
+                <property name="myFixedHeight" stdset="0">
+                 <number>220</number>
+                </property>
                </widget>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_15">
-                <item>
-                 <widget class="QToolButton" name="buttonPreviewCdArt">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Full preview</string>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QToolButton {
-	border: none;
-}</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../MediaElch.qrc">
-                    <normaloff>:/img/zoom_in.png</normaloff>:/img/zoom_in.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="cdArtResolution">
-                  <property name="text">
-                   <string>Resolution</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
               </item>
               <item>
                <spacer name="verticalSpacer_7">
@@ -1535,6 +1410,11 @@ QPushButton::hover {
    <extends>QSpinBox</extends>
    <header>smallWidgets/MySpinBox.h</header>
   </customwidget>
+  <customwidget>
+   <class>ClosableImage</class>
+   <extends>QLabel</extends>
+   <header>smallWidgets/ClosableImage.h</header>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>buttonRevert</tabstop>
@@ -1555,11 +1435,6 @@ QPushButton::hover {
   <tabstop>videoHeight</tabstop>
   <tabstop>videoAspectRatio</tabstop>
   <tabstop>videoScantype</tabstop>
-  <tabstop>buttonPreviewPoster</tabstop>
-  <tabstop>buttonPreviewBackdrop</tabstop>
-  <tabstop>buttonPreviewLogo</tabstop>
-  <tabstop>buttonPreviewClearArt</tabstop>
-  <tabstop>buttonPreviewCdArt</tabstop>
  </tabstops>
  <resources>
   <include location="../MediaElch.qrc"/>

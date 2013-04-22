@@ -89,6 +89,7 @@ void Concert::clear(QList<int> infos)
         m_backdrops.clear();
         m_backdropImage = QByteArray();
         m_backdropImageChanged = false;
+        m_imagesToRemove.removeOne(TypeBackdrop);
     }
     if (infos.contains(ConcertScraperInfos::Genres))
         m_genres.clear();
@@ -96,6 +97,7 @@ void Concert::clear(QList<int> infos)
         m_posters.clear();
         m_posterImage = QByteArray();
         m_posterImageChanged = false;
+        m_imagesToRemove.removeOne(TypePoster);
     }
     if (infos.contains(ConcertScraperInfos::Overview))
         m_overview = "";
@@ -120,6 +122,9 @@ void Concert::clear(QList<int> infos)
         m_clearArtImageChanged = false;
         m_logoImage = QByteArray();
         m_logoImageChanged = false;
+        m_imagesToRemove.removeOne(TypeCdArt);
+        m_imagesToRemove.removeOne(TypeClearArt);
+        m_imagesToRemove.removeOne(TypeLogo);
     }
     if (infos.contains(ConcertScraperInfos::ExtraFanarts)) {
         m_extraFanartsToRemove.clear();
@@ -1173,11 +1178,6 @@ QList<ExtraFanart> Concert::extraFanarts(MediaCenterInterface *mediaCenterInterf
     QList<ExtraFanart> fanarts;
     foreach (const QString &file, m_extraFanarts) {
         ExtraFanart f;
-        QFile fi(file);
-        if (fi.open(QIODevice::ReadOnly)) {
-            f.image = fi.readAll();
-            fi.close();
-        }
         f.path = file;
         fanarts.append(f);
     }
@@ -1216,3 +1216,58 @@ DiscType Concert::discType()
         return DiscBluRay;
     return DiscSingle;
 }
+
+QList<ImageType> Concert::imagesToRemove() const
+{
+    return m_imagesToRemove;
+}
+
+void Concert::removeImage(ImageType type)
+{
+    switch (type) {
+    case TypePoster:
+        if (!m_posterImage.isNull()) {
+            m_posterImage = QByteArray();
+            m_posterImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.append(type);
+        }
+        break;
+    case TypeBackdrop:
+        if (!m_backdropImage.isNull()) {
+            m_backdropImage = QByteArray();
+            m_backdropImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.append(type);
+        }
+        break;
+    case TypeLogo:
+        if (!m_logoImage.isNull()) {
+            m_logoImage = QByteArray();
+            m_logoImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.append(type);
+        }
+        break;
+    case TypeClearArt:
+        if (!m_clearArtImage.isNull()) {
+            m_clearArtImage = QByteArray();
+            m_clearArtImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.append(type);
+        }
+        break;
+    case TypeCdArt:
+        if (!m_cdArtImage.isNull()) {
+            m_cdArtImage = QByteArray();
+            m_cdArtImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.append(type);
+        }
+        break;
+    default:
+        break;
+    }
+    setChanged(true);
+}
+

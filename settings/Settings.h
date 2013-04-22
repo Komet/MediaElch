@@ -59,6 +59,8 @@ public:
     QString movieSetPosterFileName() const;
     QString movieSetFanartFileName() const;
     QList<MediaStatusColumns> mediaStatusColumns() const;
+    bool tvShowDvdOrder() const;
+    bool dontShowDeleteImageConfirm() const;
 
     bool autoLoadStreamDetails();
 
@@ -95,6 +97,8 @@ public:
     void setMovieSetPosterFileName(QString fileName);
     void setMovieSetFanartFileName(QString fileName);
     void setMediaStatusColumns(QList<MediaStatusColumns> columns);
+    void setTvShowDvdOrder(bool order);
+    void setDontShowDeleteImageConfirm(bool show);
 
 public slots:
     void saveSettings();
@@ -135,6 +139,8 @@ private:
     QString m_movieSetPosterFileName;
     QString m_movieSetFanartFileName;
     QList<MediaStatusColumns> m_mediaStatusColumns;
+    bool m_tvShowDvdOrder;
+    bool m_dontShowDeleteImageConfirm;
 
     void setupProxy();
 };

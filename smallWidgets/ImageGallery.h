@@ -29,7 +29,6 @@ protected:
 
 private slots:
     void onCloseImage();
-    void onZoomImage(QImage img);
     void onVerticalScrollBarMoved(const int &value);
     void onHorizontalScrollBarMoved(const int &value);
     void onButtonLeft();

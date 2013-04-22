@@ -188,10 +188,11 @@ public:
     QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
     QStringList extraFanartsToRemove();
     QList<QByteArray> extraFanartImagesToAdd();
+    QList<ImageType> imagesToRemove() const;
 
     void setPosters(QList<Poster> posters);
     void setPoster(int index, Poster poster);
-    void addPoster(Poster poster,bool primaryLang = false);
+    void addPoster(Poster poster, bool primaryLang = false);
     void setBackdrops(QList<Poster> backdrops);
     void setBackdrop(int index, Poster backdrop);
     void addBackdrop(Poster backdrop);
@@ -204,6 +205,7 @@ public:
     void removeExtraFanart(QString file);
     void clearExtraFanartData();
     void clearImages();
+    void removeImage(ImageType type);
 
     void setPosterImage(QByteArray poster);
     QByteArray posterImage();
@@ -287,7 +289,7 @@ private:
     QByteArray m_clearArtImage;
     QByteArray m_cdArtImage;
     QList<QByteArray> m_extraFanartImagesToAdd;
-
+    QList<ImageType> m_imagesToRemove;
 };
 
 Q_DECLARE_METATYPE(Movie*)

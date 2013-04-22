@@ -180,10 +180,12 @@ namespace MovieScraperInfos {
     const int Countries     = 14;
     const int Writer        = 15;
     const int Director      = 16;
-    const int ExtraArts     = 17;
     const int Tags          = 18;
     const int ExtraFanarts  = 19;
     const int Set           = 20;
+    const int Logo          = 21;
+    const int CdArt         = 22;
+    const int ClearArt      = 23;
 }
 
 namespace TvShowScraperInfos {
@@ -198,7 +200,6 @@ namespace TvShowScraperInfos {
     const int Overview       = 9;
     const int Poster         = 10;
     const int Rating         = 11;
-    const int SeasonEpisode  = 12;
     const int SeasonPoster   = 13;
     const int Thumbnail      = 14;
     const int Title          = 15;
@@ -243,14 +244,21 @@ namespace MovieFilters {
     const int StreamDetails = 12;
     const int ExtraFanarts  = 13;
     const int Actors        = 14;
+    const int LocalTrailer  = 15;
+    const int Country       = 16;
+    const int Studio        = 17;
+    const int Path          = 18;
+    const int Director      = 19;
+    const int Tags          = 20;
+    const int Quality       = 21;
 }
 
 namespace TvShowFilters {
-    const int Title         = 15;
+    const int Title         = 22;
 }
 
 namespace ConcertFilters {
-    const int Title         = 16;
+    const int Title         = 23;
 }
 
 enum SortBy {
@@ -298,6 +306,7 @@ struct ExtraFanart {
 };
 
 enum MediaStatusColumns {
+    MediaStatusId,
     MediaStatusStreamDetails,
     MediaStatusTrailer,
     MediaStatusPoster,
@@ -307,7 +316,7 @@ enum MediaStatusColumns {
     MediaStatusActors,
     MediaStatusUnknown,
 
-    MediaStatusFirst = MediaStatusStreamDetails,
+    MediaStatusFirst = MediaStatusId,
     MediaStatusLast = MediaStatusActors
 };
 

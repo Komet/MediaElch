@@ -38,9 +38,9 @@ private slots:
     void onChoosePoster();
     void onChooseBackdrop();
     void onChooseBanner();
-    void onPreviewPoster();
-    void onPreviewBackdrop();
-    void onPreviewBanner();
+    void onDeletePoster();
+    void onDeleteBackdrop();
+    void onDeleteBanner();
     void onRevertChanges();
     void onDownloadFinished(DownloadManagerElement elem);
 
@@ -50,10 +50,8 @@ private:
     int m_season;
     QLabel *m_savingWidget;
     QMovie *m_loadingMovie;
-    QImage m_currentPoster;
-    QImage m_currentBackdrop;
-    QImage m_currentBanner;
     DownloadManager *m_downloadManager;
+    void updateImages(QList<ImageType> images);
 };
 
 #endif // TVSHOWWIDGETSEASON_H

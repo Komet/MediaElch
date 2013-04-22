@@ -67,7 +67,7 @@ public:
     QList<Poster> banners() const;
     QList<Poster> seasonPosters(int season) const;
     QList<Poster> seasonBackdrops(int season) const;
-    QList<Poster> seasonBanners(int season) const;
+    QList<Poster> seasonBanners(int season, bool returnAll = false) const;
     bool posterImageChanged() const;
     bool backdropImageChanged() const;
     bool bannerImageChanged() const;
@@ -92,6 +92,7 @@ public:
     int databaseId() const;
     bool syncNeeded() const;
     QList<int> infosToLoad() const;
+    bool hasTune() const;
 
     void setName(QString name);
     void setShowTitle(QString title);
@@ -128,6 +129,7 @@ public:
     void setNfoContent(QString content);
     void setDatabaseId(int id);
     void setSyncNeeded(bool syncNeeded);
+    void setHasTune(bool hasTune);
 
     void removeActor(Actor *actor);
     void removeGenre(QString genre);
@@ -157,6 +159,8 @@ public:
     void setSeasonPosterImage(int season, QByteArray poster);
     void setSeasonBackdropImage(int season, QByteArray poster);
     void setSeasonBannerImage(int season, QByteArray poster);
+    void removeImage(ImageType type, int season = -2);
+    QMap<ImageType, QList<int> > imagesToRemove() const;
 
     // Extra Fanarts
     QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
@@ -208,6 +212,7 @@ private:
     bool m_logoImageChanged;
     bool m_clearArtImageChanged;
     bool m_characterArtImageChanged;
+    bool m_hasTune;
     QMap<int, QByteArray> m_seasonPosterImages;
     QList<int> m_seasonPosterImagesChanged;
     QMap<int, QByteArray> m_seasonBackdropImages;
@@ -228,6 +233,7 @@ private:
     QList<QByteArray> m_extraFanartImagesToAdd;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
+    QMap<ImageType, QList<int> > m_imagesToRemove;
 };
 
 QDebug operator<<(QDebug dbg, const TvShow &show);

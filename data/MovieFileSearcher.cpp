@@ -84,13 +84,15 @@ void MovieFileSearcher::reload(bool force)
                 if (QString::compare("index.bdmv", it.fileName(), Qt::CaseInsensitive) == 0) {
                     qDebug() << "Found BluRay structure";
                     QDir dir(it.fileInfo().dir());
-                    dir.cdUp();
+                    if (QString::compare(dir.dirName(), "BDMV", Qt::CaseInsensitive) == 0)
+                        dir.cdUp();
                     bluRays << dir.path();
                 }
                 if (QString::compare("VIDEO_TS.IFO", it.fileName(), Qt::CaseInsensitive) == 0) {
                     qDebug() << "Found DVD structure";
                     QDir dir(it.fileInfo().dir());
-                    dir.cdUp();
+                    if (QString::compare(dir.dirName(), "VIDEO_TS", Qt::CaseInsensitive) == 0)
+                        dir.cdUp();
                     dvds << dir.path();
                 }
 
@@ -252,6 +254,7 @@ void MovieFileSearcher::setMovieDirectories(QList<SettingsDir> directories)
  */
 void MovieFileSearcher::scanDir(QString startPath, QString path, QList<QStringList> &contents, bool separateFolders, bool firstScan)
 {
+    m_aborted = false;
     emit currentDir(path.mid(startPath.length()));
 
     QDir dir(path);
