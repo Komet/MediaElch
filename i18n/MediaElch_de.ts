@@ -1,64 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<TS version="2.0" language="de">
 <context>
     <name>AboutDialog</name>
-    <message>
-        <source>About XBMM</source>
-        <translation type="obsolete">Über XBMM</translation>
-    </message>
-    <message>
-        <source>XBMM</source>
-        <translation type="obsolete">XBMM</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;XBMM was built using &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Icon Sets used are &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; and &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Always have a look at &lt;a href=&quot;http://xbmm.kvibes.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://xbmm.kvibes.net&lt;/span&gt;&lt;/a&gt; to get the latest version.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;XBMM wurde mit dem &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt Framework&lt;/span&gt;&lt;/a&gt; erstellt.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Benutzte Icon Sets sind &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; von &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; und &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; von &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Schau auf &lt;a href=&quot;http://xbmm.kvibes.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://xbmm.kvibes.net&lt;/span&gt;&lt;/a&gt; vorbei, um die aktuellste Version zu bekommen.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;XBMM was built using &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Icon Sets used are &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; and &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Always have a look at &lt;a href=&quot;http://xbmm.kvibes.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://xbmm.kvibes.net&lt;/span&gt;&lt;/a&gt; to get the latest version.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;XBMM wurde mit dem &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt Framework&lt;/span&gt;&lt;/a&gt; erstellt.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Benutzte Icon Sets sind &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; von &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; und &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; von &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Schau auf &lt;a href=&quot;http://xbmm.kvibes.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://xbmm.kvibes.net&lt;/span&gt;&lt;/a&gt; vorbei, um die aktuellste Version zu bekommen.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>XBMM %1</source>
-        <translation type="obsolete">XBMM %1</translation>
-    </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="23"/>
         <source>About MediaElch</source>
@@ -68,78 +12,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../main/AboutDialog.ui" line="43"/>
         <source>MediaElch</source>
         <translation>MediaElch</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch was built using &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Icon Sets used are &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; and &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch Icon by &lt;a href=&quot;mailto:kathrin.luckner@me.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Kathrin Luckner&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Always have a look at &lt;a href=&quot;http://mediaelch.kvibes.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://mediaelch.kvibes.net&lt;/span&gt;&lt;/a&gt; to get the latest version.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch wurde mit dem &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt Framework&lt;/span&gt;&lt;/a&gt; erstellt.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Benutzte Icon Sets sind &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; von &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; und &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; von &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch Icon von &lt;a href=&quot;mailto:kathrin.luckner@me.com&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;Kathrin Luckner&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Schau auf &lt;a href=&quot;http://mediaelch.kvibes.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://mediaelch.kvibes.net&lt;/span&gt;&lt;/a&gt; vorbei, um die aktuellste Version zu bekommen.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch was built using &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Icon Sets used are &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; and &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch Icon by &lt;a href=&quot;mailto:kathrin.luckner@me.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Kathrin Luckner&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Always have a look at &lt;a href=&quot;http://www.mediaelch.de&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.mediaelch.de&lt;/span&gt;&lt;/a&gt; to get the latest version.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch wurde mit dem &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt Framework&lt;/span&gt;&lt;/a&gt; erstellt.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Benutzte Icon Sets sind &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; von &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; und &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; von &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch Icon von &lt;a href=&quot;mailto:kathrin.luckner@me.com&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;Kathrin Luckner&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Schau auf &lt;a href=&quot;http://mediaelch.kvibes.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.mediaelch.de&lt;/span&gt;&lt;/a&gt; vorbei, um die aktuellste Version zu bekommen.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../main/AboutDialog.ui" line="186"/>
-        <source>Your Collection</source>
-        <translation>Deine Sammlung</translation>
-    </message>
-    <message>
-        <location filename="../main/AboutDialog.ui" line="195"/>
-        <source>Movies</source>
-        <translation>Filme</translation>
-    </message>
-    <message>
-        <location filename="../main/AboutDialog.ui" line="261"/>
-        <source>Episodes</source>
-        <translation>Episoden</translation>
-    </message>
-    <message>
-        <location filename="../main/AboutDialog.ui" line="228"/>
-        <source>TV Shows</source>
-        <translation>TV Serien</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="96"/>
@@ -167,9 +39,14 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="294"/>
-        <source>Concerts</source>
-        <translation>Konzerte</translation>
+        <location filename="../main/AboutDialog.ui" line="186"/>
+        <source>Your Collection</source>
+        <translation>Deine Sammlung</translation>
+    </message>
+    <message>
+        <location filename="../main/AboutDialog.ui" line="195"/>
+        <source>Movies</source>
+        <translation>Filme</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="202"/>
@@ -180,56 +57,19 @@ p, li { white-space: pre-wrap; }
         <translation>0</translation>
     </message>
     <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch was built using &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Icon Sets used are &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; and &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch Icon by &lt;a href=&quot;mailto:kathrin.luckner@me.com&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;Kathrin Luckner&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Always have a look at &lt;a href=&quot;http://mediaelch.kvibes.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://mediaelch.kvibes.net&lt;/span&gt;&lt;/a&gt; to get the latest version.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch wurde mit dem &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt Framework&lt;/span&gt;&lt;/a&gt; erstellt.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Benutzte Icon Sets sind &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; von &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; und &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; von &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch Icon von &lt;a href=&quot;mailto:kathrin.luckner@me.com&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;Kathrin Luckner&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Schau auf &lt;a href=&quot;http://mediaelch.kvibes.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://mediaelch.kvibes.net&lt;/span&gt;&lt;/a&gt; vorbei, um die aktuellste Version zu bekommen.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <location filename="../main/AboutDialog.ui" line="228"/>
+        <source>TV Shows</source>
+        <translation>TV Serien</translation>
     </message>
     <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch was built using &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Icon Sets used are &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; and &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; by &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Always have a look at &lt;a href=&quot;http://mediaelch.kvibes.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://mediaelch.kvibes.net&lt;/span&gt;&lt;/a&gt; to get the latest version.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;MediaElch wurde mit dem &lt;a href=&quot;http://qt.nokia.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt Framework&lt;/span&gt;&lt;/a&gt; erstellt.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Benutzte Icon Sets sind &lt;a href=&quot;http://blog.twg.ca/2010/11/retina-display-icon-set/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Retina&amp;quot;&lt;/span&gt;&lt;/a&gt; von &lt;a href=&quot;http://blog.twg.ca/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;The Working Group&amp;quot;&lt;/span&gt;&lt;/a&gt; und &lt;a href=&quot;http://findicons.com/pack/51/capital_suite&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;Capital Suite&amp;quot;&lt;/span&gt;&lt;/a&gt; von &lt;a href=&quot;http://capital18.deviantart.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&amp;quot;capital18 (Jugal Paryani)&amp;quot;&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Schau auf &lt;a href=&quot;http://mediaelch.kvibes.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://mediaelch.kvibes.net&lt;/span&gt;&lt;/a&gt; vorbei, um die aktuellste Version zu bekommen.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <location filename="../main/AboutDialog.ui" line="261"/>
+        <source>Episodes</source>
+        <translation>Episoden</translation>
     </message>
     <message>
-        <source>MediaElch %1</source>
-        <translation type="obsolete">MediaElch %1</translation>
+        <location filename="../main/AboutDialog.ui" line="294"/>
+        <source>Concerts</source>
+        <translation>Konzerte</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.cpp" line="16"/>
@@ -503,10 +343,6 @@ p, li { white-space: pre-wrap; }
         <translation>Artwork</translation>
     </message>
     <message>
-        <source>Extra Arts</source>
-        <translation type="obsolete">Extra Arts</translation>
-    </message>
-    <message>
         <location filename="../concerts/ConcertSearch.ui" line="239"/>
         <source>(Un)Check all</source>
         <translation>Alle aus/abwählen</translation>
@@ -550,6 +386,16 @@ p, li { white-space: pre-wrap; }
         <translation>Titel</translation>
     </message>
     <message>
+        <location filename="../concerts/ConcertWidget.ui" line="145"/>
+        <source>Artist</source>
+        <translation>Interpret</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="152"/>
+        <source>Album</source>
+        <translation>Album</translation>
+    </message>
+    <message>
         <location filename="../concerts/ConcertWidget.ui" line="159"/>
         <source>Tagline</source>
         <translation>Tagline</translation>
@@ -565,19 +411,9 @@ p, li { white-space: pre-wrap; }
         <translation>Erschienen</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="251"/>
-        <source>yyyy</source>
-        <translation>yyyy</translation>
-    </message>
-    <message>
         <location filename="../concerts/ConcertWidget.ui" line="180"/>
         <source>Runtime</source>
         <translation>Laufzeit</translation>
-    </message>
-    <message>
-        <location filename="../concerts/ConcertWidget.ui" line="258"/>
-        <source> Minutes</source>
-        <translation> Minuten</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="187"/>
@@ -610,14 +446,14 @@ p, li { white-space: pre-wrap; }
         <translation>Inhalt</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="145"/>
-        <source>Artist</source>
-        <translation>Interpret</translation>
+        <location filename="../concerts/ConcertWidget.ui" line="251"/>
+        <source>yyyy</source>
+        <translation>yyyy</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="152"/>
-        <source>Album</source>
-        <translation>Album</translation>
+        <location filename="../concerts/ConcertWidget.ui" line="258"/>
+        <source> Minutes</source>
+        <translation> Minuten</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="304"/>
@@ -625,27 +461,19 @@ p, li { white-space: pre-wrap; }
         <translation>Erweitert</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="790"/>
-        <source>Fanart</source>
-        <translation>Fanart</translation>
+        <location filename="../concerts/ConcertWidget.ui" line="330"/>
+        <source>Extra Fanarts</source>
+        <translation>Extra Fanarts</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="57"/>
-        <source>Genres</source>
-        <translation>Genres</translation>
+        <location filename="../concerts/ConcertWidget.ui" line="352"/>
+        <source>Hint: Closed images will be deleted on save.</source>
+        <translation>Hinweis: Geschlossene Bilder werden beim Speichern gelöscht.</translation>
     </message>
     <message>
-        <source>Genre</source>
-        <translation type="obsolete">Genre</translation>
-    </message>
-    <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="58"/>
-        <source>Add Genre</source>
-        <translation>Genre hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove Genre</source>
-        <translation type="obsolete">Genre entfernen</translation>
+        <location filename="../concerts/ConcertWidget.ui" line="375"/>
+        <source>Add Images</source>
+        <translation>Bilder hinzufügen</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="385"/>
@@ -661,6 +489,11 @@ p, li { white-space: pre-wrap; }
         <location filename="../concerts/ConcertWidget.ui" line="400"/>
         <source>Scantype</source>
         <translation>Scantype</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.ui" line="417"/>
+        <source>Resolution</source>
+        <translation>Auflösung</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="424"/>
@@ -690,8 +523,9 @@ p, li { white-space: pre-wrap; }
         <translation>Spieldauer</translation>
     </message>
     <message>
-        <source> Seconds</source>
-        <translation type="obsolete"> Sekunden</translation>
+        <location filename="../concerts/ConcertWidget.ui" line="543"/>
+        <source>HH:mm:ss</source>
+        <translation>HH:mm:ss</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="554"/>
@@ -713,37 +547,9 @@ p, li { white-space: pre-wrap; }
         <translation>Zum Ändern klicken</translation>
     </message>
     <message>
-        <source>Full preview</source>
-        <translation type="obsolete">Vorschau</translation>
-    </message>
-    <message>
-        <location filename="../concerts/ConcertWidget.ui" line="417"/>
-        <source>Resolution</source>
-        <translation>Auflösung</translation>
-    </message>
-    <message>
-        <location filename="../concerts/ConcertWidget.ui" line="330"/>
-        <source>Extra Fanarts</source>
-        <translation>Extra Fanarts</translation>
-    </message>
-    <message>
-        <location filename="../concerts/ConcertWidget.ui" line="352"/>
-        <source>Hint: Closed images will be deleted on save.</source>
-        <translation>Hinweis: Geschlossene Bilder werden beim Speichern gelöscht.</translation>
-    </message>
-    <message>
-        <location filename="../concerts/ConcertWidget.ui" line="375"/>
-        <source>Add Images</source>
-        <translation>Bilder hinzufügen</translation>
-    </message>
-    <message>
-        <location filename="../concerts/ConcertWidget.ui" line="543"/>
-        <source>HH:mm:ss</source>
-        <translation>HH:mm:ss</translation>
-    </message>
-    <message>
-        <source>Backdrop</source>
-        <translation type="obsolete">Fanart</translation>
+        <location filename="../concerts/ConcertWidget.ui" line="790"/>
+        <source>Fanart</source>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="860"/>
@@ -759,6 +565,16 @@ p, li { white-space: pre-wrap; }
         <location filename="../concerts/ConcertWidget.ui" line="960"/>
         <source>CD Art</source>
         <translation>CD Art</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.cpp" line="57"/>
+        <source>Genres</source>
+        <translation>Genres</translation>
+    </message>
+    <message>
+        <location filename="../concerts/ConcertWidget.cpp" line="58"/>
+        <source>Add Genre</source>
+        <translation>Genre hinzufügen</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="62"/>
@@ -805,10 +621,6 @@ p, li { white-space: pre-wrap; }
         <source>All Concerts Saved</source>
         <translation>Alle Konzerte gespeichert</translation>
     </message>
-    <message>
-        <source>Unknown Genre</source>
-        <translation type="obsolete">Unbekanntes Genre</translation>
-    </message>
 </context>
 <context>
     <name>DataFileListWidget</name>
@@ -829,57 +641,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>ExportDialog</name>
-    <message>
-        <source>MediaElch</source>
-        <translation type="obsolete">MediaElch</translation>
-    </message>
-    <message>
-        <source>Export the Database including Fanarts, Posters and Actors into a folder. This way you can import your whole library into XBMC.</source>
-        <translation type="obsolete">Exportiert die gesamte Datenbank inklusive Postern, Fanarts und Darstellerbildern. Damit kann die gesamte Datenbank in XBMC importiert werden.</translation>
-    </message>
-    <message>
-        <source>If the path where your movies are stored is different on your HTPC (running the XBMC instance) you can specify it here (e.g. replace &quot;/Volumes/Movies/&quot; with &quot;/mnt/movies/&quot;).</source>
-        <translation type="obsolete">Falls sich das lokale Verzeichnis, in dem sich die Filme befinden, von dem Verzeichnis auf dem HTPC (wo die XBMC Instanz läuft) unterscheidet, kann hier eine Anpassung vorgenommen werden (z.B. &quot;/Volumes/Movies/&quot; durch &quot;/mnt/movies/&quot; ersetzen).</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="obsolete">Suche</translation>
-    </message>
-    <message>
-        <source>Replace</source>
-        <translation type="obsolete">Ersetzung</translation>
-    </message>
-    <message>
-        <source>Please choose an empty directory, existing files might get overwritten.</source>
-        <translation type="obsolete">Bitte ein leeres Verzeichnis auswählen, andernfalls könnten existierende Dateien überschrieben werden.</translation>
-    </message>
-    <message>
-        <source>Export Directory</source>
-        <translation type="obsolete">Export Verzeichnis</translation>
-    </message>
-    <message>
-        <source>Choose Directory</source>
-        <translation type="obsolete">Verzeichnis auswählen</translation>
-    </message>
-    <message>
-        <source>Error Message</source>
-        <translation type="obsolete">Fehlermeldung</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Abbrechen</translation>
-    </message>
-    <message>
-        <source>Export</source>
-        <translation type="obsolete">Export</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="obsolete">Schließen</translation>
-    </message>
-</context>
-<context>
     <name>FileScannerDialog</name>
     <message>
         <location filename="../main/FileScannerDialog.ui" line="17"/>
@@ -892,33 +653,9 @@ p, li { white-space: pre-wrap; }
         <source>TextLabel</source>
         <translation>Nachricht</translation>
     </message>
-    <message>
-        <source>Searching for Movies...</source>
-        <translation type="obsolete">Suche nach Filmen...</translation>
-    </message>
-    <message>
-        <source>Searching for TV Shows...</source>
-        <translation type="obsolete">Suche nach Serien...</translation>
-    </message>
-    <message>
-        <source>Searching for Concerts...</source>
-        <translation type="obsolete">Suche nach Konzerten...</translation>
-    </message>
 </context>
 <context>
     <name>FilesWidget</name>
-    <message>
-        <source>Filter</source>
-        <translation type="obsolete">Filter</translation>
-    </message>
-    <message>
-        <source>Reload Movie List</source>
-        <translation type="obsolete">Filme neuladen</translation>
-    </message>
-    <message>
-        <source>Refresh</source>
-        <translation type="obsolete">Aktualisieren</translation>
-    </message>
     <message>
         <location filename="../movies/FilesWidget.ui" line="103"/>
         <source>New</source>
@@ -985,7 +722,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../smallWidgets/FilterWidget.ui" line="20"/>
         <source>Form</source>
-        <translatorcomment>Form</translatorcomment>
         <translation>Form</translation>
     </message>
     <message>
@@ -1003,6 +739,17 @@ p, li { white-space: pre-wrap; }
         <location filename="../smallWidgets/FilterWidget.cpp" line="124"/>
         <source>Filename contains &quot;%1&quot;</source>
         <translation>Dateiname enthält &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="336"/>
+        <source>Genre &quot;%1&quot;</source>
+        <translation>Genre &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="337"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="520"/>
+        <source>Genre</source>
+        <translation>Genre</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="354"/>
@@ -1025,6 +772,27 @@ p, li { white-space: pre-wrap; }
         <location filename="../smallWidgets/FilterWidget.cpp" line="532"/>
         <source>Country</source>
         <translation>Land</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="389"/>
+        <source>Released %1</source>
+        <translation>Erschienen %1</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="390"/>
+        <source>Year</source>
+        <translation>Jahr</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="406"/>
+        <source>Certification &quot;%1&quot;</source>
+        <translation>Freigabe &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="407"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="518"/>
+        <source>Certification</source>
+        <translation>Freigabe</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="423"/>
@@ -1288,6 +1056,16 @@ p, li { white-space: pre-wrap; }
         <translation>Keine Freigabe</translation>
     </message>
     <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="519"/>
+        <source>Movie has no Genre</source>
+        <translation>Film hat kein Genre</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="519"/>
+        <source>No Genre</source>
+        <translation>Kein Genre</translation>
+    </message>
+    <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="521"/>
         <source>Stream Details loaded</source>
         <translation>Stream Details geladen</translation>
@@ -1444,48 +1222,6 @@ p, li { white-space: pre-wrap; }
         <source>BluRay</source>
         <translation>BluRay</translation>
     </message>
-    <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="407"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="518"/>
-        <source>Certification</source>
-        <translation>Freigabe</translation>
-    </message>
-    <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="519"/>
-        <source>Movie has no Genre</source>
-        <translation>Film hat kein Genre</translation>
-    </message>
-    <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="519"/>
-        <source>No Genre</source>
-        <translation>Kein Genre</translation>
-    </message>
-    <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="337"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="520"/>
-        <source>Genre</source>
-        <translation>Genre</translation>
-    </message>
-    <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="336"/>
-        <source>Genre &quot;%1&quot;</source>
-        <translation>Genre &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="389"/>
-        <source>Released %1</source>
-        <translation>Erschienen %1</translation>
-    </message>
-    <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="390"/>
-        <source>Year</source>
-        <translation>Jahr</translation>
-    </message>
-    <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="406"/>
-        <source>Certification &quot;%1&quot;</source>
-        <translation>Freigabe &quot;%1&quot;</translation>
-    </message>
 </context>
 <context>
     <name>GenreWidget</name>
@@ -1572,6 +1308,11 @@ p, li { white-space: pre-wrap; }
         <translation>Neue Spalte</translation>
     </message>
     <message>
+        <location filename="../globals/ImageDialog.ui" line="161"/>
+        <source>No images found</source>
+        <translation>Keine Bilder gefunden</translation>
+    </message>
+    <message>
         <location filename="../globals/ImageDialog.ui" line="206"/>
         <source>Zoom out</source>
         <translation>Verkleinern</translation>
@@ -1605,11 +1346,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../globals/ImageDialog.ui" line="332"/>
         <source>Accept Images</source>
         <translation>Bilder Übernehmen</translation>
-    </message>
-    <message>
-        <location filename="../globals/ImageDialog.ui" line="161"/>
-        <source>No images found</source>
-        <translation>Keine Bilder gefunden</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="144"/>
@@ -1673,22 +1409,6 @@ p, li { white-space: pre-wrap; }
 </context>
 <context>
     <name>MainWindow</name>
-    <message>
-        <source>XBMM</source>
-        <translation type="obsolete">XBMM</translation>
-    </message>
-    <message>
-        <source>File</source>
-        <translation type="obsolete">Datei</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation type="obsolete">Bearbeiten</translation>
-    </message>
-    <message>
-        <source>Help</source>
-        <translation type="obsolete">Hilfe</translation>
-    </message>
     <message>
         <location filename="../main/MainWindow.ui" line="14"/>
         <source>MediaElch</source>
@@ -1786,6 +1506,11 @@ p, li { white-space: pre-wrap; }
         <translation>Alle Speichern (%1)</translation>
     </message>
     <message>
+        <location filename="../main/MainWindow.cpp" line="265"/>
+        <source>Reload</source>
+        <translation>Neu laden</translation>
+    </message>
+    <message>
         <location filename="../main/MainWindow.cpp" line="267"/>
         <source>Reload all files (%1)</source>
         <translation>Lädt alle Dateien neu (%1)</translation>
@@ -1830,27 +1555,6 @@ p, li { white-space: pre-wrap; }
         <source>Reload all Concerts (%1)</source>
         <translation>Konzerte neu laden (%1)</translation>
     </message>
-    <message>
-        <location filename="../main/MainWindow.cpp" line="265"/>
-        <source>Reload</source>
-        <translation>Neu laden</translation>
-    </message>
-    <message>
-        <source>Reload Movie List</source>
-        <translation type="obsolete">Filmliste neu laden</translation>
-    </message>
-    <message>
-        <source>Preferences</source>
-        <translation type="obsolete">Einstellungen</translation>
-    </message>
-    <message>
-        <source>Export</source>
-        <translation type="obsolete">Export</translation>
-    </message>
-    <message>
-        <source>Export Movie Database</source>
-        <translation type="obsolete">Filmdatenbank exportieren</translation>
-    </message>
 </context>
 <context>
     <name>MediaFlags</name>
@@ -1879,10 +1583,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../main/MessageBox.ui" line="26"/>
         <source>Form</source>
         <translation>Form</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation type="obsolete">Nachricht</translation>
     </message>
 </context>
 <context>
@@ -1924,57 +1624,6 @@ p, li { white-space: pre-wrap; }
  Operation Canceled.</source>
         <translation>%1
 Operation abgebrochen.</translation>
-    </message>
-</context>
-<context>
-    <name>MovieImageDialog</name>
-    <message>
-        <source>Choose an Image</source>
-        <translation type="obsolete">Wähle ein Bild aus</translation>
-    </message>
-    <message>
-        <source>Neue Spalte</source>
-        <translation type="obsolete">Neue Spalte</translation>
-    </message>
-    <message>
-        <source>Zoom out</source>
-        <translation type="obsolete">Verkleinern</translation>
-    </message>
-    <message>
-        <source>Preview size</source>
-        <translation type="obsolete">Vorschaugröße</translation>
-    </message>
-    <message>
-        <source>Zoom in</source>
-        <translation type="obsolete">Vergrößern</translation>
-    </message>
-    <message>
-        <source>Choose Local Image</source>
-        <translation type="obsolete">Lokales Bild auswählen</translation>
-    </message>
-    <message>
-        <source>Loading...</source>
-        <translation type="obsolete">Lade...</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="obsolete">Schließen</translation>
-    </message>
-    <message>
-        <source>No images found</source>
-        <translation type="obsolete">Keine Bilder gefunden</translation>
-    </message>
-    <message>
-        <source>Choose Image</source>
-        <translation type="obsolete">Bild auswählen</translation>
-    </message>
-    <message>
-        <source>Images (*.jpg *.jpeg *.png)</source>
-        <translation type="obsolete">Bilder (*.jpg *.jpeg *.png)</translation>
-    </message>
-    <message>
-        <source>Images (*.jpg *.png)</source>
-        <translation type="obsolete">Bilder (*.jpg *.png)</translation>
     </message>
 </context>
 <context>
@@ -2079,64 +1728,9 @@ Operation abgebrochen.</translation>
         <translation>Lade Infos</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="131"/>
-        <source>Logo</source>
-        <translation>Logo</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="191"/>
-        <source>Certification</source>
-        <translation>Freigabe</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="161"/>
-        <source>Rating</source>
-        <translation>Bewertung</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="241"/>
-        <source>Trailer</source>
-        <translation>Trailer</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="211"/>
-        <source>Released</source>
-        <translation>Erschienen</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="181"/>
-        <source>Title</source>
-        <translation>Titel</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="251"/>
-        <source>Genres</source>
-        <translation>Genres</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="141"/>
-        <source>Director</source>
-        <translation>Regisseur</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="271"/>
-        <source>Tagline</source>
-        <translation>Tagline</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="121"/>
-        <source>Actors</source>
-        <translation>Schauspieler</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="151"/>
-        <source>Poster</source>
-        <translation>Poster</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="221"/>
-        <source>Runtime</source>
-        <translation>Laufzeit</translation>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="101"/>
+        <source>Countries</source>
+        <translation>Länder</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="111"/>
@@ -2144,9 +1738,44 @@ Operation abgebrochen.</translation>
         <translation>Studios</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="261"/>
-        <source>Backdrop</source>
-        <translation>Fanart</translation>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="121"/>
+        <source>Actors</source>
+        <translation>Schauspieler</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="131"/>
+        <source>Logo</source>
+        <translation>Logo</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="141"/>
+        <source>Director</source>
+        <translation>Regisseur</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="151"/>
+        <source>Poster</source>
+        <translation>Poster</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="161"/>
+        <source>Rating</source>
+        <translation>Bewertung</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="171"/>
+        <source>Set</source>
+        <translation>Set</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="181"/>
+        <source>Title</source>
+        <translation>Titel</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="191"/>
+        <source>Certification</source>
+        <translation>Freigabe</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="201"/>
@@ -2154,27 +1783,39 @@ Operation abgebrochen.</translation>
         <translation>Drehbuch</translation>
     </message>
     <message>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="211"/>
+        <source>Released</source>
+        <translation>Erschienen</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="221"/>
+        <source>Runtime</source>
+        <translation>Laufzeit</translation>
+    </message>
+    <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="231"/>
         <source>Overview</source>
         <translation>Inhalt</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="101"/>
-        <source>Countries</source>
-        <translation>Länder</translation>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="241"/>
+        <source>Trailer</source>
+        <translation>Trailer</translation>
     </message>
     <message>
-        <source>Logo, Clear Art, CD Art</source>
-        <translation type="obsolete">Logo, Clear Art, CD Art</translation>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="251"/>
+        <source>Genres</source>
+        <translation>Genres</translation>
     </message>
     <message>
-        <source>Extra Arts</source>
-        <translation type="obsolete">Artwork</translation>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="261"/>
+        <source>Backdrop</source>
+        <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="171"/>
-        <source>Set</source>
-        <translation>Set</translation>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="271"/>
+        <source>Tagline</source>
+        <translation>Tagline</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="281"/>
@@ -2220,10 +1861,6 @@ Operation abgebrochen.</translation>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="419"/>
         <source>Start Scraping</source>
         <translation>Informationen Laden</translation>
-    </message>
-    <message>
-        <source>Scraping of %1 movies has finished.</source>
-        <translation type="obsolete">Informationen für %1 Filme wurden geladen.</translation>
     </message>
     <message numerus="yes">
         <location filename="../movies/MovieMultiScrapeDialog.cpp" line="142"/>
@@ -2287,6 +1924,16 @@ Operation abgebrochen.</translation>
         <translation>Laufzeit</translation>
     </message>
     <message>
+        <location filename="../movies/MovieSearch.ui" line="188"/>
+        <source>Director</source>
+        <translation>Regisseur</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieSearch.ui" line="195"/>
+        <source>Writer</source>
+        <translation>Drehbuch</translation>
+    </message>
+    <message>
         <location filename="../movies/MovieSearch.ui" line="202"/>
         <source>Certification</source>
         <translation>Freigabe</translation>
@@ -2295,35 +1942,6 @@ Operation abgebrochen.</translation>
         <location filename="../movies/MovieSearch.ui" line="209"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieSearch.ui" line="265"/>
-        <source>Logo</source>
-        <translation>Logo</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieSearch.ui" line="272"/>
-        <source>Clear Art</source>
-        <translation>Clear Art</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieSearch.ui" line="279"/>
-        <source>CD Art</source>
-        <translation>CD Art</translation>
-    </message>
-    <message>
-        <source>Artwork</source>
-        <translation type="obsolete">Artwork</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieSearch.ui" line="195"/>
-        <source>Writer</source>
-        <translation>Drehbuch</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieSearch.ui" line="188"/>
-        <source>Director</source>
-        <translation>Regisseur</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearch.ui" line="216"/>
@@ -2361,12 +1979,19 @@ Operation abgebrochen.</translation>
         <translation>Länder</translation>
     </message>
     <message>
-        <source>Logo, Clear Art, CD Art</source>
-        <translation type="obsolete">Logo, Clear Art, CD Art</translation>
+        <location filename="../movies/MovieSearch.ui" line="265"/>
+        <source>Logo</source>
+        <translation>Logo</translation>
     </message>
     <message>
-        <source>Extra Arts</source>
-        <translation type="obsolete">Extra Arts</translation>
+        <location filename="../movies/MovieSearch.ui" line="272"/>
+        <source>Clear Art</source>
+        <translation>Clear Art</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieSearch.ui" line="279"/>
+        <source>CD Art</source>
+        <translation>CD Art</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearch.ui" line="293"/>
@@ -2387,17 +2012,14 @@ Operation abgebrochen.</translation>
         <translation>Form</translation>
     </message>
     <message>
+        <location filename="../movies/MovieWidget.ui" line="31"/>
+        <source>Movie has changed. Click to revert changes.</source>
+        <translation>Mache Änderungen an diesem Film rückgängig.</translation>
+    </message>
+    <message>
         <location filename="../movies/MovieWidget.ui" line="60"/>
         <source>Movie Name</source>
         <translation>Titel</translation>
-    </message>
-    <message>
-        <source>Load Information from Scraper</source>
-        <translation type="obsolete">Lade Informationen von einem Scraper</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="obsolete">Speichern</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="110"/>
@@ -2420,6 +2042,11 @@ Operation abgebrochen.</translation>
         <translation>Original Titel</translation>
     </message>
     <message>
+        <location filename="../movies/MovieWidget.ui" line="158"/>
+        <source>Sort Title</source>
+        <translation>Titel für Sortierung</translation>
+    </message>
+    <message>
         <location filename="../movies/MovieWidget.ui" line="168"/>
         <source>Set</source>
         <translation>Set</translation>
@@ -2440,34 +2067,19 @@ Operation abgebrochen.</translation>
         <translation>Erschienen</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="350"/>
-        <source>Local trailer is available</source>
-        <translation>Lokaler Trailer verfügbar</translation>
+        <location filename="../movies/MovieWidget.ui" line="215"/>
+        <source>Director</source>
+        <translation>Regisseur</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="353"/>
-        <source>Local Trailer</source>
-        <translation>Lokaler Trailer</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieWidget.ui" line="447"/>
-        <source>yyyy</source>
-        <translation>yyyy</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieWidget.ui" line="470"/>
-        <source>Runtime</source>
-        <translation>Laufzeit</translation>
+        <location filename="../movies/MovieWidget.ui" line="225"/>
+        <source>Writer</source>
+        <translation>Drehbuch</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="235"/>
         <source>Certification</source>
         <translation>Freigabe</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieWidget.ui" line="31"/>
-        <source>Movie has changed. Click to revert changes.</source>
-        <translation>Mache Änderungen an diesem Film rückgängig.</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="252"/>
@@ -2485,37 +2097,9 @@ Operation abgebrochen.</translation>
         <translation>Letzte Wiedergabe</translation>
     </message>
     <message>
-        <source>Overview</source>
-        <translation type="obsolete">Inhalt</translation>
-    </message>
-    <message>
         <location filename="../movies/MovieWidget.ui" line="285"/>
         <source>Watched</source>
         <translation>Gesehen</translation>
-    </message>
-    <message>
-        <source>Minutes</source>
-        <translation type="obsolete">Minuten</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieWidget.ui" line="477"/>
-        <source> Minutes</source>
-        <translation> Minuten</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieWidget.ui" line="158"/>
-        <source>Sort Title</source>
-        <translation>Titel für Sortierung</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieWidget.ui" line="215"/>
-        <source>Director</source>
-        <translation>Regisseur</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieWidget.ui" line="225"/>
-        <source>Writer</source>
-        <translation>Drehbuch</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="294"/>
@@ -2523,9 +2107,24 @@ Operation abgebrochen.</translation>
         <translation>Plot</translation>
     </message>
     <message>
+        <location filename="../movies/MovieWidget.ui" line="312"/>
+        <source>Insert YouTube Dummy Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../movies/MovieWidget.ui" line="334"/>
         <source>Download Trailer</source>
         <translation>Trailer herunterladen</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieWidget.ui" line="350"/>
+        <source>Local trailer is available</source>
+        <translation>Lokaler Trailer verfügbar</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieWidget.ui" line="353"/>
+        <source>Local Trailer</source>
+        <translation>Lokaler Trailer</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="393"/>
@@ -2538,63 +2137,34 @@ Operation abgebrochen.</translation>
         <translation>Top 250</translation>
     </message>
     <message>
+        <location filename="../movies/MovieWidget.ui" line="447"/>
+        <source>yyyy</source>
+        <translation>yyyy</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieWidget.ui" line="470"/>
+        <source>Runtime</source>
+        <translation>Laufzeit</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieWidget.ui" line="477"/>
+        <source> Minutes</source>
+        <translation> Minuten</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieWidget.ui" line="489"/>
+        <source>Outline</source>
+        <translation>Outline</translation>
+    </message>
+    <message>
         <location filename="../movies/MovieWidget.ui" line="509"/>
         <source>Extended</source>
         <translation>Erweitert</translation>
     </message>
     <message>
-        <source>Genre</source>
-        <translation type="obsolete">Genre</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieWidget.cpp" line="70"/>
-        <source>Add Genre</source>
-        <translation>Genre hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove Genre</source>
-        <translation type="obsolete">Genre entfernen</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieWidget.cpp" line="69"/>
-        <source>Genres</source>
-        <translation>Genres</translation>
-    </message>
-    <message>
-        <source>Studio</source>
-        <translation type="obsolete">Studio</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieWidget.cpp" line="85"/>
-        <source>Add Studio</source>
-        <translation>Studio hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove Studio</source>
-        <translation type="obsolete">Studio entfernen</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieWidget.cpp" line="84"/>
-        <source>Studios</source>
-        <translation>Studios</translation>
-    </message>
-    <message>
-        <source>Country</source>
-        <translation type="obsolete">Land</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieWidget.cpp" line="80"/>
-        <source>Add Country</source>
-        <translation>Land hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove Country</source>
-        <translation type="obsolete">Land entfernen</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieWidget.cpp" line="79"/>
-        <source>Countries</source>
-        <translation>Länder</translation>
+        <location filename="../movies/MovieWidget.ui" line="541"/>
+        <source>Actors</source>
+        <translation>Schauspieler</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="557"/>
@@ -2607,14 +2177,14 @@ Operation abgebrochen.</translation>
         <translation>Rolle</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="604"/>
-        <source>Add Actor</source>
-        <translation>Schauspieler hinzufügen</translation>
-    </message>
-    <message>
         <location filename="../movies/MovieWidget.ui" line="577"/>
         <source>Remove Actor</source>
         <translation>Schauspieler entfernen</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieWidget.ui" line="604"/>
+        <source>Add Actor</source>
+        <translation>Schauspieler hinzufügen</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="638"/>
@@ -2622,19 +2192,10 @@ Operation abgebrochen.</translation>
         <translation>Zum Ändern klicken</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="541"/>
-        <source>Actors</source>
-        <translation>Schauspieler</translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieWidget.ui" line="312"/>
-        <source>Insert YouTube Dummy Link</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../movies/MovieWidget.ui" line="489"/>
-        <source>Outline</source>
-        <translation>Outline</translation>
+        <location filename="../movies/MovieWidget.ui" line="654"/>
+        <location filename="../movies/MovieWidget.ui" line="767"/>
+        <source>Resolution</source>
+        <translation>Auflösung</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="680"/>
@@ -2694,8 +2255,9 @@ Operation abgebrochen.</translation>
         <translation>Spieldauer</translation>
     </message>
     <message>
-        <source> Seconds</source>
-        <translation type="obsolete"> Sekunden</translation>
+        <location filename="../movies/MovieWidget.ui" line="893"/>
+        <source>HH:mm:ss</source>
+        <translation>HH:mm:ss</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="904"/>
@@ -2715,10 +2277,6 @@ Operation abgebrochen.</translation>
         <location filename="../movies/MovieWidget.ui" line="1328"/>
         <source>Click to Change</source>
         <translation>Zum Ändern klicken</translation>
-    </message>
-    <message>
-        <source>Full preview</source>
-        <translation type="obsolete">Vorschau</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1136"/>
@@ -2741,19 +2299,14 @@ Operation abgebrochen.</translation>
         <translation>CD Art</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="654"/>
-        <location filename="../movies/MovieWidget.ui" line="767"/>
-        <source>Resolution</source>
-        <translation>Auflösung</translation>
+        <location filename="../movies/MovieWidget.cpp" line="69"/>
+        <source>Genres</source>
+        <translation>Genres</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="893"/>
-        <source>HH:mm:ss</source>
-        <translation>HH:mm:ss</translation>
-    </message>
-    <message>
-        <source>Backdrop</source>
-        <translation type="obsolete">Fanart</translation>
+        <location filename="../movies/MovieWidget.cpp" line="70"/>
+        <source>Add Genre</source>
+        <translation>Genre hinzufügen</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="74"/>
@@ -2764,6 +2317,26 @@ Operation abgebrochen.</translation>
         <location filename="../movies/MovieWidget.cpp" line="75"/>
         <source>Add Tag</source>
         <translation>Tag hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieWidget.cpp" line="79"/>
+        <source>Countries</source>
+        <translation>Länder</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieWidget.cpp" line="80"/>
+        <source>Add Country</source>
+        <translation>Land hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieWidget.cpp" line="84"/>
+        <source>Studios</source>
+        <translation>Studios</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieWidget.cpp" line="85"/>
+        <source>Add Studio</source>
+        <translation>Studio hinzufügen</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="430"/>
@@ -2826,14 +2399,6 @@ Operation abgebrochen.</translation>
         <translation>Unbekannte Rolle</translation>
     </message>
     <message>
-        <source>Unknown Genre</source>
-        <translation type="obsolete">Unbekanntes Genre</translation>
-    </message>
-    <message>
-        <source>Unknown Country</source>
-        <translation type="obsolete">Unbekanntes Land</translation>
-    </message>
-    <message>
         <location filename="../movies/MovieWidget.cpp" line="1082"/>
         <source>Choose Image</source>
         <translation>Bild auswählen</translation>
@@ -2842,26 +2407,6 @@ Operation abgebrochen.</translation>
         <location filename="../movies/MovieWidget.cpp" line="1082"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Bilder (*.jpg *.jpeg)</translation>
-    </message>
-    <message>
-        <source>Unkown Role</source>
-        <translation type="obsolete">Unbekannte Rolle</translation>
-    </message>
-    <message>
-        <source>Unkown Genre</source>
-        <translation type="obsolete">Unbekanntes Genre</translation>
-    </message>
-    <message>
-        <source>Unknown Studio</source>
-        <translation type="obsolete">Unbekanntes Studio</translation>
-    </message>
-    <message>
-        <source>Unkown Country</source>
-        <translation type="obsolete">Unbekanntes Land</translation>
-    </message>
-    <message>
-        <source>Downloading Missing Actor Images...</source>
-        <translation type="obsolete">Lade fehlende Schauspieler Bilder...</translation>
     </message>
 </context>
 <context>
@@ -2874,62 +2419,62 @@ Operation abgebrochen.</translation>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="67"/>
         <source>unterminated object</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht terminiertes Objekt</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="68"/>
         <source>missing name separator</source>
-        <translation type="unfinished"></translation>
+        <translation>Name-Trennzeichen fehlt</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="69"/>
         <source>unterminated array</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht terminiertes Array</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="70"/>
         <source>missing value separator</source>
-        <translation type="unfinished"></translation>
+        <translation>Wert-Trennzeichen fehlt</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="71"/>
         <source>illegal value</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiger Wert</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="72"/>
         <source>invalid termination by number</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Terminierung durch Zahl</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="73"/>
         <source>illegal number</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Zahl</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="74"/>
         <source>invalid escape sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Escape Sequenz</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="75"/>
         <source>invalid UTF8 string</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige UTF-8 Zeichenkette</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="76"/>
         <source>unterminated string</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht terminierte Zeichenkette</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="77"/>
         <source>object is missing after a comma</source>
-        <translation type="unfinished"></translation>
+        <translation>Objekt fehlt nach Komma</translation>
     </message>
     <message>
         <location filename="../qjsonrpc/src/json/qjsonparser.cpp" line="78"/>
         <source>too deeply nested document</source>
-        <translation type="unfinished"></translation>
+        <translation>Zu tief verzweigtes Dokument</translation>
     </message>
 </context>
 <context>
@@ -2951,27 +2496,6 @@ Operation abgebrochen.</translation>
     </message>
 </context>
 <context>
-    <name>QuestionDialog</name>
-    <message>
-        <source>Discard Changes?</source>
-        <translation type="obsolete">Änderungen verwerfen?</translation>
-    </message>
-    <message>
-        <source>You&apos;ve changed some values of the current movie. If you don&apos;t save them now, your changes will be lost.
-Would you like to continue and lose your changes or go back and save them?</source>
-        <translation type="obsolete">Du hast Änderungen am Film vorgenommen. Wenn du sie jetzt nicht speicherst, gehen sie verloren.
-Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änderungen speichern?</translation>
-    </message>
-    <message>
-        <source>Discard Changes</source>
-        <translation type="obsolete">Änderungen verwerfen</translation>
-    </message>
-    <message>
-        <source>Go back</source>
-        <translation type="obsolete">Zurück zum Film</translation>
-    </message>
-</context>
-<context>
     <name>Renamer</name>
     <message>
         <location filename="../renamer/Renamer.ui" line="17"/>
@@ -2987,14 +2511,6 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
         <location filename="../renamer/Renamer.ui" line="40"/>
         <source>Placeholders</source>
         <translation>Platzhalter</translation>
-    </message>
-    <message>
-        <source>&lt;extension&gt;</source>
-        <translation type="obsolete">&lt;extension&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;originalTitle&gt;</source>
-        <translation type="obsolete">&lt;originalTitle&gt;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="119"/>
@@ -3118,7 +2634,11 @@ Möchtest du die Änderungen verwerfen, oder zum Film zurückkehren und die Änd
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;⏎
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;⏎
+p, li { white-space: pre-wrap; }⏎
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;⏎
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="415"/>
@@ -3324,22 +2844,6 @@ p, li { white-space: pre-wrap; }
         <translation>Fanart</translation>
     </message>
     <message>
-        <source>MediaElch</source>
-        <translation type="obsolete">MediaElch</translation>
-    </message>
-    <message>
-        <source>Setting Posters and Backdrops is only possible with XBMC MySQL and SQLite interfaces.</source>
-        <translation type="obsolete">Das Setzen von Postern und Fanarts ist nur mit den XBMC MySQL und SQLite Interfaces möglich.</translation>
-    </message>
-    <message>
-        <source>Choose Image</source>
-        <translation type="obsolete">Bild auswählen</translation>
-    </message>
-    <message>
-        <source>Images (*.jpg *.jpeg)</source>
-        <translation type="obsolete">Bilder (*.jpg *.jpeg)</translation>
-    </message>
-    <message>
         <location filename="../sets/SetsWidget.cpp" line="72"/>
         <source>Add Movie Set</source>
         <translation>Film Set hinzufügen</translation>
@@ -3361,447 +2865,31 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>Settings</name>
-    <message>
-        <source>Form</source>
-        <translation type="obsolete">Form</translation>
-    </message>
-    <message>
-        <source>Global Settings</source>
-        <translation type="obsolete">Globale Einstellungen</translation>
-    </message>
-    <message>
-        <source>Please restart MediaElch after saving if you changed the MediaCenter interface or added/removed directories.</source>
-        <translation type="obsolete">Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
-    </message>
-    <message>
-        <source>Movies</source>
-        <translation type="obsolete">Filme</translation>
-    </message>
-    <message>
-        <source>Add one or more directories containing your movie files.</source>
-        <translation type="obsolete">Füge Verzeichnisse hinzu, die deine Filme enthalten.</translation>
-    </message>
-    <message>
-        <source>Path</source>
-        <translation type="obsolete">Verzeichnis</translation>
-    </message>
-    <message>
-        <source>MediaCenter Path</source>
-        <translation type="obsolete">MediaCenter Verzeichnis</translation>
-    </message>
-    <message>
-        <source>Sep. folders</source>
-        <translation type="obsolete">Sep. Verzeichnisse</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation type="obsolete">Hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove</source>
-        <translation type="obsolete">Entfernen</translation>
-    </message>
-    <message>
-        <source>TV Shows</source>
-        <translation type="obsolete">TV Serien</translation>
-    </message>
-    <message>
-        <source>Add one or more directories containing your TV Shows. Episodes have to be in subfolders with the name of the show.</source>
-        <translation type="obsolete">Füge Verzeichnisse hinzu, die deine Serien enthalten. Episoden müssen in Unterverzeichnissen mit dem Namen der Serie sein.</translation>
-    </message>
-    <message>
-        <source>Concerts</source>
-        <translation type="obsolete">Konzerte</translation>
-    </message>
-    <message>
-        <source>Add one or more directories containing your concert or music video files.</source>
-        <translation type="obsolete">Füge Verzeichnisse hinzu, die deine Konzerte oder Musikvideo enthalten.</translation>
-    </message>
-    <message>
-        <source>Debug</source>
-        <translation type="obsolete">Debug</translation>
-    </message>
-    <message>
-        <source>When debug mode is activated debug messages are written to logfile you set. Please use this option only if you encountered problems with MediaElch as the logfile can get very big. </source>
-        <translation type="obsolete">Wenn der Debug Modus aktiviert ist, werden Debug Ausgaben in die Logdatei geschrieben, die du angegeben hast. Bitte benutze diese Option nur, wenn du ein Problem mit MediaElch entdeckt hast, da die Logdatei schnell sehr groß werden kann.</translation>
-    </message>
-    <message>
-        <source>Activate debug mode</source>
-        <translation type="obsolete">Debug Modus aktivieren</translation>
-    </message>
-    <message>
-        <source>Logfile: </source>
-        <translation type="obsolete">Logdatei:</translation>
-    </message>
-    <message>
-        <source>Scrapers</source>
-        <translation type="obsolete">Scraper</translation>
-    </message>
-    <message>
-        <source>MediaCenter</source>
-        <translation type="obsolete">MediaCenter</translation>
-    </message>
-    <message>
-        <source>MediaCenter Interface</source>
-        <translation type="obsolete">MediaCenter Interface</translation>
-    </message>
-    <message>
-        <source>Select the MediaCenter to use.</source>
-        <translation type="obsolete">Wähle ein Interface zu deinem MediaCenter aus.</translation>
-    </message>
-    <message>
-        <source>XBMC XML</source>
-        <translation type="obsolete">XBMC XML</translation>
-    </message>
-    <message>
-        <source>Select the filenames you wish to use for loading and saving. Enable/disable them using the checkbox in front, set priorities through sorting with drag and drop.</source>
-        <translation type="obsolete">Wähle die Dateinamen aus, die du zum Speichern und Laden benutzen möchtest. Aktiviere/deaktiviere sie durch die Checkboxen vorne, setze die Priorität durch Sortieren per drag&apos;n&apos;drop.</translation>
-    </message>
-    <message>
-        <source>Movie NFO</source>
-        <translation type="obsolete">Film NFO</translation>
-    </message>
-    <message>
-        <source>&lt;movie filename&gt;.nfo</source>
-        <translation type="obsolete">&lt;movie filename&gt;.nfo</translation>
-    </message>
-    <message>
-        <source>movie.nfo</source>
-        <translation type="obsolete">movie.nfo</translation>
-    </message>
-    <message>
-        <source>Movie Posters</source>
-        <translation type="obsolete">Film Poster</translation>
-    </message>
-    <message>
-        <source>&lt;movie filename&gt;.tbn</source>
-        <translation type="obsolete">&lt;movie filename&gt;.tbn</translation>
-    </message>
-    <message>
-        <source>movie.jpg</source>
-        <translation type="obsolete">movie.jpg</translation>
-    </message>
-    <message>
-        <source>movie.tbn</source>
-        <translation type="obsolete">movie.tbn</translation>
-    </message>
-    <message>
-        <source>poster.jpg</source>
-        <translation type="obsolete">poster.jpg</translation>
-    </message>
-    <message>
-        <source>poster.tbn</source>
-        <translation type="obsolete">poster.tbn</translation>
-    </message>
-    <message>
-        <source>folder.jpg</source>
-        <translation type="obsolete">folder.jpg</translation>
-    </message>
-    <message>
-        <source>Movie Fanarts</source>
-        <translation type="obsolete">Film Fanarts</translation>
-    </message>
-    <message>
-        <source>&lt;movie filename&gt;-fanart.jpg</source>
-        <translation type="obsolete">&lt;movie filename&gt;-fanart.jpg</translation>
-    </message>
-    <message>
-        <source>fanart.jpg</source>
-        <translation type="obsolete">fanart.jpg</translation>
-    </message>
-    <message>
-        <source>TV Show Poster</source>
-        <translation type="obsolete">Serien Poster</translation>
-    </message>
-    <message>
-        <source>season-all.tbn</source>
-        <translation type="obsolete">season-all.tbn</translation>
-    </message>
-    <message>
-        <source>TV Show Banner</source>
-        <translation type="obsolete">Serien Banner</translation>
-    </message>
-    <message>
-        <source>banner.jpg</source>
-        <translation type="obsolete">banner.jpg</translation>
-    </message>
-    <message>
-        <source>XBMC MySQL</source>
-        <translation type="obsolete">XBMC MySQL</translation>
-    </message>
-    <message>
-        <source>Host</source>
-        <translation type="obsolete">Host</translation>
-    </message>
-    <message>
-        <source>Database</source>
-        <translation type="obsolete">Datenbank</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="obsolete">Benutzername</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation type="obsolete">Passwort</translation>
-    </message>
-    <message>
-        <source>XBMC SQLite</source>
-        <translation type="obsolete">XBMC SQLite</translation>
-    </message>
-    <message>
-        <source>MediaCenter Settings</source>
-        <translation type="obsolete">MediaCenter Einstellungen</translation>
-    </message>
-    <message>
-        <source>Stores YouTube URLs like &quot;http://www.youtube.com/watch?v=123&quot; as &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</source>
-        <translation type="obsolete">Formatiert YouTube URLs wie &quot;http://www.youtube.com/watch?v=123&quot; als &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</translation>
-    </message>
-    <message>
-        <source>Store trailer URLs in YouTube Plugin format</source>
-        <translation type="obsolete">Speichere Trailer URLs im YouTube Plugin Format</translation>
-    </message>
-    <message>
-        <source>Select</source>
-        <translation type="obsolete">Auswählen</translation>
-    </message>
-    <message>
-        <source>Please restart MediaElch after saving if you changed the MediaCenter interface, debug mode or added/removed directories.</source>
-        <translation type="obsolete">Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, den Debug Modus, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
-    </message>
-    <message>
-        <source>Set the path where Thumbnails are stored (e.g. ~/.xbmc/userdata/Thumbnails)</source>
-        <translation type="obsolete">Wähle das Verzeichnis aus, in dem die XBMC Thumbnails gespeichert werden (z.B. ~/.xbmc/userdata/Thumbnails)</translation>
-    </message>
-    <message>
-        <source>Movies are in separate folders</source>
-        <translation type="obsolete">Filme sind in separaten Verzeichnissen</translation>
-    </message>
-    <message>
-        <source>Settings saved</source>
-        <translation type="obsolete">Einstellungen gespeichert</translation>
-    </message>
-    <message>
-        <source>Choose a directory containing your movies</source>
-        <translation type="obsolete">Wähle ein Verzeichnis aus, das deine Filme enthält</translation>
-    </message>
-    <message>
-        <source>Concerts are in separate folders</source>
-        <translation type="obsolete">Konzerte sind in separaten Verzeichnissen</translation>
-    </message>
-    <message>
-        <source>Logfile</source>
-        <translation type="obsolete">Logdatei</translation>
-    </message>
-    <message>
-        <source>Logfiles (*.log *.txt)</source>
-        <translation type="obsolete">Logdateien (*.log *.txt)</translation>
-    </message>
-    <message>
-        <source>Choose a directory containing your TV shows</source>
-        <translation type="obsolete">Wähle ein Verzeichnis aus, das deine Serien enthält</translation>
-    </message>
-    <message>
-        <source>Choose a directory containing your concerts</source>
-        <translation type="obsolete">Wähle ein Verzeichnis aus, das deine Konzerte enthält</translation>
-    </message>
-    <message>
-        <source>SQLite Database *.db</source>
-        <translation type="obsolete">SQLite Datenbank *.db</translation>
-    </message>
-    <message>
-        <source>Choose a directory containing your Thumbnails</source>
-        <translation type="obsolete">Wähle das Verzeichnis aus, in dem die Thumbnails gespeichert werden</translation>
-    </message>
-</context>
-<context>
-    <name>SettingsDialog</name>
-    <message>
-        <source>Settings</source>
-        <translation type="obsolete">Einstellungen</translation>
-    </message>
-    <message>
-        <source>Movies</source>
-        <translation type="obsolete">Filme</translation>
-    </message>
-    <message>
-        <source>Add one or more directories containing your movie files.</source>
-        <translation type="obsolete">Füge Verzeichnisse hinzu, die deine Filme enthalten.</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation type="obsolete">Hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove</source>
-        <translation type="obsolete">Entfernen</translation>
-    </message>
-    <message>
-        <source>Scrapers</source>
-        <translation type="obsolete">Scraper</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Abbrechen</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Choose a directory containing your movies</source>
-        <translation type="obsolete">Wähle ein Verzeichnis aus, das deine Filme enthält</translation>
-    </message>
-</context>
-<context>
     <name>SettingsWidget</name>
     <message>
-        <source>Form</source>
-        <translation type="obsolete">Form</translation>
+        <location filename="../settings/SettingsWidget.ui" line="17"/>
+        <source>Settings</source>
+        <translation>Einstellungen</translation>
     </message>
     <message>
-        <source>Please restart MediaElch after saving if you changed the MediaCenter interface or added/removed directories.</source>
-        <translation type="obsolete">Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
+        <location filename="../settings/SettingsWidget.ui" line="86"/>
+        <source>Global Settings</source>
+        <translation>Globale Einstellungen</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="43"/>
-        <source>Items are in separate folders</source>
-        <translation>In separaten Verzeichnissen</translation>
+        <location filename="../settings/SettingsWidget.ui" line="92"/>
+        <source>Add one or more directories containing your movies, TV Shows or concerts. TV Show Episodes have to be in subfolders with the name of the show.</source>
+        <translation>Füge Verzeichnisse hinzu, die deine Filme, Serien oder Konzerte enthalten. Bei Serien müssen Episoden in Unterverzeichnissen mit dem Namen der Serie sein.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="44"/>
-        <source>Automatically reload contents on start</source>
-        <translation>Inhalte beim Start automatisch neu laden</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.cpp" line="64"/>
-        <location filename="../settings/SettingsWidget.cpp" line="93"/>
-        <location filename="../settings/SettingsWidget.cpp" line="122"/>
-        <source>Language</source>
-        <translation>Sprache</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.cpp" line="587"/>
-        <source>Choose a directory where your movie set artwork is stored</source>
-        <translation>Wähle ein Verzeichnis aus, in dem dein Film Set Artwork gespeichert werden soll</translation>
-    </message>
-    <message>
-        <source>Logfile</source>
-        <translation type="obsolete">Logdatei</translation>
-    </message>
-    <message>
-        <source>Logfiles (*.log *.txt)</source>
-        <translation type="obsolete">Logdateien (*.log *.txt)</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.cpp" line="533"/>
-        <source>Choose a directory containing your movies, TV show or concerts</source>
-        <translation>Wähle ein Verzeichnis aus, dass deine Filme, Serien oder Konzerte enthält</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="338"/>
-        <location filename="../settings/SettingsWidget.cpp" line="428"/>
-        <source>Movies</source>
-        <translation>Filme</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="344"/>
-        <source>Below you see the filenames which are used for loading and saving your movies. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
-        <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Filme benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste. Um eine Datei umzubennen, klicke doppelt auf sie.</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="530"/>
-        <source>Artwork directory</source>
-        <translation>Artwork Verzeichnis</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="537"/>
-        <source>Movie Set Artwork</source>
-        <translation>Film Set Artwork</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="545"/>
-        <source>Artwork next to movies</source>
-        <translation>Artwork in Filmverzeichnissen</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="550"/>
-        <source>Separate artwork directory</source>
-        <translation>Separates Artwork Verzeichnis</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="565"/>
-        <source>Movie outline</source>
-        <translation>Outline</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="572"/>
-        <source>Movie Set Poster Filename</source>
-        <translation>Film Set Poster Dateiname</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="579"/>
-        <source>Movie Set Fanart Filname</source>
-        <translation>Film Set Fanart Dateiname</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="611"/>
-        <source>Choose directory</source>
-        <translation>Verzeichnis auswählen</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="620"/>
-        <source>Media Status Columns</source>
-        <translation>Medien Status Spalten</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="639"/>
-        <source>Below you see the filenames which are used for loading and saving your tv shows. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
-        <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Serien benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste. Um eine Datei umzubennen, klicke doppelt auf sie.</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="953"/>
-        <location filename="../settings/SettingsWidget.cpp" line="428"/>
-        <source>Concerts</source>
-        <translation>Konzerte</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.cpp" line="465"/>
-        <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
-        <translation>Die Verzeichnis-Organisation kann nur auf Filmesammlungen angewandt werden, die nicht schon in separate Verzeichnisse sortiert ist.</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.cpp" line="473"/>
-        <source>Are you sure?</source>
-        <translation>Bist du sicher?</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.cpp" line="474"/>
-        <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
-        <translation>Diese Operation sortiert alle Filme in diesem Verzeichnis in separate Unterordner basierend auf dem Dateinamen. Klicke &quot;Ok&quot;, falls du damit einverstanden bist.</translation>
-    </message>
-    <message>
-        <source>This operation sorts all movies in this directory to separate sub-directories. Click &quot;Ok&quot;, if thats, what you want to do</source>
-        <translation type="obsolete">Diese Operation sortiert alle Filme in diesem Verzeichnis in separate Unterordner. Klicke &quot;Ok&quot;, falls du damit einverstanden bist</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.cpp" line="477"/>
-        <source>Ok</source>
-        <translation>Ok</translation>
-    </message>
-    <message>
-        <source>Add one or more directories containing your movie files.</source>
-        <translation type="obsolete">Füge Verzeichnisse hinzu, die deine Filme enthalten.</translation>
+        <location filename="../settings/SettingsWidget.ui" line="124"/>
+        <source>Type</source>
+        <translation>Inhalt</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="129"/>
         <source>Path</source>
         <translation>Verzeichnis</translation>
-    </message>
-    <message>
-        <source>MediaCenter Path</source>
-        <translation type="obsolete">MediaCenter Verzeichnis</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="134"/>
@@ -3824,121 +2912,6 @@ p, li { white-space: pre-wrap; }
         <translation>Entfernen</translation>
     </message>
     <message>
-        <source>MediaCenter Interface</source>
-        <translation type="obsolete">MediaCenter Interface</translation>
-    </message>
-    <message>
-        <source>Select the MediaCenter to use.</source>
-        <translation type="obsolete">Wähle ein Interface zu deinem MediaCenter aus.</translation>
-    </message>
-    <message>
-        <source>XBMC XML</source>
-        <translation type="obsolete">XBMC XML</translation>
-    </message>
-    <message>
-        <source>XBMC MySQL</source>
-        <translation type="obsolete">XBMC MySQL</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="307"/>
-        <location filename="../settings/SettingsWidget.ui" line="1143"/>
-        <source>Host</source>
-        <translation>Host</translation>
-    </message>
-    <message>
-        <source>Database</source>
-        <translation type="obsolete">Datenbank</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="1157"/>
-        <source>Username</source>
-        <translation>Benutzername</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="1164"/>
-        <source>Password</source>
-        <translation>Passwort</translation>
-    </message>
-    <message>
-        <source>XBMC SQLite</source>
-        <translation type="obsolete">XBMC SQLite</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="558"/>
-        <source>Use plot when outline is not available</source>
-        <translation>Plot benutzen, wenn Outline nicht verfügbar ist</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="959"/>
-        <source>Below you see the filenames which are used for loading and saving your concerts. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
-        <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Konzerte benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste. Um eine Datei umzubennen, klicke doppelt auf sie.</translation>
-    </message>
-    <message>
-        <source>Select</source>
-        <translation type="obsolete">Auswählen</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="17"/>
-        <source>Settings</source>
-        <translation>Einstellungen</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="86"/>
-        <source>Global Settings</source>
-        <translation>Globale Einstellungen</translation>
-    </message>
-    <message>
-        <source>Please restart MediaElch after saving if you changed the MediaCenter interface, debug mode or added/removed directories.</source>
-        <translation type="obsolete">Bitte starte MediaElch nach dem Speichern neu, falls du das MediaCenter Interface geändert hast, den Debug Modus, oder Vereichnisse hinzugefügt/entfernt hast.</translation>
-    </message>
-    <message>
-        <source>Add one or more directories containing your movie, TV Shows or concerts. TV Show Episodes have to be in subfolders with the name of the show.</source>
-        <translation type="obsolete">Füge Verzeichnisse hinzu, die deine Filme, Serien oder Konzerte enthalten. Bei Serien müssen Episoden in Unterverzeichnissen mit dem Namen der Serie sein.</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="124"/>
-        <source>Type</source>
-        <translation>Inhalt</translation>
-    </message>
-    <message>
-        <source>Debug</source>
-        <translation type="obsolete">Debug</translation>
-    </message>
-    <message>
-        <source>When debug mode is activated debug messages are written to logfile you set. Please use this option only if you encountered problems with MediaElch as the logfile can get very big. </source>
-        <translation type="obsolete">Wenn der Debug Modus aktiviert ist, werden Debug Ausgaben in die Logdatei geschrieben, die du angegeben hast. Bitte benutze diese Option nur, wenn du ein Problem mit MediaElch entdeckt hast, da die Logdatei schnell sehr groß werden kann.</translation>
-    </message>
-    <message>
-        <source>Please hit the &quot;Reload&quot; button after adding or removing directories. If you changed the debug mode setting please restart MediaElch.</source>
-        <translation type="obsolete">Bitte klick auf &quot;Neu Laden&quot; nach dem du Verzeichnisse hinzugefügt oder entfernt hast. Wenn du den Debug Modus aktiviert oder deaktiviert hast, starte MediaElch bitte neu.</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="202"/>
-        <source>Automatically load and save stream details from files</source>
-        <translation>Streamdetails automatisch laden und speichern</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Debug&lt;/b&gt; When debug mode is activated debug messages are written to logfile you set. Please use this option only if you encountered problems with MediaElch as the logfile can get very big. </source>
-        <translation type="obsolete">&lt;b&gt;Debug&lt;/b&gt; Wenn der Debug Modus aktiviert ist, werden Debug Ausgaben in die Logdatei geschrieben, die du angegeben hast. Bitte benutze diese Option nur, wenn du ein Problem mit MediaElch entdeckt hast, da die Logdatei schnell sehr groß werden kann.</translation>
-    </message>
-    <message>
-        <source>Activate debug mode</source>
-        <translation type="obsolete">Debug Modus aktivieren</translation>
-    </message>
-    <message>
-        <source>Logfile: </source>
-        <translation type="obsolete">Logdatei:</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Cache&lt;/b&gt; Activating the cache will improve start up speed. In some cases this might not work as aspected. If new files won&apos;t show up, try clearing the cache or disabling it completely.</source>
-        <translation type="obsolete">&lt;b&gt;Cache&lt;/b&gt; Der Cache beschleunigt die Startzeit von MediaElch. Unter Umständen können aber Probleme auftreten. Wenn neue Dateien nicht erscheinen, versuche den Cache zu leeren oder ganz zu deaktivieren.</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="92"/>
-        <source>Add one or more directories containing your movies, TV Shows or concerts. TV Show Episodes have to be in subfolders with the name of the show.</source>
-        <translation>Füge Verzeichnisse hinzu, die deine Filme, Serien oder Konzerte enthalten. Bei Serien müssen Episoden in Unterverzeichnissen mit dem Namen der Serie sein.</translation>
-    </message>
-    <message>
         <location filename="../settings/SettingsWidget.ui" line="163"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort movies into separate directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>Filme in separate Verzeichnisse sortieren</translation>
@@ -3949,20 +2922,24 @@ p, li { white-space: pre-wrap; }
         <translation>Organisiere</translation>
     </message>
     <message>
-        <source>Use Cache</source>
-        <translation type="obsolete">Cache aktivieren</translation>
+        <location filename="../settings/SettingsWidget.ui" line="195"/>
+        <source>Store trailer URLs in YouTube Plugin format</source>
+        <translation>Speichere Trailer URLs im YouTube Plugin Format</translation>
     </message>
     <message>
-        <source>Clear Cache</source>
-        <translation type="obsolete">Cache leeren</translation>
+        <location filename="../settings/SettingsWidget.ui" line="202"/>
+        <source>Automatically load and save stream details from files</source>
+        <translation>Streamdetails automatisch laden und speichern</translation>
     </message>
     <message>
-        <source>Automatically load stream details from files</source>
-        <translation type="obsolete">Streamdetails automatisch ermitteln</translation>
+        <location filename="../settings/SettingsWidget.ui" line="209"/>
+        <source>Download actor images</source>
+        <translation>Bilder der Schauspieler herunterladen</translation>
     </message>
     <message>
-        <source>&lt;b&gt;Exclude&lt;/b&gt; Words to exclude from media names (seperated by commas and non case-sensitive)</source>
-        <translation type="obsolete">&lt;b&gt;Ausschluss&lt;/b&gt; Von Mediennamen auszuschließende Wörter (durch Kommas getrennt, case insensitive)</translation>
+        <location filename="../settings/SettingsWidget.ui" line="216"/>
+        <source>Ignore articles when sorting (&quot;The&quot;)</source>
+        <translation>Grammatikalische Artikel bei der Sortierung ignorieren</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="229"/>
@@ -3971,127 +2948,66 @@ p, li { white-space: pre-wrap; }
         <translation>Von Mediennamen auszuschließende Wörter (durch Kommas getrennt, case insensitive)</translation>
     </message>
     <message>
-        <source>MediaCenter</source>
-        <translation type="obsolete">MediaCenter</translation>
+        <location filename="../settings/SettingsWidget.ui" line="250"/>
+        <location filename="../settings/SettingsWidget.ui" line="262"/>
+        <source>Scrapers</source>
+        <translation>Scraper</translation>
     </message>
     <message>
-        <source>Please hit the &quot;Reload&quot; button after changing the Media Center Interface.</source>
-        <translation type="obsolete">Bitte klick auf &quot;Neu Laden&quot; nach dem du das Media Center Interface geändert hast.</translation>
+        <location filename="../settings/SettingsWidget.ui" line="286"/>
+        <source>XBMC</source>
+        <translation>XBMC</translation>
     </message>
     <message>
-        <source>Select the filenames you wish to use for loading and saving. Enable/disable them using the checkbox in front, set priorities through sorting with drag and drop.</source>
-        <translation type="obsolete">Wähle die Dateinamen aus, die du zum Speichern und Laden benutzen möchtest. Aktiviere/deaktiviere sie durch die Checkboxen vorne, setze die Priorität durch Sortieren per drag&apos;n&apos;drop.</translation>
+        <location filename="../settings/SettingsWidget.ui" line="292"/>
+        <source>If you want to use the synchronization feature you need to enable &quot;Allow programs on other systems to control XBMC&quot; within XBMC (Settings -&gt; Services -&gt; Remote Control).</source>
+        <translation>Um die Synchronisation zu benutzen, musst du in XBMC &quot;Steuerung über entfernte Programme zulassen&quot; aktivieren (Einstellungen -&gt; Dienste -&gt; Fernsteuerung).</translation>
     </message>
     <message>
-        <source>Movie NFO</source>
-        <translation type="obsolete">Film NFO</translation>
+        <location filename="../settings/SettingsWidget.ui" line="307"/>
+        <location filename="../settings/SettingsWidget.ui" line="1143"/>
+        <source>Host</source>
+        <translation>Host</translation>
     </message>
     <message>
-        <source>&lt;movie filename&gt;.nfo</source>
-        <translation type="obsolete">&lt;movie filename&gt;.nfo</translation>
+        <location filename="../settings/SettingsWidget.ui" line="314"/>
+        <source>127.0.0.1</source>
+        <translation>127.0.0.1</translation>
     </message>
     <message>
-        <source>movie.nfo</source>
-        <translation type="obsolete">movie.nfo</translation>
+        <location filename="../settings/SettingsWidget.ui" line="321"/>
+        <location filename="../settings/SettingsWidget.ui" line="1150"/>
+        <source>Port</source>
+        <translation>Port</translation>
     </message>
     <message>
-        <source>Movie Posters</source>
-        <translation type="obsolete">Film Poster</translation>
+        <location filename="../settings/SettingsWidget.ui" line="328"/>
+        <source>9090</source>
+        <translation>9090</translation>
     </message>
     <message>
-        <source>&lt;movie filename&gt;.tbn</source>
-        <translation type="obsolete">&lt;movie filename&gt;.tbn</translation>
+        <location filename="../settings/SettingsWidget.ui" line="338"/>
+        <location filename="../settings/SettingsWidget.cpp" line="428"/>
+        <source>Movies</source>
+        <translation>Filme</translation>
     </message>
     <message>
-        <source>movie.jpg</source>
-        <translation type="obsolete">movie.jpg</translation>
-    </message>
-    <message>
-        <source>movie.tbn</source>
-        <translation type="obsolete">movie.tbn</translation>
-    </message>
-    <message>
-        <source>poster.jpg</source>
-        <translation type="obsolete">poster.jpg</translation>
-    </message>
-    <message>
-        <source>poster.tbn</source>
-        <translation type="obsolete">poster.tbn</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="586"/>
-        <location filename="../settings/SettingsWidget.ui" line="589"/>
-        <source>folder.jpg</source>
-        <translation>folder.jpg</translation>
-    </message>
-    <message>
-        <source>Movie Fanarts</source>
-        <translation type="obsolete">Film Fanarts</translation>
-    </message>
-    <message>
-        <source>&lt;movie filename&gt;-fanart.jpg</source>
-        <translation type="obsolete">&lt;movie filename&gt;-fanart.jpg</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="596"/>
-        <location filename="../settings/SettingsWidget.ui" line="599"/>
-        <source>fanart.jpg</source>
-        <translation>fanart.jpg</translation>
-    </message>
-    <message>
-        <source>TV Show Poster</source>
-        <translation type="obsolete">Serien Poster</translation>
-    </message>
-    <message>
-        <source>season-all.tbn</source>
-        <translation type="obsolete">season-all.tbn</translation>
-    </message>
-    <message>
-        <source>TV Show Banner</source>
-        <translation type="obsolete">Serien Banner</translation>
-    </message>
-    <message>
-        <source>banner.jpg</source>
-        <translation type="obsolete">banner.jpg</translation>
-    </message>
-    <message>
-        <source>The MySQL and SQLite interfaces are currently unstable, unmaintained and completely unsupported! Only enable them if you know what you&apos;re doing. Don&apos;t fill bug reports regarding these interfaces!</source>
-        <translation type="obsolete">Die MySQL und SQLite Interfaces sind zur Zeit instabil und werden nicht weiterentwickelt! Aktiviere sie nur, wenn du wirklich weißt, was du tust. Bitte melde KEINE Fehler, die du bei der Verwendung dieser Interfaces findest!</translation>
-    </message>
-    <message>
-        <source>Set the path where Thumbnails are stored (e.g. ~/.xbmc/userdata/Thumbnails)</source>
-        <translation type="obsolete">Wähle das Verzeichnis aus, in dem die XBMC Thumbnails gespeichert werden (z.B. ~/.xbmc/userdata/Thumbnails)</translation>
-    </message>
-    <message>
-        <source>MediaCenter Settings</source>
-        <translation type="obsolete">MediaCenter Einstellungen</translation>
-    </message>
-    <message>
-        <source>Stores YouTube URLs like &quot;http://www.youtube.com/watch?v=123&quot; as &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</source>
-        <translation type="obsolete">Formatiert YouTube URLs wie &quot;http://www.youtube.com/watch?v=123&quot; als &quot;plugin://plugin.video.youtube/?action=play_video&amp;videoid=123&quot;</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="195"/>
-        <source>Store trailer URLs in YouTube Plugin format</source>
-        <translation>Speichere Trailer URLs im YouTube Plugin Format</translation>
-    </message>
-    <message>
-        <source>Use File and Folder Cache</source>
-        <translation type="obsolete">Datei und Verzeichnis Cache benutzen</translation>
-    </message>
-    <message>
-        <source>Activate debug mode and write log file</source>
-        <translation type="obsolete">Debug Modus aktivieren und Log Datei schreiben</translation>
-    </message>
-    <message>
-        <source>Below you see the filenames which are used for loading and saving your movies. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry.</source>
-        <translation type="obsolete">Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Filme benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste.</translation>
+        <location filename="../settings/SettingsWidget.ui" line="344"/>
+        <source>Below you see the filenames which are used for loading and saving your movies. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
+        <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Filme benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste. Um eine Datei umzubennen, klicke doppelt auf sie.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="354"/>
         <location filename="../settings/SettingsWidget.ui" line="969"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
         <translation>Du kannst den Platzhalter &lt;baseFileName&gt; benutzen (Dateiname ohne Endung).</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="369"/>
+        <location filename="../settings/SettingsWidget.ui" line="782"/>
+        <location filename="../settings/SettingsWidget.ui" line="1026"/>
+        <source>Clear Art</source>
+        <translation>Clear Art</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="382"/>
@@ -4101,44 +3017,11 @@ p, li { white-space: pre-wrap; }
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="496"/>
-        <location filename="../settings/SettingsWidget.ui" line="1000"/>
-        <source>CD Art</source>
-        <translation>CD Art</translation>
-    </message>
-    <message>
         <location filename="../settings/SettingsWidget.ui" line="395"/>
         <location filename="../settings/SettingsWidget.ui" line="667"/>
         <location filename="../settings/SettingsWidget.ui" line="1013"/>
         <source>Backdrop</source>
         <translation>Fanart</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="216"/>
-        <source>Ignore articles when sorting (&quot;The&quot;)</source>
-        <translation>Grammatikalische Artikel bei der Sortierung ignorieren</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="292"/>
-        <source>If you want to use the synchronization feature you need to enable &quot;Allow programs on other systems to control XBMC&quot; within XBMC (Settings -&gt; Services -&gt; Remote Control).</source>
-        <translation>Um die Synchronisation zu benutzen, musst du in XBMC &quot;Steuerung über entfernte Programme zulassen&quot; aktivieren (Einstellungen -&gt; Dienste -&gt; Fernsteuerung).</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="314"/>
-        <source>127.0.0.1</source>
-        <translation>127.0.0.1</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="328"/>
-        <source>9090</source>
-        <translation>9090</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="369"/>
-        <location filename="../settings/SettingsWidget.ui" line="782"/>
-        <location filename="../settings/SettingsWidget.ui" line="1026"/>
-        <source>Clear Art</source>
-        <translation>Clear Art</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="418"/>
@@ -4154,28 +3037,88 @@ p, li { white-space: pre-wrap; }
         <translation>Poster</translation>
     </message>
     <message>
-        <source>Below you see the filenames which are used for loading and saving your tv shows. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry.</source>
-        <translation type="obsolete">Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Serien benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste.</translation>
+        <location filename="../settings/SettingsWidget.ui" line="496"/>
+        <location filename="../settings/SettingsWidget.ui" line="1000"/>
+        <source>CD Art</source>
+        <translation>CD Art</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="530"/>
+        <source>Artwork directory</source>
+        <translation>Artwork Verzeichnis</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="537"/>
+        <source>Movie Set Artwork</source>
+        <translation>Film Set Artwork</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="545"/>
+        <source>Artwork next to movies</source>
+        <translation>Artwork in Filmverzeichnissen</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="550"/>
+        <source>Separate artwork directory</source>
+        <translation>Separates Artwork Verzeichnis</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="558"/>
+        <source>Use plot when outline is not available</source>
+        <translation>Plot benutzen, wenn Outline nicht verfügbar ist</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="565"/>
+        <source>Movie outline</source>
+        <translation>Outline</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="572"/>
+        <source>Movie Set Poster Filename</source>
+        <translation>Film Set Poster Dateiname</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="579"/>
+        <source>Movie Set Fanart Filname</source>
+        <translation>Film Set Fanart Dateiname</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="586"/>
+        <location filename="../settings/SettingsWidget.ui" line="589"/>
+        <source>folder.jpg</source>
+        <translation>folder.jpg</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="596"/>
+        <location filename="../settings/SettingsWidget.ui" line="599"/>
+        <source>fanart.jpg</source>
+        <translation>fanart.jpg</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="611"/>
+        <source>Choose directory</source>
+        <translation>Verzeichnis auswählen</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="620"/>
+        <source>Media Status Columns</source>
+        <translation>Medien Status Spalten</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="633"/>
+        <location filename="../settings/SettingsWidget.cpp" line="428"/>
+        <source>TV Shows</source>
+        <translation>TV Serien</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="639"/>
+        <source>Below you see the filenames which are used for loading and saving your tv shows. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
+        <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Serien benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste. Um eine Datei umzubennen, klicke doppelt auf sie.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="649"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
         <translation>Du kannst den Platzhalter &lt;baseFileName&gt; benutzen (Dateiname ohne Endung) oder für Staffelposter den Platzhalter &lt;seasonNumber&gt; (die Staffelnummer).</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="828"/>
-        <source>Episode NFO</source>
-        <translation>Episoden NFO</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="874"/>
-        <source>Season Poster</source>
-        <translation>Staffelposter</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="805"/>
-        <source>Character Art</source>
-        <translation>Character Art</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="680"/>
@@ -4188,46 +3131,24 @@ p, li { white-space: pre-wrap; }
         <translation>Serien NFO</translation>
     </message>
     <message>
+        <location filename="../settings/SettingsWidget.ui" line="805"/>
+        <source>Character Art</source>
+        <translation>Character Art</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="828"/>
+        <source>Episode NFO</source>
+        <translation>Episoden NFO</translation>
+    </message>
+    <message>
         <location filename="../settings/SettingsWidget.ui" line="851"/>
         <source>Episode Thumbnail</source>
         <translation>Episoden Thumbnail</translation>
     </message>
     <message>
-        <source>Below you see the filenames which are used for loading and saving your concerts. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry.</source>
-        <translation type="obsolete">Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Konzerte benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste.</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="1135"/>
-        <source>Proxy</source>
-        <translation>Proxy</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="321"/>
-        <location filename="../settings/SettingsWidget.ui" line="1150"/>
-        <source>Port</source>
-        <translation>Port</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="209"/>
-        <source>Download actor images</source>
-        <translation>Bilder der Schauspieler herunterladen</translation>
-    </message>
-    <message>
-        <location filename="../settings/SettingsWidget.ui" line="286"/>
-        <source>XBMC</source>
-        <translation>XBMC</translation>
-    </message>
-    <message>
-        <source>If you want to use the synchronization feature you need to enable the webserver within XBMC and fill in the values below.</source>
-        <translation type="obsolete">Wenn du die Synchronisation mit XBMC nutzen willst, musst du den Webserver in XBMC aktivieren.</translation>
-    </message>
-    <message>
-        <source>http://127.0.0.1</source>
-        <translation type="obsolete">http://127.0.0.1</translation>
-    </message>
-    <message>
-        <source>8080</source>
-        <translation type="obsolete">8080</translation>
+        <location filename="../settings/SettingsWidget.ui" line="874"/>
+        <source>Season Poster</source>
+        <translation>Staffelposter</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="897"/>
@@ -4238,6 +3159,32 @@ p, li { white-space: pre-wrap; }
         <location filename="../settings/SettingsWidget.ui" line="910"/>
         <source>Season Banner</source>
         <translation>Staffel Banner</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="953"/>
+        <location filename="../settings/SettingsWidget.cpp" line="428"/>
+        <source>Concerts</source>
+        <translation>Konzerte</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="959"/>
+        <source>Below you see the filenames which are used for loading and saving your concerts. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
+        <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Konzerte benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste. Um eine Datei umzubennen, klicke doppelt auf sie.</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="1135"/>
+        <source>Proxy</source>
+        <translation>Proxy</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="1157"/>
+        <source>Username</source>
+        <translation>Benutzername</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.ui" line="1164"/>
+        <source>Password</source>
+        <translation>Passwort</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.ui" line="1191"/>
@@ -4287,24 +3234,21 @@ p, li { white-space: pre-wrap; }
         <translation>Einstellungen Speichern</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="250"/>
-        <location filename="../settings/SettingsWidget.ui" line="262"/>
-        <source>Scrapers</source>
-        <translation>Scraper</translation>
+        <location filename="../settings/SettingsWidget.cpp" line="43"/>
+        <source>Items are in separate folders</source>
+        <translation>In separaten Verzeichnissen</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="633"/>
-        <location filename="../settings/SettingsWidget.cpp" line="428"/>
-        <source>TV Shows</source>
-        <translation>TV Serien</translation>
+        <location filename="../settings/SettingsWidget.cpp" line="44"/>
+        <source>Automatically reload contents on start</source>
+        <translation>Inhalte beim Start automatisch neu laden</translation>
     </message>
     <message>
-        <source>Add one or more directories containing your TV Shows. Episodes have to be in subfolders with the name of the show.</source>
-        <translation type="obsolete">Füge Verzeichnisse hinzu, die deine Serien enthalten. Episoden müssen in Unterverzeichnissen mit dem Namen der Serie sein.</translation>
-    </message>
-    <message>
-        <source>Movies are in separate folders</source>
-        <translation type="obsolete">Filme sind in separaten Verzeichnissen</translation>
+        <location filename="../settings/SettingsWidget.cpp" line="64"/>
+        <location filename="../settings/SettingsWidget.cpp" line="93"/>
+        <location filename="../settings/SettingsWidget.cpp" line="122"/>
+        <source>Language</source>
+        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWidget.cpp" line="390"/>
@@ -4312,20 +3256,34 @@ p, li { white-space: pre-wrap; }
         <translation>Einstellungen gespeichert</translation>
     </message>
     <message>
-        <source>Choose a directory containing your movies</source>
-        <translation type="obsolete">Wähle ein Verzeichnis aus, das deine Filme enthält</translation>
+        <location filename="../settings/SettingsWidget.cpp" line="465"/>
+        <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
+        <translation>Die Verzeichnis-Organisation kann nur auf Filmesammlungen angewandt werden, die nicht schon in separate Verzeichnisse sortiert ist.</translation>
     </message>
     <message>
-        <source>Choose a directory containing your TV shows</source>
-        <translation type="obsolete">Wähle ein Verzeichnis aus, das deine Serien enthält</translation>
+        <location filename="../settings/SettingsWidget.cpp" line="473"/>
+        <source>Are you sure?</source>
+        <translation>Bist du sicher?</translation>
     </message>
     <message>
-        <source>SQLite Database *.db</source>
-        <translation type="obsolete">SQLite Datenbank *.db</translation>
+        <location filename="../settings/SettingsWidget.cpp" line="474"/>
+        <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
+        <translation>Diese Operation sortiert alle Filme in diesem Verzeichnis in separate Unterordner basierend auf dem Dateinamen. Klicke &quot;Ok&quot;, falls du damit einverstanden bist.</translation>
     </message>
     <message>
-        <source>Choose a directory containing your Thumbnails</source>
-        <translation type="obsolete">Wähle das Verzeichnis aus, in dem die Thumbnails gespeichert werden</translation>
+        <location filename="../settings/SettingsWidget.cpp" line="477"/>
+        <source>Ok</source>
+        <translation>Ok</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.cpp" line="533"/>
+        <source>Choose a directory containing your movies, TV show or concerts</source>
+        <translation>Wähle ein Verzeichnis aus, dass deine Filme, Serien oder Konzerte enthält</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWidget.cpp" line="587"/>
+        <source>Choose a directory where your movie set artwork is stored</source>
+        <translation>Wähle ein Verzeichnis aus, in dem dein Film Set Artwork gespeichert werden soll</translation>
     </message>
 </context>
 <context>
@@ -4509,10 +3467,6 @@ p, li { white-space: pre-wrap; }
         <source>Turkish</source>
         <translation>Türkisch</translation>
     </message>
-    <message>
-        <source>Language</source>
-        <translation type="obsolete">Sprache</translation>
-    </message>
 </context>
 <context>
     <name>TMDbConcerts</name>
@@ -4640,10 +3594,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../scrapers/TMDbConcerts.cpp" line="76"/>
         <source>Turkish</source>
         <translation>Türkisch</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="obsolete">Sprache</translation>
     </message>
 </context>
 <context>
@@ -4781,10 +3731,6 @@ p, li { white-space: pre-wrap; }
         <source>Turkish</source>
         <translation>Türkisch</translation>
     </message>
-    <message>
-        <source>Language</source>
-        <translation type="obsolete">Sprache</translation>
-    </message>
 </context>
 <context>
     <name>TrailerDialog</name>
@@ -4919,10 +3865,6 @@ p, li { white-space: pre-wrap; }
         <source>Loading Episodes...</source>
         <translation>Lade Episoden...</translation>
     </message>
-    <message>
-        <source>Loading TV Shows</source>
-        <translation type="obsolete">Lade Serien...</translation>
-    </message>
 </context>
 <context>
     <name>TvShowFilesWidget</name>
@@ -5036,14 +3978,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../tvShows/TvShowSearch.ui" line="198"/>
         <source>Network</source>
         <translation>Studio</translation>
-    </message>
-    <message>
-        <source>Logo, Clear Art, CD Art</source>
-        <translation type="obsolete">Logo, Clear Art, CD Art</translation>
-    </message>
-    <message>
-        <source>Season/Episode</source>
-        <translation type="obsolete">Staffel/Episode</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="208"/>
@@ -5273,6 +4207,16 @@ p, li { white-space: pre-wrap; }
         <translation>Regisseur entfernen</translation>
     </message>
     <message>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="471"/>
+        <source>Writers</source>
+        <translation>Autoren</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="502"/>
+        <source>Genre</source>
+        <translation>Genre</translation>
+    </message>
+    <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="512"/>
         <source>Add Writer</source>
         <translation>Autor hinzufügen</translation>
@@ -5296,6 +4240,11 @@ p, li { white-space: pre-wrap; }
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="588"/>
         <source>Scantype</source>
         <translation>Scantype</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="605"/>
+        <source>Resolution</source>
+        <translation>Auflösung</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="612"/>
@@ -5330,39 +4279,9 @@ p, li { white-space: pre-wrap; }
         <translation>HH:mm:ss</translation>
     </message>
     <message>
-        <source> Seconds</source>
-        <translation type="obsolete"> Sekunden</translation>
-    </message>
-    <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="742"/>
         <source>Reload from File</source>
         <translation>Neu Ermitteln</translation>
-    </message>
-    <message>
-        <source>Add Studio</source>
-        <translation type="obsolete">Studio hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove Studio</source>
-        <translation type="obsolete">Studio entfernen</translation>
-    </message>
-    <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="471"/>
-        <source>Writers</source>
-        <translation>Autoren</translation>
-    </message>
-    <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="502"/>
-        <source>Genre</source>
-        <translation>Genre</translation>
-    </message>
-    <message>
-        <source>Add Genre</source>
-        <translation type="obsolete">Genre hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove Genre</source>
-        <translation type="obsolete">Genre entfernen</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="799"/>
@@ -5373,15 +4292,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="821"/>
         <source>Click to Change</source>
         <translation>Zum Ändern klicken</translation>
-    </message>
-    <message>
-        <source>Full Preview</source>
-        <translation type="obsolete">Vorschau</translation>
-    </message>
-    <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="605"/>
-        <source>Resolution</source>
-        <translation>Auflösung</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="365"/>
@@ -5409,6 +4319,11 @@ p, li { white-space: pre-wrap; }
         <translation>Untertitel</translation>
     </message>
     <message>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="454"/>
+        <source>Episode Saved</source>
+        <translation>Episode gespeichert</translation>
+    </message>
+    <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="583"/>
         <source>Unknown Director</source>
         <translation>Unbekannter Regisseur</translation>
@@ -5417,11 +4332,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="632"/>
         <source>Unknown Writer</source>
         <translation>Unbekannter Autor</translation>
-    </message>
-    <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="454"/>
-        <source>Episode Saved</source>
-        <translation>Episode gespeichert</translation>
     </message>
 </context>
 <context>
@@ -5451,14 +4361,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="187"/>
         <source>Click to Change</source>
         <translation>Zum Ändern klicken</translation>
-    </message>
-    <message>
-        <source>Full Preview</source>
-        <translation type="obsolete">Vorschau</translation>
-    </message>
-    <message>
-        <source>Resolution</source>
-        <translation type="obsolete">Auflösung</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="165"/>
@@ -5574,37 +4476,9 @@ p, li { white-space: pre-wrap; }
         <translation>Erweitert</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="458"/>
-        <source>Extra Fanarts</source>
-        <translation>Extra Fanarts</translation>
-    </message>
-    <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="480"/>
-        <source>Hint: Closed images will be deleted on save.</source>
-        <translation>Hinweis: Geschlossene Bilder werden beim Speichern gelöscht.</translation>
-    </message>
-    <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="503"/>
-        <source>Add Images</source>
-        <translation>Bilder hinzufügen</translation>
-    </message>
-    <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="62"/>
-        <source>Genres</source>
-        <translation>Genres</translation>
-    </message>
-    <message>
-        <source>Genre</source>
-        <translation type="obsolete">Genre</translation>
-    </message>
-    <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="63"/>
-        <source>Add Genre</source>
-        <translation>Genre hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove Genre</source>
-        <translation type="obsolete">Genre entfernen</translation>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="263"/>
+        <source>Actors</source>
+        <translation>Schauspieler</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="282"/>
@@ -5633,13 +4507,24 @@ p, li { white-space: pre-wrap; }
         <translation>Zum Ändern klicken</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="263"/>
-        <source>Actors</source>
-        <translation>Schauspieler</translation>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="409"/>
+        <source>Resolution</source>
+        <translation>Auflösung</translation>
     </message>
     <message>
-        <source>Season Posters</source>
-        <translation type="obsolete">Staffelposter</translation>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="458"/>
+        <source>Extra Fanarts</source>
+        <translation>Extra Fanarts</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="480"/>
+        <source>Hint: Closed images will be deleted on save.</source>
+        <translation>Hinweis: Geschlossene Bilder werden beim Speichern gelöscht.</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="503"/>
+        <source>Add Images</source>
+        <translation>Bilder hinzufügen</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="655"/>
@@ -5654,10 +4539,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="944"/>
         <source>Click to Change</source>
         <translation>Zum Ändern klicken</translation>
-    </message>
-    <message>
-        <source>Full Preview</source>
-        <translation type="obsolete">Vorschau</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="705"/>
@@ -5675,10 +4556,6 @@ p, li { white-space: pre-wrap; }
         <translation>Logo</translation>
     </message>
     <message>
-        <source>Full preview</source>
-        <translation type="obsolete">Vorschau</translation>
-    </message>
-    <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="872"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
@@ -5689,26 +4566,14 @@ p, li { white-space: pre-wrap; }
         <translation>Character Art</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="409"/>
-        <source>Resolution</source>
-        <translation>Auflösung</translation>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="62"/>
+        <source>Genres</source>
+        <translation>Genres</translation>
     </message>
     <message>
-        <source>Backdrop</source>
-        <translation type="obsolete">Fanart</translation>
-    </message>
-    <message>
-        <source>Season %1</source>
-        <translation type="obsolete">Staffel %1</translation>
-    </message>
-    <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="554"/>
-        <source>Downloading images...</source>
-        <translation>Lade Bilder...</translation>
-    </message>
-    <message>
-        <source>Unknown Genre</source>
-        <translation type="obsolete">Unbekanntes Genre</translation>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="63"/>
+        <source>Add Genre</source>
+        <translation>Genre hinzufügen</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="67"/>
@@ -5719,6 +4584,21 @@ p, li { white-space: pre-wrap; }
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="68"/>
         <source>Add Tag</source>
         <translation>Tag hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="346"/>
+        <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="554"/>
+        <source>Downloading images...</source>
+        <translation>Lade Bilder...</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="900"/>
+        <source>Unknown Actor</source>
+        <translation>Unbekannter Schauspieler</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="901"/>
@@ -5735,39 +4615,9 @@ p, li { white-space: pre-wrap; }
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
-    <message>
-        <source>Unkown Genre</source>
-        <translation type="obsolete">Unbekanntes Genre</translation>
-    </message>
-    <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="900"/>
-        <source>Unknown Actor</source>
-        <translation>Unbekannter Schauspieler</translation>
-    </message>
-    <message>
-        <source>Unkown Role</source>
-        <translation type="obsolete">Unbekannte Rolle</translation>
-    </message>
-    <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="346"/>
-        <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
-    </message>
-    <message>
-        <source>Downloading Missing Actor Images and Episode Thumbnails...</source>
-        <translation type="obsolete">Lade fehlende Schauspielerbilder und Episoden Vorschaubilder...</translation>
-    </message>
-    <message>
-        <source>TV Show and all Episodes Saved</source>
-        <translation type="obsolete">Serie und alle Episoden gespeichert</translation>
-    </message>
 </context>
 <context>
     <name>TvTunesDialog</name>
-    <message>
-        <source>Dialog</source>
-        <translation type="obsolete">TV Tunes</translation>
-    </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="17"/>
         <source>TV Tunes</source>
@@ -5825,34 +4675,11 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>XbmcSql</name>
-    <message>
-        <source>Connection to XBMC MySQL Database failed!</source>
-        <translation type="obsolete">Verbindung zur XBMC MySQL Datenbank fehlgeschlagen!</translation>
-    </message>
-    <message>
-        <source>Connection to XBMC MySQL Database failed! &quot;%1&quot;</source>
-        <translation type="obsolete">Verbindung zur XBMC MySQL Datenbank fehlgeschlagen! &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Connection to XBMC SQLite Database failed! &quot;%1&quot;</source>
-        <translation type="obsolete">Verbindung zur XBMC SQLite Datenbank fehlgeschlagen! &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Connection to XBMC SQLite Database failed!</source>
-        <translation type="obsolete">Verbindung zur XBMC SQLite Datenbank fehlgeschlagen!</translation>
-    </message>
-</context>
-<context>
     <name>XbmcSync</name>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="17"/>
         <source>XBMC Synchronization</source>
         <translation>XBMC Synchronisierung</translation>
-    </message>
-    <message>
-        <source>Please make sure you have setup your sources in XBMC and enabled the webserver.</source>
-        <translation type="obsolete">Bitte stelle sicher, dass deine Quellen in XBMC korrekt gesetzt sind und der Webserver aktiviert wurde.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
@@ -5890,43 +4717,6 @@ p, li { white-space: pre-wrap; }
         <translation>Hiermit werden deine Poster, Fanarts und Thumbnails für XBMC Frodo umbenannt. Bitte überprüfe, dass du nicht bereits die XBMC Frodo Dateinamen in MediaElchs Einstellungen benutzt. Deine Bilder müssen in MediaElch angezeigt werden.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.ui" line="159"/>
-        <source>Start</source>
-        <translation>Start</translation>
-    </message>
-    <message>
-        <source>For this to work you need to have setup your sources in XBMC and enable the Webserver.</source>
-        <translation type="obsolete">Damit es funktioniert, müssen deine Quellen in XBMC korrekt konfiguriert sein und der Webserver aktiviert sein.</translation>
-    </message>
-    <message>
-        <source>XBMC Host</source>
-        <translation type="obsolete">XBMC Host</translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation type="obsolete">Port</translation>
-    </message>
-    <message>
-        <source>http://127.0.0.1</source>
-        <translation type="obsolete">http://127.0.0.1</translation>
-    </message>
-    <message>
-        <source>8080</source>
-        <translation type="obsolete">8080</translation>
-    </message>
-    <message>
-        <source>Update all movies</source>
-        <translation type="obsolete">Aktualisiere alle Filme</translation>
-    </message>
-    <message>
-        <source>Update all TV Shows</source>
-        <translation type="obsolete">Aktualisiere alle Serien</translation>
-    </message>
-    <message>
-        <source>Update all concerts</source>
-        <translation type="obsolete">Aktualisiere alle Konzerte</translation>
-    </message>
-    <message>
         <location filename="../xbmc/XbmcSync.ui" line="111"/>
         <location filename="../xbmc/XbmcSync.ui" line="118"/>
         <source>Status</source>
@@ -5939,8 +4729,9 @@ p, li { white-space: pre-wrap; }
         <translation>Schließen</translation>
     </message>
     <message>
-        <source>Synchronize</source>
-        <translation type="obsolete">Synchronisieren</translation>
+        <location filename="../xbmc/XbmcSync.ui" line="159"/>
+        <source>Start</source>
+        <translation>Start</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="140"/>
@@ -5948,22 +4739,14 @@ p, li { white-space: pre-wrap; }
         <translation>Bitte trage deinen XBMC Host und Port ein.</translation>
     </message>
     <message>
-        <source>Nothing to synchronize</source>
-        <translation type="obsolete">Nichts zu synchronisieren</translation>
+        <location filename="../xbmc/XbmcSync.cpp" line="148"/>
+        <source>Could not connect to XBMC: %1</source>
+        <translation>Verbindung zu XBMC konnte nicht hergestellt werden: %1</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="189"/>
         <source>Getting contents from XBMC</source>
         <translation>Hole Inhalte von XBMC</translation>
-    </message>
-    <message>
-        <source>XBMC is not reachable. Please check your settings.</source>
-        <translation type="obsolete">XBMC ist nicht erreichbar. Bitte überprüfe deine Einstellungen.</translation>
-    </message>
-    <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="148"/>
-        <source>Could not connect to XBMC: %1</source>
-        <translation>Verbindung zu XBMC konnte nicht hergestellt werden: %1</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="350"/>
@@ -6034,21 +4817,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../xbmc/XbmcSync.cpp" line="714"/>
         <source>XBMC Library Scan has finished</source>
         <translation>XBMC Datenbank Update beendet</translation>
-    </message>
-</context>
-<context>
-    <name>XbmcXml</name>
-    <message>
-        <source>Could not create actors directory</source>
-        <translation type="obsolete">Verzeichnis &quot;actors&quot; konnte nicht erstellt werden</translation>
-    </message>
-    <message>
-        <source>Could not create movies directory</source>
-        <translation type="obsolete">Verzeichnis &quot;movies&quot; konnte nicht erstellt werden</translation>
-    </message>
-    <message>
-        <source>Could not create tv shows directory</source>
-        <translation type="obsolete">Verzeichnis &quot;tvshows&quot; konnte nicht erstellt werden</translation>
     </message>
 </context>
 </TS>
