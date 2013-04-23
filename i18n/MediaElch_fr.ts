@@ -21,7 +21,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="109"/>
         <source>Icon Sets: Retina by &quot;The Working Group&quot; and &quot;Capital Suite&quot; by &quot;capital18 (Jugal Paryani)&quot;</source>
-        <translation>Jeux d&apos;icônes: Retina par &quot;The Working Group&quot; et &quot;Capital Suite&quot; par &quot;capital18 (Jugal Paryani)&quot;</translation>
+        <translation>Jeux d&apos;icônes : Retina par &quot;The Working Group&quot; et &quot;Capital Suite&quot; par &quot;capital18 (Jugal Paryani)&quot;</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="119"/>
@@ -82,7 +82,7 @@
     <message>
         <location filename="../cli/CLI.cpp" line="125"/>
         <source>Unknown command line argument &quot;%1&quot;</source>
-        <translation>Argument ligne de commande inconnue &quot;%1&quot;</translation>
+        <translation>Argument de ligne de commande inconnue &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../cli/CLI.cpp" line="131"/>
@@ -115,7 +115,7 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulaire</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="61"/>
@@ -140,17 +140,17 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="172"/>
         <source>Remove Current Movie</source>
-        <translation>Retirer film actuelle</translation>
+        <translation>Retirer film actuel</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="192"/>
         <source>Double click a certification to rename it, right click to delete. If you want to merge two certifications just give them the same name.</source>
-        <translation>Double-cliquez sur une certification pour la renommée, clique droit pour la supprimée. Si vous souhaitez fusionner deux certifications il suffit de leur donner le même nom.</translation>
+        <translation>Double-cliquez sur une certification pour la renommer, clique droit pour la supprimer. Si vous souhaitez fusionner deux certifications il suffit de leur donner le même nom.</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="202"/>
         <source>Please keep in mind that the changes you make here (renaming or deleting certifications) will be made for every movie.</source>
-        <translation>S&apos;il vous plaît gardez à l&apos;esprit que les modifications que vous apportez ici (renommer ou supprimer des certifications) sera effectué pour chaque film.</translation>
+        <translation>S&apos;il vous plaît gardez à l&apos;esprit que les modifications que vous apportez ici (renommer ou supprimer des certifications) seront effectuées pour chaque film.</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="37"/>
@@ -358,7 +358,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulaire</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="31"/>
@@ -468,7 +468,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="352"/>
         <source>Hint: Closed images will be deleted on save.</source>
-        <translation>Astuce: Fermé les images elles seront effacées lors de la sauvegarde.</translation>
+        <translation>Astuce : Les images fermées seront effacées lors de la sauvegarde.</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="375"/>
@@ -614,7 +614,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="825"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauvegarder</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauvegardé</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="848"/>
@@ -722,7 +722,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.ui" line="20"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulaire</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.ui" line="51"/>
@@ -1014,7 +1014,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="513"/>
         <source>Movie is Watched</source>
-        <translation>Film est visionnés</translation>
+        <translation>Film est Vu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="513"/>
@@ -1032,13 +1032,13 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="515"/>
         <source>Movie is Unwatched</source>
-        <translation>Film est non visionnés</translation>
+        <translation>Film est non vu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="515"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="516"/>
         <source>Unwatched</source>
-        <translation>Non visionnés</translation>
+        <translation>Non vu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="516"/>
@@ -1068,7 +1068,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="521"/>
         <source>Stream Details loaded</source>
-        <translation>Détails des flux chargé</translation>
+        <translation>Détails des flux chargés</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="521"/>
@@ -1080,7 +1080,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="523"/>
         <source>Stream Details not loaded</source>
-        <translation>Détails des flux non chargé</translation>
+        <translation>Détails des flux non chargés</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="523"/>
@@ -1228,7 +1228,7 @@
     <message>
         <location filename="../movies/GenreWidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulaire</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="61"/>
@@ -1253,17 +1253,17 @@
     <message>
         <location filename="../movies/GenreWidget.ui" line="172"/>
         <source>Remove Current Movie</source>
-        <translation>Enlever le Film actuel</translation>
+        <translation>Retirer le Film actuel</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="192"/>
         <source>Double click a genre to rename it, right click to delete. If you want to merge two genres just give them the same name.</source>
-        <translation>Double-cliquez sur un genre pour le renommé, clique droit pour le supprimé. Si vous souhaitez fusionner deux genres il suffit de leur donner le même nom.</translation>
+        <translation>Double-cliquez sur un genre pour le renommer, clique droit pour le supprimer. Si vous souhaitez fusionner deux genres il suffit de leur donner le même nom.</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="202"/>
         <source>Please keep in mind that the changes you make here (renaming or deleting genres) will be made for every movie.</source>
-        <translation>S&apos;il vous plaît gardez à l&apos;esprit que les modifications que vous apportez ici (renommer ou supprimer un genres) sera effectué pour chaque film.</translation>
+        <translation>S&apos;il vous plaît gardez à l&apos;esprit que les modifications que vous apportez ici (renommer ou supprimer un genres) seront effectuées pour chaque film.</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.cpp" line="37"/>
@@ -1368,7 +1368,7 @@
     <message>
         <location filename="../smallWidgets/ImageLabel.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulaire</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ImageLabel.ui" line="45"/>
@@ -1561,7 +1561,7 @@
     <message>
         <location filename="../smallWidgets/MediaFlags.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulaire</translation>
     </message>
 </context>
 <context>
@@ -1569,7 +1569,7 @@
     <message>
         <location filename="../main/Message.ui" line="32"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulaire</translation>
     </message>
     <message>
         <location filename="../main/Message.ui" line="69"/>
@@ -1582,7 +1582,7 @@
     <message>
         <location filename="../main/MessageBox.ui" line="26"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulaire</translation>
     </message>
 </context>
 <context>
@@ -1715,7 +1715,7 @@
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="36"/>
         <source>Please select the scraper and the infos you want to be loaded. MediaElch will use the best result for each movie you selected.</source>
-        <translation>S&apos;il vous plaît sélectionner le scraper et les infos que vous souhaitez charger. MediaElch va utiliser le meilleur résultat pour chaque film que vous avez sélectionné.</translation>
+        <translation>S&apos;il vous plaît sélectionnez le scraper et les infos que vous souhaitez charger. MediaElch va utiliser le meilleur résultat pour chaque film que vous avez sélectionné.</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="48"/>
@@ -1835,7 +1835,7 @@
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="336"/>
         <source>Automatically save each movie after scraping</source>
-        <translation>Enregistrer automatiquement chaque film après analyse</translation>
+        <translation>Enregistrer automatiquement chaque film après le scraping</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="351"/>
@@ -1867,7 +1867,7 @@
         <source>Scraping of %n movies has finished.</source>
         <translation>
             <numerusform>Le Scraping de %n Film est terminé.</numerusform>
-            <numerusform>Le Scraping de %n Films est terminé.</numerusform>
+            <numerusform>Le Scraping de %n films est terminé.</numerusform>
         </translation>
     </message>
 </context>
@@ -2009,7 +2009,7 @@
     <message>
         <location filename="../movies/MovieWidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulaire</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="31"/>
@@ -2205,7 +2205,7 @@
     <message>
         <location filename="../movies/MovieWidget.ui" line="702"/>
         <source>Hint: Closed images will be deleted on save.</source>
-        <translation>Astuce: Fermé les images elles seront effacées lors de la sauvegarde.</translation>
+        <translation>Astuce : Les images fermées seront effacées lors de la sauvegarde.</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="725"/>
@@ -4520,7 +4520,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="480"/>
         <source>Hint: Closed images will be deleted on save.</source>
-        <translation>Astuce: Fermé les images elles seront effacées lors de la sauvegarde.</translation>
+        <translation>Astuce : Les images fermées seront effacées lors de la sauvegarde.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="503"/>
