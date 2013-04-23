@@ -582,8 +582,15 @@ void TheTvDb::onEpisodeLoadFinished()
                     airedElem = elem;
             }
             if (!elem.elementsByTagName("DVD_season").isEmpty() && !elem.elementsByTagName("DVD_episodenumber").isEmpty()) {
-                int seasonNumber = elem.elementsByTagName("DVD_season").at(0).toElement().text().toInt();
-                int episodeNumber = elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text().toInt();
+                QRegExp rx("^(\\d*)\\D*");
+                int seasonNumber = -1;
+                int episodeNumber = -1;
+                QString seasonText = elem.elementsByTagName("DVD_season").at(0).toElement().text();
+                QString episodeText = elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text();
+                if (rx.indexIn(QString("%1").arg(seasonText), 0) != -1)
+                    seasonNumber = rx.cap(1).toInt();
+                if (rx.indexIn(QString("%1").arg(episodeText), 0) != -1)
+                    episodeNumber = rx.cap(1).toInt();
                 if (episode->season() == seasonNumber && episode->episode() == episodeNumber)
                     dvdElem = elem;
             }
