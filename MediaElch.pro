@@ -10,6 +10,11 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 greaterThan(QT_MAJOR_VERSION, 4): include(qtmacextras/src/qtmacextras.pri)
 
 LIBS += -lmediainfo -lzen -lz
+
+macx: contains(CONFIG, x86) {
+    LIBS += -L/usr/local/cross/mediainfo-x86/lib
+}
+
 unix:LIBS += -lcurl
 DEFINES += UNICODE
 
@@ -284,6 +289,7 @@ TRANSLATIONS += \
     i18n/MediaElch_en.ts \
     i18n/MediaElch_de.ts \
     i18n/MediaElch_fr.ts \
+    i18n/MediaElch_cs_CZ.ts \
     i18n/MediaElch_pt_BR.ts
 
 
