@@ -153,7 +153,7 @@ int TvShow::episodeCount()
  */
 bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo)
 {
-    if ((m_infoLoaded || hasChanged()) && m_infoFromNfoLoaded)
+    if (hasChanged() || (m_infoLoaded && m_infoFromNfoLoaded))
         return m_infoLoaded;
 
     bool infoLoaded;
