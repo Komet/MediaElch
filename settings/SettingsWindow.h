@@ -1,41 +1,39 @@
-#ifndef SETTINGSWIDGET_H
-#define SETTINGSWIDGET_H
+#ifndef SETTINGSWINDOW_H
+#define SETTINGSWINDOW_H
 
+#include <QCloseEvent>
 #include <QComboBox>
-#include <QFileDialog>
-#include <QSettings>
-#include <QTableWidgetItem>
-#include <QWidget>
+#include <QMainWindow>
 
+#include "data/ConcertScraperInterface.h"
 #include "data/ScraperInterface.h"
+#include "data/TvScraperInterface.h"
 #include "globals/Globals.h"
-#include "settings/DataFile.h"
 #include "settings/Settings.h"
 
 namespace Ui {
-class SettingsWidget;
+class SettingsWindow;
 }
 
-/**
- * @brief The Settings class stores all MediaElch settings and displays the settings widget.
- */
-class SettingsWidget : public QDialog
+class SettingsWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit SettingsWidget(QWidget *parent = 0);
-    ~SettingsWidget();
-
-    void loadSettings();
+    explicit SettingsWindow(QWidget *parent = 0);
+    ~SettingsWindow();
 
 public slots:
-    int exec();
-    void saveSettings();
-    void accept();
-    void reject();
+    void show();
+
+signals:
+    void sigSaved();
+
+protected:
+    void closeEvent(QCloseEvent *event);
 
 private slots:
+    void onAction();
     void chooseDirToAdd();
     void addDir(QString dir, bool separateFolders = false, bool autoReload = false, SettingsDirType dirType = DirTypeMovies);
     void removeDir();
@@ -44,16 +42,19 @@ private slots:
     void onComboMovieSetArtworkChanged();
     void onChooseMovieSetArtworkDir();
     void onUseProxy();
-    void onDefaultsEden();
-    void onDefaultsFrodo();
+    void onSave();
+    void onCancel();
 
 private:
-    Ui::SettingsWidget *ui;
+    Ui::SettingsWindow *ui;
     Settings *m_settings;
     QMap<ScraperInterface*, QComboBox*> m_scraperCombos;
     QMap<TvScraperInterface*, QComboBox*> m_tvScraperCombos;
     QMap<ConcertScraperInterface*, QComboBox*> m_concertScraperCombos;
+
+    void loadSettings();
+    void saveSettings();
     void fillDataFiles();
 };
 
-#endif // SETTINGSWIDGET_H
+#endif // SETTINGSWINDOW_H

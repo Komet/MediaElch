@@ -11,10 +11,6 @@ greaterThan(QT_MAJOR_VERSION, 4): include(qtmacextras/src/qtmacextras.pri)
 
 LIBS += -lmediainfo -lzen -lz
 
-macx: contains(CONFIG, x86) {
-    LIBS += -L/usr/local/cross/mediainfo-x86/lib
-}
-
 unix:LIBS += -lcurl
 DEFINES += UNICODE
 
@@ -95,7 +91,6 @@ SOURCES += main.cpp\
     concerts/ConcertFilesWidget.cpp \
     scrapers/TMDbConcerts.cpp \
     cli/CLI.cpp \
-    settings/SettingsWidget.cpp \
     settings/Settings.cpp \
     movies/GenreWidget.cpp \
     movies/CertificationWidget.cpp \
@@ -137,7 +132,8 @@ SOURCES += main.cpp\
     smallWidgets/MyTableView.cpp \
     data/ImageCache.cpp \
     scrapers/TvTunes.cpp \
-    tvShows/TvTunesDialog.cpp
+    tvShows/TvTunesDialog.cpp \
+    settings/SettingsWindow.cpp
 
 HEADERS  += main/MainWindow.h \
     movies/Movie.h \
@@ -199,7 +195,6 @@ HEADERS  += main/MainWindow.h \
     concerts/ConcertFilesWidget.h \
     scrapers/TMDbConcerts.h \
     cli/CLI.h \
-    settings/SettingsWidget.h \
     settings/Settings.h \
     movies/GenreWidget.h \
     movies/CertificationWidget.h \
@@ -244,7 +239,8 @@ HEADERS  += main/MainWindow.h \
     data/ImageCache.h \
     scrapers/TvTunes.h \
     tvShows/TvTunesDialog.h \
-    globals/LocaleStringCompare.h
+    globals/LocaleStringCompare.h \
+    settings/SettingsWindow.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -267,7 +263,6 @@ FORMS    += main/MainWindow.ui \
     concerts/ConcertWidget.ui \
     concerts/ConcertSearch.ui \
     concerts/ConcertFilesWidget.ui \
-    settings/SettingsWidget.ui \
     movies/GenreWidget.ui \
     movies/CertificationWidget.ui \
     support/SupportDialog.ui \
@@ -280,7 +275,8 @@ FORMS    += main/MainWindow.ui \
     smallWidgets/TagCloud.ui \
     tvShows/TvShowWidgetSeason.ui \
     renamer/Renamer.ui \
-    tvShows/TvTunesDialog.ui
+    tvShows/TvTunesDialog.ui \
+    settings/SettingsWindow.ui
 
 RESOURCES += \
     MediaElch.qrc

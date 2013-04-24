@@ -1,47 +1,32 @@
-#include "SettingsWidget.h"
-#include "ui_SettingsWidget.h"
+#include "SettingsWindow.h"
+#include "ui_SettingsWindow.h"
 
-#include <QComboBox>
-#include <QIntValidator>
-#include <QMessageBox>
-
-#include "movies/FilesWidget.h"
-#include "main/MainWindow.h"
+#include <QAction>
+#include <QDebug>
+#include "data/MovieFilesOrganizer.h"
 #include "globals/Manager.h"
 #include "main/MessageBox.h"
-#include "tvShows/TvShowFilesWidget.h"
-#include "data/MovieFilesOrganizer.h"
+#include "settings/DataFile.h"
 
-
-/**
- * @brief SettingsWidget::SettingsWidget
- * @param parent
- */
-SettingsWidget::SettingsWidget(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::SettingsWidget)
+SettingsWindow::SettingsWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::SettingsWindow)
 {
     ui->setupUi(this);
-
 #ifdef Q_OS_MAC
-    setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
-#else
-    setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
+    setUnifiedTitleAndToolBarOnMac(true);
 #endif
+
+    ui->actionGlobal->setIcon(ui->actionGlobal->property("iconActive").value<QIcon>());
+    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget->setAnimation(QEasingCurve::Linear);
+    ui->stackedWidget->setSpeed(200);
 
     m_settings = Settings::instance(this);
 
     ui->xbmcPort->setValidator(new QIntValidator(0, 99999, ui->xbmcPort));
-
-#if QT_VERSION >= 0x050000
-    ui->dirs->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    ui->dirs->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
-#else
     ui->dirs->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->dirs->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
-#endif
-    ui->dirs->horizontalHeaderItem(2)->setToolTip(tr("Items are in separate folders"));
-    ui->dirs->horizontalHeaderItem(3)->setToolTip(tr("Automatically reload contents on start"));
 
     int scraperCounter = 0;
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
@@ -150,57 +135,86 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
     connect(ui->comboMovieSetArtwork, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboMovieSetArtworkChanged()));
     connect(ui->btnMovieSetArtworkDir, SIGNAL(clicked()), this, SLOT(onChooseMovieSetArtworkDir()));
     connect(ui->chkUseProxy, SIGNAL(clicked()), this, SLOT(onUseProxy()));
-    connect(ui->btnDefaultsEden, SIGNAL(clicked()), this, SLOT(onDefaultsEden()));
-    connect(ui->btnDefaultsFrodo, SIGNAL(clicked()), this, SLOT(onDefaultsFrodo()));
+    connect(ui->btnCancel, SIGNAL(clicked()), this, SLOT(onCancel()));
+    connect(ui->btnSave, SIGNAL(clicked()), this, SLOT(onSave()));
+
+    ui->movieNfo->setProperty("dataFileType", DataFileType::MovieNfo);
+    ui->moviePoster->setProperty("dataFileType", DataFileType::MoviePoster);
+    ui->movieBackdrop->setProperty("dataFileType", DataFileType::MovieBackdrop);
+    ui->movieCdArt->setProperty("dataFileType", DataFileType::MovieCdArt);
+    ui->movieClearArt->setProperty("dataFileType", DataFileType::MovieClearArt);
+    ui->movieLogo->setProperty("dataFileType", DataFileType::MovieLogo);
+    ui->showBackdrop->setProperty("dataFileType", DataFileType::TvShowBackdrop);
+    ui->showBanner->setProperty("dataFileType", DataFileType::TvShowBanner);
+    ui->showCharacterArt->setProperty("dataFileType", DataFileType::TvShowCharacterArt);
+    ui->showClearArt->setProperty("dataFileType", DataFileType::TvShowClearArt);
+    ui->showEpisodeNfo->setProperty("dataFileType", DataFileType::TvShowEpisodeNfo);
+    ui->showEpisodeThumbnail->setProperty("dataFileType", DataFileType::TvShowEpisodeThumb);
+    ui->showLogo->setProperty("dataFileType", DataFileType::TvShowLogo);
+    ui->showNfo->setProperty("dataFileType", DataFileType::TvShowNfo);
+    ui->showPoster->setProperty("dataFileType", DataFileType::TvShowPoster);
+    ui->showSeasonBackdrop->setProperty("dataFileType", DataFileType::TvShowSeasonBackdrop);
+    ui->showSeasonBanner->setProperty("dataFileType", DataFileType::TvShowSeasonBanner);
+    ui->showSeasonPoster->setProperty("dataFileType", DataFileType::TvShowSeasonPoster);
+    ui->concertNfo->setProperty("dataFileType", DataFileType::ConcertNfo);
+    ui->concertPoster->setProperty("dataFileType", DataFileType::ConcertPoster);
+    ui->concertBackdrop->setProperty("dataFileType", DataFileType::ConcertBackdrop);
+    ui->concertLogo->setProperty("dataFileType", DataFileType::ConcertLogo);
+    ui->concertClearArt->setProperty("dataFileType", DataFileType::ConcertClearArt);
+    ui->concertDiscArt->setProperty("dataFileType", DataFileType::ConcertCdArt);
+
+#ifdef Q_OS_MAC
+    ui->btnCancel->setVisible(false);
+    ui->btnSave->setVisible(false);
+    ui->horizontalSpacerButtons->setGeometry(QRect(0, 0, 1, 1));
+#endif
 
     loadSettings();
 }
 
-/**
- * @brief SettingsWidget::~SettingsWidget
- */
-SettingsWidget::~SettingsWidget()
+SettingsWindow::~SettingsWindow()
 {
     delete ui;
 }
 
-/**
- * @brief Executes the settings dialog
- * @return Result of QDialog::exec
- */
-int SettingsWidget::exec()
+void SettingsWindow::show()
 {
-    qDebug() << "Entered";
     loadSettings();
-    QSize newSize;
-    newSize.setHeight(parentWidget()->size().height()-100);
-    newSize.setWidth(parentWidget()->size().width()-200);
-    resize(newSize);
-    return QDialog::exec();
+    QMainWindow::show();
 }
 
-/**
- * @brief Reloads stored settings and rejects the dialog
- */
-void SettingsWidget::reject()
+void SettingsWindow::closeEvent(QCloseEvent *event)
 {
-    m_settings->loadSettings();
-    QDialog::reject();
+    Q_UNUSED(event);
+#ifdef Q_OS_MAC
+    saveSettings();
+    emit sigSaved();
+#endif
 }
 
-/**
- * @brief Saves the settings and accepts the dialog
- */
-void SettingsWidget::accept()
+void SettingsWindow::onSave()
 {
     saveSettings();
-    QDialog::accept();
+    close();
+    emit sigSaved();
 }
 
-/**
- * @brief Loads all settings
- */
-void SettingsWidget::loadSettings()
+void SettingsWindow::onCancel()
+{
+    m_settings->loadSettings();
+    close();
+}
+
+void SettingsWindow::onAction()
+{
+    QAction *triggeredAction = static_cast<QAction*>(sender());
+    foreach (QAction *action, ui->toolBar->actions())
+        action->setIcon(action->property("iconNormal").value<QIcon>());
+    triggeredAction->setIcon(triggeredAction->property("iconActive").value<QIcon>());
+    ui->stackedWidget->slideInIdx(triggeredAction->property("page").toInt());
+}
+
+void SettingsWindow::loadSettings()
 {
     m_settings->loadSettings();
 
@@ -295,20 +309,20 @@ void SettingsWidget::loadSettings()
     }
 }
 
-/**
- * @brief Saves all settings
- */
-void SettingsWidget::saveSettings()
+void SettingsWindow::saveSettings()
 {
     QList<DataFile> dataFiles;
-    dataFiles << ui->movieNfoList->dataFiles() << ui->movieBackdropList->dataFiles() << ui->movieCdArtList->dataFiles()
-              << ui->movieClearArtList->dataFiles() << ui->movieLogoList->dataFiles() << ui->moviePosterList->dataFiles();
-    dataFiles << ui->tvShowBackdropList->dataFiles() << ui->tvShowBannerList->dataFiles() << ui->tvShowCharacterArtList->dataFiles()
-              << ui->tvShowClearArtList->dataFiles() << ui->tvShowEpisodeNfoList->dataFiles() << ui->tvShowEpisodeThumbList->dataFiles()
-              << ui->tvShowLogoList->dataFiles() << ui->tvShowNfoList->dataFiles() << ui->tvShowPosterList->dataFiles()
-              << ui->tvShowSeasonPosterList->dataFiles() << ui->tvShowSeasonBackdropList->dataFiles() << ui->tvShowSeasonBannerList->dataFiles();
-    dataFiles << ui->concertNfoList->dataFiles() << ui->concertBackdropList->dataFiles() << ui->concertCdArtList->dataFiles()
-              << ui->concertClearArtList->dataFiles() << ui->concertLogoList->dataFiles() << ui->concertPosterList->dataFiles();
+    foreach (QLineEdit *lineEdit, findChildren<QLineEdit*>()) {
+        if (lineEdit->property("dataFileType").isNull())
+            continue;
+        int pos = 0;
+        int dataFileType = lineEdit->property("dataFileType").toInt();
+        QStringList filenames = lineEdit->text().split(",", QString::SkipEmptyParts);
+        foreach (const QString &filename, filenames) {
+            DataFile df(dataFileType, filename.trimmed(), pos++);
+            dataFiles << df;
+        }
+    }
     m_settings->setDataFiles(dataFiles);
 
     m_settings->setUseYoutubePluginUrls(ui->useYoutubePluginUrls->isChecked());
@@ -390,13 +404,7 @@ void SettingsWidget::saveSettings()
     MessageBox::instance()->showMessage(tr("Settings saved"));
 }
 
-/**
- * @brief Adds a directory
- * @param dir Directory to add
- * @param separateFolders
- * @param dirType
- */
-void SettingsWidget::addDir(QString dir, bool separateFolders, bool autoReload, SettingsDirType dirType)
+void SettingsWindow::addDir(QString dir, bool separateFolders, bool autoReload, SettingsDirType dirType)
 {
     dir = QDir::toNativeSeparators(dir);
     if (!dir.isEmpty()) {
@@ -441,10 +449,7 @@ void SettingsWidget::addDir(QString dir, bool separateFolders, bool autoReload, 
     }
 }
 
-/**
- * @brief Removes a directory
- */
-void SettingsWidget::removeDir()
+void SettingsWindow::removeDir()
 {
     int row = ui->dirs->currentRow();
     if (row < 0)
@@ -452,10 +457,7 @@ void SettingsWidget::removeDir()
     ui->dirs->removeRow(row);
 }
 
-/**
- * @brief Organize button clicked
- */
-void SettingsWidget::organize()
+void SettingsWindow::organize()
 {
     MovieFilesOrganizer* organizer = new MovieFilesOrganizer(this);
 
@@ -491,11 +493,7 @@ void SettingsWidget::organize()
     }
 }
 
-/**
- * @brief Enables/disables the buttons to operate on dirs
- * @param currentRow Current row in the dir list
- */
-void SettingsWidget::dirListRowChanged(int currentRow)
+void SettingsWindow::dirListRowChanged(int currentRow)
 {
     if (currentRow < 0 || currentRow >= ui->dirs->rowCount()) {
         ui->buttonRemoveDir->setDisabled(true);
@@ -512,10 +510,7 @@ void SettingsWidget::dirListRowChanged(int currentRow)
     }
 }
 
-/**
- * @brief Enables/Disables the proxy inputs
- */
-void SettingsWidget::onUseProxy()
+void SettingsWindow::onUseProxy()
 {
     bool enabled = ui->chkUseProxy->isChecked();
     ui->proxyType->setEnabled(enabled);
@@ -525,64 +520,34 @@ void SettingsWidget::onUseProxy()
     ui->proxyPassword->setEnabled(enabled);
 }
 
-/**
- * @brief Shows a native file dialog and adds the chosen dir
- */
-void SettingsWidget::chooseDirToAdd()
+void SettingsWindow::chooseDirToAdd()
 {
     QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a directory containing your movies, TV show or concerts"), QDir::homePath());
     if (!dir.isEmpty())
         addDir(dir);
 }
 
-void SettingsWidget::onDefaultsEden()
+void SettingsWindow::fillDataFiles()
 {
-    m_settings->loadEdenDefaults();
-    fillDataFiles();
+    foreach (QLineEdit *lineEdit, findChildren<QLineEdit*>()) {
+        if (lineEdit->property("dataFileType").isNull())
+            continue;
+        int dataFileType = lineEdit->property("dataFileType").toInt();
+        QList<DataFile> dataFiles = m_settings->dataFiles(dataFileType);
+        QStringList filenames;
+        foreach (DataFile dataFile, dataFiles)
+            filenames << dataFile.fileName();
+        lineEdit->setText(filenames.join(","));
+    }
 }
 
-void SettingsWidget::onDefaultsFrodo()
-{
-    m_settings->loadFrodoDefaults();
-    fillDataFiles();
-}
-
-void SettingsWidget::fillDataFiles()
-{
-    // Data Files
-    ui->movieNfoList->setDataFiles(m_settings->dataFiles(DataFileType::MovieNfo), DataFileType::MovieNfo);
-    ui->movieBackdropList->setDataFiles(m_settings->dataFiles(DataFileType::MovieBackdrop), DataFileType::MovieBackdrop);
-    ui->movieCdArtList->setDataFiles(m_settings->dataFiles(DataFileType::MovieCdArt), DataFileType::MovieCdArt);
-    ui->movieClearArtList->setDataFiles(m_settings->dataFiles(DataFileType::MovieClearArt), DataFileType::MovieClearArt);
-    ui->movieLogoList->setDataFiles(m_settings->dataFiles(DataFileType::MovieLogo), DataFileType::MovieLogo);
-    ui->moviePosterList->setDataFiles(m_settings->dataFiles(DataFileType::MoviePoster), DataFileType::MoviePoster);
-    ui->concertNfoList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertNfo), DataFileType::ConcertNfo);
-    ui->concertBackdropList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertBackdrop), DataFileType::ConcertBackdrop);
-    ui->concertCdArtList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertCdArt), DataFileType::ConcertCdArt);
-    ui->concertClearArtList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertClearArt), DataFileType::ConcertClearArt);
-    ui->concertLogoList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertLogo), DataFileType::ConcertLogo);
-    ui->concertPosterList->setDataFiles(m_settings->dataFiles(DataFileType::ConcertPoster), DataFileType::ConcertPoster);
-    ui->tvShowNfoList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowNfo), DataFileType::TvShowNfo);
-    ui->tvShowBackdropList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowBackdrop), DataFileType::TvShowBackdrop);
-    ui->tvShowClearArtList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowClearArt), DataFileType::TvShowClearArt);
-    ui->tvShowLogoList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowLogo), DataFileType::TvShowLogo);
-    ui->tvShowPosterList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowPoster), DataFileType::TvShowPoster);
-    ui->tvShowBannerList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowBanner), DataFileType::TvShowBanner);
-    ui->tvShowCharacterArtList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowCharacterArt), DataFileType::TvShowCharacterArt);
-    ui->tvShowSeasonPosterList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowSeasonPoster), DataFileType::TvShowSeasonPoster);
-    ui->tvShowSeasonBackdropList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowSeasonBackdrop), DataFileType::TvShowSeasonBackdrop);
-    ui->tvShowSeasonBannerList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowSeasonBanner), DataFileType::TvShowSeasonBanner);
-    ui->tvShowEpisodeNfoList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowEpisodeNfo), DataFileType::TvShowEpisodeNfo);
-    ui->tvShowEpisodeThumbList->setDataFiles(m_settings->dataFiles(DataFileType::TvShowEpisodeThumb), DataFileType::TvShowEpisodeThumb);
-}
-
-void SettingsWidget::onComboMovieSetArtworkChanged()
+void SettingsWindow::onComboMovieSetArtworkChanged()
 {
     ui->btnMovieSetArtworkDir->setEnabled(ui->comboMovieSetArtwork->itemData(ui->comboMovieSetArtwork->currentIndex()).toInt() == MovieSetArtworkSingleArtworkFolder);
     ui->movieSetArtworkDir->setEnabled(ui->comboMovieSetArtwork->itemData(ui->comboMovieSetArtwork->currentIndex()).toInt() == MovieSetArtworkSingleArtworkFolder);
 }
 
-void SettingsWidget::onChooseMovieSetArtworkDir()
+void SettingsWindow::onChooseMovieSetArtworkDir()
 {
     QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a directory where your movie set artwork is stored"), QDir::homePath());
     if (!dir.isEmpty())

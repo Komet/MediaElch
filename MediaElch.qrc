@@ -68,6 +68,12 @@
         <file>i18n/qt_fr.qm</file>
         <file>i18n/qt_pt.qm</file>
         <file>img/pencil.png</file>
+        <file>img/scraper_menu.png</file>
+        <file>img/scraper_menuActive.png</file>
+        <file>img/xbmc_menu.png</file>
+        <file>img/xbmc_menuActive.png</file>
+        <file>img/network_menu.png</file>
+        <file>img/network_menuActive.png</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>

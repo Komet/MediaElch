@@ -12,7 +12,7 @@
 #include "renamer/Renamer.h"
 #include "smallWidgets/FilterWidget.h"
 #include "settings/Settings.h"
-#include "settings/SettingsWidget.h"
+#include "settings/SettingsWindow.h"
 #include "support/SupportDialog.h"
 #include "xbmc/XbmcSync.h"
 
@@ -67,7 +67,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Settings *m_settings;
-    SettingsWidget *m_settingsWidget;
+    SettingsWindow *m_settingsWindow;
     AboutDialog *m_aboutDialog;
     SupportDialog *m_supportDialog;
     FileScannerDialog *m_fileScannerDialog;

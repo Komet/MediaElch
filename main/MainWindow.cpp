@@ -59,7 +59,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_aboutDialog = new AboutDialog(ui->centralWidget);
     m_supportDialog = new SupportDialog(ui->centralWidget);
-    m_settingsWidget = new SettingsWidget(ui->centralWidget);
+    m_settingsWindow = new SettingsWindow(ui->centralWidget);
     m_filterWidget = new FilterWidget();
     m_fileScannerDialog = new FileScannerDialog(ui->centralWidget);
     m_xbmcSync = new XbmcSync(ui->centralWidget);
@@ -150,8 +150,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(m_renamer, SIGNAL(sigFilesRenamed(Renamer::RenameType)), this, SLOT(onFilesRenamed(Renamer::RenameType)));
 
-    connect(m_settingsWidget, SIGNAL(accepted()), this, SLOT(onRenewModels()));
-    connect(m_settingsWidget, SIGNAL(accepted()), this, SLOT(onFilesRenamed()));
+    connect(m_settingsWindow, SIGNAL(sigSaved()), this, SLOT(onRenewModels()));
+    connect(m_settingsWindow, SIGNAL(sigSaved()), this, SLOT(onFilesRenamed()));
 
     connect(ui->setsWidget, SIGNAL(sigJumpToMovie(Movie*)), this, SLOT(onJumpToMovie(Movie*)));
     connect(ui->certificationWidget, SIGNAL(sigJumpToMovie(Movie*)), this, SLOT(onJumpToMovie(Movie*)));
@@ -301,7 +301,7 @@ void MainWindow::setupToolbar()
     connect(m_actionSaveAll, SIGNAL(triggered()), this, SLOT(onActionSaveAll()));
     connect(m_actionReload, SIGNAL(triggered()), this, SLOT(onActionReload()));
     connect(m_actionAbout, SIGNAL(triggered()), m_aboutDialog, SLOT(exec()));
-    connect(m_actionSettings, SIGNAL(triggered()), m_settingsWidget, SLOT(exec()));
+    connect(m_actionSettings, SIGNAL(triggered()), m_settingsWindow, SLOT(show()));
     connect(m_actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(m_actionLike, SIGNAL(triggered()), m_supportDialog, SLOT(exec()));
     connect(m_actionXbmc, SIGNAL(triggered()), this, SLOT(onActionXbmc()));
