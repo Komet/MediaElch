@@ -68,6 +68,8 @@
         <file>i18n/qt_fr.qm</file>
         <file>i18n/qt_pt.qm</file>
         <file>img/pencil.png</file>
+        <file>i18n/MediaElch_no.qm</file>
+        <file>i18n/MediaElch_cs_CZ.qm</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>
