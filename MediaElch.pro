@@ -290,7 +290,8 @@ TRANSLATIONS += \
     i18n/MediaElch_de.ts \
     i18n/MediaElch_fr.ts \
     i18n/MediaElch_cs_CZ.ts \
-    i18n/MediaElch_pt_BR.ts
+    i18n/MediaElch_pt_BR.ts \
+    i18n/MediaElch_no.ts
 
 
 # qjsonrpc
