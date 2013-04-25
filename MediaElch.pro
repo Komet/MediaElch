@@ -9,7 +9,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 greaterThan(QT_MAJOR_VERSION, 4): include(qtmacextras/src/qtmacextras.pri)
 
-LIBS += -lmediainfo -lzen -lz
+LIBS += -lmediainfo -lzen -lz -lquazip
 
 unix:LIBS += -lcurl
 DEFINES += UNICODE

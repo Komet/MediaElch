@@ -1020,6 +1020,7 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="page"/>
      </widget>
     </item>
     <item>
@@ -1090,22 +1091,23 @@
    <addaction name="actionConcerts"/>
    <addaction name="actionXBMC"/>
    <addaction name="actionNetwork"/>
+   <addaction name="actionExport"/>
   </widget>
   <action name="actionMovies">
    <property name="icon">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/video_menu.png</normaloff>:/img/video_menu.png</iconset>
+     <normaloff>:/settings/movies.png</normaloff>:/settings/movies.png</iconset>
    </property>
    <property name="text">
     <string>Movies</string>
    </property>
    <property name="iconNormal" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/video_menu.png</normaloff>:/img/video_menu.png</iconset>
+     <normaloff>:/settings/movies.png</normaloff>:/settings/movies.png</iconset>
    </property>
    <property name="iconActive" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/video_menuActive.png</normaloff>:/img/video_menuActive.png</iconset>
+     <normaloff>:/settings/movies_active.png</normaloff>:/settings/movies_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>2</number>
@@ -1114,18 +1116,18 @@
   <action name="actionTV_Shows">
    <property name="icon">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/display_on_menu.png</normaloff>:/img/display_on_menu.png</iconset>
+     <normaloff>:/settings/tvshows.png</normaloff>:/settings/tvshows.png</iconset>
    </property>
    <property name="text">
     <string>TV Shows</string>
    </property>
    <property name="iconNormal" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/display_on_menu.png</normaloff>:/img/display_on_menu.png</iconset>
+     <normaloff>:/settings/tvshows.png</normaloff>:/settings/tvshows.png</iconset>
    </property>
    <property name="iconActive" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/display_on_menuActive.png</normaloff>:/img/display_on_menuActive.png</iconset>
+     <normaloff>:/settings/tvshows_active.png</normaloff>:/settings/tvshows_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>3</number>
@@ -1134,19 +1136,19 @@
   <action name="actionConcerts">
    <property name="icon">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/concerts_menu.png</normaloff>
-     <normalon>:/img/concerts_menuActive.png</normalon>:/img/concerts_menu.png</iconset>
+     <normaloff>:/settings/concerts.png</normaloff>
+     <normalon>:/img/concerts_menuActive.png</normalon>:/settings/concerts.png</iconset>
    </property>
    <property name="text">
     <string>Concerts</string>
    </property>
    <property name="iconNormal" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/concerts_menu.png</normaloff>:/img/concerts_menu.png</iconset>
+     <normaloff>:/settings/concerts.png</normaloff>:/settings/concerts.png</iconset>
    </property>
    <property name="iconActive" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/concerts_menuActive.png</normaloff>:/img/concerts_menuActive.png</iconset>
+     <normaloff>:/settings/concerts_active.png</normaloff>:/settings/concerts_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>4</number>
@@ -1155,18 +1157,18 @@
   <action name="actionGlobal">
    <property name="icon">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/spanner_menu.png</normaloff>:/img/spanner_menu.png</iconset>
+     <normaloff>:/settings/global.png</normaloff>:/settings/global.png</iconset>
    </property>
    <property name="text">
     <string>Global</string>
    </property>
    <property name="iconNormal" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/spanner_menu.png</normaloff>:/img/spanner_menu.png</iconset>
+     <normaloff>:/settings/global.png</normaloff>:/settings/global.png</iconset>
    </property>
    <property name="iconActive" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/spanner_menuActive.png</normaloff>:/img/spanner_menuActive.png</iconset>
+     <normaloff>:/settings/global_active.png</normaloff>:/settings/global_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>0</number>
@@ -1175,18 +1177,18 @@
   <action name="actionXBMC">
    <property name="icon">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/xbmc_menu.png</normaloff>:/img/xbmc_menu.png</iconset>
+     <normaloff>:/settings/xbmc.png</normaloff>:/settings/xbmc.png</iconset>
    </property>
    <property name="text">
     <string>XBMC</string>
    </property>
    <property name="iconNormal" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/xbmc_menu.png</normaloff>:/img/xbmc_menu.png</iconset>
+     <normaloff>:/settings/xbmc.png</normaloff>:/settings/xbmc.png</iconset>
    </property>
    <property name="iconActive" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/xbmc_menuActive.png</normaloff>:/img/xbmc_menuActive.png</iconset>
+     <normaloff>:/settings/xbmc_active.png</normaloff>:/settings/xbmc_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>5</number>
@@ -1195,18 +1197,18 @@
   <action name="actionNetwork">
    <property name="icon">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/network_menu.png</normaloff>:/img/network_menu.png</iconset>
+     <normaloff>:/settings/network.png</normaloff>:/settings/network.png</iconset>
    </property>
    <property name="text">
     <string>Network</string>
    </property>
    <property name="iconNormal" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/network_menu.png</normaloff>:/img/network_menu.png</iconset>
+     <normaloff>:/settings/network.png</normaloff>:/settings/network.png</iconset>
    </property>
    <property name="iconActive" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/network_menuActive.png</normaloff>:/img/network_menuActive.png</iconset>
+     <normaloff>:/settings/network_active.png</normaloff>:/settings/network_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>6</number>
@@ -1215,21 +1217,41 @@
   <action name="actionScraper">
    <property name="icon">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/scraper_menu.png</normaloff>:/img/scraper_menu.png</iconset>
+     <normaloff>:/settings/scraper.png</normaloff>:/settings/scraper.png</iconset>
    </property>
    <property name="text">
     <string>Scraper</string>
    </property>
    <property name="iconNormal" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/scraper_menu.png</normaloff>:/img/scraper_menu.png</iconset>
+     <normaloff>:/settings/scraper.png</normaloff>:/settings/scraper.png</iconset>
    </property>
    <property name="iconActive" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/img/scraper_menuActive.png</normaloff>:/img/scraper_menuActive.png</iconset>
+     <normaloff>:/settings/scraper_active.png</normaloff>:/settings/scraper_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>1</number>
+   </property>
+  </action>
+  <action name="actionExport">
+   <property name="icon">
+    <iconset resource="../MediaElch.qrc">
+     <normaloff>:/settings/export.png</normaloff>:/settings/export.png</iconset>
+   </property>
+   <property name="text">
+    <string>Export</string>
+   </property>
+   <property name="iconNormal" stdset="0">
+    <iconset resource="../MediaElch.qrc">
+     <normaloff>:/settings/export.png</normaloff>:/settings/export.png</iconset>
+   </property>
+   <property name="iconActive" stdset="0">
+    <iconset resource="../MediaElch.qrc">
+     <normaloff>:/settings/export_active.png</normaloff>:/settings/export_active.png</iconset>
+   </property>
+   <property name="page" stdset="0">
+    <number>7</number>
    </property>
   </action>
  </widget>
@@ -1354,6 +1376,22 @@
     <hint type="destinationlabel">
      <x>437</x>
      <y>296</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionExport</sender>
+   <signal>triggered()</signal>
+   <receiver>SettingsWindow</receiver>
+   <slot>onAction()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>437</x>
+     <y>317</y>
     </hint>
    </hints>
   </connection>

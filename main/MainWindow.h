@@ -83,6 +83,7 @@ private:
     QAction *m_actionLike;
     QAction *m_actionReload;
     QAction *m_actionRename;
+    QAction *m_actionExport;
     QMap<MainWidgets, QMap<MainActions, bool> > m_actions;
     QMap<MainWidgets, QIcon> m_icons;
     FilterWidget *m_filterWidget;

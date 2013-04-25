@@ -68,12 +68,7 @@
         <file>i18n/qt_fr.qm</file>
         <file>i18n/qt_pt.qm</file>
         <file>img/pencil.png</file>
-        <file>img/scraper_menu.png</file>
-        <file>img/scraper_menuActive.png</file>
-        <file>img/xbmc_menu.png</file>
-        <file>img/xbmc_menuActive.png</file>
-        <file>img/network_menu.png</file>
-        <file>img/network_menuActive.png</file>
+        <file>img/export.png</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>
@@ -127,5 +122,23 @@
         <file alias="streamDetails/red">img/mediaStatus/streamdetails_red.png</file>
         <file alias="id/green">img/mediaStatus/id_green.png</file>
         <file alias="id/red">img/mediaStatus/id_red.png</file>
+    </qresource>
+    <qresource prefix="/settings">
+        <file alias="export.png">img/settings/export.png</file>
+        <file alias="global.png">img/settings/global.png</file>
+        <file alias="movies.png">img/settings/movies.png</file>
+        <file alias="network.png">img/settings/network.png</file>
+        <file alias="scraper.png">img/settings/scraper.png</file>
+        <file alias="tvshows.png">img/settings/tvshows.png</file>
+        <file alias="xbmc.png">img/settings/xbmc.png</file>
+        <file alias="concerts.png">img/settings/concerts.png</file>
+        <file alias="concerts_active.png">img/settings/concerts_active.png</file>
+        <file alias="export_active.png">img/settings/export_active.png</file>
+        <file alias="global_active.png">img/settings/global_active.png</file>
+        <file alias="movies_active.png">img/settings/movies_active.png</file>
+        <file alias="network_active.png">img/settings/network_active.png</file>
+        <file alias="scraper_active.png">img/settings/scraper_active.png</file>
+        <file alias="tvshows_active.png">img/settings/tvshows_active.png</file>
+        <file alias="xbmc_active.png">img/settings/xbmc_active.png</file>
     </qresource>
 </RCC>

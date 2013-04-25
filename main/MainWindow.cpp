@@ -150,8 +150,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(m_renamer, SIGNAL(sigFilesRenamed(Renamer::RenameType)), this, SLOT(onFilesRenamed(Renamer::RenameType)));
 
-    connect(m_settingsWindow, SIGNAL(sigSaved()), this, SLOT(onRenewModels()));
-    connect(m_settingsWindow, SIGNAL(sigSaved()), this, SLOT(onFilesRenamed()));
+    connect(m_settingsWindow, SIGNAL(sigSaved()), this, SLOT(onFilesRenamed()), Qt::QueuedConnection);
+    connect(m_settingsWindow, SIGNAL(sigSaved()), this, SLOT(onRenewModels()), Qt::QueuedConnection);
 
     connect(ui->setsWidget, SIGNAL(sigJumpToMovie(Movie*)), this, SLOT(onJumpToMovie(Movie*)));
     connect(ui->certificationWidget, SIGNAL(sigJumpToMovie(Movie*)), this, SLOT(onJumpToMovie(Movie*)));
@@ -241,7 +241,7 @@ void MainWindow::setupToolbar()
     icons << QPixmap(":/img/spanner.png") << QPixmap(":/img/info.png") << QPixmap(":/img/folder_in.png")
           << QPixmap(":/img/stop.png") << QPixmap(":/img/magnifier.png") <<QPixmap(":/img/save.png")
           << QPixmap(":/img/storage.png") << QPixmap(":/img/heart.png") << QPixmap(":/img/arrow_circle_right.png")
-          << QPixmap(":/img/xbmc.png") << QPixmap(":/img/folder_64.png");
+          << QPixmap(":/img/xbmc.png") << QPixmap(":/img/folder_64.png") << QPixmap(":/img/export.png");
     for (int i=0, n=icons.count() ; i<n ; ++i) {
         p.begin(&icons[i]);
         p.setCompositionMode(QPainter::CompositionMode_SourceIn);
@@ -274,10 +274,13 @@ void MainWindow::setupToolbar()
     m_actionXbmc = new QAction(QIcon(icons[9]), tr("XBMC"), this);
     m_actionXbmc->setToolTip(tr("Synchronize to XBMC"));
 
+    m_actionExport = new QAction(QIcon(icons[11]), tr("Export"), this);
+    m_actionExport->setToolTip(tr("Export Database"));
+
     m_actionAbout = new QAction(QIcon(icons[1]), tr("About"), this);
     m_actionQuit = new QAction(QIcon(icons[3]), tr("Quit"), this);
 
-    m_actionLike = new QAction(QIcon(icons[7]), tr("Support"), this);
+    m_actionLike = new QAction(QIcon(icons[7]), tr("Donate"), this);
 
     toolBar->addAction(m_actionSearch);
     toolBar->addAction(m_actionSave);
@@ -286,6 +289,7 @@ void MainWindow::setupToolbar()
     toolBar->addAction(m_actionRename);
     toolBar->addAction(m_actionSettings);
     toolBar->addAction(m_actionXbmc);
+    toolBar->addAction(m_actionExport);
     toolBar->addAction(m_actionAbout);
     toolBar->addAction(m_actionQuit);
 #ifndef IS_MAC_AND_QT5
