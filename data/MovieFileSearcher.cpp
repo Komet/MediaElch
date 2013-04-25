@@ -58,7 +58,7 @@ void MovieFileSearcher::reload(bool force)
                 continue;
             qDebug() << "Scanning directory" << dir.path;
             qDebug() << "Filters are" << Settings::instance()->advanced()->movieFilters();
-            QDirIterator it(dir.path, Settings::instance()->advanced()->movieFilters(), QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files, QDirIterator::Subdirectories | QDirIterator::FollowSymlinks);
+            QDirIterator it(dir.path, Settings::instance()->advanced()->movieFilters(), QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Files, QDirIterator::Subdirectories | QDirIterator::FollowSymlinks);
             while (it.hasNext()) {
                 if (m_aborted)
                     return;

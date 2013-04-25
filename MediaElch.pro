@@ -133,7 +133,9 @@ SOURCES += main.cpp\
     data/ImageCache.cpp \
     scrapers/TvTunes.cpp \
     tvShows/TvTunesDialog.cpp \
-    settings/SettingsWindow.cpp
+    settings/SettingsWindow.cpp \
+    export/ExportTemplateLoader.cpp \
+    export/ExportTemplate.cpp
 
 HEADERS  += main/MainWindow.h \
     movies/Movie.h \
@@ -240,7 +242,9 @@ HEADERS  += main/MainWindow.h \
     scrapers/TvTunes.h \
     tvShows/TvTunesDialog.h \
     globals/LocaleStringCompare.h \
-    settings/SettingsWindow.h
+    settings/SettingsWindow.h \
+    export/ExportTemplateLoader.h \
+    export/ExportTemplate.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

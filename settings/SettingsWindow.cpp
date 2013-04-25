@@ -4,6 +4,7 @@
 #include <QAction>
 #include <QDebug>
 #include "data/MovieFilesOrganizer.h"
+#include "export/ExportTemplateLoader.h"
 #include "globals/Manager.h"
 #include "main/MessageBox.h"
 #include "settings/DataFile.h"
@@ -137,6 +138,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     connect(ui->chkUseProxy, SIGNAL(clicked()), this, SLOT(onUseProxy()));
     connect(ui->btnCancel, SIGNAL(clicked()), this, SLOT(onCancel()));
     connect(ui->btnSave, SIGNAL(clicked()), this, SLOT(onSave()));
+    connect(ExportTemplateLoader::instance(this), SIGNAL(sigTemplatesLoaded(QList<ExportTemplate*>)), this, SLOT(onTemplatesLoaded(QList<ExportTemplate*>)));
 
     ui->movieNfo->setProperty("dataFileType", DataFileType::MovieNfo);
     ui->moviePoster->setProperty("dataFileType", DataFileType::MoviePoster);
@@ -552,4 +554,14 @@ void SettingsWindow::onChooseMovieSetArtworkDir()
     QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a directory where your movie set artwork is stored"), QDir::homePath());
     if (!dir.isEmpty())
         ui->movieSetArtworkDir->setText(dir);
+}
+
+void SettingsWindow::loadRemoteTemplates()
+{
+    ExportTemplateLoader::instance()->getRemoteTemplates();
+}
+
+void SettingsWindow::onTemplatesLoaded(QList<ExportTemplate*> templates)
+{
+    // @todo: show in GUI
 }

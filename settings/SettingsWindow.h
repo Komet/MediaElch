@@ -8,6 +8,7 @@
 #include "data/ConcertScraperInterface.h"
 #include "data/ScraperInterface.h"
 #include "data/TvScraperInterface.h"
+#include "export/ExportTemplate.h"
 #include "globals/Globals.h"
 #include "settings/Settings.h"
 
@@ -44,6 +45,7 @@ private slots:
     void onUseProxy();
     void onSave();
     void onCancel();
+    void onTemplatesLoaded(QList<ExportTemplate*> templates);
 
 private:
     Ui::SettingsWindow *ui;
@@ -55,6 +57,7 @@ private:
     void loadSettings();
     void saveSettings();
     void fillDataFiles();
+    void loadRemoteTemplates();
 };
 
 #endif // SETTINGSWINDOW_H
