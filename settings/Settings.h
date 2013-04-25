@@ -23,8 +23,6 @@ public:
     AdvancedSettings* advanced();
     void loadSettings();
     void loadSettings(QSettings &settings);
-    void loadEdenDefaults();
-    void loadFrodoDefaults();
 
     QSize mainWindowSize();
     QPoint mainWindowPosition();
@@ -128,7 +126,6 @@ private:
     bool m_downloadActorImages;
     bool m_autoLoadStreamDetails;
     QList<DataFile> m_dataFiles;
-    QList<DataFile> m_initialDataFilesEden;
     QList<DataFile> m_initialDataFilesFrodo;
     bool m_usePlotForOutline;
     QString m_xbmcHost;
