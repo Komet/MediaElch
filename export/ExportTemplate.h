@@ -40,6 +40,8 @@ public:
     void setRemoteVersion(QString remoteVersion);
     void setExportSections(QList<ExportTemplate::ExportSection> exportSections);
 
+    static bool lessThan(ExportTemplate *a, ExportTemplate *b);
+
 private:
     bool m_isRemote;
     bool m_isInstalled;

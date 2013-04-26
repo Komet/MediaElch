@@ -162,6 +162,7 @@ void ExportTemplateLoader::onDownloadTemplateFinished()
     QByteArray ba = reply->readAll();
     QBuffer buffer(&ba);
     if (!unpackTemplate(buffer, exportTemplate)) {
+        qDebug() << "Could not unpack template";
         emit sigTemplateInstalled(exportTemplate, false);
         return;
     }
@@ -176,10 +177,13 @@ bool ExportTemplateLoader::uninstallTemplate(ExportTemplate *exportTemplate)
 {
     QString location = QDesktopServices::storageLocation(QDesktopServices::DataLocation) + "/export_themes/" + exportTemplate->identifier();
     QDir storageDir(location);
-    if (storageDir.exists() && !removeDir(storageDir.absolutePath()))
+    if (storageDir.exists() && !removeDir(storageDir.absolutePath())) {
+        emit sigTemplateUninstalled(exportTemplate, false);
         return false;
+    }
 
     loadLocalTemplates();
+    emit sigTemplateUninstalled(exportTemplate, true);
     emit sigTemplatesLoaded(mergeTemplates(m_localTemplates, m_remoteTemplates));
     return true;
 }
@@ -196,6 +200,11 @@ bool ExportTemplateLoader::unpackTemplate(QBuffer &buffer, ExportTemplate *expor
     storageDir.setPath(location + QDir::separator() + exportTemplate->identifier());
     if ((exportTemplate->isInstalled() || storageDir.exists()) && !uninstallTemplate(exportTemplate)) {
         qWarning() << "Could not uninstall template";
+        return false;
+    }
+
+    if (!storageDir.mkpath(storageDir.absolutePath())) {
+        qWarning() << "Could not create storage path";
         return false;
     }
 
@@ -268,6 +277,9 @@ QList<ExportTemplate*> ExportTemplateLoader::mergeTemplates(QList<ExportTemplate
             templates << remoteTemplate;
         }
     }
+
+    qSort(templates.begin(), templates.end(), ExportTemplate::lessThan);
+
     return templates;
 }
 

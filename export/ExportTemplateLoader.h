@@ -20,6 +20,7 @@ public:
 signals:
     void sigTemplatesLoaded(QList<ExportTemplate*>);
     void sigTemplateInstalled(ExportTemplate*, bool);
+    void sigTemplateUninstalled(ExportTemplate*, bool);
 
 public slots:
     void getRemoteTemplates();

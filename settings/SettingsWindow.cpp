@@ -8,6 +8,7 @@
 #include "globals/Manager.h"
 #include "main/MessageBox.h"
 #include "settings/DataFile.h"
+#include "settings/ExportTemplateWidget.h"
 
 SettingsWindow::SettingsWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -28,6 +29,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->xbmcPort->setValidator(new QIntValidator(0, 99999, ui->xbmcPort));
     ui->dirs->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->dirs->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
+    ui->exportTemplates->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 
     int scraperCounter = 0;
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
@@ -139,6 +141,8 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     connect(ui->btnCancel, SIGNAL(clicked()), this, SLOT(onCancel()));
     connect(ui->btnSave, SIGNAL(clicked()), this, SLOT(onSave()));
     connect(ExportTemplateLoader::instance(this), SIGNAL(sigTemplatesLoaded(QList<ExportTemplate*>)), this, SLOT(onTemplatesLoaded(QList<ExportTemplate*>)));
+    connect(ExportTemplateLoader::instance(this), SIGNAL(sigTemplateInstalled(ExportTemplate*,bool)), this, SLOT(onTemplateInstalled(ExportTemplate*,bool)));
+    connect(ExportTemplateLoader::instance(this), SIGNAL(sigTemplateUninstalled(ExportTemplate*,bool)), this, SLOT(onTemplateUninstalled(ExportTemplate*,bool)));
 
     ui->movieNfo->setProperty("dataFileType", DataFileType::MovieNfo);
     ui->moviePoster->setProperty("dataFileType", DataFileType::MoviePoster);
@@ -181,6 +185,8 @@ SettingsWindow::~SettingsWindow()
 
 void SettingsWindow::show()
 {
+    ui->themesErrorMessage->setText("");
+    loadRemoteTemplates();
     loadSettings();
     QMainWindow::show();
 }
@@ -563,5 +569,34 @@ void SettingsWindow::loadRemoteTemplates()
 
 void SettingsWindow::onTemplatesLoaded(QList<ExportTemplate*> templates)
 {
-    // @todo: show in GUI
+    ui->exportTemplates->clearContents();
+    ui->exportTemplates->setRowCount(0);
+
+    foreach (ExportTemplate *exportTemplate, templates) {
+        ExportTemplateWidget *widget = new ExportTemplateWidget(ui->exportTemplates);
+        widget->setExportTemplate(exportTemplate);
+
+        int row = ui->exportTemplates->rowCount();
+        ui->exportTemplates->insertRow(row);
+        ui->exportTemplates->setCellWidget(row, 0, widget);
+        widget->adjustSize();
+    }
+}
+
+void SettingsWindow::onTemplateInstalled(ExportTemplate *exportTemplate, bool success)
+{
+    ui->themesErrorMessage->setStyleSheet(success ? "color: #468847;" : "color: #B94A48;");
+    if (success)
+        ui->themesErrorMessage->setText(tr("Theme \"%1\" was successfully installed").arg(exportTemplate->name()));
+    else
+        ui->themesErrorMessage->setText(tr("There was an error while processing the theme \"%1\"").arg(exportTemplate->name()));
+}
+
+void SettingsWindow::onTemplateUninstalled(ExportTemplate *exportTemplate, bool success)
+{
+    ui->themesErrorMessage->setStyleSheet(success ? "color: #468847;" : "color: #B94A48;");
+    if (success)
+        ui->themesErrorMessage->setText(tr("Theme \"%1\" was successfully uninstalled").arg(exportTemplate->name()));
+    else
+        ui->themesErrorMessage->setText(tr("There was an error while processing the theme \"%1\"").arg(exportTemplate->name()));
 }

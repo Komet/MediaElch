@@ -140,6 +140,11 @@ QMap<QString, QString> ExportTemplate::descriptions() const
     return m_description;
 }
 
+bool ExportTemplate::lessThan(ExportTemplate *a, ExportTemplate *b)
+{
+    return QString::localeAwareCompare(a->name(), b->name());
+}
+
 QDebug operator<<(QDebug dbg, const ExportTemplate &exportTemplate)
 {
     QString nl = "\n";

@@ -135,7 +135,9 @@ SOURCES += main.cpp\
     tvShows/TvTunesDialog.cpp \
     settings/SettingsWindow.cpp \
     export/ExportTemplateLoader.cpp \
-    export/ExportTemplate.cpp
+    export/ExportTemplate.cpp \
+    settings/ExportTemplateWidget.cpp \
+    smallWidgets/StyledPushButton.cpp
 
 HEADERS  += main/MainWindow.h \
     movies/Movie.h \
@@ -244,7 +246,9 @@ HEADERS  += main/MainWindow.h \
     globals/LocaleStringCompare.h \
     settings/SettingsWindow.h \
     export/ExportTemplateLoader.h \
-    export/ExportTemplate.h
+    export/ExportTemplate.h \
+    settings/ExportTemplateWidget.h \
+    smallWidgets/StyledPushButton.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -280,7 +284,8 @@ FORMS    += main/MainWindow.ui \
     tvShows/TvShowWidgetSeason.ui \
     renamer/Renamer.ui \
     tvShows/TvTunesDialog.ui \
-    settings/SettingsWindow.ui
+    settings/SettingsWindow.ui \
+    settings/ExportTemplateWidget.ui
 
 RESOURCES += \
     MediaElch.qrc
