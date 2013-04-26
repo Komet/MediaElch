@@ -217,6 +217,8 @@ public:
     DiscType discType();
     void setDiscType(DiscType type);
 
+    static bool lessThan(Movie *a, Movie *b);
+
 signals:
     void sigChanged(Movie*);
 

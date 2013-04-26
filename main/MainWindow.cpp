@@ -65,6 +65,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_xbmcSync = new XbmcSync(ui->centralWidget);
     m_renamer = new Renamer(ui->centralWidget);
     m_settings = Settings::instance(this);
+    m_exportDialog = new ExportDialog(this);
     setupToolbar();
 
     MessageBox::instance(this)->reposition(this->size());
@@ -310,6 +311,7 @@ void MainWindow::setupToolbar()
     connect(m_actionLike, SIGNAL(triggered()), m_supportDialog, SLOT(exec()));
     connect(m_actionXbmc, SIGNAL(triggered()), this, SLOT(onActionXbmc()));
     connect(m_actionRename, SIGNAL(triggered()), this, SLOT(onActionRename()));
+    connect(m_actionExport, SIGNAL(triggered()), m_exportDialog, SLOT(exec()));
 
     m_actionSearch->setEnabled(false);
     m_actionSave->setEnabled(false);

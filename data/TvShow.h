@@ -80,6 +80,7 @@ public:
     TvShowEpisode *episode(int season, int episode);
     QList<int> seasons();
     QList<TvShowEpisode*> episodes();
+    QList<TvShowEpisode*> episodes(int season);
     TvShowModelItem *modelItem();
     bool hasChanged() const;
     bool infoLoaded() const;
@@ -172,6 +173,8 @@ public:
     void clearExtraFanartData();
 
     void scraperLoadDone();
+
+    static bool lessThan(TvShow *a, TvShow *b);
 
 signals:
     void sigLoaded(TvShow*);

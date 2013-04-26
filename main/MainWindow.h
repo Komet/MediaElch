@@ -7,6 +7,7 @@
 #include "globals/Filter.h"
 #include "globals/Globals.h"
 #include "data/MovieFileSearcher.h"
+#include "export/ExportDialog.h"
 #include "main/AboutDialog.h"
 #include "main/FileScannerDialog.h"
 #include "renamer/Renamer.h"
@@ -71,6 +72,7 @@ private:
     AboutDialog *m_aboutDialog;
     SupportDialog *m_supportDialog;
     FileScannerDialog *m_fileScannerDialog;
+    ExportDialog *m_exportDialog;
     XbmcSync *m_xbmcSync;
     Renamer *m_renamer;
     QAction *m_actionSearch;

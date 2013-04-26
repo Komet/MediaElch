@@ -894,6 +894,13 @@ void TvShowEpisode::removeImage(ImageType type)
     setChanged(true);
 }
 
+bool TvShowEpisode::lessThan(TvShowEpisode *a, TvShowEpisode *b)
+{
+    QString aT = a->seasonString() + a->episodeString() + Helper::appendArticle(a->name());
+    QString bT = b->seasonString() + b->episodeString() + Helper::appendArticle(b->name());
+    return (QString::localeAwareCompare(aT, bT) < 0);
+}
+
 /*** DEBUG ***/
 
 QDebug operator<<(QDebug dbg, const TvShowEpisode &episode)

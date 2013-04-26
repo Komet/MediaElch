@@ -585,18 +585,16 @@ void SettingsWindow::onTemplatesLoaded(QList<ExportTemplate*> templates)
 
 void SettingsWindow::onTemplateInstalled(ExportTemplate *exportTemplate, bool success)
 {
-    ui->themesErrorMessage->setStyleSheet(success ? "color: #468847;" : "color: #B94A48;");
     if (success)
-        ui->themesErrorMessage->setText(tr("Theme \"%1\" was successfully installed").arg(exportTemplate->name()));
+        ui->themesErrorMessage->setSuccessMessage(tr("Theme \"%1\" was successfully installed").arg(exportTemplate->name()));
     else
-        ui->themesErrorMessage->setText(tr("There was an error while processing the theme \"%1\"").arg(exportTemplate->name()));
+        ui->themesErrorMessage->setErrorMessage(tr("There was an error while processing the theme \"%1\"").arg(exportTemplate->name()));
 }
 
 void SettingsWindow::onTemplateUninstalled(ExportTemplate *exportTemplate, bool success)
 {
-    ui->themesErrorMessage->setStyleSheet(success ? "color: #468847;" : "color: #B94A48;");
     if (success)
-        ui->themesErrorMessage->setText(tr("Theme \"%1\" was successfully uninstalled").arg(exportTemplate->name()));
+        ui->themesErrorMessage->setSuccessMessage(tr("Theme \"%1\" was successfully uninstalled").arg(exportTemplate->name()));
     else
-        ui->themesErrorMessage->setText(tr("There was an error while processing the theme \"%1\"").arg(exportTemplate->name()));
+        ui->themesErrorMessage->setErrorMessage(tr("There was an error while processing the theme \"%1\"").arg(exportTemplate->name()));
 }

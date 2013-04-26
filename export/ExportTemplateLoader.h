@@ -16,6 +16,7 @@ public:
     explicit ExportTemplateLoader(QObject *parent = 0);
     static ExportTemplateLoader *instance(QObject *parent = 0);
     QList<ExportTemplate*> installedTemplates();
+    ExportTemplate *getTemplateByIdentifier(QString identifier);
 
 signals:
     void sigTemplatesLoaded(QList<ExportTemplate*>);

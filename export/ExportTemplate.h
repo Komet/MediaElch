@@ -12,7 +12,8 @@ class ExportTemplate : public QObject
     Q_OBJECT
 public:
     enum ExportSection {
-        SectionMovies, SectionTvShows, SectionConcerts
+        SectionMovies, SectionTvShows, SectionConcerts, SectionMovie,
+        SectionConcert, SectionTvShow, SectionEpisode
     };
 
     explicit ExportTemplate(QObject *parent = 0);
@@ -28,6 +29,9 @@ public:
     QString remoteFile() const;
     QList<ExportTemplate::ExportSection> exportSections();
     QMap<QString, QString> descriptions() const;
+    QString getTemplate(ExportTemplate::ExportSection section);
+    QString getTemplateLocation();
+    void copyTo(QString path);
 
     void setRemote(bool remote);
     void setInstalled(bool installed);
@@ -53,6 +57,7 @@ private:
     QString m_version;
     QString m_remoteVersion;
     QList<ExportTemplate::ExportSection> m_exportSections;
+    bool copyDir(const QString &srcPath, const QString &dstPath);
 };
 
 QDebug operator<<(QDebug dbg, const ExportTemplate &exportTemplate);

@@ -165,6 +165,8 @@ public:
     void setDiscType(DiscType type);
     DiscType discType();
 
+    static bool lessThan(Concert *a, Concert *b);
+
 signals:
     void loaded(Concert*);
     void sigChanged(Concert*);

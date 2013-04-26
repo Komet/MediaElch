@@ -1023,7 +1023,7 @@
       <widget class="QWidget" name="page_7">
        <layout class="QVBoxLayout" name="verticalLayout_9">
         <item>
-         <widget class="QLabel" name="themesErrorMessage">
+         <widget class="MessageLabel" name="themesErrorMessage">
           <property name="styleSheet">
            <string notr="true">color: #B94A48;</string>
           </property>
@@ -1306,6 +1306,11 @@ border: none;</string>
    <extends>QStackedWidget</extends>
    <header>smallWidgets/SlidingStackedWidget.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MessageLabel</class>
+   <extends>QLabel</extends>
+   <header>smallWidgets/MessageLabel.h</header>
   </customwidget>
  </customwidgets>
  <resources>

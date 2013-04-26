@@ -285,5 +285,16 @@ QList<ExportTemplate*> ExportTemplateLoader::mergeTemplates(QList<ExportTemplate
 
 QList<ExportTemplate*> ExportTemplateLoader::installedTemplates()
 {
+    qSort(m_localTemplates.begin(), m_localTemplates.end(), ExportTemplate::lessThan);
     return m_localTemplates;
+}
+
+ExportTemplate *ExportTemplateLoader::getTemplateByIdentifier(QString identifier)
+{
+    foreach (ExportTemplate *exportTemplate, m_localTemplates) {
+        if (exportTemplate->identifier() == identifier)
+            return exportTemplate;
+    }
+
+    return 0;
 }

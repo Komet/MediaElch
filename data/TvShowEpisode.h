@@ -120,6 +120,8 @@ public:
 
     void scraperLoadDone();
 
+    static bool lessThan(TvShowEpisode *a, TvShowEpisode *b);
+
 signals:
     void sigLoaded();
     void sigChanged(TvShowEpisode*);

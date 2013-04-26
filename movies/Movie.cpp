@@ -6,6 +6,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include "data/ImageCache.h"
+#include "globals/Helper.h"
 #include "settings/Settings.h"
 
 /**
@@ -1665,6 +1666,11 @@ void Movie::removeImage(ImageType type)
         break;
     }
     setChanged(true);
+}
+
+bool Movie::lessThan(Movie *a, Movie *b)
+{
+    return (QString::localeAwareCompare(Helper::appendArticle(a->name()), Helper::appendArticle(b->name())) < 0);
 }
 
 /*** DEBUG ***/

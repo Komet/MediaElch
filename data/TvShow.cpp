@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QDir>
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 #include "globals/NameFormatter.h"
 
 /**
@@ -739,6 +740,17 @@ QList<TvShowEpisode*> TvShow::episodes()
     return m_episodes;
 }
 
+QList<TvShowEpisode*> TvShow::episodes(int season)
+{
+    QList<TvShowEpisode*> episodes;
+    foreach (TvShowEpisode *episode, m_episodes) {
+        if (episode->season() == season)
+            episodes << episode;
+    }
+
+    return episodes;
+}
+
 /**
  * @brief TvShow::modelItem
  * @return
@@ -1470,6 +1482,11 @@ void TvShow::setHasTune(bool hasTune)
 bool TvShow::hasTune() const
 {
     return m_hasTune;
+}
+
+bool TvShow::lessThan(TvShow *a, TvShow *b)
+{
+    return (QString::localeAwareCompare(Helper::appendArticle(a->name()), Helper::appendArticle(b->name())) < 0);
 }
 
 /*** DEBUG ***/

@@ -1271,3 +1271,7 @@ void Concert::removeImage(ImageType type)
     setChanged(true);
 }
 
+bool Concert::lessThan(Concert *a, Concert *b)
+{
+    return (QString::localeAwareCompare(Helper::appendArticle(a->name()), Helper::appendArticle(b->name())) < 0);
+}

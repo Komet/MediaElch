@@ -137,7 +137,9 @@ SOURCES += main.cpp\
     export/ExportTemplateLoader.cpp \
     export/ExportTemplate.cpp \
     settings/ExportTemplateWidget.cpp \
-    smallWidgets/StyledPushButton.cpp
+    smallWidgets/StyledPushButton.cpp \
+    export/ExportDialog.cpp \
+    smallWidgets/MessageLabel.cpp
 
 HEADERS  += main/MainWindow.h \
     movies/Movie.h \
@@ -248,7 +250,9 @@ HEADERS  += main/MainWindow.h \
     export/ExportTemplateLoader.h \
     export/ExportTemplate.h \
     settings/ExportTemplateWidget.h \
-    smallWidgets/StyledPushButton.h
+    smallWidgets/StyledPushButton.h \
+    export/ExportDialog.h \
+    smallWidgets/MessageLabel.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -285,7 +289,8 @@ FORMS    += main/MainWindow.ui \
     renamer/Renamer.ui \
     tvShows/TvTunesDialog.ui \
     settings/SettingsWindow.ui \
-    settings/ExportTemplateWidget.ui
+    settings/ExportTemplateWidget.ui \
+    export/ExportDialog.ui
 
 RESOURCES += \
     MediaElch.qrc
