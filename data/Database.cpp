@@ -30,7 +30,7 @@ Database::Database(QObject *parent) :
     } else {
         QSqlQuery query(*m_db);
 
-        int dbVersion = 4;
+        int dbVersion = 5;
         bool dbIsUpToDate = false;
 
         query.prepare("SELECT * FROM sqlite_master WHERE name ='settings' and type='table';");
@@ -95,7 +95,6 @@ Database::Database(QObject *parent) :
 
         query.prepare("CREATE TABLE IF NOT EXISTS concerts ( "
                       "\"idConcert\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                      "\"files\" text NOT NULL, "
                       "\"content\" text NOT NULL, "
                       "\"inSeparateFolder\" integer NOT NULL, "
                       "\"path\" text NOT NULL);");
