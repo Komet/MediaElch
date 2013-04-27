@@ -521,7 +521,7 @@ void ExportDialog::replaceImages(QString &m, const QDir &dir, const bool &subDir
             if (imageSaved) {
                 m.replace(item, (subDir ? "../" : "") + destFile);
             } else {
-                m.replace(item, (subDir ? "../" : "") + QString("defaults/%1_%2_%3x%4.jpg").arg(typeName).arg(type).arg(size.width()).arg(size.height()));
+                m.replace(item, (subDir ? "../" : "") + QString("defaults/%1_%2_%3x%4.png").arg(typeName).arg(type).arg(size.width()).arg(size.height()));
             }
         }
         pos += rx.matchedLength();

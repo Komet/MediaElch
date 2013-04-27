@@ -157,7 +157,7 @@ QString ExportTemplate::getTemplate(ExportTemplate::ExportSection section)
     else if (section == SectionConcerts)
         baseName = "concerts";
     else if (section == SectionConcert)
-        baseName = "concertc/concert";
+        baseName = "concerts/concert";
     else if (section == SectionTvShows)
         baseName = "tvshows";
     else if (section == SectionTvShow)
@@ -201,7 +201,7 @@ QString ExportTemplate::getTemplateLocation()
 void ExportTemplate::copyTo(QString path)
 {
     QStringList excludes;
-    excludes << "metadata.xml" << "index.html"
+    excludes << "metadata.xml"
              << "movies.html" << "movies"
              << "concerts.html" << "concerts"
              << "tvshows.html" << "tvshows"
