@@ -12,6 +12,8 @@ greaterThan(QT_MAJOR_VERSION, 4): include(qtmacextras/src/qtmacextras.pri)
 LIBS += -lmediainfo -lzen -lz -lquazip
 
 unix:LIBS += -lcurl
+macx:LIBS += -framework Foundation
+
 DEFINES += UNICODE
 
 TARGET = MediaElch
@@ -141,6 +143,10 @@ SOURCES += main.cpp\
     export/ExportDialog.cpp \
     smallWidgets/MessageLabel.cpp
 
+macx {
+    OBJECTIVE_SOURCES += mac/MacFullscreen.mm
+}
+
 HEADERS  += main/MainWindow.h \
     movies/Movie.h \
     globals/Globals.h \
@@ -252,7 +258,8 @@ HEADERS  += main/MainWindow.h \
     settings/ExportTemplateWidget.h \
     smallWidgets/StyledPushButton.h \
     export/ExportDialog.h \
-    smallWidgets/MessageLabel.h
+    smallWidgets/MessageLabel.h \
+    mac/MacFullscreen.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

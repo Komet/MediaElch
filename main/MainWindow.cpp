@@ -35,6 +35,10 @@
 #include "qtmacextras/src/qtmacunifiedtoolbar.h"
 #endif
 
+#ifdef Q_OS_MAC
+    #include "mac/MacFullscreen.h"
+#endif
+
 /**
  * @brief MainWindow::MainWindow
  * @param parent
@@ -106,6 +110,10 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     // Size for Screenshots
     // resize(1121, 735);
+
+    #ifdef Q_OS_MAC
+        MacFullscreen::addFullscreen(this);
+    #endif
 
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setMovie(Movie*)));
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setEnabledTrue(Movie*)));
