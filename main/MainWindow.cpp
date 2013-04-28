@@ -151,7 +151,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(m_renamer, SIGNAL(sigFilesRenamed(Renamer::RenameType)), this, SLOT(onFilesRenamed(Renamer::RenameType)));
 
-    connect(m_settingsWindow, SIGNAL(sigSaved()), this, SLOT(onFilesRenamed()), Qt::QueuedConnection);
     connect(m_settingsWindow, SIGNAL(sigSaved()), this, SLOT(onRenewModels()), Qt::QueuedConnection);
 
     connect(ui->setsWidget, SIGNAL(sigJumpToMovie(Movie*)), this, SLOT(onJumpToMovie(Movie*)));
