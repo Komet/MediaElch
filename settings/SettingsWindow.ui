@@ -26,12 +26,7 @@
       <widget class="QWidget" name="page_0">
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
-         <widget class="QLabel" name="label">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
+         <widget class="QLabel" name="labelGlobal">
           <property name="text">
            <string>Add one or more directories containing your movies, TV Shows or concerts. TV Show Episodes have to be in subfolders with the name of the show.</string>
           </property>
@@ -241,11 +236,6 @@
        <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,0,1,0">
         <item>
          <widget class="QLabel" name="label_44">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
           <property name="text">
            <string>Below you see the filenames which are used for loading and saving your movies. You can edit them as you like, if you want to use multiple files separate them by comma.</string>
           </property>
@@ -256,11 +246,6 @@
         </item>
         <item>
          <widget class="QLabel" name="label_45">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
           <property name="text">
            <string>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</string>
           </property>
@@ -488,11 +473,6 @@
        <layout class="QVBoxLayout" name="verticalLayout_7" stretch="0,0,1">
         <item>
          <widget class="QLabel" name="label_46">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
           <property name="text">
            <string>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</string>
           </property>
@@ -503,11 +483,6 @@
         </item>
         <item>
          <widget class="QLabel" name="label_47">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
           <property name="text">
            <string>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</string>
           </property>
@@ -733,11 +708,6 @@
        <layout class="QVBoxLayout" name="verticalLayout_8" stretch="0,0,1">
         <item>
          <widget class="QLabel" name="label_48">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
           <property name="text">
            <string>Below you see the filenames which are used for loading and saving your concerts. You can edit them as you like, if you want to use multiple files separate them by comma.</string>
           </property>
@@ -748,11 +718,6 @@
         </item>
         <item>
          <widget class="QLabel" name="label_49">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
           <property name="text">
            <string>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</string>
           </property>
@@ -876,11 +841,6 @@
        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1">
         <item>
          <widget class="QLabel" name="label_7">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
           <property name="text">
            <string>If you want to use the synchronization feature you need to enable &quot;Allow programs on other systems to control XBMC&quot; within XBMC (Settings -&gt; Services -&gt; Remote Control).</string>
           </property>

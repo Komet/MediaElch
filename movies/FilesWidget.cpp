@@ -49,10 +49,8 @@ FilesWidget::FilesWidget(QWidget *parent) :
         ui->files->setColumnHidden(i, true);
     }
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-    ui->files->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->files->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
 #else
-    ui->files->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->files->horizontalHeader()->setResizeMode(0, QHeaderView::Stretch);
 #endif
 

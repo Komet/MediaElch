@@ -19,6 +19,19 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     setUnifiedTitleAndToolBarOnMac(true);
 #endif
 
+#ifdef Q_OS_MAC
+    QFont smallFont = ui->labelGlobal->font();
+    smallFont.setPointSize(smallFont.pointSize()-1);
+    ui->labelGlobal->setFont(smallFont);
+    ui->label_44->setFont(smallFont);
+    ui->label_45->setFont(smallFont);
+    ui->label_46->setFont(smallFont);
+    ui->label_47->setFont(smallFont);
+    ui->label_48->setFont(smallFont);
+    ui->label_49->setFont(smallFont);
+    ui->label_7->setFont(smallFont);
+#endif
+
     ui->actionGlobal->setIcon(ui->actionGlobal->property("iconActive").value<QIcon>());
     ui->stackedWidget->setCurrentIndex(0);
     ui->stackedWidget->setAnimation(QEasingCurve::Linear);

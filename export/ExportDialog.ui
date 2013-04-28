@@ -20,7 +20,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Export</string>
   </property>
   <property name="modal">
    <bool>true</bool>
