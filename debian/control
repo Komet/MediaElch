@@ -2,14 +2,14 @@ Source: mediaelch
 Section: misc
 Priority: extra
 Maintainer: Daniel Kabel <daniel.kabel@me.com>
-Build-Depends: debhelper (>= 8.0.0), libqt4-dev, qt4-qmake, cdbs, libmediainfo0, libmediainfo-dev, zlib1g-dev, libzen-dev, libphonon-dev, libcurl4-openssl-dev
+Build-Depends: debhelper (>= 8.0.0), libqt4-dev, qt4-qmake, cdbs, libmediainfo0, libmediainfo-dev, zlib1g-dev, libzen-dev, libphonon-dev, libcurl4-openssl-dev, libquazip0-dev
 Standards-Version: 3.9.2
 Homepage: http://www.mediaelch.de
 Vcs-Git: git://github.com/Komet/MediaElch.git
 
 Package: mediaelch
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libqt4-sql, libqt4-sql-sqlite, libqt4-script, libqt4-xml, libqt4-core, libqt4-gui, libqt4-network, libmysqlclient18, libmediainfo0, zlib1g, libzen0, libphonon4, libcurl3
+Depends: ${shlibs:Depends}, ${misc:Depends}, libqt4-sql, libqt4-sql-sqlite, libqt4-script, libqt4-xml, libqt4-core, libqt4-gui, libqt4-network, libmysqlclient18, libmediainfo0, zlib1g, libzen0, libphonon4, libcurl3, libquazip0
 Description: XBMC Media Manager
  MediaElch is your Media Manager for handling Movies and TV Shows in XBMC. 
  It is designed to gather information from various movie databases on the internet and store these information directly to XBMCs database or in nfo files. 
