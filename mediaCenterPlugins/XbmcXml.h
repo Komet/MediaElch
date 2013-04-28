@@ -59,10 +59,12 @@ public:
     QString seasonPosterImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString seasonBackdropImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString seasonBannerImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+    QString seasonThumbImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     void saveAdditionalImages(Movie *movie);
     void saveAdditionalImages(Concert *concert);
     void saveAdditionalImages(TvShow *show);
     QString logoImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+    QString thumbImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString clearArtImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString characterArtImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString nfoFilePath(Movie *movie);

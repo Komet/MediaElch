@@ -72,6 +72,7 @@ private:
     QRect closeRect();
     QRect zoomRect();
     bool confirmDeleteImage();
+    void drawTitle(QPainter &p);
 };
 
 #endif // CLOSABLEIMAGE_H

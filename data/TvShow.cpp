@@ -25,6 +25,7 @@ TvShow::TvShow(QString dir, QObject *parent) :
     m_logoImageChanged = false;
     m_clearArtImageChanged = false;
     m_characterArtImageChanged = false;
+    m_thumbImageChanged = false;
     m_hasChanged = false;
     clear();
     m_downloadsInProgress = false;
@@ -55,7 +56,9 @@ void TvShow::clear()
           << TvShowScraperInfos::Title
           << TvShowScraperInfos::Tags
           << TvShowScraperInfos::ExtraArts
-          << TvShowScraperInfos::ExtraFanarts;
+          << TvShowScraperInfos::ExtraFanarts
+          << TvShowScraperInfos::Thumb
+          << TvShowScraperInfos::SeasonThumb;
     clear(infos);
     m_nfoContent.clear();
 }
@@ -102,6 +105,12 @@ void TvShow::clear(QList<int> infos)
         m_seasonBannerImagesChanged.clear();
         m_imagesToRemove.remove(TypeSeasonBanner);
     }
+    if (infos.contains(TvShowScraperInfos::SeasonThumb)) {
+        m_seasonThumbs.clear();
+        m_seasonThumbImages.clear();
+        m_seasonThumbImagesChanged.clear();
+        m_imagesToRemove.remove(TypeSeasonThumb);
+    }
     if (infos.contains(TvShowScraperInfos::Title))
         m_showTitle.clear();
     if (infos.contains(TvShowScraperInfos::Tags))
@@ -113,6 +122,8 @@ void TvShow::clear(QList<int> infos)
     if (infos.contains(TvShowScraperInfos::ExtraArts)) {
         m_logoImage = QByteArray();
         m_logoImageChanged = false;
+        m_thumbImage = QByteArray();
+        m_thumbImageChanged = false;
         m_clearArtImage = QByteArray();
         m_clearArtImageChanged = false;
         m_characterArtImage = QByteArray();
@@ -120,6 +131,7 @@ void TvShow::clear(QList<int> infos)
         m_imagesToRemove.remove(TypeLogo);
         m_imagesToRemove.remove(TypeClearArt);
         m_imagesToRemove.remove(TypeCdArt);
+        m_imagesToRemove.remove(TypeThumb);
     }
     if (infos.contains(TvShowScraperInfos::ExtraFanarts)) {
         m_extraFanartsToRemove.clear();
@@ -223,12 +235,14 @@ void TvShow::clearImages()
     m_backdropImage = QByteArray();
     m_bannerImage = QByteArray();
     m_logoImage = QByteArray();
+    m_thumbImage = QByteArray();
     m_clearArtImage = QByteArray();
     m_characterArtImage = QByteArray();
     foreach (int season, seasons()) {
         m_seasonPosterImages[season] = QByteArray();
         m_seasonBackdropImages[season] = QByteArray();
         m_seasonBannerImages[season] = QByteArray();
+        m_seasonThumbImages[season] = QByteArray();
     }
     foreach (Actor *actor, actorsPointer())
         actor->image = QByteArray();
@@ -538,6 +552,11 @@ QByteArray TvShow::logoImage()
     return m_logoImage;
 }
 
+QByteArray TvShow::thumbImage()
+{
+    return m_thumbImage;
+}
+
 /**
  * @brief TvShow::clearArtImage
  * @return
@@ -598,6 +617,14 @@ QList<Poster> TvShow::seasonBackdrops(int season) const
     return m_seasonBackdrops[season];
 }
 
+QByteArray TvShow::seasonThumbImage(int season)
+{
+    if (!m_seasonThumbImages.contains(season))
+        m_seasonThumbImages.insert(season, QByteArray());
+
+    return m_seasonThumbImages[season];
+}
+
 QByteArray TvShow::seasonBannerImage(int season)
 {
     if (!m_seasonBannerImages.contains(season))
@@ -626,6 +653,28 @@ QList<Poster> TvShow::seasonBanners(int season, bool returnAll) const
         banners << it.value();
     }
     return banners;
+}
+
+QList<Poster> TvShow::seasonThumbs(int season, bool returnAll) const
+{
+    if (!m_seasonThumbs.contains(season) && !returnAll)
+        return QList<Poster>();
+
+    if (!returnAll)
+        return m_seasonThumbs[season];
+
+    QList<Poster> thumbs;
+    if (m_seasonThumbs.contains(season))
+        thumbs = m_seasonThumbs[season];
+
+    QMapIterator<int, QList<Poster> > it(m_seasonThumbs);
+    while (it.hasNext()) {
+        it.next();
+        if (it.key() == season)
+            continue;
+        thumbs << it.value();
+    }
+    return thumbs;
 }
 
 /**
@@ -679,6 +728,11 @@ bool TvShow::logoImageChanged() const
     return m_logoImageChanged;
 }
 
+bool TvShow::thumbImageChanged() const
+{
+    return m_thumbImageChanged;
+}
+
 /**
  * @brief TvShow::clearArtImageChanged
  * @return
@@ -715,6 +769,11 @@ bool TvShow::seasonBackdropImageChanged(int season) const
 bool TvShow::seasonBannerImageChanged(int season) const
 {
     return m_seasonBannerImagesChanged.contains(season);
+}
+
+bool TvShow::seasonThumbImageChanged(int season) const
+{
+    return m_seasonThumbImagesChanged.contains(season);
 }
 
 /**
@@ -1105,6 +1164,13 @@ void TvShow::setBannerImage(QByteArray banner)
     setChanged(true);
 }
 
+void TvShow::setThumbImage(QByteArray thumb)
+{
+    m_thumbImage = thumb;
+    m_thumbImageChanged = true;
+    setChanged(true);
+}
+
 /**
  * @brief Sets the logo image
  * @param img
@@ -1228,6 +1294,29 @@ void TvShow::setSeasonBannerImage(int season, QByteArray poster)
 
     if (!m_seasonBannerImagesChanged.contains(season))
         m_seasonBannerImagesChanged.append(season);
+    setChanged(true);
+}
+
+void TvShow::addSeasonThumb(int season, Poster poster)
+{
+    if (!m_seasonThumbs.contains(season)) {
+        QList<Poster> posters;
+        m_seasonThumbs.insert(season, posters);
+    }
+
+    m_seasonThumbs[season].append(poster);
+    setChanged(true);
+}
+
+void TvShow::setSeasonThumbImage(int season, QByteArray poster)
+{
+    if (m_seasonThumbImages.contains(season))
+        m_seasonThumbImages[season] = poster;
+    else
+        m_seasonThumbImages.insert(season, poster);
+
+    if (!m_seasonThumbImagesChanged.contains(season))
+        m_seasonThumbImagesChanged.append(season);
     setChanged(true);
 }
 
@@ -1442,6 +1531,24 @@ void TvShow::removeImage(ImageType type, int season)
             m_imagesToRemove.insert(type, QList<int>() << season);
         } else if (m_imagesToRemove.contains(type) && !m_imagesToRemove[type].contains(season)) {
             m_imagesToRemove[type].append(season);
+        }
+        break;
+    case TypeSeasonThumb:
+        if (m_seasonThumbImages.contains(season) && !m_seasonThumbImages[season].isNull()) {
+            m_seasonThumbImages[season] = QByteArray();
+            m_seasonThumbImagesChanged.removeOne(season);
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.insert(type, QList<int>() << season);
+        } else if (m_imagesToRemove.contains(type) && !m_imagesToRemove[type].contains(season)) {
+            m_imagesToRemove[type].append(season);
+        }
+        break;
+    case TypeThumb:
+        if (!m_thumbImage.isNull()) {
+            m_thumbImage = QByteArray();
+            m_thumbImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.insert(type, QList<int>() << -2);
         }
         break;
     case TypeLogo:

@@ -172,11 +172,13 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->showEpisodeNfo->setProperty("dataFileType", DataFileType::TvShowEpisodeNfo);
     ui->showEpisodeThumbnail->setProperty("dataFileType", DataFileType::TvShowEpisodeThumb);
     ui->showLogo->setProperty("dataFileType", DataFileType::TvShowLogo);
+    ui->showThumb->setProperty("dataFileType", DataFileType::TvShowThumb);
     ui->showNfo->setProperty("dataFileType", DataFileType::TvShowNfo);
     ui->showPoster->setProperty("dataFileType", DataFileType::TvShowPoster);
     ui->showSeasonBackdrop->setProperty("dataFileType", DataFileType::TvShowSeasonBackdrop);
     ui->showSeasonBanner->setProperty("dataFileType", DataFileType::TvShowSeasonBanner);
     ui->showSeasonPoster->setProperty("dataFileType", DataFileType::TvShowSeasonPoster);
+    ui->showSeasonThumb->setProperty("dataFileType", DataFileType::TvShowSeasonThumb);
     ui->concertNfo->setProperty("dataFileType", DataFileType::ConcertNfo);
     ui->concertPoster->setProperty("dataFileType", DataFileType::ConcertPoster);
     ui->concertBackdrop->setProperty("dataFileType", DataFileType::ConcertBackdrop);
@@ -203,6 +205,10 @@ void SettingsWindow::show()
     ui->themesErrorMessage->setText("");
     loadRemoteTemplates();
     loadSettings();
+    if (Settings::instance()->settingsWindowSize().isValid() && !Settings::instance()->settingsWindowPosition().isNull()) {
+        move(Settings::instance()->settingsWindowPosition());
+        resize(Settings::instance()->settingsWindowSize());
+    }
     QMainWindow::show();
 }
 
@@ -213,6 +219,9 @@ void SettingsWindow::closeEvent(QCloseEvent *event)
     saveSettings();
     emit sigSaved();
 #endif
+
+    Settings::instance()->setSettingsWindowSize(size());
+    Settings::instance()->setSettingsWindowPosition(pos());
 }
 
 void SettingsWindow::onSave()

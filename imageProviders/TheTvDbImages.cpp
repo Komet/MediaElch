@@ -8,7 +8,7 @@ TheTvDbImages::TheTvDbImages(QObject *parent)
 {
     setParent(parent);
     m_provides << ImageDialogType::TvShowPoster << ImageDialogType::TvShowBackdrop << ImageDialogType::TvShowBanner
-               << ImageDialogType::TvShowSeason << ImageDialogType::TvShowThumb << ImageDialogType::TvShowSeasonBanner
+               << ImageDialogType::TvShowSeason << ImageDialogType::TvShowEpisodeThumb << ImageDialogType::TvShowSeasonBanner
                << ImageDialogType::TvShowSeasonBackdrop;
     m_dummyShow = new TvShow(QString(), this);
     m_dummyEpisode = new TvShowEpisode(QStringList(), m_dummyShow);
@@ -183,7 +183,7 @@ void TheTvDbImages::tvShowBanners(QString tvdbId)
  * @param season Season number
  * @param episode Episode number
  */
-void TheTvDbImages::tvShowThumb(QString tvdbId, int season, int episode)
+void TheTvDbImages::tvShowEpisodeThumb(QString tvdbId, int season, int episode)
 {
     m_dummyEpisode->clear();
     m_dummyEpisode->setSeason(season);
@@ -221,6 +221,12 @@ void TheTvDbImages::movieImages(Movie *movie, QString tmdbId, QList<int> types)
     Q_UNUSED(movie);
     Q_UNUSED(tmdbId);
     Q_UNUSED(types);
+}
+
+void TheTvDbImages::tvShowSeasonThumbs(QString tvdbId, int season)
+{
+    Q_UNUSED(tvdbId);
+    Q_UNUSED(season);
 }
 
 /**
@@ -341,6 +347,11 @@ void TheTvDbImages::concertCdArts(QString tmdbId)
  * @param tvdbId The TV DB id
  */
 void TheTvDbImages::tvShowLogos(QString tvdbId)
+{
+    Q_UNUSED(tvdbId);
+}
+
+void TheTvDbImages::tvShowThumbs(QString tvdbId)
 {
     Q_UNUSED(tvdbId);
 }

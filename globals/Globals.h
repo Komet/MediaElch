@@ -100,11 +100,12 @@ struct Poster {
     QSize originalSize;
     QString language;
     QString hint;
+    int season;
 };
 
 enum ImageType {
     TypePoster, TypeBackdrop, TypeBanner, TypeActor, TypeSeasonPoster, TypeSeasonBanner, TypeSeasonBackdrop,
-    TypeShowThumbnail, TypeLogo, TypeClearArt, TypeCdArt, TypeCharacterArt, TypeExtraFanart, TypeThumb
+    TypeShowThumbnail, TypeLogo, TypeClearArt, TypeCdArt, TypeCharacterArt, TypeExtraFanart, TypeThumb, TypeSeasonThumb
 };
 
 enum TvShowType {
@@ -145,7 +146,7 @@ namespace ImageDialogType {
     const int MovieBackdrop        = 2;
     const int TvShowPoster         = 3;
     const int TvShowBackdrop       = 4;
-    const int TvShowThumb          = 5;
+    const int TvShowEpisodeThumb   = 5;
     const int TvShowSeason         = 6;
     const int TvShowBanner         = 7;
     const int ConcertPoster        = 8;
@@ -163,6 +164,8 @@ namespace ImageDialogType {
     const int TvShowSeasonBanner   = 20;
     const int MovieBanner          = 21;
     const int MovieThumb           = 22;
+    const int TvShowThumb          = 23;
+    const int TvShowSeasonThumb    = 24;
 }
 
 namespace MovieScraperInfos {
@@ -213,6 +216,8 @@ namespace TvShowScraperInfos {
     const int SeasonBackdrop = 19;
     const int SeasonBanner   = 20;
     const int ExtraFanarts   = 21;
+    const int Thumb          = 22;
+    const int SeasonThumb    = 23;
 }
 
 namespace ConcertScraperInfos {
@@ -298,6 +303,8 @@ namespace DataFileType {
     const int TvShowSeasonBanner   = 24;
     const int MovieBanner          = 25;
     const int MovieThumb           = 26;
+    const int TvShowSeasonThumb    = 27;
+    const int TvShowThumb          = 28;
 }
 
 enum TvShowUpdateType {

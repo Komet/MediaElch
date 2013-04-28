@@ -35,10 +35,12 @@ public:
     void tvShowClearArts(QString tvdbId);
     void tvShowCharacterArts(QString tvdbId);
     void tvShowBanners(QString tvdbId);
-    void tvShowThumb(QString tvdbId, int season, int episode);
+    void tvShowEpisodeThumb(QString tvdbId, int season, int episode);
     void tvShowSeason(QString tvdbId, int season);
     void tvShowSeasonBanners(QString tvdbId, int season);
     void tvShowSeasonBackdrops(QString tvdbId, int season);
+    void tvShowThumbs(QString tvdbId);
+    void tvShowSeasonThumbs(QString tvdbId, int season);
     QList<int> provides();
 
 public slots:

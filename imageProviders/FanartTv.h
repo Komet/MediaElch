@@ -39,10 +39,12 @@ public:
     void tvShowClearArts(QString tvdbId);
     void tvShowCharacterArts(QString tvdbId);
     void tvShowBanners(QString tvdbId);
-    void tvShowThumb(QString tvdbId, int season, int episode);
+    void tvShowEpisodeThumb(QString tvdbId, int season, int episode);
     void tvShowSeason(QString tvdbId, int season);
     void tvShowSeasonBanners(QString tvdbId, int season);
     void tvShowSeasonBackdrops(QString tvdbId, int season);
+    void tvShowSeasonThumbs(QString tvdbId, int season);
+    void tvShowThumbs(QString tvdbId);
     QList<int> provides();
 
 public slots:
@@ -79,8 +81,8 @@ private:
     void loadMovieData(QString tmdbId, int type);
     void loadMovieData(QString tmdbId, QList<int> types, Movie *movie);
     void loadConcertData(QString tmdbId, QList<int> types, Concert *concert);
-    QList<Poster> parseTvShowData(QString json, int type);
-    void loadTvShowData(QString tvdbId, int type);
+    QList<Poster> parseTvShowData(QString json, int type, int season = -2);
+    void loadTvShowData(QString tvdbId, int type, int season = -2);
     void loadTvShowData(QString tvdbId, QList<int> types, TvShow *show);
 };
 

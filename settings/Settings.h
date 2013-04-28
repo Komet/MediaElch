@@ -26,6 +26,8 @@ public:
 
     QSize mainWindowSize();
     QPoint mainWindowPosition();
+    QSize settingsWindowSize();
+    QPoint settingsWindowPosition();
     bool mainWindowMaximized();
     QByteArray mainSplitterState();
     QList<SettingsDir> movieDirectories();
@@ -64,6 +66,8 @@ public:
 
     void setMainWindowSize(QSize mainWindowSize);
     void setMainWindowPosition(QPoint mainWindowPosition);
+    void setSettingsWindowSize(QSize settingsWindowSize);
+    void setSettingsWindowPosition(QPoint settingsWindowPosition);
     void setMainWindowMaximized(bool max);
     void setMainSplitterState(QByteArray state);
     void setMovieDirectories(QList<SettingsDir> dirs);
@@ -112,6 +116,8 @@ private:
     QString m_excludeWords;
     QSize m_mainWindowSize;
     QPoint m_mainWindowPosition;
+    QSize m_settingsWindowSize;
+    QPoint m_settingsWindowPosition;
     bool m_mainWindowMaximized;
     QByteArray m_mainSplitterState;
     bool m_useProxy;

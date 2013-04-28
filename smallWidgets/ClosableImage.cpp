@@ -128,6 +128,7 @@ void ClosableImage::paintEvent(QPaintEvent *event)
         img = ImageCache::instance()->image(m_imagePath, width()-9, 0, origWidth, origHeight);
     } else {
         p.drawPixmap((width()-m_defaultPixmap.width())/2, (height()-m_defaultPixmap.height())/2, m_defaultPixmap);
+        drawTitle(p);
         return;
     }
 
@@ -135,10 +136,33 @@ void ClosableImage::paintEvent(QPaintEvent *event)
     p.drawImage(0, 7, img);
     p.drawImage(r.width()-25, 0, QImage(":/img/closeImage.png"));
     if (m_showZoomAndResolution) {
+        QString res = QString("%1x%2").arg(origWidth).arg(origHeight);
+        QFontMetrics fm(m_font);
+        int resWidth = fm.width(res);
         p.setFont(m_font);
-        p.drawText(0, height()-20, width()-9, 20, Qt::AlignRight | Qt::AlignBottom, QString("%1x%2").arg(origWidth).arg(origHeight));
+        p.drawText(width()-resWidth-9, height()-20, resWidth, 20, Qt::AlignRight | Qt::AlignBottom, res);
         p.drawPixmap(0, height()-16, 16, 16, m_zoomIn);
+        drawTitle(p);
     }
+}
+
+/**
+ * An alternative Option...
+ */
+void ClosableImage::drawTitle(QPainter &p)
+{
+    Q_UNUSED(p);
+    /*
+    if (m_title.isEmpty())
+        return;
+
+    QFont f = m_font;
+    f.setBold(true);
+    p.setFont(f);
+    QFontMetrics fm(f);
+    int width = fm.width(m_title);
+    p.drawText(24, height()-20, width, 20, Qt::AlignLeft | Qt::AlignBottom, m_title);
+    */
 }
 
 QVariant ClosableImage::myData() const

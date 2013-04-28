@@ -39,6 +39,8 @@ Settings::Settings(QObject *parent) :
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowSeasonBanner, "season<seasonNumber>-banner.jpg", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowEpisodeNfo, "<baseFileName>.nfo", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowEpisodeThumb, "<baseFileName>-thumb.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowThumb, "landscape.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowSeasonThumb, "season<seasonNumber>-landscape.jpg", 0));
 
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertNfo, "<baseFileName>.nfo", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertPoster, "<baseFileName>-poster.jpg", 0));
@@ -84,6 +86,8 @@ void Settings::loadSettings(QSettings &settings)
     // Globals
     m_mainWindowSize = settings.value("MainWindowSize").toSize();
     m_mainWindowPosition = settings.value("MainWindowPosition").toPoint();
+    m_settingsWindowSize = settings.value("SettingsWindowSize").toSize();
+    m_settingsWindowPosition = settings.value("SettingsWindowPosition").toPoint();
     m_mainWindowMaximized = settings.value("MainWindowMaximized").toBool();
     m_mainSplitterState = settings.value("MainSplitterState").toByteArray();
     m_debugModeActivated = settings.value("DebugModeActivated", false).toBool();
@@ -181,11 +185,33 @@ void Settings::loadSettings(QSettings &settings)
         settings.setArrayIndex(i);
         int type = settings.value("type").toInt();
         QString fileName = settings.value("fileName").toString();
+        if (fileName.isEmpty()) {
+            foreach (DataFile initialDataFile, m_initialDataFilesFrodo) {
+                if (initialDataFile.type() == type) {
+                    fileName = initialDataFile.fileName();
+                    break;
+                }
+            }
+        }
         int pos = settings.value("pos").toInt();
         DataFile f(type, fileName, pos);
         dataFiles.append(f);
     }
     settings.endArray();
+
+    foreach (DataFile initialDataFile, m_initialDataFilesFrodo) {
+        bool found = false;
+        foreach (DataFile df, dataFiles) {
+            if (df.type() == initialDataFile.type()) {
+                found = true;
+                break;
+            }
+
+        }
+        if (!found)
+            dataFiles << initialDataFile;
+    }
+
     if (dataFiles.isEmpty())
         m_dataFiles = m_initialDataFilesFrodo;
     else
@@ -336,6 +362,16 @@ QSize Settings::mainWindowSize()
 QPoint Settings::mainWindowPosition()
 {
     return m_mainWindowPosition;
+}
+
+QSize Settings::settingsWindowSize()
+{
+    return m_settingsWindowSize;
+}
+
+QPoint Settings::settingsWindowPosition()
+{
+    return m_settingsWindowPosition;
 }
 
 /**
@@ -552,6 +588,18 @@ void Settings::setMainWindowPosition(QPoint mainWindowPosition)
 {
     m_mainWindowPosition = mainWindowPosition;
     m_settings.setValue("MainWindowPosition", mainWindowPosition);
+}
+
+void Settings::setSettingsWindowSize(QSize settingsWindowSize)
+{
+    m_settingsWindowSize = settingsWindowSize;
+    m_settings.setValue("SettingsWindowSize", settingsWindowSize);
+}
+
+void Settings::setSettingsWindowPosition(QPoint settingsWindowPosition)
+{
+    m_settingsWindowPosition = settingsWindowPosition;
+    m_settings.setValue("SettingsWindowPosition", settingsWindowPosition);
 }
 
 /**

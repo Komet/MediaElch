@@ -17,6 +17,7 @@ FanartTv::FanartTv(QObject *parent)
     m_provides << ImageDialogType::MovieBackdrop << ImageDialogType::MovieLogo << ImageDialogType::MovieClearArt << ImageDialogType::MovieCdArt
                << ImageDialogType::MovieBanner << ImageDialogType::MovieThumb
                << ImageDialogType::TvShowClearArt << ImageDialogType::TvShowBackdrop << ImageDialogType::TvShowBanner
+               << ImageDialogType::TvShowThumb << ImageDialogType::TvShowSeasonThumb
                << ImageDialogType::TvShowLogos << ImageDialogType::TvShowCharacterArt
                << ImageDialogType::ConcertBackdrop << ImageDialogType::ConcertLogo << ImageDialogType::ConcertClearArt << ImageDialogType::ConcertCdArt;
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
@@ -409,7 +410,7 @@ void FanartTv::tvShowImages(TvShow *show, QString tvdbId, QList<int> types)
  * @param tvdbId The Tv DB Id
  * @param type
  */
-void FanartTv::loadTvShowData(QString tvdbId, int type)
+void FanartTv::loadTvShowData(QString tvdbId, int type, int season)
 {
     QUrl url;
     QNetworkRequest request;
@@ -418,6 +419,7 @@ void FanartTv::loadTvShowData(QString tvdbId, int type)
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("infoToLoad", type);
+    reply->setProperty("season", season);
     connect(reply, SIGNAL(finished()), this, SLOT(onLoadTvShowDataFinished()));
 }
 
@@ -450,7 +452,7 @@ void FanartTv::onLoadTvShowDataFinished()
     QList<Poster> posters;
     if (reply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(reply->readAll());
-        posters = parseTvShowData(msg, reply->property("infoToLoad").toInt());
+        posters = parseTvShowData(msg, reply->property("infoToLoad").toInt(), reply->property("season").toInt());
     }
     emit sigImagesLoaded(posters);
 }
@@ -501,6 +503,11 @@ void FanartTv::tvShowLogos(QString tvdbId)
     loadTvShowData(tvdbId, TypeLogo);
 }
 
+void FanartTv::tvShowThumbs(QString tvdbId)
+{
+    loadTvShowData(tvdbId, TypeThumb);
+}
+
 /**
  * @brief Load tv show clear arts
  * @param tvdbId The TV DB id
@@ -534,7 +541,7 @@ void FanartTv::tvShowBanners(QString tvdbId)
  * @param season Season number
  * @param episode Episode number
  */
-void FanartTv::tvShowThumb(QString tvdbId, int season, int episode)
+void FanartTv::tvShowEpisodeThumb(QString tvdbId, int season, int episode)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
@@ -564,20 +571,28 @@ void FanartTv::tvShowSeasonBackdrops(QString tvdbId, int season)
     Q_UNUSED(season);
 }
 
+void FanartTv::tvShowSeasonThumbs(QString tvdbId, int season)
+{
+    loadTvShowData(tvdbId, TypeSeasonThumb, season);
+}
+
 /**
  * @brief Parses JSON data for tv shows
  * @param json JSON data
  * @param type Type of image (ImageType)
  * @return List of posters
  */
-QList<Poster> FanartTv::parseTvShowData(QString json, int type)
+QList<Poster> FanartTv::parseTvShowData(QString json, int type, int season)
 {
+    qDebug() << "season is" << season;
     QMap<int, QStringList> map;
     map.insert(TypeBackdrop, QStringList() << "showbackground");
     map.insert(TypeLogo, QStringList() << "hdtvlogo" << "clearlogo");
     map.insert(TypeClearArt, QStringList() << "hdclearart" << "clearart");
     map.insert(TypeBanner, QStringList() << "tvbanner");
     map.insert(TypeCharacterArt, QStringList() << "characterart");
+    map.insert(TypeThumb, QStringList() << "tvthumb");
+    map.insert(TypeSeasonThumb, QStringList() << "seasonthumb");
     QList<Poster> posters;
     QScriptValue sc;
     QScriptEngine engine;
@@ -595,9 +610,14 @@ QList<Poster> FanartTv::parseTvShowData(QString json, int type)
                     QScriptValue vB = itB.value();
                     if (vB.property("url").toString().isEmpty())
                         continue;
+
+                    if (type == TypeSeasonThumb && season != -2 && !vB.property("season").toString().isEmpty() && vB.property("season").toString().toInt() != season)
+                        continue;
+
                     Poster b;
                     b.thumbUrl = vB.property("url").toString() + "/preview";
                     b.originalUrl = vB.property("url").toString();
+                    b.season = vB.property("season").toString().toInt();
                     if (section == "hdtvlogo" || section == "hdclearart")
                         b.hint = "HD";
                     else if (section == "clearlogo" || section == "clearart")

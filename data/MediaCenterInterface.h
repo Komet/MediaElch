@@ -55,11 +55,13 @@ public:
     virtual QString bannerImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString actorImageName(TvShow *show, Actor actor) = 0;
     virtual QString logoImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString thumbImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString clearArtImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString characterArtImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString seasonPosterImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString seasonBackdropImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString seasonBannerImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString seasonThumbImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString nfoFilePath(Movie *movie) = 0;
     virtual QString nfoFilePath(Concert *concert) = 0;
     virtual QString nfoFilePath(TvShowEpisode *episode) = 0;

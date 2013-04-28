@@ -36,9 +36,11 @@ signals:
 
 private slots:
     void onChoosePoster();
+    void onChooseThumb();
     void onChooseBackdrop();
     void onChooseBanner();
     void onDeletePoster();
+    void onDeleteThumb();
     void onDeleteBackdrop();
     void onDeleteBanner();
     void onRevertChanges();

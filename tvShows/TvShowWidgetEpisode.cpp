@@ -550,7 +550,7 @@ void TvShowWidgetEpisode::onChooseThumbnail()
         posters << p;
     }
     ImageDialog::instance()->setDownloads(posters);
-    ImageDialog::instance()->exec(ImageDialogType::TvShowThumb);
+    ImageDialog::instance()->exec(ImageDialogType::TvShowEpisodeThumb);
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
         emit sigSetActionSaveEnabled(false, WidgetTvShows);

@@ -279,6 +279,11 @@ void TMDbImages::tvShowLogos(QString tvdbId)
     Q_UNUSED(tvdbId);
 }
 
+void TMDbImages::tvShowThumbs(QString tvdbId)
+{
+    Q_UNUSED(tvdbId);
+}
+
 /**
  * @brief Load tv show clear arts
  * @param tvdbId The TV DB id
@@ -312,7 +317,7 @@ void TMDbImages::tvShowBanners(QString tvdbId)
  * @param season Season number
  * @param episode Episode number
  */
-void TMDbImages::tvShowThumb(QString tvdbId, int season, int episode)
+void TMDbImages::tvShowEpisodeThumb(QString tvdbId, int season, int episode)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
@@ -331,6 +336,12 @@ void TMDbImages::tvShowSeason(QString tvdbId, int season)
 }
 
 void TMDbImages::tvShowSeasonBanners(QString tvdbId, int season)
+{
+    Q_UNUSED(tvdbId);
+    Q_UNUSED(season);
+}
+
+void TMDbImages::tvShowSeasonThumbs(QString tvdbId, int season)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);

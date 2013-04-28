@@ -13,21 +13,15 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <property name="autoFillBackground">
-   <bool>true</bool>
-  </property>
   <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0">
    <property name="spacing">
     <number>4</number>
    </property>
    <property name="sizeConstraint">
-    <enum>QLayout::SetMaximumSize</enum>
+    <enum>QLayout::SetMinimumSize</enum>
    </property>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_2">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMaximumSize</enum>
-     </property>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,1">
        <item>

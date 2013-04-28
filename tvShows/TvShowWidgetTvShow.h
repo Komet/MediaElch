@@ -55,6 +55,7 @@ private slots:
     void onChooseBackdrop();
     void onChooseBanner();
     void onChooseLogo();
+    void onChooseThumb();
     void onChooseClearArt();
     void onChooseCharacterArt();
     void onPosterDownloadFinished(DownloadManagerElement elem);
@@ -64,6 +65,7 @@ private slots:
     void onDeleteBackdrop();
     void onDeleteBanner();
     void onDeleteLogo();
+    void onDeleteThumb();
     void onDeleteClearArt();
     void onDeleteCharacterArt();
     void onActorChanged();

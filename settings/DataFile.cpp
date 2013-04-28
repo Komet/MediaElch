@@ -27,6 +27,11 @@ QString DataFile::fileName() const
     return m_fileName;
 }
 
+void DataFile::setFileName(QString fileName)
+{
+    m_fileName = fileName;
+}
+
 /**
  * @brief Position of this file
  * @return

@@ -102,6 +102,61 @@
        </spacer>
       </item>
       <item>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QLabel" name="labelThumb">
+          <property name="text">
+           <string>Thumb</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="ClosableImage" name="thumb">
+          <property name="minimumSize">
+           <size>
+            <width>180</width>
+            <height>102</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>180</width>
+            <height>102</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="toolTip">
+           <string>Click to Change</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="clickable" stdset="0">
+           <bool>true</bool>
+          </property>
+          <property name="myFixedHeight" stdset="0">
+           <number>102</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="QLabel" name="labelPoster">

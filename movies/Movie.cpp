@@ -93,6 +93,8 @@ void Movie::clear()
           << MovieScraperInfos::ExtraFanarts
           << MovieScraperInfos::Logo
           << MovieScraperInfos::CdArt
+          << MovieScraperInfos::Banner
+          << MovieScraperInfos::Thumb
           << MovieScraperInfos::ClearArt;
     clear(infos);
     m_nfoContent.clear();
@@ -198,6 +200,8 @@ void Movie::clearImages()
     m_posterImage = QByteArray();
     m_backdropImage = QByteArray();
     m_logoImage = QByteArray();
+    m_thumbImage = QByteArray();
+    m_bannerImage = QByteArray();
     m_clearArtImage = QByteArray();
     m_cdArtImage = QByteArray();
     m_extraFanartImagesToAdd.clear();

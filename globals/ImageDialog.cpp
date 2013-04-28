@@ -755,17 +755,21 @@ void ImageDialog::loadImagesFromProvider(QString id)
             m_currentProvider->tvShowClearArts(id);
         else if (m_type == ImageDialogType::TvShowLogos)
             m_currentProvider->tvShowLogos(id);
+        else if (m_type == ImageDialogType::TvShowThumb)
+            m_currentProvider->tvShowThumbs(id);
         else if (m_type == ImageDialogType::TvShowPoster)
             m_currentProvider->tvShowPosters(id);
         else if (m_type == ImageDialogType::TvShowSeason)
             m_currentProvider->tvShowSeason(id, m_season);
         else if (m_type == ImageDialogType::TvShowSeasonBanner)
             m_currentProvider->tvShowSeasonBanners(id, m_season);
+        else if (m_type == ImageDialogType::TvShowSeasonThumb)
+            m_currentProvider->tvShowSeasonThumbs(id, m_season);
         else if (m_type == ImageDialogType::TvShowSeasonBackdrop)
             m_currentProvider->tvShowSeasonBackdrops(id, m_season);
     } else if (m_itemType == ItemTvShowEpisode) {
-        if (m_type == ImageDialogType::TvShowThumb)
-            m_currentProvider->tvShowThumb(id, m_tvShowEpisode->season(), m_tvShowEpisode->episode());
+        if (m_type == ImageDialogType::TvShowEpisodeThumb)
+            m_currentProvider->tvShowEpisodeThumb(id, m_tvShowEpisode->season(), m_tvShowEpisode->episode());
     }
 
 }

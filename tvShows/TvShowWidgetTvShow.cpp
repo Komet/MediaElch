@@ -55,6 +55,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->labelLogo->setFont(font);
     ui->labelPoster->setFont(font);
     ui->labelBanner->setFont(font);
+    ui->labelThumb->setFont(font);
 
     ui->poster->setDefaultPixmap(QPixmap(":/img/film_reel.png"));
     ui->backdrop->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -62,6 +63,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->logo->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->clearArt->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->characterArt->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->thumb->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     font = ui->actorResolution->font();
     #ifdef Q_OS_WIN32
@@ -101,12 +103,14 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     connect(ui->clearArt, SIGNAL(clicked()), this, SLOT(onChooseClearArt()));
     connect(ui->characterArt, SIGNAL(clicked()), this, SLOT(onChooseCharacterArt()));
     connect(ui->logo, SIGNAL(clicked()), this, SLOT(onChooseLogo()));
+    connect(ui->thumb, SIGNAL(clicked()), this, SLOT(onChooseThumb()));
     connect(ui->poster, SIGNAL(sigClose()), this, SLOT(onDeletePoster()));
     connect(ui->backdrop, SIGNAL(sigClose()), this, SLOT(onDeleteBackdrop()));
     connect(ui->banner, SIGNAL(sigClose()), this, SLOT(onDeleteBanner()));
     connect(ui->clearArt, SIGNAL(sigClose()), this, SLOT(onDeleteClearArt()));
     connect(ui->characterArt, SIGNAL(sigClose()), this, SLOT(onDeleteCharacterArt()));
     connect(ui->logo, SIGNAL(sigClose()), this, SLOT(onDeleteLogo()));
+    connect(ui->thumb, SIGNAL(sigClose()), this, SLOT(onDeleteThumb()));
     connect(m_posterDownloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onPosterDownloadFinished(DownloadManagerElement)));
     connect(m_posterDownloadManager, SIGNAL(downloadsLeft(int,DownloadManagerElement)), this, SLOT(onDownloadsLeft(int,DownloadManagerElement)));
     connect(ui->actors, SIGNAL(itemSelectionChanged()), this, SLOT(onActorChanged()));
@@ -192,6 +196,7 @@ void TvShowWidgetTvShow::onClear()
     ui->backdrop->clear();
     ui->banner->clear();
     ui->logo->clear();
+    ui->thumb->clear();
     ui->clearArt->clear();
     ui->characterArt->clear();
     ui->tagCloud->clear();
@@ -281,7 +286,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->certification->addItems(certifications);
     ui->certification->setCurrentIndex(certifications.indexOf(m_show->certification()));
 
-    updateImages(QList<ImageType>() << TypePoster << TypeBackdrop << TypeBanner << TypeCharacterArt << TypeClearArt << TypeLogo);
+    updateImages(QList<ImageType>() << TypePoster << TypeBackdrop << TypeBanner << TypeCharacterArt << TypeClearArt << TypeLogo << TypeThumb);
     ui->fanarts->setImages(m_show->extraFanarts(Manager::instance()->mediaCenterInterfaceTvShow()));
 
     ui->badgeTuneExisting->setVisible(m_show->hasTune());
@@ -322,6 +327,13 @@ void TvShowWidgetTvShow::updateImages(QList<ImageType> images)
             ui->logo->setImage(m_show->logoImage());
         else if (!m_show->imagesToRemove().contains(TypeLogo) && !Manager::instance()->mediaCenterInterface()->logoImageName(m_show).isEmpty())
             ui->logo->setImage(Manager::instance()->mediaCenterInterface()->logoImageName(m_show));
+    }
+
+    if (images.contains(TypeThumb)) {
+        if (!m_show->thumbImage().isNull())
+            ui->thumb->setImage(m_show->thumbImage());
+        else if (!m_show->imagesToRemove().contains(TypeThumb) && !Manager::instance()->mediaCenterInterface()->thumbImageName(m_show).isEmpty())
+            ui->thumb->setImage(Manager::instance()->mediaCenterInterface()->thumbImageName(m_show));
     }
 
     if (images.contains(TypeClearArt)) {
@@ -402,7 +414,7 @@ void TvShowWidgetTvShow::onStartScraperSearch()
 void TvShowWidgetTvShow::onInfoLoadDone(TvShow *show)
 {
     QList<int> types;
-    types << TypeClearArt << TypeLogo << TypeCharacterArt;
+    types << TypeClearArt << TypeLogo << TypeCharacterArt << TypeThumb << TypeSeasonThumb;
     if (!show->tvdbId().isEmpty() && !types.isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::ExtraArts)) {
         Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types);
         connect(Manager::instance()->fanartTv(), SIGNAL(sigImagesLoaded(TvShow*,QMap<int,QList<Poster> >)), this, SLOT(onLoadDone(TvShow*,QMap<int,QList<Poster> >)), Qt::UniqueConnection);
@@ -468,6 +480,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > post
             ui->banner->setLoading(true);
     }
 
+    QList<int> thumbsForSeasons;
     QMapIterator<int, QList<Poster> > it(posters);
     while (it.hasNext()) {
         it.next();
@@ -498,6 +511,31 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > post
             if (m_show == show)
                 ui->logo->setLoading(true);
             downloadsSize++;
+        } else if (it.key() == TypeThumb && !it.value().isEmpty()) {
+            DownloadManagerElement d;
+            d.imageType = TypeThumb;
+            d.url = it.value().at(0).originalUrl;
+            d.show = show;
+            m_posterDownloadManager->addDownload(d);
+            if (m_show == show)
+                ui->thumb->setLoading(true);
+            downloadsSize++;
+        } else if (it.key() == TypeSeasonThumb && !it.value().isEmpty()) {
+            foreach (Poster p, it.value()) {
+                if (thumbsForSeasons.contains(p.season))
+                    continue;
+                if (!show->seasons().contains(p.season))
+                    continue;
+
+                DownloadManagerElement d;
+                d.imageType = TypeSeasonThumb;
+                d.url = p.originalUrl;
+                d.show = show;
+                d.season = p.season;
+                m_posterDownloadManager->addDownload(d);
+                downloadsSize++;
+                thumbsForSeasons.append(p.season);
+            }
         }
     }
 
@@ -691,6 +729,32 @@ void TvShowWidgetTvShow::onChooseLogo()
     }
 }
 
+void TvShowWidgetTvShow::onChooseThumb()
+{
+    qDebug() << "Entered";
+    if (m_show == 0) {
+        qDebug() << "My show is invalid";
+        return;
+    }
+
+    ImageDialog::instance()->setImageType(TypeThumb);
+    ImageDialog::instance()->clear();
+    ImageDialog::instance()->setTvShow(m_show);
+    ImageDialog::instance()->setDownloads(QList<Poster>());
+    ImageDialog::instance()->exec(ImageDialogType::TvShowThumb);
+
+    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+        emit sigSetActionSaveEnabled(false, WidgetTvShows);
+        DownloadManagerElement d;
+        d.imageType = TypeThumb;
+        d.url = ImageDialog::instance()->imageUrl();
+        d.show = m_show;
+        m_posterDownloadManager->addDownload(d);
+        ui->thumb->setLoading(true);
+        ui->buttonRevert->setVisible(true);
+    }
+}
+
 /**
  * @brief Shows the ImageDialog and after successful execution starts clear art download
  */
@@ -783,6 +847,12 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
         ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->logoImageName(elem.show));
         elem.show->setLogoImage(elem.data);
         break;
+    case TypeThumb:
+        if (m_show == elem.show)
+            ui->thumb->setImage(elem.data);
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->thumbImageName(elem.show));
+        elem.show->setThumbImage(elem.data);
+        break;
     case TypeCharacterArt:
         if (m_show == elem.show)
             ui->characterArt->setImage(elem.data);
@@ -809,6 +879,10 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
         Helper::resizeBackdrop(elem.data);
         ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->seasonBackdropImageName(elem.show, elem.season));
         elem.show->setSeasonBackdropImage(elem.season, elem.data);
+        break;
+    case TypeSeasonThumb:
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->seasonThumbImageName(elem.show, elem.season));
+        elem.show->setSeasonThumbImage(elem.season, elem.data);
         break;
     case TypeSeasonBanner:
         ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->seasonBannerImageName(elem.show, elem.season));
@@ -971,6 +1045,13 @@ void TvShowWidgetTvShow::onDeleteLogo()
 {
     m_show->removeImage(TypeLogo);
     updateImages(QList<ImageType>() << TypeLogo);
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetTvShow::onDeleteThumb()
+{
+    m_show->removeImage(TypeThumb);
+    updateImages(QList<ImageType>() << TypeThumb);
     ui->buttonRevert->setVisible(true);
 }
 
