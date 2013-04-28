@@ -407,7 +407,7 @@ QList<int> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
         // Pattern matched
         if (!episodes.isEmpty()) {
             if (episodes.count() == 1) {
-                rx.setPattern("^[-_EeXx]+([0-9]+)[\\-\\._\\s]");
+                rx.setPattern("^[-_EeXx]+([0-9]+)($|[\\-\\._\\sE])");
                 while (rx.indexIn(filename, pos, QRegExp::CaretAtOffset) != -1) {
                     episodes << rx.cap(1).toInt();
                     pos += rx.matchedLength()-1;
