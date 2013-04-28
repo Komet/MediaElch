@@ -1,6 +1,7 @@
 #ifndef MYTABLEVIEW_H
 #define MYTABLEVIEW_H
 
+#include <QKeyEvent>
 #include <QMouseEvent>
 #include <QTableView>
 
@@ -15,15 +16,21 @@ public:
     void setLastColumnWidth(int &width);
     int firstColumnWidth() const;
     void setFirstColumnWidth(int &width);
+    void setCaptureKeyPress(const bool &capture);
+
+protected:
+    void keyPressEvent(QKeyEvent *event);
 
 signals:
     void sigLeftEdge(bool);
+    void sigKeyPress(QKeyEvent*);
 
 protected:
     void mouseMoveEvent(QMouseEvent *event);
 
 private:
     bool m_mouseInLeftEdge;
+    bool m_captureKeyPress;
 };
 
 #endif // MYTABLEVIEW_H

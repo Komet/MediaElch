@@ -141,7 +141,8 @@ SOURCES += main.cpp\
     settings/ExportTemplateWidget.cpp \
     smallWidgets/StyledPushButton.cpp \
     export/ExportDialog.cpp \
-    smallWidgets/MessageLabel.cpp
+    smallWidgets/MessageLabel.cpp \
+    smallWidgets/SearchOverlay.cpp
 
 macx {
     OBJECTIVE_SOURCES += mac/MacFullscreen.mm
@@ -259,7 +260,8 @@ HEADERS  += main/MainWindow.h \
     smallWidgets/StyledPushButton.h \
     export/ExportDialog.h \
     smallWidgets/MessageLabel.h \
-    mac/MacFullscreen.h
+    mac/MacFullscreen.h \
+    smallWidgets/SearchOverlay.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

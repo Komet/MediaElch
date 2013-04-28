@@ -57,7 +57,10 @@ FilesWidget::FilesWidget(QWidget *parent) :
     foreach (const MediaStatusColumns &column, Settings::instance()->mediaStatusColumns())
         ui->files->setColumnHidden(MovieModel::mediaStatusToColumn(column), false);
 
+    ui->files->setCaptureKeyPress(true);
+
     m_alphaList = new AlphabeticalList(this, ui->files);
+    m_searchOverlay = new SearchOverlay(ui->files);
     m_baseLabelCss = ui->sortByYear->styleSheet();
     m_activeLabelCss = ui->sortByNew->styleSheet();
 
@@ -92,6 +95,8 @@ FilesWidget::FilesWidget(QWidget *parent) :
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
     connect(ui->files->model(), SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(setAlphaListData()));
     connect(ui->files, SIGNAL(sigLeftEdge(bool)), this, SLOT(onLeftEdge(bool)));
+    connect(ui->files, SIGNAL(sigKeyPress(QKeyEvent*)), this, SLOT(onListKeyPress(QKeyEvent*)));
+    connect(&m_timer, SIGNAL(timeout()), this, SLOT(onListKeyTimeout()));
 
     connect(m_alphaList, SIGNAL(sigAlphaClicked(QString)), this, SLOT(scrollToAlpha(QString)));
 
@@ -128,6 +133,8 @@ void FilesWidget::resizeEvent(QResizeEvent *event)
     m_alphaList->setRightSpace(scrollBarWidth+5);
     m_alphaList->setBottomSpace(ui->widget->height()+10);
     m_alphaList->adjustSize();
+    m_searchOverlay->setFixedWidth(width()-80);
+    m_searchOverlay->move((width()-m_searchOverlay->width())/2, (height()-m_searchOverlay->height())/2);
 }
 
 void FilesWidget::showContextMenu(QPoint point)
@@ -424,4 +431,42 @@ void FilesWidget::selectMovie(Movie *movie)
     int row = Manager::instance()->movieModel()->movies().indexOf(movie);
     QModelIndex index = Manager::instance()->movieModel()->index(row, 0, QModelIndex());
     ui->files->selectRow(m_movieProxyModel->mapFromSource(index).row());
+}
+
+void FilesWidget::onListKeyPress(QKeyEvent *keyEvent)
+{
+    if (keyEvent->key() != Qt::Key_Backspace && keyEvent->text().isEmpty())
+        return;
+
+    if (keyEvent->key() == Qt::Key_Backspace)
+        m_currentText.remove(m_currentText.length()-1, 1);
+    else if (!keyEvent->text().isEmpty())
+        m_currentText.append(keyEvent->text());
+
+    m_searchOverlay->fadeIn();
+    m_searchOverlay->setText(m_currentText);
+    m_timer.start(1000);
+
+    int matchingRow = -1;
+    for (int i=0, n=ui->files->model()->rowCount() ; i<n ; ++i) {
+        QModelIndex index = ui->files->model()->index(i, 0);
+        QString title = ui->files->model()->data(index).toString();
+        if (title.startsWith(m_currentText, Qt::CaseInsensitive)) {
+            ui->files->scrollTo(index, QAbstractItemView::PositionAtCenter);
+            ui->files->selectRow(i);
+            return;
+        }
+        if (title.contains(m_currentText, Qt::CaseInsensitive))
+            matchingRow = i;
+    }
+    if (matchingRow > -1) {
+        ui->files->scrollTo(ui->files->model()->index(matchingRow, 0), QAbstractItemView::PositionAtCenter);
+        ui->files->selectRow(matchingRow);
+    }
+}
+
+void FilesWidget::onListKeyTimeout()
+{
+    m_currentText.clear();
+    m_searchOverlay->fadeOut();
 }
