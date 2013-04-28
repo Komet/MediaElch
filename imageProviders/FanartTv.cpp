@@ -15,6 +15,7 @@ FanartTv::FanartTv(QObject *parent)
 {
     setParent(parent);
     m_provides << ImageDialogType::MovieBackdrop << ImageDialogType::MovieLogo << ImageDialogType::MovieClearArt << ImageDialogType::MovieCdArt
+               << ImageDialogType::MovieBanner << ImageDialogType::MovieThumb
                << ImageDialogType::TvShowClearArt << ImageDialogType::TvShowBackdrop << ImageDialogType::TvShowBanner
                << ImageDialogType::TvShowLogos << ImageDialogType::TvShowCharacterArt
                << ImageDialogType::ConcertBackdrop << ImageDialogType::ConcertLogo << ImageDialogType::ConcertClearArt << ImageDialogType::ConcertCdArt;
@@ -129,6 +130,16 @@ void FanartTv::movieBackdrops(QString tmdbId)
 void FanartTv::movieLogos(QString tmdbId)
 {
     loadMovieData(tmdbId, TypeLogo);
+}
+
+void FanartTv::movieBanners(QString tmdbId)
+{
+    loadMovieData(tmdbId, TypeBanner);
+}
+
+void FanartTv::movieThumbs(QString tmdbId)
+{
+    loadMovieData(tmdbId, TypeThumb);
 }
 
 /**
@@ -323,6 +334,8 @@ QList<Poster> FanartTv::parseMovieData(QString json, int type)
     map.insert(TypeLogo, QStringList() << "hdmovielogo" << "movielogo");
     map.insert(TypeClearArt, QStringList() << "hdmovieclearart" << "movieart");
     map.insert(TypeCdArt, QStringList() << "moviedisc");
+    map.insert(TypeBanner, QStringList() << "moviebanner");
+    map.insert(TypeThumb, QStringList() << "moviethumb");
     QList<Poster> posters;
     QScriptValue sc;
     QScriptEngine engine;

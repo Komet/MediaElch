@@ -30,7 +30,7 @@ Database::Database(QObject *parent) :
     } else {
         QSqlQuery query(*m_db);
 
-        int dbVersion = 5;
+        int dbVersion = 6;
         bool dbIsUpToDate = false;
 
         query.prepare("SELECT * FROM sqlite_master WHERE name ='settings' and type='table';");
@@ -81,6 +81,8 @@ Database::Database(QObject *parent) :
                       "\"hasLogo\" integer NOT NULL, "
                       "\"hasClearArt\" integer NOT NULL, "
                       "\"hasCdArt\" integer NOT NULL, "
+                      "\"hasBanner\" integer NOT NULL, "
+                      "\"hasThumb\" integer NOT NULL, "
                       "\"hasExtraFanarts\" integer NOT NULL, "
                       "\"discType\" integer NOT NULL, "
                       "\"path\" text NOT NULL);");
@@ -205,6 +207,8 @@ void Database::add(Movie *movie, QString path)
     query.bindValue(":hasLogo", movie->hasLogo() ? 1 : 0);
     query.bindValue(":hasClearArt", movie->hasClearArt() ? 1 : 0);
     query.bindValue(":hasCdArt", movie->hasCdArt() ? 1 : 0);
+    query.bindValue(":hasBanner", movie->hasBanner() ? 1 : 0);
+    query.bindValue(":hasThumb", movie->hasThumb() ? 1 : 0);
     query.bindValue(":hasExtraFanarts", movie->hasExtraFanarts() ? 1 : 0);
     query.bindValue(":discType", movie->discType());
     query.bindValue(":path", path.toUtf8());
@@ -256,6 +260,8 @@ QList<Movie*> Database::movies(QString path)
         movie->setHasLogo(query.value(query.record().indexOf("hasLogo")).toInt() == 1);
         movie->setHasClearArt(query.value(query.record().indexOf("hasClearArt")).toInt() == 1);
         movie->setHasCdArt(query.value(query.record().indexOf("hasCdArt")).toInt() == 1);
+        movie->setHasBanner(query.value(query.record().indexOf("hasBanner")).toInt() == 1);
+        movie->setHasThumb(query.value(query.record().indexOf("hasThumb")).toInt() == 1);
         movie->setHasExtraFanarts(query.value(query.record().indexOf("hasExtraFanarts")).toInt() == 1);
         movie->setDiscType(static_cast<DiscType>(query.value(query.record().indexOf("discType")).toInt()));
         movies.append(movie);

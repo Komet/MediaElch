@@ -20,6 +20,8 @@ public:
     virtual void moviePosters(QString tmdbId) = 0;
     virtual void movieBackdrops(QString tmdbId) = 0;
     virtual void movieLogos(QString tmdbId) = 0;
+    virtual void movieBanners(QString tmdbId) = 0;
+    virtual void movieThumbs(QString tmdbId) = 0;
     virtual void movieClearArts(QString tmdbId) = 0;
     virtual void movieCdArts(QString tmdbId) = 0;
     virtual void concertImages(Concert *concert, QString tmdbId, QList<int> types) = 0;

@@ -49,7 +49,7 @@ void MyTableView::mouseMoveEvent(QMouseEvent *event)
 
 void MyTableView::keyPressEvent(QKeyEvent *event)
 {
-    if (!m_captureKeyPress) {
+    if (!m_captureKeyPress || (event->text().isEmpty() && event->key() != Qt::Key_Backspace)) {
         QTableView::keyPressEvent(event);
         return;
     }

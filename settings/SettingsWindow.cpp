@@ -163,6 +163,8 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->movieCdArt->setProperty("dataFileType", DataFileType::MovieCdArt);
     ui->movieClearArt->setProperty("dataFileType", DataFileType::MovieClearArt);
     ui->movieLogo->setProperty("dataFileType", DataFileType::MovieLogo);
+    ui->movieBanner->setProperty("dataFileType", DataFileType::MovieBanner);
+    ui->movieThumb->setProperty("dataFileType", DataFileType::MovieThumb);
     ui->showBackdrop->setProperty("dataFileType", DataFileType::TvShowBackdrop);
     ui->showBanner->setProperty("dataFileType", DataFileType::TvShowBanner);
     ui->showCharacterArt->setProperty("dataFileType", DataFileType::TvShowCharacterArt);

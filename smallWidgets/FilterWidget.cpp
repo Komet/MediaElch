@@ -498,6 +498,14 @@ void FilterWidget::initFilters()
                                  QStringList() << tr("Clear Art"), MovieFilters::ClearArt, true);
     m_movieFilters << new Filter(tr("Movie has no Clear Art"), tr("No Clear Art"),
                                  QStringList() << tr("Clear Art"), MovieFilters::ClearArt, false);
+    m_movieFilters << new Filter(tr("Movie has Banner"), tr("Banner"),
+                                 QStringList() << tr("Banner"), MovieFilters::Banner, true);
+    m_movieFilters << new Filter(tr("Movie has no Banner"), tr("No Banner"),
+                                 QStringList() << tr("Banner"), MovieFilters::Banner, false);
+    m_movieFilters << new Filter(tr("Movie has Thumb"), tr("Thumb"),
+                                 QStringList() << tr("Thumb"), MovieFilters::Thumb, true);
+    m_movieFilters << new Filter(tr("Movie has no Thumb"), tr("No Thumb"),
+                                 QStringList() << tr("Thumb"), MovieFilters::Thumb, false);
     m_movieFilters << new Filter(tr("Movie has CD Art"), tr("CD Art"),
                                  QStringList() << tr("CD Art"), MovieFilters::CdArt, true);
     m_movieFilters << new Filter(tr("Movie has no CD Art"), tr("No CD Art"),

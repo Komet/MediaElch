@@ -52,11 +52,20 @@ MovieWidget::MovieWidget(QWidget *parent) :
 
     font = ui->actorResolution->font();
     #ifdef Q_OS_WIN32
-    font.setPointSize(font.pointSize()-1);
+        font.setPointSize(font.pointSize()-1);
     #else
-    font.setPointSize(font.pointSize()-2);
+        font.setPointSize(font.pointSize()-2);
     #endif
     ui->actorResolution->setFont(font);
+
+    font.setBold(true);
+    ui->labelBanner->setFont(font);
+    ui->labelClearArt->setFont(font);
+    ui->labelDiscArt->setFont(font);
+    ui->labelFanart->setFont(font);
+    ui->labelLogo->setFont(font);
+    ui->labelPoster->setFont(font);
+    ui->labelThumb->setFont(font);
 
     m_movie = 0;
 
@@ -65,6 +74,8 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->logo->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->clearArt->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->cdArt->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->thumb->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->banner->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     ui->genreCloud->setText(tr("Genres"));
     ui->genreCloud->setPlaceholder(tr("Add Genre"));
@@ -90,11 +101,15 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->poster, SIGNAL(clicked()), this, SLOT(chooseMoviePoster()));
     connect(ui->backdrop, SIGNAL(clicked()), this, SLOT(chooseMovieBackdrop()));
     connect(ui->logo, SIGNAL(clicked()), this, SLOT(chooseMovieLogo()));
+    connect(ui->banner, SIGNAL(clicked()), this, SLOT(chooseMovieBanner()));
+    connect(ui->thumb, SIGNAL(clicked()), this, SLOT(chooseMovieThumb()));
     connect(ui->clearArt, SIGNAL(clicked()), this, SLOT(chooseMovieClearArt()));
     connect(ui->cdArt, SIGNAL(clicked()), this, SLOT(chooseMovieCdArt()));
     connect(ui->poster, SIGNAL(sigClose()), this, SLOT(deleteMoviePoster()));
     connect(ui->backdrop, SIGNAL(sigClose()), this, SLOT(deleteMovieBackdrop()));
     connect(ui->logo, SIGNAL(sigClose()), this, SLOT(deleteMovieLogo()));
+    connect(ui->banner, SIGNAL(sigClose()), this, SLOT(deleteMovieBanner()));
+    connect(ui->thumb, SIGNAL(sigClose()), this, SLOT(deleteMovieThumb()));
     connect(ui->clearArt, SIGNAL(sigClose()), this, SLOT(deleteMovieClearArt()));
     connect(ui->cdArt, SIGNAL(sigClose()), this, SLOT(deleteMovieCdArt()));
     connect(ui->name, SIGNAL(textChanged(QString)), this, SLOT(movieNameChanged(QString)));
@@ -313,6 +328,8 @@ void MovieWidget::clear()
     ui->logo->clear();
     ui->clearArt->clear();
     ui->cdArt->clear();
+    ui->banner->clear();
+    ui->thumb->clear();
 }
 
 /**
@@ -445,6 +462,10 @@ void MovieWidget::onLoadingImages(Movie *movie, QList<int> imageTypes)
         ui->cdArt->setLoading(true);
     if (imageTypes.contains(TypeLogo))
         ui->logo->setLoading(true);
+    if (imageTypes.contains(TypeBanner))
+        ui->banner->setLoading(true);
+    if (imageTypes.contains(TypeThumb))
+        ui->thumb->setLoading(true);
     if (imageTypes.contains(TypeExtraFanart))
         ui->fanarts->setLoading(true);
     ui->groupBox_3->update();
@@ -475,6 +496,14 @@ void MovieWidget::onSetImage(Movie *movie, int type, QByteArray data)
     case TypeLogo:
         ui->logo->setLoading(false);
         ui->logo->setImage(data);
+        break;
+    case TypeBanner:
+        ui->banner->setLoading(false);
+        ui->banner->setImage(data);
+        break;
+    case TypeThumb:
+        ui->thumb->setLoading(false);
+        ui->thumb->setImage(data);
         break;
     case TypeExtraFanart:
         ui->fanarts->addImage(data);
@@ -594,7 +623,7 @@ void MovieWidget::updateMovieInfo()
     ui->videoWidth->setEnabled(m_movie->streamDetailsLoaded());
     ui->videoScantype->setEnabled(m_movie->streamDetailsLoaded());
 
-    updateImages(QList<ImageType>() << TypePoster << TypeBackdrop << TypeLogo << TypeCdArt << TypeClearArt);
+    updateImages(QList<ImageType>() << TypePoster << TypeBackdrop << TypeLogo << TypeCdArt << TypeClearArt << TypeBanner << TypeThumb);
 
     ui->fanarts->setImages(m_movie->extraFanarts(Manager::instance()->mediaCenterInterface()));
 
@@ -637,6 +666,20 @@ void MovieWidget::updateImages(QList<ImageType> images)
             ui->logo->setImage(m_movie->logoImage());
         else if (!m_movie->imagesToRemove().contains(TypeLogo) && !Manager::instance()->mediaCenterInterface()->logoImageName(m_movie).isEmpty())
             ui->logo->setImage(Manager::instance()->mediaCenterInterface()->logoImageName(m_movie));
+    }
+
+    if (images.contains(TypeBanner)) {
+        if (!m_movie->bannerImage().isNull())
+            ui->banner->setImage(m_movie->bannerImage());
+        else if (!m_movie->imagesToRemove().contains(TypeBanner) && !Manager::instance()->mediaCenterInterface()->bannerImageName(m_movie).isEmpty())
+            ui->banner->setImage(Manager::instance()->mediaCenterInterface()->bannerImageName(m_movie));
+    }
+
+    if (images.contains(TypeThumb)) {
+        if (!m_movie->thumbImage().isNull())
+            ui->thumb->setImage(m_movie->thumbImage());
+        else if (!m_movie->imagesToRemove().contains(TypeThumb) && !Manager::instance()->mediaCenterInterface()->thumbImageName(m_movie).isEmpty())
+            ui->thumb->setImage(Manager::instance()->mediaCenterInterface()->thumbImageName(m_movie));
     }
 
     if (images.contains(TypeCdArt)) {
@@ -822,6 +865,43 @@ void MovieWidget::chooseMovieLogo()
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
         emit setActionSaveEnabled(false, WidgetMovies);
         m_movie->controller()->loadImage(TypeLogo, ImageDialog::instance()->imageUrl());
+        ui->buttonRevert->setVisible(true);
+    }
+}
+
+void MovieWidget::chooseMovieBanner()
+{
+    if (m_movie == 0)
+        return;
+
+    ImageDialog::instance()->setImageType(TypeBanner);
+    ImageDialog::instance()->clear();
+    ImageDialog::instance()->setMovie(m_movie);
+    ImageDialog::instance()->setDownloads(QList<Poster>());
+    ImageDialog::instance()->exec(ImageDialogType::MovieBanner);
+
+    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+        emit setActionSaveEnabled(false, WidgetMovies);
+        m_movie->controller()->loadImage(TypeBanner, ImageDialog::instance()->imageUrl());
+        ui->buttonRevert->setVisible(true);
+    }
+}
+
+void MovieWidget::chooseMovieThumb()
+{
+    qDebug() << "CHOOSE MOVIE THUMB";
+    if (m_movie == 0)
+        return;
+
+    ImageDialog::instance()->setImageType(TypeThumb);
+    ImageDialog::instance()->clear();
+    ImageDialog::instance()->setMovie(m_movie);
+    ImageDialog::instance()->setDownloads(QList<Poster>());
+    ImageDialog::instance()->exec(ImageDialogType::MovieThumb);
+
+    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+        emit setActionSaveEnabled(false, WidgetMovies);
+        m_movie->controller()->loadImage(TypeThumb, ImageDialog::instance()->imageUrl());
         ui->buttonRevert->setVisible(true);
     }
 }
@@ -1443,6 +1523,20 @@ void MovieWidget::deleteMovieLogo()
 {
     m_movie->removeImage(TypeLogo);
     updateImages(QList<ImageType>() << TypeLogo);
+    ui->buttonRevert->setVisible(true);
+}
+
+void MovieWidget::deleteMovieBanner()
+{
+    m_movie->removeImage(TypeBanner);
+    updateImages(QList<ImageType>() << TypeBanner);
+    ui->buttonRevert->setVisible(true);
+}
+
+void MovieWidget::deleteMovieThumb()
+{
+    m_movie->removeImage(TypeThumb);
+    updateImages(QList<ImageType>() << TypeThumb);
     ui->buttonRevert->setVisible(true);
 }
 

@@ -14,6 +14,7 @@ class ClosableImage : public QLabel
     Q_PROPERTY(int mySize READ mySize WRITE setMySize USER true)
     Q_PROPERTY(bool clickable READ clickable WRITE setClickable DESIGNABLE true)
     Q_PROPERTY(int myFixedHeight READ myFixedHeight WRITE setMyFixedHeight DESIGNABLE true)
+    Q_PROPERTY(QString title READ title WRITE setTitle DESIGNABLE true)
 
 public:
     explicit ClosableImage(QWidget *parent = 0);
@@ -33,6 +34,8 @@ public:
     void setClickable(const bool &clickable);
     bool clickable() const;
     void setLoading(const bool &loading);
+    void setTitle(const QString &text);
+    QString title() const;
 
 signals:
     void sigClose();
@@ -53,6 +56,7 @@ private:
     QPixmap m_pixmap;
     QPixmap m_defaultPixmap;
     int m_mySize;
+    QString m_title;
     QFont m_font;
     QPixmap m_zoomIn;
     bool m_showZoomAndResolution;

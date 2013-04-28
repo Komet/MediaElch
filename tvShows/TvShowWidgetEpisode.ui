@@ -788,7 +788,7 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QLabel" name="label_14">
+         <widget class="QLabel" name="labelThumbnail">
           <property name="font">
            <font>
             <weight>75</weight>
@@ -804,14 +804,14 @@
          <widget class="ClosableImage" name="thumbnail">
           <property name="minimumSize">
            <size>
-            <width>200</width>
-            <height>132</height>
+            <width>180</width>
+            <height>120</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>200</width>
-            <height>132</height>
+            <width>180</width>
+            <height>120</height>
            </size>
           </property>
           <property name="cursor">
@@ -833,7 +833,7 @@
            <bool>true</bool>
           </property>
           <property name="myFixedHeight" stdset="0">
-           <number>132</number>
+           <number>120</number>
           </property>
          </widget>
         </item>

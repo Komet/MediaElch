@@ -256,6 +256,16 @@ void FanartTvMusicArtists::movieLogos(QString tmdbId)
     Q_UNUSED(tmdbId);
 }
 
+void FanartTvMusicArtists::movieBanners(QString tmdbId)
+{
+    Q_UNUSED(tmdbId);
+}
+
+void FanartTvMusicArtists::movieThumbs(QString tmdbId)
+{
+    Q_UNUSED(tmdbId);
+}
+
 void FanartTvMusicArtists::movieClearArts(QString tmdbId)
 {
     Q_UNUSED(tmdbId);

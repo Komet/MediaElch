@@ -104,7 +104,7 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QLabel" name="label_13">
+         <widget class="QLabel" name="labelPoster">
           <property name="font">
            <font>
             <weight>75</weight>
@@ -120,14 +120,14 @@
          <widget class="ClosableImage" name="poster">
           <property name="minimumSize">
            <size>
-            <width>200</width>
-            <height>320</height>
+            <width>180</width>
+            <height>290</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>200</width>
-            <height>320</height>
+            <width>180</width>
+            <height>290</height>
            </size>
           </property>
           <property name="cursor">
@@ -149,12 +149,12 @@
            <bool>true</bool>
           </property>
           <property name="myFixedHeight" stdset="0">
-           <number>320</number>
+           <number>290</number>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_16">
+         <widget class="QLabel" name="labelFanart">
           <property name="font">
            <font>
             <weight>75</weight>
@@ -170,14 +170,14 @@
          <widget class="ClosableImage" name="backdrop">
           <property name="minimumSize">
            <size>
-            <width>200</width>
-            <height>132</height>
+            <width>180</width>
+            <height>120</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>200</width>
-            <height>132</height>
+            <width>180</width>
+            <height>120</height>
            </size>
           </property>
           <property name="cursor">
@@ -199,12 +199,12 @@
            <bool>true</bool>
           </property>
           <property name="myFixedHeight" stdset="0">
-           <number>132</number>
+           <number>120</number>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_6">
+         <widget class="QLabel" name="labelBanner">
           <property name="font">
            <font>
             <weight>75</weight>
@@ -220,14 +220,14 @@
          <widget class="ClosableImage" name="banner">
           <property name="minimumSize">
            <size>
-            <width>200</width>
-            <height>57</height>
+            <width>180</width>
+            <height>53</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>200</width>
-            <height>57</height>
+            <width>180</width>
+            <height>53</height>
            </size>
           </property>
           <property name="cursor">
@@ -246,7 +246,7 @@
            <bool>true</bool>
           </property>
           <property name="myFixedHeight" stdset="0">
-           <number>57</number>
+           <number>53</number>
           </property>
          </widget>
         </item>

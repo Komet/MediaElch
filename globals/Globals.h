@@ -104,7 +104,7 @@ struct Poster {
 
 enum ImageType {
     TypePoster, TypeBackdrop, TypeBanner, TypeActor, TypeSeasonPoster, TypeSeasonBanner, TypeSeasonBackdrop,
-    TypeShowThumbnail, TypeLogo, TypeClearArt, TypeCdArt, TypeCharacterArt, TypeExtraFanart
+    TypeShowThumbnail, TypeLogo, TypeClearArt, TypeCdArt, TypeCharacterArt, TypeExtraFanart, TypeThumb
 };
 
 enum TvShowType {
@@ -161,6 +161,8 @@ namespace ImageDialogType {
     const int TvShowCharacterArt   = 18;
     const int TvShowSeasonBackdrop = 19;
     const int TvShowSeasonBanner   = 20;
+    const int MovieBanner          = 21;
+    const int MovieThumb           = 22;
 }
 
 namespace MovieScraperInfos {
@@ -186,6 +188,8 @@ namespace MovieScraperInfos {
     const int Logo          = 21;
     const int CdArt         = 22;
     const int ClearArt      = 23;
+    const int Banner        = 24;
+    const int Thumb         = 25;
 }
 
 namespace TvShowScraperInfos {
@@ -251,14 +255,16 @@ namespace MovieFilters {
     const int Director      = 19;
     const int Tags          = 20;
     const int Quality       = 21;
+    const int Banner        = 22;
+    const int Thumb         = 23;
 }
 
 namespace TvShowFilters {
-    const int Title         = 22;
+    const int Title         = 24;
 }
 
 namespace ConcertFilters {
-    const int Title         = 23;
+    const int Title         = 25;
 }
 
 enum SortBy {
@@ -290,6 +296,8 @@ namespace DataFileType {
     const int TvShowEpisodeThumb   = 22;
     const int TvShowSeasonBackdrop = 23;
     const int TvShowSeasonBanner   = 24;
+    const int MovieBanner          = 25;
+    const int MovieThumb           = 26;
 }
 
 enum TvShowUpdateType {

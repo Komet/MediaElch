@@ -160,6 +160,16 @@ void TMDbImages::movieLogos(QString tmdbId)
     Q_UNUSED(tmdbId);
 }
 
+void TMDbImages::movieBanners(QString tmdbId)
+{
+    Q_UNUSED(tmdbId);
+}
+
+void TMDbImages::movieThumbs(QString tmdbId)
+{
+    Q_UNUSED(tmdbId);
+}
+
 /**
  * @brief Load movie clear arts
  * @param tmdbId The Movie DB id

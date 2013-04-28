@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>876</width>
-    <height>659</height>
+    <width>873</width>
+    <height>750</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -353,6 +353,40 @@
           </item>
           <item row="5" column="1">
            <widget class="QLineEdit" name="movieCdArt">
+            <property name="maximumSize">
+             <size>
+              <width>400</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Banner</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_50">
+            <property name="text">
+             <string>Thumb</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QLineEdit" name="movieBanner">
+            <property name="maximumSize">
+             <size>
+              <width>400</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QLineEdit" name="movieThumb">
             <property name="maximumSize">
              <size>
               <width>400</width>

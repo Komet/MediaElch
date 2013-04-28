@@ -22,6 +22,18 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
     font.setPointSize(font.pointSize()+4);
     ui->title->setFont(font);
 
+    font = ui->labelPoster->font();
+    #ifdef Q_OS_WIN32
+        font.setPointSize(font.pointSize()-1);
+    #else
+        font.setPointSize(font.pointSize()-2);
+    #endif
+
+    font.setBold(true);
+    ui->labelFanart->setFont(font);
+    ui->labelBanner->setFont(font);
+    ui->labelPoster->setFont(font);
+
     ui->poster->setDefaultPixmap(QPixmap(":/img/film_reel.png"));
     ui->backdrop->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->banner->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));

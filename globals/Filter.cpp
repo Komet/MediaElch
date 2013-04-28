@@ -97,6 +97,10 @@ bool Filter::accepts(Movie *movie)
         return (m_hasInfo && movie->hasLogo()) || (!m_hasInfo && !movie->hasLogo());
     if (m_info == MovieFilters::ClearArt)
         return (m_hasInfo && movie->hasClearArt()) || (!m_hasInfo && !movie->hasClearArt());
+    if (m_info == MovieFilters::Banner)
+        return (m_hasInfo && movie->hasBanner()) || (!m_hasInfo && !movie->hasBanner());
+    if (m_info == MovieFilters::Thumb)
+        return (m_hasInfo && movie->hasThumb()) || (!m_hasInfo && !movie->hasThumb());
     if (m_info == MovieFilters::CdArt)
         return (m_hasInfo && movie->hasCdArt()) || (!m_hasInfo && !movie->hasCdArt());
     if (m_info == MovieFilters::Trailer)

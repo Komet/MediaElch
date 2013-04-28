@@ -18,6 +18,8 @@ public:
     void moviePosters(QString tmdbId);
     void movieBackdrops(QString tmdbId);
     void movieLogos(QString tmdbId);
+    void movieBanners(QString tmdbId);
+    void movieThumbs(QString tmdbId);
     void movieClearArts(QString tmdbId);
     void movieCdArts(QString tmdbId);
     void concertImages(Concert *concert, QString tmdbId, QList<int> types);

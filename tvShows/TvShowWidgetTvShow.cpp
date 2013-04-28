@@ -41,6 +41,21 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->artStackedWidget->setAnimation(QEasingCurve::OutCubic);
     ui->artStackedWidget->setSpeed(300);
 
+    font = ui->labelClearArt->font();
+    #ifdef Q_OS_WIN32
+        font.setPointSize(font.pointSize()-1);
+    #else
+        font.setPointSize(font.pointSize()-2);
+    #endif
+
+    font.setBold(true);
+    ui->labelClearArt->setFont(font);
+    ui->labelCharacterArt->setFont(font);
+    ui->labelFanart->setFont(font);
+    ui->labelLogo->setFont(font);
+    ui->labelPoster->setFont(font);
+    ui->labelBanner->setFont(font);
+
     ui->poster->setDefaultPixmap(QPixmap(":/img/film_reel.png"));
     ui->backdrop->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->banner->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));

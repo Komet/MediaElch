@@ -21,7 +21,7 @@ ClosableImage::ClosableImage(QWidget *parent) :
     setMouseTracking(true);
     m_showZoomAndResolution = true;
     m_scaleTo = Qt::Horizontal;
-    m_fixedSize = 200;
+    m_fixedSize = 180;
     m_fixedHeight = 0;
     m_clickable = false;
     m_loading = false;
@@ -103,12 +103,13 @@ void ClosableImage::mouseMoveEvent(QMouseEvent *ev)
 
 void ClosableImage::paintEvent(QPaintEvent *event)
 {
+    QPainter p(this);
+
     if (m_loading) {
         QLabel::paintEvent(event);
         return;
     }
 
-    QPainter p(this);
     if (!m_pixmap.isNull()) {
         int h = height()*(width()-2*m_mySize)/width();
         p.drawPixmap(m_mySize, (height()-h)/2, m_pixmap.scaledToWidth(width()-2*m_mySize));
@@ -182,7 +183,7 @@ void ClosableImage::updateSize(int imageWidth, int imageHeight)
         // scale to height
         setFixedHeight(m_fixedSize);
         if (imageWidth == 0 || imageHeight == 0)
-            setFixedWidth(200);
+            setFixedWidth(180);
         else
             setFixedWidth(qCeil((((qreal)height()-7-zoomSpace)/imageHeight)*imageWidth+9));
     }
@@ -313,4 +314,14 @@ bool ClosableImage::confirmDeleteImage()
     if (dontPrompt.checkState() == Qt::Checked && ret == QMessageBox::Yes)
         Settings::instance()->setDontShowDeleteImageConfirm(true);
     return (ret == QMessageBox::Yes);
+}
+
+void ClosableImage::setTitle(const QString &text)
+{
+    m_title = text;
+}
+
+QString ClosableImage::title() const
+{
+    return m_title;
 }

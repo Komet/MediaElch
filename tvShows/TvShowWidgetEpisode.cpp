@@ -37,6 +37,16 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     font.setPointSize(font.pointSize()+4);
     ui->episodeName->setFont(font);
 
+    font = ui->labelThumbnail->font();
+    #ifdef Q_OS_WIN32
+        font.setPointSize(font.pointSize()-1);
+    #else
+        font.setPointSize(font.pointSize()-2);
+    #endif
+
+    font.setBold(true);
+    ui->labelThumbnail->setFont(font);
+
     ui->directors->setItemDelegate(new ComboDelegate(ui->directors, WidgetTvShows, ComboDelegateDirectors));
     ui->writers->setItemDelegate(new ComboDelegate(ui->writers, WidgetTvShows, ComboDelegateWriters));
     ui->thumbnail->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));

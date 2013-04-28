@@ -61,11 +61,15 @@ private slots:
     void chooseMovieLogo();
     void chooseMovieClearArt();
     void chooseMovieCdArt();
+    void chooseMovieBanner();
+    void chooseMovieThumb();
     void deleteMoviePoster();
     void deleteMovieBackdrop();
     void deleteMovieLogo();
     void deleteMovieClearArt();
     void deleteMovieCdArt();
+    void deleteMovieBanner();
+    void deleteMovieThumb();
     void movieNameChanged(QString text);
     void addGenre(QString genre);
     void removeGenre(QString genre);

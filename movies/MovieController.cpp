@@ -160,6 +160,10 @@ void MovieController::scraperLoadDone()
         QList<int> images;
         if (infosToLoad().contains(MovieScraperInfos::Logo))
             images << TypeLogo;
+        if (infosToLoad().contains(MovieScraperInfos::Banner))
+            images << TypeBanner;
+        if (infosToLoad().contains(MovieScraperInfos::Thumb))
+            images << TypeThumb;
         if (infosToLoad().contains(MovieScraperInfos::ClearArt))
             images << TypeClearArt;
         if (infosToLoad().contains(MovieScraperInfos::CdArt))
@@ -250,6 +254,14 @@ void MovieController::onDownloadFinished(DownloadManagerElement elem)
     case TypeLogo:
         ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->logoImageName(m_movie));
         m_movie->setLogoImage(elem.data);
+        break;
+    case TypeBanner:
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->bannerImageName(m_movie));
+        m_movie->setBannerImage(elem.data);
+        break;
+    case TypeThumb:
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->thumbImageName(m_movie));
+        m_movie->setThumbImage(elem.data);
         break;
     case TypeClearArt:
         ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->clearArtImageName(m_movie));

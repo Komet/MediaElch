@@ -38,6 +38,8 @@ TMDb::TMDb(QObject *parent)
                       << MovieScraperInfos::Director
                       << MovieScraperInfos::Writer
                       << MovieScraperInfos::Logo
+                      << MovieScraperInfos::Banner
+                      << MovieScraperInfos::Thumb
                       << MovieScraperInfos::CdArt
                       << MovieScraperInfos::ClearArt
                       << MovieScraperInfos::Set;

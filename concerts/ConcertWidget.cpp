@@ -36,6 +36,20 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     font.setPointSize(font.pointSize()+4);
     ui->concertName->setFont(font);
 
+    font = ui->labelClearArt->font();
+    #ifdef Q_OS_WIN32
+        font.setPointSize(font.pointSize()-1);
+    #else
+        font.setPointSize(font.pointSize()-2);
+    #endif
+
+    font.setBold(true);
+    ui->labelClearArt->setFont(font);
+    ui->labelDiscArt->setFont(font);
+    ui->labelFanart->setFont(font);
+    ui->labelLogo->setFont(font);
+    ui->labelPoster->setFont(font);
+
     m_concert = 0;
     m_posterDownloadManager = new DownloadManager(this);
 

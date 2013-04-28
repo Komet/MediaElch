@@ -171,12 +171,16 @@ public:
     bool hasClearArt() const;
     bool hasCdArt() const;
     bool hasExtraFanarts() const;
+    bool hasBanner() const;
+    bool hasThumb() const;
     void setHasPoster(bool has);
     void setHasBackdrop(bool has);
     void setHasLogo(bool has);
     void setHasClearArt(bool has);
     void setHasCdArt(bool has);
     void setHasExtraFanarts(bool has);
+    void setHasBanner(bool has);
+    void setHasThumb(bool has);
 
     QList<Poster> posters() const;
     QList<Poster> backdrops() const;
@@ -185,6 +189,8 @@ public:
     bool logoImageChanged() const;
     bool clearArtImageChanged() const;
     bool cdArtImageChanged() const;
+    bool bannerImageChanged() const;
+    bool thumbImageChanged() const;
     QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
     QStringList extraFanartsToRemove();
     QList<QByteArray> extraFanartImagesToAdd();
@@ -200,6 +206,8 @@ public:
     void setLogoImage(QByteArray img);
     void setClearArtImage(QByteArray img);
     void setCdArtImage(QByteArray img);
+    void setBannerImage(QByteArray img);
+    void setThumbImage(QByteArray img);
     void addExtraFanart(QByteArray fanart);
     void removeExtraFanart(QByteArray fanart);
     void removeExtraFanart(QString file);
@@ -213,6 +221,8 @@ public:
     QByteArray logoImage();
     QByteArray clearArtImage();
     QByteArray cdArtImage();
+    QByteArray bannerImage();
+    QByteArray thumbImage();
 
     DiscType discType();
     void setDiscType(DiscType type);
@@ -260,6 +270,8 @@ private:
     bool m_logoImageChanged;
     bool m_clearArtImageChanged;
     bool m_cdArtImageChanged;
+    bool m_bannerImageChanged;
+    bool m_thumbImageChanged;
     bool m_infoLoaded;
     bool m_infoFromNfoLoaded;
     bool m_imagesLoaded;
@@ -275,6 +287,8 @@ private:
     bool m_hasClearArt;
     bool m_hasCdArt;
     bool m_hasExtraFanarts;
+    bool m_hasBanner;
+    bool m_hasThumb;
     bool m_syncNeeded;
     bool m_streamDetailsLoaded;
     StreamDetails *m_streamDetails;
@@ -290,6 +304,8 @@ private:
     QByteArray m_logoImage;
     QByteArray m_clearArtImage;
     QByteArray m_cdArtImage;
+    QByteArray m_bannerImage;
+    QByteArray m_thumbImage;
     QList<QByteArray> m_extraFanartImagesToAdd;
     QList<ImageType> m_imagesToRemove;
 };

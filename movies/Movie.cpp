@@ -29,6 +29,8 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_logoImageChanged = false;
     m_clearArtImageChanged = false;
     m_cdArtImageChanged = false;
+    m_bannerImageChanged = false;
+    m_thumbImageChanged = false;
     if (files.size() > 0) {
         QFileInfo fi(files.at(0));
         QStringList path = fi.path().split("/", QString::SkipEmptyParts);
@@ -167,6 +169,18 @@ void Movie::clear(QList<int> infos)
         m_cdArtImage = QByteArray();
         m_cdArtImageChanged = false;
         m_imagesToRemove.removeOne(TypeCdArt);
+    }
+
+    if (infos.contains(MovieScraperInfos::Banner)) {
+        m_bannerImage = QByteArray();
+        m_bannerImageChanged = false;
+        m_imagesToRemove.removeOne(TypeBanner);
+    }
+
+    if (infos.contains(MovieScraperInfos::Thumb)) {
+        m_thumbImage = QByteArray();
+        m_thumbImageChanged = false;
+        m_imagesToRemove.removeOne(TypeThumb);
     }
 
     if (infos.contains(MovieScraperInfos::ExtraFanarts)) {
@@ -576,6 +590,16 @@ QByteArray Movie::logoImage()
     return m_logoImage;
 }
 
+QByteArray Movie::bannerImage()
+{
+    return m_bannerImage;
+}
+
+QByteArray Movie::thumbImage()
+{
+    return m_thumbImage;
+}
+
 /**
  * @brief Holds the current movie clear art
  * @return Current movie clear art
@@ -648,6 +672,16 @@ bool Movie::cdArtImageChanged() const
     return m_cdArtImageChanged;
 }
 
+bool Movie::bannerImageChanged() const
+{
+    return m_bannerImageChanged;
+}
+
+bool Movie::thumbImageChanged() const
+{
+    return m_thumbImageChanged;
+}
+
 /**
  * @property Movie::watched
  * @brief Holds the movies watched status
@@ -712,6 +746,16 @@ bool Movie::hasLogo() const
 bool Movie::hasClearArt() const
 {
     return m_hasClearArt;
+}
+
+bool Movie::hasBanner() const
+{
+    return m_hasBanner;
+}
+
+bool Movie::hasThumb() const
+{
+    return m_hasThumb;
 }
 
 /**
@@ -1206,6 +1250,16 @@ void Movie::setHasCdArt(bool has)
     m_hasCdArt = has;
 }
 
+void Movie::setHasBanner(bool has)
+{
+    m_hasBanner = has;
+}
+
+void Movie::setHasThumb(bool has)
+{
+    m_hasThumb = has;
+}
+
 /**
  * @brief Sets if the stream details were loaded
  * @param loaded
@@ -1399,6 +1453,20 @@ void Movie::setClearArtImage(QByteArray img)
 {
     m_clearArtImage = img;
     m_clearArtImageChanged = true;
+    setChanged(true);
+}
+
+void Movie::setBannerImage(QByteArray img)
+{
+    m_bannerImage = img;
+    m_bannerImageChanged = true;
+    setChanged(true);
+}
+
+void Movie::setThumbImage(QByteArray img)
+{
+    m_thumbImage = img;
+    m_thumbImageChanged = true;
     setChanged(true);
 }
 
@@ -1658,6 +1726,22 @@ void Movie::removeImage(ImageType type)
         if (!m_cdArtImage.isNull()) {
             m_cdArtImage = QByteArray();
             m_cdArtImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.append(type);
+        }
+        break;
+    case TypeBanner:
+        if (!m_bannerImage.isNull()) {
+            m_bannerImage = QByteArray();
+            m_bannerImageChanged = false;
+        } else if (!m_imagesToRemove.contains(type)) {
+            m_imagesToRemove.append(type);
+        }
+        break;
+    case TypeThumb:
+        if (!m_thumbImage.isNull()) {
+            m_thumbImage = QByteArray();
+            m_thumbImageChanged = false;
         } else if (!m_imagesToRemove.contains(type)) {
             m_imagesToRemove.append(type);
         }

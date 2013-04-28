@@ -39,6 +39,8 @@ public:
     virtual QString posterImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString backdropImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString logoImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString bannerImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString thumbImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString clearArtImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString cdArtImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString actorImageName(Movie *movie, Actor actor) = 0;

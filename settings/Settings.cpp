@@ -23,6 +23,8 @@ Settings::Settings(QObject *parent) :
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieCdArt, "disc.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieClearArt, "clearart.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieLogo, "logo.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieBanner, "<baseFileName>-banner.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieThumb, "<baseFileName>-landscape.jpg", 0));
 
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowNfo, "tvshow.nfo", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowBackdrop, "fanart.jpg", 0));

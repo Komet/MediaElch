@@ -57,6 +57,8 @@ MovieSearch::MovieSearch(QWidget *parent) :
     ui->chkLogo->setMyData(MovieScraperInfos::Logo);
     ui->chkClearArt->setMyData(MovieScraperInfos::ClearArt);
     ui->chkCdArt->setMyData(MovieScraperInfos::CdArt);
+    ui->chkBanner->setMyData(MovieScraperInfos::Banner);
+    ui->chkThumb->setMyData(MovieScraperInfos::Thumb);
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0)

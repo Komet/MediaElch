@@ -725,6 +725,10 @@ void ImageDialog::loadImagesFromProvider(QString id)
             m_currentProvider->moviePosters(id);
         else if (m_type == ImageDialogType::MovieLogo)
             m_currentProvider->movieLogos(id);
+        else if (m_type == ImageDialogType::MovieBanner)
+            m_currentProvider->movieBanners(id);
+        else if (m_type == ImageDialogType::MovieThumb)
+            m_currentProvider->movieThumbs(id);
         else if (m_type == ImageDialogType::MovieClearArt)
             m_currentProvider->movieClearArts(id);
         else if (m_type == ImageDialogType::MovieCdArt)

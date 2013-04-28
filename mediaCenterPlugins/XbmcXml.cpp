@@ -232,6 +232,36 @@ void XbmcXml::saveAdditionalImages(Movie *movie)
             saveFile(path + QDir::separator() + saveFileName, movie->clearArtImage());
         }
     }
+    if (movie->imagesToRemove().contains(TypeBanner)) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieBanner)) {
+            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
+            QString path = getPath(movie);
+            QFile(path + QDir::separator() + saveFileName).remove();
+        }
+    }
+
+    if (movie->bannerImageChanged() && !movie->bannerImage().isNull()) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieBanner)) {
+            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
+            QString path = getPath(movie);
+            saveFile(path + QDir::separator() + saveFileName, movie->bannerImage());
+        }
+    }
+    if (movie->imagesToRemove().contains(TypeThumb)) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieThumb)) {
+            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
+            QString path = getPath(movie);
+            QFile(path + QDir::separator() + saveFileName).remove();
+        }
+    }
+
+    if (movie->thumbImageChanged() && !movie->thumbImage().isNull()) {
+        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieThumb)) {
+            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
+            QString path = getPath(movie);
+            saveFile(path + QDir::separator() + saveFileName, movie->thumbImage());
+        }
+    }
     if (movie->imagesToRemove().contains(TypeClearArt)) {
         foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieClearArt)) {
             QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
@@ -478,6 +508,8 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
         movie->setHasPoster(!posterImageName(movie).isEmpty());
         movie->setHasBackdrop(!backdropImageName(movie).isEmpty());
         movie->setHasLogo(!logoImageName(movie).isEmpty());
+        movie->setHasBanner(!bannerImageName(movie).isEmpty());
+        movie->setHasThumb(!thumbImageName(movie).isEmpty());
         movie->setHasClearArt(!clearArtImageName(movie).isEmpty());
         movie->setHasCdArt(!cdArtImageName(movie).isEmpty());
         movie->setHasExtraFanarts(!extraFanartNames(movie).isEmpty());
@@ -704,6 +736,56 @@ QString XbmcXml::logoImageName(Movie *movie, QList<DataFile> dataFiles, bool con
     }
 
     return logoFileName;
+}
+
+QString XbmcXml::bannerImageName(Movie *movie, QList<DataFile> dataFiles, bool constructName)
+{
+    QString bannerFileName;
+    if (movie->files().size() == 0) {
+        qWarning() << "Movie has no files";
+        return bannerFileName;
+    }
+    QFileInfo fi(movie->files().at(0));
+
+    if (!constructName)
+        dataFiles = Settings::instance()->dataFiles(DataFileType::MovieBanner);
+
+    foreach (DataFile dataFile, dataFiles) {
+        QString file = dataFile.saveFileName(fi.fileName());
+        QString path = getPath(movie);
+        QFileInfo bFi(path + QDir::separator() + file);
+        if (bFi.isFile() || constructName) {
+            bannerFileName = path + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return bannerFileName;
+}
+
+QString XbmcXml::thumbImageName(Movie *movie, QList<DataFile> dataFiles, bool constructName)
+{
+    QString thumbFileName;
+    if (movie->files().size() == 0) {
+        qWarning() << "Movie has no files";
+        return thumbFileName;
+    }
+    QFileInfo fi(movie->files().at(0));
+
+    if (!constructName)
+        dataFiles = Settings::instance()->dataFiles(DataFileType::MovieThumb);
+
+    foreach (DataFile dataFile, dataFiles) {
+        QString file = dataFile.saveFileName(fi.fileName());
+        QString path = getPath(movie);
+        QFileInfo bFi(path + QDir::separator() + file);
+        if (bFi.isFile() || constructName) {
+            thumbFileName = path + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return thumbFileName;
 }
 
 /**

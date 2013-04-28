@@ -41,6 +41,8 @@ public:
     QString posterImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString backdropImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString logoImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+    QString bannerImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+    QString thumbImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString clearArtImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString cdArtImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString actorImageName(Movie *movie, Actor actor);
