@@ -243,32 +243,32 @@ void MovieController::onDownloadFinished(DownloadManagerElement elem)
 
     switch (elem.imageType) {
     case TypePoster:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->posterImageName(m_movie));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypePoster));
         m_movie->setPosterImage(elem.data);
         break;
     case TypeBackdrop:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->backdropImageName(m_movie));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypeBackdrop));
         Helper::resizeBackdrop(elem.data);
         m_movie->setBackdropImage(elem.data);
         break;
     case TypeLogo:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->logoImageName(m_movie));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypeLogo));
         m_movie->setLogoImage(elem.data);
         break;
     case TypeBanner:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->bannerImageName(m_movie));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypeBanner));
         m_movie->setBannerImage(elem.data);
         break;
     case TypeThumb:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->thumbImageName(m_movie));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypeThumb));
         m_movie->setThumbImage(elem.data);
         break;
     case TypeClearArt:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->clearArtImageName(m_movie));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypeClearArt));
         m_movie->setClearArtImage(elem.data);
         break;
     case TypeCdArt:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->cdArtImageName(m_movie));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypeCdArt));
         m_movie->setCdArtImage(elem.data);
         break;
     case TypeActor:

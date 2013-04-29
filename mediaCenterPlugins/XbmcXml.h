@@ -38,35 +38,18 @@ public:
     QImage movieSetBackdrop(QString setName);
     void saveMovieSetPoster(QString setName, QImage poster);
     void saveMovieSetBackdrop(QString setName, QImage backdrop);
-    QString posterImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString backdropImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString logoImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString bannerImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString thumbImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString clearArtImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString cdArtImageName(Movie *movie, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+
     QString actorImageName(Movie *movie, Actor actor);
-    QString posterImageName(Concert *concert, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString backdropImageName(Concert *concert, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString logoImageName(Concert *concert, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString clearArtImageName(Concert *concert, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString cdArtImageName(Concert *concert, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString thumbnailImageName(TvShowEpisode *episode, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString posterImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString backdropImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString bannerImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString actorImageName(TvShow *show, Actor actor);
-    QString seasonPosterImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString seasonBackdropImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString seasonBannerImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString seasonThumbImageName(TvShow *show, int season, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+
+    QString imageFileName(Movie *movie, ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+    QString imageFileName(Concert *concert, ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+    QString imageFileName(TvShowEpisode *episode, ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+    QString imageFileName(TvShow *show, ImageType type, int season = -1, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+
     void saveAdditionalImages(Movie *movie);
     void saveAdditionalImages(Concert *concert);
     void saveAdditionalImages(TvShow *show);
-    QString logoImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString thumbImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString clearArtImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString characterArtImageName(TvShow *show, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString nfoFilePath(Movie *movie);
     QString nfoFilePath(Concert *concert);
     QString nfoFilePath(TvShowEpisode *episode);

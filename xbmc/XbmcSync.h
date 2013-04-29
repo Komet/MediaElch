@@ -25,7 +25,7 @@ public:
     };
 
     enum SyncType {
-        SyncContents, SyncWatched, RenameArtwork
+        SyncContents, SyncWatched
     };
 
     struct XbmcData {
@@ -52,7 +52,6 @@ private slots:
     void onScanFinished();
     void onRadioContents();
     void onRadioWatched();
-    void onRadioRenameArtwork();
     void onButtonClose();
     void processMessage(QJsonRpcMessage msg);
     void triggerReload();
@@ -92,7 +91,6 @@ private:
     void updateWatched();
     void checkIfListsReady(Elements element);
     XbmcSync::XbmcData parseXbmcDataFromMap(QMap<QString, QVariant> map);
-    void renameArtwork();
     void updateFolderLastModified(Movie *movie);
     void updateFolderLastModified(Concert *concert);
     void updateFolderLastModified(TvShow *show);

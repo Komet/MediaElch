@@ -505,13 +505,13 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
 
     // Existence of images
     if (initialNfoContent.isEmpty()) {
-        movie->setHasPoster(!posterImageName(movie).isEmpty());
-        movie->setHasBackdrop(!backdropImageName(movie).isEmpty());
-        movie->setHasLogo(!logoImageName(movie).isEmpty());
-        movie->setHasBanner(!bannerImageName(movie).isEmpty());
-        movie->setHasThumb(!thumbImageName(movie).isEmpty());
-        movie->setHasClearArt(!clearArtImageName(movie).isEmpty());
-        movie->setHasCdArt(!cdArtImageName(movie).isEmpty());
+        movie->setHasPoster(!imageFileName(movie, TypePoster).isEmpty());
+        movie->setHasBackdrop(!imageFileName(movie, TypeBackdrop).isEmpty());
+        movie->setHasLogo(!imageFileName(movie, TypeLogo).isEmpty());
+        movie->setHasBanner(!imageFileName(movie, TypeBanner).isEmpty());
+        movie->setHasThumb(!imageFileName(movie, TypeThumb).isEmpty());
+        movie->setHasClearArt(!imageFileName(movie, TypeClearArt).isEmpty());
+        movie->setHasCdArt(!imageFileName(movie, TypeCdArt).isEmpty());
         movie->setHasExtraFanarts(!extraFanartNames(movie).isEmpty());
     }
 
@@ -642,210 +642,6 @@ QString XbmcXml::actorImageName(Movie *movie, Actor actor)
     if (fi.isFile())
         return path;
     return QString();
-}
-
-/**
- * @brief Get the path to the movie poster
- * @param movie Movie object
- * @return Path to poster image
- */
-QString XbmcXml::posterImageName(Movie *movie, QList<DataFile> dataFiles, bool constructName)
-{
-    QString posterFileName;
-    if (movie->files().size() == 0) {
-        qWarning() << "Movie has no files";
-        return posterFileName;
-    }
-    QFileInfo fi(movie->files().at(0));
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::MoviePoster);
-
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-        if (movie->discType() == DiscBluRay || movie->discType() == DiscDvd)
-            file = "poster.jpg";
-        QString path = getPath(movie);
-        QFileInfo pFi(path + QDir::separator() + file);
-        if (pFi.isFile() || constructName) {
-            posterFileName = path + QDir::separator() + file;
-            break;
-        }
-    }
-
-    return posterFileName;
-}
-
-/**
- * @brief Get the path to the movie backdrop
- * @param movie Movie object
- * @return Path to backdrop image
- */
-QString XbmcXml::backdropImageName(Movie *movie, QList<DataFile> dataFiles, bool constructName)
-{
-    QString fanartFileName;
-    if (movie->files().size() == 0) {
-        qWarning() << "Movie has no files";
-        return fanartFileName;
-    }
-    QFileInfo fi(movie->files().at(0));
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::MovieBackdrop);
-
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-        if (movie->discType() == DiscBluRay || movie->discType() == DiscDvd)
-            file = "fanart.jpg";
-        QString path = getPath(movie);
-        QFileInfo bFi(path + QDir::separator() + file);
-        if (bFi.isFile() || constructName) {
-            fanartFileName = path + QDir::separator() + file;
-            break;
-        }
-    }
-
-    return fanartFileName;
-}
-
-/**
- * @brief Get the path to the movie logo
- * @param movie Movie object
- * @return Path to logo image
- */
-QString XbmcXml::logoImageName(Movie *movie, QList<DataFile> dataFiles, bool constructName)
-{
-    QString logoFileName;
-    if (movie->files().size() == 0) {
-        qWarning() << "Movie has no files";
-        return logoFileName;
-    }
-    QFileInfo fi(movie->files().at(0));
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::MovieLogo);
-
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName());
-        QString path = getPath(movie);
-        QFileInfo bFi(path + QDir::separator() + file);
-        if (bFi.isFile() || constructName) {
-            logoFileName = path + QDir::separator() + file;
-            break;
-        }
-    }
-
-    return logoFileName;
-}
-
-QString XbmcXml::bannerImageName(Movie *movie, QList<DataFile> dataFiles, bool constructName)
-{
-    QString bannerFileName;
-    if (movie->files().size() == 0) {
-        qWarning() << "Movie has no files";
-        return bannerFileName;
-    }
-    QFileInfo fi(movie->files().at(0));
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::MovieBanner);
-
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName());
-        QString path = getPath(movie);
-        QFileInfo bFi(path + QDir::separator() + file);
-        if (bFi.isFile() || constructName) {
-            bannerFileName = path + QDir::separator() + file;
-            break;
-        }
-    }
-
-    return bannerFileName;
-}
-
-QString XbmcXml::thumbImageName(Movie *movie, QList<DataFile> dataFiles, bool constructName)
-{
-    QString thumbFileName;
-    if (movie->files().size() == 0) {
-        qWarning() << "Movie has no files";
-        return thumbFileName;
-    }
-    QFileInfo fi(movie->files().at(0));
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::MovieThumb);
-
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName());
-        QString path = getPath(movie);
-        QFileInfo bFi(path + QDir::separator() + file);
-        if (bFi.isFile() || constructName) {
-            thumbFileName = path + QDir::separator() + file;
-            break;
-        }
-    }
-
-    return thumbFileName;
-}
-
-/**
- * @brief Get the path to the movie clear art
- * @param movie Movie object
- * @return Path to clear art image
- */
-QString XbmcXml::clearArtImageName(Movie *movie, QList<DataFile> dataFiles, bool constructName)
-{
-    QString clearArtFileName;
-    if (movie->files().size() == 0) {
-        qWarning() << "Movie has no files";
-        return clearArtFileName;
-    }
-    QFileInfo fi(movie->files().at(0));
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::MovieClearArt);
-
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName());
-        QString path = getPath(movie);
-        QFileInfo bFi(path + QDir::separator() + file);
-        if (bFi.isFile() || constructName) {
-            clearArtFileName = path + QDir::separator() + file;
-            break;
-        }
-    }
-
-    return clearArtFileName;
-}
-
-/**
- * @brief Get the path to the movie cd art
- * @param movie Movie object
- * @return Path to cd art image
- */
-QString XbmcXml::cdArtImageName(Movie *movie, QList<DataFile> dataFiles, bool constructName)
-{
-    QString cdArtFileName;
-    if (movie->files().size() == 0) {
-        qWarning() << "Movie has no files";
-        return cdArtFileName;
-    }
-    QFileInfo fi(movie->files().at(0));
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::MovieCdArt);
-
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName());
-        QString path = getPath(movie);
-        QFileInfo bFi(path + QDir::separator() + file);
-        if (bFi.isFile() || constructName) {
-            cdArtFileName = path + QDir::separator() + file;
-            break;
-        }
-    }
-
-    return cdArtFileName;
 }
 
 /**
@@ -1136,433 +932,6 @@ bool XbmcXml::loadConcert(Concert *concert, QString initialNfoContent)
 }
 
 /**
- * @brief Get the path to the concert poster
- * @param concert Concert object
- * @return Path to poster image
- */
-QString XbmcXml::posterImageName(Concert *concert, QList<DataFile> dataFiles, bool constructName)
-{
-    if (concert->files().count() == 0)
-        return QString();
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::ConcertPoster);
-
-    QFileInfo fi(concert->files().at(0));
-    QString posterFileName;
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName());
-        if (concert->discType() == DiscBluRay || concert->discType() == DiscDvd)
-            file = "poster.jpg";
-        QString path = getPath(concert);
-        QFileInfo pFi(path + QDir::separator() + file);
-        if (pFi.isFile() || constructName) {
-            posterFileName = path + QDir::separator() + file;
-            break;
-        }
-    }
-    fi.setFile(posterFileName);
-    if (fi.isFile())
-        return posterFileName;
-    return QString();
-}
-
-/**
- * @brief Get the path to the concert backdrop
- * @param concert Concert object
- * @return Path to backdrop image
- */
-QString XbmcXml::backdropImageName(Concert *concert, QList<DataFile> dataFiles, bool constructName)
-{
-    if (concert->files().count() == 0)
-        return QString();
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::ConcertBackdrop);
-
-    QFileInfo fi(concert->files().at(0));
-    QString fanartFileName;
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName());
-        if (concert->discType() == DiscBluRay || concert->discType() == DiscDvd)
-            file = "fanart.jpg";
-        QString path = getPath(concert);
-        QFileInfo bFi(path + QDir::separator() + file);
-        if (bFi.isFile() || constructName) {
-            fanartFileName = path + QDir::separator() + file;
-            break;
-        }
-    }
-    fi.setFile(fanartFileName);
-    if (fi.isFile())
-        return fanartFileName;
-    return QString();
-}
-
-/**
- * @brief Get the path to the concert logo
- * @param concert Concert object
- * @return Path to logo image
- */
-QString XbmcXml::logoImageName(Concert *concert, QList<DataFile> dataFiles, bool constructName)
-{
-    QString logoFileName;
-    if (concert->files().size() == 0) {
-        qWarning() << "Concert has no files";
-        return logoFileName;
-    }
-    QFileInfo fi(concert->files().at(0));
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::ConcertLogo);
-
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName());
-        QString path = getPath(concert);
-        QFileInfo bFi(path + QDir::separator() + file);
-        if (bFi.isFile() || constructName) {
-            logoFileName = path + QDir::separator() + file;
-            break;
-        }
-    }
-
-    return logoFileName;
-}
-
-/**
- * @brief Get the path to the concert clear art
- * @param concert Concert object
- * @return Path to clear art image
- */
-QString XbmcXml::clearArtImageName(Concert *concert, QList<DataFile> dataFiles, bool constructName)
-{
-    QString clearArtFileName;
-    if (concert->files().size() == 0) {
-        qWarning() << "Concert has no files";
-        return clearArtFileName;
-    }
-    QFileInfo fi(concert->files().at(0));
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::ConcertClearArt);
-
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName());
-        QString path = getPath(concert);
-        QFileInfo bFi(path + QDir::separator() + file);
-        if (bFi.isFile() || constructName) {
-            clearArtFileName = path + QDir::separator() + file;
-            break;
-        }
-    }
-
-    return clearArtFileName;
-}
-
-/**
- * @brief Get the path to the concert cd art
- * @param concert Concert object
- * @return Path to cd art image
- */
-QString XbmcXml::cdArtImageName(Concert *concert, QList<DataFile> dataFiles, bool constructName)
-{
-    QString cdArtFileName;
-    if (concert->files().size() == 0) {
-        qWarning() << "Concert has no files";
-        return cdArtFileName;
-    }
-    QFileInfo fi(concert->files().at(0));
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::ConcertCdArt);
-
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName());
-        QString path = getPath(concert);
-        QFileInfo bFi(path + QDir::separator() + file);
-        if (bFi.isFile() || constructName) {
-            cdArtFileName = path + QDir::separator() + file;
-            break;
-        }
-    }
-
-    return cdArtFileName;
-}
-
-/**
- * @brief Get path to poster image
- * @param show
- * @return
- */
-QString XbmcXml::posterImageName(TvShow *show, QList<DataFile> dataFiles, bool constructName)
-{
-    if (show->dir().isEmpty())
-        return QString();
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::TvShowPoster);
-
-    QString posterFileName;
-    foreach (DataFile dataFile, dataFiles) {
-        QString loadFileName = dataFile.saveFileName("");
-        QFileInfo posterFi(show->dir() + QDir::separator() + loadFileName);
-        if (posterFi.isFile() || constructName) {
-            posterFileName = show->dir() + QDir::separator() + loadFileName;
-            break;
-        }
-    }
-    QFileInfo fi(posterFileName);
-    if (fi.isFile())
-        return posterFileName;
-    return QString();
-}
-
-/**
- * @brief Gets path to backdrop image
- * @param show
- * @return
- */
-QString XbmcXml::backdropImageName(TvShow *show, QList<DataFile> dataFiles, bool constructName)
-{
-    if (show->dir().isEmpty())
-        return QString();
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::TvShowBackdrop);
-
-    QString posterFileName;
-    foreach (DataFile dataFile, dataFiles) {
-        QString loadFileName = dataFile.saveFileName("");
-        QFileInfo posterFi(show->dir() + QDir::separator() + loadFileName);
-        if (posterFi.isFile() || constructName) {
-            posterFileName = show->dir() + QDir::separator() + loadFileName;
-            break;
-        }
-    }
-    QFileInfo fi(posterFileName);
-    if (fi.isFile())
-        return posterFileName;
-    return QString();
-}
-
-/**
- * @brief Get path to banner image
- * @param show
- * @return
- */
-QString XbmcXml::bannerImageName(TvShow *show, QList<DataFile> dataFiles, bool constructName)
-{
-    if (show->dir().isEmpty())
-        return QString();
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::TvShowBanner);
-
-    QString bannerFileName;
-    foreach (DataFile dataFile, dataFiles) {
-        QString loadFileName = dataFile.saveFileName("");
-        QFileInfo bannerFi(show->dir() + QDir::separator() + loadFileName);
-        if (bannerFi.isFile() || constructName) {
-            bannerFileName = show->dir() + QDir::separator() + loadFileName;
-            break;
-        }
-    }
-    QFileInfo fi(bannerFileName);
-    if (fi.isFile())
-        return bannerFileName;
-    return QString();
-}
-
-/**
- * @brief Get the path to the tv show logo
- * @param show TV Show object
- * @return Path to logo image
- */
-QString XbmcXml::logoImageName(TvShow *show, QList<DataFile> dataFiles, bool constructName)
-{
-    QString logoFileName;
-    if (show->dir().isEmpty())
-        return logoFileName;
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::TvShowLogo);
-
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName("");
-        QFileInfo fi(show->dir() + QDir::separator() + file);
-        if (fi.isFile() || constructName) {
-            logoFileName = show->dir() + QDir::separator() + file;
-            break;
-        }
-    }
-
-    return logoFileName;
-}
-
-QString XbmcXml::thumbImageName(TvShow *show, QList<DataFile> dataFiles, bool constructName)
-{
-    QString logoFileName;
-    if (show->dir().isEmpty())
-        return logoFileName;
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::TvShowThumb);
-
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName("");
-        QFileInfo fi(show->dir() + QDir::separator() + file);
-        if (fi.isFile() || constructName) {
-            logoFileName = show->dir() + QDir::separator() + file;
-            break;
-        }
-    }
-
-    return logoFileName;
-}
-
-/**
- * @brief Get the path to the tv show clear art
- * @param show TV Show object
- * @return Path to clear art image
- */
-QString XbmcXml::clearArtImageName(TvShow *show, QList<DataFile> dataFiles, bool constructName)
-{
-    QString clearArtFileName;
-    if (show->dir().isEmpty())
-        return clearArtFileName;
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::TvShowClearArt);
-
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName("");
-        QFileInfo fi(show->dir() + QDir::separator() + file);
-        if (fi.isFile() || constructName) {
-            clearArtFileName = show->dir() + QDir::separator() + file;
-            break;
-        }
-    }
-
-    return clearArtFileName;
-}
-
-/**
- * @brief Get the path to the tv show character art
- * @param show TV Show object
- * @return Path to character art image
- */
-QString XbmcXml::characterArtImageName(TvShow *show, QList<DataFile> dataFiles, bool constructName)
-{
-    QString characterArtFileName;
-    if (show->dir().isEmpty())
-        return characterArtFileName;
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::TvShowCharacterArt);
-
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName("");
-        QFileInfo fi(show->dir() + QDir::separator() + file);
-        if (fi.isFile() || constructName) {
-            characterArtFileName = show->dir() + QDir::separator() + file;
-            break;
-        }
-    }
-
-    return characterArtFileName;
-}
-
-/**
- * @brief Get path to season poster
- * @param show
- * @param season
- * @return
- */
-QString XbmcXml::seasonPosterImageName(TvShow *show, int season, QList<DataFile> dataFiles, bool constructName)
-{
-    QString fileName;
-    if (show->dir().isEmpty())
-        return fileName;
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::TvShowSeasonPoster);
-
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName("", season);
-        QFileInfo fi(show->dir() + QDir::separator() + file);
-        if (fi.isFile() || constructName) {
-            fileName = show->dir() + QDir::separator() + file;
-            break;
-        }
-    }
-
-    return fileName;
-}
-
-QString XbmcXml::seasonBackdropImageName(TvShow *show, int season, QList<DataFile> dataFiles, bool constructName)
-{
-    QString fileName;
-    if (show->dir().isEmpty())
-        return fileName;
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::TvShowSeasonBackdrop);
-
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName("", season);
-        QFileInfo fi(show->dir() + QDir::separator() + file);
-        if (fi.isFile() || constructName) {
-            fileName = show->dir() + QDir::separator() + file;
-            break;
-        }
-    }
-
-    return fileName;
-}
-
-QString XbmcXml::seasonBannerImageName(TvShow *show, int season, QList<DataFile> dataFiles, bool constructName)
-{
-    QString fileName;
-    if (show->dir().isEmpty())
-        return fileName;
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::TvShowSeasonBanner);
-
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName("", season);
-        QFileInfo fi(show->dir() + QDir::separator() + file);
-        if (fi.isFile() || constructName) {
-            fileName = show->dir() + QDir::separator() + file;
-            break;
-        }
-    }
-
-    return fileName;
-}
-
-QString XbmcXml::seasonThumbImageName(TvShow *show, int season, QList<DataFile> dataFiles, bool constructName)
-{
-    QString fileName;
-    if (show->dir().isEmpty())
-        return fileName;
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::TvShowSeasonThumb);
-
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName("", season);
-        QFileInfo fi(show->dir() + QDir::separator() + file);
-        if (fi.isFile() || constructName) {
-            fileName = show->dir() + QDir::separator() + file;
-            break;
-        }
-    }
-
-    return fileName;
-}
-
-/**
  * @brief Get path to actor image
  * @param show
  * @param actor
@@ -1579,46 +948,6 @@ QString XbmcXml::actorImageName(TvShow *show, Actor actor)
     if (fi.isFile())
         return fileName;
     return QString();
-}
-
-/**
- * @brief Gets path to thumbnail image
- * @param episode
- * @return
- */
-QString XbmcXml::thumbnailImageName(TvShowEpisode *episode, QList<DataFile> dataFiles, bool constructName)
-{
-    if (episode->files().isEmpty())
-        return "";
-
-    QString fileName;
-    QFileInfo fi(episode->files().at(0));
-
-    if (Helper::isBluRay(episode->files().at(0)) || Helper::isDvd(episode->files().at(0))) {
-        QDir dir = fi.dir();
-        dir.cdUp();
-        fi.setFile(dir.absolutePath() + "/thumb.jpg");
-        return fi.exists() ? fi.absoluteFilePath() : "";
-    }
-
-    if (Helper::isDvd(episode->files().at(0), true)) {
-        fi.setFile(fi.dir().absolutePath() + "/thumb.jpg");
-        return fi.exists() ? fi.absoluteFilePath() : "";
-    }
-
-    if (!constructName)
-        dataFiles = Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb);
-
-    foreach (DataFile dataFile, dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName());
-        QFileInfo pFi(fi.absolutePath() + QDir::separator() + file);
-        if (pFi.isFile() || constructName) {
-            fileName = fi.absolutePath() + QDir::separator() + file;
-            break;
-        }
-    }
-
-    return fileName;
 }
 
 /**
@@ -2437,4 +1766,213 @@ QString XbmcXml::movieSetFileName(QString setName, QString name)
     }
 
     return QString();
+}
+
+QString XbmcXml::imageFileName(Movie *movie, ImageType type, QList<DataFile> dataFiles, bool constructName)
+{
+    int fileType;
+    switch (type) {
+    case TypePoster:
+        fileType = DataFileType::MoviePoster;
+        break;
+    case TypeBackdrop:
+        fileType = DataFileType::MovieBackdrop;
+        break;
+    case TypeLogo:
+        fileType = DataFileType::MovieLogo;
+        break;
+    case TypeBanner:
+        fileType = DataFileType::MovieBanner;
+        break;
+    case TypeThumb:
+        fileType = DataFileType::MovieThumb;
+        break;
+    case TypeClearArt:
+        fileType = DataFileType::MovieClearArt;
+        break;
+    case TypeCdArt:
+        fileType = DataFileType::MovieCdArt;
+        break;
+    default:
+        return "";
+    }
+
+    QString fileName;
+    if (movie->files().size() == 0) {
+        qWarning() << "Movie has no files";
+        return fileName;
+    }
+    QFileInfo fi(movie->files().at(0));
+
+    if (!constructName)
+        dataFiles = Settings::instance()->dataFiles(fileType);
+
+    foreach (DataFile dataFile, dataFiles) {
+        QString file = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
+        if (type == TypePoster && (movie->discType() == DiscBluRay || movie->discType() == DiscDvd))
+            file = "poster.jpg";
+        if (type == TypeBackdrop && (movie->discType() == DiscBluRay || movie->discType() == DiscDvd))
+            file = "fanart.jpg";
+        QString path = getPath(movie);
+        QFileInfo pFi(path + QDir::separator() + file);
+        if (pFi.isFile() || constructName) {
+            fileName = path + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return fileName;
+}
+
+QString XbmcXml::imageFileName(Concert *concert, ImageType type, QList<DataFile> dataFiles, bool constructName)
+{
+    int fileType;
+    switch (type) {
+    case TypePoster:
+        fileType = DataFileType::ConcertPoster;
+        break;
+    case TypeBackdrop:
+        fileType = DataFileType::ConcertBackdrop;
+        break;
+    case TypeLogo:
+        fileType = DataFileType::ConcertLogo;
+        break;
+    case TypeClearArt:
+        fileType = DataFileType::ConcertClearArt;
+        break;
+    case TypeCdArt:
+        fileType = DataFileType::ConcertCdArt;
+        break;
+    default:
+        return "";
+    }
+
+    QString fileName;
+    if (concert->files().size() == 0) {
+        qWarning() << "Concert has no files";
+        return fileName;
+    }
+    QFileInfo fi(concert->files().at(0));
+
+    if (!constructName)
+        dataFiles = Settings::instance()->dataFiles(fileType);
+
+    foreach (DataFile dataFile, dataFiles) {
+        QString file = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
+        if (type == TypePoster && (concert->discType() == DiscBluRay || concert->discType() == DiscDvd))
+            file = "poster.jpg";
+        if (type == TypeBackdrop && (concert->discType() == DiscBluRay || concert->discType() == DiscDvd))
+            file = "fanart.jpg";
+        QString path = getPath(concert);
+        QFileInfo pFi(path + QDir::separator() + file);
+        if (pFi.isFile() || constructName) {
+            fileName = path + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return fileName;
+}
+
+QString XbmcXml::imageFileName(TvShow *show, ImageType type, int season, QList<DataFile> dataFiles, bool constructName)
+{
+    int fileType;
+    switch (type) {
+    case TypePoster:
+        fileType = DataFileType::TvShowPoster;
+        break;
+    case TypeBackdrop:
+        fileType = DataFileType::TvShowBackdrop;
+        break;
+    case TypeLogo:
+        fileType = DataFileType::TvShowLogo;
+        break;
+    case TypeBanner:
+        fileType = DataFileType::TvShowBanner;
+        break;
+    case TypeThumb:
+        fileType = DataFileType::TvShowThumb;
+        break;
+    case TypeClearArt:
+        fileType = DataFileType::TvShowClearArt;
+        break;
+    case TypeCharacterArt:
+        fileType = DataFileType::TvShowCharacterArt;
+        break;
+    case TypeSeasonPoster:
+        fileType = DataFileType::TvShowSeasonPoster;
+        break;
+    case TypeSeasonBackdrop:
+        fileType = DataFileType::TvShowSeasonBackdrop;
+        break;
+    case TypeSeasonBanner:
+        fileType = DataFileType::TvShowSeasonBanner;
+        break;
+    case TypeSeasonThumb:
+        fileType = DataFileType::TvShowSeasonThumb;
+        break;
+    default:
+        return "";
+    }
+
+    if (show->dir().isEmpty())
+        return QString();
+
+    if (!constructName)
+        dataFiles = Settings::instance()->dataFiles(fileType);
+
+    QString fileName;
+    foreach (DataFile dataFile, dataFiles) {
+        QString loadFileName = dataFile.saveFileName("", season);
+        QFileInfo fi(show->dir() + QDir::separator() + loadFileName);
+        if (fi.isFile() || constructName) {
+            fileName = show->dir() + QDir::separator() + loadFileName;
+            break;
+        }
+    }
+    return fileName;
+}
+
+QString XbmcXml::imageFileName(TvShowEpisode *episode, ImageType type, QList<DataFile> dataFiles, bool constructName)
+{
+    int fileType;
+    switch (type) {
+    case TypeShowThumbnail:
+        fileType = DataFileType::TvShowEpisodeThumb;
+        break;
+    default:
+        return "";
+    }
+
+    if (episode->files().isEmpty())
+        return "";
+
+    QString fileName;
+    QFileInfo fi(episode->files().at(0));
+
+    if (Helper::isBluRay(episode->files().at(0)) || Helper::isDvd(episode->files().at(0))) {
+        QDir dir = fi.dir();
+        dir.cdUp();
+        fi.setFile(dir.absolutePath() + "/thumb.jpg");
+        return fi.exists() ? fi.absoluteFilePath() : "";
+    }
+
+    if (Helper::isDvd(episode->files().at(0), true)) {
+        fi.setFile(fi.dir().absolutePath() + "/thumb.jpg");
+        return fi.exists() ? fi.absoluteFilePath() : "";
+    }
+
+    if (!constructName)
+        dataFiles = Settings::instance()->dataFiles(fileType);
+
+    foreach (DataFile dataFile, dataFiles) {
+        QString file = dataFile.saveFileName(fi.fileName());
+        QFileInfo pFi(fi.absolutePath() + QDir::separator() + file);
+        if (pFi.isFile() || constructName) {
+            fileName = fi.absolutePath() + QDir::separator() + file;
+            break;
+        }
+    }
+
+    return fileName;
 }

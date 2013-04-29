@@ -105,33 +105,33 @@ void TvShowWidgetSeason::updateImages(QList<ImageType> images)
     if (images.contains(TypeSeasonPoster)) {
         if (!m_show->seasonPosterImage(m_season).isNull())
             ui->poster->setImage(m_show->seasonPosterImage(m_season));
-        else if (!Manager::instance()->mediaCenterInterfaceTvShow()->seasonPosterImageName(m_show, m_season).isEmpty() &&
+        else if (!Manager::instance()->mediaCenterInterfaceTvShow()->imageFileName(m_show, TypeSeasonPoster, m_season).isEmpty() &&
                 (!m_show->imagesToRemove().contains(TypeSeasonPoster) || !m_show->imagesToRemove().value(TypeSeasonPoster).contains(m_season)))
-            ui->poster->setImage(Manager::instance()->mediaCenterInterfaceTvShow()->seasonPosterImageName(m_show, m_season));
+            ui->poster->setImage(Manager::instance()->mediaCenterInterfaceTvShow()->imageFileName(m_show, TypeSeasonPoster, m_season));
     }
 
     if (images.contains(TypeSeasonBackdrop)) {
         if (!m_show->seasonBackdropImage(m_season).isNull())
             ui->backdrop->setImage(m_show->seasonBackdropImage(m_season));
-        else if (!Manager::instance()->mediaCenterInterfaceTvShow()->seasonPosterImageName(m_show, m_season).isEmpty() &&
+        else if (!Manager::instance()->mediaCenterInterfaceTvShow()->imageFileName(m_show, TypeSeasonBackdrop, m_season).isEmpty() &&
                 (!m_show->imagesToRemove().contains(TypeSeasonBackdrop) || !m_show->imagesToRemove().value(TypeSeasonBackdrop).contains(m_season)))
-            ui->backdrop->setImage(Manager::instance()->mediaCenterInterfaceTvShow()->seasonBackdropImageName(m_show, m_season));
+            ui->backdrop->setImage(Manager::instance()->mediaCenterInterfaceTvShow()->imageFileName(m_show, TypeSeasonBackdrop, m_season));
     }
 
     if (images.contains(TypeSeasonBanner)) {
         if (!m_show->seasonBannerImage(m_season).isNull())
             ui->banner->setImage(m_show->seasonBannerImage(m_season));
-        else if (!Manager::instance()->mediaCenterInterfaceTvShow()->seasonBannerImageName(m_show, m_season).isEmpty() &&
+        else if (!Manager::instance()->mediaCenterInterfaceTvShow()->imageFileName(m_show, TypeSeasonBanner, m_season).isEmpty() &&
                 (!m_show->imagesToRemove().contains(TypeSeasonBanner) || !m_show->imagesToRemove().value(TypeSeasonBanner).contains(m_season)))
-            ui->banner->setImage(Manager::instance()->mediaCenterInterfaceTvShow()->seasonBannerImageName(m_show, m_season));
+            ui->banner->setImage(Manager::instance()->mediaCenterInterfaceTvShow()->imageFileName(m_show, TypeSeasonBanner, m_season));
     }
 
     if (images.contains(TypeSeasonThumb)) {
         if (!m_show->seasonThumbImage(m_season).isNull())
             ui->thumb->setImage(m_show->seasonThumbImage(m_season));
-        else if (!Manager::instance()->mediaCenterInterfaceTvShow()->seasonThumbImageName(m_show, m_season).isEmpty() &&
+        else if (!Manager::instance()->mediaCenterInterfaceTvShow()->imageFileName(m_show, TypeSeasonThumb, m_season).isEmpty() &&
                 (!m_show->imagesToRemove().contains(TypeSeasonThumb) || !m_show->imagesToRemove().value(TypeSeasonThumb).contains(m_season)))
-            ui->thumb->setImage(Manager::instance()->mediaCenterInterfaceTvShow()->seasonThumbImageName(m_show, m_season));
+            ui->thumb->setImage(Manager::instance()->mediaCenterInterfaceTvShow()->imageFileName(m_show, TypeSeasonThumb, m_season));
     }
 }
 
@@ -287,23 +287,23 @@ void TvShowWidgetSeason::onDownloadFinished(DownloadManagerElement elem)
     if (elem.imageType == TypeSeasonPoster) {
         if (m_show == elem.show)
             ui->poster->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->seasonPosterImageName(elem.show, elem.season));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, TypeSeasonPoster, elem.season));
         elem.show->setSeasonPosterImage(elem.season, elem.data);
     } else if (elem.imageType == TypeSeasonBackdrop) {
         Helper::resizeBackdrop(elem.data);
         if (m_show == elem.show)
             ui->backdrop->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->seasonBackdropImageName(elem.show, elem.season));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, TypeSeasonBackdrop, elem.season));
         elem.show->setSeasonBackdropImage(elem.season, elem.data);
     } else if (elem.imageType == TypeSeasonBanner) {
         if (m_show == elem.show)
             ui->banner->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->seasonBannerImageName(elem.show, elem.season));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, TypeSeasonBanner, elem.season));
         elem.show->setSeasonBannerImage(elem.season, elem.data);
     } else if (elem.imageType == TypeSeasonThumb) {
         if (m_show == elem.show)
             ui->thumb->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->seasonThumbImageName(elem.show, elem.season));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, TypeSeasonThumb, elem.season));
         elem.show->setSeasonThumbImage(elem.season, elem.data);
     }
 

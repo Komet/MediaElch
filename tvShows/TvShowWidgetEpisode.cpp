@@ -320,8 +320,8 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
 
     if (!m_episode->thumbnailImage().isNull())
         ui->thumbnail->setImage(m_episode->thumbnailImage());
-    else if (!Manager::instance()->mediaCenterInterface()->thumbnailImageName(m_episode).isEmpty())
-        ui->thumbnail->setImage(Manager::instance()->mediaCenterInterface()->thumbnailImageName(m_episode));
+    else if (!Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, TypeShowThumbnail).isEmpty())
+        ui->thumbnail->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, TypeShowThumbnail));
 
     ui->season->blockSignals(false);
     ui->episode->blockSignals(false);
@@ -574,7 +574,7 @@ void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
         qDebug() << "Got a backdrop";
         if (m_episode == elem.episode)
             ui->thumbnail->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->thumbnailImageName(elem.episode));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.episode, TypeShowThumbnail));
         elem.episode->setThumbnailImage(elem.data);
     }
     if (m_posterDownloadManager->downloadQueueSize() == 0) {
@@ -805,8 +805,8 @@ void TvShowWidgetEpisode::onOverviewChange()
 void TvShowWidgetEpisode::onDeleteThumbnail()
 {
     m_episode->removeImage(TypeShowThumbnail);
-    if (!m_episode->imagesToRemove().contains(TypeShowThumbnail) && !Manager::instance()->mediaCenterInterface()->thumbnailImageName(m_episode).isEmpty())
-        ui->thumbnail->setImage(Manager::instance()->mediaCenterInterface()->thumbnailImageName(m_episode));
+    if (!m_episode->imagesToRemove().contains(TypeShowThumbnail) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, TypeShowThumbnail).isEmpty())
+        ui->thumbnail->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, TypeShowThumbnail));
     ui->buttonRevert->setVisible(true);
 }
 

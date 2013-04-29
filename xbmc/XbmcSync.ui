@@ -68,23 +68,6 @@
     </widget>
    </item>
    <item>
-    <widget class="QRadioButton" name="radioRenameArtwork">
-     <property name="text">
-      <string>Rename artwork to Frodo naming conventions</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="labelRenameArtwork">
-     <property name="text">
-      <string>This will rename all your artwork to fit the Frodo naming conventions. Please make sure you have not already set Frodo filenames in MediaElchs settings. Your artwork needs to show up in MediaElch.</string>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>

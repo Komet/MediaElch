@@ -650,50 +650,50 @@ void MovieWidget::updateImages(QList<ImageType> images)
     if (images.contains(TypePoster)) {
         if (!m_movie->posterImage().isNull())
             ui->poster->setImage(m_movie->posterImage());
-        else if (!m_movie->imagesToRemove().contains(TypePoster) && !Manager::instance()->mediaCenterInterface()->posterImageName(m_movie).isEmpty())
-            ui->poster->setImage(Manager::instance()->mediaCenterInterface()->posterImageName(m_movie));
+        else if (!m_movie->imagesToRemove().contains(TypePoster) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypePoster).isEmpty())
+            ui->poster->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypePoster));
     }
 
     if (images.contains(TypeBackdrop)) {
         if (!m_movie->backdropImage().isNull())
             ui->backdrop->setImage(m_movie->backdropImage());
-        else if (!m_movie->imagesToRemove().contains(TypeBackdrop) && !Manager::instance()->mediaCenterInterface()->backdropImageName(m_movie).isEmpty())
-            ui->backdrop->setImage(Manager::instance()->mediaCenterInterface()->backdropImageName(m_movie));
+        else if (!m_movie->imagesToRemove().contains(TypeBackdrop) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypeBackdrop).isEmpty())
+            ui->backdrop->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypeBackdrop));
     }
 
     if (images.contains(TypeLogo)) {
         if (!m_movie->logoImage().isNull())
             ui->logo->setImage(m_movie->logoImage());
-        else if (!m_movie->imagesToRemove().contains(TypeLogo) && !Manager::instance()->mediaCenterInterface()->logoImageName(m_movie).isEmpty())
-            ui->logo->setImage(Manager::instance()->mediaCenterInterface()->logoImageName(m_movie));
+        else if (!m_movie->imagesToRemove().contains(TypeLogo) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypeLogo).isEmpty())
+            ui->logo->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypeLogo));
     }
 
     if (images.contains(TypeBanner)) {
         if (!m_movie->bannerImage().isNull())
             ui->banner->setImage(m_movie->bannerImage());
-        else if (!m_movie->imagesToRemove().contains(TypeBanner) && !Manager::instance()->mediaCenterInterface()->bannerImageName(m_movie).isEmpty())
-            ui->banner->setImage(Manager::instance()->mediaCenterInterface()->bannerImageName(m_movie));
+        else if (!m_movie->imagesToRemove().contains(TypeBanner) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypeBanner).isEmpty())
+            ui->banner->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypeBanner));
     }
 
     if (images.contains(TypeThumb)) {
         if (!m_movie->thumbImage().isNull())
             ui->thumb->setImage(m_movie->thumbImage());
-        else if (!m_movie->imagesToRemove().contains(TypeThumb) && !Manager::instance()->mediaCenterInterface()->thumbImageName(m_movie).isEmpty())
-            ui->thumb->setImage(Manager::instance()->mediaCenterInterface()->thumbImageName(m_movie));
-    }
-
-    if (images.contains(TypeCdArt)) {
-        if (!m_movie->clearArtImage().isNull())
-            ui->clearArt->setImage(m_movie->clearArtImage());
-        else if (!m_movie->imagesToRemove().contains(TypeClearArt) && !Manager::instance()->mediaCenterInterface()->clearArtImageName(m_movie).isEmpty())
-            ui->clearArt->setImage(Manager::instance()->mediaCenterInterface()->clearArtImageName(m_movie));
+        else if (!m_movie->imagesToRemove().contains(TypeThumb) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypeThumb).isEmpty())
+            ui->thumb->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypeThumb));
     }
 
     if (images.contains(TypeClearArt)) {
+        if (!m_movie->clearArtImage().isNull())
+            ui->clearArt->setImage(m_movie->clearArtImage());
+        else if (!m_movie->imagesToRemove().contains(TypeClearArt) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypeClearArt).isEmpty())
+            ui->clearArt->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypeClearArt));
+    }
+
+    if (images.contains(TypeCdArt)) {
         if (!m_movie->cdArtImage().isNull())
             ui->cdArt->setImage(m_movie->cdArtImage());
-        else if (!m_movie->imagesToRemove().contains(TypeCdArt) && !Manager::instance()->mediaCenterInterface()->cdArtImageName(m_movie).isEmpty())
-            ui->cdArt->setImage(Manager::instance()->mediaCenterInterface()->cdArtImageName(m_movie));
+        else if (!m_movie->imagesToRemove().contains(TypeCdArt) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypeCdArt).isEmpty())
+            ui->cdArt->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, TypeCdArt));
     }
 }
 
