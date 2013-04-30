@@ -168,8 +168,8 @@ public:
     void setSeasonBackdropImage(int season, QByteArray poster);
     void setSeasonBannerImage(int season, QByteArray poster);
     void setSeasonThumbImage(int season, QByteArray poster);
-    void removeImage(ImageType type, int season = -2);
-    QMap<ImageType, QList<int> > imagesToRemove() const;
+    void removeImage(int type, int season = -2);
+    QMap<int, QList<int> > imagesToRemove() const;
 
     // Extra Fanarts
     QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
@@ -249,7 +249,7 @@ private:
     QList<QByteArray> m_extraFanartImagesToAdd;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
-    QMap<ImageType, QList<int> > m_imagesToRemove;
+    QMap<int, QList<int> > m_imagesToRemove;
 };
 
 QDebug operator<<(QDebug dbg, const TvShow &show);

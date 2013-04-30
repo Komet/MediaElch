@@ -42,10 +42,10 @@ public:
     QString actorImageName(Movie *movie, Actor actor);
     QString actorImageName(TvShow *show, Actor actor);
 
-    QString imageFileName(Movie *movie, ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString imageFileName(Concert *concert, ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString imageFileName(TvShowEpisode *episode, ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
-    QString imageFileName(TvShow *show, ImageType type, int season = -1, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+    QString imageFileName(Movie *movie, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+    QString imageFileName(Concert *concert, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+    QString imageFileName(TvShowEpisode *episode, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+    QString imageFileName(TvShow *show, int type, int season = -1, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
 
     void saveAdditionalImages(Movie *movie);
     void saveAdditionalImages(Concert *concert);

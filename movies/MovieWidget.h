@@ -56,20 +56,9 @@ private slots:
     void onDownloadProgress(Movie *movie, int current, int maximum);
     void onSetImage(Movie *movie, int type, QByteArray data);
 
-    void chooseMoviePoster();
-    void chooseMovieBackdrop();
-    void chooseMovieLogo();
-    void chooseMovieClearArt();
-    void chooseMovieCdArt();
-    void chooseMovieBanner();
-    void chooseMovieThumb();
-    void deleteMoviePoster();
-    void deleteMovieBackdrop();
-    void deleteMovieLogo();
-    void deleteMovieClearArt();
-    void deleteMovieCdArt();
-    void deleteMovieBanner();
-    void deleteMovieThumb();
+    void onChooseImage();
+    void onDeleteImage();
+
     void movieNameChanged(QString text);
     void addGenre(QString genre);
     void removeGenre(QString genre);
@@ -128,7 +117,7 @@ private:
     QList< QList<QLineEdit*> > m_streamDetailsSubtitles;
     QLabel *m_backgroundLabel;
     void updateMovieInfo();
-    void updateImages(QList<ImageType> images);
+    void updateImages(QList<int> images);
 };
 
 #endif // MOVIEWIDGET_H

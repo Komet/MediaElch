@@ -320,8 +320,8 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
 
     if (!m_episode->thumbnailImage().isNull())
         ui->thumbnail->setImage(m_episode->thumbnailImage());
-    else if (!Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, TypeShowThumbnail).isEmpty())
-        ui->thumbnail->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, TypeShowThumbnail));
+    else if (!Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb).isEmpty())
+        ui->thumbnail->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb));
 
     ui->season->blockSignals(false);
     ui->episode->blockSignals(false);
@@ -515,7 +515,7 @@ void TvShowWidgetEpisode::onLoadDone()
 
     if (!m_episode->thumbnail().isEmpty()) {
         DownloadManagerElement d;
-        d.imageType = TypeBackdrop;
+        d.imageType = ImageType::TvShowEpisodeThumb;
         d.url = m_episode->thumbnail();
         d.episode = m_episode;
         m_posterDownloadManager->addDownload(d);
@@ -539,7 +539,7 @@ void TvShowWidgetEpisode::onChooseThumbnail()
         return;
     }
 
-    ImageDialog::instance()->setImageType(TypeBackdrop);
+    ImageDialog::instance()->setImageType(ImageType::TvShowEpisodeThumb);
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setTvShowEpisode(m_episode);
     QList<Poster> posters;
@@ -550,12 +550,12 @@ void TvShowWidgetEpisode::onChooseThumbnail()
         posters << p;
     }
     ImageDialog::instance()->setDownloads(posters);
-    ImageDialog::instance()->exec(ImageDialogType::TvShowEpisodeThumb);
+    ImageDialog::instance()->exec(ImageType::TvShowEpisodeThumb);
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
         emit sigSetActionSaveEnabled(false, WidgetTvShows);
         DownloadManagerElement d;
-        d.imageType = TypeBackdrop;
+        d.imageType = ImageType::TvShowEpisodeThumb;
         d.url = ImageDialog::instance()->imageUrl();
         d.episode = m_episode;
         m_posterDownloadManager->addDownload(d);
@@ -570,11 +570,11 @@ void TvShowWidgetEpisode::onChooseThumbnail()
  */
 void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
 {
-    if (elem.imageType == TypeBackdrop) {
+    if (elem.imageType == ImageType::TvShowEpisodeThumb) {
         qDebug() << "Got a backdrop";
         if (m_episode == elem.episode)
             ui->thumbnail->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.episode, TypeShowThumbnail));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.episode, ImageType::TvShowEpisodeThumb));
         elem.episode->setThumbnailImage(elem.data);
     }
     if (m_posterDownloadManager->downloadQueueSize() == 0) {
@@ -804,9 +804,9 @@ void TvShowWidgetEpisode::onOverviewChange()
 
 void TvShowWidgetEpisode::onDeleteThumbnail()
 {
-    m_episode->removeImage(TypeShowThumbnail);
-    if (!m_episode->imagesToRemove().contains(TypeShowThumbnail) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, TypeShowThumbnail).isEmpty())
-        ui->thumbnail->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, TypeShowThumbnail));
+    m_episode->removeImage(ImageType::TvShowEpisodeThumb);
+    if (!m_episode->imagesToRemove().contains(ImageType::TvShowEpisodeThumb) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb).isEmpty())
+        ui->thumbnail->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb));
     ui->buttonRevert->setVisible(true);
 }
 

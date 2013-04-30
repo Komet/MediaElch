@@ -194,7 +194,7 @@ public:
     QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
     QStringList extraFanartsToRemove();
     QList<QByteArray> extraFanartImagesToAdd();
-    QList<ImageType> imagesToRemove() const;
+    QList<int> imagesToRemove() const;
 
     void setPosters(QList<Poster> posters);
     void setPoster(int index, Poster poster);
@@ -213,7 +213,7 @@ public:
     void removeExtraFanart(QString file);
     void clearExtraFanartData();
     void clearImages();
-    void removeImage(ImageType type);
+    void removeImage(int type);
 
     void setPosterImage(QByteArray poster);
     QByteArray posterImage();
@@ -307,7 +307,7 @@ private:
     QByteArray m_bannerImage;
     QByteArray m_thumbImage;
     QList<QByteArray> m_extraFanartImagesToAdd;
-    QList<ImageType> m_imagesToRemove;
+    QList<int> m_imagesToRemove;
 };
 
 Q_DECLARE_METATYPE(Movie*)

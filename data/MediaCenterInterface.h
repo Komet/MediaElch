@@ -44,10 +44,10 @@ public:
     virtual QString nfoFilePath(Concert *concert) = 0;
     virtual QString nfoFilePath(TvShowEpisode *episode) = 0;
 
-    virtual QString imageFileName(Movie *movie, ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
-    virtual QString imageFileName(Concert *concert, ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
-    virtual QString imageFileName(TvShowEpisode *episode, ImageType type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
-    virtual QString imageFileName(TvShow *show, ImageType type, int season = -2, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString imageFileName(Movie *movie, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString imageFileName(Concert *concert, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString imageFileName(TvShowEpisode *episode, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+    virtual QString imageFileName(TvShow *show, int type, int season = -2, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
 };
 
 #endif // MEDIACENTERINTERFACE_H

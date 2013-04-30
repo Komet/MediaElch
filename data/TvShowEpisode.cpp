@@ -86,7 +86,7 @@ void TvShowEpisode::clear(QList<int> infos)
     if (infos.contains(TvShowScraperInfos::Thumbnail)) {
         m_thumbnail = QUrl();
         m_thumbnailImageChanged = false;
-        m_imagesToRemove.removeOne(TypeShowThumbnail);
+        m_imagesToRemove.removeOne(ImageType::TvShowEpisodeThumb);
     }
 
     m_hasChanged = false;
@@ -872,15 +872,15 @@ void TvShowEpisode::setSyncNeeded(bool syncNeeded)
     m_syncNeeded = syncNeeded;
 }
 
-QList<ImageType> TvShowEpisode::imagesToRemove() const
+QList<int> TvShowEpisode::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
 
-void TvShowEpisode::removeImage(ImageType type)
+void TvShowEpisode::removeImage(int type)
 {
     switch (type) {
-    case TypeShowThumbnail:
+    case ImageType::TvShowEpisodeThumb:
         if (!m_thumbnailImage.isNull()) {
             m_thumbnailImage = QByteArray();
             m_thumbnailImageChanged = false;

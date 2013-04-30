@@ -13,8 +13,8 @@
 TMDbImages::TMDbImages(QObject *parent)
 {
     setParent(parent);
-    m_provides << ImageDialogType::MovieBackdrop << ImageDialogType::MoviePoster
-               << ImageDialogType::ConcertBackdrop << ImageDialogType::ConcertPoster;
+    m_provides << ImageType::MovieBackdrop << ImageType::MoviePoster
+               << ImageType::ConcertBackdrop << ImageType::ConcertPoster;
     m_searchResultLimit = 0;
     QSettings settings;
     m_tmdb = new TMDb(this);
@@ -87,7 +87,7 @@ void TMDbImages::onSearchMovieFinished(QList<ScraperSearchResult> results)
 void TMDbImages::moviePosters(QString tmdbId)
 {
     m_dummyMovie->clear();
-    m_imageType = TypePoster;
+    m_imageType = ImageType::MoviePoster;
     QList<int> infos;
     infos << MovieScraperInfos::Poster;
     m_tmdb->loadData(tmdbId, m_dummyMovie, infos);
@@ -100,7 +100,7 @@ void TMDbImages::moviePosters(QString tmdbId)
 void TMDbImages::movieBackdrops(QString tmdbId)
 {
     m_dummyMovie->clear();
-    m_imageType = TypeBackdrop;
+    m_imageType = ImageType::MovieBackdrop;
     QList<int> infos;
     infos << MovieScraperInfos::Backdrop;
     m_tmdb->loadData(tmdbId, m_dummyMovie, infos);
@@ -130,9 +130,9 @@ void TMDbImages::concertBackdrops(QString tmdbId)
 void TMDbImages::onLoadImagesFinished()
 {
     QList<Poster> posters;
-    if (m_imageType == TypeBackdrop)
+    if (m_imageType == ImageType::MovieBackdrop)
         posters = m_dummyMovie->backdrops();
-    else if (m_imageType == TypePoster)
+    else if (m_imageType == ImageType::MoviePoster)
         posters = m_dummyMovie->posters();
 
     emit sigImagesLoaded(posters);

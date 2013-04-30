@@ -349,3 +349,13 @@ QString ClosableImage::title() const
 {
     return m_title;
 }
+
+void ClosableImage::setImageType(const int &type)
+{
+    m_imageType = type;
+}
+
+int ClosableImage::imageType() const
+{
+    return m_imageType;
+}

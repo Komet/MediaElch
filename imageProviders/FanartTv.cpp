@@ -14,12 +14,12 @@
 FanartTv::FanartTv(QObject *parent)
 {
     setParent(parent);
-    m_provides << ImageDialogType::MovieBackdrop << ImageDialogType::MovieLogo << ImageDialogType::MovieClearArt << ImageDialogType::MovieCdArt
-               << ImageDialogType::MovieBanner << ImageDialogType::MovieThumb
-               << ImageDialogType::TvShowClearArt << ImageDialogType::TvShowBackdrop << ImageDialogType::TvShowBanner
-               << ImageDialogType::TvShowThumb << ImageDialogType::TvShowSeasonThumb
-               << ImageDialogType::TvShowLogos << ImageDialogType::TvShowCharacterArt
-               << ImageDialogType::ConcertBackdrop << ImageDialogType::ConcertLogo << ImageDialogType::ConcertClearArt << ImageDialogType::ConcertCdArt;
+    m_provides << ImageType::MovieBackdrop << ImageType::MovieLogo << ImageType::MovieClearArt << ImageType::MovieCdArt
+               << ImageType::MovieBanner << ImageType::MovieThumb
+               << ImageType::TvShowClearArt << ImageType::TvShowBackdrop << ImageType::TvShowBanner
+               << ImageType::TvShowThumb << ImageType::TvShowSeasonThumb
+               << ImageType::TvShowLogos << ImageType::TvShowCharacterArt
+               << ImageType::ConcertBackdrop << ImageType::ConcertLogo << ImageType::ConcertClearArt << ImageType::ConcertCdArt;
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_searchResultLimit = 0;
     QSettings settings;
@@ -121,7 +121,7 @@ void FanartTv::moviePosters(QString tmdbId)
  */
 void FanartTv::movieBackdrops(QString tmdbId)
 {
-    loadMovieData(tmdbId, TypeBackdrop);
+    loadMovieData(tmdbId, ImageType::MovieBackdrop);
 }
 
 /**
@@ -130,17 +130,17 @@ void FanartTv::movieBackdrops(QString tmdbId)
  */
 void FanartTv::movieLogos(QString tmdbId)
 {
-    loadMovieData(tmdbId, TypeLogo);
+    loadMovieData(tmdbId, ImageType::MovieLogo);
 }
 
 void FanartTv::movieBanners(QString tmdbId)
 {
-    loadMovieData(tmdbId, TypeBanner);
+    loadMovieData(tmdbId, ImageType::MovieBanner);
 }
 
 void FanartTv::movieThumbs(QString tmdbId)
 {
-    loadMovieData(tmdbId, TypeThumb);
+    loadMovieData(tmdbId, ImageType::MovieThumb);
 }
 
 /**
@@ -149,7 +149,7 @@ void FanartTv::movieThumbs(QString tmdbId)
  */
 void FanartTv::movieClearArts(QString tmdbId)
 {
-    loadMovieData(tmdbId, TypeClearArt);
+    loadMovieData(tmdbId, ImageType::MovieClearArt);
 }
 
 /**
@@ -158,7 +158,7 @@ void FanartTv::movieClearArts(QString tmdbId)
  */
 void FanartTv::movieCdArts(QString tmdbId)
 {
-    loadMovieData(tmdbId, TypeCdArt);
+    loadMovieData(tmdbId, ImageType::MovieCdArt);
 }
 
 /**
@@ -187,7 +187,7 @@ void FanartTv::concertPosters(QString tmdbId)
  */
 void FanartTv::concertBackdrops(QString tmdbId)
 {
-    loadMovieData(tmdbId, TypeBackdrop);
+    loadMovieData(tmdbId, ImageType::ConcertBackdrop);
 }
 
 /**
@@ -196,7 +196,7 @@ void FanartTv::concertBackdrops(QString tmdbId)
  */
 void FanartTv::concertLogos(QString tmdbId)
 {
-    loadMovieData(tmdbId, TypeLogo);
+    loadMovieData(tmdbId, ImageType::ConcertLogo);
 }
 
 /**
@@ -205,7 +205,7 @@ void FanartTv::concertLogos(QString tmdbId)
  */
 void FanartTv::concertClearArts(QString tmdbId)
 {
-    loadMovieData(tmdbId, TypeClearArt);
+    loadMovieData(tmdbId, ImageType::ConcertClearArt);
 }
 
 /**
@@ -214,7 +214,7 @@ void FanartTv::concertClearArts(QString tmdbId)
  */
 void FanartTv::concertCdArts(QString tmdbId)
 {
-    loadMovieData(tmdbId, TypeCdArt);
+    loadMovieData(tmdbId, ImageType::ConcertCdArt);
 }
 
 /**
@@ -331,12 +331,12 @@ void FanartTv::onLoadAllConcertDataFinished()
 QList<Poster> FanartTv::parseMovieData(QString json, int type)
 {
     QMap<int, QStringList> map;
-    map.insert(TypeBackdrop, QStringList() << "moviebackground");
-    map.insert(TypeLogo, QStringList() << "hdmovielogo" << "movielogo");
-    map.insert(TypeClearArt, QStringList() << "hdmovieclearart" << "movieart");
-    map.insert(TypeCdArt, QStringList() << "moviedisc");
-    map.insert(TypeBanner, QStringList() << "moviebanner");
-    map.insert(TypeThumb, QStringList() << "moviethumb");
+    map.insert(ImageType::MovieBackdrop, QStringList() << "moviebackground");
+    map.insert(ImageType::MovieLogo, QStringList() << "hdmovielogo" << "movielogo");
+    map.insert(ImageType::MovieClearArt, QStringList() << "hdmovieclearart" << "movieart");
+    map.insert(ImageType::MovieCdArt, QStringList() << "moviedisc");
+    map.insert(ImageType::MovieBanner, QStringList() << "moviebanner");
+    map.insert(ImageType::MovieThumb, QStringList() << "moviethumb");
     QList<Poster> posters;
     QScriptValue sc;
     QScriptEngine engine;
@@ -491,7 +491,7 @@ void FanartTv::tvShowPosters(QString tvdbId)
  */
 void FanartTv::tvShowBackdrops(QString tvdbId)
 {
-    loadTvShowData(tvdbId, TypeBackdrop);
+    loadTvShowData(tvdbId, ImageType::TvShowBackdrop);
 }
 
 /**
@@ -500,12 +500,12 @@ void FanartTv::tvShowBackdrops(QString tvdbId)
  */
 void FanartTv::tvShowLogos(QString tvdbId)
 {
-    loadTvShowData(tvdbId, TypeLogo);
+    loadTvShowData(tvdbId, ImageType::TvShowLogos);
 }
 
 void FanartTv::tvShowThumbs(QString tvdbId)
 {
-    loadTvShowData(tvdbId, TypeThumb);
+    loadTvShowData(tvdbId, ImageType::TvShowThumb);
 }
 
 /**
@@ -514,7 +514,7 @@ void FanartTv::tvShowThumbs(QString tvdbId)
  */
 void FanartTv::tvShowClearArts(QString tvdbId)
 {
-    loadTvShowData(tvdbId, TypeClearArt);
+    loadTvShowData(tvdbId, ImageType::TvShowClearArt);
 }
 
 /**
@@ -523,7 +523,7 @@ void FanartTv::tvShowClearArts(QString tvdbId)
  */
 void FanartTv::tvShowCharacterArts(QString tvdbId)
 {
-    loadTvShowData(tvdbId, TypeCharacterArt);
+    loadTvShowData(tvdbId, ImageType::TvShowCharacterArt);
 }
 
 /**
@@ -532,7 +532,7 @@ void FanartTv::tvShowCharacterArts(QString tvdbId)
  */
 void FanartTv::tvShowBanners(QString tvdbId)
 {
-    loadTvShowData(tvdbId, TypeBanner);
+    loadTvShowData(tvdbId, ImageType::TvShowBanner);
 }
 
 /**
@@ -573,7 +573,7 @@ void FanartTv::tvShowSeasonBackdrops(QString tvdbId, int season)
 
 void FanartTv::tvShowSeasonThumbs(QString tvdbId, int season)
 {
-    loadTvShowData(tvdbId, TypeSeasonThumb, season);
+    loadTvShowData(tvdbId, ImageType::TvShowSeasonThumb, season);
 }
 
 /**
@@ -586,13 +586,13 @@ QList<Poster> FanartTv::parseTvShowData(QString json, int type, int season)
 {
     qDebug() << "season is" << season;
     QMap<int, QStringList> map;
-    map.insert(TypeBackdrop, QStringList() << "showbackground");
-    map.insert(TypeLogo, QStringList() << "hdtvlogo" << "clearlogo");
-    map.insert(TypeClearArt, QStringList() << "hdclearart" << "clearart");
-    map.insert(TypeBanner, QStringList() << "tvbanner");
-    map.insert(TypeCharacterArt, QStringList() << "characterart");
-    map.insert(TypeThumb, QStringList() << "tvthumb");
-    map.insert(TypeSeasonThumb, QStringList() << "seasonthumb");
+    map.insert(ImageType::TvShowBackdrop, QStringList() << "showbackground");
+    map.insert(ImageType::TvShowLogos, QStringList() << "hdtvlogo" << "clearlogo");
+    map.insert(ImageType::TvShowClearArt, QStringList() << "hdclearart" << "clearart");
+    map.insert(ImageType::TvShowBanner, QStringList() << "tvbanner");
+    map.insert(ImageType::TvShowCharacterArt, QStringList() << "characterart");
+    map.insert(ImageType::TvShowThumb, QStringList() << "tvthumb");
+    map.insert(ImageType::TvShowSeasonThumb, QStringList() << "seasonthumb");
     QList<Poster> posters;
     QScriptValue sc;
     QScriptEngine engine;
@@ -611,7 +611,7 @@ QList<Poster> FanartTv::parseTvShowData(QString json, int type, int season)
                     if (vB.property("url").toString().isEmpty())
                         continue;
 
-                    if (type == TypeSeasonThumb && season != -2 && !vB.property("season").toString().isEmpty() && vB.property("season").toString().toInt() != season)
+                    if (type == ImageType::TvShowSeasonThumb && season != -2 && !vB.property("season").toString().isEmpty() && vB.property("season").toString().toInt() != season)
                         continue;
 
                     Poster b;

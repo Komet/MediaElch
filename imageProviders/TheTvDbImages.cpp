@@ -7,9 +7,9 @@
 TheTvDbImages::TheTvDbImages(QObject *parent)
 {
     setParent(parent);
-    m_provides << ImageDialogType::TvShowPoster << ImageDialogType::TvShowBackdrop << ImageDialogType::TvShowBanner
-               << ImageDialogType::TvShowSeason << ImageDialogType::TvShowEpisodeThumb << ImageDialogType::TvShowSeasonBanner
-               << ImageDialogType::TvShowSeasonBackdrop;
+    m_provides << ImageType::TvShowPoster << ImageType::TvShowBackdrop << ImageType::TvShowBanner
+               << ImageType::TvShowSeasonPoster << ImageType::TvShowEpisodeThumb << ImageType::TvShowSeasonBanner
+               << ImageType::TvShowSeasonBackdrop;
     m_dummyShow = new TvShow(QString(), this);
     m_dummyEpisode = new TvShowEpisode(QStringList(), m_dummyShow);
     QSettings settings;
@@ -104,7 +104,7 @@ void TheTvDbImages::loadTvShowData(QString tvdbId, int type)
     infosToLoad.append(TvShowScraperInfos::SeasonBanner);
     infosToLoad.append(TvShowScraperInfos::SeasonBackdrop);
 
-    if (type == TypeShowThumbnail)
+    if (type == ImageType::TvShowEpisodeThumb)
         m_tvdb->loadTvShowEpisodeData(tvdbId, m_dummyEpisode, infosToLoad);
     else
         m_dummyShow->loadData(tvdbId, m_tvdb, UpdateShow, infosToLoad);
@@ -117,17 +117,17 @@ void TheTvDbImages::loadTvShowData(QString tvdbId, int type)
 void TheTvDbImages::onLoadTvShowDataFinished()
 {
     QList<Poster> posters;
-    if (m_currentType == TypePoster) {
+    if (m_currentType == ImageType::TvShowPoster) {
         posters = m_dummyShow->posters();
-    } else if (m_currentType == TypeBackdrop) {
+    } else if (m_currentType == ImageType::TvShowBackdrop) {
         posters = m_dummyShow->backdrops();
-    } else if (m_currentType == TypeBanner) {
+    } else if (m_currentType == ImageType::TvShowBanner) {
         posters = m_dummyShow->banners();
-    } else if (m_currentType == TypeSeasonPoster) {
+    } else if (m_currentType == ImageType::TvShowSeasonPoster) {
         posters = m_dummyShow->seasonPosters(m_season);
-    } else if (m_currentType == TypeSeasonBanner) {
+    } else if (m_currentType == ImageType::TvShowSeasonBanner) {
         posters = m_dummyShow->seasonBanners(m_season, true);
-    } else if (m_currentType == TypeShowThumbnail && !m_dummyEpisode->thumbnail().isEmpty()) {
+    } else if (m_currentType == ImageType::TvShowEpisodeThumb && !m_dummyEpisode->thumbnail().isEmpty()) {
         Poster p;
         p.thumbUrl = m_dummyEpisode->thumbnail();
         p.originalUrl = m_dummyEpisode->thumbnail();
@@ -156,7 +156,7 @@ void TheTvDbImages::tvShowImages(TvShow *show, QString tvdbId, QList<int> types)
  */
 void TheTvDbImages::tvShowPosters(QString tvdbId)
 {
-    loadTvShowData(tvdbId, TypePoster);
+    loadTvShowData(tvdbId, ImageType::TvShowPoster);
 }
 
 /**
@@ -165,7 +165,7 @@ void TheTvDbImages::tvShowPosters(QString tvdbId)
  */
 void TheTvDbImages::tvShowBackdrops(QString tvdbId)
 {
-    loadTvShowData(tvdbId, TypeBackdrop);
+    loadTvShowData(tvdbId, ImageType::TvShowBackdrop);
 }
 
 /**
@@ -174,7 +174,7 @@ void TheTvDbImages::tvShowBackdrops(QString tvdbId)
  */
 void TheTvDbImages::tvShowBanners(QString tvdbId)
 {
-    loadTvShowData(tvdbId, TypeBanner);
+    loadTvShowData(tvdbId, ImageType::TvShowBanner);
 }
 
 /**
@@ -188,7 +188,7 @@ void TheTvDbImages::tvShowEpisodeThumb(QString tvdbId, int season, int episode)
     m_dummyEpisode->clear();
     m_dummyEpisode->setSeason(season);
     m_dummyEpisode->setEpisode(episode);
-    loadTvShowData(tvdbId, TypeShowThumbnail);
+    loadTvShowData(tvdbId, ImageType::TvShowEpisodeThumb);
 }
 
 /**
@@ -199,13 +199,13 @@ void TheTvDbImages::tvShowEpisodeThumb(QString tvdbId, int season, int episode)
 void TheTvDbImages::tvShowSeason(QString tvdbId, int season)
 {
     m_season = season;
-    loadTvShowData(tvdbId, TypeSeasonPoster);
+    loadTvShowData(tvdbId, ImageType::TvShowSeasonPoster);
 }
 
 void TheTvDbImages::tvShowSeasonBanners(QString tvdbId, int season)
 {
     m_season = season;
-    loadTvShowData(tvdbId, TypeSeasonBanner);
+    loadTvShowData(tvdbId, ImageType::TvShowSeasonBanner);
 }
 
 // UNSUPPORTED
@@ -377,5 +377,5 @@ void TheTvDbImages::tvShowCharacterArts(QString tvdbId)
 void TheTvDbImages::tvShowSeasonBackdrops(QString tvdbId, int season)
 {
     Q_UNUSED(season);
-    loadTvShowData(tvdbId, TypeBackdrop);
+    loadTvShowData(tvdbId, ImageType::TvShowSeasonBackdrop);
 }

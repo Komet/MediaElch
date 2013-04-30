@@ -201,8 +201,8 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
         QString newFolderName = directoryPattern;
         QString newFileName;
         QString nfo = Manager::instance()->mediaCenterInterface()->nfoFilePath(movie);
-        QString poster = Manager::instance()->mediaCenterInterface()->imageFileName(movie, TypePoster);
-        QString fanart = Manager::instance()->mediaCenterInterface()->imageFileName(movie, TypeBackdrop);
+        QString poster = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MoviePoster);
+        QString fanart = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieBackdrop);
 
         QDir chkDir(fi.canonicalPath());
         chkDir.cdUp();
@@ -332,7 +332,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
         QStringList episodeFiles = episode->files();
         QString nfo = Manager::instance()->mediaCenterInterface()->nfoFilePath(episode);
         QString newNfoFileName = nfo;
-        QString thumbnail = Manager::instance()->mediaCenterInterface()->imageFileName(episode, TypeShowThumbnail);
+        QString thumbnail = Manager::instance()->mediaCenterInterface()->imageFileName(episode, ImageType::TvShowEpisodeThumb);
         QString newThumbnailFileName = thumbnail;
 
         if (!isBluRay && !isDvd && !isDvdWithoutSub && renameFiles) {
@@ -508,8 +508,8 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
         QString newFolderName = directoryPattern;
         QString newFileName;
         QString nfo = Manager::instance()->mediaCenterInterface()->nfoFilePath(concert);
-        QString poster = Manager::instance()->mediaCenterInterface()->imageFileName(concert, TypePoster);
-        QString fanart = Manager::instance()->mediaCenterInterface()->imageFileName(concert, TypeBackdrop);
+        QString poster = Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertPoster);
+        QString fanart = Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertBackdrop);
 
         QDir chkDir(fi.canonicalPath());
         chkDir.cdUp();

@@ -533,27 +533,27 @@ bool ExportDialog::saveImageForType(const QString &type, const QSize &size, cons
     destFile = "movie_images/" + QString("%1-%2_%3x%4.jpg").arg(movie->movieId()).arg(type).arg(size.width()).arg(size.height());
 
     if (type == "poster") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(movie, TypePoster);
+        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MoviePoster);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
     } else if (type == "fanart") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(movie, TypeBackdrop);
+        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieBackdrop);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
     } else if (type == "logo") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(movie, TypeLogo);
+        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieLogo);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
     } else if (type == "clearart") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(movie, TypeClearArt);
+        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieClearArt);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
     } else if (type == "disc") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(movie, TypeCdArt);
+        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieCdArt);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
@@ -569,27 +569,27 @@ bool ExportDialog::saveImageForType(const QString &type, const QSize &size, cons
     destFile = "concert_images/" + QString("%1-%2_%3x%4.jpg").arg(concert->concertId()).arg(type).arg(size.width()).arg(size.height());
 
     if (type == "poster") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(concert, TypePoster);
+        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertPoster);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
     } else if (type == "fanart") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(concert, TypeBackdrop);
+        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertBackdrop);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
     } else if (type == "logo") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(concert, TypeLogo);
+        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertLogo);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
     } else if (type == "clearart") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(concert, TypeClearArt);
+        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertClearArt);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
     } else if (type == "disc") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(concert, TypeCdArt);
+        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertCdArt);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
@@ -605,32 +605,32 @@ bool ExportDialog::saveImageForType(const QString &type, const QSize &size, cons
     destFile = "tvshow_images/" + QString("%1-%2_%3x%4.jpg").arg(tvShow->showId()).arg(type).arg(size.width()).arg(size.height());
 
     if (type == "poster") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, TypePoster);
+        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, ImageType::TvShowPoster);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
     } else if (type == "fanart") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, TypeBackdrop);
+        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, ImageType::TvShowBackdrop);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
     } else if (type == "banner") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, TypeBanner);
+        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, ImageType::TvShowBanner);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);
     } else if (type == "logo") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, TypeLogo);
+        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, ImageType::TvShowLogos);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
     } else if (type == "clearart") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, TypeClearArt);
+        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, ImageType::TvShowClearArt);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
     } else if (type == "characterart") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, TypeCharacterArt);
+        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(tvShow, ImageType::TvShowCharacterArt);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "png", -1);
@@ -646,7 +646,7 @@ bool ExportDialog::saveImageForType(const QString &type, const QSize &size, cons
     destFile = "episode_images/" + QString("%1-%2_%3x%4.jpg").arg(episode->episodeId()).arg(type).arg(size.width()).arg(size.height());
 
     if (type == "thumbnail") {
-        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(episode, TypeShowThumbnail);
+        QString filename = Manager::instance()->mediaCenterInterface()->imageFileName(episode, ImageType::TvShowEpisodeThumb);
         if (filename.isEmpty())
             return false;
         saveImage(size, filename, dir.currentPath() + "/" + destFile, "jpg", 90);

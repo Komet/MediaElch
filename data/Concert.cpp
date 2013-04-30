@@ -89,7 +89,7 @@ void Concert::clear(QList<int> infos)
         m_backdrops.clear();
         m_backdropImage = QByteArray();
         m_backdropImageChanged = false;
-        m_imagesToRemove.removeOne(TypeBackdrop);
+        m_imagesToRemove.removeOne(ImageType::ConcertBackdrop);
     }
     if (infos.contains(ConcertScraperInfos::Genres))
         m_genres.clear();
@@ -97,7 +97,7 @@ void Concert::clear(QList<int> infos)
         m_posters.clear();
         m_posterImage = QByteArray();
         m_posterImageChanged = false;
-        m_imagesToRemove.removeOne(TypePoster);
+        m_imagesToRemove.removeOne(ImageType::ConcertPoster);
     }
     if (infos.contains(ConcertScraperInfos::Overview))
         m_overview = "";
@@ -122,9 +122,9 @@ void Concert::clear(QList<int> infos)
         m_clearArtImageChanged = false;
         m_logoImage = QByteArray();
         m_logoImageChanged = false;
-        m_imagesToRemove.removeOne(TypeCdArt);
-        m_imagesToRemove.removeOne(TypeClearArt);
-        m_imagesToRemove.removeOne(TypeLogo);
+        m_imagesToRemove.removeOne(ImageType::ConcertCdArt);
+        m_imagesToRemove.removeOne(ImageType::ConcertClearArt);
+        m_imagesToRemove.removeOne(ImageType::ConcertLogo);
     }
     if (infos.contains(ConcertScraperInfos::ExtraFanarts)) {
         m_extraFanartsToRemove.clear();
@@ -1217,15 +1217,15 @@ DiscType Concert::discType()
     return DiscSingle;
 }
 
-QList<ImageType> Concert::imagesToRemove() const
+QList<int> Concert::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
 
-void Concert::removeImage(ImageType type)
+void Concert::removeImage(int type)
 {
     switch (type) {
-    case TypePoster:
+    case ImageType::ConcertPoster:
         if (!m_posterImage.isNull()) {
             m_posterImage = QByteArray();
             m_posterImageChanged = false;
@@ -1233,7 +1233,7 @@ void Concert::removeImage(ImageType type)
             m_imagesToRemove.append(type);
         }
         break;
-    case TypeBackdrop:
+    case ImageType::ConcertBackdrop:
         if (!m_backdropImage.isNull()) {
             m_backdropImage = QByteArray();
             m_backdropImageChanged = false;
@@ -1241,7 +1241,7 @@ void Concert::removeImage(ImageType type)
             m_imagesToRemove.append(type);
         }
         break;
-    case TypeLogo:
+    case ImageType::ConcertLogo:
         if (!m_logoImage.isNull()) {
             m_logoImage = QByteArray();
             m_logoImageChanged = false;
@@ -1249,7 +1249,7 @@ void Concert::removeImage(ImageType type)
             m_imagesToRemove.append(type);
         }
         break;
-    case TypeClearArt:
+    case ImageType::ConcertClearArt:
         if (!m_clearArtImage.isNull()) {
             m_clearArtImage = QByteArray();
             m_clearArtImageChanged = false;
@@ -1257,7 +1257,7 @@ void Concert::removeImage(ImageType type)
             m_imagesToRemove.append(type);
         }
         break;
-    case TypeCdArt:
+    case ImageType::ConcertCdArt:
         if (!m_cdArtImage.isNull()) {
             m_cdArtImage = QByteArray();
             m_cdArtImageChanged = false;

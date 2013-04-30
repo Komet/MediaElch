@@ -185,14 +185,14 @@ void CLI::onScraperLoadDone()
     QList<DownloadManagerElement> downloads;
     if (m_movie->posters().count() > 0) {
         DownloadManagerElement d;
-        d.imageType = TypePoster;
+        d.imageType = ImageType::MoviePoster;
         d.url = m_movie->posters().at(0).originalUrl;
         downloads.append(d);
     }
 
     if (m_movie->backdrops().count() > 0) {
         DownloadManagerElement d;
-        d.imageType = TypeBackdrop;
+        d.imageType = ImageType::MovieBackdrop;
         d.url = m_movie->backdrops().at(0).originalUrl;
         downloads.append(d);
     }
@@ -202,7 +202,7 @@ void CLI::onScraperLoadDone()
         if (actors.at(i)->thumb.isEmpty())
             continue;
         DownloadManagerElement d;
-        d.imageType = TypeActor;
+        d.imageType = ImageType::Actor;
         d.url = QUrl(actors.at(i)->thumb);
         d.actor = actors.at(i);
         downloads.append(d);
@@ -218,9 +218,9 @@ void CLI::onScraperLoadDone()
  */
 void CLI::onDownloadFinished(DownloadManagerElement elem)
 {
-    if (elem.imageType == TypePoster)
+    if (elem.imageType == ImageType::MoviePoster)
         m_movie->setPosterImage(elem.data);
-    else if (elem.imageType == TypeBackdrop)
+    else if (elem.imageType == ImageType::MovieBackdrop)
         m_movie->setBackdropImage(elem.data);
 }
 

@@ -37,7 +37,7 @@ public:
     void setDownloads(QList<Poster> downloads, bool initial = true);
     QUrl imageUrl();
     QList<QUrl> imageUrls();
-    void setImageType(ImageType type);
+    void setImageType(int type);
     void setItemType(ItemType type);
     void setMultiSelection(const bool &enable);
     void setMovie(Movie *movie);
@@ -92,7 +92,7 @@ private:
     QNetworkAccessManager m_qnam;
     int m_currentDownloadIndex;
     QNetworkReply *m_currentDownloadReply;
-    ImageType m_imageType;
+    int m_imageType;
     QList<DownloadElement> m_elements;
     QUrl m_imageUrl;
     QList<QUrl> m_imageUrls;

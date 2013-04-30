@@ -14,7 +14,7 @@
 FanartTvMusicArtists::FanartTvMusicArtists(QObject *parent)
 {
     setParent(parent);
-    m_provides << ImageDialogType::ConcertBackdrop << ImageDialogType::ConcertLogo;
+    m_provides << ImageType::ConcertBackdrop << ImageType::ConcertLogo;
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_searchResultLimit = 0;
 }
@@ -98,7 +98,7 @@ void FanartTvMusicArtists::concertBackdrops(QString mbId)
     url.setUrl(QString("http://api.fanart.tv/webservice/artist/%2/%1/json/artistbackground/1/2/").arg(mbId).arg(m_apiKey));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
-    reply->setProperty("infoToLoad", TypeBackdrop);
+    reply->setProperty("infoToLoad", ImageType::ConcertBackdrop);
     connect(reply, SIGNAL(finished()), this, SLOT(onLoadConcertFinished()));
 }
 
@@ -111,7 +111,7 @@ void FanartTvMusicArtists::concertLogos(QString mbId)
     url.setUrl(QString("http://api.fanart.tv/webservice/artist/%2/%1/json/all/1/2/").arg(mbId).arg(m_apiKey));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
-    reply->setProperty("infoToLoad", TypeLogo);
+    reply->setProperty("infoToLoad", ImageType::ConcertLogo);
     connect(reply, SIGNAL(finished()), this, SLOT(onLoadConcertFinished()));
 }
 
@@ -131,8 +131,8 @@ void FanartTvMusicArtists::onLoadConcertFinished()
 QList<Poster> FanartTvMusicArtists::parseData(QString json, int type)
 {
     QMap<int, QStringList> map;
-    map.insert(TypeBackdrop, QStringList() << "artistbackground");
-    map.insert(TypeLogo, QStringList() << "hdmusiclogo" << "musiclogo");
+    map.insert(ImageType::ConcertBackdrop, QStringList() << "artistbackground");
+    map.insert(ImageType::ConcertLogo, QStringList() << "hdmusiclogo" << "musiclogo");
     QList<Poster> posters;
     QScriptValue sc;
     QScriptEngine engine;

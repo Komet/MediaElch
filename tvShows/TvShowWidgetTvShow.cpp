@@ -94,23 +94,21 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
 
     m_posterDownloadManager = new DownloadManager(this);
 
+    ui->poster->setImageType(ImageType::TvShowPoster);
+    ui->backdrop->setImageType(ImageType::TvShowBackdrop);
+    ui->logo->setImageType(ImageType::TvShowLogos);
+    ui->characterArt->setImageType(ImageType::TvShowCharacterArt);
+    ui->banner->setImageType(ImageType::TvShowBanner);
+    ui->thumb->setImageType(ImageType::TvShowThumb);
+    ui->clearArt->setImageType(ImageType::TvShowClearArt);
+    foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage*>()) {
+        connect(image, SIGNAL(clicked()), this, SLOT(onChooseImage()));
+        connect(image, SIGNAL(sigClose()), this, SLOT(onDeleteImage()));
+    }
+
     connect(ui->name, SIGNAL(textChanged(QString)), ui->showTitle, SLOT(setText(QString)));
     connect(ui->buttonAddActor, SIGNAL(clicked()), this, SLOT(onAddActor()));
     connect(ui->buttonRemoveActor, SIGNAL(clicked()), this, SLOT(onRemoveActor()));
-    connect(ui->poster, SIGNAL(clicked()), this, SLOT(onChoosePoster()));
-    connect(ui->backdrop, SIGNAL(clicked()), this, SLOT(onChooseBackdrop()));
-    connect(ui->banner, SIGNAL(clicked()), this, SLOT(onChooseBanner()));
-    connect(ui->clearArt, SIGNAL(clicked()), this, SLOT(onChooseClearArt()));
-    connect(ui->characterArt, SIGNAL(clicked()), this, SLOT(onChooseCharacterArt()));
-    connect(ui->logo, SIGNAL(clicked()), this, SLOT(onChooseLogo()));
-    connect(ui->thumb, SIGNAL(clicked()), this, SLOT(onChooseThumb()));
-    connect(ui->poster, SIGNAL(sigClose()), this, SLOT(onDeletePoster()));
-    connect(ui->backdrop, SIGNAL(sigClose()), this, SLOT(onDeleteBackdrop()));
-    connect(ui->banner, SIGNAL(sigClose()), this, SLOT(onDeleteBanner()));
-    connect(ui->clearArt, SIGNAL(sigClose()), this, SLOT(onDeleteClearArt()));
-    connect(ui->characterArt, SIGNAL(sigClose()), this, SLOT(onDeleteCharacterArt()));
-    connect(ui->logo, SIGNAL(sigClose()), this, SLOT(onDeleteLogo()));
-    connect(ui->thumb, SIGNAL(sigClose()), this, SLOT(onDeleteThumb()));
     connect(m_posterDownloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onPosterDownloadFinished(DownloadManagerElement)));
     connect(m_posterDownloadManager, SIGNAL(downloadsLeft(int,DownloadManagerElement)), this, SLOT(onDownloadsLeft(int,DownloadManagerElement)));
     connect(ui->actors, SIGNAL(itemSelectionChanged()), this, SLOT(onActorChanged()));
@@ -286,7 +284,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->certification->addItems(certifications);
     ui->certification->setCurrentIndex(certifications.indexOf(m_show->certification()));
 
-    updateImages(QList<ImageType>() << TypePoster << TypeBackdrop << TypeBanner << TypeCharacterArt << TypeClearArt << TypeLogo << TypeThumb);
+    updateImages(QList<int>() << ImageType::TvShowPoster << ImageType::TvShowBackdrop << ImageType::TvShowBanner << ImageType::TvShowCharacterArt << ImageType::TvShowClearArt << ImageType::TvShowLogos << ImageType::TvShowThumb);
     ui->fanarts->setImages(m_show->extraFanarts(Manager::instance()->mediaCenterInterfaceTvShow()));
 
     ui->badgeTuneExisting->setVisible(m_show->hasTune());
@@ -299,55 +297,55 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->buttonRevert->setVisible(m_show->hasChanged());
 }
 
-void TvShowWidgetTvShow::updateImages(QList<ImageType> images)
+void TvShowWidgetTvShow::updateImages(QList<int> images)
 {
-    if (images.contains(TypePoster)) {
+    if (images.contains(ImageType::TvShowPoster)) {
         if (!m_show->posterImage().isNull())
             ui->poster->setImage(m_show->posterImage());
-        else if (!m_show->imagesToRemove().contains(TypePoster) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, TypePoster).isEmpty())
-            ui->poster->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, TypePoster));
+        else if (!m_show->imagesToRemove().contains(ImageType::TvShowPoster) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowPoster).isEmpty())
+            ui->poster->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowPoster));
     }
 
-    if (images.contains(TypeBackdrop)) {
+    if (images.contains(ImageType::TvShowBackdrop)) {
         if (!m_show->backdropImage().isNull())
             ui->backdrop->setImage(m_show->backdropImage());
-        else if (!m_show->imagesToRemove().contains(TypeBackdrop) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, TypeBackdrop).isEmpty())
-            ui->backdrop->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, TypeBackdrop));
+        else if (!m_show->imagesToRemove().contains(ImageType::TvShowBackdrop) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowBackdrop).isEmpty())
+            ui->backdrop->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowBackdrop));
     }
 
-    if (images.contains(TypeBanner)) {
+    if (images.contains(ImageType::TvShowBanner)) {
         if (!m_show->bannerImage().isNull())
             ui->banner->setImage(m_show->bannerImage());
-        else if (!m_show->imagesToRemove().contains(TypeBanner) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, TypeBanner).isEmpty())
-            ui->banner->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, TypeBanner));
+        else if (!m_show->imagesToRemove().contains(ImageType::TvShowBanner) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowBanner).isEmpty())
+            ui->banner->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowBanner));
     }
 
-    if (images.contains(TypeLogo)) {
+    if (images.contains(ImageType::TvShowLogos)) {
         if (!m_show->logoImage().isNull())
             ui->logo->setImage(m_show->logoImage());
-        else if (!m_show->imagesToRemove().contains(TypeLogo) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, TypeLogo).isEmpty())
-            ui->logo->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, TypeLogo));
+        else if (!m_show->imagesToRemove().contains(ImageType::TvShowLogos) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowLogos).isEmpty())
+            ui->logo->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowLogos));
     }
 
-    if (images.contains(TypeThumb)) {
+    if (images.contains(ImageType::TvShowThumb)) {
         if (!m_show->thumbImage().isNull())
             ui->thumb->setImage(m_show->thumbImage());
-        else if (!m_show->imagesToRemove().contains(TypeThumb) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, TypeThumb).isEmpty())
-            ui->thumb->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, TypeThumb));
+        else if (!m_show->imagesToRemove().contains(ImageType::TvShowThumb) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowThumb).isEmpty())
+            ui->thumb->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowThumb));
     }
 
-    if (images.contains(TypeClearArt)) {
+    if (images.contains(ImageType::TvShowClearArt)) {
         if (!m_show->clearArtImage().isNull())
             ui->clearArt->setImage(m_show->clearArtImage());
-        else if (!m_show->imagesToRemove().contains(TypeClearArt) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, TypeClearArt).isEmpty())
-            ui->clearArt->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, TypeClearArt));
+        else if (!m_show->imagesToRemove().contains(ImageType::TvShowClearArt) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowClearArt).isEmpty())
+            ui->clearArt->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowClearArt));
     }
 
-    if (images.contains(TypeCharacterArt)) {
+    if (images.contains(ImageType::TvShowCharacterArt)) {
         if (!m_show->characterArtImage().isNull())
             ui->characterArt->setImage(m_show->characterArtImage());
-        else if (!m_show->imagesToRemove().contains(TypeCharacterArt) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, TypeCharacterArt).isEmpty())
-            ui->characterArt->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, TypeCharacterArt));
+        else if (!m_show->imagesToRemove().contains(ImageType::TvShowCharacterArt) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowCharacterArt).isEmpty())
+            ui->characterArt->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowCharacterArt));
     }
 }
 
@@ -414,7 +412,7 @@ void TvShowWidgetTvShow::onStartScraperSearch()
 void TvShowWidgetTvShow::onInfoLoadDone(TvShow *show)
 {
     QList<int> types;
-    types << TypeClearArt << TypeLogo << TypeCharacterArt << TypeThumb << TypeSeasonThumb;
+    types << ImageType::TvShowClearArt << ImageType::TvShowLogos << ImageType::TvShowCharacterArt << ImageType::TvShowThumb << ImageType::TvShowSeasonThumb;
     if (!show->tvdbId().isEmpty() && !types.isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::ExtraArts)) {
         Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types);
         connect(Manager::instance()->fanartTv(), SIGNAL(sigImagesLoaded(TvShow*,QMap<int,QList<Poster> >)), this, SLOT(onLoadDone(TvShow*,QMap<int,QList<Poster> >)), Qt::UniqueConnection);
@@ -447,7 +445,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > post
     if (show->posters().size() > 0 && show->infosToLoad().contains(TvShowScraperInfos::Poster)) {
         emit sigSetActionSaveEnabled(false, WidgetTvShows);
         DownloadManagerElement d;
-        d.imageType = TypePoster;
+        d.imageType = ImageType::TvShowPoster;
         d.url = show->posters().at(0).originalUrl;
         d.show = show;
         m_posterDownloadManager->addDownload(d);
@@ -459,7 +457,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > post
     if (show->backdrops().size() > 0 && show->infosToLoad().contains(TvShowScraperInfos::Fanart)) {
         emit sigSetActionSaveEnabled(false, WidgetTvShows);
         DownloadManagerElement d;
-        d.imageType = TypeBackdrop;
+        d.imageType = ImageType::TvShowBackdrop;
         d.url = show->backdrops().at(0).originalUrl;
         d.show = show;
         m_posterDownloadManager->addDownload(d);
@@ -471,7 +469,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > post
     if (show->banners().size() > 0 && show->infosToLoad().contains(TvShowScraperInfos::Banner)) {
         emit sigSetActionSaveEnabled(false, WidgetTvShows);
         DownloadManagerElement d;
-        d.imageType = TypeBanner;
+        d.imageType = ImageType::TvShowBanner;
         d.url = show->banners().at(0).originalUrl;
         d.show = show;
         m_posterDownloadManager->addDownload(d);
@@ -484,43 +482,43 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > post
     QMapIterator<int, QList<Poster> > it(posters);
     while (it.hasNext()) {
         it.next();
-        if (it.key() == TypeClearArt && !it.value().isEmpty()) {
+        if (it.key() == ImageType::TvShowClearArt && !it.value().isEmpty()) {
             DownloadManagerElement d;
-            d.imageType = TypeClearArt;
+            d.imageType = ImageType::TvShowClearArt;
             d.url = it.value().at(0).originalUrl;
             d.show = show;
             m_posterDownloadManager->addDownload(d);
             if (m_show == show)
                 ui->clearArt->setLoading(true);
             downloadsSize++;
-        } else if (it.key() == TypeCharacterArt && !it.value().isEmpty()) {
+        } else if (it.key() == ImageType::TvShowCharacterArt && !it.value().isEmpty()) {
             DownloadManagerElement d;
-            d.imageType = TypeCharacterArt;
+            d.imageType = ImageType::TvShowCharacterArt;
             d.url = it.value().at(0).originalUrl;
             d.show = show;
             m_posterDownloadManager->addDownload(d);
             if (m_show == show)
                 ui->characterArt->setLoading(true);
             downloadsSize++;
-        } else if (it.key() == TypeLogo && !it.value().isEmpty()) {
+        } else if (it.key() == ImageType::TvShowLogos && !it.value().isEmpty()) {
             DownloadManagerElement d;
-            d.imageType = TypeLogo;
+            d.imageType = ImageType::TvShowLogos;
             d.url = it.value().at(0).originalUrl;
             d.show = show;
             m_posterDownloadManager->addDownload(d);
             if (m_show == show)
                 ui->logo->setLoading(true);
             downloadsSize++;
-        } else if (it.key() == TypeThumb && !it.value().isEmpty()) {
+        } else if (it.key() == ImageType::TvShowThumb && !it.value().isEmpty()) {
             DownloadManagerElement d;
-            d.imageType = TypeThumb;
+            d.imageType = ImageType::TvShowThumb;
             d.url = it.value().at(0).originalUrl;
             d.show = show;
             m_posterDownloadManager->addDownload(d);
             if (m_show == show)
                 ui->thumb->setLoading(true);
             downloadsSize++;
-        } else if (it.key() == TypeSeasonThumb && !it.value().isEmpty()) {
+        } else if (it.key() == ImageType::TvShowSeasonThumb && !it.value().isEmpty()) {
             foreach (Poster p, it.value()) {
                 if (thumbsForSeasons.contains(p.season))
                     continue;
@@ -528,7 +526,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > post
                     continue;
 
                 DownloadManagerElement d;
-                d.imageType = TypeSeasonThumb;
+                d.imageType = ImageType::TvShowSeasonThumb;
                 d.url = p.originalUrl;
                 d.show = show;
                 d.season = p.season;
@@ -545,7 +543,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > post
             if (actors.at(i)->thumb.isEmpty())
                 continue;
             DownloadManagerElement d;
-            d.imageType = TypeActor;
+            d.imageType = ImageType::Actor;
             d.url = QUrl(actors.at(i)->thumb);
             d.actor = actors.at(i);
             d.show = show;
@@ -558,7 +556,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > post
         if (!show->seasonPosters(season).isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::SeasonPoster)) {
             emit sigSetActionSaveEnabled(false, WidgetTvShows);
             DownloadManagerElement d;
-            d.imageType = TypeSeasonPoster;
+            d.imageType = ImageType::TvShowSeasonPoster;
             d.url = show->seasonPosters(season).at(0).originalUrl;
             d.season = season;
             d.show = show;
@@ -568,7 +566,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > post
         if (!show->seasonBackdrops(season).isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::SeasonBackdrop)) {
             emit sigSetActionSaveEnabled(false, WidgetTvShows);
             DownloadManagerElement d;
-            d.imageType = TypeSeasonBackdrop;
+            d.imageType = ImageType::TvShowSeasonBackdrop;
             d.url = show->seasonBackdrops(season).at(0).originalUrl;
             d.season = season;
             d.show = show;
@@ -578,7 +576,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > post
         if (!show->seasonBanners(season).isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::SeasonBanner)) {
             emit sigSetActionSaveEnabled(false, WidgetTvShows);
             DownloadManagerElement d;
-            d.imageType = TypeSeasonBanner;
+            d.imageType = ImageType::TvShowSeasonBanner;
             d.url = show->seasonBanners(season).at(0).originalUrl;
             d.season = season;
             d.show = show;
@@ -592,7 +590,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > post
             if (episode->thumbnail().isEmpty() || !episode->hasChanged())
                 continue;
             DownloadManagerElement d;
-            d.imageType = TypeShowThumbnail;
+            d.imageType = ImageType::TvShowEpisodeThumb;
             d.url = episode->thumbnail();
             d.episode = episode;
             d.show = show;
@@ -615,205 +613,6 @@ void TvShowWidgetTvShow::onLoadDone(TvShow *show, QMap<int, QList<Poster> > post
 }
 
 /**
- * @brief Shows the MovieImageDialog and after successful execution starts poster download
- */
-void TvShowWidgetTvShow::onChoosePoster()
-{
-    qDebug() << "Entered";
-    if (m_show == 0) {
-        qDebug() << "My show is invalid";
-        return;
-    }
-
-    ImageDialog::instance()->setImageType(TypePoster);
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setTvShow(m_show);
-    ImageDialog::instance()->setDownloads(m_show->posters());
-    ImageDialog::instance()->exec(ImageDialogType::TvShowPoster);
-
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
-        DownloadManagerElement d;
-        d.imageType = TypePoster;
-        d.url = ImageDialog::instance()->imageUrl();
-        d.show = m_show;
-        m_posterDownloadManager->addDownload(d);
-        ui->poster->setLoading(true);
-        ui->buttonRevert->setVisible(true);
-    }
-}
-
-/**
- * @brief Shows the MovieImageDialog and after successful execution starts backdrop download
- */
-void TvShowWidgetTvShow::onChooseBackdrop()
-{
-    qDebug() << "Entered";
-    if (m_show == 0) {
-        qDebug() << "My show is invalid";
-        return;
-    }
-    ImageDialog::instance()->setImageType(TypeBackdrop);
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setTvShow(m_show);
-    ImageDialog::instance()->setDownloads(m_show->backdrops());
-    ImageDialog::instance()->exec(ImageDialogType::TvShowBackdrop);
-
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
-        DownloadManagerElement d;
-        d.imageType = TypeBackdrop;
-        d.url = ImageDialog::instance()->imageUrl();
-        d.show = m_show;
-        m_posterDownloadManager->addDownload(d);
-        ui->backdrop->setLoading(true);
-        ui->buttonRevert->setVisible(true);
-    }
-}
-
-/**
- * @brief Shows the MovieImageDialog and after successful execution starts banner download
- */
-void TvShowWidgetTvShow::onChooseBanner()
-{
-    qDebug() << "Entered";
-    if (m_show == 0) {
-        qDebug() << "My show is invalid";
-        return;
-    }
-
-    ImageDialog::instance()->setImageType(TypeBanner);
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setTvShow(m_show);
-    ImageDialog::instance()->setDownloads(m_show->banners());
-    ImageDialog::instance()->exec(ImageDialogType::TvShowBanner);
-
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
-        DownloadManagerElement d;
-        d.imageType = TypeBanner;
-        d.url = ImageDialog::instance()->imageUrl();
-        d.show = m_show;
-        m_posterDownloadManager->addDownload(d);
-        ui->banner->setLoading(true);
-        ui->buttonRevert->setVisible(true);
-    }
-}
-
-/**
- * @brief Shows the ImageDialog and after successful execution starts logo download
- */
-void TvShowWidgetTvShow::onChooseLogo()
-{
-    qDebug() << "Entered";
-    if (m_show == 0) {
-        qDebug() << "My show is invalid";
-        return;
-    }
-
-    ImageDialog::instance()->setImageType(TypeLogo);
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setTvShow(m_show);
-    ImageDialog::instance()->setDownloads(QList<Poster>());
-    ImageDialog::instance()->exec(ImageDialogType::TvShowLogos);
-
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
-        DownloadManagerElement d;
-        d.imageType = TypeLogo;
-        d.url = ImageDialog::instance()->imageUrl();
-        d.show = m_show;
-        m_posterDownloadManager->addDownload(d);
-        ui->logo->setLoading(true);
-        ui->buttonRevert->setVisible(true);
-    }
-}
-
-void TvShowWidgetTvShow::onChooseThumb()
-{
-    qDebug() << "Entered";
-    if (m_show == 0) {
-        qDebug() << "My show is invalid";
-        return;
-    }
-
-    ImageDialog::instance()->setImageType(TypeThumb);
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setTvShow(m_show);
-    ImageDialog::instance()->setDownloads(QList<Poster>());
-    ImageDialog::instance()->exec(ImageDialogType::TvShowThumb);
-
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
-        DownloadManagerElement d;
-        d.imageType = TypeThumb;
-        d.url = ImageDialog::instance()->imageUrl();
-        d.show = m_show;
-        m_posterDownloadManager->addDownload(d);
-        ui->thumb->setLoading(true);
-        ui->buttonRevert->setVisible(true);
-    }
-}
-
-/**
- * @brief Shows the ImageDialog and after successful execution starts clear art download
- */
-void TvShowWidgetTvShow::onChooseClearArt()
-{
-    qDebug() << "Entered";
-    if (m_show == 0) {
-        qDebug() << "My show is invalid";
-        return;
-    }
-
-    ImageDialog::instance()->setImageType(TypeClearArt);
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setTvShow(m_show);
-    ImageDialog::instance()->setDownloads(QList<Poster>());
-    ImageDialog::instance()->exec(ImageDialogType::TvShowClearArt);
-
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
-        DownloadManagerElement d;
-        d.imageType = TypeClearArt;
-        d.url = ImageDialog::instance()->imageUrl();
-        d.show = m_show;
-        m_posterDownloadManager->addDownload(d);
-        ui->clearArt->setLoading(true);
-        ui->buttonRevert->setVisible(true);
-    }
-}
-
-/**
- * @brief Shows the ImageDialog and after successful execution starts character art download
- */
-void TvShowWidgetTvShow::onChooseCharacterArt()
-{
-    qDebug() << "Entered";
-    if (m_show == 0) {
-        qDebug() << "My show is invalid";
-        return;
-    }
-
-    ImageDialog::instance()->setImageType(TypeCharacterArt);
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setTvShow(m_show);
-    ImageDialog::instance()->setDownloads(QList<Poster>());
-    ImageDialog::instance()->exec(ImageDialogType::TvShowCharacterArt);
-
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
-        DownloadManagerElement d;
-        d.imageType = TypeCharacterArt;
-        d.url = ImageDialog::instance()->imageUrl();
-        d.show = m_show;
-        m_posterDownloadManager->addDownload(d);
-        ui->characterArt->setLoading(true);
-        ui->buttonRevert->setVisible(true);
-    }
-}
-
-/**
  * @brief Adjusts the size of the backdrop to common values (1080p or 720p) and shows the image
  * @param elem Downloaded element
  */
@@ -822,70 +621,70 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
     qDebug() << "Entered";
 
     switch (elem.imageType) {
-    case TypePoster:
+    case ImageType::TvShowPoster:
         if (m_show == elem.show)
             ui->poster->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, TypePoster));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowPoster));
         elem.show->setPosterImage(elem.data);
         break;
-    case TypeBackdrop:
+    case ImageType::TvShowBackdrop:
         Helper::resizeBackdrop(elem.data);
         if (m_show == elem.show)
             ui->backdrop->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, TypeBackdrop));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowBackdrop));
         elem.show->setBackdropImage(elem.data);
         break;
-    case TypeBanner:
+    case ImageType::TvShowBanner:
         if (m_show == elem.show)
             ui->banner->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, TypeBanner));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowBanner));
         elem.show->setBannerImage(elem.data);
         break;
-    case TypeLogo:
+    case ImageType::TvShowLogos:
         if (m_show == elem.show)
             ui->logo->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, TypeLogo));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowLogos));
         elem.show->setLogoImage(elem.data);
         break;
-    case TypeThumb:
+    case ImageType::TvShowThumb:
         if (m_show == elem.show)
             ui->thumb->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, TypeThumb));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowThumb));
         elem.show->setThumbImage(elem.data);
         break;
-    case TypeCharacterArt:
+    case ImageType::TvShowCharacterArt:
         if (m_show == elem.show)
             ui->characterArt->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, TypeCharacterArt));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowCharacterArt));
         elem.show->setCharacterArtImage(elem.data);
         break;
-    case TypeClearArt:
+    case ImageType::TvShowClearArt:
         if (m_show == elem.show)
             ui->clearArt->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, TypeClearArt));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowClearArt));
         elem.show->setClearArtImage(elem.data);
         break;
-    case TypeExtraFanart:
+    case ImageType::TvShowExtraFanart:
         Helper::resizeBackdrop(elem.data);
         elem.show->addExtraFanart(elem.data);
         if (elem.show == m_show)
             ui->fanarts->addImage(elem.data);
         break;
-    case TypeSeasonPoster:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, TypeSeasonPoster, elem.season));
+    case ImageType::TvShowSeasonPoster:
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowSeasonPoster, elem.season));
         elem.show->setSeasonPosterImage(elem.season, elem.data);
         break;
-    case TypeSeasonBackdrop:
+    case ImageType::TvShowSeasonBackdrop:
         Helper::resizeBackdrop(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, TypeSeasonBackdrop, elem.season));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowSeasonBackdrop, elem.season));
         elem.show->setSeasonBackdropImage(elem.season, elem.data);
         break;
-    case TypeSeasonThumb:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, TypeSeasonThumb, elem.season));
+    case ImageType::TvShowSeasonThumb:
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowSeasonThumb, elem.season));
         elem.show->setSeasonThumbImage(elem.season, elem.data);
         break;
-    case TypeSeasonBanner:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, TypeSeasonBanner, elem.season));
+    case ImageType::TvShowSeasonBanner:
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowSeasonBanner, elem.season));
         elem.show->setSeasonBannerImage(elem.season, elem.data);
         break;
     default:
@@ -1017,55 +816,6 @@ void TvShowWidgetTvShow::onRemoveActor()
     ui->actors->blockSignals(true);
     ui->actors->removeRow(row);
     ui->actors->blockSignals(false);
-    ui->buttonRevert->setVisible(true);
-}
-
-void TvShowWidgetTvShow::onDeleteBackdrop()
-{
-    m_show->removeImage(TypeBackdrop);
-    updateImages(QList<ImageType>() << TypeBackdrop);
-    ui->buttonRevert->setVisible(true);
-}
-
-void TvShowWidgetTvShow::onDeletePoster()
-{
-    m_show->removeImage(TypePoster);
-    updateImages(QList<ImageType>() << TypePoster);
-    ui->buttonRevert->setVisible(true);
-}
-
-void TvShowWidgetTvShow::onDeleteBanner()
-{
-    m_show->removeImage(TypeBanner);
-    updateImages(QList<ImageType>() << TypeBanner);
-    ui->buttonRevert->setVisible(true);
-}
-
-void TvShowWidgetTvShow::onDeleteLogo()
-{
-    m_show->removeImage(TypeLogo);
-    updateImages(QList<ImageType>() << TypeLogo);
-    ui->buttonRevert->setVisible(true);
-}
-
-void TvShowWidgetTvShow::onDeleteThumb()
-{
-    m_show->removeImage(TypeThumb);
-    updateImages(QList<ImageType>() << TypeThumb);
-    ui->buttonRevert->setVisible(true);
-}
-
-void TvShowWidgetTvShow::onDeleteClearArt()
-{
-    m_show->removeImage(TypeClearArt);
-    updateImages(QList<ImageType>() << TypeClearArt);
-    ui->buttonRevert->setVisible(true);
-}
-
-void TvShowWidgetTvShow::onDeleteCharacterArt()
-{
-    m_show->removeImage(TypeCharacterArt);
-    updateImages(QList<ImageType>() << TypeCharacterArt);
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1220,19 +970,19 @@ void TvShowWidgetTvShow::onAddExtraFanart()
     if (!m_show)
         return;
 
-    ImageDialog::instance()->setImageType(TypeExtraFanart);
+    ImageDialog::instance()->setImageType(ImageType::TvShowExtraFanart);
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setMultiSelection(true);
     ImageDialog::instance()->setTvShow(m_show);
     ImageDialog::instance()->setDownloads(m_show->backdrops());
-    ImageDialog::instance()->exec(ImageDialogType::TvShowBackdrop);
+    ImageDialog::instance()->exec(ImageType::TvShowExtraFanart);
 
     if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
         ui->fanarts->setLoading(true);
         emit sigSetActionSaveEnabled(false, WidgetTvShows);
         foreach (const QUrl &url, ImageDialog::instance()->imageUrls()) {
             DownloadManagerElement d;
-            d.imageType = TypeExtraFanart;
+            d.imageType = ImageType::TvShowExtraFanart;
             d.url = url;
             d.show = m_show;
             m_posterDownloadManager->addDownload(d);
@@ -1249,4 +999,59 @@ void TvShowWidgetTvShow::onDownloadTune()
         ui->badgeTuneExisting->setVisible(true);
         ui->badgeTuneMissing->setVisible(false);
     }
+}
+
+void TvShowWidgetTvShow::onChooseImage()
+{
+    if (m_show == 0)
+        return;
+
+    ClosableImage *image = static_cast<ClosableImage*>(QObject::sender());
+    if (!image)
+        return;
+
+    ImageDialog::instance()->setImageType(image->imageType());
+    ImageDialog::instance()->clear();
+    ImageDialog::instance()->setTvShow(m_show);
+    switch (image->imageType()) {
+    case ImageType::TvShowPoster:
+        ImageDialog::instance()->setDownloads(m_show->posters());
+        break;
+    case ImageType::TvShowBackdrop:
+        ImageDialog::instance()->setDownloads(m_show->backdrops());
+        break;
+    case ImageType::TvShowBanner:
+        ImageDialog::instance()->setDownloads(m_show->banners());
+        break;
+    default:
+        ImageDialog::instance()->setDownloads(QList<Poster>());
+        break;
+    }
+
+    ImageDialog::instance()->exec(image->imageType());
+
+    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+        emit sigSetActionSaveEnabled(false, WidgetTvShows);
+        DownloadManagerElement d;
+        d.imageType = image->imageType();
+        d.url = ImageDialog::instance()->imageUrl();
+        d.show = m_show;
+        m_posterDownloadManager->addDownload(d);
+        image->setLoading(true);
+        ui->buttonRevert->setVisible(true);
+    }
+}
+
+void TvShowWidgetTvShow::onDeleteImage()
+{
+    if (m_show == 0)
+        return;
+
+    ClosableImage *image = static_cast<ClosableImage*>(QObject::sender());
+    if (!image)
+        return;
+
+    m_show->removeImage(image->imageType());
+    updateImages(QList<int>() << image->imageType());
+    ui->buttonRevert->setVisible(true);
 }

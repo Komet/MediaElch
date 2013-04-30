@@ -103,11 +103,6 @@ struct Poster {
     int season;
 };
 
-enum ImageType {
-    TypePoster, TypeBackdrop, TypeBanner, TypeActor, TypeSeasonPoster, TypeSeasonBanner, TypeSeasonBackdrop,
-    TypeShowThumbnail, TypeLogo, TypeClearArt, TypeCdArt, TypeCharacterArt, TypeExtraFanart, TypeThumb, TypeSeasonThumb
-};
-
 enum TvShowType {
     TypeTvShow, TypeEpisode, TypeSeason
 };
@@ -141,13 +136,12 @@ enum ComboDelegateType {
     ComboDelegateGenres, ComboDelegateStudios, ComboDelegateCountries, ComboDelegateWriters, ComboDelegateDirectors
 };
 
-namespace ImageDialogType {
+namespace ImageType {
     const int MoviePoster          = 1;
     const int MovieBackdrop        = 2;
     const int TvShowPoster         = 3;
     const int TvShowBackdrop       = 4;
     const int TvShowEpisodeThumb   = 5;
-    const int TvShowSeason         = 6;
     const int TvShowBanner         = 7;
     const int ConcertPoster        = 8;
     const int ConcertBackdrop      = 9;
@@ -166,6 +160,13 @@ namespace ImageDialogType {
     const int MovieThumb           = 22;
     const int TvShowThumb          = 23;
     const int TvShowSeasonThumb    = 24;
+    const int TvShowSeasonPoster   = 25;
+    const int Actor                = 26;
+    const int MovieExtraFanart     = 27;
+    const int MovieSetPoster       = 28;
+    const int MovieSetBackdrop     = 29;
+    const int ConcertExtraFanart   = 30;
+    const int TvShowExtraFanart    = 31;
 }
 
 namespace MovieScraperInfos {

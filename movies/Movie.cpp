@@ -112,7 +112,7 @@ void Movie::clear(QList<int> infos)
         m_backdrops.clear();
         m_backdropImage = QByteArray();
         m_backdropImageChanged = false;
-        m_imagesToRemove.removeOne(TypeBackdrop);
+        m_imagesToRemove.removeOne(ImageType::MovieBackdrop);
     }
     if (infos.contains(MovieScraperInfos::Countries))
         m_countries.clear();
@@ -123,7 +123,7 @@ void Movie::clear(QList<int> infos)
         m_posterImage = QByteArray();
         m_posterImageChanged = false;
         m_numPrimaryLangPosters = 0;
-        m_imagesToRemove.removeOne(TypePoster);
+        m_imagesToRemove.removeOne(ImageType::MoviePoster);
     }
     if (infos.contains(MovieScraperInfos::Studios))
         m_studios.clear();
@@ -159,30 +159,30 @@ void Movie::clear(QList<int> infos)
     if (infos.contains(MovieScraperInfos::Logo)) {
         m_logoImage = QByteArray();
         m_logoImageChanged = false;
-        m_imagesToRemove.removeOne(TypeLogo);
+        m_imagesToRemove.removeOne(ImageType::MovieLogo);
     }
     if (infos.contains(MovieScraperInfos::ClearArt)) {
         m_clearArtImage = QByteArray();
         m_clearArtImageChanged = false;
-        m_imagesToRemove.removeOne(TypeClearArt);
+        m_imagesToRemove.removeOne(ImageType::MovieClearArt);
     }
 
     if (infos.contains(MovieScraperInfos::CdArt)) {
         m_cdArtImage = QByteArray();
         m_cdArtImageChanged = false;
-        m_imagesToRemove.removeOne(TypeCdArt);
+        m_imagesToRemove.removeOne(ImageType::MovieCdArt);
     }
 
     if (infos.contains(MovieScraperInfos::Banner)) {
         m_bannerImage = QByteArray();
         m_bannerImageChanged = false;
-        m_imagesToRemove.removeOne(TypeBanner);
+        m_imagesToRemove.removeOne(ImageType::MovieBanner);
     }
 
     if (infos.contains(MovieScraperInfos::Thumb)) {
         m_thumbImage = QByteArray();
         m_thumbImageChanged = false;
-        m_imagesToRemove.removeOne(TypeThumb);
+        m_imagesToRemove.removeOne(ImageType::MovieThumb);
     }
 
     if (infos.contains(MovieScraperInfos::ExtraFanarts)) {
@@ -1686,15 +1686,15 @@ bool Movie::hasExtraFanarts() const
     return m_hasExtraFanarts;
 }
 
-QList<ImageType> Movie::imagesToRemove() const
+QList<int> Movie::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
 
-void Movie::removeImage(ImageType type)
+void Movie::removeImage(int type)
 {
     switch (type) {
-    case TypePoster:
+    case ImageType::MoviePoster:
         if (!m_posterImage.isNull()) {
             m_posterImage = QByteArray();
             m_posterImageChanged = false;
@@ -1702,7 +1702,7 @@ void Movie::removeImage(ImageType type)
             m_imagesToRemove.append(type);
         }
         break;
-    case TypeBackdrop:
+    case ImageType::MovieBackdrop:
         if (!m_backdropImage.isNull()) {
             m_backdropImage = QByteArray();
             m_backdropImageChanged = false;
@@ -1710,7 +1710,7 @@ void Movie::removeImage(ImageType type)
             m_imagesToRemove.append(type);
         }
         break;
-    case TypeLogo:
+    case ImageType::MovieLogo:
         if (!m_logoImage.isNull()) {
             m_logoImage = QByteArray();
             m_logoImageChanged = false;
@@ -1718,7 +1718,7 @@ void Movie::removeImage(ImageType type)
             m_imagesToRemove.append(type);
         }
         break;
-    case TypeClearArt:
+    case ImageType::MovieClearArt:
         if (!m_clearArtImage.isNull()) {
             m_clearArtImage = QByteArray();
             m_clearArtImageChanged = false;
@@ -1726,7 +1726,7 @@ void Movie::removeImage(ImageType type)
             m_imagesToRemove.append(type);
         }
         break;
-    case TypeCdArt:
+    case ImageType::MovieCdArt:
         if (!m_cdArtImage.isNull()) {
             m_cdArtImage = QByteArray();
             m_cdArtImageChanged = false;
@@ -1734,7 +1734,7 @@ void Movie::removeImage(ImageType type)
             m_imagesToRemove.append(type);
         }
         break;
-    case TypeBanner:
+    case ImageType::MovieBanner:
         if (!m_bannerImage.isNull()) {
             m_bannerImage = QByteArray();
             m_bannerImageChanged = false;
@@ -1742,7 +1742,7 @@ void Movie::removeImage(ImageType type)
             m_imagesToRemove.append(type);
         }
         break;
-    case TypeThumb:
+    case ImageType::MovieThumb:
         if (!m_thumbImage.isNull()) {
             m_thumbImage = QByteArray();
             m_thumbImageChanged = false;

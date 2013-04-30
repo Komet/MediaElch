@@ -36,6 +36,8 @@ public:
     void setLoading(const bool &loading);
     void setTitle(const QString &text);
     QString title() const;
+    void setImageType(const int &type);
+    int imageType() const;
 
 signals:
     void sigClose();
@@ -73,6 +75,7 @@ private:
     QRect zoomRect();
     bool confirmDeleteImage();
     void drawTitle(QPainter &p);
+    int m_imageType;
 };
 
 #endif // CLOSABLEIMAGE_H
