@@ -241,45 +241,16 @@ void MovieController::onDownloadFinished(DownloadManagerElement elem)
     m_downloadsLeft--;
     emit sigDownloadProgress(m_movie, m_downloadsLeft, m_downloadsSize);
 
-    switch (elem.imageType) {
-    case ImageType::MoviePoster:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MoviePoster));
-        m_movie->setPosterImage(elem.data);
-        break;
-    case ImageType::MovieBackdrop:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MovieBackdrop));
-        Helper::resizeBackdrop(elem.data);
-        m_movie->setBackdropImage(elem.data);
-        break;
-    case ImageType::MovieLogo:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MovieLogo));
-        m_movie->setLogoImage(elem.data);
-        break;
-    case ImageType::MovieBanner:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MovieBanner));
-        m_movie->setBannerImage(elem.data);
-        break;
-    case ImageType::MovieThumb:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MovieThumb));
-        m_movie->setThumbImage(elem.data);
-        break;
-    case ImageType::MovieClearArt:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MovieClearArt));
-        m_movie->setClearArtImage(elem.data);
-        break;
-    case ImageType::MovieCdArt:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MovieCdArt));
-        m_movie->setCdArtImage(elem.data);
-        break;
-    case ImageType::Actor:
+    if (elem.imageType == ImageType::Actor) {
         elem.actor->image = elem.data;
-        break;
-    case ImageType::MovieExtraFanart:
+    } else if (elem.imageType == ImageType::MovieExtraFanart) {
         Helper::resizeBackdrop(elem.data);
         m_movie->addExtraFanart(elem.data);
-        break;
-    default:
-        break;
+    } else {
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, elem.imageType));
+        if (elem.imageType == ImageType::MovieBackdrop)
+            Helper::resizeBackdrop(elem.data);
+        m_movie->setImage(elem.imageType, elem.data);
     }
 
     if (elem.imageType != ImageType::Actor)

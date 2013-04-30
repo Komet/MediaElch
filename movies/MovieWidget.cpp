@@ -450,20 +450,13 @@ void MovieWidget::onLoadingImages(Movie *movie, QList<int> imageTypes)
     if (movie != m_movie)
         return;
 
-    if (imageTypes.contains(ImageType::MoviePoster))
-        ui->poster->setLoading(true);
-    if (imageTypes.contains(ImageType::MovieBackdrop))
-        ui->backdrop->setLoading(true);
-    if (imageTypes.contains(ImageType::MovieClearArt))
-        ui->clearArt->setLoading(true);
-    if (imageTypes.contains(ImageType::MovieCdArt))
-        ui->cdArt->setLoading(true);
-    if (imageTypes.contains(ImageType::MovieLogo))
-        ui->logo->setLoading(true);
-    if (imageTypes.contains(ImageType::MovieBanner))
-        ui->banner->setLoading(true);
-    if (imageTypes.contains(ImageType::MovieThumb))
-        ui->thumb->setLoading(true);
+    foreach (const int &imageType, imageTypes) {
+        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage*>()) {
+            if (cImage->imageType() == imageType)
+                cImage->setLoading(true);
+        }
+    }
+
     if (imageTypes.contains(ImageType::MovieExtraFanart))
         ui->fanarts->setLoading(true);
     ui->groupBox_3->update();
@@ -474,40 +467,16 @@ void MovieWidget::onSetImage(Movie *movie, int type, QByteArray data)
     if (movie != m_movie)
         return;
 
-    switch (type) {
-    case ImageType::MoviePoster:
-        ui->poster->setLoading(false);
-        ui->poster->setImage(data);
-        break;
-    case ImageType::MovieBackdrop:
-        ui->backdrop->setLoading(false);
-        ui->backdrop->setImage(data);
-        break;
-    case ImageType::MovieClearArt:
-        ui->clearArt->setLoading(false);
-        ui->clearArt->setImage(data);
-        break;
-    case ImageType::MovieCdArt:
-        ui->cdArt->setLoading(false);
-        ui->cdArt->setImage(data);
-        break;
-    case ImageType::MovieLogo:
-        ui->logo->setLoading(false);
-        ui->logo->setImage(data);
-        break;
-    case ImageType::MovieBanner:
-        ui->banner->setLoading(false);
-        ui->banner->setImage(data);
-        break;
-    case ImageType::MovieThumb:
-        ui->thumb->setLoading(false);
-        ui->thumb->setImage(data);
-        break;
-    case ImageType::MovieExtraFanart:
+    if (type == ImageType::MovieExtraFanart) {
         ui->fanarts->addImage(data);
-        break;
-    default:
-        break;
+        return;
+    }
+
+    foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage*>()) {
+        if (image->imageType() == type) {
+            image->setLoading(false);
+            image->setImage(data);
+        }
     }
 }
 
@@ -645,53 +614,21 @@ void MovieWidget::updateMovieInfo()
 
 void MovieWidget::updateImages(QList<int> images)
 {
-    if (images.contains(ImageType::MoviePoster)) {
-        if (!m_movie->posterImage().isNull())
-            ui->poster->setImage(m_movie->posterImage());
-        else if (!m_movie->imagesToRemove().contains(ImageType::MoviePoster) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MoviePoster).isEmpty())
-            ui->poster->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MoviePoster));
-    }
+    foreach (const int &imageType, images) {
+        ClosableImage *image = 0;
+        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage*>()) {
+            if (cImage->imageType() == imageType)
+                image = cImage;
+        }
 
-    if (images.contains(ImageType::MovieBackdrop)) {
-        if (!m_movie->backdropImage().isNull())
-            ui->backdrop->setImage(m_movie->backdropImage());
-        else if (!m_movie->imagesToRemove().contains(ImageType::MovieBackdrop) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MovieBackdrop).isEmpty())
-            ui->backdrop->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MovieBackdrop));
-    }
+        if (!image)
+            continue;
 
-    if (images.contains(ImageType::MovieLogo)) {
-        if (!m_movie->logoImage().isNull())
-            ui->logo->setImage(m_movie->logoImage());
-        else if (!m_movie->imagesToRemove().contains(ImageType::MovieLogo) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MovieLogo).isEmpty())
-            ui->logo->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MovieLogo));
-    }
-
-    if (images.contains(ImageType::MovieBanner)) {
-        if (!m_movie->bannerImage().isNull())
-            ui->banner->setImage(m_movie->bannerImage());
-        else if (!m_movie->imagesToRemove().contains(ImageType::MovieBanner) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MovieBanner).isEmpty())
-            ui->banner->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MovieBanner));
-    }
-
-    if (images.contains(ImageType::MovieThumb)) {
-        if (!m_movie->thumbImage().isNull())
-            ui->thumb->setImage(m_movie->thumbImage());
-        else if (!m_movie->imagesToRemove().contains(ImageType::MovieThumb) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MovieThumb).isEmpty())
-            ui->thumb->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MovieThumb));
-    }
-
-    if (images.contains(ImageType::MovieClearArt)) {
-        if (!m_movie->clearArtImage().isNull())
-            ui->clearArt->setImage(m_movie->clearArtImage());
-        else if (!m_movie->imagesToRemove().contains(ImageType::MovieClearArt) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MovieClearArt).isEmpty())
-            ui->clearArt->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MovieClearArt));
-    }
-
-    if (images.contains(ImageType::MovieCdArt)) {
-        if (!m_movie->cdArtImage().isNull())
-            ui->cdArt->setImage(m_movie->cdArtImage());
-        else if (!m_movie->imagesToRemove().contains(ImageType::MovieCdArt) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MovieCdArt).isEmpty())
-            ui->cdArt->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, ImageType::MovieCdArt));
+        if (!m_movie->image(imageType).isNull()) {
+            image->setImage(m_movie->image(imageType));
+        } else if (!m_movie->imagesToRemove().contains(imageType) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, imageType).isEmpty()) {
+            image->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, imageType));
+        }
     }
 }
 

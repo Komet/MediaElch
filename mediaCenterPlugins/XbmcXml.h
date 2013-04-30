@@ -47,7 +47,6 @@ public:
     QString imageFileName(TvShowEpisode *episode, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString imageFileName(TvShow *show, int type, int season = -1, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
 
-    void saveAdditionalImages(Movie *movie);
     void saveAdditionalImages(Concert *concert);
     void saveAdditionalImages(TvShow *show);
     QString nfoFilePath(Movie *movie);

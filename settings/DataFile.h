@@ -17,6 +17,8 @@ public:
     static bool lessThan(DataFile a, DataFile b);
     void setFileName(QString fileName);
 
+    static int dataFileTypeForImageType(int imageType);
+
 private:
     QString m_fileName;
     int m_pos;

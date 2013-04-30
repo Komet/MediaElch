@@ -152,138 +152,30 @@ bool XbmcXml::saveMovie(Movie *movie)
     if (!saved)
         return false;
 
-    if (movie->posterImageChanged() && !movie->posterImage().isNull()) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MoviePoster)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-            if (movie->discType() == DiscBluRay || movie->discType() == DiscDvd)
-                saveFileName = "poster.jpg";
-            QString path = getPath(movie);
-            saveFile(path + QDir::separator() + saveFileName, movie->posterImage());
+    foreach (const int &imageType, Movie::imageTypes()) {
+        int dataFileType = DataFile::dataFileTypeForImageType(imageType);
+        if (movie->imageHasChanged(imageType) && !movie->image(imageType).isNull()) {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+                QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
+                if (imageType == ImageType::MoviePoster && (movie->discType() == DiscBluRay || movie->discType() == DiscDvd))
+                    saveFileName = "poster.jpg";
+                if (imageType == ImageType::MovieBackdrop && (movie->discType() == DiscBluRay || movie->discType() == DiscDvd))
+                    saveFileName = "fanart.jpg";
+                QString path = getPath(movie);
+                saveFile(path + QDir::separator() + saveFileName, movie->image(imageType));
+            }
         }
-    }
-    if (movie->imagesToRemove().contains(ImageType::MoviePoster)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MoviePoster)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-            if (movie->discType() == DiscBluRay || movie->discType() == DiscDvd)
-                saveFileName = "poster.jpg";
-            QString path = getPath(movie);
-            QFile(path + QDir::separator() + saveFileName).remove();
-        }
-    }
-    if (movie->backdropImageChanged() && !movie->backdropImage().isNull()) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieBackdrop)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-            if (movie->discType() == DiscBluRay || movie->discType() == DiscDvd)
-                saveFileName = "fanart.jpg";
-            QString path = getPath(movie);
-            saveFile(path + QDir::separator() + saveFileName, movie->backdropImage());
-        }
-    }
-    if (movie->imagesToRemove().contains(ImageType::MovieBackdrop)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieBackdrop)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-            if (movie->discType() == DiscBluRay || movie->discType() == DiscDvd)
-                saveFileName = "fanart.jpg";
-            QString path = getPath(movie);
-            QFile(path + QDir::separator() + saveFileName).remove();
-        }
-    }
-    saveAdditionalImages(movie);
 
-    foreach (const Actor &actor, movie->actors()) {
-        if (!actor.image.isNull()) {
-            QDir dir;
-            dir.mkdir(fi.absolutePath() + QDir::separator() + ".actors");
-            QString actorName = actor.name;
-            actorName = actorName.replace(" ", "_");
-            saveFile(fi.absolutePath() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".jpg", actor.image);
-        }
-    }
-
-    return true;
-}
-
-/**
- * @brief Saves additional movie images (logo, clear art, cd art)
- * @param movie Movie object
- */
-void XbmcXml::saveAdditionalImages(Movie *movie)
-{
-    QFileInfo fi(movie->files().at(0));
-    if (movie->logoImageChanged() && !movie->logoImage().isNull()) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieLogo)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-            QString path = getPath(movie);
-            saveFile(path + QDir::separator() + saveFileName, movie->logoImage());
-        }
-    }
-    if (movie->imagesToRemove().contains(ImageType::MovieLogo)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieLogo)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-            QString path = getPath(movie);
-            QFile(path + QDir::separator() + saveFileName).remove();
-        }
-    }
-
-    if (movie->clearArtImageChanged() && !movie->clearArtImage().isNull()) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieClearArt)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-            QString path = getPath(movie);
-            saveFile(path + QDir::separator() + saveFileName, movie->clearArtImage());
-        }
-    }
-    if (movie->imagesToRemove().contains(ImageType::MovieClearArt)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieClearArt)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-            QString path = getPath(movie);
-            QFile(path + QDir::separator() + saveFileName).remove();
-        }
-    }
-
-    if (movie->imagesToRemove().contains(ImageType::MovieBanner)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieBanner)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-            QString path = getPath(movie);
-            QFile(path + QDir::separator() + saveFileName).remove();
-        }
-    }
-
-    if (movie->bannerImageChanged() && !movie->bannerImage().isNull()) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieBanner)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-            QString path = getPath(movie);
-            saveFile(path + QDir::separator() + saveFileName, movie->bannerImage());
-        }
-    }
-
-    if (movie->imagesToRemove().contains(ImageType::MovieThumb)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieThumb)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-            QString path = getPath(movie);
-            QFile(path + QDir::separator() + saveFileName).remove();
-        }
-    }
-
-    if (movie->thumbImageChanged() && !movie->thumbImage().isNull()) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieThumb)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-            QString path = getPath(movie);
-            saveFile(path + QDir::separator() + saveFileName, movie->thumbImage());
-        }
-    }
-
-    if (movie->cdArtImageChanged() && !movie->cdArtImage().isNull()) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieCdArt)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-            QString path = getPath(movie);
-            saveFile(path + QDir::separator() + saveFileName, movie->cdArtImage());
-        }
-    }
-    if (movie->imagesToRemove().contains(ImageType::MovieCdArt)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieCdArt)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-            QString path = getPath(movie);
-            QFile(path + QDir::separator() + saveFileName).remove();
+        if (movie->imagesToRemove().contains(imageType)) {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+                QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
+                if (imageType == ImageType::MoviePoster && (movie->discType() == DiscBluRay || movie->discType() == DiscDvd))
+                    saveFileName = "poster.jpg";
+                if (imageType == ImageType::MovieBackdrop && (movie->discType() == DiscBluRay || movie->discType() == DiscDvd))
+                    saveFileName = "fanart.jpg";
+                QString path = getPath(movie);
+                QFile(path + QDir::separator() + saveFileName).remove();
+            }
         }
     }
 
@@ -300,6 +192,19 @@ void XbmcXml::saveAdditionalImages(Movie *movie)
             saveFile(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num), img);
         }
     }
+
+
+    foreach (const Actor &actor, movie->actors()) {
+        if (!actor.image.isNull()) {
+            QDir dir;
+            dir.mkdir(fi.absolutePath() + QDir::separator() + ".actors");
+            QString actorName = actor.name;
+            actorName = actorName.replace(" ", "_");
+            saveFile(fi.absolutePath() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".jpg", actor.image);
+        }
+    }
+
+    return true;
 }
 
 /**
@@ -507,13 +412,8 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
 
     // Existence of images
     if (initialNfoContent.isEmpty()) {
-        movie->setHasPoster(!imageFileName(movie, ImageType::MoviePoster).isEmpty());
-        movie->setHasBackdrop(!imageFileName(movie, ImageType::MovieBackdrop).isEmpty());
-        movie->setHasLogo(!imageFileName(movie, ImageType::MovieLogo).isEmpty());
-        movie->setHasBanner(!imageFileName(movie, ImageType::MovieBanner).isEmpty());
-        movie->setHasThumb(!imageFileName(movie, ImageType::MovieThumb).isEmpty());
-        movie->setHasClearArt(!imageFileName(movie, ImageType::MovieClearArt).isEmpty());
-        movie->setHasCdArt(!imageFileName(movie, ImageType::MovieCdArt).isEmpty());
+        foreach (const int &imageType, Movie::imageTypes())
+            movie->setHasImage(imageType, !imageFileName(movie, imageType).isEmpty());
         movie->setHasExtraFanarts(!extraFanartNames(movie).isEmpty());
     }
 

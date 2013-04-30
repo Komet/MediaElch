@@ -24,13 +24,6 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_top250 = 0;
     m_runtime = 0;
     m_playcount = 0;
-    m_backdropImageChanged = false;
-    m_posterImageChanged = false;
-    m_logoImageChanged = false;
-    m_clearArtImageChanged = false;
-    m_cdArtImageChanged = false;
-    m_bannerImageChanged = false;
-    m_thumbImageChanged = false;
     if (files.size() > 0) {
         QFileInfo fi(files.at(0));
         QStringList path = fi.path().split("/", QString::SkipEmptyParts);
@@ -39,8 +32,6 @@ Movie::Movie(QStringList files, QObject *parent) :
     }
     m_watched = false;
     m_hasChanged = false;
-    m_hasPoster = false;
-    m_hasBackdrop = false;
     m_hasExtraFanarts = false;
     m_inSeparateFolder = false;
     m_syncNeeded = false;
@@ -110,8 +101,8 @@ void Movie::clear(QList<int> infos)
         m_actors.clear();
     if (infos.contains(MovieScraperInfos::Backdrop)) {
         m_backdrops.clear();
-        m_backdropImage = QByteArray();
-        m_backdropImageChanged = false;
+        m_images.insert(ImageType::MovieBackdrop, QByteArray());
+        m_hasImageChanged.insert(ImageType::MovieBackdrop, false);
         m_imagesToRemove.removeOne(ImageType::MovieBackdrop);
     }
     if (infos.contains(MovieScraperInfos::Countries))
@@ -120,8 +111,8 @@ void Movie::clear(QList<int> infos)
         m_genres.clear();
     if (infos.contains(MovieScraperInfos::Poster)){
         m_posters.clear();
-        m_posterImage = QByteArray();
-        m_posterImageChanged = false;
+        m_images.insert(ImageType::MoviePoster, QByteArray());
+        m_hasImageChanged.insert(ImageType::MoviePoster, false);
         m_numPrimaryLangPosters = 0;
         m_imagesToRemove.removeOne(ImageType::MoviePoster);
     }
@@ -157,31 +148,31 @@ void Movie::clear(QList<int> infos)
         m_tags.clear();
 
     if (infos.contains(MovieScraperInfos::Logo)) {
-        m_logoImage = QByteArray();
-        m_logoImageChanged = false;
+        m_images.insert(ImageType::MovieLogo, QByteArray());
+        m_hasImageChanged.insert(ImageType::MovieLogo, false);
         m_imagesToRemove.removeOne(ImageType::MovieLogo);
     }
     if (infos.contains(MovieScraperInfos::ClearArt)) {
-        m_clearArtImage = QByteArray();
-        m_clearArtImageChanged = false;
+        m_images.insert(ImageType::MovieClearArt, QByteArray());
+        m_hasImageChanged.insert(ImageType::MovieClearArt, false);
         m_imagesToRemove.removeOne(ImageType::MovieClearArt);
     }
 
     if (infos.contains(MovieScraperInfos::CdArt)) {
-        m_cdArtImage = QByteArray();
-        m_cdArtImageChanged = false;
+        m_images.insert(ImageType::MovieCdArt, QByteArray());
+        m_hasImageChanged.insert(ImageType::MovieCdArt, false);
         m_imagesToRemove.removeOne(ImageType::MovieCdArt);
     }
 
     if (infos.contains(MovieScraperInfos::Banner)) {
-        m_bannerImage = QByteArray();
-        m_bannerImageChanged = false;
+        m_images.insert(ImageType::MovieBanner, QByteArray());
+        m_hasImageChanged.insert(ImageType::MovieBanner, false);
         m_imagesToRemove.removeOne(ImageType::MovieBanner);
     }
 
     if (infos.contains(MovieScraperInfos::Thumb)) {
-        m_thumbImage = QByteArray();
-        m_thumbImageChanged = false;
+        m_images.insert(ImageType::MovieThumb, QByteArray());
+        m_hasImageChanged.insert(ImageType::MovieThumb, false);
         m_imagesToRemove.removeOne(ImageType::MovieThumb);
     }
 
@@ -197,13 +188,7 @@ void Movie::clear(QList<int> infos)
  */
 void Movie::clearImages()
 {
-    m_posterImage = QByteArray();
-    m_backdropImage = QByteArray();
-    m_logoImage = QByteArray();
-    m_thumbImage = QByteArray();
-    m_bannerImage = QByteArray();
-    m_clearArtImage = QByteArray();
-    m_cdArtImage = QByteArray();
+    m_images.clear();
     m_extraFanartImagesToAdd.clear();
     foreach (Actor *actor, actorsPointer())
         actor->image = QByteArray();
@@ -568,122 +553,12 @@ QList<Poster> Movie::backdrops() const
 }
 
 /**
- * @brief Holds the current movie poster
- * @return Current movie poster
- */
-QByteArray Movie::posterImage()
-{
-    return m_posterImage;
-}
-
-/**
- * @brief Holds the current movie backdrop
- * @return Current movie backdrop
- */
-QByteArray Movie::backdropImage()
-{
-    return m_backdropImage;
-}
-
-/**
- * @brief Holds the current movie logo
- * @return Current movie logo
- */
-QByteArray Movie::logoImage()
-{
-    return m_logoImage;
-}
-
-QByteArray Movie::bannerImage()
-{
-    return m_bannerImage;
-}
-
-QByteArray Movie::thumbImage()
-{
-    return m_thumbImage;
-}
-
-/**
- * @brief Holds the current movie clear art
- * @return Current movie clear art
- */
-QByteArray Movie::clearArtImage()
-{
-    return m_clearArtImage;
-}
-
-/**
- * @brief Holds the current movie cd art
- * @return Current movie cd art
- */
-QByteArray Movie::cdArtImage()
-{
-    return m_cdArtImage;
-}
-
-/**
  * @brief Returns the parent folder of the movie
  * @return Parent folder of the movie
  */
 QString Movie::folderName() const
 {
     return m_folderName;
-}
-
-/**
- * @brief Holds a property indicating if the poster image was changed
- * @return Movies poster image was changed
- */
-bool Movie::posterImageChanged() const
-{
-    return m_posterImageChanged;
-}
-
-/**
- * @brief Holds a property indicating if the backdrop image was changed
- * @return Movies backdrop image was changed
- */
-bool Movie::backdropImageChanged() const
-{
-    return m_backdropImageChanged;
-}
-
-/**
- * @brief Holds a property indicating if the logo image was changed
- * @return Movies logo image was changed
- */
-bool Movie::logoImageChanged() const
-{
-    return m_logoImageChanged;
-}
-
-/**
- * @brief Holds a property indicating if the clear art image was changed
- * @return Movies clear art image was changed
- */
-bool Movie::clearArtImageChanged() const
-{
-    return m_clearArtImageChanged;
-}
-
-/**
- * @brief Holds a property indicating if the cd art image was changed
- * @return Movies cd art image was changed
- */
-bool Movie::cdArtImageChanged() const
-{
-    return m_cdArtImageChanged;
-}
-
-bool Movie::bannerImageChanged() const
-{
-    return m_bannerImageChanged;
-}
-
-bool Movie::thumbImageChanged() const
-{
-    return m_thumbImageChanged;
 }
 
 /**
@@ -706,71 +581,6 @@ bool Movie::watched() const
 bool Movie::hasChanged() const
 {
     return m_hasChanged;
-}
-
-/**
- * @property Movie::hasPoster
- * @brief Holds a property if the movies has a poster
- * @return True if movie has a poster
- * @see Movie::setHasPoster
- */
-bool Movie::hasPoster() const
-{
-    return m_hasPoster;
-}
-
-/**
- * @property Movie::hasBackdrop
- * @brief Holds a property if the movies has a backdrop
- * @return True if movie has a backdrop
- * @see Movie::setHasBackdrop
- */
-bool Movie::hasBackdrop() const
-{
-    return m_hasBackdrop;
-}
-
-/**
- * @property Movie::hasLogo
- * @brief Holds a property if the movie has a logo
- * @return True if movie has a logo
- * @see Movie::setHasLogo
- */
-bool Movie::hasLogo() const
-{
-    return m_hasLogo;
-}
-
-/**
- * @property Movie::hasClearArt
- * @brief Holds a property if the movie has clear art
- * @return True if movie has clear art
- * @see Movie::setHasClearArt
- */
-bool Movie::hasClearArt() const
-{
-    return m_hasClearArt;
-}
-
-bool Movie::hasBanner() const
-{
-    return m_hasBanner;
-}
-
-bool Movie::hasThumb() const
-{
-    return m_hasThumb;
-}
-
-/**
- * @property Movie::hasCdArt
- * @brief Holds a property if the movie has cd art
- * @return True if movie has cd art
- * @see Movie::setHasCdArt
- */
-bool Movie::hasCdArt() const
-{
-    return m_hasCdArt;
 }
 
 /**
@@ -1205,66 +1015,6 @@ void Movie::setChanged(bool changed)
 }
 
 /**
- * @brief Sets if the movie has a poster
- * @param has Movie has a poster
- * @see Movie::hasPoster
- */
-void Movie::setHasPoster(bool has)
-{
-    m_hasPoster = has;
-}
-
-/**
- * @brief Sets if the movie has a backdrop
- * @param has Movie has a backdrop
- * @see Movie::hasBackdrop
- */
-void Movie::setHasBackdrop(bool has)
-{
-    m_hasBackdrop = has;
-}
-
-/**
- * @brief Sets if the movie has a logo
- * @param has Movie has a logo
- * @see Movie::hasLogo
- */
-void Movie::setHasLogo(bool has)
-{
-    m_hasLogo = has;
-}
-
-/**
- * @brief Sets if the movie has clear art
- * @param has Movie has clear art
- * @see Movie::hasClearArt
- */
-void Movie::setHasClearArt(bool has)
-{
-    m_hasClearArt = has;
-}
-
-/**
- * @brief Sets if the movie has cd art
- * @param has Movie has cd art
- * @see Movie::hasCdArt
- */
-void Movie::setHasCdArt(bool has)
-{
-    m_hasCdArt = has;
-}
-
-void Movie::setHasBanner(bool has)
-{
-    m_hasBanner = has;
-}
-
-void Movie::setHasThumb(bool has)
-{
-    m_hasThumb = has;
-}
-
-/**
  * @brief Sets if the stream details were loaded
  * @param loaded
  * @see Movie::streamDetailsLoaded
@@ -1291,7 +1041,6 @@ void Movie::setMediaCenterId(int mediaCenterId)
 {
     m_mediaCenterId = mediaCenterId;
 }
-
 
 /**
  * @brief Sets the number of primary language posters
@@ -1411,77 +1160,6 @@ void Movie::addPoster(Poster poster, bool primaryLang)
 void Movie::addBackdrop(Poster backdrop)
 {
     m_backdrops.append(backdrop);
-    setChanged(true);
-}
-
-/**
- * @brief Sets the current poster image
- * @param poster Current poster image
- * @see Movie::posters
- */
-void Movie::setPosterImage(QByteArray poster)
-{
-    m_posterImage = poster;
-    m_posterImageChanged = true;
-    setChanged(true);
-}
-
-/**
- * @brief Sets the current backdrop image
- * @param backdrop Current backdrop image
- * @see Movie::backdrops
- */
-void Movie::setBackdropImage(QByteArray backdrop)
-{
-    m_backdropImage = backdrop;
-    m_backdropImageChanged = true;
-    setChanged(true);
-}
-
-/**
- * @brief Sets the current logo image
- * @param img Current logo image
- */
-void Movie::setLogoImage(QByteArray img)
-{
-    m_logoImage = img;
-    m_logoImageChanged = true;
-    setChanged(true);
-}
-
-/**
- * @brief Sets the current clear art image
- * @param img Current clear art image
- */
-void Movie::setClearArtImage(QByteArray img)
-{
-    m_clearArtImage = img;
-    m_clearArtImageChanged = true;
-    setChanged(true);
-}
-
-void Movie::setBannerImage(QByteArray img)
-{
-    m_bannerImage = img;
-    m_bannerImageChanged = true;
-    setChanged(true);
-}
-
-void Movie::setThumbImage(QByteArray img)
-{
-    m_thumbImage = img;
-    m_thumbImageChanged = true;
-    setChanged(true);
-}
-
-/**
- * @brief Sets the current cd art image
- * @param img Current cd art image
- */
-void Movie::setCdArtImage(QByteArray img)
-{
-    m_cdArtImage = img;
-    m_cdArtImageChanged = true;
     setChanged(true);
 }
 
@@ -1693,72 +1371,53 @@ QList<int> Movie::imagesToRemove() const
 
 void Movie::removeImage(int type)
 {
-    switch (type) {
-    case ImageType::MoviePoster:
-        if (!m_posterImage.isNull()) {
-            m_posterImage = QByteArray();
-            m_posterImageChanged = false;
-        } else if (!m_imagesToRemove.contains(type)) {
-            m_imagesToRemove.append(type);
-        }
-        break;
-    case ImageType::MovieBackdrop:
-        if (!m_backdropImage.isNull()) {
-            m_backdropImage = QByteArray();
-            m_backdropImageChanged = false;
-        } else if (!m_imagesToRemove.contains(type)) {
-            m_imagesToRemove.append(type);
-        }
-        break;
-    case ImageType::MovieLogo:
-        if (!m_logoImage.isNull()) {
-            m_logoImage = QByteArray();
-            m_logoImageChanged = false;
-        } else if (!m_imagesToRemove.contains(type)) {
-            m_imagesToRemove.append(type);
-        }
-        break;
-    case ImageType::MovieClearArt:
-        if (!m_clearArtImage.isNull()) {
-            m_clearArtImage = QByteArray();
-            m_clearArtImageChanged = false;
-        } else if (!m_imagesToRemove.contains(type)) {
-            m_imagesToRemove.append(type);
-        }
-        break;
-    case ImageType::MovieCdArt:
-        if (!m_cdArtImage.isNull()) {
-            m_cdArtImage = QByteArray();
-            m_cdArtImageChanged = false;
-        } else if (!m_imagesToRemove.contains(type)) {
-            m_imagesToRemove.append(type);
-        }
-        break;
-    case ImageType::MovieBanner:
-        if (!m_bannerImage.isNull()) {
-            m_bannerImage = QByteArray();
-            m_bannerImageChanged = false;
-        } else if (!m_imagesToRemove.contains(type)) {
-            m_imagesToRemove.append(type);
-        }
-        break;
-    case ImageType::MovieThumb:
-        if (!m_thumbImage.isNull()) {
-            m_thumbImage = QByteArray();
-            m_thumbImageChanged = false;
-        } else if (!m_imagesToRemove.contains(type)) {
-            m_imagesToRemove.append(type);
-        }
-        break;
-    default:
-        break;
+    if (!m_images.value(type).isNull()) {
+        m_images.remove(type);
+        m_hasImageChanged.insert(type, false);
+    } else if (!m_imagesToRemove.contains(type)) {
+        m_imagesToRemove.append(type);
     }
+    setChanged(true);
+}
+
+QByteArray Movie::image(int imageType)
+{
+    return m_images.value(imageType);
+}
+
+bool Movie::imageHasChanged(int imageType)
+{
+    return m_hasImageChanged.value(imageType);
+}
+
+bool Movie::hasImage(int imageType)
+{
+    return m_hasImage.value(imageType);
+}
+
+void Movie::setHasImage(int imageType, bool has)
+{
+    m_hasImage.insert(imageType, has);
+}
+
+void Movie::setImage(int imageType, QByteArray image)
+{
+    m_images.insert(imageType, image);
+    m_hasImageChanged.insert(imageType, true);
     setChanged(true);
 }
 
 bool Movie::lessThan(Movie *a, Movie *b)
 {
     return (QString::localeAwareCompare(Helper::appendArticle(a->name()), Helper::appendArticle(b->name())) < 0);
+}
+
+QList<int> Movie::imageTypes()
+{
+    return QList<int>() << ImageType::MoviePoster << ImageType::MovieBanner
+                        << ImageType::MovieCdArt << ImageType::MovieClearArt
+                        << ImageType::MovieLogo << ImageType::MovieThumb
+                        << ImageType::MovieBackdrop;
 }
 
 /*** DEBUG ***/

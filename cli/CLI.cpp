@@ -219,9 +219,9 @@ void CLI::onScraperLoadDone()
 void CLI::onDownloadFinished(DownloadManagerElement elem)
 {
     if (elem.imageType == ImageType::MoviePoster)
-        m_movie->setPosterImage(elem.data);
+        m_movie->setImage(ImageType::MoviePoster, elem.data);
     else if (elem.imageType == ImageType::MovieBackdrop)
-        m_movie->setBackdropImage(elem.data);
+        m_movie->setImage(ImageType::MovieBackdrop, elem.data);
 }
 
 /**

@@ -4,6 +4,7 @@
 #include <QDate>
 #include <QDebug>
 #include <QImage>
+#include <QMap>
 #include <QMetaType>
 #include <QString>
 #include <QUrl>

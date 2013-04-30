@@ -3,6 +3,7 @@
 #include <QFileInfo>
 #include <QRegExp>
 #include <QStringList>
+#include "globals/Globals.h"
 #include "globals/Helper.h"
 
 /**
@@ -91,4 +92,26 @@ int DataFile::type() const
 bool DataFile::lessThan(DataFile a, DataFile b)
 {
     return a.pos() < b.pos();
+}
+
+int DataFile::dataFileTypeForImageType(int imageType)
+{
+    switch (imageType) {
+    case ImageType::MovieBackdrop:
+        return DataFileType::MovieBackdrop;
+    case ImageType::MovieBanner:
+        return DataFileType::MovieBanner;
+    case ImageType::MovieCdArt:
+        return DataFileType::MovieCdArt;
+    case ImageType::MovieClearArt:
+        return DataFileType::MovieClearArt;
+    case ImageType::MovieLogo:
+        return DataFileType::MovieLogo;
+    case ImageType::MoviePoster:
+        return DataFileType::MoviePoster;
+    case ImageType::MovieThumb:
+        return DataFileType::MovieThumb;
+    default:
+        return -1;
+    }
 }
