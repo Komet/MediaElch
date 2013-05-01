@@ -69,8 +69,6 @@ private slots:
     void openFolder();
     void scrollToAlpha(QString alpha);
     void onLeftEdge(bool isEdge);
-    void onListKeyPress(QKeyEvent *keyEvent);
-    void onListKeyTimeout();
 
 private:
     Ui::FilesWidget *ui;
@@ -83,10 +81,7 @@ private:
     QString m_activeLabelCss;
     QMenu *m_contextMenu;
     AlphabeticalList *m_alphaList;
-    SearchOverlay *m_searchOverlay;
     bool m_mouseIsIn;
-    QString m_currentText;
-    QTimer m_timer;
 };
 
 #endif // FILESWIDGET_H

@@ -4,7 +4,15 @@
 MyTableView::MyTableView(QWidget *parent) :
     QTableView(parent)
 {
-    m_captureKeyPress = false;
+    m_useSearchOverlay = false;
+    m_searchOverlay = new SearchOverlay(this);
+    connect(&m_searchOverlayTimer, SIGNAL(timeout()), this, SLOT(onSearchOverlayTimeout()));
+}
+
+void MyTableView::resizeEvent(QResizeEvent *event)
+{
+    m_searchOverlay->setFixedWidth(event->size().width()-80);
+    m_searchOverlay->move((event->size().width()-m_searchOverlay->width())/2, (event->size().height()-m_searchOverlay->height())/2);
 }
 
 void MyTableView::setLastColumnWidth(int &width)
@@ -27,9 +35,9 @@ int MyTableView::firstColumnWidth() const
     return columnWidth(0);
 }
 
-void MyTableView::setCaptureKeyPress(const bool &capture)
+void MyTableView::setUseSearchOverlay(const bool &useSearchOverlay)
 {
-    m_captureKeyPress = capture;
+    m_useSearchOverlay = useSearchOverlay;
 }
 
 void MyTableView::mouseMoveEvent(QMouseEvent *event)
@@ -47,12 +55,50 @@ void MyTableView::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
-void MyTableView::keyPressEvent(QKeyEvent *event)
+void MyTableView::keyPressEvent(QKeyEvent *keyEvent)
 {
-    if (!m_captureKeyPress || (event->text().isEmpty() && event->key() != Qt::Key_Backspace)) {
-        QTableView::keyPressEvent(event);
+    if (!m_useSearchOverlay || (keyEvent->text().isEmpty() && keyEvent->key() != Qt::Key_Backspace)) {
+        QTableView::keyPressEvent(keyEvent);
         return;
     }
 
-    emit sigKeyPress(event);
+    if (keyEvent->key() == Qt::Key_Backspace && m_currentSearchText.isEmpty())
+        return;
+
+    if (keyEvent->key() == Qt::Key_Backspace)
+        m_currentSearchText.remove(m_currentSearchText.length()-1, 1);
+    else if (!keyEvent->text().isEmpty())
+        m_currentSearchText.append(keyEvent->text());
+
+    m_searchOverlay->fadeIn();
+    m_searchOverlay->setText(m_currentSearchText);
+    m_searchOverlayTimer.start(1000);
+
+    int matchingRow = -1;
+    for (int i=0, n=model()->rowCount() ; i<n ; ++i) {
+        QModelIndex index = model()->index(i, 0);
+        QString title = model()->data(index).toString();
+        if (title.startsWith(m_currentSearchText, Qt::CaseInsensitive)) {
+            scrollTo(index, QAbstractItemView::PositionAtCenter);
+            selectRow(i);
+            return;
+        }
+        if (title.contains(m_currentSearchText, Qt::CaseInsensitive))
+            matchingRow = i;
+    }
+    if (matchingRow > -1) {
+        scrollTo(model()->index(matchingRow, 0), QAbstractItemView::PositionAtCenter);
+        selectRow(matchingRow);
+    }
+}
+
+bool MyTableView::useSearchOverlay() const
+{
+    return m_useSearchOverlay;
+}
+
+void MyTableView::onSearchOverlayTimeout()
+{
+    m_currentSearchText.clear();
+    m_searchOverlay->fadeOut();
 }
