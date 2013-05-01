@@ -299,53 +299,21 @@ void TvShowWidgetTvShow::updateTvShowInfo()
 
 void TvShowWidgetTvShow::updateImages(QList<int> images)
 {
-    if (images.contains(ImageType::TvShowPoster)) {
-        if (!m_show->posterImage().isNull())
-            ui->poster->setImage(m_show->posterImage());
-        else if (!m_show->imagesToRemove().contains(ImageType::TvShowPoster) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowPoster).isEmpty())
-            ui->poster->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowPoster));
-    }
+    foreach (const int &imageType, images) {
+        ClosableImage *image = 0;
 
-    if (images.contains(ImageType::TvShowBackdrop)) {
-        if (!m_show->backdropImage().isNull())
-            ui->backdrop->setImage(m_show->backdropImage());
-        else if (!m_show->imagesToRemove().contains(ImageType::TvShowBackdrop) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowBackdrop).isEmpty())
-            ui->backdrop->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowBackdrop));
-    }
+        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage*>()) {
+            if (cImage->imageType() == imageType)
+                image = cImage;
+        }
 
-    if (images.contains(ImageType::TvShowBanner)) {
-        if (!m_show->bannerImage().isNull())
-            ui->banner->setImage(m_show->bannerImage());
-        else if (!m_show->imagesToRemove().contains(ImageType::TvShowBanner) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowBanner).isEmpty())
-            ui->banner->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowBanner));
-    }
+        if (!image)
+            continue;
 
-    if (images.contains(ImageType::TvShowLogos)) {
-        if (!m_show->logoImage().isNull())
-            ui->logo->setImage(m_show->logoImage());
-        else if (!m_show->imagesToRemove().contains(ImageType::TvShowLogos) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowLogos).isEmpty())
-            ui->logo->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowLogos));
-    }
-
-    if (images.contains(ImageType::TvShowThumb)) {
-        if (!m_show->thumbImage().isNull())
-            ui->thumb->setImage(m_show->thumbImage());
-        else if (!m_show->imagesToRemove().contains(ImageType::TvShowThumb) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowThumb).isEmpty())
-            ui->thumb->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowThumb));
-    }
-
-    if (images.contains(ImageType::TvShowClearArt)) {
-        if (!m_show->clearArtImage().isNull())
-            ui->clearArt->setImage(m_show->clearArtImage());
-        else if (!m_show->imagesToRemove().contains(ImageType::TvShowClearArt) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowClearArt).isEmpty())
-            ui->clearArt->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowClearArt));
-    }
-
-    if (images.contains(ImageType::TvShowCharacterArt)) {
-        if (!m_show->characterArtImage().isNull())
-            ui->characterArt->setImage(m_show->characterArtImage());
-        else if (!m_show->imagesToRemove().contains(ImageType::TvShowCharacterArt) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowCharacterArt).isEmpty())
-            ui->characterArt->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, ImageType::TvShowCharacterArt));
+        if (!m_show->image(imageType).isNull())
+            image->setImage(m_show->image(imageType));
+        else if (!m_show->imagesToRemove().contains(imageType) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_show, imageType).isEmpty())
+            image->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_show, imageType));
     }
 }
 
@@ -620,75 +588,28 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
 {
     qDebug() << "Entered";
 
-    switch (elem.imageType) {
-    case ImageType::TvShowPoster:
-        if (m_show == elem.show)
-            ui->poster->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowPoster));
-        elem.show->setPosterImage(elem.data);
-        break;
-    case ImageType::TvShowBackdrop:
-        Helper::resizeBackdrop(elem.data);
-        if (m_show == elem.show)
-            ui->backdrop->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowBackdrop));
-        elem.show->setBackdropImage(elem.data);
-        break;
-    case ImageType::TvShowBanner:
-        if (m_show == elem.show)
-            ui->banner->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowBanner));
-        elem.show->setBannerImage(elem.data);
-        break;
-    case ImageType::TvShowLogos:
-        if (m_show == elem.show)
-            ui->logo->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowLogos));
-        elem.show->setLogoImage(elem.data);
-        break;
-    case ImageType::TvShowThumb:
-        if (m_show == elem.show)
-            ui->thumb->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowThumb));
-        elem.show->setThumbImage(elem.data);
-        break;
-    case ImageType::TvShowCharacterArt:
-        if (m_show == elem.show)
-            ui->characterArt->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowCharacterArt));
-        elem.show->setCharacterArtImage(elem.data);
-        break;
-    case ImageType::TvShowClearArt:
-        if (m_show == elem.show)
-            ui->clearArt->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowClearArt));
-        elem.show->setClearArtImage(elem.data);
-        break;
-    case ImageType::TvShowExtraFanart:
+    if (TvShow::seasonImageTypes().contains(elem.imageType)) {
+        if (elem.imageType == ImageType::TvShowSeasonBackdrop)
+            Helper::resizeBackdrop(elem.data);
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType, elem.season));
+        elem.show->setSeasonImage(elem.season, elem.imageType, elem.data);
+    } else if (elem.imageType == ImageType::TvShowExtraFanart) {
         Helper::resizeBackdrop(elem.data);
         elem.show->addExtraFanart(elem.data);
         if (elem.show == m_show)
             ui->fanarts->addImage(elem.data);
-        break;
-    case ImageType::TvShowSeasonPoster:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowSeasonPoster, elem.season));
-        elem.show->setSeasonPosterImage(elem.season, elem.data);
-        break;
-    case ImageType::TvShowSeasonBackdrop:
-        Helper::resizeBackdrop(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowSeasonBackdrop, elem.season));
-        elem.show->setSeasonBackdropImage(elem.season, elem.data);
-        break;
-    case ImageType::TvShowSeasonThumb:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowSeasonThumb, elem.season));
-        elem.show->setSeasonThumbImage(elem.season, elem.data);
-        break;
-    case ImageType::TvShowSeasonBanner:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, ImageType::TvShowSeasonBanner, elem.season));
-        elem.show->setSeasonBannerImage(elem.season, elem.data);
-        break;
-    default:
-        break;
+    } else {
+        foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage*>()) {
+            if (image->imageType() == elem.imageType) {
+                if (elem.imageType == ImageType::TvShowBackdrop)
+                    Helper::resizeBackdrop(elem.data);
+                if (m_show == elem.show)
+                    image->setImage(elem.data);
+                ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType));
+                elem.show->setImage(elem.imageType, elem.data);
+                break;
+            }
+        }
     }
 
     if (m_posterDownloadManager->downloadsLeftForShow(m_show) == 0) {

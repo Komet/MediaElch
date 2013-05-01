@@ -69,17 +69,6 @@ public:
     QList<Poster> seasonBackdrops(int season) const;
     QList<Poster> seasonBanners(int season, bool returnAll = false) const;
     QList<Poster> seasonThumbs(int season, bool returnAll = false) const;
-    bool posterImageChanged() const;
-    bool backdropImageChanged() const;
-    bool bannerImageChanged() const;
-    bool logoImageChanged() const;
-    bool thumbImageChanged() const;
-    bool clearArtImageChanged() const;
-    bool characterArtImageChanged() const;
-    bool seasonPosterImageChanged(int season) const;
-    bool seasonBackdropImageChanged(int season) const;
-    bool seasonBannerImageChanged(int season) const;
-    bool seasonThumbImageChanged(int season) const;
     TvShowEpisode *episode(int season, int episode);
     QList<int> seasons();
     QList<TvShowEpisode*> episodes();
@@ -146,30 +135,14 @@ public:
     void clearImages();
 
     // Images
-    QByteArray posterImage();
-    QByteArray backdropImage();
-    QByteArray bannerImage();
-    QByteArray logoImage();
-    QByteArray thumbImage();
-    QByteArray clearArtImage();
-    QByteArray characterArtImage();
-    QByteArray seasonPosterImage(int season);
-    QByteArray seasonBackdropImage(int season);
-    QByteArray seasonBannerImage(int season);
-    QByteArray seasonThumbImage(int season);
-    void setPosterImage(QByteArray poster);
-    void setBackdropImage(QByteArray backdrop);
-    void setBannerImage(QByteArray banner);
-    void setLogoImage(QByteArray img);
-    void setThumbImage(QByteArray img);
-    void setClearArtImage(QByteArray img);
-    void setCharacterArtImage(QByteArray img);
-    void setSeasonPosterImage(int season, QByteArray poster);
-    void setSeasonBackdropImage(int season, QByteArray poster);
-    void setSeasonBannerImage(int season, QByteArray poster);
-    void setSeasonThumbImage(int season, QByteArray poster);
     void removeImage(int type, int season = -2);
     QMap<int, QList<int> > imagesToRemove() const;
+    QByteArray image(int imageType);
+    QByteArray seasonImage(int season, int imageType);
+    void setImage(int imageType, QByteArray image);
+    void setSeasonImage(int season, int imageType, QByteArray image);
+    bool imageHasChanged(int imageType) const;
+    bool seasonImageHasChanged(int season, int imageType) const;
 
     // Extra Fanarts
     QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
@@ -183,6 +156,8 @@ public:
     void scraperLoadDone();
 
     static bool lessThan(TvShow *a, TvShow *b);
+    static QList<int> imageTypes();
+    static QList<int> seasonImageTypes();
 
 signals:
     void sigLoaded(TvShow*);
@@ -212,29 +187,7 @@ private:
     QMap<int, QList<Poster> > m_seasonBackdrops;
     QMap<int, QList<Poster> > m_seasonBanners;
     QMap<int, QList<Poster> > m_seasonThumbs;
-    QByteArray m_posterImage;
-    QByteArray m_backdropImage;
-    QByteArray m_bannerImage;
-    QByteArray m_logoImage;
-    QByteArray m_thumbImage;
-    QByteArray m_clearArtImage;
-    QByteArray m_characterArtImage;
-    bool m_posterImageChanged;
-    bool m_backdropImageChanged;
-    bool m_bannerImageChanged;
-    bool m_logoImageChanged;
-    bool m_thumbImageChanged;
-    bool m_clearArtImageChanged;
-    bool m_characterArtImageChanged;
     bool m_hasTune;
-    QMap<int, QByteArray> m_seasonPosterImages;
-    QList<int> m_seasonPosterImagesChanged;
-    QMap<int, QByteArray> m_seasonBackdropImages;
-    QList<int> m_seasonBackdropImagesChanged;
-    QMap<int, QByteArray> m_seasonBannerImages;
-    QList<int> m_seasonBannerImagesChanged;
-    QMap<int, QByteArray> m_seasonThumbImages;
-    QList<int> m_seasonThumbImagesChanged;
     TvShowModelItem *m_modelItem;
     QString m_mediaCenterPath;
     int m_showId;
@@ -250,6 +203,13 @@ private:
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
     QMap<int, QList<int> > m_imagesToRemove;
+
+    QMap<int, QByteArray> m_images;
+    QMap<int, QMap<int, QByteArray> > m_seasonImages;
+    QMap<int, bool> m_hasImageChanged;
+    QMap<int, QMap<int, bool> > m_hasSeasonImageChanged;
+
+    void clearSeasonImageType(int imageType);
 };
 
 QDebug operator<<(QDebug dbg, const TvShow &show);

@@ -163,8 +163,6 @@ public:
     void removeGenre(QString genre);
     void removeTag(QString tag);
 
-
-
     QList<Poster> posters() const;
     QList<Poster> backdrops() const;
     QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
@@ -178,12 +176,6 @@ public:
     void setBackdrops(QList<Poster> backdrops);
     void setBackdrop(int index, Poster backdrop);
     void addBackdrop(Poster backdrop);
-    void setBackdropImage(QByteArray backdrop);
-    void setLogoImage(QByteArray img);
-    void setClearArtImage(QByteArray img);
-    void setCdArtImage(QByteArray img);
-    void setBannerImage(QByteArray img);
-    void setThumbImage(QByteArray img);
     void addExtraFanart(QByteArray fanart);
     void removeExtraFanart(QByteArray fanart);
     void removeExtraFanart(QString file);

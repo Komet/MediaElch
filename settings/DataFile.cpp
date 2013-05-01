@@ -111,6 +111,42 @@ int DataFile::dataFileTypeForImageType(int imageType)
         return DataFileType::MoviePoster;
     case ImageType::MovieThumb:
         return DataFileType::MovieThumb;
+
+    case ImageType::ConcertBackdrop:
+        return DataFileType::ConcertBackdrop;
+    case ImageType::ConcertCdArt:
+        return DataFileType::ConcertCdArt;
+    case ImageType::ConcertClearArt:
+        return DataFileType::ConcertClearArt;
+    case ImageType::ConcertLogo:
+        return DataFileType::ConcertLogo;
+    case ImageType::ConcertPoster:
+        return DataFileType::ConcertPoster;
+
+    case ImageType::TvShowBackdrop:
+        return DataFileType::TvShowBackdrop;
+    case ImageType::TvShowBanner:
+        return DataFileType::TvShowBanner;
+    case ImageType::TvShowCharacterArt:
+        return DataFileType::TvShowCharacterArt;
+    case ImageType::TvShowClearArt:
+        return DataFileType::TvShowClearArt;
+    case ImageType::TvShowLogos:
+        return DataFileType::TvShowLogo;
+    case ImageType::TvShowPoster:
+        return DataFileType::TvShowPoster;
+    case ImageType::TvShowThumb:
+        return DataFileType::TvShowThumb;
+
+    case ImageType::TvShowSeasonBackdrop:
+        return DataFileType::TvShowSeasonBackdrop;
+    case ImageType::TvShowSeasonPoster:
+        return DataFileType::TvShowSeasonPoster;
+    case ImageType::TvShowSeasonBanner:
+        return DataFileType::TvShowSeasonBanner;
+    case ImageType::TvShowSeasonThumb:
+        return DataFileType::TvShowSeasonThumb;
+
     default:
         return -1;
     }

@@ -21,11 +21,6 @@ Concert::Concert(QStringList files, QObject *parent) :
     m_rating = 0;
     m_runtime = 0;
     m_playcount = 0;
-    m_backdropImageChanged = false;
-    m_posterImageChanged = false;
-    m_logoImageChanged = false;
-    m_clearArtImageChanged = false;
-    m_cdArtImageChanged = false;
     if (files.size() > 0) {
         QFileInfo fi(files.at(0));
         QStringList path = fi.path().split("/", QString::SkipEmptyParts);
@@ -87,16 +82,16 @@ void Concert::clear(QList<int> infos)
 {
     if (infos.contains(ConcertScraperInfos::Backdrop)) {
         m_backdrops.clear();
-        m_backdropImage = QByteArray();
-        m_backdropImageChanged = false;
+        m_images.insert(ImageType::ConcertBackdrop, QByteArray());
+        m_hasImageChanged.insert(ImageType::ConcertBackdrop, false);
         m_imagesToRemove.removeOne(ImageType::ConcertBackdrop);
     }
     if (infos.contains(ConcertScraperInfos::Genres))
         m_genres.clear();
     if (infos.contains(ConcertScraperInfos::Poster)) {
         m_posters.clear();
-        m_posterImage = QByteArray();
-        m_posterImageChanged = false;
+        m_images.insert(ImageType::ConcertPoster, QByteArray());
+        m_hasImageChanged.insert(ImageType::ConcertPoster, false);
         m_imagesToRemove.removeOne(ImageType::ConcertPoster);
     }
     if (infos.contains(ConcertScraperInfos::Overview))
@@ -116,12 +111,12 @@ void Concert::clear(QList<int> infos)
     if (infos.contains(ConcertScraperInfos::Tags))
         m_tags.clear();
     if (infos.contains(ConcertScraperInfos::ExtraArts)) {
-        m_cdArtImage = QByteArray();
-        m_cdArtImageChanged = false;
-        m_clearArtImage = QByteArray();
-        m_clearArtImageChanged = false;
-        m_logoImage = QByteArray();
-        m_logoImageChanged = false;
+        m_images.insert(ImageType::ConcertCdArt, QByteArray());
+        m_hasImageChanged.insert(ImageType::ConcertCdArt, false);
+        m_images.insert(ImageType::ConcertLogo, QByteArray());
+        m_hasImageChanged.insert(ImageType::ConcertLogo, false);
+        m_images.insert(ImageType::ConcertClearArt, QByteArray());
+        m_hasImageChanged.insert(ImageType::ConcertClearArt, false);
         m_imagesToRemove.removeOne(ImageType::ConcertCdArt);
         m_imagesToRemove.removeOne(ImageType::ConcertClearArt);
         m_imagesToRemove.removeOne(ImageType::ConcertLogo);
@@ -278,11 +273,8 @@ void Concert::scraperLoadDone()
  */
 void Concert::clearImages()
 {
-    m_posterImage = QByteArray();
-    m_backdropImage = QByteArray();
-    m_logoImage = QByteArray();
-    m_clearArtImage = QByteArray();
-    m_cdArtImage = QByteArray();
+    m_images.clear();
+    m_hasImageChanged.clear();
     m_extraFanartImagesToAdd.clear();
 }
 
@@ -481,51 +473,6 @@ QList<Poster> Concert::backdrops() const
 }
 
 /**
- * @brief Holds the current concert poster
- * @return Current concert poster
- */
-QByteArray Concert::posterImage()
-{
-    return m_posterImage;
-}
-
-/**
- * @brief Holds the current concert backdrop
- * @return Current concert backdrop
- */
-QByteArray Concert::backdropImage()
-{
-    return m_backdropImage;
-}
-
-/**
- * @brief Holds the current concert logo
- * @return Current concert logo
- */
-QByteArray Concert::logoImage()
-{
-    return m_logoImage;
-}
-
-/**
- * @brief Holds the current concert clear art
- * @return Current concert clear art
- */
-QByteArray Concert::clearArtImage()
-{
-    return m_clearArtImage;
-}
-
-/**
- * @brief Holds the current concert cd art
- * @return Current concert cd art
- */
-QByteArray Concert::cdArtImage()
-{
-    return m_cdArtImage;
-}
-
-/**
  * @brief Returns the parent folder of the concert
  * @return Parent folder of the concert
  */
@@ -552,51 +499,6 @@ bool Concert::streamDetailsLoaded() const
 bool Concert::infoLoaded() const
 {
     return m_infoLoaded;
-}
-
-/**
- * @brief Holds a property indicating if the poster image was changed
- * @return Concerts poster image was changed
- */
-bool Concert::posterImageChanged() const
-{
-    return m_posterImageChanged;
-}
-
-/**
- * @brief Holds a property indicating if the backdrop image was changed
- * @return Concerts backdrop image was changed
- */
-bool Concert::backdropImageChanged() const
-{
-    return m_backdropImageChanged;
-}
-
-/**
- * @brief Holds a property indicating if the logo image was changed
- * @return Concerts logo image was changed
- */
-bool Concert::logoImageChanged() const
-{
-    return m_logoImageChanged;
-}
-
-/**
- * @brief Holds a property indicating if the clear art image was changed
- * @return Concerts clear art image was changed
- */
-bool Concert::clearArtImageChanged() const
-{
-    return m_clearArtImageChanged;
-}
-
-/**
- * @brief Holds a property indicating if the cd art image was changed
- * @return Concerts cd art image was changed
- */
-bool Concert::cdArtImageChanged() const
-{
-    return m_cdArtImageChanged;
 }
 
 /**
@@ -1069,63 +971,6 @@ void Concert::addBackdrop(Poster backdrop)
     setChanged(true);
 }
 
-/**
- * @brief Sets the current poster image
- * @param poster Current poster image
- * @see Concert::posters
- */
-void Concert::setPosterImage(QByteArray poster)
-{
-    m_posterImage = poster;
-    m_posterImageChanged = true;
-    setChanged(true);
-}
-
-/**
- * @brief Sets the current backdrop image
- * @param backdrop Current backdrop image
- * @see Concert::backdrops
- */
-void Concert::setBackdropImage(QByteArray backdrop)
-{
-    m_backdropImage = backdrop;
-    m_backdropImageChanged = true;
-    setChanged(true);
-}
-
-/**
- * @brief Sets the current logo image
- * @param img Current logo image
- */
-void Concert::setLogoImage(QByteArray img)
-{
-    m_logoImage = img;
-    m_logoImageChanged = true;
-    setChanged(true);
-}
-
-/**
- * @brief Sets the current clear art image
- * @param img Current clear art image
- */
-void Concert::setClearArtImage(QByteArray img)
-{
-    m_clearArtImage = img;
-    m_clearArtImageChanged = true;
-    setChanged(true);
-}
-
-/**
- * @brief Sets the current cd art image
- * @param img Current cd art image
- */
-void Concert::setCdArtImage(QByteArray img)
-{
-    m_cdArtImage = img;
-    m_cdArtImageChanged = true;
-    setChanged(true);
-}
-
 void Concert::setSyncNeeded(bool syncNeeded)
 {
     m_syncNeeded = syncNeeded;
@@ -1224,49 +1069,11 @@ QList<int> Concert::imagesToRemove() const
 
 void Concert::removeImage(int type)
 {
-    switch (type) {
-    case ImageType::ConcertPoster:
-        if (!m_posterImage.isNull()) {
-            m_posterImage = QByteArray();
-            m_posterImageChanged = false;
-        } else if (!m_imagesToRemove.contains(type)) {
-            m_imagesToRemove.append(type);
-        }
-        break;
-    case ImageType::ConcertBackdrop:
-        if (!m_backdropImage.isNull()) {
-            m_backdropImage = QByteArray();
-            m_backdropImageChanged = false;
-        } else if (!m_imagesToRemove.contains(type)) {
-            m_imagesToRemove.append(type);
-        }
-        break;
-    case ImageType::ConcertLogo:
-        if (!m_logoImage.isNull()) {
-            m_logoImage = QByteArray();
-            m_logoImageChanged = false;
-        } else if (!m_imagesToRemove.contains(type)) {
-            m_imagesToRemove.append(type);
-        }
-        break;
-    case ImageType::ConcertClearArt:
-        if (!m_clearArtImage.isNull()) {
-            m_clearArtImage = QByteArray();
-            m_clearArtImageChanged = false;
-        } else if (!m_imagesToRemove.contains(type)) {
-            m_imagesToRemove.append(type);
-        }
-        break;
-    case ImageType::ConcertCdArt:
-        if (!m_cdArtImage.isNull()) {
-            m_cdArtImage = QByteArray();
-            m_cdArtImageChanged = false;
-        } else if (!m_imagesToRemove.contains(type)) {
-            m_imagesToRemove.append(type);
-        }
-        break;
-    default:
-        break;
+    if (!m_images.value(type, QByteArray()).isNull()) {
+        m_images.insert(type, QByteArray());
+        m_hasImageChanged.insert(type, false);
+    } else if (!m_imagesToRemove.contains(type)) {
+        m_imagesToRemove.append(type);
     }
     setChanged(true);
 }
@@ -1274,4 +1081,28 @@ void Concert::removeImage(int type)
 bool Concert::lessThan(Concert *a, Concert *b)
 {
     return (QString::localeAwareCompare(Helper::appendArticle(a->name()), Helper::appendArticle(b->name())) < 0);
+}
+
+QList<int> Concert::imageTypes()
+{
+    return QList<int>() << ImageType::ConcertPoster << ImageType::ConcertCdArt
+                        << ImageType::ConcertClearArt << ImageType::ConcertLogo
+                        << ImageType::ConcertBackdrop;
+}
+
+QByteArray Concert::image(int imageType)
+{
+    return m_images.value(imageType, QByteArray());
+}
+
+bool Concert::imageHasChanged(int imageType)
+{
+    return m_hasImageChanged.value(imageType, false);
+}
+
+void Concert::setImage(int imageType, QByteArray image)
+{
+    m_images.insert(imageType, image);
+    m_hasImageChanged.insert(imageType, true);
+    setChanged(true);
 }

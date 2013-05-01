@@ -71,17 +71,7 @@ public:
     QDateTime lastPlayed() const;
     QList<Poster> posters() const;
     QList<Poster> backdrops() const;
-    QByteArray posterImage();
-    QByteArray backdropImage();
-    QByteArray logoImage();
-    QByteArray clearArtImage();
-    QByteArray cdArtImage();
     bool infoLoaded() const;
-    bool posterImageChanged() const;
-    bool backdropImageChanged() const;
-    bool logoImageChanged() const;
-    bool clearArtImageChanged() const;
-    bool cdArtImageChanged() const;
     bool watched() const;
     int concertId() const;
     bool downloadsInProgress() const;
@@ -119,11 +109,6 @@ public:
     void setBackdrops(QList<Poster> backdrops);
     void setBackdrop(int index, Poster backdrop);
     void addBackdrop(Poster backdrop);
-    void setPosterImage(QByteArray poster);
-    void setBackdropImage(QByteArray backdrop);
-    void setLogoImage(QByteArray img);
-    void setClearArtImage(QByteArray img);
-    void setCdArtImage(QByteArray img);
     void setWatched(bool watched);
     void setChanged(bool changed);
     void setDownloadsInProgress(bool inProgress);
@@ -157,6 +142,10 @@ public:
     void removeImage(int type);
     QList<int> imagesToRemove() const;
 
+    QByteArray image(int imageType);
+    bool imageHasChanged(int imageType);
+    void setImage(int imageType, QByteArray image);
+
     void scraperLoadDone();
     QList<int> infosToLoad();
     void setLoadsLeft(QList<ScraperData> loadsLeft);
@@ -166,6 +155,7 @@ public:
     DiscType discType();
 
     static bool lessThan(Concert *a, Concert *b);
+    static QList<int> imageTypes();
 
 signals:
     void loaded(Concert*);
@@ -190,16 +180,6 @@ private:
     QDateTime m_lastPlayed;
     QList<Poster> m_posters;
     QList<Poster> m_backdrops;
-    QByteArray m_posterImage;
-    QByteArray m_backdropImage;
-    QByteArray m_logoImage;
-    QByteArray m_clearArtImage;
-    QByteArray m_cdArtImage;
-    bool m_posterImageChanged;
-    bool m_backdropImageChanged;
-    bool m_logoImageChanged;
-    bool m_clearArtImageChanged;
-    bool m_cdArtImageChanged;
     bool m_infoLoaded;
     bool m_infoFromNfoLoaded;
     bool m_watched;
@@ -220,9 +200,12 @@ private:
     QList<ScraperData> m_loadsLeft;
     bool m_loadDoneFired;
     QMutex m_loadMutex;
-    QList<QByteArray> m_extraFanartImagesToAdd;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
+
+    QMap<int, QByteArray> m_images;
+    QMap<int, bool> m_hasImageChanged;
+    QList<QByteArray> m_extraFanartImagesToAdd;
     QList<int> m_imagesToRemove;
 };
 

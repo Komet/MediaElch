@@ -493,39 +493,21 @@ void ConcertWidget::updateConcertInfo()
 
 void ConcertWidget::updateImages(QList<int> images)
 {
-    if (images.contains(ImageType::ConcertPoster)) {
-        if (!m_concert->posterImage().isNull())
-            ui->poster->setImage(m_concert->posterImage());
-        else if (!m_concert->imagesToRemove().contains(ImageType::ConcertPoster) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, ImageType::ConcertPoster).isEmpty())
-            ui->poster->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, ImageType::ConcertPoster));
-    }
+    foreach (const int &imageType, images) {
+        ClosableImage *image = 0;
 
-    if (images.contains(ImageType::ConcertBackdrop)) {
-        if (!m_concert->backdropImage().isNull())
-            ui->backdrop->setImage(m_concert->backdropImage());
-        else if (!m_concert->imagesToRemove().contains(ImageType::ConcertBackdrop) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, ImageType::ConcertBackdrop).isEmpty())
-            ui->backdrop->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, ImageType::ConcertBackdrop));
-    }
+        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage*>()) {
+            if (cImage->imageType() == imageType)
+                image = cImage;
+        }
 
-    if (images.contains(ImageType::ConcertLogo)) {
-        if (!m_concert->logoImage().isNull())
-            ui->logo->setImage(m_concert->logoImage());
-        else if (!m_concert->imagesToRemove().contains(ImageType::ConcertLogo) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, ImageType::ConcertLogo).isEmpty())
-            ui->logo->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, ImageType::ConcertLogo));
-    }
+        if (!image)
+            continue;
 
-    if (images.contains(ImageType::ConcertClearArt)) {
-        if (!m_concert->clearArtImage().isNull())
-            ui->clearArt->setImage(m_concert->clearArtImage());
-        else if (!m_concert->imagesToRemove().contains(ImageType::ConcertClearArt) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, ImageType::ConcertClearArt).isEmpty())
-            ui->clearArt->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, ImageType::ConcertClearArt));
-    }
-
-    if (images.contains(ImageType::ConcertCdArt)) {
-        if (!m_concert->cdArtImage().isNull())
-            ui->cdArt->setImage(m_concert->cdArtImage());
-        else if (!m_concert->imagesToRemove().contains(ImageType::ConcertCdArt) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, ImageType::ConcertCdArt).isEmpty())
-            ui->cdArt->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, ImageType::ConcertCdArt));
+        if (!m_concert->image(imageType).isNull())
+            image->setImage(m_concert->image(imageType));
+        else if (!m_concert->imagesToRemove().contains(imageType) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, imageType).isEmpty())
+            image->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, imageType));
     }
 }
 
@@ -642,43 +624,28 @@ void ConcertWidget::onReloadStreamDetails()
 void ConcertWidget::posterDownloadFinished(DownloadManagerElement elem)
 {
     qDebug() << "Entered";
-    if (elem.imageType == ImageType::ConcertPoster) {
-        qDebug() << "Got a poster";
-        if (m_concert == elem.concert)
-            ui->poster->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.concert, ImageType::ConcertPoster));
-        elem.concert->setPosterImage(elem.data);
-    } else if (elem.imageType == ImageType::ConcertBackdrop) {
-        qDebug() << "Got a backdrop";
-        Helper::resizeBackdrop(elem.data);
-        if (m_concert == elem.concert)
-            ui->backdrop->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.concert, ImageType::ConcertBackdrop));
-        elem.concert->setBackdropImage(elem.data);
-    } else if (elem.imageType == ImageType::ConcertLogo) {
-        qDebug() << "Got a logo";
-        if (m_concert == elem.concert)
-            ui->logo->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.concert, ImageType::ConcertLogo));
-        elem.concert->setLogoImage(elem.data);
-    } else if (elem.imageType == ImageType::ConcertClearArt) {
-        qDebug() << "Got a clear art";
-        if (m_concert == elem.concert)
-            ui->clearArt->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.concert, ImageType::ConcertClearArt));
-        elem.concert->setClearArtImage(elem.data);
-    } else if (elem.imageType == ImageType::ConcertCdArt) {
-        qDebug() << "Got a cd art";
-        if (m_concert == elem.concert)
-            ui->cdArt->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.concert, ImageType::ConcertCdArt));
-        elem.concert->setCdArtImage(elem.data);
-    } else if (elem.imageType == ImageType::ConcertExtraFanart) {
+
+    if (elem.imageType == ImageType::ConcertExtraFanart) {
         Helper::resizeBackdrop(elem.data);
         elem.concert->addExtraFanart(elem.data);
         if (elem.concert == m_concert)
             ui->fanarts->addImage(elem.data);
+    } else {
+        ClosableImage *image = 0;
+        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage*>()) {
+            if (cImage->imageType() == elem.imageType)
+                image = cImage;
+        }
+        if (elem.imageType == ImageType::ConcertBackdrop)
+            Helper::resizeBackdrop(elem.data);
+
+        if (m_concert == elem.concert && image)
+            image->setImage(elem.data);
+
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.concert, elem.imageType));
+        elem.concert->setImage(elem.imageType, elem.data);
     }
+
     if (m_posterDownloadManager->downloadQueueSize() == 0) {
         emit setActionSaveEnabled(true, WidgetConcerts);
         elem.concert->setDownloadsInProgress(false);

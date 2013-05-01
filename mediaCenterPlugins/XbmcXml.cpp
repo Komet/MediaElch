@@ -606,7 +606,7 @@ void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert)
  */
 bool XbmcXml::saveConcert(Concert *concert)
 {
-    qDebug() << "Entered, movie=" << concert->name();
+    qDebug() << "Entered, concert=" << concert->name();
     QByteArray xmlContent;
     QXmlStreamWriter xml(&xmlContent);
     xml.setAutoFormatting(true);
@@ -615,7 +615,7 @@ bool XbmcXml::saveConcert(Concert *concert)
     xml.writeEndDocument();
 
     if (concert->files().size() == 0) {
-        qWarning() << "Movie has no files";
+        qWarning() << "Concert has no files";
         return false;
     }
 
@@ -639,97 +639,29 @@ bool XbmcXml::saveConcert(Concert *concert)
     if (!saved)
         return false;
 
-    if (concert->posterImageChanged() && !concert->posterImage().isNull()) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertPoster)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
-            if (concert->discType() == DiscBluRay || concert->discType() == DiscDvd)
-                saveFileName = "poster.jpg";
-            QString path = getPath(concert);
-            saveFile(path + QDir::separator() + saveFileName, concert->posterImage());
+    foreach (const int &imageType, Concert::imageTypes()) {
+        int dataFileType = DataFile::dataFileTypeForImageType(imageType);
+        if (concert->imageHasChanged(imageType) && !concert->image(imageType).isNull()) {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+                QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
+                if (imageType == ImageType::ConcertPoster && (concert->discType() == DiscBluRay || concert->discType() == DiscDvd))
+                    saveFileName = "poster.jpg";
+                if (imageType == ImageType::ConcertBackdrop && (concert->discType() == DiscBluRay || concert->discType() == DiscDvd))
+                    saveFileName = "fanart.jpg";
+                QString path = getPath(concert);
+                saveFile(path + QDir::separator() + saveFileName, concert->image(imageType));
+            }
         }
-    }
-    if (concert->imagesToRemove().contains(ImageType::ConcertPoster)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertPoster)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
-            if (concert->discType() == DiscBluRay || concert->discType() == DiscDvd)
-                saveFileName = "poster.jpg";
-            QString path = getPath(concert);
-            QFile(path + QDir::separator() + saveFileName).remove();
-        }
-    }
-
-    if (concert->backdropImageChanged() && !concert->backdropImage().isNull()) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertBackdrop)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
-            if (concert->discType() == DiscBluRay || concert->discType() == DiscDvd)
-                saveFileName = "fanart.jpg";
-            QString path = getPath(concert);
-            saveFile(path + QDir::separator() + saveFileName, concert->backdropImage());
-        }
-    }
-    if (concert->imagesToRemove().contains(ImageType::ConcertBackdrop)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertBackdrop)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
-            if (concert->discType() == DiscBluRay || concert->discType() == DiscDvd)
-                saveFileName = "fanart.jpg";
-            QString path = getPath(concert);
-            QFile(path + QDir::separator() + saveFileName).remove();
-        }
-    }
-    saveAdditionalImages(concert);
-
-    return true;
-}
-
-/**
- * @brief Saves additional concert images (logo, clear art, cd art)
- * @param concert Concert object
- */
-void XbmcXml::saveAdditionalImages(Concert *concert)
-{
-    QFileInfo fi(concert->files().at(0));
-    if (concert->logoImageChanged() && !concert->logoImage().isNull()) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertLogo)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
-            QString path = getPath(concert);
-            saveFile(path + QDir::separator() + saveFileName, concert->logoImage());
-        }
-    }
-    if (concert->imagesToRemove().contains(ImageType::ConcertLogo)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertLogo)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
-            QString path = getPath(concert);
-            QFile(path + QDir::separator() + saveFileName).remove();
-        }
-    }
-
-    if (concert->clearArtImageChanged() && !concert->clearArtImage().isNull()) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertClearArt)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
-            QString path = getPath(concert);
-            saveFile(path + QDir::separator() + saveFileName, concert->clearArtImage());
-        }
-    }
-    if (concert->imagesToRemove().contains(ImageType::ConcertClearArt)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertClearArt)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
-            QString path = getPath(concert);
-            QFile(path + QDir::separator() + saveFileName).remove();
-        }
-    }
-
-    if (concert->cdArtImageChanged() && !concert->cdArtImage().isNull()) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertCdArt)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
-            QString path = getPath(concert);
-            saveFile(path + QDir::separator() + saveFileName, concert->cdArtImage());
-        }
-    }
-    if (concert->imagesToRemove().contains(ImageType::ConcertCdArt)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertCdArt)) {
-            QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
-            QString path = getPath(concert);
-            QFile(path + QDir::separator() + saveFileName).remove();
+        if (concert->imagesToRemove().contains(imageType)) {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(imageType)) {
+                QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
+                if (imageType == ImageType::ConcertPoster && (concert->discType() == DiscBluRay || concert->discType() == DiscDvd))
+                    saveFileName = "poster.jpg";
+                if (imageType == ImageType::ConcertBackdrop && (concert->discType() == DiscBluRay || concert->discType() == DiscDvd))
+                    saveFileName = "fanart.jpg";
+                QString path = getPath(concert);
+                QFile(path + QDir::separator() + saveFileName).remove();
+            }
         }
     }
 
@@ -746,6 +678,8 @@ void XbmcXml::saveAdditionalImages(Concert *concert)
             saveFile(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num), img);
         }
     }
+
+    return true;
 }
 
 /**
@@ -1096,187 +1030,37 @@ bool XbmcXml::saveTvShow(TvShow *show)
         file.close();
     }
 
-    if (show->posterImageChanged() && !show->posterImage().isNull()) {
-        qDebug() << "Poster image has changed";
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowPoster)) {
-            QString saveFileName = dataFile.saveFileName("");
-            qDebug() << "Saving poster to" << show->dir() + QDir::separator() + saveFileName;
-            saveFile(show->dir() + QDir::separator() + saveFileName, show->posterImage());
-        }
-    }
-    if (show->imagesToRemove().contains(ImageType::TvShowPoster)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowPoster)) {
-            QString saveFileName = dataFile.saveFileName("");
-            QFile(show->dir() + QDir::separator() + saveFileName).remove();
-        }
-    }
-
-    if (show->backdropImageChanged() && !show->backdropImage().isNull()) {
-        qDebug() << "Backdrop image has changed";
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowBackdrop)) {
-            QString saveFileName = dataFile.saveFileName("");
-            qDebug() << "Saving poster to" << show->dir() + QDir::separator() + saveFileName;
-            saveFile(show->dir() + QDir::separator() + saveFileName, show->backdropImage());
-        }
-    }
-    if (show->imagesToRemove().contains(ImageType::TvShowBackdrop)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowBackdrop)) {
-            QString saveFileName = dataFile.saveFileName("");
-            QFile(show->dir() + QDir::separator() + saveFileName).remove();
-        }
-    }
-
-    if (show->bannerImageChanged() && !show->bannerImage().isNull()) {
-        qDebug() << "Banner image has changed";
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowBanner)) {
-            QString saveFileName = dataFile.saveFileName("");
-            qDebug() << "Saving banner to" << show->dir() + QDir::separator() + saveFileName;
-            saveFile(show->dir() + QDir::separator() + saveFileName, show->bannerImage());
-        }
-    }
-    if (show->imagesToRemove().contains(ImageType::TvShowBanner)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowBanner)) {
-            QString saveFileName = dataFile.saveFileName("");
-            QFile(show->dir() + QDir::separator() + saveFileName).remove();
-        }
-    }
-
-    foreach (const Actor &actor, show->actors()) {
-        if (!actor.image.isNull()) {
-            QDir dir;
-            dir.mkdir(show->dir() + QDir::separator() + ".actors");
-            QString actorName = actor.name;
-            actorName = actorName.replace(" ", "_");
-            saveFile(show->dir() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".jpg", actor.image);
-        }
-    }
-
-    foreach (int season, show->seasons()) {
-        if (show->seasonPosterImageChanged(season) && !show->seasonPosterImage(season).isNull()) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowSeasonPoster)) {
-                QString saveFileName = dataFile.saveFileName("", season);
-                qDebug() << "Saving season poster for season" << season << "to" << show->dir() + QDir::separator() + saveFileName;
-                saveFile(show->dir() + QDir::separator() + saveFileName, show->seasonPosterImage(season));
+    foreach (const int &imageType, TvShow::imageTypes()) {
+        int dataFileType = DataFile::dataFileTypeForImageType(imageType);
+        if (show->imageHasChanged(imageType) && !show->image(imageType).isNull()) {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+                QString saveFileName = dataFile.saveFileName("");
+                saveFile(show->dir() + QDir::separator() + saveFileName, show->image(imageType));
             }
         }
-        if (show->imagesToRemove().contains(ImageType::TvShowSeasonPoster) && show->imagesToRemove().value(ImageType::TvShowSeasonPoster).contains(season)) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowSeasonPoster)) {
-                QString saveFileName = dataFile.saveFileName("", season);
-                QFile(show->dir() + QDir::separator() + saveFileName).remove();
-            }
-        }
-
-        if (show->seasonBackdropImageChanged(season) && !show->seasonBackdropImage(season).isNull()) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowSeasonBackdrop)) {
-                QString saveFileName = dataFile.saveFileName("", season);
-                qDebug() << "Saving season backdrop for season" << season << "to" << show->dir() + QDir::separator() + saveFileName;
-                saveFile(show->dir() + QDir::separator() + saveFileName, show->seasonBackdropImage(season));
-            }
-        }
-        if (show->imagesToRemove().contains(ImageType::TvShowSeasonBackdrop) && show->imagesToRemove().value(ImageType::TvShowSeasonBackdrop).contains(season)) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowSeasonBackdrop)) {
-                QString saveFileName = dataFile.saveFileName("", season);
-                QFile(show->dir() + QDir::separator() + saveFileName).remove();
-            }
-        }
-
-        if (show->seasonBannerImageChanged(season) && !show->seasonBannerImage(season).isNull()) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowSeasonBanner)) {
-                QString saveFileName = dataFile.saveFileName("", season);
-                qDebug() << "Saving season banner for season" << season << "to" << show->dir() + QDir::separator() + saveFileName;
-                saveFile(show->dir() + QDir::separator() + saveFileName, show->seasonBannerImage(season));
-            }
-        }
-        if (show->imagesToRemove().contains(ImageType::TvShowSeasonBanner) && show->imagesToRemove().value(ImageType::TvShowSeasonBanner).contains(season)) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowSeasonBanner)) {
-                QString saveFileName = dataFile.saveFileName("", season);
-                QFile(show->dir() + QDir::separator() + saveFileName).remove();
-            }
-        }
-
-        if (show->seasonThumbImageChanged(season) && !show->seasonThumbImage(season).isNull()) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowSeasonThumb)) {
-                QString saveFileName = dataFile.saveFileName("", season);
-                qDebug() << "Saving season thumb for season" << season << "to" << show->dir() + QDir::separator() + saveFileName;
-                saveFile(show->dir() + QDir::separator() + saveFileName, show->seasonThumbImage(season));
-            }
-        }
-        if (show->imagesToRemove().contains(ImageType::TvShowSeasonThumb) && show->imagesToRemove().value(ImageType::TvShowSeasonThumb).contains(season)) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowSeasonThumb)) {
-                QString saveFileName = dataFile.saveFileName("", season);
+        if (show->imagesToRemove().contains(imageType)) {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+                QString saveFileName = dataFile.saveFileName("");
                 QFile(show->dir() + QDir::separator() + saveFileName).remove();
             }
         }
     }
 
-    saveAdditionalImages(show);
-
-    return true;
-}
-
-/**
- * @brief Saves additional tv show images (logo, clear art,)
- * @param show TV Show object
- */
-void XbmcXml::saveAdditionalImages(TvShow *show)
-{
-    if (show->logoImageChanged() && !show->logoImage().isNull()) {
-        qDebug() << "Logo image has changed";
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowLogo)) {
-            QString saveFileName = dataFile.saveFileName("");
-            qDebug() << "Saving logo to" << show->dir() + QDir::separator() + saveFileName;
-            saveFile(show->dir() + QDir::separator() + saveFileName, show->logoImage());
-        }
-    }
-    if (show->imagesToRemove().contains(ImageType::TvShowLogos)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowLogo)) {
-            QString saveFileName = dataFile.saveFileName("");
-            QFile(show->dir() + QDir::separator() + saveFileName).remove();
-        }
-    }
-
-    if (show->thumbImageChanged() && !show->thumbImage().isNull()) {
-        qDebug() << "Thumb image has changed";
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowThumb)) {
-            QString saveFileName = dataFile.saveFileName("");
-            qDebug() << "Saving thumb to" << show->dir() + QDir::separator() + saveFileName;
-            saveFile(show->dir() + QDir::separator() + saveFileName, show->thumbImage());
-        }
-    }
-    if (show->imagesToRemove().contains(ImageType::TvShowThumb)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowThumb)) {
-            QString saveFileName = dataFile.saveFileName("");
-            QFile(show->dir() + QDir::separator() + saveFileName).remove();
-        }
-    }
-
-    if (show->clearArtImageChanged() && !show->clearArtImage().isNull()) {
-        qDebug() << "Clear art image has changed";
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowClearArt)) {
-            QString saveFileName = dataFile.saveFileName("");
-            qDebug() << "Saving clear art to" << show->dir() + QDir::separator() + saveFileName;
-            saveFile(show->dir() + QDir::separator() + saveFileName, show->clearArtImage());
-        }
-    }
-    if (show->imagesToRemove().contains(ImageType::TvShowClearArt)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowClearArt)) {
-            QString saveFileName = dataFile.saveFileName("");
-            QFile(show->dir() + QDir::separator() + saveFileName).remove();
-        }
-    }
-
-    if (show->characterArtImageChanged() && !show->characterArtImage().isNull()) {
-        qDebug() << "Character art image has changed";
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowCharacterArt)) {
-            QString saveFileName = dataFile.saveFileName("");
-            qDebug() << "Saving character art to" << show->dir() + QDir::separator() + saveFileName;
-            saveFile(show->dir() + QDir::separator() + saveFileName, show->characterArtImage());
-        }
-    }
-    if (show->imagesToRemove().contains(ImageType::TvShowCharacterArt)) {
-        foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowCharacterArt)) {
-            QString saveFileName = dataFile.saveFileName("");
-            QFile(show->dir() + QDir::separator() + saveFileName).remove();
+    foreach (const int &imageType, TvShow::seasonImageTypes()) {
+        int dataFileType = DataFile::dataFileTypeForImageType(imageType);
+        foreach (int season, show->seasons()) {
+            if (show->seasonImageHasChanged(season, imageType) && !show->seasonImage(season, imageType).isNull()) {
+                foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+                    QString saveFileName = dataFile.saveFileName("", season);
+                    saveFile(show->dir() + QDir::separator() + saveFileName, show->seasonImage(season, imageType));
+                }
+            }
+            if (show->imagesToRemove().contains(imageType) && show->imagesToRemove().value(imageType).contains(season)) {
+                foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+                    QString saveFileName = dataFile.saveFileName("", season);
+                    QFile(show->dir() + QDir::separator() + saveFileName).remove();
+                }
+            }
         }
     }
 
@@ -1293,6 +1077,18 @@ void XbmcXml::saveAdditionalImages(TvShow *show)
             saveFile(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num), img);
         }
     }
+
+    foreach (const Actor &actor, show->actors()) {
+        if (!actor.image.isNull()) {
+            QDir dir;
+            dir.mkdir(show->dir() + QDir::separator() + ".actors");
+            QString actorName = actor.name;
+            actorName = actorName.replace(" ", "_");
+            saveFile(show->dir() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".jpg", actor.image);
+        }
+    }
+
+    return true;
 }
 
 /**

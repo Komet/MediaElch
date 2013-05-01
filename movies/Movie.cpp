@@ -189,6 +189,7 @@ void Movie::clear(QList<int> infos)
 void Movie::clearImages()
 {
     m_images.clear();
+    m_hasImageChanged.clear();
     m_extraFanartImagesToAdd.clear();
     foreach (Actor *actor, actorsPointer())
         actor->image = QByteArray();
@@ -1371,7 +1372,7 @@ QList<int> Movie::imagesToRemove() const
 
 void Movie::removeImage(int type)
 {
-    if (!m_images.value(type).isNull()) {
+    if (!m_images.value(type, QByteArray()).isNull()) {
         m_images.remove(type);
         m_hasImageChanged.insert(type, false);
     } else if (!m_imagesToRemove.contains(type)) {
@@ -1382,17 +1383,17 @@ void Movie::removeImage(int type)
 
 QByteArray Movie::image(int imageType)
 {
-    return m_images.value(imageType);
+    return m_images.value(imageType, QByteArray());
 }
 
 bool Movie::imageHasChanged(int imageType)
 {
-    return m_hasImageChanged.value(imageType);
+    return m_hasImageChanged.value(imageType, false);
 }
 
 bool Movie::hasImage(int imageType)
 {
-    return m_hasImage.value(imageType);
+    return m_hasImage.value(imageType, false);
 }
 
 void Movie::setHasImage(int imageType, bool has)
