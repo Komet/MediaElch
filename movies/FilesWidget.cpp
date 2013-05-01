@@ -61,6 +61,16 @@ FilesWidget::FilesWidget(QWidget *parent) :
     m_baseLabelCss = ui->sortByYear->styleSheet();
     m_activeLabelCss = ui->sortByNew->styleSheet();
 
+    QMenu *mediaStatusColumnsMenu = new QMenu(tr("Media Status Columns"), ui->files);
+    for (int i=MediaStatusFirst, n=MediaStatusLast ; i<=n ; ++i) {
+        QAction *action = new QAction(MovieModel::mediaStatusToText(static_cast<MediaStatusColumns>(i)), this);
+        action->setProperty("mediaStatusColumn", i);
+        action->setCheckable(true);
+        action->setChecked(Settings::instance()->mediaStatusColumns().contains(static_cast<MediaStatusColumns>(i)));
+        connect(action, SIGNAL(triggered()), this, SLOT(onActionMediaStatusColumn()));
+        mediaStatusColumnsMenu->addAction(action);
+    }
+
     QAction *actionMultiScrape = new QAction(tr("Load Information"), this);
     QAction *actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
     QAction *actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
@@ -80,6 +90,9 @@ FilesWidget::FilesWidget(QWidget *parent) :
     m_contextMenu->addAction(actionUnmarkForSync);
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(actionOpenFolder);
+    m_contextMenu->addSeparator();
+    m_contextMenu->addMenu(mediaStatusColumnsMenu);
+
     connect(actionMultiScrape, SIGNAL(triggered()), this, SLOT(multiScrape()));
     connect(actionMarkAsWatched, SIGNAL(triggered()), this, SLOT(markAsWatched()));
     connect(actionMarkAsUnwatched, SIGNAL(triggered()), this, SLOT(markAsUnwatched()));
@@ -424,4 +437,22 @@ void FilesWidget::selectMovie(Movie *movie)
     int row = Manager::instance()->movieModel()->movies().indexOf(movie);
     QModelIndex index = Manager::instance()->movieModel()->index(row, 0, QModelIndex());
     ui->files->selectRow(m_movieProxyModel->mapFromSource(index).row());
+}
+
+void FilesWidget::onActionMediaStatusColumn()
+{
+    QAction *action = static_cast<QAction*>(QObject::sender());
+    if (!action)
+        return;
+    action->setChecked(action->isChecked());
+
+    MediaStatusColumns col = static_cast<MediaStatusColumns>(action->property("mediaStatusColumn").toInt());
+    QList<MediaStatusColumns> columns = Settings::instance()->mediaStatusColumns();
+    if (action->isChecked() && !columns.contains(col))
+        columns.append(col);
+    else
+        columns.removeAll(col);
+    Settings::instance()->setMediaStatusColumns(columns);
+    Settings::instance()->saveSettings();
+    renewModel();
 }

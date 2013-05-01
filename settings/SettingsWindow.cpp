@@ -136,14 +136,6 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->comboMovieSetArtwork->setItemData(0, MovieSetArtworkSingleSetFolder);
     ui->comboMovieSetArtwork->setItemData(1, MovieSetArtworkSingleArtworkFolder);
 
-    // Media Status Columns
-    for (int i=MediaStatusFirst, n=MediaStatusLast ; i<=n ; ++i) {
-        QListWidgetItem *item = new QListWidgetItem(MovieModel::mediaStatusToText(static_cast<MediaStatusColumns>(i)));
-        item->setData(Qt::UserRole, i);
-        item->setCheckState(Qt::Unchecked);
-        ui->mediaStatusColumns->addItem(item);
-    }
-
     connect(ui->buttonAddDir, SIGNAL(clicked()), this, SLOT(chooseDirToAdd()));
     connect(ui->buttonRemoveDir, SIGNAL(clicked()), this, SLOT(removeDir()));
     connect(ui->buttonMovieFilesToDirs, SIGNAL(clicked()), this, SLOT(organize()));
@@ -332,13 +324,6 @@ void SettingsWindow::loadSettings()
     ui->movieSetPosterFileName->setText(m_settings->movieSetPosterFileName());
     ui->movieSetFanartFileName->setText(m_settings->movieSetFanartFileName());
     onComboMovieSetArtworkChanged();
-
-    // Media Status Columns
-    for (int i=0, n=ui->mediaStatusColumns->count() ; i<n ; ++i) {
-        ui->mediaStatusColumns->item(i)->setCheckState(
-            m_settings->mediaStatusColumns().contains(static_cast<MediaStatusColumns>(ui->mediaStatusColumns->item(i)->data(Qt::UserRole).toInt())) ?
-                        Qt::Checked : Qt::Unchecked);
-    }
 }
 
 void SettingsWindow::saveSettings()
@@ -420,13 +405,6 @@ void SettingsWindow::saveSettings()
     m_settings->setMovieSetArtworkDirectory(ui->movieSetArtworkDir->text());
     m_settings->setMovieSetPosterFileName(ui->movieSetPosterFileName->text());
     m_settings->setMovieSetFanartFileName(ui->movieSetFanartFileName->text());
-
-    QList<MediaStatusColumns> columns;
-    for (int i=0, n=ui->mediaStatusColumns->count() ; i<n ; ++i) {
-        if (ui->mediaStatusColumns->item(i)->checkState() == Qt::Checked)
-            columns.append(static_cast<MediaStatusColumns>(ui->mediaStatusColumns->item(i)->data(Qt::UserRole).toInt()));
-    }
-    m_settings->setMediaStatusColumns(columns);
 
     m_settings->saveSettings();
 
