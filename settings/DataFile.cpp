@@ -50,6 +50,11 @@ int DataFile::pos() const
  */
 QString DataFile::saveFileName(const QString &fileName, int season, bool stacked)
 {
+    if (type() == DataFileType::MovieSetBackdrop || type() == DataFileType::MovieSetPoster) {
+        QString newFileName = m_fileName;
+        return Helper::sanitizeFileName(newFileName.replace("<setName>", fileName));
+    }
+
     QFileInfo fi(fileName);
     QString newFileName = m_fileName;
 

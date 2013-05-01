@@ -157,6 +157,8 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->movieLogo->setProperty("dataFileType", DataFileType::MovieLogo);
     ui->movieBanner->setProperty("dataFileType", DataFileType::MovieBanner);
     ui->movieThumb->setProperty("dataFileType", DataFileType::MovieThumb);
+    ui->movieSetPosterFileName->setProperty("dataFileType", DataFileType::MovieSetPoster);
+    ui->movieSetFanartFileName->setProperty("dataFileType", DataFileType::MovieSetBackdrop);
     ui->showBackdrop->setProperty("dataFileType", DataFileType::TvShowBackdrop);
     ui->showBanner->setProperty("dataFileType", DataFileType::TvShowBanner);
     ui->showCharacterArt->setProperty("dataFileType", DataFileType::TvShowCharacterArt);
@@ -285,7 +287,16 @@ void SettingsWindow::loadSettings()
     else
         ui->xbmcPort->clear();
 
-    fillDataFiles();
+    foreach (QLineEdit *lineEdit, findChildren<QLineEdit*>()) {
+        if (lineEdit->property("dataFileType").isNull())
+            continue;
+        int dataFileType = lineEdit->property("dataFileType").toInt();
+        QList<DataFile> dataFiles = m_settings->dataFiles(dataFileType);
+        QStringList filenames;
+        foreach (DataFile dataFile, dataFiles)
+            filenames << dataFile.fileName();
+        lineEdit->setText(filenames.join(","));
+    }
 
     // Scrapers
     QMapIterator<ScraperInterface*, QComboBox*> it(m_scraperCombos);
@@ -321,8 +332,6 @@ void SettingsWindow::loadSettings()
         }
     }
     ui->movieSetArtworkDir->setText(m_settings->movieSetArtworkDirectory());
-    ui->movieSetPosterFileName->setText(m_settings->movieSetPosterFileName());
-    ui->movieSetFanartFileName->setText(m_settings->movieSetFanartFileName());
     onComboMovieSetArtworkChanged();
 }
 
@@ -403,8 +412,6 @@ void SettingsWindow::saveSettings()
     // Movie set artwork
     m_settings->setMovieSetArtworkType(static_cast<MovieSetArtworkType>(ui->comboMovieSetArtwork->itemData(ui->comboMovieSetArtwork->currentIndex()).toInt()));
     m_settings->setMovieSetArtworkDirectory(ui->movieSetArtworkDir->text());
-    m_settings->setMovieSetPosterFileName(ui->movieSetPosterFileName->text());
-    m_settings->setMovieSetFanartFileName(ui->movieSetFanartFileName->text());
 
     m_settings->saveSettings();
 
@@ -537,24 +544,19 @@ void SettingsWindow::chooseDirToAdd()
         addDir(dir);
 }
 
-void SettingsWindow::fillDataFiles()
-{
-    foreach (QLineEdit *lineEdit, findChildren<QLineEdit*>()) {
-        if (lineEdit->property("dataFileType").isNull())
-            continue;
-        int dataFileType = lineEdit->property("dataFileType").toInt();
-        QList<DataFile> dataFiles = m_settings->dataFiles(dataFileType);
-        QStringList filenames;
-        foreach (DataFile dataFile, dataFiles)
-            filenames << dataFile.fileName();
-        lineEdit->setText(filenames.join(","));
-    }
-}
-
 void SettingsWindow::onComboMovieSetArtworkChanged()
 {
-    ui->btnMovieSetArtworkDir->setEnabled(ui->comboMovieSetArtwork->itemData(ui->comboMovieSetArtwork->currentIndex()).toInt() == MovieSetArtworkSingleArtworkFolder);
-    ui->movieSetArtworkDir->setEnabled(ui->comboMovieSetArtwork->itemData(ui->comboMovieSetArtwork->currentIndex()).toInt() == MovieSetArtworkSingleArtworkFolder);
+    int value = ui->comboMovieSetArtwork->itemData(ui->comboMovieSetArtwork->currentIndex()).toInt();
+    ui->btnMovieSetArtworkDir->setEnabled(value == MovieSetArtworkSingleArtworkFolder);
+    ui->movieSetArtworkDir->setEnabled(value == MovieSetArtworkSingleArtworkFolder);
+
+    if (value == MovieSetArtworkSingleArtworkFolder) {
+        ui->movieSetPosterFileName->setText("<setName>-folder.jpg");
+        ui->movieSetFanartFileName->setText("<setName>-fanart.jpg");
+    } else if (value == MovieSetArtworkSingleSetFolder) {
+        ui->movieSetPosterFileName->setText("folder.jpg");
+        ui->movieSetFanartFileName->setText("fanart.jpg");
+    }
 }
 
 void SettingsWindow::onChooseMovieSetArtworkDir()

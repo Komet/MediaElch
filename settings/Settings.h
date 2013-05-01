@@ -56,8 +56,6 @@ public:
     bool ignoreArticlesWhenSorting() const;
     MovieSetArtworkType movieSetArtworkType() const;
     QString movieSetArtworkDirectory() const;
-    QString movieSetPosterFileName() const;
-    QString movieSetFanartFileName() const;
     QList<MediaStatusColumns> mediaStatusColumns() const;
     bool tvShowDvdOrder() const;
     bool dontShowDeleteImageConfirm() const;
@@ -96,8 +94,6 @@ public:
     void setIgnoreArticlesWhenSorting(bool ignore);
     void setMovieSetArtworkType(MovieSetArtworkType type);
     void setMovieSetArtworkDirectory(QString dir);
-    void setMovieSetPosterFileName(QString fileName);
-    void setMovieSetFanartFileName(QString fileName);
     void setMediaStatusColumns(QList<MediaStatusColumns> columns);
     void setTvShowDvdOrder(bool order);
     void setDontShowDeleteImageConfirm(bool show);
@@ -139,8 +135,6 @@ private:
     bool m_ignoreArticlesWhenSorting;
     int m_movieSetArtworkType;
     QString m_movieSetArtworkDirectory;
-    QString m_movieSetPosterFileName;
-    QString m_movieSetFanartFileName;
     QList<MediaStatusColumns> m_mediaStatusColumns;
     bool m_tvShowDvdOrder;
     bool m_dontShowDeleteImageConfirm;

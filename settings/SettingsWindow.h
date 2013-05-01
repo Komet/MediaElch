@@ -58,7 +58,6 @@ private:
 
     void loadSettings();
     void saveSettings();
-    void fillDataFiles();
     void loadRemoteTemplates();
 };
 

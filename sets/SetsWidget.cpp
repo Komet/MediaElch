@@ -341,7 +341,7 @@ void SetsWidget::chooseSetPoster()
     ImageDialog::instance()->setImageType(ImageType::MovieSetPoster);
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setMovie(movie);
-    ImageDialog::instance()->exec(ImageType::MovieSetPoster);
+    ImageDialog::instance()->exec(ImageType::MoviePoster);
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
         DownloadManagerElement d;
         d.movie = movie;

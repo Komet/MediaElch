@@ -25,6 +25,8 @@ Settings::Settings(QObject *parent) :
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieLogo, "logo.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieBanner, "<baseFileName>-banner.jpg", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieThumb, "<baseFileName>-landscape.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieSetPoster, "folder.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieSetBackdrop, "fanart.jpg", 0));
 
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowNfo, "tvshow.nfo", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowBackdrop, "fanart.jpg", 0));
@@ -218,10 +220,8 @@ void Settings::loadSettings(QSettings &settings)
         m_dataFiles = dataFiles;
 
     // Movie set artwork
-    m_movieSetArtworkType = settings.value("MovieSetArtwork/Type", 0).toInt();
+    m_movieSetArtworkType = settings.value("MovieSetArtwork/StoringType", 0).toInt();
     m_movieSetArtworkDirectory = settings.value("MovieSetArtwork/Directory").toString();
-    m_movieSetPosterFileName = settings.value("MovieSetArtwork/PosterFileName", "folder.jpg").toString();
-    m_movieSetFanartFileName = settings.value("MovieSetArtwork/FanartFileName", "fanart.jpg").toString();
 
     // Media Status Columns
     m_mediaStatusColumns.clear();
@@ -313,10 +313,8 @@ void Settings::saveSettings()
     }
     m_settings.endArray();
 
-    m_settings.setValue("MovieSetArtwork/Type", m_movieSetArtworkType);
+    m_settings.setValue("MovieSetArtwork/StoringType", m_movieSetArtworkType);
     m_settings.setValue("MovieSetArtwork/Directory", m_movieSetArtworkDirectory);
-    m_settings.setValue("MovieSetArtwork/PosterFileName", m_movieSetPosterFileName);
-    m_settings.setValue("MovieSetArtwork/FanartFileName", m_movieSetFanartFileName);
 
     QList<QVariant> columns;
     foreach (const MediaStatusColumns &column, m_mediaStatusColumns)
@@ -890,26 +888,6 @@ void Settings::setMovieSetArtworkDirectory(QString dir)
 QString Settings::movieSetArtworkDirectory() const
 {
     return m_movieSetArtworkDirectory;
-}
-
-void Settings::setMovieSetPosterFileName(QString fileName)
-{
-    m_movieSetPosterFileName = fileName;
-}
-
-QString Settings::movieSetPosterFileName() const
-{
-    return m_movieSetPosterFileName;
-}
-
-void Settings::setMovieSetFanartFileName(QString fileName)
-{
-    m_movieSetFanartFileName = fileName;
-}
-
-QString Settings::movieSetFanartFileName() const
-{
-    return m_movieSetFanartFileName;
 }
 
 void Settings::setMediaStatusColumns(QList<MediaStatusColumns> columns)

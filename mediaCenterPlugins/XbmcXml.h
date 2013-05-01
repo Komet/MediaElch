@@ -62,7 +62,7 @@ private:
     bool saveFile(QString filename, QByteArray data);
     QString getPath(Movie *movie);
     QString getPath(Concert *concert);
-    QString movieSetFileName(QString setName, QString name);
+    QString movieSetFileName(QString setName, DataFile *dataFile);
 };
 
 #endif // XBMCXML_H

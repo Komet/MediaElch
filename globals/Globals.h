@@ -307,6 +307,8 @@ namespace DataFileType {
     const int MovieThumb           = 26;
     const int TvShowSeasonThumb    = 27;
     const int TvShowThumb          = 28;
+    const int MovieSetPoster       = 29;
+    const int MovieSetBackdrop     = 30;
 }
 
 enum TvShowUpdateType {

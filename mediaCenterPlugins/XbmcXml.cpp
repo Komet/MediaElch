@@ -1340,15 +1340,10 @@ QStringList XbmcXml::extraFanartNames(TvShow *show)
     return files;
 }
 
-/**
- * @brief Loading of movie set posters is not possible with nfos
- * @param setName
- * @return
- */
 QImage XbmcXml::movieSetPoster(QString setName)
 {
-    QString fileName = movieSetFileName(setName, Settings::instance()->movieSetPosterFileName());
-    if (!fileName.isEmpty()) {
+    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieSetPoster)) {
+        QString fileName = movieSetFileName(setName, &dataFile);
         QFileInfo fi(fileName);
         if (fi.exists())
             return QImage(fi.absoluteFilePath());
@@ -1356,15 +1351,10 @@ QImage XbmcXml::movieSetPoster(QString setName)
     return QImage();
 }
 
-/**
- * @brief Loading of movie set backdrops is not possible with nfos
- * @param setName
- * @return
- */
 QImage XbmcXml::movieSetBackdrop(QString setName)
 {
-    QString fileName = movieSetFileName(setName, Settings::instance()->movieSetFanartFileName());
-    if (!fileName.isEmpty()) {
+    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieSetBackdrop)) {
+        QString fileName = movieSetFileName(setName, &dataFile);
         QFileInfo fi(fileName);
         if (fi.exists())
             return QImage(fi.absoluteFilePath());
@@ -1379,9 +1369,11 @@ QImage XbmcXml::movieSetBackdrop(QString setName)
  */
 void XbmcXml::saveMovieSetPoster(QString setName, QImage poster)
 {
-    QString fileName = movieSetFileName(setName, Settings::instance()->movieSetPosterFileName());
-    if (!fileName.isEmpty())
-        poster.save(fileName, "jpg", 100);
+    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieSetPoster)) {
+        QString fileName = movieSetFileName(setName, &dataFile);
+        if (!fileName.isEmpty())
+            poster.save(fileName, "jpg", 100);
+    }
 }
 
 /**
@@ -1391,9 +1383,11 @@ void XbmcXml::saveMovieSetPoster(QString setName, QImage poster)
  */
 void XbmcXml::saveMovieSetBackdrop(QString setName, QImage backdrop)
 {
-    QString fileName = movieSetFileName(setName, Settings::instance()->movieSetFanartFileName());
-    if (!fileName.isEmpty())
-        backdrop.save(fileName, "jpg", 100);
+    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieSetBackdrop)) {
+        QString fileName = movieSetFileName(setName, &dataFile);
+        if (!fileName.isEmpty())
+            backdrop.save(fileName, "jpg", 100);
+    }
 }
 
 bool XbmcXml::saveFile(QString filename, QByteArray data)
@@ -1445,12 +1439,11 @@ QString XbmcXml::getPath(Concert *concert)
     return fi.absolutePath();
 }
 
-QString XbmcXml::movieSetFileName(QString setName, QString name)
+QString XbmcXml::movieSetFileName(QString setName, DataFile *dataFile)
 {
     if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkSingleArtworkFolder) {
         QDir dir(Settings::instance()->movieSetArtworkDirectory());
-        QString fileName = setName + "-" + name;
-        Helper::sanitizeFileName(fileName);
+        QString fileName = dataFile->saveFileName(setName);
         return dir.absolutePath() + "/" + fileName;
     } else if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkSingleSetFolder) {
         foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
@@ -1461,7 +1454,7 @@ QString XbmcXml::movieSetFileName(QString setName, QString name)
                     dir.cdUp();
                 if (movie->discType() == DiscDvd || movie->discType() == DiscBluRay)
                     dir.cdUp();
-                return dir.absolutePath() + "/" + name;
+                return dir.absolutePath() + "/" + dataFile->saveFileName(setName);
             }
         }
     }
