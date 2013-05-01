@@ -76,6 +76,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
     connect(ui->certification, SIGNAL(editTextChanged(QString)), this, SLOT(onCertificationChange(QString)));
     connect(ui->firstAired, SIGNAL(dateChanged(QDate)), this, SLOT(onFirstAiredChange(QDate)));
+    connect(ui->epBookmark, SIGNAL(timeChanged(QTime)), this, SLOT(onEpBookmarkChange(QTime)));
     connect(ui->playCount, SIGNAL(valueChanged(int)), this, SLOT(onPlayCountChange(int)));
     connect(ui->lastPlayed, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(onLastPlayedChange(QDateTime)));
     connect(ui->studio, SIGNAL(textEdited(QString)), this, SLOT(onStudioChange(QString)));
@@ -217,6 +218,10 @@ void TvShowWidgetEpisode::onClear()
     ui->videoWidth->clear();
     ui->videoWidth->blockSignals(blocked);
 
+    blocked = ui->epBookmark->blockSignals(true);
+    ui->epBookmark->setTime(QTime(0, 0, 0));
+    ui->epBookmark->blockSignals(blocked);
+
     ui->buttonRevert->setVisible(false);
 }
 
@@ -264,6 +269,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->playCount->blockSignals(true);
     ui->lastPlayed->blockSignals(true);
     ui->overview->blockSignals(true);
+    ui->epBookmark->blockSignals(true);
 
     onClear();
 
@@ -281,6 +287,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->lastPlayed->setDateTime(m_episode->lastPlayed());
     ui->studio->setText(m_episode->network());
     ui->overview->setPlainText(m_episode->overview());
+    ui->epBookmark->setTime(m_episode->epBookmark());
 
     ui->writers->blockSignals(true);
     foreach (QString *writer, m_episode->writersPointer()) {
@@ -333,6 +340,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->playCount->blockSignals(false);
     ui->lastPlayed->blockSignals(false);
     ui->overview->blockSignals(false);
+    ui->epBookmark->blockSignals(false);
 
     ui->certification->setEnabled(Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeCertification));
     ui->showTitle->setEnabled(Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeShowTitle));
@@ -790,6 +798,14 @@ void TvShowWidgetEpisode::onLastPlayedChange(QDateTime dateTime)
 void TvShowWidgetEpisode::onStudioChange(QString text)
 {
     m_episode->setNetwork(text);
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetEpisode::onEpBookmarkChange(QTime time)
+{
+    if (!m_episode)
+        return;
+    m_episode->setEpBookmark(time);
     ui->buttonRevert->setVisible(true);
 }
 

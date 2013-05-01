@@ -57,6 +57,7 @@ public:
     int playCount() const;
     QDateTime lastPlayed() const;
     QDate firstAired() const;
+    QTime epBookmark() const;
     QString certification() const;
     QString network() const;
     QString seasonString() const;
@@ -97,6 +98,7 @@ public:
     void setNetwork(QString network);
     void setThumbnail(QUrl url);
     void setThumbnailImage(QByteArray thumbnail);
+    void setEpBookmark(QTime epBookmark);
     void setInfosLoaded(bool loaded);
     void setChanged(bool changed);
     void setModelItem(TvShowModelItem *item);
@@ -142,6 +144,7 @@ private:
     int m_playCount;
     QDateTime m_lastPlayed;
     QDate m_firstAired;
+    QTime m_epBookmark;
     QString m_certification;
     QString m_network;
     QUrl m_thumbnail;

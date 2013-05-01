@@ -977,6 +977,8 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoConten
         episode->setFirstAired(QDate::fromString(episodeDetails.elementsByTagName("aired").at(0).toElement().text(), "yyyy-MM-dd"));
     if (!episodeDetails.elementsByTagName("playcount").isEmpty())
         episode->setPlayCount(episodeDetails.elementsByTagName("playcount").at(0).toElement().text().toInt());
+    if (!episodeDetails.elementsByTagName("epbookmark").isEmpty())
+        episode->setEpBookmark(QTime().addSecs(episodeDetails.elementsByTagName("epbookmark").at(0).toElement().text().toInt()));
     if (!episodeDetails.elementsByTagName("lastplayed").isEmpty())
         episode->setLastPlayed(QDateTime::fromString(episodeDetails.elementsByTagName("lastplayed").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss"));
     if (!episodeDetails.elementsByTagName("studio").isEmpty())
@@ -1274,6 +1276,8 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
     xml.writeTextElement("lastplayed", episode->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
     xml.writeTextElement("aired", episode->firstAired().toString("yyyy-MM-dd"));
     xml.writeTextElement("studio", episode->network());
+    if (!episode->epBookmark().isNull() && QTime().secsTo(episode->epBookmark()) > 0)
+        xml.writeTextElement("epbookmark", QString("%1").arg(QTime().secsTo(episode->epBookmark())));
     foreach (const QString &writer, episode->writers())
         xml.writeTextElement("credits", writer);
     foreach (const QString &director, episode->directors())

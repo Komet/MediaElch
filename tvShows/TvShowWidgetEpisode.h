@@ -60,6 +60,7 @@ private slots:
     void onPlayCountChange(int value);
     void onLastPlayedChange(QDateTime dateTime);
     void onStudioChange(QString text);
+    void onEpBookmarkChange(QTime time);
     void onOverviewChange();
     void onDirectorEdited(QTableWidgetItem *item);
     void onWriterEdited(QTableWidgetItem *item);

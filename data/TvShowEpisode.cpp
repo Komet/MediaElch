@@ -567,6 +567,11 @@ bool TvShowEpisode::syncNeeded() const
     return m_syncNeeded;
 }
 
+QTime TvShowEpisode::epBookmark() const
+{
+    return m_epBookmark;
+}
+
 /*** SETTER ***/
 
 /**
@@ -653,6 +658,12 @@ void TvShowEpisode::setDisplayEpisode(int episode)
 void TvShowEpisode::setOverview(QString overview)
 {
     m_overview = overview;
+    setChanged(true);
+}
+
+void TvShowEpisode::setEpBookmark(QTime epBookmark)
+{
+    m_epBookmark = epBookmark;
     setChanged(true);
 }
 
