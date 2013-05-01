@@ -51,6 +51,13 @@
     </widget>
    </item>
    <item>
+    <widget class="QCheckBox" name="chkClean">
+     <property name="text">
+      <string>Remove non-existent items from XBMCs database (Clean library)</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QRadioButton" name="radioGetWatched">
      <property name="text">
       <string>Retrieve watched status</string>

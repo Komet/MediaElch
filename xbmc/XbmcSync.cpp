@@ -537,6 +537,7 @@ QStringList XbmcSync::splitFile(QString file)
 void XbmcSync::onRadioContents()
 {
     ui->labelContents->setVisible(true);
+    ui->chkClean->setVisible(true);
     ui->labelWatched->setVisible(false);
     m_syncType = SyncContents;
 }
@@ -544,6 +545,7 @@ void XbmcSync::onRadioContents()
 void XbmcSync::onRadioWatched()
 {
     ui->labelContents->setVisible(false);
+    ui->chkClean->setVisible(false);
     ui->labelWatched->setVisible(true);
     m_syncType = SyncWatched;
 }
@@ -559,8 +561,13 @@ XbmcSync::XbmcData XbmcSync::parseXbmcDataFromMap(QMap<QString, QVariant> map)
 
 void XbmcSync::processMessage(QJsonRpcMessage msg)
 {
-    if (msg.method() == "VideoLibrary.OnScanFinished")
+    if (msg.method() == "VideoLibrary.OnScanFinished") {
         MessageBox::instance()->showMessage(tr("XBMC Library Scan has finished"));
+        if (ui->chkClean->isChecked())
+            m_client->invokeRemoteMethod("VideoLibrary.Clean");
+    } else if (msg.method() == "VideoLibrary.OnCleanFinished") {
+        MessageBox::instance()->showMessage(tr("Cleaning XBMC Library has finished"));
+    }
 }
 
 void XbmcSync::updateFolderLastModified(Movie *movie)
