@@ -197,8 +197,8 @@ void Database::clearMovies(QString path)
 void Database::add(Movie *movie, QString path)
 {
     QSqlQuery query(db());
-    query.prepare("INSERT INTO movies(content, lastModified, inSeparateFolder, hasPoster, hasBackdrop, hasLogo, hasClearArt, hasCdArt, hasExtraFanarts, discType, path) "
-                  "VALUES(:content, :lastModified, :inSeparateFolder, :hasPoster, :hasBackdrop, :hasLogo, :hasClearArt, :hasCdArt, :hasExtraFanarts, :discType, :path)");
+    query.prepare("INSERT INTO movies(content, lastModified, inSeparateFolder, hasPoster, hasBackdrop, hasLogo, hasClearArt, hasCdArt, hasBanner, hasThumb, hasExtraFanarts, discType, path) "
+                  "VALUES(:content, :lastModified, :inSeparateFolder, :hasPoster, :hasBackdrop, :hasLogo, :hasClearArt, :hasCdArt, :hasBanner, :hasThumb, :hasExtraFanarts, :discType, :path)");
     query.bindValue(":content", movie->nfoContent().isEmpty() ? "" : movie->nfoContent().toUtf8());
     query.bindValue(":lastModified", movie->fileLastModified().isNull() ? QDateTime::currentDateTime() : movie->fileLastModified());
     query.bindValue(":inSeparateFolder", (movie->inSeparateFolder() ? 1 : 0));
@@ -239,7 +239,8 @@ QList<Movie*> Database::movies(QString path)
     QList<Movie*> movies;
     QSqlQuery query(db());
     QSqlQuery queryFiles(db());
-    query.prepare("SELECT idMovie, content, lastModified, inSeparateFolder, hasPoster, hasBackdrop, hasLogo, hasClearArt, hasCdArt, hasExtraFanarts, discType FROM movies WHERE path=:path");
+    query.prepare("SELECT idMovie, content, lastModified, inSeparateFolder, hasPoster, hasBackdrop, hasLogo, hasClearArt, "
+                  "hasCdArt, hasBanner, hasThumb, hasExtraFanarts, discType FROM movies WHERE path=:path");
     query.bindValue(":path", path.toUtf8());
     query.exec();
     while (query.next()) {
