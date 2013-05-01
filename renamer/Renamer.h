@@ -53,6 +53,7 @@ private:
     QList<TvShowEpisode*> m_episodes;
     RenameType m_renameType;
     bool m_filesRenamed;
+    QStringList m_extraFiles;
 
     void renameMovies(QList<Movie*> movies, const QString &filePattern, const QString &filePatternMulti,
                       const QString &directoryPattern, const bool &renameFiles, const bool &renameDirectories, const bool &dryRun = false);
@@ -64,6 +65,7 @@ private:
 
     bool rename(const QString &file, const QString &newName);
     bool rename(QDir &dir, QString newName);
+
 };
 
 #endif // RENAMER_H

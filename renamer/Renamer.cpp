@@ -21,6 +21,8 @@ Renamer::Renamer(QWidget *parent) :
 
     onChkRenameDirectories();
     onChkRenameFiles();
+
+    m_extraFiles << "*.idx" << "*.sub" << "*.srr";
 }
 
 Renamer::~Renamer()
@@ -218,6 +220,8 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
             foreach (const QString &file, movie->files()) {
                 newFileName = (movie->files().count() == 1) ? filePattern : filePatternMulti;
                 QFileInfo fi(file);
+                QString baseName = fi.completeBaseName();
+                QDir currentDir = fi.dir();
                 newFileName.replace("<title>", movie->name());
                 newFileName.replace("<originalTitle>", movie->originalName());
                 newFileName.replace("<year>", movie->released().toString("yyyy"));
@@ -229,6 +233,20 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                     if (!dryRun) {
                         if (!rename(file, fi.canonicalPath() + "/" + newFileName))
                             ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                    }
+
+                    QStringList filters;
+                    foreach (const QString &extra, m_extraFiles)
+                        filters << baseName + extra;
+                    foreach (const QString &subFileName, currentDir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot)) {
+                        QString subSuffix = subFileName.mid(baseName.length());
+                        QString newBaseName = newFileName.left(newFileName.lastIndexOf("."));
+                        QString newSubName = newBaseName + subSuffix;
+                        ui->results->append(tr("<b>Rename File</b> \"%1\" to \"%2\"").arg(subFileName).arg(newSubName));
+                        if (!dryRun) {
+                            if (!rename(currentDir.canonicalPath() + "/" + subFileName, currentDir.canonicalPath() + "/" + newSubName))
+                                ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                        }
                     }
                 }
             }
@@ -344,6 +362,8 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
             foreach (const QString &file, episode->files()) {
                 newFileName = (episode->files().count() == 1) ? filePattern : filePatternMulti;
                 QFileInfo fi(file);
+                QString baseName = fi.completeBaseName();
+                QDir currentDir = fi.dir();
                 newFileName.replace("<title>", episode->name());
                 newFileName.replace("<showTitle>", episode->showTitle());
                 newFileName.replace("<year>", episode->firstAired().toString("yyyy"));
@@ -368,6 +388,21 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
                         if (!rename(file, fi.canonicalPath() + "/" + newFileName))
                             ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                     }
+
+                    QStringList filters;
+                    foreach (const QString &extra, m_extraFiles)
+                        filters << baseName + extra;
+                    foreach (const QString &subFileName, currentDir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot)) {
+                        QString subSuffix = subFileName.mid(baseName.length());
+                        QString newBaseName = newFileName.left(newFileName.lastIndexOf("."));
+                        QString newSubName = newBaseName + subSuffix;
+                        ui->results->append(tr("<b>Rename File</b> \"%1\" to \"%2\"").arg(subFileName).arg(newSubName));
+                        if (!dryRun) {
+                            if (!rename(currentDir.canonicalPath() + "/" + subFileName, currentDir.canonicalPath() + "/" + newSubName))
+                                ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                        }
+                    }
+
                 }
                 episodeFiles << fi.canonicalPath() + "/" + newFileName;
             }
@@ -525,6 +560,8 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
             foreach (const QString &file, concert->files()) {
                 newFileName = (concert->files().count() == 1) ? filePattern : filePatternMulti;
                 QFileInfo fi(file);
+                QString baseName = fi.completeBaseName();
+                QDir currentDir = fi.dir();
                 newFileName.replace("<title>", concert->name());
                 newFileName.replace("<artist>", concert->artist());
                 newFileName.replace("<album>", concert->album());
@@ -537,6 +574,20 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
                     if (!dryRun) {
                         if (!rename(file, fi.canonicalPath() + "/" + newFileName))
                             ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                    }
+
+                    QStringList filters;
+                    foreach (const QString &extra, m_extraFiles)
+                        filters << baseName + extra;
+                    foreach (const QString &subFileName, currentDir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot)) {
+                        QString subSuffix = subFileName.mid(baseName.length());
+                        QString newBaseName = newFileName.left(newFileName.lastIndexOf("."));
+                        QString newSubName = newBaseName + subSuffix;
+                        ui->results->append(tr("<b>Rename File</b> \"%1\" to \"%2\"").arg(subFileName).arg(newSubName));
+                        if (!dryRun) {
+                            if (!rename(currentDir.canonicalPath() + "/" + subFileName, currentDir.canonicalPath() + "/" + newSubName))
+                                ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                        }
                     }
                 }
             }
