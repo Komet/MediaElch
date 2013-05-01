@@ -822,7 +822,6 @@ bool XbmcXml::loadTvShow(TvShow *show, QString initialNfoContent)
         nfoContent = initialNfoContent;
     }
 
-
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
     if (!domDoc.elementsByTagName("id").isEmpty() )
