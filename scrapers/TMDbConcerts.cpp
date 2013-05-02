@@ -204,7 +204,7 @@ void TMDbConcerts::search(QString searchStr)
     else if (rxTmdbId.exactMatch(searchStr))
         url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(searchStr.mid(2)).arg(m_apiKey).arg(m_language));
     else
-        url.setUrl(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(m_apiKey).arg(m_language).arg(encodedSearch));
+        url.setUrl(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(m_apiKey).arg(m_language).arg(searchStr));
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
     QNetworkReply *reply = qnam()->get(request);
