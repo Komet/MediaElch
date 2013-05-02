@@ -72,7 +72,12 @@ void IMDB::search(QString searchStr)
 {
     QString encodedSearch = Helper::urlEncode(searchStr);
     QUrl url;
-    url.setEncodedUrl(QString("http://imdbapi.org/?q=%1&type=json&plot=full&episode=0&limit=5&yg=0&mt=M&lang=en-US").arg(encodedSearch).toUtf8());
+
+    QRegExp rx("^tt\\d+$");
+    if (rx.exactMatch(searchStr))
+        url.setEncodedUrl(QString("http://imdbapi.org/?id=%1&type=json&plot=full&episode=0&limit=5&yg=0&mt=M&lang=en-US").arg(searchStr).toUtf8());
+    else
+        url.setEncodedUrl(QString("http://imdbapi.org/?q=%1&type=json&plot=full&episode=0&limit=5&yg=0&mt=M&lang=en-US").arg(encodedSearch).toUtf8());
     QNetworkRequest request(url);
     QNetworkReply *reply = qnam()->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
@@ -109,6 +114,14 @@ QList<ScraperSearchResult> IMDB::parseSearch(QString json)
             result.name     = Helper::urlDecode(it.value().property("title").toString());
             result.id       = it.value().property("imdb_id").toString();
             result.released = QDate::fromString(it.value().property("year").toString(), "yyyy");
+            results.append(result);
+        }
+    } else {
+        if (!sc.property("imdb_id").toString().isEmpty()) {
+            ScraperSearchResult result;
+            result.name     = Helper::urlDecode(sc.property("title").toString());
+            result.id       = sc.property("imdb_id").toString();
+            result.released = QDate::fromString(sc.property("year").toString(), "yyyy");
             results.append(result);
         }
     }

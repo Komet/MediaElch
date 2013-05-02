@@ -70,8 +70,8 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     connect(actionUnmarkForSync, SIGNAL(triggered()), this, SLOT(unmarkForSync()));
     connect(actionOpenFolder, SIGNAL(triggered()), this, SLOT(openFolder()));
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
-    connect(ui->files, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)));
-    connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)));
+    connect(ui->files, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)), Qt::QueuedConnection);
+    connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)), Qt::QueuedConnection);
     Manager::instance()->setTvShowFilesWidget(this);
 }
 
@@ -305,7 +305,6 @@ void TvShowFilesWidget::renewModel()
  */
 void TvShowFilesWidget::onItemClicked(QModelIndex index)
 {
-    qDebug() << "Entered";
     if (ui->files->isExpanded(index))
         ui->files->collapse(index);
     else

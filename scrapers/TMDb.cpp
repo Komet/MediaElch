@@ -210,7 +210,15 @@ void TMDb::search(QString searchStr)
     qDebug() << "Entered, searchStr=" << searchStr;
     searchStr = searchStr.replace("-", " ");
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(m_apiKey).arg(m_language).arg(encodedSearch));
+    QUrl url;
+    QRegExp rx("^tt\\d+$");
+    QRegExp rxTmdbId("^id\\d+$");
+    if (rx.exactMatch(searchStr))
+        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(searchStr).arg(m_apiKey).arg(m_language));
+    else if (rxTmdbId.exactMatch(searchStr))
+        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(searchStr.mid(2)).arg(m_apiKey).arg(m_language));
+    else
+        url.setUrl(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(m_apiKey).arg(m_language).arg(encodedSearch));
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
     QNetworkReply *reply = qnam()->get(request);
@@ -288,6 +296,14 @@ QList<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage)
             result.released = QDate::fromString(it.value().property("release_date").toString(), "yyyy-MM-dd");
             results.append(result);
         }
+    } else if (!sc.property("id").toString().isEmpty()) {
+        ScraperSearchResult result;
+        result.name     = sc.property("title").toString();
+        if (result.name.isEmpty())
+            sc.property("original_title").toString();
+        result.id       = sc.property("id").toString();
+        result.released = QDate::fromString(sc.property("release_date").toString(), "yyyy-MM-dd");
+        results.append(result);
     }
 
     return results;

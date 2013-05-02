@@ -197,6 +197,7 @@ bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFro
     m_hasImage.clear();
     foreach (const int &imageType, TvShow::imageTypes())
         m_hasImage.insert(imageType, !mediaCenterInterface->imageFileName(this, imageType).isEmpty());
+    m_hasImage.insert(ImageType::TvShowExtraFanart, !mediaCenterInterface->extraFanartNames(this).isEmpty());
 
     return infoLoaded;
 }

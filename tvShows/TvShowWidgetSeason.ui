@@ -133,6 +133,9 @@
           <property name="text">
            <string/>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
           <property name="clickable" stdset="0">
            <bool>true</bool>
           </property>
