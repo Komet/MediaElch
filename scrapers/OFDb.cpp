@@ -33,6 +33,11 @@ QString OFDb::name()
     return QString("OFDb");
 }
 
+QString OFDb::identifier()
+{
+    return QString("ofdb");
+}
+
 /**
  * @brief Returns if the scraper has settings
  * @return Scraper has settings
@@ -72,6 +77,11 @@ QNetworkAccessManager *OFDb::qnam()
  * @return List of supported infos
  */
 QList<int> OFDb::scraperSupports()
+{
+    return m_scraperSupports;
+}
+
+QList<int> OFDb::scraperNativelySupports()
 {
     return m_scraperSupports;
 }

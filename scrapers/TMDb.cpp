@@ -44,6 +44,24 @@ TMDb::TMDb(QObject *parent)
                       << MovieScraperInfos::ClearArt
                       << MovieScraperInfos::Set;
 
+    m_scraperNativelySupports << MovieScraperInfos::Title
+                              << MovieScraperInfos::Tagline
+                              << MovieScraperInfos::Rating
+                              << MovieScraperInfos::Released
+                              << MovieScraperInfos::Runtime
+                              << MovieScraperInfos::Certification
+                              << MovieScraperInfos::Trailer
+                              << MovieScraperInfos::Overview
+                              << MovieScraperInfos::Poster
+                              << MovieScraperInfos::Backdrop
+                              << MovieScraperInfos::Actors
+                              << MovieScraperInfos::Genres
+                              << MovieScraperInfos::Studios
+                              << MovieScraperInfos::Countries
+                              << MovieScraperInfos::Director
+                              << MovieScraperInfos::Writer
+                              << MovieScraperInfos::Set;
+
     m_baseUrl = "http://cf2.imgobject.com/t/p/";
     setup();
 }
@@ -109,6 +127,11 @@ QString TMDb::name()
     return QString("The Movie DB");
 }
 
+QString TMDb::identifier()
+{
+    return QString("tmdb");
+}
+
 /**
  * @brief Returns if the scraper has settings
  * @return Scraper has settings
@@ -165,6 +188,11 @@ QNetworkAccessManager *TMDb::qnam()
 QList<int> TMDb::scraperSupports()
 {
     return m_scraperSupports;
+}
+
+QList<int> TMDb::scraperNativelySupports()
+{
+    return m_scraperNativelySupports;
 }
 
 /**

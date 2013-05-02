@@ -45,11 +45,21 @@ QString VideoBuster::name()
     return QString("VideoBuster");
 }
 
+QString VideoBuster::identifier()
+{
+    return QString("videobuster");
+}
+
 /**
  * @brief Returns a list of infos available from the scraper
  * @return List of supported infos
  */
 QList<int> VideoBuster::scraperSupports()
+{
+    return m_scraperSupports;
+}
+
+QList<int> VideoBuster::scraperNativelySupports()
 {
     return m_scraperSupports;
 }

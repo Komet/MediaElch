@@ -30,7 +30,12 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->label_48->setFont(smallFont);
     ui->label_49->setFont(smallFont);
     ui->label_7->setFont(smallFont);
+    ui->label_18->setFont(smallFont);
 #endif
+
+    ui->customScraperTable->horizontalHeader()->setResizeMode(0, QHeaderView::Stretch);
+    ui->customScraperTable->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
+    ui->customScraperTable->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 
     ui->actionGlobal->setIcon(ui->actionGlobal->property("iconActive").value<QIcon>());
     ui->stackedWidget->setCurrentIndex(0);
@@ -333,6 +338,14 @@ void SettingsWindow::loadSettings()
     }
     ui->movieSetArtworkDir->setText(m_settings->movieSetArtworkDirectory());
     onComboMovieSetArtworkChanged();
+
+
+    ui->customScraperTable->clearContents();
+    ui->customScraperTable->setRowCount(0);
+
+    ui->customScraperTable->insertRow(0);
+    ui->customScraperTable->setItem(0, 0, new QTableWidgetItem(tr("Title")));
+    ui->customScraperTable->setCellWidget(0, 1, getComboForMovieScraperInfo(MovieScraperInfos::Title));
 }
 
 void SettingsWindow::saveSettings()
@@ -601,4 +614,15 @@ void SettingsWindow::onTemplateUninstalled(ExportTemplate *exportTemplate, bool 
         ui->themesErrorMessage->setSuccessMessage(tr("Theme \"%1\" was successfully uninstalled").arg(exportTemplate->name()));
     else
         ui->themesErrorMessage->setErrorMessage(tr("There was an error while processing the theme \"%1\"").arg(exportTemplate->name()));
+}
+
+QComboBox *SettingsWindow::getComboForMovieScraperInfo(int info)
+{
+    QComboBox *box = new QComboBox();
+    box->addItem(tr("Don't use"), "");
+    foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
+        if (scraper->scraperNativelySupports().contains(info))
+            box->addItem(scraper->name(), scraper->identifier());
+    }
+    return box;
 }

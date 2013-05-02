@@ -11,12 +11,14 @@ class IMDB : public ScraperInterface
 public:
     explicit IMDB(QObject *parent = 0);
     QString name();
+    QString identifier();
     void search(QString searchStr);
     void loadData(QString id, Movie *movie, QList<int> infos);
     bool hasSettings();
     void loadSettings(QSettings &settings);
     void saveSettings(QSettings &settings);
     QList<int> scraperSupports();
+    QList<int> scraperNativelySupports();
     QMap<QString, QString> languages();
     QString language();
     void setLanguage(QString language);

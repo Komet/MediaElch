@@ -34,6 +34,11 @@ QString Cinefacts::name()
     return QString("Cinefacts");
 }
 
+QString Cinefacts::identifier()
+{
+    return QString("cinefacts");
+}
+
 /**
  * @brief Returns if the scraper has settings
  * @return Scraper has settings
@@ -73,6 +78,11 @@ QNetworkAccessManager *Cinefacts::qnam()
  * @return List of supported infos
  */
 QList<int> Cinefacts::scraperSupports()
+{
+    return m_scraperSupports;
+}
+
+QList<int> Cinefacts::scraperNativelySupports()
 {
     return m_scraperSupports;
 }

@@ -33,6 +33,11 @@ QString IMDB::name()
     return QString("IMDB");
 }
 
+QString IMDB::identifier()
+{
+    return QString("imdb");
+}
+
 QMap<QString, QString> IMDB::languages()
 {
     return QMap<QString, QString>();
@@ -64,6 +69,11 @@ void IMDB::saveSettings(QSettings &settings)
 }
 
 QList<int> IMDB::scraperSupports()
+{
+    return m_scraperSupports;
+}
+
+QList<int> IMDB::scraperNativelySupports()
 {
     return m_scraperSupports;
 }

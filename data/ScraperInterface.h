@@ -17,12 +17,14 @@ class ScraperInterface : public QObject
 {
 public:
     virtual QString name() = 0;
+    virtual QString identifier() = 0;
     virtual void search(QString searchStr) = 0;
     virtual void loadData(QString id, Movie *movie, QList<int> infos) = 0;
     virtual bool hasSettings() = 0;
     virtual void loadSettings(QSettings &settings) = 0;
     virtual void saveSettings(QSettings &settings) = 0;
     virtual QList<int> scraperSupports() = 0;
+    virtual QList<int> scraperNativelySupports() = 0;
     virtual QMap<QString, QString> languages() = 0;
     virtual QString language() = 0;
     virtual void setLanguage(QString language) = 0;
