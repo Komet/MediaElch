@@ -71,6 +71,9 @@
         <file>img/export.png</file>
         <file>i18n/MediaElch_no.qm</file>
         <file>i18n/MediaElch_cs_CZ.qm</file>
+        <file>img/reload_white.png</file>
+        <file>img/star_blue.png</file>
+        <file>img/reload_orange.png</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>
@@ -124,6 +127,14 @@
         <file alias="streamDetails/red">img/mediaStatus/streamdetails_red.png</file>
         <file alias="id/green">img/mediaStatus/id_green.png</file>
         <file alias="id/red">img/mediaStatus/id_red.png</file>
+        <file alias="banner/green">img/mediaStatus/banner_green.png</file>
+        <file alias="banner/red">img/mediaStatus/banner_red.png</file>
+        <file alias="clearart/green">img/mediaStatus/clearart_green.png</file>
+        <file alias="clearart/red">img/mediaStatus/clearart_red.png</file>
+        <file alias="logo/green">img/mediaStatus/logo_green.png</file>
+        <file alias="logo/red">img/mediaStatus/logo_red.png</file>
+        <file alias="thumb/green">img/mediaStatus/thumb_green.png</file>
+        <file alias="thumb/red">img/mediaStatus/thumb_red.png</file>
     </qresource>
     <qresource prefix="/settings">
         <file alias="export.png">img/settings/export.png</file>

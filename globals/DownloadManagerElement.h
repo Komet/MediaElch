@@ -26,6 +26,7 @@ public:
     TvShow *show;
     Concert *concert;
     int season;
+    bool directDownload;
 };
 
 #endif // DOWNLOADMANAGERELEMENT_H

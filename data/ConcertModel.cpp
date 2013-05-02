@@ -11,6 +11,8 @@
 ConcertModel::ConcertModel(QObject *parent) :
     QAbstractItemModel(parent)
 {
+    m_newIcon = QIcon(":/img/star_blue.png");
+    m_syncIcon = QIcon(":/img/reload_orange.png");
 }
 
 /**
@@ -107,6 +109,11 @@ QVariant ConcertModel::data(const QModelIndex &index, int role) const
             font.setItalic(true);
             return font;
         }
+    } else if (role == Qt::DecorationRole) {
+        if (!concert->infoLoaded())
+            return m_newIcon;
+        else if (concert->syncNeeded())
+            return m_syncIcon;
     }
     return QVariant();
 }

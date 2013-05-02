@@ -37,13 +37,11 @@ FilesWidget::FilesWidget(QWidget *parent) :
 
     m_lastMovie = 0;
     m_mouseIsIn = false;
-    m_movieDelegate = new MovieDelegate(this);
     m_movieProxyModel = new MovieProxyModel(this);
     m_movieProxyModel->setSourceModel(Manager::instance()->movieModel());
     m_movieProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     m_movieProxyModel->setDynamicSortFilter(true);
     ui->files->setModel(m_movieProxyModel);
-    ui->files->setItemDelegate(m_movieDelegate);
     for (int i=1, n=ui->files->model()->columnCount() ; i<n ; ++i) {
         ui->files->setColumnWidth(i, 24);
         ui->files->setColumnHidden(i, true);

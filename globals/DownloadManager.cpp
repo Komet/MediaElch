@@ -194,7 +194,7 @@ void DownloadManager::downloadFinished()
     m_currentReply->deleteLater();
     if (m_currentDownloadElement.imageType == ImageType::Actor && !m_currentDownloadElement.movie)
         m_currentDownloadElement.actor->image = data;
-    else if (m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb)
+    else if (m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb && !m_currentDownloadElement.directDownload)
         m_currentDownloadElement.episode->setThumbnailImage(data);
     else
         emit downloadFinished(m_currentDownloadElement);

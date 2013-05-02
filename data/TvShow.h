@@ -143,6 +143,7 @@ public:
     void setSeasonImage(int season, int imageType, QByteArray image);
     bool imageHasChanged(int imageType) const;
     bool seasonImageHasChanged(int season, int imageType) const;
+    bool hasImage(int type);
 
     // Extra Fanarts
     QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
@@ -203,6 +204,7 @@ private:
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
     QMap<int, QList<int> > m_imagesToRemove;
+    QMap<int, bool> m_hasImage;
 
     QMap<int, QByteArray> m_images;
     QMap<int, QMap<int, QByteArray> > m_seasonImages;

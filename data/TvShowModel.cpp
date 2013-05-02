@@ -1,5 +1,6 @@
 #include <QtGui>
 #include <QDebug>
+#include <QPainter>
 
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -15,6 +16,8 @@ TvShowModel::TvShowModel(QObject *parent)
     : QAbstractItemModel(parent)
 {
     m_rootItem = new TvShowModelItem(0);
+    m_newIcon = QIcon(":/img/star_blue.png");
+    m_syncIcon = QIcon(":/img/reload_orange.png");
 }
 
 /**
@@ -50,6 +53,12 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
     TvShowModelItem *item = getItem(index);
     if (role == Qt::DisplayRole) {
         return Helper::appendArticle(item->data(0).toString());
+    } else if (role == Qt::DecorationRole) {
+        // new episodes or sync needed
+        if (item->data(3).toBool())
+            return m_newIcon;
+        else if (item->data(4).toBool())
+            return m_syncIcon;
     } else if (role == TvShowRoles::Type) {
         return item->type();
     } else if (role == TvShowRoles::EpisodeCount && item->type() == TypeTvShow) {
@@ -58,17 +67,34 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
         if (item->data(2).toBool())
             return QColor(255, 0, 0);
     } else if (role == Qt::FontRole) {
-        if (item->data(2).toBool()) {
-            QFont font;
+        QFont font;
+        if (!item->season().isEmpty())
+            font.setBold(true);
+        if (item->data(2).toBool())
             font.setItalic(true);
-            return font;
-        }
+        return font;
     } else if (role == TvShowRoles::HasChanged) {
         return item->data(2);
     } else if (role == TvShowRoles::IsNew) {
         return item->data(3);
     } else if (role == TvShowRoles::SyncNeeded) {
         return item->data(4);
+    } else if (role == TvShowRoles::HasBanner) {
+        return item->data(101);
+    } else if (role == TvShowRoles::HasPoster) {
+        return item->data(102);
+    } else if (role == TvShowRoles::HasExtraFanart) {
+        return item->data(103);
+    } else if (role == TvShowRoles::HasFanart) {
+        return item->data(104);
+    } else if (role == TvShowRoles::HasLogo) {
+        return item->data(105);
+    } else if (role == TvShowRoles::HasThumb) {
+        return item->data(106);
+    } else if (role == TvShowRoles::HasClearArt) {
+        return item->data(107);
+    } else if (role == TvShowRoles::HasCharacterArt) {
+        return item->data(108);
     }
     return QVariant();
 }

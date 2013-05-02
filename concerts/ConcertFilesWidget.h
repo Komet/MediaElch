@@ -7,7 +7,6 @@
 #include "data/Concert.h"
 #include "data/ConcertModel.h"
 #include "data/ConcertProxyModel.h"
-#include "data/ConcertDelegate.h"
 #include "smallWidgets/AlphabeticalList.h"
 
 namespace Ui {
@@ -61,7 +60,6 @@ private slots:
 private:
     Ui::ConcertFilesWidget *ui;
     ConcertProxyModel *m_concertProxyModel;
-    ConcertDelegate *m_concertDelegate;
     Concert *m_lastConcert;
     QModelIndex m_lastModelIndex;
     static ConcertFilesWidget *m_instance;

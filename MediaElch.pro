@@ -80,12 +80,10 @@ SOURCES += main.cpp\
     sets/MovieListDialog.cpp \
     globals/Helper.cpp \
     smallWidgets/MyTreeView.cpp \
-    data/MovieDelegate.cpp \
     globals/ImageDialog.cpp \
     settings/DataFile.cpp \
     data/ConcertFileSearcher.cpp \
     data/ConcertModel.cpp \
-    data/ConcertDelegate.cpp \
     data/ConcertProxyModel.cpp \
     data/Concert.cpp \
     concerts/ConcertWidget.cpp \
@@ -142,7 +140,8 @@ SOURCES += main.cpp\
     smallWidgets/StyledPushButton.cpp \
     export/ExportDialog.cpp \
     smallWidgets/MessageLabel.cpp \
-    smallWidgets/SearchOverlay.cpp
+    smallWidgets/SearchOverlay.cpp \
+    tvShows/ItemWidgetShow.cpp
 
 macx {
     OBJECTIVE_SOURCES += mac/MacFullscreen.mm
@@ -194,12 +193,10 @@ HEADERS  += main/MainWindow.h \
     sets/MovieListDialog.h \
     globals/Helper.h \
     smallWidgets/MyTreeView.h \
-    data/MovieDelegate.h \
     globals/ImageDialog.h \
     settings/DataFile.h \
     data/ConcertFileSearcher.h \
     data/ConcertModel.h \
-    data/ConcertDelegate.h \
     data/ConcertProxyModel.h \
     data/Concert.h \
     data/ConcertScraperInterface.h \
@@ -261,7 +258,8 @@ HEADERS  += main/MainWindow.h \
     export/ExportDialog.h \
     smallWidgets/MessageLabel.h \
     mac/MacFullscreen.h \
-    smallWidgets/SearchOverlay.h
+    smallWidgets/SearchOverlay.h \
+    tvShows/ItemWidgetShow.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -299,7 +297,8 @@ FORMS    += main/MainWindow.ui \
     tvShows/TvTunesDialog.ui \
     settings/SettingsWindow.ui \
     settings/ExportTemplateWidget.ui \
-    export/ExportDialog.ui
+    export/ExportDialog.ui \
+    tvShows/ItemWidgetShow.ui
 
 RESOURCES += \
     MediaElch.qrc

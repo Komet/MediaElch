@@ -2,6 +2,7 @@
 #define CONCERTMODEL_H
 
 #include <QAbstractItemModel>
+#include <QIcon>
 #include "data/Concert.h"
 
 /**
@@ -32,6 +33,8 @@ private slots:
 
 private:
     QList<Concert*> m_concerts;
+    QIcon m_newIcon;
+    QIcon m_syncIcon;
 };
 
 #endif // CONCERTMODEL_H

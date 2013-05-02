@@ -1319,7 +1319,7 @@ void MovieWidget::onChooseImage()
     if (image->imageType() == ImageType::MoviePoster)
         ImageDialog::instance()->setDownloads(m_movie->posters());
     else if (image->imageType() == ImageType::MovieBackdrop)
-        ImageDialog::instance()->setDownloads(m_movie->posters());
+        ImageDialog::instance()->setDownloads(m_movie->backdrops());
     else
         ImageDialog::instance()->setDownloads(QList<Poster>());
     ImageDialog::instance()->exec(image->imageType());

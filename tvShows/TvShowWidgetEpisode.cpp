@@ -526,6 +526,7 @@ void TvShowWidgetEpisode::onLoadDone()
         d.imageType = ImageType::TvShowEpisodeThumb;
         d.url = m_episode->thumbnail();
         d.episode = m_episode;
+        d.directDownload = true;
         m_posterDownloadManager->addDownload(d);
         ui->thumbnail->setLoading(true);
     } else {
@@ -566,6 +567,7 @@ void TvShowWidgetEpisode::onChooseThumbnail()
         d.imageType = ImageType::TvShowEpisodeThumb;
         d.url = ImageDialog::instance()->imageUrl();
         d.episode = m_episode;
+        d.directDownload = true;
         m_posterDownloadManager->addDownload(d);
         ui->thumbnail->setLoading(true);
         ui->buttonRevert->setVisible(true);

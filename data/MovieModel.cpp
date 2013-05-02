@@ -1,6 +1,5 @@
 #include "MovieModel.h"
 
-#include <QIcon>
 #include <QPainter>
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -12,6 +11,8 @@
 MovieModel::MovieModel(QObject *parent) :
     QAbstractItemModel(parent)
 {
+    m_newIcon = QIcon(":/img/star_blue.png");
+    m_syncIcon = QIcon(":/img/reload_orange.png");
 }
 
 /**
@@ -114,6 +115,11 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
                 font.setItalic(true);
                 return font;
             }
+        } else if (role == Qt::DecorationRole) {
+            if (!movie->controller()->infoLoaded())
+                return m_newIcon;
+            else if (movie->syncNeeded())
+                return m_syncIcon;
         }
     } else if (role == Qt::DecorationRole) {
         QString icon;
@@ -270,32 +276,21 @@ QString MovieModel::mediaStatusToText(MediaStatusColumns column)
     switch (column) {
     case MediaStatusActors:
         return tr("Actors");
-        break;
     case MediaStatusExtraArts:
         return tr("Extra Arts");
-        break;
     case MediaStatusExtraFanarts:
         return tr("Extra Fanarts");
-        break;
     case MediaStatusFanart:
         return tr("Fanart");
-        break;
     case MediaStatusPoster:
         return tr("Poster");
-        break;
     case MediaStatusStreamDetails:
         return tr("Stream Details");
-        break;
     case MediaStatusTrailer:
         return tr("Trailer");
-        break;
     case MediaStatusId:
         return tr("IMDB ID");
-        break;
     default:
         return QString();
-        break;
     }
-
-    return QString();
 }

@@ -10,7 +10,6 @@
 #include "movies/Movie.h"
 #include "data/MovieModel.h"
 #include "data/MovieProxyModel.h"
-#include "data/MovieDelegate.h"
 #include "globals/Filter.h"
 #include "smallWidgets/AlphabeticalList.h"
 #include "smallWidgets/SearchOverlay.h"
@@ -74,7 +73,6 @@ private slots:
 private:
     Ui::FilesWidget *ui;
     MovieProxyModel *m_movieProxyModel;
-    MovieDelegate *m_movieDelegate;
     Movie *m_lastMovie;
     QModelIndex m_lastModelIndex;
     static FilesWidget *m_instance;

@@ -2,6 +2,7 @@
 #define TVSHOWMODEL_H
 
 #include <QAbstractItemModel>
+#include <QIcon>
 #include <QModelIndex>
 #include <QVariant>
 #include "data/TvShow.h"
@@ -39,6 +40,8 @@ private slots:
 
 private:
     TvShowModelItem *m_rootItem;
+    QIcon m_newIcon;
+    QIcon m_syncIcon;
 };
 
 #endif // TVSHOWMODEL_H

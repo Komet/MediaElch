@@ -227,7 +227,6 @@ void Settings::loadSettings(QSettings &settings)
     m_mediaStatusColumns.clear();
     foreach (const QVariant &column, settings.value("MediaStatusColumns").toList())
         m_mediaStatusColumns.append(static_cast<MediaStatusColumns>(column.toInt()));
-
 }
 
 /**
@@ -320,6 +319,7 @@ void Settings::saveSettings()
     foreach (const MediaStatusColumns &column, m_mediaStatusColumns)
         columns.append(column);
     m_settings.setValue("MediaStatusColumns", columns);
+
     m_settings.sync();
 }
 

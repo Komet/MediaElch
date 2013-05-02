@@ -306,19 +306,10 @@ void TvShowFilesWidget::renewModel()
 void TvShowFilesWidget::onItemClicked(QModelIndex index)
 {
     qDebug() << "Entered";
-    QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(index);
-    if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TypeTvShow) {
-        bool wasExpanded = ui->files->isExpanded(index);
-        ui->files->collapseAll();
-        if (!wasExpanded)
-            ui->files->expand(index);
-    } else if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TypeSeason) {
-        bool wasExpanded = ui->files->isExpanded(index);
-        if (wasExpanded)
-            ui->files->collapse(index);
-        else
-            ui->files->expand(index);
-    }
+    if (ui->files->isExpanded(index))
+        ui->files->collapse(index);
+    else
+        ui->files->expand(index);
 }
 
 /**

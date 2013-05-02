@@ -31,6 +31,14 @@ namespace TvShowRoles {
     const int HasChanged = Qt::UserRole+5;
     const int IsNew = Qt::UserRole+6;
     const int SyncNeeded = Qt::UserRole+7;
+    const int HasBanner = Qt::UserRole+8;
+    const int HasPoster = Qt::UserRole+9;
+    const int HasFanart = Qt::UserRole+10;
+    const int HasExtraFanart = Qt::UserRole+11;
+    const int HasLogo = Qt::UserRole+12;
+    const int HasThumb = Qt::UserRole+13;
+    const int HasClearArt = Qt::UserRole+14;
+    const int HasCharacterArt = Qt::UserRole+15;
 }
 
 namespace MediaCenterInterfaces {

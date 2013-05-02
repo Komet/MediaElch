@@ -193,6 +193,11 @@ bool TvShow::loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFro
     m_infoLoaded = infoLoaded;
     m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
     setChanged(false);
+
+    m_hasImage.clear();
+    foreach (const int &imageType, TvShow::imageTypes())
+        m_hasImage.insert(imageType, !mediaCenterInterface->imageFileName(this, imageType).isEmpty());
+
     return infoLoaded;
 }
 
@@ -1264,6 +1269,11 @@ QList<int> TvShow::seasonImageTypes()
 {
     return QList<int>() << ImageType::TvShowSeasonBackdrop << ImageType::TvShowSeasonBanner
                         << ImageType::TvShowSeasonPoster << ImageType::TvShowSeasonThumb;
+}
+
+bool TvShow::hasImage(int type)
+{
+    return m_hasImage.value(type, false);
 }
 
 /*** DEBUG ***/
