@@ -17,6 +17,8 @@ AdvancedSettings::~AdvancedSettings()
 void AdvancedSettings::reset()
 {
     m_debugLog = false;
+    m_threadedImageLoading = false;
+    m_forceCache = false;
     m_logFile = "";
     m_sortTokens = QStringList() << "Der" << "Die" << "Das" << "The" << "Le" << "La" << "Les" << "Un" << "Une" << "Des";
     m_genreMappings.clear();
@@ -64,6 +66,8 @@ void AdvancedSettings::loadSettings()
     while (xml.readNextStartElement()) {
         if (xml.name() == "log")
             loadLog(xml);
+        else if (xml.name() == "gui")
+            loadGui(xml);
         else if (xml.name() == "sorttokens")
             loadSortTokens(xml);
         else if (xml.name() == "genres")
@@ -87,6 +91,8 @@ void AdvancedSettings::loadSettings()
     qDebug() << "Advanced settings";
     qDebug() << "    debugLog              " << m_debugLog;
     qDebug() << "    logFile               " << m_logFile;
+    qDebug() << "    threadedImageLoading  " << m_threadedImageLoading;
+    qDebug() << "    forceCache            " << m_forceCache;
     qDebug() << "    sortTokens            " << m_sortTokens;
     qDebug() << "    genreMappings         " << m_genreMappings;
     qDebug() << "    movieFilters          " << m_movieFilters;
@@ -107,6 +113,18 @@ void AdvancedSettings::loadLog(QXmlStreamReader &xml)
             m_debugLog = (xml.readElementText() == "true");
         else if (xml.name() == "file")
             m_logFile = xml.readElementText();
+        else
+            xml.skipCurrentElement();
+    }
+}
+
+void AdvancedSettings::loadGui(QXmlStreamReader &xml)
+{
+    while (xml.readNextStartElement()) {
+        if (xml.name() == "threadedImageLoading")
+            m_threadedImageLoading = (xml.readElementText() == "true");
+        else if (xml.name() == "forceCache")
+            m_forceCache = (xml.readElementText() == "true");
         else
             xml.skipCurrentElement();
     }
@@ -288,4 +306,14 @@ QHash<QString, QString> AdvancedSettings::countryMappings() const
 bool AdvancedSettings::useFirstStudioOnly() const
 {
     return m_useFirstStudioOnly;
+}
+
+bool AdvancedSettings::threadedImageLoading() const
+{
+    return m_threadedImageLoading;
+}
+
+bool AdvancedSettings::forceCache() const
+{
+    return m_forceCache;
 }

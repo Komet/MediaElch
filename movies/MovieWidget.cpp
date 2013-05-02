@@ -615,20 +615,26 @@ void MovieWidget::updateMovieInfo()
 void MovieWidget::updateImages(QList<int> images)
 {
     foreach (const int &imageType, images) {
-        ClosableImage *image = 0;
         foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage*>()) {
-            if (cImage->imageType() == imageType)
-                image = cImage;
+            if (cImage->imageType() == imageType) {
+                if (Settings::instance()->advanced()->threadedImageLoading())
+                    QtConcurrent::run(this, &MovieWidget::updateImage, imageType, cImage);
+                else
+                    updateImage(imageType, cImage);
+                break;
+            }
         }
+    }
+}
 
-        if (!image)
-            continue;
-
-        if (!m_movie->image(imageType).isNull()) {
-            image->setImage(m_movie->image(imageType));
-        } else if (!m_movie->imagesToRemove().contains(imageType) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, imageType).isEmpty()) {
-            image->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, imageType));
-        }
+void MovieWidget::updateImage(const int &imageType, ClosableImage *image)
+{
+    if (!m_movie->image(imageType).isNull()) {
+        image->setImage(m_movie->image(imageType));
+    } else if (!m_movie->imagesToRemove().contains(imageType) && m_movie->hasImage(imageType)) {
+        QString imgFileName = Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, imageType);
+        if (!imgFileName.isEmpty())
+            image->setImage(imgFileName);
     }
 }
 

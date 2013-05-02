@@ -10,8 +10,9 @@
 #include <QTableWidgetItem>
 #include <QWidget>
 
-#include "movies/Movie.h"
 #include "globals/DownloadManager.h"
+#include "movies/Movie.h"
+#include "smallWidgets/ClosableImage.h"
 
 namespace Ui {
 class MovieWidget;
@@ -106,6 +107,8 @@ private slots:
     void onRemoveExtraFanart(const QString &file);
     void onRemoveExtraFanart(const QByteArray &image);
     void onAddExtraFanart();
+
+    void updateImage(const int &imageType, ClosableImage *image);
 
 private:
     Ui::MovieWidget *ui;

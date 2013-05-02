@@ -185,6 +185,11 @@ void ClosableImage::setImage(const QByteArray &image)
 
 void ClosableImage::setImage(const QString &image)
 {
+    setImageByPath(image);
+}
+
+void ClosableImage::setImageByPath(const QString &image)
+{
     clear();
     m_imagePath = image;
     QSize size = ImageCache::instance()->imageSize(image);
@@ -292,7 +297,7 @@ void ClosableImage::clear()
         m_anim->stop();
     m_imagePath.clear();
     m_image = QByteArray();
-    m_pixmap = QPixmap();
+    m_pixmap = m_emptyPixmap;
     m_loading = false;
     setMovie(0);
     update();

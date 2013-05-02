@@ -22,6 +22,7 @@ public:
     QVariant myData() const;
     void setImage(const QByteArray &image);
     void setImage(const QString &image);
+    void setImageByPath(const QString &image);
     QByteArray image();
     int mySize() const;
     void setMySize(const int &size);
@@ -76,6 +77,7 @@ private:
     bool confirmDeleteImage();
     void drawTitle(QPainter &p);
     int m_imageType;
+    QPixmap m_emptyPixmap;
 };
 
 #endif // CLOSABLEIMAGE_H
