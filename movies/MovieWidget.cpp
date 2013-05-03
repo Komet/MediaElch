@@ -412,8 +412,17 @@ void MovieWidget::startScraperSearch()
     MovieSearch::instance()->exec(m_movie->name());
     if (MovieSearch::instance()->result() == QDialog::Accepted) {
         setDisabledTrue();
-        m_movie->controller()->loadData(MovieSearch::instance()->scraperId(), Manager::instance()->scrapers().at(MovieSearch::instance()->scraperNo()),
-                                        MovieSearch::instance()->infosToLoad());
+        QMap<ScraperInterface*, QString> ids;
+        QList<int> infosToLoad;
+        if (MovieSearch::instance()->scraperId() == "custom-movie") {
+            ids = MovieSearch::instance()->customScraperIds();
+            infosToLoad = Settings::instance()->scraperInfos(WidgetMovies, "custom-movie");
+        } else {
+            ids.insert(0, MovieSearch::instance()->scraperMovieId());
+            infosToLoad = MovieSearch::instance()->infosToLoad();
+        }
+        m_movie->controller()->loadData(ids, Manager::instance()->scraper(MovieSearch::instance()->scraperId()),
+                                        infosToLoad);
     } else {
         emit setActionSearchEnabled(true, WidgetMovies);
         emit setActionSaveEnabled(true, WidgetMovies);

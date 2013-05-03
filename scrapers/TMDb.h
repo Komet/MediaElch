@@ -20,7 +20,7 @@ public:
     QString name();
     QString identifier();
     void search(QString searchStr);
-    void loadData(QString id, Movie *movie, QList<int> infos);
+    void loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos);
     bool hasSettings();
     void loadSettings(QSettings &settings);
     void saveSettings(QSettings &settings);
@@ -30,6 +30,7 @@ public:
     QString language();
     void setLanguage(QString language);
     static QList<ScraperSearchResult> parseSearch(QString json, int *nextPage);
+    static QString apiKey();
 
 signals:
     void searchDone(QList<ScraperSearchResult>);
@@ -44,7 +45,6 @@ private slots:
     void setupFinished();
 
 private:
-    QString m_apiKey;
     QNetworkAccessManager m_qnam;
     QString m_language;
     QString m_language2;

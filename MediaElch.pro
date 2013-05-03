@@ -141,7 +141,8 @@ SOURCES += main.cpp\
     export/ExportDialog.cpp \
     smallWidgets/MessageLabel.cpp \
     smallWidgets/SearchOverlay.cpp \
-    tvShows/ItemWidgetShow.cpp
+    tvShows/ItemWidgetShow.cpp \
+    scrapers/CustomMovieScraper.cpp
 
 macx {
     OBJECTIVE_SOURCES += mac/MacFullscreen.mm
@@ -259,7 +260,8 @@ HEADERS  += main/MainWindow.h \
     smallWidgets/MessageLabel.h \
     mac/MacFullscreen.h \
     smallWidgets/SearchOverlay.h \
-    tvShows/ItemWidgetShow.h
+    tvShows/ItemWidgetShow.h \
+    scrapers/CustomMovieScraper.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

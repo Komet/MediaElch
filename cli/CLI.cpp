@@ -72,7 +72,9 @@ void CLI::run()
     if (m_scraperId.isEmpty()) {
         m_scraper->search(searchTerm);
     } else {
-        m_movie->controller()->loadData(m_scraperId, m_scraper, m_infosToLoad);
+        QMap<ScraperInterface*, QString> ids;
+        ids.insert(0, m_scraperId);
+        m_movie->controller()->loadData(ids, m_scraper, m_infosToLoad);
     }
 }
 
@@ -173,7 +175,9 @@ void CLI::onScraperSearchDone(QList<ScraperSearchResult> results)
         emit finished();
         return;
     }
-    m_movie->controller()->loadData(results.first().id, m_scraper, m_infosToLoad);
+    QMap<ScraperInterface*, QString> ids;
+    ids.insert(0, results.first().id);
+    m_movie->controller()->loadData(ids, m_scraper, m_infosToLoad);
 }
 
 /**

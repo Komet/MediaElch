@@ -59,7 +59,8 @@ private:
     void loadSettings();
     void saveSettings();
     void loadRemoteTemplates();
-    QComboBox* getComboForMovieScraperInfo(int info);
+    QComboBox* comboForMovieScraperInfo(const int &info);
+    QString titleForMovieScraperInfo(const int &info);
 };
 
 #endif // SETTINGSWINDOW_H

@@ -23,7 +23,7 @@ public:
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void loadData(QString id, ScraperInterface *scraperInterface, QList<int> infos);
+    void loadData(QMap<ScraperInterface*, QString> ids, ScraperInterface *scraperInterface, QList<int> infos);
     void loadStreamDetailsFromFile();
     void scraperLoadDone();
     QList<int> infosToLoad();
@@ -36,6 +36,7 @@ public:
     void setLoadsLeft(QList<ScraperData> loadsLeft);
     void removeFromLoadsLeft(ScraperData load);
     void setInfosToLoad(QList<int> infos);
+    void setForceFanartBackdrop(const bool &force);
 
 signals:
     void sigInfoLoadDone(Movie*);
@@ -62,6 +63,8 @@ private:
     QList<ScraperData> m_loadsLeft;
     bool m_loadDoneFired;
     QMutex m_loadMutex;
+    QMutex m_customScraperMutex;
+    bool m_forceFanartBackdrop;
 };
 
 #endif // MOVIECONTROLLER_H

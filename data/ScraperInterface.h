@@ -19,7 +19,7 @@ public:
     virtual QString name() = 0;
     virtual QString identifier() = 0;
     virtual void search(QString searchStr) = 0;
-    virtual void loadData(QString id, Movie *movie, QList<int> infos) = 0;
+    virtual void loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos) = 0;
     virtual bool hasSettings() = 0;
     virtual void loadSettings(QSettings &settings) = 0;
     virtual void saveSettings(QSettings &settings) = 0;

@@ -182,6 +182,8 @@ void DownloadManager::downloadTimeout()
 void DownloadManager::downloadFinished()
 {
     qDebug() << "Entered";
+
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     m_downloading = false;
     m_retries = 0;
     QByteArray data;
@@ -191,7 +193,7 @@ void DownloadManager::downloadFinished()
         data = m_currentReply->readAll();
     }
     m_currentDownloadElement.data = data;
-    m_currentReply->deleteLater();
+    reply->deleteLater();
     if (m_currentDownloadElement.imageType == ImageType::Actor && !m_currentDownloadElement.movie)
         m_currentDownloadElement.actor->image = data;
     else if (m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb && !m_currentDownloadElement.directDownload)

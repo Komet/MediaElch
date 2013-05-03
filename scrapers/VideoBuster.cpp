@@ -129,12 +129,11 @@ QList<ScraperSearchResult> VideoBuster::parseSearch(QString html)
  * @param infos List of infos to load
  * @see VideoBuster::loadFinished
  */
-void VideoBuster::loadData(QString id, Movie *movie, QList<int> infos)
+void VideoBuster::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos)
 {
-    qDebug() << "Entered, id=" << id << "movie=" << movie->name();
     movie->clear(infos);
 
-    QUrl url(QString("https://www.videobuster.de%1").arg(id));
+    QUrl url(QString("https://www.videobuster.de%1").arg(ids.values().first()));
     QNetworkReply *reply = this->qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));

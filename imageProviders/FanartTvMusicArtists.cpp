@@ -28,6 +28,11 @@ QString FanartTvMusicArtists::name()
     return QString("Fanart.tv Music Artists");
 }
 
+QString FanartTvMusicArtists::identifier()
+{
+    return QString("images.fanarttv-music");
+}
+
 /**
  * @brief Returns a list of supported image types
  * @return List of supported image types

@@ -181,15 +181,14 @@ QList<ScraperSearchResult> OFDb::parseSearch(QString xml)
  * @param infos List of infos to load
  * @see OFDb::loadFinished
  */
-void OFDb::loadData(QString id, Movie *movie, QList<int> infos)
+void OFDb::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos)
 {
-    qDebug() << "Entered, id=" << id << "movie=" << movie->name();
     movie->clear(infos);
 
-    QUrl url(QString("http://ofdbgw.org/movie/%1").arg(id));
+    QUrl url(QString("http://ofdbgw.org/movie/%1").arg(ids.values().first()));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, movie));
-    reply->setProperty("ofdbId", id);
+    reply->setProperty("ofdbId", ids.values().first());
     reply->setProperty("notFoundCounter", 0);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));

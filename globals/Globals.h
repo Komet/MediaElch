@@ -203,6 +203,9 @@ namespace MovieScraperInfos {
     const int ClearArt      = 23;
     const int Banner        = 24;
     const int Thumb         = 25;
+
+    const int First         = 1;
+    const int Last          = 25;
 }
 
 namespace TvShowScraperInfos {

@@ -1,0 +1,52 @@
+#ifndef CUSTOMMOVIESCRAPER_H
+#define CUSTOMMOVIESCRAPER_H
+
+#include <QObject>
+
+#include "data/ImageProviderInterface.h"
+#include "data/ScraperInterface.h"
+
+class CustomMovieScraper : public ScraperInterface
+{
+    Q_OBJECT
+public:
+    explicit CustomMovieScraper(QObject *parent = 0);
+    static CustomMovieScraper *instance(QObject *parent = 0);
+
+    QString name();
+    QString identifier();
+    void search(QString searchStr);
+    void loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos);
+    bool hasSettings();
+    void loadSettings(QSettings &settings);
+    void saveSettings(QSettings &settings);
+    QList<int> scraperSupports();
+    QList<int> scraperNativelySupports();
+    QMap<QString, QString> languages();
+    QString language();
+    void setLanguage(QString language);
+    QList<ScraperInterface*> scrapersNeedSearch(QList<int> infos, QMap<ScraperInterface *, QString> alreadyLoadedIds);
+    ScraperInterface *titleScraper();
+
+private slots:
+    void onTitleSearchDone(QList<ScraperSearchResult> results);
+    void onLoadTmdbFinished();
+
+signals:
+    void searchDone(QList<ScraperSearchResult>);
+
+private:
+    QList<ScraperInterface*> m_scrapers;
+    QNetworkAccessManager m_qnam;
+
+    ScraperInterface *scraperForInfo(int info);
+    QList<ScraperInterface*> scrapersForInfos(QList<int> infos);
+    ImageProviderInterface *imageProviderForInfo(int info);
+    QList<ImageProviderInterface*> imageProvidersForInfos(QList<int> infos);
+
+    QList<int> infosForScraper(ScraperInterface *scraper, QList<int> selectedInfos);
+    void loadAllData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos, QString tmdbId, QString imdbId);
+    QNetworkAccessManager *qnam();
+};
+
+#endif // CUSTOMMOVIESCRAPER_H

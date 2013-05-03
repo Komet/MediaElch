@@ -36,6 +36,7 @@ public:
     static Manager *instance();
     QList<MediaCenterInterface*> mediaCenters();
     QList<ScraperInterface*> scrapers();
+    ScraperInterface* scraper(const QString &identifier);
     QList<TvScraperInterface*> tvScrapers();
     QList<ConcertScraperInterface*> concertScrapers();
     QList<ImageProviderInterface*> imageProviders();
@@ -59,6 +60,7 @@ public:
     TvTunes* tvTunes();
     void setTvShowFilesWidget(TvShowFilesWidget *widget);
     void setFileScannerDialog(FileScannerDialog *dialog);
+    static QList<ScraperInterface*> constructNativeScrapers(QObject *parent);
 
 private:
     QList<MediaCenterInterface*> m_mediaCenters;

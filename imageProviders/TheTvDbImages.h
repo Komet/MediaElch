@@ -17,6 +17,7 @@ class TheTvDbImages : public ImageProviderInterface
 public:
     explicit TheTvDbImages(QObject *parent = 0);
     QString name();
+    QString identifier();
     void movieImages(Movie *movie, QString tmdbId, QList<int> types);
     void moviePosters(QString tmdbId);
     void movieBackdrops(QString tmdbId);

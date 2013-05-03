@@ -150,15 +150,14 @@ QList<ScraperSearchResult> Cinefacts::parseSearch(QString html)
  * @param infos List of infos to load
  * @see Cinefacts::loadFinished
  */
-void Cinefacts::loadData(QString id, Movie *movie, QList<int> infos)
+void Cinefacts::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos)
 {
-    qDebug() << "Entered, id=" << id << "movie=" << movie->name();
     movie->clear(infos);
 
-    QUrl url(QString("http://www.cinefacts.de/Filme/%1").arg(id));
+    QUrl url(QString("http://www.cinefacts.de/Filme/%1").arg(ids.values().first()));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, movie));
-    reply->setProperty("cinefactsId", id);
+    reply->setProperty("cinefactsId", ids.values().first());
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
 }

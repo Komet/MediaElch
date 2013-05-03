@@ -33,6 +33,11 @@ QString TMDbImages::name()
     return QString("The Movie DB");
 }
 
+QString TMDbImages::identifier()
+{
+    return QString("images.tmdb");
+}
+
 /**
  * @brief Returns a list of supported image types
  * @return List of supported image types
@@ -90,7 +95,9 @@ void TMDbImages::moviePosters(QString tmdbId)
     m_imageType = ImageType::MoviePoster;
     QList<int> infos;
     infos << MovieScraperInfos::Poster;
-    m_tmdb->loadData(tmdbId, m_dummyMovie, infos);
+    QMap<ScraperInterface*, QString> ids;
+    ids.insert(0, tmdbId);
+    m_tmdb->loadData(ids, m_dummyMovie, infos);
 }
 
 /**
@@ -103,7 +110,9 @@ void TMDbImages::movieBackdrops(QString tmdbId)
     m_imageType = ImageType::MovieBackdrop;
     QList<int> infos;
     infos << MovieScraperInfos::Backdrop;
-    m_tmdb->loadData(tmdbId, m_dummyMovie, infos);
+    QMap<ScraperInterface*, QString> ids;
+    ids.insert(0, tmdbId);
+    m_tmdb->loadData(ids, m_dummyMovie, infos);
 }
 
 /**

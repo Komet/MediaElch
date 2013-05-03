@@ -16,6 +16,7 @@ class ImageProviderInterface : public QObject
 {
 public:
     virtual QString name() = 0;
+    virtual QString identifier() = 0;
     virtual void movieImages(Movie *movie, QString tmdbId, QList<int> types) = 0;
     virtual void moviePosters(QString tmdbId) = 0;
     virtual void movieBackdrops(QString tmdbId) = 0;

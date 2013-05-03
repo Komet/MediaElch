@@ -2,6 +2,7 @@
 #include "ui_MovieMultiScrapeDialog.h"
 
 #include "globals/Manager.h"
+#include "scrapers/CustomMovieScraper.h"
 #include "smallWidgets/MyCheckBox.h"
 
 MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget *parent) :
@@ -54,8 +55,8 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget *parent) :
         if (box->myData().toInt() > 0)
             connect(box, SIGNAL(clicked()), this, SLOT(onChkToggled()));
     }
-    for (int i=0, n=Manager::instance()->scrapers().count() ; i<n ; ++i)
-        ui->comboScraper->addItem(Manager::instance()->scrapers().at(i)->name(), i);
+    foreach (ScraperInterface *scraper, Manager::instance()->scrapers())
+        ui->comboScraper->addItem(scraper->name(), scraper->identifier());
 
     connect(ui->chkUnCheckAll, SIGNAL(clicked()), this, SLOT(onChkAllToggled()));
     connect(ui->btnStartScraping, SIGNAL(clicked()), this, SLOT(onStartScraping()));
@@ -98,12 +99,16 @@ int MovieMultiScrapeDialog::exec()
 
 void MovieMultiScrapeDialog::accept()
 {
+    foreach (ScraperInterface *scraper, Manager::instance()->scrapers())
+        disconnect(scraper, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchFinished(QList<ScraperSearchResult>)));
     m_executed = false;
     QDialog::accept();
 }
 
 void MovieMultiScrapeDialog::reject()
 {
+    foreach (ScraperInterface *scraper, Manager::instance()->scrapers())
+        disconnect(scraper, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchFinished(QList<ScraperSearchResult>)));
     m_executed = false;
     if (m_currentMovie) {
         m_queue.clear();
@@ -119,14 +124,20 @@ void MovieMultiScrapeDialog::setMovies(QList<Movie *> movies)
 
 void MovieMultiScrapeDialog::onStartScraping()
 {
+    foreach (ScraperInterface *scraper, Manager::instance()->scrapers())
+        disconnect(scraper, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchFinished(QList<ScraperSearchResult>)));
+
     ui->groupBox->setEnabled(false);
     ui->comboScraper->setEnabled(false);
     ui->btnStartScraping->setEnabled(false);
     ui->chkAutoSave->setEnabled(false);
 
-    m_scraperInterface = Manager::instance()->scrapers().at(ui->comboScraper->itemData(ui->comboScraper->currentIndex()).toInt());
-    m_isTmdb = m_scraperInterface->name() == "The Movie DB";
-    m_isImdb = m_scraperInterface->name() == "IMDB";
+    m_scraperInterface = Manager::instance()->scraper(ui->comboScraper->itemData(ui->comboScraper->currentIndex()).toString());
+    if (!m_scraperInterface)
+        return;
+
+    m_isTmdb = m_scraperInterface->identifier() == "tmdb";
+    m_isImdb = m_scraperInterface->identifier() == "imdb";
 
     connect(m_scraperInterface, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchFinished(QList<ScraperSearchResult>)), Qt::UniqueConnection);
 
@@ -171,19 +182,32 @@ void MovieMultiScrapeDialog::scrapeNext()
     connect(m_currentMovie->controller(), SIGNAL(sigLoadDone(Movie*)), this, SLOT(scrapeNext()), Qt::UniqueConnection);
     connect(m_currentMovie->controller(), SIGNAL(sigDownloadProgress(Movie*,int,int)), this, SLOT(onProgress(Movie*,int,int)), Qt::UniqueConnection);
 
-    if (m_isImdb && !m_currentMovie->id().isEmpty())
+    m_currentIds.clear();
+
+    if (m_isImdb && !m_currentMovie->id().isEmpty()) {
         loadMovieData(m_currentMovie, m_currentMovie->id());
-    else if (m_isTmdb && !m_currentMovie->tmdbId().isEmpty())
+    } else if (m_isTmdb && !m_currentMovie->tmdbId().isEmpty()) {
         loadMovieData(m_currentMovie, m_currentMovie->tmdbId());
-    else if (m_isTmdb && !m_currentMovie->id().isEmpty())
+    } else if (m_isTmdb && !m_currentMovie->id().isEmpty()) {
         loadMovieData(m_currentMovie, m_currentMovie->id());
-    else
+    } else if (m_scraperInterface->identifier() == "custom-movie") {
+        if ((CustomMovieScraper::instance()->titleScraper()->identifier() == "imdb" || CustomMovieScraper::instance()->titleScraper()->identifier() == "tmdb") &&
+                !m_currentMovie->id().isEmpty())
+            m_scraperInterface->search(m_currentMovie->id());
+        else if (CustomMovieScraper::instance()->titleScraper()->identifier() == "tmdb" && !m_currentMovie->tmdbId().isEmpty())
+            m_scraperInterface->search("id" + m_currentMovie->tmdbId());
+        else
+            m_scraperInterface->search(m_currentMovie->name());
+    } else {
         m_scraperInterface->search(m_currentMovie->name());
+    }
 }
 
 void MovieMultiScrapeDialog::loadMovieData(Movie *movie, QString id)
 {
-    movie->controller()->loadData(id, m_scraperInterface, m_infosToLoad);
+    QMap<ScraperInterface*, QString> ids;
+    ids.insert(0, id);
+    movie->controller()->loadData(ids, m_scraperInterface, m_infosToLoad);
 }
 
 void MovieMultiScrapeDialog::onSearchFinished(QList<ScraperSearchResult> results)
@@ -194,7 +218,26 @@ void MovieMultiScrapeDialog::onSearchFinished(QList<ScraperSearchResult> results
         scrapeNext();
         return;
     }
-    m_currentMovie->controller()->loadData(results.first().id, m_scraperInterface, m_infosToLoad);
+
+    if (m_scraperInterface->identifier() == "custom-movie") {
+        ScraperInterface *scraper = static_cast<ScraperInterface*>(QObject::sender());
+        m_currentIds.insert(scraper, results.first().id);
+        QList<ScraperInterface*> searchScrapers = CustomMovieScraper::instance()->scrapersNeedSearch(m_infosToLoad, m_currentIds);
+        if (!searchScrapers.isEmpty()) {
+            connect(searchScrapers.first(), SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchFinished(QList<ScraperSearchResult>)), Qt::UniqueConnection);
+            if ((searchScrapers.first()->identifier() == "tmdb" || searchScrapers.first()->identifier() == "imdb") && !m_currentMovie->id().isEmpty())
+                searchScrapers.first()->search(m_currentMovie->id());
+            else if (searchScrapers.first()->identifier() == "tmdb" && !m_currentMovie->tmdbId().isEmpty())
+                searchScrapers.first()->search("id" + m_currentMovie->tmdbId());
+            else
+                searchScrapers.first()->search(m_currentMovie->name());
+            return;
+        }
+    } else {
+        m_currentIds.insert(m_scraperInterface, results.first().id);
+    }
+
+    m_currentMovie->controller()->loadData(m_currentIds, m_scraperInterface, m_infosToLoad);
 }
 
 void MovieMultiScrapeDialog::onProgress(Movie *movie, int current, int maximum)
@@ -225,8 +268,8 @@ void MovieMultiScrapeDialog::onChkToggled()
 
     ui->chkUnCheckAll->setChecked(allToggled);
 
-    int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
-    Settings::instance()->setScraperInfos(WidgetMovies, scraperNo, m_infosToLoad);
+    QString scraperId = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toString();
+    Settings::instance()->setScraperInfos(WidgetMovies, scraperId, m_infosToLoad);
 
     ui->btnStartScraping->setEnabled(!m_infosToLoad.isEmpty());
 }
@@ -243,9 +286,13 @@ void MovieMultiScrapeDialog::onChkAllToggled()
 
 void MovieMultiScrapeDialog::setChkBoxesEnabled()
 {
-    int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
-    QList<int> scraperSupports = Manager::instance()->scrapers().at(scraperNo)->scraperSupports();
-    QList<int> infos = Settings::instance()->scraperInfos(WidgetMovies, scraperNo);
+    QString scraperId = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toString();
+    ScraperInterface *scraper = Manager::instance()->scraper(scraperId);
+    if (!scraper)
+        return;
+
+    QList<int> scraperSupports = scraper->scraperSupports();
+    QList<int> infos = Settings::instance()->scraperInfos(WidgetMovies, scraperId);
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
         box->setEnabled(scraperSupports.contains(box->myData().toInt()));

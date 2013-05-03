@@ -21,6 +21,7 @@ public:
     explicit Storage(QObject *parent, QList<ScraperSearchResult> results);
     explicit Storage(QObject *parent, QList<int> infosToLoad);
     explicit Storage(QObject *parent, ExportTemplate *exportTemplate);
+    explicit Storage(QObject *parent, QMap<ScraperInterface*, QString> ids);
     Movie *movie();
     Concert *concert();
     TvShow *show();
@@ -28,6 +29,7 @@ public:
     QList<ScraperSearchResult> results();
     QList<int> infosToLoad();
     ExportTemplate *exportTemplate();
+    QMap<ScraperInterface*, QString> ids();
     static QVariant toVariant(QObject *parent, Movie *movie);
     static QVariant toVariant(QObject *parent, Concert *concert);
     static QVariant toVariant(QObject *parent, TvShow *show);
@@ -35,6 +37,7 @@ public:
     static QVariant toVariant(QObject *parent, QList<ScraperSearchResult> results);
     static QVariant toVariant(QObject *parent, QList<int> infosToLoad);
     static QVariant toVariant(QObject *parent, ExportTemplate *exportTemplate);
+    static QVariant toVariant(QObject *parent, QMap<ScraperInterface*, QString> ids);
 
 private:
     QPointer<Movie> m_movie;
@@ -44,6 +47,7 @@ private:
     QList<ScraperSearchResult> m_results;
     QList<int> m_infosToLoad;
     QPointer<ExportTemplate> m_exportTemplate;
+    QMap<ScraperInterface*, QString> m_ids;
 };
 
 Q_DECLARE_METATYPE(Storage*)

@@ -197,7 +197,7 @@ void TvShowSearch::onChkToggled()
     int scraperNo = ui->comboUpdate->currentIndex();
     if (m_searchType == TypeEpisode)
         scraperNo = 4;
-    Settings::instance()->setScraperInfos(WidgetTvShows, scraperNo, m_infosToLoad);
+    Settings::instance()->setScraperInfos(WidgetTvShows, QString::number(scraperNo), m_infosToLoad);
 }
 
 void TvShowSearch::onChkAllToggled()
@@ -235,7 +235,7 @@ void TvShowSearch::onComboIndexChanged()
         scraperNo = 4;
     else
         Settings::instance()->setTvShowUpdateOption(ui->comboUpdate->currentIndex());
-    QList<int> infos = Settings::instance()->scraperInfos(WidgetTvShows, scraperNo);
+    QList<int> infos = Settings::instance()->scraperInfos(WidgetTvShows, QString::number(scraperNo));
 
     TvShowUpdateType type = updateType();
     if (type == UpdateShow) {

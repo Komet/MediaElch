@@ -40,6 +40,11 @@ QString FanartTv::name()
     return QString("Fanart.tv");
 }
 
+QString FanartTv::identifier()
+{
+    return QString("images.fanarttv");
+}
+
 /**
  * @brief Returns a list of supported image types
  * @return List of supported image types

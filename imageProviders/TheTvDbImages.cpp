@@ -30,6 +30,11 @@ QString TheTvDbImages::name()
     return QString("The TV DB");
 }
 
+QString TheTvDbImages::identifier()
+{
+    return QString("images.thetvdb");
+}
+
 /**
  * @brief Returns a list of supported image types
  * @return List of supported image types

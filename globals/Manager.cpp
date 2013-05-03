@@ -10,6 +10,7 @@
 #include "imageProviders/TheTvDbImages.h"
 #include "mediaCenterPlugins/XbmcXml.h"
 #include "scrapers/Cinefacts.h"
+#include "scrapers/CustomMovieScraper.h"
 #include "scrapers/IMDB.h"
 #include "scrapers/OFDb.h"
 #include "scrapers/TheTvDb.h"
@@ -26,11 +27,8 @@
 Manager::Manager(QObject *parent) :
     QObject(parent)
 {
-    m_scrapers.append(new TMDb(this));
-    m_scrapers.append(new IMDB(this));
-    m_scrapers.append(new Cinefacts(this));
-    m_scrapers.append(new OFDb(this));
-    m_scrapers.append(new VideoBuster(this));
+    m_scrapers.append(Manager::constructNativeScrapers(this));
+    m_scrapers.append(CustomMovieScraper::instance(this));
     m_tvScrapers.append(new TheTvDb(this));
     m_concertScrapers.append(new TMDbConcerts(this));
     m_movieFileSearcher = new MovieFileSearcher(this);
@@ -138,6 +136,16 @@ ConcertFileSearcher *Manager::concertFileSearcher()
 QList<ScraperInterface*> Manager::scrapers()
 {
     return m_scrapers;
+}
+
+ScraperInterface* Manager::scraper(const QString &identifier)
+{
+    foreach (ScraperInterface *scraper, m_scrapers) {
+        if (scraper->identifier() == identifier)
+            return scraper;
+    }
+
+    return 0;
 }
 
 /**
@@ -293,4 +301,15 @@ QList<TrailerProvider*> Manager::trailerProviders()
 TvTunes* Manager::tvTunes()
 {
     return m_tvTunes;
+}
+
+QList<ScraperInterface*> Manager::constructNativeScrapers(QObject *parent)
+{
+    QList<ScraperInterface*> nativeScrapers;
+    nativeScrapers.append(new TMDb(parent));
+    nativeScrapers.append(new IMDB(parent));
+    nativeScrapers.append(new Cinefacts(parent));
+    nativeScrapers.append(new OFDb(parent));
+    nativeScrapers.append(new VideoBuster(parent));
+    return nativeScrapers;
 }

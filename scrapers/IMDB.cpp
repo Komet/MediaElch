@@ -139,12 +139,12 @@ QList<ScraperSearchResult> IMDB::parseSearch(QString json)
     return results;
 }
 
-void IMDB::loadData(QString id, Movie *movie, QList<int> infos)
+void IMDB::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos)
 {
     movie->clear(infos);
-    movie->setId(id);
+    movie->setId(ids.values().first());
 
-    QUrl url(QString("http://imdbapi.org/?id=%1&type=json&plot=full&episode=0&lang=en-US").arg(id));
+    QUrl url(QString("http://imdbapi.org/?id=%1&type=json&plot=full&episode=0&lang=en-US").arg(ids.values().first()));
     QNetworkRequest request(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("storage", Storage::toVariant(reply, movie));

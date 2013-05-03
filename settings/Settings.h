@@ -23,6 +23,7 @@ public:
     AdvancedSettings* advanced();
     void loadSettings();
     void loadSettings(QSettings &settings);
+    QSettings *settings();
 
     QSize mainWindowSize();
     QPoint mainWindowPosition();
@@ -49,7 +50,7 @@ public:
     QList<DataFile> dataFiles(int type);
     QList<DataFile> dataFilesFrodo(int type = -1);
     bool usePlotForOutline();
-    QList<int> scraperInfos(MainWidgets widget, int scraperNo);
+    QList<int> scraperInfos(MainWidgets widget, QString scraperId);
     void renamePatterns(int renameType, QString &fileNamePattern, QString &fileNamePatternMulti, QString &directoryPattern, QString &seasonPattern);
     void renamings(int renameType, bool &files, bool &folders, bool &seasonDirectories);
     int tvShowUpdateOption();
@@ -59,6 +60,7 @@ public:
     QList<MediaStatusColumns> mediaStatusColumns() const;
     bool tvShowDvdOrder() const;
     bool dontShowDeleteImageConfirm() const;
+    QMap<int, QString> customMovieScraper() const;
 
     bool autoLoadStreamDetails();
 
@@ -87,7 +89,7 @@ public:
     void setUsePlotForOutline(bool use);
     void setXbmcHost(QString host);
     void setXbmcPort(int port);
-    void setScraperInfos(MainWidgets widget, int scraperNo, QList<int> items);
+    void setScraperInfos(MainWidgets widget, QString scraperNo, QList<int> items);
     void setRenamePatterns(int renameType, QString fileNamePattern, QString fileNamePatternMulti, QString directoryPattern, QString seasonPattern);
     void setRenamings(int renameType, bool files, bool folders, bool seasonDirectories);
     void setTvShowUpdateOption(int option);
@@ -97,6 +99,7 @@ public:
     void setMediaStatusColumns(QList<MediaStatusColumns> columns);
     void setTvShowDvdOrder(bool order);
     void setDontShowDeleteImageConfirm(bool show);
+    void setCustomMovieScraper(QMap<int, QString> customMovieScraper);
 
 public slots:
     void saveSettings();
@@ -138,6 +141,7 @@ private:
     QList<MediaStatusColumns> m_mediaStatusColumns;
     bool m_tvShowDvdOrder;
     bool m_dontShowDeleteImageConfirm;
+    QMap<int, QString> m_customMovieScraper;
 
     void setupProxy();
 };

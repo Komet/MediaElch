@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include <QTableWidgetItem>
-
+#include "data/ScraperInterface.h"
 #include "globals/Globals.h"
 
 namespace Ui {
@@ -23,9 +23,10 @@ public:
 public slots:
     int exec(QString searchString);
     static MovieSearch *instance(QWidget *parent = 0);
-    int scraperNo();
     QString scraperId();
+    QString scraperMovieId();
     QList<int> infosToLoad();
+    QMap<ScraperInterface*, QString> customScraperIds();
 
 private slots:
     void search();
@@ -36,9 +37,11 @@ private slots:
 
 private:
     Ui::MovieSearch *ui;
-    int m_scraperNo;
     QString m_scraperId;
+    QString m_scraperMovieId;
     QList<int> m_infosToLoad;
+    QMap<ScraperInterface*, QString> m_customScraperIds;
+    ScraperInterface *m_currentCustomScraper;
 
     void clear();
     void setChkBoxesEnabled(QList<int> scraperSupports);

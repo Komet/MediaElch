@@ -340,12 +340,24 @@ void SettingsWindow::loadSettings()
     onComboMovieSetArtworkChanged();
 
 
+    QList<int> infos = QList<int>() << MovieScraperInfos::Title << MovieScraperInfos::Set << MovieScraperInfos::Tagline
+                                    << MovieScraperInfos::Rating << MovieScraperInfos::Released << MovieScraperInfos::Runtime
+                                    << MovieScraperInfos::Director << MovieScraperInfos::Writer << MovieScraperInfos::Certification
+                                    << MovieScraperInfos::Trailer << MovieScraperInfos::Overview << MovieScraperInfos::Poster
+                                    << MovieScraperInfos::Backdrop << MovieScraperInfos::Actors << MovieScraperInfos::Genres
+                                    << MovieScraperInfos::Studios << MovieScraperInfos::Countries << MovieScraperInfos::Logo
+                                    << MovieScraperInfos::ClearArt << MovieScraperInfos::CdArt << MovieScraperInfos::Banner
+                                    << MovieScraperInfos::Thumb;
+
     ui->customScraperTable->clearContents();
     ui->customScraperTable->setRowCount(0);
 
-    ui->customScraperTable->insertRow(0);
-    ui->customScraperTable->setItem(0, 0, new QTableWidgetItem(tr("Title")));
-    ui->customScraperTable->setCellWidget(0, 1, getComboForMovieScraperInfo(MovieScraperInfos::Title));
+    foreach (const int &info, infos) {
+        int row = ui->customScraperTable->rowCount();
+        ui->customScraperTable->insertRow(row);
+        ui->customScraperTable->setItem(row, 0, new QTableWidgetItem(titleForMovieScraperInfo(info)));
+        ui->customScraperTable->setCellWidget(row, 1, comboForMovieScraperInfo(info));
+    }
 }
 
 void SettingsWindow::saveSettings()
@@ -425,6 +437,16 @@ void SettingsWindow::saveSettings()
     // Movie set artwork
     m_settings->setMovieSetArtworkType(static_cast<MovieSetArtworkType>(ui->comboMovieSetArtwork->itemData(ui->comboMovieSetArtwork->currentIndex()).toInt()));
     m_settings->setMovieSetArtworkDirectory(ui->movieSetArtworkDir->text());
+
+    // Custom movie scraper
+    QMap<int, QString> customMovieScraper;
+    for (int row=0, n=ui->customScraperTable->rowCount() ; row<n ; ++row) {
+        QComboBox *box = static_cast<QComboBox*>(ui->customScraperTable->cellWidget(row, 1));
+        int info = box->itemData(0, Qt::UserRole+1).toInt();
+        QString scraper = box->itemData(box->currentIndex()).toString();
+        customMovieScraper.insert(info, scraper);
+    }
+    m_settings->setCustomMovieScraper(customMovieScraper);
 
     m_settings->saveSettings();
 
@@ -616,13 +638,98 @@ void SettingsWindow::onTemplateUninstalled(ExportTemplate *exportTemplate, bool 
         ui->themesErrorMessage->setErrorMessage(tr("There was an error while processing the theme \"%1\"").arg(exportTemplate->name()));
 }
 
-QComboBox *SettingsWindow::getComboForMovieScraperInfo(int info)
+QComboBox *SettingsWindow::comboForMovieScraperInfo(const int &info)
 {
+    QString currentScraper = m_settings->customMovieScraper().value(info, "notset");
+
     QComboBox *box = new QComboBox();
-    box->addItem(tr("Don't use"), "");
-    foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
-        if (scraper->scraperNativelySupports().contains(info))
-            box->addItem(scraper->name(), scraper->identifier());
+    int index = 0;
+    if (info != MovieScraperInfos::Title) {
+        box->addItem(tr("Don't use"), "");
+        box->setItemData(0, info, Qt::UserRole+1);
+        index = 1;
     }
+    foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
+        if (scraper->identifier() == "custom-movie")
+            continue;
+        if (scraper->scraperNativelySupports().contains(info)) {
+            box->addItem(scraper->name(), scraper->identifier());
+            box->setItemData(index, info, Qt::UserRole+1);
+            if (scraper->identifier() == currentScraper || (currentScraper == "notset" && index == 1))
+                box->setCurrentIndex(index);
+            index++;
+        }
+    }
+
+    QList<int> images;
+    images << MovieScraperInfos::Backdrop << MovieScraperInfos::Logo << MovieScraperInfos::ClearArt
+           << MovieScraperInfos::CdArt << MovieScraperInfos::Banner << MovieScraperInfos::Thumb;
+    if (images.contains(info)) {
+        foreach (ImageProviderInterface *img, Manager::instance()->imageProviders()) {
+            if (img->identifier() == "images.fanarttv") {
+                box->addItem(img->name(), img->identifier());
+                box->setItemData(index, info, Qt::UserRole+1);
+                if (img->identifier() == currentScraper || (currentScraper == "notset" && index == 1))
+                    box->setCurrentIndex(index);
+                index++;
+                break;
+            }
+        }
+    }
+
     return box;
+}
+
+QString SettingsWindow::titleForMovieScraperInfo(const int &info)
+{
+    switch (info) {
+    case MovieScraperInfos::Title:
+        return tr("Title");
+    case MovieScraperInfos::Tagline:
+        return tr("Tagline");
+    case MovieScraperInfos::Rating:
+        return tr("Rating");
+    case MovieScraperInfos::Released:
+        return tr("Released");
+    case MovieScraperInfos::Runtime:
+        return tr("Runtime");
+    case MovieScraperInfos::Certification:
+        return tr("Certification");
+    case MovieScraperInfos::Trailer:
+        return tr("Trailer");
+    case MovieScraperInfos::Overview:
+        return tr("Plot");
+    case MovieScraperInfos::Poster:
+        return tr("Poster");
+    case MovieScraperInfos::Backdrop:
+        return tr("Fanart");
+    case MovieScraperInfos::Actors:
+        return tr("Actors");
+    case MovieScraperInfos::Genres:
+        return tr("Genres");
+    case MovieScraperInfos::Studios:
+        return tr("Studios");
+    case MovieScraperInfos::Countries:
+        return tr("Countries");
+    case MovieScraperInfos::Writer:
+        return tr("Writer");
+    case MovieScraperInfos::Director:
+        return tr("Director");
+    case MovieScraperInfos::Tags:
+        return tr("Tags");
+    case MovieScraperInfos::Set:
+        return tr("Set");
+    case MovieScraperInfos::Logo:
+        return tr("Logo");
+    case MovieScraperInfos::CdArt:
+        return tr("Disc Art");
+    case MovieScraperInfos::ClearArt:
+        return tr("Clear Art");
+    case MovieScraperInfos::Banner:
+        return tr("Banner");
+    case MovieScraperInfos::Thumb:
+        return tr("Thumb");
+    default:
+        return tr("Unsupported");
+    }
 }

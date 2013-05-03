@@ -67,6 +67,11 @@ Settings *Settings::instance(QObject *parent)
     return m_instance;
 }
 
+QSettings *Settings::settings()
+{
+    return &m_settings;
+}
+
 void Settings::loadSettings()
 {
     // Load old settings
@@ -227,6 +232,15 @@ void Settings::loadSettings(QSettings &settings)
     m_mediaStatusColumns.clear();
     foreach (const QVariant &column, settings.value("MediaStatusColumns").toList())
         m_mediaStatusColumns.append(static_cast<MediaStatusColumns>(column.toInt()));
+
+
+    m_customMovieScraper.clear();
+    int customMovieScraperSize = settings.beginReadArray("CustomMovieScraper");
+    for (int i=0 ; i<customMovieScraperSize ; ++i) {
+        settings.setArrayIndex(i);
+        m_customMovieScraper.insert(settings.value("Info").toInt(), settings.value("Scraper").toString());
+    }
+    settings.endArray();
 }
 
 /**
@@ -319,6 +333,17 @@ void Settings::saveSettings()
     foreach (const MediaStatusColumns &column, m_mediaStatusColumns)
         columns.append(column);
     m_settings.setValue("MediaStatusColumns", columns);
+
+    int i=0;
+    m_settings.beginWriteArray("CustomMovieScraper");
+    QMapIterator<int, QString> it(m_customMovieScraper);
+    while (it.hasNext()) {
+        it.next();
+        m_settings.setArrayIndex(i++);
+        m_settings.setValue("Info", it.key());
+        m_settings.setValue("Scraper", it.value());
+    }
+    m_settings.endArray();
 
     m_settings.sync();
 }
@@ -775,7 +800,7 @@ void Settings::setXbmcPort(int port)
     m_xbmcPort = port;
 }
 
-QList<int> Settings::scraperInfos(MainWidgets widget, int scraperNo)
+QList<int> Settings::scraperInfos(MainWidgets widget, QString scraperId)
 {
     QString item = "unknown";
     if (widget == WidgetMovies)
@@ -784,10 +809,10 @@ QList<int> Settings::scraperInfos(MainWidgets widget, int scraperNo)
         item = "Concerts";
     else if (widget == WidgetTvShows)
         item = "TvShows";
-    return m_settings.value(QString("Scrapers/%1/%2").arg(item).arg(scraperNo)).value<QList<int> >();
+    return m_settings.value(QString("Scrapers/%1/%2").arg(item).arg(scraperId)).value<QList<int> >();
 }
 
-void Settings::setScraperInfos(MainWidgets widget, int scraperNo, QList<int> items)
+void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<int> items)
 {
     QString item = "unknown";
     if (widget == WidgetMovies)
@@ -920,4 +945,14 @@ void Settings::setDontShowDeleteImageConfirm(bool show)
 bool Settings::dontShowDeleteImageConfirm() const
 {
     return m_dontShowDeleteImageConfirm;
+}
+
+QMap<int, QString> Settings::customMovieScraper() const
+{
+    return m_customMovieScraper;
+}
+
+void Settings::setCustomMovieScraper(QMap<int, QString> customMovieScraper)
+{
+    m_customMovieScraper = customMovieScraper;
 }
