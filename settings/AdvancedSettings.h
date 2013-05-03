@@ -27,6 +27,8 @@ public:
     QHash<QString, QString> studioMappings() const;
     QHash<QString, QString> countryMappings() const;
     bool useFirstStudioOnly() const;
+    bool threadedImageLoading() const;
+    bool forceCache() const;
 
 private:
     bool m_debugLog;
@@ -42,10 +44,13 @@ private:
     QHash<QString, QString> m_studioMappings;
     QHash<QString, QString> m_countryMappings;
     bool m_useFirstStudioOnly;
+    bool m_threadedImageLoading;
+    bool m_forceCache;
 
     void loadSettings();
     void reset();
     void loadLog(QXmlStreamReader &xml);
+    void loadGui(QXmlStreamReader &xml);
     void loadSortTokens(QXmlStreamReader &xml);
     void loadGenreMappings(QXmlStreamReader &xml);
     void loadFilters(QXmlStreamReader &xml);

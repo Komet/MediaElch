@@ -139,7 +139,7 @@ bool XbmcXml::saveMovie(Movie *movie)
     QFileInfo fi(movie->files().at(0));
     foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieNfo)) {
         QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-        QFile file(fi.absolutePath() + QDir::separator() + saveFileName);
+        QFile file(fi.absolutePath() + "/" + saveFileName);
         qDebug() << "Saving to" << file.fileName();
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
             qWarning() << "File could not be openend";
@@ -162,7 +162,7 @@ bool XbmcXml::saveMovie(Movie *movie)
                 if (imageType == ImageType::MovieBackdrop && (movie->discType() == DiscBluRay || movie->discType() == DiscDvd))
                     saveFileName = "fanart.jpg";
                 QString path = getPath(movie);
-                saveFile(path + QDir::separator() + saveFileName, movie->image(imageType));
+                saveFile(path + "/" + saveFileName, movie->image(imageType));
             }
         }
 
@@ -174,7 +174,7 @@ bool XbmcXml::saveMovie(Movie *movie)
                 if (imageType == ImageType::MovieBackdrop && (movie->discType() == DiscBluRay || movie->discType() == DiscDvd))
                     saveFileName = "fanart.jpg";
                 QString path = getPath(movie);
-                QFile(path + QDir::separator() + saveFileName).remove();
+                QFile(path + "/" + saveFileName).remove();
             }
         }
     }
@@ -197,10 +197,10 @@ bool XbmcXml::saveMovie(Movie *movie)
     foreach (const Actor &actor, movie->actors()) {
         if (!actor.image.isNull()) {
             QDir dir;
-            dir.mkdir(fi.absolutePath() + QDir::separator() + ".actors");
+            dir.mkdir(fi.absolutePath() + "/" + ".actors");
             QString actorName = actor.name;
             actorName = actorName.replace(" ", "_");
-            saveFile(fi.absolutePath() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".jpg", actor.image);
+            saveFile(fi.absolutePath() + "/" + ".actors" + "/" + actorName + ".jpg", actor.image);
         }
     }
 
@@ -227,9 +227,9 @@ QString XbmcXml::nfoFilePath(Movie *movie)
 
     foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieNfo)) {
         QString file = dataFile.saveFileName(fi.fileName(), -1, movie->files().count() > 1);
-        QFileInfo nfoFi(fi.absolutePath() + QDir::separator() + file);
+        QFileInfo nfoFi(fi.absolutePath() + "/" + file);
         if (nfoFi.exists()) {
-            nfoFile = fi.absolutePath() + QDir::separator() + file;
+            nfoFile = fi.absolutePath() + "/" + file;
             break;
         }
     }
@@ -252,9 +252,9 @@ QString XbmcXml::nfoFilePath(TvShowEpisode *episode)
 
     foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo)) {
         QString file = dataFile.saveFileName(fi.fileName(), -1, episode->files().count() > 1);
-        QFileInfo nfoFi(fi.absolutePath() + QDir::separator() + file);
+        QFileInfo nfoFi(fi.absolutePath() + "/" + file);
         if (nfoFi.exists()) {
-            nfoFile = fi.absolutePath() + QDir::separator() + file;
+            nfoFile = fi.absolutePath() + "/" + file;
             break;
         }
     }
@@ -282,9 +282,9 @@ QString XbmcXml::nfoFilePath(Concert *concert)
 
     foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertNfo)) {
         QString file = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
-        QFileInfo nfoFi(fi.absolutePath() + QDir::separator() + file);
+        QFileInfo nfoFi(fi.absolutePath() + "/" + file);
         if (nfoFi.exists()) {
-            nfoFile = fi.absolutePath() + QDir::separator() + file;
+            nfoFile = fi.absolutePath() + "/" + file;
             break;
         }
     }
@@ -539,7 +539,7 @@ QString XbmcXml::actorImageName(Movie *movie, Actor actor)
     QFileInfo fi(movie->files().at(0));
     QString actorName = actor.name;
     actorName = actorName.replace(" ", "_");
-    QString path = fi.absolutePath() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".jpg";
+    QString path = fi.absolutePath() + "/" + ".actors" + "/" + actorName + ".jpg";
     fi.setFile(path);
     if (fi.isFile())
         return path;
@@ -626,7 +626,7 @@ bool XbmcXml::saveConcert(Concert *concert)
     QFileInfo fi(concert->files().at(0));
     foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::ConcertNfo)) {
         QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, concert->files().count() > 1);
-        QFile file(fi.absolutePath() + QDir::separator() + saveFileName);
+        QFile file(fi.absolutePath() + "/" + saveFileName);
         qDebug() << "Saving to" << file.fileName();
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
             qWarning() << "File could not be openend";
@@ -649,7 +649,7 @@ bool XbmcXml::saveConcert(Concert *concert)
                 if (imageType == ImageType::ConcertBackdrop && (concert->discType() == DiscBluRay || concert->discType() == DiscDvd))
                     saveFileName = "fanart.jpg";
                 QString path = getPath(concert);
-                saveFile(path + QDir::separator() + saveFileName, concert->image(imageType));
+                saveFile(path + "/" + saveFileName, concert->image(imageType));
             }
         }
         if (concert->imagesToRemove().contains(imageType)) {
@@ -660,7 +660,7 @@ bool XbmcXml::saveConcert(Concert *concert)
                 if (imageType == ImageType::ConcertBackdrop && (concert->discType() == DiscBluRay || concert->discType() == DiscDvd))
                     saveFileName = "fanart.jpg";
                 QString path = getPath(concert);
-                QFile(path + QDir::separator() + saveFileName).remove();
+                QFile(path + "/" + saveFileName).remove();
             }
         }
     }
@@ -779,7 +779,7 @@ QString XbmcXml::actorImageName(TvShow *show, Actor actor)
         return QString();
     QString actorName = actor.name;
     actorName = actorName.replace(" ", "_");
-    QString fileName = show->dir() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".jpg";
+    QString fileName = show->dir() + "/" + ".actors" + "/" + actorName + ".jpg";
     QFileInfo fi(fileName);
     if (fi.isFile())
         return fileName;
@@ -804,9 +804,9 @@ bool XbmcXml::loadTvShow(TvShow *show, QString initialNfoContent)
         QString nfoFile;
         foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowNfo)) {
             QString file = dataFile.saveFileName("");
-            QFileInfo nfoFi(show->dir() + QDir::separator() + file);
+            QFileInfo nfoFi(show->dir() + "/" + file);
             if (nfoFi.exists()) {
-                nfoFile = show->dir() + QDir::separator() + file;
+                nfoFile = show->dir() + "/" + file;
                 break;
             }
         }
@@ -1022,7 +1022,7 @@ bool XbmcXml::saveTvShow(TvShow *show)
     Manager::instance()->database()->update(show);
 
     foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowNfo)) {
-        QFile file(show->dir() + QDir::separator() + dataFile.saveFileName(""));
+        QFile file(show->dir() + "/" + dataFile.saveFileName(""));
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
             qWarning() << "Nfo file could not be openend for writing" << file.fileName();
             return false;
@@ -1036,13 +1036,13 @@ bool XbmcXml::saveTvShow(TvShow *show)
         if (show->imageHasChanged(imageType) && !show->image(imageType).isNull()) {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName("");
-                saveFile(show->dir() + QDir::separator() + saveFileName, show->image(imageType));
+                saveFile(show->dir() + "/" + saveFileName, show->image(imageType));
             }
         }
         if (show->imagesToRemove().contains(imageType)) {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName("");
-                QFile(show->dir() + QDir::separator() + saveFileName).remove();
+                QFile(show->dir() + "/" + saveFileName).remove();
             }
         }
     }
@@ -1053,13 +1053,13 @@ bool XbmcXml::saveTvShow(TvShow *show)
             if (show->seasonImageHasChanged(season, imageType) && !show->seasonImage(season, imageType).isNull()) {
                 foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
                     QString saveFileName = dataFile.saveFileName("", season);
-                    saveFile(show->dir() + QDir::separator() + saveFileName, show->seasonImage(season, imageType));
+                    saveFile(show->dir() + "/" + saveFileName, show->seasonImage(season, imageType));
                 }
             }
             if (show->imagesToRemove().contains(imageType) && show->imagesToRemove().value(imageType).contains(season)) {
                 foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
                     QString saveFileName = dataFile.saveFileName("", season);
-                    QFile(show->dir() + QDir::separator() + saveFileName).remove();
+                    QFile(show->dir() + "/" + saveFileName).remove();
                 }
             }
         }
@@ -1082,10 +1082,10 @@ bool XbmcXml::saveTvShow(TvShow *show)
     foreach (const Actor &actor, show->actors()) {
         if (!actor.image.isNull()) {
             QDir dir;
-            dir.mkdir(show->dir() + QDir::separator() + ".actors");
+            dir.mkdir(show->dir() + "/" + ".actors");
             QString actorName = actor.name;
             actorName = actorName.replace(" ", "_");
-            saveFile(show->dir() + QDir::separator() + ".actors" + QDir::separator() + actorName + ".jpg", actor.image);
+            saveFile(show->dir() + "/" + ".actors" + "/" + actorName + ".jpg", actor.image);
         }
     }
 
@@ -1133,7 +1133,7 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
     QFileInfo fi(episode->files().at(0));
     foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo)) {
         QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, episode->files().count() > 1);
-        QFile file(fi.absolutePath() + QDir::separator() + saveFileName);
+        QFile file(fi.absolutePath() + "/" + saveFileName);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
             qWarning() << "Nfo file could not be opened for writing" << saveFileName;
             return false;
@@ -1153,7 +1153,7 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
         } else {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
                 QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, episode->files().count() > 1);
-                saveFile(fi.absolutePath() + QDir::separator() + saveFileName, episode->thumbnailImage());
+                saveFile(fi.absolutePath() + "/" + saveFileName, episode->thumbnailImage());
             }
         }
     }
@@ -1169,7 +1169,7 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
         } else {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
                 QString saveFileName = dataFile.saveFileName(fi.fileName(), -1, episode->files().count() > 1);
-                QFile(fi.absolutePath() + QDir::separator() + saveFileName).remove();
+                QFile(fi.absolutePath() + "/" + saveFileName).remove();
             }
         }
     }
@@ -1508,9 +1508,9 @@ QString XbmcXml::imageFileName(Movie *movie, int type, QList<DataFile> dataFiles
         if (type == ImageType::MovieBackdrop && (movie->discType() == DiscBluRay || movie->discType() == DiscDvd))
             file = "fanart.jpg";
         QString path = getPath(movie);
-        QFileInfo pFi(path + QDir::separator() + file);
+        QFileInfo pFi(path + "/" + file);
         if (pFi.isFile() || constructName) {
-            fileName = path + QDir::separator() + file;
+            fileName = path + "/" + file;
             break;
         }
     }
@@ -1558,9 +1558,9 @@ QString XbmcXml::imageFileName(Concert *concert, int type, QList<DataFile> dataF
         if (type == ImageType::ConcertBackdrop && (concert->discType() == DiscBluRay || concert->discType() == DiscDvd))
             file = "fanart.jpg";
         QString path = getPath(concert);
-        QFileInfo pFi(path + QDir::separator() + file);
+        QFileInfo pFi(path + "/" + file);
         if (pFi.isFile() || constructName) {
-            fileName = path + QDir::separator() + file;
+            fileName = path + "/" + file;
             break;
         }
     }
@@ -1618,9 +1618,9 @@ QString XbmcXml::imageFileName(TvShow *show, int type, int season, QList<DataFil
     QString fileName;
     foreach (DataFile dataFile, dataFiles) {
         QString loadFileName = dataFile.saveFileName("", season);
-        QFileInfo fi(show->dir() + QDir::separator() + loadFileName);
+        QFileInfo fi(show->dir() + "/" + loadFileName);
         if (fi.isFile() || constructName) {
-            fileName = show->dir() + QDir::separator() + loadFileName;
+            fileName = show->dir() + "/" + loadFileName;
             break;
         }
     }
@@ -1661,9 +1661,9 @@ QString XbmcXml::imageFileName(TvShowEpisode *episode, int type, QList<DataFile>
 
     foreach (DataFile dataFile, dataFiles) {
         QString file = dataFile.saveFileName(fi.fileName());
-        QFileInfo pFi(fi.absolutePath() + QDir::separator() + file);
+        QFileInfo pFi(fi.absolutePath() + "/" + file);
         if (pFi.isFile() || constructName) {
-            fileName = fi.absolutePath() + QDir::separator() + file;
+            fileName = fi.absolutePath() + "/" + file;
             break;
         }
     }

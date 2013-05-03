@@ -7,6 +7,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include "globals/Globals.h"
+#include "settings/Settings.h"
 
 ImageCache::ImageCache(QObject *parent) :
     QObject(parent)
@@ -23,6 +24,8 @@ ImageCache::ImageCache(QObject *parent) :
     if (exists)
         m_cacheDir = location;
     qDebug() << "Cache dir" << m_cacheDir;
+
+    m_forceCache = Settings::instance()->advanced()->forceCache();
 }
 
 ImageCache *ImageCache::instance(QObject *parent)
@@ -40,7 +43,6 @@ QImage ImageCache::image(QString path, int width, int height, int &origWidth, in
 
     QString md5 = QCryptographicHash::hash(path.toUtf8(), QCryptographicHash::Md5).toHex();
     QString baseName = QString("%1_%2_%3_").arg(md5).arg(width).arg(height);
-    int lastMod = QFileInfo(path).lastModified().toTime_t();
 
     bool update = true;
     QDir dir(m_cacheDir);
@@ -51,7 +53,7 @@ QImage ImageCache::image(QString path, int width, int height, int &origWidth, in
         if (parts.count() > 6) {
             origWidth = parts.at(3).toInt();
             origHeight = parts.at(4).toInt();
-            if (parts.at(5).toInt() == lastMod)
+            if (m_forceCache || parts.at(5).toInt() == getLastModified(path))
                 update = false;
         }
     }
@@ -61,7 +63,7 @@ QImage ImageCache::image(QString path, int width, int height, int &origWidth, in
         origWidth = origImg.width();
         origHeight = origImg.height();
         QImage img = scaledImage(origImg, width, height);
-        img.save(m_cacheDir + "/" + QString("%1_%2_%3_%4_%5_%6_.png").arg(md5).arg(width).arg(height).arg(origWidth).arg(origHeight).arg(lastMod), "png", -1);
+        img.save(m_cacheDir + "/" + QString("%1_%2_%3_%4_%5_%6_.png").arg(md5).arg(width).arg(height).arg(origWidth).arg(origHeight).arg(getLastModified(path)), "png", -1);
         return img;
     }
 
@@ -106,9 +108,26 @@ QSize ImageCache::imageSize(QString path)
         return QImage(path).size();
 
     QStringList parts = files.first().split("_");
-    int lastMod = QFileInfo(path).lastModified().toTime_t();
-    if (lastMod != parts.at(5).toInt())
+    if (!m_forceCache && getLastModified(path) != parts.at(5).toInt())
         return QImage(path).size();
 
     return QSize(parts.at(3).toInt(), parts.at(4).toInt());
+}
+
+int ImageCache::getLastModified(const QString &fileName)
+{
+    int now = QDateTime::currentDateTime().toTime_t();
+    if (!m_lastModifiedTimes.contains(fileName) || m_lastModifiedTimes.value(fileName).first() < now-10) {
+        int lastMod = QFileInfo(fileName).lastModified().toTime_t();
+        m_lastModifiedTimes.insert(fileName, QList<int>() << now << lastMod);
+    }
+    return m_lastModifiedTimes.value(fileName).last();
+}
+
+void ImageCache::clearCache()
+{
+    if (m_cacheDir.isEmpty() || !Settings::instance()->advanced()->forceCache())
+        return;
+    foreach (const QFileInfo &file, QDir(m_cacheDir).entryInfoList(QDir::Files | QDir::NoDotAndDotDot))
+        QFile(file.absoluteFilePath()).remove();
 }
