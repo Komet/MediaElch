@@ -231,6 +231,7 @@ namespace TvShowScraperInfos {
     const int ExtraFanarts   = 21;
     const int Thumb          = 22;
     const int SeasonThumb    = 23;
+    const int Runtime        = 24;
 }
 
 namespace ConcertScraperInfos {

@@ -295,8 +295,8 @@ void TvShowFilesWidget::setFilter(QList<Filter *> filters, QString text)
 void TvShowFilesWidget::renewModel()
 {
     qDebug() << "Entered";
-    m_tvShowProxyModel->setSourceModel(0);
-    m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
+    //m_tvShowProxyModel->setSourceModel(0);
+    //m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
 }
 
 /**

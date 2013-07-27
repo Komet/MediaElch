@@ -27,6 +27,7 @@ TvShow::TvShow(QString dir, QObject *parent) :
     m_databaseId = -1;
     m_syncNeeded = false;
     m_hasTune = false;
+    m_runtime = 0;
 }
 
 /**
@@ -51,7 +52,8 @@ void TvShow::clear()
           << TvShowScraperInfos::ExtraArts
           << TvShowScraperInfos::ExtraFanarts
           << TvShowScraperInfos::Thumb
-          << TvShowScraperInfos::SeasonThumb;
+          << TvShowScraperInfos::SeasonThumb
+          << TvShowScraperInfos::Runtime;
     clear(infos);
     m_nfoContent.clear();
 }
@@ -133,6 +135,8 @@ void TvShow::clear(QList<int> infos)
         m_extraFanartImagesToAdd.clear();
         m_extraFanarts.clear();
     }
+    if (infos.contains(TvShowScraperInfos::Runtime))
+        m_runtime = 0;
     m_hasChanged = false;
 }
 
@@ -1283,6 +1287,17 @@ QList<int> TvShow::seasonImageTypes()
 bool TvShow::hasImage(int type)
 {
     return m_hasImage.value(type, false);
+}
+
+int TvShow::runtime() const
+{
+    return m_runtime;
+}
+
+void TvShow::setRuntime(int runtime)
+{
+    m_runtime = runtime;
+    setChanged(true);
 }
 
 /*** DEBUG ***/

@@ -52,6 +52,7 @@ TvShowSearch::TvShowSearch(QWidget *parent) :
     ui->chkTitle->setMyData(TvShowScraperInfos::Title);
     ui->chkWriter->setMyData(TvShowScraperInfos::Writer);
     ui->chkExtraArts->setMyData(TvShowScraperInfos::ExtraArts);
+    ui->chkRuntime->setMyData(TvShowScraperInfos::Runtime);
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0)
@@ -251,6 +252,7 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkThumbnail->setEnabled(false);
         ui->chkDirector->setEnabled(false);
         ui->chkWriter->setEnabled(false);
+        ui->chkRuntime->setEnabled(true);
     } else if (type == UpdateShowAndAllEpisodes || type == UpdateShowAndNewEpisodes) {
         ui->chkGenres->setEnabled(true);
         ui->chkActors->setEnabled(true);
@@ -264,6 +266,7 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkThumbnail->setEnabled(true);
         ui->chkDirector->setEnabled(true);
         ui->chkWriter->setEnabled(true);
+        ui->chkRuntime->setEnabled(true);
     } else {
         ui->chkGenres->setEnabled(false);
         ui->chkActors->setEnabled(false);
@@ -277,6 +280,7 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkThumbnail->setEnabled(true);
         ui->chkDirector->setEnabled(true);
         ui->chkWriter->setEnabled(true);
+        ui->chkRuntime->setEnabled(false);
     }
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>())

@@ -72,6 +72,7 @@ private slots:
     void onStudioChange(QString studio);
     void onOverviewChange();
     void onActorEdited(QTableWidgetItem *item);
+    void onRuntimeChange(int runtime);
 
     void onRemoveExtraFanart(const QString &file);
     void onRemoveExtraFanart(const QByteArray &image);

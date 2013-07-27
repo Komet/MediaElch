@@ -130,6 +130,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     connect(ui->studio, SIGNAL(textEdited(QString)), this, SLOT(onStudioChange(QString)));
     connect(ui->overview, SIGNAL(textChanged()), this, SLOT(onOverviewChange()));
     connect(ui->actors, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onActorEdited(QTableWidgetItem*)));
+    connect(ui->runtime, SIGNAL(valueChanged(int)), this, SLOT(onRuntimeChange(int)));
 
     onSetEnabled(false);
 
@@ -179,15 +180,34 @@ void TvShowWidgetTvShow::setBigWindow(bool bigWindow)
 void TvShowWidgetTvShow::onClear()
 {
     qDebug() << "Entered";
+
+    bool blocked;
+
+    blocked = ui->certification->blockSignals(true);
+    ui->certification->clear();
+    ui->certification->blockSignals(blocked);
+
+    blocked = ui->rating->blockSignals(true);
+    ui->rating->clear();
+    ui->rating->blockSignals(blocked);
+
+    blocked = ui->firstAired->blockSignals(true);
+    ui->firstAired->setDate(QDate::currentDate());
+    ui->firstAired->blockSignals(blocked);
+
+    blocked = ui->overview->blockSignals(true);
+    ui->overview->clear();
+    ui->overview->blockSignals(blocked);
+
+    blocked = ui->runtime->blockSignals(true);
+    ui->runtime->clear();
+    ui->runtime->blockSignals(blocked);
+
     ui->showTitle->clear();
     ui->actors->setRowCount(0);
     ui->dir->clear();
     ui->name->clear();
-    ui->rating->clear();
-    ui->certification->clear();
-    ui->firstAired->setDate(QDate::currentDate());
     ui->studio->clear();
-    ui->overview->clear();
     ui->genreCloud->clear();
     ui->fanarts->clear();
     ui->poster->clear();
@@ -249,6 +269,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->rating->blockSignals(true);
     ui->firstAired->blockSignals(true);
     ui->overview->blockSignals(true);
+    ui->runtime->blockSignals(true);
 
     onClear();
 
@@ -258,6 +279,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->firstAired->setDate(m_show->firstAired());
     ui->studio->setText(m_show->network());
     ui->overview->setPlainText(m_show->overview());
+    ui->runtime->setValue(m_show->runtime());
 
     ui->actors->blockSignals(true);
     foreach (Actor *actor, m_show->actorsPointer()) {
@@ -294,6 +316,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->rating->blockSignals(false);
     ui->firstAired->blockSignals(false);
     ui->overview->blockSignals(false);
+    ui->runtime->blockSignals(false);
     ui->buttonRevert->setVisible(m_show->hasChanged());
 }
 
@@ -840,6 +863,12 @@ void TvShowWidgetTvShow::onCertificationChange(QString text)
 void TvShowWidgetTvShow::onRatingChange(double value)
 {
     m_show->setRating(value);
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetTvShow::onRuntimeChange(int runtime)
+{
+    m_show->setRuntime(runtime);
     ui->buttonRevert->setVisible(true);
 }
 

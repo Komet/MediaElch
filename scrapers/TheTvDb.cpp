@@ -373,6 +373,8 @@ void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, TvShowUpdateType up
                 show->setRating(elem.elementsByTagName("Rating").at(0).toElement().text().toFloat());
             if (infosToLoad.contains(TvShowScraperInfos::Title) && !elem.elementsByTagName("SeriesName").isEmpty())
                 show->setName(elem.elementsByTagName("SeriesName").at(0).toElement().text());
+            if (infosToLoad.contains(TvShowScraperInfos::Runtime) && !elem.elementsByTagName("Runtime").isEmpty())
+                show->setRuntime(elem.elementsByTagName("Runtime").at(0).toElement().text().toInt());
         }
     }
 

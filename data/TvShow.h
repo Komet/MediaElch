@@ -86,6 +86,7 @@ public:
     bool syncNeeded() const;
     QList<int> infosToLoad() const;
     bool hasTune() const;
+    int runtime() const;
 
     void setName(QString name);
     void setShowTitle(QString title);
@@ -124,6 +125,7 @@ public:
     void setDatabaseId(int id);
     void setSyncNeeded(bool syncNeeded);
     void setHasTune(bool hasTune);
+    void setRuntime(int runtime);
 
     void removeActor(Actor *actor);
     void removeGenre(QString genre);
@@ -171,6 +173,7 @@ private:
     QString m_showTitle;
     qreal m_rating;
     QDate m_firstAired;
+    int m_runtime;
     QStringList m_genres;
     QStringList m_tags;
     QString m_certification;
