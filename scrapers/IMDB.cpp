@@ -85,10 +85,11 @@ void IMDB::search(QString searchStr)
 
     QRegExp rx("^tt\\d+$");
     if (rx.exactMatch(searchStr))
-        url.setEncodedUrl(QString("http://imdbapi.org/?id=%1&type=json&plot=full&episode=0&limit=5&yg=0&mt=M&lang=en-US").arg(searchStr).toUtf8());
+        url.setEncodedUrl(QString("http://mymovieapi.com/?id=%1&type=json&plot=full&episode=0&limit=5&yg=0&mt=M&lang=en-US").arg(searchStr).toUtf8());
     else
-        url.setEncodedUrl(QString("http://imdbapi.org/?q=%1&type=json&plot=full&episode=0&limit=5&yg=0&mt=M&lang=en-US").arg(encodedSearch).toUtf8());
+        url.setEncodedUrl(QString("http://mymovieapi.com/?title=%1&type=json&plot=full&episode=0&limit=5&yg=0&mt=M&lang=en-US").arg(encodedSearch).toUtf8());
     QNetworkRequest request(url);
+    request.setRawHeader("Accept", "application/json");
     QNetworkReply *reply = qnam()->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
 }
@@ -144,8 +145,9 @@ void IMDB::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<in
     movie->clear(infos);
     movie->setId(ids.values().first());
 
-    QUrl url(QString("http://imdbapi.org/?id=%1&type=json&plot=full&episode=0&lang=en-US").arg(ids.values().first()));
+    QUrl url(QString("http://mymovieapi.com/?id=%1&type=json&plot=full&episode=0&lang=en-US").arg(ids.values().first()));
     QNetworkRequest request(url);
+    request.setRawHeader("Accept", "application/json");
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
