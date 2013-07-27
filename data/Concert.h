@@ -37,7 +37,6 @@ class Concert : public QObject
     Q_PROPERTY(QString certification READ certification WRITE setCertification)
     Q_PROPERTY(int playcount READ playcount WRITE setPlayCount)
     Q_PROPERTY(QDateTime lastPlayed READ lastPlayed WRITE setLastPlayed)
-    Q_PROPERTY(QStringList genres READ genres WRITE setGenres)
     Q_PROPERTY(QUrl trailer READ trailer WRITE setTrailer)
     Q_PROPERTY(QList<Poster> posters READ posters WRITE setPosters)
     Q_PROPERTY(QList<Poster> backdrops READ backdrops WRITE setBackdrops)
@@ -97,7 +96,6 @@ public:
     void setTagline(QString tagline);
     void setRuntime(int runtime);
     void setCertification(QString certification);
-    void setGenres(QStringList genres);
     void setTrailer(QUrl trailer);
     void addGenre(QString genre);
     void addTag(QString tag);

@@ -729,17 +729,6 @@ void Concert::setCertification(QString certification)
 }
 
 /**
- * @brief Sets the concerts genres
- * @param genres List of genres of the concert
- * @see Concert::genres
- */
-void Concert::setGenres(QStringList genres)
-{
-    m_genres = genres;
-    setChanged(true);
-}
-
-/**
  * @brief Sets the concerts trailer
  * @param trailer URL of the concerts trailer
  * @see Concert::trailer
@@ -939,6 +928,8 @@ void Concert::setDatabaseId(int id)
  */
 void Concert::addGenre(QString genre)
 {
+    if (genre.isEmpty())
+        return;
     m_genres.append(genre);
     setChanged(true);
 }

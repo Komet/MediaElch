@@ -40,9 +40,6 @@ class Movie : public QObject
     Q_PROPERTY(QString certification READ certification WRITE setCertification)
     Q_PROPERTY(QString writer READ writer WRITE setWriter)
     Q_PROPERTY(QString director READ director WRITE setDirector)
-    Q_PROPERTY(QStringList genres READ genres WRITE setGenres)
-    Q_PROPERTY(QStringList countries READ countries WRITE setCountries)
-    Q_PROPERTY(QStringList studios READ studios WRITE setStudios)
     Q_PROPERTY(QUrl trailer READ trailer WRITE setTrailer)
     Q_PROPERTY(QList<Actor> actors READ actors WRITE setActors)
     Q_PROPERTY(int playcount READ playcount WRITE setPlayCount)
@@ -125,9 +122,6 @@ public:
     void setCertification(QString certification);
     void setWriter(QString writer);
     void setDirector(QString director);
-    void setGenres(QStringList genres);
-    void setCountries(QStringList countries);
-    void setStudios(QStringList studios);
     void addStudio(QString studio);
     void addTag(QString tag);
     void setTrailer(QUrl trailer);

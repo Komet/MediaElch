@@ -834,39 +834,6 @@ void Movie::setDirector(QString director)
 }
 
 /**
- * @brief Sets the movies genres
- * @param genres List of genres of the movie
- * @see Movie::genres
- */
-void Movie::setGenres(QStringList genres)
-{
-    m_genres = genres;
-    setChanged(true);
-}
-
-/**
- * @brief Sets the movies production countries
- * @param countries List of production countries
- * @see Movie::countries
- */
-void Movie::setCountries(QStringList countries)
-{
-    m_countries = countries;
-    setChanged(true);
-}
-
-/**
- * @brief Sets the movies studios
- * @param studios List of studios
- * @see Movie::studios
- */
-void Movie::setStudios(QStringList studios)
-{
-    m_studios = studios;
-    setChanged(true);
-}
-
-/**
  * @brief Sets the movies trailer
  * @param trailer URL of the movies trailer
  * @see Movie::trailer
@@ -1104,6 +1071,8 @@ void Movie::addActor(Actor actor)
  */
 void Movie::addCountry(QString country)
 {
+    if (country.isEmpty())
+        return;
     m_countries.append(country);
     setChanged(true);
 }
@@ -1115,6 +1084,8 @@ void Movie::addCountry(QString country)
  */
 void Movie::addGenre(QString genre)
 {
+    if (genre.isEmpty())
+        return;
     m_genres.append(genre);
     setChanged(true);
 }
@@ -1126,6 +1097,8 @@ void Movie::addGenre(QString genre)
  */
 void Movie::addStudio(QString studio)
 {
+    if (studio.isEmpty())
+        return;
     m_studios.append(studio);
     setChanged(true);
 }

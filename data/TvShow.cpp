@@ -764,6 +764,12 @@ void TvShow::setFirstAired(QDate aired)
  */
 void TvShow::setGenres(QStringList genres)
 {
+    m_genres.clear();
+    foreach (const QString &genre, genres) {
+        if (!genre.isEmpty())
+            m_genres.append(genre);
+    }
+
     m_genres = genres;
     setChanged(true);
 }
@@ -775,6 +781,8 @@ void TvShow::setGenres(QStringList genres)
  */
 void TvShow::addGenre(QString genre)
 {
+    if (genre.isEmpty())
+        return;
     m_genres.append(genre);
     setChanged(true);
 }
