@@ -152,6 +152,11 @@ void FilesWidget::multiScrape()
     if (movies.isEmpty())
         return;
 
+    if (movies.count() == 1) {
+        emit sigStartSearch();
+        return;
+    }
+
     MovieMultiScrapeDialog::instance()->setMovies(movies);
     int result = MovieMultiScrapeDialog::instance()->exec();
     if (result == QDialog::Accepted)

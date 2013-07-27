@@ -46,6 +46,7 @@ public slots:
 signals:
     void noMovieSelected();
     void movieSelected(Movie*);
+    void sigStartSearch();
 
 protected:
     void enterEvent(QEvent *event);
