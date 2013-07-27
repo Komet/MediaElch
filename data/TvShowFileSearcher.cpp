@@ -367,6 +367,9 @@ int TvShowFileSearcher::getSeasonNumber(QStringList files)
     rx.setPattern("(\\d+)(\\d){2}");
     if (rx.indexIn(filename) != -1)
         return rx.cap(1).toInt();
+    rx.setPattern("Season[._ ]?(\\d+)[._ ]?Episode");
+    if (rx.indexIn(filename) != -1)
+        return rx.cap(1).toInt();
 
     return 0;
 }
@@ -390,7 +393,7 @@ QList<int> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
     }
 
     QStringList patterns;
-    patterns << "S(\\d+)[\\._\\-]?E(\\d+)" << "S(\\d+)EP(\\d+)" << "(\\d+)x(\\d+)" << "(\\d+)(\\d){2}";
+    patterns << "S(\\d+)[\\._\\-]?E(\\d+)" << "S(\\d+)EP(\\d+)" << "(\\d+)x(\\d+)" << "(\\d+)(\\d){2}" << "Season[._ ]?(\\d+)[._ ]?Episode[._ ]?(\\d+)";
     QRegExp rx;
     rx.setCaseSensitivity(Qt::CaseInsensitive);
 
