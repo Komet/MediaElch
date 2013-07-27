@@ -19,9 +19,7 @@ public:
     void saveSettings(QSettings &settings);
     QList<int> scraperSupports();
     QList<int> scraperNativelySupports();
-    QMap<QString, QString> languages();
-    QString language();
-    void setLanguage(QString language);
+    QWidget *settingsWidget();
 
 signals:
     void searchDone(QList<ScraperSearchResult>);

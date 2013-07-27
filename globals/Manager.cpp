@@ -12,6 +12,7 @@
 #include "scrapers/Cinefacts.h"
 #include "scrapers/CustomMovieScraper.h"
 #include "scrapers/IMDB.h"
+#include "scrapers/MediaPassion.h"
 #include "scrapers/OFDb.h"
 #include "scrapers/TheTvDb.h"
 #include "scrapers/TMDb.h"
@@ -308,6 +309,7 @@ QList<ScraperInterface*> Manager::constructNativeScrapers(QObject *parent)
     QList<ScraperInterface*> nativeScrapers;
     nativeScrapers.append(new TMDb(parent));
     nativeScrapers.append(new IMDB(parent));
+    nativeScrapers.append(new MediaPassion(parent));
     nativeScrapers.append(new Cinefacts(parent));
     nativeScrapers.append(new OFDb(parent));
     nativeScrapers.append(new VideoBuster(parent));

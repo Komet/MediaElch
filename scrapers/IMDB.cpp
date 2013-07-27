@@ -2,6 +2,7 @@
 
 #include <QScriptEngine>
 #include <QScriptValueIterator>
+#include <QWidget>
 #include "data/Storage.h"
 #include "globals/Helper.h"
 #include "settings/Settings.h"
@@ -38,24 +39,14 @@ QString IMDB::identifier()
     return QString("imdb");
 }
 
-QMap<QString, QString> IMDB::languages()
-{
-    return QMap<QString, QString>();
-}
-
-QString IMDB::language()
-{
-    return QString();
-}
-
-void IMDB::setLanguage(QString language)
-{
-    Q_UNUSED(language);
-}
-
 bool IMDB::hasSettings()
 {
     return false;
+}
+
+QWidget *IMDB::settingsWidget()
+{
+    return new QWidget();
 }
 
 void IMDB::loadSettings(QSettings &settings)

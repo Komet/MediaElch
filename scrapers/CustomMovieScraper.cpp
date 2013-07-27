@@ -299,17 +299,7 @@ void CustomMovieScraper::saveSettings(QSettings &settings)
     Q_UNUSED(settings);
 }
 
-QMap<QString, QString> CustomMovieScraper::languages()
+QWidget *CustomMovieScraper::settingsWidget()
 {
-    return QMap<QString, QString>();
-}
-
-QString CustomMovieScraper::language()
-{
-    return QString();
-}
-
-void CustomMovieScraper::setLanguage(QString language)
-{
-    Q_UNUSED(language);
+    return new QWidget();
 }

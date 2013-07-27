@@ -332,32 +332,9 @@ void VideoBuster::saveSettings(QSettings &settings)
     Q_UNUSED(settings);
 }
 
-/**
- * @brief VideoBuster::languages
- * @return
- */
-QMap<QString, QString> VideoBuster::languages()
+QWidget *VideoBuster::settingsWidget()
 {
-    QMap<QString, QString> m;
-    return m;
-}
-
-/**
- * @brief language
- * @return
- */
-QString VideoBuster::language()
-{
-    return QString();
-}
-
-/**
- * @brief VideoBuster::setLanguage
- * @param language
- */
-void VideoBuster::setLanguage(QString language)
-{
-    Q_UNUSED(language);
+    return new QWidget();
 }
 
 /**

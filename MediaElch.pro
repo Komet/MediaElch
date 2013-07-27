@@ -90,7 +90,6 @@ SOURCES += main.cpp\
     concerts/ConcertSearch.cpp \
     concerts/ConcertFilesWidget.cpp \
     scrapers/TMDbConcerts.cpp \
-    cli/CLI.cpp \
     settings/Settings.cpp \
     movies/GenreWidget.cpp \
     movies/CertificationWidget.cpp \
@@ -142,7 +141,8 @@ SOURCES += main.cpp\
     smallWidgets/MessageLabel.cpp \
     smallWidgets/SearchOverlay.cpp \
     tvShows/ItemWidgetShow.cpp \
-    scrapers/CustomMovieScraper.cpp
+    scrapers/CustomMovieScraper.cpp \
+    scrapers/MediaPassion.cpp
 
 macx {
     OBJECTIVE_SOURCES += mac/MacFullscreen.mm
@@ -205,7 +205,6 @@ HEADERS  += main/MainWindow.h \
     concerts/ConcertSearch.h \
     concerts/ConcertFilesWidget.h \
     scrapers/TMDbConcerts.h \
-    cli/CLI.h \
     settings/Settings.h \
     movies/GenreWidget.h \
     movies/CertificationWidget.h \
@@ -261,7 +260,8 @@ HEADERS  += main/MainWindow.h \
     mac/MacFullscreen.h \
     smallWidgets/SearchOverlay.h \
     tvShows/ItemWidgetShow.h \
-    scrapers/CustomMovieScraper.h
+    scrapers/CustomMovieScraper.h \
+    scrapers/MediaPassion.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

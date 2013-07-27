@@ -19,67 +19,50 @@
 TheTvDb::TheTvDb(QObject *parent)
 {
     setParent(parent);
+
+    m_widget = new QWidget();
+    m_box = new QComboBox();
+    m_box->addItem(tr("Bulgarian"), "bg");
+    m_box->addItem(tr("Chinese"), "zh");
+    m_box->addItem(tr("Croatian"), "hr");
+    m_box->addItem(tr("Czech"), "cs");
+    m_box->addItem(tr("Danish"), "da");
+    m_box->addItem(tr("Dutch"), "nl");
+    m_box->addItem(tr("English"), "en");
+    m_box->addItem(tr("Finnish"), "fi");
+    m_box->addItem(tr("French"), "fr");
+    m_box->addItem(tr("German"), "de");
+    m_box->addItem(tr("Greek"), "el");
+    m_box->addItem(tr("Hebrew"), "he");
+    m_box->addItem(tr("Hungarian"), "hu");
+    m_box->addItem(tr("Italian"), "it");
+    m_box->addItem(tr("Japanese"), "ja");
+    m_box->addItem(tr("Korean"), "ko");
+    m_box->addItem(tr("Norwegian"), "no");
+    m_box->addItem(tr("Polish"), "pl");
+    m_box->addItem(tr("Portuguese"), "pt");
+    m_box->addItem(tr("Russian"), "ru");
+    m_box->addItem(tr("Slovene"), "sl");
+    m_box->addItem(tr("Spanish"), "es");
+    m_box->addItem(tr("Swedish"), "sv");
+    m_box->addItem(tr("Turkish"), "tr");
+    QHBoxLayout *layout = new QHBoxLayout();
+    layout->addWidget(new QLabel(tr("Language")));
+    layout->addWidget(m_box);
+    m_widget->setLayout(layout);
+
     m_apiKey = "A0BB9A0F6762942B";
     m_language = "en";
-
     m_xmlMirrors.append("http://thetvdb.com");
     m_bannerMirrors.append("http://thetvdb.com");
     m_zipMirrors.append("http://thetvdb.com");
+
     setMirrors();
 }
 
-/**
- * @brief languages
- * @return
- */
-QMap<QString, QString> TheTvDb::languages()
+QWidget *TheTvDb::settingsWidget()
 {
-    QMap<QString, QString> m;
-
-    m.insert(tr("Bulgarian"), "bg");
-    m.insert(tr("Chinese"), "zh");
-    m.insert(tr("Croatian"), "hr");
-    m.insert(tr("Czech"), "cs");
-    m.insert(tr("Danish"), "da");
-    m.insert(tr("Dutch"), "nl");
-    m.insert(tr("English"), "en");
-    m.insert(tr("Finnish"), "fi");
-    m.insert(tr("French"), "fr");
-    m.insert(tr("German"), "de");
-    m.insert(tr("Greek"), "el");
-    m.insert(tr("Hebrew"), "he");
-    m.insert(tr("Hungarian"), "hu");
-    m.insert(tr("Italian"), "it");
-    m.insert(tr("Japanese"), "ja");
-    m.insert(tr("Korean"), "ko");
-    m.insert(tr("Norwegian"), "no");
-    m.insert(tr("Polish"), "pl");
-    m.insert(tr("Portuguese"), "pt");
-    m.insert(tr("Russian"), "ru");
-    m.insert(tr("Slovene"), "sl");
-    m.insert(tr("Spanish"), "es");
-    m.insert(tr("Swedish"), "sv");
-    m.insert(tr("Turkish"), "tr");
-
-    return m;
-}
-
-/**
- * @brief language
- * @return
- */
-QString TheTvDb::language()
-{
-    return m_language;
-}
-
-/**
- * @brief TheTvDb::setLanguage
- * @param language
- */
-void TheTvDb::setLanguage(QString language)
-{
-    m_language = language;
+    return m_widget;
 }
 
 /**
@@ -115,6 +98,10 @@ bool TheTvDb::hasSettings()
 void TheTvDb::loadSettings(QSettings &settings)
 {
     m_language = settings.value("Scrapers/TheTvDb/Language", "en").toString();
+    for (int i=0, n=m_box->count() ; i<n ; ++i) {
+        if (m_box->itemData(i).toString() == m_language)
+            m_box->setCurrentIndex(i);
+    }
 }
 
 /**
@@ -122,6 +109,7 @@ void TheTvDb::loadSettings(QSettings &settings)
  */
 void TheTvDb::saveSettings(QSettings &settings)
 {
+    m_language = m_box->itemData(m_box->currentIndex()).toString();
     settings.setValue("Scrapers/TheTvDb/Language", m_language);
 }
 

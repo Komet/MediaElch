@@ -1,5 +1,6 @@
 #include "Cinefacts.h"
 #include <QTextDocument>
+#include <QWidget>
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -46,6 +47,11 @@ QString Cinefacts::identifier()
 bool Cinefacts::hasSettings()
 {
     return false;
+}
+
+QWidget *Cinefacts::settingsWidget()
+{
+    return new QWidget();
 }
 
 /**
@@ -468,32 +474,4 @@ void Cinefacts::backdropFinished()
         }
     }
     movie->controller()->scraperLoadDone();
-}
-
-/**
- * @brief Cinefacts::languages
- * @return
- */
-QMap<QString, QString> Cinefacts::languages()
-{
-    QMap<QString, QString> m;
-    return m;
-}
-
-/**
- * @brief language
- * @return
- */
-QString Cinefacts::language()
-{
-    return QString();
-}
-
-/**
- * @brief Cinefacts::setLanguage
- * @param language
- */
-void Cinefacts::setLanguage(QString language)
-{
-    Q_UNUSED(language);
 }

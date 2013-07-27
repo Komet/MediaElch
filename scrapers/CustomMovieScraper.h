@@ -22,11 +22,9 @@ public:
     void saveSettings(QSettings &settings);
     QList<int> scraperSupports();
     QList<int> scraperNativelySupports();
-    QMap<QString, QString> languages();
-    QString language();
-    void setLanguage(QString language);
     QList<ScraperInterface*> scrapersNeedSearch(QList<int> infos, QMap<ScraperInterface *, QString> alreadyLoadedIds);
     ScraperInterface *titleScraper();
+    QWidget *settingsWidget();
 
 private slots:
     void onTitleSearchDone(QList<ScraperSearchResult> results);

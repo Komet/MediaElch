@@ -1,6 +1,7 @@
 #ifndef TMDB_H
 #define TMDB_H
 
+#include <QComboBox>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include <QObject>
@@ -26,9 +27,7 @@ public:
     void saveSettings(QSettings &settings);
     QList<int> scraperSupports();
     QList<int> scraperNativelySupports();
-    QMap<QString, QString> languages();
-    QString language();
-    void setLanguage(QString language);
+    QWidget *settingsWidget();
     static QList<ScraperSearchResult> parseSearch(QString json, int *nextPage);
     static QString apiKey();
 
@@ -52,6 +51,8 @@ private:
     QMutex m_mutex;
     QList<int> m_scraperSupports;
     QList<int> m_scraperNativelySupports;
+    QWidget *m_widget;
+    QComboBox *m_box;
 
     QNetworkAccessManager *qnam();
     void setup();
