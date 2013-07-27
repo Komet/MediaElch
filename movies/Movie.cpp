@@ -43,9 +43,9 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_databaseId = -1;
     m_discType = DiscSingle;
     if (!files.isEmpty())
-        m_streamDetails = new StreamDetails(this, files.at(0));
+        m_streamDetails = new StreamDetails(this, files);
     else
-        m_streamDetails = new StreamDetails(this, "");
+        m_streamDetails = new StreamDetails(this, QStringList());
 }
 
 Movie::~Movie()

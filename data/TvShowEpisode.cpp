@@ -34,9 +34,9 @@ TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) :
     m_databaseId = -1;
     m_syncNeeded = false;
     if (!files.isEmpty())
-        m_streamDetails = new StreamDetails(this, files.at(0));
+        m_streamDetails = new StreamDetails(this, files);
     else
-        m_streamDetails = new StreamDetails(this, "");
+        m_streamDetails = new StreamDetails(this, QStringList());
 }
 
 /**

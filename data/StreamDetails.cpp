@@ -13,10 +13,10 @@ using namespace MediaInfoLib;
  * @param parent
  * @param file
  */
-StreamDetails::StreamDetails(QObject *parent, QString file) :
+StreamDetails::StreamDetails(QObject *parent, QStringList files) :
     QObject(parent)
 {
-    m_file = file;
+    m_files = files;
 }
 
 /**
@@ -35,16 +35,18 @@ void StreamDetails::clear()
 void StreamDetails::loadStreamDetails()
 {
     clear();
+    if (m_files.isEmpty())
+        return;
 
-    if (m_file.endsWith(".iso", Qt::CaseInsensitive) || m_file.endsWith(".img", Qt::CaseInsensitive))
+    if (m_files.first().endsWith(".iso", Qt::CaseInsensitive) || m_files.first().endsWith(".img", Qt::CaseInsensitive))
         return;
 
     // If it's a DVD structure, compute the biggest part (main movie) and use this IFO file
-    if (m_file.endsWith("VIDEO_TS.IFO")) {
+    if (m_files.first().endsWith("VIDEO_TS.IFO")) {
         QMap<QString, qint64> sizes;
         QString biggest;
         qint64 biggestSize = 0;
-        QFileInfo fi(m_file);
+        QFileInfo fi(m_files.first());
         foreach (const QFileInfo &fiVob, fi.dir().entryInfoList(QStringList() << "VTS_*.VOB" << "vts_*.vob", QDir::Files, QDir::Name)) {
             QRegExp rx("VTS_([0-9]*)_[0-9]*.VOB");
             rx.setMinimal(true);
@@ -62,7 +64,7 @@ void StreamDetails::loadStreamDetails()
         if (!biggest.isEmpty()) {
             QFileInfo fiNew(fi.absolutePath() + "/VTS_" + biggest + "_0.IFO");
             if (fiNew.isFile() && fiNew.exists())
-                m_file = fiNew.absoluteFilePath();
+                m_files = QStringList() << fiNew.absoluteFilePath();
         }
     }
 
@@ -71,9 +73,9 @@ void StreamDetails::loadStreamDetails()
     MI.Option(QString("Internet").toStdWString(), QString("no").toStdWString());
 
 #ifdef Q_OS_WIN32
-    MI.Open(m_file.toStdWString());
+    MI.Open(m_files.first().toStdWString());
 #else
-    MI.Open(QString(m_file.toUtf8()).toStdWString());
+    MI.Open(QString(m_files.first().toUtf8()).toStdWString());
 #endif
     MI.Option(QString("Complete").toStdWString(), QString("1").toStdWString());
 
@@ -88,7 +90,23 @@ void StreamDetails::loadStreamDetails()
     int audioCount = QString::fromStdWString(MI.Get(Stream_General, 0, QString("AudioCount").toStdWString())).toInt();
     int textCount = QString::fromStdWString(MI.Get(Stream_General, 0, QString("TextCount").toStdWString())).toInt();
 
-    duration = QString::fromStdWString(MI.Get(Stream_General, 0, QString("Duration").toStdWString())).toInt()/1000;
+    if (m_files.count() > 1) {
+        foreach (const QString &file, m_files) {
+            MediaInfo MI_duration;
+            MI_duration.Option(QString("Info_Version").toStdWString(), QString("0.7.61;%1;%2").arg(QApplication::applicationName()).arg(QApplication::applicationVersion()).toStdWString());
+            MI_duration.Option(QString("Internet").toStdWString(), QString("no").toStdWString());
+        #ifdef Q_OS_WIN32
+            MI_duration.Open(file.toStdWString());
+        #else
+            MI_duration.Open(QString(file.toUtf8()).toStdWString());
+        #endif
+            MI_duration.Option(QString("Complete").toStdWString(), QString("1").toStdWString());
+            duration += QString::fromStdWString(MI.Get(Stream_General, 0, QString("Duration").toStdWString())).toInt()/1000;
+        }
+    } else {
+        duration = QString::fromStdWString(MI.Get(Stream_General, 0, QString("Duration").toStdWString())).toInt()/1000;
+    }
+
     setVideoDetail("durationinseconds", QString("%1").arg(duration));
 
     if (videoCount > 0) {
