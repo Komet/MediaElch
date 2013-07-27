@@ -301,5 +301,5 @@ void CustomMovieScraper::saveSettings(QSettings &settings)
 
 QWidget *CustomMovieScraper::settingsWidget()
 {
-    return new QWidget();
+    return 0;
 }

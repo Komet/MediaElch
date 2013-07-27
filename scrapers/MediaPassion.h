@@ -39,6 +39,8 @@ private:
     QWidget *m_widget;
     QString m_username;
     QString m_password;
+    QString m_usernameEnc;
+    QString m_passwordEnc;
     QLineEdit *m_usernameEdit;
     QLineEdit *m_passwordEdit;
     QList<int> m_scraperSupports;

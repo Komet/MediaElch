@@ -32,6 +32,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    static MainWindow* instance();
+
 public slots:
     void setNewMarks();
 
@@ -89,6 +91,7 @@ private:
     QMap<MainWidgets, QMap<MainActions, bool> > m_actions;
     QMap<MainWidgets, QIcon> m_icons;
     FilterWidget *m_filterWidget;
+    static MainWindow *m_instance;
     void setupToolbar();
 };
 

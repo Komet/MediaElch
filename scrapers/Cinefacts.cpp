@@ -51,7 +51,7 @@ bool Cinefacts::hasSettings()
 
 QWidget *Cinefacts::settingsWidget()
 {
-    return new QWidget();
+    return 0;
 }
 
 /**

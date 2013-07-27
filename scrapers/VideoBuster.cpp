@@ -334,7 +334,7 @@ void VideoBuster::saveSettings(QSettings &settings)
 
 QWidget *VideoBuster::settingsWidget()
 {
-    return new QWidget();
+    return 0;
 }
 
 /**

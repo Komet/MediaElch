@@ -10,6 +10,7 @@
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "main/MainWindow.h"
 #include "settings/Settings.h"
 
 /**
@@ -20,8 +21,8 @@ TheTvDb::TheTvDb(QObject *parent)
 {
     setParent(parent);
 
-    m_widget = new QWidget();
-    m_box = new QComboBox();
+    m_widget = new QWidget(MainWindow::instance());
+    m_box = new QComboBox(m_widget);
     m_box->addItem(tr("Bulgarian"), "bg");
     m_box->addItem(tr("Chinese"), "zh");
     m_box->addItem(tr("Croatian"), "hr");
@@ -46,7 +47,7 @@ TheTvDb::TheTvDb(QObject *parent)
     m_box->addItem(tr("Spanish"), "es");
     m_box->addItem(tr("Swedish"), "sv");
     m_box->addItem(tr("Turkish"), "tr");
-    QHBoxLayout *layout = new QHBoxLayout();
+    QHBoxLayout *layout = new QHBoxLayout(m_widget);
     layout->addWidget(new QLabel(tr("Language")));
     layout->addWidget(m_box);
     m_widget->setLayout(layout);
