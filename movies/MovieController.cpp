@@ -75,17 +75,17 @@ bool MovieController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
                 if (pathElements.size() > 0 && QString::compare(pathElements.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0)
                     pathElements.removeLast();
                 if (pathElements.size() > 0)
-                    m_movie->setName(nameFormat->formatName(pathElements.last()));
+                    m_movie->setName(nameFormat->formatName(pathElements.last(), false));
             } else if (QString::compare(fi.fileName(), "index.bdmv", Qt::CaseInsensitive) == 0) {
                     QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
                     if (pathElements.size() > 0 && QString::compare(pathElements.last(), "BDMV", Qt::CaseInsensitive) == 0)
                         pathElements.removeLast();
                     if (pathElements.size() > 0)
-                        m_movie->setName(nameFormat->formatName(pathElements.last()));
+                        m_movie->setName(nameFormat->formatName(pathElements.last(), false));
             } else if (m_movie->inSeparateFolder()) {
                 QStringList splitted = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
                 if (!splitted.isEmpty()) {
-                    m_movie->setName(nameFormat->formatName(splitted.last()));
+                    m_movie->setName(nameFormat->formatName(splitted.last(), false));
                 } else {
                     if (m_movie->files().size() > 1)
                         m_movie->setName(nameFormat->formatName(

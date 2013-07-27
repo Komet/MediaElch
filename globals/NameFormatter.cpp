@@ -62,9 +62,10 @@ QString NameFormatter::excludeWords(QString name)
  * @param name Not yet formatted name.
  * @return Formatted name
  */
-QString NameFormatter::formatName(QString name)
+QString NameFormatter::formatName(QString name, bool replaceDots)
 {
-    name =  name.replace(".", " ").replace("_", " ");
+    if (replaceDots)
+        name = name.replace(".", " ").replace("_", " ");
 
     // remove exclude words
     name = excludeWords(name);
