@@ -153,7 +153,6 @@ int ImageDialog::exec(int type)
     ui->imageProvider->blockSignals(false);
 
     ui->searchTerm->setLoading(false);
-    ui->searchTerm->setEnabled(!haveDefault);
 
     // show image widget
     ui->stackedWidget->setCurrentIndex(1);
@@ -626,11 +625,9 @@ void ImageDialog::onProviderChanged(int index)
         // this is the default provider
         ui->stackedWidget->setCurrentIndex(1);
         ui->searchTerm->setLoading(false);
-        ui->searchTerm->setEnabled(false);
         clearSearch();
         setDownloads(m_defaultElements);
     } else {
-        ui->searchTerm->setEnabled(true);
         ui->searchTerm->setFocus();
         onSearch();
     }
@@ -642,8 +639,22 @@ void ImageDialog::onProviderChanged(int index)
  */
 void ImageDialog::onSearch(bool onlyFirstResult)
 {
-    ui->stackedWidget->setCurrentIndex(1);
     QString searchTerm = ui->searchTerm->text();
+    if (searchTerm.startsWith("http://")) {
+        clearSearch();
+        m_imageUrl = searchTerm;
+        Poster poster;
+        poster.originalUrl = searchTerm;
+        poster.thumbUrl = searchTerm;
+        onProviderImagesLoaded(QList<Poster>() << poster);
+        return;
+    }
+
+    bool haveDefault = m_defaultElements.count() > 0 || m_providers.isEmpty();
+    if (haveDefault && ui->imageProvider->currentIndex() == 0)
+        return;
+
+    ui->stackedWidget->setCurrentIndex(1);
     QString initialSearchTerm;
     QString id;
     if (m_itemType == ItemMovie) {

@@ -33,7 +33,11 @@
       <widget class="QComboBox" name="imageProvider"/>
      </item>
      <item>
-      <widget class="MyLineEdit" name="searchTerm"/>
+      <widget class="MyLineEdit" name="searchTerm">
+       <property name="toolTip">
+        <string>Enter a search term or URL</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
