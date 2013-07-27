@@ -100,6 +100,9 @@ bool MovieController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
                 else
                     m_movie->setName(nameFormat->formatName(fi.completeBaseName()));
             }
+            QRegExp rx("(tt[0-9]+)");
+            if (rx.indexIn(fi.completeBaseName()) != -1)
+                m_movie->setId(rx.cap(1));
         }
     }
     m_infoLoaded = infoLoaded;
