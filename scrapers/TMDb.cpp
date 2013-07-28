@@ -242,18 +242,36 @@ void TMDb::search(QString searchStr)
     qDebug() << "Entered, searchStr=" << searchStr;
     searchStr = searchStr.replace("-", " ");
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
+    QString searchTitle;
+    QString searchYear;
     QUrl url;
     QRegExp rx("^tt\\d+$");
     QRegExp rxTmdbId("^id\\d+$");
-    if (rx.exactMatch(searchStr))
+    if (rx.exactMatch(searchStr)) {
         url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(searchStr).arg(TMDb::apiKey()).arg(m_language));
-    else if (rxTmdbId.exactMatch(searchStr))
+    } else if (rxTmdbId.exactMatch(searchStr)) {
         url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(searchStr.mid(2)).arg(TMDb::apiKey()).arg(m_language));
-    else
+    } else {
         url.setUrl(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(TMDb::apiKey()).arg(m_language).arg(encodedSearch));
+        QList<QRegExp> rxYears;
+        rxYears << QRegExp("^(.*) \\((\\d{4})\\)$") << QRegExp("^(.*) (\\d{4})$") << QRegExp("^(.*) - (\\d{4})$");
+        foreach (QRegExp rxYear, rxYears) {
+            rxYear.setMinimal(true);
+            if (rxYear.exactMatch(searchStr)) {
+                searchTitle = rxYear.cap(1);
+                searchYear = rxYear.cap(2);
+                url.setUrl(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&year=%3&query=%4").arg(TMDb::apiKey()).arg(m_language).arg(searchYear).arg(searchTitle));
+                break;
+            }
+        }
+    }
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
     QNetworkReply *reply = qnam()->get(request);
+    if (!searchTitle.isEmpty() && !searchYear.isEmpty()) {
+        reply->setProperty("searchTitle", searchTitle);
+        reply->setProperty("searchYear", searchYear);
+    }
     reply->setProperty("searchString", searchStr);
     reply->setProperty("results", Storage::toVariant(reply, QList<ScraperSearchResult>()));
     connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
@@ -277,6 +295,8 @@ void TMDb::searchFinished()
     }
 
     QString searchString = reply->property("searchString").toString();
+    QString searchTitle = reply->property("searchTitle").toString();
+    QString searchYear = reply->property("searchYear").toString();
     QString msg = QString::fromUtf8(reply->readAll());
     int nextPage = -1;
     results.append(parseSearch(msg, &nextPage));
@@ -286,6 +306,9 @@ void TMDb::searchFinished()
         emit searchDone(results);
     } else {
         QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&query=%4").arg(TMDb::apiKey()).arg(m_language).arg(nextPage).arg(searchString));
+        if (!searchTitle.isEmpty() && !searchYear.isEmpty())
+            url.setUrl(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&year=%4&query=%5")
+                       .arg(TMDb::apiKey()).arg(m_language).arg(nextPage).arg(searchYear).arg(searchTitle));
         QNetworkRequest request(url);
         request.setRawHeader("Accept", "application/json");
         QNetworkReply *reply = qnam()->get(request);
