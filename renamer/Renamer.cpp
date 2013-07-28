@@ -256,7 +256,7 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                 QString nfoFileName = QFileInfo(nfo).fileName();
                 QList<DataFile> nfoFiles = Settings::instance()->dataFiles(DataFileType::MovieNfo);
                 if (!nfoFiles.isEmpty()) {
-                    QString newNfoFileName = nfoFiles.first().saveFileName(newFileName);
+                    QString newNfoFileName = nfoFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
                     Helper::sanitizeFileName(newNfoFileName);
                     if (newNfoFileName != nfoFileName) {
                         ui->results->append(tr("<b>Rename NFO</b> \"%1\" to \"%2\"").arg(nfoFileName).arg(newNfoFileName));
@@ -597,7 +597,7 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
                 QString nfoFileName = QFileInfo(nfo).fileName();
                 QList<DataFile> nfoFiles = Settings::instance()->dataFiles(DataFileType::ConcertNfo);
                 if (!nfoFiles.isEmpty()) {
-                    QString newNfoFileName = nfoFiles.first().saveFileName(newFileName);
+                    QString newNfoFileName = nfoFiles.first().saveFileName(newFileName, -1, concert->files().count() > 1);
                     Helper::sanitizeFileName(newNfoFileName);
                     if (newNfoFileName != nfoFileName) {
                         ui->results->append(tr("<b>Rename NFO</b> \"%1\" to \"%2\"").arg(nfoFileName).arg(newNfoFileName));
