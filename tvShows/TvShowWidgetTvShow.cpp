@@ -124,6 +124,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
 
     // Connect GUI change events to movie object
     connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(onNameChange(QString)));
+    connect(ui->sortTitle, SIGNAL(textEdited(QString)), this, SLOT(onSortTitleChange(QString)));
     connect(ui->certification, SIGNAL(editTextChanged(QString)), this, SLOT(onCertificationChange(QString)));
     connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
     connect(ui->firstAired, SIGNAL(dateChanged(QDate)), this, SLOT(onFirstAiredChange(QDate)));
@@ -207,6 +208,7 @@ void TvShowWidgetTvShow::onClear()
     ui->actors->setRowCount(0);
     ui->dir->clear();
     ui->name->clear();
+    ui->sortTitle->clear();
     ui->studio->clear();
     ui->genreCloud->clear();
     ui->fanarts->clear();
@@ -275,6 +277,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
 
     ui->dir->setText(m_show->dir());
     ui->name->setText(m_show->name());
+    ui->sortTitle->setText(m_show->sortTitle());
     ui->rating->setValue(m_show->rating());
     ui->firstAired->setDate(m_show->firstAired());
     ui->studio->setText(m_show->network());
@@ -845,6 +848,12 @@ void TvShowWidgetTvShow::onArtPageTwo()
 void TvShowWidgetTvShow::onNameChange(QString text)
 {
     m_show->setName(text);
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetTvShow::onSortTitleChange(QString text)
+{
+    m_show->setSortTitle(text);
     ui->buttonRevert->setVisible(true);
 }
 

@@ -66,6 +66,7 @@ private slots:
     void onDownloadTune();
 
     void onNameChange(QString text);
+    void onSortTitleChange(QString text);
     void onCertificationChange(QString text);
     void onRatingChange(double value);
     void onFirstAiredChange(QDate date);
