@@ -61,6 +61,7 @@ public:
     bool tvShowDvdOrder() const;
     bool dontShowDeleteImageConfirm() const;
     QMap<int, QString> customMovieScraper() const;
+    int currentMovieScraper() const;
 
     bool autoLoadStreamDetails();
 
@@ -100,6 +101,7 @@ public:
     void setTvShowDvdOrder(bool order);
     void setDontShowDeleteImageConfirm(bool show);
     void setCustomMovieScraper(QMap<int, QString> customMovieScraper);
+    void setCurrentMovieScraper(int current);
 
 public slots:
     void saveSettings();
@@ -142,6 +144,7 @@ private:
     bool m_tvShowDvdOrder;
     bool m_dontShowDeleteImageConfirm;
     QMap<int, QString> m_customMovieScraper;
+    int m_currentMovieScraper;
 
     void setupProxy();
 };

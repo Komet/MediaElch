@@ -79,7 +79,6 @@ int main(int argc, char *argv[])
     QTranslator qtTranslator;
     qtTranslator.load(":/i18n/qt_" + QLocale::system().name());
     a.installTranslator(&qtTranslator);
-    qDebug() << QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 
     QTranslator editTranslator;
     QString filename;

@@ -266,12 +266,12 @@ void MovieController::onDownloadFinished(DownloadManagerElement elem)
     m_downloadsLeft--;
     emit sigDownloadProgress(m_movie, m_downloadsLeft, m_downloadsSize);
 
-    if (elem.imageType == ImageType::Actor) {
+    if (!elem.data.isEmpty() && elem.imageType == ImageType::Actor) {
         elem.actor->image = elem.data;
-    } else if (elem.imageType == ImageType::MovieExtraFanart) {
+    } else if (!elem.data.isEmpty() && elem.imageType == ImageType::MovieExtraFanart) {
         Helper::resizeBackdrop(elem.data);
         m_movie->addExtraFanart(elem.data);
-    } else {
+    } else if (!elem.data.isEmpty()) {
         ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, elem.imageType));
         if (elem.imageType == ImageType::MovieBackdrop)
             Helper::resizeBackdrop(elem.data);

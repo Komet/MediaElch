@@ -1300,6 +1300,17 @@ void TvShow::setRuntime(int runtime)
     setChanged(true);
 }
 
+QString TvShow::sortTitle() const
+{
+    return m_sortTitle;
+}
+
+void TvShow::setSortTitle(QString sortTitle)
+{
+    m_sortTitle = sortTitle;
+    setChanged(true);
+}
+
 /*** DEBUG ***/
 
 QDebug operator<<(QDebug dbg, const TvShow &show)

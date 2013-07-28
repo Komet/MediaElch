@@ -32,6 +32,7 @@ MovieSearch::MovieSearch(QWidget *parent) :
         ui->comboScraper->addItem(scraper->name(), scraper->identifier());
         connect(scraper, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(showResults(QList<ScraperSearchResult>)));
     }
+    ui->comboScraper->setCurrentIndex(Settings::instance()->currentMovieScraper());
 
     connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(search()));
     connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(search()));
@@ -147,6 +148,7 @@ void MovieSearch::search()
     ui->comboScraper->setEnabled(false);
     ui->searchString->setLoading(true);
     scraper->search(ui->searchString->text());
+    Settings::instance()->setCurrentMovieScraper(ui->comboScraper->currentIndex());
 }
 
 /**

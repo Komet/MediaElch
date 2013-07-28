@@ -88,7 +88,8 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie)
         xml.writeStartElement("actor");
         xml.writeTextElement("name", actor.name);
         xml.writeTextElement("role", actor.role);
-        xml.writeTextElement("thumb", actor.thumb);
+        if (!actor.thumb.isEmpty())
+            xml.writeTextElement("thumb", actor.thumb);
         xml.writeEndElement();
     }
     foreach (const Poster &poster, movie->posters()) {
@@ -832,6 +833,8 @@ bool XbmcXml::loadTvShow(TvShow *show, QString initialNfoContent)
         show->setImdbId(domDoc.elementsByTagName("imdbid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("title").isEmpty() )
         show->setName(domDoc.elementsByTagName("title").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("sorttitle").isEmpty() )
+        show->setSortTitle(domDoc.elementsByTagName("sorttitle").at(0).toElement().text());
     if (!domDoc.elementsByTagName("showtitle").isEmpty() )
         show->setShowTitle(domDoc.elementsByTagName("showtitle").at(0).toElement().text());
     if (!domDoc.elementsByTagName("rating").isEmpty())
@@ -1190,6 +1193,12 @@ void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show)
     xml.writeStartElement("tvshow");
     xml.writeTextElement("title", show->name());
     xml.writeTextElement("showtitle", show->showTitle());
+    if (!show->sortTitle().isEmpty()) {
+        xml.writeStartElement("sorttitle");
+        xml.writeAttribute("clear", "true");
+        xml.writeCharacters(show->sortTitle());
+        xml.writeEndElement();
+    }
     xml.writeTextElement("rating", QString("%1").arg(show->rating()));
     xml.writeTextElement("episode", QString("%1").arg(show->episodes().count()));
     xml.writeTextElement("plot", show->overview());
@@ -1218,7 +1227,8 @@ void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show)
         xml.writeStartElement("actor");
         xml.writeTextElement("name", actor.name);
         xml.writeTextElement("role", actor.role);
-        xml.writeTextElement("thumb", actor.thumb);
+        if (!actor.thumb.isEmpty())
+            xml.writeTextElement("thumb", actor.thumb);
         xml.writeEndElement();
     }
 
