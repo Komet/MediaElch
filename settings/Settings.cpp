@@ -182,6 +182,8 @@ void Settings::loadSettings(QSettings &settings)
             scraper->loadSettings(settings);
     }
 
+    m_currentMovieScraper = settings.value("Scraper/CurrentMovieScraper", 0).toInt();
+
     // Media Centers
     m_youtubePluginUrls    = settings.value("UseYoutubePluginURLs", false).toBool();
 
@@ -316,6 +318,8 @@ void Settings::saveSettings()
         if (scraper->hasSettings())
             scraper->saveSettings(m_settings);
     }
+
+    m_settings.setValue("Scraper/CurrentMovieScraper", m_currentMovieScraper);
 
     m_settings.beginWriteArray("AllDataFiles");
     for (int i=0, n=m_dataFiles.count() ; i<n ; ++i) {
@@ -955,4 +959,16 @@ QMap<int, QString> Settings::customMovieScraper() const
 void Settings::setCustomMovieScraper(QMap<int, QString> customMovieScraper)
 {
     m_customMovieScraper = customMovieScraper;
+}
+
+int Settings::currentMovieScraper() const
+{
+    return m_currentMovieScraper;
+}
+
+void Settings::setCurrentMovieScraper(int current)
+{
+    m_currentMovieScraper = current;
+    m_settings.setValue("Scraper/CurrentMovieScraper", current);
+    m_settings.sync();
 }
