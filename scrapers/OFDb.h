@@ -40,7 +40,7 @@ private:
     QList<int> m_scraperSupports;
 
     QNetworkAccessManager *qnam();
-    QList<ScraperSearchResult> parseSearch(QString html);
+    QList<ScraperSearchResult> parseSearch(QString html, QString searchStr);
     void parseAndAssignInfos(QString data, Movie *movie, QList<int> infos);
 };
 

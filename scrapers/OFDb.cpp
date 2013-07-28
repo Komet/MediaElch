@@ -96,7 +96,13 @@ void OFDb::search(QString searchStr)
     qDebug() << "Entered, searchStr=" << searchStr;
 
     QString encodedSearch = Helper::toLatin1PercentEncoding(searchStr);
-    QUrl url(QString("http://www.ofdbgw.org/search/%1").arg(encodedSearch).toUtf8());
+
+    QUrl url;
+    QRegExp rxId("^id\\d+$");
+    if (rxId.exactMatch(searchStr))
+        url.setUrl(QString("http://www.ofdbgw.org/movie/%1").arg(searchStr.mid(2)).toUtf8());
+    else
+        url.setUrl(QString("http://www.ofdbgw.org/search/%1").arg(encodedSearch).toUtf8());
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     reply->setProperty("searchString", searchStr);
     reply->setProperty("notFoundCounter", 0);
@@ -140,7 +146,7 @@ void OFDb::searchFinished()
     QList<ScraperSearchResult> results;
     if (reply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(reply->readAll());
-        results = parseSearch(msg);
+        results = parseSearch(msg, searchStr);
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
@@ -153,23 +159,35 @@ void OFDb::searchFinished()
  * @param xml XML data
  * @return List of search results
  */
-QList<ScraperSearchResult> OFDb::parseSearch(QString xml)
+QList<ScraperSearchResult> OFDb::parseSearch(QString xml, QString searchStr)
 {
     qDebug() << "Entered";
     QList<ScraperSearchResult> results;
     QDomDocument domDoc;
     domDoc.setContent(xml);
-    for (int i=0, n=domDoc.elementsByTagName("eintrag").size() ; i<n ; i++) {
-        QDomElement entry = domDoc.elementsByTagName("eintrag").at(i).toElement();
-        if (entry.elementsByTagName("id").size() == 0 || entry.elementsByTagName("id").at(0).toElement().text().isEmpty())
-            continue;
+
+    if (domDoc.elementsByTagName("eintrag").count() == 0 && !domDoc.elementsByTagName("resultat").isEmpty()) {
+        QDomElement entry = domDoc.elementsByTagName("resultat").at(0).toElement();
         ScraperSearchResult result;
-        result.id = entry.elementsByTagName("id").at(0).toElement().text();
+        result.id = searchStr.mid(2);
         if (entry.elementsByTagName("titel").size() > 0)
             result.name = entry.elementsByTagName("titel").at(0).toElement().text();
         if (entry.elementsByTagName("jahr").size() > 0)
             result.released = QDate::fromString(entry.elementsByTagName("jahr").at(0).toElement().text(), "yyyy");
         results.append(result);
+    } else {
+        for (int i=0, n=domDoc.elementsByTagName("eintrag").size() ; i<n ; i++) {
+            QDomElement entry = domDoc.elementsByTagName("eintrag").at(i).toElement();
+            if (entry.elementsByTagName("id").size() == 0 || entry.elementsByTagName("id").at(0).toElement().text().isEmpty())
+                continue;
+            ScraperSearchResult result;
+            result.id = entry.elementsByTagName("id").at(0).toElement().text();
+            if (entry.elementsByTagName("titel").size() > 0)
+                result.name = entry.elementsByTagName("titel").at(0).toElement().text();
+            if (entry.elementsByTagName("jahr").size() > 0)
+                result.released = QDate::fromString(entry.elementsByTagName("jahr").at(0).toElement().text(), "yyyy");
+            results.append(result);
+        }
     }
     return results;
 }
