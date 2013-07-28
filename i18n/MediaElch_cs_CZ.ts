@@ -46,7 +46,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="195"/>
         <source>Movies</source>
-        <translation>Filmy</translation>
+        <translation>Filmů</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="202"/>
@@ -59,17 +59,17 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="228"/>
         <source>TV Shows</source>
-        <translation>TV Seriály</translation>
+        <translation>TV Seriálů</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="261"/>
         <source>Episodes</source>
-        <translation>Epizody</translation>
+        <translation>Epizod</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="294"/>
         <source>Concerts</source>
-        <translation>Koncerty</translation>
+        <translation>Koncertů</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.cpp" line="16"/>
@@ -80,32 +80,32 @@
 <context>
     <name>CLI</name>
     <message>
-        <location filename="../cli/CLI.cpp" line="125"/>
+        <location filename="../cli/CLI.cpp" line="127"/>
         <source>Unknown command line argument &quot;%1&quot;</source>
         <translation>Neznámý argument příkazového řádku &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../cli/CLI.cpp" line="131"/>
+        <location filename="../cli/CLI.cpp" line="133"/>
         <source>No file given</source>
         <translation>Nebyl obdržen žádný soubor</translation>
     </message>
     <message>
-        <location filename="../cli/CLI.cpp" line="137"/>
+        <location filename="../cli/CLI.cpp" line="139"/>
         <source>No scraper given</source>
         <translation>Nebyl obdržen žádný scraper</translation>
     </message>
     <message>
-        <location filename="../cli/CLI.cpp" line="143"/>
+        <location filename="../cli/CLI.cpp" line="145"/>
         <source>Unsupported scraper &quot;%1&quot;</source>
         <translation>Scraper &quot;%1&quot; není podporován</translation>
     </message>
     <message>
-        <location filename="../cli/CLI.cpp" line="149"/>
+        <location filename="../cli/CLI.cpp" line="151"/>
         <source>Search term given but empty</source>
         <translation>Byl obdržen prázdný vyhledávací výraz</translation>
     </message>
     <message>
-        <location filename="../cli/CLI.cpp" line="156"/>
+        <location filename="../cli/CLI.cpp" line="158"/>
         <source>File &quot;%1&quot; does not exist</source>
         <translation>Soubor &quot;%1&quot; neexistuje</translation>
     </message>
@@ -135,12 +135,12 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="158"/>
         <source>Add Movie</source>
-        <translation>Přidat Film</translation>
+        <translation>Přidat film</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="172"/>
         <source>Remove Current Movie</source>
-        <translation>Odstranit současný Film</translation>
+        <translation>Odstranit současný film</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="192"/>
@@ -150,7 +150,7 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="202"/>
         <source>Please keep in mind that the changes you make here (renaming or deleting certifications) will be made for every movie.</source>
-        <translation>Mějte na paměti, že změny které zde provedete (přejmenování nebo smazání certifikátu), budou použity na všechny filmy.</translation>
+        <translation>Mějte na paměti, že změny které zde provedete (přejmenování nebo smazání certifikací), budou použity na všechny filmy.</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="37"/>
@@ -168,9 +168,9 @@
         <translation>Nový Certifikát</translation>
     </message>
     <message>
-        <location filename="../movies/CertificationWidget.cpp" line="277"/>
+        <location filename="../movies/CertificationWidget.cpp" line="281"/>
         <source>All Movies Saved</source>
-        <translation>Všechny Filmy byly uloženy</translation>
+        <translation>Všechny filmy byly uloženy</translation>
     </message>
 </context>
 <context>
@@ -191,12 +191,12 @@
         <translation>Zvolit jiný obrázek</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="306"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="336"/>
         <source>Really delete image?</source>
         <translation>Opravdu si přejete odstranit obrázek?</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="307"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="337"/>
         <source>Are you sure you want to delete this image?</source>
         <translation>Jste si jistí, že chcete odstranit tento obrázek?</translation>
     </message>
@@ -204,9 +204,8 @@
 <context>
     <name>ConcertDelegate</name>
     <message>
-        <location filename="../data/ConcertDelegate.cpp" line="32"/>
         <source>new</source>
-        <translation>nový</translation>
+        <translation type="obsolete">nový</translation>
     </message>
 </context>
 <context>
@@ -225,32 +224,32 @@
 <context>
     <name>ConcertFilesWidget</name>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="51"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="44"/>
         <source>Mark as watched</source>
         <translation>Označit jako zhlédnuté</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="52"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="45"/>
         <source>Mark as unwatched</source>
         <translation>Označit jako nezhlédnuté</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="53"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="46"/>
         <source>Load Stream Details</source>
         <translation>Načíst podrobnosti streamu</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="54"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="47"/>
         <source>Add to Synchronization Queue</source>
         <translation>Přidat do Synchronizační fronty</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="55"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="48"/>
         <source>Remove from Synchronization Queue</source>
         <translation>Odstranit ze Synchronizační složky</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="56"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="49"/>
         <source>Open Concert Folder</source>
         <translation>Otevřít složku Koncertu</translation>
     </message>
@@ -497,8 +496,8 @@
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="424"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="559"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="562"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="555"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="558"/>
         <source>Codec</source>
         <translation>Kodek</translation>
     </message>
@@ -567,59 +566,67 @@
         <translation>CD Art</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="57"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="71"/>
         <source>Genres</source>
         <translation>Žánry</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="58"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="72"/>
         <source>Add Genre</source>
         <translation>Přidat žánr</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="62"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="76"/>
         <source>Tags</source>
         <translation>Tagy</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="63"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="77"/>
         <source>Add Tag</source>
         <translation>Přidat tag</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="552"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="586"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="548"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="582"/>
         <source>Track %1</source>
         <translation>Stopa %1</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="558"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="561"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="589"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="590"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="554"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="557"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="585"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="586"/>
         <source>Language</source>
         <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="560"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="563"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="556"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="559"/>
         <source>Channels</source>
         <translation>Kanály</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="578"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="574"/>
         <source>Subtitles</source>
         <translation>Titulky</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="825"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="670"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; uložen</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="848"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="693"/>
         <source>All Concerts Saved</source>
         <translation>Všechny koncerty byly uloženy</translation>
+    </message>
+</context>
+<context>
+    <name>CustomMovieScraper</name>
+    <message>
+        <location filename="../scrapers/CustomMovieScraper.cpp" line="32"/>
+        <source>Custom Movie Scraper</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -641,6 +648,149 @@
     </message>
 </context>
 <context>
+    <name>ExportDialog</name>
+    <message>
+        <location filename="../export/ExportDialog.ui" line="23"/>
+        <location filename="../export/ExportDialog.ui" line="132"/>
+        <source>Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../export/ExportDialog.ui" line="32"/>
+        <source>Export your complete collection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../export/ExportDialog.ui" line="39"/>
+        <source>Message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../export/ExportDialog.ui" line="51"/>
+        <source>Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../export/ExportDialog.ui" line="61"/>
+        <source>Items to export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../export/ExportDialog.ui" line="68"/>
+        <source>Movies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../export/ExportDialog.ui" line="78"/>
+        <source>TV Shows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../export/ExportDialog.ui" line="88"/>
+        <source>Concerts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../export/ExportDialog.ui" line="109"/>
+        <source>Close</source>
+        <translation type="unfinished">Zavřít</translation>
+    </message>
+    <message>
+        <location filename="../export/ExportDialog.cpp" line="30"/>
+        <source>You need to install at least one theme.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../export/ExportDialog.cpp" line="63"/>
+        <source>You need to select at least one entry to export.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../export/ExportDialog.cpp" line="72"/>
+        <source>Export directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../export/ExportDialog.cpp" line="80"/>
+        <source>Could not create export directory.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../export/ExportDialog.cpp" line="126"/>
+        <source>Export completed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ExportTemplateWidget</name>
+    <message>
+        <location filename="../settings/ExportTemplateWidget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished">Formulář</translation>
+    </message>
+    <message>
+        <location filename="../settings/ExportTemplateWidget.ui" line="36"/>
+        <source>Theme Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/ExportTemplateWidget.ui" line="46"/>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/ExportTemplateWidget.ui" line="59"/>
+        <source>Author</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/ExportTemplateWidget.ui" line="68"/>
+        <source>Description</source>
+        <translation type="unfinished">Popis</translation>
+    </message>
+    <message>
+        <location filename="../settings/ExportTemplateWidget.ui" line="99"/>
+        <location filename="../settings/ExportTemplateWidget.cpp" line="38"/>
+        <source>Install</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/ExportTemplateWidget.cpp" line="26"/>
+        <source>by %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/ExportTemplateWidget.cpp" line="29"/>
+        <source>Version %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/ExportTemplateWidget.cpp" line="32"/>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/ExportTemplateWidget.cpp" line="35"/>
+        <source>Uninstall</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/ExportTemplateWidget.cpp" line="48"/>
+        <source>Updating...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/ExportTemplateWidget.cpp" line="52"/>
+        <source>Installing...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/ExportTemplateWidget.cpp" line="56"/>
+        <source>Uninstalling...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FileScannerDialog</name>
     <message>
         <location filename="../main/FileScannerDialog.ui" line="17"/>
@@ -657,62 +807,67 @@
 <context>
     <name>FilesWidget</name>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="103"/>
+        <location filename="../movies/FilesWidget.ui" line="112"/>
         <source>New</source>
         <translation>Nové</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="127"/>
+        <location filename="../movies/FilesWidget.ui" line="136"/>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="151"/>
+        <location filename="../movies/FilesWidget.ui" line="160"/>
         <source>Date Added</source>
         <translation>Datum přidání</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="175"/>
+        <location filename="../movies/FilesWidget.ui" line="184"/>
         <source>Seen</source>
         <translation>Viděno</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="199"/>
+        <location filename="../movies/FilesWidget.ui" line="208"/>
         <source>Year</source>
         <translation>Rok</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="66"/>
+        <location filename="../movies/FilesWidget.cpp" line="62"/>
+        <source>Media Status Columns</source>
+        <translation type="unfinished">Stavové sloupce</translation>
+    </message>
+    <message>
+        <location filename="../movies/FilesWidget.cpp" line="72"/>
         <source>Load Information</source>
         <translation>Načíst informace</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="67"/>
+        <location filename="../movies/FilesWidget.cpp" line="73"/>
         <source>Mark as watched</source>
         <translation>Označit jako zhlédnuté</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="68"/>
+        <location filename="../movies/FilesWidget.cpp" line="74"/>
         <source>Mark as unwatched</source>
         <translation>Označit jako nezhlédnuté</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="69"/>
+        <location filename="../movies/FilesWidget.cpp" line="75"/>
         <source>Load Stream Details</source>
         <translation>Načíst podrobnosti streamu</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="70"/>
+        <location filename="../movies/FilesWidget.cpp" line="76"/>
         <source>Add to Synchronization Queue</source>
         <translation>Přidat do Synchronizační fronty</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="71"/>
+        <location filename="../movies/FilesWidget.cpp" line="77"/>
         <source>Remove from Synchronization Queue</source>
         <translation>Odstranit ze Synchronizační složky</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="72"/>
+        <location filename="../movies/FilesWidget.cpp" line="78"/>
         <source>Open Movie Folder</source>
         <translation>Otevřít složku s filmem</translation>
     </message>
@@ -747,7 +902,7 @@
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="337"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="520"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="528"/>
         <source>Genre</source>
         <translation>Žánr</translation>
     </message>
@@ -758,7 +913,7 @@
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="355"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="530"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="538"/>
         <source>Studio</source>
         <translation>Studio</translation>
     </message>
@@ -769,7 +924,7 @@
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="373"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="532"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="540"/>
         <source>Country</source>
         <translation>Země</translation>
     </message>
@@ -790,7 +945,7 @@
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="407"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="518"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="526"/>
         <source>Certification</source>
         <translation>Certifikát</translation>
     </message>
@@ -811,14 +966,14 @@
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="441"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="534"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="542"/>
         <source>Director</source>
         <translation>Režisér</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="479"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="549"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="551"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="557"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="559"/>
         <source>Title</source>
         <translation>Název</translation>
     </message>
@@ -830,7 +985,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="481"/>
         <source>Movie has Poster</source>
-        <translation>Filmy s Plakátem</translation>
+        <translation>Filmy s plakátem</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="481"/>
@@ -842,7 +997,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="483"/>
         <source>Movie has no Poster</source>
-        <translation>Filmy bez Plakátu</translation>
+        <translation>Filmy bez plakátu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="483"/>
@@ -852,7 +1007,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="485"/>
         <source>Movie has Extra Fanarts</source>
-        <translation>Filmy s Extra Fanarty</translation>
+        <translation>Filmy s extra pozadím</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="485"/>
@@ -864,7 +1019,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="487"/>
         <source>Movie has no Extra Fanarts</source>
-        <translation>Filmy bez Extra Fanartů</translation>
+        <translation>Filmy bez extra pozadí</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="487"/>
@@ -874,7 +1029,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="489"/>
         <source>Movie has Backdrop</source>
-        <translation>Filmy s Pozadím</translation>
+        <translation>Filmy s pozadím</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="489"/>
@@ -892,7 +1047,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="491"/>
         <source>Movie has no Backdrop</source>
-        <translation>Filmy bez Pozadí</translation>
+        <translation>Filmy bez pozadí</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="491"/>
@@ -902,7 +1057,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="493"/>
         <source>Movie has Logo</source>
-        <translation>Filmy s Logem</translation>
+        <translation>Filmy s logem</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="493"/>
@@ -914,7 +1069,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="495"/>
         <source>Movie has no Logo</source>
-        <translation>Filmy bez Loga</translation>
+        <translation>Filmy bez loga</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="495"/>
@@ -945,280 +1100,324 @@
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="501"/>
-        <source>Movie has CD Art</source>
-        <translation>Filmy s CD Artem</translation>
+        <source>Movie has Banner</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="501"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="502"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="504"/>
-        <source>CD Art</source>
-        <translation>CD Art</translation>
+        <source>Banner</source>
+        <translation type="unfinished">Banner</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="503"/>
-        <source>Movie has no CD Art</source>
-        <translation>Filmy bez CD Artu</translation>
+        <source>Movie has no Banner</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="503"/>
-        <source>No CD Art</source>
-        <translation>Žádný CD Art</translation>
+        <source>No Banner</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="505"/>
-        <source>Movie has Trailer</source>
-        <translation>Filmy s Upoutávkou</translation>
+        <source>Movie has Thumb</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="505"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="506"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="508"/>
+        <source>Thumb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="507"/>
+        <source>Movie has no Thumb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="507"/>
+        <source>No Thumb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="509"/>
+        <source>Movie has CD Art</source>
+        <translation>Filmy s CD Artem</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="509"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="510"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="512"/>
+        <source>CD Art</source>
+        <translation>CD Art</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="511"/>
+        <source>Movie has no CD Art</source>
+        <translation>Filmy bez CD Artu</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="511"/>
+        <source>No CD Art</source>
+        <translation>Žádný CD Art</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="513"/>
+        <source>Movie has Trailer</source>
+        <translation>Filmy s upoutávkou</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="513"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="514"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="516"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="518"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="520"/>
         <source>Trailer</source>
         <translation>Upoutávka</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="507"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="515"/>
         <source>Movie has no Trailer</source>
-        <translation>Filmy bez Upoutávky</translation>
+        <translation>Filmy bez upoutávky</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="507"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="515"/>
         <source>No Trailer</source>
         <translation>Žádná Upoutávka</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="509"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="517"/>
         <source>Movie has local Trailer</source>
-        <translation>Filmy s lokální Upoutávkou</translation>
+        <translation>Filmy s lokální upoutávkou</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="509"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="510"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="512"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="517"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="518"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="520"/>
         <source>Local Trailer</source>
         <translation>Lokální Upoutávka</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="511"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="519"/>
         <source>Movie has no local Trailer</source>
-        <translation>Filmy bez lokální Upoutávky</translation>
+        <translation>Filmy bez lokální upoutávky</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="511"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="519"/>
         <source>No local Trailer</source>
         <translation>Žádná lokální Upoutávka</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="513"/>
-        <source>Movie is Watched</source>
-        <translation>Film byl zhlédnut</translation>
-    </message>
-    <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="513"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="514"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="516"/>
-        <source>Watched</source>
-        <translation>Zhlédnuto</translation>
-    </message>
-    <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="514"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="516"/>
-        <source>Seen</source>
-        <translation>Viděno</translation>
-    </message>
-    <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="515"/>
-        <source>Movie is Unwatched</source>
-        <translation>Film nebyl zhlédnut</translation>
-    </message>
-    <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="515"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="516"/>
-        <source>Unwatched</source>
-        <translation>Nezhlédnuto</translation>
-    </message>
-    <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="516"/>
-        <source>Unseen</source>
-        <translation>Neviděno</translation>
-    </message>
-    <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="517"/>
-        <source>Movie has no Certification</source>
-        <translation>Filmy bez Certifikace</translation>
-    </message>
-    <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="517"/>
-        <source>No Certification</source>
-        <translation>Žádná Certifikace</translation>
-    </message>
-    <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="519"/>
-        <source>Movie has no Genre</source>
-        <translation>Filmy bez Žánrů</translation>
-    </message>
-    <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="519"/>
-        <source>No Genre</source>
-        <translation>Žádný Žánr</translation>
-    </message>
-    <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="521"/>
-        <source>Stream Details loaded</source>
-        <translation>Podrobnosti streamu načteny</translation>
+        <source>Movie is Watched</source>
+        <translation>Zhlédnuté filmy</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="521"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="522"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="524"/>
+        <source>Watched</source>
+        <translation>Zhlédnuto</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="522"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="524"/>
+        <source>Seen</source>
+        <translation>Viděno</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="523"/>
+        <source>Movie is Unwatched</source>
+        <translation>Nezhlédnuté filmy</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="523"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="524"/>
+        <source>Unwatched</source>
+        <translation>Nezhlédnuto</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="524"/>
+        <source>Unseen</source>
+        <translation>Neviděno</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="525"/>
+        <source>Movie has no Certification</source>
+        <translation>Filmy bez certifikace</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="525"/>
+        <source>No Certification</source>
+        <translation>Žádná Certifikace</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="527"/>
+        <source>Movie has no Genre</source>
+        <translation>Filmy bez žánru</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="527"/>
+        <source>No Genre</source>
+        <translation>Žádný Žánr</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="529"/>
+        <source>Stream Details loaded</source>
+        <translation>Podrobnosti streamu načteny</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="529"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="530"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="532"/>
         <source>Stream Details</source>
         <translation>Podrobnosti streamu</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="523"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="531"/>
         <source>Stream Details not loaded</source>
         <translation>Podrobnosti streamu nebyly načteny</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="523"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="531"/>
         <source>No Stream Details</source>
         <translation>Žádné podrobnosti streamu</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="525"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="533"/>
         <source>Movie has Actors</source>
-        <translation>Filmy s Herci</translation>
+        <translation>Filmy s herci</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="525"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="526"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="528"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="533"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="534"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="536"/>
         <source>Actors</source>
         <translation>Herci</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="527"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="535"/>
         <source>Movie has no Actors</source>
-        <translation>Filmy bez Herců</translation>
+        <translation>Filmy bez herců</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="527"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="535"/>
         <source>No Actors</source>
         <translation>Žádní Herci</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="529"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="537"/>
         <source>Movie has no Studio</source>
-        <translation>Filmy bez Studia</translation>
+        <translation>Filmy bez studia</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="529"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="537"/>
         <source>No Studio</source>
         <translation>Žádné Studio</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="531"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="539"/>
         <source>Movie has no Country</source>
-        <translation>Filmy bez Země</translation>
+        <translation>Filmy bez země</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="531"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="539"/>
         <source>No Country</source>
         <translation>Žádná Zěmě</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="533"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="541"/>
         <source>Movie has no Director</source>
-        <translation>Filmy bez Režiséra</translation>
+        <translation>Filmy bez režiséra</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="533"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="541"/>
         <source>No Director</source>
         <translation>Žádný Režisér</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="535"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="543"/>
         <source>Movie has no Tags</source>
-        <translation>Filmy bez Tagů</translation>
+        <translation>Filmy bez tagů</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="535"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="543"/>
         <source>No Tags</source>
         <translation>Žádný Tag</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="536"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="544"/>
         <source>Tags</source>
         <translation>Tagy</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="538"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="546"/>
         <source>Resolution 720p</source>
         <translation>Rozlišení 720p</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="538"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="539"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="546"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="547"/>
         <source>720p</source>
         <translation>720p</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="539"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="541"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="543"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="547"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="549"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="551"/>
         <source>Resolution</source>
         <translation>Rozlišení</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="540"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="548"/>
         <source>Resolution 1080p</source>
         <translation>Rozlišení 1080p</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="540"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="541"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="548"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="549"/>
         <source>1080p</source>
         <translation>1080p</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="542"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="550"/>
         <source>Resolution SD</source>
         <translation>Rozlišení SD</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="542"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="543"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="550"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="551"/>
         <source>SD</source>
         <translation>SD</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="544"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="552"/>
         <source>Format DVD</source>
         <translation>DVD formá</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="544"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="545"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="552"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="553"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="545"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="547"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="553"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="555"/>
         <source>Format</source>
         <translation>Formát</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="546"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="554"/>
         <source>BluRay Format</source>
         <translation>Formát BluRay</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="546"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="547"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="554"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="555"/>
         <source>BluRay</source>
         <translation>BluRay</translation>
     </message>
@@ -1253,7 +1452,7 @@
     <message>
         <location filename="../movies/GenreWidget.ui" line="172"/>
         <source>Remove Current Movie</source>
-        <translation>Odstranit současný Film</translation>
+        <translation>Odstranit současný film</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="192"/>
@@ -1263,7 +1462,7 @@
     <message>
         <location filename="../movies/GenreWidget.ui" line="202"/>
         <source>Please keep in mind that the changes you make here (renaming or deleting genres) will be made for every movie.</source>
-        <translation>Mějte na paměti, že změny, které zde provedete (přejmenování nebo smazání žánru), budou použity na všechny filmy.</translation>
+        <translation>Mějte na paměti, že změny, které zde provedete (přejmenování nebo smazání žánrů), budou použity na všechny filmy.</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.cpp" line="37"/>
@@ -1281,9 +1480,9 @@
         <translation>Nový Žánr</translation>
     </message>
     <message>
-        <location filename="../movies/GenreWidget.cpp" line="285"/>
+        <location filename="../movies/GenreWidget.cpp" line="290"/>
         <source>All Movies Saved</source>
-        <translation>Všechny Filmy uloženy</translation>
+        <translation>Všechny filmy uloženy</translation>
     </message>
 </context>
 <context>
@@ -1294,56 +1493,61 @@
         <translation>Vyberte obrázek</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="81"/>
+        <location filename="../globals/ImageDialog.ui" line="38"/>
+        <source>Enter a search term or URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../globals/ImageDialog.ui" line="85"/>
         <source>Movie</source>
         <translation>Film</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="129"/>
-        <location filename="../globals/ImageDialog.ui" line="134"/>
-        <location filename="../globals/ImageDialog.ui" line="139"/>
-        <location filename="../globals/ImageDialog.ui" line="144"/>
-        <location filename="../globals/ImageDialog.ui" line="149"/>
+        <location filename="../globals/ImageDialog.ui" line="133"/>
+        <location filename="../globals/ImageDialog.ui" line="138"/>
+        <location filename="../globals/ImageDialog.ui" line="143"/>
+        <location filename="../globals/ImageDialog.ui" line="148"/>
+        <location filename="../globals/ImageDialog.ui" line="153"/>
         <source>Neue Spalte</source>
         <translation>Nový sloupec</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="161"/>
+        <location filename="../globals/ImageDialog.ui" line="165"/>
         <source>No images found</source>
         <translation>Nebyly nalezeny žádné obrázeky</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="206"/>
+        <location filename="../globals/ImageDialog.ui" line="210"/>
         <source>Zoom out</source>
         <translation>Oddálit</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="236"/>
+        <location filename="../globals/ImageDialog.ui" line="240"/>
         <source>Preview size</source>
         <translation>Velikost náhledu</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="264"/>
+        <location filename="../globals/ImageDialog.ui" line="268"/>
         <source>Zoom in</source>
         <translation>Přiblížit</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="289"/>
+        <location filename="../globals/ImageDialog.ui" line="293"/>
         <source>Loading...</source>
         <translation>Načítání...</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="312"/>
+        <location filename="../globals/ImageDialog.ui" line="316"/>
         <source>Choose Local Image</source>
         <translation>Zvolte lokální obrázek</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="325"/>
+        <location filename="../globals/ImageDialog.ui" line="329"/>
         <source>Close</source>
         <translation>Zavřít</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="332"/>
+        <location filename="../globals/ImageDialog.ui" line="336"/>
         <source>Accept Images</source>
         <translation>Přijmout obrázky</translation>
     </message>
@@ -1353,12 +1557,12 @@
         <translation>Výchozí</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="518"/>
+        <location filename="../globals/ImageDialog.cpp" line="517"/>
         <source>Choose Image</source>
         <translation>Vyberte obrázek</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="518"/>
+        <location filename="../globals/ImageDialog.cpp" line="517"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>Obrázky (*.jpg *.jpeg *.png)</translation>
     </message>
@@ -1387,6 +1591,48 @@
         <location filename="../globals/ImagePreviewDialog.ui" line="79"/>
         <source>Close</source>
         <translation>Zavřít</translation>
+    </message>
+</context>
+<context>
+    <name>ItemWidgetShow</name>
+    <message>
+        <location filename="../tvShows/ItemWidgetShow.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished">Formulář</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/ItemWidgetShow.ui" line="59"/>
+        <source>Episode Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tvShows/ItemWidgetShow.ui" line="69"/>
+        <source>Episode Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tvShows/ItemWidgetShow.ui" line="83"/>
+        <source>Poster</source>
+        <translation type="unfinished">Plakát</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/ItemWidgetShow.ui" line="239"/>
+        <source>new</source>
+        <translation type="unfinished">nový</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/ItemWidgetShow.ui" line="264"/>
+        <source>Synchronization needed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../tvShows/ItemWidgetShow.cpp" line="31"/>
+        <source>%n Episodes</source>
+        <translation type="unfinished">
+            <numerusform>%n Epizoda</numerusform>
+            <numerusform>%n Epizody</numerusform>
+            <numerusform>%n Epizod</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -1429,7 +1675,7 @@
     <message>
         <location filename="../main/MainWindow.ui" line="116"/>
         <source>Movie Sets</source>
-        <translation>Filmové Kolekce</translation>
+        <translation>Filmové kolekce</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="143"/>
@@ -1459,99 +1705,112 @@
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="558"/>
-        <location filename="../main/MainWindow.cpp" line="272"/>
+        <location filename="../main/MainWindow.cpp" line="281"/>
         <source>Settings</source>
         <translation>Nastavení</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="563"/>
-        <location filename="../main/MainWindow.cpp" line="278"/>
         <source>Quit</source>
         <translation>Ukončit</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="568"/>
-        <location filename="../main/MainWindow.cpp" line="277"/>
+        <location filename="../main/MainWindow.cpp" line="289"/>
         <source>About</source>
         <translation>O</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="252"/>
+        <location filename="../main/MainWindow.cpp" line="261"/>
         <source>Search</source>
         <translation>Hledat</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="254"/>
+        <location filename="../main/MainWindow.cpp" line="263"/>
         <source>Search (%1)</source>
         <translation>Hledat (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="256"/>
+        <location filename="../main/MainWindow.cpp" line="265"/>
         <source>Save</source>
         <translation>Uložit</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="258"/>
+        <location filename="../main/MainWindow.cpp" line="267"/>
         <source>Save (%1)</source>
         <translation>Uložit (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="260"/>
+        <location filename="../main/MainWindow.cpp" line="269"/>
         <source>Save All</source>
         <translation>Uložit vše</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="263"/>
+        <location filename="../main/MainWindow.cpp" line="272"/>
         <source>Save All (%1)</source>
         <translation>Uložit vše (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="265"/>
+        <location filename="../main/MainWindow.cpp" line="274"/>
         <source>Reload</source>
         <translation>Obnovit</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="267"/>
+        <location filename="../main/MainWindow.cpp" line="276"/>
         <source>Reload all files (%1)</source>
         <translation>Obnovit všechny soubory (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="269"/>
+        <location filename="../main/MainWindow.cpp" line="278"/>
         <source>Rename</source>
         <translation>Přejmenovat</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="270"/>
+        <location filename="../main/MainWindow.cpp" line="279"/>
         <source>Rename selected files</source>
         <translation>Přejmenovat zvolené soubory</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="274"/>
+        <location filename="../main/MainWindow.cpp" line="283"/>
         <source>XBMC</source>
         <translation>XBMC</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="275"/>
+        <location filename="../main/MainWindow.cpp" line="284"/>
         <source>Synchronize to XBMC</source>
         <translation>Synchronizovat s XBMC</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="280"/>
+        <location filename="../main/MainWindow.cpp" line="286"/>
+        <source>Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main/MainWindow.cpp" line="287"/>
+        <source>Export Database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main/MainWindow.cpp" line="291"/>
+        <source>Donate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Support</source>
-        <translation>Podpořit</translation>
+        <translation type="obsolete">Podpořit</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="400"/>
+        <location filename="../main/MainWindow.cpp" line="411"/>
         <source>Reload all Movies (%1)</source>
-        <translation>Obnovit všechny Filmy (%1)</translation>
+        <translation>Obnovit všechny filmy (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="402"/>
+        <location filename="../main/MainWindow.cpp" line="413"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>Obnovit všechny TV seriály (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="404"/>
+        <location filename="../main/MainWindow.cpp" line="415"/>
         <source>Reload all Concerts (%1)</source>
         <translation>Obnovit všechny Koncerty (%1)</translation>
     </message>
@@ -1588,9 +1847,8 @@
 <context>
     <name>MovieDelegate</name>
     <message>
-        <location filename="../data/MovieDelegate.cpp" line="36"/>
         <source>new</source>
-        <translation>nový</translation>
+        <translation type="obsolete">nový</translation>
     </message>
 </context>
 <context>
@@ -1598,12 +1856,12 @@
     <message>
         <location filename="../data/MovieFileSearcher.cpp" line="31"/>
         <source>Searching for Movies...</source>
-        <translation>Vyhledávám Filmy...</translation>
+        <translation>Vyhledávání filmů...</translation>
     </message>
     <message>
         <location filename="../data/MovieFileSearcher.cpp" line="118"/>
         <source>Loading Movies...</source>
-        <translation>Načítám Filmy...</translation>
+        <translation>Načítání filmů...</translation>
     </message>
 </context>
 <context>
@@ -1644,7 +1902,12 @@ operace zrušena.</translation>
         <translation>Výsledek</translation>
     </message>
     <message>
-        <location filename="../sets/MovieListDialog.ui" line="89"/>
+        <location filename="../sets/MovieListDialog.ui" line="76"/>
+        <source>Add selected movies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sets/MovieListDialog.ui" line="96"/>
         <source>Close</source>
         <translation>Zavřít</translation>
     </message>
@@ -1665,32 +1928,32 @@ operace zrušena.</translation>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../data/MovieModel.cpp" line="272"/>
+        <location filename="../data/MovieModel.cpp" line="278"/>
         <source>Actors</source>
         <translation>Herci</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="275"/>
+        <location filename="../data/MovieModel.cpp" line="280"/>
         <source>Extra Arts</source>
         <translation>Extra Arty</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="278"/>
+        <location filename="../data/MovieModel.cpp" line="282"/>
         <source>Extra Fanarts</source>
         <translation>Extra Fanarty</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="281"/>
+        <location filename="../data/MovieModel.cpp" line="284"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="284"/>
+        <location filename="../data/MovieModel.cpp" line="286"/>
         <source>Poster</source>
         <translation>Plakát</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="287"/>
+        <location filename="../data/MovieModel.cpp" line="288"/>
         <source>Stream Details</source>
         <translation>Podrobnosti streamu</translation>
     </message>
@@ -1700,7 +1963,7 @@ operace zrušena.</translation>
         <translation>Upoutávka</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="293"/>
+        <location filename="../data/MovieModel.cpp" line="292"/>
         <source>IMDB ID</source>
         <translation>IMDB ID</translation>
     </message>
@@ -1728,27 +1991,27 @@ operace zrušena.</translation>
         <translation>Položky k načtení</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="101"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="171"/>
         <source>Countries</source>
         <translation>Země</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="111"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="281"/>
         <source>Studios</source>
         <translation>Studia</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="121"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="191"/>
         <source>Actors</source>
         <translation>Herci</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="131"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="161"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="141"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="271"/>
         <source>Director</source>
         <translation>Režisér</translation>
     </message>
@@ -1758,112 +2021,122 @@ operace zrušena.</translation>
         <translation>Plakát</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="161"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="131"/>
         <source>Rating</source>
         <translation>Hodnocení</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="171"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="101"/>
         <source>Set</source>
         <translation>Kolekce</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="181"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="111"/>
         <source>Title</source>
         <translation>Název</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="191"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="201"/>
         <source>Certification</source>
         <translation>Certifikát</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="201"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="261"/>
         <source>Writer</source>
         <translation>Scénárista</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="211"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="251"/>
         <source>Released</source>
         <translation>Datum vydání</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="221"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="181"/>
         <source>Runtime</source>
         <translation>Délka</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="231"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="141"/>
         <source>Overview</source>
         <translation>Přehled</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="241"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="221"/>
         <source>Trailer</source>
         <translation>Upoutávka</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="251"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="291"/>
         <source>Genres</source>
         <translation>Žánry</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="261"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="301"/>
         <source>Backdrop</source>
         <translation>Pozadí</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="271"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="231"/>
         <source>Tagline</source>
         <translation>Motto</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="281"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="241"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="291"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="211"/>
         <source>CD Art</source>
         <translation>CD Art</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="310"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="121"/>
+        <source>Banner</source>
+        <translation type="unfinished">Banner</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="311"/>
+        <source>Thumb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="330"/>
         <source>(Un)Check all</source>
         <translation>Zvolit vše</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="336"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="356"/>
         <source>Automatically save each movie after scraping</source>
         <translation>Po načtení automaticky uložit každý film.</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="351"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="371"/>
         <source>1/20</source>
         <translation>1/20</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="358"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="378"/>
         <source>Movie</source>
         <translation>Film</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="383"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="403"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="406"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="426"/>
         <source>Close</source>
         <translation>Zavřít</translation>
     </message>
     <message>
-        <location filename="../movies/MovieMultiScrapeDialog.ui" line="419"/>
+        <location filename="../movies/MovieMultiScrapeDialog.ui" line="439"/>
         <source>Start Scraping</source>
         <translation>Spustit načítání</translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/MovieMultiScrapeDialog.cpp" line="142"/>
+        <location filename="../movies/MovieMultiScrapeDialog.cpp" line="155"/>
         <source>Scraping of %n movies has finished.</source>
         <translation>
             <numerusform>Načtení %n filmu bylo dokončeno.</numerusform>
@@ -1885,122 +2158,138 @@ operace zrušena.</translation>
         <translation>Scraper</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="96"/>
+        <location filename="../movies/MovieSearch.ui" line="63"/>
+        <source>When using IMDB you can also use the IMDB id as search query.
+If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieSearch.ui" line="101"/>
         <source>Result</source>
         <translation>Výsledek</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="123"/>
+        <location filename="../movies/MovieSearch.ui" line="128"/>
         <source>Infos to load</source>
         <translation>Položky k načtení</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="146"/>
+        <location filename="../movies/MovieSearch.ui" line="151"/>
         <source>Title</source>
         <translation>Název</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="153"/>
+        <location filename="../movies/MovieSearch.ui" line="158"/>
         <source>Set</source>
         <translation>Kolekce</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="160"/>
+        <location filename="../movies/MovieSearch.ui" line="165"/>
         <source>Tagline</source>
         <translation>Motto</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="167"/>
+        <location filename="../movies/MovieSearch.ui" line="172"/>
         <source>Rating</source>
         <translation>Hodnocení</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="174"/>
+        <location filename="../movies/MovieSearch.ui" line="179"/>
         <source>Released</source>
         <translation>Datum vydání</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="181"/>
+        <location filename="../movies/MovieSearch.ui" line="186"/>
         <source>Runtime</source>
         <translation>Délka</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="188"/>
+        <location filename="../movies/MovieSearch.ui" line="193"/>
         <source>Director</source>
         <translation>Režisér</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="195"/>
+        <location filename="../movies/MovieSearch.ui" line="200"/>
         <source>Writer</source>
         <translation>Scénárista</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="202"/>
+        <location filename="../movies/MovieSearch.ui" line="207"/>
         <source>Certification</source>
         <translation>Certifikát</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="209"/>
+        <location filename="../movies/MovieSearch.ui" line="214"/>
         <source>Trailer</source>
         <translation>Upoutávka</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="216"/>
+        <location filename="../movies/MovieSearch.ui" line="221"/>
         <source>Overview</source>
         <translation>Přehled</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="223"/>
+        <location filename="../movies/MovieSearch.ui" line="228"/>
         <source>Poster</source>
         <translation>Plakát</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="230"/>
+        <location filename="../movies/MovieSearch.ui" line="235"/>
         <source>Backdrop</source>
         <translation>Pozadí</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="237"/>
+        <location filename="../movies/MovieSearch.ui" line="242"/>
         <source>Actors</source>
         <translation>Herci</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="244"/>
+        <location filename="../movies/MovieSearch.ui" line="249"/>
         <source>Genres</source>
         <translation>Žánry</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="251"/>
+        <location filename="../movies/MovieSearch.ui" line="256"/>
         <source>Studios</source>
         <translation>Studia</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="258"/>
+        <location filename="../movies/MovieSearch.ui" line="263"/>
         <source>Countries</source>
         <translation>Země</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="265"/>
+        <location filename="../movies/MovieSearch.ui" line="270"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="272"/>
+        <location filename="../movies/MovieSearch.ui" line="277"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="279"/>
+        <location filename="../movies/MovieSearch.ui" line="284"/>
         <source>CD Art</source>
         <translation>CD Art</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="293"/>
+        <location filename="../movies/MovieSearch.ui" line="291"/>
+        <source>Banner</source>
+        <translation type="unfinished">Banner</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieSearch.ui" line="298"/>
+        <source>Thumb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieSearch.ui" line="312"/>
         <source>(Un)Check all</source>
         <translation>Zvolit vše</translation>
     </message>
     <message>
-        <location filename="../movies/MovieSearch.ui" line="333"/>
+        <location filename="../movies/MovieSearch.ui" line="352"/>
         <source>Close</source>
         <translation>Zavřít</translation>
     </message>
@@ -2020,7 +2309,7 @@ operace zrušena.</translation>
     <message>
         <location filename="../movies/MovieWidget.ui" line="60"/>
         <source>Movie Name</source>
-        <translation>Název Filmu</translation>
+        <translation>Název filmu</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="110"/>
@@ -2110,7 +2399,7 @@ operace zrušena.</translation>
     <message>
         <location filename="../movies/MovieWidget.ui" line="312"/>
         <source>Insert YouTube Dummy Link</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložit fiktivní YouTube odkaz</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="334"/>
@@ -2230,8 +2519,8 @@ operace zrušena.</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="774"/>
-        <location filename="../movies/MovieWidget.cpp" line="698"/>
-        <location filename="../movies/MovieWidget.cpp" line="701"/>
+        <location filename="../movies/MovieWidget.cpp" line="691"/>
+        <location filename="../movies/MovieWidget.cpp" line="694"/>
         <source>Codec</source>
         <translation>Kodek</translation>
     </message>
@@ -2266,146 +2555,169 @@ operace zrušena.</translation>
         <translation>Obnovit ze souboru</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1086"/>
+        <location filename="../movies/MovieWidget.ui" line="1080"/>
+        <location filename="../movies/MovieWidget.ui" line="1120"/>
         <source>Poster</source>
         <translation>Plakát</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1108"/>
-        <location filename="../movies/MovieWidget.ui" line="1158"/>
-        <location filename="../movies/MovieWidget.ui" line="1228"/>
-        <location filename="../movies/MovieWidget.ui" line="1278"/>
-        <location filename="../movies/MovieWidget.ui" line="1328"/>
+        <location filename="../movies/MovieWidget.ui" line="1102"/>
+        <location filename="../movies/MovieWidget.ui" line="1149"/>
+        <location filename="../movies/MovieWidget.ui" line="1196"/>
+        <location filename="../movies/MovieWidget.ui" line="1260"/>
+        <location filename="../movies/MovieWidget.ui" line="1307"/>
+        <location filename="../movies/MovieWidget.ui" line="1354"/>
+        <location filename="../movies/MovieWidget.ui" line="1401"/>
         <source>Click to Change</source>
         <translation>Klikněte pro změnu</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1136"/>
+        <location filename="../movies/MovieWidget.ui" line="1127"/>
+        <location filename="../movies/MovieWidget.ui" line="1167"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1206"/>
+        <location filename="../movies/MovieWidget.ui" line="1174"/>
+        <location filename="../movies/MovieWidget.ui" line="1211"/>
+        <source>Thumb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieWidget.ui" line="1238"/>
+        <location filename="../movies/MovieWidget.ui" line="1278"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1256"/>
+        <location filename="../movies/MovieWidget.ui" line="1285"/>
+        <location filename="../movies/MovieWidget.ui" line="1325"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1306"/>
+        <location filename="../movies/MovieWidget.ui" line="1332"/>
+        <source>Disc Art</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieWidget.ui" line="1372"/>
         <source>CD Art</source>
         <translation>CD Art</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="69"/>
+        <location filename="../movies/MovieWidget.ui" line="1379"/>
+        <location filename="../movies/MovieWidget.ui" line="1416"/>
+        <source>Banner</source>
+        <translation type="unfinished">Banner</translation>
+    </message>
+    <message>
+        <location filename="../movies/MovieWidget.cpp" line="80"/>
         <source>Genres</source>
         <translation>Žánry</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="70"/>
+        <location filename="../movies/MovieWidget.cpp" line="81"/>
         <source>Add Genre</source>
         <translation>Přidat Žánr</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="74"/>
+        <location filename="../movies/MovieWidget.cpp" line="85"/>
         <source>Tags</source>
         <translation>Tagy</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="75"/>
+        <location filename="../movies/MovieWidget.cpp" line="86"/>
         <source>Add Tag</source>
         <translation>Přidat Tag</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="79"/>
+        <location filename="../movies/MovieWidget.cpp" line="90"/>
         <source>Countries</source>
         <translation>Země</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="80"/>
+        <location filename="../movies/MovieWidget.cpp" line="91"/>
         <source>Add Country</source>
         <translation>Přidat Zemi</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="84"/>
+        <location filename="../movies/MovieWidget.cpp" line="95"/>
         <source>Studios</source>
         <translation>Studia</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="85"/>
+        <location filename="../movies/MovieWidget.cpp" line="96"/>
         <source>Add Studio</source>
         <translation>Přidat Studio</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="430"/>
+        <location filename="../movies/MovieWidget.cpp" line="454"/>
         <source>Downloading images...</source>
         <translation>Stahování obrázků...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="691"/>
-        <location filename="../movies/MovieWidget.cpp" line="725"/>
+        <location filename="../movies/MovieWidget.cpp" line="684"/>
+        <location filename="../movies/MovieWidget.cpp" line="718"/>
         <source>Track %1</source>
         <translation>Stopa %1</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="697"/>
-        <location filename="../movies/MovieWidget.cpp" line="700"/>
-        <location filename="../movies/MovieWidget.cpp" line="728"/>
-        <location filename="../movies/MovieWidget.cpp" line="729"/>
+        <location filename="../movies/MovieWidget.cpp" line="690"/>
+        <location filename="../movies/MovieWidget.cpp" line="693"/>
+        <location filename="../movies/MovieWidget.cpp" line="721"/>
+        <location filename="../movies/MovieWidget.cpp" line="722"/>
         <source>Language</source>
         <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="699"/>
-        <location filename="../movies/MovieWidget.cpp" line="702"/>
+        <location filename="../movies/MovieWidget.cpp" line="692"/>
+        <location filename="../movies/MovieWidget.cpp" line="695"/>
         <source>Channels</source>
         <translation>Kanály</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="717"/>
+        <location filename="../movies/MovieWidget.cpp" line="710"/>
         <source>Subtitles</source>
         <translation>Titulky</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="886"/>
+        <location filename="../movies/MovieWidget.cpp" line="771"/>
         <source>Saving movie...</source>
         <translation>Ukládání filmu...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="894"/>
+        <location filename="../movies/MovieWidget.cpp" line="779"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; uložen</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="914"/>
+        <location filename="../movies/MovieWidget.cpp" line="799"/>
         <source>Saving movies...</source>
         <translation>Ukládání filmů...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="930"/>
+        <location filename="../movies/MovieWidget.cpp" line="815"/>
         <source>All Movies Saved</source>
-        <translation>Všechny Filmy uloženy</translation>
+        <translation>Všechny filmy uloženy</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="952"/>
+        <location filename="../movies/MovieWidget.cpp" line="837"/>
         <source>Unknown Actor</source>
         <translation>Neznámý Herec</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="953"/>
+        <location filename="../movies/MovieWidget.cpp" line="838"/>
         <source>Unknown Role</source>
         <translation>Neznámá Role</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1082"/>
+        <location filename="../movies/MovieWidget.cpp" line="967"/>
         <source>Choose Image</source>
         <translation>Vyberte obrázek</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1082"/>
+        <location filename="../movies/MovieWidget.cpp" line="967"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Obrázky (*.jpg *.jpeg)</translation>
     </message>
@@ -2481,17 +2793,17 @@ operace zrušena.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="175"/>
+        <location filename="../main.cpp" line="174"/>
         <source>Logfile could not be openened</source>
         <translation>Log soubor nemohl být otevřen</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="176"/>
+        <location filename="../main.cpp" line="175"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Log soubor %1 nemohl být otevřen pro zápis.</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="309"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="339"/>
         <source>Do not ask again</source>
         <translation>Znovu se neptat</translation>
     </message>
@@ -2657,16 +2969,16 @@ p, li { white-space: pre-wrap; }
         <translation>Přejmenovat</translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="37"/>
+        <location filename="../renamer/Renamer.cpp" line="39"/>
         <source>%n Movie(s) will be renamed</source>
         <translation>
-            <numerusform>%n Film bude přejmenován</numerusform>
+            <numerusform>%n film bude přejmenován</numerusform>
             <numerusform>%n filmy budou přejmenovány</numerusform>
-            <numerusform>%n Filmů bude přejmenováno</numerusform>
+            <numerusform>%n filmů bude přejmenováno</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="40"/>
+        <location filename="../renamer/Renamer.cpp" line="42"/>
         <source>%n Concert(s) will be renamed</source>
         <translation>
             <numerusform>%n Koncert bude přejmenován</numerusform>
@@ -2675,7 +2987,7 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="43"/>
+        <location filename="../renamer/Renamer.cpp" line="45"/>
         <source>%n TV Show(s) and %1</source>
         <translation>
             <numerusform>%n TV Seriál a %1</numerusform>
@@ -2684,7 +2996,7 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../renamer/Renamer.cpp" line="43"/>
+        <location filename="../renamer/Renamer.cpp" line="45"/>
         <source>%n Episode(s) will be renamed</source>
         <translation>
             <numerusform>%n Epizoda bude přejmenována</numerusform>
@@ -2693,90 +3005,96 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="167"/>
-        <location filename="../renamer/Renamer.cpp" line="184"/>
+        <location filename="../renamer/Renamer.cpp" line="169"/>
+        <location filename="../renamer/Renamer.cpp" line="186"/>
         <source>Finished</source>
         <translation>Dokončeno</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="228"/>
-        <location filename="../renamer/Renamer.cpp" line="366"/>
-        <location filename="../renamer/Renamer.cpp" line="536"/>
+        <location filename="../renamer/Renamer.cpp" line="232"/>
+        <location filename="../renamer/Renamer.cpp" line="245"/>
+        <location filename="../renamer/Renamer.cpp" line="386"/>
+        <location filename="../renamer/Renamer.cpp" line="399"/>
+        <location filename="../renamer/Renamer.cpp" line="573"/>
+        <location filename="../renamer/Renamer.cpp" line="586"/>
         <source>&lt;b&gt;Rename File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Přejmenovat soubor&lt;/b&gt; &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="231"/>
-        <location filename="../renamer/Renamer.cpp" line="247"/>
-        <location filename="../renamer/Renamer.cpp" line="264"/>
-        <location filename="../renamer/Renamer.cpp" line="281"/>
-        <location filename="../renamer/Renamer.cpp" line="301"/>
-        <location filename="../renamer/Renamer.cpp" line="369"/>
-        <location filename="../renamer/Renamer.cpp" line="386"/>
-        <location filename="../renamer/Renamer.cpp" line="403"/>
-        <location filename="../renamer/Renamer.cpp" line="420"/>
-        <location filename="../renamer/Renamer.cpp" line="435"/>
-        <location filename="../renamer/Renamer.cpp" line="444"/>
-        <location filename="../renamer/Renamer.cpp" line="452"/>
-        <location filename="../renamer/Renamer.cpp" line="459"/>
-        <location filename="../renamer/Renamer.cpp" line="488"/>
-        <location filename="../renamer/Renamer.cpp" line="539"/>
-        <location filename="../renamer/Renamer.cpp" line="555"/>
-        <location filename="../renamer/Renamer.cpp" line="572"/>
+        <location filename="../renamer/Renamer.cpp" line="235"/>
+        <location filename="../renamer/Renamer.cpp" line="248"/>
+        <location filename="../renamer/Renamer.cpp" line="265"/>
+        <location filename="../renamer/Renamer.cpp" line="282"/>
+        <location filename="../renamer/Renamer.cpp" line="299"/>
+        <location filename="../renamer/Renamer.cpp" line="319"/>
+        <location filename="../renamer/Renamer.cpp" line="389"/>
+        <location filename="../renamer/Renamer.cpp" line="402"/>
+        <location filename="../renamer/Renamer.cpp" line="421"/>
+        <location filename="../renamer/Renamer.cpp" line="438"/>
+        <location filename="../renamer/Renamer.cpp" line="455"/>
+        <location filename="../renamer/Renamer.cpp" line="470"/>
+        <location filename="../renamer/Renamer.cpp" line="479"/>
+        <location filename="../renamer/Renamer.cpp" line="487"/>
+        <location filename="../renamer/Renamer.cpp" line="494"/>
+        <location filename="../renamer/Renamer.cpp" line="523"/>
+        <location filename="../renamer/Renamer.cpp" line="576"/>
         <location filename="../renamer/Renamer.cpp" line="589"/>
-        <location filename="../renamer/Renamer.cpp" line="610"/>
+        <location filename="../renamer/Renamer.cpp" line="606"/>
+        <location filename="../renamer/Renamer.cpp" line="623"/>
+        <location filename="../renamer/Renamer.cpp" line="640"/>
+        <location filename="../renamer/Renamer.cpp" line="661"/>
         <source>Failed</source>
         <translation>Neúspěšné</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="244"/>
-        <location filename="../renamer/Renamer.cpp" line="383"/>
-        <location filename="../renamer/Renamer.cpp" line="552"/>
+        <location filename="../renamer/Renamer.cpp" line="262"/>
+        <location filename="../renamer/Renamer.cpp" line="418"/>
+        <location filename="../renamer/Renamer.cpp" line="603"/>
         <source>&lt;b&gt;Rename NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Přejmenovat NFO&lt;/b&gt; &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="261"/>
-        <location filename="../renamer/Renamer.cpp" line="569"/>
+        <location filename="../renamer/Renamer.cpp" line="279"/>
+        <location filename="../renamer/Renamer.cpp" line="620"/>
         <source>&lt;b&gt;Rename Poster&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Přejmenovat Plakát&lt;/b&gt; &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="278"/>
-        <location filename="../renamer/Renamer.cpp" line="586"/>
+        <location filename="../renamer/Renamer.cpp" line="296"/>
+        <location filename="../renamer/Renamer.cpp" line="637"/>
         <source>&lt;b&gt;Rename Fanart&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Přejmenovat Fanart&lt;/b&gt; &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="294"/>
-        <location filename="../renamer/Renamer.cpp" line="483"/>
-        <location filename="../renamer/Renamer.cpp" line="603"/>
+        <location filename="../renamer/Renamer.cpp" line="312"/>
+        <location filename="../renamer/Renamer.cpp" line="518"/>
+        <location filename="../renamer/Renamer.cpp" line="654"/>
         <source>&lt;b&gt;Rename Directory&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Přejmenovat adresář&lt;/b&gt; &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="400"/>
+        <location filename="../renamer/Renamer.cpp" line="435"/>
         <source>&lt;b&gt;Rename Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Přejmenovat Náhled&lt;/b&gt; &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="417"/>
+        <location filename="../renamer/Renamer.cpp" line="452"/>
         <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%1&quot;</source>
         <translation>&lt;b&gt;Vytvořit adresář&lt;/b&gt; &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="432"/>
-        <location filename="../renamer/Renamer.cpp" line="441"/>
+        <location filename="../renamer/Renamer.cpp" line="467"/>
+        <location filename="../renamer/Renamer.cpp" line="476"/>
         <source>&lt;b&gt;Move Episode&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Přesunout Epizodu&lt;/b&gt; &quot;%1&quot; do &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="449"/>
+        <location filename="../renamer/Renamer.cpp" line="484"/>
         <source>&lt;b&gt;Move NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Přesunout NFO&lt;/b&gt; &quot;%1&quot; do &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="456"/>
+        <location filename="../renamer/Renamer.cpp" line="491"/>
         <source>&lt;b&gt;Move Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Přesunout Náhled&lt;/b&gt; &quot;%1&quot; do &quot;%2&quot;</translation>
     </message>
@@ -2851,444 +3169,909 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.cpp" line="72"/>
         <source>Add Movie Set</source>
-        <translation>Přidat Filmovou Kolekci</translation>
+        <translation>Přidat filmovou kolekci</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.cpp" line="73"/>
         <source>Delete Movie Set</source>
-        <translation>Odstranit Filmovou Kolekci</translation>
+        <translation>Odstranit filmovou kolekci</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="414"/>
+        <location filename="../sets/SetsWidget.cpp" line="420"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; uložen</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="439"/>
+        <location filename="../sets/SetsWidget.cpp" line="445"/>
         <source>New Movie Set</source>
-        <translation>Nová Filmová Kolekce</translation>
+        <translation>Nová filmová kolekce</translation>
     </message>
 </context>
 <context>
     <name>SettingsWidget</name>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="17"/>
         <source>Settings</source>
-        <translation>Nastavení</translation>
+        <translation type="obsolete">Nastavení</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="86"/>
         <source>Global Settings</source>
-        <translation>Obecné Nastavení</translation>
+        <translation type="obsolete">Obecné Nastavení</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="92"/>
         <source>Add one or more directories containing your movies, TV Shows or concerts. TV Show Episodes have to be in subfolders with the name of the show.</source>
-        <translation>Přidejte jeden nebo více adresářů obsahující vaše filmy, TV Seriály nebo koncerty. Epizody TV Seriálů musí být v podadresáři pojmenovaném podle seriálu.</translation>
+        <translation type="obsolete">Přidejte jeden nebo více adresářů obsahující vaše filmy, TV seriály nebo koncerty. Epizody TV seriálů musí být v podadresáři pojmenovaném podle seriálu.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="124"/>
         <source>Type</source>
-        <translation>Typ</translation>
+        <translation type="obsolete">Typ</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="129"/>
         <source>Path</source>
-        <translation>Cesta</translation>
+        <translation type="obsolete">Cesta</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="134"/>
         <source>Sep. folders</source>
-        <translation>Oddělené adr.</translation>
+        <translation type="obsolete">Oddělené adr.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="139"/>
         <source>Reload On Start</source>
-        <translation>Obnovit při startu</translation>
+        <translation type="obsolete">Obnovit při startu</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="149"/>
         <source>Add</source>
-        <translation>Přidat</translation>
+        <translation type="obsolete">Přidat</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="156"/>
         <source>Remove</source>
-        <translation>Odstranit</translation>
+        <translation type="obsolete">Odstranit</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="163"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort movies into separate directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Řadit filmy do oddělených adresářů&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Řadit filmy do oddělených adresářů&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="166"/>
         <source>Organize</source>
-        <translation>Organizovat</translation>
+        <translation type="obsolete">Organizovat</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="195"/>
         <source>Store trailer URLs in YouTube Plugin format</source>
-        <translation>Ukládat adresy upoutávek ve formátu YouTube Pluginu</translation>
+        <translation type="obsolete">Ukládat adresy upoutávek ve formátu YouTube Pluginu</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="202"/>
         <source>Automatically load and save stream details from files</source>
-        <translation>Automaticky načíst a uložit podrobnosti streamu ze souborů.</translation>
+        <translation type="obsolete">Automaticky načíst a uložit podrobnosti streamu ze souborů.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="209"/>
         <source>Download actor images</source>
-        <translation>Stáhnout fotky herců</translation>
+        <translation type="obsolete">Stáhnout fotky herců</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="216"/>
         <source>Ignore articles when sorting (&quot;The&quot;)</source>
-        <translation>Ignorovat členy při řazení (&quot;The&quot;)</translation>
+        <translation type="obsolete">Ignorovat členy při řazení (&quot;The&quot;)</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="229"/>
-        <location filename="../settings/SettingsWidget.ui" line="242"/>
         <source>Words to exclude from media names (seperated by commas and non case-sensitive)</source>
-        <translation>Slova, která nebudou použita v názvech (slova oddělujte pomocí čárky; velikost písmen se nerozlišuje)</translation>
+        <translation type="obsolete">Slova, která nebudou použita v názvech (slova oddělujte pomocí čárky; velikost písmen se nerozlišuje)</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="250"/>
-        <location filename="../settings/SettingsWidget.ui" line="262"/>
         <source>Scrapers</source>
-        <translation>Scrapers</translation>
+        <translation type="obsolete">Scrapers</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="286"/>
         <source>XBMC</source>
-        <translation>XBMC</translation>
+        <translation type="obsolete">XBMC</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="292"/>
         <source>If you want to use the synchronization feature you need to enable &quot;Allow programs on other systems to control XBMC&quot; within XBMC (Settings -&gt; Services -&gt; Remote Control).</source>
-        <translation>Pokud chcete používat synchronizaci musíte zapnout volbu &quot;Povolit programům z ostatních počítačů ovládat XBMC&quot; v nastavení XBMC (Nastavení -&gt; Služby -&gt; Vzdálené ovládání).</translation>
+        <translation type="obsolete">Pokud chcete používat synchronizaci musíte zapnout volbu &quot;Povolit programům z ostatních počítačů ovládat XBMC&quot; v nastavení XBMC (Nastavení -&gt; Služby -&gt; Vzdálené ovládání).</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="307"/>
-        <location filename="../settings/SettingsWidget.ui" line="1143"/>
         <source>Host</source>
-        <translation>Host</translation>
+        <translation type="obsolete">Host</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="314"/>
         <source>127.0.0.1</source>
-        <translation>127.0.0.1</translation>
+        <translation type="obsolete">127.0.0.1</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="321"/>
-        <location filename="../settings/SettingsWidget.ui" line="1150"/>
         <source>Port</source>
-        <translation>Port</translation>
+        <translation type="obsolete">Port</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="328"/>
         <source>9090</source>
-        <translation>9090</translation>
+        <translation type="obsolete">9090</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="338"/>
-        <location filename="../settings/SettingsWidget.cpp" line="428"/>
         <source>Movies</source>
-        <translation>Filmy</translation>
+        <translation type="obsolete">Filmy</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="344"/>
         <source>Below you see the filenames which are used for loading and saving your movies. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
-        <translation>Níže vidíte názvy souborů, které jsou použity k načítání a ukládání vašich filmů. Pokud si přejete odstranit položku, klikněte na ni pravým tlačítkem a zvolte odstranit. Pro přidání položky, klikněte pravým tlačítkem a zvolte přidat položku. Pro úpravu názvu souboru, dvakrát na ni klikněte.</translation>
+        <translation type="obsolete">Níže vidíte názvy souborů, které jsou použity k načítání a ukládání vašich filmů. Pokud si přejete odstranit položku, klikněte na ni pravým tlačítkem a zvolte odstranit. Pro přidání položky, klikněte pravým tlačítkem a zvolte přidat položku. Pro úpravu názvu souboru, dvakrát na ni klikněte.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="354"/>
-        <location filename="../settings/SettingsWidget.ui" line="969"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
-        <translation>Můžete použít zástupný tag &lt;baseFileName&gt;, který představuje název souboru bez přípony.</translation>
+        <translation type="obsolete">Můžete použít zástupný tag &lt;baseFileName&gt;, který představuje název souboru bez přípony.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="369"/>
-        <location filename="../settings/SettingsWidget.ui" line="782"/>
-        <location filename="../settings/SettingsWidget.ui" line="1026"/>
         <source>Clear Art</source>
-        <translation>Clear Art</translation>
+        <translation type="obsolete">Clear Art</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="382"/>
-        <location filename="../settings/SettingsWidget.ui" line="769"/>
-        <location filename="../settings/SettingsWidget.ui" line="987"/>
         <source>Logo</source>
-        <translation>Logo</translation>
+        <translation type="obsolete">Logo</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="395"/>
-        <location filename="../settings/SettingsWidget.ui" line="667"/>
-        <location filename="../settings/SettingsWidget.ui" line="1013"/>
         <source>Backdrop</source>
-        <translation>Pozadí</translation>
+        <translation type="obsolete">Pozadí</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="418"/>
-        <location filename="../settings/SettingsWidget.ui" line="1049"/>
         <source>NFO</source>
-        <translation>NFO</translation>
+        <translation type="obsolete">NFO</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="431"/>
-        <location filename="../settings/SettingsWidget.ui" line="716"/>
-        <location filename="../settings/SettingsWidget.ui" line="1062"/>
         <source>Poster</source>
-        <translation>Plakát</translation>
+        <translation type="obsolete">Plakát</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="496"/>
-        <location filename="../settings/SettingsWidget.ui" line="1000"/>
         <source>CD Art</source>
-        <translation>CD Art</translation>
+        <translation type="obsolete">CD Art</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="530"/>
         <source>Artwork directory</source>
-        <translation>Adresář s grafikou</translation>
+        <translation type="obsolete">Adresář s grafikou</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="537"/>
         <source>Movie Set Artwork</source>
-        <translation>Grafika Filmové Kolekce</translation>
+        <translation type="obsolete">Grafika Filmové Kolekce</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="545"/>
         <source>Artwork next to movies</source>
-        <translation>Grafika spolu s filmem</translation>
+        <translation type="obsolete">Grafika spolu s filmem</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="550"/>
         <source>Separate artwork directory</source>
-        <translation>V odděleném adresáři s grafikou</translation>
+        <translation type="obsolete">V odděleném adresáři s grafikou</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="558"/>
         <source>Use plot when outline is not available</source>
-        <translation>Požít děj pokud obsah není dostupný</translation>
+        <translation type="obsolete">Požít děj pokud obsah není dostupný</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="565"/>
         <source>Movie outline</source>
-        <translation>Obsah filmu</translation>
+        <translation type="obsolete">Obsah filmu</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="572"/>
         <source>Movie Set Poster Filename</source>
-        <translation>Název souboru Plakátu Kolekce</translation>
+        <translation type="obsolete">Název souboru Plakátu Kolekce</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="579"/>
         <source>Movie Set Fanart Filname</source>
-        <translation>Název souboru Fanartu Kolekce</translation>
+        <translation type="obsolete">Název souboru Fanartu Kolekce</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="586"/>
-        <location filename="../settings/SettingsWidget.ui" line="589"/>
         <source>folder.jpg</source>
-        <translation>folder.jpg</translation>
+        <translation type="obsolete">folder.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="596"/>
-        <location filename="../settings/SettingsWidget.ui" line="599"/>
         <source>fanart.jpg</source>
-        <translation>fanart.jpg</translation>
+        <translation type="obsolete">fanart.jpg</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="611"/>
         <source>Choose directory</source>
-        <translation>Zvolit adresář</translation>
+        <translation type="obsolete">Zvolit adresář</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="620"/>
         <source>Media Status Columns</source>
-        <translation>Stavové sloupce</translation>
+        <translation type="obsolete">Stavové sloupce</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="633"/>
-        <location filename="../settings/SettingsWidget.cpp" line="428"/>
         <source>TV Shows</source>
-        <translation>TV Seriály</translation>
+        <translation type="obsolete">TV Seriály</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="639"/>
         <source>Below you see the filenames which are used for loading and saving your tv shows. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
-        <translation>Níže vidíte názvy souborů, které jsou použity k načítání a ukládání vašich tv seriálů. Pokud si přejete odstranit položku, klikněte na ni pravým tlačítkem a zvolte odstranit. Pro přidání položky, klikněte pravým tlačítkem a zvolte přidat položku. Pro úpravu názvu souboru na něj dvakrát klikněte.</translation>
+        <translation type="obsolete">Níže vidíte názvy souborů, které jsou použity k načítání a ukládání vašich tv seriálů. Pokud si přejete odstranit položku, klikněte na ni pravým tlačítkem a zvolte odstranit. Pro přidání položky, klikněte pravým tlačítkem a zvolte přidat položku. Pro úpravu názvu souboru na něj dvakrát klikněte.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="649"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
-        <translation>Můžete použít zástupný tag &lt;baseFileName&gt;, který představuje název souboru bez přípony a pro plakáty řady &lt;seasonNumber&gt;, který představuje číslo řady.</translation>
+        <translation type="obsolete">Můžete použít zástupný tag &lt;baseFileName&gt;, který představuje název souboru bez přípony a pro plakáty řady &lt;seasonNumber&gt;, který představuje číslo řady.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="680"/>
         <source>Banner</source>
-        <translation>Banner</translation>
+        <translation type="obsolete">Banner</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="703"/>
         <source>Show NFO</source>
-        <translation>NFO Seriálu</translation>
+        <translation type="obsolete">NFO Seriálu</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="805"/>
         <source>Character Art</source>
-        <translation>Character Art</translation>
+        <translation type="obsolete">Character Art</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="828"/>
         <source>Episode NFO</source>
-        <translation>NFO Epizody</translation>
+        <translation type="obsolete">NFO Epizody</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="851"/>
         <source>Episode Thumbnail</source>
-        <translation>Náhled Epizody</translation>
+        <translation type="obsolete">Náhled Epizody</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="874"/>
         <source>Season Poster</source>
-        <translation>Plakát Řady</translation>
+        <translation type="obsolete">Plakát Řady</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="897"/>
         <source>Season Backdrop</source>
-        <translation>Pozadí Řady</translation>
+        <translation type="obsolete">Pozadí Řady</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="910"/>
         <source>Season Banner</source>
-        <translation>Banner Řady</translation>
+        <translation type="obsolete">Banner Řady</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="953"/>
-        <location filename="../settings/SettingsWidget.cpp" line="428"/>
         <source>Concerts</source>
-        <translation>Koncerty</translation>
+        <translation type="obsolete">Koncerty</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="959"/>
         <source>Below you see the filenames which are used for loading and saving your concerts. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
-        <translation>Níže vidíte názvy souborů, které jsou použity k načítání a ukládání vašich koncertů. Pokud si přejete odstranit položku, klikněte na ni pravým tlačítkem a zvolte odstranit. Pro přidání položky, klikněte pravým tlačítkem a zvolte přidat položku. Pro úpravu názvu souboru, dvakrát na ni klikněte.</translation>
+        <translation type="obsolete">Níže vidíte názvy souborů, které jsou použity k načítání a ukládání vašich koncertů. Pokud si přejete odstranit položku, klikněte na ni pravým tlačítkem a zvolte odstranit. Pro přidání položky, klikněte pravým tlačítkem a zvolte přidat položku. Pro úpravu názvu souboru, dvakrát na ni klikněte.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1135"/>
         <source>Proxy</source>
-        <translation>Proxy</translation>
+        <translation type="obsolete">Proxy</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1157"/>
         <source>Username</source>
-        <translation>Uživatelské jméno</translation>
+        <translation type="obsolete">Uživatelské jméno</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1164"/>
         <source>Password</source>
-        <translation>Heslo</translation>
+        <translation type="obsolete">Heslo</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1191"/>
         <source>Enable Proxy</source>
-        <translation>Povolit Proxy</translation>
+        <translation type="obsolete">Povolit Proxy</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1198"/>
         <source>Type</source>
         <comment>Proxy Type</comment>
-        <translation>Typ</translation>
+        <translation type="obsolete">Typ</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1206"/>
         <source>HTTP</source>
-        <translation>HTTP</translation>
+        <translation type="obsolete">HTTP</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1211"/>
         <source>SOCKS 5</source>
-        <translation>SOCKS 5</translation>
+        <translation type="obsolete">SOCKS 5</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1237"/>
         <source>Default filenames for</source>
-        <translation>Výchozí názvy souboru pro</translation>
+        <translation type="obsolete">Výchozí názvy souboru pro</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1244"/>
         <source>XBMC Eden</source>
-        <translation>XBMC Eden</translation>
+        <translation type="obsolete">XBMC Eden</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1254"/>
         <source>XBMC Frodo</source>
-        <translation>XBMC Frodo</translation>
+        <translation type="obsolete">XBMC Frodo</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1277"/>
-        <location filename="../settings/SettingsWidget.cpp" line="478"/>
         <source>Cancel</source>
-        <translation>Zrušit</translation>
+        <translation type="obsolete">Zrušit</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.ui" line="1287"/>
         <source>Save Settings</source>
-        <translation>Uložit Nastavení</translation>
+        <translation type="obsolete">Uložit Nastavení</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="43"/>
         <source>Items are in separate folders</source>
-        <translation>Položky jsou v oddělených adresářích</translation>
+        <translation type="obsolete">Položky jsou v oddělených adresářích</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="44"/>
         <source>Automatically reload contents on start</source>
-        <translation>Automaticky obnovit koncerty při startu</translation>
+        <translation type="obsolete">Automaticky obnovit koncerty při startu</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="64"/>
-        <location filename="../settings/SettingsWidget.cpp" line="93"/>
-        <location filename="../settings/SettingsWidget.cpp" line="122"/>
         <source>Language</source>
-        <translation>Jazyk</translation>
+        <translation type="obsolete">Jazyk</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="390"/>
         <source>Settings saved</source>
-        <translation>Nastavení uloženo</translation>
+        <translation type="obsolete">Nastavení uloženo</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="465"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
-        <translation>Organizace filmů funguje pouze u filmů, nezařazených do oddělených adresářů.</translation>
+        <translation type="obsolete">Organizace filmů funguje pouze u filmů, nezařazených do oddělených adresářů.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="473"/>
         <source>Are you sure?</source>
-        <translation>Jste si jistí?</translation>
+        <translation type="obsolete">Jste si jistí?</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="474"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
-        <translation>Tato operace zařadí všechny filmy v tomto adresáři do oddělených podadresářů pojmenovaných podle názvu souboru. Klikněte na &quot;Ok&quot;, pokud si přejete pokračovat.</translation>
+        <translation type="obsolete">Tato operace zařadí všechny filmy v tomto adresáři do oddělených podadresářů pojmenovaných podle názvu souboru. Klikněte na &quot;Ok&quot;, pokud si přejete pokračovat.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="477"/>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="533"/>
         <source>Choose a directory containing your movies, TV show or concerts</source>
-        <translation>Zvolte adresář obsahující vaše filmy, TV seriály nebo koncerty</translation>
+        <translation type="obsolete">Zvolte adresář obsahující vaše filmy, TV seriály nebo koncerty</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWidget.cpp" line="587"/>
         <source>Choose a directory where your movie set artwork is stored</source>
-        <translation>Zvolte adresář, ve kterém jsou uloženy grafické soubory vašich filmových kolekcí</translation>
+        <translation type="obsolete">Zvolte adresář, ve kterém jsou uloženy grafické soubory vašich filmových kolekcí</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsWindow</name>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="23"/>
+        <source>Settings</source>
+        <translation type="unfinished">Nastavení</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="37"/>
+        <source>Add one or more directories containing your movies, TV Shows or concerts. TV Show Episodes have to be in subfolders with the name of the show.</source>
+        <translation type="unfinished">Přidejte jeden nebo více adresářů obsahující vaše filmy, TV seriály nebo koncerty. Epizody TV seriálů musí být v podadresáři pojmenovaném podle seriálu.</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="69"/>
+        <source>Type</source>
+        <translation type="unfinished">Typ</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="74"/>
+        <source>Path</source>
+        <translation type="unfinished">Cesta</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="79"/>
+        <source>Sep. folders</source>
+        <translation type="unfinished">Oddělené adr.</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="82"/>
+        <source>Items are in separate folders</source>
+        <translation type="unfinished">Položky jsou v oddělených adresářích</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="87"/>
+        <source>Reload On Start</source>
+        <translation type="unfinished">Obnovit při startu</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="90"/>
+        <source>Automatically reload contents on start</source>
+        <translation type="unfinished">Automaticky obnovit koncerty při startu</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="100"/>
+        <source>Add</source>
+        <translation type="unfinished">Přidat</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="107"/>
+        <source>Remove</source>
+        <translation type="unfinished">Odstranit</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="114"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort movies into separate directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Řadit filmy do oddělených adresářů&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="117"/>
+        <source>Organize</source>
+        <translation type="unfinished">Organizovat</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="144"/>
+        <source>Store trailer URLs in YouTube Plugin format</source>
+        <translation type="unfinished">Ukládat adresy upoutávek ve formátu YouTube Pluginu</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="158"/>
+        <source>Automatically load and save stream details from files</source>
+        <translation type="unfinished">Automaticky načíst a uložit podrobnosti streamu ze souborů.</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="172"/>
+        <source>Ignore articles when sorting (&quot;The&quot;)</source>
+        <translation type="unfinished">Ignorovat členy při řazení (&quot;The&quot;)</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="186"/>
+        <source>Download actor images</source>
+        <translation type="unfinished">Stáhnout fotky herců</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="200"/>
+        <location filename="../settings/SettingsWindow.ui" line="207"/>
+        <source>Words to exclude from media names (seperated by commas and non case-sensitive)</source>
+        <translation type="unfinished">Slova, která nebudou použita v názvech (slova oddělujte pomocí čárky; velikost písmen se nerozlišuje)</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="230"/>
+        <location filename="../settings/SettingsWindow.ui" line="294"/>
+        <location filename="../settings/SettingsWindow.ui" line="1359"/>
+        <source>Scraper</source>
+        <translation type="unfinished">Scraper</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="253"/>
+        <source>Custom Movie Scraper</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="259"/>
+        <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="289"/>
+        <source>Item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="310"/>
+        <source>Below you see the filenames which are used for loading and saving your movies. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="320"/>
+        <location filename="../settings/SettingsWindow.ui" line="853"/>
+        <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
+        <translation type="unfinished">Můžete použít zástupný tag &lt;baseFileName&gt;, který představuje název souboru bez přípony.</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="335"/>
+        <location filename="../settings/SettingsWindow.ui" line="868"/>
+        <source>Nfo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="342"/>
+        <location filename="../settings/SettingsWindow.ui" line="606"/>
+        <location filename="../settings/SettingsWindow.ui" line="875"/>
+        <location filename="../settings/SettingsWindow.cpp" line="703"/>
+        <source>Poster</source>
+        <translation type="unfinished">Plakát</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="349"/>
+        <location filename="../settings/SettingsWindow.ui" line="613"/>
+        <location filename="../settings/SettingsWindow.ui" line="882"/>
+        <source>Backdrop</source>
+        <translation type="unfinished">Pozadí</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="356"/>
+        <location filename="../settings/SettingsWindow.ui" line="627"/>
+        <location filename="../settings/SettingsWindow.ui" line="889"/>
+        <location filename="../settings/SettingsWindow.cpp" line="723"/>
+        <source>Logo</source>
+        <translation type="unfinished">Logo</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="363"/>
+        <location filename="../settings/SettingsWindow.ui" line="634"/>
+        <location filename="../settings/SettingsWindow.ui" line="896"/>
+        <location filename="../settings/SettingsWindow.cpp" line="727"/>
+        <source>Clear Art</source>
+        <translation type="unfinished">Clear Art</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="370"/>
+        <location filename="../settings/SettingsWindow.ui" line="903"/>
+        <location filename="../settings/SettingsWindow.cpp" line="725"/>
+        <source>Disc Art</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="437"/>
+        <location filename="../settings/SettingsWindow.ui" line="620"/>
+        <location filename="../settings/SettingsWindow.cpp" line="729"/>
+        <source>Banner</source>
+        <translation type="unfinished">Banner</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="444"/>
+        <location filename="../settings/SettingsWindow.ui" line="810"/>
+        <location filename="../settings/SettingsWindow.cpp" line="731"/>
+        <source>Thumb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="478"/>
+        <source>Movie outline</source>
+        <translation type="unfinished">Obsah filmu</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="485"/>
+        <source>Use plot when outline is not available</source>
+        <translation type="unfinished">Požít děj pokud obsah není dostupný</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="492"/>
+        <source>Movie Set Artwork</source>
+        <translation type="unfinished">Grafika Filmové Kolekce</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="500"/>
+        <source>Artwork next to movies</source>
+        <translation type="unfinished">Grafika spolu s filmem</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="505"/>
+        <source>Separate artwork directory</source>
+        <translation type="unfinished">V odděleném adresáři s grafikou</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="513"/>
+        <source>Movie Set Poster Filename</source>
+        <translation type="unfinished">Název souboru Plakátu Kolekce</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="520"/>
+        <location filename="../settings/SettingsWindow.ui" line="523"/>
+        <source>folder.jpg</source>
+        <translation type="unfinished">folder.jpg</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="530"/>
+        <source>Movie Set Fanart Filname</source>
+        <translation type="unfinished">Název souboru Fanartu Kolekce</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="537"/>
+        <location filename="../settings/SettingsWindow.ui" line="540"/>
+        <source>fanart.jpg</source>
+        <translation type="unfinished">fanart.jpg</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="547"/>
+        <source>Artwork directory</source>
+        <translation type="unfinished">Adresář s grafikou</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="559"/>
+        <source>Choose directory</source>
+        <translation type="unfinished">Zvolit adresář</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="574"/>
+        <source>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="584"/>
+        <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
+        <translation type="unfinished">Můžete použít zástupný tag &lt;baseFileName&gt;, který představuje název souboru bez přípony a pro plakáty řady &lt;seasonNumber&gt;, který představuje číslo řady.</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="599"/>
+        <source>Show nfo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="641"/>
+        <source>Character Art</source>
+        <translation type="unfinished">Character Art</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="648"/>
+        <source>Season Poster</source>
+        <translation type="unfinished">Plakát Řady</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="655"/>
+        <source>Season Backdrop</source>
+        <translation type="unfinished">Pozadí Řady</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="662"/>
+        <source>Episode nfo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="669"/>
+        <source>Episode thumbnail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="676"/>
+        <source>Season Banner</source>
+        <translation type="unfinished">Banner Řady</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="803"/>
+        <source>Season Thumb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="843"/>
+        <source>Below you see the filenames which are used for loading and saving your concerts. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="976"/>
+        <source>If you want to use the synchronization feature you need to enable &quot;Allow programs on other systems to control XBMC&quot; within XBMC (Settings -&gt; Services -&gt; Remote Control).</source>
+        <translation type="unfinished">Pokud chcete používat synchronizaci musíte zapnout volbu &quot;Povolit programům z ostatních počítačů ovládat XBMC&quot; v nastavení XBMC (Nastavení -&gt; Služby -&gt; Vzdálené ovládání).</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="991"/>
+        <location filename="../settings/SettingsWindow.ui" line="1027"/>
+        <source>Host</source>
+        <translation type="unfinished">Host</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="998"/>
+        <source>127.0.0.1</source>
+        <translation type="unfinished">127.0.0.1</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1005"/>
+        <location filename="../settings/SettingsWindow.ui" line="1034"/>
+        <source>Port</source>
+        <translation type="unfinished">Port</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1012"/>
+        <source>9090</source>
+        <translation type="unfinished">9090</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1041"/>
+        <source>Username</source>
+        <translation type="unfinished">Uživatelské jméno</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1048"/>
+        <source>Password</source>
+        <translation type="unfinished">Heslo</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1075"/>
+        <source>Enable Proxy</source>
+        <translation type="unfinished">Povolit Proxy</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1082"/>
+        <source>Type</source>
+        <comment>Proxy Type</comment>
+        <translation type="unfinished">Typ</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1090"/>
+        <source>HTTP</source>
+        <translation type="unfinished">HTTP</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1095"/>
+        <source>SOCKS 5</source>
+        <translation type="unfinished">SOCKS 5</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1122"/>
+        <source>Message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1153"/>
+        <source>Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1180"/>
+        <location filename="../settings/SettingsWindow.cpp" line="532"/>
+        <source>Cancel</source>
+        <translation type="unfinished">Zrušit</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1187"/>
+        <source>Save Settings</source>
+        <translation type="unfinished">Uložit Nastavení</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1197"/>
+        <source>toolBar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1238"/>
+        <location filename="../settings/SettingsWindow.cpp" line="488"/>
+        <source>Movies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1258"/>
+        <location filename="../settings/SettingsWindow.cpp" line="488"/>
+        <source>TV Shows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1279"/>
+        <location filename="../settings/SettingsWindow.cpp" line="488"/>
+        <source>Concerts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1299"/>
+        <source>Global</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1319"/>
+        <source>XBMC</source>
+        <translation type="unfinished">XBMC</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1339"/>
+        <source>Network</source>
+        <translation type="unfinished">Společnost</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="1379"/>
+        <source>Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="70"/>
+        <location filename="../settings/SettingsWindow.cpp" line="99"/>
+        <location filename="../settings/SettingsWindow.cpp" line="128"/>
+        <source>Language</source>
+        <translation type="unfinished">Jazyk</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="456"/>
+        <source>Settings saved</source>
+        <translation type="unfinished">Nastavení uloženo</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="519"/>
+        <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
+        <translation type="unfinished">Organizace filmů funguje pouze u filmů, nezařazených do oddělených adresářů.</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="527"/>
+        <source>Are you sure?</source>
+        <translation type="unfinished">Jste si jistí?</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="528"/>
+        <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
+        <translation type="unfinished">Tato operace zařadí všechny filmy v tomto adresáři do oddělených podadresářů pojmenovaných podle názvu souboru. Klikněte na &quot;Ok&quot;, pokud si přejete pokračovat.</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="531"/>
+        <source>Ok</source>
+        <translation type="unfinished">Ok</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="577"/>
+        <source>Choose a directory containing your movies, TV show or concerts</source>
+        <translation type="unfinished">Zvolte adresář obsahující vaše filmy, TV seriály nebo koncerty</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="599"/>
+        <source>Choose a directory where your movie set artwork is stored</source>
+        <translation type="unfinished">Zvolte adresář, ve kterém jsou uloženy grafické soubory vašich filmových kolekcí</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="628"/>
+        <source>Theme &quot;%1&quot; was successfully installed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="630"/>
+        <location filename="../settings/SettingsWindow.cpp" line="638"/>
+        <source>There was an error while processing the theme &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="636"/>
+        <source>Theme &quot;%1&quot; was successfully uninstalled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="648"/>
+        <source>Don&apos;t use</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="687"/>
+        <source>Title</source>
+        <translation type="unfinished">Název</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="689"/>
+        <source>Tagline</source>
+        <translation type="unfinished">Motto</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="691"/>
+        <source>Rating</source>
+        <translation type="unfinished">Hodnocení</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="693"/>
+        <source>Released</source>
+        <translation type="unfinished">Datum vydání</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="695"/>
+        <source>Runtime</source>
+        <translation type="unfinished">Délka</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="697"/>
+        <source>Certification</source>
+        <translation type="unfinished">Certifikát</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="699"/>
+        <source>Trailer</source>
+        <translation type="unfinished">Upoutávka</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="701"/>
+        <source>Plot</source>
+        <translation type="unfinished">Děj</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="705"/>
+        <source>Fanart</source>
+        <translation type="unfinished">Fanart</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="707"/>
+        <source>Actors</source>
+        <translation type="unfinished">Herci</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="709"/>
+        <source>Genres</source>
+        <translation type="unfinished">Žánry</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="711"/>
+        <source>Studios</source>
+        <translation type="unfinished">Studia</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="713"/>
+        <source>Countries</source>
+        <translation type="unfinished">Země</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="715"/>
+        <source>Writer</source>
+        <translation type="unfinished">Scénárista</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="717"/>
+        <source>Director</source>
+        <translation type="unfinished">Režisér</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="719"/>
+        <source>Tags</source>
+        <translation type="unfinished">Tagy</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="721"/>
+        <source>Set</source>
+        <translation type="unfinished">Kolekce</translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.cpp" line="733"/>
+        <source>Unsupported</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3349,127 +4132,127 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TMDb</name>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="61"/>
+        <location filename="../scrapers/TMDb.cpp" line="85"/>
         <source>Bulgarian</source>
         <translation>Bulharština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="62"/>
+        <location filename="../scrapers/TMDb.cpp" line="86"/>
         <source>Chinese</source>
         <translation>Čínština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="63"/>
+        <location filename="../scrapers/TMDb.cpp" line="87"/>
         <source>Croatian</source>
         <translation>Chorvatština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="64"/>
+        <location filename="../scrapers/TMDb.cpp" line="88"/>
         <source>Czech</source>
         <translation>Čeština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="65"/>
+        <location filename="../scrapers/TMDb.cpp" line="89"/>
         <source>Danish</source>
         <translation>Dánština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="66"/>
+        <location filename="../scrapers/TMDb.cpp" line="90"/>
         <source>Dutch</source>
         <translation>Holandština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="67"/>
+        <location filename="../scrapers/TMDb.cpp" line="91"/>
         <source>English</source>
         <translation>Angličtina</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="68"/>
+        <location filename="../scrapers/TMDb.cpp" line="92"/>
         <source>English (US)</source>
         <translation>Angličtina (US)</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="69"/>
+        <location filename="../scrapers/TMDb.cpp" line="93"/>
         <source>Finnish</source>
         <translation>Finština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="70"/>
+        <location filename="../scrapers/TMDb.cpp" line="94"/>
         <source>French</source>
         <translation>Francouzština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="71"/>
+        <location filename="../scrapers/TMDb.cpp" line="95"/>
         <source>German</source>
         <translation>Němčina</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="72"/>
+        <location filename="../scrapers/TMDb.cpp" line="96"/>
         <source>Greek</source>
         <translation>Řečtina</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="73"/>
+        <location filename="../scrapers/TMDb.cpp" line="97"/>
         <source>Hebrew</source>
         <translation>Hebrejština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="74"/>
+        <location filename="../scrapers/TMDb.cpp" line="98"/>
         <source>Hungarian</source>
         <translation>Maďarština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="75"/>
+        <location filename="../scrapers/TMDb.cpp" line="99"/>
         <source>Italian</source>
         <translation>Italština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="76"/>
+        <location filename="../scrapers/TMDb.cpp" line="100"/>
         <source>Japanese</source>
         <translation>Japonština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="77"/>
+        <location filename="../scrapers/TMDb.cpp" line="101"/>
         <source>Korean</source>
         <translation>Korejština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="78"/>
+        <location filename="../scrapers/TMDb.cpp" line="102"/>
         <source>Norwegian</source>
         <translation>Norština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="79"/>
+        <location filename="../scrapers/TMDb.cpp" line="103"/>
         <source>Polish</source>
         <translation>Polština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="80"/>
+        <location filename="../scrapers/TMDb.cpp" line="104"/>
         <source>Portuguese</source>
         <translation>Portugalština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="81"/>
+        <location filename="../scrapers/TMDb.cpp" line="105"/>
         <source>Russian</source>
         <translation>Ruština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="82"/>
+        <location filename="../scrapers/TMDb.cpp" line="106"/>
         <source>Slovene</source>
         <translation>Slovinština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="83"/>
+        <location filename="../scrapers/TMDb.cpp" line="107"/>
         <source>Spanish</source>
         <translation>Španělština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="84"/>
+        <location filename="../scrapers/TMDb.cpp" line="108"/>
         <source>Swedish</source>
         <translation>Švédština</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="85"/>
+        <location filename="../scrapers/TMDb.cpp" line="109"/>
         <source>Turkish</source>
         <translation>Turečtina</translation>
     </message>
@@ -3836,14 +4619,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TvShowDelegate</name>
     <message>
-        <location filename="../data/TvShowDelegate.cpp" line="32"/>
         <source>new</source>
-        <translation>nový</translation>
+        <translation type="obsolete">nový</translation>
     </message>
     <message numerus="yes">
-        <location filename="../data/TvShowDelegate.cpp" line="114"/>
         <source>%n Episodes</source>
-        <translation>
+        <translation type="obsolete">
             <numerusform>%n Epizoda</numerusform>
             <numerusform>%n Epizody</numerusform>
             <numerusform>%n Epizod</numerusform>
@@ -3919,7 +4700,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TvShowModelItem</name>
     <message>
-        <location filename="../data/TvShowModelItem.cpp" line="106"/>
+        <location filename="../data/TvShowModelItem.cpp" line="130"/>
         <source>Season %1</source>
         <translation>Řada %1</translation>
     </message>
@@ -3958,116 +4739,121 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="148"/>
+        <source>Runtime</source>
+        <translation type="unfinished">Délka</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowSearch.ui" line="158"/>
         <source>Director</source>
         <translation>Režisér</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="158"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="168"/>
         <source>Writer</source>
         <translation>Scénárista</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="168"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="178"/>
         <source>Certification</source>
         <translation>Certifikát</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="178"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="188"/>
         <source>Overview</source>
         <translation>Přehled</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="188"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="198"/>
         <source>Genres</source>
         <translation>Žánry</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="198"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="208"/>
         <source>Network</source>
         <translation>Společnost</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="208"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="218"/>
         <source>Actors</source>
         <translation>Herci</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="218"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="228"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="228"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="238"/>
         <source>Poster</source>
         <translation>Plakát</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="238"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="248"/>
         <source>Season Poster</source>
         <translation>Plakát Řady</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="248"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="258"/>
         <source>Season Fanart</source>
         <translation>Fanart Řady</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="258"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="268"/>
         <source>Season Banner</source>
         <translation>Banner Řady</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="268"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="278"/>
         <source>Banner</source>
         <translation>Banner</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="278"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="288"/>
         <source>Thumbnail</source>
         <translation>Náhled</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="288"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="298"/>
         <source>Artwork</source>
         <translation>Grafika</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="305"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="315"/>
         <source>(Un)Check all</source>
         <translation>Zvolit vše</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="336"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="346"/>
         <source>Update TV Show only</source>
         <translation>Aktualizovat pouze TV Serial</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="341"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="351"/>
         <source>Update TV Show and new Episodes</source>
         <translation>Aktualizovat TV Seriál a nové Epizody</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="346"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="356"/>
         <source>Update TV Show and all Episodes</source>
         <translation>Aktualizovat TV Serial a všechny Epizody</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="351"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="361"/>
         <source>Update new Episodes</source>
         <translation>Aktualizovat nové Epizody</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="356"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="366"/>
         <source>Update all episodes</source>
         <translation>Aktualizovat všechny Epizody</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="364"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="374"/>
         <source>DVD Order</source>
         <translation>DVD Pořadí</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowSearch.ui" line="384"/>
+        <location filename="../tvShows/TvShowSearch.ui" line="394"/>
         <source>Close</source>
         <translation>Zavřít</translation>
     </message>
@@ -4168,175 +4954,181 @@ p, li { white-space: pre-wrap; }
         <translation>Počet přehrání</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="274"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="343"/>
         <source>Last Played</source>
         <translation>Naposledy přehráno</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="281"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="350"/>
         <source>dd.MM.yyyy HH:mm</source>
         <translation>dd.MM.yyyy HH:mm</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="288"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="403"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="271"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="421"/>
         <source>Studio</source>
         <translation>Studio</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="298"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="281"/>
         <source>Overview</source>
         <translation>Přehled</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="336"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="319"/>
         <source>Display Episode</source>
         <translation>Zobrazená Epizoda</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="358"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="359"/>
+        <source>Bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="376"/>
         <source>Extended</source>
         <translation>Rozšířené</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="372"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="390"/>
         <source>Directors</source>
         <translation>Režisérové</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="413"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="431"/>
         <source>Add Director</source>
         <translation>Přidat Režiséra</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="427"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="445"/>
         <source>Remove Director</source>
         <translation>Odstranit Režiséra</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="471"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="489"/>
         <source>Writers</source>
         <translation>Scénáristi</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="502"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="520"/>
         <source>Genre</source>
         <translation>Žánr</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="512"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="530"/>
         <source>Add Writer</source>
         <translation>Přidat Scénáristu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="526"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="544"/>
         <source>Remove Writer</source>
         <translation>Odstranit Scénáristu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="573"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="591"/>
         <source>Streamdetails</source>
         <translation>Podrobnosti streamu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="581"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="599"/>
         <source>Aspect Ratio</source>
         <translation>Poměr stran</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="588"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="606"/>
         <source>Scantype</source>
         <translation>Prokládání</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="605"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="623"/>
         <source>Resolution</source>
         <translation>Rozlišení</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="612"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="372"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="375"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="630"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="390"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="393"/>
         <source>Codec</source>
         <translation>Kodek</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="647"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="665"/>
         <source>x</source>
         <translation>x</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="685"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="703"/>
         <source>Audio</source>
         <translation>Audio</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="698"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="716"/>
         <source>Video</source>
         <translation>Video</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="715"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="733"/>
         <source>Duration</source>
         <translation>Délka</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="731"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="366"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="749"/>
         <source>HH:mm:ss</source>
         <translation>HH:mm:ss</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="742"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="760"/>
         <source>Reload from File</source>
         <translation>Obnovit ze souboru</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="799"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="817"/>
         <source>Thumbnail</source>
         <translation>Náhled</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="821"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="839"/>
         <source>Click to Change</source>
         <translation>Klikněte pro změnu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="365"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="399"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="383"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="417"/>
         <source>Track %1</source>
         <translation>Stopa %1</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="371"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="374"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="402"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="403"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="389"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="392"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="420"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="421"/>
         <source>Language</source>
         <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="373"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="376"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="391"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="394"/>
         <source>Channels</source>
         <translation>Kanály</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="391"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="409"/>
         <source>Subtitles</source>
         <translation>Titulky</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="454"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="472"/>
         <source>Episode Saved</source>
         <translation>Epizoda uložena</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="583"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="603"/>
         <source>Unknown Director</source>
         <translation>Neznámý Režisér</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="632"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="652"/>
         <source>Unknown Writer</source>
         <translation>Neznámý Scénárista</translation>
     </message>
@@ -4359,38 +5151,44 @@ p, li { white-space: pre-wrap; }
         <translation>Název</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="115"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="109"/>
+        <source>Thumb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="173"/>
         <source>Poster</source>
         <translation>Plakát</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="137"/>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="187"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="131"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="195"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="245"/>
         <source>Click to Change</source>
         <translation>Klikněte pro změnu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="165"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="223"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="215"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="273"/>
         <source>Banner</source>
         <translation>Banner</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="237"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="295"/>
         <source>Click to change</source>
         <translation>Klikněte pro změnu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.cpp" line="79"/>
+        <location filename="../tvShows/TvShowWidgetSeason.cpp" line="96"/>
         <source>Season %1</source>
         <translation>Řada %1</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.cpp" line="132"/>
+        <location filename="../tvShows/TvShowWidgetSeason.cpp" line="144"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; uložen</translation>
     </message>
@@ -4453,172 +5251,193 @@ p, li { white-space: pre-wrap; }
         <translation>Studio</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="192"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="239"/>
         <source>Overview</source>
         <translation>Přehled</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="202"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="192"/>
         <source>TV Tune</source>
         <translation>Znělka</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="211"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="201"/>
         <source>Existing</source>
         <translation>Přítomný</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="218"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="208"/>
         <source>Missing</source>
         <translation>Chybějící</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="228"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="218"/>
         <source>Download Theme</source>
         <translation>Stáhnout Znělku</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="252"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="249"/>
+        <source>Runtime</source>
+        <translation type="unfinished">Délka</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="256"/>
+        <source> Minutes</source>
+        <translation type="unfinished">Minut(y)</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="266"/>
+        <source>Sort Title</source>
+        <translation type="unfinished">Třídící název</translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="279"/>
         <source>Extended</source>
         <translation>Rozšířené</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="263"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="290"/>
         <source>Actors</source>
         <translation>Herci</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="282"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="309"/>
         <source>Actor</source>
         <translation>Herec</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="287"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="314"/>
         <source>Role</source>
         <translation>Role</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="302"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="329"/>
         <source>Add Actor</source>
         <translation>Přidat Herce</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="333"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="360"/>
         <source>Remove Actor</source>
         <translation>Odstranit Herce</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="393"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="777"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="420"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1015"/>
         <source>Click to change</source>
         <translation>Klikněte pro změnu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="409"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="436"/>
         <source>Resolution</source>
         <translation>Rozlišení</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="458"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="485"/>
         <source>Extra Fanarts</source>
         <translation>Extra Fanarty</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="480"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="507"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation>Tip: Zavřené obrázky budou smazány po uložení.</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="503"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="530"/>
         <source>Add Images</source>
         <translation>Přidat obrázky</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="655"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="682"/>
         <source>Poster</source>
         <translation>Plakát</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="677"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="727"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="844"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="894"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="944"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="704"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="754"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="798"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="865"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="915"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="965"/>
         <source>Click to Change</source>
         <translation>Klikněte pro změnu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="705"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="732"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="755"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="776"/>
+        <source>Thumb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="993"/>
         <source>Banner</source>
         <translation>Banner</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="822"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="843"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="872"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="893"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="922"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="943"/>
         <source>Character Art</source>
         <translation>Character Art</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="62"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="79"/>
         <source>Genres</source>
         <translation>Žánry</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="63"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="80"/>
         <source>Add Genre</source>
         <translation>Přidat Žánr</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="67"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="84"/>
         <source>Tags</source>
         <translation>Tagy</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="68"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="85"/>
         <source>Add Tag</source>
         <translation>Přidat Tag</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="346"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="365"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; uložen</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="554"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="599"/>
         <source>Downloading images...</source>
         <translation>Stahování obrázků...</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="900"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="735"/>
         <source>Unknown Actor</source>
         <translation>Neznámý Herec</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="901"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="736"/>
         <source>Unknown Role</source>
         <translation>Neznámá Role</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1013"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="806"/>
         <source>Choose Image</source>
         <translation>Vyberte obrázek</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="1013"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="806"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Obrázky (*.jpg *.jpeg)</translation>
     </message>
@@ -4705,123 +5524,124 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="56"/>
+        <source>Remove non-existent items from XBMCs database (Clean library)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../xbmc/XbmcSync.ui" line="63"/>
         <source>Retrieve watched status</source>
         <translation>Získat stavy zhlédnutí</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.ui" line="63"/>
+        <location filename="../xbmc/XbmcSync.ui" line="70"/>
         <source>The fields last played and playcount will be retrieved from XBMC.</source>
         <translation>Získá hodnoty polí &quot;Naposledy přehráno&quot; a &quot;Počet přehrání&quot; z XBMC.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.ui" line="73"/>
         <source>Rename artwork to Frodo naming conventions</source>
-        <translation>Přejmenovat artworky do konvencí XBMC 12 Frodo</translation>
+        <translation type="obsolete">Přejmenovat artworky do konvencí XBMC 12 Frodo</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.ui" line="80"/>
         <source>This will rename all your artwork to fit the Frodo naming conventions. Please make sure you have not already set Frodo filenames in MediaElchs settings. Your artwork needs to show up in MediaElch.</source>
-        <translation>Toto přejmenuje všechny vaše artworky tak, aby odpovídaly konvencím Froda. Ujistěte se prosím, že nemáte již nastavené názvy souboru Froda v nastavení MediaElch. Vaše artworky musí být zobrazené v MediaElch.</translation>
+        <translation type="obsolete">Toto přejmenuje všechny vaše artworky tak, aby odpovídaly konvencím Froda. Ujistěte se prosím, že nemáte již nastavené názvy souboru Froda v nastavení MediaElch. Vaše artworky musí být zobrazené v MediaElch.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.ui" line="111"/>
-        <location filename="../xbmc/XbmcSync.ui" line="118"/>
+        <location filename="../xbmc/XbmcSync.ui" line="101"/>
+        <location filename="../xbmc/XbmcSync.ui" line="108"/>
         <source>Status</source>
         <translation>Stav</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.ui" line="136"/>
-        <location filename="../xbmc/XbmcSync.cpp" line="707"/>
+        <location filename="../xbmc/XbmcSync.ui" line="126"/>
         <source>Close</source>
         <translation>Zavřít</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.ui" line="159"/>
+        <location filename="../xbmc/XbmcSync.ui" line="149"/>
         <source>Start</source>
         <translation>Spustit</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="140"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="135"/>
         <source>Please fill in your XBMC host and port.</source>
         <translation>Vyplňte prosím adresu a port vašeho XBMC.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="148"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="143"/>
         <source>Could not connect to XBMC: %1</source>
         <translation>Nelze se připojit k XBMC: %1</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="189"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="184"/>
         <source>Getting contents from XBMC</source>
         <translation>Získávání obsahu z XBMC</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="350"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="345"/>
         <source>Removing movies from database</source>
         <translation>Odstraňování filmů z databáze</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="360"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="355"/>
         <source>Removing concerts from database</source>
         <translation>Odstraňování koncertů z databáze</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="370"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="365"/>
         <source>Removing TV shows from database</source>
         <translation>Odstraňování TV Seriálů z databáze</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="380"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="375"/>
         <source>Removing episodes from database</source>
         <translation>Odstraňování Epizod z databáze</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="409"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="404"/>
         <source>Trigger scan for new items</source>
         <translation>Spustit sken nových položek</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="416"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="411"/>
         <source>Finished. XBMC is now loading your updated items.</source>
         <translation>Dokončeno. XBMC nyní načítá vaše upravené položky.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="451"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="446"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Dokončeno. Počet přehrání a Poslední přehrání Vašich položek bylo aktualizováno.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="584"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="569"/>
+        <source>Cleaning XBMC Library has finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Cancel</source>
-        <translation>Zrušit</translation>
+        <translation type="obsolete">Zrušit</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="597"/>
         <source>Renaming Movie Artwork...</source>
-        <translation>Přejmenování Filmových Artworků...</translation>
+        <translation type="obsolete">Přejmenování Filmových Artworků...</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="624"/>
         <source>Renaming TV Show and Episode Artwork...</source>
-        <translation>Přejmenování Artworků TV Seriálů a  Epizod...</translation>
+        <translation type="obsolete">Přejmenování Artworků TV Seriálů a  Epizod...</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="673"/>
         <source>Renaming Concert Artwork...</source>
-        <translation>Přejmenování Artworků Koncertů...</translation>
+        <translation type="obsolete">Přejmenování Artworků Koncertů...</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="701"/>
         <source>Canceled.</source>
-        <translation>Zrušeno.</translation>
+        <translation type="obsolete">Zrušeno.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="703"/>
         <source>Finished. All artwork has been renamed.</source>
-        <translation>Dokončeno. Všechny artworky byly přejmenovány.</translation>
+        <translation type="obsolete">Dokončeno. Všechny artworky byly přejmenovány.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="714"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="565"/>
         <source>XBMC Library Scan has finished</source>
         <translation>Aktualizace XBMC knihovny bylo dokončeno</translation>
     </message>

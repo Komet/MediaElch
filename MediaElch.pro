@@ -311,7 +311,10 @@ TRANSLATIONS += \
     i18n/MediaElch_fr.ts \
     i18n/MediaElch_cs_CZ.ts \
     i18n/MediaElch_pt_BR.ts \
-    i18n/MediaElch_no.ts
+    i18n/MediaElch_no.ts \
+    i18n/MediaElch_pl.ts \
+    i18n/MediaElch_pt_PT.ts \
+    i18n/MediaElch_nl_NL.ts
 
 
 # qjsonrpc

@@ -74,6 +74,10 @@
         <file>img/reload_white.png</file>
         <file>img/star_blue.png</file>
         <file>img/reload_orange.png</file>
+        <file>i18n/MediaElch_en.qm</file>
+        <file>i18n/MediaElch_pl.qm</file>
+        <file>i18n/MediaElch_pt_PT.qm</file>
+        <file>i18n/MediaElch_nl_NL.qm</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>
