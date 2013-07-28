@@ -256,9 +256,13 @@ void CertificationWidget::addMovie()
 
 
     if (MovieListDialog::instance()->execWithoutCertification(ui->certifications->item(ui->certifications->currentRow(), 0)->text()) == QDialog::Accepted) {
-        Movie *movie = MovieListDialog::instance()->selectedMovie();
+        QList<Movie*> movies = MovieListDialog::instance()->selectedMovies();
+        if (movies.isEmpty())
+            return;
+
         QString certificationName = ui->certifications->item(ui->certifications->currentRow(), 0)->text();
-        movie->setCertification(certificationName);
+        foreach (Movie *movie, movies)
+            movie->setCertification(certificationName);
         onCertificationSelected();
     }
 }

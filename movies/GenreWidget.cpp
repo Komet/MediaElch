@@ -261,12 +261,17 @@ void GenreWidget::addMovie()
     }
 
     if (MovieListDialog::instance()->execWithoutGenre(ui->genres->item(ui->genres->currentRow(), 0)->text()) == QDialog::Accepted) {
-        Movie *movie = MovieListDialog::instance()->selectedMovie();
+        QList<Movie*> movies = MovieListDialog::instance()->selectedMovies();
+        if (movies.isEmpty())
+            return;
+
         QString genreName = ui->genres->item(ui->genres->currentRow(), 0)->text();
-        if (!movie->genres().contains(genreName)) {
+        foreach (Movie *movie, movies) {
+            if (movie->genres().contains(genreName))
+                continue;
             movie->addGenre(genreName);
-            onGenreSelected();
         }
+        onGenreSelected();
     }
 }
 

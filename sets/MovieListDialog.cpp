@@ -25,7 +25,7 @@ MovieListDialog::MovieListDialog(QWidget *parent) :
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(reject()));
-    connect(ui->movies, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(onMovieSelected(QTableWidgetItem*)));
+    connect(ui->buttonAddMovies, SIGNAL(clicked()), this, SLOT(onAddMovies()));
     connect(ui->filter, SIGNAL(textEdited(QString)), this, SLOT(onFilterEdited(QString)));
 }
 
@@ -143,25 +143,17 @@ void MovieListDialog::reposition()
     move(globalPos.x()+xMove, globalPos.y());
 }
 
-/**
- * @brief Stores the selected movie and accepts the dialog
- * @param item Clicked item in the list of movies
- */
-void MovieListDialog::onMovieSelected(QTableWidgetItem *item)
+void MovieListDialog::onAddMovies()
 {
-    qDebug() << "Entered";
-    m_selectedMovie = item->data(Qt::UserRole).value<Movie*>();
-    qDebug() << "m_selectedMovie=" << m_selectedMovie->name();
+    m_selectedMovies.clear();
+    foreach (QTableWidgetItem* item, ui->movies->selectedItems())
+        m_selectedMovies << item->data(Qt::UserRole).value<Movie*>();
     accept();
 }
 
-/**
- * @brief Returns the last selected movie
- * @return Last selected movie
- */
-Movie *MovieListDialog::selectedMovie()
+QList<Movie*> MovieListDialog::selectedMovies()
 {
-    return m_selectedMovie;
+    return m_selectedMovies;
 }
 
 /**

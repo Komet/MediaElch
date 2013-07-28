@@ -20,7 +20,7 @@ class MovieListDialog : public QDialog
 public:
     explicit MovieListDialog(QWidget *parent = 0);
     ~MovieListDialog();
-    Movie *selectedMovie();
+    QList<Movie*> selectedMovies();
     static MovieListDialog *instance(QWidget *parent = 0);
 
 public slots:
@@ -29,12 +29,12 @@ public slots:
     int execWithoutCertification(QString certification);
 
 private slots:
-    void onMovieSelected(QTableWidgetItem *item);
+    void onAddMovies();
     void onFilterEdited(QString text);
 
 private:
     Ui::MovieListDialog *ui;
-    Movie *m_selectedMovie;
+    QList<Movie*> m_selectedMovies;
     void reposition();
 };
 

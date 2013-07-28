@@ -281,18 +281,24 @@ void SetsWidget::onAddMovie()
         return;
     }
     if (MovieListDialog::instance()->exec() == QDialog::Accepted) {
-        Movie *movie = MovieListDialog::instance()->selectedMovie();
+        QList<Movie*> movies = MovieListDialog::instance()->selectedMovies();
+        if (movies.isEmpty())
+            return;
+
         int row = ui->sets->currentRow();
         if (row < 0 || row >= ui->sets->rowCount())
             return;
 
         QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
-        if (movie->set() == setName)
-            return;
-        movie->setSet(setName);
-        m_sets[setName].append(movie);
-        if (!m_moviesToSave[setName].contains(movie))
-            m_moviesToSave[setName].append(movie);
+        foreach (Movie *movie, movies) {
+            if (movie->set() == setName)
+                continue;
+            movie->setSet(setName);
+            m_sets[setName].append(movie);
+            if (!m_moviesToSave[setName].contains(movie))
+                m_moviesToSave[setName].append(movie);
+
+        }
         loadSet(setName);
     }
 }
