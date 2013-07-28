@@ -88,7 +88,8 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie)
         xml.writeStartElement("actor");
         xml.writeTextElement("name", actor.name);
         xml.writeTextElement("role", actor.role);
-        xml.writeTextElement("thumb", actor.thumb);
+        if (!actor.thumb.isEmpty())
+            xml.writeTextElement("thumb", actor.thumb);
         xml.writeEndElement();
     }
     foreach (const Poster &poster, movie->posters()) {
@@ -1226,7 +1227,8 @@ void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show)
         xml.writeStartElement("actor");
         xml.writeTextElement("name", actor.name);
         xml.writeTextElement("role", actor.role);
-        xml.writeTextElement("thumb", actor.thumb);
+        if (!actor.thumb.isEmpty())
+            xml.writeTextElement("thumb", actor.thumb);
         xml.writeEndElement();
     }
 
