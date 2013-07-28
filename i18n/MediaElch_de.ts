@@ -202,13 +202,6 @@
     </message>
 </context>
 <context>
-    <name>ConcertDelegate</name>
-    <message>
-        <source>new</source>
-        <translation type="obsolete">neu</translation>
-    </message>
-</context>
-<context>
     <name>ConcertFileSearcher</name>
     <message>
         <location filename="../data/ConcertFileSearcher.cpp" line="48"/>
@@ -626,7 +619,7 @@
     <message>
         <location filename="../scrapers/CustomMovieScraper.cpp" line="32"/>
         <source>Custom Movie Scraper</source>
-        <translation type="unfinished"></translation>
+        <translation>Eigener Scraper</translation>
     </message>
 </context>
 <context>
@@ -653,72 +646,72 @@
         <location filename="../export/ExportDialog.ui" line="23"/>
         <location filename="../export/ExportDialog.ui" line="132"/>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Export</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="32"/>
         <source>Export your complete collection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportiere deine komplette Sammlung.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="39"/>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Nachricht</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="51"/>
         <source>Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Theme</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="61"/>
         <source>Items to export</source>
-        <translation type="unfinished"></translation>
+        <translation>Zu exportierende Elemente</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="68"/>
         <source>Movies</source>
-        <translation type="unfinished">Filme</translation>
+        <translation>Filme</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="78"/>
         <source>TV Shows</source>
-        <translation type="unfinished">TV Serien</translation>
+        <translation>Serien</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="88"/>
         <source>Concerts</source>
-        <translation type="unfinished">Konzerte</translation>
+        <translation>Konzerte</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="109"/>
         <source>Close</source>
-        <translation type="unfinished">Schließen</translation>
+        <translation>Schließen</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="30"/>
         <source>You need to install at least one theme.</source>
-        <translation type="unfinished"></translation>
+        <translation>Du musst mindestens ein Theme installieren.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="63"/>
         <source>You need to select at least one entry to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Du musst mindestens einen Eintrag auswählen, der exportiert werden soll.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="72"/>
         <source>Export directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Export Verzeichnis</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="80"/>
         <source>Could not create export directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Export Verzeichnis konnte nicht angelegt werden.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="126"/>
         <source>Export completed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Export abgeschlossen.</translation>
     </message>
 </context>
 <context>
@@ -726,68 +719,68 @@
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation>Formular</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="36"/>
         <source>Theme Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name des Themes</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="46"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Version</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="59"/>
         <source>Author</source>
-        <translation type="unfinished"></translation>
+        <translation>Autor</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="68"/>
         <source>Description</source>
-        <translation type="unfinished">Beschreibung</translation>
+        <translation>Beschreibung</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="99"/>
         <location filename="../settings/ExportTemplateWidget.cpp" line="38"/>
         <source>Install</source>
-        <translation type="unfinished"></translation>
+        <translation>Installieren</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="26"/>
         <source>by %1</source>
-        <translation type="unfinished"></translation>
+        <translation>von %1</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="29"/>
         <source>Version %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Version %1</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="32"/>
         <source>Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="35"/>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>Deinstallieren</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="48"/>
         <source>Updating...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisiere...</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="52"/>
         <source>Installing...</source>
-        <translation type="unfinished"></translation>
+        <translation>Installiere...</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="56"/>
         <source>Uninstalling...</source>
-        <translation type="unfinished"></translation>
+        <translation>Deinstalliere...</translation>
     </message>
 </context>
 <context>
@@ -834,7 +827,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="62"/>
         <source>Media Status Columns</source>
-        <translation type="unfinished">Medien Status Spalten</translation>
+        <translation>Medien Status Spalten</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="72"/>
@@ -1101,46 +1094,46 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="501"/>
         <source>Movie has Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>Film hat Banner</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="501"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="502"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="504"/>
         <source>Banner</source>
-        <translation type="unfinished">Banner</translation>
+        <translation>Banner</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="503"/>
         <source>Movie has no Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>Film hat keinen Banner</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="503"/>
         <source>No Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Banner</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="505"/>
         <source>Movie has Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Film hat Thumb</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="505"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="506"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="508"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Thumb</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="507"/>
         <source>Movie has no Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Film hat kein Thumb</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="507"/>
         <source>No Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Thumb</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="509"/>
@@ -1495,7 +1488,7 @@
     <message>
         <location filename="../globals/ImageDialog.ui" line="38"/>
         <source>Enter a search term or URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Gib einen Suchbegriff oder eine URL ein</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="85"/>
@@ -1598,37 +1591,37 @@
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation>Formular</translation>
     </message>
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="59"/>
         <source>Episode Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Episoden Titel</translation>
     </message>
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="69"/>
         <source>Episode Count</source>
-        <translation type="unfinished"></translation>
+        <translation>Episodenanzahl</translation>
     </message>
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="83"/>
         <source>Poster</source>
-        <translation type="unfinished">Poster</translation>
+        <translation>Poster</translation>
     </message>
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="239"/>
         <source>new</source>
-        <translation type="unfinished">neu</translation>
+        <translation>neu</translation>
     </message>
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="264"/>
         <source>Synchronization needed</source>
-        <translation type="unfinished"></translation>
+        <translation>Synchronisierung erforderlich</translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/ItemWidgetShow.cpp" line="31"/>
         <source>%n Episodes</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%n Episode</numerusform>
             <numerusform>%n Episoden</numerusform>
         </translation>
@@ -1782,21 +1775,17 @@
     <message>
         <location filename="../main/MainWindow.cpp" line="286"/>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Export</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="287"/>
         <source>Export Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank exportieren</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="291"/>
         <source>Donate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Support</source>
-        <translation type="obsolete">Support</translation>
+        <translation>Spenden</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="411"/>
@@ -1841,13 +1830,6 @@
         <location filename="../main/MessageBox.ui" line="26"/>
         <source>Form</source>
         <translation>Form</translation>
-    </message>
-</context>
-<context>
-    <name>MovieDelegate</name>
-    <message>
-        <source>new</source>
-        <translation type="obsolete">neu</translation>
     </message>
 </context>
 <context>
@@ -1903,7 +1885,7 @@ Operation abgebrochen.</translation>
     <message>
         <location filename="../sets/MovieListDialog.ui" line="76"/>
         <source>Add selected movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausgewählte Filme hinzufügen</translation>
     </message>
     <message>
         <location filename="../sets/MovieListDialog.ui" line="96"/>
@@ -2092,12 +2074,12 @@ Operation abgebrochen.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="121"/>
         <source>Banner</source>
-        <translation type="unfinished">Banner</translation>
+        <translation>Banner</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="311"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Thumb</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="330"/>
@@ -2159,7 +2141,8 @@ Operation abgebrochen.</translation>
         <location filename="../movies/MovieSearch.ui" line="63"/>
         <source>When using IMDB you can also use the IMDB id as search query.
 If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn du IMDB benutzt, kannst du auch eine IMDB ID eingeben.
+Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; voran.</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearch.ui" line="101"/>
@@ -2274,12 +2257,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieSearch.ui" line="291"/>
         <source>Banner</source>
-        <translation type="unfinished">Banner</translation>
+        <translation>Banner</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearch.ui" line="298"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Thumb</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearch.ui" line="312"/>
@@ -2579,7 +2562,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../movies/MovieWidget.ui" line="1174"/>
         <location filename="../movies/MovieWidget.ui" line="1211"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Thumb</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1238"/>
@@ -2596,7 +2579,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="1332"/>
         <source>Disc Art</source>
-        <translation type="unfinished"></translation>
+        <translation>CD Art</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1372"/>
@@ -2607,7 +2590,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../movies/MovieWidget.ui" line="1379"/>
         <location filename="../movies/MovieWidget.ui" line="1416"/>
         <source>Banner</source>
-        <translation type="unfinished">Banner</translation>
+        <translation>Banner</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="80"/>
@@ -3182,451 +3165,131 @@ p, li { white-space: pre-wrap; }⏎
     </message>
 </context>
 <context>
-    <name>SettingsWidget</name>
-    <message>
-        <source>Settings</source>
-        <translation type="obsolete">Einstellungen</translation>
-    </message>
-    <message>
-        <source>Global Settings</source>
-        <translation type="obsolete">Globale Einstellungen</translation>
-    </message>
-    <message>
-        <source>Add one or more directories containing your movies, TV Shows or concerts. TV Show Episodes have to be in subfolders with the name of the show.</source>
-        <translation type="obsolete">Füge Verzeichnisse hinzu, die deine Filme, Serien oder Konzerte enthalten. Bei Serien müssen Episoden in Unterverzeichnissen mit dem Namen der Serie sein.</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation type="obsolete">Inhalt</translation>
-    </message>
-    <message>
-        <source>Path</source>
-        <translation type="obsolete">Verzeichnis</translation>
-    </message>
-    <message>
-        <source>Sep. folders</source>
-        <translation type="obsolete">Sep. Verzeichnisse</translation>
-    </message>
-    <message>
-        <source>Reload On Start</source>
-        <translation type="obsolete">Beim Start neuladen</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation type="obsolete">Hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove</source>
-        <translation type="obsolete">Entfernen</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort movies into separate directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">Filme in separate Verzeichnisse sortieren</translation>
-    </message>
-    <message>
-        <source>Organize</source>
-        <translation type="obsolete">Organisiere</translation>
-    </message>
-    <message>
-        <source>Store trailer URLs in YouTube Plugin format</source>
-        <translation type="obsolete">Speichere Trailer URLs im YouTube Plugin Format</translation>
-    </message>
-    <message>
-        <source>Automatically load and save stream details from files</source>
-        <translation type="obsolete">Streamdetails automatisch laden und speichern</translation>
-    </message>
-    <message>
-        <source>Download actor images</source>
-        <translation type="obsolete">Bilder der Schauspieler herunterladen</translation>
-    </message>
-    <message>
-        <source>Ignore articles when sorting (&quot;The&quot;)</source>
-        <translation type="obsolete">Grammatikalische Artikel bei der Sortierung ignorieren</translation>
-    </message>
-    <message>
-        <source>Words to exclude from media names (seperated by commas and non case-sensitive)</source>
-        <translation type="obsolete">Von Mediennamen auszuschließende Wörter (durch Komma getrennt, Groß-/Kleinschreibung nicht beachtet)</translation>
-    </message>
-    <message>
-        <source>Scrapers</source>
-        <translation type="obsolete">Scraper</translation>
-    </message>
-    <message>
-        <source>XBMC</source>
-        <translation type="obsolete">XBMC</translation>
-    </message>
-    <message>
-        <source>If you want to use the synchronization feature you need to enable &quot;Allow programs on other systems to control XBMC&quot; within XBMC (Settings -&gt; Services -&gt; Remote Control).</source>
-        <translation type="obsolete">Um die Synchronisation zu benutzen, musst du in XBMC &quot;Steuerung über entfernte Programme zulassen&quot; aktivieren (Einstellungen -&gt; Dienste -&gt; Fernsteuerung).</translation>
-    </message>
-    <message>
-        <source>Host</source>
-        <translation type="obsolete">Host</translation>
-    </message>
-    <message>
-        <source>127.0.0.1</source>
-        <translation type="obsolete">127.0.0.1</translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation type="obsolete">Port</translation>
-    </message>
-    <message>
-        <source>9090</source>
-        <translation type="obsolete">9090</translation>
-    </message>
-    <message>
-        <source>Movies</source>
-        <translation type="obsolete">Filme</translation>
-    </message>
-    <message>
-        <source>Below you see the filenames which are used for loading and saving your movies. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
-        <translation type="obsolete">Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Filme benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste. Um eine Datei umzubennen, klicke doppelt auf sie.</translation>
-    </message>
-    <message>
-        <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
-        <translation type="obsolete">Du kannst den Platzhalter &lt;baseFileName&gt; benutzen (Dateiname ohne Endung).</translation>
-    </message>
-    <message>
-        <source>Clear Art</source>
-        <translation type="obsolete">Clear Art</translation>
-    </message>
-    <message>
-        <source>Logo</source>
-        <translation type="obsolete">Logo</translation>
-    </message>
-    <message>
-        <source>Backdrop</source>
-        <translation type="obsolete">Fanart</translation>
-    </message>
-    <message>
-        <source>NFO</source>
-        <translation type="obsolete">NFO</translation>
-    </message>
-    <message>
-        <source>Poster</source>
-        <translation type="obsolete">Poster</translation>
-    </message>
-    <message>
-        <source>CD Art</source>
-        <translation type="obsolete">CD Art</translation>
-    </message>
-    <message>
-        <source>Artwork directory</source>
-        <translation type="obsolete">Artwork Verzeichnis</translation>
-    </message>
-    <message>
-        <source>Movie Set Artwork</source>
-        <translation type="obsolete">Film Set Artwork</translation>
-    </message>
-    <message>
-        <source>Artwork next to movies</source>
-        <translation type="obsolete">Artwork in Filmverzeichnissen</translation>
-    </message>
-    <message>
-        <source>Separate artwork directory</source>
-        <translation type="obsolete">Separates Artwork Verzeichnis</translation>
-    </message>
-    <message>
-        <source>Use plot when outline is not available</source>
-        <translation type="obsolete">Plot benutzen, wenn Outline nicht verfügbar ist</translation>
-    </message>
-    <message>
-        <source>Movie outline</source>
-        <translation type="obsolete">Outline</translation>
-    </message>
-    <message>
-        <source>Movie Set Poster Filename</source>
-        <translation type="obsolete">Film Set Poster Dateiname</translation>
-    </message>
-    <message>
-        <source>Movie Set Fanart Filname</source>
-        <translation type="obsolete">Film Set Fanart Dateiname</translation>
-    </message>
-    <message>
-        <source>folder.jpg</source>
-        <translation type="obsolete">folder.jpg</translation>
-    </message>
-    <message>
-        <source>fanart.jpg</source>
-        <translation type="obsolete">fanart.jpg</translation>
-    </message>
-    <message>
-        <source>Choose directory</source>
-        <translation type="obsolete">Verzeichnis auswählen</translation>
-    </message>
-    <message>
-        <source>Media Status Columns</source>
-        <translation type="obsolete">Medien Status Spalten</translation>
-    </message>
-    <message>
-        <source>TV Shows</source>
-        <translation type="obsolete">TV Serien</translation>
-    </message>
-    <message>
-        <source>Below you see the filenames which are used for loading and saving your tv shows. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
-        <translation type="obsolete">Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Serien benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste. Um eine Datei umzubennen, klicke doppelt auf sie.</translation>
-    </message>
-    <message>
-        <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
-        <translation type="obsolete">Du kannst den Platzhalter &lt;baseFileName&gt; benutzen (Dateiname ohne Endung) oder für Staffelposter den Platzhalter &lt;seasonNumber&gt; (die Staffelnummer).</translation>
-    </message>
-    <message>
-        <source>Banner</source>
-        <translation type="obsolete">Banner</translation>
-    </message>
-    <message>
-        <source>Show NFO</source>
-        <translation type="obsolete">Serien NFO</translation>
-    </message>
-    <message>
-        <source>Character Art</source>
-        <translation type="obsolete">Character Art</translation>
-    </message>
-    <message>
-        <source>Episode NFO</source>
-        <translation type="obsolete">Episoden NFO</translation>
-    </message>
-    <message>
-        <source>Episode Thumbnail</source>
-        <translation type="obsolete">Episoden Thumbnail</translation>
-    </message>
-    <message>
-        <source>Season Poster</source>
-        <translation type="obsolete">Staffelposter</translation>
-    </message>
-    <message>
-        <source>Season Backdrop</source>
-        <translation type="obsolete">Staffel Fanart</translation>
-    </message>
-    <message>
-        <source>Season Banner</source>
-        <translation type="obsolete">Staffel Banner</translation>
-    </message>
-    <message>
-        <source>Concerts</source>
-        <translation type="obsolete">Konzerte</translation>
-    </message>
-    <message>
-        <source>Below you see the filenames which are used for loading and saving your concerts. If you want to remove an entry just right click on it and hit remove. To add an entry, right click and choose add entry. To edit a filename just double click on it.</source>
-        <translation type="obsolete">Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Konzerte benutzt werden. Wenn du Dateien hinzufügen oder entfernen willst, klicke mit der rechten Maustaste in die Liste. Um eine Datei umzubennen, klicke doppelt auf sie.</translation>
-    </message>
-    <message>
-        <source>Proxy</source>
-        <translation type="obsolete">Proxy</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="obsolete">Benutzername</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation type="obsolete">Passwort</translation>
-    </message>
-    <message>
-        <source>Enable Proxy</source>
-        <translation type="obsolete">Proxy verwenden</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <comment>Proxy Type</comment>
-        <translation type="obsolete">Typ</translation>
-    </message>
-    <message>
-        <source>HTTP</source>
-        <translation type="obsolete">HTTP</translation>
-    </message>
-    <message>
-        <source>SOCKS 5</source>
-        <translation type="obsolete">SOCKS5</translation>
-    </message>
-    <message>
-        <source>Default filenames for</source>
-        <translation type="obsolete">Standarddateinamen für</translation>
-    </message>
-    <message>
-        <source>XBMC Eden</source>
-        <translation type="obsolete">XBMC Eden</translation>
-    </message>
-    <message>
-        <source>XBMC Frodo</source>
-        <translation type="obsolete">XBMC Frodo</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Abbrechen</translation>
-    </message>
-    <message>
-        <source>Save Settings</source>
-        <translation type="obsolete">Einstellungen Speichern</translation>
-    </message>
-    <message>
-        <source>Items are in separate folders</source>
-        <translation type="obsolete">In separaten Verzeichnissen</translation>
-    </message>
-    <message>
-        <source>Automatically reload contents on start</source>
-        <translation type="obsolete">Inhalte beim Start automatisch neu laden</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="obsolete">Sprache</translation>
-    </message>
-    <message>
-        <source>Settings saved</source>
-        <translation type="obsolete">Einstellungen gespeichert</translation>
-    </message>
-    <message>
-        <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
-        <translation type="obsolete">Die Verzeichnis-Organisation kann nur auf Filmesammlungen angewandt werden, die nicht schon in separate Verzeichnisse sortiert ist.</translation>
-    </message>
-    <message>
-        <source>Are you sure?</source>
-        <translation type="obsolete">Bist du sicher?</translation>
-    </message>
-    <message>
-        <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
-        <translation type="obsolete">Diese Operation sortiert alle Filme in diesem Verzeichnis in separate Unterordner basierend auf dem Dateinamen. Klicke &quot;Ok&quot;, falls du damit einverstanden bist.</translation>
-    </message>
-    <message>
-        <source>Ok</source>
-        <translation type="obsolete">Ok</translation>
-    </message>
-    <message>
-        <source>Choose a directory containing your movies, TV show or concerts</source>
-        <translation type="obsolete">Wähle ein Verzeichnis aus, dass deine Filme, Serien oder Konzerte enthält</translation>
-    </message>
-    <message>
-        <source>Choose a directory where your movie set artwork is stored</source>
-        <translation type="obsolete">Wähle ein Verzeichnis aus, in dem dein Film Set Artwork gespeichert werden soll</translation>
-    </message>
-</context>
-<context>
     <name>SettingsWindow</name>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="23"/>
         <source>Settings</source>
-        <translation type="unfinished">Einstellungen</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="37"/>
         <source>Add one or more directories containing your movies, TV Shows or concerts. TV Show Episodes have to be in subfolders with the name of the show.</source>
-        <translation type="unfinished">Füge Verzeichnisse hinzu, die deine Filme, Serien oder Konzerte enthalten. Bei Serien müssen Episoden in Unterverzeichnissen mit dem Namen der Serie sein.</translation>
+        <translation>Füge Verzeichnisse hinzu, die deine Filme, Serien oder Konzerte enthalten. Bei Serien müssen Episoden in Unterverzeichnissen mit dem Namen der Serie sein.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="69"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="74"/>
         <source>Path</source>
-        <translation type="unfinished">Verzeichnis</translation>
+        <translation>Verzeichnis</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="79"/>
         <source>Sep. folders</source>
-        <translation type="unfinished">Sep. Verzeichnisse</translation>
+        <translation>Sep. Verzeichnisse</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="82"/>
         <source>Items are in separate folders</source>
-        <translation type="unfinished">In separaten Verzeichnissen</translation>
+        <translation>In separaten Verzeichnissen</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="87"/>
         <source>Reload On Start</source>
-        <translation type="unfinished">Beim Start neuladen</translation>
+        <translation>Beim Start neuladen</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="90"/>
         <source>Automatically reload contents on start</source>
-        <translation type="unfinished">Inhalte beim Start automatisch neu laden</translation>
+        <translation>Inhalte beim Start automatisch neu laden</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="100"/>
         <source>Add</source>
-        <translation type="unfinished">Hinzufügen</translation>
+        <translation>Hinzufügen</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="107"/>
         <source>Remove</source>
-        <translation type="unfinished">Entfernen</translation>
+        <translation>Entfernen</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="114"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort movies into separate directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">Filme in separate Verzeichnisse sortieren</translation>
+        <translation>Filme in separate Verzeichnisse sortieren</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="117"/>
         <source>Organize</source>
-        <translation type="unfinished">Organisiere</translation>
+        <translation>Organisiere</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="144"/>
         <source>Store trailer URLs in YouTube Plugin format</source>
-        <translation type="unfinished">Speichere Trailer URLs im YouTube Plugin Format</translation>
+        <translation>Speichere Trailer URLs im YouTube Plugin Format</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="158"/>
         <source>Automatically load and save stream details from files</source>
-        <translation type="unfinished">Streamdetails automatisch laden und speichern</translation>
+        <translation>Streamdetails automatisch laden und speichern</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="172"/>
         <source>Ignore articles when sorting (&quot;The&quot;)</source>
-        <translation type="unfinished">Grammatikalische Artikel bei der Sortierung ignorieren</translation>
+        <translation>Grammatikalische Artikel bei der Sortierung ignorieren</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="186"/>
         <source>Download actor images</source>
-        <translation type="unfinished">Bilder der Schauspieler herunterladen</translation>
+        <translation>Bilder der Schauspieler herunterladen</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="200"/>
         <location filename="../settings/SettingsWindow.ui" line="207"/>
         <source>Words to exclude from media names (seperated by commas and non case-sensitive)</source>
-        <translation type="unfinished">Von Mediennamen auszuschließende Wörter (durch Komma getrennt, Groß-/Kleinschreibung nicht beachtet)</translation>
+        <translation>Von Mediennamen auszuschließende Wörter (durch Kommas getrennt, case insensitive)</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="230"/>
         <location filename="../settings/SettingsWindow.ui" line="294"/>
         <location filename="../settings/SettingsWindow.ui" line="1359"/>
         <source>Scraper</source>
-        <translation type="unfinished">Scraper</translation>
+        <translation>Scraper</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="253"/>
         <source>Custom Movie Scraper</source>
-        <translation type="unfinished"></translation>
+        <translation>Eigener Scraper</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="259"/>
         <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kombiniere verschiedene Scraper zu deinem eigenen Scraper. Wenn du andere Quellen als IMDB, The Movie DB, oder Fanart.tv benutzt, sind eventuell mehrere Suchanfragen nötig.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="289"/>
         <source>Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Element</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="310"/>
         <source>Below you see the filenames which are used for loading and saving your movies. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
+        <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Filme benutzt werden. Du kannst sie wie gewünscht bearbeiten. Wenn du mehrere Dateien verwenden möchtest, trenne sie durch ein Komma.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="320"/>
         <location filename="../settings/SettingsWindow.ui" line="853"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
-        <translation type="unfinished">Du kannst den Platzhalter &lt;baseFileName&gt; benutzen (Dateiname ohne Endung).</translation>
+        <translation>Du kannst den Platzhalter &lt;baseFileName&gt; benutzen (Dateiname ohne Endung).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="335"/>
         <location filename="../settings/SettingsWindow.ui" line="868"/>
         <source>Nfo</source>
-        <translation type="unfinished"></translation>
+        <translation>NFO</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="342"/>
@@ -3634,14 +3297,14 @@ p, li { white-space: pre-wrap; }⏎
         <location filename="../settings/SettingsWindow.ui" line="875"/>
         <location filename="../settings/SettingsWindow.cpp" line="703"/>
         <source>Poster</source>
-        <translation type="unfinished">Poster</translation>
+        <translation>Poster</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="349"/>
         <location filename="../settings/SettingsWindow.ui" line="613"/>
         <location filename="../settings/SettingsWindow.ui" line="882"/>
         <source>Backdrop</source>
-        <translation type="unfinished">Fanart</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="356"/>
@@ -3649,7 +3312,7 @@ p, li { white-space: pre-wrap; }⏎
         <location filename="../settings/SettingsWindow.ui" line="889"/>
         <location filename="../settings/SettingsWindow.cpp" line="723"/>
         <source>Logo</source>
-        <translation type="unfinished">Logo</translation>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="363"/>
@@ -3657,415 +3320,415 @@ p, li { white-space: pre-wrap; }⏎
         <location filename="../settings/SettingsWindow.ui" line="896"/>
         <location filename="../settings/SettingsWindow.cpp" line="727"/>
         <source>Clear Art</source>
-        <translation type="unfinished">Clear Art</translation>
+        <translation>Clear Art</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="370"/>
         <location filename="../settings/SettingsWindow.ui" line="903"/>
         <location filename="../settings/SettingsWindow.cpp" line="725"/>
         <source>Disc Art</source>
-        <translation type="unfinished"></translation>
+        <translation>CD Art</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="437"/>
         <location filename="../settings/SettingsWindow.ui" line="620"/>
         <location filename="../settings/SettingsWindow.cpp" line="729"/>
         <source>Banner</source>
-        <translation type="unfinished">Banner</translation>
+        <translation>Banner</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="444"/>
         <location filename="../settings/SettingsWindow.ui" line="810"/>
         <location filename="../settings/SettingsWindow.cpp" line="731"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Thumb</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="478"/>
         <source>Movie outline</source>
-        <translation type="unfinished">Outline</translation>
+        <translation>Outline</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="485"/>
         <source>Use plot when outline is not available</source>
-        <translation type="unfinished">Plot benutzen, wenn Outline nicht verfügbar ist</translation>
+        <translation>Plot benutzen, wenn Outline nicht verfügbar ist</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="492"/>
         <source>Movie Set Artwork</source>
-        <translation type="unfinished">Film Set Artwork</translation>
+        <translation>Film Set Artwork</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="500"/>
         <source>Artwork next to movies</source>
-        <translation type="unfinished">Artwork in Filmverzeichnissen</translation>
+        <translation>Artwork in Filmverzeichnissen</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="505"/>
         <source>Separate artwork directory</source>
-        <translation type="unfinished">Separates Artwork Verzeichnis</translation>
+        <translation>Separates Artwork Verzeichnis</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="513"/>
         <source>Movie Set Poster Filename</source>
-        <translation type="unfinished">Film Set Poster Dateiname</translation>
+        <translation>Film Set Poster Dateiname</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="520"/>
         <location filename="../settings/SettingsWindow.ui" line="523"/>
         <source>folder.jpg</source>
-        <translation type="unfinished">folder.jpg</translation>
+        <translation>folder.jpg</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="530"/>
         <source>Movie Set Fanart Filname</source>
-        <translation type="unfinished">Film Set Fanart Dateiname</translation>
+        <translation>Film Set Fanart Dateiname</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="537"/>
         <location filename="../settings/SettingsWindow.ui" line="540"/>
         <source>fanart.jpg</source>
-        <translation type="unfinished">fanart.jpg</translation>
+        <translation>fanart.jpg</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="547"/>
         <source>Artwork directory</source>
-        <translation type="unfinished">Artwork Verzeichnis</translation>
+        <translation>Artwork Verzeichnis</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="559"/>
         <source>Choose directory</source>
-        <translation type="unfinished">Verzeichnis auswählen</translation>
+        <translation>Verzeichnis auswählen</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="574"/>
         <source>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
+        <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Serien benutzt werden. Du kannst sie wie gewünscht bearbeiten. Wenn du mehrere Dateien verwenden möchtest, trenne sie durch ein Komma.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="584"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
-        <translation type="unfinished">Du kannst den Platzhalter &lt;baseFileName&gt; benutzen (Dateiname ohne Endung) oder für Staffelposter den Platzhalter &lt;seasonNumber&gt; (die Staffelnummer).</translation>
+        <translation>Du kannst den Platzhalter &lt;baseFileName&gt; benutzen (Dateiname ohne Endung) oder für Staffelposter den Platzhalter &lt;seasonNumber&gt; (die Staffelnummer).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="599"/>
         <source>Show nfo</source>
-        <translation type="unfinished"></translation>
+        <translation>Serien NFO</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="641"/>
         <source>Character Art</source>
-        <translation type="unfinished">Character Art</translation>
+        <translation>Character Art</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="648"/>
         <source>Season Poster</source>
-        <translation type="unfinished"></translation>
+        <translation>Staffel-Poster</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="655"/>
         <source>Season Backdrop</source>
-        <translation type="unfinished">Staffel Fanart</translation>
+        <translation>Staffel Fanart</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="662"/>
         <source>Episode nfo</source>
-        <translation type="unfinished"></translation>
+        <translation>Episoden NFO</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="669"/>
         <source>Episode thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Episoden Thumbnail</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="676"/>
         <source>Season Banner</source>
-        <translation type="unfinished"></translation>
+        <translation>Staffel-Banner</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="803"/>
         <source>Season Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Staffel Thumb</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="843"/>
         <source>Below you see the filenames which are used for loading and saving your concerts. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"></translation>
+        <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Konzerte benutzt werden. Du kannst sie wie gewünscht bearbeiten. Wenn du mehrere Dateien verwenden möchtest, trenne sie durch ein Komma.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="976"/>
         <source>If you want to use the synchronization feature you need to enable &quot;Allow programs on other systems to control XBMC&quot; within XBMC (Settings -&gt; Services -&gt; Remote Control).</source>
-        <translation type="unfinished">Um die Synchronisation zu benutzen, musst du in XBMC &quot;Steuerung über entfernte Programme zulassen&quot; aktivieren (Einstellungen -&gt; Dienste -&gt; Fernsteuerung).</translation>
+        <translation>Um die Synchronisation zu benutzen, musst du in XBMC &quot;Steuerung über entfernte Programme zulassen&quot; aktivieren (Einstellungen -&gt; Dienste -&gt; Fernsteuerung).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="991"/>
         <location filename="../settings/SettingsWindow.ui" line="1027"/>
         <source>Host</source>
-        <translation type="unfinished">Host</translation>
+        <translation>Host</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="998"/>
         <source>127.0.0.1</source>
-        <translation type="unfinished">127.0.0.1</translation>
+        <translation>127.0.0.1</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1005"/>
         <location filename="../settings/SettingsWindow.ui" line="1034"/>
         <source>Port</source>
-        <translation type="unfinished">Port</translation>
+        <translation>Port</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1012"/>
         <source>9090</source>
-        <translation type="unfinished">9090</translation>
+        <translation>9090</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1041"/>
         <source>Username</source>
-        <translation type="unfinished">Benutzername</translation>
+        <translation>Benutzername</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1048"/>
         <source>Password</source>
-        <translation type="unfinished">Passwort</translation>
+        <translation>Passwort</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1075"/>
         <source>Enable Proxy</source>
-        <translation type="unfinished">Proxy verwenden</translation>
+        <translation>Proxy verwenden</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1082"/>
         <source>Type</source>
         <comment>Proxy Type</comment>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1090"/>
         <source>HTTP</source>
-        <translation type="unfinished">HTTP</translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1095"/>
         <source>SOCKS 5</source>
-        <translation type="unfinished">SOCKS5</translation>
+        <translation>SOCKS5</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1122"/>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Nachricht</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1153"/>
         <source>Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Theme</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1180"/>
         <location filename="../settings/SettingsWindow.cpp" line="532"/>
         <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1187"/>
         <source>Save Settings</source>
-        <translation type="unfinished">Einstellungen Speichern</translation>
+        <translation>Einstellungen Speichern</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1197"/>
         <source>toolBar</source>
-        <translation type="unfinished"></translation>
+        <translation>toolBar</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1238"/>
         <location filename="../settings/SettingsWindow.cpp" line="488"/>
         <source>Movies</source>
-        <translation type="unfinished">Filme</translation>
+        <translation>Filme</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1258"/>
         <location filename="../settings/SettingsWindow.cpp" line="488"/>
         <source>TV Shows</source>
-        <translation type="unfinished">TV Serien</translation>
+        <translation>TV Serien</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1279"/>
         <location filename="../settings/SettingsWindow.cpp" line="488"/>
         <source>Concerts</source>
-        <translation type="unfinished">Konzerte</translation>
+        <translation>Konzerte</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1299"/>
         <source>Global</source>
-        <translation type="unfinished"></translation>
+        <translation>Global</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1319"/>
         <source>XBMC</source>
-        <translation type="unfinished">XBMC</translation>
+        <translation>XBMC</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1339"/>
         <source>Network</source>
-        <translation type="unfinished">Studio</translation>
+        <translation>Netzwerk</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1379"/>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Export</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="70"/>
         <location filename="../settings/SettingsWindow.cpp" line="99"/>
         <location filename="../settings/SettingsWindow.cpp" line="128"/>
         <source>Language</source>
-        <translation type="unfinished">Sprache</translation>
+        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="456"/>
         <source>Settings saved</source>
-        <translation type="unfinished">Einstellungen gespeichert</translation>
+        <translation>Einstellungen gespeichert</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="519"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
-        <translation type="unfinished">Die Verzeichnis-Organisation kann nur auf Filmesammlungen angewandt werden, die nicht schon in separate Verzeichnisse sortiert ist.</translation>
+        <translation>Die Verzeichnis-Organisation kann nur auf Filmesammlungen angewandt werden, die nicht schon in separate Verzeichnisse sortiert ist.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="527"/>
         <source>Are you sure?</source>
-        <translation type="unfinished">Bist du sicher?</translation>
+        <translation>Bist du sicher?</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="528"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
-        <translation type="unfinished">Diese Operation sortiert alle Filme in diesem Verzeichnis in separate Unterordner basierend auf dem Dateinamen. Klicke &quot;Ok&quot;, falls du damit einverstanden bist.</translation>
+        <translation>Diese Operation sortiert alle Filme in diesem Verzeichnis in separate Unterordner basierend auf dem Dateinamen. Klicke &quot;Ok&quot;, falls du damit einverstanden bist.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="531"/>
         <source>Ok</source>
-        <translation type="unfinished">Ok</translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="577"/>
         <source>Choose a directory containing your movies, TV show or concerts</source>
-        <translation type="unfinished">Wähle ein Verzeichnis aus, dass deine Filme, Serien oder Konzerte enthält</translation>
+        <translation>Wähle ein Verzeichnis aus, dass deine Filme, Serien oder Konzerte enthält</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="599"/>
         <source>Choose a directory where your movie set artwork is stored</source>
-        <translation type="unfinished">Wähle ein Verzeichnis aus, in dem dein Film Set Artwork gespeichert werden soll</translation>
+        <translation>Wähle ein Verzeichnis aus, in dem dein Film Set Artwork gespeichert werden soll</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="628"/>
         <source>Theme &quot;%1&quot; was successfully installed</source>
-        <translation type="unfinished"></translation>
+        <translation>Theme &quot;%1&quot; wurde erfolgreich installiert</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="630"/>
         <location filename="../settings/SettingsWindow.cpp" line="638"/>
         <source>There was an error while processing the theme &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Es gab einen Fehler bei der Bearbeitung von Theme &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="636"/>
         <source>Theme &quot;%1&quot; was successfully uninstalled</source>
-        <translation type="unfinished"></translation>
+        <translation>Theme &quot;%1&quot; wurde erfolgreich deinstalliert</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="648"/>
         <source>Don&apos;t use</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht benutzen</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="687"/>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="689"/>
         <source>Tagline</source>
-        <translation type="unfinished">Tagline</translation>
+        <translation>Tagline</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="691"/>
         <source>Rating</source>
-        <translation type="unfinished">Bewertung</translation>
+        <translation>Bewertung</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="693"/>
         <source>Released</source>
-        <translation type="unfinished">Erschienen</translation>
+        <translation>Erschienen</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="695"/>
         <source>Runtime</source>
-        <translation type="unfinished">Laufzeit</translation>
+        <translation>Laufzeit</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="697"/>
         <source>Certification</source>
-        <translation type="unfinished">Freigabe</translation>
+        <translation>Freigabe</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="699"/>
         <source>Trailer</source>
-        <translation type="unfinished">Trailer</translation>
+        <translation>Trailer</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="701"/>
         <source>Plot</source>
-        <translation type="unfinished">Plot</translation>
+        <translation>Plot</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="705"/>
         <source>Fanart</source>
-        <translation type="unfinished">Fanart</translation>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="707"/>
         <source>Actors</source>
-        <translation type="unfinished">Schauspieler</translation>
+        <translation>Schauspieler</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="709"/>
         <source>Genres</source>
-        <translation type="unfinished">Genres</translation>
+        <translation>Genres</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="711"/>
         <source>Studios</source>
-        <translation type="unfinished">Studios</translation>
+        <translation>Studios</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="713"/>
         <source>Countries</source>
-        <translation type="unfinished">Länder</translation>
+        <translation>Länder</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="715"/>
         <source>Writer</source>
-        <translation type="unfinished">Drehbuch</translation>
+        <translation>Drehbuch</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="717"/>
         <source>Director</source>
-        <translation type="unfinished">Regisseur</translation>
+        <translation>Regisseur</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="719"/>
         <source>Tags</source>
-        <translation type="unfinished">Tags</translation>
+        <translation>Tags</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="721"/>
         <source>Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Zusammenstellung</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="733"/>
         <source>Unsupported</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht unterstützt</translation>
     </message>
 </context>
 <context>
@@ -4610,20 +4273,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>TvShowDelegate</name>
-    <message>
-        <source>new</source>
-        <translation type="obsolete">neu</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n Episodes</source>
-        <translation type="obsolete">
-            <numerusform>%n Episode</numerusform>
-            <numerusform>%n Episoden</numerusform>
-        </translation>
-    </message>
-</context>
-<context>
     <name>TvShowFileSearcher</name>
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="51"/>
@@ -4732,7 +4381,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="148"/>
         <source>Runtime</source>
-        <translation type="unfinished">Laufzeit</translation>
+        <translation>Laufzeit</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="158"/>
@@ -4974,7 +4623,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="359"/>
         <source>Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Lesezeichen</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="376"/>
@@ -5145,7 +4794,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="109"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Thumb</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="173"/>
@@ -5270,17 +4919,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="249"/>
         <source>Runtime</source>
-        <translation type="unfinished">Laufzeit</translation>
+        <translation>Laufzeit</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="256"/>
         <source> Minutes</source>
-        <translation type="unfinished"> Minuten</translation>
+        <translation> Minuten</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="266"/>
         <source>Sort Title</source>
-        <translation type="unfinished">Titel für Sortierung</translation>
+        <translation>Titel für Sortierung</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="279"/>
@@ -5361,7 +5010,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="776"/>
         <source>Thumb</source>
-        <translation type="unfinished"></translation>
+        <translation>Thumb</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="993"/>
@@ -5517,7 +5166,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="56"/>
         <source>Remove non-existent items from XBMCs database (Clean library)</source>
-        <translation type="unfinished"></translation>
+        <translation>XBMC Datenbank bereinigen</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
@@ -5528,14 +5177,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../xbmc/XbmcSync.ui" line="70"/>
         <source>The fields last played and playcount will be retrieved from XBMC.</source>
         <translation>Die Anzahl der Wiedergaben und das Datum der letzten Wiedergabe werden von XBMC übertragen.</translation>
-    </message>
-    <message>
-        <source>Rename artwork to Frodo naming conventions</source>
-        <translation type="obsolete">Benenne Artwork um</translation>
-    </message>
-    <message>
-        <source>This will rename all your artwork to fit the Frodo naming conventions. Please make sure you have not already set Frodo filenames in MediaElchs settings. Your artwork needs to show up in MediaElch.</source>
-        <translation type="obsolete">Hiermit werden deine Poster, Fanarts und Thumbnails für XBMC Frodo umbenannt. Bitte überprüfe, dass du nicht bereits die XBMC Frodo Dateinamen in MediaElchs Einstellungen benutzt. Deine Bilder müssen in MediaElch angezeigt werden.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="101"/>
@@ -5606,31 +5247,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="569"/>
         <source>Cleaning XBMC Library has finished</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Abbrechen</translation>
-    </message>
-    <message>
-        <source>Renaming Movie Artwork...</source>
-        <translation type="obsolete">Benenne Film Artwork um...</translation>
-    </message>
-    <message>
-        <source>Renaming TV Show and Episode Artwork...</source>
-        <translation type="obsolete">Benenne Serien und Episoden Artwork um...</translation>
-    </message>
-    <message>
-        <source>Renaming Concert Artwork...</source>
-        <translation type="obsolete">Benenne Konzert Artwork um...</translation>
-    </message>
-    <message>
-        <source>Canceled.</source>
-        <translation type="obsolete">Abgebrochen.</translation>
-    </message>
-    <message>
-        <source>Finished. All artwork has been renamed.</source>
-        <translation type="obsolete">Fertig. Alle Bilder wurden umbenannt.</translation>
+        <translation>XBMC Datenbank Bereinigung abgeschlossen</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="565"/>
