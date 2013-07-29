@@ -1,6 +1,7 @@
 #include "OFDb.h"
 
 #include <QDomDocument>
+#include <QWidget>
 #include <QXmlStreamReader>
 #include "data/Storage.h"
 #include "globals/Globals.h"
@@ -260,7 +261,7 @@ void OFDb::loadFinished()
         qWarning() << "Network Error" << reply->errorString();
     }
     reply->deleteLater();
-    movie->controller()->scraperLoadDone();
+    movie->controller()->scraperLoadDone(this);
 }
 
 /**
@@ -343,30 +344,7 @@ void OFDb::parseAndAssignInfos(QString data, Movie *movie, QList<int> infos)
     }
 }
 
-/**
- * @brief OFDb::languages
- * @return
- */
-QMap<QString, QString> OFDb::languages()
+QWidget *OFDb::settingsWidget()
 {
-    QMap<QString, QString> m;
-    return m;
-}
-
-/**
- * @brief language
- * @return
- */
-QString OFDb::language()
-{
-    return QString();
-}
-
-/**
- * @brief OFDb::setLanguage
- * @param language
- */
-void OFDb::setLanguage(QString language)
-{
-    Q_UNUSED(language);
+    return 0;
 }

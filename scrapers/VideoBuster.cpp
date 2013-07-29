@@ -159,7 +159,7 @@ void VideoBuster::loadFinished()
         parseAndAssignInfos(msg, movie, infos);
     } else {
         qWarning() << "Network Error" << reply->errorString();
-        movie->controller()->scraperLoadDone();
+        movie->controller()->scraperLoadDone(this);
     }
 }
 
@@ -270,7 +270,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, SIGNAL(finished()), this, SLOT(backdropFinished()));
     } else {
-        movie->controller()->scraperLoadDone();
+        movie->controller()->scraperLoadDone(this);
     }
 }
 
@@ -304,7 +304,7 @@ void VideoBuster::backdropFinished()
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
-    movie->controller()->scraperLoadDone();
+    movie->controller()->scraperLoadDone(this);
 }
 
 /**
@@ -332,32 +332,9 @@ void VideoBuster::saveSettings(QSettings &settings)
     Q_UNUSED(settings);
 }
 
-/**
- * @brief VideoBuster::languages
- * @return
- */
-QMap<QString, QString> VideoBuster::languages()
+QWidget *VideoBuster::settingsWidget()
 {
-    QMap<QString, QString> m;
-    return m;
-}
-
-/**
- * @brief language
- * @return
- */
-QString VideoBuster::language()
-{
-    return QString();
-}
-
-/**
- * @brief VideoBuster::setLanguage
- * @param language
- */
-void VideoBuster::setLanguage(QString language)
-{
-    Q_UNUSED(language);
+    return 0;
 }
 
 /**

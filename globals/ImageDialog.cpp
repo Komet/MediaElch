@@ -657,9 +657,11 @@ void ImageDialog::onSearch(bool onlyFirstResult)
     ui->stackedWidget->setCurrentIndex(1);
     QString initialSearchTerm;
     QString id;
+    QString mediaPassionId;
     if (m_itemType == ItemMovie) {
         initialSearchTerm = m_movie->name();
         id = m_movie->tmdbId();
+        mediaPassionId = m_movie->mediaPassionId();
     } else if (m_itemType == ItemConcert) {
         initialSearchTerm = m_concert->name();
         id = m_concert->tmdbId();
@@ -674,7 +676,10 @@ void ImageDialog::onSearch(bool onlyFirstResult)
     clearSearch();
     ui->searchTerm->setLoading(true);
     m_currentProvider = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), Qt::UserRole).value<ImageProviderInterface*>();
-    if (!initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && !id.isEmpty()) {
+    if (!initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && m_currentProvider->identifier() == "images.mediapassion" && !mediaPassionId.isEmpty()) {
+        ui->searchTerm->setLoading(false);
+        loadImagesFromProvider(mediaPassionId);
+    } else if (m_currentProvider->identifier() != "images.mediapassion" && !initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && !id.isEmpty()) {
         // search term was not changed and we have an id
         // -> trigger loading of images and show image widget
         ui->searchTerm->setLoading(false);

@@ -25,9 +25,7 @@ public:
     virtual void saveSettings(QSettings &settings) = 0;
     virtual QList<int> scraperSupports() = 0;
     virtual QList<int> scraperNativelySupports() = 0;
-    virtual QMap<QString, QString> languages() = 0;
-    virtual QString language() = 0;
-    virtual void setLanguage(QString language) = 0;
+    virtual QWidget *settingsWidget() = 0;
 signals:
     virtual void searchDone(QList<ScraperSearchResult>) = 0;
 };
