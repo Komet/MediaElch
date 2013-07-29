@@ -24,9 +24,7 @@ public:
     bool hasSettings();
     void loadSettings(QSettings &settings);
     void saveSettings(QSettings &settings);
-    QMap<QString, QString> languages();
-    QString language();
-    void setLanguage(QString language);
+    QWidget *settingsWidget();
 
 signals:
     void sigSearchDone(QList<ScraperSearchResult>);
@@ -55,6 +53,8 @@ private:
     void parseAndAssignActors(QString xml, TvShow *show);
     void parseAndAssignBanners(QString xml, TvShow *show, TvShowUpdateType updateType, QList<int> infosToLoad);
     void parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *episode, QList<int> infosToLoad);
+    QComboBox *m_box;
+    QWidget *m_widget;
 };
 
 #endif // THETVDB_H

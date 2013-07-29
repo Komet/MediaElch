@@ -25,7 +25,7 @@ public:
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
     void loadData(QMap<ScraperInterface*, QString> ids, ScraperInterface *scraperInterface, QList<int> infos);
     void loadStreamDetailsFromFile();
-    void scraperLoadDone();
+    void scraperLoadDone(ScraperInterface *scraper);
     QList<int> infosToLoad();
     bool infoLoaded() const;
     bool downloadsInProgress() const;

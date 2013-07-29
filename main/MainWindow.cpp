@@ -39,6 +39,8 @@
     #include "mac/MacFullscreen.h"
 #endif
 
+MainWindow *MainWindow::m_instance = 0;
+
 /**
  * @brief MainWindow::MainWindow
  * @param parent
@@ -48,6 +50,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    MainWindow::m_instance = this;
 
     qDebug() << "MediaElch version" << QApplication::applicationVersion() << "starting up";
 
@@ -206,6 +210,11 @@ MainWindow::~MainWindow()
     m_settings->setMainSplitterState(ui->movieSplitter->saveState());
     m_settings->setMainWindowMaximized(isMaximized());
     delete ui;
+}
+
+MainWindow *MainWindow::instance()
+{
+    return MainWindow::m_instance;
 }
 
 /**

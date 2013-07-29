@@ -1,14 +1,17 @@
 #include "TMDb.h"
 
 #include <QDebug>
+#include <QLabel>
 #include <QtScript/QScriptValue>
 #include <QtScript/QScriptValueIterator>
 #include <QtScript/QScriptEngine>
 #include <QSettings>
+#include <QHBoxLayout>
 
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "main/MainWindow.h"
 #include "settings/Settings.h"
 
 /**
@@ -19,6 +22,39 @@ TMDb::TMDb(QObject *parent)
 {
     setParent(parent);
     m_language = "en";
+
+    m_widget = new QWidget(MainWindow::instance());
+    m_box = new QComboBox(m_widget);
+    m_box->addItem(tr("Bulgarian"), "bg");
+    m_box->addItem(tr("Chinese"), "zh");
+    m_box->addItem(tr("Croatian"), "hr");
+    m_box->addItem(tr("Czech"), "cs");
+    m_box->addItem(tr("Danish"), "da");
+    m_box->addItem(tr("Dutch"), "nl");
+    m_box->addItem(tr("English"), "en");
+    m_box->addItem(tr("English (US)"), "en_US");
+    m_box->addItem(tr("Finnish"), "fi");
+    m_box->addItem(tr("French"), "fr");
+    m_box->addItem(tr("German"), "de");
+    m_box->addItem(tr("Greek"), "el");
+    m_box->addItem(tr("Hebrew"), "he");
+    m_box->addItem(tr("Hungarian"), "hu");
+    m_box->addItem(tr("Italian"), "it");
+    m_box->addItem(tr("Japanese"), "ja");
+    m_box->addItem(tr("Korean"), "ko");
+    m_box->addItem(tr("Norwegian"), "no");
+    m_box->addItem(tr("Polish"), "pl");
+    m_box->addItem(tr("Portuguese"), "pt");
+    m_box->addItem(tr("Russian"), "ru");
+    m_box->addItem(tr("Slovene"), "sl");
+    m_box->addItem(tr("Spanish"), "es");
+    m_box->addItem(tr("Swedish"), "sv");
+    m_box->addItem(tr("Turkish"), "tr");
+    QHBoxLayout *layout = new QHBoxLayout(m_widget);
+    layout->addWidget(new QLabel(tr("Language")));
+    layout->addWidget(m_box);
+    layout->addStretch(1);
+    m_widget->setLayout(layout);
 
     m_scraperSupports << MovieScraperInfos::Title
                       << MovieScraperInfos::Tagline
@@ -75,54 +111,6 @@ QString TMDb::apiKey()
 }
 
 /**
- * @brief languages
- * @return
- */
-QMap<QString, QString> TMDb::languages()
-{
-    QMap<QString, QString> m;
-
-    m.insert(tr("Bulgarian"), "bg");
-    m.insert(tr("Chinese"), "zh");
-    m.insert(tr("Croatian"), "hr");
-    m.insert(tr("Czech"), "cs");
-    m.insert(tr("Danish"), "da");
-    m.insert(tr("Dutch"), "nl");
-    m.insert(tr("English"), "en");
-    m.insert(tr("English (US)"), "en_US");
-    m.insert(tr("Finnish"), "fi");
-    m.insert(tr("French"), "fr");
-    m.insert(tr("German"), "de");
-    m.insert(tr("Greek"), "el");
-    m.insert(tr("Hebrew"), "he");
-    m.insert(tr("Hungarian"), "hu");
-    m.insert(tr("Italian"), "it");
-    m.insert(tr("Japanese"), "ja");
-    m.insert(tr("Korean"), "ko");
-    m.insert(tr("Norwegian"), "no");
-    m.insert(tr("Polish"), "pl");
-    m.insert(tr("Portuguese"), "pt");
-    m.insert(tr("Russian"), "ru");
-    m.insert(tr("Slovene"), "sl");
-    m.insert(tr("Spanish"), "es");
-    m.insert(tr("Swedish"), "sv");
-    m.insert(tr("Turkish"), "tr");
-
-    return m;
-}
-
-/**
- * @brief language
- * @return
- */
-QString TMDb::language()
-{
-    if (m_language2 != "")
-        return m_language + "_" + m_language2;
-    return m_language;
-}
-
-/**
  * @brief Returns the name of the scraper
  * @return Name of the Scraper
  */
@@ -145,6 +133,11 @@ bool TMDb::hasSettings()
     return true;
 }
 
+QWidget *TMDb::settingsWidget()
+{
+    return m_widget;
+}
+
 /**
  * @brief Loads scrapers settings
  */
@@ -157,6 +150,18 @@ void TMDb::loadSettings(QSettings &settings)
         m_language = lang.split("_").at(0);
         m_language2 = lang.split("_").at(1);
     }
+
+    bool found = false;
+    for (int i=0, n=m_box->count() ; i<n ; ++i) {
+        if (m_box->itemData(i).toString() == m_language + "_" + m_language2) {
+            m_box->setCurrentIndex(i);
+            found = true;
+        }
+        if (m_box->itemData(i).toString() == m_language && !found) {
+            m_box->setCurrentIndex(i);
+            found = true;
+        }
+    }
 }
 
 /**
@@ -164,16 +169,14 @@ void TMDb::loadSettings(QSettings &settings)
  */
 void TMDb::saveSettings(QSettings &settings)
 {
-    settings.setValue("Scrapers/TMDb/Language", language());
-}
-
-/**
- * @brief TMDb::setLanguage
- * @param language
- */
-void TMDb::setLanguage(QString language)
-{
-    m_language = language;
+    QString language;
+    language = m_box->itemData(m_box->currentIndex()).toString();
+    if (language.split("_").count() > 1) {
+        m_language = language.split("_").at(0);
+        m_language2 = language.split("_").at(1);
+    }
+    settings.setValue("Scrapers/TMDb/Language", language);
+    loadSettings(settings);
 }
 
 /**

@@ -1,5 +1,6 @@
 #include "Cinefacts.h"
 #include <QTextDocument>
+#include <QWidget>
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -46,6 +47,11 @@ QString Cinefacts::identifier()
 bool Cinefacts::hasSettings()
 {
     return false;
+}
+
+QWidget *Cinefacts::settingsWidget()
+{
+    return 0;
 }
 
 /**
@@ -186,7 +192,7 @@ void Cinefacts::loadFinished()
         connect(reply, SIGNAL(finished()), this, SLOT(actorsFinished()));
     } else {
         qWarning() << "Network Error" << reply->errorString();
-        movie->controller()->scraperLoadDone();
+        movie->controller()->scraperLoadDone(this);
     }
 }
 
@@ -210,7 +216,7 @@ void Cinefacts::actorsFinished()
         connect(reply, SIGNAL(finished()), this, SLOT(imagesFinished()));
     } else {
         qWarning() << "Network Error" << reply->errorString();
-        movie->controller()->scraperLoadDone();
+        movie->controller()->scraperLoadDone(this);
     }
 }
 
@@ -249,7 +255,7 @@ void Cinefacts::imagesFinished()
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
-    movie->controller()->scraperLoadDone();
+    movie->controller()->scraperLoadDone(this);
 }
 
 /**
@@ -430,7 +436,7 @@ void Cinefacts::posterFinished()
             return;
         }
     }
-    movie->controller()->scraperLoadDone();
+    movie->controller()->scraperLoadDone(this);
 }
 
 /**
@@ -467,33 +473,5 @@ void Cinefacts::backdropFinished()
             return;
         }
     }
-    movie->controller()->scraperLoadDone();
-}
-
-/**
- * @brief Cinefacts::languages
- * @return
- */
-QMap<QString, QString> Cinefacts::languages()
-{
-    QMap<QString, QString> m;
-    return m;
-}
-
-/**
- * @brief language
- * @return
- */
-QString Cinefacts::language()
-{
-    return QString();
-}
-
-/**
- * @brief Cinefacts::setLanguage
- * @param language
- */
-void Cinefacts::setLanguage(QString language)
-{
-    Q_UNUSED(language);
+    movie->controller()->scraperLoadDone(this);
 }

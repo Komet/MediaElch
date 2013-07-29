@@ -58,25 +58,8 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
                 line->setFrameShadow(QFrame::Sunken);
                 ui->verticalLayoutScrapers->addWidget(line);
             }
-            QWidget *scraperSettings = new QWidget();
-            QComboBox *settingsLanguageCombo = new QComboBox(scraperSettings);
-            m_scraperCombos.insert(scraper, settingsLanguageCombo);
-            QMapIterator<QString, QString> it(scraper->languages());
-            while (it.hasNext()) {
-                it.next();
-                settingsLanguageCombo->addItem(it.key(), it.value());
-            }
-            settingsLanguageCombo->setParent(scraperSettings);
-            QLabel *label = new QLabel(tr("Language"), scraperSettings);
-            QHBoxLayout *hboxLayout = new QHBoxLayout(scraperSettings);
-            QSpacerItem *spacer = new QSpacerItem(1, 1, QSizePolicy::Expanding);
-            hboxLayout->addWidget(label);
-            hboxLayout->addWidget(settingsLanguageCombo);
-            hboxLayout->addSpacerItem(spacer);
-            scraperSettings->setLayout(hboxLayout);
-
             ui->verticalLayoutScrapers->addWidget(new QLabel(scraper->name()));
-            ui->verticalLayoutScrapers->addWidget(scraperSettings);
+            ui->verticalLayoutScrapers->addWidget(scraper->settingsWidget());
         }
     }
     foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers()) {
@@ -87,25 +70,8 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
                 line->setFrameShadow(QFrame::Sunken);
                 ui->verticalLayoutScrapers->addWidget(line);
             }
-            QWidget *scraperSettings = new QWidget();
-            QComboBox *settingsLanguageCombo = new QComboBox(scraperSettings);
-            m_tvScraperCombos.insert(scraper, settingsLanguageCombo);
-            QMapIterator<QString, QString> it(scraper->languages());
-            while (it.hasNext()) {
-                it.next();
-                settingsLanguageCombo->addItem(it.key(), it.value());
-            }
-            settingsLanguageCombo->setParent(scraperSettings);
-            QLabel *label = new QLabel(tr("Language"), scraperSettings);
-            QHBoxLayout *hboxLayout = new QHBoxLayout(scraperSettings);
-            QSpacerItem *spacer = new QSpacerItem(1, 1, QSizePolicy::Expanding);
-            hboxLayout->addWidget(label);
-            hboxLayout->addWidget(settingsLanguageCombo);
-            hboxLayout->addSpacerItem(spacer);
-            scraperSettings->setLayout(hboxLayout);
-
             ui->verticalLayoutScrapers->addWidget(new QLabel(scraper->name()));
-            ui->verticalLayoutScrapers->addWidget(scraperSettings);
+            ui->verticalLayoutScrapers->addWidget(scraper->settingsWidget());
         }
     }
     foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers()) {
@@ -116,25 +82,8 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
                 line->setFrameShadow(QFrame::Sunken);
                 ui->verticalLayoutScrapers->addWidget(line);
             }
-            QWidget *scraperSettings = new QWidget();
-            QComboBox *settingsLanguageCombo = new QComboBox(scraperSettings);
-            m_concertScraperCombos.insert(scraper, settingsLanguageCombo);
-            QMapIterator<QString, QString> it(scraper->languages());
-            while (it.hasNext()) {
-                it.next();
-                settingsLanguageCombo->addItem(it.key(), it.value());
-            }
-            settingsLanguageCombo->setParent(scraperSettings);
-            QLabel *label = new QLabel(tr("Language"), scraperSettings);
-            QHBoxLayout *hboxLayout = new QHBoxLayout(scraperSettings);
-            QSpacerItem *spacer = new QSpacerItem(1, 1, QSizePolicy::Expanding);
-            hboxLayout->addWidget(label);
-            hboxLayout->addWidget(settingsLanguageCombo);
-            hboxLayout->addSpacerItem(spacer);
-            scraperSettings->setLayout(hboxLayout);
-
             ui->verticalLayoutScrapers->addWidget(new QLabel(scraper->name()));
-            ui->verticalLayoutScrapers->addWidget(scraperSettings);
+            ui->verticalLayoutScrapers->addWidget(scraper->settingsWidget());
         }
     }
 
@@ -303,32 +252,6 @@ void SettingsWindow::loadSettings()
         lineEdit->setText(filenames.join(","));
     }
 
-    // Scrapers
-    QMapIterator<ScraperInterface*, QComboBox*> it(m_scraperCombos);
-    while (it.hasNext()) {
-        it.next();
-        for (int i=0, n=it.value()->count() ; i<n ; ++i) {
-            if (it.value()->itemData(i).toString() == it.key()->language())
-                it.value()->setCurrentIndex(i);
-        }
-    }
-    QMapIterator<TvScraperInterface*, QComboBox*> itTv(m_tvScraperCombos);
-    while (itTv.hasNext()) {
-        itTv.next();
-        for (int i=0, n=itTv.value()->count() ; i<n ; ++i) {
-            if (itTv.value()->itemData(i).toString() == itTv.key()->language())
-                itTv.value()->setCurrentIndex(i);
-        }
-    }
-    QMapIterator<ConcertScraperInterface*, QComboBox*> itC(m_concertScraperCombos);
-    while (itC.hasNext()) {
-        itC.next();
-        for (int i=0, n=itC.value()->count() ; i<n ; ++i) {
-            if (itC.value()->itemData(i).toString() == itC.key()->language())
-                itC.value()->setCurrentIndex(i);
-        }
-    }
-
     // Movie set artwork
     for (int i=0, n=ui->comboMovieSetArtwork->count() ; i<n ; ++i) {
         if (ui->comboMovieSetArtwork->itemData(i).toInt() == m_settings->movieSetArtworkType()) {
@@ -393,23 +316,6 @@ void SettingsWindow::saveSettings()
     m_settings->setProxyPassword(ui->proxyPassword->text());
 
     m_settings->setUsePlotForOutline(ui->usePlotForOutline->isChecked());
-
-    // Scrapers
-    QMapIterator<ScraperInterface*, QComboBox*> it(m_scraperCombos);
-    while (it.hasNext()) {
-        it.next();
-        it.key()->setLanguage(it.value()->itemData(it.value()->currentIndex()).toString());
-    }
-    QMapIterator<TvScraperInterface*, QComboBox*> itTv(m_tvScraperCombos);
-    while (itTv.hasNext()) {
-        itTv.next();
-        itTv.key()->setLanguage(itTv.value()->itemData(itTv.value()->currentIndex()).toString());
-    }
-    QMapIterator<ConcertScraperInterface*, QComboBox*> itC(m_concertScraperCombos);
-    while (itC.hasNext()) {
-        itC.next();
-        itC.key()->setLanguage(itC.value()->itemData(itC.value()->currentIndex()).toString());
-    }
 
     // Save Directories
     QList<SettingsDir> movieDirectories;
