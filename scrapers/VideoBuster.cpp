@@ -159,7 +159,7 @@ void VideoBuster::loadFinished()
         parseAndAssignInfos(msg, movie, infos);
     } else {
         qWarning() << "Network Error" << reply->errorString();
-        movie->controller()->scraperLoadDone();
+        movie->controller()->scraperLoadDone(this);
     }
 }
 
@@ -270,7 +270,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, SIGNAL(finished()), this, SLOT(backdropFinished()));
     } else {
-        movie->controller()->scraperLoadDone();
+        movie->controller()->scraperLoadDone(this);
     }
 }
 
@@ -304,7 +304,7 @@ void VideoBuster::backdropFinished()
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
-    movie->controller()->scraperLoadDone();
+    movie->controller()->scraperLoadDone(this);
 }
 
 /**

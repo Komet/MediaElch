@@ -1,6 +1,7 @@
 #ifndef MEDIAPASSION_H
 #define MEDIAPASSION_H
 
+#include <QComboBox>
 #include <QLineEdit>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
@@ -32,6 +33,7 @@ signals:
 
 private slots:
     void onSearchFinished();
+    void onLoadFinished();
 
 private:
     QNetworkAccessManager m_qnam;
@@ -41,12 +43,23 @@ private:
     QString m_password;
     QString m_usernameEnc;
     QString m_passwordEnc;
+    QString m_ratingType;
+    QString m_certificationNation;
+    QString m_language;
     QLineEdit *m_usernameEdit;
     QLineEdit *m_passwordEdit;
+    QComboBox *m_ratingCombo;
+    QComboBox *m_certificationCombo;
+    QComboBox *m_languageCombo;
     QList<int> m_scraperSupports;
     QList<int> m_scraperNativelySupports;
+    static QMap<QUrl, QString> m_contentCache;
 
     QNetworkAccessManager *qnam();
+    QList<ScraperSearchResult> parseSearch(QString xml);
+    bool checkUserAndPass();
+    bool hasError(QString xml, QString &errorMsg);
+    void parseAndAssignInfos(QString data, Movie *movie, QList<int> infos);
 };
 
 #endif // MEDIAPASSION_H

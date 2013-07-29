@@ -160,7 +160,7 @@ void IMDB::onLoadFinished()
         qWarning() << "Network Error (load)" << reply->errorString();
     }
     reply->deleteLater();
-    movie->controller()->scraperLoadDone();
+    movie->controller()->scraperLoadDone(this);
 }
 
 void IMDB::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)

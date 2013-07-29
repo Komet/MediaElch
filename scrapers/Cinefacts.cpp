@@ -192,7 +192,7 @@ void Cinefacts::loadFinished()
         connect(reply, SIGNAL(finished()), this, SLOT(actorsFinished()));
     } else {
         qWarning() << "Network Error" << reply->errorString();
-        movie->controller()->scraperLoadDone();
+        movie->controller()->scraperLoadDone(this);
     }
 }
 
@@ -216,7 +216,7 @@ void Cinefacts::actorsFinished()
         connect(reply, SIGNAL(finished()), this, SLOT(imagesFinished()));
     } else {
         qWarning() << "Network Error" << reply->errorString();
-        movie->controller()->scraperLoadDone();
+        movie->controller()->scraperLoadDone(this);
     }
 }
 
@@ -255,7 +255,7 @@ void Cinefacts::imagesFinished()
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
-    movie->controller()->scraperLoadDone();
+    movie->controller()->scraperLoadDone(this);
 }
 
 /**
@@ -436,7 +436,7 @@ void Cinefacts::posterFinished()
             return;
         }
     }
-    movie->controller()->scraperLoadDone();
+    movie->controller()->scraperLoadDone(this);
 }
 
 /**
@@ -473,5 +473,5 @@ void Cinefacts::backdropFinished()
             return;
         }
     }
-    movie->controller()->scraperLoadDone();
+    movie->controller()->scraperLoadDone(this);
 }

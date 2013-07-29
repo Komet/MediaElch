@@ -50,6 +50,7 @@ TheTvDb::TheTvDb(QObject *parent)
     QHBoxLayout *layout = new QHBoxLayout(m_widget);
     layout->addWidget(new QLabel(tr("Language")));
     layout->addWidget(m_box);
+    layout->addStretch(1);
     m_widget->setLayout(layout);
 
     m_apiKey = "A0BB9A0F6762942B";

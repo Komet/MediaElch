@@ -105,6 +105,12 @@ void Movie::clear(QList<int> infos)
         m_hasImageChanged.insert(ImageType::MovieBackdrop, false);
         m_imagesToRemove.removeOne(ImageType::MovieBackdrop);
     }
+    if (infos.contains(MovieScraperInfos::CdArt)) {
+        m_discArts.clear();
+        m_images.insert(ImageType::MovieCdArt, QByteArray());
+        m_hasImageChanged.insert(ImageType::MovieCdArt, false);
+        m_imagesToRemove.removeOne(ImageType::MovieCdArt);
+    }
     if (infos.contains(MovieScraperInfos::Countries))
         m_countries.clear();
     if (infos.contains(MovieScraperInfos::Genres))
@@ -157,25 +163,16 @@ void Movie::clear(QList<int> infos)
         m_hasImageChanged.insert(ImageType::MovieClearArt, false);
         m_imagesToRemove.removeOne(ImageType::MovieClearArt);
     }
-
-    if (infos.contains(MovieScraperInfos::CdArt)) {
-        m_images.insert(ImageType::MovieCdArt, QByteArray());
-        m_hasImageChanged.insert(ImageType::MovieCdArt, false);
-        m_imagesToRemove.removeOne(ImageType::MovieCdArt);
-    }
-
     if (infos.contains(MovieScraperInfos::Banner)) {
         m_images.insert(ImageType::MovieBanner, QByteArray());
         m_hasImageChanged.insert(ImageType::MovieBanner, false);
         m_imagesToRemove.removeOne(ImageType::MovieBanner);
     }
-
     if (infos.contains(MovieScraperInfos::Thumb)) {
         m_images.insert(ImageType::MovieThumb, QByteArray());
         m_hasImageChanged.insert(ImageType::MovieThumb, false);
         m_imagesToRemove.removeOne(ImageType::MovieThumb);
     }
-
     if (infos.contains(MovieScraperInfos::ExtraFanarts)) {
         m_extraFanartsToRemove.clear();
         m_extraFanartImagesToAdd.clear();
@@ -516,6 +513,11 @@ QString Movie::tmdbId() const
     return m_tmdbId;
 }
 
+QString Movie::mediaPassionId() const
+{
+    return m_mediaPassionId;
+}
+
 /**
  * @property Movie::set
  * @brief Holds the set of the movie
@@ -551,6 +553,11 @@ QList<Poster> Movie::posters() const
 QList<Poster> Movie::backdrops() const
 {
     return m_backdrops;
+}
+
+QList<Poster> Movie::discArts() const
+{
+    return m_discArts;
 }
 
 /**
@@ -899,6 +906,12 @@ void Movie::setTmdbId(QString id)
     setChanged(true);
 }
 
+void Movie::setMediaPassionId(QString id)
+{
+    m_mediaPassionId = id;
+    setChanged(true);
+}
+
 /**
  * @brief Sets the movies set
  * @param set Setname of the movie
@@ -957,6 +970,20 @@ void Movie::setBackdrop(int index, Poster backdrop)
     if (m_backdrops.size() < index)
         return;
     m_backdrops[index] = backdrop;
+    setChanged(true);
+}
+
+void Movie::setDiscArts(QList<Poster> discArts)
+{
+    m_discArts.append(discArts);
+    setChanged(true);
+}
+
+void Movie::setDiscArt(int index, Poster discArt)
+{
+    if (m_discArts.size() < index)
+        return;
+    m_discArts[index] = discArt;
     setChanged(true);
 }
 
@@ -1134,6 +1161,12 @@ void Movie::addPoster(Poster poster, bool primaryLang)
 void Movie::addBackdrop(Poster backdrop)
 {
     m_backdrops.append(backdrop);
+    setChanged(true);
+}
+
+void Movie::addDiscArt(Poster discArt)
+{
+    m_discArts.append(discArt);
     setChanged(true);
 }
 

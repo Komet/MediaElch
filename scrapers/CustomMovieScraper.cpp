@@ -174,13 +174,13 @@ void CustomMovieScraper::onLoadTmdbFinished()
             imdbId = sc.property("imdb_id").toString();
         } else {
             qWarning() << "No IMDB id available";
-            movie->controller()->scraperLoadDone();
+            movie->controller()->scraperLoadDone(this);
             return;
         }
         loadAllData(ids, movie, infos, tmdbId, imdbId);
     } else {
         qWarning() << "Network Error" << reply->errorString();
-        movie->controller()->scraperLoadDone();
+        movie->controller()->scraperLoadDone(this);
     }
 }
 

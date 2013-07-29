@@ -91,6 +91,7 @@ public:
     QDateTime lastPlayed() const;
     QString id() const;
     QString tmdbId() const;
+    QString mediaPassionId() const;
     QString set() const;
     bool watched() const;
     int movieId() const;
@@ -133,6 +134,7 @@ public:
     void setLastPlayed(QDateTime lastPlayed);
     void setId(QString id);
     void setTmdbId(QString id);
+    void setMediaPassionId(QString id);
     void setSet(QString set);
     void setWatched(bool watched);
     void setChanged(bool changed);
@@ -159,6 +161,7 @@ public:
 
     QList<Poster> posters() const;
     QList<Poster> backdrops() const;
+    QList<Poster> discArts() const;
     QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
     QStringList extraFanartsToRemove();
     QList<QByteArray> extraFanartImagesToAdd();
@@ -170,6 +173,9 @@ public:
     void setBackdrops(QList<Poster> backdrops);
     void setBackdrop(int index, Poster backdrop);
     void addBackdrop(Poster backdrop);
+    void setDiscArts(QList<Poster> discArts);
+    void setDiscArt(int index, Poster poster);
+    void addDiscArt(Poster poster);
     void addExtraFanart(QByteArray fanart);
     void removeExtraFanart(QByteArray fanart);
     void removeExtraFanart(QString file);
@@ -223,9 +229,11 @@ private:
     QDateTime m_lastPlayed;
     QString m_id;
     QString m_tmdbId;
+    QString m_mediaPassionId;
     QString m_set;
     QList<Poster> m_posters;
     QList<Poster> m_backdrops;
+    QList<Poster> m_discArts;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
     bool m_infoLoaded;

@@ -142,7 +142,8 @@ SOURCES += main.cpp\
     smallWidgets/SearchOverlay.cpp \
     tvShows/ItemWidgetShow.cpp \
     scrapers/CustomMovieScraper.cpp \
-    scrapers/MediaPassion.cpp
+    scrapers/MediaPassion.cpp \
+    imageProviders/MediaPassionImages.cpp
 
 macx {
     OBJECTIVE_SOURCES += mac/MacFullscreen.mm
@@ -261,7 +262,8 @@ HEADERS  += main/MainWindow.h \
     smallWidgets/SearchOverlay.h \
     tvShows/ItemWidgetShow.h \
     scrapers/CustomMovieScraper.h \
-    scrapers/MediaPassion.h
+    scrapers/MediaPassion.h \
+    imageProviders/MediaPassionImages.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
