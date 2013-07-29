@@ -80,34 +80,28 @@
 <context>
     <name>CLI</name>
     <message>
-        <location filename="../cli/CLI.cpp" line="127"/>
         <source>Unknown command line argument &quot;%1&quot;</source>
-        <translation>Nieznany argument wiersza poleceń &quot;%1&quot;</translation>
+        <translation type="obsolete">Nieznany argument wiersza poleceń &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../cli/CLI.cpp" line="133"/>
         <source>No file given</source>
-        <translation>Nie podano pliku</translation>
+        <translation type="obsolete">Nie podano pliku</translation>
     </message>
     <message>
-        <location filename="../cli/CLI.cpp" line="139"/>
         <source>No scraper given</source>
-        <translation>Nie wybrano żadnego Ekstraktora</translation>
+        <translation type="obsolete">Nie wybrano żadnego Ekstraktora</translation>
     </message>
     <message>
-        <location filename="../cli/CLI.cpp" line="145"/>
         <source>Unsupported scraper &quot;%1&quot;</source>
-        <translation>Niewspierany Ekstraktor  &quot;%1&quot;</translation>
+        <translation type="obsolete">Niewspierany Ekstraktor  &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../cli/CLI.cpp" line="151"/>
         <source>Search term given but empty</source>
-        <translation>Szukane wyrażenie nie zostało odnalezione</translation>
+        <translation type="obsolete">Szukane wyrażenie nie zostało odnalezione</translation>
     </message>
     <message>
-        <location filename="../cli/CLI.cpp" line="158"/>
         <source>File &quot;%1&quot; does not exist</source>
-        <translation>Plik &quot;%1&quot; nie istnieje</translation>
+        <translation type="obsolete">Plik &quot;%1&quot; nie istnieje</translation>
     </message>
 </context>
 <context>
@@ -1705,7 +1699,7 @@
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="558"/>
-        <location filename="../main/MainWindow.cpp" line="281"/>
+        <location filename="../main/MainWindow.cpp" line="290"/>
         <source>Settings</source>
         <translation>Ustawienia</translation>
     </message>
@@ -1716,82 +1710,82 @@
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="568"/>
-        <location filename="../main/MainWindow.cpp" line="289"/>
+        <location filename="../main/MainWindow.cpp" line="298"/>
         <source>About</source>
         <translation>O</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="261"/>
+        <location filename="../main/MainWindow.cpp" line="270"/>
         <source>Search</source>
         <translation>Szukaj</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="263"/>
+        <location filename="../main/MainWindow.cpp" line="272"/>
         <source>Search (%1)</source>
         <translation>Szukaj (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="265"/>
+        <location filename="../main/MainWindow.cpp" line="274"/>
         <source>Save</source>
         <translation>Zapisz</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="267"/>
+        <location filename="../main/MainWindow.cpp" line="276"/>
         <source>Save (%1)</source>
         <translation>Zapisz (#1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="269"/>
+        <location filename="../main/MainWindow.cpp" line="278"/>
         <source>Save All</source>
         <translation>Zapisz wszystko</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="272"/>
+        <location filename="../main/MainWindow.cpp" line="281"/>
         <source>Save All (%1)</source>
         <translation>Zapisz wszystko (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="274"/>
+        <location filename="../main/MainWindow.cpp" line="283"/>
         <source>Reload</source>
         <translation>Przeładuj</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="276"/>
+        <location filename="../main/MainWindow.cpp" line="285"/>
         <source>Reload all files (%1)</source>
         <translation>Przeładuj wszystkie pliki</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="278"/>
+        <location filename="../main/MainWindow.cpp" line="287"/>
         <source>Rename</source>
         <translation>Zmień nazwę</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="279"/>
+        <location filename="../main/MainWindow.cpp" line="288"/>
         <source>Rename selected files</source>
         <translation>Zmień nazwę wybranych plików</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="283"/>
+        <location filename="../main/MainWindow.cpp" line="292"/>
         <source>XBMC</source>
         <translation>XBMC</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="284"/>
+        <location filename="../main/MainWindow.cpp" line="293"/>
         <source>Synchronize to XBMC</source>
         <translation>Synchronizuj z XBMC</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="286"/>
+        <location filename="../main/MainWindow.cpp" line="295"/>
         <source>Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="287"/>
+        <location filename="../main/MainWindow.cpp" line="296"/>
         <source>Export Database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="291"/>
+        <location filename="../main/MainWindow.cpp" line="300"/>
         <source>Donate</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1800,17 +1794,17 @@
         <translation type="obsolete">Wsparcie</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="411"/>
+        <location filename="../main/MainWindow.cpp" line="420"/>
         <source>Reload all Movies (%1)</source>
         <translation>Przeładuj wszystkie filmy (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="413"/>
+        <location filename="../main/MainWindow.cpp" line="422"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>Przeładuj wszystkie seriale (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="415"/>
+        <location filename="../main/MainWindow.cpp" line="424"/>
         <source>Reload all Concerts (%1)</source>
         <translation>Przeładuj wszystkie koncerty (%1)</translation>
     </message>
@@ -1821,6 +1815,238 @@
         <location filename="../smallWidgets/MediaFlags.ui" line="14"/>
         <source>Form</source>
         <translation>Formatka</translation>
+    </message>
+</context>
+<context>
+    <name>MediaPassion</name>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="29"/>
+        <source>English</source>
+        <translation type="unfinished">Angielski</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="30"/>
+        <source>French</source>
+        <translation type="unfinished">Francuski</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="33"/>
+        <source>Allocine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="34"/>
+        <source>IMDB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="35"/>
+        <source>Cine Passion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="38"/>
+        <source>Argentina</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="39"/>
+        <source>Australia</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="40"/>
+        <source>Belgium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="41"/>
+        <source>Brazil</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="42"/>
+        <source>Canada</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="43"/>
+        <source>Chile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="44"/>
+        <source>Finland</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="45"/>
+        <source>France</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="46"/>
+        <source>Germany</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="47"/>
+        <source>Hong Kong</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="48"/>
+        <source>Iceland</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="49"/>
+        <source>India</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="50"/>
+        <source>Ireland</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="51"/>
+        <source>Israel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="52"/>
+        <source>Italy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="53"/>
+        <source>Japan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="54"/>
+        <source>Malaysia</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="55"/>
+        <source>Netherlands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="56"/>
+        <source>New Zealand</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="57"/>
+        <source>Norway</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="58"/>
+        <source>Peru</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="59"/>
+        <source>Philippines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="60"/>
+        <source>Portugal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="61"/>
+        <source>Singapore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="62"/>
+        <source>South Africa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="63"/>
+        <source>South Korea</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="64"/>
+        <source>Spain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="65"/>
+        <source>Sweden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="66"/>
+        <source>Switzerland</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="67"/>
+        <source>UK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="68"/>
+        <source>USA</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="71"/>
+        <source>Username</source>
+        <translation type="unfinished">Użytkownik</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="73"/>
+        <source>Password</source>
+        <translation type="unfinished">Hasło</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="75"/>
+        <source>Language</source>
+        <translation type="unfinished">Język</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="77"/>
+        <source>Rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="79"/>
+        <source>Certification</source>
+        <translation type="unfinished">Kategoria wiekowa</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="150"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="195"/>
+        <source>No username and password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="151"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="196"/>
+        <source>In order to use this scraper you have to set your username and password in MediaElchs settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="185"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="239"/>
+        <source>Scraper returned an error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scrapers/MediaPassion.cpp" line="185"/>
+        <location filename="../scrapers/MediaPassion.cpp" line="239"/>
+        <source>The scraper returned the following error: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2793,12 +3019,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="174"/>
+        <location filename="../main.cpp" line="107"/>
         <source>Logfile could not be openened</source>
         <translation>Logfile could not be openened</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="175"/>
+        <location filename="../main.cpp" line="108"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Plik logów %1 nie może zostać otwarty do zapisu.</translation>
     </message>
@@ -3638,7 +3864,7 @@ p, li { white-space: pre-wrap; }⏎
         <location filename="../settings/SettingsWindow.ui" line="342"/>
         <location filename="../settings/SettingsWindow.ui" line="606"/>
         <location filename="../settings/SettingsWindow.ui" line="875"/>
-        <location filename="../settings/SettingsWindow.cpp" line="703"/>
+        <location filename="../settings/SettingsWindow.cpp" line="609"/>
         <source>Poster</source>
         <translation type="unfinished">Plakat</translation>
     </message>
@@ -3653,7 +3879,7 @@ p, li { white-space: pre-wrap; }⏎
         <location filename="../settings/SettingsWindow.ui" line="356"/>
         <location filename="../settings/SettingsWindow.ui" line="627"/>
         <location filename="../settings/SettingsWindow.ui" line="889"/>
-        <location filename="../settings/SettingsWindow.cpp" line="723"/>
+        <location filename="../settings/SettingsWindow.cpp" line="629"/>
         <source>Logo</source>
         <translation type="unfinished">Logo</translation>
     </message>
@@ -3661,28 +3887,28 @@ p, li { white-space: pre-wrap; }⏎
         <location filename="../settings/SettingsWindow.ui" line="363"/>
         <location filename="../settings/SettingsWindow.ui" line="634"/>
         <location filename="../settings/SettingsWindow.ui" line="896"/>
-        <location filename="../settings/SettingsWindow.cpp" line="727"/>
+        <location filename="../settings/SettingsWindow.cpp" line="633"/>
         <source>Clear Art</source>
         <translation type="unfinished">Clear Art</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="370"/>
         <location filename="../settings/SettingsWindow.ui" line="903"/>
-        <location filename="../settings/SettingsWindow.cpp" line="725"/>
+        <location filename="../settings/SettingsWindow.cpp" line="631"/>
         <source>Disc Art</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="437"/>
         <location filename="../settings/SettingsWindow.ui" line="620"/>
-        <location filename="../settings/SettingsWindow.cpp" line="729"/>
+        <location filename="../settings/SettingsWindow.cpp" line="635"/>
         <source>Banner</source>
         <translation type="unfinished">Baner</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="444"/>
         <location filename="../settings/SettingsWindow.ui" line="810"/>
-        <location filename="../settings/SettingsWindow.cpp" line="731"/>
+        <location filename="../settings/SettingsWindow.cpp" line="637"/>
         <source>Thumb</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3868,7 +4094,7 @@ p, li { white-space: pre-wrap; }⏎
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1180"/>
-        <location filename="../settings/SettingsWindow.cpp" line="532"/>
+        <location filename="../settings/SettingsWindow.cpp" line="438"/>
         <source>Cancel</source>
         <translation type="unfinished">Anuluj</translation>
     </message>
@@ -3884,19 +4110,19 @@ p, li { white-space: pre-wrap; }⏎
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1238"/>
-        <location filename="../settings/SettingsWindow.cpp" line="488"/>
+        <location filename="../settings/SettingsWindow.cpp" line="394"/>
         <source>Movies</source>
         <translation type="unfinished">Filmy</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1258"/>
-        <location filename="../settings/SettingsWindow.cpp" line="488"/>
+        <location filename="../settings/SettingsWindow.cpp" line="394"/>
         <source>TV Shows</source>
         <translation type="unfinished">Seriale</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1279"/>
-        <location filename="../settings/SettingsWindow.cpp" line="488"/>
+        <location filename="../settings/SettingsWindow.cpp" line="394"/>
         <source>Concerts</source>
         <translation type="unfinished">Koncerty</translation>
     </message>
@@ -3921,155 +4147,152 @@ p, li { white-space: pre-wrap; }⏎
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="70"/>
-        <location filename="../settings/SettingsWindow.cpp" line="99"/>
-        <location filename="../settings/SettingsWindow.cpp" line="128"/>
         <source>Language</source>
-        <translation type="unfinished">Język</translation>
+        <translation type="obsolete">Język</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="456"/>
+        <location filename="../settings/SettingsWindow.cpp" line="362"/>
         <source>Settings saved</source>
         <translation type="unfinished">Ustawienia zostały zapisane</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="519"/>
+        <location filename="../settings/SettingsWindow.cpp" line="425"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
         <translation type="unfinished">Organizacja filmów działa tylko na filmach, nie przenosi ich do oddzielnych folderów.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="527"/>
+        <location filename="../settings/SettingsWindow.cpp" line="433"/>
         <source>Are you sure?</source>
         <translation type="unfinished">Jesteś pewien?</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="528"/>
+        <location filename="../settings/SettingsWindow.cpp" line="434"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
         <translation type="unfinished">Ta operacja przenosi wszystkie filmy w tym folderze do oddzielny podfolderów o nazwie bazującej na nazwie plików. Kliknij &quot;Ok&quot;, jeśli jesteś pewien, że chcesz to zrobić.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="531"/>
+        <location filename="../settings/SettingsWindow.cpp" line="437"/>
         <source>Ok</source>
         <translation type="unfinished">Ok</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="577"/>
+        <location filename="../settings/SettingsWindow.cpp" line="483"/>
         <source>Choose a directory containing your movies, TV show or concerts</source>
         <translation type="unfinished">Wybierz folder zawierający twoje filmy, seriale lub koncerty</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="599"/>
+        <location filename="../settings/SettingsWindow.cpp" line="505"/>
         <source>Choose a directory where your movie set artwork is stored</source>
         <translation type="unfinished">Wybierz folder, w którym przechowywane są grafiki zbiorów filmów</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="628"/>
+        <location filename="../settings/SettingsWindow.cpp" line="534"/>
         <source>Theme &quot;%1&quot; was successfully installed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="630"/>
-        <location filename="../settings/SettingsWindow.cpp" line="638"/>
+        <location filename="../settings/SettingsWindow.cpp" line="536"/>
+        <location filename="../settings/SettingsWindow.cpp" line="544"/>
         <source>There was an error while processing the theme &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="636"/>
+        <location filename="../settings/SettingsWindow.cpp" line="542"/>
         <source>Theme &quot;%1&quot; was successfully uninstalled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="648"/>
+        <location filename="../settings/SettingsWindow.cpp" line="554"/>
         <source>Don&apos;t use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="687"/>
+        <location filename="../settings/SettingsWindow.cpp" line="593"/>
         <source>Title</source>
         <translation type="unfinished">Tytuł</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="689"/>
+        <location filename="../settings/SettingsWindow.cpp" line="595"/>
         <source>Tagline</source>
         <translation type="unfinished">Motto</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="691"/>
+        <location filename="../settings/SettingsWindow.cpp" line="597"/>
         <source>Rating</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="693"/>
+        <location filename="../settings/SettingsWindow.cpp" line="599"/>
         <source>Released</source>
         <translation type="unfinished">Premiera</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="695"/>
+        <location filename="../settings/SettingsWindow.cpp" line="601"/>
         <source>Runtime</source>
         <translation type="unfinished">Czas trwania</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="697"/>
+        <location filename="../settings/SettingsWindow.cpp" line="603"/>
         <source>Certification</source>
         <translation type="unfinished">Kategoria wiekowa</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="699"/>
+        <location filename="../settings/SettingsWindow.cpp" line="605"/>
         <source>Trailer</source>
         <translation type="unfinished">Zwiastun</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="701"/>
+        <location filename="../settings/SettingsWindow.cpp" line="607"/>
         <source>Plot</source>
         <translation type="unfinished">zarys fabuła</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="705"/>
+        <location filename="../settings/SettingsWindow.cpp" line="611"/>
         <source>Fanart</source>
         <translation type="unfinished">Grafika</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="707"/>
+        <location filename="../settings/SettingsWindow.cpp" line="613"/>
         <source>Actors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="709"/>
+        <location filename="../settings/SettingsWindow.cpp" line="615"/>
         <source>Genres</source>
         <translation type="unfinished">Gatunki</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="711"/>
+        <location filename="../settings/SettingsWindow.cpp" line="617"/>
         <source>Studios</source>
         <translation type="unfinished">Wytwórnie</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="713"/>
+        <location filename="../settings/SettingsWindow.cpp" line="619"/>
         <source>Countries</source>
         <translation type="unfinished">Kraje</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="715"/>
+        <location filename="../settings/SettingsWindow.cpp" line="621"/>
         <source>Writer</source>
         <translation type="unfinished">Scenarzysta</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="717"/>
+        <location filename="../settings/SettingsWindow.cpp" line="623"/>
         <source>Director</source>
         <translation type="unfinished">Reżyser</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="719"/>
+        <location filename="../settings/SettingsWindow.cpp" line="625"/>
         <source>Tags</source>
         <translation type="unfinished">Znaczniki</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="721"/>
+        <location filename="../settings/SettingsWindow.cpp" line="627"/>
         <source>Set</source>
         <translation type="unfinished">Zbiór</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="733"/>
+        <location filename="../settings/SettingsWindow.cpp" line="639"/>
         <source>Unsupported</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4131,257 +4354,267 @@ p, li { white-space: pre-wrap; }⏎
 <context>
     <name>TMDb</name>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="85"/>
+        <location filename="../scrapers/TMDb.cpp" line="28"/>
         <source>Bulgarian</source>
         <translation>Bułgarski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="86"/>
+        <location filename="../scrapers/TMDb.cpp" line="29"/>
         <source>Chinese</source>
         <translation>Chiński</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="87"/>
+        <location filename="../scrapers/TMDb.cpp" line="30"/>
         <source>Croatian</source>
         <translation>Chorwacki</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="88"/>
+        <location filename="../scrapers/TMDb.cpp" line="31"/>
         <source>Czech</source>
         <translation>Czeski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="89"/>
+        <location filename="../scrapers/TMDb.cpp" line="32"/>
         <source>Danish</source>
         <translation>Duński</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="90"/>
+        <location filename="../scrapers/TMDb.cpp" line="33"/>
         <source>Dutch</source>
         <translation>Holenderski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="91"/>
+        <location filename="../scrapers/TMDb.cpp" line="34"/>
         <source>English</source>
         <translation>Angielski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="92"/>
+        <location filename="../scrapers/TMDb.cpp" line="35"/>
         <source>English (US)</source>
         <translation>Angielski (Stany Zjednoczone)</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="93"/>
+        <location filename="../scrapers/TMDb.cpp" line="36"/>
         <source>Finnish</source>
         <translation>Fiński</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="94"/>
+        <location filename="../scrapers/TMDb.cpp" line="37"/>
         <source>French</source>
         <translation>Francuski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="95"/>
+        <location filename="../scrapers/TMDb.cpp" line="38"/>
         <source>German</source>
         <translation>Niemiecki</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="96"/>
+        <location filename="../scrapers/TMDb.cpp" line="39"/>
         <source>Greek</source>
         <translation>Grecki</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="97"/>
+        <location filename="../scrapers/TMDb.cpp" line="40"/>
         <source>Hebrew</source>
         <translation>Hebrajski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="98"/>
+        <location filename="../scrapers/TMDb.cpp" line="41"/>
         <source>Hungarian</source>
         <translation>Węgierski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="99"/>
+        <location filename="../scrapers/TMDb.cpp" line="42"/>
         <source>Italian</source>
         <translation>Włoski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="100"/>
+        <location filename="../scrapers/TMDb.cpp" line="43"/>
         <source>Japanese</source>
         <translation>Japoński</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="101"/>
+        <location filename="../scrapers/TMDb.cpp" line="44"/>
         <source>Korean</source>
         <translation>Koreański</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="102"/>
+        <location filename="../scrapers/TMDb.cpp" line="45"/>
         <source>Norwegian</source>
         <translation>Norweski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="103"/>
+        <location filename="../scrapers/TMDb.cpp" line="46"/>
         <source>Polish</source>
         <translation>Polski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="104"/>
+        <location filename="../scrapers/TMDb.cpp" line="47"/>
         <source>Portuguese</source>
         <translation>Portugalski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="105"/>
+        <location filename="../scrapers/TMDb.cpp" line="48"/>
         <source>Russian</source>
         <translation>Rosyjski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="106"/>
+        <location filename="../scrapers/TMDb.cpp" line="49"/>
         <source>Slovene</source>
         <translation>Słoweński</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="107"/>
+        <location filename="../scrapers/TMDb.cpp" line="50"/>
         <source>Spanish</source>
         <translation>Hiszpański</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="108"/>
+        <location filename="../scrapers/TMDb.cpp" line="51"/>
         <source>Swedish</source>
         <translation>Szwedzki</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDb.cpp" line="109"/>
+        <location filename="../scrapers/TMDb.cpp" line="52"/>
         <source>Turkish</source>
         <translation>Turecki</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDb.cpp" line="54"/>
+        <source>Language</source>
+        <translation type="unfinished">Język</translation>
     </message>
 </context>
 <context>
     <name>TMDbConcerts</name>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="52"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="28"/>
         <source>Bulgarian</source>
         <translation>Bułgarski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="53"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="29"/>
         <source>Chinese</source>
         <translation>Chiński</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="54"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="30"/>
         <source>Croatian</source>
         <translation>Chorwacki</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="55"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="31"/>
         <source>Czech</source>
         <translation>Czeski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="56"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="32"/>
         <source>Danish</source>
         <translation>Duński</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="57"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="33"/>
         <source>Dutch</source>
         <translation>Holenderski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="58"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="34"/>
         <source>English</source>
         <translation>Angielski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="59"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="35"/>
         <source>English (US)</source>
         <translation>Angielski (Stany Zjednoczone)</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="60"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="36"/>
         <source>Finnish</source>
         <translation>Fiński</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="61"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="37"/>
         <source>French</source>
         <translation>Francuski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="62"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="38"/>
         <source>German</source>
         <translation>Niemiecki</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="63"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="39"/>
         <source>Greek</source>
         <translation>Grecki</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="64"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="40"/>
         <source>Hebrew</source>
         <translation>Hebrajski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="65"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="41"/>
         <source>Hungarian</source>
         <translation>Węgierski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="66"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="42"/>
         <source>Italian</source>
         <translation>Włoski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="67"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="43"/>
         <source>Japanese</source>
         <translation>Japoński</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="68"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="44"/>
         <source>Korean</source>
         <translation>Koreański</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="69"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="45"/>
         <source>Norwegian</source>
         <translation>Norweski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="70"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="46"/>
         <source>Polish</source>
         <translation>Polski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="71"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="47"/>
         <source>Portuguese</source>
         <translation>Portugalski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="72"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="48"/>
         <source>Russian</source>
         <translation>Rosyjski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="73"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="49"/>
         <source>Slovene</source>
         <translation>Słoweński</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="74"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="50"/>
         <source>Spanish</source>
         <translation>Hiszpański</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="75"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="51"/>
         <source>Swedish</source>
         <translation>Szwedzki</translation>
     </message>
     <message>
-        <location filename="../scrapers/TMDbConcerts.cpp" line="76"/>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="52"/>
         <source>Turkish</source>
         <translation>Turecki</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TMDbConcerts.cpp" line="54"/>
+        <source>Language</source>
+        <translation type="unfinished">Język</translation>
     </message>
 </context>
 <context>
@@ -4400,124 +4633,129 @@ p, li { white-space: pre-wrap; }⏎
 <context>
     <name>TheTvDb</name>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="39"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="26"/>
         <source>Bulgarian</source>
         <translation>Bułgarski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="40"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="27"/>
         <source>Chinese</source>
         <translation>Chiński</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="41"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="28"/>
         <source>Croatian</source>
         <translation>Chorwacki</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="42"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="29"/>
         <source>Czech</source>
         <translation>Czeski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="43"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="30"/>
         <source>Danish</source>
         <translation>Duński</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="44"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="31"/>
         <source>Dutch</source>
         <translation>Holenderski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="45"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="32"/>
         <source>English</source>
         <translation>Angielski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="46"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="33"/>
         <source>Finnish</source>
         <translation>Fiński</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="47"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="34"/>
         <source>French</source>
         <translation>Francuski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="48"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="35"/>
         <source>German</source>
         <translation>Niemiecki</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="49"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="36"/>
         <source>Greek</source>
         <translation>Grecki</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="50"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="37"/>
         <source>Hebrew</source>
         <translation>Hebrajski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="51"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="38"/>
         <source>Hungarian</source>
         <translation>Węgierski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="52"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="39"/>
         <source>Italian</source>
         <translation>Włoski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="53"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="40"/>
         <source>Japanese</source>
         <translation>Japoński</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="54"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="41"/>
         <source>Korean</source>
         <translation>Koreański</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="55"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="42"/>
         <source>Norwegian</source>
         <translation>Norweski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="56"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="43"/>
         <source>Polish</source>
         <translation>Polski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="57"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="44"/>
         <source>Portuguese</source>
         <translation>Portugalski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="58"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="45"/>
         <source>Russian</source>
         <translation>Rosyjski</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="59"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="46"/>
         <source>Slovene</source>
         <translation>Słoweński</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="60"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="47"/>
         <source>Spanish</source>
         <translation>Hiszpański</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="61"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="48"/>
         <source>Swedish</source>
         <translation>Szwedzki</translation>
     </message>
     <message>
-        <location filename="../scrapers/TheTvDb.cpp" line="62"/>
+        <location filename="../scrapers/TheTvDb.cpp" line="49"/>
         <source>Turkish</source>
         <translation>Turecki</translation>
+    </message>
+    <message>
+        <location filename="../scrapers/TheTvDb.cpp" line="51"/>
+        <source>Language</source>
+        <translation type="unfinished">Język</translation>
     </message>
 </context>
 <context>
