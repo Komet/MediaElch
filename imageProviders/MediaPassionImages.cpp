@@ -36,6 +36,8 @@ QList<int> MediaPassionImages::provides()
 
 void MediaPassionImages::searchMovie(QString searchStr, int limit)
 {
+    QSettings settings;
+    m_mediaPassion->loadSettings(settings);
     m_searchResultLimit = limit;
     m_mediaPassion->search(searchStr);
 }
@@ -50,6 +52,8 @@ void MediaPassionImages::onSearchMovieFinished(QList<ScraperSearchResult> result
 
 void MediaPassionImages::moviePosters(QString id)
 {
+    QSettings settings;
+    m_mediaPassion->loadSettings(settings);
     m_dummyMovie->clear();
     m_imageType = ImageType::MoviePoster;
     QMap<ScraperInterface*, QString> ids;
@@ -59,6 +63,8 @@ void MediaPassionImages::moviePosters(QString id)
 
 void MediaPassionImages::movieBackdrops(QString id)
 {
+    QSettings settings;
+    m_mediaPassion->loadSettings(settings);
     m_dummyMovie->clear();
     m_imageType = ImageType::MovieBackdrop;
     QMap<ScraperInterface*, QString> ids;
@@ -68,6 +74,8 @@ void MediaPassionImages::movieBackdrops(QString id)
 
 void MediaPassionImages::movieCdArts(QString id)
 {
+    QSettings settings;
+    m_mediaPassion->loadSettings(settings);
     m_dummyMovie->clear();
     m_imageType = ImageType::MovieCdArt;
     QMap<ScraperInterface*, QString> ids;
