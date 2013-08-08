@@ -37,22 +37,18 @@ FilesWidget::FilesWidget(QWidget *parent) :
 
     m_lastMovie = 0;
     m_mouseIsIn = false;
-    m_movieDelegate = new MovieDelegate(this);
     m_movieProxyModel = new MovieProxyModel(this);
     m_movieProxyModel->setSourceModel(Manager::instance()->movieModel());
     m_movieProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     m_movieProxyModel->setDynamicSortFilter(true);
     ui->files->setModel(m_movieProxyModel);
-    ui->files->setItemDelegate(m_movieDelegate);
     for (int i=1, n=ui->files->model()->columnCount() ; i<n ; ++i) {
         ui->files->setColumnWidth(i, 24);
         ui->files->setColumnHidden(i, true);
     }
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-    ui->files->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->files->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
 #else
-    ui->files->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->files->horizontalHeader()->setResizeMode(0, QHeaderView::Stretch);
 #endif
 
@@ -62,6 +58,16 @@ FilesWidget::FilesWidget(QWidget *parent) :
     m_alphaList = new AlphabeticalList(this, ui->files);
     m_baseLabelCss = ui->sortByYear->styleSheet();
     m_activeLabelCss = ui->sortByNew->styleSheet();
+
+    QMenu *mediaStatusColumnsMenu = new QMenu(tr("Media Status Columns"), ui->files);
+    for (int i=MediaStatusFirst, n=MediaStatusLast ; i<=n ; ++i) {
+        QAction *action = new QAction(MovieModel::mediaStatusToText(static_cast<MediaStatusColumns>(i)), this);
+        action->setProperty("mediaStatusColumn", i);
+        action->setCheckable(true);
+        action->setChecked(Settings::instance()->mediaStatusColumns().contains(static_cast<MediaStatusColumns>(i)));
+        connect(action, SIGNAL(triggered()), this, SLOT(onActionMediaStatusColumn()));
+        mediaStatusColumnsMenu->addAction(action);
+    }
 
     QAction *actionMultiScrape = new QAction(tr("Load Information"), this);
     QAction *actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
@@ -82,6 +88,9 @@ FilesWidget::FilesWidget(QWidget *parent) :
     m_contextMenu->addAction(actionUnmarkForSync);
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(actionOpenFolder);
+    m_contextMenu->addSeparator();
+    m_contextMenu->addMenu(mediaStatusColumnsMenu);
+
     connect(actionMultiScrape, SIGNAL(triggered()), this, SLOT(multiScrape()));
     connect(actionMarkAsWatched, SIGNAL(triggered()), this, SLOT(markAsWatched()));
     connect(actionMarkAsUnwatched, SIGNAL(triggered()), this, SLOT(markAsUnwatched()));
@@ -142,6 +151,11 @@ void FilesWidget::multiScrape()
     QList<Movie*> movies = selectedMovies();
     if (movies.isEmpty())
         return;
+
+    if (movies.count() == 1) {
+        emit sigStartSearch();
+        return;
+    }
 
     MovieMultiScrapeDialog::instance()->setMovies(movies);
     int result = MovieMultiScrapeDialog::instance()->exec();
@@ -426,4 +440,22 @@ void FilesWidget::selectMovie(Movie *movie)
     int row = Manager::instance()->movieModel()->movies().indexOf(movie);
     QModelIndex index = Manager::instance()->movieModel()->index(row, 0, QModelIndex());
     ui->files->selectRow(m_movieProxyModel->mapFromSource(index).row());
+}
+
+void FilesWidget::onActionMediaStatusColumn()
+{
+    QAction *action = static_cast<QAction*>(QObject::sender());
+    if (!action)
+        return;
+    action->setChecked(action->isChecked());
+
+    MediaStatusColumns col = static_cast<MediaStatusColumns>(action->property("mediaStatusColumn").toInt());
+    QList<MediaStatusColumns> columns = Settings::instance()->mediaStatusColumns();
+    if (action->isChecked() && !columns.contains(col))
+        columns.append(col);
+    else
+        columns.removeAll(col);
+    Settings::instance()->setMediaStatusColumns(columns);
+    Settings::instance()->saveSettings();
+    renewModel();
 }

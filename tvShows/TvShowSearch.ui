@@ -143,6 +143,16 @@
          </widget>
         </item>
         <item>
+         <widget class="MyCheckBox" name="chkRuntime">
+          <property name="text">
+           <string>Runtime</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="MyCheckBox" name="chkDirector">
           <property name="text">
            <string>Director</string>
@@ -394,14 +404,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MyCheckBox</class>
-   <extends>QCheckBox</extends>
-   <header location="global">smallWidgets/MyCheckBox.h</header>
-  </customwidget>
-  <customwidget>
    <class>MyLineEdit</class>
    <extends>QLineEdit</extends>
    <header>smallWidgets/MyLineEdit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MyCheckBox</class>
+   <extends>QCheckBox</extends>
+   <header location="global">smallWidgets/MyCheckBox.h</header>
   </customwidget>
  </customwidgets>
  <resources>

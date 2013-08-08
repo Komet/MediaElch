@@ -48,16 +48,10 @@ private slots:
     void downloadActorsFinished(Concert *concert);
     void infoLoadDone(Concert *concert);
     void loadDone(Concert *concert, QMap<int, QList<Poster> > posters);
-    void chooseConcertPoster();
-    void chooseConcertBackdrop();
-    void chooseConcertLogo();
-    void chooseConcertClearArt();
-    void chooseConcertCdArt();
-    void deleteConcertPoster();
-    void deleteConcertBackdrop();
-    void deleteConcertLogo();
-    void deleteConcertClearArt();
-    void deleteConcertCdArt();
+
+    void onChooseImage();
+    void onDeleteImage();
+
     void posterDownloadFinished(DownloadManagerElement elem);
     void concertNameChanged(QString text);
     void addGenre(QString genre);
@@ -100,7 +94,7 @@ private:
     QList< QList<QLineEdit*> > m_streamDetailsAudio;
     QList< QList<QLineEdit*> > m_streamDetailsSubtitles;
     void updateConcertInfo();
-    void updateImages(QList<ImageType> images);
+    void updateImages(QList<int> images);
 };
 
 #endif // CONCERTWIDGET_H

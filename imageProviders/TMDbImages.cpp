@@ -13,8 +13,8 @@
 TMDbImages::TMDbImages(QObject *parent)
 {
     setParent(parent);
-    m_provides << ImageDialogType::MovieBackdrop << ImageDialogType::MoviePoster
-               << ImageDialogType::ConcertBackdrop << ImageDialogType::ConcertPoster;
+    m_provides << ImageType::MovieBackdrop << ImageType::MoviePoster
+               << ImageType::ConcertBackdrop << ImageType::ConcertPoster;
     m_searchResultLimit = 0;
     QSettings settings;
     m_tmdb = new TMDb(this);
@@ -31,6 +31,11 @@ TMDbImages::TMDbImages(QObject *parent)
 QString TMDbImages::name()
 {
     return QString("The Movie DB");
+}
+
+QString TMDbImages::identifier()
+{
+    return QString("images.tmdb");
 }
 
 /**
@@ -87,10 +92,12 @@ void TMDbImages::onSearchMovieFinished(QList<ScraperSearchResult> results)
 void TMDbImages::moviePosters(QString tmdbId)
 {
     m_dummyMovie->clear();
-    m_imageType = TypePoster;
+    m_imageType = ImageType::MoviePoster;
     QList<int> infos;
     infos << MovieScraperInfos::Poster;
-    m_tmdb->loadData(tmdbId, m_dummyMovie, infos);
+    QMap<ScraperInterface*, QString> ids;
+    ids.insert(0, tmdbId);
+    m_tmdb->loadData(ids, m_dummyMovie, infos);
 }
 
 /**
@@ -100,10 +107,12 @@ void TMDbImages::moviePosters(QString tmdbId)
 void TMDbImages::movieBackdrops(QString tmdbId)
 {
     m_dummyMovie->clear();
-    m_imageType = TypeBackdrop;
+    m_imageType = ImageType::MovieBackdrop;
     QList<int> infos;
     infos << MovieScraperInfos::Backdrop;
-    m_tmdb->loadData(tmdbId, m_dummyMovie, infos);
+    QMap<ScraperInterface*, QString> ids;
+    ids.insert(0, tmdbId);
+    m_tmdb->loadData(ids, m_dummyMovie, infos);
 }
 
 /**
@@ -130,9 +139,9 @@ void TMDbImages::concertBackdrops(QString tmdbId)
 void TMDbImages::onLoadImagesFinished()
 {
     QList<Poster> posters;
-    if (m_imageType == TypeBackdrop)
+    if (m_imageType == ImageType::MovieBackdrop)
         posters = m_dummyMovie->backdrops();
-    else if (m_imageType == TypePoster)
+    else if (m_imageType == ImageType::MoviePoster)
         posters = m_dummyMovie->posters();
 
     emit sigImagesLoaded(posters);
@@ -156,6 +165,16 @@ void TMDbImages::movieImages(Movie *movie, QString tmdbId, QList<int> types)
  * @param tmdbId The Movie DB id
  */
 void TMDbImages::movieLogos(QString tmdbId)
+{
+    Q_UNUSED(tmdbId);
+}
+
+void TMDbImages::movieBanners(QString tmdbId)
+{
+    Q_UNUSED(tmdbId);
+}
+
+void TMDbImages::movieThumbs(QString tmdbId)
 {
     Q_UNUSED(tmdbId);
 }
@@ -269,6 +288,11 @@ void TMDbImages::tvShowLogos(QString tvdbId)
     Q_UNUSED(tvdbId);
 }
 
+void TMDbImages::tvShowThumbs(QString tvdbId)
+{
+    Q_UNUSED(tvdbId);
+}
+
 /**
  * @brief Load tv show clear arts
  * @param tvdbId The TV DB id
@@ -302,7 +326,7 @@ void TMDbImages::tvShowBanners(QString tvdbId)
  * @param season Season number
  * @param episode Episode number
  */
-void TMDbImages::tvShowThumb(QString tvdbId, int season, int episode)
+void TMDbImages::tvShowEpisodeThumb(QString tvdbId, int season, int episode)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
@@ -321,6 +345,12 @@ void TMDbImages::tvShowSeason(QString tvdbId, int season)
 }
 
 void TMDbImages::tvShowSeasonBanners(QString tvdbId, int season)
+{
+    Q_UNUSED(tvdbId);
+    Q_UNUSED(season);
+}
+
+void TMDbImages::tvShowSeasonThumbs(QString tvdbId, int season)
 {
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);

@@ -9,7 +9,6 @@
 #include <QTranslator>
 #include "main/MainWindow.h"
 #include "settings/Settings.h"
-#include "cli/CLI.h"
 
 static QFile data;
 
@@ -38,32 +37,6 @@ void messageOutput(QtMsgType type, const char *msg)
         break;
     case QtFatalMsg:
         out << "FATAL: " << msg << newLine;
-        abort();
-    }
-}
-
-void cliMessageOutput(QtMsgType type, const char *msg)
-{
-    QString newLine = "\n";
-    #ifdef Q_OS_WIN32
-        newLine = "\r\n";
-    #endif
-
-    QString message(msg);
-    message.append(newLine);
-
-    switch (type) {
-    case QtDebugMsg:
-        fprintf(stderr, "DEBUG: %s", qPrintable(message));
-        break;
-    case QtWarningMsg:
-        fprintf(stderr, "WARNING: %s", qPrintable(message));
-        break;
-    case QtCriticalMsg:
-        fprintf(stderr, "CRITICAL: %s", qPrintable(message));
-        break;
-    case QtFatalMsg:
-        fprintf(stderr, "FATAL: %s", qPrintable(message));
         abort();
     }
 }
@@ -97,43 +70,15 @@ void messageOutput(QtMsgType type, const QMessageLogContext &context, const QStr
         abort();
     }
 }
-
-void cliMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
-{
-    QByteArray localMsg = msg.toLocal8Bit();
-
-    switch (type) {
-    case QtDebugMsg:
-        fprintf(stderr, "DEBUG: [%s] %s\n", context.function, localMsg.constData());
-        break;
-    case QtWarningMsg:
-        fprintf(stderr, "WARNING: [%s] %s\n", context.function, localMsg.constData());
-        break;
-    case QtCriticalMsg:
-        fprintf(stderr, "CRITICAL: [%s] %s\n", context.function, localMsg.constData());
-        break;
-    case QtFatalMsg:
-        fprintf(stderr, "FATAL: [%s] %s\n", context.function, localMsg.constData());
-        abort();
-    }
-}
-
 #endif
 
 int main(int argc, char *argv[])
 {
-#ifdef Q_OS_LINUX
-    bool useGui = getenv("DISPLAY") != 0;
-#else
-    bool useGui = true;
-#endif
-
-    QApplication a(argc, argv, useGui);
+    QApplication a(argc, argv);
 
     QTranslator qtTranslator;
     qtTranslator.load(":/i18n/qt_" + QLocale::system().name());
     a.installTranslator(&qtTranslator);
-    qDebug() << QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 
     QTranslator editTranslator;
     QString filename;
@@ -153,20 +98,7 @@ int main(int argc, char *argv[])
 #endif
     QCoreApplication::setOrganizationName("kvibes");
     QCoreApplication::setApplicationName("MediaElch");
-    QCoreApplication::setApplicationVersion("1.6");
-
-    if (!useGui || a.arguments().count() > 1) {
-#if QT_VERSION >= 0x050000
-        qInstallMessageHandler(cliMessageOutput);
-#else
-        qInstallMsgHandler(cliMessageOutput);
-#endif
-        CLI *cli = new CLI(&a, a.arguments());
-        QObject::connect(cli, SIGNAL(finished()), &a, SLOT(quit()));
-        QTimer::singleShot(0, cli, SLOT(run()));
-        return a.exec();
-    }
-
+    QCoreApplication::setApplicationVersion("1.7-dev");
 
     Settings::instance(qApp);
     if (Settings::instance()->advanced()->debugLog() && !Settings::instance()->advanced()->logFile().isEmpty()) {
@@ -178,12 +110,6 @@ int main(int argc, char *argv[])
         qInstallMessageHandler(messageOutput);
 #else
         qInstallMsgHandler(messageOutput);
-#endif
-    } else {
-#if QT_VERSION >= 0x050000
-        qInstallMessageHandler(cliMessageOutput);
-#else
-        qInstallMsgHandler(cliMessageOutput);
 #endif
     }
 

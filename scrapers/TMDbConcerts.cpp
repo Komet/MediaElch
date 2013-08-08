@@ -1,14 +1,17 @@
 #include "TMDbConcerts.h"
 
 #include <QDebug>
+#include <QLabel>
 #include <QtScript/QScriptValue>
 #include <QtScript/QScriptValueIterator>
 #include <QtScript/QScriptEngine>
 #include <QSettings>
+#include <QHBoxLayout>
 
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "main/MainWindow.h"
 
 /**
  * @brief TMDbConcerts::TMDbConcerts
@@ -19,6 +22,39 @@ TMDbConcerts::TMDbConcerts(QObject *parent)
     setParent(parent);
     m_apiKey = "5d832bdf69dcb884922381ab01548d5b";
     m_language = "en";
+
+    m_widget = new QWidget(MainWindow::instance());
+    m_box = new QComboBox(m_widget);
+    m_box->addItem(tr("Bulgarian"), "bg");
+    m_box->addItem(tr("Chinese"), "zh");
+    m_box->addItem(tr("Croatian"), "hr");
+    m_box->addItem(tr("Czech"), "cs");
+    m_box->addItem(tr("Danish"), "da");
+    m_box->addItem(tr("Dutch"), "nl");
+    m_box->addItem(tr("English"), "en");
+    m_box->addItem(tr("English (US)"), "en_US");
+    m_box->addItem(tr("Finnish"), "fi");
+    m_box->addItem(tr("French"), "fr");
+    m_box->addItem(tr("German"), "de");
+    m_box->addItem(tr("Greek"), "el");
+    m_box->addItem(tr("Hebrew"), "he");
+    m_box->addItem(tr("Hungarian"), "hu");
+    m_box->addItem(tr("Italian"), "it");
+    m_box->addItem(tr("Japanese"), "ja");
+    m_box->addItem(tr("Korean"), "ko");
+    m_box->addItem(tr("Norwegian"), "no");
+    m_box->addItem(tr("Polish"), "pl");
+    m_box->addItem(tr("Portuguese"), "pt");
+    m_box->addItem(tr("Russian"), "ru");
+    m_box->addItem(tr("Slovene"), "sl");
+    m_box->addItem(tr("Spanish"), "es");
+    m_box->addItem(tr("Swedish"), "sv");
+    m_box->addItem(tr("Turkish"), "tr");
+    QHBoxLayout *layout = new QHBoxLayout(m_widget);
+    layout->addWidget(new QLabel(tr("Language")));
+    layout->addWidget(m_box);
+    layout->addStretch(1);
+    m_widget->setLayout(layout);
 
     m_scraperSupports << ConcertScraperInfos::Title
                       << ConcertScraperInfos::Tagline
@@ -40,62 +76,6 @@ TMDbConcerts::TMDbConcerts(QObject *parent)
 TMDbConcerts::~TMDbConcerts()
 {
 }
-
-/**
- * @brief languages
- * @return
- */
-QMap<QString, QString> TMDbConcerts::languages()
-{
-    QMap<QString, QString> m;
-
-    m.insert(tr("Bulgarian"), "bg");
-    m.insert(tr("Chinese"), "zh");
-    m.insert(tr("Croatian"), "hr");
-    m.insert(tr("Czech"), "cs");
-    m.insert(tr("Danish"), "da");
-    m.insert(tr("Dutch"), "nl");
-    m.insert(tr("English"), "en");
-    m.insert(tr("English (US)"), "en_US");
-    m.insert(tr("Finnish"), "fi");
-    m.insert(tr("French"), "fr");
-    m.insert(tr("German"), "de");
-    m.insert(tr("Greek"), "el");
-    m.insert(tr("Hebrew"), "he");
-    m.insert(tr("Hungarian"), "hu");
-    m.insert(tr("Italian"), "it");
-    m.insert(tr("Japanese"), "ja");
-    m.insert(tr("Korean"), "ko");
-    m.insert(tr("Norwegian"), "no");
-    m.insert(tr("Polish"), "pl");
-    m.insert(tr("Portuguese"), "pt");
-    m.insert(tr("Russian"), "ru");
-    m.insert(tr("Slovene"), "sl");
-    m.insert(tr("Spanish"), "es");
-    m.insert(tr("Swedish"), "sv");
-    m.insert(tr("Turkish"), "tr");
-
-    return m;
-}
-
-/**
- * @brief language
- * @return
- */
-QString TMDbConcerts::language()
-{
-    return m_language;
-}
-
-/**
- * @brief TMDbConcerts::setLanguage
- * @param language
- */
-void TMDbConcerts::setLanguage(QString language)
-{
-    m_language = language;
-}
-
 /**
  * @brief Returns the name of the scraper
  * @return Name of the Scraper
@@ -114,6 +94,11 @@ bool TMDbConcerts::hasSettings()
     return true;
 }
 
+QWidget *TMDbConcerts::settingsWidget()
+{
+    return m_widget;
+}
+
 /**
  * @brief Loads scrapers settings
  */
@@ -126,6 +111,18 @@ void TMDbConcerts::loadSettings(QSettings &settings)
         m_language = lang.split("_").at(0);
         m_language2 = lang.split("_").at(1);
     }
+
+    bool found = false;
+    for (int i=0, n=m_box->count() ; i<n ; ++i) {
+        if (m_box->itemData(i).toString() == m_language + "_" + m_language2) {
+            m_box->setCurrentIndex(i);
+            found = true;
+        }
+        if (m_box->itemData(i).toString() == m_language && !found) {
+            m_box->setCurrentIndex(i);
+            found = true;
+        }
+    }
 }
 
 /**
@@ -133,7 +130,14 @@ void TMDbConcerts::loadSettings(QSettings &settings)
  */
 void TMDbConcerts::saveSettings(QSettings &settings)
 {
-    settings.setValue("Scrapers/TMDbConcerts/Language", language());
+    QString language;
+    language = m_box->itemData(m_box->currentIndex()).toString();
+    if (language.split("_").count() > 1) {
+        m_language = language.split("_").at(0);
+        m_language2 = language.split("_").at(1);
+    }
+    settings.setValue("Scrapers/TMDbConcerts/Language", language);
+    loadSettings(settings);
 }
 
 /**
@@ -196,7 +200,15 @@ void TMDbConcerts::search(QString searchStr)
 {
     qDebug() << "Entered, searchStr=" << searchStr;
     searchStr = QUrl::toPercentEncoding(searchStr);
-    QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(m_apiKey).arg(m_language).arg(searchStr));
+    QUrl url;
+    QRegExp rx("^tt\\d+$");
+    QRegExp rxTmdbId("^id\\d+$");
+    if (rx.exactMatch(searchStr))
+        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(searchStr).arg(m_apiKey).arg(m_language));
+    else if (rxTmdbId.exactMatch(searchStr))
+        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(searchStr.mid(2)).arg(m_apiKey).arg(m_language));
+    else
+        url.setUrl(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(m_apiKey).arg(m_language).arg(searchStr));
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
     QNetworkReply *reply = qnam()->get(request);
@@ -274,6 +286,14 @@ QList<ScraperSearchResult> TMDbConcerts::parseSearch(QString json, int *nextPage
             result.released = QDate::fromString(it.value().property("release_date").toString(), "yyyy-MM-dd");
             results.append(result);
         }
+    } else if (!sc.property("id").toString().isEmpty()) {
+        ScraperSearchResult result;
+        result.name     = sc.property("title").toString();
+        if (result.name.isEmpty())
+            sc.property("original_title").toString();
+        result.id       = sc.property("id").toString();
+        result.released = QDate::fromString(sc.property("release_date").toString(), "yyyy-MM-dd");
+        results.append(result);
     }
 
     return results;

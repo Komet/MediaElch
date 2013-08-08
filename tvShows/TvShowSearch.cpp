@@ -52,6 +52,7 @@ TvShowSearch::TvShowSearch(QWidget *parent) :
     ui->chkTitle->setMyData(TvShowScraperInfos::Title);
     ui->chkWriter->setMyData(TvShowScraperInfos::Writer);
     ui->chkExtraArts->setMyData(TvShowScraperInfos::ExtraArts);
+    ui->chkRuntime->setMyData(TvShowScraperInfos::Runtime);
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0)
@@ -197,7 +198,7 @@ void TvShowSearch::onChkToggled()
     int scraperNo = ui->comboUpdate->currentIndex();
     if (m_searchType == TypeEpisode)
         scraperNo = 4;
-    Settings::instance()->setScraperInfos(WidgetTvShows, scraperNo, m_infosToLoad);
+    Settings::instance()->setScraperInfos(WidgetTvShows, QString::number(scraperNo), m_infosToLoad);
 }
 
 void TvShowSearch::onChkAllToggled()
@@ -235,7 +236,7 @@ void TvShowSearch::onComboIndexChanged()
         scraperNo = 4;
     else
         Settings::instance()->setTvShowUpdateOption(ui->comboUpdate->currentIndex());
-    QList<int> infos = Settings::instance()->scraperInfos(WidgetTvShows, scraperNo);
+    QList<int> infos = Settings::instance()->scraperInfos(WidgetTvShows, QString::number(scraperNo));
 
     TvShowUpdateType type = updateType();
     if (type == UpdateShow) {
@@ -251,6 +252,7 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkThumbnail->setEnabled(false);
         ui->chkDirector->setEnabled(false);
         ui->chkWriter->setEnabled(false);
+        ui->chkRuntime->setEnabled(true);
     } else if (type == UpdateShowAndAllEpisodes || type == UpdateShowAndNewEpisodes) {
         ui->chkGenres->setEnabled(true);
         ui->chkActors->setEnabled(true);
@@ -264,6 +266,7 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkThumbnail->setEnabled(true);
         ui->chkDirector->setEnabled(true);
         ui->chkWriter->setEnabled(true);
+        ui->chkRuntime->setEnabled(true);
     } else {
         ui->chkGenres->setEnabled(false);
         ui->chkActors->setEnabled(false);
@@ -277,6 +280,7 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkThumbnail->setEnabled(true);
         ui->chkDirector->setEnabled(true);
         ui->chkWriter->setEnabled(true);
+        ui->chkRuntime->setEnabled(false);
     }
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>())

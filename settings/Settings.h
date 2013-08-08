@@ -23,11 +23,12 @@ public:
     AdvancedSettings* advanced();
     void loadSettings();
     void loadSettings(QSettings &settings);
-    void loadEdenDefaults();
-    void loadFrodoDefaults();
+    QSettings *settings();
 
     QSize mainWindowSize();
     QPoint mainWindowPosition();
+    QSize settingsWindowSize();
+    QPoint settingsWindowPosition();
     bool mainWindowMaximized();
     QByteArray mainSplitterState();
     QList<SettingsDir> movieDirectories();
@@ -49,23 +50,25 @@ public:
     QList<DataFile> dataFiles(int type);
     QList<DataFile> dataFilesFrodo(int type = -1);
     bool usePlotForOutline();
-    QList<int> scraperInfos(MainWidgets widget, int scraperNo);
+    QList<int> scraperInfos(MainWidgets widget, QString scraperId);
     void renamePatterns(int renameType, QString &fileNamePattern, QString &fileNamePatternMulti, QString &directoryPattern, QString &seasonPattern);
     void renamings(int renameType, bool &files, bool &folders, bool &seasonDirectories);
     int tvShowUpdateOption();
     bool ignoreArticlesWhenSorting() const;
     MovieSetArtworkType movieSetArtworkType() const;
     QString movieSetArtworkDirectory() const;
-    QString movieSetPosterFileName() const;
-    QString movieSetFanartFileName() const;
     QList<MediaStatusColumns> mediaStatusColumns() const;
     bool tvShowDvdOrder() const;
     bool dontShowDeleteImageConfirm() const;
+    QMap<int, QString> customMovieScraper() const;
+    int currentMovieScraper() const;
 
     bool autoLoadStreamDetails();
 
     void setMainWindowSize(QSize mainWindowSize);
     void setMainWindowPosition(QPoint mainWindowPosition);
+    void setSettingsWindowSize(QSize settingsWindowSize);
+    void setSettingsWindowPosition(QPoint settingsWindowPosition);
     void setMainWindowMaximized(bool max);
     void setMainSplitterState(QByteArray state);
     void setMovieDirectories(QList<SettingsDir> dirs);
@@ -87,18 +90,18 @@ public:
     void setUsePlotForOutline(bool use);
     void setXbmcHost(QString host);
     void setXbmcPort(int port);
-    void setScraperInfos(MainWidgets widget, int scraperNo, QList<int> items);
+    void setScraperInfos(MainWidgets widget, QString scraperNo, QList<int> items);
     void setRenamePatterns(int renameType, QString fileNamePattern, QString fileNamePatternMulti, QString directoryPattern, QString seasonPattern);
     void setRenamings(int renameType, bool files, bool folders, bool seasonDirectories);
     void setTvShowUpdateOption(int option);
     void setIgnoreArticlesWhenSorting(bool ignore);
     void setMovieSetArtworkType(MovieSetArtworkType type);
     void setMovieSetArtworkDirectory(QString dir);
-    void setMovieSetPosterFileName(QString fileName);
-    void setMovieSetFanartFileName(QString fileName);
     void setMediaStatusColumns(QList<MediaStatusColumns> columns);
     void setTvShowDvdOrder(bool order);
     void setDontShowDeleteImageConfirm(bool show);
+    void setCustomMovieScraper(QMap<int, QString> customMovieScraper);
+    void setCurrentMovieScraper(int current);
 
 public slots:
     void saveSettings();
@@ -114,6 +117,8 @@ private:
     QString m_excludeWords;
     QSize m_mainWindowSize;
     QPoint m_mainWindowPosition;
+    QSize m_settingsWindowSize;
+    QPoint m_settingsWindowPosition;
     bool m_mainWindowMaximized;
     QByteArray m_mainSplitterState;
     bool m_useProxy;
@@ -128,7 +133,6 @@ private:
     bool m_downloadActorImages;
     bool m_autoLoadStreamDetails;
     QList<DataFile> m_dataFiles;
-    QList<DataFile> m_initialDataFilesEden;
     QList<DataFile> m_initialDataFilesFrodo;
     bool m_usePlotForOutline;
     QString m_xbmcHost;
@@ -136,11 +140,11 @@ private:
     bool m_ignoreArticlesWhenSorting;
     int m_movieSetArtworkType;
     QString m_movieSetArtworkDirectory;
-    QString m_movieSetPosterFileName;
-    QString m_movieSetFanartFileName;
     QList<MediaStatusColumns> m_mediaStatusColumns;
     bool m_tvShowDvdOrder;
     bool m_dontShowDeleteImageConfirm;
+    QMap<int, QString> m_customMovieScraper;
+    int m_currentMovieScraper;
 
     void setupProxy();
 };

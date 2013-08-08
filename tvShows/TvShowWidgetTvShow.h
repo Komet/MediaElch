@@ -51,21 +51,13 @@ private slots:
     void onRemoveActor();
     void onInfoLoadDone(TvShow *show);
     void onLoadDone(TvShow *show, QMap<int, QList<Poster> > posters);
-    void onChoosePoster();
-    void onChooseBackdrop();
-    void onChooseBanner();
-    void onChooseLogo();
-    void onChooseClearArt();
-    void onChooseCharacterArt();
+
+    void onChooseImage();
+    void onDeleteImage();
+
     void onPosterDownloadFinished(DownloadManagerElement elem);
     void onDownloadsFinished(TvShow *show);
     void onDownloadsLeft(int left, DownloadManagerElement elem);
-    void onDeletePoster();
-    void onDeleteBackdrop();
-    void onDeleteBanner();
-    void onDeleteLogo();
-    void onDeleteClearArt();
-    void onDeleteCharacterArt();
     void onActorChanged();
     void onChangeActorImage();
     void onRevertChanges();
@@ -74,12 +66,14 @@ private slots:
     void onDownloadTune();
 
     void onNameChange(QString text);
+    void onSortTitleChange(QString text);
     void onCertificationChange(QString text);
     void onRatingChange(double value);
     void onFirstAiredChange(QDate date);
     void onStudioChange(QString studio);
     void onOverviewChange();
     void onActorEdited(QTableWidgetItem *item);
+    void onRuntimeChange(int runtime);
 
     void onRemoveExtraFanart(const QString &file);
     void onRemoveExtraFanart(const QByteArray &image);
@@ -92,7 +86,7 @@ private:
     QMovie *m_loadingMovie;
     DownloadManager *m_posterDownloadManager;
     void updateTvShowInfo();
-    void updateImages(QList<ImageType> images);
+    void updateImages(QList<int> images);
 };
 
 #endif // TVSHOWWIDGETTVSHOW_H

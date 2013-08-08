@@ -4,6 +4,7 @@
 #include <QDate>
 #include <QDebug>
 #include <QImage>
+#include <QMap>
 #include <QMetaType>
 #include <QString>
 #include <QUrl>
@@ -30,6 +31,14 @@ namespace TvShowRoles {
     const int HasChanged = Qt::UserRole+5;
     const int IsNew = Qt::UserRole+6;
     const int SyncNeeded = Qt::UserRole+7;
+    const int HasBanner = Qt::UserRole+8;
+    const int HasPoster = Qt::UserRole+9;
+    const int HasFanart = Qt::UserRole+10;
+    const int HasExtraFanart = Qt::UserRole+11;
+    const int HasLogo = Qt::UserRole+12;
+    const int HasThumb = Qt::UserRole+13;
+    const int HasClearArt = Qt::UserRole+14;
+    const int HasCharacterArt = Qt::UserRole+15;
 }
 
 namespace MediaCenterInterfaces {
@@ -100,11 +109,7 @@ struct Poster {
     QSize originalSize;
     QString language;
     QString hint;
-};
-
-enum ImageType {
-    TypePoster, TypeBackdrop, TypeBanner, TypeActor, TypeSeasonPoster, TypeSeasonBanner, TypeSeasonBackdrop,
-    TypeShowThumbnail, TypeLogo, TypeClearArt, TypeCdArt, TypeCharacterArt, TypeExtraFanart
+    int season;
 };
 
 enum TvShowType {
@@ -140,13 +145,12 @@ enum ComboDelegateType {
     ComboDelegateGenres, ComboDelegateStudios, ComboDelegateCountries, ComboDelegateWriters, ComboDelegateDirectors
 };
 
-namespace ImageDialogType {
+namespace ImageType {
     const int MoviePoster          = 1;
     const int MovieBackdrop        = 2;
     const int TvShowPoster         = 3;
     const int TvShowBackdrop       = 4;
-    const int TvShowThumb          = 5;
-    const int TvShowSeason         = 6;
+    const int TvShowEpisodeThumb   = 5;
     const int TvShowBanner         = 7;
     const int ConcertPoster        = 8;
     const int ConcertBackdrop      = 9;
@@ -161,6 +165,17 @@ namespace ImageDialogType {
     const int TvShowCharacterArt   = 18;
     const int TvShowSeasonBackdrop = 19;
     const int TvShowSeasonBanner   = 20;
+    const int MovieBanner          = 21;
+    const int MovieThumb           = 22;
+    const int TvShowThumb          = 23;
+    const int TvShowSeasonThumb    = 24;
+    const int TvShowSeasonPoster   = 25;
+    const int Actor                = 26;
+    const int MovieExtraFanart     = 27;
+    const int MovieSetPoster       = 28;
+    const int MovieSetBackdrop     = 29;
+    const int ConcertExtraFanart   = 30;
+    const int TvShowExtraFanart    = 31;
 }
 
 namespace MovieScraperInfos {
@@ -186,6 +201,11 @@ namespace MovieScraperInfos {
     const int Logo          = 21;
     const int CdArt         = 22;
     const int ClearArt      = 23;
+    const int Banner        = 24;
+    const int Thumb         = 25;
+
+    const int First         = 1;
+    const int Last          = 25;
 }
 
 namespace TvShowScraperInfos {
@@ -209,6 +229,9 @@ namespace TvShowScraperInfos {
     const int SeasonBackdrop = 19;
     const int SeasonBanner   = 20;
     const int ExtraFanarts   = 21;
+    const int Thumb          = 22;
+    const int SeasonThumb    = 23;
+    const int Runtime        = 24;
 }
 
 namespace ConcertScraperInfos {
@@ -251,14 +274,16 @@ namespace MovieFilters {
     const int Director      = 19;
     const int Tags          = 20;
     const int Quality       = 21;
+    const int Banner        = 22;
+    const int Thumb         = 23;
 }
 
 namespace TvShowFilters {
-    const int Title         = 22;
+    const int Title         = 24;
 }
 
 namespace ConcertFilters {
-    const int Title         = 23;
+    const int Title         = 25;
 }
 
 enum SortBy {
@@ -290,6 +315,12 @@ namespace DataFileType {
     const int TvShowEpisodeThumb   = 22;
     const int TvShowSeasonBackdrop = 23;
     const int TvShowSeasonBanner   = 24;
+    const int MovieBanner          = 25;
+    const int MovieThumb           = 26;
+    const int TvShowSeasonThumb    = 27;
+    const int TvShowThumb          = 28;
+    const int MovieSetPoster       = 29;
+    const int MovieSetBackdrop     = 30;
 }
 
 enum TvShowUpdateType {

@@ -35,12 +35,9 @@ signals:
     void sigSetActionSaveEnabled(bool, MainWidgets);
 
 private slots:
-    void onChoosePoster();
-    void onChooseBackdrop();
-    void onChooseBanner();
-    void onDeletePoster();
-    void onDeleteBackdrop();
-    void onDeleteBanner();
+    void onChooseImage();
+    void onDeleteImage();
+
     void onRevertChanges();
     void onDownloadFinished(DownloadManagerElement elem);
 
@@ -51,7 +48,7 @@ private:
     QLabel *m_savingWidget;
     QMovie *m_loadingMovie;
     DownloadManager *m_downloadManager;
-    void updateImages(QList<ImageType> images);
+    void updateImages(QList<int> images);
 };
 
 #endif // TVSHOWWIDGETSEASON_H

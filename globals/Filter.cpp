@@ -86,19 +86,23 @@ int Filter::info() const
 bool Filter::accepts(Movie *movie)
 {
     if (m_info == MovieFilters::Poster)
-        return (m_hasInfo && movie->hasPoster()) || (!m_hasInfo && !movie->hasPoster());
+        return (m_hasInfo && movie->hasImage(ImageType::MoviePoster)) || (!m_hasInfo && !movie->hasImage(ImageType::MoviePoster));
     if (m_info == MovieFilters::Backdrop)
-        return (m_hasInfo && movie->hasBackdrop()) || (!m_hasInfo && !movie->hasBackdrop());
+        return (m_hasInfo && movie->hasImage(ImageType::MovieBackdrop)) || (!m_hasInfo && !movie->hasImage(ImageType::MovieBackdrop));
     if (m_info == MovieFilters::ExtraFanarts)
         return (m_hasInfo && movie->hasExtraFanarts()) || (!m_hasInfo && !movie->hasExtraFanarts());
     if (m_info == MovieFilters::Actors)
         return (m_hasInfo && !movie->actors().isEmpty()) || (!m_hasInfo && movie->actors().isEmpty());
     if (m_info == MovieFilters::Logo)
-        return (m_hasInfo && movie->hasLogo()) || (!m_hasInfo && !movie->hasLogo());
+        return (m_hasInfo && movie->hasImage(ImageType::MovieLogo)) || (!m_hasInfo && !movie->hasImage(ImageType::MovieLogo));
     if (m_info == MovieFilters::ClearArt)
-        return (m_hasInfo && movie->hasClearArt()) || (!m_hasInfo && !movie->hasClearArt());
+        return (m_hasInfo && movie->hasImage(ImageType::MovieClearArt)) || (!m_hasInfo && !movie->hasImage(ImageType::MovieClearArt));
+    if (m_info == MovieFilters::Banner)
+        return (m_hasInfo && movie->hasImage(ImageType::MovieBanner)) || (!m_hasInfo && !movie->hasImage(ImageType::MovieBanner));
+    if (m_info == MovieFilters::Thumb)
+        return (m_hasInfo && movie->hasImage(ImageType::MovieThumb)) || (!m_hasInfo && !movie->hasImage(ImageType::MovieThumb));
     if (m_info == MovieFilters::CdArt)
-        return (m_hasInfo && movie->hasCdArt()) || (!m_hasInfo && !movie->hasCdArt());
+        return (m_hasInfo && movie->hasImage(ImageType::MovieCdArt)) || (!m_hasInfo && !movie->hasImage(ImageType::MovieCdArt));
     if (m_info == MovieFilters::Trailer)
         return (m_hasInfo && !movie->trailer().isEmpty()) || (!m_hasInfo && movie->trailer().isEmpty());
     if (m_info == MovieFilters::LocalTrailer)

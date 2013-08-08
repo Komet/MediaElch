@@ -2,6 +2,7 @@
 #define MOVIEMODEL_H
 
 #include <QAbstractItemModel>
+#include <QIcon>
 #include "movies/Movie.h"
 
 /**
@@ -35,6 +36,8 @@ private slots:
 
 private:
     QList<Movie*> m_movies;
+    QIcon m_newIcon;
+    QIcon m_syncIcon;
 };
 
 #endif // MOVIEMODEL_H

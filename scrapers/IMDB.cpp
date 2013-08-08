@@ -2,6 +2,7 @@
 
 #include <QScriptEngine>
 #include <QScriptValueIterator>
+#include <QWidget>
 #include "data/Storage.h"
 #include "globals/Helper.h"
 #include "settings/Settings.h"
@@ -33,24 +34,19 @@ QString IMDB::name()
     return QString("IMDB");
 }
 
-QMap<QString, QString> IMDB::languages()
+QString IMDB::identifier()
 {
-    return QMap<QString, QString>();
-}
-
-QString IMDB::language()
-{
-    return QString();
-}
-
-void IMDB::setLanguage(QString language)
-{
-    Q_UNUSED(language);
+    return QString("imdb");
 }
 
 bool IMDB::hasSettings()
 {
     return false;
+}
+
+QWidget *IMDB::settingsWidget()
+{
+    return 0;
 }
 
 void IMDB::loadSettings(QSettings &settings)
@@ -68,12 +64,23 @@ QList<int> IMDB::scraperSupports()
     return m_scraperSupports;
 }
 
+QList<int> IMDB::scraperNativelySupports()
+{
+    return m_scraperSupports;
+}
+
 void IMDB::search(QString searchStr)
 {
     QString encodedSearch = Helper::urlEncode(searchStr);
     QUrl url;
-    url.setEncodedUrl(QString("http://imdbapi.org/?q=%1&type=json&plot=full&episode=0&limit=5&yg=0&mt=M&lang=en-US").arg(encodedSearch).toUtf8());
+
+    QRegExp rx("^tt\\d+$");
+    if (rx.exactMatch(searchStr))
+        url.setEncodedUrl(QString("http://mymovieapi.com/?id=%1&type=json&plot=full&episode=0&limit=5&yg=0&mt=M&lang=en-US").arg(searchStr).toUtf8());
+    else
+        url.setEncodedUrl(QString("http://mymovieapi.com/?title=%1&type=json&plot=full&episode=0&limit=5&yg=0&mt=M&lang=en-US").arg(encodedSearch).toUtf8());
     QNetworkRequest request(url);
+    request.setRawHeader("Accept", "application/json");
     QNetworkReply *reply = qnam()->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
 }
@@ -111,18 +118,27 @@ QList<ScraperSearchResult> IMDB::parseSearch(QString json)
             result.released = QDate::fromString(it.value().property("year").toString(), "yyyy");
             results.append(result);
         }
+    } else {
+        if (!sc.property("imdb_id").toString().isEmpty()) {
+            ScraperSearchResult result;
+            result.name     = Helper::urlDecode(sc.property("title").toString());
+            result.id       = sc.property("imdb_id").toString();
+            result.released = QDate::fromString(sc.property("year").toString(), "yyyy");
+            results.append(result);
+        }
     }
 
     return results;
 }
 
-void IMDB::loadData(QString id, Movie *movie, QList<int> infos)
+void IMDB::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos)
 {
     movie->clear(infos);
-    movie->setId(id);
+    movie->setId(ids.values().first());
 
-    QUrl url(QString("http://imdbapi.org/?id=%1&type=json&plot=full&episode=0&lang=en-US").arg(id));
+    QUrl url(QString("http://mymovieapi.com/?id=%1&type=json&plot=full&episode=0&lang=en-US").arg(ids.values().first()));
     QNetworkRequest request(url);
+    request.setRawHeader("Accept", "application/json");
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -144,7 +160,7 @@ void IMDB::onLoadFinished()
         qWarning() << "Network Error (load)" << reply->errorString();
     }
     reply->deleteLater();
-    movie->controller()->scraperLoadDone();
+    movie->controller()->scraperLoadDone(this);
 }
 
 void IMDB::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)

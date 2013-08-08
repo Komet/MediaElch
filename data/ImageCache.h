@@ -1,6 +1,7 @@
 #ifndef IMAGECACHE_H
 #define IMAGECACHE_H
 
+#include <QHash>
 #include <QImage>
 #include <QObject>
 
@@ -13,10 +14,14 @@ public:
     QImage image(QString path, int width, int height, int &origWidth, int &origHeight);
     QSize imageSize(QString path);
     void invalidateImages(QString path);
+    void clearCache();
 
 private:
     QString m_cacheDir;
+    QHash<QString, QList<int> > m_lastModifiedTimes;
     QImage scaledImage(QImage img, int width, int height);
+    int getLastModified(const QString &fileName);
+    bool m_forceCache;
 };
 
 #endif // IMAGECACHE_H

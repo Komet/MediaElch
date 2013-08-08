@@ -10,6 +10,7 @@
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "main/MainWindow.h"
 #include "settings/Settings.h"
 
 /**
@@ -19,67 +20,51 @@
 TheTvDb::TheTvDb(QObject *parent)
 {
     setParent(parent);
+
+    m_widget = new QWidget(MainWindow::instance());
+    m_box = new QComboBox(m_widget);
+    m_box->addItem(tr("Bulgarian"), "bg");
+    m_box->addItem(tr("Chinese"), "zh");
+    m_box->addItem(tr("Croatian"), "hr");
+    m_box->addItem(tr("Czech"), "cs");
+    m_box->addItem(tr("Danish"), "da");
+    m_box->addItem(tr("Dutch"), "nl");
+    m_box->addItem(tr("English"), "en");
+    m_box->addItem(tr("Finnish"), "fi");
+    m_box->addItem(tr("French"), "fr");
+    m_box->addItem(tr("German"), "de");
+    m_box->addItem(tr("Greek"), "el");
+    m_box->addItem(tr("Hebrew"), "he");
+    m_box->addItem(tr("Hungarian"), "hu");
+    m_box->addItem(tr("Italian"), "it");
+    m_box->addItem(tr("Japanese"), "ja");
+    m_box->addItem(tr("Korean"), "ko");
+    m_box->addItem(tr("Norwegian"), "no");
+    m_box->addItem(tr("Polish"), "pl");
+    m_box->addItem(tr("Portuguese"), "pt");
+    m_box->addItem(tr("Russian"), "ru");
+    m_box->addItem(tr("Slovene"), "sl");
+    m_box->addItem(tr("Spanish"), "es");
+    m_box->addItem(tr("Swedish"), "sv");
+    m_box->addItem(tr("Turkish"), "tr");
+    QHBoxLayout *layout = new QHBoxLayout(m_widget);
+    layout->addWidget(new QLabel(tr("Language")));
+    layout->addWidget(m_box);
+    layout->addStretch(1);
+    m_widget->setLayout(layout);
+
     m_apiKey = "A0BB9A0F6762942B";
     m_language = "en";
-
     m_xmlMirrors.append("http://thetvdb.com");
     m_bannerMirrors.append("http://thetvdb.com");
     m_zipMirrors.append("http://thetvdb.com");
+
     setMirrors();
 }
 
-/**
- * @brief languages
- * @return
- */
-QMap<QString, QString> TheTvDb::languages()
+QWidget *TheTvDb::settingsWidget()
 {
-    QMap<QString, QString> m;
-
-    m.insert(tr("Bulgarian"), "bg");
-    m.insert(tr("Chinese"), "zh");
-    m.insert(tr("Croatian"), "hr");
-    m.insert(tr("Czech"), "cs");
-    m.insert(tr("Danish"), "da");
-    m.insert(tr("Dutch"), "nl");
-    m.insert(tr("English"), "en");
-    m.insert(tr("Finnish"), "fi");
-    m.insert(tr("French"), "fr");
-    m.insert(tr("German"), "de");
-    m.insert(tr("Greek"), "el");
-    m.insert(tr("Hebrew"), "he");
-    m.insert(tr("Hungarian"), "hu");
-    m.insert(tr("Italian"), "it");
-    m.insert(tr("Japanese"), "ja");
-    m.insert(tr("Korean"), "ko");
-    m.insert(tr("Norwegian"), "no");
-    m.insert(tr("Polish"), "pl");
-    m.insert(tr("Portuguese"), "pt");
-    m.insert(tr("Russian"), "ru");
-    m.insert(tr("Slovene"), "sl");
-    m.insert(tr("Spanish"), "es");
-    m.insert(tr("Swedish"), "sv");
-    m.insert(tr("Turkish"), "tr");
-
-    return m;
-}
-
-/**
- * @brief language
- * @return
- */
-QString TheTvDb::language()
-{
-    return m_language;
-}
-
-/**
- * @brief TheTvDb::setLanguage
- * @param language
- */
-void TheTvDb::setLanguage(QString language)
-{
-    m_language = language;
+    return m_widget;
 }
 
 /**
@@ -115,6 +100,10 @@ bool TheTvDb::hasSettings()
 void TheTvDb::loadSettings(QSettings &settings)
 {
     m_language = settings.value("Scrapers/TheTvDb/Language", "en").toString();
+    for (int i=0, n=m_box->count() ; i<n ; ++i) {
+        if (m_box->itemData(i).toString() == m_language)
+            m_box->setCurrentIndex(i);
+    }
 }
 
 /**
@@ -122,6 +111,7 @@ void TheTvDb::loadSettings(QSettings &settings)
  */
 void TheTvDb::saveSettings(QSettings &settings)
 {
+    m_language = m_box->itemData(m_box->currentIndex()).toString();
     settings.setValue("Scrapers/TheTvDb/Language", m_language);
 }
 
@@ -373,6 +363,8 @@ void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, TvShowUpdateType up
                 show->setRating(elem.elementsByTagName("Rating").at(0).toElement().text().toFloat());
             if (infosToLoad.contains(TvShowScraperInfos::Title) && !elem.elementsByTagName("SeriesName").isEmpty())
                 show->setName(elem.elementsByTagName("SeriesName").at(0).toElement().text());
+            if (infosToLoad.contains(TvShowScraperInfos::Runtime) && !elem.elementsByTagName("Runtime").isEmpty())
+                show->setRuntime(elem.elementsByTagName("Runtime").at(0).toElement().text().toInt());
         }
     }
 
@@ -533,6 +525,16 @@ void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *
         QString mirror = m_bannerMirrors.at(qrand()%m_bannerMirrors.count());
         episode->setThumbnail(QUrl(QString("%1/banners/%2").arg(mirror).arg(elem.elementsByTagName("filename").at(0).toElement().text())));
     }
+    if (!elem.elementsByTagName("airsafter_season").isEmpty() && !elem.elementsByTagName("airsafter_season").at(0).toElement().text().isEmpty() &&
+            !elem.elementsByTagName("airsbefore_season").isEmpty() && !elem.elementsByTagName("airsbefore_season").at(0).toElement().text().isEmpty()) {
+        episode->setDisplaySeason(elem.elementsByTagName("airsafter_season").at(0).toElement().text().toInt());
+        episode->setDisplayEpisode(4096);
+    } else if (!elem.elementsByTagName("airsbefore_season").isEmpty() && !elem.elementsByTagName("airsbefore_season").at(0).toElement().text().isEmpty()) {
+        episode->setDisplaySeason(elem.elementsByTagName("airsbefore_season").at(0).toElement().text().toInt());
+        if (!elem.elementsByTagName("airsbefore_episode").isEmpty() && !elem.elementsByTagName("airsbefore_episode").at(0).toElement().text().isEmpty())
+            episode->setDisplayEpisode(elem.elementsByTagName("airsbefore_episode").at(0).toElement().text().toInt());
+    }
+
     episode->setInfosLoaded(true);
 }
 
@@ -582,8 +584,15 @@ void TheTvDb::onEpisodeLoadFinished()
                     airedElem = elem;
             }
             if (!elem.elementsByTagName("DVD_season").isEmpty() && !elem.elementsByTagName("DVD_episodenumber").isEmpty()) {
-                int seasonNumber = elem.elementsByTagName("DVD_season").at(0).toElement().text().toInt();
-                int episodeNumber = elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text().toInt();
+                QRegExp rx("^(\\d*)\\D*");
+                int seasonNumber = -1;
+                int episodeNumber = -1;
+                QString seasonText = elem.elementsByTagName("DVD_season").at(0).toElement().text();
+                QString episodeText = elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text();
+                if (rx.indexIn(QString("%1").arg(seasonText), 0) != -1)
+                    seasonNumber = rx.cap(1).toInt();
+                if (rx.indexIn(QString("%1").arg(episodeText), 0) != -1)
+                    episodeNumber = rx.cap(1).toInt();
                 if (episode->season() == seasonNumber && episode->episode() == episodeNumber)
                     dvdElem = elem;
             }

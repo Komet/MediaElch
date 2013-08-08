@@ -10,9 +10,9 @@
 #include "movies/Movie.h"
 #include "data/MovieModel.h"
 #include "data/MovieProxyModel.h"
-#include "data/MovieDelegate.h"
 #include "globals/Filter.h"
 #include "smallWidgets/AlphabeticalList.h"
+#include "smallWidgets/SearchOverlay.h"
 
 namespace Ui {
 class FilesWidget;
@@ -46,6 +46,7 @@ public slots:
 signals:
     void noMovieSelected();
     void movieSelected(Movie*);
+    void sigStartSearch();
 
 protected:
     void enterEvent(QEvent *event);
@@ -68,11 +69,11 @@ private slots:
     void openFolder();
     void scrollToAlpha(QString alpha);
     void onLeftEdge(bool isEdge);
+    void onActionMediaStatusColumn();
 
 private:
     Ui::FilesWidget *ui;
     MovieProxyModel *m_movieProxyModel;
-    MovieDelegate *m_movieDelegate;
     Movie *m_lastMovie;
     QModelIndex m_lastModelIndex;
     static FilesWidget *m_instance;

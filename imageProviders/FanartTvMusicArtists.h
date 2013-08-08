@@ -18,10 +18,13 @@ class FanartTvMusicArtists : public ImageProviderInterface
 public:
     explicit FanartTvMusicArtists(QObject *parent = 0);
     QString name();
+    QString identifier();
     void movieImages(Movie *movie, QString tmdbId, QList<int> types);
     void moviePosters(QString tmdbId);
     void movieBackdrops(QString tmdbId);
     void movieLogos(QString tmdbId);
+    void movieBanners(QString tmdbId);
+    void movieThumbs(QString tmdbId);
     void movieClearArts(QString tmdbId);
     void movieCdArts(QString tmdbId);
     void concertImages(Concert *concert, QString tmdbId, QList<int> types);
@@ -37,10 +40,12 @@ public:
     void tvShowClearArts(QString tvdbId);
     void tvShowCharacterArts(QString tvdbId);
     void tvShowBanners(QString tvdbId);
-    void tvShowThumb(QString tvdbId, int season, int episode);
+    void tvShowEpisodeThumb(QString tvdbId, int season, int episode);
     void tvShowSeason(QString tvdbId, int season);
     void tvShowSeasonBanners(QString tvdbId, int season);
     void tvShowSeasonBackdrops(QString tvdbId, int season);
+    void tvShowThumbs(QString tvdbId);
+    void tvShowSeasonThumbs(QString tvdbId, int season);
     QList<int> provides();
 
 public slots:

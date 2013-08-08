@@ -15,7 +15,7 @@ public:
     static NameFormatter *instance(QObject *parent = 0);
 
     QString excludeWords(QString name);
-    QString formatName(QString name);
+    QString formatName(QString name, bool replaceDots = true);
     QString formatParts(QString name);
 
 private:

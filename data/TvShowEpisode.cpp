@@ -34,9 +34,9 @@ TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) :
     m_databaseId = -1;
     m_syncNeeded = false;
     if (!files.isEmpty())
-        m_streamDetails = new StreamDetails(this, files.at(0));
+        m_streamDetails = new StreamDetails(this, files);
     else
-        m_streamDetails = new StreamDetails(this, "");
+        m_streamDetails = new StreamDetails(this, QStringList());
 }
 
 /**
@@ -86,7 +86,7 @@ void TvShowEpisode::clear(QList<int> infos)
     if (infos.contains(TvShowScraperInfos::Thumbnail)) {
         m_thumbnail = QUrl();
         m_thumbnailImageChanged = false;
-        m_imagesToRemove.removeOne(TypeShowThumbnail);
+        m_imagesToRemove.removeOne(ImageType::TvShowEpisodeThumb);
     }
 
     m_hasChanged = false;
@@ -567,6 +567,11 @@ bool TvShowEpisode::syncNeeded() const
     return m_syncNeeded;
 }
 
+QTime TvShowEpisode::epBookmark() const
+{
+    return m_epBookmark;
+}
+
 /*** SETTER ***/
 
 /**
@@ -653,6 +658,12 @@ void TvShowEpisode::setDisplayEpisode(int episode)
 void TvShowEpisode::setOverview(QString overview)
 {
     m_overview = overview;
+    setChanged(true);
+}
+
+void TvShowEpisode::setEpBookmark(QTime epBookmark)
+{
+    m_epBookmark = epBookmark;
     setChanged(true);
 }
 
@@ -872,15 +883,15 @@ void TvShowEpisode::setSyncNeeded(bool syncNeeded)
     m_syncNeeded = syncNeeded;
 }
 
-QList<ImageType> TvShowEpisode::imagesToRemove() const
+QList<int> TvShowEpisode::imagesToRemove() const
 {
     return m_imagesToRemove;
 }
 
-void TvShowEpisode::removeImage(ImageType type)
+void TvShowEpisode::removeImage(int type)
 {
     switch (type) {
-    case TypeShowThumbnail:
+    case ImageType::TvShowEpisodeThumb:
         if (!m_thumbnailImage.isNull()) {
             m_thumbnailImage = QByteArray();
             m_thumbnailImageChanged = false;
@@ -892,6 +903,13 @@ void TvShowEpisode::removeImage(ImageType type)
         break;
     }
     setChanged(true);
+}
+
+bool TvShowEpisode::lessThan(TvShowEpisode *a, TvShowEpisode *b)
+{
+    QString aT = a->seasonString() + a->episodeString() + Helper::appendArticle(a->name());
+    QString bT = b->seasonString() + b->episodeString() + Helper::appendArticle(b->name());
+    return (QString::localeAwareCompare(aT, bT) < 0);
 }
 
 /*** DEBUG ***/

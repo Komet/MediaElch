@@ -1,9 +1,11 @@
 #ifndef TMDBCONCERTS_H
 #define TMDBCONCERTS_H
 
+#include <QComboBox>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include <QObject>
+#include <QWidget>
 
 #include "data/ConcertScraperInterface.h"
 
@@ -23,9 +25,7 @@ public:
     void loadSettings(QSettings &settings);
     void saveSettings(QSettings &settings);
     QList<int> scraperSupports();
-    QMap<QString, QString> languages();
-    QString language();
-    void setLanguage(QString language);
+    QWidget *settingsWidget();
 
 signals:
     void searchDone(QList<ScraperSearchResult>);
@@ -45,6 +45,8 @@ private:
     QString m_language2;
     QString m_baseUrl;
     QList<int> m_scraperSupports;
+    QWidget *m_widget;
+    QComboBox *m_box;
 
     void setup();
     QNetworkAccessManager *qnam();

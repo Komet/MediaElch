@@ -57,6 +57,7 @@ public:
     int playCount() const;
     QDateTime lastPlayed() const;
     QDate firstAired() const;
+    QTime epBookmark() const;
     QString certification() const;
     QString network() const;
     QString seasonString() const;
@@ -97,6 +98,7 @@ public:
     void setNetwork(QString network);
     void setThumbnail(QUrl url);
     void setThumbnailImage(QByteArray thumbnail);
+    void setEpBookmark(QTime epBookmark);
     void setInfosLoaded(bool loaded);
     void setChanged(bool changed);
     void setModelItem(TvShowModelItem *item);
@@ -115,10 +117,12 @@ public:
     void clearImages();
     QList<int> infosToLoad();
 
-    QList<ImageType> imagesToRemove() const;
-    void removeImage(ImageType type);
+    QList<int> imagesToRemove() const;
+    void removeImage(int type);
 
     void scraperLoadDone();
+
+    static bool lessThan(TvShowEpisode *a, TvShowEpisode *b);
 
 signals:
     void sigLoaded();
@@ -140,6 +144,7 @@ private:
     int m_playCount;
     QDateTime m_lastPlayed;
     QDate m_firstAired;
+    QTime m_epBookmark;
     QString m_certification;
     QString m_network;
     QUrl m_thumbnail;
@@ -156,7 +161,7 @@ private:
     int m_databaseId;
     bool m_syncNeeded;
     QList<int> m_infosToLoad;
-    QList<ImageType> m_imagesToRemove;
+    QList<int> m_imagesToRemove;
 };
 
 QDebug operator<<(QDebug dbg, const TvShowEpisode &episode);

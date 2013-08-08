@@ -1,6 +1,5 @@
 #include "MovieModel.h"
 
-#include <QIcon>
 #include <QPainter>
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -12,6 +11,8 @@
 MovieModel::MovieModel(QObject *parent) :
     QAbstractItemModel(parent)
 {
+    m_newIcon = QIcon(":/img/star_blue.png");
+    m_syncIcon = QIcon(":/img/reload_orange.png");
 }
 
 /**
@@ -114,6 +115,11 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
                 font.setItalic(true);
                 return font;
             }
+        } else if (role == Qt::DecorationRole) {
+            if (!movie->controller()->infoLoaded())
+                return m_newIcon;
+            else if (movie->syncNeeded())
+                return m_syncIcon;
         }
     } else if (role == Qt::DecorationRole) {
         QString icon;
@@ -125,15 +131,15 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
             icon = (movie->trailer().isEmpty() && !movie->hasLocalTrailer()) ? "trailer/red" : "trailer/green";
             break;
         case MediaStatusPoster:
-            icon = (movie->hasPoster()) ? "poster/green" : "poster/red";
+            icon = (movie->hasImage(ImageType::MoviePoster)) ? "poster/green" : "poster/red";
             break;
         case MediaStatusFanart:
-            icon = (movie->hasBackdrop()) ? "fanart/green" : "fanart/red";
+            icon = (movie->hasImage(ImageType::MovieBackdrop)) ? "fanart/green" : "fanart/red";
             break;
         case MediaStatusExtraArts:
-            if (movie->hasCdArt() && movie->hasClearArt() && movie->hasLogo())
+            if (movie->hasImage(ImageType::MovieCdArt) && movie->hasImage(ImageType::MovieClearArt) && movie->hasImage(ImageType::MovieLogo))
                 icon = "extraArts/green";
-            else if (movie->hasCdArt() || movie->hasClearArt() || movie->hasLogo())
+            else if (movie->hasImage(ImageType::MovieCdArt) || movie->hasImage(ImageType::MovieClearArt) || movie->hasImage(ImageType::MovieLogo))
                 icon = "extraArts/yellow";
             else
                 icon = "extraArts/red";
@@ -270,32 +276,21 @@ QString MovieModel::mediaStatusToText(MediaStatusColumns column)
     switch (column) {
     case MediaStatusActors:
         return tr("Actors");
-        break;
     case MediaStatusExtraArts:
         return tr("Extra Arts");
-        break;
     case MediaStatusExtraFanarts:
         return tr("Extra Fanarts");
-        break;
     case MediaStatusFanart:
         return tr("Fanart");
-        break;
     case MediaStatusPoster:
         return tr("Poster");
-        break;
     case MediaStatusStreamDetails:
         return tr("Stream Details");
-        break;
     case MediaStatusTrailer:
         return tr("Trailer");
-        break;
     case MediaStatusId:
         return tr("IMDB ID");
-        break;
     default:
         return QString();
-        break;
     }
-
-    return QString();
 }

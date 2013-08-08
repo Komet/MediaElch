@@ -30,7 +30,7 @@ Database::Database(QObject *parent) :
     } else {
         QSqlQuery query(*m_db);
 
-        int dbVersion = 4;
+        int dbVersion = 6;
         bool dbIsUpToDate = false;
 
         query.prepare("SELECT * FROM sqlite_master WHERE name ='settings' and type='table';");
@@ -81,6 +81,8 @@ Database::Database(QObject *parent) :
                       "\"hasLogo\" integer NOT NULL, "
                       "\"hasClearArt\" integer NOT NULL, "
                       "\"hasCdArt\" integer NOT NULL, "
+                      "\"hasBanner\" integer NOT NULL, "
+                      "\"hasThumb\" integer NOT NULL, "
                       "\"hasExtraFanarts\" integer NOT NULL, "
                       "\"discType\" integer NOT NULL, "
                       "\"path\" text NOT NULL);");
@@ -95,7 +97,6 @@ Database::Database(QObject *parent) :
 
         query.prepare("CREATE TABLE IF NOT EXISTS concerts ( "
                       "\"idConcert\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-                      "\"files\" text NOT NULL, "
                       "\"content\" text NOT NULL, "
                       "\"inSeparateFolder\" integer NOT NULL, "
                       "\"path\" text NOT NULL);");
@@ -196,16 +197,18 @@ void Database::clearMovies(QString path)
 void Database::add(Movie *movie, QString path)
 {
     QSqlQuery query(db());
-    query.prepare("INSERT INTO movies(content, lastModified, inSeparateFolder, hasPoster, hasBackdrop, hasLogo, hasClearArt, hasCdArt, hasExtraFanarts, discType, path) "
-                  "VALUES(:content, :lastModified, :inSeparateFolder, :hasPoster, :hasBackdrop, :hasLogo, :hasClearArt, :hasCdArt, :hasExtraFanarts, :discType, :path)");
+    query.prepare("INSERT INTO movies(content, lastModified, inSeparateFolder, hasPoster, hasBackdrop, hasLogo, hasClearArt, hasCdArt, hasBanner, hasThumb, hasExtraFanarts, discType, path) "
+                  "VALUES(:content, :lastModified, :inSeparateFolder, :hasPoster, :hasBackdrop, :hasLogo, :hasClearArt, :hasCdArt, :hasBanner, :hasThumb, :hasExtraFanarts, :discType, :path)");
     query.bindValue(":content", movie->nfoContent().isEmpty() ? "" : movie->nfoContent().toUtf8());
     query.bindValue(":lastModified", movie->fileLastModified().isNull() ? QDateTime::currentDateTime() : movie->fileLastModified());
     query.bindValue(":inSeparateFolder", (movie->inSeparateFolder() ? 1 : 0));
-    query.bindValue(":hasPoster", movie->hasPoster() ? 1 : 0);
-    query.bindValue(":hasBackdrop", movie->hasBackdrop() ? 1 : 0);
-    query.bindValue(":hasLogo", movie->hasLogo() ? 1 : 0);
-    query.bindValue(":hasClearArt", movie->hasClearArt() ? 1 : 0);
-    query.bindValue(":hasCdArt", movie->hasCdArt() ? 1 : 0);
+    query.bindValue(":hasPoster", movie->hasImage(ImageType::MoviePoster) ? 1 : 0);
+    query.bindValue(":hasBackdrop", movie->hasImage(ImageType::MovieBackdrop) ? 1 : 0);
+    query.bindValue(":hasLogo", movie->hasImage(ImageType::MovieLogo) ? 1 : 0);
+    query.bindValue(":hasClearArt", movie->hasImage(ImageType::MovieClearArt) ? 1 : 0);
+    query.bindValue(":hasCdArt", movie->hasImage(ImageType::MovieCdArt) ? 1 : 0);
+    query.bindValue(":hasBanner", movie->hasImage(ImageType::MovieBanner) ? 1 : 0);
+    query.bindValue(":hasThumb", movie->hasImage(ImageType::MovieThumb) ? 1 : 0);
     query.bindValue(":hasExtraFanarts", movie->hasExtraFanarts() ? 1 : 0);
     query.bindValue(":discType", movie->discType());
     query.bindValue(":path", path.toUtf8());
@@ -236,7 +239,8 @@ QList<Movie*> Database::movies(QString path)
     QList<Movie*> movies;
     QSqlQuery query(db());
     QSqlQuery queryFiles(db());
-    query.prepare("SELECT idMovie, content, lastModified, inSeparateFolder, hasPoster, hasBackdrop, hasLogo, hasClearArt, hasCdArt, hasExtraFanarts, discType FROM movies WHERE path=:path");
+    query.prepare("SELECT idMovie, content, lastModified, inSeparateFolder, hasPoster, hasBackdrop, hasLogo, hasClearArt, "
+                  "hasCdArt, hasBanner, hasThumb, hasExtraFanarts, discType FROM movies WHERE path=:path");
     query.bindValue(":path", path.toUtf8());
     query.exec();
     while (query.next()) {
@@ -252,11 +256,13 @@ QList<Movie*> Database::movies(QString path)
         movie->setFileLastModified(query.value(query.record().indexOf("lastModified")).toDateTime());
         movie->setInSeparateFolder(query.value(query.record().indexOf("inSeparateFolder")).toInt() == 1);
         movie->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
-        movie->setHasPoster(query.value(query.record().indexOf("hasPoster")).toInt() == 1);
-        movie->setHasBackdrop(query.value(query.record().indexOf("hasBackdrop")).toInt() == 1);
-        movie->setHasLogo(query.value(query.record().indexOf("hasLogo")).toInt() == 1);
-        movie->setHasClearArt(query.value(query.record().indexOf("hasClearArt")).toInt() == 1);
-        movie->setHasCdArt(query.value(query.record().indexOf("hasCdArt")).toInt() == 1);
+        movie->setHasImage(ImageType::MoviePoster, query.value(query.record().indexOf("hasPoster")).toInt() == 1);
+        movie->setHasImage(ImageType::MovieBackdrop, query.value(query.record().indexOf("hasBackdrop")).toInt() == 1);
+        movie->setHasImage(ImageType::MovieLogo, query.value(query.record().indexOf("hasLogo")).toInt() == 1);
+        movie->setHasImage(ImageType::MovieClearArt, query.value(query.record().indexOf("hasClearArt")).toInt() == 1);
+        movie->setHasImage(ImageType::MovieCdArt, query.value(query.record().indexOf("hasCdArt")).toInt() == 1);
+        movie->setHasImage(ImageType::MovieBanner, query.value(query.record().indexOf("hasBanner")).toInt() == 1);
+        movie->setHasImage(ImageType::MovieThumb, query.value(query.record().indexOf("hasThumb")).toInt() == 1);
         movie->setHasExtraFanarts(query.value(query.record().indexOf("hasExtraFanarts")).toInt() == 1);
         movie->setDiscType(static_cast<DiscType>(query.value(query.record().indexOf("discType")).toInt()));
         movies.append(movie);

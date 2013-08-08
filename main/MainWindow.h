@@ -7,12 +7,13 @@
 #include "globals/Filter.h"
 #include "globals/Globals.h"
 #include "data/MovieFileSearcher.h"
+#include "export/ExportDialog.h"
 #include "main/AboutDialog.h"
 #include "main/FileScannerDialog.h"
 #include "renamer/Renamer.h"
 #include "smallWidgets/FilterWidget.h"
 #include "settings/Settings.h"
-#include "settings/SettingsWidget.h"
+#include "settings/SettingsWindow.h"
 #include "support/SupportDialog.h"
 #include "xbmc/XbmcSync.h"
 
@@ -30,6 +31,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    static MainWindow* instance();
 
 public slots:
     void setNewMarks();
@@ -67,10 +70,11 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Settings *m_settings;
-    SettingsWidget *m_settingsWidget;
+    SettingsWindow *m_settingsWindow;
     AboutDialog *m_aboutDialog;
     SupportDialog *m_supportDialog;
     FileScannerDialog *m_fileScannerDialog;
+    ExportDialog *m_exportDialog;
     XbmcSync *m_xbmcSync;
     Renamer *m_renamer;
     QAction *m_actionSearch;
@@ -83,9 +87,11 @@ private:
     QAction *m_actionLike;
     QAction *m_actionReload;
     QAction *m_actionRename;
+    QAction *m_actionExport;
     QMap<MainWidgets, QMap<MainActions, bool> > m_actions;
     QMap<MainWidgets, QIcon> m_icons;
     FilterWidget *m_filterWidget;
+    static MainWindow *m_instance;
     void setupToolbar();
 };
 

@@ -40,9 +40,6 @@ class Movie : public QObject
     Q_PROPERTY(QString certification READ certification WRITE setCertification)
     Q_PROPERTY(QString writer READ writer WRITE setWriter)
     Q_PROPERTY(QString director READ director WRITE setDirector)
-    Q_PROPERTY(QStringList genres READ genres WRITE setGenres)
-    Q_PROPERTY(QStringList countries READ countries WRITE setCountries)
-    Q_PROPERTY(QStringList studios READ studios WRITE setStudios)
     Q_PROPERTY(QUrl trailer READ trailer WRITE setTrailer)
     Q_PROPERTY(QList<Actor> actors READ actors WRITE setActors)
     Q_PROPERTY(int playcount READ playcount WRITE setPlayCount)
@@ -94,6 +91,7 @@ public:
     QDateTime lastPlayed() const;
     QString id() const;
     QString tmdbId() const;
+    QString mediaPassionId() const;
     QString set() const;
     bool watched() const;
     int movieId() const;
@@ -125,9 +123,6 @@ public:
     void setCertification(QString certification);
     void setWriter(QString writer);
     void setDirector(QString director);
-    void setGenres(QStringList genres);
-    void setCountries(QStringList countries);
-    void setStudios(QStringList studios);
     void addStudio(QString studio);
     void addTag(QString tag);
     void setTrailer(QUrl trailer);
@@ -139,6 +134,7 @@ public:
     void setLastPlayed(QDateTime lastPlayed);
     void setId(QString id);
     void setTmdbId(QString id);
+    void setMediaPassionId(QString id);
     void setSet(QString set);
     void setWatched(bool watched);
     void setChanged(bool changed);
@@ -163,32 +159,13 @@ public:
     void removeGenre(QString genre);
     void removeTag(QString tag);
 
-
-    // Images
-    bool hasPoster() const;
-    bool hasBackdrop() const;
-    bool hasLogo() const;
-    bool hasClearArt() const;
-    bool hasCdArt() const;
-    bool hasExtraFanarts() const;
-    void setHasPoster(bool has);
-    void setHasBackdrop(bool has);
-    void setHasLogo(bool has);
-    void setHasClearArt(bool has);
-    void setHasCdArt(bool has);
-    void setHasExtraFanarts(bool has);
-
     QList<Poster> posters() const;
     QList<Poster> backdrops() const;
-    bool posterImageChanged() const;
-    bool backdropImageChanged() const;
-    bool logoImageChanged() const;
-    bool clearArtImageChanged() const;
-    bool cdArtImageChanged() const;
+    QList<Poster> discArts() const;
     QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
     QStringList extraFanartsToRemove();
     QList<QByteArray> extraFanartImagesToAdd();
-    QList<ImageType> imagesToRemove() const;
+    QList<int> imagesToRemove() const;
 
     void setPosters(QList<Poster> posters);
     void setPoster(int index, Poster poster);
@@ -196,26 +173,30 @@ public:
     void setBackdrops(QList<Poster> backdrops);
     void setBackdrop(int index, Poster backdrop);
     void addBackdrop(Poster backdrop);
-    void setBackdropImage(QByteArray backdrop);
-    void setLogoImage(QByteArray img);
-    void setClearArtImage(QByteArray img);
-    void setCdArtImage(QByteArray img);
+    void setDiscArts(QList<Poster> discArts);
+    void setDiscArt(int index, Poster poster);
+    void addDiscArt(Poster poster);
     void addExtraFanart(QByteArray fanart);
     void removeExtraFanart(QByteArray fanart);
     void removeExtraFanart(QString file);
     void clearExtraFanartData();
     void clearImages();
-    void removeImage(ImageType type);
+    void removeImage(int type);
 
-    void setPosterImage(QByteArray poster);
-    QByteArray posterImage();
-    QByteArray backdropImage();
-    QByteArray logoImage();
-    QByteArray clearArtImage();
-    QByteArray cdArtImage();
+    // Images
+    bool hasExtraFanarts() const;
+    void setHasExtraFanarts(bool has);
+    QByteArray image(int imageType);
+    bool imageHasChanged(int imageType);
+    void setHasImage(int imageType, bool has);
+    bool hasImage(int imageType);
+    void setImage(int imageType, QByteArray image);
 
     DiscType discType();
     void setDiscType(DiscType type);
+
+    static bool lessThan(Movie *a, Movie *b);
+    static QList<int> imageTypes();
 
 signals:
     void sigChanged(Movie*);
@@ -248,16 +229,13 @@ private:
     QDateTime m_lastPlayed;
     QString m_id;
     QString m_tmdbId;
+    QString m_mediaPassionId;
     QString m_set;
     QList<Poster> m_posters;
     QList<Poster> m_backdrops;
+    QList<Poster> m_discArts;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
-    bool m_posterImageChanged;
-    bool m_backdropImageChanged;
-    bool m_logoImageChanged;
-    bool m_clearArtImageChanged;
-    bool m_cdArtImageChanged;
     bool m_infoLoaded;
     bool m_infoFromNfoLoaded;
     bool m_imagesLoaded;
@@ -267,11 +245,6 @@ private:
     bool m_inSeparateFolder;
     int m_mediaCenterId;
     int m_numPrimaryLangPosters;
-    bool m_hasPoster;
-    bool m_hasBackdrop;
-    bool m_hasLogo;
-    bool m_hasClearArt;
-    bool m_hasCdArt;
     bool m_hasExtraFanarts;
     bool m_syncNeeded;
     bool m_streamDetailsLoaded;
@@ -283,13 +256,11 @@ private:
     DiscType m_discType;
 
     // Images
-    QByteArray m_posterImage;
-    QByteArray m_backdropImage;
-    QByteArray m_logoImage;
-    QByteArray m_clearArtImage;
-    QByteArray m_cdArtImage;
+    QMap<int, QByteArray> m_images;
+    QMap<int, bool> m_hasImage;
+    QMap<int, bool> m_hasImageChanged;
     QList<QByteArray> m_extraFanartImagesToAdd;
-    QList<ImageType> m_imagesToRemove;
+    QList<int> m_imagesToRemove;
 };
 
 Q_DECLARE_METATYPE(Movie*)

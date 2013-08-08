@@ -56,6 +56,9 @@
      <property name="sortingEnabled">
       <bool>true</bool>
      </property>
+     <property name="useSearchOverlay" stdset="0">
+      <bool>true</bool>
+     </property>
      <attribute name="horizontalHeaderVisible">
       <bool>false</bool>
      </attribute>
@@ -64,6 +67,12 @@
      </attribute>
      <attribute name="verticalHeaderVisible">
       <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderDefaultSectionSize">
+      <number>22</number>
+     </attribute>
+     <attribute name="verticalHeaderMinimumSectionSize">
+      <number>22</number>
      </attribute>
     </widget>
    </item>

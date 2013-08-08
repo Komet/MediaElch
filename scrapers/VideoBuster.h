@@ -17,15 +17,15 @@ class VideoBuster : public ScraperInterface
 public:
     explicit VideoBuster(QObject *parent = 0);
     QString name();
+    QString identifier();
     void search(QString searchStr);
-    void loadData(QString id, Movie *movie, QList<int> infos);
+    void loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos);
     bool hasSettings();
     void loadSettings(QSettings &settings);
     void saveSettings(QSettings &settings);
     QList<int> scraperSupports();
-    QMap<QString, QString> languages();
-    QString language();
-    void setLanguage(QString language);
+    QList<int> scraperNativelySupports();
+    QWidget *settingsWidget();
 
 signals:
     void searchDone(QList<ScraperSearchResult>);

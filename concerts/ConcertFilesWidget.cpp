@@ -23,11 +23,6 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
 {
     m_instance = this;
     ui->setupUi(this);
-#if QT_VERSION >= 0x050000
-    ui->files->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#else
-    ui->files->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#endif
 #ifdef Q_OS_MAC
     QFont font = ui->files->font();
     font.setPointSize(font.pointSize()-2);
@@ -39,13 +34,11 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
     m_mouseIsIn = false;
     m_alphaList = new AlphabeticalList(this);
     m_lastConcert = 0;
-    m_concertDelegate = new ConcertDelegate(this);
     m_concertProxyModel = new ConcertProxyModel(this);
     m_concertProxyModel->setSourceModel(Manager::instance()->concertModel());
     m_concertProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     m_concertProxyModel->setDynamicSortFilter(true);
     ui->files->setModel(m_concertProxyModel);
-    ui->files->setItemDelegate(m_concertDelegate);
     ui->files->sortByColumn(0);
 
     QAction *actionMarkAsWatched = new QAction(tr("Mark as watched"), this);

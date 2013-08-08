@@ -10,8 +10,9 @@
 #include <QTableWidgetItem>
 #include <QWidget>
 
-#include "movies/Movie.h"
 #include "globals/DownloadManager.h"
+#include "movies/Movie.h"
+#include "smallWidgets/ClosableImage.h"
 
 namespace Ui {
 class MovieWidget;
@@ -56,16 +57,9 @@ private slots:
     void onDownloadProgress(Movie *movie, int current, int maximum);
     void onSetImage(Movie *movie, int type, QByteArray data);
 
-    void chooseMoviePoster();
-    void chooseMovieBackdrop();
-    void chooseMovieLogo();
-    void chooseMovieClearArt();
-    void chooseMovieCdArt();
-    void deleteMoviePoster();
-    void deleteMovieBackdrop();
-    void deleteMovieLogo();
-    void deleteMovieClearArt();
-    void deleteMovieCdArt();
+    void onChooseImage();
+    void onDeleteImage();
+
     void movieNameChanged(QString text);
     void addGenre(QString genre);
     void removeGenre(QString genre);
@@ -114,6 +108,8 @@ private slots:
     void onRemoveExtraFanart(const QByteArray &image);
     void onAddExtraFanart();
 
+    void updateImage(const int &imageType, ClosableImage *image);
+
 private:
     Ui::MovieWidget *ui;
     QPointer<Movie> m_movie;
@@ -124,7 +120,7 @@ private:
     QList< QList<QLineEdit*> > m_streamDetailsSubtitles;
     QLabel *m_backgroundLabel;
     void updateMovieInfo();
-    void updateImages(QList<ImageType> images);
+    void updateImages(QList<int> images);
 };
 
 #endif // MOVIEWIDGET_H

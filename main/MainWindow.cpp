@@ -35,6 +35,12 @@
 #include "qtmacextras/src/qtmacunifiedtoolbar.h"
 #endif
 
+#ifdef Q_OS_MAC
+    #include "mac/MacFullscreen.h"
+#endif
+
+MainWindow *MainWindow::m_instance = 0;
+
 /**
  * @brief MainWindow::MainWindow
  * @param parent
@@ -44,6 +50,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    MainWindow::m_instance = this;
 
     qDebug() << "MediaElch version" << QApplication::applicationVersion() << "starting up";
 
@@ -59,12 +67,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_aboutDialog = new AboutDialog(ui->centralWidget);
     m_supportDialog = new SupportDialog(ui->centralWidget);
-    m_settingsWidget = new SettingsWidget(ui->centralWidget);
+    m_settingsWindow = new SettingsWindow(ui->centralWidget);
     m_filterWidget = new FilterWidget();
     m_fileScannerDialog = new FileScannerDialog(ui->centralWidget);
     m_xbmcSync = new XbmcSync(ui->centralWidget);
     m_renamer = new Renamer(ui->centralWidget);
     m_settings = Settings::instance(this);
+    m_exportDialog = new ExportDialog(this);
     setupToolbar();
 
     MessageBox::instance(this)->reposition(this->size());
@@ -106,10 +115,15 @@ MainWindow::MainWindow(QWidget *parent) :
     // Size for Screenshots
     // resize(1121, 735);
 
+    #ifdef Q_OS_MAC
+        MacFullscreen::addFullscreen(this);
+    #endif
+
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setMovie(Movie*)));
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setEnabledTrue(Movie*)));
     connect(ui->filesWidget, SIGNAL(noMovieSelected()), ui->movieWidget, SLOT(clear()));
     connect(ui->filesWidget, SIGNAL(noMovieSelected()), ui->movieWidget, SLOT(setDisabledTrue()));
+    connect(ui->filesWidget, SIGNAL(sigStartSearch()), this, SLOT(onActionSearch()));
 
     connect(ui->concertFilesWidget, SIGNAL(concertSelected(Concert*)), ui->concertWidget, SLOT(setConcert(Concert*)));
     connect(ui->concertFilesWidget, SIGNAL(concertSelected(Concert*)), ui->concertWidget, SLOT(setEnabledTrue(Concert*)));
@@ -150,8 +164,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(m_renamer, SIGNAL(sigFilesRenamed(Renamer::RenameType)), this, SLOT(onFilesRenamed(Renamer::RenameType)));
 
-    connect(m_settingsWidget, SIGNAL(accepted()), this, SLOT(onRenewModels()));
-    connect(m_settingsWidget, SIGNAL(accepted()), this, SLOT(onFilesRenamed()));
+    connect(m_settingsWindow, SIGNAL(sigSaved()), this, SLOT(onRenewModels()), Qt::QueuedConnection);
 
     connect(ui->setsWidget, SIGNAL(sigJumpToMovie(Movie*)), this, SLOT(onJumpToMovie(Movie*)));
     connect(ui->certificationWidget, SIGNAL(sigJumpToMovie(Movie*)), this, SLOT(onJumpToMovie(Movie*)));
@@ -199,6 +212,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+MainWindow *MainWindow::instance()
+{
+    return MainWindow::m_instance;
+}
+
 /**
  * @brief Repositions the MessageBox
  * @param event
@@ -239,9 +257,9 @@ void MainWindow::setupToolbar()
     QPainter p;
     QList<QPixmap> icons;
     icons << QPixmap(":/img/spanner.png") << QPixmap(":/img/info.png") << QPixmap(":/img/folder_in.png")
-          << QPixmap(":/img/stop.png") << QPixmap(":/img/magnifier.png") <<QPixmap(":/img/save.png")
+          << QPixmap(":/img/magnifier.png") <<QPixmap(":/img/save.png")
           << QPixmap(":/img/storage.png") << QPixmap(":/img/heart.png") << QPixmap(":/img/arrow_circle_right.png")
-          << QPixmap(":/img/xbmc.png") << QPixmap(":/img/folder_64.png");
+          << QPixmap(":/img/xbmc.png") << QPixmap(":/img/folder_64.png") << QPixmap(":/img/export.png");
     for (int i=0, n=icons.count() ; i<n ; ++i) {
         p.begin(&icons[i]);
         p.setCompositionMode(QPainter::CompositionMode_SourceIn);
@@ -249,35 +267,37 @@ void MainWindow::setupToolbar()
         p.end();
     }
 
-    m_actionSearch = new QAction(QIcon(icons[4]), tr("Search"), this);
+    m_actionSearch = new QAction(QIcon(icons[3]), tr("Search"), this);
     m_actionSearch->setShortcut(QKeySequence::Find);
     m_actionSearch->setToolTip(tr("Search (%1)").arg(QKeySequence(QKeySequence::Find).toString(QKeySequence::NativeText)));
 
-    m_actionSave = new QAction(QIcon(icons[5]), tr("Save"), this);
+    m_actionSave = new QAction(QIcon(icons[4]), tr("Save"), this);
     m_actionSave->setShortcut(QKeySequence::Save);
     m_actionSave->setToolTip(tr("Save (%1)").arg(QKeySequence(QKeySequence::Save).toString(QKeySequence::NativeText)));
 
-    m_actionSaveAll = new QAction(QIcon(icons[6]), tr("Save All"), this);
+    m_actionSaveAll = new QAction(QIcon(icons[5]), tr("Save All"), this);
     QKeySequence seqSaveAll(Qt::CTRL+Qt::ShiftModifier+Qt::Key_S);
     m_actionSaveAll->setShortcut(seqSaveAll);
     m_actionSaveAll->setToolTip(tr("Save All (%1)").arg(seqSaveAll.toString(QKeySequence::NativeText)));
 
-    m_actionReload = new QAction(QIcon(icons[8]), tr("Reload"), this);
+    m_actionReload = new QAction(QIcon(icons[7]), tr("Reload"), this);
     m_actionReload->setShortcut(QKeySequence::Refresh);
     m_actionReload->setToolTip(tr("Reload all files (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
 
-    m_actionRename = new QAction(QIcon(icons[10]), tr("Rename"), this);
+    m_actionRename = new QAction(QIcon(icons[9]), tr("Rename"), this);
     m_actionRename->setToolTip(tr("Rename selected files"));
 
     m_actionSettings = new QAction(QIcon(icons[0]), tr("Settings"), this);
 
-    m_actionXbmc = new QAction(QIcon(icons[9]), tr("XBMC"), this);
+    m_actionXbmc = new QAction(QIcon(icons[8]), tr("XBMC"), this);
     m_actionXbmc->setToolTip(tr("Synchronize to XBMC"));
 
-    m_actionAbout = new QAction(QIcon(icons[1]), tr("About"), this);
-    m_actionQuit = new QAction(QIcon(icons[3]), tr("Quit"), this);
+    m_actionExport = new QAction(QIcon(icons[10]), tr("Export"), this);
+    m_actionExport->setToolTip(tr("Export Database"));
 
-    m_actionLike = new QAction(QIcon(icons[7]), tr("Support"), this);
+    m_actionAbout = new QAction(QIcon(icons[1]), tr("About"), this);
+
+    m_actionLike = new QAction(QIcon(icons[6]), tr("Donate"), this);
 
     toolBar->addAction(m_actionSearch);
     toolBar->addAction(m_actionSave);
@@ -286,8 +306,8 @@ void MainWindow::setupToolbar()
     toolBar->addAction(m_actionRename);
     toolBar->addAction(m_actionSettings);
     toolBar->addAction(m_actionXbmc);
+    toolBar->addAction(m_actionExport);
     toolBar->addAction(m_actionAbout);
-    toolBar->addAction(m_actionQuit);
 #ifndef IS_MAC_AND_QT5
     m_filterWidget->setParent(toolBar);
     toolBar->addWidget(m_filterWidget);
@@ -301,11 +321,11 @@ void MainWindow::setupToolbar()
     connect(m_actionSaveAll, SIGNAL(triggered()), this, SLOT(onActionSaveAll()));
     connect(m_actionReload, SIGNAL(triggered()), this, SLOT(onActionReload()));
     connect(m_actionAbout, SIGNAL(triggered()), m_aboutDialog, SLOT(exec()));
-    connect(m_actionSettings, SIGNAL(triggered()), m_settingsWidget, SLOT(exec()));
-    connect(m_actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
+    connect(m_actionSettings, SIGNAL(triggered()), m_settingsWindow, SLOT(show()));
     connect(m_actionLike, SIGNAL(triggered()), m_supportDialog, SLOT(exec()));
     connect(m_actionXbmc, SIGNAL(triggered()), this, SLOT(onActionXbmc()));
     connect(m_actionRename, SIGNAL(triggered()), this, SLOT(onActionRename()));
+    connect(m_actionExport, SIGNAL(triggered()), m_exportDialog, SLOT(exec()));
 
     m_actionSearch->setEnabled(false);
     m_actionSave->setEnabled(false);

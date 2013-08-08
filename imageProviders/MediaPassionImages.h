@@ -1,0 +1,68 @@
+#ifndef MEDIAPASSIONIMAGES_H
+#define MEDIAPASSIONIMAGES_H
+
+#include "data/ImageProviderInterface.h"
+#include "movies/Movie.h"
+#include "scrapers/MediaPassion.h"
+
+class MediaPassionImages : public ImageProviderInterface
+{
+    Q_OBJECT
+public:
+    explicit MediaPassionImages(QObject *parent = 0);
+    QString name();
+    QString identifier();
+    void movieImages(Movie *movie, QString tmdbId, QList<int> types);
+    void moviePosters(QString tmdbId);
+    void movieBackdrops(QString tmdbId);
+    void movieLogos(QString tmdbId);
+    void movieBanners(QString tmdbId);
+    void movieThumbs(QString tmdbId);
+    void movieClearArts(QString tmdbId);
+    void movieCdArts(QString tmdbId);
+    void concertImages(Concert *concert, QString tmdbId, QList<int> types);
+    void concertPosters(QString tmdbId);
+    void concertBackdrops(QString tmdbId);
+    void concertLogos(QString tmdbId);
+    void concertClearArts(QString tmdbId);
+    void concertCdArts(QString tmdbId);
+    void tvShowImages(TvShow *show, QString tvdbId, QList<int> types);
+    void tvShowPosters(QString tvdbId);
+    void tvShowBackdrops(QString tvdbId);
+    void tvShowLogos(QString tvdbId);
+    void tvShowClearArts(QString tvdbId);
+    void tvShowCharacterArts(QString tvdbId);
+    void tvShowBanners(QString tvdbId);
+    void tvShowEpisodeThumb(QString tvdbId, int season, int episode);
+    void tvShowSeason(QString tvdbId, int season);
+    void tvShowSeasonBanners(QString tvdbId, int season);
+    void tvShowSeasonBackdrops(QString tvdbId, int season);
+    void tvShowThumbs(QString tvdbId);
+    void tvShowSeasonThumbs(QString tvdbId, int season);
+    QList<int> provides();
+
+public slots:
+    void searchMovie(QString searchStr, int limit = 0);
+    void searchConcert(QString searchStr, int limit = 0);
+    void searchTvShow(QString searchStr, int limit = 0);
+
+signals:
+    void sigSearchDone(QList<ScraperSearchResult>);
+    void sigImagesLoaded(QList<Poster>);
+    void sigImagesLoaded(Movie *, QMap<int, QList<Poster> >);
+    void sigImagesLoaded(Concert *, QMap<int, QList<Poster> >);
+    void sigImagesLoaded(TvShow *, QMap<int, QList<Poster> >);
+
+private slots:
+    void onSearchMovieFinished(QList<ScraperSearchResult> results);
+    void onLoadImagesFinished();
+
+private:
+    QList<int> m_provides;
+    MediaPassion *m_mediaPassion;
+    Movie *m_dummyMovie;
+    int m_imageType;
+    int m_searchResultLimit;
+};
+
+#endif // MEDIAPASSIONIMAGES_H

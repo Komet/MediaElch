@@ -45,11 +45,21 @@ QString VideoBuster::name()
     return QString("VideoBuster");
 }
 
+QString VideoBuster::identifier()
+{
+    return QString("videobuster");
+}
+
 /**
  * @brief Returns a list of infos available from the scraper
  * @return List of supported infos
  */
 QList<int> VideoBuster::scraperSupports()
+{
+    return m_scraperSupports;
+}
+
+QList<int> VideoBuster::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -119,12 +129,11 @@ QList<ScraperSearchResult> VideoBuster::parseSearch(QString html)
  * @param infos List of infos to load
  * @see VideoBuster::loadFinished
  */
-void VideoBuster::loadData(QString id, Movie *movie, QList<int> infos)
+void VideoBuster::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos)
 {
-    qDebug() << "Entered, id=" << id << "movie=" << movie->name();
     movie->clear(infos);
 
-    QUrl url(QString("https://www.videobuster.de%1").arg(id));
+    QUrl url(QString("https://www.videobuster.de%1").arg(ids.values().first()));
     QNetworkReply *reply = this->qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -150,7 +159,7 @@ void VideoBuster::loadFinished()
         parseAndAssignInfos(msg, movie, infos);
     } else {
         qWarning() << "Network Error" << reply->errorString();
-        movie->controller()->scraperLoadDone();
+        movie->controller()->scraperLoadDone(this);
     }
 }
 
@@ -261,7 +270,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, SIGNAL(finished()), this, SLOT(backdropFinished()));
     } else {
-        movie->controller()->scraperLoadDone();
+        movie->controller()->scraperLoadDone(this);
     }
 }
 
@@ -295,7 +304,7 @@ void VideoBuster::backdropFinished()
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
-    movie->controller()->scraperLoadDone();
+    movie->controller()->scraperLoadDone(this);
 }
 
 /**
@@ -323,32 +332,9 @@ void VideoBuster::saveSettings(QSettings &settings)
     Q_UNUSED(settings);
 }
 
-/**
- * @brief VideoBuster::languages
- * @return
- */
-QMap<QString, QString> VideoBuster::languages()
+QWidget *VideoBuster::settingsWidget()
 {
-    QMap<QString, QString> m;
-    return m;
-}
-
-/**
- * @brief language
- * @return
- */
-QString VideoBuster::language()
-{
-    return QString();
-}
-
-/**
- * @brief VideoBuster::setLanguage
- * @param language
- */
-void VideoBuster::setLanguage(QString language)
-{
-    Q_UNUSED(language);
+    return 0;
 }
 
 /**

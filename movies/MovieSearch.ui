@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>679</width>
-    <height>663</height>
+    <height>736</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -58,7 +58,12 @@
     </layout>
    </item>
    <item>
-    <widget class="MyLineEdit" name="searchString"/>
+    <widget class="MyLineEdit" name="searchString">
+     <property name="toolTip">
+      <string>When using IMDB you can also use the IMDB id as search query.
+If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.</string>
+     </property>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0">
@@ -277,6 +282,20 @@
          <widget class="MyCheckBox" name="chkCdArt">
           <property name="text">
            <string>CD Art</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkBanner">
+          <property name="text">
+           <string>Banner</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkThumb">
+          <property name="text">
+           <string>Thumb</string>
           </property>
          </widget>
         </item>

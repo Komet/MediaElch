@@ -37,6 +37,16 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     font.setPointSize(font.pointSize()+4);
     ui->episodeName->setFont(font);
 
+    font = ui->labelThumbnail->font();
+    #ifdef Q_OS_WIN32
+        font.setPointSize(font.pointSize()-1);
+    #else
+        font.setPointSize(font.pointSize()-2);
+    #endif
+
+    font.setBold(true);
+    ui->labelThumbnail->setFont(font);
+
     ui->directors->setItemDelegate(new ComboDelegate(ui->directors, WidgetTvShows, ComboDelegateDirectors));
     ui->writers->setItemDelegate(new ComboDelegate(ui->writers, WidgetTvShows, ComboDelegateWriters));
     ui->thumbnail->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -66,6 +76,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
     connect(ui->certification, SIGNAL(editTextChanged(QString)), this, SLOT(onCertificationChange(QString)));
     connect(ui->firstAired, SIGNAL(dateChanged(QDate)), this, SLOT(onFirstAiredChange(QDate)));
+    connect(ui->epBookmark, SIGNAL(timeChanged(QTime)), this, SLOT(onEpBookmarkChange(QTime)));
     connect(ui->playCount, SIGNAL(valueChanged(int)), this, SLOT(onPlayCountChange(int)));
     connect(ui->lastPlayed, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(onLastPlayedChange(QDateTime)));
     connect(ui->studio, SIGNAL(textEdited(QString)), this, SLOT(onStudioChange(QString)));
@@ -207,6 +218,10 @@ void TvShowWidgetEpisode::onClear()
     ui->videoWidth->clear();
     ui->videoWidth->blockSignals(blocked);
 
+    blocked = ui->epBookmark->blockSignals(true);
+    ui->epBookmark->setTime(QTime(0, 0, 0));
+    ui->epBookmark->blockSignals(blocked);
+
     ui->buttonRevert->setVisible(false);
 }
 
@@ -254,6 +269,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->playCount->blockSignals(true);
     ui->lastPlayed->blockSignals(true);
     ui->overview->blockSignals(true);
+    ui->epBookmark->blockSignals(true);
 
     onClear();
 
@@ -271,6 +287,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->lastPlayed->setDateTime(m_episode->lastPlayed());
     ui->studio->setText(m_episode->network());
     ui->overview->setPlainText(m_episode->overview());
+    ui->epBookmark->setTime(m_episode->epBookmark());
 
     ui->writers->blockSignals(true);
     foreach (QString *writer, m_episode->writersPointer()) {
@@ -310,8 +327,8 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
 
     if (!m_episode->thumbnailImage().isNull())
         ui->thumbnail->setImage(m_episode->thumbnailImage());
-    else if (!Manager::instance()->mediaCenterInterface()->thumbnailImageName(m_episode).isEmpty())
-        ui->thumbnail->setImage(Manager::instance()->mediaCenterInterface()->thumbnailImageName(m_episode));
+    else if (!Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb).isEmpty())
+        ui->thumbnail->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb));
 
     ui->season->blockSignals(false);
     ui->episode->blockSignals(false);
@@ -323,6 +340,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->playCount->blockSignals(false);
     ui->lastPlayed->blockSignals(false);
     ui->overview->blockSignals(false);
+    ui->epBookmark->blockSignals(false);
 
     ui->certification->setEnabled(Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeCertification));
     ui->showTitle->setEnabled(Manager::instance()->mediaCenterInterfaceTvShow()->hasFeature(MediaCenterFeatures::EditTvShowEpisodeShowTitle));
@@ -505,9 +523,10 @@ void TvShowWidgetEpisode::onLoadDone()
 
     if (!m_episode->thumbnail().isEmpty()) {
         DownloadManagerElement d;
-        d.imageType = TypeBackdrop;
+        d.imageType = ImageType::TvShowEpisodeThumb;
         d.url = m_episode->thumbnail();
         d.episode = m_episode;
+        d.directDownload = true;
         m_posterDownloadManager->addDownload(d);
         ui->thumbnail->setLoading(true);
     } else {
@@ -529,7 +548,7 @@ void TvShowWidgetEpisode::onChooseThumbnail()
         return;
     }
 
-    ImageDialog::instance()->setImageType(TypeBackdrop);
+    ImageDialog::instance()->setImageType(ImageType::TvShowEpisodeThumb);
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setTvShowEpisode(m_episode);
     QList<Poster> posters;
@@ -540,14 +559,15 @@ void TvShowWidgetEpisode::onChooseThumbnail()
         posters << p;
     }
     ImageDialog::instance()->setDownloads(posters);
-    ImageDialog::instance()->exec(ImageDialogType::TvShowThumb);
+    ImageDialog::instance()->exec(ImageType::TvShowEpisodeThumb);
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
         emit sigSetActionSaveEnabled(false, WidgetTvShows);
         DownloadManagerElement d;
-        d.imageType = TypeBackdrop;
+        d.imageType = ImageType::TvShowEpisodeThumb;
         d.url = ImageDialog::instance()->imageUrl();
         d.episode = m_episode;
+        d.directDownload = true;
         m_posterDownloadManager->addDownload(d);
         ui->thumbnail->setLoading(true);
         ui->buttonRevert->setVisible(true);
@@ -560,11 +580,11 @@ void TvShowWidgetEpisode::onChooseThumbnail()
  */
 void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
 {
-    if (elem.imageType == TypeBackdrop) {
+    if (elem.imageType == ImageType::TvShowEpisodeThumb) {
         qDebug() << "Got a backdrop";
         if (m_episode == elem.episode)
             ui->thumbnail->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->thumbnailImageName(elem.episode));
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.episode, ImageType::TvShowEpisodeThumb));
         elem.episode->setThumbnailImage(elem.data);
     }
     if (m_posterDownloadManager->downloadQueueSize() == 0) {
@@ -783,6 +803,14 @@ void TvShowWidgetEpisode::onStudioChange(QString text)
     ui->buttonRevert->setVisible(true);
 }
 
+void TvShowWidgetEpisode::onEpBookmarkChange(QTime time)
+{
+    if (!m_episode)
+        return;
+    m_episode->setEpBookmark(time);
+    ui->buttonRevert->setVisible(true);
+}
+
 /**
  * @brief Marks the episode as changed when the overview has changed
  */
@@ -794,9 +822,9 @@ void TvShowWidgetEpisode::onOverviewChange()
 
 void TvShowWidgetEpisode::onDeleteThumbnail()
 {
-    m_episode->removeImage(TypeShowThumbnail);
-    if (!m_episode->imagesToRemove().contains(TypeShowThumbnail) && !Manager::instance()->mediaCenterInterface()->thumbnailImageName(m_episode).isEmpty())
-        ui->thumbnail->setImage(Manager::instance()->mediaCenterInterface()->thumbnailImageName(m_episode));
+    m_episode->removeImage(ImageType::TvShowEpisodeThumb);
+    if (!m_episode->imagesToRemove().contains(ImageType::TvShowEpisodeThumb) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb).isEmpty())
+        ui->thumbnail->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb));
     ui->buttonRevert->setVisible(true);
 }
 

@@ -6,4 +6,5 @@ DownloadManagerElement::DownloadManagerElement()
     episode = 0;
     show = 0;
     concert = 0;
+    directDownload = false;
 }

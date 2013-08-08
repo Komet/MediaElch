@@ -22,9 +22,23 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
     font.setPointSize(font.pointSize()+4);
     ui->title->setFont(font);
 
+    font = ui->labelPoster->font();
+    #ifdef Q_OS_WIN32
+        font.setPointSize(font.pointSize()-1);
+    #else
+        font.setPointSize(font.pointSize()-2);
+    #endif
+
+    font.setBold(true);
+    ui->labelFanart->setFont(font);
+    ui->labelBanner->setFont(font);
+    ui->labelPoster->setFont(font);
+    ui->labelThumb->setFont(font);
+
     ui->poster->setDefaultPixmap(QPixmap(":/img/film_reel.png"));
     ui->backdrop->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->banner->setDefaultPixmap(QPixmap());
+    ui->banner->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->thumb->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     m_downloadManager = new DownloadManager(this);
 
@@ -47,12 +61,15 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
 
-    connect(ui->poster, SIGNAL(clicked()), this, SLOT(onChoosePoster()));
-    connect(ui->backdrop, SIGNAL(clicked()), this, SLOT(onChooseBackdrop()));
-    connect(ui->banner, SIGNAL(clicked()), this, SLOT(onChooseBanner()));
-    connect(ui->poster, SIGNAL(sigClose()), this, SLOT(onDeletePoster()));
-    connect(ui->backdrop, SIGNAL(sigClose()), this, SLOT(onDeleteBackdrop()));
-    connect(ui->banner, SIGNAL(sigClose()), this, SLOT(onDeleteBanner()));
+    ui->poster->setImageType(ImageType::TvShowSeasonPoster);
+    ui->backdrop->setImageType(ImageType::TvShowSeasonBackdrop);
+    ui->banner->setImageType(ImageType::TvShowSeasonBanner);
+    ui->thumb->setImageType(ImageType::TvShowSeasonThumb);
+    foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage*>()) {
+        connect(image, SIGNAL(clicked()), this, SLOT(onChooseImage()));
+        connect(image, SIGNAL(sigClose()), this, SLOT(onDeleteImage()));
+    }
+
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
     connect(m_downloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onDownloadFinished(DownloadManagerElement)));
 }
@@ -78,36 +95,30 @@ void TvShowWidgetSeason::setSeason(TvShow *show, int season)
     emit sigSetActionSearchEnabled(false, WidgetTvShows);
     ui->title->setText(QString(show->name()) + " - " + tr("Season %1").arg(season));
 
-    updateImages(QList<ImageType>() << TypeSeasonPoster << TypeSeasonBackdrop << TypeSeasonBanner);
+    updateImages(QList<int>() << ImageType::TvShowSeasonPoster << ImageType::TvShowSeasonBackdrop << ImageType::TvShowSeasonBanner << ImageType::TvShowSeasonThumb);
 
     onSetEnabled(!show->downloadsInProgress());
     emit sigSetActionSaveEnabled(!show->downloadsInProgress(), WidgetTvShows);
 }
 
-void TvShowWidgetSeason::updateImages(QList<ImageType> images)
+void TvShowWidgetSeason::updateImages(QList<int> images)
 {
-    if (images.contains(TypeSeasonPoster)) {
-        if (!m_show->seasonPosterImage(m_season).isNull())
-            ui->poster->setImage(m_show->seasonPosterImage(m_season));
-        else if (!Manager::instance()->mediaCenterInterfaceTvShow()->seasonPosterImageName(m_show, m_season).isEmpty() &&
-                (!m_show->imagesToRemove().contains(TypeSeasonPoster) || !m_show->imagesToRemove().value(TypeSeasonPoster).contains(m_season)))
-            ui->poster->setImage(Manager::instance()->mediaCenterInterfaceTvShow()->seasonPosterImageName(m_show, m_season));
-    }
+    foreach (const int &imageType, images) {
+        ClosableImage *image = 0;
 
-    if (images.contains(TypeSeasonBackdrop)) {
-        if (!m_show->seasonBackdropImage(m_season).isNull())
-            ui->backdrop->setImage(m_show->seasonBackdropImage(m_season));
-        else if (!Manager::instance()->mediaCenterInterfaceTvShow()->seasonPosterImageName(m_show, m_season).isEmpty() &&
-                (!m_show->imagesToRemove().contains(TypeSeasonBackdrop) || !m_show->imagesToRemove().value(TypeSeasonBackdrop).contains(m_season)))
-            ui->backdrop->setImage(Manager::instance()->mediaCenterInterfaceTvShow()->seasonBackdropImageName(m_show, m_season));
-    }
+        foreach (ClosableImage *cImage, ui->groupBox_3->findChildren<ClosableImage*>()) {
+            if (cImage->imageType() == imageType)
+                image = cImage;
+        }
 
-    if (images.contains(TypeSeasonBanner)) {
-        if (!m_show->seasonBannerImage(m_season).isNull())
-            ui->banner->setImage(m_show->seasonBannerImage(m_season));
-        else if (!Manager::instance()->mediaCenterInterfaceTvShow()->seasonBannerImageName(m_show, m_season).isEmpty() &&
-                (!m_show->imagesToRemove().contains(TypeSeasonBanner) || !m_show->imagesToRemove().value(TypeSeasonBanner).contains(m_season)))
-            ui->banner->setImage(Manager::instance()->mediaCenterInterfaceTvShow()->seasonBannerImageName(m_show, m_season));
+        if (!image)
+            continue;
+
+        if (!m_show->seasonImage(m_season, imageType).isNull())
+            image->setImage(m_show->seasonImage(m_season, imageType));
+        else if (!Manager::instance()->mediaCenterInterfaceTvShow()->imageFileName(m_show, imageType, m_season).isEmpty() &&
+                (!m_show->imagesToRemove().contains(imageType) || !m_show->imagesToRemove().value(imageType).contains(m_season)))
+            image->setImage(Manager::instance()->mediaCenterInterfaceTvShow()->imageFileName(m_show, imageType, m_season));
     }
 }
 
@@ -117,6 +128,7 @@ void TvShowWidgetSeason::onClear()
     ui->poster->clear();
     ui->backdrop->clear();
     ui->banner->clear();
+    ui->thumb->clear();
     ui->buttonRevert->setVisible(false);
 }
 
@@ -137,93 +149,6 @@ void TvShowWidgetSeason::onSetEnabled(bool enabled)
     ui->groupBox_3->setEnabled(enabled);
 }
 
-void TvShowWidgetSeason::onChoosePoster()
-{
-    if (!m_show)
-        return;
-
-    ImageDialog::instance()->setImageType(TypePoster);
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setTvShow(m_show);
-    ImageDialog::instance()->setSeason(m_season);
-    ImageDialog::instance()->setDownloads(m_show->seasonPosters(m_season));
-    ImageDialog::instance()->exec(ImageDialogType::TvShowSeason);
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
-        DownloadManagerElement d;
-        d.imageType = TypeSeasonPoster;
-        d.url = ImageDialog::instance()->imageUrl();
-        d.season = m_season;
-        d.show = m_show;
-        m_downloadManager->addDownload(d);
-        ui->poster->setLoading(true);
-    }
-}
-
-void TvShowWidgetSeason::onChooseBackdrop()
-{
-    if (!m_show)
-        return;
-
-    ImageDialog::instance()->setImageType(TypeBackdrop);
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setTvShow(m_show);
-    ImageDialog::instance()->setSeason(m_season);
-    ImageDialog::instance()->setDownloads(m_show->seasonBackdrops(m_season));
-    ImageDialog::instance()->exec(ImageDialogType::TvShowSeasonBackdrop);
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
-        DownloadManagerElement d;
-        d.imageType = TypeSeasonBackdrop;
-        d.url = ImageDialog::instance()->imageUrl();
-        d.season = m_season;
-        d.show = m_show;
-        m_downloadManager->addDownload(d);
-        ui->backdrop->setLoading(true);
-    }
-}
-
-void TvShowWidgetSeason::onChooseBanner()
-{
-    if (!m_show)
-        return;
-
-    ImageDialog::instance()->setImageType(TypeBanner);
-    ImageDialog::instance()->clear();
-    ImageDialog::instance()->setTvShow(m_show);
-    ImageDialog::instance()->setSeason(m_season);
-    ImageDialog::instance()->setDownloads(m_show->seasonBanners(m_season));
-    ImageDialog::instance()->exec(ImageDialogType::TvShowSeasonBanner);
-    if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetTvShows);
-        DownloadManagerElement d;
-        d.imageType = TypeSeasonBanner;
-        d.url = ImageDialog::instance()->imageUrl();
-        d.season = m_season;
-        d.show = m_show;
-        m_downloadManager->addDownload(d);
-        ui->banner->setLoading(true);
-    }
-}
-
-void TvShowWidgetSeason::onDeletePoster()
-{
-    m_show->removeImage(TypeSeasonPoster, m_season);
-    updateImages(QList<ImageType>() << TypeSeasonPoster);
-}
-
-void TvShowWidgetSeason::onDeleteBackdrop()
-{
-    m_show->removeImage(TypeSeasonBackdrop, m_season);
-    updateImages(QList<ImageType>() << TypeSeasonBackdrop);
-}
-
-void TvShowWidgetSeason::onDeleteBanner()
-{
-    m_show->removeImage(TypeSeasonBanner, m_season);
-    updateImages(QList<ImageType>() << TypeSeasonBanner);
-}
-
 void TvShowWidgetSeason::onRevertChanges()
 {
     // @todo: implement
@@ -231,24 +156,66 @@ void TvShowWidgetSeason::onRevertChanges()
 
 void TvShowWidgetSeason::onDownloadFinished(DownloadManagerElement elem)
 {
-    if (elem.imageType == TypeSeasonPoster) {
-        if (m_show == elem.show)
-            ui->poster->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->seasonPosterImageName(elem.show, elem.season));
-        elem.show->setSeasonPosterImage(elem.season, elem.data);
-    } else if (elem.imageType == TypeSeasonBackdrop) {
-        Helper::resizeBackdrop(elem.data);
-        if (m_show == elem.show)
-            ui->backdrop->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->seasonBackdropImageName(elem.show, elem.season));
-        elem.show->setSeasonBackdropImage(elem.season, elem.data);
-    } else if (elem.imageType == TypeSeasonBanner) {
-        if (m_show == elem.show)
-            ui->banner->setImage(elem.data);
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->seasonBannerImageName(elem.show, elem.season));
-        elem.show->setSeasonBannerImage(elem.season, elem.data);
+    foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage*>()) {
+        if (image->imageType() == elem.imageType) {
+            if (elem.imageType == ImageType::TvShowSeasonBackdrop)
+                Helper::resizeBackdrop(elem.data);
+            if (m_show == elem.show)
+                image->setImage(elem.data);
+            ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType, elem.season));
+            elem.show->setSeasonImage(elem.season, elem.imageType, elem.data);
+            break;
+        }
     }
 
     if (m_downloadManager->downloadsLeftForShow(m_show) == 0)
         emit sigSetActionSaveEnabled(true, WidgetTvShows);
+}
+
+void TvShowWidgetSeason::onChooseImage()
+{
+    if (m_show == 0)
+        return;
+
+    ClosableImage *image = static_cast<ClosableImage*>(QObject::sender());
+    if (!image)
+        return;
+
+    ImageDialog::instance()->setImageType(image->imageType());
+    ImageDialog::instance()->clear();
+    ImageDialog::instance()->setTvShow(m_show);
+    ImageDialog::instance()->setSeason(m_season);
+    if (image->imageType() == ImageType::TvShowSeasonPoster)
+        ImageDialog::instance()->setDownloads(m_show->seasonPosters(m_season));
+    else if (image->imageType() == ImageType::TvShowSeasonBackdrop)
+        ImageDialog::instance()->setDownloads(m_show->seasonBackdrops(m_season));
+    else if (image->imageType() == ImageType::TvShowSeasonBanner)
+        ImageDialog::instance()->setDownloads(m_show->seasonBanners(m_season));
+    else
+        ImageDialog::instance()->setDownloads(QList<Poster>());
+    ImageDialog::instance()->exec(image->imageType());
+
+    if (ImageDialog::instance()->result() == QDialog::Accepted) {
+        emit sigSetActionSaveEnabled(false, WidgetTvShows);
+        DownloadManagerElement d;
+        d.imageType = image->imageType();
+        d.url = ImageDialog::instance()->imageUrl();
+        d.season = m_season;
+        d.show = m_show;
+        m_downloadManager->addDownload(d);
+        image->setLoading(true);
+    }
+}
+
+void TvShowWidgetSeason::onDeleteImage()
+{
+    if (m_show == 0)
+        return;
+
+    ClosableImage *image = static_cast<ClosableImage*>(QObject::sender());
+    if (!image)
+        return;
+
+    m_show->removeImage(image->imageType(), m_season);
+    updateImages(QList<int>() << image->imageType());
 }

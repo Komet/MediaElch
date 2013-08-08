@@ -25,7 +25,6 @@ XbmcSync::XbmcSync(QWidget *parent) :
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(onButtonClose()));
     connect(ui->radioUpdateContents, SIGNAL(clicked()), this, SLOT(onRadioContents()));
     connect(ui->radioGetWatched, SIGNAL(clicked()), this, SLOT(onRadioWatched()));
-    connect(ui->radioRenameArtwork, SIGNAL(clicked()), this, SLOT(onRadioRenameArtwork()));
     ui->progressBar->setVisible(false);
     onRadioContents();
 }
@@ -68,10 +67,6 @@ void XbmcSync::reject()
 
 void XbmcSync::startSync()
 {
-    if (m_syncType == RenameArtwork) {
-        renameArtwork();
-        return;
-    }
     m_allReady = false;
     m_elements.clear();
     m_aborted = false;
@@ -542,25 +537,17 @@ QStringList XbmcSync::splitFile(QString file)
 void XbmcSync::onRadioContents()
 {
     ui->labelContents->setVisible(true);
+    ui->chkClean->setVisible(true);
     ui->labelWatched->setVisible(false);
-    ui->labelRenameArtwork->setVisible(false);
     m_syncType = SyncContents;
 }
 
 void XbmcSync::onRadioWatched()
 {
     ui->labelContents->setVisible(false);
+    ui->chkClean->setVisible(false);
     ui->labelWatched->setVisible(true);
-    ui->labelRenameArtwork->setVisible(false);
     m_syncType = SyncWatched;
-}
-
-void XbmcSync::onRadioRenameArtwork()
-{
-    ui->labelContents->setVisible(false);
-    ui->labelWatched->setVisible(false);
-    ui->labelRenameArtwork->setVisible(true);
-    m_syncType = RenameArtwork;
 }
 
 XbmcSync::XbmcData XbmcSync::parseXbmcDataFromMap(QMap<QString, QVariant> map)
@@ -572,146 +559,15 @@ XbmcSync::XbmcData XbmcSync::parseXbmcDataFromMap(QMap<QString, QVariant> map)
     return d;
 }
 
-void XbmcSync::renameArtwork()
-{
-    m_artworkWasRenamed = true;
-    m_cancelRenameArtwork = false;
-    m_renameArtworkInProgress = true;
-    ui->status->clear();
-    ui->progressBar->setMaximum(1);
-    ui->progressBar->setValue(0);
-    ui->progressBar->setVisible(true);
-    ui->buttonClose->setText(tr("Cancel"));
-    ui->buttonSync->setEnabled(false);
-
-    int items = 0;
-    items += Manager::instance()->movieModel()->movies().count();
-    items += Manager::instance()->concertModel()->concerts().count();
-    items += Manager::instance()->tvShowModel()->tvShows().count();
-    foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows())
-        items += show->episodes().count();
-
-    ui->progressBar->setMaximum(items);
-
-    int currentItem = 0;
-    ui->status->setText(tr("Renaming Movie Artwork..."));
-    foreach (Movie *movie, Manager::instance()->movieModel()->movies()) {
-        MediaCenterInterface *interface = Manager::instance()->mediaCenterInterface();
-        Settings *settings = Settings::instance();
-        if (m_cancelRenameArtwork)
-            break;
-
-        if (!interface->posterImageName(movie).isEmpty())
-            QFile(interface->posterImageName(movie)).
-                    rename(interface->posterImageName(movie, settings->dataFilesFrodo(DataFileType::MoviePoster), true));
-        if (!interface->backdropImageName(movie).isEmpty())
-            QFile(interface->backdropImageName(movie)).
-                    rename(interface->backdropImageName(movie, settings->dataFilesFrodo(DataFileType::MovieBackdrop), true));
-        if (!interface->cdArtImageName(movie).isEmpty())
-            QFile(interface->cdArtImageName(movie)).
-                    rename(interface->cdArtImageName(movie, settings->dataFilesFrodo(DataFileType::MovieCdArt), true));
-        if (!interface->clearArtImageName(movie).isEmpty())
-            QFile(interface->clearArtImageName(movie)).
-                    rename(interface->clearArtImageName(movie, settings->dataFilesFrodo(DataFileType::MovieClearArt), true));
-        if (!interface->logoImageName(movie).isEmpty())
-            QFile(interface->logoImageName(movie)).
-                    rename(interface->logoImageName(movie, settings->dataFilesFrodo(DataFileType::MovieLogo), true));
-
-        ui->progressBar->setValue(++currentItem);
-        qApp->processEvents();
-    }
-
-    ui->status->setText(tr("Renaming TV Show and Episode Artwork..."));
-    foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
-        MediaCenterInterface *interface = Manager::instance()->mediaCenterInterfaceTvShow();
-        Settings *settings = Settings::instance();
-        if (m_cancelRenameArtwork)
-            break;
-        if (!interface->posterImageName(show).isEmpty())
-            QFile(interface->posterImageName(show)).
-                    rename(interface->posterImageName(show, settings->dataFilesFrodo(DataFileType::TvShowPoster), true));
-        if (!interface->backdropImageName(show).isEmpty())
-            QFile(interface->backdropImageName(show)).
-                    rename(interface->backdropImageName(show, settings->dataFilesFrodo(DataFileType::TvShowBackdrop), true));
-        if (!interface->bannerImageName(show).isEmpty())
-            QFile(interface->bannerImageName(show)).
-                    rename(interface->bannerImageName(show, settings->dataFilesFrodo(DataFileType::TvShowBanner), true));
-        if (!interface->logoImageName(show).isEmpty())
-            QFile(interface->logoImageName(show)).
-                    rename(interface->logoImageName(show, settings->dataFilesFrodo(DataFileType::TvShowLogo), true));
-        if (!interface->clearArtImageName(show).isEmpty())
-            QFile(interface->clearArtImageName(show)).
-                    rename(interface->clearArtImageName(show, settings->dataFilesFrodo(DataFileType::TvShowClearArt), true));
-        if (!interface->characterArtImageName(show).isEmpty())
-            QFile(interface->characterArtImageName(show)).
-                    rename(interface->characterArtImageName(show, settings->dataFilesFrodo(DataFileType::TvShowCharacterArt), true));
-        foreach (const int &season, show->seasons()) {
-            if (!interface->seasonPosterImageName(show, season).isEmpty())
-                QFile(interface->seasonPosterImageName(show, season)).
-                        rename(interface->seasonPosterImageName(show, season, settings->dataFilesFrodo(DataFileType::TvShowSeasonPoster), true));
-            if (!interface->seasonBackdropImageName(show, season).isEmpty())
-                QFile(interface->seasonBackdropImageName(show, season)).
-                        rename(interface->seasonBackdropImageName(show, season, settings->dataFilesFrodo(DataFileType::TvShowSeasonBackdrop), true));
-            if (!interface->seasonBannerImageName(show, season).isEmpty())
-                QFile(interface->seasonBannerImageName(show, season)).
-                        rename(interface->seasonBannerImageName(show, season, settings->dataFilesFrodo(DataFileType::TvShowSeasonBanner), true));
-        }
-
-        ui->progressBar->setValue(++currentItem);
-        qApp->processEvents();
-        foreach (TvShowEpisode *episode, show->episodes()) {
-            if (m_cancelRenameArtwork)
-                break;
-            if (!interface->thumbnailImageName(episode).isEmpty())
-                QFile(interface->thumbnailImageName(episode)).
-                        rename(interface->thumbnailImageName(episode, settings->dataFilesFrodo(DataFileType::TvShowEpisodeThumb), true));
-            ui->progressBar->setValue(++currentItem);
-            qApp->processEvents();
-        }
-    }
-
-    ui->status->setText(tr("Renaming Concert Artwork..."));
-    foreach (Concert *concert, Manager::instance()->concertModel()->concerts()) {
-        MediaCenterInterface *interface = Manager::instance()->mediaCenterInterfaceConcert();
-        Settings *settings = Settings::instance();
-        if (m_cancelRenameArtwork)
-            break;
-
-        if (!interface->posterImageName(concert).isEmpty())
-            QFile(interface->posterImageName(concert)).
-                    rename(interface->posterImageName(concert, settings->dataFilesFrodo(DataFileType::ConcertPoster), true));
-        if (!interface->backdropImageName(concert).isEmpty())
-            QFile(interface->backdropImageName(concert)).
-                    rename(interface->backdropImageName(concert, settings->dataFilesFrodo(DataFileType::ConcertBackdrop), true));
-        if (!interface->cdArtImageName(concert).isEmpty())
-            QFile(interface->cdArtImageName(concert)).
-                    rename(interface->cdArtImageName(concert, settings->dataFilesFrodo(DataFileType::ConcertCdArt), true));
-        if (!interface->clearArtImageName(concert).isEmpty())
-            QFile(interface->clearArtImageName(concert)).
-                    rename(interface->clearArtImageName(concert, settings->dataFilesFrodo(DataFileType::ConcertClearArt), true));
-        if (!interface->logoImageName(concert).isEmpty())
-            QFile(interface->logoImageName(concert)).
-                    rename(interface->logoImageName(concert, settings->dataFilesFrodo(DataFileType::ConcertLogo), true));
-
-        ui->progressBar->setValue(++currentItem);
-        qApp->processEvents();
-    }
-
-    if (m_cancelRenameArtwork)
-        ui->status->setText(tr("Canceled."));
-    else
-        ui->status->setText(tr("Finished. All artwork has been renamed."));
-    m_renameArtworkInProgress = false;
-    ui->progressBar->hide();
-    ui->buttonClose->setEnabled(true);
-    ui->buttonClose->setText(tr("Close"));
-    ui->buttonSync->setEnabled(true);
-}
-
 void XbmcSync::processMessage(QJsonRpcMessage msg)
 {
-    if (msg.method() == "VideoLibrary.OnScanFinished")
+    if (msg.method() == "VideoLibrary.OnScanFinished") {
         MessageBox::instance()->showMessage(tr("XBMC Library Scan has finished"));
+        if (ui->chkClean->isChecked())
+            m_client->invokeRemoteMethod("VideoLibrary.Clean");
+    } else if (msg.method() == "VideoLibrary.OnCleanFinished") {
+        MessageBox::instance()->showMessage(tr("Cleaning XBMC Library has finished"));
+    }
 }
 
 void XbmcSync::updateFolderLastModified(Movie *movie)

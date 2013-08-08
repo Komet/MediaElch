@@ -358,13 +358,16 @@ int TvShowFileSearcher::getSeasonNumber(QStringList files)
             filename = filenameParts.at(filenameParts.count()-3);
     }
 
-    QRegExp rx("S(\\d+)[._]?E", Qt::CaseInsensitive);
+    QRegExp rx("S(\\d+)[\\._\\-]?E", Qt::CaseInsensitive);
     if (rx.indexIn(filename) != -1)
         return rx.cap(1).toInt();
     rx.setPattern("(\\d+)?x(\\d+)");
     if (rx.indexIn(filename) != -1)
         return rx.cap(1).toInt();
     rx.setPattern("(\\d+)(\\d){2}");
+    if (rx.indexIn(filename) != -1)
+        return rx.cap(1).toInt();
+    rx.setPattern("Season[._ ]?(\\d+)[._ ]?Episode");
     if (rx.indexIn(filename) != -1)
         return rx.cap(1).toInt();
 
@@ -390,7 +393,7 @@ QList<int> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
     }
 
     QStringList patterns;
-    patterns << "S(\\d+)[._]?E(\\d+)" << "S(\\d+)EP(\\d+)" << "(\\d+)x(\\d+)" << "(\\d+)(\\d){2}";
+    patterns << "S(\\d+)[\\._\\-]?E(\\d+)" << "S(\\d+)EP(\\d+)" << "(\\d+)x(\\d+)" << "(\\d+)(\\d){2}" << "Season[._ ]?(\\d+)[._ ]?Episode[._ ]?(\\d+)";
     QRegExp rx;
     rx.setCaseSensitivity(Qt::CaseInsensitive);
 
@@ -407,10 +410,10 @@ QList<int> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
         // Pattern matched
         if (!episodes.isEmpty()) {
             if (episodes.count() == 1) {
-                rx.setPattern("^[-_EeXx]+([0-9]+)");
+                rx.setPattern("^[-_EeXx]+([0-9]+)($|[\\-\\._\\sE])");
                 while (rx.indexIn(filename, pos, QRegExp::CaretAtOffset) != -1) {
                     episodes << rx.cap(1).toInt();
-                    pos += rx.matchedLength();
+                    pos += rx.matchedLength()-1;
                 }
             }
             break;

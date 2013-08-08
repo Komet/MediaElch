@@ -5,7 +5,9 @@
 #include <QPropertyAnimation>
 #include <QScrollArea>
 #include <QScrollBar>
+#include <QtConcurrentRun>
 #include "globals/ImagePreviewDialog.h"
+#include "settings/Settings.h"
 
 ImageGallery::ImageGallery(QWidget *parent) :
     QWidget(parent)
@@ -115,6 +117,7 @@ void ImageGallery::setImages(QList<ExtraFanart> images)
         else
             label->setFixedSize(Qt::Vertical, m_imageHeight);
         label->setMyData(fanart.path);
+
         if (!fanart.image.isNull())
             label->setImage(fanart.image);
         else

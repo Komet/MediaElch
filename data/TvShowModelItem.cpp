@@ -73,6 +73,30 @@ QVariant TvShowModelItem::data(int column) const
 {
     switch (column)
     {
+    case 101:
+        if (m_tvShow)
+            return m_tvShow->hasImage(ImageType::TvShowBanner);
+    case 102:
+        if (m_tvShow)
+            return m_tvShow->hasImage(ImageType::TvShowPoster);
+    case 103:
+        if (m_tvShow)
+            return m_tvShow->hasImage(ImageType::TvShowExtraFanart);
+    case 104:
+        if (m_tvShow)
+            return m_tvShow->hasImage(ImageType::TvShowBackdrop);
+    case 105:
+        if (m_tvShow)
+            return m_tvShow->hasImage(ImageType::TvShowLogos);
+    case 106:
+        if (m_tvShow)
+            return m_tvShow->hasImage(ImageType::TvShowThumb);
+    case 107:
+        if (m_tvShow)
+            return m_tvShow->hasImage(ImageType::TvShowClearArt);
+    case 108:
+        if (m_tvShow)
+            return m_tvShow->hasImage(ImageType::TvShowCharacterArt);
     case 4:
         if (m_tvShow)
             return m_tvShow->syncNeeded();

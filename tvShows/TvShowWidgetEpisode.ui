@@ -265,23 +265,6 @@
               </property>
              </widget>
             </item>
-            <item row="8" column="1">
-             <widget class="QSpinBox" name="playCount"/>
-            </item>
-            <item row="9" column="0">
-             <widget class="QLabel" name="label_11">
-              <property name="text">
-               <string>Last Played</string>
-              </property>
-             </widget>
-            </item>
-            <item row="9" column="1">
-             <widget class="QDateTimeEdit" name="lastPlayed">
-              <property name="displayFormat">
-               <string>dd.MM.yyyy HH:mm</string>
-              </property>
-             </widget>
-            </item>
             <item row="10" column="0">
              <widget class="QLabel" name="label_9">
               <property name="text">
@@ -348,6 +331,41 @@
                </widget>
               </item>
              </layout>
+            </item>
+            <item row="8" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="QSpinBox" name="playCount"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_11">
+                <property name="text">
+                 <string>Last Played</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDateTimeEdit" name="lastPlayed">
+                <property name="displayFormat">
+                 <string>dd.MM.yyyy HH:mm</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="9" column="0">
+             <widget class="QLabel" name="labelBookmark">
+              <property name="text">
+               <string>Bookmark</string>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="1">
+             <widget class="QTimeEdit" name="epBookmark">
+              <property name="displayFormat">
+               <string>HH:mm:ss</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -788,7 +806,7 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QLabel" name="label_14">
+         <widget class="QLabel" name="labelThumbnail">
           <property name="font">
            <font>
             <weight>75</weight>
@@ -804,14 +822,14 @@
          <widget class="ClosableImage" name="thumbnail">
           <property name="minimumSize">
            <size>
-            <width>200</width>
-            <height>132</height>
+            <width>180</width>
+            <height>120</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>200</width>
-            <height>132</height>
+            <width>180</width>
+            <height>120</height>
            </size>
           </property>
           <property name="cursor">
@@ -833,7 +851,7 @@
            <bool>true</bool>
           </property>
           <property name="myFixedHeight" stdset="0">
-           <number>132</number>
+           <number>120</number>
           </property>
          </widget>
         </item>

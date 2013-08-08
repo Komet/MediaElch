@@ -116,7 +116,7 @@ void DownloadManager::startNextDownload()
     connect(m_currentReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(downloadProgress(qint64,qint64)));
 
 
-    if (m_currentDownloadElement.imageType == TypeActor || m_currentDownloadElement.imageType == TypeShowThumbnail) {
+    if (m_currentDownloadElement.imageType == ImageType::Actor || m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb) {
         if (m_currentDownloadElement.movie) {
             int numDownloadsLeft = 0;
             m_mutex.lock();
@@ -182,6 +182,8 @@ void DownloadManager::downloadTimeout()
 void DownloadManager::downloadFinished()
 {
     qDebug() << "Entered";
+
+    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     m_downloading = false;
     m_retries = 0;
     QByteArray data;
@@ -191,10 +193,10 @@ void DownloadManager::downloadFinished()
         data = m_currentReply->readAll();
     }
     m_currentDownloadElement.data = data;
-    m_currentReply->deleteLater();
-    if (m_currentDownloadElement.imageType == TypeActor && !m_currentDownloadElement.movie)
+    reply->deleteLater();
+    if (m_currentDownloadElement.imageType == ImageType::Actor && !m_currentDownloadElement.movie)
         m_currentDownloadElement.actor->image = data;
-    else if (m_currentDownloadElement.imageType == TypeShowThumbnail)
+    else if (m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb && !m_currentDownloadElement.directDownload)
         m_currentDownloadElement.episode->setThumbnailImage(data);
     else
         emit downloadFinished(m_currentDownloadElement);

@@ -1,5 +1,6 @@
 #include "Cinefacts.h"
 #include <QTextDocument>
+#include <QWidget>
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
@@ -34,6 +35,11 @@ QString Cinefacts::name()
     return QString("Cinefacts");
 }
 
+QString Cinefacts::identifier()
+{
+    return QString("cinefacts");
+}
+
 /**
  * @brief Returns if the scraper has settings
  * @return Scraper has settings
@@ -41,6 +47,11 @@ QString Cinefacts::name()
 bool Cinefacts::hasSettings()
 {
     return false;
+}
+
+QWidget *Cinefacts::settingsWidget()
+{
+    return 0;
 }
 
 /**
@@ -73,6 +84,11 @@ QNetworkAccessManager *Cinefacts::qnam()
  * @return List of supported infos
  */
 QList<int> Cinefacts::scraperSupports()
+{
+    return m_scraperSupports;
+}
+
+QList<int> Cinefacts::scraperNativelySupports()
 {
     return m_scraperSupports;
 }
@@ -140,15 +156,14 @@ QList<ScraperSearchResult> Cinefacts::parseSearch(QString html)
  * @param infos List of infos to load
  * @see Cinefacts::loadFinished
  */
-void Cinefacts::loadData(QString id, Movie *movie, QList<int> infos)
+void Cinefacts::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos)
 {
-    qDebug() << "Entered, id=" << id << "movie=" << movie->name();
     movie->clear(infos);
 
-    QUrl url(QString("http://www.cinefacts.de/Filme/%1").arg(id));
+    QUrl url(QString("http://www.cinefacts.de/Filme/%1").arg(ids.values().first()));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, movie));
-    reply->setProperty("cinefactsId", id);
+    reply->setProperty("cinefactsId", ids.values().first());
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
 }
@@ -177,7 +192,7 @@ void Cinefacts::loadFinished()
         connect(reply, SIGNAL(finished()), this, SLOT(actorsFinished()));
     } else {
         qWarning() << "Network Error" << reply->errorString();
-        movie->controller()->scraperLoadDone();
+        movie->controller()->scraperLoadDone(this);
     }
 }
 
@@ -201,7 +216,7 @@ void Cinefacts::actorsFinished()
         connect(reply, SIGNAL(finished()), this, SLOT(imagesFinished()));
     } else {
         qWarning() << "Network Error" << reply->errorString();
-        movie->controller()->scraperLoadDone();
+        movie->controller()->scraperLoadDone(this);
     }
 }
 
@@ -240,7 +255,7 @@ void Cinefacts::imagesFinished()
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
-    movie->controller()->scraperLoadDone();
+    movie->controller()->scraperLoadDone(this);
 }
 
 /**
@@ -421,7 +436,7 @@ void Cinefacts::posterFinished()
             return;
         }
     }
-    movie->controller()->scraperLoadDone();
+    movie->controller()->scraperLoadDone(this);
 }
 
 /**
@@ -458,33 +473,5 @@ void Cinefacts::backdropFinished()
             return;
         }
     }
-    movie->controller()->scraperLoadDone();
-}
-
-/**
- * @brief Cinefacts::languages
- * @return
- */
-QMap<QString, QString> Cinefacts::languages()
-{
-    QMap<QString, QString> m;
-    return m;
-}
-
-/**
- * @brief language
- * @return
- */
-QString Cinefacts::language()
-{
-    return QString();
-}
-
-/**
- * @brief Cinefacts::setLanguage
- * @param language
- */
-void Cinefacts::setLanguage(QString language)
-{
-    Q_UNUSED(language);
+    movie->controller()->scraperLoadDone(this);
 }

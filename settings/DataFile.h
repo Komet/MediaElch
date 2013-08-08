@@ -15,6 +15,9 @@ public:
     int pos() const;
     QString saveFileName(const QString &fileName, int season = -1, bool stacked = false);
     static bool lessThan(DataFile a, DataFile b);
+    void setFileName(QString fileName);
+
+    static int dataFileTypeForImageType(int imageType);
 
 private:
     QString m_fileName;

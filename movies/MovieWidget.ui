@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>934</width>
-    <height>765</height>
+    <height>811</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1056,13 +1056,13 @@ QPushButton::hover {
            <widget class="SlidingStackedWidget" name="artStackedWidget">
             <property name="minimumSize">
              <size>
-              <width>200</width>
+              <width>180</width>
               <height>0</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>200</width>
+              <width>180</width>
               <height>16777215</height>
              </size>
             </property>
@@ -1075,13 +1075,7 @@ QPushButton::hover {
                <number>0</number>
               </property>
               <item>
-               <widget class="QLabel" name="label_13">
-                <property name="font">
-                 <font>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
+               <widget class="QLabel" name="labelPoster">
                 <property name="text">
                  <string>Poster</string>
                 </property>
@@ -1091,14 +1085,14 @@ QPushButton::hover {
                <widget class="ClosableImage" name="poster">
                 <property name="minimumSize">
                  <size>
-                  <width>200</width>
-                  <height>320</height>
+                  <width>180</width>
+                  <height>290</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>200</width>
-                  <height>320</height>
+                  <width>180</width>
+                  <height>290</height>
                  </size>
                 </property>
                 <property name="cursor">
@@ -1120,18 +1114,15 @@ QPushButton::hover {
                  <bool>true</bool>
                 </property>
                 <property name="myFixedHeight" stdset="0">
-                 <number>320</number>
+                 <number>290</number>
+                </property>
+                <property name="title" stdset="0">
+                 <string>Poster</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_14">
-                <property name="font">
-                 <font>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
+               <widget class="QLabel" name="labelFanart">
                 <property name="text">
                  <string>Fanart</string>
                 </property>
@@ -1141,83 +1132,13 @@ QPushButton::hover {
                <widget class="ClosableImage" name="backdrop">
                 <property name="minimumSize">
                  <size>
-                  <width>200</width>
-                  <height>132</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>200</width>
-                  <height>132</height>
-                 </size>
-                </property>
-                <property name="cursor">
-                 <cursorShape>PointingHandCursor</cursorShape>
-                </property>
-                <property name="toolTip">
-                 <string>Click to Change</string>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="pixmap">
-                 <pixmap resource="../MediaElch.qrc">:/img/pictures_alt.png</pixmap>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-                <property name="clickable" stdset="0">
-                 <bool>true</bool>
-                </property>
-                <property name="myFixedHeight" stdset="0">
-                 <number>132</number>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="verticalSpacer">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="page_2">
-             <layout class="QVBoxLayout" name="verticalLayout_11">
-              <property name="margin">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="label_10">
-                <property name="font">
-                 <font>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Logo</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="ClosableImage" name="logo">
-                <property name="minimumSize">
-                 <size>
-                  <width>200</width>
+                  <width>180</width>
                   <height>120</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>200</width>
+                  <width>180</width>
                   <height>120</height>
                  </size>
                 </property>
@@ -1242,16 +1163,124 @@ QPushButton::hover {
                 <property name="myFixedHeight" stdset="0">
                  <number>120</number>
                 </property>
+                <property name="title" stdset="0">
+                 <string>Fanart</string>
+                </property>
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_25">
-                <property name="font">
-                 <font>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
+               <widget class="QLabel" name="labelThumb">
+                <property name="text">
+                 <string>Thumb</string>
                 </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="ClosableImage" name="thumb">
+                <property name="minimumSize">
+                 <size>
+                  <width>180</width>
+                  <height>102</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>180</width>
+                  <height>102</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="toolTip">
+                 <string>Click to Change</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+                <property name="clickable" stdset="0">
+                 <bool>true</bool>
+                </property>
+                <property name="myFixedHeight" stdset="0">
+                 <number>102</number>
+                </property>
+                <property name="title" stdset="0">
+                 <string>Thumb</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="page_2">
+             <layout class="QVBoxLayout" name="verticalLayout_11">
+              <property name="margin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="labelLogo">
+                <property name="text">
+                 <string>Logo</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="ClosableImage" name="logo">
+                <property name="minimumSize">
+                 <size>
+                  <width>180</width>
+                  <height>110</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>180</width>
+                  <height>110</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="toolTip">
+                 <string>Click to Change</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap resource="../MediaElch.qrc">:/img/pictures_alt.png</pixmap>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+                <property name="clickable" stdset="0">
+                 <bool>true</bool>
+                </property>
+                <property name="myFixedHeight" stdset="0">
+                 <number>110</number>
+                </property>
+                <property name="title" stdset="0">
+                 <string>Logo</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelClearArt">
                 <property name="text">
                  <string>Clear Art</string>
                 </property>
@@ -1261,14 +1290,14 @@ QPushButton::hover {
                <widget class="ClosableImage" name="clearArt">
                 <property name="minimumSize">
                  <size>
-                  <width>200</width>
-                  <height>170</height>
+                  <width>180</width>
+                  <height>155</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>200</width>
-                  <height>170</height>
+                  <width>180</width>
+                  <height>155</height>
                  </size>
                 </property>
                 <property name="cursor">
@@ -1290,20 +1319,17 @@ QPushButton::hover {
                  <bool>true</bool>
                 </property>
                 <property name="myFixedHeight" stdset="0">
-                 <number>170</number>
+                 <number>155</number>
+                </property>
+                <property name="title" stdset="0">
+                 <string>Clear Art</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_26">
-                <property name="font">
-                 <font>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
+               <widget class="QLabel" name="labelDiscArt">
                 <property name="text">
-                 <string>CD Art</string>
+                 <string>Disc Art</string>
                 </property>
                </widget>
               </item>
@@ -1311,14 +1337,14 @@ QPushButton::hover {
                <widget class="ClosableImage" name="cdArt">
                 <property name="minimumSize">
                  <size>
-                  <width>200</width>
-                  <height>220</height>
+                  <width>180</width>
+                  <height>200</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>200</width>
-                  <height>220</height>
+                  <width>180</width>
+                  <height>200</height>
                  </size>
                 </property>
                 <property name="cursor">
@@ -1340,7 +1366,54 @@ QPushButton::hover {
                  <bool>true</bool>
                 </property>
                 <property name="myFixedHeight" stdset="0">
-                 <number>220</number>
+                 <number>200</number>
+                </property>
+                <property name="title" stdset="0">
+                 <string>CD Art</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelBanner">
+                <property name="text">
+                 <string>Banner</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="ClosableImage" name="banner">
+                <property name="minimumSize">
+                 <size>
+                  <width>180</width>
+                  <height>53</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>180</width>
+                  <height>53</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="toolTip">
+                 <string>Click to Change</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+                <property name="myFixedHeight" stdset="0">
+                 <number>53</number>
+                </property>
+                <property name="clickable" stdset="0">
+                 <bool>true</bool>
+                </property>
+                <property name="title" stdset="0">
+                 <string>Banner</string>
                 </property>
                </widget>
               </item>

@@ -1,6 +1,7 @@
 #include "OFDb.h"
 
 #include <QDomDocument>
+#include <QWidget>
 #include <QXmlStreamReader>
 #include "data/Storage.h"
 #include "globals/Globals.h"
@@ -31,6 +32,11 @@ OFDb::OFDb(QObject *parent)
 QString OFDb::name()
 {
     return QString("OFDb");
+}
+
+QString OFDb::identifier()
+{
+    return QString("ofdb");
 }
 
 /**
@@ -76,6 +82,11 @@ QList<int> OFDb::scraperSupports()
     return m_scraperSupports;
 }
 
+QList<int> OFDb::scraperNativelySupports()
+{
+    return m_scraperSupports;
+}
+
 /**
  * @brief Searches for a movie
  * @param searchStr The Movie name/search string
@@ -86,7 +97,13 @@ void OFDb::search(QString searchStr)
     qDebug() << "Entered, searchStr=" << searchStr;
 
     QString encodedSearch = Helper::toLatin1PercentEncoding(searchStr);
-    QUrl url(QString("http://www.ofdbgw.org/search/%1").arg(encodedSearch).toUtf8());
+
+    QUrl url;
+    QRegExp rxId("^id\\d+$");
+    if (rxId.exactMatch(searchStr))
+        url.setUrl(QString("http://www.ofdbgw.org/movie/%1").arg(searchStr.mid(2)).toUtf8());
+    else
+        url.setUrl(QString("http://www.ofdbgw.org/search/%1").arg(encodedSearch).toUtf8());
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     reply->setProperty("searchString", searchStr);
     reply->setProperty("notFoundCounter", 0);
@@ -130,7 +147,7 @@ void OFDb::searchFinished()
     QList<ScraperSearchResult> results;
     if (reply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(reply->readAll());
-        results = parseSearch(msg);
+        results = parseSearch(msg, searchStr);
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
@@ -143,23 +160,35 @@ void OFDb::searchFinished()
  * @param xml XML data
  * @return List of search results
  */
-QList<ScraperSearchResult> OFDb::parseSearch(QString xml)
+QList<ScraperSearchResult> OFDb::parseSearch(QString xml, QString searchStr)
 {
     qDebug() << "Entered";
     QList<ScraperSearchResult> results;
     QDomDocument domDoc;
     domDoc.setContent(xml);
-    for (int i=0, n=domDoc.elementsByTagName("eintrag").size() ; i<n ; i++) {
-        QDomElement entry = domDoc.elementsByTagName("eintrag").at(i).toElement();
-        if (entry.elementsByTagName("id").size() == 0 || entry.elementsByTagName("id").at(0).toElement().text().isEmpty())
-            continue;
+
+    if (domDoc.elementsByTagName("eintrag").count() == 0 && !domDoc.elementsByTagName("resultat").isEmpty()) {
+        QDomElement entry = domDoc.elementsByTagName("resultat").at(0).toElement();
         ScraperSearchResult result;
-        result.id = entry.elementsByTagName("id").at(0).toElement().text();
+        result.id = searchStr.mid(2);
         if (entry.elementsByTagName("titel").size() > 0)
             result.name = entry.elementsByTagName("titel").at(0).toElement().text();
         if (entry.elementsByTagName("jahr").size() > 0)
             result.released = QDate::fromString(entry.elementsByTagName("jahr").at(0).toElement().text(), "yyyy");
         results.append(result);
+    } else {
+        for (int i=0, n=domDoc.elementsByTagName("eintrag").size() ; i<n ; i++) {
+            QDomElement entry = domDoc.elementsByTagName("eintrag").at(i).toElement();
+            if (entry.elementsByTagName("id").size() == 0 || entry.elementsByTagName("id").at(0).toElement().text().isEmpty())
+                continue;
+            ScraperSearchResult result;
+            result.id = entry.elementsByTagName("id").at(0).toElement().text();
+            if (entry.elementsByTagName("titel").size() > 0)
+                result.name = entry.elementsByTagName("titel").at(0).toElement().text();
+            if (entry.elementsByTagName("jahr").size() > 0)
+                result.released = QDate::fromString(entry.elementsByTagName("jahr").at(0).toElement().text(), "yyyy");
+            results.append(result);
+        }
     }
     return results;
 }
@@ -171,15 +200,14 @@ QList<ScraperSearchResult> OFDb::parseSearch(QString xml)
  * @param infos List of infos to load
  * @see OFDb::loadFinished
  */
-void OFDb::loadData(QString id, Movie *movie, QList<int> infos)
+void OFDb::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos)
 {
-    qDebug() << "Entered, id=" << id << "movie=" << movie->name();
     movie->clear(infos);
 
-    QUrl url(QString("http://ofdbgw.org/movie/%1").arg(id));
+    QUrl url(QString("http://ofdbgw.org/movie/%1").arg(ids.values().first()));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, movie));
-    reply->setProperty("ofdbId", id);
+    reply->setProperty("ofdbId", ids.values().first());
     reply->setProperty("notFoundCounter", 0);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
@@ -233,7 +261,7 @@ void OFDb::loadFinished()
         qWarning() << "Network Error" << reply->errorString();
     }
     reply->deleteLater();
-    movie->controller()->scraperLoadDone();
+    movie->controller()->scraperLoadDone(this);
 }
 
 /**
@@ -316,30 +344,7 @@ void OFDb::parseAndAssignInfos(QString data, Movie *movie, QList<int> infos)
     }
 }
 
-/**
- * @brief OFDb::languages
- * @return
- */
-QMap<QString, QString> OFDb::languages()
+QWidget *OFDb::settingsWidget()
 {
-    QMap<QString, QString> m;
-    return m;
-}
-
-/**
- * @brief language
- * @return
- */
-QString OFDb::language()
-{
-    return QString();
-}
-
-/**
- * @brief OFDb::setLanguage
- * @param language
- */
-void OFDb::setLanguage(QString language)
-{
-    Q_UNUSED(language);
+    return 0;
 }

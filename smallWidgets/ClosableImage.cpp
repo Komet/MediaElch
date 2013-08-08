@@ -21,7 +21,7 @@ ClosableImage::ClosableImage(QWidget *parent) :
     setMouseTracking(true);
     m_showZoomAndResolution = true;
     m_scaleTo = Qt::Horizontal;
-    m_fixedSize = 200;
+    m_fixedSize = 180;
     m_fixedHeight = 0;
     m_clickable = false;
     m_loading = false;
@@ -103,12 +103,13 @@ void ClosableImage::mouseMoveEvent(QMouseEvent *ev)
 
 void ClosableImage::paintEvent(QPaintEvent *event)
 {
+    QPainter p(this);
+
     if (m_loading) {
         QLabel::paintEvent(event);
         return;
     }
 
-    QPainter p(this);
     if (!m_pixmap.isNull()) {
         int h = height()*(width()-2*m_mySize)/width();
         p.drawPixmap(m_mySize, (height()-h)/2, m_pixmap.scaledToWidth(width()-2*m_mySize));
@@ -127,6 +128,7 @@ void ClosableImage::paintEvent(QPaintEvent *event)
         img = ImageCache::instance()->image(m_imagePath, width()-9, 0, origWidth, origHeight);
     } else {
         p.drawPixmap((width()-m_defaultPixmap.width())/2, (height()-m_defaultPixmap.height())/2, m_defaultPixmap);
+        drawTitle(p);
         return;
     }
 
@@ -134,10 +136,33 @@ void ClosableImage::paintEvent(QPaintEvent *event)
     p.drawImage(0, 7, img);
     p.drawImage(r.width()-25, 0, QImage(":/img/closeImage.png"));
     if (m_showZoomAndResolution) {
+        QString res = QString("%1x%2").arg(origWidth).arg(origHeight);
+        QFontMetrics fm(m_font);
+        int resWidth = fm.width(res);
         p.setFont(m_font);
-        p.drawText(0, height()-20, width()-9, 20, Qt::AlignRight | Qt::AlignBottom, QString("%1x%2").arg(origWidth).arg(origHeight));
+        p.drawText(width()-resWidth-9, height()-20, resWidth, 20, Qt::AlignRight | Qt::AlignBottom, res);
         p.drawPixmap(0, height()-16, 16, 16, m_zoomIn);
+        drawTitle(p);
     }
+}
+
+/**
+ * An alternative Option...
+ */
+void ClosableImage::drawTitle(QPainter &p)
+{
+    Q_UNUSED(p);
+    /*
+    if (m_title.isEmpty())
+        return;
+
+    QFont f = m_font;
+    f.setBold(true);
+    p.setFont(f);
+    QFontMetrics fm(f);
+    int width = fm.width(m_title);
+    p.drawText(24, height()-20, width, 20, Qt::AlignLeft | Qt::AlignBottom, m_title);
+    */
 }
 
 QVariant ClosableImage::myData() const
@@ -159,6 +184,11 @@ void ClosableImage::setImage(const QByteArray &image)
 }
 
 void ClosableImage::setImage(const QString &image)
+{
+    setImageByPath(image);
+}
+
+void ClosableImage::setImageByPath(const QString &image)
 {
     clear();
     m_imagePath = image;
@@ -182,7 +212,7 @@ void ClosableImage::updateSize(int imageWidth, int imageHeight)
         // scale to height
         setFixedHeight(m_fixedSize);
         if (imageWidth == 0 || imageHeight == 0)
-            setFixedWidth(200);
+            setFixedWidth(180);
         else
             setFixedWidth(qCeil((((qreal)height()-7-zoomSpace)/imageHeight)*imageWidth+9));
     }
@@ -267,7 +297,7 @@ void ClosableImage::clear()
         m_anim->stop();
     m_imagePath.clear();
     m_image = QByteArray();
-    m_pixmap = QPixmap();
+    m_pixmap = m_emptyPixmap;
     m_loading = false;
     setMovie(0);
     update();
@@ -313,4 +343,24 @@ bool ClosableImage::confirmDeleteImage()
     if (dontPrompt.checkState() == Qt::Checked && ret == QMessageBox::Yes)
         Settings::instance()->setDontShowDeleteImageConfirm(true);
     return (ret == QMessageBox::Yes);
+}
+
+void ClosableImage::setTitle(const QString &text)
+{
+    m_title = text;
+}
+
+QString ClosableImage::title() const
+{
+    return m_title;
+}
+
+void ClosableImage::setImageType(const int &type)
+{
+    m_imageType = type;
+}
+
+int ClosableImage::imageType() const
+{
+    return m_imageType;
 }

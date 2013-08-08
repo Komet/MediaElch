@@ -3,6 +3,7 @@
 #include "globals/Manager.h"
 
 #include <QTimer>
+#include "data/ImageCache.h"
 
 /**
  * @brief FileScannerDialog::FileScannerDialog
@@ -70,6 +71,9 @@ int FileScannerDialog::exec()
     ui->currentDir->setText("");
     adjustSize();
     QDialog::show();
+
+    if (m_forceReload)
+        ImageCache::instance()->clearCache();
 
     if (m_reloadType == TypeMovies || m_reloadType == TypeAll)
         onStartMovieScanner();

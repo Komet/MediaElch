@@ -14,7 +14,7 @@ class StreamDetails : public QObject
 {
     Q_OBJECT
 public:
-    explicit StreamDetails(QObject *parent, QString file);
+    explicit StreamDetails(QObject *parent, QStringList files);
     void loadStreamDetails();
     void setVideoDetail(QString key, QString value);
     void setAudioDetail(int streamNumber, QString key, QString value);
@@ -29,7 +29,7 @@ private:
     QString videoFormat(QString format, QString version);
     QString audioFormat(const QString &codec, const QString &profile);
 
-    QString m_file;
+    QStringList m_files;
     QMap<QString, QString> m_videoDetails;
     QList<QMap<QString, QString> > m_audioDetails;
     QList<QMap<QString, QString> > m_subtitles;

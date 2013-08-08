@@ -281,18 +281,24 @@ void SetsWidget::onAddMovie()
         return;
     }
     if (MovieListDialog::instance()->exec() == QDialog::Accepted) {
-        Movie *movie = MovieListDialog::instance()->selectedMovie();
+        QList<Movie*> movies = MovieListDialog::instance()->selectedMovies();
+        if (movies.isEmpty())
+            return;
+
         int row = ui->sets->currentRow();
         if (row < 0 || row >= ui->sets->rowCount())
             return;
 
         QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
-        if (movie->set() == setName)
-            return;
-        movie->setSet(setName);
-        m_sets[setName].append(movie);
-        if (!m_moviesToSave[setName].contains(movie))
-            m_moviesToSave[setName].append(movie);
+        foreach (Movie *movie, movies) {
+            if (movie->set() == setName)
+                continue;
+            movie->setSet(setName);
+            m_sets[setName].append(movie);
+            if (!m_moviesToSave[setName].contains(movie))
+                m_moviesToSave[setName].append(movie);
+
+        }
         loadSet(setName);
     }
 }
@@ -338,14 +344,14 @@ void SetsWidget::chooseSetPoster()
     QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
     Movie *movie = new Movie(QStringList());
     movie->setName(setName);
-    ImageDialog::instance()->setImageType(TypePoster);
+    ImageDialog::instance()->setImageType(ImageType::MovieSetPoster);
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setMovie(movie);
-    ImageDialog::instance()->exec(ImageDialogType::MoviePoster);
+    ImageDialog::instance()->exec(ImageType::MoviePoster);
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
         DownloadManagerElement d;
         d.movie = movie;
-        d.imageType = static_cast<ImageType>(TypePoster);
+        d.imageType = ImageType::MovieSetPoster;
         d.url = ImageDialog::instance()->imageUrl();
         m_downloadManager->addDownload(d);
         ui->poster->setPixmap(QPixmap());
@@ -371,14 +377,14 @@ void SetsWidget::chooseSetBackdrop()
     QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
     Movie *movie = new Movie(QStringList());
     movie->setName(setName);
-    ImageDialog::instance()->setImageType(TypeBackdrop);
+    ImageDialog::instance()->setImageType(ImageType::MovieSetBackdrop);
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setMovie(movie);
-    ImageDialog::instance()->exec(ImageDialogType::MovieBackdrop);
+    ImageDialog::instance()->exec(ImageType::MovieBackdrop);
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
         DownloadManagerElement d;
         d.movie = movie;
-        d.imageType = static_cast<ImageType>(TypeBackdrop);
+        d.imageType = ImageType::MovieSetBackdrop;
         d.url = ImageDialog::instance()->imageUrl();
         m_downloadManager->addDownload(d);
         ui->backdrop->setPixmap(QPixmap());
@@ -539,12 +545,12 @@ void SetsWidget::onSetNameChanged(QTableWidgetItem *item)
 void SetsWidget::onDownloadFinished(DownloadManagerElement elem)
 {
     QString setName = elem.movie->name();
-    if (elem.imageType == TypePoster) {
+    if (elem.imageType == ImageType::MovieSetPoster) {
         if (m_setPosters.contains(setName))
             m_setPosters[setName] = QImage::fromData(elem.data);
         if (ui->sets->currentRow() >= 0 && ui->sets->currentRow() < ui->sets->rowCount() && ui->sets->item(ui->sets->currentRow(), 0)->text() == setName)
             loadSet(setName);
-    } else if (elem.imageType == TypeBackdrop) {
+    } else if (elem.imageType == ImageType::MovieSetBackdrop) {
         if (m_setBackdrops.contains(setName))
             m_setBackdrops[setName] = QImage::fromData(elem.data);
         if (ui->sets->currentRow() >= 0 && ui->sets->currentRow() < ui->sets->rowCount() && ui->sets->item(ui->sets->currentRow(), 0)->text() == setName)

@@ -62,7 +62,7 @@ ImageDialog::ImageDialog(QWidget *parent) :
     movie->start();
     ui->labelSpinner->setMovie(movie);
     clearSearch();
-    setImageType(TypePoster);
+    setImageType(ImageType::MoviePoster);
     m_currentDownloadReply = 0;
     m_multiSelection = false;
 
@@ -153,7 +153,6 @@ int ImageDialog::exec(int type)
     ui->imageProvider->blockSignals(false);
 
     ui->searchTerm->setLoading(false);
-    ui->searchTerm->setEnabled(!haveDefault);
 
     // show image widget
     ui->stackedWidget->setCurrentIndex(1);
@@ -436,7 +435,7 @@ void ImageDialog::imageClicked(int row, int col)
  * @brief Sets the type of images
  * @param type Type of images
  */
-void ImageDialog::setImageType(ImageType type)
+void ImageDialog::setImageType(int type)
 {
     m_imageType = type;
 }
@@ -626,11 +625,9 @@ void ImageDialog::onProviderChanged(int index)
         // this is the default provider
         ui->stackedWidget->setCurrentIndex(1);
         ui->searchTerm->setLoading(false);
-        ui->searchTerm->setEnabled(false);
         clearSearch();
         setDownloads(m_defaultElements);
     } else {
-        ui->searchTerm->setEnabled(true);
         ui->searchTerm->setFocus();
         onSearch();
     }
@@ -642,13 +639,29 @@ void ImageDialog::onProviderChanged(int index)
  */
 void ImageDialog::onSearch(bool onlyFirstResult)
 {
-    ui->stackedWidget->setCurrentIndex(1);
     QString searchTerm = ui->searchTerm->text();
+    if (searchTerm.startsWith("http://")) {
+        clearSearch();
+        m_imageUrl = searchTerm;
+        Poster poster;
+        poster.originalUrl = searchTerm;
+        poster.thumbUrl = searchTerm;
+        onProviderImagesLoaded(QList<Poster>() << poster);
+        return;
+    }
+
+    bool haveDefault = m_defaultElements.count() > 0 || m_providers.isEmpty();
+    if (haveDefault && ui->imageProvider->currentIndex() == 0)
+        return;
+
+    ui->stackedWidget->setCurrentIndex(1);
     QString initialSearchTerm;
     QString id;
+    QString mediaPassionId;
     if (m_itemType == ItemMovie) {
         initialSearchTerm = m_movie->name();
         id = m_movie->tmdbId();
+        mediaPassionId = m_movie->mediaPassionId();
     } else if (m_itemType == ItemConcert) {
         initialSearchTerm = m_concert->name();
         id = m_concert->tmdbId();
@@ -663,7 +676,10 @@ void ImageDialog::onSearch(bool onlyFirstResult)
     clearSearch();
     ui->searchTerm->setLoading(true);
     m_currentProvider = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), Qt::UserRole).value<ImageProviderInterface*>();
-    if (!initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && !id.isEmpty()) {
+    if (!initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && m_currentProvider->identifier() == "images.mediapassion" && !mediaPassionId.isEmpty()) {
+        ui->searchTerm->setLoading(false);
+        loadImagesFromProvider(mediaPassionId);
+    } else if (m_currentProvider->identifier() != "images.mediapassion" && !initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && !id.isEmpty()) {
         // search term was not changed and we have an id
         // -> trigger loading of images and show image widget
         ui->searchTerm->setLoading(false);
@@ -719,49 +735,57 @@ void ImageDialog::loadImagesFromProvider(QString id)
     ui->labelLoading->setVisible(true);
     ui->labelSpinner->setVisible(true);
     if (m_itemType == ItemMovie) {
-        if (m_type == ImageDialogType::MovieBackdrop)
+        if (m_type == ImageType::MovieBackdrop)
             m_currentProvider->movieBackdrops(id);
-        else if (m_type == ImageDialogType::MoviePoster)
+        else if (m_type == ImageType::MoviePoster)
             m_currentProvider->moviePosters(id);
-        else if (m_type == ImageDialogType::MovieLogo)
+        else if (m_type == ImageType::MovieLogo)
             m_currentProvider->movieLogos(id);
-        else if (m_type == ImageDialogType::MovieClearArt)
+        else if (m_type == ImageType::MovieBanner)
+            m_currentProvider->movieBanners(id);
+        else if (m_type == ImageType::MovieThumb)
+            m_currentProvider->movieThumbs(id);
+        else if (m_type == ImageType::MovieClearArt)
             m_currentProvider->movieClearArts(id);
-        else if (m_type == ImageDialogType::MovieCdArt)
+        else if (m_type == ImageType::MovieCdArt)
             m_currentProvider->movieCdArts(id);
     } else if (m_itemType == ItemConcert) {
-        if (m_type == ImageDialogType::ConcertBackdrop)
+        if (m_type == ImageType::ConcertBackdrop)
             m_currentProvider->concertBackdrops(id);
-        else if (m_type == ImageDialogType::ConcertPoster)
+        else if (m_type == ImageType::ConcertPoster)
             m_currentProvider->concertPosters(id);
-        else if (m_type == ImageDialogType::ConcertLogo)
+        else if (m_type == ImageType::ConcertLogo)
             m_currentProvider->concertLogos(id);
-        else if (m_type == ImageDialogType::ConcertClearArt)
+        else if (m_type == ImageType::ConcertClearArt)
             m_currentProvider->concertClearArts(id);
-        else if (m_type == ImageDialogType::ConcertCdArt)
+        else if (m_type == ImageType::ConcertCdArt)
             m_currentProvider->concertCdArts(id);
     } else if (m_itemType == ItemTvShow) {
-        if (m_type == ImageDialogType::TvShowBackdrop)
+        if (m_type == ImageType::TvShowBackdrop)
             m_currentProvider->tvShowBackdrops(id);
-        else if (m_type == ImageDialogType::TvShowBanner)
+        else if (m_type == ImageType::TvShowBanner)
             m_currentProvider->tvShowBanners(id);
-        else if (m_type == ImageDialogType::TvShowCharacterArt)
+        else if (m_type == ImageType::TvShowCharacterArt)
             m_currentProvider->tvShowCharacterArts(id);
-        else if (m_type == ImageDialogType::TvShowClearArt)
+        else if (m_type == ImageType::TvShowClearArt)
             m_currentProvider->tvShowClearArts(id);
-        else if (m_type == ImageDialogType::TvShowLogos)
+        else if (m_type == ImageType::TvShowLogos)
             m_currentProvider->tvShowLogos(id);
-        else if (m_type == ImageDialogType::TvShowPoster)
+        else if (m_type == ImageType::TvShowThumb)
+            m_currentProvider->tvShowThumbs(id);
+        else if (m_type == ImageType::TvShowPoster)
             m_currentProvider->tvShowPosters(id);
-        else if (m_type == ImageDialogType::TvShowSeason)
+        else if (m_type == ImageType::TvShowSeasonPoster)
             m_currentProvider->tvShowSeason(id, m_season);
-        else if (m_type == ImageDialogType::TvShowSeasonBanner)
+        else if (m_type == ImageType::TvShowSeasonBanner)
             m_currentProvider->tvShowSeasonBanners(id, m_season);
-        else if (m_type == ImageDialogType::TvShowSeasonBackdrop)
+        else if (m_type == ImageType::TvShowSeasonThumb)
+            m_currentProvider->tvShowSeasonThumbs(id, m_season);
+        else if (m_type == ImageType::TvShowSeasonBackdrop)
             m_currentProvider->tvShowSeasonBackdrops(id, m_season);
     } else if (m_itemType == ItemTvShowEpisode) {
-        if (m_type == ImageDialogType::TvShowThumb)
-            m_currentProvider->tvShowThumb(id, m_tvShowEpisode->season(), m_tvShowEpisode->episode());
+        if (m_type == ImageType::TvShowEpisodeThumb)
+            m_currentProvider->tvShowEpisodeThumb(id, m_tvShowEpisode->season(), m_tvShowEpisode->episode());
     }
 
 }

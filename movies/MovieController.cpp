@@ -19,6 +19,7 @@ MovieController::MovieController(Movie *parent) :
     m_downloadManager = new DownloadManager(this);
     m_downloadsInProgress = false;
     m_downloadsSize = 0;
+    m_forceFanartBackdrop = false;
 
     connect(m_downloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onDownloadFinished(DownloadManagerElement)));
     connect(m_downloadManager, SIGNAL(allDownloadsFinished(Movie*)), this, SLOT(onAllDownloadsFinished()), Qt::UniqueConnection);
@@ -74,17 +75,17 @@ bool MovieController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
                 if (pathElements.size() > 0 && QString::compare(pathElements.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0)
                     pathElements.removeLast();
                 if (pathElements.size() > 0)
-                    m_movie->setName(nameFormat->formatName(pathElements.last()));
+                    m_movie->setName(nameFormat->formatName(pathElements.last(), false));
             } else if (QString::compare(fi.fileName(), "index.bdmv", Qt::CaseInsensitive) == 0) {
                     QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
                     if (pathElements.size() > 0 && QString::compare(pathElements.last(), "BDMV", Qt::CaseInsensitive) == 0)
                         pathElements.removeLast();
                     if (pathElements.size() > 0)
-                        m_movie->setName(nameFormat->formatName(pathElements.last()));
+                        m_movie->setName(nameFormat->formatName(pathElements.last(), false));
             } else if (m_movie->inSeparateFolder()) {
                 QStringList splitted = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
                 if (!splitted.isEmpty()) {
-                    m_movie->setName(nameFormat->formatName(splitted.last()));
+                    m_movie->setName(nameFormat->formatName(splitted.last(), false));
                 } else {
                     if (m_movie->files().size() > 1)
                         m_movie->setName(nameFormat->formatName(
@@ -99,6 +100,9 @@ bool MovieController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
                 else
                     m_movie->setName(nameFormat->formatName(fi.completeBaseName()));
             }
+            QRegExp rx("(tt[0-9]+)");
+            if (rx.indexIn(fi.completeBaseName()) != -1)
+                m_movie->setId(rx.cap(1));
         }
     }
     m_infoLoaded = infoLoaded;
@@ -114,13 +118,12 @@ bool MovieController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
  * @param scraperInterface ScraperInterface to use for loading
  * @param infos List of infos to load
  */
-void MovieController::loadData(QString id, ScraperInterface *scraperInterface, QList<int> infos)
+void MovieController::loadData(QMap<ScraperInterface*, QString> ids, ScraperInterface *scraperInterface, QList<int> infos)
 {
-    qDebug() << "Entered, id=" << id << "scraperInterface=" << scraperInterface->name();
     m_infosToLoad = infos;
-    if (scraperInterface->name() == "The Movie DB")
-        m_movie->setTmdbId(id);
-    scraperInterface->loadData(id, m_movie, infos);
+    if (scraperInterface->identifier() == "tmdb")
+        m_movie->setTmdbId(ids.values().first());
+    scraperInterface->loadData(ids, m_movie, infos);
 }
 
 /**
@@ -152,19 +155,45 @@ void MovieController::setInfosToLoad(QList<int> infos)
  * @brief Called when a ScraperInterface has finished loading
  *        Emits the loaded signal
  */
-void MovieController::scraperLoadDone()
+void MovieController::scraperLoadDone(ScraperInterface *scraper)
 {
+    m_customScraperMutex.lock();
+    if (!property("customMovieScraperLoads").isNull() && property("customMovieScraperLoads").toInt() > 1) {
+        setProperty("customMovieScraperLoads", property("customMovieScraperLoads").toInt()-1);
+        m_customScraperMutex.unlock();
+        return;
+    } else {
+        m_customScraperMutex.unlock();
+    }
+
+    setProperty("customMovieScraperLoads", QVariant());
+
+    bool cdArtLoaded = (scraper && scraper->scraperNativelySupports().contains(MovieScraperInfos::CdArt));
+
     emit sigInfoLoadDone(m_movie);
     if ((!m_movie->tmdbId().isEmpty() || !m_movie->id().isEmpty()) &&
-            (infosToLoad().contains(MovieScraperInfos::Logo) || infosToLoad().contains(MovieScraperInfos::ClearArt) || infosToLoad().contains(MovieScraperInfos::CdArt))) {
+            (infosToLoad().contains(MovieScraperInfos::Logo) ||
+             (infosToLoad().contains(MovieScraperInfos::Backdrop) && m_forceFanartBackdrop) ||
+             infosToLoad().contains(MovieScraperInfos::ClearArt) ||
+             infosToLoad().contains(MovieScraperInfos::Banner) ||
+             infosToLoad().contains(MovieScraperInfos::Thumb) ||
+             (infosToLoad().contains(MovieScraperInfos::CdArt) && !cdArtLoaded ))) {
         QList<int> images;
+        if (infosToLoad().contains(MovieScraperInfos::Backdrop) && m_forceFanartBackdrop) {
+            images << ImageType::MovieBackdrop;
+            m_movie->clear(QList<int>() << MovieScraperInfos::Backdrop);
+        }
         if (infosToLoad().contains(MovieScraperInfos::Logo))
-            images << TypeLogo;
+            images << ImageType::MovieLogo;
+        if (infosToLoad().contains(MovieScraperInfos::Banner))
+            images << ImageType::MovieBanner;
+        if (infosToLoad().contains(MovieScraperInfos::Thumb))
+            images << ImageType::MovieThumb;
         if (infosToLoad().contains(MovieScraperInfos::ClearArt))
-            images << TypeClearArt;
-        if (infosToLoad().contains(MovieScraperInfos::CdArt))
-            images << TypeCdArt;
-        connect(Manager::instance()->fanartTv(), SIGNAL(sigImagesLoaded(Movie*,QMap<int,QList<Poster> >)), this, SLOT(onFanartLoadDone(Movie*,QMap<int,QList<Poster> >)));
+            images << ImageType::MovieClearArt;
+        if (infosToLoad().contains(MovieScraperInfos::CdArt) && !cdArtLoaded)
+            images << ImageType::MovieCdArt;
+        connect(Manager::instance()->fanartTv(), SIGNAL(sigImagesLoaded(Movie*,QMap<int,QList<Poster> >)), this, SLOT(onFanartLoadDone(Movie*,QMap<int,QList<Poster> >)), Qt::UniqueConnection);
         Manager::instance()->fanartTv()->movieImages(m_movie, (!m_movie->tmdbId().isEmpty()) ? m_movie->tmdbId() : m_movie->id(), images);
     } else {
         onFanartLoadDone(m_movie, QMap<int, QList<Poster> >());
@@ -176,10 +205,14 @@ void MovieController::onFanartLoadDone(Movie *movie, QMap<int, QList<Poster> > p
     if (movie != m_movie)
         return;
 
+    m_forceFanartBackdrop = false;
+
     if (infosToLoad().contains(MovieScraperInfos::Poster) && !m_movie->posters().isEmpty())
-        posters.insert(TypePoster, QList<Poster>() << m_movie->posters().at(0));
+        posters.insert(ImageType::MoviePoster, QList<Poster>() << m_movie->posters().at(0));
     if (infosToLoad().contains(MovieScraperInfos::Backdrop) && !m_movie->backdrops().isEmpty())
-        posters.insert(TypeBackdrop, QList<Poster>() << m_movie->backdrops().at(0));
+        posters.insert(ImageType::MovieBackdrop, QList<Poster>() << m_movie->backdrops().at(0));
+    if (infosToLoad().contains(MovieScraperInfos::CdArt) && !m_movie->discArts().isEmpty())
+        posters.insert(ImageType::MovieCdArt, QList<Poster>() << m_movie->discArts().at(0));
 
     QList<DownloadManagerElement> downloads;
     if (infosToLoad().contains(MovieScraperInfos::Actors) && Settings::instance()->downloadActorImages()) {
@@ -188,7 +221,7 @@ void MovieController::onFanartLoadDone(Movie *movie, QMap<int, QList<Poster> > p
             if (actors.at(i)->thumb.isEmpty())
                 continue;
             DownloadManagerElement d;
-            d.imageType = TypeActor;
+            d.imageType = ImageType::Actor;
             d.url = QUrl(actors.at(i)->thumb);
             d.actor = actors.at(i);
             d.movie = movie;
@@ -203,7 +236,7 @@ void MovieController::onFanartLoadDone(Movie *movie, QMap<int, QList<Poster> > p
         if (it.value().isEmpty())
             continue;
         DownloadManagerElement d;
-        d.imageType = static_cast<ImageType>(it.key());
+        d.imageType = it.key();
         d.url = it.value().at(0).originalUrl;
         d.movie = m_movie;
         downloads.append(d);
@@ -237,40 +270,19 @@ void MovieController::onDownloadFinished(DownloadManagerElement elem)
     m_downloadsLeft--;
     emit sigDownloadProgress(m_movie, m_downloadsLeft, m_downloadsSize);
 
-    switch (elem.imageType) {
-    case TypePoster:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->posterImageName(m_movie));
-        m_movie->setPosterImage(elem.data);
-        break;
-    case TypeBackdrop:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->backdropImageName(m_movie));
-        Helper::resizeBackdrop(elem.data);
-        m_movie->setBackdropImage(elem.data);
-        break;
-    case TypeLogo:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->logoImageName(m_movie));
-        m_movie->setLogoImage(elem.data);
-        break;
-    case TypeClearArt:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->clearArtImageName(m_movie));
-        m_movie->setClearArtImage(elem.data);
-        break;
-    case TypeCdArt:
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->cdArtImageName(m_movie));
-        m_movie->setCdArtImage(elem.data);
-        break;
-    case TypeActor:
+    if (!elem.data.isEmpty() && elem.imageType == ImageType::Actor) {
         elem.actor->image = elem.data;
-        break;
-    case TypeExtraFanart:
+    } else if (!elem.data.isEmpty() && elem.imageType == ImageType::MovieExtraFanart) {
         Helper::resizeBackdrop(elem.data);
         m_movie->addExtraFanart(elem.data);
-        break;
-    default:
-        break;
+    } else if (!elem.data.isEmpty()) {
+        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_movie, elem.imageType));
+        if (elem.imageType == ImageType::MovieBackdrop)
+            Helper::resizeBackdrop(elem.data);
+        m_movie->setImage(elem.imageType, elem.data);
     }
 
-    if (elem.imageType != TypeActor)
+    if (elem.imageType != ImageType::Actor)
         emit sigImage(m_movie, elem.imageType, elem.data);
 }
 
@@ -278,7 +290,7 @@ void MovieController::loadImage(int type, QUrl url)
 {
     DownloadManagerElement d;
     d.movie = m_movie;
-    d.imageType = static_cast<ImageType>(type);
+    d.imageType = type;
     d.url = url;
     emit sigLoadingImages(m_movie, QList<int>() << type);
     m_downloadManager->addDownload(d);
@@ -289,7 +301,7 @@ void MovieController::loadImages(int type, QList<QUrl> urls)
     foreach (const QUrl &url, urls) {
         DownloadManagerElement d;
         d.movie = m_movie;
-        d.imageType = static_cast<ImageType>(type);
+        d.imageType = type;
         d.url = url;
         emit sigLoadingImages(m_movie, QList<int>() << type);
         m_downloadManager->addDownload(d);
@@ -331,7 +343,12 @@ void MovieController::removeFromLoadsLeft(ScraperData load)
     m_loadMutex.lock();
     if (m_loadsLeft.isEmpty() && !m_loadDoneFired) {
         m_loadDoneFired = true;
-        scraperLoadDone();
+        scraperLoadDone(0);
     }
     m_loadMutex.unlock();
+}
+
+void MovieController::setForceFanartBackdrop(const bool &force)
+{
+    m_forceFanartBackdrop = force;
 }

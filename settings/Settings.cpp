@@ -16,35 +16,6 @@ Settings::Settings(QObject *parent) :
 {
     m_advancedSettings = new AdvancedSettings(parent);
 
-    // Eden
-    m_initialDataFilesEden.append(DataFile(DataFileType::MovieNfo, "<baseFileName>.nfo", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::MoviePoster, "<baseFileName>.tbn", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::MovieBackdrop, "<baseFileName>-fanart.jpg", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::MovieCdArt, "disc.png", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::MovieClearArt, "clearart.png", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::MovieLogo, "logo.png", 0));
-
-    m_initialDataFilesEden.append(DataFile(DataFileType::TvShowNfo, "tvshow.nfo", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::TvShowBackdrop, "fanart.jpg", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::TvShowBanner, "banner.jpg", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::TvShowCharacterArt, "character.png", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::TvShowClearArt, "clearart.png", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::TvShowLogo, "logo.png", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::TvShowPoster, "season-all.tbn", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::TvShowPoster, "poster.jpg", 1));
-    m_initialDataFilesEden.append(DataFile(DataFileType::TvShowSeasonPoster, "season<seasonNumber>.tbn", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::TvShowSeasonBackdrop, "season<seasonNumber>-fanart.tbn", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::TvShowSeasonBanner, "season<seasonNumber>-banner.tbn", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::TvShowEpisodeNfo, "<baseFileName>.nfo", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::TvShowEpisodeThumb, "<baseFileName>.tbn", 0));
-
-    m_initialDataFilesEden.append(DataFile(DataFileType::ConcertNfo, "<baseFileName>.nfo", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::ConcertPoster, "<baseFileName>.tbn", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::ConcertBackdrop, "<baseFileName>-fanart.jpg", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::ConcertCdArt, "disc.png", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::ConcertClearArt, "clearart.png", 0));
-    m_initialDataFilesEden.append(DataFile(DataFileType::ConcertLogo, "logo.png", 0));
-
     // Frodo
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieNfo, "<baseFileName>.nfo", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MoviePoster, "<baseFileName>-poster.jpg", 0));
@@ -52,6 +23,10 @@ Settings::Settings(QObject *parent) :
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieCdArt, "disc.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieClearArt, "clearart.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieLogo, "logo.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieBanner, "<baseFileName>-banner.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieThumb, "<baseFileName>-landscape.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieSetPoster, "folder.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieSetBackdrop, "fanart.jpg", 0));
 
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowNfo, "tvshow.nfo", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowBackdrop, "fanart.jpg", 0));
@@ -66,6 +41,8 @@ Settings::Settings(QObject *parent) :
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowSeasonBanner, "season<seasonNumber>-banner.jpg", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowEpisodeNfo, "<baseFileName>.nfo", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowEpisodeThumb, "<baseFileName>-thumb.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowThumb, "landscape.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::TvShowSeasonThumb, "season<seasonNumber>-landscape.jpg", 0));
 
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertNfo, "<baseFileName>.nfo", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertPoster, "<baseFileName>-poster.jpg", 0));
@@ -90,6 +67,11 @@ Settings *Settings::instance(QObject *parent)
     return m_instance;
 }
 
+QSettings *Settings::settings()
+{
+    return &m_settings;
+}
+
 void Settings::loadSettings()
 {
     // Load old settings
@@ -111,6 +93,8 @@ void Settings::loadSettings(QSettings &settings)
     // Globals
     m_mainWindowSize = settings.value("MainWindowSize").toSize();
     m_mainWindowPosition = settings.value("MainWindowPosition").toPoint();
+    m_settingsWindowSize = settings.value("SettingsWindowSize").toSize();
+    m_settingsWindowPosition = settings.value("SettingsWindowPosition").toPoint();
     m_mainWindowMaximized = settings.value("MainWindowMaximized").toBool();
     m_mainSplitterState = settings.value("MainSplitterState").toByteArray();
     m_debugModeActivated = settings.value("DebugModeActivated", false).toBool();
@@ -198,6 +182,8 @@ void Settings::loadSettings(QSettings &settings)
             scraper->loadSettings(settings);
     }
 
+    m_currentMovieScraper = settings.value("Scraper/CurrentMovieScraper", 0).toInt();
+
     // Media Centers
     m_youtubePluginUrls    = settings.value("UseYoutubePluginURLs", false).toBool();
 
@@ -208,27 +194,55 @@ void Settings::loadSettings(QSettings &settings)
         settings.setArrayIndex(i);
         int type = settings.value("type").toInt();
         QString fileName = settings.value("fileName").toString();
+        if (fileName.isEmpty()) {
+            foreach (DataFile initialDataFile, m_initialDataFilesFrodo) {
+                if (initialDataFile.type() == type) {
+                    fileName = initialDataFile.fileName();
+                    break;
+                }
+            }
+        }
         int pos = settings.value("pos").toInt();
         DataFile f(type, fileName, pos);
         dataFiles.append(f);
     }
     settings.endArray();
+
+    foreach (DataFile initialDataFile, m_initialDataFilesFrodo) {
+        bool found = false;
+        foreach (DataFile df, dataFiles) {
+            if (df.type() == initialDataFile.type()) {
+                found = true;
+                break;
+            }
+
+        }
+        if (!found)
+            dataFiles << initialDataFile;
+    }
+
     if (dataFiles.isEmpty())
         m_dataFiles = m_initialDataFilesFrodo;
     else
         m_dataFiles = dataFiles;
 
     // Movie set artwork
-    m_movieSetArtworkType = settings.value("MovieSetArtwork/Type", 0).toInt();
+    m_movieSetArtworkType = settings.value("MovieSetArtwork/StoringType", 0).toInt();
     m_movieSetArtworkDirectory = settings.value("MovieSetArtwork/Directory").toString();
-    m_movieSetPosterFileName = settings.value("MovieSetArtwork/PosterFileName", "folder.jpg").toString();
-    m_movieSetFanartFileName = settings.value("MovieSetArtwork/FanartFileName", "fanart.jpg").toString();
 
     // Media Status Columns
     m_mediaStatusColumns.clear();
     foreach (const QVariant &column, settings.value("MediaStatusColumns").toList())
         m_mediaStatusColumns.append(static_cast<MediaStatusColumns>(column.toInt()));
 
+
+    m_customMovieScraper.clear();
+    int customMovieScraperSize = settings.beginReadArray("CustomMovieScraper");
+    for (int i=0 ; i<customMovieScraperSize ; ++i) {
+        settings.setArrayIndex(i);
+        m_customMovieScraper.insert(settings.value("Info").toInt(), settings.value("Scraper").toString());
+    }
+    settings.endArray();
 }
 
 /**
@@ -305,6 +319,8 @@ void Settings::saveSettings()
             scraper->saveSettings(m_settings);
     }
 
+    m_settings.setValue("Scraper/CurrentMovieScraper", m_currentMovieScraper);
+
     m_settings.beginWriteArray("AllDataFiles");
     for (int i=0, n=m_dataFiles.count() ; i<n ; ++i) {
         m_settings.setArrayIndex(i);
@@ -314,15 +330,25 @@ void Settings::saveSettings()
     }
     m_settings.endArray();
 
-    m_settings.setValue("MovieSetArtwork/Type", m_movieSetArtworkType);
+    m_settings.setValue("MovieSetArtwork/StoringType", m_movieSetArtworkType);
     m_settings.setValue("MovieSetArtwork/Directory", m_movieSetArtworkDirectory);
-    m_settings.setValue("MovieSetArtwork/PosterFileName", m_movieSetPosterFileName);
-    m_settings.setValue("MovieSetArtwork/FanartFileName", m_movieSetFanartFileName);
 
     QList<QVariant> columns;
     foreach (const MediaStatusColumns &column, m_mediaStatusColumns)
         columns.append(column);
     m_settings.setValue("MediaStatusColumns", columns);
+
+    int i=0;
+    m_settings.beginWriteArray("CustomMovieScraper");
+    QMapIterator<int, QString> it(m_customMovieScraper);
+    while (it.hasNext()) {
+        it.next();
+        m_settings.setArrayIndex(i++);
+        m_settings.setValue("Info", it.key());
+        m_settings.setValue("Scraper", it.value());
+    }
+    m_settings.endArray();
+
     m_settings.sync();
 }
 
@@ -363,6 +389,16 @@ QSize Settings::mainWindowSize()
 QPoint Settings::mainWindowPosition()
 {
     return m_mainWindowPosition;
+}
+
+QSize Settings::settingsWindowSize()
+{
+    return m_settingsWindowSize;
+}
+
+QPoint Settings::settingsWindowPosition()
+{
+    return m_settingsWindowPosition;
 }
 
 /**
@@ -581,6 +617,18 @@ void Settings::setMainWindowPosition(QPoint mainWindowPosition)
     m_settings.setValue("MainWindowPosition", mainWindowPosition);
 }
 
+void Settings::setSettingsWindowSize(QSize settingsWindowSize)
+{
+    m_settingsWindowSize = settingsWindowSize;
+    m_settings.setValue("SettingsWindowSize", settingsWindowSize);
+}
+
+void Settings::setSettingsWindowPosition(QPoint settingsWindowPosition)
+{
+    m_settingsWindowPosition = settingsWindowPosition;
+    m_settings.setValue("SettingsWindowPosition", settingsWindowPosition);
+}
+
 /**
  * @brief Settings::setMainWindowMaximized
  * @param max
@@ -756,7 +804,7 @@ void Settings::setXbmcPort(int port)
     m_xbmcPort = port;
 }
 
-QList<int> Settings::scraperInfos(MainWidgets widget, int scraperNo)
+QList<int> Settings::scraperInfos(MainWidgets widget, QString scraperId)
 {
     QString item = "unknown";
     if (widget == WidgetMovies)
@@ -765,10 +813,10 @@ QList<int> Settings::scraperInfos(MainWidgets widget, int scraperNo)
         item = "Concerts";
     else if (widget == WidgetTvShows)
         item = "TvShows";
-    return m_settings.value(QString("Scrapers/%1/%2").arg(item).arg(scraperNo)).value<QList<int> >();
+    return m_settings.value(QString("Scrapers/%1/%2").arg(item).arg(scraperId)).value<QList<int> >();
 }
 
-void Settings::setScraperInfos(MainWidgets widget, int scraperNo, QList<int> items)
+void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<int> items)
 {
     QString item = "unknown";
     if (widget == WidgetMovies)
@@ -788,16 +836,6 @@ bool Settings::downloadActorImages()
 void Settings::setDownloadActorImages(bool download)
 {
     m_downloadActorImages = download;
-}
-
-void Settings::loadEdenDefaults()
-{
-    m_dataFiles = m_initialDataFilesEden;
-}
-
-void Settings::loadFrodoDefaults()
-{
-    m_dataFiles = m_initialDataFilesFrodo;
 }
 
 void Settings::renamePatterns(int renameType, QString &fileNamePattern, QString &fileNamePatternMulti, QString &directoryPattern, QString &seasonPattern)
@@ -881,26 +919,6 @@ QString Settings::movieSetArtworkDirectory() const
     return m_movieSetArtworkDirectory;
 }
 
-void Settings::setMovieSetPosterFileName(QString fileName)
-{
-    m_movieSetPosterFileName = fileName;
-}
-
-QString Settings::movieSetPosterFileName() const
-{
-    return m_movieSetPosterFileName;
-}
-
-void Settings::setMovieSetFanartFileName(QString fileName)
-{
-    m_movieSetFanartFileName = fileName;
-}
-
-QString Settings::movieSetFanartFileName() const
-{
-    return m_movieSetFanartFileName;
-}
-
 void Settings::setMediaStatusColumns(QList<MediaStatusColumns> columns)
 {
     m_mediaStatusColumns = columns;
@@ -931,4 +949,26 @@ void Settings::setDontShowDeleteImageConfirm(bool show)
 bool Settings::dontShowDeleteImageConfirm() const
 {
     return m_dontShowDeleteImageConfirm;
+}
+
+QMap<int, QString> Settings::customMovieScraper() const
+{
+    return m_customMovieScraper;
+}
+
+void Settings::setCustomMovieScraper(QMap<int, QString> customMovieScraper)
+{
+    m_customMovieScraper = customMovieScraper;
+}
+
+int Settings::currentMovieScraper() const
+{
+    return m_currentMovieScraper;
+}
+
+void Settings::setCurrentMovieScraper(int current)
+{
+    m_currentMovieScraper = current;
+    m_settings.setValue("Scraper/CurrentMovieScraper", current);
+    m_settings.sync();
 }

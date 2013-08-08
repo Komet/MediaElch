@@ -16,15 +16,15 @@ class OFDb : public ScraperInterface
 public:
     explicit OFDb(QObject *parent = 0);
     QString name();
+    QString identifier();
     void search(QString searchStr);
-    void loadData(QString id, Movie *movie, QList<int> infos);
+    void loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos);
     bool hasSettings();
     void loadSettings(QSettings &settings);
     void saveSettings(QSettings &settings);
     QList<int> scraperSupports();
-    QMap<QString, QString> languages();
-    QString language();
-    void setLanguage(QString language);
+    QList<int> scraperNativelySupports();
+    QWidget *settingsWidget();
 
 signals:
     void searchDone(QList<ScraperSearchResult>);
@@ -38,7 +38,7 @@ private:
     QList<int> m_scraperSupports;
 
     QNetworkAccessManager *qnam();
-    QList<ScraperSearchResult> parseSearch(QString html);
+    QList<ScraperSearchResult> parseSearch(QString html, QString searchStr);
     void parseAndAssignInfos(QString data, Movie *movie, QList<int> infos);
 };
 

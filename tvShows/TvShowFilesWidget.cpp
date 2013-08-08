@@ -70,8 +70,8 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     connect(actionUnmarkForSync, SIGNAL(triggered()), this, SLOT(unmarkForSync()));
     connect(actionOpenFolder, SIGNAL(triggered()), this, SLOT(openFolder()));
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
-    connect(ui->files, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)));
-    connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)));
+    connect(ui->files, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)), Qt::QueuedConnection);
+    connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)), Qt::QueuedConnection);
     Manager::instance()->setTvShowFilesWidget(this);
 }
 
@@ -295,8 +295,8 @@ void TvShowFilesWidget::setFilter(QList<Filter *> filters, QString text)
 void TvShowFilesWidget::renewModel()
 {
     qDebug() << "Entered";
-    m_tvShowProxyModel->setSourceModel(0);
-    m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
+    //m_tvShowProxyModel->setSourceModel(0);
+    //m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
 }
 
 /**
@@ -305,20 +305,10 @@ void TvShowFilesWidget::renewModel()
  */
 void TvShowFilesWidget::onItemClicked(QModelIndex index)
 {
-    qDebug() << "Entered";
-    QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(index);
-    if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TypeTvShow) {
-        bool wasExpanded = ui->files->isExpanded(index);
-        ui->files->collapseAll();
-        if (!wasExpanded)
-            ui->files->expand(index);
-    } else if (Manager::instance()->tvShowModel()->getItem(sourceIndex)->type() == TypeSeason) {
-        bool wasExpanded = ui->files->isExpanded(index);
-        if (wasExpanded)
-            ui->files->collapse(index);
-        else
-            ui->files->expand(index);
-    }
+    if (ui->files->isExpanded(index))
+        ui->files->collapse(index);
+    else
+        ui->files->expand(index);
 }
 
 /**

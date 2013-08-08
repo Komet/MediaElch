@@ -9,13 +9,11 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 greaterThan(QT_MAJOR_VERSION, 4): include(qtmacextras/src/qtmacextras.pri)
 
-LIBS += -lmediainfo -lzen -lz
-
-macx: contains(CONFIG, x86) {
-    LIBS += -L/usr/local/cross/mediainfo-x86/lib
-}
+LIBS += -lmediainfo -lzen -lz -lquazip
 
 unix:LIBS += -lcurl
+macx:LIBS += -framework Foundation
+
 DEFINES += UNICODE
 
 TARGET = MediaElch
@@ -82,20 +80,16 @@ SOURCES += main.cpp\
     sets/MovieListDialog.cpp \
     globals/Helper.cpp \
     smallWidgets/MyTreeView.cpp \
-    data/MovieDelegate.cpp \
     globals/ImageDialog.cpp \
     settings/DataFile.cpp \
     data/ConcertFileSearcher.cpp \
     data/ConcertModel.cpp \
-    data/ConcertDelegate.cpp \
     data/ConcertProxyModel.cpp \
     data/Concert.cpp \
     concerts/ConcertWidget.cpp \
     concerts/ConcertSearch.cpp \
     concerts/ConcertFilesWidget.cpp \
     scrapers/TMDbConcerts.cpp \
-    cli/CLI.cpp \
-    settings/SettingsWidget.cpp \
     settings/Settings.cpp \
     movies/GenreWidget.cpp \
     movies/CertificationWidget.cpp \
@@ -137,7 +131,23 @@ SOURCES += main.cpp\
     smallWidgets/MyTableView.cpp \
     data/ImageCache.cpp \
     scrapers/TvTunes.cpp \
-    tvShows/TvTunesDialog.cpp
+    tvShows/TvTunesDialog.cpp \
+    settings/SettingsWindow.cpp \
+    export/ExportTemplateLoader.cpp \
+    export/ExportTemplate.cpp \
+    settings/ExportTemplateWidget.cpp \
+    smallWidgets/StyledPushButton.cpp \
+    export/ExportDialog.cpp \
+    smallWidgets/MessageLabel.cpp \
+    smallWidgets/SearchOverlay.cpp \
+    tvShows/ItemWidgetShow.cpp \
+    scrapers/CustomMovieScraper.cpp \
+    scrapers/MediaPassion.cpp \
+    imageProviders/MediaPassionImages.cpp
+
+macx {
+    OBJECTIVE_SOURCES += mac/MacFullscreen.mm
+}
 
 HEADERS  += main/MainWindow.h \
     movies/Movie.h \
@@ -185,12 +195,10 @@ HEADERS  += main/MainWindow.h \
     sets/MovieListDialog.h \
     globals/Helper.h \
     smallWidgets/MyTreeView.h \
-    data/MovieDelegate.h \
     globals/ImageDialog.h \
     settings/DataFile.h \
     data/ConcertFileSearcher.h \
     data/ConcertModel.h \
-    data/ConcertDelegate.h \
     data/ConcertProxyModel.h \
     data/Concert.h \
     data/ConcertScraperInterface.h \
@@ -198,8 +206,6 @@ HEADERS  += main/MainWindow.h \
     concerts/ConcertSearch.h \
     concerts/ConcertFilesWidget.h \
     scrapers/TMDbConcerts.h \
-    cli/CLI.h \
-    settings/SettingsWidget.h \
     settings/Settings.h \
     movies/GenreWidget.h \
     movies/CertificationWidget.h \
@@ -244,7 +250,20 @@ HEADERS  += main/MainWindow.h \
     data/ImageCache.h \
     scrapers/TvTunes.h \
     tvShows/TvTunesDialog.h \
-    globals/LocaleStringCompare.h
+    globals/LocaleStringCompare.h \
+    settings/SettingsWindow.h \
+    export/ExportTemplateLoader.h \
+    export/ExportTemplate.h \
+    settings/ExportTemplateWidget.h \
+    smallWidgets/StyledPushButton.h \
+    export/ExportDialog.h \
+    smallWidgets/MessageLabel.h \
+    mac/MacFullscreen.h \
+    smallWidgets/SearchOverlay.h \
+    tvShows/ItemWidgetShow.h \
+    scrapers/CustomMovieScraper.h \
+    scrapers/MediaPassion.h \
+    imageProviders/MediaPassionImages.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -267,7 +286,6 @@ FORMS    += main/MainWindow.ui \
     concerts/ConcertWidget.ui \
     concerts/ConcertSearch.ui \
     concerts/ConcertFilesWidget.ui \
-    settings/SettingsWidget.ui \
     movies/GenreWidget.ui \
     movies/CertificationWidget.ui \
     support/SupportDialog.ui \
@@ -280,7 +298,11 @@ FORMS    += main/MainWindow.ui \
     smallWidgets/TagCloud.ui \
     tvShows/TvShowWidgetSeason.ui \
     renamer/Renamer.ui \
-    tvShows/TvTunesDialog.ui
+    tvShows/TvTunesDialog.ui \
+    settings/SettingsWindow.ui \
+    settings/ExportTemplateWidget.ui \
+    export/ExportDialog.ui \
+    tvShows/ItemWidgetShow.ui
 
 RESOURCES += \
     MediaElch.qrc
@@ -290,7 +312,11 @@ TRANSLATIONS += \
     i18n/MediaElch_de.ts \
     i18n/MediaElch_fr.ts \
     i18n/MediaElch_cs_CZ.ts \
-    i18n/MediaElch_pt_BR.ts
+    i18n/MediaElch_pt_BR.ts \
+    i18n/MediaElch_no.ts \
+    i18n/MediaElch_pl.ts \
+    i18n/MediaElch_pt_PT.ts \
+    i18n/MediaElch_nl_NL.ts
 
 
 # qjsonrpc
