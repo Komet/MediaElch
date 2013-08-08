@@ -1,3 +1,38 @@
+mediaelch (1.7-1) precise; urgency=low
+
+  * Store last used scraper in settings
+  * media-passion.org scraper
+  * Get IMDB Id from filename
+  * Add runtime from thetvdb
+  * Ability to paste a link to a picture
+  * Option to use the IMDB Ratings regardless of which scraper is used
+  * Banner for movies
+  * XBMC Sync: Clean database
+  * Add TV Show Thumbs from Fanart.tv
+  * Better keyboard navigation in file lists
+  * Remove quit button from toolbar
+  * Improve mapping to allow empty values in advanced settings
+  * Context Menu: Improve scrape option
+  * Strip braces in search term
+  * Add video category to .desktop file
+  * Allow selecting multiple movies when adding them to sets/genres/certifications
+  * Sort title for tv shows
+  * Use airs before/airsafter to set display season and episode
+  * OFDB: Load movie by id
+  * RegEx for "Season X Episode Y"
+  * TV Show data sometimes lost
+  * IMDB API url changed
+  * DVD order wrong
+  * Don't save empty actor image and thumb tag
+  * TV Show File Scanner detects wrong episode numbers
+  * Stacked Files: Duration in Streamdetails
+  * Display title of movies with dots
+  * Wrong nfo filename when renaming stacked movies
+  * Duplicate fileinfo tag
+  * Add placeholder for episode and season banner image
+
+ -- Daniel Kabel <daniel.kabel@me.com>  Thu, 8 Aug 2013 11:10:26 +0200
+
 mediaelch (1.6-1) precise; urgency=low
 
   * Added filter for local trailers
