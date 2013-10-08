@@ -132,7 +132,7 @@ void ConcertFilesWidget::loadStreamDetails()
         concerts.append(concert);
     }
     if (concerts.count() == 1) {
-        concerts.at(0)->loadStreamDetailsFromFile();
+        concerts.at(0)->controller()->loadStreamDetailsFromFile();
         concerts.at(0)->setChanged(true);
     } else {
         LoadingStreamDetails *loader = new LoadingStreamDetails(this);

@@ -16,7 +16,11 @@
   <property name="styleSheet">
    <string notr="true">#certifications {
 	border: 0px;
-	border-right: 1px solid rgba(0, 0, 0, 100);
+	color: #395265;
+}
+QGroupBox {
+	border-radius: 0;
+	background-color: rgba(255, 255, 255, 200);
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -24,20 +28,19 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QSplitter" name="splitter">
-     <property name="styleSheet">
-      <string notr="true">QSplitter::handle {
-	background-color: transparent;
-}
-</string>
-     </property>
+    <widget class="MySplitter" name="splitter">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="handleWidth">
+      <number>1</number>
      </property>
      <widget class="QTableWidget" name="certifications">
       <property name="styleSheet">
        <string notr="true">#certifications {
 	alternate-background-color: rgb(243, 246, 250);
+	color: #395265;
+	selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
 }
 </string>
       </property>
@@ -63,18 +66,18 @@
       </column>
      </widget>
      <widget class="QWidget" name="horizontalLayoutWidget">
-      <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,1">
+      <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,1,0">
        <property name="spacing">
-        <number>5</number>
+        <number>0</number>
        </property>
        <property name="leftMargin">
-        <number>20</number>
+        <number>0</number>
        </property>
        <property name="topMargin">
         <number>20</number>
        </property>
        <property name="rightMargin">
-        <number>20</number>
+        <number>0</number>
        </property>
        <property name="bottomMargin">
         <number>21</number>
@@ -83,24 +86,44 @@
         <widget class="QLabel" name="certificationName">
          <property name="font">
           <font>
-           <weight>75</weight>
-           <bold>true</bold>
+           <family>Pathway Gothic One</family>
+           <pointsize>20</pointsize>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: #224f7f;
+</string>
          </property>
          <property name="text">
           <string>TextLabel</string>
+         </property>
+         <property name="indent">
+          <number>20</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>3</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>3</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(100, 100, 100, 255), stop:0.2 rgba(100, 100, 100, 50), stop:1 rgba(255, 255, 255, 0));
+</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QGroupBox" name="groupBox">
-         <property name="styleSheet">
-          <string notr="true">QGroupBox {
-	border: 1px solid rgba(0, 0, 0, 100);
-	border-radius: 5px;
-	background-color: rgba(255, 255, 255, 200);
-}</string>
-         </property>
          <property name="title">
           <string/>
          </property>
@@ -113,7 +136,31 @@
                <string notr="true">#movies {
 	border: 1px solid rgba(0, 0, 0, 100);
 	alternate-background-color: rgb(243, 246, 250);
-}</string>
+	color: #395265;
+	selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
+}
+
+QHeaderView::section {
+    background-color: #f9f9f9;
+    color: rgb(27, 105, 165);
+    border: none;
+    border-left: 1px solid #f0f0f0;
+    font-weight: normal;
+    font-size: 12pt;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+QHeaderView::section:first {
+    border: none;
+}
+
+QHeaderView::section:checked
+{
+}
+</string>
               </property>
               <property name="editTriggers">
                <set>QAbstractItemView::NoEditTriggers</set>
@@ -237,12 +284,40 @@
          </layout>
         </widget>
        </item>
+       <item>
+        <widget class="QWidget" name="widget_2" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>3</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>3</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(100, 100, 100, 255), stop:0.2 rgba(100, 100, 100, 50), stop:1 rgba(255, 255, 255, 0));
+</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </widget>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MySplitter</class>
+   <extends>QSplitter</extends>
+   <header>smallWidgets/MySplitter.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../MediaElch.qrc"/>
  </resources>

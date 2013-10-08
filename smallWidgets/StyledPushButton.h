@@ -8,7 +8,7 @@ class StyledPushButton : public QPushButton
     Q_OBJECT
 public:
     enum ButtonStyle {
-        StyleRed, StyleGreen, StyleYellow, Unstyled
+        StyleBlue, StyleLightBlue, StyleRed, StyleGreen, StyleYellow, Unstyled
     };
 
     explicit StyledPushButton(QWidget *parent = 0);

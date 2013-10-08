@@ -16,7 +16,10 @@
   <property name="styleSheet">
    <string notr="true">QTreeView {
 	border: 0px;
-	border-right: 1px solid rgba(0, 0, 0, 100);
+}
+
+#files {
+	color: #395265;
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -36,6 +39,7 @@
      </property>
      <property name="styleSheet">
       <string notr="true">alternate-background-color: rgb(243, 246, 250);
+selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
 </string>
      </property>
      <property name="horizontalScrollBarPolicy">

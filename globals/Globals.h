@@ -64,7 +64,7 @@ enum MainActions {
 };
 
 enum MainWidgets {
-    WidgetMovies, WidgetMovieSets, WidgetTvShows, WidgetConcerts, WidgetGenres, WidgetCertifications
+    WidgetMovies, WidgetMovieSets, WidgetTvShows, WidgetConcerts, WidgetGenres, WidgetCertifications, WidgetDownloads
 };
 
 /**

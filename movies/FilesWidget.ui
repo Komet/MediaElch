@@ -13,7 +13,10 @@
   <property name="styleSheet">
    <string notr="true">QTableView {
 	border: 0px;
-	border-right: 1px solid rgba(0, 0, 0, 100);
+}
+
+#files {
+	color: #395265;
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -39,7 +42,11 @@
      </property>
      <property name="styleSheet">
       <string notr="true">alternate-background-color: rgb(243, 246, 250);
+selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
 </string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
      </property>
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>
@@ -79,11 +86,13 @@
    <item>
     <widget class="QWidget" name="widget" native="true">
      <property name="styleSheet">
-      <string notr="true">QWidget {
+      <string notr="true">/*
+QWidget {
 	border: 0px;
 	border-right: 1px solid rgba(0, 0, 0, 100);
 	background-color: #b0b0b0;
-}</string>
+}
+*/</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0,0,0">
       <property name="spacing">
@@ -98,15 +107,17 @@
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: #e0e0e0;
-border: 1px;
-border-radius: 2px;
+         <string notr="true">background-color: #f9f9f9;
+color: rgb(27, 105, 165);
+border: none;
+border-right: 1px solid #f0f0f0;
+font-weight: bold;
 font-size: 11px;
-margin-right: 2px;
-padding-left: 3px;
-padding-right: 3px;
-padding-top: 2px;
-padding-bottom: 2px;</string>
+padding-top: 4px;
+padding-bottom: 4px;
+margin-top: 1px;
+margin-bottom: 1px;
+</string>
         </property>
         <property name="text">
          <string>New</string>
@@ -122,15 +133,17 @@ padding-bottom: 2px;</string>
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: #c0c0c0;
-border: 1px;
-border-radius: 2px;
+         <string notr="true">background-color: #f9f9f9;
+color: rgb(27, 105, 165);
+border: none;
+border-right: 1px solid #f0f0f0;
+font-weight: normal;
 font-size: 11px;
-margin-right: 2px;
-padding-left: 3px;
-padding-right: 3px;
-padding-top: 2px;
-padding-bottom: 2px;</string>
+padding-top: 4px;
+padding-bottom: 4px;
+margin-top: 1px;
+margin-bottom: 1px;
+</string>
         </property>
         <property name="text">
          <string>Name</string>
@@ -146,15 +159,17 @@ padding-bottom: 2px;</string>
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: #c0c0c0;
-border: 1px;
-border-radius: 2px;
+         <string notr="true">background-color: #f9f9f9;
+color: rgb(27, 105, 165);
+border: none;
+border-right: 1px solid #f0f0f0;
+font-weight: normal;
 font-size: 11px;
-margin-right: 2px;
-padding-left: 3px;
-padding-right: 3px;
-padding-top: 2px;
-padding-bottom: 2px;</string>
+padding-top: 4px;
+padding-bottom: 4px;
+margin-top: 1px;
+margin-bottom: 1px;
+</string>
         </property>
         <property name="text">
          <string>Date Added</string>
@@ -170,15 +185,17 @@ padding-bottom: 2px;</string>
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: #c0c0c0;
-border: 1px;
-border-radius: 2px;
+         <string notr="true">background-color: #f9f9f9;
+color: rgb(27, 105, 165);
+border: none;
+border-right: 1px solid #f0f0f0;
+font-weight: normal;
 font-size: 11px;
-margin-right: 2px;
-padding-left: 3px;
-padding-right: 3px;
-padding-top: 2px;
-padding-bottom: 2px;</string>
+padding-top: 4px;
+padding-bottom: 4px;
+margin-top: 1px;
+margin-bottom: 1px;
+</string>
         </property>
         <property name="text">
          <string>Seen</string>
@@ -194,15 +211,17 @@ padding-bottom: 2px;</string>
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: #c0c0c0;
-border: 1px;
-border-radius: 2px;
+         <string notr="true">background-color: #f9f9f9;
+color: rgb(27, 105, 165);
+border: none;
+border-right: 1px solid #f0f0f0;
+font-weight: normal;
 font-size: 11px;
-margin-right: 2px;
-padding-left: 3px;
-padding-right: 3px;
-padding-top: 2px;
-padding-bottom: 2px;</string>
+padding-top: 4px;
+padding-bottom: 4px;
+margin-top: 1px;
+margin-bottom: 1px;
+</string>
         </property>
         <property name="text">
          <string>Year</string>

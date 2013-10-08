@@ -19,13 +19,19 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#centralWidget {
+/*	background-image: url(:/img/pattern2.png);*/
+	background-color: white;
+}
+
+#scrollArea, #scrollArea_3, #scrollArea_2 {
 	background-image: url(:/img/pattern2.png);
 }
 
 #menuWidget {
 	background-color: rgb(51, 57, 61);
 	border-right: 1px solid rgb(34, 34, 34);
-}</string>
+}
+</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -85,6 +91,12 @@
        </item>
        <item>
         <widget class="QToolButton" name="buttonMovies">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="toolTip">
           <string>Movies</string>
          </property>
@@ -112,6 +124,12 @@
        </item>
        <item>
         <widget class="QToolButton" name="buttonMovieSets">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="toolTip">
           <string>Movie Sets</string>
          </property>
@@ -139,6 +157,12 @@
        </item>
        <item>
         <widget class="QToolButton" name="buttonGenres">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="toolTip">
           <string>Genres</string>
          </property>
@@ -166,6 +190,12 @@
        </item>
        <item>
         <widget class="QToolButton" name="buttonCertifications">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="toolTip">
           <string>Certifications</string>
          </property>
@@ -212,6 +242,12 @@ margin-top: 15px;</string>
        </item>
        <item>
         <widget class="QToolButton" name="buttonTvshows">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="toolTip">
           <string>TV Shows</string>
          </property>
@@ -258,6 +294,12 @@ margin-top: 15px;</string>
        </item>
        <item>
         <widget class="QToolButton" name="buttonConcerts">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="toolTip">
           <string>Concerts</string>
          </property>
@@ -274,6 +316,58 @@ margin-top: 15px;</string>
          <property name="icon">
           <iconset resource="../MediaElch.qrc">
            <normaloff>:/img/concerts_menu.png</normaloff>:/img/concerts_menu.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelDownloads">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgba(255, 255, 255, 200);
+margin-top: 15px;</string>
+         </property>
+         <property name="text">
+          <string>Import</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="buttonDownloads">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Import</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QToolButton {
+	border: 0;
+	margin-left: 10px;
+	margin-right: 10px;
+}</string>
+         </property>
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../MediaElch.qrc">
+           <normaloff>:/img/downloads_menu.png</normaloff>:/img/downloads_menu.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -310,14 +404,12 @@ margin-top: 15px;</string>
          <number>0</number>
         </property>
         <item>
-         <widget class="QSplitter" name="movieSplitter">
-          <property name="styleSheet">
-           <string notr="true">QSplitter::handle {
-	background-color: transparent;
-}</string>
-          </property>
+         <widget class="MySplitter" name="movieSplitter">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="handleWidth">
+           <number>1</number>
           </property>
           <widget class="FilesWidget" name="filesWidget" native="true">
            <property name="minimumSize">
@@ -374,14 +466,12 @@ margin-top: 15px;</string>
          <number>0</number>
         </property>
         <item>
-         <widget class="QSplitter" name="tvShowSplitter">
-          <property name="styleSheet">
-           <string notr="true">QSplitter::handle {
-	background-color: transparent;
-}</string>
-          </property>
+         <widget class="MySplitter" name="tvShowSplitter">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="handleWidth">
+           <number>1</number>
           </property>
           <widget class="TvShowFilesWidget" name="tvShowFilesWidget" native="true">
            <property name="minimumSize">
@@ -417,8 +507,8 @@ margin-top: 15px;</string>
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>76</width>
-              <height>735</height>
+              <width>49</width>
+              <height>30</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -436,6 +526,12 @@ margin-top: 15px;</string>
        </layout>
       </widget>
       <widget class="QWidget" name="page_3">
+       <property name="styleSheet">
+        <string notr="true">#page_3 {
+	background-image: url(:/img/pattern2.png);
+}
+</string>
+       </property>
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <property name="margin">
          <number>0</number>
@@ -451,14 +547,15 @@ margin-top: 15px;</string>
          <number>0</number>
         </property>
         <item>
-         <widget class="QSplitter" name="concertSplitter">
-          <property name="styleSheet">
-           <string notr="true">QSplitter::handle {
-	background-color: transparent;
-}</string>
-          </property>
+         <widget class="MySplitter" name="concertSplitter">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="handleWidth">
+           <number>1</number>
+          </property>
+          <property name="childrenCollapsible">
+           <bool>false</bool>
           </property>
           <widget class="ConcertFilesWidget" name="concertFilesWidget" native="true">
            <property name="minimumSize">
@@ -472,7 +569,8 @@ margin-top: 15px;</string>
            <property name="styleSheet">
             <string notr="true">QScrollArea, #scrollAreaWidgetContents_4 {
 	background-color: transparent;
-}</string>
+}
+</string>
            </property>
            <property name="frameShape">
             <enum>QFrame::NoFrame</enum>
@@ -491,8 +589,8 @@ margin-top: 15px;</string>
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>76</width>
-              <height>735</height>
+              <width>49</width>
+              <height>30</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -510,6 +608,12 @@ margin-top: 15px;</string>
        </layout>
       </widget>
       <widget class="QWidget" name="page_5">
+       <property name="styleSheet">
+        <string notr="true">#page_5 {
+	background-image: url(:/img/pattern2.png);
+}
+</string>
+       </property>
        <layout class="QVBoxLayout" name="verticalLayout_6">
         <property name="margin">
          <number>0</number>
@@ -520,12 +624,34 @@ margin-top: 15px;</string>
        </layout>
       </widget>
       <widget class="QWidget" name="page_6">
+       <property name="styleSheet">
+        <string notr="true">#page_6 {
+	background-image: url(:/img/pattern2.png);
+}
+</string>
+       </property>
        <layout class="QVBoxLayout" name="verticalLayout_7">
         <property name="margin">
          <number>0</number>
         </property>
         <item>
          <widget class="CertificationWidget" name="certificationWidget" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_4">
+       <property name="styleSheet">
+        <string notr="true">#page_4 {
+	background-image: url(:/img/pattern2.png);
+}
+</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_10">
+        <property name="margin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="DownloadsWidget" name="downloadsWidget" native="true"/>
         </item>
        </layout>
       </widget>
@@ -571,6 +697,12 @@ margin-top: 15px;</string>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
+  <customwidget>
+   <class>MySplitter</class>
+   <extends>QSplitter</extends>
+   <header>smallWidgets/MySplitter.h</header>
+   <container>1</container>
+  </customwidget>
   <customwidget>
    <class>MovieWidget</class>
    <extends>QWidget</extends>
@@ -645,6 +777,12 @@ margin-top: 15px;</string>
    <slots>
     <signal>setActionSaveEnabled(bool,MainWidgets)</signal>
    </slots>
+  </customwidget>
+  <customwidget>
+   <class>DownloadsWidget</class>
+   <extends>QWidget</extends>
+   <header>downloads/DownloadsWidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
@@ -891,6 +1029,22 @@ margin-top: 15px;</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>buttonDownloads</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onMenuDownloads()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>32</x>
+     <y>421</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>530</x>
+     <y>373</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onMenuGenres()</slot>
@@ -901,5 +1055,6 @@ margin-top: 15px;</string>
   <slot>onMenuConcerts()</slot>
   <slot>onSetSaveEnabled(bool,MainWidgets)</slot>
   <slot>onSetSearchEnabled(bool,MainWidgets)</slot>
+  <slot>onMenuDownloads()</slot>
  </slots>
 </ui>

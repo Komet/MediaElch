@@ -1,0 +1,80 @@
+#ifndef IMPORTDIALOG_H
+#define IMPORTDIALOG_H
+
+#include <QCloseEvent>
+#include <QDialog>
+#include <QPointer>
+#include <QThread>
+#include <QTimer>
+
+#include "data/Concert.h"
+#include "data/TvShow.h"
+#include "data/TvShowEpisode.h"
+#include "downloads/FileWorker.h"
+#include "globals/DownloadManager.h"
+#include "globals/DownloadManagerElement.h"
+#include "movies/Movie.h"
+
+namespace Ui {
+class ImportDialog;
+}
+
+class ImportDialog : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit ImportDialog(QWidget *parent = 0);
+    ~ImportDialog();
+    void setFiles(QStringList files);
+    QStringList files();
+    void setExtraFiles(QStringList extraFiles);
+    QStringList extraFiles();
+    void setImportDir(QString dir);
+    QString importDir();
+
+public slots:
+    int exec();
+    void execMovie(QString searchString);
+    void execTvShow(QString searchString, TvShow *tvShow);
+    void execConcert(QString searchString);
+    void reject();
+
+protected:
+    void closeEvent(QCloseEvent *event);
+
+private slots:
+    void onMovieChosen();
+    void onLoadDone(Movie *movie);
+    void onConcertChosen();
+    void onLoadDone(Concert *concert);
+    void onTvShowChosen();
+    void onEpisodeLoadDone();
+    void onImport();
+    void onFileWatcherTimeout();
+    void onMovingFilesFinished();
+    void onEpisodeDownloadFinished(DownloadManagerElement elem);
+
+private:
+    Ui::ImportDialog *ui;
+    QString m_type;
+    QPointer<Movie> m_movie;
+    QPointer<Concert> m_concert;
+    QPointer<TvShow> m_show;
+    QPointer<TvShowEpisode> m_episode;
+    QStringList m_files;
+    QStringList m_extraFiles;
+    QString m_importDir;
+    bool m_separateFolders;
+    QTimer m_timer;
+    QMap<QString, QString> m_filesToMove;
+    QPointer<QThread> m_workerThread;
+    QPointer<FileWorker> m_worker;
+    QStringList m_newFiles;
+    DownloadManager *m_posterDownloadManager;
+
+    void setDefaults(int renameType);
+    void storeDefaults();
+};
+
+#endif // IMPORTDIALOG_H

@@ -17,18 +17,10 @@ Concert::Concert(QStringList files, QObject *parent) :
     QObject(parent)
 {
     moveToThread(QApplication::instance()->thread());
-    m_files = files;
+    m_controller = new ConcertController(this);
     m_rating = 0;
     m_runtime = 0;
     m_playcount = 0;
-    if (files.size() > 0) {
-        QFileInfo fi(files.at(0));
-        QStringList path = fi.path().split("/", QString::SkipEmptyParts);
-        if (!path.isEmpty())
-            m_folderName = path.last();
-    }
-    m_infoLoaded = false;
-    m_infoFromNfoLoaded = false;
     m_watched = false;
     m_hasChanged = false;
     m_syncNeeded = false;
@@ -40,14 +32,26 @@ Concert::Concert(QStringList files, QObject *parent) :
     m_mediaCenterId = -1;
     m_streamDetailsLoaded = false;
     m_databaseId = -1;
-    if (!files.isEmpty())
-        m_streamDetails = new StreamDetails(this, files);
-    else
-        m_streamDetails = new StreamDetails(this, QStringList());
+    setFiles(files);
 }
 
 Concert::~Concert()
 {
+}
+
+void Concert::setFiles(QStringList files)
+{
+    m_files = files;
+    if (files.size() > 0) {
+        QFileInfo fi(files.at(0));
+        QStringList path = fi.path().split("/", QString::SkipEmptyParts);
+        if (!path.isEmpty())
+            m_folderName = path.last();
+    }
+    if (!files.isEmpty())
+        m_streamDetails = new StreamDetails(this, files);
+    else
+        m_streamDetails = new StreamDetails(this, QStringList());
 }
 
 /**
@@ -128,144 +132,9 @@ void Concert::clear(QList<int> infos)
     }
 }
 
-void Concert::setLoadsLeft(QList<ScraperData> loadsLeft)
+ConcertController *Concert::controller()
 {
-    m_loadDoneFired = false;
-    m_loadsLeft = loadsLeft;
-}
-
-void Concert::removeFromLoadsLeft(ScraperData load)
-{
-    m_loadsLeft.removeOne(load);
-    m_loadMutex.lock();
-    if (m_loadsLeft.isEmpty() && !m_loadDoneFired) {
-        m_loadDoneFired = true;
-        scraperLoadDone();
-    }
-    m_loadMutex.unlock();
-}
-
-/**
- * @brief Saves the concert infos with the given MediaCenterInterface
- * @param mediaCenterInterface MediaCenterInterface to use for saving
- * @return Saving was successful or not
- */
-bool Concert::saveData(MediaCenterInterface *mediaCenterInterface)
-{
-    qDebug() << "Entered";
-    if (!streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails())
-        loadStreamDetailsFromFile();
-    bool saved = mediaCenterInterface->saveConcert(this);
-    qDebug() << "Saved" << saved;
-    if (!m_infoLoaded)
-        m_infoLoaded = saved;
-    setChanged(false);
-    clearImages();
-    clearExtraFanartData();
-    setSyncNeeded(true);
-    return saved;
-}
-
-/**
- * @brief Loads the concert infos with the given MediaCenterInterface
- * @param mediaCenterInterface MediaCenterInterface to use for loading
- * @param force Force the loading. If set to false and infos were already loeaded this function just returns
- * @return Loading was successful or not
- */
-bool Concert::loadData(MediaCenterInterface *mediaCenterInterface, bool force, bool reloadFromNfo)
-{
-    if ((m_infoLoaded || hasChanged()) && !force && m_infoFromNfoLoaded)
-        return m_infoLoaded;
-
-    bool infoLoaded;
-    if (reloadFromNfo)
-        infoLoaded = mediaCenterInterface->loadConcert(this);
-    else
-        infoLoaded = mediaCenterInterface->loadConcert(this, nfoContent());
-
-    if (!infoLoaded) {
-        NameFormatter *nameFormat = NameFormatter::instance();
-        if (this->files().size() > 0) {
-            QFileInfo fi(this->files().at(0));
-            if (QString::compare(fi.fileName(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0) {
-                QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
-                if (pathElements.size() > 0 && QString::compare(pathElements.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0)
-                    pathElements.removeLast();
-                if (pathElements.size() > 0)
-                    setName(nameFormat->formatName(pathElements.last()));
-            } else if (QString::compare(fi.fileName(), "index.bdmv", Qt::CaseInsensitive) == 0) {
-                    QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
-                    if (pathElements.size() > 0 && QString::compare(pathElements.last(), "BDMV", Qt::CaseInsensitive) == 0)
-                        pathElements.removeLast();
-                    if (pathElements.size() > 0)
-                        setName(nameFormat->formatName(pathElements.last()));
-            } else if (inSeparateFolder()) {
-                QStringList splitted = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
-                if (!splitted.isEmpty()) {
-                    setName(nameFormat->formatName(splitted.last()));
-                } else {
-                    if (files().size() > 1)
-                        setName(nameFormat->formatName(nameFormat->formatParts(fi.completeBaseName())));
-                    else
-                        setName(nameFormat->formatName(fi.completeBaseName()));
-                }
-            } else {
-                if (files().size() > 1)
-                    setName(nameFormat->formatName(nameFormat->formatParts(fi.completeBaseName())));
-                else
-                    setName(nameFormat->formatName(fi.completeBaseName()));
-            }
-
-
-        }
-    }
-    m_infoLoaded = infoLoaded;
-    m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
-    setChanged(false);
-    return infoLoaded;
-}
-
-/**
- * @brief Loads the concert info from a scraper
- * @param id Id of the concert within the given ScraperInterface
- * @param scraperInterface ScraperInterface to use for loading
- * @param infos List of infos to load
- */
-void Concert::loadData(QString id, ConcertScraperInterface *scraperInterface, QList<int> infos)
-{
-    qDebug() << "Entered, id=" << id << "scraperInterface=" << scraperInterface->name();
-    m_infosToLoad = infos;
-    if (scraperInterface->name() == "The Movie DB (Concerts)")
-        setTmdbId(id);
-    scraperInterface->loadData(id, this, infos);
-}
-
-/**
- * @brief Tries to load streamdetails from the file
- */
-void Concert::loadStreamDetailsFromFile()
-{
-    m_streamDetails->loadStreamDetails();
-    setStreamDetailsLoaded(true);
-    setChanged(true);
-}
-
-/**
- * @brief Concert::infosToLoad
- * @return
- */
-QList<int> Concert::infosToLoad()
-{
-    return m_infosToLoad;
-}
-
-/**
- * @brief Called when a ScraperInterface has finished loading
- *        Emits the loaded signal
- */
-void Concert::scraperLoadDone()
-{
-    emit loaded(this);
+    return m_controller;
 }
 
 /**
@@ -490,15 +359,6 @@ QString Concert::folderName() const
 bool Concert::streamDetailsLoaded() const
 {
     return m_streamDetailsLoaded;
-}
-
-/**
- * @brief Holds wether concert infos were loaded from a MediaCenterInterface or ScraperInterface
- * @return Infos were loaded
- */
-bool Concert::infoLoaded() const
-{
-    return m_infoLoaded;
 }
 
 /**
@@ -1096,4 +956,24 @@ void Concert::setImage(int imageType, QByteArray image)
     m_images.insert(imageType, image);
     m_hasImageChanged.insert(imageType, true);
     setChanged(true);
+}
+
+bool Concert::hasImage(int imageType)
+{
+    return m_hasImage.value(imageType, false);
+}
+
+void Concert::setHasImage(int imageType, bool has)
+{
+    m_hasImage.insert(imageType, has);
+}
+
+void Concert::setHasExtraFanarts(bool has)
+{
+    m_hasExtraFanarts = has;
+}
+
+bool Concert::hasExtraFanarts() const
+{
+    return m_hasExtraFanarts;
 }

@@ -10,9 +10,10 @@
 #include "data/TvShow.h"
 #include "data/TvShowModelItem.h"
 
-class TvShow;
 class MediaCenterInterface;
+class StreamDetails;
 class TvScraperInterface;
+class TvShow;
 class TvShowModelItem;
 
 /**
@@ -41,6 +42,7 @@ public:
     void clear();
     void clear(QList<int> infos);
 
+    void setFiles(QStringList files);
     TvShow *tvShow();
     QStringList files() const;
     QString showTitle() const;

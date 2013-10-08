@@ -51,6 +51,7 @@ private slots:
     void onMenuConcerts();
     void onMenuGenres();
     void onMenuCertifications();
+    void onMenuDownloads();
     void onActionSearch();
     void onActionSave();
     void onActionSaveAll();

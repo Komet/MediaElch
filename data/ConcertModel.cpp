@@ -38,6 +38,12 @@ void ConcertModel::onConcertChanged(Concert *concert)
     emit dataChanged(index, index);
 }
 
+void ConcertModel::update()
+{
+    QModelIndex index = createIndex(0, 0);
+    emit dataChanged(index, index);
+}
+
 /**
  * @brief Get a specific concert
  * @param row Row of the concert
@@ -95,14 +101,16 @@ QVariant ConcertModel::data(const QModelIndex &index, int role) const
     } else if (index.column() == 1 && role == Qt::DisplayRole) {
         return concert->folderName();
     } else if (role == Qt::UserRole+1) {
-        return concert->infoLoaded();
+        return concert->controller()->infoLoaded();
     } else if (role == Qt::UserRole+2) {
         return concert->hasChanged();
     } else if (role == Qt::UserRole+3) {
         return concert->syncNeeded();
+    /*
     } else if (role == Qt::ForegroundRole) {
         if (concert->hasChanged())
             return QColor(255, 0, 0);
+    */
     } else if (role == Qt::FontRole) {
         if (concert->hasChanged()) {
             QFont font;
@@ -110,7 +118,7 @@ QVariant ConcertModel::data(const QModelIndex &index, int role) const
             return font;
         }
     } else if (role == Qt::DecorationRole) {
-        if (!concert->infoLoaded())
+        if (!concert->controller()->infoLoaded())
             return m_newIcon;
         else if (concert->syncNeeded())
             return m_syncIcon;
@@ -173,7 +181,7 @@ QList<Concert*> ConcertModel::concerts()
 bool ConcertModel::hasNewConcerts()
 {
     foreach (Concert *concert, m_concerts) {
-        if (!concert->infoLoaded())
+        if (!concert->controller()->infoLoaded())
             return true;
     }
     return false;

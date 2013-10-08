@@ -143,7 +143,21 @@ SOURCES += main.cpp\
     tvShows/ItemWidgetShow.cpp \
     scrapers/CustomMovieScraper.cpp \
     scrapers/MediaPassion.cpp \
-    imageProviders/MediaPassionImages.cpp
+    imageProviders/MediaPassionImages.cpp \
+    downloads/DownloadsWidget.cpp \
+    smallWidgets/MyTableWidgetItem.cpp \
+    downloads/UnpackButtons.cpp \
+    downloads/Extractor.cpp \
+    downloads/ImportActions.cpp \
+    movies/MovieSearchWidget.cpp \
+    downloads/ImportDialog.cpp \
+    downloads/FileWorker.cpp \
+    downloads/MyFile.cpp \
+    concerts/ConcertSearchWidget.cpp \
+    concerts/ConcertController.cpp \
+    smallWidgets/MySplitter.cpp \
+    smallWidgets/MySplitterHandle.cpp \
+    tvShows/TvShowSearchEpisode.cpp
 
 macx {
     OBJECTIVE_SOURCES += mac/MacFullscreen.mm
@@ -263,7 +277,21 @@ HEADERS  += main/MainWindow.h \
     tvShows/ItemWidgetShow.h \
     scrapers/CustomMovieScraper.h \
     scrapers/MediaPassion.h \
-    imageProviders/MediaPassionImages.h
+    imageProviders/MediaPassionImages.h \
+    downloads/DownloadsWidget.h \
+    smallWidgets/MyTableWidgetItem.h \
+    downloads/UnpackButtons.h \
+    downloads/Extractor.h \
+    downloads/ImportActions.h \
+    movies/MovieSearchWidget.h \
+    downloads/ImportDialog.h \
+    downloads/FileWorker.h \
+    downloads/MyFile.h \
+    concerts/ConcertSearchWidget.h \
+    concerts/ConcertController.h \
+    smallWidgets/MySplitter.h \
+    smallWidgets/MySplitterHandle.h \
+    tvShows/TvShowSearchEpisode.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -302,10 +330,18 @@ FORMS    += main/MainWindow.ui \
     settings/SettingsWindow.ui \
     settings/ExportTemplateWidget.ui \
     export/ExportDialog.ui \
-    tvShows/ItemWidgetShow.ui
+    tvShows/ItemWidgetShow.ui \
+    downloads/DownloadsWidget.ui \
+    downloads/UnpackButtons.ui \
+    downloads/ImportActions.ui \
+    movies/MovieSearchWidget.ui \
+    downloads/ImportDialog.ui \
+    concerts/ConcertSearchWidget.ui \
+    tvShows/TvShowSearchEpisode.ui
 
 RESOURCES += \
-    MediaElch.qrc
+    MediaElch.qrc \
+    fonts.qrc
 
 TRANSLATIONS += \
     i18n/MediaElch_en.ts \

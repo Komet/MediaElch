@@ -10,7 +10,7 @@
 #include <QWidget>
 
 #include "data/Concert.h"
-#include "globals/DownloadManager.h"
+#include "smallWidgets/ClosableImage.h"
 
 namespace Ui {
 class ConcertWidget;
@@ -45,14 +45,16 @@ signals:
     void setActionSaveEnabled(bool, MainWidgets);
 
 private slots:
-    void downloadActorsFinished(Concert *concert);
-    void infoLoadDone(Concert *concert);
-    void loadDone(Concert *concert, QMap<int, QList<Poster> > posters);
+    void onInfoLoadDone(Concert *concert);
+    void onLoadDone(Concert *concert);
+    void onLoadImagesStarted(Concert *concert);
+    void onLoadingImages(Concert *concert, QList<int> imageTypes);
+    void onDownloadProgress(Concert *concert, int current, int maximum);
+    void onSetImage(Concert *concert, int type, QByteArray data);
 
     void onChooseImage();
     void onDeleteImage();
 
-    void posterDownloadFinished(DownloadManagerElement elem);
     void concertNameChanged(QString text);
     void addGenre(QString genre);
     void removeGenre(QString genre);
@@ -84,10 +86,11 @@ private slots:
     void onRemoveExtraFanart(const QByteArray &image);
     void onAddExtraFanart();
 
+    void updateImage(const int &imageType, ClosableImage *image);
+
 private:
     Ui::ConcertWidget *ui;
     QPointer<Concert> m_concert;
-    DownloadManager *m_posterDownloadManager;
     QMovie *m_loadingMovie;
     QLabel *m_savingWidget;
     QList<QWidget*> m_streamDetailsWidgets;

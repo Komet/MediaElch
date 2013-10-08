@@ -29,7 +29,6 @@ public:
     QList<int> infosToLoad();
     bool infoLoaded() const;
     bool downloadsInProgress() const;
-    int downloadsSize() const;
     void loadImage(int type, QUrl url);
     void loadImages(int type, QList<QUrl> urls);
     void abortDownloads();

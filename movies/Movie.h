@@ -109,6 +109,7 @@ public:
 
     bool hasChanged() const;
 
+    void setFiles(QStringList files);
     void setName(QString name);
     void setSortTitle(QString sortTitle);
     void setOriginalName(QString originalName);

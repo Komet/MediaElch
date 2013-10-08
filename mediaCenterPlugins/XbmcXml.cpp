@@ -748,7 +748,7 @@ bool XbmcXml::loadConcert(Concert *concert, QString initialNfoContent)
         concert->addTag(domDoc.elementsByTagName("tag").at(i).toElement().text());
     for (int i=0, n=domDoc.elementsByTagName("thumb").size() ; i<n ; i++) {
         QString parentTag = domDoc.elementsByTagName("thumb").at(i).parentNode().toElement().tagName();
-        if (parentTag == "movie") {
+        if (parentTag == "musicvideo") {
             Poster p;
             p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
             p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
@@ -762,6 +762,13 @@ bool XbmcXml::loadConcert(Concert *concert, QString initialNfoContent)
     }
 
     concert->setStreamDetailsLoaded(loadStreamDetails(concert->streamDetails(), domDoc));
+
+    // Existence of images
+    if (initialNfoContent.isEmpty()) {
+        foreach (const int &imageType, Concert::imageTypes())
+            concert->setHasImage(imageType, !imageFileName(concert, imageType).isEmpty());
+        concert->setHasExtraFanarts(!extraFanartNames(concert).isEmpty());
+    }
 
     return true;
 }

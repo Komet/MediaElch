@@ -94,7 +94,7 @@ void ConcertFileSearcher::reload(bool force)
         }
         Concert *concert = new Concert(files, this);
         concert->setInSeparateFolder(inSeparateFolder);
-        concert->loadData(Manager::instance()->mediaCenterInterface());
+        concert->controller()->loadData(Manager::instance()->mediaCenterInterface());
         emit currentDir(concert->name());
         Manager::instance()->database()->add(concert, path);
         concerts.append(concert);
@@ -107,7 +107,7 @@ void ConcertFileSearcher::reload(bool force)
         if (m_aborted)
             return;
 
-        concert->loadData(Manager::instance()->mediaCenterInterface(), false, false);
+        concert->controller()->loadData(Manager::instance()->mediaCenterInterface(), false, false);
         emit currentDir(concert->name());
         concerts.append(concert);
         emit progress(++concertCounter, concertSum, m_progressMessageId);

@@ -2,7 +2,6 @@
 #define CONCERTSEARCH_H
 
 #include <QDialog>
-#include <QTableWidgetItem>
 
 #include "globals/Globals.h"
 
@@ -27,21 +26,8 @@ public slots:
     QString scraperId();
     QList<int> infosToLoad();
 
-private slots:
-    void search();
-    void showResults(QList<ScraperSearchResult> results);
-    void resultClicked(QTableWidgetItem *item);
-    void chkToggled();
-    void chkAllToggled(bool toggled);
-
 private:
     Ui::ConcertSearch *ui;
-    int m_scraperNo;
-    QString m_scraperId;
-    QList<int> m_infosToLoad;
-
-    void clear();
-    void setChkBoxesEnabled(QList<int> scraperSupports);
 };
 
 #endif // CONCERTSEARCH_H

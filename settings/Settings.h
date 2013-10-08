@@ -29,11 +29,16 @@ public:
     QPoint mainWindowPosition();
     QSize settingsWindowSize();
     QPoint settingsWindowPosition();
+    QSize importDialogSize();
+    QPoint importDialogPosition();
     bool mainWindowMaximized();
     QByteArray mainSplitterState();
     QList<SettingsDir> movieDirectories();
     QList<SettingsDir> tvShowDirectories();
     QList<SettingsDir> concertDirectories();
+    QStringList downloadDirectories();
+    QString unrar();
+    bool deleteArchives();
     QString excludeWords();
     QString xbmcHost();
     int xbmcPort();
@@ -62,6 +67,7 @@ public:
     bool dontShowDeleteImageConfirm() const;
     QMap<int, QString> customMovieScraper() const;
     int currentMovieScraper() const;
+    bool keepDownloadSource() const;
 
     bool autoLoadStreamDetails();
 
@@ -69,11 +75,16 @@ public:
     void setMainWindowPosition(QPoint mainWindowPosition);
     void setSettingsWindowSize(QSize settingsWindowSize);
     void setSettingsWindowPosition(QPoint settingsWindowPosition);
+    void setImportDialogSize(QSize size);
+    void setImportDialogPosition(QPoint position);
     void setMainWindowMaximized(bool max);
     void setMainSplitterState(QByteArray state);
     void setMovieDirectories(QList<SettingsDir> dirs);
     void setTvShowDirectories(QList<SettingsDir> dirs);
     void setConcertDirectories(QList<SettingsDir> dirs);
+    void setDownloadDirectories(QStringList dirs);
+    void setUnrar(QString unrar);
+    void setDeleteArchives(bool deleteArchives);
     void setExcludeWords(QString words);
     void setUseProxy(bool use);
     void setProxyType(int type);
@@ -102,6 +113,7 @@ public:
     void setDontShowDeleteImageConfirm(bool show);
     void setCustomMovieScraper(QMap<int, QString> customMovieScraper);
     void setCurrentMovieScraper(int current);
+    void setKeepDownloadSource(bool keep);
 
 public slots:
     void saveSettings();
@@ -114,11 +126,16 @@ private:
     QList<SettingsDir> m_movieDirectories;
     QList<SettingsDir> m_tvShowDirectories;
     QList<SettingsDir> m_concertDirectories;
+    QStringList m_downloadDirectories;
+    QString m_unrar;
+    bool m_deleteArchives;
     QString m_excludeWords;
     QSize m_mainWindowSize;
     QPoint m_mainWindowPosition;
     QSize m_settingsWindowSize;
     QPoint m_settingsWindowPosition;
+    QSize m_importDialogSize;
+    QPoint m_importDialogPosition;
     bool m_mainWindowMaximized;
     QByteArray m_mainSplitterState;
     bool m_useProxy;
@@ -145,6 +162,7 @@ private:
     bool m_dontShowDeleteImageConfirm;
     QMap<int, QString> m_customMovieScraper;
     int m_currentMovieScraper;
+    bool m_keepDownloadSource;
 
     void setupProxy();
 };

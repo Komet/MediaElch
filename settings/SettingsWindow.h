@@ -48,6 +48,10 @@ private slots:
     void onTemplatesLoaded(QList<ExportTemplate*> templates);
     void onTemplateInstalled(ExportTemplate *exportTemplate, bool success);
     void onTemplateUninstalled(ExportTemplate *exportTemplate, bool success);
+    void addDownloadDir();
+    void removeDownloadDir();
+    void downloadDirListRowChanged(int currentRow);
+    void onChooseUnrar();
 
 private:
     Ui::SettingsWindow *ui;

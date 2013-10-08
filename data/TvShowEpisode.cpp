@@ -16,7 +16,6 @@
 TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) :
     QObject(parent)
 {
-    m_files = files;
     m_parent = parent;
     m_season = -2;
     m_episode = -2;
@@ -33,6 +32,12 @@ TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) :
     m_infoFromNfoLoaded = false;
     m_databaseId = -1;
     m_syncNeeded = false;
+    setFiles(files);
+}
+
+void TvShowEpisode::setFiles(QStringList files)
+{
+    m_files = files;
     if (!files.isEmpty())
         m_streamDetails = new StreamDetails(this, files);
     else

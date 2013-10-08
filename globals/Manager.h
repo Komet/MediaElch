@@ -54,7 +54,6 @@ public:
     TvShowProxyModel *tvShowProxyModel();
     ConcertModel* concertModel();
     FileScannerDialog *fileScannerDialog();
-    ScraperInterface* getScraperForName(QString name);
     FanartTv* fanartTv();
     TvShowFilesWidget *tvShowFilesWidget();
     TvTunes* tvTunes();

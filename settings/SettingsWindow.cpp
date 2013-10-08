@@ -31,6 +31,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->label_49->setFont(smallFont);
     ui->label_7->setFont(smallFont);
     ui->label_18->setFont(smallFont);
+    ui->label_53->setFont(smallFont);
 #endif
 
     ui->customScraperTable->horizontalHeader()->setResizeMode(0, QHeaderView::Stretch);
@@ -48,6 +49,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->dirs->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->dirs->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
     ui->exportTemplates->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    ui->downloadDirs->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 
     int scraperCounter = 0;
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
@@ -102,6 +104,10 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     connect(ExportTemplateLoader::instance(this), SIGNAL(sigTemplatesLoaded(QList<ExportTemplate*>)), this, SLOT(onTemplatesLoaded(QList<ExportTemplate*>)));
     connect(ExportTemplateLoader::instance(this), SIGNAL(sigTemplateInstalled(ExportTemplate*,bool)), this, SLOT(onTemplateInstalled(ExportTemplate*,bool)));
     connect(ExportTemplateLoader::instance(this), SIGNAL(sigTemplateUninstalled(ExportTemplate*,bool)), this, SLOT(onTemplateUninstalled(ExportTemplate*,bool)));
+    connect(ui->btnAddDownloadDir, SIGNAL(clicked()), this, SLOT(addDownloadDir()));
+    connect(ui->btnRemoveDownloadDir, SIGNAL(clicked()), this, SLOT(removeDownloadDir()));
+    connect(ui->downloadDirs, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(downloadDirListRowChanged(int)));
+    connect(ui->btnChooseUnrar, SIGNAL(clicked()), this, SLOT(onChooseUnrar()));
 
     ui->movieNfo->setProperty("dataFileType", DataFileType::MovieNfo);
     ui->moviePoster->setProperty("dataFileType", DataFileType::MoviePoster);
@@ -281,6 +287,21 @@ void SettingsWindow::loadSettings()
         ui->customScraperTable->setItem(row, 0, new QTableWidgetItem(titleForMovieScraperInfo(info)));
         ui->customScraperTable->setCellWidget(row, 1, comboForMovieScraperInfo(info));
     }
+
+    // Downloads
+    ui->downloadDirs->clearContents();
+    ui->downloadDirs->setRowCount(0);
+    QStringList downloadDirs = m_settings->downloadDirectories();
+    foreach (const QString &dir, downloadDirs) {
+        int row = ui->downloadDirs->rowCount();
+        ui->downloadDirs->insertRow(row);
+        QTableWidgetItem *item = new QTableWidgetItem(dir);
+        item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsEditable);
+        item->setToolTip(dir);
+        ui->downloadDirs->setItem(row, 0, item);
+    }
+    ui->chkDeleteArchives->setChecked(m_settings->deleteArchives());
+    ui->unrarPath->setText(m_settings->unrar());
 }
 
 void SettingsWindow::saveSettings()
@@ -353,6 +374,14 @@ void SettingsWindow::saveSettings()
         customMovieScraper.insert(info, scraper);
     }
     m_settings->setCustomMovieScraper(customMovieScraper);
+
+    // Downloads
+    QStringList downloadDirs;
+    for (int row=0, n=ui->downloadDirs->rowCount() ; row<n ; ++row)
+        downloadDirs << ui->downloadDirs->item(row, 0)->text();
+    m_settings->setDownloadDirectories(downloadDirs);
+    m_settings->setUnrar(ui->unrarPath->text());
+    m_settings->setDeleteArchives(ui->chkDeleteArchives->isChecked());
 
     m_settings->saveSettings();
 
@@ -638,4 +667,46 @@ QString SettingsWindow::titleForMovieScraperInfo(const int &info)
     default:
         return tr("Unsupported");
     }
+}
+
+void SettingsWindow::addDownloadDir()
+{
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Choose a directory containing your downloads"), QDir::homePath());
+    if (!dir.isEmpty()) {
+        dir = QDir::toNativeSeparators(dir);
+        bool exists = false;
+        for (int i=0, n=ui->downloadDirs->rowCount() ; i<n ; ++i) {
+            if (ui->downloadDirs->item(i, 1)->text() == dir)
+                exists = true;
+        }
+
+        if (!exists) {
+            int row = ui->downloadDirs->rowCount();
+            ui->downloadDirs->insertRow(row);
+            QTableWidgetItem *item = new QTableWidgetItem(dir);
+            item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsEditable);
+            item->setToolTip(dir);
+            ui->downloadDirs->setItem(row, 0, item);
+        }
+    }
+}
+
+void SettingsWindow::removeDownloadDir()
+{
+    int row = ui->downloadDirs->currentRow();
+    if (row < 0)
+        return;
+    ui->downloadDirs->removeRow(row);
+}
+
+void SettingsWindow::downloadDirListRowChanged(int currentRow)
+{
+    ui->buttonRemoveDir->setDisabled(currentRow < 0 || currentRow >= ui->downloadDirs->rowCount());
+}
+
+void SettingsWindow::onChooseUnrar()
+{
+    QString unrar = QFileDialog::getOpenFileName(this, tr("Choose unrar"), QDir::homePath());
+    if (!unrar.isEmpty())
+        ui->unrarPath->setText(unrar);
 }

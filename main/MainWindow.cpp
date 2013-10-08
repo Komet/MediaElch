@@ -50,12 +50,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setMinimumHeight(500);
 
     MainWindow::m_instance = this;
 
     qDebug() << "MediaElch version" << QApplication::applicationVersion() << "starting up";
 
-    for (int i=WidgetMovies ; i!=WidgetCertifications ; i++) {
+    for (int i=WidgetMovies ; i!=WidgetDownloads; i++) {
         QMap<MainActions, bool> actions;
         for (int n=ActionSearch ; n!=ActionExport ; n++) {
             actions.insert(static_cast<MainActions>(n), false);
@@ -190,6 +191,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->labelMovies->setFont(font);
     ui->labelConcerts->setFont(font);
     ui->labelShows->setFont(font);
+    ui->labelDownloads->setFont(font);
 #endif
 
     // hack. without only the fileScannerDialog pops up and blocks until it has finished
@@ -385,6 +387,7 @@ void MainWindow::onMenu(MainWidgets widget)
     m_icons.insert(WidgetGenres, QIcon(":/img/genre_menu.png"));
     m_icons.insert(WidgetCertifications, QIcon(":/img/certification2_menu.png"));
     m_icons.insert(WidgetConcerts, QIcon(":/img/concerts_menu.png"));
+    m_icons.insert(WidgetDownloads, QIcon(":/img/downloads_menu.png"));
 
     if (widget == WidgetMovies)
         m_icons.insert(widget, QIcon(":/img/video_menuActive.png"));
@@ -398,6 +401,8 @@ void MainWindow::onMenu(MainWidgets widget)
         m_icons.insert(widget, QIcon(":/img/movieSets_menuActive.png"));
     else if (widget == WidgetCertifications)
         m_icons.insert(widget, QIcon(":/img/certification2_menuActive.png"));
+    else if (widget == WidgetDownloads)
+        m_icons.insert(widget, QIcon(":/img/downloads_menuActive.png"));
 
     ui->buttonMovies->setIcon(m_icons.value(WidgetMovies));
     ui->buttonMovieSets->setIcon(m_icons.value(WidgetMovieSets));
@@ -405,6 +410,7 @@ void MainWindow::onMenu(MainWidgets widget)
     ui->buttonCertifications->setIcon(m_icons.value(WidgetCertifications));
     ui->buttonTvshows->setIcon(m_icons.value(WidgetTvShows));
     ui->buttonConcerts->setIcon(m_icons.value(WidgetConcerts));
+    ui->buttonDownloads->setIcon(m_icons.value(WidgetDownloads));
 
     setNewMarks();
 
@@ -415,13 +421,15 @@ void MainWindow::onMenu(MainWidgets widget)
     m_filterWidget->setEnabled(m_actions[widget][ActionFilterWidget]);
     m_filterWidget->setActiveWidget(widget);
 
-    m_actionReload->setEnabled(widget == WidgetMovies || widget == WidgetTvShows || widget == WidgetConcerts);
+    m_actionReload->setEnabled(widget == WidgetMovies || widget == WidgetTvShows || widget == WidgetConcerts || widget == WidgetDownloads);
     if (widget == WidgetMovies)
         m_actionReload->setToolTip(tr("Reload all Movies (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
     else if (widget == WidgetTvShows)
         m_actionReload->setToolTip(tr("Reload all TV Shows (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
     else if (widget == WidgetConcerts)
         m_actionReload->setToolTip(tr("Reload all Concerts (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+    else if (widget == WidgetDownloads)
+        m_actionReload->setToolTip(tr("Reload all Downloads (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
 }
 
 /**
@@ -493,6 +501,12 @@ void MainWindow::onMenuConcerts()
     onMenu(WidgetConcerts);
 }
 
+void MainWindow::onMenuDownloads()
+{
+    ui->stackedWidget->setCurrentIndex(6);
+    onMenu(WidgetDownloads);
+}
+
 /**
  * @brief Called when the action "Search" was clicked
  * Delegates the event down to the current subwidget
@@ -555,6 +569,11 @@ void MainWindow::onActionSaveAll()
  */
 void MainWindow::onActionReload()
 {
+    if (ui->stackedWidget->currentIndex() == 6) {
+        ui->downloadsWidget->scanDownloadFolders();
+        return;
+    }
+
     m_fileScannerDialog->setForceReload(true);
 
     if (ui->stackedWidget->currentIndex() == 0)
@@ -668,6 +687,9 @@ void MainWindow::moveSplitter(int pos, int index)
     foreach (QSplitter *splitter, splitters) {
         splitter->setSizes(sizes);
     }
+
+    Manager::instance()->movieModel()->update();
+    Manager::instance()->concertModel()->update();
 }
 
 /**

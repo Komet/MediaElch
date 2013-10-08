@@ -26,6 +26,7 @@ public:
     static QString mapCertification(const QString &text);
     static QString mapStudio(const QString &text);
     static QString mapCountry(const QString &text);
+    static QString formatFileSize(const qint64 &size);
 };
 
 #endif // HELPER_H

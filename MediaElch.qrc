@@ -78,6 +78,11 @@
         <file>i18n/MediaElch_pl.qm</file>
         <file>i18n/MediaElch_pt_PT.qm</file>
         <file>i18n/MediaElch_nl_NL.qm</file>
+        <file>img/downloads_menu.png</file>
+        <file>img/downloads_menuActive.png</file>
+        <file>img/lock_white.png</file>
+        <file>img/stop_white.png</file>
+        <file>img/trash_white.png</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>
@@ -157,5 +162,7 @@
         <file alias="scraper_active.png">img/settings/scraper_active.png</file>
         <file alias="tvshows_active.png">img/settings/tvshows_active.png</file>
         <file alias="xbmc_active.png">img/settings/xbmc_active.png</file>
+        <file alias="downloads_active.png">img/settings/downloads_active.png</file>
+        <file alias="downloads.png">img/settings/downloads.png</file>
     </qresource>
 </RCC>

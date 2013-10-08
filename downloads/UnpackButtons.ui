@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>UnpackButtons</class>
+ <widget class="QWidget" name="UnpackButtons">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>470</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QProgressBar" name="progressBar">
+     <property name="styleSheet">
+      <string notr="true">QProgressBar {
+	color: #ffffff;
+	font-size: 10px;
+}
+
+QProgressBar:horizontal { 
+	border: 1px solid rgba(0,0,0, 30); 
+	background: transparent; 
+	border-radius: 4px;
+	margin: 2px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #ebebeb, stop:1 #f5f5f5);
+}
+
+QProgressBar::chunk:horizontal { 
+	border-radius: 4px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #428bca, stop:1 #3071a9);
+}
+
+QPushButton { color: #ffffff;  }</string>
+     </property>
+     <property name="minimum">
+      <number>0</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+     <property name="value">
+      <number>24</number>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="format">
+      <string>   %p%</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="StyledPushButton" name="btnStop">
+     <property name="toolTip">
+      <string>Cancel extraction</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../MediaElch.qrc">
+       <normaloff>:/img/stop_white.png</normaloff>:/img/stop_white.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>12</width>
+       <height>12</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="StyledPushButton" name="btnUnpack">
+     <property name="toolTip">
+      <string>Extract without password</string>
+     </property>
+     <property name="text">
+      <string>Extract</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="StyledPushButton" name="btnUnpackWithPassword">
+     <property name="toolTip">
+      <string>Extract with password</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../MediaElch.qrc">
+       <normaloff>:/img/lock_white.png</normaloff>:/img/lock_white.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>12</width>
+       <height>12</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="StyledPushButton" name="btnDelete">
+     <property name="toolTip">
+      <string>Delete this archive</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../MediaElch.qrc">
+       <normaloff>:/img/trash_white.png</normaloff>:/img/trash_white.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>12</width>
+       <height>12</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>StyledPushButton</class>
+   <extends>QPushButton</extends>
+   <header>smallWidgets/StyledPushButton.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../MediaElch.qrc"/>
+ </resources>
+ <connections/>
+</ui>

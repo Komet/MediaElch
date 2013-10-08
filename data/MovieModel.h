@@ -30,6 +30,7 @@ public:
     static int mediaStatusToColumn(MediaStatusColumns column);
     static QString mediaStatusToText(MediaStatusColumns column);
     static MediaStatusColumns columnToMediaStatus(int column);
+    void update();
 
 private slots:
     void onMovieChanged(Movie *movie);

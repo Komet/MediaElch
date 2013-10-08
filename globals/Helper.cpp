@@ -275,3 +275,15 @@ QString Helper::mapCountry(const QString &text)
         return Settings::instance()->advanced()->countryMappings().value(text);
     return text;
 }
+
+QString Helper::formatFileSize(const qint64 &size)
+{
+    if (size > 1024*1024*1024)
+        return QString("%1 GB").arg(QString::number((float)size/1024/1024/1024, 'f', 2));
+    else if (size > 1024*1024)
+        return QString("%1 MB").arg(QString::number((float)size/1024/1024, 'f', 2));
+    else if (size > 1024)
+        return QString("%1 kB").arg(QString::number((float)size/1024, 'f', 2));
+    else
+        return QString("%1 B").arg(QString::number((float)size, 'f', 2));
+}

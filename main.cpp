@@ -3,6 +3,7 @@
 #include <QMessageBox>
 #include <QObject>
 #include <QApplication>
+#include <QFontDatabase>
 #include <QTextCodec>
 #include <QTextStream>
 #include <QTimer>
@@ -76,10 +77,12 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    // Qt localization
     QTranslator qtTranslator;
     qtTranslator.load(":/i18n/qt_" + QLocale::system().name());
     a.installTranslator(&qtTranslator);
 
+    // MediaElch localization
     QTranslator editTranslator;
     QString filename;
     filename = QString("MediaElch_%1").arg(QLocale::system().name());
@@ -93,12 +96,15 @@ int main(int argc, char *argv[])
         editTranslator.load(":/i18n/" + filename);
     a.installTranslator(&editTranslator);
 
+    // Add fonts
+    QFontDatabase::addApplicationFont(":/PathwayGothicOne.ttf");
+
 #if QT_VERSION < 0x050000
     QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
 #endif
     QCoreApplication::setOrganizationName("kvibes");
     QCoreApplication::setApplicationName("MediaElch");
-    QCoreApplication::setApplicationVersion("1.7");
+    QCoreApplication::setApplicationVersion("1.8-dev");
 
     Settings::instance(qApp);
     if (Settings::instance()->advanced()->debugLog() && !Settings::instance()->advanced()->logFile().isEmpty()) {

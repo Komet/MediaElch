@@ -1,8 +1,9 @@
 #include "MessageLabel.h"
 
-MessageLabel::MessageLabel(QWidget *parent) :
+MessageLabel::MessageLabel(QWidget *parent, int alignment) :
     QLabel(parent)
 {
+    setAlignment(static_cast<Qt::Alignment>(alignment));
 }
 
 void MessageLabel::setErrorMessage(const QString &text)

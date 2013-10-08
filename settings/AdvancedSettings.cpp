@@ -40,6 +40,8 @@ void AdvancedSettings::reset()
                      << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm" << "*.rmvb" << "*.img" << "*.wmv"
                      << "*.mov" << "*.divx" << "VIDEO_TS.IFO" << "index.bdmv" << "*.wtv";
 
+    m_subtitleFilters << "*.idx" << "*.sub" << "*.srr" << "*.srt";
+
     m_videoCodecMappings.insert("v_mpeg4/iso/avc", "h264");
 
     m_useFirstStudioOnly = false;
@@ -98,6 +100,7 @@ void AdvancedSettings::loadSettings()
     qDebug() << "    movieFilters          " << m_movieFilters;
     qDebug() << "    concertFilters        " << m_concertFilters;
     qDebug() << "    tvShowFilters         " << m_tvShowFilters;
+    qDebug() << "    subtitleFilters       " << m_subtitleFilters;
     qDebug() << "    audioCodecMappings    " << m_audioCodecMappings;
     qDebug() << "    videoCodecMappings    " << m_videoCodecMappings;
     qDebug() << "    certificationMappings " << m_certificationMappings;
@@ -170,6 +173,10 @@ void AdvancedSettings::loadFilters(QXmlStreamReader &xml)
             m_tvShowFilters.clear();
             foreach (const QString &filter, xml.readElementText().split(",", QString::SkipEmptyParts))
                 m_tvShowFilters << filter.trimmed();
+        } else if (xml.name() == "subtitle") {
+            m_subtitleFilters.clear();
+            foreach (const QString &filter, xml.readElementText().split(",", QString::SkipEmptyParts))
+                m_subtitleFilters << filter.trimmed();
         } else {
             xml.skipCurrentElement();
         }
@@ -276,6 +283,11 @@ QStringList AdvancedSettings::concertFilters() const
 QStringList AdvancedSettings::tvShowFilters() const
 {
     return m_tvShowFilters;
+}
+
+QStringList AdvancedSettings::subtitleFilters() const
+{
+    return m_subtitleFilters;
 }
 
 QHash<QString, QString> AdvancedSettings::audioCodecMappings() const

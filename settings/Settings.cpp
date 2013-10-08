@@ -243,6 +243,14 @@ void Settings::loadSettings(QSettings &settings)
         m_customMovieScraper.insert(settings.value("Info").toInt(), settings.value("Scraper").toString());
     }
     settings.endArray();
+
+    // Downloads
+    m_downloadDirectories = m_settings.value("Downloads/Directories").toStringList();
+    m_unrar = m_settings.value("Downloads/Unrar").toString();
+    m_deleteArchives = m_settings.value("Downloads/DeleteArchives", false).toBool();
+    m_importDialogSize = settings.value("Downloads/ImportDialogSize").toSize();
+    m_importDialogPosition = settings.value("Downloads/ImportDialogPosition").toPoint();
+    m_keepDownloadSource = settings.value("Downloads/KeepSource", true).toBool();
 }
 
 /**
@@ -349,6 +357,11 @@ void Settings::saveSettings()
     }
     m_settings.endArray();
 
+    m_settings.setValue("Downloads/Directories", m_downloadDirectories);
+    m_settings.setValue("Downloads/Unrar", m_unrar);
+    m_settings.setValue("Downloads/DeleteArchives", m_deleteArchives);
+    m_settings.setValue("Downloads/KeepSource", m_keepDownloadSource);
+
     m_settings.sync();
 }
 
@@ -399,6 +412,16 @@ QSize Settings::settingsWindowSize()
 QPoint Settings::settingsWindowPosition()
 {
     return m_settingsWindowPosition;
+}
+
+QSize Settings::importDialogSize()
+{
+    return m_importDialogSize;
+}
+
+QPoint Settings::importDialogPosition()
+{
+    return m_importDialogPosition;
 }
 
 /**
@@ -627,6 +650,18 @@ void Settings::setSettingsWindowPosition(QPoint settingsWindowPosition)
 {
     m_settingsWindowPosition = settingsWindowPosition;
     m_settings.setValue("SettingsWindowPosition", settingsWindowPosition);
+}
+
+void Settings::setImportDialogSize(QSize size)
+{
+    m_importDialogSize = size;
+    m_settings.setValue("Downloads/ImportDialogSize", size);
+}
+
+void Settings::setImportDialogPosition(QPoint position)
+{
+    m_importDialogPosition = position;
+    m_settings.setValue("Downloads/ImportDialogPosition", position);
 }
 
 /**
@@ -971,4 +1006,44 @@ void Settings::setCurrentMovieScraper(int current)
     m_currentMovieScraper = current;
     m_settings.setValue("Scraper/CurrentMovieScraper", current);
     m_settings.sync();
+}
+
+void Settings::setDownloadDirectories(QStringList dirs)
+{
+    m_downloadDirectories = dirs;
+}
+
+QStringList Settings::downloadDirectories()
+{
+    return m_downloadDirectories;
+}
+
+void Settings::setUnrar(QString unrar)
+{
+    m_unrar = unrar;
+}
+
+QString Settings::unrar()
+{
+    return m_unrar;
+}
+
+void Settings::setDeleteArchives(bool deleteArchives)
+{
+    m_deleteArchives = deleteArchives;
+}
+
+bool Settings::deleteArchives()
+{
+    return m_deleteArchives;
+}
+
+void Settings::setKeepDownloadSource(bool keep)
+{
+    m_keepDownloadSource = keep;
+}
+
+bool Settings::keepDownloadSource() const
+{
+    return m_keepDownloadSource;
 }

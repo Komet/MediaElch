@@ -24,12 +24,6 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_top250 = 0;
     m_runtime = 0;
     m_playcount = 0;
-    if (files.size() > 0) {
-        QFileInfo fi(files.at(0));
-        QStringList path = fi.path().split("/", QString::SkipEmptyParts);
-        if (!path.isEmpty())
-            m_folderName = path.last();
-    }
     m_watched = false;
     m_hasChanged = false;
     m_hasExtraFanarts = false;
@@ -42,14 +36,26 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_streamDetailsLoaded = false;
     m_databaseId = -1;
     m_discType = DiscSingle;
-    if (!files.isEmpty())
-        m_streamDetails = new StreamDetails(this, files);
-    else
-        m_streamDetails = new StreamDetails(this, QStringList());
+    setFiles(files);
 }
 
 Movie::~Movie()
 {
+}
+
+void Movie::setFiles(QStringList files)
+{
+    m_files = files;
+    if (files.size() > 0) {
+        QFileInfo fi(files.at(0));
+        QStringList path = fi.path().split("/", QString::SkipEmptyParts);
+        if (!path.isEmpty())
+            m_folderName = path.last();
+    }
+    if (!files.isEmpty())
+        m_streamDetails = new StreamDetails(this, files);
+    else
+        m_streamDetails = new StreamDetails(this, QStringList());
 }
 
 MovieController *Movie::controller()

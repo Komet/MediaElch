@@ -41,9 +41,9 @@
     </layout>
    </item>
    <item>
-    <widget class="QScrollArea" name="scrollArea">
+    <widget class="QScrollArea" name="tagScrollArea">
      <property name="styleSheet">
-      <string notr="true">#scrollArea, #scrollAreaWidgetContents {
+      <string notr="true">#tagScrollArea, #scrollAreaWidgetContents {
 	background-color: transparent;
 }</string>
      </property>

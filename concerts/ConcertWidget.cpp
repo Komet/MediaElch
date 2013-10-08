@@ -51,7 +51,6 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     ui->labelPoster->setFont(font);
 
     m_concert = 0;
-    m_posterDownloadManager = new DownloadManager(this);
 
     ui->poster->setImageType(ImageType::ConcertPoster);
     ui->backdrop->setImageType(ImageType::ConcertBackdrop);
@@ -63,7 +62,6 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
         connect(image, SIGNAL(sigClose()), this, SLOT(onDeleteImage()));
     }
 
-    connect(m_posterDownloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(posterDownloadFinished(DownloadManagerElement)));
     connect(ui->name, SIGNAL(textChanged(QString)), this, SLOT(concertNameChanged(QString)));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
     connect(ui->buttonReloadStreamDetails, SIGNAL(clicked()), this, SLOT(onReloadStreamDetails()));
@@ -234,7 +232,7 @@ void ConcertWidget::setEnabledTrue(Concert *concert)
     qDebug() << "Entered";
     if (concert)
         qDebug() << concert->name();
-    if (concert && concert->downloadsInProgress()) {
+    if (concert && concert->controller()->downloadsInProgress()) {
         qDebug() << "Downloads are in progress";
         return;
     }
@@ -261,15 +259,23 @@ void ConcertWidget::setDisabledTrue()
 void ConcertWidget::setConcert(Concert *concert)
 {
     qDebug() << "Entered, concert=" << concert->name();
-    concert->loadData(Manager::instance()->mediaCenterInterfaceConcert());
+    concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert());
     m_concert = concert;
     if (!concert->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
-        concert->loadStreamDetailsFromFile();
+        concert->controller()->loadStreamDetailsFromFile();
         if (concert->streamDetailsLoaded() && concert->streamDetails()->videoDetails().value("durationinseconds").toInt() != 0)
             concert->setRuntime(qFloor(concert->streamDetails()->videoDetails().value("durationinseconds").toInt()/60));
     }
     updateConcertInfo();
-    if (concert->downloadsInProgress())
+
+    connect(m_concert->controller(), SIGNAL(sigInfoLoadDone(Concert*)), this, SLOT(onInfoLoadDone(Concert*)), Qt::UniqueConnection);
+    connect(m_concert->controller(), SIGNAL(sigLoadDone(Concert*)), this, SLOT(onLoadDone(Concert*)), Qt::UniqueConnection);
+    connect(m_concert->controller(), SIGNAL(sigDownloadProgress(Concert*,int, int)), this, SLOT(onDownloadProgress(Concert*,int,int)), Qt::UniqueConnection);
+    connect(m_concert->controller(), SIGNAL(sigLoadingImages(Concert*,QList<int>)), this, SLOT(onLoadingImages(Concert*,QList<int>)), Qt::UniqueConnection);
+    connect(m_concert->controller(), SIGNAL(sigLoadImagesStarted(Concert*)), this, SLOT(onLoadImagesStarted(Concert*)), Qt::UniqueConnection);
+    connect(m_concert->controller(), SIGNAL(sigImage(Concert*,int,QByteArray)), this, SLOT(onSetImage(Concert*,int,QByteArray)), Qt::UniqueConnection);
+
+    if (concert->controller()->downloadsInProgress())
         setDisabledTrue();
     else
         setEnabledTrue();
@@ -290,9 +296,8 @@ void ConcertWidget::onStartScraperSearch()
     ConcertSearch::instance()->exec(m_concert->name());
     if (ConcertSearch::instance()->result() == QDialog::Accepted) {
         setDisabledTrue();
-        m_concert->loadData(ConcertSearch::instance()->scraperId(), Manager::instance()->concertScrapers().at(ConcertSearch::instance()->scraperNo()),
+        m_concert->controller()->loadData(ConcertSearch::instance()->scraperId(), Manager::instance()->concertScrapers().at(ConcertSearch::instance()->scraperNo()),
                             ConcertSearch::instance()->infosToLoad());
-        connect(m_concert, SIGNAL(loaded(Concert*)), this, SLOT(infoLoadDone(Concert*)), Qt::UniqueConnection);
     } else {
         emit setActionSearchEnabled(true, WidgetConcerts);
         emit setActionSaveEnabled(true, WidgetConcerts);
@@ -303,106 +308,75 @@ void ConcertWidget::onStartScraperSearch()
  * @brief ConcertWidget::infoLoadDone
  * @param concert
  */
-void ConcertWidget::infoLoadDone(Concert *concert)
+void ConcertWidget::onInfoLoadDone(Concert *concert)
 {
-    QList<int> types;
-    if (concert->infosToLoad().contains(ConcertScraperInfos::ExtraArts))
-        types << ImageType::ConcertClearArt << ImageType::ConcertCdArt << ImageType::ConcertLogo;
-    if (!concert->tmdbId().isEmpty() && !types.isEmpty()) {
-        Manager::instance()->fanartTv()->concertImages(concert, concert->tmdbId(), types);
-        connect(Manager::instance()->fanartTv(), SIGNAL(sigImagesLoaded(Concert*,QMap<int,QList<Poster> >)), this, SLOT(loadDone(Concert*,QMap<int,QList<Poster> >)), Qt::UniqueConnection);
-    } else {
-        QMap<int, QList<Poster> > map;
-        loadDone(concert, map);
+    if (m_concert == 0)
+        return;
+
+    if (m_concert == concert) {
+        updateConcertInfo();
+        ui->buttonRevert->setVisible(true);
+        emit setActionSaveEnabled(false, WidgetConcerts);
     }
 }
 
-/**
- * @brief Called when the search widget finishes
- * Updates infos and starts downloads
- * @param concert Concert
- * @param posters
- */
-void ConcertWidget::loadDone(Concert *concert, QMap<int, QList<Poster> > posters)
+void ConcertWidget::onLoadDone(Concert *concert)
 {
-    qDebug() << "Entered";
-    if (m_concert == 0) {
-        qDebug() << "My concert is invalid";
+    if (m_concert == 0 || m_concert != concert)
         return;
-    }
+    setEnabledTrue();
+    ui->fanarts->setLoading(false);
+}
 
-    if (m_concert == concert)
-        updateConcertInfo();
-    else
-        qDebug() << "Concert has changed";
-    int downloadsSize = 0;
+void ConcertWidget::onLoadImagesStarted(Concert *concert)
+{
+    Q_UNUSED(concert);
+    // emit actorDownloadStarted(tr("Downloading images..."), Constants::MovieProgressMessageId+movie->movieId());
+}
 
-    if (concert->infosToLoad().contains(ConcertScraperInfos::Poster) && concert->posters().size() > 0) {
-        emit setActionSaveEnabled(false, WidgetConcerts);
-        DownloadManagerElement d;
-        d.imageType = ImageType::ConcertPoster;
-        d.url = concert->posters().at(0).originalUrl;
-        d.concert = concert;
-        m_posterDownloadManager->addDownload(d);
-        if (m_concert == concert)
-            ui->poster->setLoading(true);
-        downloadsSize++;
-    }
+void ConcertWidget::onLoadingImages(Concert *concert, QList<int> imageTypes)
+{
+    if (concert != m_concert)
+        return;
 
-    if (concert->infosToLoad().contains(ConcertScraperInfos::Backdrop) && concert->backdrops().size() > 0) {
-        emit setActionSaveEnabled(false, WidgetConcerts);
-        DownloadManagerElement d;
-        d.imageType = ImageType::ConcertBackdrop;
-        d.url = concert->backdrops().at(0).originalUrl;
-        d.concert = concert;
-        m_posterDownloadManager->addDownload(d);
-        if (m_concert == concert)
-            ui->backdrop->setLoading(true);
-        downloadsSize++;
-    }
-
-    QMapIterator<int, QList<Poster> > it(posters);
-    while (it.hasNext()) {
-        it.next();
-        if (it.key() == ImageType::ConcertClearArt && !it.value().isEmpty()) {
-            DownloadManagerElement d;
-            d.imageType = ImageType::ConcertClearArt;
-            d.url = it.value().at(0).originalUrl;
-            d.concert = concert;
-            m_posterDownloadManager->addDownload(d);
-            if (m_concert == concert)
-                ui->clearArt->setLoading(true);
-            downloadsSize++;
-        } else if (it.key() == ImageType::ConcertCdArt && !it.value().isEmpty()) {
-            DownloadManagerElement d;
-            d.imageType = ImageType::ConcertCdArt;
-            d.url = it.value().at(0).originalUrl;
-            d.concert = concert;
-            m_posterDownloadManager->addDownload(d);
-            if (m_concert == concert)
-                ui->cdArt->setLoading(true);
-            downloadsSize++;
-        } else if (it.key() == ImageType::ConcertLogo && !it.value().isEmpty()) {
-            DownloadManagerElement d;
-            d.imageType = ImageType::ConcertLogo;
-            d.url = it.value().at(0).originalUrl;
-            d.concert = concert;
-            m_posterDownloadManager->addDownload(d);
-            if (m_concert == concert)
-                ui->logo->setLoading(true);
-            downloadsSize++;
+    foreach (const int &imageType, imageTypes) {
+        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage*>()) {
+            if (cImage->imageType() == imageType)
+                cImage->setLoading(true);
         }
     }
 
-    if (m_concert == concert)
-        setEnabledTrue();
-
-    concert->setDownloadsInProgress(downloadsSize > 0);
-    concert->setDownloadsSize(downloadsSize);
-    ui->buttonRevert->setVisible(true);
-
-    connect(m_posterDownloadManager, SIGNAL(allDownloadsFinished(Concert*)), this, SLOT(downloadActorsFinished(Concert*)), Qt::UniqueConnection);
+    if (imageTypes.contains(ImageType::ConcertExtraFanart))
+        ui->fanarts->setLoading(true);
+    ui->groupBox_3->update();
 }
+
+void ConcertWidget::onSetImage(Concert *concert, int type, QByteArray data)
+{
+    if (concert != m_concert)
+        return;
+
+    if (type == ImageType::ConcertExtraFanart) {
+        ui->fanarts->addImage(data);
+        return;
+    }
+
+    foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage*>()) {
+        if (image->imageType() == type) {
+            image->setLoading(false);
+            image->setImage(data);
+        }
+    }
+}
+
+void ConcertWidget::onDownloadProgress(Concert *concert, int current, int maximum)
+{
+    Q_UNUSED(concert);
+    Q_UNUSED(current);
+    Q_UNUSED(maximum);
+    //emit actorDownloadProgress(maximum-current, maximum, Constants::MovieProgressMessageId+movie->movieId());
+}
+
 
 /**
  * @brief Updates the contents of the widget with the current concert infos
@@ -494,20 +468,26 @@ void ConcertWidget::updateConcertInfo()
 void ConcertWidget::updateImages(QList<int> images)
 {
     foreach (const int &imageType, images) {
-        ClosableImage *image = 0;
-
         foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage*>()) {
-            if (cImage->imageType() == imageType)
-                image = cImage;
+            if (cImage->imageType() == imageType) {
+                if (Settings::instance()->advanced()->threadedImageLoading())
+                    QtConcurrent::run(this, &ConcertWidget::updateImage, imageType, cImage);
+                else
+                    updateImage(imageType, cImage);
+                break;
+            }
         }
+    }
+}
 
-        if (!image)
-            continue;
-
-        if (!m_concert->image(imageType).isNull())
-            image->setImage(m_concert->image(imageType));
-        else if (!m_concert->imagesToRemove().contains(imageType) && !Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, imageType).isEmpty())
-            image->setImage(Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, imageType));
+void ConcertWidget::updateImage(const int &imageType, ClosableImage *image)
+{
+    if (!m_concert->image(imageType).isNull()) {
+        image->setImage(m_concert->image(imageType));
+    } else if (!m_concert->imagesToRemove().contains(imageType) && m_concert->hasImage(imageType)) {
+        QString imgFileName = Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, imageType);
+        if (!imgFileName.isEmpty())
+            image->setImage(imgFileName);
     }
 }
 
@@ -523,7 +503,7 @@ void ConcertWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoHeight->blockSignals(true);
 
     if (reloadFromFile)
-        m_concert->loadStreamDetailsFromFile();
+        m_concert->controller()->loadStreamDetailsFromFile();
 
     StreamDetails *streamDetails = m_concert->streamDetails();
     ui->videoWidth->setValue(streamDetails->videoDetails().value("width").toInt());
@@ -618,43 +598,6 @@ void ConcertWidget::onReloadStreamDetails()
 }
 
 /**
- * @brief Adjusts the size of the backdrop to common values (1080p or 720p) and shows the image
- * @param elem Downloaded element
- */
-void ConcertWidget::posterDownloadFinished(DownloadManagerElement elem)
-{
-    qDebug() << "Entered";
-
-    if (elem.imageType == ImageType::ConcertExtraFanart) {
-        Helper::resizeBackdrop(elem.data);
-        elem.concert->addExtraFanart(elem.data);
-        if (elem.concert == m_concert)
-            ui->fanarts->addImage(elem.data);
-    } else {
-        ClosableImage *image = 0;
-        foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage*>()) {
-            if (cImage->imageType() == elem.imageType)
-                image = cImage;
-        }
-        if (elem.imageType == ImageType::ConcertBackdrop)
-            Helper::resizeBackdrop(elem.data);
-
-        if (m_concert == elem.concert && image)
-            image->setImage(elem.data);
-
-        ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.concert, elem.imageType));
-        elem.concert->setImage(elem.imageType, elem.data);
-    }
-
-    if (m_posterDownloadManager->downloadQueueSize() == 0) {
-        emit setActionSaveEnabled(true, WidgetConcerts);
-        elem.concert->setDownloadsInProgress(false);
-        ui->fanarts->setLoading(false);
-    }
-    ui->buttonRevert->setVisible(true);
-}
-
-/**
  * @brief Saves concert information
  */
 void ConcertWidget::onSaveInformation()
@@ -662,8 +605,8 @@ void ConcertWidget::onSaveInformation()
     qDebug() << "Entered";
     setDisabledTrue();
     m_savingWidget->show();
-    m_concert->saveData(Manager::instance()->mediaCenterInterfaceConcert());
-    m_concert->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);
+    m_concert->controller()->saveData(Manager::instance()->mediaCenterInterfaceConcert());
+    m_concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);
     updateConcertInfo();
     setEnabledTrue();
     m_savingWidget->hide();
@@ -682,8 +625,8 @@ void ConcertWidget::onSaveAll()
 
     foreach (Concert *concert, Manager::instance()->concertModel()->concerts()) {
         if (concert->hasChanged()) {
-            concert->saveData(Manager::instance()->mediaCenterInterfaceConcert());
-            concert->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);
+            concert->controller()->saveData(Manager::instance()->mediaCenterInterfaceConcert());
+            concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);
             if (m_concert == concert)
                 updateConcertInfo();
         }
@@ -700,22 +643,8 @@ void ConcertWidget::onSaveAll()
 void ConcertWidget::onRevertChanges()
 {
     qDebug() << "Entered";
-    m_concert->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);
+    m_concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);
     updateConcertInfo();
-}
-
-/**
- * @brief Toggles enabled state of the widget
- * @param concert
- */
-void ConcertWidget::downloadActorsFinished(Concert *concert)
-{
-    qDebug() << "Entered, concert=" << concert->name();
-    if (concert == m_concert)
-        setEnabledTrue();
-    else
-        qDebug() << "Concert has changed";
-    concert->setDownloadsInProgress(false);
 }
 
 /*** add/remove/edit Genres ***/
@@ -986,13 +915,7 @@ void ConcertWidget::onAddExtraFanart()
     if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
         ui->fanarts->setLoading(true);
         emit setActionSaveEnabled(false, WidgetConcerts);
-        foreach (const QUrl &url, ImageDialog::instance()->imageUrls()) {
-            DownloadManagerElement d;
-            d.imageType = ImageType::ConcertExtraFanart;
-            d.url = url;
-            d.concert = m_concert;
-            m_posterDownloadManager->addDownload(d);
-        }
+        m_concert->controller()->loadImages(ImageType::ConcertExtraFanart, ImageDialog::instance()->imageUrls());
         ui->buttonRevert->setVisible(true);
     }
 }
@@ -1019,12 +942,7 @@ void ConcertWidget::onChooseImage()
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
         emit setActionSaveEnabled(false, WidgetConcerts);
-        DownloadManagerElement d;
-        d.imageType = image->imageType();
-        d.url = ImageDialog::instance()->imageUrl();
-        d.concert = m_concert;
-        m_posterDownloadManager->addDownload(d);
-        image->setLoading(true);
+        m_concert->controller()->loadImage(image->imageType(), ImageDialog::instance()->imageUrl());
         ui->buttonRevert->setVisible(true);
     }
 }

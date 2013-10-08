@@ -20,11 +20,6 @@
    <iconset resource="../MediaElch.qrc">
     <normaloff>:/img/MediaElch.png</normaloff>:/img/MediaElch.png</iconset>
   </property>
-  <property name="styleSheet">
-   <string notr="true">#TvShowSearch {
-	background-image: url(:/img/pattern_dark.png);
-}</string>
-  </property>
   <property name="modal">
    <bool>true</bool>
   </property>
@@ -37,7 +32,10 @@
      <item>
       <widget class="QTableWidget" name="results">
        <property name="styleSheet">
-        <string notr="true">alternate-background-color: rgb(243, 246, 250);</string>
+        <string notr="true">alternate-background-color: rgb(243, 246, 250);
+color: #395265;
+selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
+</string>
        </property>
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
@@ -404,14 +402,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MyLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>smallWidgets/MyLineEdit.h</header>
-  </customwidget>
-  <customwidget>
    <class>MyCheckBox</class>
    <extends>QCheckBox</extends>
    <header location="global">smallWidgets/MyCheckBox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MyLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>smallWidgets/MyLineEdit.h</header>
   </customwidget>
  </customwidgets>
  <resources>

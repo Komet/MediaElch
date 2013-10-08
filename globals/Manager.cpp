@@ -206,27 +206,6 @@ TvShowProxyModel *Manager::tvShowProxyModel()
 }
 
 /**
- * @brief Returns the scraper for the given identifier
- * @param name Identifier of the scraper
- * @return Scraper Interface
- */
-ScraperInterface *Manager::getScraperForName(QString name)
-{
-    if (name == "ofdb") {
-        return m_scrapers.at(3);
-    } else if (name == "cinefacts") {
-        return m_scrapers.at(2);
-    } else if (name == "videobuster") {
-        return m_scrapers.at(4);
-    } else if (name == "imdb") {
-        return m_scrapers.at(1);
-    } else {
-        // default to TMDb
-        return m_scrapers.at(0);
-    }
-}
-
-/**
  * @brief Returns a list of all image providers available for type
  * @param type Type of image
  * @return List of pointers of image providers

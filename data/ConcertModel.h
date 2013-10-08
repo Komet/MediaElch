@@ -27,6 +27,7 @@ public:
     QModelIndex index(int row, int column, const QModelIndex &parent) const;
     QModelIndex parent(const QModelIndex &child) const;
     bool hasNewConcerts();
+    void update();
 
 private slots:
     void onConcertChanged(Concert *concert);

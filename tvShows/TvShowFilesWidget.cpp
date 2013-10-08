@@ -292,11 +292,13 @@ void TvShowFilesWidget::setFilter(QList<Filter *> filters, QString text)
 /**
  * @brief Renews the model (necessary after searching for tv shows)
  */
-void TvShowFilesWidget::renewModel()
+void TvShowFilesWidget::renewModel(bool force)
 {
     qDebug() << "Entered";
-    //m_tvShowProxyModel->setSourceModel(0);
-    //m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
+    if (force) {
+        m_tvShowProxyModel->setSourceModel(0);
+        m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
+    }
 }
 
 /**

@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>873</width>
-    <height>750</height>
+    <height>675</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -969,6 +969,133 @@
        </layout>
       </widget>
       <widget class="QWidget" name="page_5">
+       <layout class="QVBoxLayout" name="verticalLayout_12">
+        <item>
+         <widget class="QLabel" name="label_53">
+          <property name="text">
+           <string>Add one or more directories containing your downloads.</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="downloadDirs">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>100</height>
+           </size>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
+          <attribute name="horizontalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="horizontalHeaderDefaultSectionSize">
+           <number>120</number>
+          </attribute>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>Dir</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QPushButton" name="btnAddDownloadDir">
+            <property name="text">
+             <string>Add</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnRemoveDownloadDir">
+            <property name="text">
+             <string>Remove</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QFormLayout" name="formLayout_8">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_54">
+            <property name="text">
+             <string>Path to unrar</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QLineEdit" name="unrarPath"/>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnChooseUnrar">
+              <property name="text">
+               <string>Choose</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_55">
+            <property name="text">
+             <string>Delete archives</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QCheckBox" name="chkDeleteArchives">
+            <property name="text">
+             <string>Automatically delete archives after extraction</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_6">
        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1">
         <item>
          <widget class="QLabel" name="label_7">
@@ -1017,7 +1144,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_6">
+      <widget class="QWidget" name="page_7">
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
          <layout class="QFormLayout" name="formLayout_2">
@@ -1111,7 +1238,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_7">
+      <widget class="QWidget" name="page_8">
        <layout class="QVBoxLayout" name="verticalLayout_9">
         <item>
          <widget class="MessageLabel" name="themesErrorMessage">
@@ -1225,6 +1352,7 @@ border: none;</string>
    <addaction name="actionMovies"/>
    <addaction name="actionTV_Shows"/>
    <addaction name="actionConcerts"/>
+   <addaction name="actionDownloads"/>
    <addaction name="actionXBMC"/>
    <addaction name="actionNetwork"/>
    <addaction name="actionExport"/>
@@ -1327,7 +1455,7 @@ border: none;</string>
      <normaloff>:/settings/xbmc_active.png</normaloff>:/settings/xbmc_active.png</iconset>
    </property>
    <property name="page" stdset="0">
-    <number>5</number>
+    <number>6</number>
    </property>
   </action>
   <action name="actionNetwork">
@@ -1347,7 +1475,7 @@ border: none;</string>
      <normaloff>:/settings/network_active.png</normaloff>:/settings/network_active.png</iconset>
    </property>
    <property name="page" stdset="0">
-    <number>6</number>
+    <number>7</number>
    </property>
   </action>
   <action name="actionScraper">
@@ -1387,7 +1515,30 @@ border: none;</string>
      <normaloff>:/settings/export_active.png</normaloff>:/settings/export_active.png</iconset>
    </property>
    <property name="page" stdset="0">
-    <number>7</number>
+    <number>8</number>
+   </property>
+  </action>
+  <action name="actionDownloads">
+   <property name="icon">
+    <iconset resource="../MediaElch.qrc">
+     <normaloff>:/settings/downloads.png</normaloff>:/settings/downloads.png</iconset>
+   </property>
+   <property name="text">
+    <string>Import</string>
+   </property>
+   <property name="toolTip">
+    <string>Import</string>
+   </property>
+   <property name="iconNormal" stdset="0">
+    <iconset resource="../MediaElch.qrc">
+     <normaloff>:/settings/downloads.png</normaloff>:/settings/downloads.png</iconset>
+   </property>
+   <property name="iconActive" stdset="0">
+    <iconset resource="../MediaElch.qrc">
+     <normaloff>:/settings/downloads_active.png</normaloff>:/settings/downloads_active.png</iconset>
+   </property>
+   <property name="page" stdset="0">
+    <number>5</number>
    </property>
   </action>
  </widget>
@@ -1533,6 +1684,22 @@ border: none;</string>
     <hint type="destinationlabel">
      <x>437</x>
      <y>317</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionDownloads</sender>
+   <signal>triggered()</signal>
+   <receiver>SettingsWindow</receiver>
+   <slot>onAction()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>436</x>
+     <y>374</y>
     </hint>
    </hints>
   </connection>

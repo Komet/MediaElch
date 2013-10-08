@@ -22,7 +22,7 @@ Renamer::Renamer(QWidget *parent) :
     onChkRenameDirectories();
     onChkRenameFiles();
 
-    m_extraFiles << "*.idx" << "*.sub" << "*.srr";
+    m_extraFiles = Settings::instance()->advanced()->subtitleFilters();
 }
 
 Renamer::~Renamer()

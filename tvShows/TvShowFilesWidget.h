@@ -31,7 +31,7 @@ public:
     QList<TvShow*> selectedShows();
 
 public slots:
-    void renewModel();
+    void renewModel(bool force = false);
     void emitLastSelection();
 
 signals:

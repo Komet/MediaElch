@@ -21,6 +21,7 @@ public:
     QStringList movieFilters() const;
     QStringList concertFilters() const;
     QStringList tvShowFilters() const;
+    QStringList subtitleFilters() const;
     QHash<QString, QString> audioCodecMappings() const;
     QHash<QString, QString> videoCodecMappings() const;
     QHash<QString, QString> certificationMappings() const;
@@ -38,6 +39,7 @@ private:
     QStringList m_movieFilters;
     QStringList m_concertFilters;
     QStringList m_tvShowFilters;
+    QStringList m_subtitleFilters;
     QHash<QString, QString> m_audioCodecMappings;
     QHash<QString, QString> m_videoCodecMappings;
     QHash<QString, QString> m_certificationMappings;

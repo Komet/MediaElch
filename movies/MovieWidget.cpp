@@ -1346,7 +1346,6 @@ void MovieWidget::onChooseImage()
         m_movie->controller()->loadImage(image->imageType(), ImageDialog::instance()->imageUrl());
         ui->buttonRevert->setVisible(true);
     }
-
 }
 
 void MovieWidget::onDeleteImage()

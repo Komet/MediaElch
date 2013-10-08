@@ -38,6 +38,12 @@ void MovieModel::onMovieChanged(Movie *movie)
     emit dataChanged(index, index);
 }
 
+void MovieModel::update()
+{
+    QModelIndex index = createIndex(0, 0);
+    emit dataChanged(index, index);
+}
+
 /**
  * @brief Get a specific movie
  * @param row Row of the movie
@@ -106,9 +112,11 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
             return movie->fileLastModified();
         } else if (role == Qt::UserRole+6) {
             return movie->syncNeeded();
+        /*
         } else if (role == Qt::ForegroundRole) {
             if (movie->hasChanged())
                 return QColor(255, 0, 0);
+        */
         } else if (role == Qt::FontRole) {
             if (movie->hasChanged()) {
                 QFont font;

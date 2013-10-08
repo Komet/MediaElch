@@ -363,7 +363,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, SIGNAL(finished()), this, SLOT(loadReleasesFinished()));
     }
-    concert->setLoadsLeft(loadsLeft);
+    concert->controller()->setLoadsLeft(loadsLeft);
 }
 
 /**
@@ -385,7 +385,7 @@ void TMDbConcerts::loadFinished()
     } else {
         qWarning() << "Network Error (load)" << reply->errorString();
     }
-    concert->removeFromLoadsLeft(DataInfos);
+    concert->controller()->removeFromLoadsLeft(DataInfos);
 }
 
 /**
@@ -407,7 +407,7 @@ void TMDbConcerts::loadTrailersFinished()
     } else {
         qDebug() << "Network Error (trailers)" << reply->errorString();
     }
-    concert->removeFromLoadsLeft(DataTrailers);
+    concert->controller()->removeFromLoadsLeft(DataTrailers);
 }
 
 /**
@@ -429,7 +429,7 @@ void TMDbConcerts::loadImagesFinished()
     } else {
         qWarning() << "Network Error (images)" << reply->errorString();
     }
-    concert->removeFromLoadsLeft(DataImages);
+    concert->controller()->removeFromLoadsLeft(DataImages);
 }
 
 /**
@@ -451,7 +451,7 @@ void TMDbConcerts::loadReleasesFinished()
     } else {
         qWarning() << "Network Error (releases)" << reply->errorString();
     }
-    concert->removeFromLoadsLeft(DataReleases);
+    concert->controller()->removeFromLoadsLeft(DataReleases);
 }
 
 /**

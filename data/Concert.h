@@ -9,13 +9,15 @@
 #include <QStringList>
 #include <QUrl>
 
-#include "globals/Globals.h"
-#include "data/MediaCenterInterface.h"
+#include "concerts/ConcertController.h"
 #include "data/ConcertScraperInterface.h"
+#include "data/MediaCenterInterface.h"
 #include "data/StreamDetails.h"
+#include "globals/Globals.h"
 
-class MediaCenterInterface;
+class ConcertController;
 class ConcertScraperInterface;
+class MediaCenterInterface;
 class StreamDetails;
 struct Poster;
 
@@ -48,6 +50,8 @@ public:
     explicit Concert(QStringList files, QObject *parent = 0);
     ~Concert();
 
+    ConcertController *controller();
+
     void clear();
     void clear(QList<int> infos);
 
@@ -70,7 +74,6 @@ public:
     QDateTime lastPlayed() const;
     QList<Poster> posters() const;
     QList<Poster> backdrops() const;
-    bool infoLoaded() const;
     bool watched() const;
     int concertId() const;
     bool downloadsInProgress() const;
@@ -87,6 +90,7 @@ public:
 
     bool hasChanged() const;
 
+    void setFiles(QStringList files);
     void setName(QString name);
     void setArtist(QString artist);
     void setAlbum(QString album);
@@ -132,10 +136,6 @@ public:
     void removeExtraFanart(QString file);
     void clearExtraFanartData();
 
-    bool saveData(MediaCenterInterface *mediaCenterInterface);
-    bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void loadData(QString id, ConcertScraperInterface *scraperInterface, QList<int> infos);
-    void loadStreamDetailsFromFile();
     void clearImages();
     void removeImage(int type);
     QList<int> imagesToRemove() const;
@@ -143,6 +143,10 @@ public:
     QByteArray image(int imageType);
     bool imageHasChanged(int imageType);
     void setImage(int imageType, QByteArray image);
+    void setHasImage(int imageType, bool has);
+    bool hasImage(int imageType);
+    bool hasExtraFanarts() const;
+    void setHasExtraFanarts(bool has);
 
     void scraperLoadDone();
     QList<int> infosToLoad();
@@ -156,10 +160,10 @@ public:
     static QList<int> imageTypes();
 
 signals:
-    void loaded(Concert*);
     void sigChanged(Concert*);
 
 private:
+    ConcertController *m_controller;
     QStringList m_files;
     QString m_folderName;
     QString m_name;
@@ -178,8 +182,6 @@ private:
     QDateTime m_lastPlayed;
     QList<Poster> m_posters;
     QList<Poster> m_backdrops;
-    bool m_infoLoaded;
-    bool m_infoFromNfoLoaded;
     bool m_watched;
     bool m_hasChanged;
     int m_concertId;
@@ -200,11 +202,13 @@ private:
     QMutex m_loadMutex;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
+    bool m_hasExtraFanarts;
 
     QMap<int, QByteArray> m_images;
     QMap<int, bool> m_hasImageChanged;
     QList<QByteArray> m_extraFanartImagesToAdd;
     QList<int> m_imagesToRemove;
+    QMap<int, bool> m_hasImage;
 };
 
 #endif // CONCERT_H

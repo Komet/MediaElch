@@ -52,7 +52,7 @@ void LoadingStreamDetails::loadConcerts(QList<Concert*> concerts)
     adjustSize();
     show();
     foreach (Concert *concert, concerts) {
-        concert->loadStreamDetailsFromFile();
+        concert->controller()->loadStreamDetailsFromFile();
         concert->setChanged(true);
         ui->progressBar->setValue(ui->progressBar->value()+1);
         ui->currentFile->setText(concert->name());

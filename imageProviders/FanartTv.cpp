@@ -342,6 +342,10 @@ QList<Poster> FanartTv::parseMovieData(QString json, int type)
     map.insert(ImageType::MovieCdArt, QStringList() << "moviedisc");
     map.insert(ImageType::MovieBanner, QStringList() << "moviebanner");
     map.insert(ImageType::MovieThumb, QStringList() << "moviethumb");
+    map.insert(ImageType::ConcertBackdrop, QStringList() << "moviebackground");
+    map.insert(ImageType::ConcertLogo, QStringList() << "hdmovielogo" << "movielogo");
+    map.insert(ImageType::ConcertClearArt, QStringList() << "hdmovieclearart" << "movieart");
+    map.insert(ImageType::ConcertCdArt, QStringList() << "moviedisc");
     QList<Poster> posters;
     QScriptValue sc;
     QScriptEngine engine;

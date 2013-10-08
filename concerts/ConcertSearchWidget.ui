@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ConcertSearchWidget</class>
+ <widget class="QWidget" name="ConcertSearchWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>746</width>
+    <height>590</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Scraper</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboScraper"/>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="MyLineEdit" name="searchString"/>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,0">
+     <item>
+      <widget class="QTableWidget" name="results">
+       <property name="styleSheet">
+        <string notr="true">alternate-background-color: rgb(243, 246, 250);
+color: #395265;
+selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
+</string>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <property name="alternatingRowColors">
+        <bool>true</bool>
+       </property>
+       <property name="selectionMode">
+        <enum>QAbstractItemView::SingleSelection</enum>
+       </property>
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectRows</enum>
+       </property>
+       <property name="showGrid">
+        <bool>false</bool>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <column>
+        <property name="text">
+         <string>Result</string>
+        </property>
+       </column>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	border: 1px solid rgba(0, 0, 0, 100);
+	border-radius: 5px;
+	background-color: rgba(255, 255, 255, 200);
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Infos to load</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>8</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkTitle">
+          <property name="text">
+           <string>Title</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkTagline">
+          <property name="text">
+           <string>Tagline</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkRating">
+          <property name="text">
+           <string>Rating</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkReleased">
+          <property name="text">
+           <string>Released</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkRuntime">
+          <property name="text">
+           <string>Runtime</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkCertification">
+          <property name="text">
+           <string>Certification</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkTrailer">
+          <property name="text">
+           <string>Trailer</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkOverview">
+          <property name="text">
+           <string>Overview</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkPoster">
+          <property name="text">
+           <string>Poster</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkBackdrop">
+          <property name="text">
+           <string>Backdrop</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkGenres">
+          <property name="text">
+           <string>Genres</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkExtraArts">
+          <property name="toolTip">
+           <string>Logo, Clear Art, CD Art</string>
+          </property>
+          <property name="text">
+           <string>Artwork</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="Line" name="line_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="chkUnCheckAll">
+          <property name="text">
+           <string>(Un)Check all</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyCheckBox</class>
+   <extends>QCheckBox</extends>
+   <header location="global">smallWidgets/MyCheckBox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MyLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>smallWidgets/MyLineEdit.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
