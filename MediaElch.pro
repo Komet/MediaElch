@@ -345,7 +345,8 @@ FORMS    += main/MainWindow.ui \
 
 RESOURCES += \
     MediaElch.qrc \
-    fonts.qrc
+    fonts.qrc \
+    i18n.qrc
 
 TRANSLATIONS += \
     i18n/MediaElch_en.ts \
@@ -356,8 +357,10 @@ TRANSLATIONS += \
     i18n/MediaElch_no.ts \
     i18n/MediaElch_pl.ts \
     i18n/MediaElch_pt_PT.ts \
-    i18n/MediaElch_nl_NL.ts
-
+    i18n/MediaElch_nl_NL.ts \
+    i18n/MediaElch_es_ES.ts \
+    i18n/MediaElch_it.ts \
+    i18n/MediaElch_zh_CN.ts
 
 # qjsonrpc
 INCLUDEPATH += $$PWD/qjsonrpc/src

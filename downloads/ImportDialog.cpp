@@ -6,6 +6,7 @@
 #include "data/ImageCache.h"
 #include "data/TvShowFileSearcher.h"
 #include "globals/Manager.h"
+#include "notifications/Notificator.h"
 #include "renamer/Renamer.h"
 #include "settings/Settings.h"
 
@@ -613,6 +614,8 @@ void ImportDialog::onMovingFilesFinished()
         Manager::instance()->concertModel()->addConcert(m_concert);
         m_concert = 0;
     }
+
+    Notificator::instance()->notify(Notificator::Information, tr("Import finished"), tr("Import of %n file(s) has finished", "", files().count()));
 
     ui->loading->setVisible(false);
     ui->labelLoading->setText(tr("Import has finished"));

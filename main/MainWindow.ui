@@ -337,7 +337,7 @@ margin-top: 15px;</string>
 margin-top: 15px;</string>
          </property>
          <property name="text">
-          <string>Import</string>
+          <string extracomment="Main menu entry">Import</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -353,7 +353,7 @@ margin-top: 15px;</string>
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Import</string>
+          <string extracomment="Main menu entry (tooltip)">Import</string>
          </property>
          <property name="styleSheet">
           <string notr="true">QToolButton {

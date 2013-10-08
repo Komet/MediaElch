@@ -19,7 +19,6 @@
         <file>img/spanner.png</file>
         <file>img/pattern2.png</file>
         <file>img/folder_in.png</file>
-        <file>i18n/MediaElch_de.qm</file>
         <file>img/display_off.png</file>
         <file>img/display_on.png</file>
         <file>img/video.png</file>
@@ -49,11 +48,9 @@
         <file>img/heart.png</file>
         <file>img/btn_donate_LG.gif</file>
         <file>img/star.png</file>
-        <file>i18n/MediaElch_fr.qm</file>
         <file>img/inbox.png</file>
         <file>img/MediaElch.png</file>
         <file>img/xbmc.png</file>
-        <file>i18n/MediaElch_pt_BR.qm</file>
         <file>img/sync.png</file>
         <file>img/video_pause_64.png</file>
         <file>img/video_play_64.png</file>
@@ -64,20 +61,11 @@
         <file>img/imgButtonBottom.png</file>
         <file>img/imgButtonTop.png</file>
         <file>img/folder_64.png</file>
-        <file>i18n/qt_de.qm</file>
-        <file>i18n/qt_fr.qm</file>
-        <file>i18n/qt_pt.qm</file>
         <file>img/pencil.png</file>
         <file>img/export.png</file>
-        <file>i18n/MediaElch_no.qm</file>
-        <file>i18n/MediaElch_cs_CZ.qm</file>
         <file>img/reload_white.png</file>
         <file>img/star_blue.png</file>
         <file>img/reload_orange.png</file>
-        <file>i18n/MediaElch_en.qm</file>
-        <file>i18n/MediaElch_pl.qm</file>
-        <file>i18n/MediaElch_pt_PT.qm</file>
-        <file>i18n/MediaElch_nl_NL.qm</file>
         <file>img/downloads_menu.png</file>
         <file>img/downloads_menuActive.png</file>
         <file>img/lock_white.png</file>
