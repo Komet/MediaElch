@@ -157,10 +157,12 @@ SOURCES += main.cpp\
     concerts/ConcertController.cpp \
     smallWidgets/MySplitter.cpp \
     smallWidgets/MySplitterHandle.cpp \
-    tvShows/TvShowSearchEpisode.cpp
+    tvShows/TvShowSearchEpisode.cpp \
+    notifications/Notificator.cpp
 
 macx {
     OBJECTIVE_SOURCES += mac/MacFullscreen.mm
+    OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm
 }
 
 HEADERS  += main/MainWindow.h \
@@ -291,7 +293,9 @@ HEADERS  += main/MainWindow.h \
     concerts/ConcertController.h \
     smallWidgets/MySplitter.h \
     smallWidgets/MySplitterHandle.h \
-    tvShows/TvShowSearchEpisode.h
+    tvShows/TvShowSearchEpisode.h \
+    notifications/Notificator.h \
+    notifications/MacNotificationHandler.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

@@ -67,6 +67,7 @@ private slots:
     void onFilesRenamed(Renamer::RenameType type = Renamer::TypeAll);
     void onRenewModels();
     void onJumpToMovie(Movie *movie);
+    void setNewMarkForImports(bool hasItems);
 
 private:
     Ui::MainWindow *ui;

@@ -3,7 +3,9 @@
 
 #include <QComboBox>
 #include <QFileInfo>
+#include <QFileSystemWatcher>
 #include <QMap>
+#include <QMutex>
 #include <QWidget>
 #include "downloads/Extractor.h"
 
@@ -31,9 +33,15 @@ class DownloadsWidget : public QWidget
 public:
     explicit DownloadsWidget(QWidget *parent = 0);
     ~DownloadsWidget();
-    void scanDownloadFolders(bool scanDownloads = true, bool scanImports = true);
     void updatePackagesList(QMap<QString, Package> packages);
     void updateImportsList(QMap<QString, Import> imports);
+    bool hasNewItems();
+
+public slots:
+    void scanDownloadFolders(bool scanDownloads = true, bool scanImports = true);
+
+signals:
+    void sigScanFinished(bool);
 
 private slots:
     void onUnpack(QString baseName, QString password);
@@ -55,6 +63,8 @@ private:
     QMap<QString, Package> m_packages;
     QMap<QString, Import> m_imports;
     Extractor *m_extractor;
+    QFileSystemWatcher *m_watcher;
+    QMutex m_mutex;
 };
 
 #endif // DOWNLOADSWIDGET_H

@@ -19,6 +19,7 @@
 #include "main/MessageBox.h"
 #include "movies/MovieMultiScrapeDialog.h"
 #include "movies/MovieSearch.h"
+#include "notifications/Notificator.h"
 #include "sets/MovieListDialog.h"
 #include "settings/Settings.h"
 #include "tvShows/TvShowSearch.h"
@@ -159,6 +160,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), ui->tvShowFilesWidget, SLOT(renewModel()));
     connect(m_fileScannerDialog, SIGNAL(accepted()), this, SLOT(setNewMarks()));
+    connect(ui->downloadsWidget, SIGNAL(sigScanFinished(bool)), this, SLOT(setNewMarkForImports(bool)));
 
     connect(m_xbmcSync, SIGNAL(sigTriggerReload()), this, SLOT(onTriggerReloadAll()));
     connect(m_xbmcSync, SIGNAL(sigFinished()), this, SLOT(onXbmcSyncFinished()));
@@ -181,6 +183,7 @@ MainWindow::MainWindow(QWidget *parent) :
     TvTunesDialog::instance(ui->centralWidget);
     NameFormatter::instance(this);
     MovieMultiScrapeDialog::instance(ui->centralWidget);
+    Notificator::instance(0, ui->centralWidget);
 
 #ifdef Q_OS_WIN32
     setStyleSheet(styleSheet() + " #centralWidget { border-bottom: 1px solid rgba(0, 0, 0, 100); } ");
@@ -413,6 +416,7 @@ void MainWindow::onMenu(MainWidgets widget)
     ui->buttonDownloads->setIcon(m_icons.value(WidgetDownloads));
 
     setNewMarks();
+    setNewMarkForImports(ui->downloadsWidget->hasNewItems());
 
     m_actionSearch->setEnabled(m_actions[widget][ActionSearch]);
     m_actionSave->setEnabled(m_actions[widget][ActionSave]);
@@ -738,6 +742,21 @@ void MainWindow::setNewMarks()
     ui->concertFilesWidget->setAlphaListData();
 }
 
+void MainWindow::setNewMarkForImports(bool hasItems)
+{
+    QPainter painter;
+    QPixmap star(":/img/star.png");
+    QIcon downloads = m_icons.value(WidgetDownloads);
+    if (hasItems) {
+        QPixmap pixmap = downloads.pixmap(64, 64);
+        painter.begin(&pixmap);
+        painter.drawPixmap(pixmap.width()-star.width(), pixmap.height()-star.height(), star.width(), star.height(), star);
+        painter.end();
+        downloads = QIcon(pixmap);
+    }
+    ui->buttonDownloads->setIcon(downloads);
+}
+
 void MainWindow::onActionXbmc()
 {
     m_xbmcSync->exec();
@@ -776,6 +795,7 @@ void MainWindow::onRenewModels()
     ui->filesWidget->renewModel();
     ui->tvShowFilesWidget->renewModel();
     ui->concertFilesWidget->renewModel();
+    ui->downloadsWidget->scanDownloadFolders();
 }
 
 void MainWindow::onJumpToMovie(Movie *movie)

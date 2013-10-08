@@ -4,12 +4,15 @@
 #include <QComboBox>
 #include <QDirIterator>
 #include <QMessageBox>
+#include <QMutexLocker>
 
 #include "data/TvShowModel.h"
 #include "data/Storage.h"
 #include "downloads/ImportActions.h"
 #include "downloads/UnpackButtons.h"
 #include "globals/Manager.h"
+#include "notifications/MacNotificationHandler.h"
+#include "notifications/Notificator.h"
 #include "settings/Settings.h"
 #include "smallWidgets/MyTableWidgetItem.h"
 #include "smallWidgets/MessageLabel.h"
@@ -37,9 +40,14 @@ DownloadsWidget::DownloadsWidget(QWidget *parent) :
     ui->tableImports->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 
     m_extractor = new Extractor(this);
+    m_watcher = new QFileSystemWatcher(this);
+
     connect(m_extractor, SIGNAL(sigError(QString,QString)), this, SLOT(onExtractorError(QString,QString)));
     connect(m_extractor, SIGNAL(sigFinished(QString, bool)), this, SLOT(onExtractorFinished(QString, bool)));
     connect(m_extractor, SIGNAL(sigProgress(QString,int)), this, SLOT(onExtractorProgress(QString,int)));
+    connect(m_watcher, SIGNAL(directoryChanged(QString)), this, SLOT(scanDownloadFolders()));
+
+    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(scanDownloadFolders()));
 
     scanDownloadFolders();
 }
@@ -51,12 +59,21 @@ DownloadsWidget::~DownloadsWidget()
 
 void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
 {
+    QMutexLocker locker(&m_mutex);
+
+    QStringList dirs;
+    if (!m_watcher->directories().isEmpty())
+        m_watcher->removePaths(m_watcher->directories());
+
     QMap<QString, Package> packages;
     QMap<QString, Import> imports;
     foreach (const QString &dir, Settings::instance()->downloadDirectories()) {
+        dirs << dir;
         QDirIterator it(dir, QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files, QDirIterator::Subdirectories | QDirIterator::FollowSymlinks);
         while (it.hasNext()) {
             it.next();
+            if (it.fileInfo().isDir())
+                dirs << it.filePath();
             if (isPackage(it.fileInfo())) {
                 QString base = baseName(it.fileInfo());
                 if (packages.contains(base)) {
@@ -91,10 +108,14 @@ void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
         }
     }
 
+    m_watcher->addPaths(dirs);
+
     if (scanDownloads)
         updatePackagesList(packages);
     if (scanImports)
         updateImportsList(imports);
+
+    emit sigScanFinished(!packages.isEmpty() || !imports.isEmpty());
 }
 
 QString DownloadsWidget::baseName(QFileInfo fileInfo) const
@@ -217,7 +238,14 @@ void DownloadsWidget::onDelete(QString baseName)
 
 void DownloadsWidget::onExtractorError(QString baseName, QString msg)
 {
+#ifdef Q_OS_MAC
+    if (MacNotificationHandler::instance()->hasUserNotificationCenterSupport())
+        Notificator::instance()->notify(Notificator::Warning, tr("Extraction failed"), tr("Exctraction of %1 has failed: %2").arg(baseName).arg(msg));
+    else
+        QMessageBox::warning(this, tr("Extraction failed"), tr("Extraction of %1 has failed: %2").arg(baseName).arg(msg));
+#else
     QMessageBox::warning(this, tr("Extraction failed"), tr("Extraction of %1 has failed: %2").arg(baseName).arg(msg));
+#endif
 }
 
 void DownloadsWidget::onExtractorFinished(QString baseName, bool success)
@@ -233,6 +261,8 @@ void DownloadsWidget::onExtractorFinished(QString baseName, bool success)
             ui->tablePackages->setCellWidget(row, 4, label);
         }
     }
+    if (success)
+        Notificator::instance()->notify(Notificator::Information, tr("Extraction finished"), tr("Extraction of %1 finished").arg(baseName));
 }
 
 void DownloadsWidget::onExtractorProgress(QString baseName, int progress)
@@ -375,4 +405,9 @@ void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox *sender)
 
     actions->setFiles(m_imports[baseName].files);
     actions->setExtraFiles(m_imports[baseName].extraFiles);
+}
+
+bool DownloadsWidget::hasNewItems()
+{
+    return !m_imports.isEmpty() || !m_packages.isEmpty();
 }
