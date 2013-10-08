@@ -20,6 +20,8 @@ UnpackButtons::UnpackButtons(QWidget *parent) :
     connect(ui->btnUnpackWithPassword, SIGNAL(clicked()), this, SLOT(onUnpackWithPassword()));
     connect(ui->btnStop, SIGNAL(clicked()), this, SLOT(onStop()));
     connect(ui->btnDelete, SIGNAL(clicked()), this, SLOT(onDelete()));
+
+    ui->progressBar->setFormat("   " + ui->progressBar->format());
 }
 
 UnpackButtons::~UnpackButtons()

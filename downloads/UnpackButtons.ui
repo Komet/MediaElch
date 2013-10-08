@@ -59,7 +59,7 @@ QPushButton { color: #ffffff;  }</string>
       <enum>Qt::Horizontal</enum>
      </property>
      <property name="format">
-      <string>   %p%</string>
+      <string notr="true">%p%</string>
      </property>
     </widget>
    </item>
