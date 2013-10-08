@@ -42,7 +42,9 @@ void Notificator::notifyMacUserNotificationCenter(Class cls, const QString &titl
 {
     Q_UNUSED(cls);
     Q_UNUSED(icon);
+#ifdef Q_OS_MAC
     MacNotificationHandler::instance()->showNotification(title, text);
+#endif
 }
 
 void Notificator::notify(Class cls, const QString &title, const QString &text, const QIcon &icon, int timeout)
