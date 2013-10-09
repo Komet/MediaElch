@@ -598,7 +598,8 @@ QComboBox *SettingsWindow::comboForMovieScraperInfo(const int &info)
 
     QList<int> images;
     images << MovieScraperInfos::Backdrop << MovieScraperInfos::Logo << MovieScraperInfos::ClearArt
-           << MovieScraperInfos::CdArt << MovieScraperInfos::Banner << MovieScraperInfos::Thumb;
+           << MovieScraperInfos::CdArt << MovieScraperInfos::Banner << MovieScraperInfos::Thumb
+           << MovieScraperInfos::Poster;
     if (images.contains(info)) {
         foreach (ImageProviderInterface *img, Manager::instance()->imageProviders()) {
             if (img->identifier() == "images.fanarttv") {

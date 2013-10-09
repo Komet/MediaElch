@@ -207,6 +207,8 @@ void CustomMovieScraper::loadAllData(QMap<ScraperInterface *, QString> ids, Movi
 
     if (infos.contains(MovieScraperInfos::Backdrop) && Settings::instance()->customMovieScraper().value(MovieScraperInfos::Backdrop) == "images.fanarttv")
         movie->controller()->setForceFanartBackdrop(true);
+    if (infos.contains(MovieScraperInfos::Poster) && Settings::instance()->customMovieScraper().value(MovieScraperInfos::Poster) == "images.fanarttv")
+        movie->controller()->setForceFanartPoster(true);
 
     QMapIterator<ScraperInterface*, QString> itS(scrapersWithIds);
     while (itS.hasNext()) {

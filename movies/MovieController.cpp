@@ -19,6 +19,7 @@ MovieController::MovieController(Movie *parent) :
     m_downloadManager = new DownloadManager(this);
     m_downloadsInProgress = false;
     m_downloadsSize = 0;
+    m_forceFanartPoster = false;
     m_forceFanartBackdrop = false;
 
     connect(m_downloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onDownloadFinished(DownloadManagerElement)));
@@ -174,6 +175,7 @@ void MovieController::scraperLoadDone(ScraperInterface *scraper)
     if ((!m_movie->tmdbId().isEmpty() || !m_movie->id().isEmpty()) &&
             (infosToLoad().contains(MovieScraperInfos::Logo) ||
              (infosToLoad().contains(MovieScraperInfos::Backdrop) && m_forceFanartBackdrop) ||
+             (infosToLoad().contains(MovieScraperInfos::Poster) && m_forceFanartPoster) ||
              infosToLoad().contains(MovieScraperInfos::ClearArt) ||
              infosToLoad().contains(MovieScraperInfos::Banner) ||
              infosToLoad().contains(MovieScraperInfos::Thumb) ||
@@ -182,6 +184,10 @@ void MovieController::scraperLoadDone(ScraperInterface *scraper)
         if (infosToLoad().contains(MovieScraperInfos::Backdrop) && m_forceFanartBackdrop) {
             images << ImageType::MovieBackdrop;
             m_movie->clear(QList<int>() << MovieScraperInfos::Backdrop);
+        }
+        if (infosToLoad().contains(MovieScraperInfos::Poster) && m_forceFanartPoster) {
+            images << ImageType::MoviePoster;
+            m_movie->clear(QList<int>() << MovieScraperInfos::Poster);
         }
         if (infosToLoad().contains(MovieScraperInfos::Logo))
             images << ImageType::MovieLogo;
@@ -205,6 +211,7 @@ void MovieController::onFanartLoadDone(Movie *movie, QMap<int, QList<Poster> > p
     if (movie != m_movie)
         return;
 
+    m_forceFanartPoster = false;
     m_forceFanartBackdrop = false;
 
     if (infosToLoad().contains(MovieScraperInfos::Poster) && !m_movie->posters().isEmpty())
@@ -351,4 +358,9 @@ void MovieController::removeFromLoadsLeft(ScraperData load)
 void MovieController::setForceFanartBackdrop(const bool &force)
 {
     m_forceFanartBackdrop = force;
+}
+
+void MovieController::setForceFanartPoster(const bool &force)
+{
+    m_forceFanartPoster = force;
 }

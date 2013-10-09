@@ -15,7 +15,7 @@ FanartTv::FanartTv(QObject *parent)
 {
     setParent(parent);
     m_provides << ImageType::MovieBackdrop << ImageType::MovieLogo << ImageType::MovieClearArt << ImageType::MovieCdArt
-               << ImageType::MovieBanner << ImageType::MovieThumb
+               << ImageType::MovieBanner << ImageType::MovieThumb << ImageType::MoviePoster
                << ImageType::TvShowClearArt << ImageType::TvShowBackdrop << ImageType::TvShowBanner
                << ImageType::TvShowThumb << ImageType::TvShowSeasonThumb
                << ImageType::TvShowLogos << ImageType::TvShowCharacterArt
@@ -112,12 +112,12 @@ void FanartTv::movieImages(Movie *movie, QString tmdbId, QList<int> types)
 }
 
 /**
- * @brief Would load movie posters (not supported by fanart.tv)
+ * @brief Load movie posters
  * @param tmdbId
  */
 void FanartTv::moviePosters(QString tmdbId)
 {
-    Q_UNUSED(tmdbId);
+    loadMovieData(tmdbId, ImageType::MoviePoster);
 }
 
 /**
@@ -336,6 +336,7 @@ void FanartTv::onLoadAllConcertDataFinished()
 QList<Poster> FanartTv::parseMovieData(QString json, int type)
 {
     QMap<int, QStringList> map;
+    map.insert(ImageType::MoviePoster, QStringList() << "movieposter");
     map.insert(ImageType::MovieBackdrop, QStringList() << "moviebackground");
     map.insert(ImageType::MovieLogo, QStringList() << "hdmovielogo" << "movielogo");
     map.insert(ImageType::MovieClearArt, QStringList() << "hdmovieclearart" << "movieart");

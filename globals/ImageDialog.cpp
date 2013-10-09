@@ -735,7 +735,9 @@ void ImageDialog::loadImagesFromProvider(QString id)
     ui->labelLoading->setVisible(true);
     ui->labelSpinner->setVisible(true);
     if (m_itemType == ItemMovie) {
-        if (m_type == ImageType::MovieBackdrop)
+        if (m_type == ImageType::MoviePoster)
+            m_currentProvider->moviePosters(id);
+        else if (m_type == ImageType::MovieBackdrop)
             m_currentProvider->movieBackdrops(id);
         else if (m_type == ImageType::MoviePoster)
             m_currentProvider->moviePosters(id);
