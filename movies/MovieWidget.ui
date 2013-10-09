@@ -728,13 +728,23 @@
            <attribute name="title">
             <string>Extra Fanarts</string>
            </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_7" stretch="1,0">
+           <layout class="QVBoxLayout" name="verticalLayout_7" stretch="0,1,0">
             <property name="leftMargin">
              <number>12</number>
             </property>
             <property name="rightMargin">
              <number>12</number>
             </property>
+            <item>
+             <widget class="MessageLabel" name="labelSepFoldersWarning">
+              <property name="text">
+               <string>Support for extra fanarts is only available when your movies are stored in separate folders. Check the settings if you've stored your movies in separate folders already.</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
             <item>
              <widget class="ImageGallery" name="fanarts" native="true"/>
             </item>
@@ -1556,6 +1566,11 @@ QPushButton::hover {
    <class>ClosableImage</class>
    <extends>QLabel</extends>
    <header>smallWidgets/ClosableImage.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MessageLabel</class>
+   <extends>QLabel</extends>
+   <header>smallWidgets/MessageLabel.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

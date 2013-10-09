@@ -98,6 +98,8 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->studioCloud, SIGNAL(activated(QString)), this, SLOT(addStudio(QString)));
     connect(ui->studioCloud, SIGNAL(deactivated(QString)), this, SLOT(removeStudio(QString)));
 
+    ui->labelSepFoldersWarning->setErrorMessage(ui->labelSepFoldersWarning->text());
+
     ui->poster->setImageType(ImageType::MoviePoster);
     ui->backdrop->setImageType(ImageType::MovieBackdrop);
     ui->logo->setImageType(ImageType::MovieLogo);
@@ -390,6 +392,9 @@ void MovieWidget::setMovie(Movie *movie)
     connect(m_movie->controller(), SIGNAL(sigLoadingImages(Movie*,QList<int>)), this, SLOT(onLoadingImages(Movie*,QList<int>)), Qt::UniqueConnection);
     connect(m_movie->controller(), SIGNAL(sigLoadImagesStarted(Movie*)), this, SLOT(onLoadImagesStarted(Movie*)), Qt::UniqueConnection);
     connect(m_movie->controller(), SIGNAL(sigImage(Movie*,int,QByteArray)), this, SLOT(onSetImage(Movie*,int,QByteArray)), Qt::UniqueConnection);
+
+    ui->btnAddExtraFanart->setEnabled(movie->inSeparateFolder());
+    ui->labelSepFoldersWarning->setVisible(!movie->inSeparateFolder());
 
     if (movie->controller()->downloadsInProgress())
         setDisabledTrue();
