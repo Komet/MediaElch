@@ -203,7 +203,7 @@ QString Helper::stackedBaseName(const QString &fileName)
                 title = rx.at(1).capturedTexts().at(1);
                 volume.prepend(rx.at(1).capturedTexts().at(2));
             }
-            baseName = title;
+            return title;
         }
     }
 
