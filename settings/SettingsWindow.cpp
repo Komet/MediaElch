@@ -219,6 +219,7 @@ void SettingsWindow::loadSettings()
     ui->usePlotForOutline->setChecked(m_settings->usePlotForOutline());
     ui->chkDownloadActorImages->setChecked(m_settings->downloadActorImages());
     ui->chkIgnoreArticlesWhenSorting->setChecked(m_settings->ignoreArticlesWhenSorting());
+    ui->chkCheckForUpdates->setChecked(m_settings->checkForUpdates());
 
     // Directories
     ui->dirs->setRowCount(0);
@@ -324,6 +325,7 @@ void SettingsWindow::saveSettings()
     m_settings->setAutoLoadStreamDetails(ui->chkAutoLoadStreamDetails->isChecked());
     m_settings->setDownloadActorImages(ui->chkDownloadActorImages->isChecked());
     m_settings->setIgnoreArticlesWhenSorting(ui->chkIgnoreArticlesWhenSorting->isChecked());
+    m_settings->setCheckForUpdates(ui->chkCheckForUpdates->isChecked());
 
     m_settings->setXbmcHost(ui->xbmcHost->text());
     m_settings->setXbmcPort(ui->xbmcPort->text().toInt());

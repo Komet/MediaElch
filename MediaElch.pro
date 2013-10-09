@@ -158,7 +158,8 @@ SOURCES += main.cpp\
     smallWidgets/MySplitter.cpp \
     smallWidgets/MySplitterHandle.cpp \
     tvShows/TvShowSearchEpisode.cpp \
-    notifications/Notificator.cpp
+    notifications/Notificator.cpp \
+    main/Update.cpp
 
 macx {
     OBJECTIVE_SOURCES += mac/MacFullscreen.mm
@@ -295,7 +296,8 @@ HEADERS  += main/MainWindow.h \
     smallWidgets/MySplitterHandle.h \
     tvShows/TvShowSearchEpisode.h \
     notifications/Notificator.h \
-    notifications/MacNotificationHandler.h
+    notifications/MacNotificationHandler.h \
+    main/Update.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

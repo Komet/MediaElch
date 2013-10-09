@@ -68,6 +68,7 @@ public:
     QMap<int, QString> customMovieScraper() const;
     int currentMovieScraper() const;
     bool keepDownloadSource() const;
+    bool checkForUpdates() const;
 
     bool autoLoadStreamDetails();
 
@@ -114,6 +115,7 @@ public:
     void setCustomMovieScraper(QMap<int, QString> customMovieScraper);
     void setCurrentMovieScraper(int current);
     void setKeepDownloadSource(bool keep);
+    void setCheckForUpdates(bool check);
 
 public slots:
     void saveSettings();
@@ -163,6 +165,7 @@ private:
     QMap<int, QString> m_customMovieScraper;
     int m_currentMovieScraper;
     bool m_keepDownloadSource;
+    bool m_checkForUpdates;
 
     void setupProxy();
 };

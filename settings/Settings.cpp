@@ -103,6 +103,7 @@ void Settings::loadSettings(QSettings &settings)
     m_usePlotForOutline = settings.value("Movies/UsePlotForOutline", true).toBool();
     m_downloadActorImages = settings.value("DownloadActorImages", true).toBool();
     m_ignoreArticlesWhenSorting = settings.value("IgnoreArticlesWhenSorting", false).toBool();
+    m_checkForUpdates = settings.value("CheckForUpdates", true).toBool();
 
     // XBMC
     m_xbmcHost = settings.value("XBMC/RemoteHost").toString();
@@ -266,6 +267,7 @@ void Settings::saveSettings()
     m_settings.setValue("Movies/UsePlotForOutline", m_usePlotForOutline);
     m_settings.setValue("DownloadActorImages", m_downloadActorImages);
     m_settings.setValue("IgnoreArticlesWhenSorting", m_ignoreArticlesWhenSorting);
+    m_settings.setValue("CheckForUpdates", m_checkForUpdates);
 
     // XBMC
     m_settings.setValue("XBMC/RemoteHost", m_xbmcHost);
@@ -1046,4 +1048,14 @@ void Settings::setKeepDownloadSource(bool keep)
 bool Settings::keepDownloadSource() const
 {
     return m_keepDownloadSource;
+}
+
+void Settings::setCheckForUpdates(bool check)
+{
+    m_checkForUpdates = check;
+}
+
+bool Settings::checkForUpdates() const
+{
+    return m_checkForUpdates;
 }

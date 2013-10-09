@@ -68,6 +68,7 @@ private slots:
     void onRenewModels();
     void onJumpToMovie(Movie *movie);
     void setNewMarkForImports(bool hasItems);
+    void onNewVersion(QString version);
 
 private:
     Ui::MainWindow *ui;

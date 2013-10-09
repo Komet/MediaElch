@@ -1,8 +1,10 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
+#include <QCheckBox>
 #include <QDebug>
 #include <QDir>
+#include <QMessageBox>
 #include <QPainter>
 #include <QTimer>
 #include <QToolBar>
@@ -17,6 +19,7 @@
 #include "globals/Manager.h"
 #include "globals/TrailerDialog.h"
 #include "main/MessageBox.h"
+#include "main/Update.h"
 #include "movies/MovieMultiScrapeDialog.h"
 #include "movies/MovieSearch.h"
 #include "notifications/Notificator.h"
@@ -173,6 +176,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->certificationWidget, SIGNAL(sigJumpToMovie(Movie*)), this, SLOT(onJumpToMovie(Movie*)));
     connect(ui->genreWidget, SIGNAL(sigJumpToMovie(Movie*)), this, SLOT(onJumpToMovie(Movie*)));
 
+    connect(Update::instance(this), SIGNAL(sigNewVersion(QString)), this, SLOT(onNewVersion(QString)));
+
     MovieSearch::instance(ui->centralWidget);
     TvShowSearch::instance(ui->centralWidget);
     ImageDialog::instance(ui->centralWidget);
@@ -203,6 +208,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Start scanning for files
     QTimer::singleShot(0, m_fileScannerDialog, SLOT(exec()));
+
+    if (Settings::instance()->checkForUpdates())
+        Update::instance()->checkForUpdate();
 }
 
 /**
@@ -802,4 +810,22 @@ void MainWindow::onJumpToMovie(Movie *movie)
 {
     onMenuMovies();
     ui->filesWidget->selectMovie(movie);
+}
+
+void MainWindow::onNewVersion(QString version)
+{
+    QMessageBox msgBox;
+    msgBox.setIcon(QMessageBox::Information);
+    msgBox.setWindowTitle(tr("Updates available"));
+    msgBox.setText(tr("%1 is now available.<br>Get it now on <a href=\"http://www.mediaelch.de\">http://www.mediaelch.de</a>").arg(version));
+    msgBox.setStandardButtons(QMessageBox::Ok);
+    msgBox.setIconPixmap(QPixmap(":/img/MediaElch.png").scaledToWidth(64, Qt::SmoothTransformation));
+    QCheckBox dontCheck(QObject::tr("Don't check for updates"), &msgBox);
+    dontCheck.blockSignals(true);
+    msgBox.addButton(&dontCheck, QMessageBox::ActionRole);
+    msgBox.exec();
+    if (dontCheck.checkState() == Qt::Checked) {
+        Settings::instance()->setCheckForUpdates(false);
+        Settings::instance()->saveSettings();
+    }
 }
