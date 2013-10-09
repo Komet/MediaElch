@@ -46,6 +46,7 @@ signals:
 private slots:
     void onUnpack(QString baseName, QString password);
     void onDelete(QString baseName);
+    void onDeleteImport(QString baseName);
     void onExtractorError(QString baseName, QString msg);
     void onExtractorFinished(QString baseName, bool success);
     void onExtractorProgress(QString baseName, int progress);

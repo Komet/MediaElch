@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,0">
    <property name="topMargin">
     <number>0</number>
    </property>
@@ -27,6 +27,26 @@
      </property>
     </widget>
    </item>
+   <item>
+    <widget class="StyledPushButton" name="btnDelete">
+     <property name="toolTip">
+      <string>Delete</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../MediaElch.qrc">
+       <normaloff>:/img/trash_white.png</normaloff>:/img/trash_white.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>12</width>
+       <height>12</height>
+      </size>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <customwidgets>
@@ -36,6 +56,8 @@
    <header>smallWidgets/StyledPushButton.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../MediaElch.qrc"/>
+ </resources>
  <connections/>
 </ui>

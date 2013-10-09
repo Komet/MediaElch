@@ -618,7 +618,7 @@ void ImportDialog::onMovingFilesFinished()
     Notificator::instance()->notify(Notificator::Information, tr("Import finished"), tr("Import of %n file(s) has finished", "", files().count()));
 
     ui->loading->setVisible(false);
-    ui->labelLoading->setText(tr("Import has finished"));
+    ui->badgeSuccess->setText(tr("Import has finished"));
 
     m_filesToMove.clear();
 

@@ -31,8 +31,12 @@ public:
     void setExtraFiles(QStringList extraFiles);
     QStringList extraFiles();
 
+signals:
+    void sigDelete(QString);
+
 private slots:
     void onImport();
+    void onDelete();
 
 private:
     Ui::ImportActions *ui;

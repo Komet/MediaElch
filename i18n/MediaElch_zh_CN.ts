@@ -652,54 +652,54 @@
     </message>
     <message numerus="yes">
         <location filename="../downloads/DownloadsWidget.cpp" line="193"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="296"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="312"/>
         <source>%n file(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="243"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="245"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="247"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="259"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="261"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="263"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="275"/>
         <source>Extraction failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="243"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="259"/>
         <source>Exctraction of %1 has failed: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="245"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="247"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="261"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="263"/>
         <source>Extraction of %1 has failed: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="257"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="265"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="273"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="281"/>
         <source>Extraction finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="265"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="281"/>
         <source>Extraction of %1 finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="305"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="321"/>
         <source>Movie</source>
         <translation type="unfinished">电影</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="306"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="322"/>
         <source>TV Show</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="307"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="323"/>
         <source>Concert</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1675,6 +1675,21 @@
         <source>Import</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../downloads/ImportActions.ui" line="33"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloads/ImportActions.cpp" line="111"/>
+        <source>Delete file?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../downloads/ImportActions.cpp" line="112"/>
+        <source>Do you really want to delete this file?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ImportDialog</name>
@@ -1699,98 +1714,98 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.ui" line="60"/>
+        <location filename="../downloads/ImportDialog.ui" line="73"/>
         <source>Placeholders</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.ui" line="81"/>
+        <location filename="../downloads/ImportDialog.ui" line="94"/>
         <source>Artist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.ui" line="91"/>
+        <location filename="../downloads/ImportDialog.ui" line="104"/>
         <source>Title of the show</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.ui" line="98"/>
+        <location filename="../downloads/ImportDialog.ui" line="111"/>
         <source>Year</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.ui" line="108"/>
+        <location filename="../downloads/ImportDialog.ui" line="121"/>
         <source>Album</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.ui" line="118"/>
+        <location filename="../downloads/ImportDialog.ui" line="131"/>
         <source>Season Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.ui" line="134"/>
+        <location filename="../downloads/ImportDialog.ui" line="147"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.ui" line="144"/>
+        <location filename="../downloads/ImportDialog.ui" line="157"/>
         <source>Episode Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.ui" line="184"/>
+        <location filename="../downloads/ImportDialog.ui" line="197"/>
         <source>Original Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.ui" line="194"/>
+        <location filename="../downloads/ImportDialog.ui" line="207"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.ui" line="214"/>
+        <location filename="../downloads/ImportDialog.ui" line="227"/>
         <source>File extension</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.ui" line="269"/>
+        <location filename="../downloads/ImportDialog.ui" line="282"/>
         <source>Placeholder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.ui" line="299"/>
+        <location filename="../downloads/ImportDialog.ui" line="312"/>
         <source>Directory Naming</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.ui" line="309"/>
+        <location filename="../downloads/ImportDialog.ui" line="322"/>
         <source>File Naming</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.ui" line="326"/>
+        <location filename="../downloads/ImportDialog.ui" line="339"/>
         <source>Use Season Directories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.ui" line="333"/>
+        <location filename="../downloads/ImportDialog.ui" line="346"/>
         <source>Season Directory Naming</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.ui" line="350"/>
+        <location filename="../downloads/ImportDialog.ui" line="363"/>
         <source>Keep source files after import</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.ui" line="393"/>
-        <location filename="../downloads/ImportDialog.ui" line="403"/>
+        <location filename="../downloads/ImportDialog.ui" line="406"/>
+        <location filename="../downloads/ImportDialog.ui" line="416"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.ui" line="423"/>
+        <location filename="../downloads/ImportDialog.ui" line="436"/>
         <source>Import</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5805,11 +5820,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/UnpackButtons.ui" line="62"/>
-        <source>   %p%</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../downloads/UnpackButtons.ui" line="69"/>
         <source>Cancel extraction</source>
         <translation type="unfinished"></translation>
@@ -5835,22 +5845,22 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/UnpackButtons.cpp" line="48"/>
+        <location filename="../downloads/UnpackButtons.cpp" line="50"/>
         <source>Extraction password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/UnpackButtons.cpp" line="48"/>
+        <location filename="../downloads/UnpackButtons.cpp" line="50"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/UnpackButtons.cpp" line="62"/>
+        <location filename="../downloads/UnpackButtons.cpp" line="64"/>
         <source>Delete archive?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/UnpackButtons.cpp" line="63"/>
+        <location filename="../downloads/UnpackButtons.cpp" line="65"/>
         <source>Do you really want to delete this archive?</source>
         <translation type="unfinished"></translation>
     </message>

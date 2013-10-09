@@ -236,6 +236,22 @@ void DownloadsWidget::onDelete(QString baseName)
     }
 }
 
+void DownloadsWidget::onDeleteImport(QString baseName)
+{
+    if (!m_imports.contains(baseName))
+        return;
+
+    foreach (const QString &fileName, m_imports[baseName].files)
+        QFile::remove(fileName);
+
+    for (int row=0, n=ui->tableImports->rowCount() ; row<n ; ++row) {
+        if (ui->tableImports->item(row, 0)->data(Qt::UserRole).toString() == baseName) {
+            ui->tableImports->removeRow(row);
+            break;
+        }
+    }
+}
+
 void DownloadsWidget::onExtractorError(QString baseName, QString msg)
 {
 #ifdef Q_OS_MAC
@@ -317,6 +333,7 @@ void DownloadsWidget::updateImportsList(QMap<QString, Import> imports)
         actions->setButtonEnabled(false);
         actions->setBaseName(it.value().baseName);
         ui->tableImports->setCellWidget(row, 5, actions);
+        connect(actions, SIGNAL(sigDelete(QString)), this, SLOT(onDeleteImport(QString)));
 
         onChangeImportType(0, importType);
     }

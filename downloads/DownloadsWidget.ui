@@ -200,7 +200,7 @@ QHeaderView::section:checked
       <bool>false</bool>
      </attribute>
      <attribute name="horizontalHeaderDefaultSectionSize">
-      <number>150</number>
+      <number>170</number>
      </attribute>
      <attribute name="verticalHeaderVisible">
       <bool>false</bool>

@@ -2,6 +2,7 @@
 #include "ui_ImportActions.h"
 
 #include <QDebug>
+#include <QMessageBox>
 
 ImportActions::ImportActions(QWidget *parent) :
     QWidget(parent),
@@ -9,7 +10,9 @@ ImportActions::ImportActions(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->btnImport->setButtonStyle(StyledPushButton::StyleGreen);
+    ui->btnDelete->setButtonStyle(StyledPushButton::StyleRed);
     connect(ui->btnImport, SIGNAL(clicked()), this, SLOT(onImport()));
+    connect(ui->btnDelete, SIGNAL(clicked()), this, SLOT(onDelete()));
     m_tvShow = 0;
     m_importDialog = new ImportDialog(this);
 }
@@ -100,4 +103,16 @@ void ImportActions::onImport()
         m_importDialog->setImportDir(importDir());
         m_importDialog->execConcert(baseName());
     }
+}
+
+void ImportActions::onDelete()
+{
+    QMessageBox msgBox;
+    msgBox.setText(tr("Delete file?"));
+    msgBox.setInformativeText(tr("Do you really want to delete this file?"));
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Yes);
+    msgBox.setIcon(QMessageBox::Question);
+    if (msgBox.exec() == QMessageBox::Yes)
+        emit sigDelete(m_baseName);
 }
