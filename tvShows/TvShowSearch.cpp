@@ -99,7 +99,7 @@ int TvShowSearch::exec(QString searchString)
     newSize.setWidth(qMin(600, parentWidget()->size().width()-400));
     resize(newSize);
 
-    ui->searchString->setText(searchString);
+    ui->searchString->setText(searchString.replace(".", " "));
     onChkToggled();
     onSearch();
     return QDialog::exec();

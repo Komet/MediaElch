@@ -53,7 +53,7 @@ ConcertSearchWidget::~ConcertSearchWidget()
 
 void ConcertSearchWidget::search(QString searchString)
 {
-    ui->searchString->setText(searchString);
+    ui->searchString->setText(searchString.replace(".", " "));
     search();
 }
 

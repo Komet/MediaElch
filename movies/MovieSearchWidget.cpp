@@ -75,7 +75,7 @@ void MovieSearchWidget::search(QString searchString)
     ui->groupBox->setEnabled(true);
     m_currentCustomScraper = 0;
     m_customScraperIds.clear();
-    ui->searchString->setText(searchString);
+    ui->searchString->setText(searchString.replace(".", " "));
     search();
 }
 
