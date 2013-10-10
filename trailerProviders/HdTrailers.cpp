@@ -114,8 +114,6 @@ QList<TrailerResult> HdTrailers::parseTrailers(QString html)
         int pos2 = 0;
         while ((pos2 = rx2.indexIn(rx.cap(2), pos2)) != -1) {
             pos2 += rx2.matchedLength();
-            if (rx2.cap(1).contains("http://trailers.apple.com"))
-                continue;
             TrailerResult r;
             r.trailerUrl = Helper::urlDecode(rx2.cap(1));
             r.name = QString("%2, %1").arg(rx.cap(1)).arg(rx2.cap(2));
