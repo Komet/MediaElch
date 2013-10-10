@@ -248,8 +248,14 @@ void TrailerDialog::startDownload()
     ui->buttonClose3->setEnabled(false);
     ui->progressBar->setVisible(true);
 
+    QNetworkRequest request;
+    request.setUrl(QUrl(ui->url->text()));
+
+    if (ui->url->text().contains("http://trailers.apple.com"))
+        request.setRawHeader("User-Agent", "QuickTime/7.7");
+
     m_downloadInProgress = true;
-    m_downloadReply = m_qnam->get(QNetworkRequest(QUrl(ui->url->text())));
+    m_downloadReply = m_qnam->get(request);
     connect(m_downloadReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
     connect(m_downloadReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(downloadProgress(qint64,qint64)));
     connect(m_downloadReply, SIGNAL(readyRead()), SLOT(downloadReadyRead()));
