@@ -97,6 +97,9 @@ QVariant TvShowModelItem::data(int column) const
     case 108:
         if (m_tvShow)
             return m_tvShow->hasImage(ImageType::TvShowCharacterArt);
+    case 109:
+        if (m_tvShow)
+            return m_tvShow->hasDummyEpisodes();
     case 4:
         if (m_tvShow)
             return m_tvShow->syncNeeded();
@@ -168,10 +171,11 @@ TvShowModelItem *TvShowModelItem::appendChild(TvShowEpisode *episode)
  * @param show Tv Show object
  * @return Constructed child item
  */
-TvShowModelItem *TvShowModelItem::appendChild(QString season, TvShow *show)
+TvShowModelItem *TvShowModelItem::appendChild(int seasonNumber, QString season, TvShow *show)
 {
     TvShowModelItem *item = new TvShowModelItem(this);
     item->setSeason(season);
+    item->setSeasonNumber(seasonNumber);
     item->setTvShow(show);
     m_childItems.append(item);
     connect(item, SIGNAL(sigIntChanged(TvShowModelItem*,TvShowModelItem*)), this, SLOT(onSeasonChanged(TvShowModelItem*, TvShowModelItem*)), Qt::UniqueConnection);
@@ -231,6 +235,11 @@ void TvShowModelItem::setSeason(QString season)
     m_season = season;
 }
 
+void TvShowModelItem::setSeasonNumber(int seasonNumber)
+{
+    m_seasonNumber = seasonNumber;
+}
+
 /**
  * @brief TvShowModelItem::tvShow
  * @return Tv Show object of this item
@@ -256,6 +265,11 @@ TvShowEpisode *TvShowModelItem::tvShowEpisode()
 QString TvShowModelItem::season()
 {
     return m_season;
+}
+
+int TvShowModelItem::seasonNumber()
+{
+    return m_seasonNumber;
 }
 
 /**

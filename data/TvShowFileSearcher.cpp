@@ -107,6 +107,7 @@ void TvShowFileSearcher::reload(bool force)
 
         Manager::instance()->database()->transaction();
         QMap<int, TvShowModelItem*> seasonItems;
+
         foreach (const QStringList &files, it.value()) {
             int seasonNumber = getSeasonNumber(files);
             QList<int> episodeNumbers = getEpisodeNumbers(files);
@@ -118,7 +119,7 @@ void TvShowFileSearcher::reload(bool force)
                 Manager::instance()->database()->add(episode, path, show->databaseId());
                 show->addEpisode(episode);
                 if (!seasonItems.contains(episode->season()))
-                    seasonItems.insert(episode->season(), showItem->appendChild(episode->seasonString(), show));
+                    seasonItems.insert(episode->season(), showItem->appendChild(episode->season(), episode->seasonString(), show));
                 seasonItems.value(episode->season())->appendChild(episode);
             }
             emit progress(++episodeCounter, episodeSum, m_progressMessageId);
@@ -142,10 +143,15 @@ void TvShowFileSearcher::reload(bool force)
             episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), false);
             show->addEpisode(episode);
             if (!seasonItems.contains(episode->season()))
-                seasonItems.insert(episode->season(), showItem->appendChild(episode->seasonString(), show));
+                seasonItems.insert(episode->season(), showItem->appendChild(episode->season(), episode->seasonString(), show));
             seasonItems.value(episode->season())->appendChild(episode);
             emit progress(++episodeCounter, episodeSum, m_progressMessageId);
         }
+    }
+
+    foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
+        if (show->showMissingEpisodes())
+            show->fillMissingEpisodes();
     }
 
     qDebug() << "Searching for tv shows done";
@@ -213,7 +219,7 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
             Manager::instance()->database()->add(episode, path, show->databaseId());
             show->addEpisode(episode);
             if (!seasonItems.contains(episode->season()))
-                seasonItems.insert(episode->season(), showItem->appendChild(episode->seasonString(), show));
+                seasonItems.insert(episode->season(), showItem->appendChild(episode->season(), episode->seasonString(), show));
             seasonItems.value(episode->season())->appendChild(episode);
         }
         emit progress(++episodeCounter, episodeSum, m_progressMessageId);

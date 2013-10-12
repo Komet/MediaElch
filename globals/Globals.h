@@ -17,6 +17,7 @@ namespace Constants {
     const int TvShowWidgetProgressMessageId        = 10003;
     const int TvShowWidgetSaveProgressMessageId    = 10004;
     const int ConcertFileSearcherProgressMessageId = 10005;
+    const int TvShowUpdaterProgressMessageId       = 10006;
     const int MovieProgressMessageId               = 20000;
     const int TvShowProgressMessageId              = 40000;
     const int EpisodeProgressMessageId             = 60000;
@@ -39,6 +40,7 @@ namespace TvShowRoles {
     const int HasThumb = Qt::UserRole+13;
     const int HasClearArt = Qt::UserRole+14;
     const int HasCharacterArt = Qt::UserRole+15;
+    const int MissingEpisodes = Qt::UserRole+16;
 }
 
 namespace MediaCenterInterfaces {

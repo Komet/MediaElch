@@ -109,9 +109,15 @@ void MessageBox::removeMessage(int id)
  * @param message Message to display
  * @param id Id of the message
  */
-void MessageBox::showProgressBar(QString message, int id)
+void MessageBox::showProgressBar(QString message, int id, bool unique)
 {
     qDebug() << "Entered, message=" << message << "id=" << id;
+    if (unique) {
+        foreach (Message *msg, m_messages) {
+            if (msg->id() == id)
+                return;
+        }
+    }
     m_msgCounter++;
     Message *msg = new Message(this);
     msg->setMessage(message);
@@ -146,4 +152,24 @@ void MessageBox::hideProgressBar(int id)
 {
     qDebug() << "Entered, id=" << id;
     removeMessage(id);
+}
+
+int MessageBox::maxValue(int id)
+{
+    foreach (Message *msg, m_messages) {
+        if (msg->id() == id)
+            return msg->maxValue();
+    }
+
+    return 0;
+}
+
+int MessageBox::value(int id)
+{
+    foreach (Message *msg, m_messages) {
+        if (msg->id() == id)
+            return msg->value();
+    }
+
+    return 0;
 }

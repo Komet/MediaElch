@@ -41,6 +41,7 @@ void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
         widget->setHasLogo(index.model()->data(index, TvShowRoles::HasLogo).toBool());
         widget->setHasClearArt(index.model()->data(index, TvShowRoles::HasClearArt).toBool());
         widget->setHasCharacterArt(index.model()->data(index, TvShowRoles::HasCharacterArt).toBool());
+        widget->setMissingEpisodes(index.model()->data(index, TvShowRoles::MissingEpisodes).toBool());
         widget->deleteLater();
 
         painter->save();

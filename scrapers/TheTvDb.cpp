@@ -10,7 +10,9 @@
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "globals/Manager.h"
 #include "main/MainWindow.h"
+#include "mediaCenterPlugins/XbmcXml.h"
 #include "settings/Settings.h"
 
 /**
@@ -83,6 +85,21 @@ QNetworkAccessManager *TheTvDb::qnam()
 QString TheTvDb::name()
 {
     return QString("The TV DB");
+}
+
+QString TheTvDb::identifier()
+{
+    return QString("tvdb");
+}
+
+QString TheTvDb::apiKey()
+{
+    return m_apiKey;
+}
+
+QString TheTvDb::language()
+{
+    return m_language;
 }
 
 /**
@@ -384,8 +401,38 @@ void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, TvShowUpdateType up
                 }
             }
         }
-
     }
+
+    fillDatabaseWithAllEpisodes(xml, show);
+}
+
+void TheTvDb::fillDatabaseWithAllEpisodes(QString xml, TvShow *show)
+{
+    QList<int> infosToLoad;
+    infosToLoad << TvShowScraperInfos::Director << TvShowScraperInfos::Title << TvShowScraperInfos::FirstAired
+                << TvShowScraperInfos::Overview << TvShowScraperInfos::Rating << TvShowScraperInfos::Writer
+                << TvShowScraperInfos::Thumbnail;
+
+    int showsSettingsId = Manager::instance()->database()->showsSettingsId(show);
+    Manager::instance()->database()->clearEpisodeList(showsSettingsId);
+
+    TvShowEpisode *episode = new TvShowEpisode();
+    QDomDocument domDoc;
+    domDoc.setContent(xml);
+    for (int i=0, n=domDoc.elementsByTagName("Episode").count() ; i<n ; ++i) {
+        QDomElement elem = domDoc.elementsByTagName("Episode").at(i).toElement();
+        if (!elem.elementsByTagName("SeasonNumber").isEmpty() && !elem.elementsByTagName("EpisodeNumber").isEmpty()) {
+            episode->clear();
+            int seasonNumber = elem.elementsByTagName("SeasonNumber").at(0).toElement().text().toInt();
+            int episodeNumber = elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt();
+            QString id = elem.elementsByTagName("id").at(0).toElement().text();
+            episode->setSeason(seasonNumber);
+            episode->setEpisode(episodeNumber);
+            parseAndAssignSingleEpisodeInfos(elem, episode, infosToLoad);
+            Manager::instance()->database()->addEpisodeToShowList(episode, showsSettingsId, id);
+        }
+    }
+    Manager::instance()->database()->cleanUpEpisodeList(showsSettingsId);
 }
 
 /**

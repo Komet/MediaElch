@@ -405,6 +405,10 @@ void TvShowWidgetTvShow::onStartScraperSearch()
  */
 void TvShowWidgetTvShow::onInfoLoadDone(TvShow *show)
 {
+    if (show->showMissingEpisodes()) {
+        show->clearMissingEpisodes();
+        show->fillMissingEpisodes();
+    }
     QList<int> types;
     types << ImageType::TvShowClearArt << ImageType::TvShowLogos << ImageType::TvShowCharacterArt << ImageType::TvShowThumb << ImageType::TvShowSeasonThumb;
     if (!show->tvdbId().isEmpty() && !types.isEmpty() && show->infosToLoad().contains(TvShowScraperInfos::ExtraArts)) {

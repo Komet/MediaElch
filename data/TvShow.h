@@ -70,7 +70,7 @@ public:
     QList<Poster> seasonBanners(int season, bool returnAll = false) const;
     QList<Poster> seasonThumbs(int season, bool returnAll = false) const;
     TvShowEpisode *episode(int season, int episode);
-    QList<int> seasons();
+    QList<int> seasons(bool includeDummies = true);
     QList<TvShowEpisode*> episodes();
     QList<TvShowEpisode*> episodes(int season);
     TvShowModelItem *modelItem();
@@ -88,6 +88,10 @@ public:
     bool hasTune() const;
     int runtime() const;
     QString sortTitle() const;
+    bool isDummySeason(int season) const;
+    bool hasDummyEpisodes() const;
+    bool hasDummyEpisodes(int season) const;
+    bool showMissingEpisodes() const;
 
     void setName(QString name);
     void setShowTitle(QString title);
@@ -128,6 +132,7 @@ public:
     void setHasTune(bool hasTune);
     void setRuntime(int runtime);
     void setSortTitle(QString sortTitle);
+    void setShowMissingEpisodes(bool showMissing, bool updateDatabase = true);
 
     void removeActor(Actor *actor);
     void removeGenre(QString genre);
@@ -137,6 +142,8 @@ public:
     void loadData(QString id, TvScraperInterface *tvScraperInterface, TvShowUpdateType type, QList<int> infosToLoad);
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     void clearImages();
+    void fillMissingEpisodes();
+    void clearMissingEpisodes();
 
     // Images
     void removeImage(int type, int season = -2);
@@ -211,6 +218,7 @@ private:
     QStringList m_extraFanarts;
     QMap<int, QList<int> > m_imagesToRemove;
     QMap<int, bool> m_hasImage;
+    bool m_showMissingEpisodes;
 
     QMap<int, QByteArray> m_images;
     QMap<int, QMap<int, QByteArray> > m_seasonImages;

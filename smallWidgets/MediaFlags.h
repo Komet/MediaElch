@@ -20,6 +20,7 @@ public:
     explicit MediaFlags(QWidget *parent = 0);
     ~MediaFlags();
     void setStreamDetails(StreamDetails *streamDetails);
+    void clear();
 
 private:
     Ui::MediaFlags *ui;

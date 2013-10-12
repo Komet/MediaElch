@@ -42,6 +42,7 @@ private:
     TvShowModelItem *m_rootItem;
     QIcon m_newIcon;
     QIcon m_syncIcon;
+    QIcon m_missingIcon;
 };
 
 #endif // TVSHOWMODEL_H

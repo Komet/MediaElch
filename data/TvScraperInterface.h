@@ -26,6 +26,7 @@ public:
     virtual void loadSettings(QSettings &settings) = 0;
     virtual void saveSettings(QSettings &settings) = 0;
     virtual QWidget *settingsWidget() = 0;
+    virtual QString identifier() = 0;
 signals:
     virtual void sigSearchDone(QList<ScraperSearchResult>) = 0;
 };

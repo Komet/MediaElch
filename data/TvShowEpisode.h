@@ -79,6 +79,7 @@ public:
     QString nfoContent() const;
     int databaseId() const;
     bool syncNeeded() const;
+    bool isDummy() const;
 
     void setShow(TvShow *show);
     void setName(QString name);
@@ -108,6 +109,7 @@ public:
     void setNfoContent(QString content);
     void setDatabaseId(int id);
     void setSyncNeeded(bool syncNeeded);
+    void setIsDummy(bool dummy);
 
     void removeWriter(QString *writer);
     void removeDirector(QString *director);
@@ -164,6 +166,7 @@ private:
     bool m_syncNeeded;
     QList<int> m_infosToLoad;
     QList<int> m_imagesToRemove;
+    bool m_isDummy;
 };
 
 QDebug operator<<(QDebug dbg, const TvShowEpisode &episode);

@@ -36,6 +36,14 @@ public:
     QList<TvShow*> shows(QString path);
     QList<TvShowEpisode*> episodes(int idShow);
     int episodeCount();
+
+    void setShowMissingEpisodes(TvShow *show, bool showMissing);
+    int showsSettingsId(TvShow *show);
+    void clearEpisodeList(int showsSettingsId);
+    void cleanUpEpisodeList(int showsSettingsId);
+    void addEpisodeToShowList(TvShowEpisode *episode, int showsSettingsId, QString tvdbid);
+    QList<TvShowEpisode*> showsEpisodes(TvShow *show);
+
 private:
     QSqlDatabase *m_db;
 };

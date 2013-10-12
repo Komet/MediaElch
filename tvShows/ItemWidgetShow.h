@@ -27,6 +27,7 @@ public:
     void setHasCharacterArt(const bool &has);
     void setHasBanner(const bool &has);
     void setHasThumb(const bool &has);
+    void setMissingEpisodes(const bool &missing);
 
 private:
     Ui::ItemWidgetShow *ui;

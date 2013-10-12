@@ -80,3 +80,8 @@ void ItemWidgetShow::setHasThumb(const bool &has)
 {
     ui->iconThumb->setPixmap(ui->iconThumb->property(has ? "iconGreen" : "iconRed").value<QPixmap>());
 }
+
+void ItemWidgetShow::setMissingEpisodes(const bool &missing)
+{
+    ui->iconMissing->setVisible(missing);
+}

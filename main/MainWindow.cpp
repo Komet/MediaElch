@@ -26,6 +26,7 @@
 #include "sets/MovieListDialog.h"
 #include "settings/Settings.h"
 #include "tvShows/TvShowSearch.h"
+#include "tvShows/TvShowUpdater.h"
 #include "tvShows/TvTunesDialog.h"
 #include "xbmc/XbmcSync.h"
 
@@ -162,6 +163,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->concertSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
 
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), ui->tvShowFilesWidget, SLOT(renewModel()));
+    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(updateTvShows()));
     connect(m_fileScannerDialog, SIGNAL(accepted()), this, SLOT(setNewMarks()));
     connect(ui->downloadsWidget, SIGNAL(sigScanFinished(bool)), this, SLOT(setNewMarkForImports(bool)));
 
@@ -817,7 +819,7 @@ void MainWindow::onNewVersion(QString version)
     QMessageBox msgBox;
     msgBox.setIcon(QMessageBox::Information);
     msgBox.setWindowTitle(tr("Updates available"));
-    msgBox.setText(tr("%1 is now available.<br>Get it now on <a href=\"http://www.mediaelch.de\">http://www.mediaelch.de</a>").arg(version));
+    msgBox.setText(tr("%1 is now available.<br>Get it now on %2").arg(version).arg("<a href=\"http://www.mediaelch.de\">http://www.mediaelch.de</a>"));
     msgBox.setStandardButtons(QMessageBox::Ok);
     msgBox.setIconPixmap(QPixmap(":/img/MediaElch.png").scaledToWidth(64, Qt::SmoothTransformation));
     QCheckBox dontCheck(QObject::tr("Don't check for updates"), &msgBox);
@@ -827,5 +829,13 @@ void MainWindow::onNewVersion(QString version)
     if (dontCheck.checkState() == Qt::Checked) {
         Settings::instance()->setCheckForUpdates(false);
         Settings::instance()->saveSettings();
+    }
+}
+
+void MainWindow::updateTvShows()
+{
+    foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
+        if (show->showMissingEpisodes())
+            TvShowUpdater::instance()->updateShow(show);
     }
 }

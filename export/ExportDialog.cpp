@@ -340,6 +340,8 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
         qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
 
         foreach (TvShowEpisode *episode, show->episodes()) {
+            if (episode->isDummy())
+                continue;
             QString episodeTemplate = episodeContent;
             replaceVars(episodeTemplate, episode, dir, true);
             QFile file(dir.currentPath() + QString("/episodes/%1.html").arg(episode->episodeId()));
@@ -398,7 +400,7 @@ void ExportDialog::replaceVars(QString &m, TvShow *show, QDir dir, bool subDir)
     if (listSeasonBlock.isEmpty() || listSeasonItem.isEmpty())
         return;
 
-    QList<int> seasons = show->seasons();
+    QList<int> seasons = show->seasons(false);
     qSort(seasons);
     foreach (const int &season, seasons) {
         QList<TvShowEpisode*> episodes = show->episodes(season);

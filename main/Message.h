@@ -25,6 +25,8 @@ public:
     void setProgress(int current, int max);
     void setId(int id);
     int id();
+    int maxValue();
+    int value();
 
 signals:
     void sigHideMessage(int);

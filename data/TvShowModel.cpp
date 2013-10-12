@@ -18,6 +18,7 @@ TvShowModel::TvShowModel(QObject *parent)
     m_rootItem = new TvShowModelItem(0);
     m_newIcon = QIcon(":/img/star_blue.png");
     m_syncIcon = QIcon(":/img/reload_orange.png");
+    m_missingIcon = QIcon(":/img/missing.png");
 }
 
 /**
@@ -59,6 +60,8 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
             return m_newIcon;
         else if (item->data(4).toBool())
             return m_syncIcon;
+        else if (item->type() == TypeSeason && item->tvShow()->hasDummyEpisodes(item->seasonNumber()))
+            return m_missingIcon;
     } else if (role == TvShowRoles::Type) {
         return item->type();
     } else if (role == TvShowRoles::EpisodeCount && item->type() == TypeTvShow) {
@@ -66,6 +69,10 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
     } else if (role == Qt::ForegroundRole) {
         if (item->data(2).toBool())
             return QColor(255, 0, 0);
+        if (item->type() == TypeEpisode && item->tvShowEpisode()->isDummy())
+            return QColor(150, 150, 150);
+        if (item->type() == TypeSeason && item->tvShow()->isDummySeason(item->seasonNumber()))
+            return QColor(150, 150, 150);
     } else if (role == Qt::FontRole) {
         QFont font;
         if (!item->season().isEmpty())
@@ -95,6 +102,8 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
         return item->data(107);
     } else if (role == TvShowRoles::HasCharacterArt) {
         return item->data(108);
+    } else if (role == TvShowRoles::MissingEpisodes) {
+        return item->data(109);
     }
     return QVariant();
 }

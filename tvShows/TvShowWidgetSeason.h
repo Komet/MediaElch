@@ -48,6 +48,7 @@ private:
     QLabel *m_savingWidget;
     QMovie *m_loadingMovie;
     DownloadManager *m_downloadManager;
+    QLabel *m_missingLabel;
     void updateImages(QList<int> images);
 };
 

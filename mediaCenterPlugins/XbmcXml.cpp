@@ -1115,6 +1115,8 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
     // Multi-Episode handling
     QList<TvShowEpisode*> episodes;
     foreach (TvShowEpisode *subEpisode, episode->tvShow()->episodes()) {
+        if (subEpisode->isDummy())
+            continue;
         if (episode->files() == subEpisode->files())
             episodes.append(subEpisode);
     }
@@ -1314,7 +1316,7 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
         }
     }
 
-    writeStreamDetails(xml, episode->streamDetails());
+    XbmcXml::writeStreamDetails(xml, episode->streamDetails());
 
     xml.writeEndElement();
 }

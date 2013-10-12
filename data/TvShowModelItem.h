@@ -27,16 +27,18 @@ public:
     QVariant data(int column) const;
     TvShowModelItem *appendChild(TvShow *show);
     TvShowModelItem *appendChild(TvShowEpisode *episode);
-    TvShowModelItem *appendChild(QString season, TvShow *show);
+    TvShowModelItem *appendChild(int seasonNumber, QString season, TvShow *show);
     TvShowModelItem *parent();
     bool removeChildren(int position, int count);
     int childNumber() const;
     void setTvShow(TvShow *show);
     void setTvShowEpisode(TvShowEpisode *episode);
     void setSeason(QString season);
+    void setSeasonNumber(int seasonNumber);
     TvShow *tvShow();
     TvShowEpisode *tvShowEpisode();
     QString season();
+    int seasonNumber();
     int type();
 
 signals:
@@ -53,6 +55,7 @@ private:
     TvShow *m_tvShow;
     TvShowEpisode *m_tvShowEpisode;
     QString m_season;
+    int m_seasonNumber;
 };
 
 #endif // TVSHOWMODELITEM_H

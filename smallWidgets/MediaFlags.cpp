@@ -21,6 +21,15 @@ MediaFlags::~MediaFlags()
     delete ui;
 }
 
+void MediaFlags::clear()
+{
+    ui->mediaFlagResolution->setVisible(false);
+    ui->mediaFlagAspect->setVisible(false);
+    ui->mediaFlagAudio->setVisible(false);
+    ui->mediaFlagChannels->setVisible(false);
+    ui->mediaFlagCodec->setVisible(false);
+}
+
 /**
  * @brief MediaFlags::setStreamDetails
  * @param streamDetails

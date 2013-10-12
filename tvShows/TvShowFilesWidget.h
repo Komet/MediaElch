@@ -1,6 +1,7 @@
 #ifndef TVSHOWFILESWIDGET_H
 #define TVSHOWFILESWIDGET_H
 
+#include <QAction>
 #include <QMenu>
 #include <QModelIndex>
 #include <QWidget>
@@ -51,6 +52,7 @@ private slots:
     void markForSync();
     void unmarkForSync();
     void openFolder();
+    void showMissingEpisodes();
 
 private:
     Ui::TvShowFilesWidget *ui;
@@ -61,6 +63,7 @@ private:
     TvShow *m_lastTvShow;
     TvShowEpisode *m_lastEpisode;
     int m_lastSeason;
+    QAction *m_actionShowMissingEpisodes;
 };
 
 #endif // TVSHOWFILESWIDGET_H

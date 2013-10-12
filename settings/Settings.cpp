@@ -252,6 +252,8 @@ void Settings::loadSettings(QSettings &settings)
     m_importDialogSize = settings.value("Downloads/ImportDialogSize").toSize();
     m_importDialogPosition = settings.value("Downloads/ImportDialogPosition").toPoint();
     m_keepDownloadSource = settings.value("Downloads/KeepSource", true).toBool();
+
+    m_showMissingEpisodesHint = settings.value("TvShows/ShowMissingEpisodesHint", true).toBool();
 }
 
 /**
@@ -363,6 +365,8 @@ void Settings::saveSettings()
     m_settings.setValue("Downloads/Unrar", m_unrar);
     m_settings.setValue("Downloads/DeleteArchives", m_deleteArchives);
     m_settings.setValue("Downloads/KeepSource", m_keepDownloadSource);
+
+    m_settings.setValue("TvShows/ShowMissingEpisodesHint", m_showMissingEpisodesHint);
 
     m_settings.sync();
 }
@@ -1058,4 +1062,14 @@ void Settings::setCheckForUpdates(bool check)
 bool Settings::checkForUpdates() const
 {
     return m_checkForUpdates;
+}
+
+void Settings::setShowMissingEpisodesHint(bool show)
+{
+    m_showMissingEpisodesHint = show;
+}
+
+bool Settings::showMissingEpisodesHint() const
+{
+    return m_showMissingEpisodesHint;
 }

@@ -32,6 +32,7 @@ TvShowEpisode::TvShowEpisode(QStringList files, TvShow *parent) :
     m_infoFromNfoLoaded = false;
     m_databaseId = -1;
     m_syncNeeded = false;
+    m_isDummy = false;
     setFiles(files);
 }
 
@@ -908,6 +909,16 @@ void TvShowEpisode::removeImage(int type)
         break;
     }
     setChanged(true);
+}
+
+void TvShowEpisode::setIsDummy(bool dummy)
+{
+    m_isDummy = dummy;
+}
+
+bool TvShowEpisode::isDummy() const
+{
+    return m_isDummy;
 }
 
 bool TvShowEpisode::lessThan(TvShowEpisode *a, TvShowEpisode *b)

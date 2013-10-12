@@ -69,6 +69,7 @@ public:
     int currentMovieScraper() const;
     bool keepDownloadSource() const;
     bool checkForUpdates() const;
+    bool showMissingEpisodesHint() const;
 
     bool autoLoadStreamDetails();
 
@@ -116,6 +117,7 @@ public:
     void setCurrentMovieScraper(int current);
     void setKeepDownloadSource(bool keep);
     void setCheckForUpdates(bool check);
+    void setShowMissingEpisodesHint(bool show);
 
 public slots:
     void saveSettings();
@@ -166,6 +168,7 @@ private:
     int m_currentMovieScraper;
     bool m_keepDownloadSource;
     bool m_checkForUpdates;
+    bool m_showMissingEpisodesHint;
 
     void setupProxy();
 };

@@ -6,6 +6,7 @@
 #include <QDir>
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "globals/Manager.h"
 #include "globals/NameFormatter.h"
 
 /**
@@ -28,6 +29,7 @@ TvShow::TvShow(QString dir, QObject *parent) :
     m_syncNeeded = false;
     m_hasTune = false;
     m_runtime = 0;
+    m_showMissingEpisodes = false;
 }
 
 /**
@@ -612,10 +614,12 @@ TvShowEpisode *TvShow::episode(int season, int episode)
  * @brief TvShow::seasons
  * @return
  */
-QList<int> TvShow::seasons()
+QList<int> TvShow::seasons(bool includeDummies)
 {
     QList<int> seasons;
     foreach (TvShowEpisode *episode, m_episodes) {
+        if (episode->isDummy() && !includeDummies)
+            continue;
         if (!seasons.contains(episode->season()) && episode->season() != -2)
             seasons.append(episode->season());
     }
@@ -1309,6 +1313,120 @@ void TvShow::setSortTitle(QString sortTitle)
 {
     m_sortTitle = sortTitle;
     setChanged(true);
+}
+
+bool TvShow::isDummySeason(int season) const
+{
+    foreach (TvShowEpisode *episode, m_episodes) {
+        if (episode->season() == season && !episode->isDummy())
+            return false;
+    }
+    return true;
+}
+
+bool TvShow::hasDummyEpisodes(int season) const
+{
+    foreach (TvShowEpisode *episode, m_episodes) {
+        if (episode->season() == season && episode->isDummy())
+            return true;
+    }
+    return false;
+}
+
+bool TvShow::hasDummyEpisodes() const
+{
+    foreach (TvShowEpisode *episode, m_episodes) {
+        if (episode->isDummy())
+            return true;
+    }
+    return false;
+}
+
+void TvShow::setShowMissingEpisodes(bool showMissing, bool updateDatabase)
+{
+    m_showMissingEpisodes = showMissing;
+    if (updateDatabase)
+        Manager::instance()->database()->setShowMissingEpisodes(this, showMissing);
+}
+
+bool TvShow::showMissingEpisodes() const
+{
+    return m_showMissingEpisodes;
+}
+
+void TvShow::fillMissingEpisodes()
+{
+    QList<TvShowEpisode*> episodes = Manager::instance()->database()->showsEpisodes(this);
+    foreach (TvShowEpisode *episode, episodes) {
+        bool found = false;
+        for (int i=0, n=m_episodes.count() ; i<n ; ++i) {
+            if (m_episodes[i]->season() == episode->season() && m_episodes[i]->episode() == episode->episode()) {
+                found = true;
+                break;
+            }
+        }
+        if (found) {
+            episode->deleteLater();
+            continue;
+        }
+
+        episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), false);
+        episode->setIsDummy(true);
+        episode->setInfosLoaded(true);
+        addEpisode(episode);
+
+        bool newSeason = true;
+        foreach (TvShowEpisode *existEpisode, this->episodes()) {
+            if (existEpisode->season() == episode->season() && existEpisode != episode) {
+                newSeason = false;
+                break;
+            }
+        }
+
+        if (newSeason) {
+            modelItem()->appendChild(episode->season(), episode->seasonString(), this)->appendChild(episode);
+        } else {
+            for (int i=0, n=modelItem()->childCount() ; i<n ; ++i) {
+                TvShowModelItem *item = modelItem()->child(i);
+                if (item->type() == TypeSeason && item->season() == episode->seasonString()) {
+                    item->appendChild(episode);
+                    break;
+                }
+            }
+        }
+    }
+
+    TvShowFilesWidget::instance()->renewModel(true);
+}
+
+void TvShow::clearMissingEpisodes()
+{
+    for (int i=0 ; i<modelItem()->childCount() ; ++i) {
+        TvShowModelItem *seasonItem = modelItem()->child(i);
+        if (seasonItem->type() != TypeSeason)
+            continue;
+        bool isDummySeason = true;
+        for (int x=0 ; x<seasonItem->childCount() ; ++x) {
+            TvShowModelItem *item = seasonItem->child(x);
+            if (item->type() != TypeEpisode)
+                continue;
+            if (item->tvShowEpisode()->isDummy()) {
+                seasonItem->removeChildren(x, 1);
+                m_episodes.removeOne(item->tvShowEpisode());
+                item->tvShowEpisode()->deleteLater();
+                x--;
+            } else {
+                isDummySeason = false;
+            }
+        }
+
+        if (isDummySeason) {
+            modelItem()->removeChildren(i, 1);
+            i--;
+        }
+    }
+
+    TvShowFilesWidget::instance()->renewModel(true);
 }
 
 /*** DEBUG ***/

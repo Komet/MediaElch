@@ -7,6 +7,7 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include "globals/Manager.h"
+#include "mediaCenterPlugins/XbmcXml.h"
 
 /**
  * @brief Database::Database
@@ -30,7 +31,7 @@ Database::Database(QObject *parent) :
     } else {
         QSqlQuery query(*m_db);
 
-        int dbVersion = 6;
+        int dbVersion = 9;
         bool dbIsUpToDate = false;
 
         query.prepare("SELECT * FROM sqlite_master WHERE name ='settings' and type='table';");
@@ -53,7 +54,11 @@ Database::Database(QObject *parent) :
             query.exec();
             query.prepare("DROP TABLE IF EXISTS shows;");
             query.exec();
+            query.prepare("DROP TABLE IF EXISTS showsSettings;");
+            query.exec();
             query.prepare("DROP TABLE IF EXISTS episodes;");
+            query.exec();
+            query.prepare("DROP TABLE IF EXISTS showsEpisodes;");
             query.exec();
             query.prepare("DROP TABLE IF EXISTS episodeFiles;");
             query.exec();
@@ -68,7 +73,6 @@ Database::Database(QObject *parent) :
             query.prepare("INSERT INTO settings(idSettings, value) VALUES(1, :dbVersion)");
             query.bindValue(":dbVersion", QString::number(dbVersion));
             query.exec();
-            qDebug() << query.lastError();
         }
 
         query.prepare("CREATE TABLE IF NOT EXISTS movies ( "
@@ -114,6 +118,24 @@ Database::Database(QObject *parent) :
                       "\"dir\" text NOT NULL, "
                       "\"content\" text NOT NULL, "
                       "\"path\" text NOT NULL);");
+        query.exec();
+
+        query.prepare("CREATE TABLE IF NOT EXISTS showsSettings ( "
+                      "\"idShow\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"tvdbid\" text NOT NULL, "
+                      "\"url\" text NOT NULL, "
+                      "\"showMissingEpisodes\" integer NOT NULL, "
+                      "\"dir\" text NOT NULL);");
+        query.exec();
+
+        query.prepare("CREATE TABLE IF NOT EXISTS showsEpisodes ( "
+                      "\"idEpisode\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"content\" text NOT NULL, "
+                      "\"idShow\" integer NOT NULL, "
+                      "\"seasonNumber\" integer NOT NULL, "
+                      "\"episodeNumber\" integer NOT NULL, "
+                      "\"tvdbid\" text NOT NULL, "
+                      "\"updated\" integer NOT NULL);");
         query.exec();
 
         query.prepare("CREATE TABLE IF NOT EXISTS episodes ( "
@@ -356,6 +378,44 @@ void Database::add(TvShow *show, QString path)
     query.bindValue(":path", path.toUtf8());
     query.exec();
     show->setDatabaseId(query.lastInsertId().toInt());
+
+    query.prepare("SELECT showMissingEpisodes FROM showsSettings WHERE dir=:dir");
+    query.bindValue(":dir", show->dir().toUtf8());
+    query.exec();
+    if (query.next()) {
+        show->setShowMissingEpisodes(query.value(query.record().indexOf("showMissingEpisodes")).toInt() == 1);
+    } else {
+        query.prepare("INSERT INTO showsSettings(showMissingEpisodes, dir, tvdbid, url) VALUES(0, :dir, :tvdbid, :url)");
+        query.bindValue(":dir", show->dir().toUtf8());
+        query.bindValue(":tvdbid", show->tvdbId().isEmpty() ? "" : show->tvdbId());
+        query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
+        query.exec();
+        show->setShowMissingEpisodes(false);
+    }
+}
+
+void Database::setShowMissingEpisodes(TvShow *show, bool showMissing)
+{
+    QSqlQuery query(db());
+
+    query.prepare("SELECT showMissingEpisodes FROM showsSettings WHERE dir=:dir");
+    query.bindValue(":dir", show->dir().toUtf8());
+    query.exec();
+    if (query.next()) {
+        query.prepare("UPDATE showsSettings SET showMissingEpisodes=:show, url=:url, tvdbid=:tvdbid WHERE dir=:dir");
+        query.bindValue(":show", showMissing ? 1 : 0);
+        query.bindValue(":dir", show->dir().toUtf8());
+        query.bindValue(":tvdbid", show->tvdbId().isEmpty() ? "" : show->tvdbId());
+        query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
+        query.exec();
+    } else {
+        query.prepare("INSERT INTO showsSettings(showMissingEpisodes, dir, tvdbid, url) VALUES(:show, :dir, :tvdbid, :url)");
+        query.bindValue(":dir", show->dir().toUtf8());
+        query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
+        query.bindValue(":tvdbid", show->tvdbId().isEmpty() ? "" : show->tvdbId());
+        query.bindValue(":show", showMissing ? 1 : 0);
+        query.exec();
+    }
 }
 
 void Database::add(TvShowEpisode *episode, QString path, int idShow)
@@ -386,6 +446,13 @@ void Database::update(TvShow *show)
     query.bindValue(":content", show->nfoContent().isEmpty() ? "" : show->nfoContent());
     query.bindValue(":id", show->databaseId());
     query.exec();
+
+    int id = showsSettingsId(show);
+    query.prepare("UPDATE showsSettings SET showMissingEpisodes=:show, url=:url, tvdbid=:tvdbid WHERE idShow=:idShow");
+    query.bindValue(":idShow", id);
+    query.bindValue(":tvdbid", show->tvdbId().isEmpty() ? "" : show->tvdbId());
+    query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
+    query.exec();
 }
 
 void Database::update(TvShowEpisode *episode)
@@ -410,6 +477,15 @@ QList<TvShow*> Database::shows(QString path)
         show->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
         shows.append(show);
     }
+
+    foreach (TvShow *show, shows) {
+        query.prepare("SELECT showMissingEpisodes FROM showsSettings WHERE dir=:dir");
+        query.bindValue(":dir", show->dir().toUtf8());
+        query.exec();
+        if (query.next())
+            show->setShowMissingEpisodes(query.value(query.record().indexOf("showMissingEpisodes")).toInt() == 1, false);
+    }
+
     return shows;
 }
 
@@ -498,4 +574,87 @@ int Database::episodeCount()
     query.exec();
     query.next();
     return query.value(0).toInt();
+}
+
+int Database::showsSettingsId(TvShow *show)
+{
+    QSqlQuery query(db());
+    query.prepare("SELECT idShow FROM showsSettings WHERE dir=:dir");
+    query.bindValue(":dir", show->dir().toUtf8());
+    query.exec();
+    if (query.next())
+        return query.value(0).toInt();
+
+    query.prepare("INSERT INTO showsSettings(showMissingEpisodes, dir) VALUES(:show, :dir)");
+    query.bindValue(":dir", show->dir().toUtf8());
+    query.bindValue(":show", 0);
+    query.exec();
+    return query.lastInsertId().toInt();
+}
+
+void Database::clearEpisodeList(int showsSettingsId)
+{
+    QSqlQuery query(db());
+    query.prepare("UPDATE showsEpisodes SET updated=0 WHERE idShow=:idShow");
+    query.bindValue(":idShow", showsSettingsId);
+    query.exec();
+}
+
+void Database::addEpisodeToShowList(TvShowEpisode *episode, int showsSettingsId, QString tvdbid)
+{
+    QByteArray xmlContent;
+    QXmlStreamWriter xmlWriter(&xmlContent);
+    xmlWriter.setAutoFormatting(true);
+    xmlWriter.writeStartDocument("1.0", true);
+    XbmcXml::writeTvShowEpisodeXml(xmlWriter, episode);
+    xmlWriter.writeEndDocument();
+
+    QSqlQuery query(db());
+    query.prepare("SELECT idEpisode FROM showsEpisodes WHERE tvdbid=:tvdbid");
+    query.bindValue(":tvdbid", tvdbid);
+    query.exec();
+    if (query.next()) {
+        int idEpisode = query.value(0).toInt();
+        query.prepare("UPDATE showsEpisodes SET seasonNumber=:seasonNumber, episodeNumber=:episodeNumber, updated=1, content=:content WHERE idEpisode=:idEpisode");
+        query.bindValue(":content", xmlContent.isEmpty() ? "" : xmlContent);
+        query.bindValue(":idEpisode", idEpisode);
+        query.bindValue(":seasonNumber", episode->season());
+        query.bindValue(":episodeNumber", episode->episode());
+        query.exec();
+    } else {
+        query.prepare("INSERT INTO showsEpisodes(content, idShow, seasonNumber, episodeNumber, tvdbid, updated) "
+                      "VALUES(:content, :idShow, :seasonNumber, :episodeNumber, :tvdbid, 1)");
+        query.bindValue(":content", xmlContent.isEmpty() ? "" : xmlContent);
+        query.bindValue(":idShow", showsSettingsId);
+        query.bindValue(":seasonNumber", episode->season());
+        query.bindValue(":episodeNumber", episode->episode());
+        query.bindValue(":tvdbid", tvdbid);
+        query.exec();
+    }
+}
+
+void Database::cleanUpEpisodeList(int showsSettingsId)
+{
+    QSqlQuery query(db());
+    query.prepare("DELETE FROM showsEpisodes WHERE idShow=:idShow AND updated=0");
+    query.bindValue(":idShow", showsSettingsId);
+    query.exec();
+}
+
+QList<TvShowEpisode*> Database::showsEpisodes(TvShow *show)
+{
+    int id = showsSettingsId(show);
+    QList<TvShowEpisode*> episodes;
+    QSqlQuery query(db());
+    query.prepare("SELECT idEpisode, content, seasonNumber, episodeNumber FROM showsEpisodes WHERE idShow=:idShow");
+    query.bindValue(":idShow", id);
+    query.exec();
+    while (query.next()) {
+        TvShowEpisode *episode = new TvShowEpisode(QStringList(), show);
+        episode->setSeason(query.value(query.record().indexOf("seasonNumber")).toInt());
+        episode->setEpisode(query.value(query.record().indexOf("episodeNumber")).toInt());
+        episode->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
+        episodes.append(episode);
+    }
+    return episodes;
 }

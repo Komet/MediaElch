@@ -14,6 +14,8 @@ Message::Message(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->progressBar->hide();
+    ui->progressBar->setValue(0);
+    ui->progressBar->setMaximum(0);
     m_timer = new QTimer;
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 }
@@ -87,4 +89,14 @@ void Message::timeout()
 {
     qDebug() << "Entered, m_id=" << m_id;
     emit sigHideMessage(m_id);
+}
+
+int Message::maxValue()
+{
+    return ui->progressBar->maximum();
+}
+
+int Message::value()
+{
+    return ui->progressBar->value();
 }

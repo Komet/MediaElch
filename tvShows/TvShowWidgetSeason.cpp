@@ -1,6 +1,9 @@
 #include "TvShowWidgetSeason.h"
 #include "ui_TvShowWidgetSeason.h"
 
+#include <QGraphicsProxyWidget>
+#include <QGraphicsScene>
+#include <QGraphicsView>
 #include <QPainter>
 #include "data/ImageCache.h"
 #include "globals/Helper.h"
@@ -72,6 +75,24 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
 
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
     connect(m_downloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onDownloadFinished(DownloadManagerElement)));
+
+    m_missingLabel = new QLabel(tr("Season missing"));
+    m_missingLabel->setStyleSheet("padding-top: 5px; padding-bottom: 5px; color: #f0f0f0; font-size: 18px; "
+                         "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(238, 95, 91, 255), stop:1 rgba(189, 53, 47, 255));"
+                         "border-top: 1px solid rgba(255, 255, 255, 80); border-bottom: 1px solid rgba(255, 255, 255, 80)");
+    m_missingLabel->setFixedWidth(300);
+    m_missingLabel->setAlignment(Qt::AlignCenter);
+    QGraphicsScene *scene = new QGraphicsScene(this);
+    QGraphicsProxyWidget *proxy = scene->addWidget(m_missingLabel);
+    proxy->rotate(-45);
+    proxy->setMaximumHeight(300);
+    proxy->setMaximumWidth(300);
+    QGraphicsView *view = new QGraphicsView(scene);
+    view->setFixedSize(300, 300);
+    view->move(-65, -65);
+    view->setStyleSheet("background-color: transparent;");
+    view->setParent(ui->groupBox_3);
+    m_missingLabel->hide();
 }
 
 TvShowWidgetSeason::~TvShowWidgetSeason()
@@ -96,6 +117,13 @@ void TvShowWidgetSeason::setSeason(TvShow *show, int season)
     ui->title->setText(QString(show->name()) + " - " + tr("Season %1").arg(season));
 
     updateImages(QList<int>() << ImageType::TvShowSeasonPoster << ImageType::TvShowSeasonBackdrop << ImageType::TvShowSeasonBanner << ImageType::TvShowSeasonThumb);
+
+    m_missingLabel->setVisible(show->isDummySeason(season));
+    if (show->isDummySeason(season)) {
+        onSetEnabled(false);
+        emit sigSetActionSaveEnabled(false, WidgetTvShows);
+        return;
+    }
 
     onSetEnabled(!show->downloadsInProgress());
     emit sigSetActionSaveEnabled(!show->downloadsInProgress(), WidgetTvShows);
@@ -134,7 +162,7 @@ void TvShowWidgetSeason::onClear()
 
 void TvShowWidgetSeason::onSaveInformation()
 {
-    if (!m_show)
+    if (!m_show || m_show->isDummySeason(m_season))
         return;
     onSetEnabled(false);
     m_savingWidget->show();
@@ -146,6 +174,10 @@ void TvShowWidgetSeason::onSaveInformation()
 
 void TvShowWidgetSeason::onSetEnabled(bool enabled)
 {
+    if (m_show && m_season && m_show->isDummySeason(m_season)) {
+        ui->groupBox_3->setEnabled(false);
+        return;
+    }
     ui->groupBox_3->setEnabled(enabled);
 }
 

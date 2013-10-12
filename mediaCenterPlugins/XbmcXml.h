@@ -51,12 +51,13 @@ public:
     QString nfoFilePath(Concert *concert);
     QString nfoFilePath(TvShowEpisode *episode);
 
+    static void writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode);
+    static void writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDetails);
+
 private:
     void writeMovieXml(QXmlStreamWriter &xml, Movie *movie);
     void writeConcertXml(QXmlStreamWriter &xml, Concert *concert);
     void writeTvShowXml(QXmlStreamWriter &xml, TvShow *show);
-    void writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode);
-    void writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDetails);
     bool loadStreamDetails(StreamDetails *streamDetails, QDomDocument domDoc);
     void loadStreamDetails(StreamDetails *streamDetails, QDomElement elem);
     bool saveFile(QString filename, QByteArray data);

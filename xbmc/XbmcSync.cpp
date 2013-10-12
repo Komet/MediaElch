@@ -115,6 +115,9 @@ void XbmcSync::startSync()
          * so removing the whole show is needed.
          */
         foreach (TvShowEpisode *episode, show->episodes()) {
+            if (episode->isDummy())
+                continue;
+
             if (episode->syncNeeded()) {
                 if (m_syncType == SyncContents) {
                     //m_episodesToSync.append(episode);

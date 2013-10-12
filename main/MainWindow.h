@@ -69,6 +69,7 @@ private slots:
     void onJumpToMovie(Movie *movie);
     void setNewMarkForImports(bool hasItems);
     void onNewVersion(QString version);
+    void updateTvShows();
 
 private:
     Ui::MainWindow *ui;

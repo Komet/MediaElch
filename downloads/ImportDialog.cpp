@@ -576,6 +576,9 @@ void ImportDialog::onMovingFilesFinished()
         Manager::instance()->movieModel()->addMovie(m_movie);
         m_movie = 0;
     } else if (m_type == "tvshow") {
+        if (m_show->showMissingEpisodes())
+            m_show->clearMissingEpisodes();
+
         m_episode->setFiles(m_newFiles);
         m_episode->loadStreamDetailsFromFile();
         m_show->addEpisode(m_episode);
@@ -591,8 +594,7 @@ void ImportDialog::onMovingFilesFinished()
         }
 
         if (newSeason) {
-            m_show->modelItem()->appendChild(m_episode->seasonString(), m_show)->appendChild(m_episode);
-            TvShowFilesWidget::instance()->renewModel(true);
+            m_show->modelItem()->appendChild(m_episode->season(), m_episode->seasonString(), m_show)->appendChild(m_episode);
         } else {
             for (int i=0, n=m_show->modelItem()->childCount() ; i<n ; ++i) {
                 TvShowModelItem *item = m_show->modelItem()->child(i);
@@ -602,6 +604,12 @@ void ImportDialog::onMovingFilesFinished()
                 }
             }
         }
+
+        if (m_show->showMissingEpisodes())
+            m_show->fillMissingEpisodes();
+        else if (newSeason)
+            TvShowFilesWidget::instance()->renewModel(true);
+
         m_episode = 0;
         m_show = 0;
     } else if (m_type == "concert") {

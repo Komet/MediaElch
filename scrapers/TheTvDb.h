@@ -18,6 +18,7 @@ class TheTvDb : public TvScraperInterface
 public:
     explicit TheTvDb(QObject *parent = 0);
     QString name();
+    QString identifier();
     void search(QString searchStr);
     void loadTvShowData(QString id, TvShow *show, TvShowUpdateType updateType, QList<int> infosToLoad);
     void loadTvShowEpisodeData(QString id, TvShowEpisode *episode, QList<int> infosToLoad);
@@ -25,6 +26,9 @@ public:
     void loadSettings(QSettings &settings);
     void saveSettings(QSettings &settings);
     QWidget *settingsWidget();
+    void fillDatabaseWithAllEpisodes(QString xml, TvShow *show);
+    QString apiKey();
+    QString language();
 
 signals:
     void sigSearchDone(QList<ScraperSearchResult>);
