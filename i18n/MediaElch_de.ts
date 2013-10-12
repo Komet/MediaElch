@@ -5455,7 +5455,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="111"/>
         <source>Episode missing</source>
-        <translation>Episode fehlt</translation>
+        <translation>Episode nicht vorhanden</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="416"/>
