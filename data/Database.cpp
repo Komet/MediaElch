@@ -31,7 +31,7 @@ Database::Database(QObject *parent) :
     } else {
         QSqlQuery query(*m_db);
 
-        int dbVersion = 9;
+        int dbVersion = 10;
         bool dbIsUpToDate = false;
 
         query.prepare("SELECT * FROM sqlite_master WHERE name ='settings' and type='table';");
@@ -98,6 +98,8 @@ Database::Database(QObject *parent) :
                       "\"file\" text NOT NULL "
                       ");");
         query.exec();
+        query.prepare("CREATE INDEX id_movie_idx ON movieFiles(idMovie);");
+        query.exec();
 
         query.prepare("CREATE TABLE IF NOT EXISTS concerts ( "
                       "\"idConcert\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
@@ -111,6 +113,8 @@ Database::Database(QObject *parent) :
                       "\"idConcert\" integer NOT NULL, "
                       "\"file\" text NOT NULL "
                       ");");
+        query.exec();
+        query.prepare("CREATE INDEX id_concert_idx ON concertFiles(idConcert);");
         query.exec();
 
         query.prepare("CREATE TABLE IF NOT EXISTS shows ( "
@@ -152,6 +156,8 @@ Database::Database(QObject *parent) :
                       "\"idEpisode\" integer NOT NULL, "
                       "\"file\" text NOT NULL "
                       ");");
+        query.exec();
+        query.prepare("CREATE INDEX id_episode_idx ON episodeFiles(idEpisode);");
         query.exec();
 
 

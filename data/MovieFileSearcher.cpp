@@ -1,6 +1,7 @@
 #include "MovieFileSearcher.h"
 
 #include <QApplication>
+#include <QtConcurrentMap>
 #include <QDebug>
 #include <QDirIterator>
 #include <QSqlQuery>
@@ -209,10 +210,11 @@ void MovieFileSearcher::reload(bool force)
 
     emit currentDir("");
 
+    QtConcurrent::blockingMapped(dbMovies, MovieFileSearcher::loadMovieData);
+
     foreach (Movie *movie, dbMovies) {
         if (m_aborted)
             return;
-        movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), false, false);
         movies.append(movie);
         emit currentDir(movie->name());
         emit progress(++movieCounter, movieSum, m_progressMessageId);
@@ -223,6 +225,12 @@ void MovieFileSearcher::reload(bool force)
 
     if (!m_aborted)
         emit moviesLoaded(m_progressMessageId);
+}
+
+Movie *MovieFileSearcher::loadMovieData(Movie *movie)
+{
+    movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), false, false);
+    return movie;
 }
 
 /**

@@ -20,6 +20,7 @@ public:
 
     void setMovieDirectories(QList<SettingsDir> directories);
     void scanDir(QString startPath, QString path, QList<QStringList> &contents, bool separateFolders = false, bool firstScan = false);
+    static Movie *loadMovieData(Movie *movie);
 
 public slots:
     void reload(bool force);

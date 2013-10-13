@@ -3,6 +3,7 @@
 
 #include <QDir>
 #include <QObject>
+#include "data/TvShowEpisode.h"
 #include "globals/Globals.h"
 
 /**
@@ -16,6 +17,8 @@ public:
     void setMovieDirectories(QList<SettingsDir> directories);
     static int getSeasonNumber(QStringList files);
     static QList<int> getEpisodeNumbers(QStringList files);
+    static TvShowEpisode *loadEpisodeData(TvShowEpisode *episode);
+    static TvShowEpisode *reloadEpisodeData(TvShowEpisode *episode);
 
 public slots:
     void reload(bool force);
