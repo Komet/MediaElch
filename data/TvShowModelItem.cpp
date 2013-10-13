@@ -3,6 +3,7 @@
 #include <QApplication>
 #include <QStringList>
 #include "globals/Globals.h"
+#include "globals/Manager.h"
 
 /**
  * @brief TvShowModelItem::TvShowModelItem
@@ -100,6 +101,9 @@ QVariant TvShowModelItem::data(int column) const
     case 109:
         if (m_tvShow)
             return m_tvShow->hasDummyEpisodes();
+    case 110:
+        if (m_tvShow && !Manager::instance()->mediaCenterInterface()->imageFileName(m_tvShow, ImageType::TvShowLogos).isEmpty())
+            return Manager::instance()->mediaCenterInterface()->imageFileName(m_tvShow, ImageType::TvShowLogos);
     case 4:
         if (m_tvShow)
             return m_tvShow->syncNeeded();

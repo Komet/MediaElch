@@ -367,6 +367,8 @@ void TvShowFilesWidget::renewModel(bool force)
     if (force) {
         m_tvShowProxyModel->setSourceModel(0);
         m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
+        ui->files->setModel(0);
+        ui->files->setModel(m_tvShowProxyModel);
     }
 }
 

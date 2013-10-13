@@ -85,3 +85,8 @@ void ItemWidgetShow::setMissingEpisodes(const bool &missing)
 {
     ui->iconMissing->setVisible(missing);
 }
+
+void ItemWidgetShow::setLogoPath(const QString &path)
+{
+    Q_UNUSED(path);
+}

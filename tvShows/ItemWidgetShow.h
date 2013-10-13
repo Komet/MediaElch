@@ -28,6 +28,7 @@ public:
     void setHasBanner(const bool &has);
     void setHasThumb(const bool &has);
     void setMissingEpisodes(const bool &missing);
+    void setLogoPath(const QString &path);
 
 private:
     Ui::ItemWidgetShow *ui;

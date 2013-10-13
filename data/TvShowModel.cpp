@@ -104,6 +104,8 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
         return item->data(108);
     } else if (role == TvShowRoles::MissingEpisodes) {
         return item->data(109);
+    } else if (role == TvShowRoles::LogoPath) {
+        return item->data(110);
     }
     return QVariant();
 }
