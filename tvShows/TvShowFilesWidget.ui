@@ -39,11 +39,13 @@
      </property>
      <property name="styleSheet">
       <string notr="true">alternate-background-color: rgb(243, 246, 250);
-selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-</string>
+selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);</string>
      </property>
      <property name="horizontalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="autoScroll">
+      <bool>false</bool>
      </property>
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>
