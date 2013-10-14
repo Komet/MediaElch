@@ -25,6 +25,7 @@ public:
     int info() const;
     void setShortText(QString shortText);
     void setText(QString text);
+    bool hasInfo() const;
 private:
     QString m_text;
     QString m_shortText;

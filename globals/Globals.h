@@ -279,14 +279,16 @@ namespace MovieFilters {
     const int Quality       = 21;
     const int Banner        = 22;
     const int Thumb         = 23;
+    const int ImdbId        = 24;
+    const int Set           = 25;
 }
 
 namespace TvShowFilters {
-    const int Title         = 24;
+    const int Title         = 26;
 }
 
 namespace ConcertFilters {
-    const int Title         = 25;
+    const int Title         = 27;
 }
 
 enum SortBy {
