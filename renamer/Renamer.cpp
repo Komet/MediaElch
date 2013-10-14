@@ -205,6 +205,11 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
         QString nfo = Manager::instance()->mediaCenterInterface()->nfoFilePath(movie);
         QString poster = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MoviePoster);
         QString fanart = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieBackdrop);
+        QString banner = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieBanner);
+        QString thumb = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieThumb);
+        QString logo = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieLogo);
+        QString clearArt = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieClearArt);
+        QString cdArt = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieCdArt);
 
         QDir chkDir(fi.canonicalPath());
         chkDir.cdUp();
@@ -296,6 +301,91 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         ui->results->append(tr("<b>Rename Fanart</b> \"%1\" to \"%2\"").arg(fanartFileName).arg(newFanartFileName));
                         if (!dryRun) {
                             if (!rename(fanart, fiCanonicalPath + "/" + newFanartFileName))
+                                ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                        }
+                    }
+                }
+            }
+
+            // Rename Banner
+            if (!banner.isEmpty()) {
+                QString bannerFileName = QFileInfo(banner).fileName();
+                QList<DataFile> bannerFiles = Settings::instance()->dataFiles(DataFileType::MovieBanner);
+                if (!bannerFiles.isEmpty()) {
+                    QString newBannerFileName = bannerFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
+                    Helper::sanitizeFileName(newBannerFileName);
+                    if (newBannerFileName != bannerFileName) {
+                        ui->results->append(tr("<b>Rename Banner</b> \"%1\" to \"%2\"").arg(bannerFileName).arg(newBannerFileName));
+                        if (!dryRun) {
+                            if (!rename(banner, fiCanonicalPath + "/" + newBannerFileName))
+                                ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                        }
+                    }
+                }
+            }
+
+            // Rename Thumb
+            if (!thumb.isEmpty()) {
+                QString thumbFileName = QFileInfo(thumb).fileName();
+                QList<DataFile> thumbFiles = Settings::instance()->dataFiles(DataFileType::MovieThumb);
+                if (!thumbFiles.isEmpty()) {
+                    QString newThumbFileName = thumbFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
+                    Helper::sanitizeFileName(newThumbFileName);
+                    if (newThumbFileName != thumbFileName) {
+                        ui->results->append(tr("<b>Rename Thumb</b> \"%1\" to \"%2\"").arg(thumbFileName).arg(newThumbFileName));
+                        if (!dryRun) {
+                            if (!rename(thumb, fiCanonicalPath + "/" + newThumbFileName))
+                                ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                        }
+                    }
+                }
+            }
+
+            // Rename Logo
+            if (!logo.isEmpty()) {
+                QString logoFileName = QFileInfo(logo).fileName();
+                QList<DataFile> logoFiles = Settings::instance()->dataFiles(DataFileType::MovieLogo);
+                if (!logoFiles.isEmpty()) {
+                    QString newLogoFileName = logoFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
+                    Helper::sanitizeFileName(newLogoFileName);
+                    if (newLogoFileName != logoFileName) {
+                        ui->results->append(tr("<b>Rename Logo</b> \"%1\" to \"%2\"").arg(logoFileName).arg(newLogoFileName));
+                        if (!dryRun) {
+                            if (!rename(logo, fiCanonicalPath + "/" + newLogoFileName))
+                                ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                        }
+                    }
+                }
+            }
+
+            // Rename ClearArt
+            if (!clearArt.isEmpty()) {
+                QString clearArtFileName = QFileInfo(clearArt).fileName();
+                QList<DataFile> clearArtFiles = Settings::instance()->dataFiles(DataFileType::MovieClearArt);
+                if (!clearArtFiles.isEmpty()) {
+                    QString newClearArtFileName = clearArtFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
+                    Helper::sanitizeFileName(newClearArtFileName);
+                    if (newClearArtFileName != clearArtFileName) {
+                        ui->results->append(tr("<b>Rename Clear Art</b> \"%1\" to \"%2\"").arg(clearArtFileName).arg(newClearArtFileName));
+                        if (!dryRun) {
+                            if (!rename(clearArt, fiCanonicalPath + "/" + newClearArtFileName))
+                                ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                        }
+                    }
+                }
+            }
+
+            // Rename CdArt
+            if (!cdArt.isEmpty()) {
+                QString cdArtFileName = QFileInfo(cdArt).fileName();
+                QList<DataFile> cdArtFiles = Settings::instance()->dataFiles(DataFileType::MovieCdArt);
+                if (!cdArtFiles.isEmpty()) {
+                    QString newCdArtFileName = cdArtFiles.first().saveFileName(newFileName, -1, movie->files().count() > 1);
+                    Helper::sanitizeFileName(newCdArtFileName);
+                    if (newCdArtFileName != cdArtFileName) {
+                        ui->results->append(tr("<b>Rename CD Art</b> \"%1\" to \"%2\"").arg(cdArtFileName).arg(newCdArtFileName));
+                        if (!dryRun) {
+                            if (!rename(cdArt, fiCanonicalPath + "/" + newCdArtFileName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                         }
                     }
