@@ -356,6 +356,7 @@ void MediaPassion::parseAndAssignInfos(QString data, Movie *movie, QList<int> in
             movie->setId(xml.readElementText());
         } else if (infos.contains(MovieScraperInfos::Title) && xml.name() == "title") {
             movie->setName(xml.readElementText());
+        } else if (infos.contains(MovieScraperInfos::Title) && xml.name() == "originaltitle") {
             movie->setOriginalName(xml.readElementText());
         } else if (infos.contains(MovieScraperInfos::Released) && xml.name() == "year") {
             movie->setReleased(QDate::fromString(xml.readElementText(), "yyyy"));
