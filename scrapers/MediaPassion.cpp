@@ -121,7 +121,9 @@ MediaPassion::MediaPassion(QObject *parent)
                               << MovieScraperInfos::Director
                               << MovieScraperInfos::Writer
                               << MovieScraperInfos::Set
-                              << MovieScraperInfos::CdArt;
+                              << MovieScraperInfos::CdArt
+                              << MovieScraperInfos::ClearArt
+                              << MovieScraperInfos::Logo;
 }
 
 QString MediaPassion::apiKey()
@@ -348,6 +350,8 @@ void MediaPassion::parseAndAssignInfos(QString data, Movie *movie, QList<int> in
     QMap<int, Poster> posters;
     QMap<int, Poster> fanarts;
     QMap<int, Poster> discArts;
+    QMap<int, Poster> clearArts;
+    QMap<int, Poster> logos;
 
     while (xml.readNextStartElement()) {
         if (xml.name() == "id") {
@@ -502,7 +506,7 @@ void MediaPassion::parseAndAssignInfos(QString data, Movie *movie, QList<int> in
                         p.thumbUrl = xml.attributes().value("url").toString();
                     }
                     fanarts.insert(id, p);
-                } else if (infos.contains(MovieScraperInfos::CdArt) && xml.attributes().value("type") == "Cdart") {
+                } else if (infos.contains(MovieScraperInfos::CdArt) && QString::compare("cdart", xml.attributes().value("type"), Qt::CaseInsensitive) == 0) {
                     int id = xml.attributes().value("id").toString().toInt();
                     Poster p;
                     if (discArts.contains(id))
@@ -515,6 +519,32 @@ void MediaPassion::parseAndAssignInfos(QString data, Movie *movie, QList<int> in
                         p.thumbUrl = xml.attributes().value("url").toString();
                     }
                     discArts.insert(id, p);
+                } else if (infos.contains(MovieScraperInfos::ClearArt) && QString::compare("hdclearart", xml.attributes().value("type"), Qt::CaseInsensitive) == 0) {
+                    int id = xml.attributes().value("id").toString().toInt();
+                    Poster p;
+                    if (clearArts.contains(id))
+                        p = clearArts.value(id);
+                    if (xml.attributes().value("size") == "original") {
+                        p.originalUrl = xml.attributes().value("url").toString();
+                        p.originalSize.setWidth(xml.attributes().value("width").toString().toInt());
+                        p.originalSize.setHeight(xml.attributes().value("height").toString().toInt());
+                    } else if (xml.attributes().value("size") == "preview") {
+                        p.thumbUrl = xml.attributes().value("url").toString();
+                    }
+                    clearArts.insert(id, p);
+                } else if (infos.contains(MovieScraperInfos::Logo) && QString::compare("hdlogo", xml.attributes().value("type"), Qt::CaseInsensitive) == 0) {
+                    int id = xml.attributes().value("id").toString().toInt();
+                    Poster p;
+                    if (logos.contains(id))
+                        p = logos.value(id);
+                    if (xml.attributes().value("size") == "original") {
+                        p.originalUrl = xml.attributes().value("url").toString();
+                        p.originalSize.setWidth(xml.attributes().value("width").toString().toInt());
+                        p.originalSize.setHeight(xml.attributes().value("height").toString().toInt());
+                    } else if (xml.attributes().value("size") == "preview") {
+                        p.thumbUrl = xml.attributes().value("url").toString();
+                    }
+                    logos.insert(id, p);
                 }
                 xml.readElementText();
             }
@@ -544,6 +574,20 @@ void MediaPassion::parseAndAssignInfos(QString data, Movie *movie, QList<int> in
             movie->addDiscArt(it.value());
         }
     }
+    if (infos.contains(MovieScraperInfos::ClearArt)) {
+        QMapIterator<int, Poster> it(clearArts);
+        while (it.hasNext()) {
+            it.next();
+            movie->addClearArt(it.value());
+        }
+    }
+    if (infos.contains(MovieScraperInfos::Logo)) {
+        QMapIterator<int, Poster> it(logos);
+        while (it.hasNext()) {
+            it.next();
+            movie->addLogo(it.value());
+        }
+    }
 }
 
 bool MediaPassion::hasError(QString xml, QString &errorMsg)
@@ -551,7 +595,12 @@ bool MediaPassion::hasError(QString xml, QString &errorMsg)
     QDomDocument domDoc;
     domDoc.setContent(xml);
     int numOfErrors = domDoc.elementsByTagName("error").count();
-    for (int i=0 ; i<numOfErrors ; ++i)
+    for (int i=0,n=numOfErrors ; i<n ; ++i) {
+        if (domDoc.elementsByTagName("error").at(i).toElement().text() == "No Results") {
+            numOfErrors--;
+            continue;
+        }
         errorMsg.append(domDoc.elementsByTagName("error").at(i).toElement().text()).append("\n");
+    }
     return (numOfErrors > 0);
 }

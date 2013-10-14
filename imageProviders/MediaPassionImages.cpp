@@ -9,7 +9,7 @@
 MediaPassionImages::MediaPassionImages(QObject *parent)
 {
     setParent(parent);
-    m_provides << ImageType::MovieBackdrop << ImageType::MoviePoster << ImageType::MovieCdArt;
+    m_provides << ImageType::MovieBackdrop << ImageType::MoviePoster << ImageType::MovieCdArt << ImageType::MovieLogo << ImageType::MovieClearArt;
     m_searchResultLimit = 0;
     QSettings settings;
     m_mediaPassion = new MediaPassion(this);
@@ -102,6 +102,10 @@ void MediaPassionImages::onLoadImagesFinished()
         posters = m_dummyMovie->posters();
     else if (m_imageType == ImageType::MovieCdArt)
         posters = m_dummyMovie->discArts();
+    else if (m_imageType == ImageType::MovieLogo)
+        posters = m_dummyMovie->logos();
+    else if (m_imageType == ImageType::MovieClearArt)
+        posters = m_dummyMovie->clearArts();
 
     emit sigImagesLoaded(posters);
 }
@@ -113,9 +117,15 @@ void MediaPassionImages::movieImages(Movie *movie, QString tmdbId, QList<int> ty
     Q_UNUSED(types);
 }
 
-void MediaPassionImages::movieLogos(QString tmdbId)
+void MediaPassionImages::movieLogos(QString id)
 {
-    Q_UNUSED(tmdbId);
+    QSettings settings;
+    m_mediaPassion->loadSettings(settings);
+    m_dummyMovie->clear();
+    m_imageType = ImageType::MovieLogo;
+    QMap<ScraperInterface*, QString> ids;
+    ids.insert(0, id);
+    m_mediaPassion->loadData(ids, m_dummyMovie, QList<int>() << MovieScraperInfos::Logo);
 }
 
 void MediaPassionImages::movieBanners(QString tmdbId)
@@ -128,9 +138,15 @@ void MediaPassionImages::movieThumbs(QString tmdbId)
     Q_UNUSED(tmdbId);
 }
 
-void MediaPassionImages::movieClearArts(QString tmdbId)
+void MediaPassionImages::movieClearArts(QString id)
 {
-    Q_UNUSED(tmdbId);
+    QSettings settings;
+    m_mediaPassion->loadSettings(settings);
+    m_dummyMovie->clear();
+    m_imageType = ImageType::MovieClearArt;
+    QMap<ScraperInterface*, QString> ids;
+    ids.insert(0, id);
+    m_mediaPassion->loadData(ids, m_dummyMovie, QList<int>() << MovieScraperInfos::ClearArt);
 }
 
 void MediaPassionImages::searchConcert(QString searchStr, int limit)

@@ -37,6 +37,9 @@ public:
     void setInfosToLoad(QList<int> infos);
     void setForceFanartBackdrop(const bool &force);
     void setForceFanartPoster(const bool &force);
+    void setForceFanartCdArt(const bool &force);
+    void setForceFanartClearArt(const bool &force);
+    void setForceFanartLogo(const bool &force);
 
 signals:
     void sigInfoLoadDone(Movie*);
@@ -66,6 +69,9 @@ private:
     QMutex m_customScraperMutex;
     bool m_forceFanartBackdrop;
     bool m_forceFanartPoster;
+    bool m_forceFanartClearArt;
+    bool m_forceFanartCdArt;
+    bool m_forceFanartLogo;
 };
 
 #endif // MOVIECONTROLLER_H

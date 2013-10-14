@@ -117,6 +117,18 @@ void Movie::clear(QList<int> infos)
         m_hasImageChanged.insert(ImageType::MovieCdArt, false);
         m_imagesToRemove.removeOne(ImageType::MovieCdArt);
     }
+    if (infos.contains(MovieScraperInfos::ClearArt)) {
+        m_clearArts.clear();
+        m_images.insert(ImageType::MovieClearArt, QByteArray());
+        m_hasImageChanged.insert(ImageType::MovieClearArt, false);
+        m_imagesToRemove.removeOne(ImageType::MovieClearArt);
+    }
+    if (infos.contains(MovieScraperInfos::Logo)) {
+        m_logos.clear();
+        m_images.insert(ImageType::MovieLogo, QByteArray());
+        m_hasImageChanged.insert(ImageType::MovieLogo, false);
+        m_imagesToRemove.removeOne(ImageType::MovieLogo);
+    }
     if (infos.contains(MovieScraperInfos::Countries))
         m_countries.clear();
     if (infos.contains(MovieScraperInfos::Genres))
@@ -159,16 +171,6 @@ void Movie::clear(QList<int> infos)
     if (infos.contains(MovieScraperInfos::Tags))
         m_tags.clear();
 
-    if (infos.contains(MovieScraperInfos::Logo)) {
-        m_images.insert(ImageType::MovieLogo, QByteArray());
-        m_hasImageChanged.insert(ImageType::MovieLogo, false);
-        m_imagesToRemove.removeOne(ImageType::MovieLogo);
-    }
-    if (infos.contains(MovieScraperInfos::ClearArt)) {
-        m_images.insert(ImageType::MovieClearArt, QByteArray());
-        m_hasImageChanged.insert(ImageType::MovieClearArt, false);
-        m_imagesToRemove.removeOne(ImageType::MovieClearArt);
-    }
     if (infos.contains(MovieScraperInfos::Banner)) {
         m_images.insert(ImageType::MovieBanner, QByteArray());
         m_hasImageChanged.insert(ImageType::MovieBanner, false);
@@ -566,6 +568,16 @@ QList<Poster> Movie::discArts() const
     return m_discArts;
 }
 
+QList<Poster> Movie::clearArts() const
+{
+    return m_clearArts;
+}
+
+QList<Poster> Movie::logos() const
+{
+    return m_logos;
+}
+
 /**
  * @brief Returns the parent folder of the movie
  * @return Parent folder of the movie
@@ -930,70 +942,6 @@ void Movie::setSet(QString set)
 }
 
 /**
- * @brief Sets the movies posters
- * @param posters List of poster
- * @see Movie::posters
- */
-void Movie::setPosters(QList<Poster> posters)
-{
-    m_posters = posters;
-    setChanged(true);
-}
-
-/**
- * @brief Sets a specific movie poster
- * @param index Index of the position in the poster list
- * @param poster Poster to set
- * @see Movie::posters
- */
-void Movie::setPoster(int index, Poster poster)
-{
-    if (m_posters.size() < index)
-        return;
-    m_posters[index] = poster;
-    setChanged(true);
-}
-
-/**
- * @brief Sets the movies backdrops
- * @param backdrops List of backdrops
- * @see Movie::backdrops
- */
-void Movie::setBackdrops(QList<Poster> backdrops)
-{
-    m_backdrops.append(backdrops);
-    setChanged(true);
-}
-
-/**
- * @brief Sets a specific movie backdrop
- * @param index Index of the position in the backdrop list
- * @param backdrop Backdrop to set
- * @see Movie::backdrops
- */
-void Movie::setBackdrop(int index, Poster backdrop)
-{
-    if (m_backdrops.size() < index)
-        return;
-    m_backdrops[index] = backdrop;
-    setChanged(true);
-}
-
-void Movie::setDiscArts(QList<Poster> discArts)
-{
-    m_discArts.append(discArts);
-    setChanged(true);
-}
-
-void Movie::setDiscArt(int index, Poster discArt)
-{
-    if (m_discArts.size() < index)
-        return;
-    m_discArts[index] = discArt;
-    setChanged(true);
-}
-
-/**
  * @brief Sets the movies watched status
  * @param watched Watched status of the movie
  * @see Movie::watched
@@ -1173,6 +1121,18 @@ void Movie::addBackdrop(Poster backdrop)
 void Movie::addDiscArt(Poster discArt)
 {
     m_discArts.append(discArt);
+    setChanged(true);
+}
+
+void Movie::addClearArt(Poster clearArt)
+{
+    m_clearArts.append(clearArt);
+    setChanged(true);
+}
+
+void Movie::addLogo(Poster logo)
+{
+    m_logos.append(logo);
     setChanged(true);
 }
 

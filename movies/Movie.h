@@ -26,31 +26,6 @@ class StreamDetails;
 class Movie : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString name READ name WRITE setName)
-    Q_PROPERTY(QString sortTitle READ sortTitle WRITE setSortTitle)
-    Q_PROPERTY(QString originalName READ originalName WRITE setOriginalName)
-    Q_PROPERTY(QString overview READ overview WRITE setOverview)
-    Q_PROPERTY(qreal rating READ rating WRITE setRating)
-    Q_PROPERTY(int votes READ votes WRITE setVotes)
-    Q_PROPERTY(int top250 READ top250 WRITE setTop250)
-    Q_PROPERTY(QDate released READ released WRITE setReleased)
-    Q_PROPERTY(QString tagline READ tagline WRITE setTagline)
-    Q_PROPERTY(QString outline READ outline WRITE setOutline)
-    Q_PROPERTY(int runtime READ runtime WRITE setRuntime)
-    Q_PROPERTY(QString certification READ certification WRITE setCertification)
-    Q_PROPERTY(QString writer READ writer WRITE setWriter)
-    Q_PROPERTY(QString director READ director WRITE setDirector)
-    Q_PROPERTY(QUrl trailer READ trailer WRITE setTrailer)
-    Q_PROPERTY(QList<Actor> actors READ actors WRITE setActors)
-    Q_PROPERTY(int playcount READ playcount WRITE setPlayCount)
-    Q_PROPERTY(QDateTime lastPlayed READ lastPlayed WRITE setLastPlayed)
-    Q_PROPERTY(QString id READ id WRITE setId)
-    Q_PROPERTY(QString set READ set WRITE setSet)
-    Q_PROPERTY(QList<Poster> posters READ posters WRITE setPosters)
-    Q_PROPERTY(QList<Poster> backdrops READ backdrops WRITE setBackdrops)
-    Q_PROPERTY(bool watched READ watched WRITE setWatched)
-    Q_PROPERTY(bool hasChanged READ hasChanged WRITE setChanged)
-    Q_PROPERTY(QString tmdbId READ tmdbId WRITE setTmdbId)
 
 public:
     explicit Movie(QStringList files, QObject *parent = 0);
@@ -163,20 +138,18 @@ public:
     QList<Poster> posters() const;
     QList<Poster> backdrops() const;
     QList<Poster> discArts() const;
+    QList<Poster> clearArts() const;
+    QList<Poster> logos() const;
     QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
     QStringList extraFanartsToRemove();
     QList<QByteArray> extraFanartImagesToAdd();
     QList<int> imagesToRemove() const;
 
-    void setPosters(QList<Poster> posters);
-    void setPoster(int index, Poster poster);
     void addPoster(Poster poster, bool primaryLang = false);
-    void setBackdrops(QList<Poster> backdrops);
-    void setBackdrop(int index, Poster backdrop);
     void addBackdrop(Poster backdrop);
-    void setDiscArts(QList<Poster> discArts);
-    void setDiscArt(int index, Poster poster);
     void addDiscArt(Poster poster);
+    void addClearArt(Poster poster);
+    void addLogo(Poster poster);
     void addExtraFanart(QByteArray fanart);
     void removeExtraFanart(QByteArray fanart);
     void removeExtraFanart(QString file);
@@ -235,6 +208,8 @@ private:
     QList<Poster> m_posters;
     QList<Poster> m_backdrops;
     QList<Poster> m_discArts;
+    QList<Poster> m_clearArts;
+    QList<Poster> m_logos;
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
     bool m_infoLoaded;
