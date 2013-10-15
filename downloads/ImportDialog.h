@@ -39,9 +39,7 @@ public slots:
     void execTvShow(QString searchString, TvShow *tvShow);
     void execConcert(QString searchString);
     void reject();
-
-protected:
-    void closeEvent(QCloseEvent *event);
+    void accept();
 
 private slots:
     void onMovieChosen();

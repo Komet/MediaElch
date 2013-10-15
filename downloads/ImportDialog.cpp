@@ -61,7 +61,20 @@ void ImportDialog::reject()
     if (m_episode)
         m_episode->deleteLater();
 
+    Settings::instance()->setImportDialogSize(size());
+    Settings::instance()->setImportDialogPosition(pos());
+    Settings::instance()->setKeepDownloadSource(ui->chkKeepSourceFiles->isChecked());
+    storeDefaults();
     QDialog::reject();
+}
+
+void ImportDialog::accept()
+{
+    Settings::instance()->setImportDialogSize(size());
+    Settings::instance()->setImportDialogPosition(pos());
+    Settings::instance()->setKeepDownloadSource(ui->chkKeepSourceFiles->isChecked());
+    storeDefaults();
+    QDialog::accept();
 }
 
 int ImportDialog::exec()
@@ -81,15 +94,6 @@ int ImportDialog::exec()
     ui->chkKeepSourceFiles->setChecked(Settings::instance()->keepDownloadSource());
 
     return QDialog::exec();
-}
-
-void ImportDialog::closeEvent(QCloseEvent *event)
-{
-    Q_UNUSED(event);
-    Settings::instance()->setImportDialogSize(size());
-    Settings::instance()->setImportDialogPosition(pos());
-    Settings::instance()->setKeepDownloadSource(ui->chkKeepSourceFiles->isChecked());
-    storeDefaults();
 }
 
 void ImportDialog::execMovie(QString searchString)

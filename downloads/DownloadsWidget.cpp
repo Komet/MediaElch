@@ -277,6 +277,9 @@ void DownloadsWidget::onExtractorFinished(QString baseName, bool success)
             ui->tablePackages->setCellWidget(row, 4, label);
         }
     }
+    if (success && Settings::instance()->deleteArchives())
+        onDelete(baseName);
+
     if (success)
         Notificator::instance()->notify(Notificator::Information, tr("Extraction finished"), tr("Extraction of %1 finished").arg(baseName));
 }
