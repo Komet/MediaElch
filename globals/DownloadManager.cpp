@@ -1,6 +1,7 @@
 #include "globals/DownloadManager.h"
 
 #include <QDebug>
+#include <QFile>
 #include <QTimer>
 
 #include "globals/DownloadManagerElement.h"
@@ -111,10 +112,11 @@ void DownloadManager::startNextDownload()
     m_mutex.lock();
     m_currentDownloadElement = m_queue.dequeue();
     m_mutex.unlock();
-    m_currentReply = qnam()->get(QNetworkRequest(m_currentDownloadElement.url));
-    connect(m_currentReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
-    connect(m_currentReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(downloadProgress(qint64,qint64)));
-
+    if (!m_currentDownloadElement.url.toString().startsWith("//")) {
+        m_currentReply = qnam()->get(QNetworkRequest(m_currentDownloadElement.url));
+        connect(m_currentReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
+        connect(m_currentReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(downloadProgress(qint64,qint64)));
+    }
 
     if (m_currentDownloadElement.imageType == ImageType::Actor || m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb) {
         if (m_currentDownloadElement.movie) {
@@ -138,6 +140,23 @@ void DownloadManager::startNextDownload()
         } else {
             emit downloadsLeft(m_queue.size());
         }
+    }
+
+    if (m_currentDownloadElement.url.toString().startsWith("//")) {
+        QFile file(m_currentDownloadElement.url.toString());
+        QByteArray data;
+        if (file.open(QIODevice::ReadOnly)) {
+            data = file.readAll();
+            file.close();
+        }
+        m_currentDownloadElement.data = data;
+        if (m_currentDownloadElement.imageType == ImageType::Actor && !m_currentDownloadElement.movie)
+            m_currentDownloadElement.actor->image = data;
+        else if (m_currentDownloadElement.imageType == ImageType::TvShowEpisodeThumb && !m_currentDownloadElement.directDownload)
+            m_currentDownloadElement.episode->setThumbnailImage(data);
+        else
+            emit downloadFinished(m_currentDownloadElement);
+        startNextDownload();
     }
 }
 
