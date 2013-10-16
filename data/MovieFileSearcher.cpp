@@ -194,7 +194,9 @@ void MovieFileSearcher::reload(bool force)
                     it.next();
                     if (it.value().isEmpty())
                         continue;
-                    Movie *movie = new Movie(it.value(), this);
+                    QStringList stackedFiles = it.value();
+                    stackedFiles.sort();
+                    Movie *movie = new Movie(stackedFiles, this);
                     movie->setInSeparateFolder(con.inSeparateFolder);
                     movie->setFileLastModified(m_lastModifications.value(it.value().at(0)));
                     movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
