@@ -291,7 +291,7 @@ QList<ScraperInterface*> Manager::constructNativeScrapers(QObject *parent)
     nativeScrapers.append(new TMDb(parent));
     nativeScrapers.append(new IMDB(parent));
     nativeScrapers.append(new MediaPassion(parent));
-    nativeScrapers.append(new Cinefacts(parent));
+    //nativeScrapers.append(new Cinefacts(parent));
     nativeScrapers.append(new OFDb(parent));
     nativeScrapers.append(new VideoBuster(parent));
     return nativeScrapers;
