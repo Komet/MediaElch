@@ -64,6 +64,7 @@ void ImportDialog::reject()
     Settings::instance()->setImportDialogSize(size());
     Settings::instance()->setImportDialogPosition(pos());
     Settings::instance()->setKeepDownloadSource(ui->chkKeepSourceFiles->isChecked());
+    Settings::instance()->saveSettings();
     storeDefaults();
     QDialog::reject();
 }
@@ -73,6 +74,7 @@ void ImportDialog::accept()
     Settings::instance()->setImportDialogSize(size());
     Settings::instance()->setImportDialogPosition(pos());
     Settings::instance()->setKeepDownloadSource(ui->chkKeepSourceFiles->isChecked());
+    Settings::instance()->saveSettings();
     storeDefaults();
     QDialog::accept();
 }
