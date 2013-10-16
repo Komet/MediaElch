@@ -76,23 +76,23 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
     connect(m_downloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onDownloadFinished(DownloadManagerElement)));
 
-    m_missingLabel = new QLabel(tr("Season missing"));
-    m_missingLabel->setStyleSheet("padding-top: 5px; padding-bottom: 5px; color: #f0f0f0; font-size: 18px; "
-                         "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(238, 95, 91, 255), stop:1 rgba(189, 53, 47, 255));"
-                         "border-top: 1px solid rgba(255, 255, 255, 80); border-bottom: 1px solid rgba(255, 255, 255, 80)");
-    m_missingLabel->setFixedWidth(300);
-    m_missingLabel->setAlignment(Qt::AlignCenter);
+    QLabel *missingLabel = new QLabel(tr("Season missing"));
+    missingLabel->setStyleSheet("padding-top: 5px; padding-bottom: 5px; color: #f0f0f0; font-size: 18px; "
+                       "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(238, 95, 91, 255), stop:1 rgba(189, 53, 47, 255));"
+                       "border-top: 1px solid rgba(255, 255, 255, 80); border-bottom: 1px solid rgba(255, 255, 255, 80)");
+    missingLabel->setFixedWidth(300);
+    missingLabel->setAlignment(Qt::AlignCenter);
     QGraphicsScene *scene = new QGraphicsScene(this);
-    QGraphicsProxyWidget *proxy = scene->addWidget(m_missingLabel);
+    QGraphicsProxyWidget *proxy = scene->addWidget(missingLabel);
     proxy->rotate(-45);
     proxy->setMaximumHeight(300);
     proxy->setMaximumWidth(300);
-    QGraphicsView *view = new QGraphicsView(scene);
-    view->setFixedSize(300, 300);
-    view->move(-65, -65);
-    view->setStyleSheet("background-color: transparent;");
-    view->setParent(ui->groupBox_3);
-    m_missingLabel->hide();
+    m_missingView = new QGraphicsView(scene);
+    m_missingView->setFixedSize(300, 300);
+    m_missingView->move(-65, -65);
+    m_missingView->setStyleSheet("background-color: transparent; border: none;");
+    m_missingView->setParent(ui->groupBox_3);
+    m_missingView->setVisible(false);
 }
 
 TvShowWidgetSeason::~TvShowWidgetSeason()
@@ -118,7 +118,7 @@ void TvShowWidgetSeason::setSeason(TvShow *show, int season)
 
     updateImages(QList<int>() << ImageType::TvShowSeasonPoster << ImageType::TvShowSeasonBackdrop << ImageType::TvShowSeasonBanner << ImageType::TvShowSeasonThumb);
 
-    m_missingLabel->setVisible(show->isDummySeason(season));
+    m_missingView->setVisible(show->isDummySeason(season));
     if (show->isDummySeason(season)) {
         onSetEnabled(false);
         emit sigSetActionSaveEnabled(false, WidgetTvShows);

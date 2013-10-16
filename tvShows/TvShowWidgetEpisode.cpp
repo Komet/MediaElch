@@ -108,23 +108,23 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
 
-    m_missingLabel = new QLabel(tr("Episode missing"));
-    m_missingLabel->setStyleSheet("padding-top: 5px; padding-bottom: 5px; color: #f0f0f0; font-size: 18px; "
-                         "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(238, 95, 91, 255), stop:1 rgba(189, 53, 47, 255));"
-                         "border-top: 1px solid rgba(255, 255, 255, 80); border-bottom: 1px solid rgba(255, 255, 255, 80)");
-    m_missingLabel->setFixedWidth(300);
-    m_missingLabel->setAlignment(Qt::AlignCenter);
+    QLabel *missingLabel = new QLabel(tr("Episode missing"));
+    missingLabel->setStyleSheet("padding-top: 5px; padding-bottom: 5px; color: #f0f0f0; font-size: 18px; "
+                       "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(238, 95, 91, 255), stop:1 rgba(189, 53, 47, 255));"
+                       "border-top: 1px solid rgba(255, 255, 255, 80); border-bottom: 1px solid rgba(255, 255, 255, 80)");
+    missingLabel->setFixedWidth(300);
+    missingLabel->setAlignment(Qt::AlignCenter);
     QGraphicsScene *scene = new QGraphicsScene(this);
-    QGraphicsProxyWidget *proxy = scene->addWidget(m_missingLabel);
+    QGraphicsProxyWidget *proxy = scene->addWidget(missingLabel);
     proxy->rotate(-45);
     proxy->setMaximumHeight(300);
     proxy->setMaximumWidth(300);
-    QGraphicsView *view = new QGraphicsView(scene);
-    view->setFixedSize(300, 300);
-    view->move(-65, -65);
-    view->setStyleSheet("background-color: transparent;");
-    view->setParent(ui->groupBox_3);
-    m_missingLabel->hide();
+    m_missingView = new QGraphicsView(scene);
+    m_missingView->setFixedSize(300, 300);
+    m_missingView->move(-65, -65);
+    m_missingView->setStyleSheet("background-color: transparent; border: none;");
+    m_missingView->setParent(ui->groupBox_3);
+    m_missingView->setVisible(false);
 }
 
 /**
@@ -271,7 +271,7 @@ void TvShowWidgetEpisode::setEpisode(TvShowEpisode *episode)
     m_episode = episode;
     if (!episode->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails() && !episode->isDummy())
         episode->loadStreamDetailsFromFile();
-    m_missingLabel->setVisible(episode->isDummy());
+    m_missingView->setVisible(episode->isDummy());
     updateEpisodeInfo();
 
     emit sigSetActionSearchEnabled(!episode->isDummy(), WidgetTvShows);
