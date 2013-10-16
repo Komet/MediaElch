@@ -186,7 +186,12 @@ void TheTvDb::onMirrorsReady()
 void TheTvDb::search(QString searchStr)
 {
     qDebug() << "Entered, searchStr=" << searchStr;
-    QUrl url(QString("http://www.thetvdb.com/api/GetSeries.php?language=%1&seriesname=%2").arg(m_language).arg(searchStr));
+    QUrl url;
+    QRegExp rxId("^id(\\d+)$");
+    if (rxId.exactMatch(searchStr))
+        url.setUrl(QString("http://www.thetvdb.com/api/%1/series/%2/%3.xml").arg(m_apiKey).arg(rxId.cap(1)).arg(m_language));
+    else
+        url.setUrl(QString("http://www.thetvdb.com/api/GetSeries.php?language=%1&seriesname=%2").arg(m_language).arg(searchStr));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
 }
@@ -226,8 +231,8 @@ QList<ScraperSearchResult> TheTvDb::parseSearch(QString xml)
         ScraperSearchResult result;
         if (!elem.elementsByTagName("SeriesName").isEmpty())
             result.name = elem.elementsByTagName("SeriesName").at(0).toElement().text();
-        if (!elem.elementsByTagName("seriesid").isEmpty())
-            result.id = elem.elementsByTagName("seriesid").at(0).toElement().text();
+        if (!elem.elementsByTagName("id").isEmpty())
+            result.id = elem.elementsByTagName("id").at(0).toElement().text();
         if (!elem.elementsByTagName("FirstAired").isEmpty())
             result.released = QDate::fromString(elem.elementsByTagName("FirstAired").at(0).toElement().text(), "yyyy-MM-dd");
 
