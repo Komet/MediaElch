@@ -243,7 +243,7 @@ void MovieSearchWidget::onUpdateSearchString()
     if (scraper->identifier() == "imdb" && !m_id.isEmpty())
         ui->searchString->setText(m_id);
     else if (scraper->identifier() == "tmdb" && !m_tmdbId.isEmpty())
-        ui->searchString->setText("id" + m_id);
+        ui->searchString->setText("id" + m_tmdbId);
     else if (scraper->identifier() == "tmdb" && !m_id.isEmpty())
         ui->searchString->setText(m_id);
     else
