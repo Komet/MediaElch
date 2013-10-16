@@ -31,7 +31,7 @@ void MovieMaze::onSearchFinished()
         m_searchReply->deleteLater();
 
         int pos = 0;
-        QRegExp rx("<a href=\"([0-9][^\"]*)\">([^<]*)</a>");
+        QRegExp rx("<a href=\"/media/trailer/([^\"]*)\">([^<]*)</a>");
         rx.setMinimal(true);
         while ((pos = rx.indexIn(msg, pos)) != -1) {
             if (rx.cap(2).contains(m_currentSearch, Qt::CaseInsensitive)) {
@@ -65,7 +65,7 @@ void MovieMaze::onLoadFinished()
         QRegExp rx("<h5><a href=\"([^\"]*)\">Trailer (.*)</a></h5>");
         rx.setMinimal(true);
         while ((pos = rx.indexIn(msg, pos)) != -1) {
-            m_trailerSites.append("http://www.moviemaze.de/media/trailer/" + rx.cap(1));
+            m_trailerSites.append("http://www.moviemaze.de" + rx.cap(1));
             pos += rx.matchedLength();
         }
     }
@@ -118,7 +118,7 @@ QList<TrailerResult> MovieMaze::parseTrailers(QString html)
             result.language = tr("German");
         else if (result.language == "en")
             result.language = tr("English");
-        result.trailerUrl = QString("http://www.moviemaze.de/media/trailer/%1").arg(rx.cap(3));
+        result.trailerUrl = rx.cap(3);
         result.previewImageLoaded = false;
         results.append(result);
         pos += rx.matchedLength();
