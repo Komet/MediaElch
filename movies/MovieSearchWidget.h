@@ -23,7 +23,7 @@ public slots:
     QString scraperMovieId();
     QList<int> infosToLoad();
     QMap<ScraperInterface*, QString> customScraperIds();
-    void search(QString searchString);
+    void search(QString searchString, QString id, QString tmdbId);
 
 signals:
     void sigResultClicked();
@@ -34,6 +34,8 @@ private slots:
     void resultClicked(QTableWidgetItem *item);
     void chkToggled();
     void chkAllToggled(bool toggled);
+    void onUpdateSearchString();
+    void onStoreSearchString(QString searchString);
 
 private:
     Ui::MovieSearchWidget *ui;
@@ -42,6 +44,9 @@ private:
     QList<int> m_infosToLoad;
     QMap<ScraperInterface*, QString> m_customScraperIds;
     ScraperInterface *m_currentCustomScraper;
+    QString m_id;
+    QString m_tmdbId;
+    QString m_searchString;
 
     void clear();
     void setChkBoxesEnabled(QList<int> scraperSupports);

@@ -87,9 +87,12 @@ void TvShowSearchEpisode::onResultClicked(QTableWidgetItem *item)
     emit sigResultClicked();
 }
 
-void TvShowSearchEpisode::search(QString searchString)
+void TvShowSearchEpisode::search(QString searchString, QString id)
 {
-    ui->searchString->setText(searchString);
+    if (!id.isEmpty())
+        ui->searchString->setText("id" + id);
+    else
+        ui->searchString->setText(searchString);
     onChkToggled();
     onSearch();
 }

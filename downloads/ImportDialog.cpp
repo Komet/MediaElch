@@ -101,10 +101,17 @@ int ImportDialog::exec()
 
 void ImportDialog::execMovie(QString searchString)
 {
+    QString id;
+    QRegExp rx("tt(\\d+)");
+    if (rx.indexIn(searchString) != -1) {
+        id = rx.cap(0);
+        searchString = searchString.replace(rx.cap(0), "").trimmed();
+    }
+
     m_type = "movie";
     m_filesToMove.clear();
     ui->stackedWidget->setCurrentIndex(0);
-    ui->movieSearchWidget->search(NameFormatter::instance()->formatName(searchString));
+    ui->movieSearchWidget->search(NameFormatter::instance()->formatName(searchString), id, "");
 
     ui->descOriginalTitle->setVisible(true);
     ui->labelOriginalTitle->setVisible(true);
@@ -173,7 +180,7 @@ void ImportDialog::execTvShow(QString searchString, TvShow *tvShow)
     ui->labelDirectoryNaming->setVisible(false);
     ui->directoryNaming->setVisible(false);
     ui->stackedWidget->setCurrentIndex(3);
-    ui->tvShowSearchEpisode->search(tvShow->name());
+    ui->tvShowSearchEpisode->search(tvShow->name(), tvShow->tvdbId());
 
     setDefaults(Renamer::TypeTvShows);
 

@@ -91,15 +91,17 @@ TvShowSearch* TvShowSearch::instance(QWidget *parent)
  * @param searchString String to search for
  * @return Result of QDialog::exec
  */
-int TvShowSearch::exec(QString searchString)
+int TvShowSearch::exec(QString searchString, QString id)
 {
-    qDebug() << "Entered, searchString=" << searchString;
     QSize newSize;
     newSize.setHeight(parentWidget()->size().height()-200);
     newSize.setWidth(qMin(600, parentWidget()->size().width()-400));
     resize(newSize);
 
-    ui->searchString->setText(searchString.replace(".", " "));
+    if (!id.isEmpty())
+        ui->searchString->setText("id" + id);
+    else
+        ui->searchString->setText(searchString.replace(".", " "));
     onChkToggled();
     onSearch();
     return QDialog::exec();

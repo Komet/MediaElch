@@ -50,7 +50,7 @@ MovieSearch* MovieSearch::instance(QWidget *parent)
  * @return Result of QDialog::exec
  * @see MovieSearch::search
  */
-int MovieSearch::exec(QString searchString)
+int MovieSearch::exec(QString searchString, QString id, QString tmdbId)
 {
     qDebug() << "Entered";
     QSize newSize;
@@ -58,7 +58,7 @@ int MovieSearch::exec(QString searchString)
     newSize.setWidth(qMin(600, parentWidget()->size().width()-400));
     resize(newSize);
 
-    ui->movieSearchWidget->search(searchString);
+    ui->movieSearchWidget->search(searchString, id, tmdbId);
     return QDialog::exec();
 }
 

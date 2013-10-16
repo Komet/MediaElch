@@ -20,7 +20,7 @@ public:
     QList<int> infosToLoad();
 
 public slots:
-    void search(QString searchString);
+    void search(QString searchString, QString id);
 
 signals:
     void sigResultClicked();

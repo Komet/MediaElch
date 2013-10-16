@@ -25,7 +25,7 @@ public:
     TvShowUpdateType updateType();
 
 public slots:
-    int exec(QString searchString);
+    int exec(QString searchString, QString id);
     static TvShowSearch *instance(QWidget *parent = 0);
 
 private slots:

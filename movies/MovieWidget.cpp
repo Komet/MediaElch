@@ -414,7 +414,7 @@ void MovieWidget::startScraperSearch()
     }
     emit setActionSearchEnabled(false, WidgetMovies);
     emit setActionSaveEnabled(false, WidgetMovies);
-    MovieSearch::instance()->exec(m_movie->name());
+    MovieSearch::instance()->exec(m_movie->name(), m_movie->id(), m_movie->tmdbId());
     if (MovieSearch::instance()->result() == QDialog::Accepted) {
         setDisabledTrue();
         QMap<ScraperInterface*, QString> ids;

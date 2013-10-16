@@ -23,7 +23,9 @@ MovieSearchWidget::MovieSearchWidget(QWidget *parent) :
     }
     ui->comboScraper->setCurrentIndex(Settings::instance()->currentMovieScraper());
 
-    connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(search()));
+    connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(onUpdateSearchString()), Qt::QueuedConnection);
+    connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(search()), Qt::QueuedConnection);
+    connect(ui->searchString, SIGNAL(textEdited(QString)), this, SLOT(onStoreSearchString(QString)));
     connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(search()));
     connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(resultClicked(QTableWidgetItem*)));
 
@@ -69,13 +71,34 @@ void MovieSearchWidget::clear()
     ui->results->setRowCount(0);
 }
 
-void MovieSearchWidget::search(QString searchString)
+void MovieSearchWidget::search(QString searchString, QString id, QString tmdbId)
 {
+    m_searchString = searchString.replace(".", " ");
+    m_id = id;
+    m_tmdbId = tmdbId;
     ui->comboScraper->setEnabled(true);
     ui->groupBox->setEnabled(true);
     m_currentCustomScraper = 0;
     m_customScraperIds.clear();
-    ui->searchString->setText(searchString.replace(".", " "));
+
+    int index = ui->comboScraper->currentIndex();
+    if (index < 0 || index >= Manager::instance()->scrapers().size()) {
+        return;
+    }
+    m_scraperId = ui->comboScraper->itemData(index, Qt::UserRole).toString();
+    ScraperInterface *scraper = Manager::instance()->scraper(m_scraperId);
+    if (!scraper)
+        return;
+
+    if (scraper->identifier() == "imdb" && !m_id.isEmpty())
+        ui->searchString->setText(m_id);
+    else if (scraper->identifier() == "tmdb" && !m_tmdbId.isEmpty())
+        ui->searchString->setText("id" + m_tmdbId);
+    else if (scraper->identifier() == "tmdb" && !m_id.isEmpty())
+        ui->searchString->setText(m_id);
+    else
+        ui->searchString->setText(m_searchString);
+
     search();
 }
 
@@ -204,4 +227,30 @@ void MovieSearchWidget::setChkBoxesEnabled(QList<int> scraperSupports)
 QMap<ScraperInterface*, QString> MovieSearchWidget::customScraperIds()
 {
     return m_customScraperIds;
+}
+
+void MovieSearchWidget::onUpdateSearchString()
+{
+    int index = ui->comboScraper->currentIndex();
+    if (index < 0 || index >= Manager::instance()->scrapers().size()) {
+        return;
+    }
+    m_scraperId = ui->comboScraper->itemData(index, Qt::UserRole).toString();
+    ScraperInterface *scraper = Manager::instance()->scraper(m_scraperId);
+    if (!scraper)
+        return;
+
+    if (scraper->identifier() == "imdb" && !m_id.isEmpty())
+        ui->searchString->setText(m_id);
+    else if (scraper->identifier() == "tmdb" && !m_tmdbId.isEmpty())
+        ui->searchString->setText("id" + m_id);
+    else if (scraper->identifier() == "tmdb" && !m_id.isEmpty())
+        ui->searchString->setText(m_id);
+    else
+        ui->searchString->setText(m_searchString);
+}
+
+void MovieSearchWidget::onStoreSearchString(QString searchString)
+{
+    m_searchString = searchString;
 }
