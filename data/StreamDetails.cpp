@@ -101,10 +101,10 @@ void StreamDetails::loadStreamDetails()
             MI_duration.Open(QString(file.toUtf8()).toStdWString());
         #endif
             MI_duration.Option(QString("Complete").toStdWString(), QString("1").toStdWString());
-            duration += QString::fromStdWString(MI.Get(Stream_General, 0, QString("Duration").toStdWString())).toInt()/1000;
+            duration += qRound(QString::fromStdWString(MI.Get(Stream_General, 0, QString("Duration").toStdWString())).toFloat()/1000);
         }
     } else {
-        duration = QString::fromStdWString(MI.Get(Stream_General, 0, QString("Duration").toStdWString())).toInt()/1000;
+        duration = qRound(QString::fromStdWString(MI.Get(Stream_General, 0, QString("Duration").toStdWString())).toFloat()/1000);
     }
 
     setVideoDetail("durationinseconds", QString("%1").arg(duration));
