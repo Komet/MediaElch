@@ -136,7 +136,7 @@ void MovieFileSearcher::reload(bool force)
 
             // BluRay handling
             foreach (const QString &path, bluRays) {
-                if (!files.isEmpty() && files.first().startsWith(path + QDir::separator())) {
+                if (!files.isEmpty() && (files.first().startsWith(path + "/") || files.first().startsWith(path + "\\"))) {
                     QStringList f;
                     foreach (const QString &file, files) {
                         if (file.endsWith("index.bdmv", Qt::CaseInsensitive))
@@ -150,7 +150,7 @@ void MovieFileSearcher::reload(bool force)
 
             // DVD handling
             foreach (const QString &path, dvds) {
-                if (!files.isEmpty() && files.first().startsWith(path + QDir::separator())) {
+                if (!files.isEmpty() && (files.first().startsWith(path + "/") || files.first().startsWith(path + "\\"))) {
                     QStringList f;
                     foreach (const QString &file, files) {
                         if (file.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive))
