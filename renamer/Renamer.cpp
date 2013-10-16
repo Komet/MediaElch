@@ -760,14 +760,27 @@ bool Renamer::rename(const QString &file, const QString &newName)
         return false;
 
     QFile newFile(newName);
-    if (newFile.exists())
+    if (newFile.exists() && QString::compare(file, newName, Qt::CaseInsensitive) != 0)
         return false;
 
-    return f.rename(newName);
+    if (newFile.exists()) {
+        if (!f.rename(newName + ".tmp"))
+            return false;
+        return f.rename(newName);
+    } else {
+        return f.rename(newName);
+    }
 }
 
 bool Renamer::rename(QDir &dir, QString newName)
 {
-    QDir tmpDir;
-    return tmpDir.rename(dir.path(), newName);
+    if (QString::compare(dir.path(), newName, Qt::CaseInsensitive) == 0) {
+        QDir tmpDir;
+        if (!tmpDir.rename(dir.path(), dir.path() + "tmp"))
+            return false;
+        return tmpDir.rename(dir.path() + "tmp", newName);
+    } else {
+        QDir tmpDir;
+        return tmpDir.rename(dir.path(), newName);
+    }
 }
