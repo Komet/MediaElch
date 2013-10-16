@@ -6,6 +6,7 @@
 #include "data/ImageCache.h"
 #include "data/TvShowFileSearcher.h"
 #include "globals/Manager.h"
+#include "globals/NameFormatter.h"
 #include "notifications/Notificator.h"
 #include "renamer/Renamer.h"
 #include "settings/Settings.h"
@@ -103,7 +104,7 @@ void ImportDialog::execMovie(QString searchString)
     m_type = "movie";
     m_filesToMove.clear();
     ui->stackedWidget->setCurrentIndex(0);
-    ui->movieSearchWidget->search(searchString);
+    ui->movieSearchWidget->search(NameFormatter::instance()->formatName(searchString));
 
     ui->descOriginalTitle->setVisible(true);
     ui->labelOriginalTitle->setVisible(true);
@@ -184,7 +185,7 @@ void ImportDialog::execConcert(QString searchString)
     m_type = "concert";
     m_filesToMove.clear();
     ui->stackedWidget->setCurrentIndex(2);
-    ui->concertSearchWidget->search(searchString);
+    ui->concertSearchWidget->search(NameFormatter::instance()->formatName(searchString));
 
     ui->descOriginalTitle->setVisible(false);
     ui->labelOriginalTitle->setVisible(false);
