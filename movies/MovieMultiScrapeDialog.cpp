@@ -86,6 +86,7 @@ int MovieMultiScrapeDialog::exec()
     ui->btnStartScraping->setVisible(true);
     ui->btnStartScraping->setEnabled(true);
     ui->chkAutoSave->setEnabled(true);
+    ui->chkOnlyImdb->setEnabled(true);
     ui->progressAll->setValue(0);
     ui->progressMovie->setValue(0);
     ui->groupBox->setEnabled(true);
@@ -94,6 +95,9 @@ int MovieMultiScrapeDialog::exec()
     m_executed = true;
     setChkBoxesEnabled();
     adjustSize();
+
+    ui->chkAutoSave->setChecked(Settings::instance()->multiScrapeSaveEach());
+    ui->chkOnlyImdb->setChecked(Settings::instance()->multiScrapeOnlyWithId());
     return QDialog::exec();
 }
 
@@ -102,6 +106,9 @@ void MovieMultiScrapeDialog::accept()
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers())
         disconnect(scraper, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchFinished(QList<ScraperSearchResult>)));
     m_executed = false;
+    Settings::instance()->setMultiScrapeOnlyWithId(ui->chkOnlyImdb->isChecked());
+    Settings::instance()->setMultiScrapeSaveEach(ui->chkAutoSave->isChecked());
+    Settings::instance()->saveSettings();
     QDialog::accept();
 }
 
@@ -114,6 +121,9 @@ void MovieMultiScrapeDialog::reject()
         m_queue.clear();
         m_currentMovie->controller()->abortDownloads();
     }
+    Settings::instance()->setMultiScrapeOnlyWithId(ui->chkOnlyImdb->isChecked());
+    Settings::instance()->setMultiScrapeSaveEach(ui->chkAutoSave->isChecked());
+    Settings::instance()->saveSettings();
     QDialog::reject();
 }
 
@@ -131,6 +141,7 @@ void MovieMultiScrapeDialog::onStartScraping()
     ui->comboScraper->setEnabled(false);
     ui->btnStartScraping->setEnabled(false);
     ui->chkAutoSave->setEnabled(false);
+    ui->chkOnlyImdb->setEnabled(false);
 
     m_scraperInterface = Manager::instance()->scraper(ui->comboScraper->itemData(ui->comboScraper->currentIndex()).toString());
     if (!m_scraperInterface)
@@ -152,7 +163,15 @@ void MovieMultiScrapeDialog::onStartScraping()
 void MovieMultiScrapeDialog::onScrapingFinished()
 {
     ui->movieCounter->setVisible(false);
-    ui->movie->setText(tr("Scraping of %n movies has finished.", "", m_movies.count()));
+    int numberOfMovies = m_movies.count();
+    if (ui->chkOnlyImdb->isChecked()) {
+        numberOfMovies = 0;
+        foreach (Movie *movie, m_movies) {
+            if ((m_isImdb && !movie->id().isEmpty()) || (m_isTmdb && (!movie->id().isEmpty() || !movie->tmdbId().isEmpty())))
+                numberOfMovies++;
+        }
+    }
+    ui->movie->setText(tr("Scraping of %n movies has finished.", "", numberOfMovies));
     ui->progressAll->setValue(ui->progressAll->maximum());
     ui->btnCancel->setVisible(false);
     ui->btnClose->setVisible(true);
@@ -173,11 +192,17 @@ void MovieMultiScrapeDialog::scrapeNext()
     }
 
     m_currentMovie = m_queue.dequeue();
+
     ui->movie->setText(m_currentMovie->name());
     ui->movieCounter->setText(QString("%1/%2").arg(m_movies.count()-m_queue.count()).arg(m_movies.count()));
 
     ui->progressAll->setValue(ui->progressAll->maximum()-m_queue.size()-1);
     ui->progressMovie->setValue(0);
+
+    if ((m_currentMovie->id().isEmpty() && m_isImdb) || (m_currentMovie->tmdbId().isEmpty() && m_currentMovie->id().isEmpty() && m_isTmdb)) {
+        scrapeNext();
+        return;
+    }
 
     connect(m_currentMovie->controller(), SIGNAL(sigLoadDone(Movie*)), this, SLOT(scrapeNext()), Qt::UniqueConnection);
     connect(m_currentMovie->controller(), SIGNAL(sigDownloadProgress(Movie*,int,int)), this, SLOT(onProgress(Movie*,int,int)), Qt::UniqueConnection);
@@ -299,4 +324,6 @@ void MovieMultiScrapeDialog::setChkBoxesEnabled()
         box->setChecked((infos.contains(box->myData().toInt()) || infos.isEmpty()) && scraperSupports.contains(box->myData().toInt()));
     }
     onChkToggled();
+
+    ui->chkOnlyImdb->setEnabled(scraper->identifier() == "imdb" || scraper->identifier() == "tmdb");
 }

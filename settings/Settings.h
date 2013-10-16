@@ -70,6 +70,8 @@ public:
     bool keepDownloadSource() const;
     bool checkForUpdates() const;
     bool showMissingEpisodesHint() const;
+    bool multiScrapeOnlyWithId() const;
+    bool multiScrapeSaveEach() const;
 
     bool autoLoadStreamDetails();
 
@@ -118,6 +120,8 @@ public:
     void setKeepDownloadSource(bool keep);
     void setCheckForUpdates(bool check);
     void setShowMissingEpisodesHint(bool show);
+    void setMultiScrapeOnlyWithId(bool onlyWithId);
+    void setMultiScrapeSaveEach(bool saveEach);
 
 public slots:
     void saveSettings();
@@ -169,6 +173,8 @@ private:
     bool m_keepDownloadSource;
     bool m_checkForUpdates;
     bool m_showMissingEpisodesHint;
+    bool m_multiScrapeOnlyWithId;
+    bool m_multiScrapeSaveEach;
 
     void setupProxy();
 };

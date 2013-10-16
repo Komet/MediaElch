@@ -246,12 +246,16 @@ void Settings::loadSettings(QSettings &settings)
     settings.endArray();
 
     // Downloads
-    m_downloadDirectories = m_settings.value("Downloads/Directories").toStringList();
+    m_downloadDirectories = settings.value("Downloads/Directories").toStringList();
     m_unrar = m_settings.value("Downloads/Unrar").toString();
-    m_deleteArchives = m_settings.value("Downloads/DeleteArchives", false).toBool();
+    m_deleteArchives = settings.value("Downloads/DeleteArchives", false).toBool();
     m_importDialogSize = settings.value("Downloads/ImportDialogSize").toSize();
     m_importDialogPosition = settings.value("Downloads/ImportDialogPosition").toPoint();
     m_keepDownloadSource = settings.value("Downloads/KeepSource", true).toBool();
+
+    // Movies
+    m_multiScrapeOnlyWithId = settings.value("Movies/MultiScrapeOnlyWithId", false).toBool();
+    m_multiScrapeSaveEach = settings.value("Movies/MultiScrapeSaveEach", false).toBool();
 
     m_showMissingEpisodesHint = settings.value("TvShows/ShowMissingEpisodesHint", true).toBool();
 }
@@ -367,6 +371,9 @@ void Settings::saveSettings()
     m_settings.setValue("Downloads/KeepSource", m_keepDownloadSource);
 
     m_settings.setValue("TvShows/ShowMissingEpisodesHint", m_showMissingEpisodesHint);
+
+    m_settings.setValue("Movies/MultiScrapeOnlyWithId", m_multiScrapeOnlyWithId);
+    m_settings.setValue("Movies/MultiScrapeSaveEach", m_multiScrapeSaveEach);
 
     m_settings.sync();
 }
@@ -1072,4 +1079,24 @@ void Settings::setShowMissingEpisodesHint(bool show)
 bool Settings::showMissingEpisodesHint() const
 {
     return m_showMissingEpisodesHint;
+}
+
+void Settings::setMultiScrapeOnlyWithId(bool onlyWithId)
+{
+    m_multiScrapeOnlyWithId = onlyWithId;
+}
+
+bool Settings::multiScrapeOnlyWithId() const
+{
+    return m_multiScrapeOnlyWithId;
+}
+
+void Settings::setMultiScrapeSaveEach(bool saveEach)
+{
+    m_multiScrapeSaveEach = saveEach;
+}
+
+bool Settings::multiScrapeSaveEach() const
+{
+    return m_multiScrapeSaveEach;
 }

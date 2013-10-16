@@ -358,6 +358,13 @@
     </widget>
    </item>
    <item>
+    <widget class="QCheckBox" name="chkOnlyImdb">
+     <property name="text">
+      <string>Update only movies with IMDB Id/TheMovieDb Id</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,1">
      <item>
       <widget class="QLabel" name="movieCounter">
