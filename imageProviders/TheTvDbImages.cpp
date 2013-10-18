@@ -386,3 +386,23 @@ void TheTvDbImages::tvShowSeasonBackdrops(QString tvdbId, int season)
     Q_UNUSED(season);
     loadTvShowData(tvdbId, ImageType::TvShowSeasonBackdrop);
 }
+
+bool TheTvDbImages::hasSettings()
+{
+    return false;
+}
+
+void TheTvDbImages::loadSettings(QSettings &settings)
+{
+    Q_UNUSED(settings);
+}
+
+void TheTvDbImages::saveSettings(QSettings &settings)
+{
+    Q_UNUSED(settings);
+}
+
+QWidget* TheTvDbImages::settingsWidget()
+{
+    return 0;
+}

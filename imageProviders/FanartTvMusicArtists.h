@@ -47,6 +47,10 @@ public:
     void tvShowThumbs(QString tvdbId);
     void tvShowSeasonThumbs(QString tvdbId, int season);
     QList<int> provides();
+    bool hasSettings();
+    void loadSettings(QSettings &settings);
+    void saveSettings(QSettings &settings);
+    QWidget *settingsWidget();
 
 public slots:
     void searchMovie(QString searchStr, int limit = 0);
@@ -69,6 +73,7 @@ private:
     QString m_apiKey;
     QNetworkAccessManager m_qnam;
     int m_searchResultLimit;
+    QString m_language;
 
     QNetworkAccessManager *qnam();
     QList<Poster> parseData(QString json, int type);

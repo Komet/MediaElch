@@ -45,6 +45,11 @@ public:
     virtual void tvShowSeasonThumbs(QString tvdbId, int season) = 0;
     virtual void tvShowThumbs(QString tvdbId) = 0;
     virtual QList<int> provides() = 0;
+    virtual bool hasSettings() = 0;
+    virtual void loadSettings(QSettings &settings) = 0;
+    virtual void saveSettings(QSettings &settings) = 0;
+    virtual QWidget *settingsWidget() = 0;
+
 public slots:
     virtual void searchMovie(QString searchStr, int limit) = 0;
     virtual void searchConcert(QString searchStr, int limit) = 0;

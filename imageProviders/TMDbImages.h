@@ -43,6 +43,10 @@ public:
     void tvShowThumbs(QString tvdbId);
     void tvShowSeasonThumbs(QString tvdbId, int season);
     QList<int> provides();
+    bool hasSettings();
+    void loadSettings(QSettings &settings);
+    void saveSettings(QSettings &settings);
+    QWidget *settingsWidget();
 
 public slots:
     void searchMovie(QString searchStr, int limit = 0);

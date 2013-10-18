@@ -255,3 +255,23 @@ void MediaPassionImages::tvShowSeasonBackdrops(QString tvdbId, int season)
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
 }
+
+bool MediaPassionImages::hasSettings()
+{
+    return false;
+}
+
+void MediaPassionImages::loadSettings(QSettings &settings)
+{
+    Q_UNUSED(settings);
+}
+
+void MediaPassionImages::saveSettings(QSettings &settings)
+{
+    Q_UNUSED(settings);
+}
+
+QWidget* MediaPassionImages::settingsWidget()
+{
+    return 0;
+}

@@ -170,18 +170,14 @@ void Settings::loadSettings(QSettings &settings)
                          "brrip,bdrip,480p,480i,576p,576i,720p,720i,1080p,1080i,hrhd,hrhdtv,hddvd,bluray,x264,h264,xvid,xvidvd,xxx,www";
 
     // Scrapers
-    foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
-        if (scraper->hasSettings())
-            scraper->loadSettings(settings);
-    }
-    foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers()) {
-        if (scraper->hasSettings())
-            scraper->loadSettings(settings);
-    }
-    foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers()) {
-        if (scraper->hasSettings())
-            scraper->loadSettings(settings);
-    }
+    foreach (ScraperInterface *scraper, Manager::instance()->scrapers())
+        scraper->loadSettings(settings);
+    foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers())
+        scraper->loadSettings(settings);
+    foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers())
+        scraper->loadSettings(settings);
+    foreach (ImageProviderInterface *scraper, Manager::instance()->imageProviders())
+        scraper->loadSettings(settings);
 
     m_currentMovieScraper = settings.value("Scraper/CurrentMovieScraper", 0).toInt();
 
@@ -331,6 +327,10 @@ void Settings::saveSettings()
             scraper->saveSettings(m_settings);
     }
     foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers()) {
+        if (scraper->hasSettings())
+            scraper->saveSettings(m_settings);
+    }
+    foreach (ImageProviderInterface *scraper, Manager::instance()->imageProviders()) {
         if (scraper->hasSettings())
             scraper->saveSettings(m_settings);
     }

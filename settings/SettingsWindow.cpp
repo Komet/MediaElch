@@ -89,6 +89,19 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
         }
     }
 
+    foreach (ImageProviderInterface *scraper, Manager::instance()->imageProviders()) {
+        if (scraper->hasSettings()) {
+            if (scraperCounter++ > 0) {
+                QFrame *line = new QFrame();
+                line->setFrameShape(QFrame::HLine);
+                line->setFrameShadow(QFrame::Sunken);
+                ui->verticalLayoutScrapers->addWidget(line);
+            }
+            ui->verticalLayoutScrapers->addWidget(new QLabel(scraper->name()));
+            ui->verticalLayoutScrapers->addWidget(scraper->settingsWidget());
+        }
+    }
+
     ui->comboMovieSetArtwork->setItemData(0, MovieSetArtworkSingleSetFolder);
     ui->comboMovieSetArtwork->setItemData(1, MovieSetArtworkSingleArtworkFolder);
 

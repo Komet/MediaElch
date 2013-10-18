@@ -1,11 +1,14 @@
 #include "FanartTv.h"
 #include <QDebug>
+#include <QHBoxLayout>
+#include <QLabel>
 #include <QSettings>
 #include <QtScript/QScriptValue>
 #include <QtScript/QScriptValueIterator>
 #include <QtScript/QScriptEngine>
-#include "scrapers/TMDb.h"
 #include "data/Storage.h"
+#include "main/MainWindow.h"
+#include "scrapers/TMDb.h"
 
 /**
  * @brief FanartTv::FanartTv
@@ -14,6 +17,41 @@
 FanartTv::FanartTv(QObject *parent)
 {
     setParent(parent);
+
+    m_language = "en";
+
+    m_widget = new QWidget(MainWindow::instance());
+    m_box = new QComboBox(m_widget);
+    m_box->addItem(tr("Bulgarian"), "bg");
+    m_box->addItem(tr("Chinese"), "zh");
+    m_box->addItem(tr("Croatian"), "hr");
+    m_box->addItem(tr("Czech"), "cs");
+    m_box->addItem(tr("Danish"), "da");
+    m_box->addItem(tr("Dutch"), "nl");
+    m_box->addItem(tr("English"), "en");
+    m_box->addItem(tr("Finnish"), "fi");
+    m_box->addItem(tr("French"), "fr");
+    m_box->addItem(tr("German"), "de");
+    m_box->addItem(tr("Greek"), "el");
+    m_box->addItem(tr("Hebrew"), "he");
+    m_box->addItem(tr("Hungarian"), "hu");
+    m_box->addItem(tr("Italian"), "it");
+    m_box->addItem(tr("Japanese"), "ja");
+    m_box->addItem(tr("Korean"), "ko");
+    m_box->addItem(tr("Norwegian"), "no");
+    m_box->addItem(tr("Polish"), "pl");
+    m_box->addItem(tr("Portuguese"), "pt");
+    m_box->addItem(tr("Russian"), "ru");
+    m_box->addItem(tr("Slovene"), "sl");
+    m_box->addItem(tr("Spanish"), "es");
+    m_box->addItem(tr("Swedish"), "sv");
+    m_box->addItem(tr("Turkish"), "tr");
+    QHBoxLayout *layout = new QHBoxLayout(m_widget);
+    layout->addWidget(new QLabel(tr("Language")));
+    layout->addWidget(m_box);
+    layout->addStretch(1);
+    m_widget->setLayout(layout);
+
     m_provides << ImageType::MovieBackdrop << ImageType::MovieLogo << ImageType::MovieClearArt << ImageType::MovieCdArt
                << ImageType::MovieBanner << ImageType::MovieThumb << ImageType::MoviePoster
                << ImageType::TvShowClearArt << ImageType::TvShowBackdrop << ImageType::TvShowBanner
@@ -371,7 +409,8 @@ QList<Poster> FanartTv::parseMovieData(QString json, int type)
                         b.hint = "HD";
                     else if (section == "movielogo" || section == "movieart")
                         b.hint = "SD";
-                    posters.append(b);
+                    b.language = vB.property("lang").toString();
+                    insertPoster(posters, b, m_language);
                 }
             }
         }
@@ -632,11 +671,62 @@ QList<Poster> FanartTv::parseTvShowData(QString json, int type, int season)
                         b.hint = "HD";
                     else if (section == "clearlogo" || section == "clearart")
                         b.hint = "SD";
-                    posters.append(b);
+                    b.language = vB.property("lang").toString();
+                    insertPoster(posters, b, m_language);
                 }
             }
         }
     }
 
     return posters;
+}
+
+bool FanartTv::hasSettings()
+{
+    return true;
+}
+
+void FanartTv::loadSettings(QSettings &settings)
+{
+    m_language = settings.value("Scrapers/FanartTv/Language", "en").toString();
+    for (int i=0, n=m_box->count() ; i<n ; ++i) {
+        if (m_box->itemData(i).toString() == m_language)
+            m_box->setCurrentIndex(i);
+    }
+}
+
+void FanartTv::saveSettings(QSettings &settings)
+{
+    m_language = m_box->itemData(m_box->currentIndex()).toString();
+    settings.setValue("Scrapers/FanartTv/Language", m_language);
+}
+
+QWidget* FanartTv::settingsWidget()
+{
+    return m_widget;
+}
+
+void FanartTv::insertPoster(QList<Poster> &posters, Poster b, QString language)
+{
+    int lastInPreferredLangAndHd = -1;
+    int lastInPreferredLang = -1;
+    int lastHd = -1;
+
+    for (int i=0, n=posters.count() ; i<n ; ++i) {
+        if (posters[i].language == language && posters[i].hint == "HD")
+            lastInPreferredLangAndHd = i;
+        if (posters[i].language == language)
+            lastInPreferredLang = i;
+        if (posters[i].hint == "HD")
+            lastHd = i;
+    }
+
+    if (b.language == language && b.hint == "HD")
+        posters.insert(lastInPreferredLangAndHd+1, b);
+    else if (b.language == language)
+        posters.insert(lastInPreferredLang+1, b);
+    else if (b.hint == "HD")
+        posters.insert(lastHd+1, b);
+    else
+        posters.append(b);
 }

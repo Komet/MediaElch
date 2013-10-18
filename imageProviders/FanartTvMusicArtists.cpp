@@ -4,8 +4,9 @@
 #include <QtScript/QScriptValue>
 #include <QtScript/QScriptValueIterator>
 #include <QtScript/QScriptEngine>
-#include "scrapers/TMDb.h"
 #include "data/Storage.h"
+#include "imageProviders/FanartTv.h"
+#include "scrapers/TMDb.h"
 
 /**
  * @brief FanartTvMusicArtists::FanartTv
@@ -162,7 +163,8 @@ QList<Poster> FanartTvMusicArtists::parseData(QString json, int type)
                         b.hint = "HD";
                     else if (section == "musiclogo")
                         b.hint = "SD";
-                    posters.append(b);
+                    b.language = vB.property("lang").toString();
+                    FanartTv::insertPoster(posters, b, m_language);
                 }
             }
         }
@@ -320,3 +322,22 @@ void FanartTvMusicArtists::concertCdArts(QString tmdbId)
     Q_UNUSED(tmdbId);
 }
 
+bool FanartTvMusicArtists::hasSettings()
+{
+    return false;
+}
+
+void FanartTvMusicArtists::loadSettings(QSettings &settings)
+{
+    m_language = settings.value("Scrapers/FanartTv/Language", "en").toString();
+}
+
+void FanartTvMusicArtists::saveSettings(QSettings &settings)
+{
+    Q_UNUSED(settings);
+}
+
+QWidget* FanartTvMusicArtists::settingsWidget()
+{
+    return 0;
+}
