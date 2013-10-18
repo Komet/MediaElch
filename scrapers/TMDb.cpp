@@ -6,7 +6,7 @@
 #include <QtScript/QScriptValueIterator>
 #include <QtScript/QScriptEngine>
 #include <QSettings>
-#include <QHBoxLayout>
+#include <QGridLayout>
 
 #include "data/Storage.h"
 #include "globals/Globals.h"
@@ -50,10 +50,11 @@ TMDb::TMDb(QObject *parent)
     m_box->addItem(tr("Spanish"), "es");
     m_box->addItem(tr("Swedish"), "sv");
     m_box->addItem(tr("Turkish"), "tr");
-    QHBoxLayout *layout = new QHBoxLayout(m_widget);
-    layout->addWidget(new QLabel(tr("Language")));
-    layout->addWidget(m_box);
-    layout->addStretch(1);
+    QGridLayout *layout = new QGridLayout(m_widget);
+    layout->addWidget(new QLabel(tr("Language")), 0, 0);
+    layout->addWidget(m_box, 0, 1);
+    layout->setColumnStretch(2, 1);
+    layout->setContentsMargins(12, 0, 12, 12);
     m_widget->setLayout(layout);
 
     m_scraperSupports << MovieScraperInfos::Title

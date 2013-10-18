@@ -54,51 +54,43 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     int scraperCounter = 0;
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
         if (scraper->hasSettings()) {
-            if (scraperCounter++ > 0) {
-                QFrame *line = new QFrame();
-                line->setFrameShape(QFrame::HLine);
-                line->setFrameShadow(QFrame::Sunken);
-                ui->verticalLayoutScrapers->addWidget(line);
-            }
-            ui->verticalLayoutScrapers->addWidget(new QLabel(scraper->name()));
-            ui->verticalLayoutScrapers->addWidget(scraper->settingsWidget());
+            QLabel *name = new QLabel("<b>" + scraper->name() + "</b>");
+            name->setAlignment(Qt::AlignRight);
+            name->setStyleSheet("margin-top: 3px;");
+            ui->gridLayoutScrapers->addWidget(name, scraperCounter, 0);
+            ui->gridLayoutScrapers->addWidget(scraper->settingsWidget(), scraperCounter, 1);
+            scraperCounter++;
         }
     }
     foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers()) {
         if (scraper->hasSettings()) {
-            if (scraperCounter++ > 0) {
-                QFrame *line = new QFrame();
-                line->setFrameShape(QFrame::HLine);
-                line->setFrameShadow(QFrame::Sunken);
-                ui->verticalLayoutScrapers->addWidget(line);
-            }
-            ui->verticalLayoutScrapers->addWidget(new QLabel(scraper->name()));
-            ui->verticalLayoutScrapers->addWidget(scraper->settingsWidget());
+            QLabel *name = new QLabel("<b>" + scraper->name() + "</b>");
+            name->setAlignment(Qt::AlignRight);
+            name->setStyleSheet("margin-top: 3px;");
+            ui->gridLayoutScrapers->addWidget(name, scraperCounter, 0);
+            ui->gridLayoutScrapers->addWidget(scraper->settingsWidget(), scraperCounter, 1);
+            scraperCounter++;
         }
     }
     foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers()) {
         if (scraper->hasSettings()) {
-            if (scraperCounter++ > 0) {
-                QFrame *line = new QFrame();
-                line->setFrameShape(QFrame::HLine);
-                line->setFrameShadow(QFrame::Sunken);
-                ui->verticalLayoutScrapers->addWidget(line);
-            }
-            ui->verticalLayoutScrapers->addWidget(new QLabel(scraper->name()));
-            ui->verticalLayoutScrapers->addWidget(scraper->settingsWidget());
+            QLabel *name = new QLabel("<b>" + scraper->name() + "</b>");
+            name->setAlignment(Qt::AlignRight);
+            name->setStyleSheet("margin-top: 3px;");
+            ui->gridLayoutScrapers->addWidget(name, scraperCounter, 0);
+            ui->gridLayoutScrapers->addWidget(scraper->settingsWidget(), scraperCounter, 1);
+            scraperCounter++;
         }
     }
 
     foreach (ImageProviderInterface *scraper, Manager::instance()->imageProviders()) {
         if (scraper->hasSettings()) {
-            if (scraperCounter++ > 0) {
-                QFrame *line = new QFrame();
-                line->setFrameShape(QFrame::HLine);
-                line->setFrameShadow(QFrame::Sunken);
-                ui->verticalLayoutScrapers->addWidget(line);
-            }
-            ui->verticalLayoutScrapers->addWidget(new QLabel(scraper->name()));
-            ui->verticalLayoutScrapers->addWidget(scraper->settingsWidget());
+            QLabel *name = new QLabel("<b>" + scraper->name() + "</b>");
+            name->setAlignment(Qt::AlignRight);
+            name->setStyleSheet("margin-top: 3px;");
+            ui->gridLayoutScrapers->addWidget(name, scraperCounter, 0);
+            ui->gridLayoutScrapers->addWidget(scraper->settingsWidget(), scraperCounter, 1);
+            scraperCounter++;
         }
     }
 

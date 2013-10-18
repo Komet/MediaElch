@@ -74,6 +74,7 @@ private:
     QNetworkAccessManager m_qnam;
     int m_searchResultLimit;
     QString m_language;
+    QString m_preferredDiscType;
 
     QNetworkAccessManager *qnam();
     QList<Poster> parseData(QString json, int type);

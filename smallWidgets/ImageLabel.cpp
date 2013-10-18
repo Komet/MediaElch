@@ -43,13 +43,7 @@ void ImageLabel::setHint(QSize resolution, QString hint)
     QString text;
     if (!resolution.isNull() && !resolution.isEmpty() && resolution.isValid())
         text = QString("%1 x %2").arg(resolution.width()).arg(resolution.height());
-    if (!hint.isEmpty()) {
-        if (text.isEmpty())
-            text = hint;
-        else
-            text.append(QString(" (%1)").arg(hint));
-    }
-
+    text.append(hint);
     ui->resolution->setText(text);
 }
 

@@ -282,6 +282,8 @@ void ImageDialog::setDownloads(QList<Poster> downloads, bool initial)
         d.downloaded = false;
         d.resolution = poster.originalSize;
         d.hint = poster.hint;
+        if (!poster.language.isEmpty())
+            d.hint.append(" (" + poster.language + ")");
         m_elements.append(d);
     }
     ui->labelLoading->setVisible(true);

@@ -18,6 +18,8 @@ FanartTvMusicArtists::FanartTvMusicArtists(QObject *parent)
     m_provides << ImageType::ConcertBackdrop << ImageType::ConcertLogo;
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_searchResultLimit = 0;
+    m_language = "en";
+    m_preferredDiscType = "BluRay";
 }
 
 /**
@@ -163,8 +165,14 @@ QList<Poster> FanartTvMusicArtists::parseData(QString json, int type)
                         b.hint = "HD";
                     else if (section == "musiclogo")
                         b.hint = "SD";
+                    else if (vB.property("disc_type").toString() == "bluray")
+                        b.hint = "BluRay";
+                    else if (vB.property("disc_type").toString() == "dvd")
+                        b.hint = "DVD";
+                    else if (vB.property("disc_type").toString() == "3d")
+                        b.hint = "3D";
                     b.language = vB.property("lang").toString();
-                    FanartTv::insertPoster(posters, b, m_language);
+                    FanartTv::insertPoster(posters, b, m_language, m_preferredDiscType);
                 }
             }
         }
@@ -330,6 +338,7 @@ bool FanartTvMusicArtists::hasSettings()
 void FanartTvMusicArtists::loadSettings(QSettings &settings)
 {
     m_language = settings.value("Scrapers/FanartTv/Language", "en").toString();
+    m_preferredDiscType = settings.value("Scrapers/FanartTv/DiscType", "BluRay").toString();
 }
 
 void FanartTvMusicArtists::saveSettings(QSettings &settings)

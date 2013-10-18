@@ -245,7 +245,7 @@
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_10">
             <item>
-             <layout class="QVBoxLayout" name="verticalLayoutScrapers"/>
+             <layout class="QGridLayout" name="gridLayoutScrapers"/>
             </item>
             <item>
              <spacer name="verticalSpacer">

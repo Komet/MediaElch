@@ -1,6 +1,6 @@
 #include "FanartTv.h"
 #include <QDebug>
-#include <QHBoxLayout>
+#include <QGridLayout>
 #include <QLabel>
 #include <QSettings>
 #include <QtScript/QScriptValue>
@@ -19,6 +19,7 @@ FanartTv::FanartTv(QObject *parent)
     setParent(parent);
 
     m_language = "en";
+    m_preferredDiscType = "BluRay";
 
     m_widget = new QWidget(MainWindow::instance());
     m_box = new QComboBox(m_widget);
@@ -46,10 +47,17 @@ FanartTv::FanartTv(QObject *parent)
     m_box->addItem(tr("Spanish"), "es");
     m_box->addItem(tr("Swedish"), "sv");
     m_box->addItem(tr("Turkish"), "tr");
-    QHBoxLayout *layout = new QHBoxLayout(m_widget);
-    layout->addWidget(new QLabel(tr("Language")));
-    layout->addWidget(m_box);
-    layout->addStretch(1);
+    m_discBox = new QComboBox(m_widget);
+    m_discBox->addItem(tr("3D"), "3D");
+    m_discBox->addItem(tr("BluRay"), "BluRay");
+    m_discBox->addItem(tr("DVD"), "DVD");
+    QGridLayout *layout = new QGridLayout(m_widget);
+    layout->addWidget(new QLabel(tr("Language")), 0, 0);
+    layout->addWidget(m_box, 0, 1);
+    layout->addWidget(new QLabel(tr("Preferred Disc Type")), 1, 0);
+    layout->addWidget(m_discBox, 1, 1);
+    layout->setColumnStretch(2, 1);
+    layout->setContentsMargins(12, 0, 12, 12);
     m_widget->setLayout(layout);
 
     m_provides << ImageType::MovieBackdrop << ImageType::MovieLogo << ImageType::MovieClearArt << ImageType::MovieCdArt
@@ -409,8 +417,14 @@ QList<Poster> FanartTv::parseMovieData(QString json, int type)
                         b.hint = "HD";
                     else if (section == "movielogo" || section == "movieart")
                         b.hint = "SD";
+                    else if (vB.property("disc_type").toString() == "bluray")
+                        b.hint = "BluRay";
+                    else if (vB.property("disc_type").toString() == "dvd")
+                        b.hint = "DVD";
+                    else if (vB.property("disc_type").toString() == "3d")
+                        b.hint = "3D";
                     b.language = vB.property("lang").toString();
-                    insertPoster(posters, b, m_language);
+                    insertPoster(posters, b, m_language, m_preferredDiscType);
                 }
             }
         }
@@ -671,8 +685,14 @@ QList<Poster> FanartTv::parseTvShowData(QString json, int type, int season)
                         b.hint = "HD";
                     else if (section == "clearlogo" || section == "clearart")
                         b.hint = "SD";
+                    else if (vB.property("disc_type").toString() == "bluray")
+                        b.hint = "BluRay";
+                    else if (vB.property("disc_type").toString() == "dvd")
+                        b.hint = "DVD";
+                    else if (vB.property("disc_type").toString() == "3d")
+                        b.hint = "3D";
                     b.language = vB.property("lang").toString();
-                    insertPoster(posters, b, m_language);
+                    insertPoster(posters, b, m_language, m_preferredDiscType);
                 }
             }
         }
@@ -689,16 +709,23 @@ bool FanartTv::hasSettings()
 void FanartTv::loadSettings(QSettings &settings)
 {
     m_language = settings.value("Scrapers/FanartTv/Language", "en").toString();
+    m_preferredDiscType = settings.value("Scrapers/FanartTv/DiscType", "BluRay").toString();
     for (int i=0, n=m_box->count() ; i<n ; ++i) {
         if (m_box->itemData(i).toString() == m_language)
             m_box->setCurrentIndex(i);
+    }
+    for (int i=0, n=m_discBox->count() ; i<n ; ++i) {
+        if (m_discBox->itemData(i).toString() == m_preferredDiscType)
+            m_discBox->setCurrentIndex(i);
     }
 }
 
 void FanartTv::saveSettings(QSettings &settings)
 {
     m_language = m_box->itemData(m_box->currentIndex()).toString();
+    m_preferredDiscType = m_discBox->itemData(m_discBox->currentIndex()).toString();
     settings.setValue("Scrapers/FanartTv/Language", m_language);
+    settings.setValue("Scrapers/FanartTv/DiscType", m_preferredDiscType);
 }
 
 QWidget* FanartTv::settingsWidget()
@@ -706,26 +733,26 @@ QWidget* FanartTv::settingsWidget()
     return m_widget;
 }
 
-void FanartTv::insertPoster(QList<Poster> &posters, Poster b, QString language)
+void FanartTv::insertPoster(QList<Poster> &posters, Poster b, QString language, QString preferredDiscType)
 {
     int lastInPreferredLangAndHd = -1;
     int lastInPreferredLang = -1;
     int lastHd = -1;
 
     for (int i=0, n=posters.count() ; i<n ; ++i) {
-        if (posters[i].language == language && posters[i].hint == "HD")
+        if (posters[i].language == language && (posters[i].hint == "HD" || posters[i].hint == preferredDiscType))
             lastInPreferredLangAndHd = i;
         if (posters[i].language == language)
             lastInPreferredLang = i;
-        if (posters[i].hint == "HD")
+        if (posters[i].hint == "HD" || posters[i].hint == preferredDiscType)
             lastHd = i;
     }
 
-    if (b.language == language && b.hint == "HD")
+    if (b.language == language && (b.hint == "HD" || b.hint == preferredDiscType))
         posters.insert(lastInPreferredLangAndHd+1, b);
     else if (b.language == language)
         posters.insert(lastInPreferredLang+1, b);
-    else if (b.hint == "HD")
+    else if (b.hint == "HD" || b.hint == preferredDiscType)
         posters.insert(lastHd+1, b);
     else
         posters.append(b);

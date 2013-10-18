@@ -79,6 +79,7 @@ MediaPassion::MediaPassion(QObject *parent)
     layout->addWidget(new QLabel(tr("Certification")), 4, 0);
     layout->addWidget(m_certificationCombo, 4, 1);
     layout->setColumnStretch(2, 1);
+    layout->setContentsMargins(12, 0, 12, 12);
     m_widget->setLayout(layout);
 
     m_scraperSupports << MovieScraperInfos::Title

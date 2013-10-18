@@ -51,7 +51,7 @@ public:
     void loadSettings(QSettings &settings);
     void saveSettings(QSettings &settings);
     QWidget *settingsWidget();
-    static void insertPoster(QList<Poster> &posters, Poster b, QString language);
+    static void insertPoster(QList<Poster> &posters, Poster b, QString language, QString preferredDiscType);
 
 public slots:
     void searchMovie(QString searchStr, int limit = 0);
@@ -82,8 +82,10 @@ private:
     TheTvDb *m_tvdb;
     TMDb *m_tmdb;
     QString m_language;
+    QString m_preferredDiscType;
     QWidget *m_widget;
     QComboBox *m_box;
+    QComboBox *m_discBox;
 
     QNetworkAccessManager *qnam();
     QList<Poster> parseMovieData(QString json, int type);
