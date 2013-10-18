@@ -1,8 +1,10 @@
 #include "AdvancedSettings.h"
 
+#include <QApplication>
 #include <QDebug>
 #include <QDesktopServices>
 #include <QFile>
+#include "Settings.h"
 
 AdvancedSettings::AdvancedSettings(QObject *parent) :
     QObject(parent)
@@ -53,7 +55,10 @@ void AdvancedSettings::loadSettings()
     reset();
 
     QXmlStreamReader xml;
-    QFile file(QDesktopServices::storageLocation(QDesktopServices::DataLocation) + "/advancedsettings.xml");
+    QFile file(Settings::applicationDir() + "/advancedsettings.xml");
+    if (!file.exists())
+        file.setFileName(QDesktopServices::storageLocation(QDesktopServices::DataLocation) + "/advancedsettings.xml");
+
     if (!file.exists())
         return;
 
@@ -86,6 +91,8 @@ void AdvancedSettings::loadSettings()
             loadStudioMappings(xml);
         else if (xml.name() == "countries")
             loadCountryMappings(xml);
+        else if (xml.name() == "portableMode")
+            m_portableMode = (xml.readElementText() == "true");
         else
             xml.skipCurrentElement();
     }
@@ -328,4 +335,13 @@ bool AdvancedSettings::threadedImageLoading() const
 bool AdvancedSettings::forceCache() const
 {
     return m_forceCache;
+}
+
+bool AdvancedSettings::portableMode() const
+{
+#ifdef Q_OS_WIN
+    return m_portableMode;
+#else
+    return false;
+#endif
 }

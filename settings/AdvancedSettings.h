@@ -30,6 +30,7 @@ public:
     bool useFirstStudioOnly() const;
     bool threadedImageLoading() const;
     bool forceCache() const;
+    bool portableMode() const;
 
 private:
     bool m_debugLog;
@@ -48,6 +49,7 @@ private:
     bool m_useFirstStudioOnly;
     bool m_threadedImageLoading;
     bool m_forceCache;
+    bool m_portableMode;
 
     void loadSettings();
     void reset();

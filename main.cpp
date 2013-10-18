@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("MediaElch");
     QCoreApplication::setApplicationVersion("1.8-dev");
 
-    Settings::instance(qApp);
+    Settings::instance(qApp)->loadSettings();
     if (Settings::instance()->advanced()->debugLog() && !Settings::instance()->advanced()->logFile().isEmpty()) {
         data.setFileName(Settings::instance()->advanced()->logFile());
         if (!data.open(QFile::WriteOnly | QFile::Truncate))

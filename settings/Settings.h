@@ -22,7 +22,6 @@ public:
     static Settings *instance(QObject *parent = 0);
     AdvancedSettings* advanced();
     void loadSettings();
-    void loadSettings(QSettings &settings);
     QSettings *settings();
 
     QSize mainWindowSize();
@@ -72,6 +71,9 @@ public:
     bool showMissingEpisodesHint() const;
     bool multiScrapeOnlyWithId() const;
     bool multiScrapeSaveEach() const;
+    QString databaseDir();
+    QString imageCacheDir();
+    QString exportTemplatesDir();
 
     bool autoLoadStreamDetails();
 
@@ -123,12 +125,13 @@ public:
     void setMultiScrapeOnlyWithId(bool onlyWithId);
     void setMultiScrapeSaveEach(bool saveEach);
 
+    static QString applicationDir();
+
 public slots:
     void saveSettings();
 
 private:
-    static Settings *m_instance;
-    QSettings m_settings;
+    QSettings *m_settings;
     AdvancedSettings *m_advancedSettings;
 
     QList<SettingsDir> m_movieDirectories;

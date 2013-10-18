@@ -68,11 +68,8 @@ FanartTv::FanartTv(QObject *parent)
                << ImageType::ConcertBackdrop << ImageType::ConcertLogo << ImageType::ConcertClearArt << ImageType::ConcertCdArt;
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_searchResultLimit = 0;
-    QSettings settings;
     m_tvdb = new TheTvDb(this);
-    m_tvdb->loadSettings(settings);
     m_tmdb = new TMDb(this);
-    m_tmdb->loadSettings(settings);
     connect(m_tvdb, SIGNAL(sigSearchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchTvShowFinished(QList<ScraperSearchResult>)));
     connect(m_tmdb, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchMovieFinished(QList<ScraperSearchResult>)));
 }
@@ -708,6 +705,8 @@ bool FanartTv::hasSettings()
 
 void FanartTv::loadSettings(QSettings &settings)
 {
+    m_tvdb->loadSettings(settings);
+    m_tmdb->loadSettings(settings);
     m_language = settings.value("Scrapers/FanartTv/Language", "en").toString();
     m_preferredDiscType = settings.value("Scrapers/FanartTv/DiscType", "BluRay").toString();
     for (int i=0, n=m_box->count() ; i<n ; ++i) {

@@ -8,6 +8,7 @@
 #include <QSqlRecord>
 #include "globals/Manager.h"
 #include "mediaCenterPlugins/XbmcXml.h"
+#include "settings/Settings.h"
 
 /**
  * @brief Database::Database
@@ -16,11 +17,7 @@
 Database::Database(QObject *parent) :
     QObject(parent)
 {
-#if QT_VERSION >= 0x050000
-    QString dataLocation = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
-#else
-    QString dataLocation = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-#endif
+    QString dataLocation = Settings::instance()->databaseDir();
     QDir dir(dataLocation);
     if (!dir.exists())
         dir.mkpath(dataLocation);

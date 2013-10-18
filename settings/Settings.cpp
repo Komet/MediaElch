@@ -1,11 +1,13 @@
 #include "Settings.h"
 
+#include <QApplication>
+#include <QDesktopServices>
+#include <QMutex>
+#include <QMutexLocker>
 #include <QNetworkProxy>
 #include "data/ScraperInterface.h"
 #include "globals/Manager.h"
 #include "renamer/Renamer.h"
-
-Settings *Settings::m_instance = 0;
 
 /**
  * @brief Settings::Settings
@@ -15,6 +17,13 @@ Settings::Settings(QObject *parent) :
     QObject(parent)
 {
     m_advancedSettings = new AdvancedSettings(parent);
+
+    if (m_advancedSettings->portableMode()) {
+        qDebug() << "portable mode!";
+        m_settings = new QSettings(Settings::applicationDir() + "/MediaElch.ini", QSettings::IniFormat, this);
+    } else {
+        m_settings = new QSettings(this);
+    }
 
     // Frodo
     m_initialDataFilesFrodo.append(DataFile(DataFileType::MovieNfo, "<baseFileName>.nfo", 0));
@@ -50,8 +59,6 @@ Settings::Settings(QObject *parent) :
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertCdArt, "disc.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertClearArt, "clearart.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertLogo, "logo.png", 0));
-
-    loadSettings();
 }
 
 /**
@@ -61,109 +68,98 @@ Settings::Settings(QObject *parent) :
  */
 Settings *Settings::instance(QObject *parent)
 {
-    if (m_instance == 0) {
+    static QMutex mutex;
+    QMutexLocker locker(&mutex);
+    static Settings *m_instance = 0;
+    if (!m_instance)
         m_instance = new Settings(parent);
-    }
     return m_instance;
 }
 
 QSettings *Settings::settings()
 {
-    return &m_settings;
+    return m_settings;
 }
 
-void Settings::loadSettings()
-{
-    // Load old settings
-    bool firstTime = m_settings.value("FirstTimeStartup", true).toBool();
-    if (firstTime) {
-        m_settings.setValue("FirstTimeStartup", false);
-        QSettings settings("Daniel Kabel", "MediaElch");
-        loadSettings(settings);
-        saveSettings();
-        return;
-    }
-    loadSettings(m_settings);
-}
 /**
  * @brief Loads all settings
  */
-void Settings::loadSettings(QSettings &settings)
+void Settings::loadSettings()
 {
     // Globals
-    m_mainWindowSize = settings.value("MainWindowSize").toSize();
-    m_mainWindowPosition = settings.value("MainWindowPosition").toPoint();
-    m_settingsWindowSize = settings.value("SettingsWindowSize").toSize();
-    m_settingsWindowPosition = settings.value("SettingsWindowPosition").toPoint();
-    m_mainWindowMaximized = settings.value("MainWindowMaximized").toBool();
-    m_mainSplitterState = settings.value("MainSplitterState").toByteArray();
-    m_debugModeActivated = settings.value("DebugModeActivated", false).toBool();
-    m_debugLogPath = settings.value("DebugLogPath").toString();
-    m_autoLoadStreamDetails = settings.value("AutoLoadStreamDetails", true).toBool();
-    m_usePlotForOutline = settings.value("Movies/UsePlotForOutline", true).toBool();
-    m_downloadActorImages = settings.value("DownloadActorImages", true).toBool();
-    m_ignoreArticlesWhenSorting = settings.value("IgnoreArticlesWhenSorting", false).toBool();
-    m_checkForUpdates = settings.value("CheckForUpdates", true).toBool();
+    m_mainWindowSize = settings()->value("MainWindowSize").toSize();
+    m_mainWindowPosition = settings()->value("MainWindowPosition").toPoint();
+    m_settingsWindowSize = settings()->value("SettingsWindowSize").toSize();
+    m_settingsWindowPosition = settings()->value("SettingsWindowPosition").toPoint();
+    m_mainWindowMaximized = settings()->value("MainWindowMaximized").toBool();
+    m_mainSplitterState = settings()->value("MainSplitterState").toByteArray();
+    m_debugModeActivated = settings()->value("DebugModeActivated", false).toBool();
+    m_debugLogPath = settings()->value("DebugLogPath").toString();
+    m_autoLoadStreamDetails = settings()->value("AutoLoadStreamDetails", true).toBool();
+    m_usePlotForOutline = settings()->value("Movies/UsePlotForOutline", true).toBool();
+    m_downloadActorImages = settings()->value("DownloadActorImages", true).toBool();
+    m_ignoreArticlesWhenSorting = settings()->value("IgnoreArticlesWhenSorting", false).toBool();
+    m_checkForUpdates = settings()->value("CheckForUpdates", true).toBool();
 
     // XBMC
-    m_xbmcHost = settings.value("XBMC/RemoteHost").toString();
-    m_xbmcPort = settings.value("XBMC/RemotePort", 9090).toInt();
+    m_xbmcHost = settings()->value("XBMC/RemoteHost").toString();
+    m_xbmcPort = settings()->value("XBMC/RemotePort", 9090).toInt();
 
     // Proxy
-    m_useProxy = settings.value("Proxy/Enable", false).toBool();
-    m_proxyType = settings.value("Proxy/Type", 0).toInt();
-    m_proxyHost = settings.value("Proxy/Host").toString();
-    m_proxyPort = settings.value("Proxy/Port", 0).toInt();
-    m_proxyUsername = settings.value("Proxy/Username").toString();
-    m_proxyPassword = settings.value("Proxy/Password").toString();
+    m_useProxy = settings()->value("Proxy/Enable", false).toBool();
+    m_proxyType = settings()->value("Proxy/Type", 0).toInt();
+    m_proxyHost = settings()->value("Proxy/Host").toString();
+    m_proxyPort = settings()->value("Proxy/Port", 0).toInt();
+    m_proxyUsername = settings()->value("Proxy/Username").toString();
+    m_proxyPassword = settings()->value("Proxy/Password").toString();
     setupProxy();
 
     // Tv Shows
-    m_tvShowDvdOrder = settings.value("TvShows/DvdOrder", false).toBool();
+    m_tvShowDvdOrder = settings()->value("TvShows/DvdOrder", false).toBool();
 
     // Warnings
-    m_dontShowDeleteImageConfirm = settings.value("Warnings/DontShowDeleteImageConfirm", false).toBool();
+    m_dontShowDeleteImageConfirm = settings()->value("Warnings/DontShowDeleteImageConfirm", false).toBool();
 
     // Movie Directories
     m_movieDirectories.clear();
-    int moviesSize = settings.beginReadArray("Directories/Movies");
+    int moviesSize = settings()->beginReadArray("Directories/Movies");
     for (int i=0 ; i<moviesSize ; ++i) {
-        settings.setArrayIndex(i);
+        settings()->setArrayIndex(i);
         SettingsDir dir;
-        dir.path = QDir::toNativeSeparators(settings.value("path").toString());
-        dir.separateFolders = settings.value("sepFolders", false).toBool();
-        dir.autoReload = settings.value("autoReload", false).toBool();
+        dir.path = QDir::toNativeSeparators(settings()->value("path").toString());
+        dir.separateFolders = settings()->value("sepFolders", false).toBool();
+        dir.autoReload = settings()->value("autoReload", false).toBool();
         m_movieDirectories.append(dir);
     }
-    settings.endArray();
+    settings()->endArray();
 
     // TV Show Directories
     m_tvShowDirectories.clear();
-    int tvShowSize = settings.beginReadArray("Directories/TvShows");
+    int tvShowSize = settings()->beginReadArray("Directories/TvShows");
     for (int i=0 ; i<tvShowSize ; ++i) {
-        settings.setArrayIndex(i);
+        settings()->setArrayIndex(i);
         SettingsDir dir;
-        dir.path = QDir::toNativeSeparators(settings.value("path").toString());
-        dir.separateFolders = settings.value("sepFolders", false).toBool();
-        dir.autoReload = settings.value("autoReload", false).toBool();
+        dir.path = QDir::toNativeSeparators(settings()->value("path").toString());
+        dir.separateFolders = settings()->value("sepFolders", false).toBool();
+        dir.autoReload = settings()->value("autoReload", false).toBool();
         m_tvShowDirectories.append(dir);
     }
-    settings.endArray();
+    settings()->endArray();
 
     // Concert Directories
     m_concertDirectories.clear();
-    int concertsSize = settings.beginReadArray("Directories/Concerts");
+    int concertsSize = settings()->beginReadArray("Directories/Concerts");
     for (int i=0 ; i<concertsSize ; ++i) {
-        settings.setArrayIndex(i);
+        settings()->setArrayIndex(i);
         SettingsDir dir;
-        dir.path = QDir::toNativeSeparators(settings.value("path").toString());
-        dir.separateFolders = settings.value("sepFolders", false).toBool();
-        dir.autoReload = settings.value("autoReload", false).toBool();
+        dir.path = QDir::toNativeSeparators(settings()->value("path").toString());
+        dir.separateFolders = settings()->value("sepFolders", false).toBool();
+        dir.autoReload = settings()->value("autoReload", false).toBool();
         m_concertDirectories.append(dir);
     }
-    settings.endArray();
+    settings()->endArray();
 
-    m_excludeWords = settings.value("excludeWords").toString();
+    m_excludeWords = settings()->value("excludeWords").toString();
     if (m_excludeWords.isEmpty())
         m_excludeWords = "ac3,dts,custom,dc,divx,divx5,dsr,dsrip,dutch,dvd,dvdrip,dvdscr,dvdscreener,screener,dvdivx,cam,fragment,fs,hdtv,hdrip,hdtvrip,internal,limited,"
                          "multisubs,ntsc,ogg,ogm,pal,pdtv,proper,repack,rerip,retail,r3,r5,bd5,se,svcd,swedish,german,read.nfo,nfofix,unrated,ws,telesync,ts,telecine,tc,"
@@ -171,26 +167,26 @@ void Settings::loadSettings(QSettings &settings)
 
     // Scrapers
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers())
-        scraper->loadSettings(settings);
+        scraper->loadSettings(*settings());
     foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers())
-        scraper->loadSettings(settings);
+        scraper->loadSettings(*settings());
     foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers())
-        scraper->loadSettings(settings);
+        scraper->loadSettings(*settings());
     foreach (ImageProviderInterface *scraper, Manager::instance()->imageProviders())
-        scraper->loadSettings(settings);
+        scraper->loadSettings(*settings());
 
-    m_currentMovieScraper = settings.value("Scraper/CurrentMovieScraper", 0).toInt();
+    m_currentMovieScraper = settings()->value("Scraper/CurrentMovieScraper", 0).toInt();
 
     // Media Centers
-    m_youtubePluginUrls    = settings.value("UseYoutubePluginURLs", false).toBool();
+    m_youtubePluginUrls = settings()->value("UseYoutubePluginURLs", false).toBool();
 
     // Data Files
     QList<DataFile> dataFiles;
-    int dataFileSize = settings.beginReadArray("AllDataFiles");
+    int dataFileSize = settings()->beginReadArray("AllDataFiles");
     for (int i=0 ; i<dataFileSize ; ++i) {
-        settings.setArrayIndex(i);
-        int type = settings.value("type").toInt();
-        QString fileName = settings.value("fileName").toString();
+        settings()->setArrayIndex(i);
+        int type = settings()->value("type").toInt();
+        QString fileName = settings()->value("fileName").toString();
         if (fileName.isEmpty()) {
             foreach (DataFile initialDataFile, m_initialDataFilesFrodo) {
                 if (initialDataFile.type() == type) {
@@ -199,11 +195,11 @@ void Settings::loadSettings(QSettings &settings)
                 }
             }
         }
-        int pos = settings.value("pos").toInt();
+        int pos = settings()->value("pos").toInt();
         DataFile f(type, fileName, pos);
         dataFiles.append(f);
     }
-    settings.endArray();
+    settings()->endArray();
 
     foreach (DataFile initialDataFile, m_initialDataFilesFrodo) {
         bool found = false;
@@ -224,36 +220,36 @@ void Settings::loadSettings(QSettings &settings)
         m_dataFiles = dataFiles;
 
     // Movie set artwork
-    m_movieSetArtworkType = settings.value("MovieSetArtwork/StoringType", 0).toInt();
-    m_movieSetArtworkDirectory = settings.value("MovieSetArtwork/Directory").toString();
+    m_movieSetArtworkType = settings()->value("MovieSetArtwork/StoringType", 0).toInt();
+    m_movieSetArtworkDirectory = settings()->value("MovieSetArtwork/Directory").toString();
 
     // Media Status Columns
     m_mediaStatusColumns.clear();
-    foreach (const QVariant &column, settings.value("MediaStatusColumns").toList())
+    foreach (const QVariant &column, settings()->value("MediaStatusColumns").toList())
         m_mediaStatusColumns.append(static_cast<MediaStatusColumns>(column.toInt()));
 
 
     m_customMovieScraper.clear();
-    int customMovieScraperSize = settings.beginReadArray("CustomMovieScraper");
+    int customMovieScraperSize = settings()->beginReadArray("CustomMovieScraper");
     for (int i=0 ; i<customMovieScraperSize ; ++i) {
-        settings.setArrayIndex(i);
-        m_customMovieScraper.insert(settings.value("Info").toInt(), settings.value("Scraper").toString());
+        settings()->setArrayIndex(i);
+        m_customMovieScraper.insert(settings()->value("Info").toInt(), settings()->value("Scraper").toString());
     }
-    settings.endArray();
+    settings()->endArray();
 
     // Downloads
-    m_downloadDirectories = settings.value("Downloads/Directories").toStringList();
-    m_unrar = m_settings.value("Downloads/Unrar").toString();
-    m_deleteArchives = settings.value("Downloads/DeleteArchives", false).toBool();
-    m_importDialogSize = settings.value("Downloads/ImportDialogSize").toSize();
-    m_importDialogPosition = settings.value("Downloads/ImportDialogPosition").toPoint();
-    m_keepDownloadSource = settings.value("Downloads/KeepSource", true).toBool();
+    m_downloadDirectories = settings()->value("Downloads/Directories").toStringList();
+    m_unrar = settings()->value("Downloads/Unrar").toString();
+    m_deleteArchives = settings()->value("Downloads/DeleteArchives", false).toBool();
+    m_importDialogSize = settings()->value("Downloads/ImportDialogSize").toSize();
+    m_importDialogPosition = settings()->value("Downloads/ImportDialogPosition").toPoint();
+    m_keepDownloadSource = settings()->value("Downloads/KeepSource", true).toBool();
 
     // Movies
-    m_multiScrapeOnlyWithId = settings.value("Movies/MultiScrapeOnlyWithId", false).toBool();
-    m_multiScrapeSaveEach = settings.value("Movies/MultiScrapeSaveEach", false).toBool();
+    m_multiScrapeOnlyWithId = settings()->value("Movies/MultiScrapeOnlyWithId", false).toBool();
+    m_multiScrapeSaveEach = settings()->value("Movies/MultiScrapeSaveEach", false).toBool();
 
-    m_showMissingEpisodesHint = settings.value("TvShows/ShowMissingEpisodesHint", true).toBool();
+    m_showMissingEpisodesHint = settings()->value("TvShows/ShowMissingEpisodesHint", true).toBool();
 }
 
 /**
@@ -261,121 +257,121 @@ void Settings::loadSettings(QSettings &settings)
  */
 void Settings::saveSettings()
 {
-    m_settings.setValue("DebugModeActivated", m_debugModeActivated);
-    m_settings.setValue("DebugLogPath", m_debugLogPath);
-    m_settings.setValue("AutoLoadStreamDetails", m_autoLoadStreamDetails);
+    settings()->setValue("DebugModeActivated", m_debugModeActivated);
+    settings()->setValue("DebugLogPath", m_debugLogPath);
+    settings()->setValue("AutoLoadStreamDetails", m_autoLoadStreamDetails);
 
-    m_settings.setValue("UseYoutubePluginURLs", m_youtubePluginUrls);
-    m_settings.setValue("Movies/UsePlotForOutline", m_usePlotForOutline);
-    m_settings.setValue("DownloadActorImages", m_downloadActorImages);
-    m_settings.setValue("IgnoreArticlesWhenSorting", m_ignoreArticlesWhenSorting);
-    m_settings.setValue("CheckForUpdates", m_checkForUpdates);
+    settings()->setValue("UseYoutubePluginURLs", m_youtubePluginUrls);
+    settings()->setValue("Movies/UsePlotForOutline", m_usePlotForOutline);
+    settings()->setValue("DownloadActorImages", m_downloadActorImages);
+    settings()->setValue("IgnoreArticlesWhenSorting", m_ignoreArticlesWhenSorting);
+    settings()->setValue("CheckForUpdates", m_checkForUpdates);
 
     // XBMC
-    m_settings.setValue("XBMC/RemoteHost", m_xbmcHost);
-    m_settings.setValue("XBMC/RemotePort", m_xbmcPort);
+    settings()->setValue("XBMC/RemoteHost", m_xbmcHost);
+    settings()->setValue("XBMC/RemotePort", m_xbmcPort);
 
     // Proxy
-    m_settings.setValue("Proxy/Enable", m_useProxy);
-    m_settings.setValue("Proxy/Type", m_proxyType);
-    m_settings.setValue("Proxy/Host", m_proxyHost);
-    m_settings.setValue("Proxy/Port", m_proxyPort);
-    m_settings.setValue("Proxy/Username", m_proxyUsername);
-    m_settings.setValue("Proxy/Password", m_proxyPassword);
+    settings()->setValue("Proxy/Enable", m_useProxy);
+    settings()->setValue("Proxy/Type", m_proxyType);
+    settings()->setValue("Proxy/Host", m_proxyHost);
+    settings()->setValue("Proxy/Port", m_proxyPort);
+    settings()->setValue("Proxy/Username", m_proxyUsername);
+    settings()->setValue("Proxy/Password", m_proxyPassword);
     setupProxy();
 
     // Tv Shows
-    m_settings.setValue("TvShows/DvdOrder", m_tvShowDvdOrder);
+    settings()->setValue("TvShows/DvdOrder", m_tvShowDvdOrder);
 
     // Warnings
-    m_settings.setValue("Warnings/DontShowDeleteImageConfirm", m_dontShowDeleteImageConfirm);
+    settings()->setValue("Warnings/DontShowDeleteImageConfirm", m_dontShowDeleteImageConfirm);
 
-    m_settings.beginWriteArray("Directories/Movies");
+    settings()->beginWriteArray("Directories/Movies");
     for (int i=0, n=m_movieDirectories.count() ; i<n ; ++i) {
-        m_settings.setArrayIndex(i);
-        m_settings.setValue("path", m_movieDirectories.at(i).path);
-        m_settings.setValue("sepFolders", m_movieDirectories.at(i).separateFolders);
-        m_settings.setValue("autoReload", m_movieDirectories.at(i).autoReload);
+        settings()->setArrayIndex(i);
+        settings()->setValue("path", m_movieDirectories.at(i).path);
+        settings()->setValue("sepFolders", m_movieDirectories.at(i).separateFolders);
+        settings()->setValue("autoReload", m_movieDirectories.at(i).autoReload);
     }
-    m_settings.endArray();
+    settings()->endArray();
 
-    m_settings.beginWriteArray("Directories/TvShows");
+    settings()->beginWriteArray("Directories/TvShows");
     for (int i=0, n=m_tvShowDirectories.count() ; i<n ; ++i) {
-        m_settings.setArrayIndex(i);
-        m_settings.setValue("path", m_tvShowDirectories.at(i).path);
-        m_settings.setValue("autoReload", m_tvShowDirectories.at(i).autoReload);
+        settings()->setArrayIndex(i);
+        settings()->setValue("path", m_tvShowDirectories.at(i).path);
+        settings()->setValue("autoReload", m_tvShowDirectories.at(i).autoReload);
     }
-    m_settings.endArray();
+    settings()->endArray();
 
-    m_settings.beginWriteArray("Directories/Concerts");
+    settings()->beginWriteArray("Directories/Concerts");
     for (int i=0, n=m_concertDirectories.count() ; i<n ; ++i) {
-        m_settings.setArrayIndex(i);
-        m_settings.setValue("path", m_concertDirectories.at(i).path);
-        m_settings.setValue("sepFolders", m_concertDirectories.at(i).separateFolders);
-        m_settings.setValue("autoReload", m_concertDirectories.at(i).autoReload);
+        settings()->setArrayIndex(i);
+        settings()->setValue("path", m_concertDirectories.at(i).path);
+        settings()->setValue("sepFolders", m_concertDirectories.at(i).separateFolders);
+        settings()->setValue("autoReload", m_concertDirectories.at(i).autoReload);
     }
-    m_settings.endArray();
+    settings()->endArray();
 
-    m_settings.setValue("excludeWords", m_excludeWords);
+    settings()->setValue("excludeWords", m_excludeWords);
 
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
         if (scraper->hasSettings())
-            scraper->saveSettings(m_settings);
+            scraper->saveSettings(*settings());
     }
     foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers()) {
         if (scraper->hasSettings())
-            scraper->saveSettings(m_settings);
+            scraper->saveSettings(*settings());
     }
     foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers()) {
         if (scraper->hasSettings())
-            scraper->saveSettings(m_settings);
+            scraper->saveSettings(*settings());
     }
     foreach (ImageProviderInterface *scraper, Manager::instance()->imageProviders()) {
         if (scraper->hasSettings())
-            scraper->saveSettings(m_settings);
+            scraper->saveSettings(*settings());
     }
 
-    m_settings.setValue("Scraper/CurrentMovieScraper", m_currentMovieScraper);
+    settings()->setValue("Scraper/CurrentMovieScraper", m_currentMovieScraper);
 
-    m_settings.beginWriteArray("AllDataFiles");
+    settings()->beginWriteArray("AllDataFiles");
     for (int i=0, n=m_dataFiles.count() ; i<n ; ++i) {
-        m_settings.setArrayIndex(i);
-        m_settings.setValue("type", m_dataFiles.at(i).type());
-        m_settings.setValue("fileName", m_dataFiles.at(i).fileName());
-        m_settings.setValue("pos", m_dataFiles.at(i).pos());
+        settings()->setArrayIndex(i);
+        settings()->setValue("type", m_dataFiles.at(i).type());
+        settings()->setValue("fileName", m_dataFiles.at(i).fileName());
+        settings()->setValue("pos", m_dataFiles.at(i).pos());
     }
-    m_settings.endArray();
+    settings()->endArray();
 
-    m_settings.setValue("MovieSetArtwork/StoringType", m_movieSetArtworkType);
-    m_settings.setValue("MovieSetArtwork/Directory", m_movieSetArtworkDirectory);
+    settings()->setValue("MovieSetArtwork/StoringType", m_movieSetArtworkType);
+    settings()->setValue("MovieSetArtwork/Directory", m_movieSetArtworkDirectory);
 
     QList<QVariant> columns;
     foreach (const MediaStatusColumns &column, m_mediaStatusColumns)
         columns.append(column);
-    m_settings.setValue("MediaStatusColumns", columns);
+    settings()->setValue("MediaStatusColumns", columns);
 
     int i=0;
-    m_settings.beginWriteArray("CustomMovieScraper");
+    settings()->beginWriteArray("CustomMovieScraper");
     QMapIterator<int, QString> it(m_customMovieScraper);
     while (it.hasNext()) {
         it.next();
-        m_settings.setArrayIndex(i++);
-        m_settings.setValue("Info", it.key());
-        m_settings.setValue("Scraper", it.value());
+        settings()->setArrayIndex(i++);
+        settings()->setValue("Info", it.key());
+        settings()->setValue("Scraper", it.value());
     }
-    m_settings.endArray();
+    settings()->endArray();
 
-    m_settings.setValue("Downloads/Directories", m_downloadDirectories);
-    m_settings.setValue("Downloads/Unrar", m_unrar);
-    m_settings.setValue("Downloads/DeleteArchives", m_deleteArchives);
-    m_settings.setValue("Downloads/KeepSource", m_keepDownloadSource);
+    settings()->setValue("Downloads/Directories", m_downloadDirectories);
+    settings()->setValue("Downloads/Unrar", m_unrar);
+    settings()->setValue("Downloads/DeleteArchives", m_deleteArchives);
+    settings()->setValue("Downloads/KeepSource", m_keepDownloadSource);
 
-    m_settings.setValue("TvShows/ShowMissingEpisodesHint", m_showMissingEpisodesHint);
+    settings()->setValue("TvShows/ShowMissingEpisodesHint", m_showMissingEpisodesHint);
 
-    m_settings.setValue("Movies/MultiScrapeOnlyWithId", m_multiScrapeOnlyWithId);
-    m_settings.setValue("Movies/MultiScrapeSaveEach", m_multiScrapeSaveEach);
+    settings()->setValue("Movies/MultiScrapeOnlyWithId", m_multiScrapeOnlyWithId);
+    settings()->setValue("Movies/MultiScrapeSaveEach", m_multiScrapeSaveEach);
 
-    m_settings.sync();
+    settings()->sync();
 }
 
 /**
@@ -640,7 +636,7 @@ int Settings::xbmcPort()
 void Settings::setMainWindowSize(QSize mainWindowSize)
 {
     m_mainWindowSize = mainWindowSize;
-    m_settings.setValue("MainWindowSize", mainWindowSize);
+    settings()->setValue("MainWindowSize", mainWindowSize);
 }
 
 /**
@@ -650,31 +646,31 @@ void Settings::setMainWindowSize(QSize mainWindowSize)
 void Settings::setMainWindowPosition(QPoint mainWindowPosition)
 {
     m_mainWindowPosition = mainWindowPosition;
-    m_settings.setValue("MainWindowPosition", mainWindowPosition);
+    settings()->setValue("MainWindowPosition", mainWindowPosition);
 }
 
 void Settings::setSettingsWindowSize(QSize settingsWindowSize)
 {
     m_settingsWindowSize = settingsWindowSize;
-    m_settings.setValue("SettingsWindowSize", settingsWindowSize);
+    settings()->setValue("SettingsWindowSize", settingsWindowSize);
 }
 
 void Settings::setSettingsWindowPosition(QPoint settingsWindowPosition)
 {
     m_settingsWindowPosition = settingsWindowPosition;
-    m_settings.setValue("SettingsWindowPosition", settingsWindowPosition);
+    settings()->setValue("SettingsWindowPosition", settingsWindowPosition);
 }
 
 void Settings::setImportDialogSize(QSize size)
 {
     m_importDialogSize = size;
-    m_settings.setValue("Downloads/ImportDialogSize", size);
+    settings()->setValue("Downloads/ImportDialogSize", size);
 }
 
 void Settings::setImportDialogPosition(QPoint position)
 {
     m_importDialogPosition = position;
-    m_settings.setValue("Downloads/ImportDialogPosition", position);
+    settings()->setValue("Downloads/ImportDialogPosition", position);
 }
 
 /**
@@ -684,7 +680,7 @@ void Settings::setImportDialogPosition(QPoint position)
 void Settings::setMainWindowMaximized(bool max)
 {
     m_mainWindowMaximized = max;
-    m_settings.setValue("MainWindowMaximized", max);
+    settings()->setValue("MainWindowMaximized", max);
 }
 
 /**
@@ -694,7 +690,7 @@ void Settings::setMainWindowMaximized(bool max)
 void Settings::setMainSplitterState(QByteArray state)
 {
     m_mainSplitterState = state;
-    m_settings.setValue("MainSplitterState", state);
+    settings()->setValue("MainSplitterState", state);
 }
 
 /**
@@ -861,7 +857,7 @@ QList<int> Settings::scraperInfos(MainWidgets widget, QString scraperId)
         item = "Concerts";
     else if (widget == WidgetTvShows)
         item = "TvShows";
-    return m_settings.value(QString("Scrapers/%1/%2").arg(item).arg(scraperId)).value<QList<int> >();
+    return settings()->value(QString("Scrapers/%1/%2").arg(item).arg(scraperId)).value<QList<int> >();
 }
 
 void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<int> items)
@@ -873,7 +869,7 @@ void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<int>
         item = "Concerts";
     else if (widget == WidgetTvShows)
         item = "TvShows";
-    m_settings.setValue(QString("Scrapers/%1/%2").arg(item).arg(scraperNo), QVariant::fromValue<QList<int> >(items));
+    settings()->setValue(QString("Scrapers/%1/%2").arg(item).arg(scraperNo), QVariant::fromValue<QList<int> >(items));
 }
 
 bool Settings::downloadActorImages()
@@ -894,42 +890,42 @@ void Settings::renamePatterns(int renameType, QString &fileNamePattern, QString 
         fileNamePatternDefault = "S<season>E<episode> - <title>.<extension>";
         fileNamePatternMultiDefault = "S<season>E<episode> - <title>-part<partNo>.<extension>";
     }
-    fileNamePattern = m_settings.value(QString("RenamePattern/%1/FileName").arg(renameType), fileNamePatternDefault).toString();
-    fileNamePatternMulti = m_settings.value(QString("RenamePattern/%1/FileNameMulti").arg(renameType), fileNamePatternMultiDefault).toString();
-    directoryPattern = m_settings.value(QString("RenamePattern/%1/DirectoryPattern").arg(renameType), "<title> (<year>)").toString();
-    seasonPattern = m_settings.value(QString("RenamePattern/%1/SeasonPattern").arg(renameType), "Season <season>").toString();
+    fileNamePattern = settings()->value(QString("RenamePattern/%1/FileName").arg(renameType), fileNamePatternDefault).toString();
+    fileNamePatternMulti = settings()->value(QString("RenamePattern/%1/FileNameMulti").arg(renameType), fileNamePatternMultiDefault).toString();
+    directoryPattern = settings()->value(QString("RenamePattern/%1/DirectoryPattern").arg(renameType), "<title> (<year>)").toString();
+    seasonPattern = settings()->value(QString("RenamePattern/%1/SeasonPattern").arg(renameType), "Season <season>").toString();
 }
 
 void Settings::setRenamePatterns(int renameType, QString fileNamePattern, QString fileNamePatternMulti, QString directoryPattern, QString seasonPattern)
 {
-    m_settings.setValue(QString("RenamePattern/%1/FileName").arg(renameType), fileNamePattern);
-    m_settings.setValue(QString("RenamePattern/%1/FileNameMulti").arg(renameType), fileNamePatternMulti);
-    m_settings.setValue(QString("RenamePattern/%1/DirectoryPattern").arg(renameType), directoryPattern);
-    m_settings.setValue(QString("RenamePattern/%1/SeasonPattern").arg(renameType), seasonPattern);
+    settings()->setValue(QString("RenamePattern/%1/FileName").arg(renameType), fileNamePattern);
+    settings()->setValue(QString("RenamePattern/%1/FileNameMulti").arg(renameType), fileNamePatternMulti);
+    settings()->setValue(QString("RenamePattern/%1/DirectoryPattern").arg(renameType), directoryPattern);
+    settings()->setValue(QString("RenamePattern/%1/SeasonPattern").arg(renameType), seasonPattern);
 }
 
 void Settings::setRenamings(int renameType, bool files, bool folders, bool seasonDirectories)
 {
-    m_settings.setValue(QString("RenamePattern/%1/RenameFiles").arg(renameType), files);
-    m_settings.setValue(QString("RenamePattern/%1/RenameFolders").arg(renameType), folders);
-    m_settings.setValue(QString("RenamePattern/%1/UseSeasonDirectories").arg(renameType), seasonDirectories);
+    settings()->setValue(QString("RenamePattern/%1/RenameFiles").arg(renameType), files);
+    settings()->setValue(QString("RenamePattern/%1/RenameFolders").arg(renameType), folders);
+    settings()->setValue(QString("RenamePattern/%1/UseSeasonDirectories").arg(renameType), seasonDirectories);
 }
 
 void Settings::renamings(int renameType, bool &files, bool &folders, bool &seasonDirectories)
 {
-    files = m_settings.value(QString("RenamePattern/%1/RenameFiles").arg(renameType), true).toBool();
-    folders = m_settings.value(QString("RenamePattern/%1/RenameFolders").arg(renameType), true).toBool();
-    seasonDirectories = m_settings.value(QString("RenamePattern/%1/UseSeasonDirectories").arg(renameType), true).toBool();
+    files = settings()->value(QString("RenamePattern/%1/RenameFiles").arg(renameType), true).toBool();
+    folders = settings()->value(QString("RenamePattern/%1/RenameFolders").arg(renameType), true).toBool();
+    seasonDirectories = settings()->value(QString("RenamePattern/%1/UseSeasonDirectories").arg(renameType), true).toBool();
 }
 
 int Settings::tvShowUpdateOption()
 {
-    return m_settings.value("TvShowUpdateOption", 0).toInt();
+    return settings()->value("TvShowUpdateOption", 0).toInt();
 }
 
 void Settings::setTvShowUpdateOption(int option)
 {
-    m_settings.setValue("TvShowUpdateOption", option);
+    settings()->setValue("TvShowUpdateOption", option);
 }
 
 AdvancedSettings *Settings::advanced()
@@ -1017,8 +1013,8 @@ int Settings::currentMovieScraper() const
 void Settings::setCurrentMovieScraper(int current)
 {
     m_currentMovieScraper = current;
-    m_settings.setValue("Scraper/CurrentMovieScraper", current);
-    m_settings.sync();
+    settings()->setValue("Scraper/CurrentMovieScraper", current);
+    settings()->sync();
 }
 
 void Settings::setDownloadDirectories(QStringList dirs)
@@ -1099,4 +1095,34 @@ void Settings::setMultiScrapeSaveEach(bool saveEach)
 bool Settings::multiScrapeSaveEach() const
 {
     return m_multiScrapeSaveEach;
+}
+
+QString Settings::applicationDir()
+{
+    return QApplication::applicationDirPath();
+}
+
+QString Settings::databaseDir()
+{
+    if (advanced()->portableMode())
+        return applicationDir();
+    else
+        return QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+}
+
+QString Settings::imageCacheDir()
+{
+    if (advanced()->portableMode())
+        return applicationDir();
+    else
+        return QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+}
+
+QString Settings::exportTemplatesDir()
+{
+    if (advanced()->portableMode())
+        return applicationDir() + QDir::separator() + "export_themes";
+    else
+        return QDesktopServices::storageLocation(QDesktopServices::DataLocation) + QDir::separator() + "export_themes";
+
 }

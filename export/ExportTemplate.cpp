@@ -1,8 +1,8 @@
 #include "ExportTemplate.h"
 
-#include <QDesktopServices>
 #include <QDir>
 #include <QStringList>
+#include "settings/Settings.h"
 
 ExportTemplate::ExportTemplate(QObject *parent) :
     QObject(parent)
@@ -195,7 +195,7 @@ QString ExportTemplate::getTemplate(ExportTemplate::ExportSection section)
 
 QString ExportTemplate::getTemplateLocation()
 {
-    return QDesktopServices::storageLocation(QDesktopServices::DataLocation) + "/export_themes/" + identifier();
+    return Settings::instance()->exportTemplatesDir() + "/" + identifier();
 }
 
 void ExportTemplate::copyTo(QString path)

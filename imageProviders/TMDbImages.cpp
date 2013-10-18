@@ -3,8 +3,8 @@
 #include <QtScript/QScriptValue>
 #include <QtScript/QScriptValueIterator>
 #include <QtScript/QScriptEngine>
-#include <QSettings>
 #include "scrapers/TMDb.h"
+#include "settings/Settings.h"
 
 /**
  * @brief TMDbImages::TMDbImages
@@ -16,9 +16,7 @@ TMDbImages::TMDbImages(QObject *parent)
     m_provides << ImageType::MovieBackdrop << ImageType::MoviePoster
                << ImageType::ConcertBackdrop << ImageType::ConcertPoster;
     m_searchResultLimit = 0;
-    QSettings settings;
     m_tmdb = new TMDb(this);
-    m_tmdb->loadSettings(settings);
     m_dummyMovie = new Movie(QStringList(), this);
     connect(m_dummyMovie->controller(), SIGNAL(sigInfoLoadDone(Movie*)), this, SLOT(onLoadImagesFinished()));
     connect(m_tmdb, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchMovieFinished(QList<ScraperSearchResult>)));
@@ -374,7 +372,7 @@ void TMDbImages::saveSettings(QSettings &settings)
 
 void TMDbImages::loadSettings(QSettings &settings)
 {
-    Q_UNUSED(settings);
+    m_tmdb->loadSettings(settings);
 }
 
 QWidget* TMDbImages::settingsWidget()

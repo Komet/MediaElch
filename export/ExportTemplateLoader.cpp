@@ -2,12 +2,12 @@
 
 #include <QBuffer>
 #include <QDebug>
-#include <QDesktopServices>
 #include <QDir>
 #include <QNetworkReply>
 #include <QXmlStreamReader>
 #include <quazip/quazip.h>
 #include <quazip/quazipfile.h>
+#include "settings/Settings.h"
 
 #include "data/Storage.h"
 
@@ -68,7 +68,7 @@ void ExportTemplateLoader::onLoadRemoteTemplatesFinished()
 
 void ExportTemplateLoader::loadLocalTemplates()
 {
-    QString location = QDesktopServices::storageLocation(QDesktopServices::DataLocation) + QDir::separator() + "export_themes";
+    QString location = Settings::instance()->exportTemplatesDir();
     QDir storageDir(location);
     if (!storageDir.exists() && !storageDir.mkpath(location)) {
         qWarning() << "Could not create storage location";
@@ -175,7 +175,7 @@ void ExportTemplateLoader::onDownloadTemplateFinished()
 
 bool ExportTemplateLoader::uninstallTemplate(ExportTemplate *exportTemplate)
 {
-    QString location = QDesktopServices::storageLocation(QDesktopServices::DataLocation) + "/export_themes/" + exportTemplate->identifier();
+    QString location = Settings::instance()->exportTemplatesDir() + "/" + exportTemplate->identifier();
     QDir storageDir(location);
     if (storageDir.exists() && !removeDir(storageDir.absolutePath())) {
         emit sigTemplateUninstalled(exportTemplate, false);
@@ -190,7 +190,7 @@ bool ExportTemplateLoader::uninstallTemplate(ExportTemplate *exportTemplate)
 
 bool ExportTemplateLoader::unpackTemplate(QBuffer &buffer, ExportTemplate *exportTemplate)
 {
-    QString location = QDesktopServices::storageLocation(QDesktopServices::DataLocation) + QDir::separator() + "export_themes";
+    QString location = Settings::instance()->exportTemplatesDir();
     QDir storageDir(location);
     if (!storageDir.exists() && !storageDir.mkpath(location)) {
         qWarning() << "Could not create storage location";

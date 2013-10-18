@@ -40,8 +40,7 @@ ImageDialog::ImageDialog(QWidget *parent) :
     ui->gallery->setAlignment(Qt::Horizontal);
     ui->gallery->setShowZoomAndResolution(false);
 
-    QSettings settings;
-    resize(settings.value("ImageDialog/Size").toSize());
+    resize(Settings::instance()->settings()->value("ImageDialog/Size").toSize());
 
     connect(ui->table, SIGNAL(cellClicked(int,int)), this, SLOT(imageClicked(int, int)));
     connect(ui->table, SIGNAL(sigDroppedImage(QUrl)), this, SLOT(onImageDropped(QUrl)));
@@ -105,11 +104,10 @@ int ImageDialog::exec(int type)
     m_type = type;
 
     // set slider value
-    QSettings settings;
-    ui->previewSizeSlider->setValue(settings.value(QString("ImageDialog/PreviewSize_%1").arg(m_type), 8).toInt());
+    ui->previewSizeSlider->setValue(Settings::instance()->settings()->value(QString("ImageDialog/PreviewSize_%1").arg(m_type), 8).toInt());
 
-    QSize savedSize = settings.value("ImageDialog/Size").toSize();
-    QPoint savedPos = settings.value("ImageDialog/Pos").toPoint();
+    QSize savedSize = Settings::instance()->settings()->value("ImageDialog/Size").toSize();
+    QPoint savedPos = Settings::instance()->settings()->value("ImageDialog/Pos").toPoint();
 
     bool isMac = false;
 #ifdef Q_OS_MAC
@@ -184,10 +182,9 @@ void ImageDialog::accept()
     qDebug() << "Entered";
     cancelDownloads();
 #ifndef Q_OS_MAC
-    QSettings settings;
-    settings.setValue("ImageDialog/Size", size());
-    settings.setValue("ImageDialog/Pos", pos());
-    settings.sync();
+    Settings::instance()->settings()->setValue("ImageDialog/Size", size());
+    Settings::instance()->settings()->setValue("ImageDialog/Pos", pos());
+    Settings::instance()->settings()->sync();
 #endif
     QDialog::accept();
 }
@@ -200,10 +197,9 @@ void ImageDialog::reject()
     qDebug() << "Entered";
     cancelDownloads();
 #ifndef Q_OS_MAC
-    QSettings settings;
-    settings.setValue("ImageDialog/Size", size());
-    settings.setValue("ImageDialog/Pos", pos());
-    settings.sync();
+    Settings::instance()->settings()->setValue("ImageDialog/Size", size());
+    Settings::instance()->settings()->setValue("ImageDialog/Pos", pos());
+    Settings::instance()->settings()->sync();
 #endif
     QDialog::reject();
 }
@@ -593,8 +589,7 @@ void ImageDialog::onPreviewSizeChange(int value)
 {
     ui->buttonZoomOut->setDisabled(value == ui->previewSizeSlider->minimum());
     ui->buttonZoomIn->setDisabled(value == ui->previewSizeSlider->maximum());
-    QSettings settings;
-    settings.setValue(QString("ImageDialog/PreviewSize_%1").arg(m_type), value);
+    Settings::instance()->settings()->setValue(QString("ImageDialog/PreviewSize_%1").arg(m_type), value);
     renderTable();
 }
 

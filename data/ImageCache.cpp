@@ -3,7 +3,6 @@
 #include <QCryptographicHash>
 #include <QDateTime>
 #include <QDebug>
-#include <QDesktopServices>
 #include <QDir>
 #include <QFileInfo>
 #include "globals/Globals.h"
@@ -12,7 +11,7 @@
 ImageCache::ImageCache(QObject *parent) :
     QObject(parent)
 {
-    QString location = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+    QString location = Settings::instance()->imageCacheDir();
     QDir dir(location);
     if (!dir.exists())
         dir.mkdir(location);
