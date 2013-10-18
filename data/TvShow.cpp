@@ -871,17 +871,6 @@ void TvShow::setEpisodeGuideUrl(QString url)
 }
 
 /**
- * @brief Sets all actors
- * @param actors
- * @see TvShow::actors
- */
-void TvShow::setActors(QList<Actor> actors)
-{
-    m_actors = actors;
-    setChanged(true);
-}
-
-/**
  * @brief Adds an actor
  * @param actor
  * @see TvShow::actors

@@ -69,6 +69,12 @@ private slots:
     void onReloadStreamDetails();
     void updateStreamDetails(bool reloadFromFile = false);
 
+    void onAddActor();
+    void onRemoveActor();
+    void onActorChanged();
+    void onChangeActorImage();
+    void onActorEdited(QTableWidgetItem *item);
+
 private:
     Ui::TvShowWidgetEpisode *ui;
     QPointer<TvShowEpisode> m_episode;

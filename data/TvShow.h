@@ -22,20 +22,6 @@ class TvScraperInterface;
 class TvShow : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString name READ name WRITE setName)
-    Q_PROPERTY(QString showTitle READ name WRITE setShowTitle)
-    Q_PROPERTY(qreal rating READ rating WRITE setRating)
-    Q_PROPERTY(QDate firstAired READ firstAired WRITE setFirstAired)
-    Q_PROPERTY(QStringList genres READ genres WRITE setGenres)
-    Q_PROPERTY(QString certification READ certification WRITE setCertification)
-    Q_PROPERTY(QString network READ network WRITE setNetwork)
-    Q_PROPERTY(QString overview READ overview WRITE setOverview)
-    Q_PROPERTY(QList<Actor> actors READ actors WRITE setActors)
-    Q_PROPERTY(QList<Poster> posters READ posters WRITE setPosters)
-    Q_PROPERTY(QList<Poster> backdrops READ backdrops WRITE setBackdrops)
-    Q_PROPERTY(QList<Poster> banners READ banners WRITE setBanners)
-    Q_PROPERTY(QString tvdbId READ tvdbId WRITE setTvdbId)
-    Q_PROPERTY(QString episodeGuideUrl READ episodeGuideUrl WRITE setEpisodeGuideUrl)
 
 public:
     explicit TvShow(QString dir = QString(), QObject *parent = 0);
@@ -107,7 +93,6 @@ public:
     void setId(QString id);
     void setImdbId(QString id);
     void setEpisodeGuideUrl(QString url);
-    void setActors(QList<Actor> actors);
     void addActor(Actor actor);
     void setPosters(QList<Poster> posters);
     void setPoster(int index, Poster poster);

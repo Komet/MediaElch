@@ -114,6 +114,11 @@ public:
     void removeWriter(QString *writer);
     void removeDirector(QString *director);
 
+    QList<Actor> actors() const;
+    QList<Actor*> actorsPointer();
+    void addActor(Actor actor);
+    void removeActor(Actor *actor);
+
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool reloadFromNfo = true);
     void loadData(QString id, TvScraperInterface *tvScraperInterface, QList<int> infosToLoad);
     bool saveData(MediaCenterInterface *mediaCenterInterface);
@@ -167,6 +172,7 @@ private:
     QList<int> m_infosToLoad;
     QList<int> m_imagesToRemove;
     bool m_isDummy;
+    QList<Actor> m_actors;
 };
 
 QDebug operator<<(QDebug dbg, const TvShowEpisode &episode);

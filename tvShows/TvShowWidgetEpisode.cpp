@@ -1,6 +1,8 @@
 #include "TvShowWidgetEpisode.h"
 #include "ui_TvShowWidgetEpisode.h"
 
+#include <QBuffer>
+#include <QFileDialog>
 #include <QGraphicsProxyWidget>
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -36,6 +38,9 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     ui->writers->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
 
+    ui->actors->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->actors->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+
     QFont font = ui->episodeName->font();
     font.setPointSize(font.pointSize()+4);
     ui->episodeName->setFont(font);
@@ -49,6 +54,14 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
 
     font.setBold(true);
     ui->labelThumbnail->setFont(font);
+
+    font = ui->actorResolution->font();
+    #ifdef Q_OS_WIN32
+    font.setPointSize(font.pointSize()-1);
+    #else
+    font.setPointSize(font.pointSize()-2);
+    #endif
+    ui->actorResolution->setFont(font);
 
     ui->directors->setItemDelegate(new ComboDelegate(ui->directors, WidgetTvShows, ComboDelegateDirectors));
     ui->writers->setItemDelegate(new ComboDelegate(ui->writers, WidgetTvShows, ComboDelegateWriters));
@@ -66,6 +79,10 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     connect(m_posterDownloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onPosterDownloadFinished(DownloadManagerElement)));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
     connect(ui->buttonReloadStreamDetails, SIGNAL(clicked()), this, SLOT(onReloadStreamDetails()));
+    connect(ui->buttonAddActor, SIGNAL(clicked()), this, SLOT(onAddActor()));
+    connect(ui->buttonRemoveActor, SIGNAL(clicked()), this, SLOT(onRemoveActor()));
+    connect(ui->actors, SIGNAL(itemSelectionChanged()), this, SLOT(onActorChanged()));
+    connect(ui->actor, SIGNAL(clicked()), this, SLOT(onChangeActorImage()));
 
     onClear();
 
@@ -90,6 +107,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     connect(ui->videoHeight, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
     connect(ui->videoWidth, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
     connect(ui->videoScantype, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->actors, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onActorEdited(QTableWidgetItem*)));
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -243,6 +261,8 @@ void TvShowWidgetEpisode::onClear()
     ui->epBookmark->setTime(QTime(0, 0, 0));
     ui->epBookmark->blockSignals(blocked);
 
+    ui->actors->setRowCount(0);
+
     ui->buttonRevert->setVisible(false);
     ui->mediaFlags->clear();
 }
@@ -336,6 +356,17 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
         ui->directors->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(director));
     }
     ui->writers->blockSignals(false);
+
+    ui->actors->blockSignals(true);
+    foreach (Actor *actor, m_episode->actorsPointer()) {
+        int row = ui->actors->rowCount();
+        ui->actors->insertRow(row);
+        ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
+        ui->actors->setItem(row, 1, new QTableWidgetItem(actor->role));
+        ui->actors->item(row, 0)->setData(Qt::UserRole, actor->thumb);
+        ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(actor));
+    }
+    ui->actors->blockSignals(false);
 
     if (m_episode->tvShow()) {
         QStringList certifications = m_episode->tvShow()->certifications();
@@ -891,5 +922,98 @@ void TvShowWidgetEpisode::onStreamDetailsEdited()
 
     m_episode->setChanged(true);
     ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetEpisode::onActorEdited(QTableWidgetItem *item)
+{
+    Actor *actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor*>();
+    if (item->column() == 0)
+        actor->name = item->text();
+    else if (item->column() == 1)
+        actor->role = item->text();
+    m_episode->setChanged(true);
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetEpisode::onAddActor()
+{
+    Actor a;
+    a.name = tr("Unknown Actor");
+    a.role = tr("Unknown Role");
+    m_episode->addActor(a);
+
+    Actor *actor = m_episode->actorsPointer().last();
+
+    ui->actors->blockSignals(true);
+    int row = ui->actors->rowCount();
+    ui->actors->insertRow(row);
+    ui->actors->setItem(row, 0, new QTableWidgetItem(actor->name));
+    ui->actors->setItem(row, 1, new QTableWidgetItem(actor->role));
+    ui->actors->item(row, 1)->setData(Qt::UserRole, QVariant::fromValue(actor));
+    ui->actors->scrollToBottom();
+    ui->actors->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetEpisode::onRemoveActor()
+{
+    int row = ui->actors->currentRow();
+    if (row < 0 || row >= ui->actors->rowCount() || !ui->actors->currentItem()->isSelected())
+        return;
+
+    Actor *actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor*>();
+    m_episode->removeActor(actor);
+    ui->actors->blockSignals(true);
+    ui->actors->removeRow(row);
+    ui->actors->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetEpisode::onActorChanged()
+{
+    if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount() ||
+        ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
+        ui->actor->setPixmap(QPixmap(":/img/man.png"));
+        ui->actorResolution->setText("");
+        return;
+    }
+
+    Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
+    if (!actor->image.isNull()) {
+        QImage img = QImage::fromData(actor->image);
+        ui->actor->setPixmap(QPixmap::fromImage(img).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->actorResolution->setText(QString("%1 x %2").arg(img.width()).arg(img.height()));
+    } else if (!Manager::instance()->mediaCenterInterface()->actorImageName(m_episode, *actor).isEmpty()) {
+        QPixmap p(Manager::instance()->mediaCenterInterface()->actorImageName(m_episode, *actor));
+        ui->actor->setPixmap(p.scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
+    } else {
+        ui->actor->setPixmap(QPixmap(":/img/man.png"));
+        ui->actorResolution->setText("");
+    }
+}
+
+void TvShowWidgetEpisode::onChangeActorImage()
+{
+    if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount() ||
+        ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
+        return;
+    }
+
+    QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), QDir::homePath(), tr("Images (*.jpg *.jpeg)"));
+    if (!fileName.isNull()) {
+        QImage img(fileName);
+        if (!img.isNull()) {
+            QByteArray ba;
+            QBuffer buffer(&ba);
+            img.save(&buffer, "jpg", 100);
+            Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
+            actor->image = ba;
+            actor->imageHasChanged = true;
+            onActorChanged();
+            m_episode->setChanged(true);
+        }
+        ui->buttonRevert->setVisible(true);
+    }
 }
 

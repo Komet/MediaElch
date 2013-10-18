@@ -68,7 +68,8 @@ void TvShowEpisode::clear()
           << TvShowScraperInfos::Overview
           << TvShowScraperInfos::Network
           << TvShowScraperInfos::FirstAired
-          << TvShowScraperInfos::Thumbnail;
+          << TvShowScraperInfos::Thumbnail
+          << TvShowScraperInfos::Actors;
     clear(infos);
     m_nfoContent.clear();
 }
@@ -94,6 +95,8 @@ void TvShowEpisode::clear(QList<int> infos)
         m_thumbnailImageChanged = false;
         m_imagesToRemove.removeOne(ImageType::TvShowEpisodeThumb);
     }
+    if (infos.contains(TvShowScraperInfos::Actors))
+        m_actors.clear();
 
     m_hasChanged = false;
 }
@@ -919,6 +922,36 @@ void TvShowEpisode::setIsDummy(bool dummy)
 bool TvShowEpisode::isDummy() const
 {
     return m_isDummy;
+}
+
+QList<Actor> TvShowEpisode::actors() const
+{
+    return m_actors;
+}
+
+QList<Actor*> TvShowEpisode::actorsPointer()
+{
+    QList<Actor*> actors;
+    for (int i=0, n=m_actors.size() ; i<n ; i++)
+        actors.append(&(m_actors[i]));
+    return actors;
+}
+
+void TvShowEpisode::addActor(Actor actor)
+{
+    m_actors.append(actor);
+    setChanged(true);
+}
+
+void TvShowEpisode::removeActor(Actor *actor)
+{
+    for (int i=0, n=m_actors.size() ; i<n ; ++i) {
+        if (&m_actors[i] == actor) {
+            m_actors.removeAt(i);
+            break;
+        }
+    }
+    setChanged(true);
 }
 
 bool TvShowEpisode::lessThan(TvShowEpisode *a, TvShowEpisode *b)

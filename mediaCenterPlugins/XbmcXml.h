@@ -41,6 +41,7 @@ public:
 
     QString actorImageName(Movie *movie, Actor actor);
     QString actorImageName(TvShow *show, Actor actor);
+    QString actorImageName(TvShowEpisode *episode, Actor actor);
 
     QString imageFileName(Movie *movie, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString imageFileName(Concert *concert, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);

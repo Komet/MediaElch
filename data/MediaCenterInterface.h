@@ -39,6 +39,7 @@ public:
 
     virtual QString actorImageName(Movie *movie, Actor actor) = 0;
     virtual QString actorImageName(TvShow *show, Actor actor) = 0;
+    virtual QString actorImageName(TvShowEpisode *episode, Actor actor) = 0;
 
     virtual QString nfoFilePath(Movie *movie) = 0;
     virtual QString nfoFilePath(Concert *concert) = 0;

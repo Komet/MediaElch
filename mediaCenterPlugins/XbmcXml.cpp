@@ -792,6 +792,20 @@ QString XbmcXml::actorImageName(TvShow *show, Actor actor)
     return QString();
 }
 
+QString XbmcXml::actorImageName(TvShowEpisode *episode, Actor actor)
+{
+    if (episode->files().isEmpty())
+        return QString();
+    QFileInfo fi(episode->files().at(0));
+    QString actorName = actor.name;
+    actorName = actorName.replace(" ", "_");
+    QString path = fi.absolutePath() + "/" + ".actors" + "/" + actorName + ".jpg";
+    fi.setFile(path);
+    if (fi.isFile())
+        return path;
+    return QString();
+}
+
 /**
  * @brief Loads tv show information
  * @param show Show to load
@@ -999,6 +1013,17 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoConten
         episode->addWriter(episodeDetails.elementsByTagName("credits").at(i).toElement().text());
     for (int i=0, n=episodeDetails.elementsByTagName("director").size() ; i<n ; i++)
         episode->addDirector(episodeDetails.elementsByTagName("director").at(i).toElement().text());
+    for (int i=0, n=domDoc.elementsByTagName("actor").size() ; i<n ; i++) {
+        Actor a;
+        a.imageHasChanged = false;
+        if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("name").isEmpty())
+            a.name = domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("name").at(0).toElement().text();
+        if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("role").isEmpty())
+            a.role = domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("role").at(0).toElement().text();
+        if (!domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("thumb").isEmpty())
+            a.thumb = domDoc.elementsByTagName("actor").at(i).toElement().elementsByTagName("thumb").at(0).toElement().text();
+        episode->addActor(a);
+    }
 
     if (episodeDetails.elementsByTagName("streamdetails").count() > 0) {
         loadStreamDetails(episode->streamDetails(), episodeDetails.elementsByTagName("streamdetails").at(0).toElement());
@@ -1186,6 +1211,17 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
         }
     }
 
+    fi.setFile(episode->files().at(0));
+    foreach (const Actor &actor, episode->actors()) {
+        if (!actor.image.isNull()) {
+            QDir dir;
+            dir.mkdir(fi.absolutePath() + "/" + ".actors");
+            QString actorName = actor.name;
+            actorName = actorName.replace(" ", "_");
+            saveFile(fi.absolutePath() + "/" + ".actors" + "/" + actorName + ".jpg", actor.image);
+        }
+    }
+
     return true;
 }
 
@@ -1306,14 +1342,13 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
     if (!episode->thumbnail().isEmpty())
         xml.writeTextElement("thumb", episode->thumbnail().toString());
 
-    if (episode->tvShow() != 0) {
-        foreach (const Actor &actor, episode->tvShow()->actors()) {
-            xml.writeStartElement("actor");
-            xml.writeTextElement("name", actor.name);
-            xml.writeTextElement("role", actor.role);
+    foreach (const Actor &actor, episode->actors()) {
+        xml.writeStartElement("actor");
+        xml.writeTextElement("name", actor.name);
+        xml.writeTextElement("role", actor.role);
+        if (!actor.thumb.isEmpty())
             xml.writeTextElement("thumb", actor.thumb);
-            xml.writeEndElement();
-        }
+        xml.writeEndElement();
     }
 
     XbmcXml::writeStreamDetails(xml, episode->streamDetails());
