@@ -67,7 +67,8 @@ void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
 
     QMap<QString, Package> packages;
     QMap<QString, Import> imports;
-    foreach (const QString &dir, Settings::instance()->downloadDirectories()) {
+    foreach (SettingsDir settingsDir, Settings::instance()->downloadDirectories()) {
+        QString dir = settingsDir.path;
         dirs << dir;
         QDirIterator it(dir, QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files, QDirIterator::Subdirectories | QDirIterator::FollowSymlinks);
         while (it.hasNext()) {

@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QPointer>
+#include <QTableWidgetItem>
 #include "data/Concert.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
@@ -22,6 +23,7 @@ public:
     explicit Storage(QObject *parent, QList<int> infosToLoad);
     explicit Storage(QObject *parent, ExportTemplate *exportTemplate);
     explicit Storage(QObject *parent, QMap<ScraperInterface*, QString> ids);
+    explicit Storage(QObject *parent, QTableWidgetItem *item);
     Movie *movie();
     Concert *concert();
     TvShow *show();
@@ -30,6 +32,7 @@ public:
     QList<int> infosToLoad();
     ExportTemplate *exportTemplate();
     QMap<ScraperInterface*, QString> ids();
+    QTableWidgetItem *tableWidgetItem();
     static QVariant toVariant(QObject *parent, Movie *movie);
     static QVariant toVariant(QObject *parent, Concert *concert);
     static QVariant toVariant(QObject *parent, TvShow *show);
@@ -38,6 +41,7 @@ public:
     static QVariant toVariant(QObject *parent, QList<int> infosToLoad);
     static QVariant toVariant(QObject *parent, ExportTemplate *exportTemplate);
     static QVariant toVariant(QObject *parent, QMap<ScraperInterface*, QString> ids);
+    static QVariant toVariant(QObject *parent, QTableWidgetItem *item);
 
 private:
     QPointer<Movie> m_movie;
@@ -48,6 +52,7 @@ private:
     QList<int> m_infosToLoad;
     QPointer<ExportTemplate> m_exportTemplate;
     QMap<ScraperInterface*, QString> m_ids;
+    QTableWidgetItem *m_tableWidgetItem;
 };
 
 Q_DECLARE_METATYPE(Storage*)

@@ -18,6 +18,9 @@ public:
     QString formatName(QString name, bool replaceDots = true);
     QString formatParts(QString name);
 
+private slots:
+    void onUpdateExcludeWords();
+
 private:
     QStringList m_exWords;
     static NameFormatter *m_instance;

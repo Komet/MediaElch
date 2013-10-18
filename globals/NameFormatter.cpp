@@ -9,8 +9,8 @@ NameFormatter *NameFormatter::m_instance = 0;
 NameFormatter::NameFormatter(QObject *parent) :
     QObject(parent)
 {
-    m_exWords = Settings::instance()->excludeWords()
-            .remove(" ").split(",", QString::SkipEmptyParts);
+    onUpdateExcludeWords();
+    connect(Settings::instance(), SIGNAL(sigSettingsSaved()), this, SLOT(onUpdateExcludeWords()));
 }
 
 /**
@@ -99,4 +99,10 @@ QString NameFormatter::formatParts(QString name)
     int pos = rx.lastIndexIn(name);
     name = name.left(pos);
     return name;
+}
+
+void NameFormatter::onUpdateExcludeWords()
+{
+    m_exWords = Settings::instance()->excludeWords()
+            .remove(" ").split(",", QString::SkipEmptyParts);
 }

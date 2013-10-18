@@ -159,6 +159,18 @@ void Settings::loadSettings()
     }
     settings()->endArray();
 
+    m_downloadDirectories.clear();
+    int downloadsSize = settings()->beginReadArray("Directories/Downloads");
+    for (int i=0 ; i<downloadsSize ; ++i) {
+        settings()->setArrayIndex(i);
+        SettingsDir dir;
+        dir.path = QDir::toNativeSeparators(settings()->value("path").toString());
+        dir.separateFolders = settings()->value("sepFolders", false).toBool();
+        dir.autoReload = settings()->value("autoReload", false).toBool();
+        m_downloadDirectories.append(dir);
+    }
+    settings()->endArray();
+
     m_excludeWords = settings()->value("excludeWords").toString();
     if (m_excludeWords.isEmpty())
         m_excludeWords = "ac3,dts,custom,dc,divx,divx5,dsr,dsrip,dutch,dvd,dvdrip,dvdscr,dvdscreener,screener,dvdivx,cam,fragment,fs,hdtv,hdrip,hdtvrip,internal,limited,"
@@ -238,7 +250,6 @@ void Settings::loadSettings()
     settings()->endArray();
 
     // Downloads
-    m_downloadDirectories = settings()->value("Downloads/Directories").toStringList();
     m_unrar = settings()->value("Downloads/Unrar").toString();
     m_deleteArchives = settings()->value("Downloads/DeleteArchives", false).toBool();
     m_importDialogSize = settings()->value("Downloads/ImportDialogSize").toSize();
@@ -312,6 +323,15 @@ void Settings::saveSettings()
     }
     settings()->endArray();
 
+    settings()->beginWriteArray("Directories/Downloads");
+    for (int i=0, n=m_downloadDirectories.count() ; i<n ; ++i) {
+        settings()->setArrayIndex(i);
+        settings()->setValue("path", m_downloadDirectories.at(i).path);
+        settings()->setValue("sepFolders", m_downloadDirectories.at(i).separateFolders);
+        settings()->setValue("autoReload", m_downloadDirectories.at(i).autoReload);
+    }
+    settings()->endArray();
+
     settings()->setValue("excludeWords", m_excludeWords);
 
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
@@ -361,7 +381,6 @@ void Settings::saveSettings()
     }
     settings()->endArray();
 
-    settings()->setValue("Downloads/Directories", m_downloadDirectories);
     settings()->setValue("Downloads/Unrar", m_unrar);
     settings()->setValue("Downloads/DeleteArchives", m_deleteArchives);
     settings()->setValue("Downloads/KeepSource", m_keepDownloadSource);
@@ -372,6 +391,8 @@ void Settings::saveSettings()
     settings()->setValue("Movies/MultiScrapeSaveEach", m_multiScrapeSaveEach);
 
     settings()->sync();
+
+    emit sigSettingsSaved();
 }
 
 /**
@@ -1017,12 +1038,12 @@ void Settings::setCurrentMovieScraper(int current)
     settings()->sync();
 }
 
-void Settings::setDownloadDirectories(QStringList dirs)
+void Settings::setDownloadDirectories(QList<SettingsDir> dirs)
 {
     m_downloadDirectories = dirs;
 }
 
-QStringList Settings::downloadDirectories()
+QList<SettingsDir> Settings::downloadDirectories()
 {
     return m_downloadDirectories;
 }

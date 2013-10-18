@@ -48,6 +48,12 @@ Storage::Storage(QObject *parent, QMap<ScraperInterface *, QString> ids) :
     m_ids = ids;
 }
 
+Storage::Storage(QObject *parent, QTableWidgetItem *item) :
+    QObject(parent)
+{
+    m_tableWidgetItem = item;
+}
+
 Movie *Storage::movie()
 {
     if (m_movie)
@@ -80,6 +86,13 @@ ExportTemplate *Storage::exportTemplate()
 {
     if (m_exportTemplate)
         return m_exportTemplate;
+    return 0;
+}
+
+QTableWidgetItem *Storage::tableWidgetItem()
+{
+    if (m_tableWidgetItem)
+        return m_tableWidgetItem;
     return 0;
 }
 
@@ -147,6 +160,14 @@ QVariant Storage::toVariant(QObject *parent, ExportTemplate *exportTemplate)
 QVariant Storage::toVariant(QObject *parent, QMap<ScraperInterface *, QString> ids)
 {
     Storage *storage = new Storage(parent, ids);
+    QVariant var;
+    var.setValue(storage);
+    return var;
+}
+
+QVariant Storage::toVariant(QObject *parent, QTableWidgetItem *item)
+{
+    Storage *storage = new Storage(parent, item);
     QVariant var;
     var.setValue(storage);
     return var;

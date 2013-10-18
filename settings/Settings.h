@@ -35,7 +35,7 @@ public:
     QList<SettingsDir> movieDirectories();
     QList<SettingsDir> tvShowDirectories();
     QList<SettingsDir> concertDirectories();
-    QStringList downloadDirectories();
+    QList<SettingsDir> downloadDirectories();
     QString unrar();
     bool deleteArchives();
     QString excludeWords();
@@ -88,7 +88,7 @@ public:
     void setMovieDirectories(QList<SettingsDir> dirs);
     void setTvShowDirectories(QList<SettingsDir> dirs);
     void setConcertDirectories(QList<SettingsDir> dirs);
-    void setDownloadDirectories(QStringList dirs);
+    void setDownloadDirectories(QList<SettingsDir> dirs);
     void setUnrar(QString unrar);
     void setDeleteArchives(bool deleteArchives);
     void setExcludeWords(QString words);
@@ -130,6 +130,9 @@ public:
 public slots:
     void saveSettings();
 
+signals:
+    void sigSettingsSaved();
+
 private:
     QSettings *m_settings;
     AdvancedSettings *m_advancedSettings;
@@ -137,7 +140,7 @@ private:
     QList<SettingsDir> m_movieDirectories;
     QList<SettingsDir> m_tvShowDirectories;
     QList<SettingsDir> m_concertDirectories;
-    QStringList m_downloadDirectories;
+    QList<SettingsDir> m_downloadDirectories;
     QString m_unrar;
     bool m_deleteArchives;
     QString m_excludeWords;

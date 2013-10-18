@@ -141,7 +141,7 @@ struct SettingsDir {
 };
 
 enum SettingsDirType {
-    DirTypeMovies, DirTypeTvShows, DirTypeConcerts
+    DirTypeMovies, DirTypeTvShows, DirTypeConcerts, DirTypeDownloads
 };
 
 enum ComboDelegateType {

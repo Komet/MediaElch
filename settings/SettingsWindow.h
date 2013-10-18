@@ -48,10 +48,8 @@ private slots:
     void onTemplatesLoaded(QList<ExportTemplate*> templates);
     void onTemplateInstalled(ExportTemplate *exportTemplate, bool success);
     void onTemplateUninstalled(ExportTemplate *exportTemplate, bool success);
-    void addDownloadDir();
-    void removeDownloadDir();
-    void downloadDirListRowChanged(int currentRow);
     void onChooseUnrar();
+    void onDirTypeChanged(QComboBox *comboBox = 0);
 
 private:
     Ui::SettingsWindow *ui;
