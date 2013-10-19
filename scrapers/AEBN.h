@@ -1,21 +1,17 @@
-#ifndef VIDEOBUSTER_H
-#define VIDEOBUSTER_H
+#ifndef AEBN_H
+#define AEBN_H
 
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
+#include <QComboBox>
+#include <QNetworkAccessManager>
 #include <QObject>
 #include <QWidget>
-
 #include "data/ScraperInterface.h"
 
-/**
- * @brief The VideoBuster class
- */
-class VideoBuster : public ScraperInterface
+class AEBN : public ScraperInterface
 {
     Q_OBJECT
 public:
-    explicit VideoBuster(QObject *parent = 0);
+    explicit AEBN(QObject *parent = 0);
     QString name();
     QString identifier();
     void search(QString searchStr);
@@ -32,18 +28,22 @@ signals:
     void searchDone(QList<ScraperSearchResult>);
 
 private slots:
-    void searchFinished();
-    void loadFinished();
-    void backdropFinished();
+    void onSearchFinished();
+    void onLoadFinished();
+    void onActorLoadFinished();
 
 private:
     QNetworkAccessManager m_qnam;
     QList<int> m_scraperSupports;
+    QString m_language;
+    QWidget *m_widget;
+    QComboBox *m_box;
 
     QNetworkAccessManager *qnam();
     QList<ScraperSearchResult> parseSearch(QString html);
-    void parseAndAssignInfos(QString html, Movie *movie, QList<int> infos);
-    QString replaceEntities(const QString msg);
+    void parseAndAssignInfos(QString html, Movie *movie, QList<int> infos, QStringList &actorIds);
+    void downloadActors(Movie *movie, QStringList actorIds);
+    void parseAndAssignActor(QString html, Movie *movie, QString id);
 };
 
-#endif // VIDEOBUSTER_H
+#endif // AEBN_H

@@ -40,6 +40,11 @@ QString Cinefacts::identifier()
     return QString("cinefacts");
 }
 
+bool Cinefacts::isAdult()
+{
+    return false;
+}
+
 /**
  * @brief Returns if the scraper has settings
  * @return Scraper has settings

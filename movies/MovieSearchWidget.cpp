@@ -17,11 +17,9 @@ MovieSearchWidget::MovieSearchWidget(QWidget *parent) :
 #endif
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
-    foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
-        ui->comboScraper->addItem(scraper->name(), scraper->identifier());
+    foreach (ScraperInterface *scraper, Manager::instance()->scrapers())
         connect(scraper, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(showResults(QList<ScraperSearchResult>)));
-    }
-    ui->comboScraper->setCurrentIndex(Settings::instance()->currentMovieScraper());
+    setupScrapers();
 
     connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(onUpdateSearchString()), Qt::QueuedConnection);
     connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(search()), Qt::QueuedConnection);
@@ -51,6 +49,7 @@ MovieSearchWidget::MovieSearchWidget(QWidget *parent) :
     ui->chkCdArt->setMyData(MovieScraperInfos::CdArt);
     ui->chkBanner->setMyData(MovieScraperInfos::Banner);
     ui->chkThumb->setMyData(MovieScraperInfos::Thumb);
+    ui->chkTags->setMyData(MovieScraperInfos::Tags);
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0)
@@ -71,8 +70,25 @@ void MovieSearchWidget::clear()
     ui->results->setRowCount(0);
 }
 
+void MovieSearchWidget::setupScrapers()
+{
+    ui->comboScraper->blockSignals(true);
+    ui->comboScraper->clear();
+    foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
+        if (!Settings::instance()->showAdultScrapers() && scraper->isAdult())
+            continue;
+        if (scraper->isAdult())
+            ui->comboScraper->addItem(QIcon(":/img/heart_red_open.png"), scraper->name(), scraper->identifier());
+        else
+            ui->comboScraper->addItem(scraper->name(), scraper->identifier());
+    }
+    ui->comboScraper->setCurrentIndex((Settings::instance()->currentMovieScraper() < ui->comboScraper->count()) ? Settings::instance()->currentMovieScraper() : 0);
+    ui->comboScraper->blockSignals(false);
+}
+
 void MovieSearchWidget::search(QString searchString, QString id, QString tmdbId)
 {
+    setupScrapers();
     m_searchString = searchString.replace(".", " ");
     m_id = id;
     m_tmdbId = tmdbId;
@@ -132,7 +148,11 @@ void MovieSearchWidget::showResults(QList<ScraperSearchResult> results)
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
     foreach (const ScraperSearchResult &result, results) {
-        QTableWidgetItem *item = new QTableWidgetItem(QString("%1 (%2)").arg(result.name).arg(result.released.toString("yyyy")));
+        QTableWidgetItem *item;
+        if (!result.released.isNull())
+            item = new QTableWidgetItem(QString("%1 (%2)").arg(result.name).arg(result.released.toString("yyyy")));
+        else
+            item = new QTableWidgetItem(QString("%1").arg(result.name));
         item->setData(Qt::UserRole, result.id);
         int row = ui->results->rowCount();
         ui->results->insertRow(row);

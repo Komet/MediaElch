@@ -26,6 +26,14 @@
    <bool>true</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">#scrapersScrollContents {
+	background-color: transparent;
+}
+#scrapersScrollArea {
+	background-color: transparent;
+}</string>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="SlidingStackedWidget" name="stackedWidget">
@@ -287,20 +295,65 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_10">
             <item>
-             <layout class="QGridLayout" name="gridLayoutScrapers"/>
+             <widget class="QCheckBox" name="chkEnableAdultScrapers">
+              <property name="text">
+               <string>Enable adult movie scrapers</string>
+              </property>
+             </widget>
             </item>
             <item>
-             <spacer name="verticalSpacer">
+             <widget class="Line" name="line">
+              <property name="styleSheet">
+               <string notr="true">color: rgba(0, 0, 0, 50);</string>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Plain</enum>
+              </property>
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>529</height>
-               </size>
+             </widget>
+            </item>
+            <item>
+             <widget class="QScrollArea" name="scrapersScrollArea">
+              <property name="frameShape">
+               <enum>QFrame::NoFrame</enum>
               </property>
-             </spacer>
+              <property name="widgetResizable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="scrapersScrollContents">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>779</width>
+                 <height>431</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_12">
+                <property name="margin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <layout class="QGridLayout" name="gridLayoutScrapers"/>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>529</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </widget>
+             </widget>
             </item>
            </layout>
           </widget>

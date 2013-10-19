@@ -39,6 +39,11 @@ QString IMDB::identifier()
     return QString("imdb");
 }
 
+bool IMDB::isAdult()
+{
+    return false;
+}
+
 bool IMDB::hasSettings()
 {
     return false;

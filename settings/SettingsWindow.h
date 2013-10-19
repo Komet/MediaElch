@@ -50,13 +50,12 @@ private slots:
     void onTemplateUninstalled(ExportTemplate *exportTemplate, bool success);
     void onChooseUnrar();
     void onDirTypeChanged(QComboBox *comboBox = 0);
+    void onShowAdultScrapers();
 
 private:
     Ui::SettingsWindow *ui;
     Settings *m_settings;
-    QMap<ScraperInterface*, QComboBox*> m_scraperCombos;
-    QMap<TvScraperInterface*, QComboBox*> m_tvScraperCombos;
-    QMap<ConcertScraperInterface*, QComboBox*> m_concertScraperCombos;
+    QMap<ScraperInterface*, int> m_scraperRows;
 
     void loadSettings();
     void saveSettings();

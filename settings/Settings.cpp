@@ -100,6 +100,7 @@ void Settings::loadSettings()
     m_downloadActorImages = settings()->value("DownloadActorImages", true).toBool();
     m_ignoreArticlesWhenSorting = settings()->value("IgnoreArticlesWhenSorting", false).toBool();
     m_checkForUpdates = settings()->value("CheckForUpdates", true).toBool();
+    m_showAdultScrapers = settings()->value("Scrapers/ShowAdult", false).toBool();
 
     // XBMC
     m_xbmcHost = settings()->value("XBMC/RemoteHost").toString();
@@ -277,6 +278,7 @@ void Settings::saveSettings()
     settings()->setValue("DownloadActorImages", m_downloadActorImages);
     settings()->setValue("IgnoreArticlesWhenSorting", m_ignoreArticlesWhenSorting);
     settings()->setValue("CheckForUpdates", m_checkForUpdates);
+    settings()->setValue("Scrapers/ShowAdult", m_showAdultScrapers);
 
     // XBMC
     settings()->setValue("XBMC/RemoteHost", m_xbmcHost);
@@ -1146,4 +1148,14 @@ QString Settings::exportTemplatesDir()
     else
         return QDesktopServices::storageLocation(QDesktopServices::DataLocation) + QDir::separator() + "export_themes";
 
+}
+
+void Settings::setShowAdultScrapers(bool show)
+{
+    m_showAdultScrapers = show;
+}
+
+bool Settings::showAdultScrapers() const
+{
+    return m_showAdultScrapers;
 }

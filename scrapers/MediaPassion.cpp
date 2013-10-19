@@ -142,6 +142,11 @@ QString MediaPassion::identifier()
     return QString("media-passion");
 }
 
+bool MediaPassion::isAdult()
+{
+    return false;
+}
+
 QNetworkAccessManager *MediaPassion::qnam()
 {
     return &m_qnam;

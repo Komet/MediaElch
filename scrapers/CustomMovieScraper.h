@@ -25,6 +25,7 @@ public:
     QList<ScraperInterface*> scrapersNeedSearch(QList<int> infos, QMap<ScraperInterface *, QString> alreadyLoadedIds);
     ScraperInterface *titleScraper();
     QWidget *settingsWidget();
+    bool isAdult();
 
 private slots:
     void onTitleSearchDone(QList<ScraperSearchResult> results);

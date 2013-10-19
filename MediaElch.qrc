@@ -72,6 +72,7 @@
         <file>img/stop_white.png</file>
         <file>img/trash_white.png</file>
         <file>img/missing.png</file>
+        <file>img/heart_red_open.png</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>

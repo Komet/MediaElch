@@ -74,6 +74,7 @@ public:
     QString databaseDir();
     QString imageCacheDir();
     QString exportTemplatesDir();
+    bool showAdultScrapers() const;
 
     bool autoLoadStreamDetails();
 
@@ -124,6 +125,7 @@ public:
     void setShowMissingEpisodesHint(bool show);
     void setMultiScrapeOnlyWithId(bool onlyWithId);
     void setMultiScrapeSaveEach(bool saveEach);
+    void setShowAdultScrapers(bool show);
 
     static QString applicationDir();
 
@@ -181,6 +183,7 @@ private:
     bool m_showMissingEpisodesHint;
     bool m_multiScrapeOnlyWithId;
     bool m_multiScrapeSaveEach;
+    bool m_showAdultScrapers;
 
     void setupProxy();
 };

@@ -25,6 +25,7 @@ public:
     QList<int> scraperSupports();
     QList<int> scraperNativelySupports();
     QWidget *settingsWidget();
+    bool isAdult();
 
 signals:
     void searchDone(QList<ScraperSearchResult>);

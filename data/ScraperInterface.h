@@ -26,6 +26,7 @@ public:
     virtual QList<int> scraperSupports() = 0;
     virtual QList<int> scraperNativelySupports() = 0;
     virtual QWidget *settingsWidget() = 0;
+    virtual bool isAdult() = 0;
 signals:
     virtual void searchDone(QList<ScraperSearchResult>) = 0;
 };

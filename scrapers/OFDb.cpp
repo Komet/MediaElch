@@ -39,6 +39,11 @@ QString OFDb::identifier()
     return QString("ofdb");
 }
 
+bool OFDb::isAdult()
+{
+    return false;
+}
+
 /**
  * @brief Returns if the scraper has settings
  * @return Scraper has settings

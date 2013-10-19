@@ -50,6 +50,7 @@ private:
 
     void clear();
     void setChkBoxesEnabled(QList<int> scraperSupports);
+    void setupScrapers();
 };
 
 #endif // MOVIESEARCHWIDGET_H

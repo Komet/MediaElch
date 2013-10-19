@@ -30,6 +30,7 @@ public:
     QWidget *settingsWidget();
     static QList<ScraperSearchResult> parseSearch(QString json, int *nextPage);
     static QString apiKey();
+    bool isAdult();
 
 signals:
     void searchDone(QList<ScraperSearchResult>);

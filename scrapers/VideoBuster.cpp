@@ -50,6 +50,11 @@ QString VideoBuster::identifier()
     return QString("videobuster");
 }
 
+bool VideoBuster::isAdult()
+{
+    return false;
+}
+
 /**
  * @brief Returns a list of infos available from the scraper
  * @return List of supported infos

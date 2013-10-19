@@ -125,6 +125,11 @@ QString TMDb::identifier()
     return QString("tmdb");
 }
 
+bool TMDb::isAdult()
+{
+    return false;
+}
+
 /**
  * @brief Returns if the scraper has settings
  * @return Scraper has settings

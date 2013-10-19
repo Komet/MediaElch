@@ -1086,6 +1086,8 @@ void Movie::addStudio(QString studio)
 
 void Movie::addTag(QString tag)
 {
+    if (m_tags.contains(tag))
+        return;
     m_tags.append(tag);
     setChanged(true);
 }

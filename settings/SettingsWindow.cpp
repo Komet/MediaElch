@@ -58,6 +58,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
             name->setStyleSheet("margin-top: 3px;");
             ui->gridLayoutScrapers->addWidget(name, scraperCounter, 0);
             ui->gridLayoutScrapers->addWidget(scraper->settingsWidget(), scraperCounter, 1);
+            m_scraperRows.insert(scraper, scraperCounter);
             scraperCounter++;
         }
     }
@@ -109,6 +110,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     connect(ExportTemplateLoader::instance(this), SIGNAL(sigTemplateInstalled(ExportTemplate*,bool)), this, SLOT(onTemplateInstalled(ExportTemplate*,bool)));
     connect(ExportTemplateLoader::instance(this), SIGNAL(sigTemplateUninstalled(ExportTemplate*,bool)), this, SLOT(onTemplateUninstalled(ExportTemplate*,bool)));
     connect(ui->btnChooseUnrar, SIGNAL(clicked()), this, SLOT(onChooseUnrar()));
+    connect(ui->chkEnableAdultScrapers, SIGNAL(clicked()), this, SLOT(onShowAdultScrapers()));
 
     ui->movieNfo->setProperty("dataFileType", DataFileType::MovieNfo);
     ui->moviePoster->setProperty("dataFileType", DataFileType::MoviePoster);
@@ -221,6 +223,8 @@ void SettingsWindow::loadSettings()
     ui->chkDownloadActorImages->setChecked(m_settings->downloadActorImages());
     ui->chkIgnoreArticlesWhenSorting->setChecked(m_settings->ignoreArticlesWhenSorting());
     ui->chkCheckForUpdates->setChecked(m_settings->checkForUpdates());
+    ui->chkEnableAdultScrapers->setChecked(m_settings->showAdultScrapers());
+    onShowAdultScrapers();
 
     // Directories
     ui->dirs->setRowCount(0);
@@ -318,6 +322,7 @@ void SettingsWindow::saveSettings()
     m_settings->setDownloadActorImages(ui->chkDownloadActorImages->isChecked());
     m_settings->setIgnoreArticlesWhenSorting(ui->chkIgnoreArticlesWhenSorting->isChecked());
     m_settings->setCheckForUpdates(ui->chkCheckForUpdates->isChecked());
+    m_settings->setShowAdultScrapers(ui->chkEnableAdultScrapers->isChecked());
 
     m_settings->setXbmcHost(ui->xbmcHost->text());
     m_settings->setXbmcPort(ui->xbmcPort->text().toInt());
@@ -704,5 +709,16 @@ void SettingsWindow::onDirTypeChanged(QComboBox *comboBox)
         itemCheck->setCheckState(Qt::Unchecked);
         itemCheckReload->setFlags(Qt::NoItemFlags);
         itemCheckReload->setCheckState(Qt::Unchecked);
+    }
+}
+
+void SettingsWindow::onShowAdultScrapers()
+{
+    bool show = ui->chkEnableAdultScrapers->isChecked();
+    foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
+        if (scraper->isAdult()) {
+            ui->gridLayoutScrapers->itemAtPosition(m_scraperRows.value(scraper), 0)->widget()->setVisible(show);
+            ui->gridLayoutScrapers->itemAtPosition(m_scraperRows.value(scraper), 1)->widget()->setVisible(show);
+        }
     }
 }

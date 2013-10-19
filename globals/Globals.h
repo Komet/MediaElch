@@ -79,6 +79,7 @@ struct Actor {
     QString thumb;
     QByteArray image;
     bool imageHasChanged;
+    QString id;
 };
 Q_DECLARE_METATYPE(Actor*)
 Q_DECLARE_METATYPE(QString*)

@@ -57,7 +57,7 @@ void MyTableView::mouseMoveEvent(QMouseEvent *event)
 
 void MyTableView::keyPressEvent(QKeyEvent *keyEvent)
 {
-    if (!m_useSearchOverlay || (keyEvent->text().isEmpty() && keyEvent->key() != Qt::Key_Backspace)) {
+    if (!m_useSearchOverlay || keyEvent->key() == Qt::Key_Escape || (keyEvent->text().isEmpty() && keyEvent->key() != Qt::Key_Backspace)) {
         QTableView::keyPressEvent(keyEvent);
         return;
     }

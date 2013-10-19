@@ -37,6 +37,11 @@ QString CustomMovieScraper::identifier()
     return QString("custom-movie");
 }
 
+bool CustomMovieScraper::isAdult()
+{
+    return false;
+}
+
 void CustomMovieScraper::search(QString searchStr)
 {
     ScraperInterface *scraper = scraperForInfo(MovieScraperInfos::Title);
