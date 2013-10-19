@@ -187,8 +187,11 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
     }
 
     rx.setPattern("var descfullcontent = \"([^\"]*)\"");
-    if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         movie->setOverview(QString::fromUtf8(QByteArray::fromPercentEncoding(rx.cap(1).toUtf8())));
+        if (Settings::instance()->usePlotForOutline())
+            movie->setOutline(QString::fromUtf8(QByteArray::fromPercentEncoding(rx.cap(1).toUtf8())));
+    }
 
     rx.setPattern("<img alt=\"[^\"]*\" id=\"cover\" src=\"([^\"]*)\"");
     if (infos.contains(MovieScraperInfos::Poster) && rx.indexIn(html) != -1) {

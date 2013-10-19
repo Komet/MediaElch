@@ -178,8 +178,11 @@ void AEBN::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos, QSt
         movie->setReleased(QDate::fromString(rx.cap(1), "yyyy"));
 
     rx.setPattern("<span itemprop=\"about\">(.*)</span>");
-    if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1)
+    if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         movie->setOverview(rx.cap(1));
+        if (Settings::instance()->usePlotForOutline())
+            movie->setOutline(rx.cap(1));
+    }
 
     rx.setPattern("<div id=\"md-boxCover\"><a href=\"([^\"]*)\" target=\"_blank\" onclick=\"([^\"]*)\"><img itemprop=\"thumbnailUrl\" src=\"([^\"]*)\" alt=\"([^\"]*)\" name=\"boxImage\" id=\"boxImage\" /></a>");
     if (infos.contains(MovieScraperInfos::Poster) && rx.indexIn(html) != -1) {
