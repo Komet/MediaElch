@@ -20,7 +20,6 @@ AEBN::AEBN(QObject *parent)
     m_box->addItem(tr("Danish"), "da");
     m_box->addItem(tr("Dutch"), "nl");
     m_box->addItem(tr("English"), "en");
-    m_box->addItem(tr("English (US)"), "en_US");
     m_box->addItem(tr("Finnish"), "fi");
     m_box->addItem(tr("French"), "fr");
     m_box->addItem(tr("German"), "de");

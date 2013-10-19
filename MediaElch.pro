@@ -161,7 +161,8 @@ SOURCES += main.cpp\
     notifications/Notificator.cpp \
     main/Update.cpp \
     tvShows/TvShowUpdater.cpp \
-    scrapers/AEBN.cpp
+    scrapers/AEBN.cpp \
+    scrapers/HotMovies.cpp
 
 macx {
     OBJECTIVE_SOURCES += mac/MacFullscreen.mm
@@ -301,7 +302,8 @@ HEADERS  += main/MainWindow.h \
     notifications/MacNotificationHandler.h \
     main/Update.h \
     tvShows/TvShowUpdater.h \
-    scrapers/AEBN.h
+    scrapers/AEBN.h \
+    scrapers/HotMovies.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
