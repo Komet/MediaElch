@@ -10,6 +10,7 @@
 #include "imageProviders/TMDbImages.h"
 #include "imageProviders/TheTvDbImages.h"
 #include "mediaCenterPlugins/XbmcXml.h"
+#include "scrapers/AdultDvdEmpire.h"
 #include "scrapers/AEBN.h"
 #include "scrapers/Cinefacts.h"
 #include "scrapers/CustomMovieScraper.h"
@@ -35,6 +36,7 @@ Manager::Manager(QObject *parent) :
     m_scrapers.append(CustomMovieScraper::instance(this));
     m_scrapers.append(new AEBN(parent));
     m_scrapers.append(new HotMovies(parent));
+    m_scrapers.append(new AdultDvdEmpire(parent));
     m_tvScrapers.append(new TheTvDb(this));
     m_concertScrapers.append(new TMDbConcerts(this));
     m_movieFileSearcher = new MovieFileSearcher(this);

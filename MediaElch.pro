@@ -162,7 +162,8 @@ SOURCES += main.cpp\
     main/Update.cpp \
     tvShows/TvShowUpdater.cpp \
     scrapers/AEBN.cpp \
-    scrapers/HotMovies.cpp
+    scrapers/HotMovies.cpp \
+    scrapers/AdultDvdEmpire.cpp
 
 macx {
     OBJECTIVE_SOURCES += mac/MacFullscreen.mm
@@ -303,7 +304,8 @@ HEADERS  += main/MainWindow.h \
     main/Update.h \
     tvShows/TvShowUpdater.h \
     scrapers/AEBN.h \
-    scrapers/HotMovies.h
+    scrapers/HotMovies.h \
+    scrapers/AdultDvdEmpire.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
