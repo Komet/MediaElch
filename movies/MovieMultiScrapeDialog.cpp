@@ -50,6 +50,7 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget *parent) :
     ui->chkCdArt->setMyData(MovieScraperInfos::CdArt);
     ui->chkBanner->setMyData(MovieScraperInfos::Banner);
     ui->chkThumb->setMyData(MovieScraperInfos::Thumb);
+    ui->chkTags->setMyData(MovieScraperInfos::Tags);
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0)
