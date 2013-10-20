@@ -272,7 +272,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
             <item>
              <widget class="QPushButton" name="btnChooseUnrar">
               <property name="text">
-               <string>PushButton</string>
+               <string>Choose</string>
               </property>
              </widget>
             </item>
@@ -327,8 +327,8 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>779</width>
-                 <height>431</height>
+                 <width>100</width>
+                 <height>30</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_12">
