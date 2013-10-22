@@ -1,132 +1,130 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="pl">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="pl" version="2.0">
 <context>
     <name>AEBN</name>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="16"/>
         <source>Bulgarian</source>
-        <translation type="unfinished">Bułgarski</translation>
+        <translation>Bułgarski</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="17"/>
         <source>Chinese</source>
-        <translation type="unfinished">Chiński</translation>
+        <translation>Chiński</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="18"/>
         <source>Croatian</source>
-        <translation type="unfinished">Chorwacki</translation>
+        <translation>Chorwacki</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="19"/>
         <source>Czech</source>
-        <translation type="unfinished">Czeski</translation>
+        <translation>Czeski</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="20"/>
         <source>Danish</source>
-        <translation type="unfinished">Duński</translation>
+        <translation>Duński</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="21"/>
         <source>Dutch</source>
-        <translation type="unfinished">Holenderski</translation>
+        <translation>Holenderski</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="22"/>
         <source>English</source>
-        <translation type="unfinished">Angielski</translation>
+        <translation>Angielski</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="23"/>
         <source>Finnish</source>
-        <translation type="unfinished">Fiński</translation>
+        <translation>Fiński</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="24"/>
         <source>French</source>
-        <translation type="unfinished">Francuski</translation>
+        <translation>Francuski</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="25"/>
         <source>German</source>
-        <translation type="unfinished">Niemiecki</translation>
+        <translation>Niemiecki</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="26"/>
         <source>Greek</source>
-        <translation type="unfinished">Grecki</translation>
+        <translation>Grecki</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="27"/>
         <source>Hebrew</source>
-        <translation type="unfinished">Hebrajski</translation>
+        <translation>Hebrajski</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="28"/>
         <source>Hungarian</source>
-        <translation type="unfinished">Węgierski</translation>
+        <translation>Węgierski</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="29"/>
         <source>Italian</source>
-        <translation type="unfinished">Włoski</translation>
+        <translation>Włoski</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="30"/>
         <source>Japanese</source>
-        <translation type="unfinished">Japoński</translation>
+        <translation>Japoński</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="31"/>
         <source>Korean</source>
-        <translation type="unfinished">Koreański</translation>
+        <translation>Koreański</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="32"/>
         <source>Norwegian</source>
-        <translation type="unfinished">Norweski</translation>
+        <translation>Norweski</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="33"/>
         <source>Polish</source>
-        <translation type="unfinished">Polski</translation>
+        <translation>Polski</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="34"/>
         <source>Portuguese</source>
-        <translation type="unfinished">Portugalski</translation>
+        <translation>Portugalski</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="35"/>
         <source>Russian</source>
-        <translation type="unfinished">Rosyjski</translation>
+        <translation>Rosyjski</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="36"/>
         <source>Slovene</source>
-        <translation type="unfinished">Słoweński</translation>
+        <translation>Słoweński</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="37"/>
         <source>Spanish</source>
-        <translation type="unfinished">Hiszpański</translation>
+        <translation>Hiszpański</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="38"/>
         <source>Swedish</source>
-        <translation type="unfinished">Szwedzki</translation>
+        <translation>Szwedzki</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="39"/>
         <source>Turkish</source>
-        <translation type="unfinished">Turecki</translation>
+        <translation>Turecki</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="41"/>
         <source>Language</source>
-        <translation type="unfinished">Język</translation>
+        <translation>Język</translation>
     </message>
 </context>
 <context>
@@ -169,7 +167,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="186"/>
         <source>Your Collection</source>
-        <translation>Twoja Biblioteka Mediów</translation>
+        <translation>Twoja Biblioteka</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="195"/>
@@ -240,7 +238,8 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="239"/>
         <source>Double click a certification to rename it, right click to delete. If you want to merge two certifications just give them the same name.</source>
-        <translation>Kliknij dwa razy na kategorię wiekową, aby ją zmienić, prawym przyciskiem, aby usunąć. Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą nazwę.</translation>
+        <translation>Kliknij dwa razy na kategorię wiekową, aby ją zmienić, prawym przyciskiem, aby usunąć.
+Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą nazwę.</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="249"/>
@@ -324,7 +323,7 @@
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="46"/>
         <source>Load Stream Details</source>
-        <translation>Wczytaj metadane strumieni</translation>
+        <translation>Wczytaj metadane strumienia</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="47"/>
@@ -360,92 +359,92 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Formatka</translation>
+        <translation>Formatka</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="25"/>
         <source>Scraper</source>
-        <translation type="unfinished">Ekstraktor</translation>
+        <translation>Ekstraktor</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="86"/>
         <source>Result</source>
-        <translation type="unfinished"></translation>
+        <translation>Wynik</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="113"/>
         <source>Infos to load</source>
-        <translation type="unfinished">Informacje do wczytania</translation>
+        <translation>Informacje do wczytania</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="136"/>
         <source>Title</source>
-        <translation type="unfinished">Tytuł</translation>
+        <translation>Tytuł</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="143"/>
         <source>Tagline</source>
-        <translation type="unfinished">Motto</translation>
+        <translation>Motto</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="150"/>
         <source>Rating</source>
-        <translation type="unfinished">Ocena</translation>
+        <translation>Ocena</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="157"/>
         <source>Released</source>
-        <translation type="unfinished">Premiera</translation>
+        <translation>Premeria</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="164"/>
         <source>Runtime</source>
-        <translation type="unfinished">Czas trwania</translation>
+        <translation>Czas trwania</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="171"/>
         <source>Certification</source>
-        <translation type="unfinished">Kategoria wiekowa</translation>
+        <translation>Kategoria wiekowa</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="178"/>
         <source>Trailer</source>
-        <translation type="unfinished">Zwiastun</translation>
+        <translation>Zwiastun</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="185"/>
         <source>Overview</source>
-        <translation type="unfinished">Opis</translation>
+        <translation>Opis</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="192"/>
         <source>Poster</source>
-        <translation type="unfinished">Plakat</translation>
+        <translation>Plakat</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="199"/>
         <source>Backdrop</source>
-        <translation type="unfinished"></translation>
+        <translation>Fangraf</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="206"/>
         <source>Genres</source>
-        <translation type="unfinished">Gatunki</translation>
+        <translation>Gatunki</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="213"/>
         <source>Logo, Clear Art, CD Art</source>
-        <translation type="unfinished"></translation>
+        <translation>Logo, Clear Art, CD Art</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="216"/>
         <source>Artwork</source>
-        <translation type="unfinished">Grafika</translation>
+        <translation>Grafika</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="230"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished">O(d)znacz wszystko</translation>
+        <translation>O(d)znacz wszystko</translation>
     </message>
 </context>
 <context>
@@ -538,7 +537,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="271"/>
         <source>Overview</source>
-        <translation>Opis</translation>
+        <translation>Przegląd</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="304"/>
@@ -553,7 +552,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="357"/>
         <source>Extended</source>
-        <translation>Dodatkowe</translation>
+        <translation>Rozszerzone</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="383"/>
@@ -573,7 +572,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="438"/>
         <source>Streamdetails</source>
-        <translation>Metadane strumieni</translation>
+        <translation>Metadane strumienia</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="446"/>
@@ -625,7 +624,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="607"/>
         <source>Reload from File</source>
-        <translation>Odśwież</translation>
+        <translation>Odśwież z pliku</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="791"/>
@@ -748,45 +747,41 @@
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Formatka</translation>
+        <translation>Formatka</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="74"/>
         <source>Archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Archiwa</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="115"/>
         <location filename="../downloads/DownloadsWidget.ui" line="210"/>
         <source>Name</source>
-        <translation type="unfinished">Tytuł</translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="120"/>
         <location filename="../downloads/DownloadsWidget.ui" line="215"/>
         <source>Files</source>
-        <translation type="unfinished">Pliki</translation>
+        <translation>Pliki</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="125"/>
         <location filename="../downloads/DownloadsWidget.ui" line="220"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozmiar</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="169"/>
         <source>Importable items</source>
-        <translation type="unfinished"></translation>
+        <translation>Elementy do zaimportowania</translation>
     </message>
     <message numerus="yes">
         <location filename="../downloads/DownloadsWidget.cpp" line="194"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="316"/>
         <source>%n file(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation><numerusform>%n plik</numerusform><numerusform>%n plików</numerusform><numerusform>%n plik(i)</numerusform></translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="260"/>
@@ -794,44 +789,44 @@
         <location filename="../downloads/DownloadsWidget.cpp" line="264"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="276"/>
         <source>Extraction failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozpakowywanie zakończone niepowodzeniem</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="260"/>
         <source>Exctraction of %1 has failed: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Ekstrakcja %1 zakończyła się niepowodzeniem: %2</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="262"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="264"/>
         <source>Extraction of %1 has failed: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozpakowywanie %1 zakończyło się niepowodzeniem: %2</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="274"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="285"/>
         <source>Extraction finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozpakowywanie zakończone</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="285"/>
         <source>Extraction of %1 finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozpakowywanie %1 zakończone</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="325"/>
         <source>Movie</source>
-        <translation type="unfinished">Film</translation>
+        <translation>Film</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="326"/>
         <source>TV Show</source>
-        <translation type="unfinished"></translation>
+        <translation>Serial</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="327"/>
         <source>Concert</source>
-        <translation type="unfinished"></translation>
+        <translation>Koncert</translation>
     </message>
 </context>
 <context>
@@ -860,7 +855,7 @@
     <message>
         <location filename="../export/ExportDialog.ui" line="61"/>
         <source>Items to export</source>
-        <translation>Pozycje do wyeksportowania</translation>
+        <translation>Elementy do wyeksportowania</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="68"/>
@@ -982,12 +977,12 @@
     <message>
         <location filename="../downloads/Extractor.cpp" line="28"/>
         <source>No files to extract</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak plików do ekstrakcji</translation>
     </message>
     <message>
         <location filename="../downloads/Extractor.cpp" line="38"/>
         <source>Unrar not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Program unrar nie został odnaleziony</translation>
     </message>
 </context>
 <context>
@@ -995,147 +990,147 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="26"/>
         <source>Bulgarian</source>
-        <translation type="unfinished">Bułgarski</translation>
+        <translation>Bułgarski</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="27"/>
         <source>Chinese</source>
-        <translation type="unfinished">Chiński</translation>
+        <translation>Chiński</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="28"/>
         <source>Croatian</source>
-        <translation type="unfinished">Chorwacki</translation>
+        <translation>Chorwacki</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="29"/>
         <source>Czech</source>
-        <translation type="unfinished">Czeski</translation>
+        <translation>Czeski</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="30"/>
         <source>Danish</source>
-        <translation type="unfinished">Duński</translation>
+        <translation>Duński</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="31"/>
         <source>Dutch</source>
-        <translation type="unfinished">Holenderski</translation>
+        <translation>Holenderski</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="32"/>
         <source>English</source>
-        <translation type="unfinished">Angielski</translation>
+        <translation>Angielski</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="33"/>
         <source>Finnish</source>
-        <translation type="unfinished">Fiński</translation>
+        <translation>Fiński</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="34"/>
         <source>French</source>
-        <translation type="unfinished">Francuski</translation>
+        <translation>Francuski</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="35"/>
         <source>German</source>
-        <translation type="unfinished">Niemiecki</translation>
+        <translation>Niemiecki</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="36"/>
         <source>Greek</source>
-        <translation type="unfinished">Grecki</translation>
+        <translation>Grecki</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="37"/>
         <source>Hebrew</source>
-        <translation type="unfinished">Hebrajski</translation>
+        <translation>Hebrajski</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="38"/>
         <source>Hungarian</source>
-        <translation type="unfinished">Węgierski</translation>
+        <translation>Węgierski</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="39"/>
         <source>Italian</source>
-        <translation type="unfinished">Włoski</translation>
+        <translation>Włoski</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="40"/>
         <source>Japanese</source>
-        <translation type="unfinished">Japoński</translation>
+        <translation>Japoński</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="41"/>
         <source>Korean</source>
-        <translation type="unfinished">Koreański</translation>
+        <translation>Koreański</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="42"/>
         <source>Norwegian</source>
-        <translation type="unfinished">Norweski</translation>
+        <translation>Norweski</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="43"/>
         <source>Polish</source>
-        <translation type="unfinished">Polski</translation>
+        <translation>Polski</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="44"/>
         <source>Portuguese</source>
-        <translation type="unfinished">Portugalski</translation>
+        <translation>Portugalski</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="45"/>
         <source>Russian</source>
-        <translation type="unfinished">Rosyjski</translation>
+        <translation>Rosyjski</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="46"/>
         <source>Slovene</source>
-        <translation type="unfinished">Słoweński</translation>
+        <translation>Słoweński</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="47"/>
         <source>Spanish</source>
-        <translation type="unfinished">Hiszpański</translation>
+        <translation>Hiszpański</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="48"/>
         <source>Swedish</source>
-        <translation type="unfinished">Szwedzki</translation>
+        <translation>Szwedzki</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="49"/>
         <source>Turkish</source>
-        <translation type="unfinished">Turecki</translation>
+        <translation>Turecki</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="51"/>
         <source>3D</source>
-        <translation type="unfinished">3D</translation>
+        <translation>3D</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="52"/>
         <source>BluRay</source>
-        <translation type="unfinished">Blu-ray</translation>
+        <translation>Blu-ray</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="53"/>
         <source>DVD</source>
-        <translation type="unfinished">DVD</translation>
+        <translation>DVD</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="55"/>
         <source>Language</source>
-        <translation type="unfinished">Język</translation>
+        <translation>Język</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="57"/>
         <source>Preferred Disc Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Preferowany typ dysku</translation>
     </message>
 </context>
 <context>
@@ -1202,7 +1197,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="75"/>
         <source>Load Stream Details</source>
-        <translation>Wczytaj metadane strumieni</translation>
+        <translation>Wczytaj metadane strumienia</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="76"/>
@@ -1246,7 +1241,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="130"/>
         <source>IMDB ID &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Identyfikator IMDB &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="352"/>
@@ -1305,12 +1300,12 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="439"/>
         <source>Set &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Zbiór &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="440"/>
         <source>Set</source>
-        <translation type="unfinished">Kolekcja</translation>
+        <translation>Zbiór</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="456"/>
@@ -1348,7 +1343,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="515"/>
         <source>IMDB ID</source>
-        <translation type="unfinished">Identyfikator IMDB</translation>
+        <translation>Identyfikator IMDB</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="517"/>
@@ -1376,7 +1371,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="523"/>
         <source>Movie has Extra Fanarts</source>
-        <translation>Film z dodatkowymi plikami fangrafów</translation>
+        <translation>Film z dodatkowymi fangrafami</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="523"/>
@@ -1399,14 +1394,14 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="529"/>
         <source>Movie has Backdrop</source>
-        <translation>Film z kurtyną</translation>
+        <translation>Film z fangrafem</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="529"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="530"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="533"/>
         <source>Backdrop</source>
-        <translation>Kurtyna</translation>
+        <translation>Fangraf</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="530"/>
@@ -1417,18 +1412,18 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="532"/>
         <source>Movie has no Backdrop</source>
-        <translation>Film film bez kurtyny</translation>
+        <translation>Film bez fangrafu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="532"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="533"/>
         <source>No Backdrop</source>
-        <translation>Brak kotary</translation>
+        <translation>Brak fangrafu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="533"/>
         <source>No Fanart</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak fangrafu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="535"/>
@@ -1451,7 +1446,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="538"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="539"/>
         <source>No Logo</source>
-        <translation>Bez logo</translation>
+        <translation>Brak logo</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="541"/>
@@ -1653,19 +1648,19 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="589"/>
         <source>Stream Details loaded</source>
-        <translation>Metadane strumieni zostały wczytane</translation>
+        <translation>Metadane strumienia zostały wczytane</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="589"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="590"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="593"/>
         <source>Stream Details</source>
-        <translation>Metadane strumieni</translation>
+        <translation>Metadane strumienia</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="592"/>
         <source>Stream Details not loaded</source>
-        <translation>Metadane strumieni nie zostały wczytane</translation>
+        <translation>Metadane strumienia nie zostały wczytane</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="592"/>
@@ -1676,25 +1671,25 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="595"/>
         <source>Movie has Actors</source>
-        <translation>Film z aktorami</translation>
+        <translation>Film z obsadą</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="595"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="596"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="599"/>
         <source>Actors</source>
-        <translation>Aktorzy</translation>
+        <translation>Obsada</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="598"/>
         <source>Movie has no Actors</source>
-        <translation>Film bez aktorów</translation>
+        <translation>Film bez obsady</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="598"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="599"/>
         <source>No Actors</source>
-        <translation>Brak aktorów</translation>
+        <translation>Brak obsady</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="601"/>
@@ -1748,18 +1743,18 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="613"/>
         <source>Movie has no IMDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Film bez indetyfikatora IMDB</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="613"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="614"/>
         <source>No IMDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak identyfikatora IMDB</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="614"/>
         <source>IMDB</source>
-        <translation type="unfinished">IMDB</translation>
+        <translation>IMDB</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="616"/>
@@ -1865,7 +1860,8 @@
     <message>
         <location filename="../movies/GenreWidget.ui" line="240"/>
         <source>Double click a genre to rename it, right click to delete. If you want to merge two genres just give them the same name.</source>
-        <translation>Kliknij dwa razy na gatunek, aby ją zmienić, prawym przyciskiem, aby usunąć. Jeśli chcesz połączyć dwa gatunki, po prostu nadaj im tę samą nazwę.</translation>
+        <translation>Kliknij dwa razy na gatunek, aby go zmienić, prawym przyciskiem, aby usunąć.
+Jeśli chcesz połączyć dwa gatunki, po prostu nadaj im tę samą nazwę.</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="250"/>
@@ -1898,107 +1894,107 @@
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="17"/>
         <source>Bulgarian</source>
-        <translation type="unfinished">Bułgarski</translation>
+        <translation>Bułgarski</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="18"/>
         <source>Chinese</source>
-        <translation type="unfinished">Chiński</translation>
+        <translation>Chiński</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="19"/>
         <source>Czech</source>
-        <translation type="unfinished">Czeski</translation>
+        <translation>Czeski</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="20"/>
         <source>Danish</source>
-        <translation type="unfinished">Duński</translation>
+        <translation>Duński</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="21"/>
         <source>Dutch</source>
-        <translation type="unfinished">Holenderski</translation>
+        <translation>Holenderski</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="22"/>
         <source>English</source>
-        <translation type="unfinished">Angielski</translation>
+        <translation>Angielski</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="23"/>
         <source>Finnish</source>
-        <translation type="unfinished">Fiński</translation>
+        <translation>Fiński</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="24"/>
         <source>French</source>
-        <translation type="unfinished">Francuski</translation>
+        <translation>Francuski</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="25"/>
         <source>German</source>
-        <translation type="unfinished">Niemiecki</translation>
+        <translation>Niemiecki</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="26"/>
         <source>Greek</source>
-        <translation type="unfinished">Grecki</translation>
+        <translation>Grecki</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="27"/>
         <source>Hebrew</source>
-        <translation type="unfinished">Hebrajski</translation>
+        <translation>Hebrajski</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="28"/>
         <source>Hungarian</source>
-        <translation type="unfinished">Węgierski</translation>
+        <translation>Węgierski</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="29"/>
         <source>Italian</source>
-        <translation type="unfinished">Włoski</translation>
+        <translation>Włoski</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="30"/>
         <source>Japanese</source>
-        <translation type="unfinished">Japoński</translation>
+        <translation>Japoński</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="31"/>
         <source>Norwegian</source>
-        <translation type="unfinished">Norweski</translation>
+        <translation>Norweski</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="32"/>
         <source>Polish</source>
-        <translation type="unfinished">Polski</translation>
+        <translation>Polski</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="33"/>
         <source>Portuguese</source>
-        <translation type="unfinished">Portugalski</translation>
+        <translation>Portugalski</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="34"/>
         <source>Russian</source>
-        <translation type="unfinished">Rosyjski</translation>
+        <translation>Rosyjski</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="35"/>
         <source>Spanish</source>
-        <translation type="unfinished">Hiszpański</translation>
+        <translation>Hiszpański</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="36"/>
         <source>Swedish</source>
-        <translation type="unfinished">Szwedzki</translation>
+        <translation>Szwedzki</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="39"/>
         <source>Language</source>
-        <translation type="unfinished">Język</translation>
+        <translation>Język</translation>
     </message>
 </context>
 <context>
@@ -2055,7 +2051,7 @@
     <message>
         <location filename="../globals/ImageDialog.ui" line="316"/>
         <source>Choose Local Image</source>
-        <translation>Wybierz lokalny obraz</translation>
+        <translation>Wybierz obraz z dysku</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="329"/>
@@ -2114,27 +2110,27 @@
     <message>
         <location filename="../downloads/ImportActions.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Formatka</translation>
+        <translation>Formatka</translation>
     </message>
     <message>
         <location filename="../downloads/ImportActions.ui" line="26"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Importuj</translation>
     </message>
     <message>
         <location filename="../downloads/ImportActions.ui" line="33"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń</translation>
     </message>
     <message>
         <location filename="../downloads/ImportActions.cpp" line="111"/>
         <source>Delete file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Usunąć plik?</translation>
     </message>
     <message>
         <location filename="../downloads/ImportActions.cpp" line="112"/>
         <source>Do you really want to delete this file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Jesteś pewien, że chcesz usunąć ten plik?</translation>
     </message>
 </context>
 <context>
@@ -2142,205 +2138,201 @@
     <message>
         <location filename="../downloads/ImportDialog.ui" line="17"/>
         <source>MediaElch</source>
-        <translation type="unfinished">MediaElch</translation>
+        <translation>MediaElch</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="37"/>
         <source>Loading</source>
-        <translation type="unfinished"></translation>
+        <translation>Wczytywanie</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="44"/>
         <source>Success</source>
-        <translation type="unfinished"></translation>
+        <translation>Sukces</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="51"/>
         <source>Loading movie...</source>
-        <translation type="unfinished"></translation>
+        <translation>Wczytywanie filmu...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="73"/>
         <source>Placeholders</source>
-        <translation type="unfinished">Szablony</translation>
+        <translation>Wypełniacze</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="94"/>
         <source>Artist</source>
-        <translation type="unfinished">Artysta</translation>
+        <translation>Artysta</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="104"/>
         <source>Title of the show</source>
-        <translation type="unfinished">Tytuł serialu</translation>
+        <translation>Tytuł serialu</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="111"/>
         <source>Year</source>
-        <translation type="unfinished">Rok</translation>
+        <translation>Rok</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="121"/>
         <source>Album</source>
-        <translation type="unfinished">Album</translation>
+        <translation>Album</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="131"/>
         <source>Season Number</source>
-        <translation type="unfinished">Numer sezonu</translation>
+        <translation>Numer sezonu</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="147"/>
         <source>Description</source>
-        <translation type="unfinished">Opis</translation>
+        <translation>Opis</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="157"/>
         <source>Episode Number</source>
-        <translation type="unfinished">Numer odcinka</translation>
+        <translation>Numer odcinka</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="197"/>
         <source>Original Title</source>
-        <translation type="unfinished">Tytuł oryginalny</translation>
+        <translation>Tytuł oryginalny</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="207"/>
         <source>Title</source>
-        <translation type="unfinished">Tytuł</translation>
+        <translation>Tytuł</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="227"/>
         <source>File extension</source>
-        <translation type="unfinished">Rozszerzenie pliku</translation>
+        <translation>Rozszerzenie pliku</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="282"/>
         <source>Placeholder</source>
-        <translation type="unfinished">Szablon</translation>
+        <translation>Wypełniacz</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="312"/>
         <source>Directory Naming</source>
-        <translation type="unfinished">Nazewnictwo folderów</translation>
+        <translation>Nazewnictwo folderów</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="322"/>
         <source>File Naming</source>
-        <translation type="unfinished">Nazewnictwo plików</translation>
+        <translation>Nazewnictwo plików</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="339"/>
         <source>Use Season Directories</source>
-        <translation type="unfinished">Użyj katalogów sezonów</translation>
+        <translation>Użyj folderów sezonu</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="346"/>
         <source>Season Directory Naming</source>
-        <translation type="unfinished">Nazewnictwo katalogów sezonów</translation>
+        <translation>Nazewnictwo folderu sezonu</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="363"/>
         <source>Keep source files after import</source>
-        <translation type="unfinished"></translation>
+        <translation>Przechowuj pliki źródłowe po zaimportowaniu</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="406"/>
         <location filename="../downloads/ImportDialog.ui" line="416"/>
         <source>Close</source>
-        <translation type="unfinished">Zamknij</translation>
+        <translation>Zamknij</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="436"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Importuj</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="287"/>
         <source>Loading movie information...</source>
-        <translation type="unfinished"></translation>
+        <translation>Wczytywanie informacji o filmie...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="303"/>
         <source>Loading concert information...</source>
-        <translation type="unfinished"></translation>
+        <translation>Wczytywanie informacji o koncercie...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="321"/>
         <source>Loading episode information...</source>
-        <translation type="unfinished"></translation>
+        <translation>Wczytywanie informacji o odcinku...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="378"/>
         <source>Movie information was loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacje o filmie zostały wczytane</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="391"/>
         <source>Concert information was loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacje o koncercie zostały wczytane</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="409"/>
         <location filename="../downloads/ImportDialog.cpp" line="426"/>
         <source>Episode information was loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacje o odcinku zostały wczytane</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="438"/>
         <source>Renaming not possible</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmiana nazwy niemożliwa</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="438"/>
         <source>Please enter all naming patterns</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź wszystkie wzorce nazw</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="455"/>
         <location filename="../downloads/ImportDialog.cpp" line="513"/>
         <source>Creating destination directory failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Tworzenie docelowego folderu zakończone niepowodzeniem</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="456"/>
         <location filename="../downloads/ImportDialog.cpp" line="514"/>
         <source>The destination directory %1 could not be created</source>
-        <translation type="unfinished"></translation>
+        <translation>Folder docelowy %1 nie może zostać utworzony</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="472"/>
         <source>Importing movie...</source>
-        <translation type="unfinished"></translation>
+        <translation>Importowanie filmu...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="500"/>
         <source>Importing episode...</source>
-        <translation type="unfinished"></translation>
+        <translation>Importowanie odcinka...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="531"/>
         <source>Importing concert...</source>
-        <translation type="unfinished"></translation>
+        <translation>Importowanie koncertu...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="640"/>
         <source>Import finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Importowanie zakończone</translation>
     </message>
     <message numerus="yes">
         <location filename="../downloads/ImportDialog.cpp" line="640"/>
         <source>Import of %n file(s) has finished</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation><numerusform>Importowanie pliku %n zostało zakończone</numerusform><numerusform>Importowanie plików %n zostało zakończone</numerusform><numerusform>Importowanie pliku(ów) %n zostało zakończone</numerusform></translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="643"/>
         <source>Import has finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Importowanie zakończone</translation>
     </message>
 </context>
 <context>
@@ -2378,11 +2370,7 @@
     <message numerus="yes">
         <location filename="../tvShows/ItemWidgetShow.cpp" line="31"/>
         <source>%n Episodes</source>
-        <translation>
-            <numerusform>%n odcinek</numerusform>
-            <numerusform>%n odcinków</numerusform>
-            <numerusform>%n odcinków</numerusform>
-        </translation>
+        <translation><numerusform>%n odcinek</numerusform><numerusform>%n odcinków</numerusform><numerusform>%n odcinków</numerusform></translation>
     </message>
 </context>
 <context>
@@ -2390,12 +2378,12 @@
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="23"/>
         <source>Loading Stream Details</source>
-        <translation>Wczytywanie metadanych strumieni</translation>
+        <translation>Wczytywanie metadanych strumienia</translation>
     </message>
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="32"/>
         <source>Loading Stream Details...</source>
-        <translation>Wczytywanie metadanych strumieni...</translation>
+        <translation>Wczytywanie metadanych strumienia...</translation>
     </message>
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="46"/>
@@ -2461,7 +2449,7 @@
         <extracomment>Main menu entry
 ----------
 Main menu entry (tooltip)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Importuj</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="684"/>
@@ -2573,17 +2561,17 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.cpp" line="446"/>
         <source>Reload all Downloads (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież wszystkie pobrania (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="821"/>
         <source>Updates available</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostępne aktualizacje</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="822"/>
         <source>%1 is now available.&lt;br&gt;Get it now on %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 jest dostępne.&lt;br&gt;Pobierz go teraz %2</translation>
     </message>
 </context>
 <context>
@@ -2926,7 +2914,7 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../data/MovieModel.cpp" line="286"/>
         <source>Actors</source>
-        <translation>Aktorzy</translation>
+        <translation>Obsada</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="288"/>
@@ -2951,7 +2939,7 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../data/MovieModel.cpp" line="296"/>
         <source>Stream Details</source>
-        <translation>Metadane strumieni</translation>
+        <translation>Metadane strumienia</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="298"/>
@@ -2999,7 +2987,7 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="171"/>
         <source>Actors</source>
-        <translation>Aktorzy</translation>
+        <translation>Obsada</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="311"/>
@@ -3069,7 +3057,7 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="261"/>
         <source>Backdrop</source>
-        <translation>Kurtyna</translation>
+        <translation>Fangraf</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="201"/>
@@ -3099,7 +3087,7 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="321"/>
         <source>Tags</source>
-        <translation type="unfinished">Znaczniki</translation>
+        <translation>Znaczniki</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="340"/>
@@ -3114,7 +3102,7 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="373"/>
         <source>Update only movies with IMDB Id/TheMovieDb Id</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizuj tylko film, które posiadają identyfikator IMDB/TMDB</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="388"/>
@@ -3144,11 +3132,7 @@ Operacja anulowana.</translation>
     <message numerus="yes">
         <location filename="../movies/MovieMultiScrapeDialog.cpp" line="175"/>
         <source>Scraping of %n movies has finished.</source>
-        <translation>
-            <numerusform>Ekstrakcja %n filmu została zakończona.</numerusform>
-            <numerusform>Ekstrakcja %n filmów została zakończona.</numerusform>
-            <numerusform>Ekstrakcja %n filmów została zakończona.</numerusform>
-        </translation>
+        <translation><numerusform>Ekstrakcja %n filmu została zakończona.</numerusform><numerusform>Ekstrakcja %n filmów została zakończona.</numerusform><numerusform>Ekstrakcja %n filmów została zakończona.</numerusform></translation>
     </message>
 </context>
 <context>
@@ -3169,148 +3153,149 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Formatka</translation>
+        <translation>Formatka</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="25"/>
         <source>Scraper</source>
-        <translation type="unfinished">Ekstraktor</translation>
+        <translation>Ekstraktor</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="50"/>
         <source>When using IMDB you can also use the IMDB id as search query.
 If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Podczas używania IMDB można używać identyfikatora IDMB jako wyrażenie do wyszukania.
+ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go prefiksem &quot;id&quot;.</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="91"/>
         <source>Result</source>
-        <translation type="unfinished"></translation>
+        <translation>Wynik</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="118"/>
         <source>Infos to load</source>
-        <translation type="unfinished">Informacje do wczytania</translation>
+        <translation>Informacje do wczytania</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="141"/>
         <source>Title</source>
-        <translation type="unfinished">Tytuł</translation>
+        <translation>Tytuł</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="148"/>
         <source>Set</source>
-        <translation type="unfinished">Kolekcja</translation>
+        <translation>Zbiór</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="155"/>
         <source>Tagline</source>
-        <translation type="unfinished">Motto</translation>
+        <translation>Motto</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="162"/>
         <source>Rating</source>
-        <translation type="unfinished">Ocena</translation>
+        <translation>Ocena</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="169"/>
         <source>Released</source>
-        <translation type="unfinished">Premiera</translation>
+        <translation>Premiera</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="176"/>
         <source>Runtime</source>
-        <translation type="unfinished">Czas trwania</translation>
+        <translation>Czas trwania</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="183"/>
         <source>Director</source>
-        <translation type="unfinished">Reżyseria</translation>
+        <translation>Reżyseria</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="190"/>
         <source>Writer</source>
-        <translation type="unfinished">Scenariusz</translation>
+        <translation>Scenariusz</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="197"/>
         <source>Certification</source>
-        <translation type="unfinished">Kategoria wiekowa</translation>
+        <translation>Kategoria wiekowa</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="204"/>
         <source>Trailer</source>
-        <translation type="unfinished">Zwiastun</translation>
+        <translation>Zwiastun</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="211"/>
         <source>Overview</source>
-        <translation type="unfinished">Opis</translation>
+        <translation>Opis</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="218"/>
         <source>Poster</source>
-        <translation type="unfinished">Plakat</translation>
+        <translation>Plakat</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="225"/>
         <source>Backdrop</source>
-        <translation type="unfinished"></translation>
+        <translation>Fangraf</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="232"/>
         <source>Actors</source>
-        <translation type="unfinished">Aktorzy</translation>
+        <translation>Obsada</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="239"/>
         <source>Genres</source>
-        <translation type="unfinished">Gatunki</translation>
+        <translation>Gatunki</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="246"/>
         <source>Studios</source>
-        <translation type="unfinished">Wytwórnie</translation>
+        <translation>Wytwórnie</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="253"/>
         <source>Countries</source>
-        <translation type="unfinished">Kraje</translation>
+        <translation>Kraje</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="260"/>
         <source>Tags</source>
-        <translation type="unfinished">Znaczniki</translation>
+        <translation>Znaczniki</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="267"/>
         <source>Logo</source>
-        <translation type="unfinished">Logo</translation>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="274"/>
         <source>Clear Art</source>
-        <translation type="unfinished">Clear Art</translation>
+        <translation>Clear Art</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="281"/>
         <source>CD Art</source>
-        <translation type="unfinished">CD Art</translation>
+        <translation>CD Art</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="288"/>
         <source>Banner</source>
-        <translation type="unfinished">Baner</translation>
+        <translation>Baner</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="295"/>
         <source>Thumb</source>
-        <translation type="unfinished">Miniatura</translation>
+        <translation>Miniatura</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="309"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished">O(d)znacz wszystko</translation>
+        <translation>O(d)znacz wszystko</translation>
     </message>
 </context>
 <context>
@@ -3353,7 +3338,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="207"/>
         <source>Sort Title</source>
-        <translation>Tytuł sortowania</translation>
+        <translation>Tytuł sortujący</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="217"/>
@@ -3463,17 +3448,17 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="538"/>
         <source>Outline</source>
-        <translation>Streszczenie</translation>
+        <translation>Opis</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="558"/>
         <source>Extended</source>
-        <translation>Rozszerzony</translation>
+        <translation>Dodatkowe</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="590"/>
         <source>Actors</source>
-        <translation>Aktorzy</translation>
+        <translation>Obsada</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="606"/>
@@ -3514,7 +3499,8 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="741"/>
         <source>Support for extra fanarts is only available when your movies are stored in separate folders. Check the settings if you&apos;ve stored your movies in separate folders already.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wsparcie dla dodatkowych fangrafów jest dostępne tylko wtedy, gdy filmy znajdują się w oddzielnych folderach.
+Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folderach.</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="761"/>
@@ -3529,7 +3515,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="794"/>
         <source>Streamdetails</source>
-        <translation>Metadane strumieni</translation>
+        <translation>Metadane strumienia</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="802"/>
@@ -3539,7 +3525,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="809"/>
         <source>Scantype</source>
-        <translation>Skanowania</translation>
+        <translation>Skanowanie</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="833"/>
@@ -3576,7 +3562,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="963"/>
         <source>Reload from File</source>
-        <translation>Odśwież</translation>
+        <translation>Odśwież z pliku</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1139"/>
@@ -3834,12 +3820,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main/MainWindow.cpp" line="825"/>
         <source>Don&apos;t check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie sprawdzaj dostępności aktualizacji</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="332"/>
         <source>Don&apos;t show this hint again</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie pokazuj tej wskazówki ponownie</translation>
     </message>
 </context>
 <context>
@@ -3857,12 +3843,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../renamer/Renamer.ui" line="40"/>
         <source>Placeholders</source>
-        <translation>Szablony</translation>
+        <translation>Wypełniacze</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="119"/>
         <source>Placeholder</source>
-        <translation>Szablon</translation>
+        <translation>Wypełniacz</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="179"/>
@@ -3922,7 +3908,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../renamer/Renamer.ui" line="302"/>
         <source>Use Season Directories</source>
-        <translation>Użyj katalogów sezonów</translation>
+        <translation>Użyj folderów sezonu</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="312"/>
@@ -3967,7 +3953,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../renamer/Renamer.ui" line="383"/>
         <source>Season Directory Naming</source>
-        <translation>Nazewnictwo katalogów sezonów</translation>
+        <translation>Nazewnictwo folderu sezonu</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="390"/>
@@ -3979,7 +3965,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Lucida Grande'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;⏎
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;⏎
@@ -4005,38 +3991,22 @@ p, li { white-space: pre-wrap; }⏎
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="39"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation>
-            <numerusform>Tytuł filmu %n zostanie zmieniony</numerusform>
-            <numerusform>Tytuły filmów %n zostaną zmienione</numerusform>
-            <numerusform>Tytuł filmu(ów) %n zostanie zmieniony</numerusform>
-        </translation>
+        <translation><numerusform>Tytuł filmu %n zostanie zmieniony</numerusform><numerusform>Tytuły filmów %n zostaną zmienione</numerusform><numerusform>Tytuł filmu(ów) %n zostanie zmieniony</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="42"/>
         <source>%n Concert(s) will be renamed</source>
-        <translation>
-            <numerusform>Tytuł koncertu %n zostanie zmieniony</numerusform>
-            <numerusform>Tytuły koncertów %n zostaną zmienione</numerusform>
-            <numerusform>Tytuł koncertu(ów) %n zostanie zmieniony</numerusform>
-        </translation>
+        <translation><numerusform>Tytuł koncertu %n zostanie zmieniony</numerusform><numerusform>Tytuły koncertów %n zostaną zmienione</numerusform><numerusform>Tytuł koncertu(ów) %n zostanie zmieniony</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="45"/>
         <source>%n TV Show(s) and %1</source>
-        <translation>
-            <numerusform>Serial(e) %n i %1</numerusform>
-            <numerusform>Serial(e) %n i %1</numerusform>
-            <numerusform>Serial(e) %n i %1</numerusform>
-        </translation>
+        <translation><numerusform>Serial(e) %n i %1</numerusform><numerusform>Serial(e) %n i %1</numerusform><numerusform>Serial(e) %n i %1</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="45"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation>
-            <numerusform>Tytuł odcinku %n zostanie zmieniony.</numerusform>
-            <numerusform>Tytuły odcinków %n zostaną zmienione.</numerusform>
-            <numerusform>Tytuł odcinku(ów) %n zostanie zmieniony</numerusform>
-        </translation>
+        <translation><numerusform>Tytuł odcinku %n zostanie zmieniony.</numerusform><numerusform>Tytuły odcinków %n zostaną zmienione.</numerusform><numerusform>Tytuł odcinku(ów) %n zostanie zmieniony</numerusform></translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="169"/>
@@ -4107,27 +4077,27 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../renamer/Renamer.cpp" line="318"/>
         <source>&lt;b&gt;Rename Banner&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Zmień nazwę banera&lt;/b&gt;z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="335"/>
         <source>&lt;b&gt;Rename Thumb&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Zmień nazwę miniatury&lt;/b&gt;z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="352"/>
         <source>&lt;b&gt;Rename Logo&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Zmień nazwę pliku logo&lt;/b&gt;z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="369"/>
         <source>&lt;b&gt;Rename Clear Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Zmień nazwę pliku Clear Art&lt;/b&gt;z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="386"/>
         <source>&lt;b&gt;Rename CD Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Zmień nazwę pliku CD Art&lt;/b&gt;z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="402"/>
@@ -4188,7 +4158,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../sets/SetsWidget.ui" line="192"/>
         <source>Sorttitle</source>
-        <translation>Tytuł sortowania</translation>
+        <translation>Tytuł sortujący</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="215"/>
@@ -4228,7 +4198,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../sets/SetsWidget.ui" line="344"/>
         <source>Backdrop</source>
-        <translation>Kurtyna</translation>
+        <translation>Fangraf</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.cpp" line="72"/>
@@ -4259,10 +4229,6 @@ p, li { white-space: pre-wrap; }⏎
         <translation>Ustawienia</translation>
     </message>
     <message>
-        <source>Add one or more directories containing your movies, TV Shows or concerts. TV Show Episodes have to be in subfolders with the name of the show.</source>
-        <translation type="obsolete">Dodaj jeden lub więcej folderów zawierających filmy, seriale lub koncerty. Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</translation>
-    </message>
-    <message>
         <location filename="../settings/SettingsWindow.ui" line="78"/>
         <source>Type</source>
         <translation>Typ</translation>
@@ -4280,17 +4246,17 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../settings/SettingsWindow.ui" line="91"/>
         <source>Items are in separate folders</source>
-        <translation>Pozycje znajdują się w oddzielnych folderach/</translation>
+        <translation>Elementy znajdują się w oddzielnych folderach</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="96"/>
         <source>Reload On Start</source>
-        <translation>Odśwież podczas uruchomienia</translation>
+        <translation>Odświeżaj na starcie</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="99"/>
         <source>Automatically reload contents on start</source>
-        <translation>Automatycznie odśwież informacje o koncertach podczas uruchomienia</translation>
+        <translation>Automatycznie odśwież zawartość podczas uruchomienia</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="109"/>
@@ -4320,7 +4286,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../settings/SettingsWindow.ui" line="228"/>
         <source>Automatically load and save stream details from files</source>
-        <translation>Autodetekcja i zapis metadanych strumieni z plików</translation>
+        <translation>Automatycznie wczytaj i zapisz metadane strumienia z plików</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="235"/>
@@ -4330,25 +4296,26 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../settings/SettingsWindow.ui" line="242"/>
         <source>Download actor images</source>
-        <translation>Pobierz zdjęcia aktorów</translation>
+        <translation>Pobierz zdjęcia aktora</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="188"/>
         <location filename="../settings/SettingsWindow.ui" line="207"/>
         <source>Words to exclude from media names (seperated by commas and non case-sensitive)</source>
         <translation>Słowa pomijane w nazwach mediów
-(rozdzielone przecinkami, wielkość liter bez znaczenia)</translation>
+(oddzielone przecinkami, wielkość liter bez znaczenia)</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="45"/>
         <source>Add one or more directories containing your movies, TV Shows, concerts or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj jeden lub więcej folderów zawierających Twoje filmy, seriale lub koncerty do zaimportowania.⏎
+Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="249"/>
         <source>Check for Updates on start</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdzaj dostępność aktualizacji podczas uruchomienia</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="294"/>
@@ -4360,7 +4327,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="300"/>
         <source>Enable adult movie scrapers</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącz ekstraktory filmów dla dorosłych</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="362"/>
@@ -4375,7 +4342,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="398"/>
         <source>Item</source>
-        <translation>Pozycja</translation>
+        <translation>Element</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="419"/>
@@ -4386,7 +4353,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="429"/>
         <location filename="../settings/SettingsWindow.ui" line="962"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
-        <translation>Możesz użyć wzorca &lt;baseFileName&gt;, który jest nazwą pliku bez rozszerzenia.</translation>
+        <translation>Możesz użyć wypełniacza &lt;baseFileName&gt;, który jest nazwą pliku bez rozszerzenia.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="444"/>
@@ -4407,7 +4374,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="722"/>
         <location filename="../settings/SettingsWindow.ui" line="991"/>
         <source>Backdrop</source>
-        <translation>Tło</translation>
+        <translation>Fangraf</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="465"/>
@@ -4449,12 +4416,12 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="587"/>
         <source>Movie outline</source>
-        <translation>Streszczenie filmu</translation>
+        <translation>Opis filmu</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="594"/>
         <source>Use plot when outline is not available</source>
-        <translation>Użyj fabuły, jeśli streszczenie jest niedostępne</translation>
+        <translation>Użyj fabuły, jeśli opis jest niedostępny</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="601"/>
@@ -4511,7 +4478,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="693"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
-        <translation>Możesz użyć wzorca &lt;baseFileName&gt;, który jest nazwą pliku bez rozszerzenia, a dla plakatów sezonów wzorzec &lt;seasonNumber&gt;, który jest numerem sezonu.</translation>
+        <translation>Możesz użyć wypełniacza &lt;baseFileName&gt;, który jest nazwą pliku bez rozszerzenia, a dla plakatów sezonów wypełniacza &lt;seasonNumber&gt;, który jest numerem sezonu.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="708"/>
@@ -4531,7 +4498,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="764"/>
         <source>Season Backdrop</source>
-        <translation>Tło sezonu</translation>
+        <translation>Fangraf sezonu</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="771"/>
@@ -4559,23 +4526,19 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <translation>Poniżej widoczne są nazwy plików, które są używane podczas wczytywania i zapisywania koncertów. Możesz je edytować według uznania, ponadto możesz używać wielu plików oddzielając je przecinkiem.</translation>
     </message>
     <message>
-        <source>Dir</source>
-        <translation type="obsolete">Folder</translation>
-    </message>
-    <message>
         <location filename="../settings/SettingsWindow.ui" line="263"/>
         <source>Path to unrar</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do programu unrar</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="256"/>
         <source>Automatically delete archives after extraction</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatycznie usuwaj archiwa po zakończeniu rozpakowywania</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="275"/>
         <source>Choose</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1085"/>
@@ -4654,7 +4617,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1296"/>
         <source>Save Settings</source>
-        <translation>Zapisz ustawienia</translation>
+        <translation>Zapisz</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1306"/>
@@ -4707,12 +4670,12 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="424"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobrania</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="460"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
-        <translation>Organizacja filmów działa tylko na filmach, nie przenosi ich do oddzielnych folderów.</translation>
+        <translation>Organizacja filmów działa tylko na filmach, nie przenosi ich jeszcze do oddzielnych folderów.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="468"/>
@@ -4722,7 +4685,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="469"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
-        <translation>Ta operacja przenosi wszystkie filmy z tego tym folderu do oddzielnych podfolderów, o nazwie bazującej na nazwie plików. Kliknij &quot;Ok&quot;, jeśli jesteś pewien, że chcesz to zrobić.</translation>
+        <translation>Ta operacja przenosi wszystkie filmy z tego folderu do oddzielnych podfolderów, o nazwie bazującej na nazwie plików. Kliknij &quot;Ok&quot;, jeśli jesteś pewien, że chcesz to zrobić.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="472"/>
@@ -4808,7 +4771,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="649"/>
         <source>Actors</source>
-        <translation>Aktorzy</translation>
+        <translation>Obsada</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="651"/>
@@ -4853,7 +4816,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="681"/>
         <source>Choose unrar</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz program unrar</translation>
     </message>
 </context>
 <context>
@@ -4873,7 +4836,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Helvetica&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Helvetica'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=6EU9GPSQ8PSUA&quot;&gt;&lt;img src=&quot;:/img/btn_donate_LG.gif&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;⏎
@@ -5460,7 +5423,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="51"/>
         <source>Load Stream Details</source>
-        <translation>Wczytaj metadane strumieni</translation>
+        <translation>Wczytaj metadane strumienia</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="52"/>
@@ -5480,18 +5443,19 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="55"/>
         <source>Show missing episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokazuj brakujące odcinki</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="328"/>
         <source>Show update needed</source>
-        <translation type="unfinished"></translation>
+        <translation>Informuj o aktualizacjach</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="329"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
-        <translation type="unfinished"></translation>
+        <translation>Należy jednorazowo zaktualizować serial, aby zobaczyć brakujące odcinki.
+Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odcinków podczas uruchomienia.</translation>
     </message>
 </context>
 <context>
@@ -5512,7 +5476,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="30"/>
         <source>If you want to search by an TheTvDb id please prefix it with &quot;id&quot; (e.g. id123).</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeśli chcesz wyszukać przy pomocy identyfikatora TVDB poprzedź go prefiksem &quot;id&quot; (np. id123).</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="70"/>
@@ -5577,7 +5541,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="220"/>
         <source>Actors</source>
-        <translation>Aktorzy</translation>
+        <translation>Obsada</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="230"/>
@@ -5665,67 +5629,67 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Formatka</translation>
+        <translation>Formatka</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="59"/>
         <source>Result</source>
-        <translation type="unfinished"></translation>
+        <translation>Wynik</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="86"/>
         <source>Infos to load</source>
-        <translation type="unfinished">Informacje do wczytania</translation>
+        <translation>Informacje do wczytania</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="109"/>
         <source>Title</source>
-        <translation type="unfinished">Tytuł</translation>
+        <translation>Tytuł</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="119"/>
         <source>Rating</source>
-        <translation type="unfinished">Ocena</translation>
+        <translation>Ocena</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="129"/>
         <source>First aired</source>
-        <translation type="unfinished">Premiera</translation>
+        <translation>Premiera</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="139"/>
         <source>Director</source>
-        <translation type="unfinished">Reżyseria</translation>
+        <translation>Reżyseria</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="149"/>
         <source>Writer</source>
-        <translation type="unfinished">Scenariusz</translation>
+        <translation>Scenariusz</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="159"/>
         <source>Certification</source>
-        <translation type="unfinished">Kategoria wiekowa</translation>
+        <translation>Kategoria wiekowa</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="169"/>
         <source>Overview</source>
-        <translation type="unfinished">Opis</translation>
+        <translation>Opis</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="179"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Platforma</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="189"/>
         <source>Thumbnail</source>
-        <translation type="unfinished">Miniatura</translation>
+        <translation>Miniatura</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="206"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished">O(d)znacz wszystko</translation>
+        <translation>O(d)znacz wszystko</translation>
     </message>
 </context>
 <context>
@@ -5733,7 +5697,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowUpdater.cpp" line="57"/>
         <source>Updating TV Shows</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizowanie seriali</translation>
     </message>
 </context>
 <context>
@@ -5865,7 +5829,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="415"/>
         <source>Extended</source>
-        <translation>Rozszerzony</translation>
+        <translation>Dodatkowe</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="523"/>
@@ -5905,37 +5869,37 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="622"/>
         <source>Actors</source>
-        <translation type="unfinished">Aktorzy</translation>
+        <translation>Aktorzy</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="641"/>
         <source>Actor</source>
-        <translation type="unfinished">Aktor</translation>
+        <translation>Aktor</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="646"/>
         <source>Role</source>
-        <translation type="unfinished">Rola</translation>
+        <translation>Rola</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="661"/>
         <source>Add Actor</source>
-        <translation type="unfinished">Dodaj aktora</translation>
+        <translation>Dodaj aktora</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="692"/>
         <source>Remove Actor</source>
-        <translation type="unfinished">Usuń aktora</translation>
+        <translation>Usuń aktora</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="752"/>
         <source>Click to change</source>
-        <translation type="unfinished">Kliknij, aby zmienić</translation>
+        <translation>Kliknij, aby zmienić</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="796"/>
         <source>Streamdetails</source>
-        <translation>Metadane strumieni</translation>
+        <translation>Metadane strumienia</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="804"/>
@@ -5989,7 +5953,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="965"/>
         <source>Reload from File</source>
-        <translation>Odśwież</translation>
+        <translation>Odśwież z pliku</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1022"/>
@@ -6004,7 +5968,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="129"/>
         <source>Episode missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Brakujący odcinek</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="447"/>
@@ -6049,22 +6013,22 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="941"/>
         <source>Unknown Actor</source>
-        <translation type="unfinished">Nieznany aktor</translation>
+        <translation>Nieznany aktor</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="942"/>
         <source>Unknown Role</source>
-        <translation type="unfinished">Nieznana rola</translation>
+        <translation>Nieznana rola</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="1003"/>
         <source>Choose Image</source>
-        <translation type="unfinished">Wybierz obraz</translation>
+        <translation>Wybierz obraz</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="1003"/>
         <source>Images (*.jpg *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrazy (*.jpg *.jpeg)</translation>
     </message>
 </context>
 <context>
@@ -6119,7 +6083,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.cpp" line="79"/>
         <source>Season missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Brakujący sezon</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.cpp" line="117"/>
@@ -6227,17 +6191,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="305"/>
         <source>Sort Title</source>
-        <translation>Tytuł sortowania</translation>
+        <translation>Tytuł sortujący</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="318"/>
         <source>Extended</source>
-        <translation>Rozszerzony</translation>
+        <translation>Dodatkowe</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="329"/>
         <source>Actors</source>
-        <translation>Aktorzy</translation>
+        <translation>Obsada</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="348"/>
@@ -6444,52 +6408,52 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Formatka</translation>
+        <translation>Formatka</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="69"/>
         <source>Cancel extraction</source>
-        <translation type="unfinished"></translation>
+        <translation>Anuluj rozpakowywanie</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="89"/>
         <source>Extract without password</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozpakuj bez hasła</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="92"/>
         <source>Extract</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozpakuj</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="99"/>
         <source>Extract with password</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozpakuj z hasłem</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="119"/>
         <source>Delete this archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń te archiwum</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="50"/>
         <source>Extraction password</source>
-        <translation type="unfinished"></translation>
+        <translation>Hasło do archiwum</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="50"/>
         <source>Password</source>
-        <translation type="unfinished">Hasło</translation>
+        <translation>Hasło</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="64"/>
         <source>Delete archive?</source>
-        <translation type="unfinished"></translation>
+        <translation>Usunąć archiwum</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="65"/>
         <source>Do you really want to delete this archive?</source>
-        <translation type="unfinished"></translation>
+        <translation>Jesteś pewien, że chcesz usunąć te archiwum?</translation>
     </message>
 </context>
 <context>
@@ -6512,12 +6476,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="46"/>
         <source>This will tell XBMC to remove the changed movies, concerts or shows. Afterwards a XBMC library update is triggered and the removed items will be picked up again.</source>
-        <translation>Funkcja ta wymusi usunięcie przez XBMC zmienionych filmów, koncertów i seriali. Następnie zostanie wywołana aktualizacja biblioteki XBMC i usunięte pozycje zostaną dodane ponownie.</translation>
+        <translation>Funkcja ta wymusi usunięcie przez XBMC zmienionych filmów, koncertów i seriali. Następnie zostanie wywołana aktualizacja biblioteki XBMC i usunięte elementy zostaną dodane ponownie.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="56"/>
         <source>Remove non-existent items from XBMCs database (Clean library)</source>
-        <translation>Usuń nieistniejące pozycje z bazy XBMC (Wyczyść bibliotekę)</translation>
+        <translation>Usuń nieistniejące elementy z bazy XBMC (Wyczyść bibliotekę)</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
@@ -6583,17 +6547,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="407"/>
         <source>Trigger scan for new items</source>
-        <translation>Uruchomienie skanowania dla nowych pozycji</translation>
+        <translation>Uruchomienie skanowania dla nowych elementów</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="414"/>
         <source>Finished. XBMC is now loading your updated items.</source>
-        <translation>Zakończone. XBMC wczytuje teraz zaktualizowane pozycje.</translation>
+        <translation>Zakończone. XBMC wczytuje teraz zaktualizowane elementy.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="449"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
-        <translation>Zakończone. Pola liczba odtworzeń i ostatnio odtwarzane Twoich pozycji zostały zaktualizowane.</translation>
+        <translation>Zakończone. Liczba odtworzeń i data ostatniego odtwarzania wybranych elementów zostały zaktualizowane.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="572"/>
