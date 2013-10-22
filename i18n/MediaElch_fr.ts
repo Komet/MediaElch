@@ -4342,11 +4342,6 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="275"/>
-        <source>PushButton</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../settings/SettingsWindow.ui" line="294"/>
         <location filename="../settings/SettingsWindow.ui" line="403"/>
         <location filename="../settings/SettingsWindow.ui" line="1468"/>
@@ -4566,6 +4561,11 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="256"/>
         <source>Automatically delete archives after extraction</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/SettingsWindow.ui" line="275"/>
+        <source>Choose</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
