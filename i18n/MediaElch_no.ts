@@ -4305,7 +4305,8 @@ p, li { white-space: pre-wrap; }
         <location filename="../settings/SettingsWindow.ui" line="45"/>
         <source>Add one or more directories containing your movies, TV Shows, concerts or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.</source>
-        <translation type="unfinished"/>
+        <translation>Legg en eller flere kataloger som inneholder dine filmer, TV-programmer, konserter eller filer som skal importeres. ⏎
+TV-serier episoder må være i undermapper med navnet på showet.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="249"/>
@@ -4322,7 +4323,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="300"/>
         <source>Enable adult movie scrapers</source>
-        <translation type="unfinished"/>
+        <translation>Aktiver voksen film skrapere</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="362"/>
@@ -4533,7 +4534,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="275"/>
         <source>Choose</source>
-        <translation type="unfinished"/>
+        <translation>Velge</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1085"/>
@@ -4665,7 +4666,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="424"/>
         <source>Downloads</source>
-        <translation type="unfinished"/>
+        <translation>Nedlastinger</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="460"/>
@@ -5472,7 +5473,7 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="30"/>
         <source>If you want to search by an TheTvDb id please prefix it with &quot;id&quot; (e.g. id123).</source>
-        <translation type="unfinished"/>
+        <translation>Hvis du vil søke etter en TheTvDb id Vær så snill angi den med &quot;id&quot; (f.eks id123).</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="70"/>
