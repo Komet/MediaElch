@@ -13,11 +13,7 @@ TvShowSearch::TvShowSearch(QWidget *parent) :
     ui(new Ui::TvShowSearch)
 {
     ui->setupUi(this);
-#if QT_VERSION >= 0x050000
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#else
-    ui->results->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#endif
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
 #ifdef Q_OS_MAC
@@ -105,6 +101,11 @@ int TvShowSearch::exec(QString searchString, QString id)
     onChkToggled();
     onSearch();
     return QDialog::exec();
+}
+
+int TvShowSearch::exec()
+{
+    return 0;
 }
 
 /**

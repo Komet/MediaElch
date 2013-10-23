@@ -165,7 +165,11 @@ bool QJsonRpcService::dispatch(const QJsonRpcMessage &request)
         const QVariant &argument = arguments.at(i);
         if (!argument.isValid()) {
             // pass in a default constructed parameter in this case
+#if QT_VERSION >= 0x050000
+            void *value = QMetaType::create(parameterType);
+#else
             void *value = QMetaType::construct(parameterType);
+#endif
             parameters.append(value);
             cleanup.insert(value, static_cast<QMetaType::Type>(parameterType));
         } else {
@@ -434,8 +438,8 @@ void QJsonRpcSocket::processIncomingData()
             }
             */
         } else if (document.isObject()){
-	    if (qgetenv("QJSONRPC_DEBUG").toInt())
-	        qDebug() << document.toJson();
+        if (qgetenv("QJSONRPC_DEBUG").toInt())
+            qDebug() << document.toJson();
 
             QJsonRpcMessage message(document.object());
             Q_EMIT messageReceived(message);

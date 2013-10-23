@@ -5,7 +5,7 @@
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QSqlRecord>
-#include <QtConcurrentMap>
+#include <QtConcurrent/QtConcurrentMap>
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "data/TvShow.h"
@@ -249,15 +249,11 @@ void TvShowFileSearcher::reloadEpisodes(QString showDir)
         qApp->processEvents();
     }
 
-
-
-
     emit tvShowsLoaded(m_progressMessageId);
 }
 
 TvShowEpisode *TvShowFileSearcher::reloadEpisodeData(TvShowEpisode *episode)
 {
-    QStringList files = episode->files();
     episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
     return episode;
 }

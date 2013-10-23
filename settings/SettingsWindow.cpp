@@ -3,6 +3,8 @@
 
 #include <QAction>
 #include <QDebug>
+#include <QFileDialog>
+#include <QMessageBox>
 #include "data/MovieFilesOrganizer.h"
 #include "data/Storage.h"
 #include "export/ExportTemplateLoader.h"
@@ -16,9 +18,6 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui(new Ui::SettingsWindow)
 {
     ui->setupUi(this);
-#ifdef Q_OS_MAC
-    setUnifiedTitleAndToolBarOnMac(true);
-#endif
 
 #ifdef Q_OS_MAC
     QFont smallFont = ui->labelGlobal->font();
@@ -34,9 +33,9 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->label_18->setFont(smallFont);
 #endif
 
-    ui->customScraperTable->horizontalHeader()->setResizeMode(0, QHeaderView::Stretch);
-    ui->customScraperTable->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
-    ui->customScraperTable->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    ui->customScraperTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+    ui->customScraperTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
+    ui->customScraperTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     ui->actionGlobal->setIcon(ui->actionGlobal->property("iconActive").value<QIcon>());
     ui->stackedWidget->setCurrentIndex(0);
@@ -46,9 +45,9 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     m_settings = Settings::instance(this);
 
     ui->xbmcPort->setValidator(new QIntValidator(0, 99999, ui->xbmcPort));
-    ui->dirs->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-    ui->dirs->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
-    ui->exportTemplates->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    ui->dirs->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->dirs->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
+    ui->exportTemplates->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     int scraperCounter = 0;
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {

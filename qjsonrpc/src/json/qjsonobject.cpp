@@ -974,7 +974,7 @@ void QJsonObject::detach(uint reserve)
     if (reserve == 0 && d->ref.load() == 1)
         return;
     */
-    if (reserve == 0 && int(d->ref) == 1)
+    if (reserve == 0 && d->ref.fetchAndAddRelaxed(0) == 1)
         return;
 
     QJsonPrivate::Data *x = d->clone(o, reserve);

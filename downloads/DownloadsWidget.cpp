@@ -23,21 +23,16 @@ DownloadsWidget::DownloadsWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     ui->tablePackages->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->tableImports->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
-#else
-    ui->tablePackages->horizontalHeader()->setResizeMode(0, QHeaderView::Stretch);
-    ui->tableImports->horizontalHeader()->setResizeMode(0, QHeaderView::Stretch);
-#endif
+    ui->tablePackages->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tablePackages->setColumnWidth(3, 200);
+    ui->tableImports->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
 #ifdef Q_OS_WIN32
     ui->tableImports->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     ui->tablePackages->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 #endif
-    ui->tablePackages->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-    ui->tablePackages->setColumnWidth(3, 200);
-    ui->tableImports->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 
     m_extractor = new Extractor(this);
     m_watcher = new QFileSystemWatcher(this);

@@ -750,7 +750,7 @@ public:
     Data *clone(Base *b, int reserve = 0)
     {
         int size = sizeof(Header) + b->size;
-        if (b == header->root() && int(ref) == 1 && alloc >= size + reserve)
+        if (b == header->root() && ref.fetchAndAddRelaxed(0) == 1 && alloc >= size + reserve)
             return this;
 
         if (reserve) {

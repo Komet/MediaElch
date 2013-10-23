@@ -19,7 +19,6 @@ AdvancedSettings::~AdvancedSettings()
 void AdvancedSettings::reset()
 {
     m_debugLog = false;
-    m_threadedImageLoading = false;
     m_forceCache = false;
     m_logFile = "";
     m_sortTokens = QStringList() << "Der" << "Die" << "Das" << "The" << "Le" << "La" << "Les" << "Un" << "Une" << "Des";
@@ -57,7 +56,7 @@ void AdvancedSettings::loadSettings()
     QXmlStreamReader xml;
     QFile file(Settings::applicationDir() + "/advancedsettings.xml");
     if (!file.exists())
-        file.setFileName(QDesktopServices::storageLocation(QDesktopServices::DataLocation) + "/advancedsettings.xml");
+        file.setFileName(QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/advancedsettings.xml");
 
     if (!file.exists())
         return;
@@ -100,7 +99,6 @@ void AdvancedSettings::loadSettings()
     qDebug() << "Advanced settings";
     qDebug() << "    debugLog              " << m_debugLog;
     qDebug() << "    logFile               " << m_logFile;
-    qDebug() << "    threadedImageLoading  " << m_threadedImageLoading;
     qDebug() << "    forceCache            " << m_forceCache;
     qDebug() << "    sortTokens            " << m_sortTokens;
     qDebug() << "    genreMappings         " << m_genreMappings;
@@ -131,9 +129,7 @@ void AdvancedSettings::loadLog(QXmlStreamReader &xml)
 void AdvancedSettings::loadGui(QXmlStreamReader &xml)
 {
     while (xml.readNextStartElement()) {
-        if (xml.name() == "threadedImageLoading")
-            m_threadedImageLoading = (xml.readElementText() == "true");
-        else if (xml.name() == "forceCache")
+        if (xml.name() == "forceCache")
             m_forceCache = (xml.readElementText() == "true");
         else
             xml.skipCurrentElement();
@@ -325,11 +321,6 @@ QHash<QString, QString> AdvancedSettings::countryMappings() const
 bool AdvancedSettings::useFirstStudioOnly() const
 {
     return m_useFirstStudioOnly;
-}
-
-bool AdvancedSettings::threadedImageLoading() const
-{
-    return m_threadedImageLoading;
 }
 
 bool AdvancedSettings::forceCache() const

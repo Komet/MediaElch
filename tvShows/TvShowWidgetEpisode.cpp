@@ -6,6 +6,7 @@
 #include <QGraphicsProxyWidget>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QHeaderView>
 #include <QMovie>
 #include <QPainter>
 #include "data/ImageCache.h"
@@ -30,16 +31,10 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     m_episode = 0;
 
     ui->episodeName->clear();
-#if QT_VERSION >= 0x050000
     ui->directors->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->writers->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#else
-    ui->directors->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-    ui->writers->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#endif
-
-    ui->actors->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-    ui->actors->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    ui->actors->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->actors->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     QFont font = ui->episodeName->font();
     font.setPointSize(font.pointSize()+4);
@@ -134,7 +129,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     missingLabel->setAlignment(Qt::AlignCenter);
     QGraphicsScene *scene = new QGraphicsScene(this);
     QGraphicsProxyWidget *proxy = scene->addWidget(missingLabel);
-    proxy->rotate(-45);
+    proxy->setRotation(proxy->rotation() - 45);
     proxy->setMaximumHeight(300);
     proxy->setMaximumWidth(300);
     m_missingView = new QGraphicsView(scene);

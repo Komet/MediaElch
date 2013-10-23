@@ -51,6 +51,7 @@ public:
 public slots:
     void accept();
     void reject();
+    int exec();
     int exec(int type);
 
 protected:

@@ -5,7 +5,6 @@
 #include <QPropertyAnimation>
 #include <QScrollArea>
 #include <QScrollBar>
-#include <QtConcurrentRun>
 #include "globals/ImagePreviewDialog.h"
 #include "settings/Settings.h"
 

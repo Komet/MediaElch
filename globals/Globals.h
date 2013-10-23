@@ -357,13 +357,4 @@ enum MediaStatusColumns {
     MediaStatusLast = MediaStatusActors
 };
 
-// Debugging
-#if defined(Q_CC_GNU) && QT_VERSION < 0x050000
-#    if defined( qDebug )
-#        undef qDebug
-#    endif
-#    define DEBUG_FUNCTION_NAME  QString("%1").arg(__PRETTY_FUNCTION__, -70, QLatin1Char(' '))
-#    define qDebug() qDebug() << QString(DEBUG_FUNCTION_NAME + " :")
-#endif
-
 #endif // GLOBALS_H

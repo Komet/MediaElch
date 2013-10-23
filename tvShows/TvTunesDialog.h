@@ -3,11 +3,10 @@
 
 #include <QDialog>
 #include <QFile>
+#include <QMediaPlayer>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QTableWidgetItem>
-#include "phonon/MediaObject"
-#include "phonon/VideoWidget"
 
 #include "data/TvShow.h"
 
@@ -31,9 +30,7 @@ public slots:
 private slots:
     void onSearch();
     void onShowResults(QList<ScraperSearchResult> results);
-    void onTick(qint64 time);
-    void onNewTotalTime(qint64 totalTime);
-    void onStateChanged(Phonon::State newState);
+    void onStateChanged(QMediaPlayer::State newState);
     void onPlayPause();
     void onResultClicked(QTableWidgetItem *item);
     void startDownload();
@@ -42,13 +39,14 @@ private slots:
     void downloadFinished();
     void downloadReadyRead();
     void onClose();
+    void onUpdateTime(qint64 currentTime);
+    void onNewTotalTime(qint64 totalTime);
 
 private:
     Ui::TvTunesDialog *ui;
     TvShow *m_show;
-    Phonon::MediaObject *m_mediaObject;
-    Phonon::VideoWidget *m_videoWidget;
     qint64 m_totalTime;
+    QMediaPlayer *m_mediaPlayer;
     QNetworkAccessManager *m_qnam;
     QNetworkReply *m_downloadReply;
     QTime m_downloadTime;
@@ -56,7 +54,6 @@ private:
     QUrl m_themeUrl;
     bool m_downloadInProgress;
     bool m_fileDownloaded;
-    void updateTime(qint64 currentTime);
     void clear();
 };
 

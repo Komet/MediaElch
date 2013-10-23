@@ -5,8 +5,6 @@
 #include "globals/Manager.h"
 #include "trailerProviders/TrailerProvider.h"
 
-#include "phonon/AudioOutput"
-
 TrailerDialog::TrailerDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::TrailerDialog)
@@ -20,17 +18,10 @@ TrailerDialog::TrailerDialog(QWidget *parent) :
     ui->time->setFont(font);
 #endif
 
-#if QT_VERSION >= 0x050000
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->trailers->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->trailers->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
     ui->trailers->horizontalHeader()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
-#else
-    ui->results->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-    ui->trailers->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-    ui->trailers->horizontalHeader()->setResizeMode(0, QHeaderView::ResizeToContents);
-    ui->trailers->horizontalHeader()->setResizeMode(1, QHeaderView::ResizeToContents);
-#endif
     ui->searchString->setType(MyLineEdit::TypeLoading);
     ui->stackedWidget->setAnimation(QEasingCurve::OutCubic);
     ui->stackedWidget->setSpeed(400);
@@ -59,25 +50,23 @@ TrailerDialog::TrailerDialog(QWidget *parent) :
     connect(ui->buttonCancelDownload, SIGNAL(clicked()), this, SLOT(cancelDownload()));
     connect(ui->stackedWidget, SIGNAL(animationFinished()), this, SLOT(onAnimationFinished()));
 
-    m_mediaObject = new Phonon::MediaObject(this);
-    m_mediaObject->setTickInterval(1000);
-    m_videoWidget = new Phonon::VideoWidget(this);
-    Phonon::createPath(m_mediaObject, m_videoWidget);
-    Phonon::AudioOutput *audioOutput = new Phonon::AudioOutput(Phonon::VideoCategory, this);
-    Phonon::createPath(m_mediaObject, audioOutput);
+    m_mediaPlayer = new QMediaPlayer();
+    m_videoWidget = new QVideoWidget(this);
+    m_mediaPlayer->setVideoOutput(m_videoWidget);
     QVBoxLayout *layout = new QVBoxLayout(ui->video);
     layout->addWidget(m_videoWidget);
     ui->video->setLayout(layout);
-    ui->seekSlider->setMediaObject(m_mediaObject);
 
-    connect(m_mediaObject, SIGNAL(stateChanged(Phonon::State,Phonon::State)), this, SLOT(onStateChanged(Phonon::State)));
-    connect(m_mediaObject, SIGNAL(totalTimeChanged(qint64)), this, SLOT(onNewTotalTime(qint64)));
-    connect(m_mediaObject, SIGNAL(tick(qint64)), this, SLOT(onTick(qint64)));
+    connect(m_mediaPlayer, SIGNAL(stateChanged(QMediaPlayer::State)), this, SLOT(onStateChanged(QMediaPlayer::State)));
+    connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), this, SLOT(onNewTotalTime(qint64)));
+    connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), this, SLOT(onUpdateTime(qint64)));
     connect(ui->btnPlayPause, SIGNAL(clicked()), this, SLOT(onPlayPause()));
+    connect(ui->seekSlider, SIGNAL(sliderReleased()), this, SLOT(onSliderPositionChanged()));
 }
 
 TrailerDialog::~TrailerDialog()
 {
+    m_mediaPlayer->deleteLater();
     delete ui;
 }
 
@@ -114,11 +103,18 @@ int TrailerDialog::exec(Movie *movie)
     return QDialog::exec();
 }
 
+int TrailerDialog::exec()
+{
+    return 0;
+}
+
 void TrailerDialog::reject()
 {
     if (m_downloadInProgress)
         cancelDownload();
-    m_mediaObject->stop();
+    m_mediaPlayer->stop();
+    m_mediaPlayer->setMedia(QMediaContent());
+    m_videoWidget->hide();
     QDialog::reject();
 }
 
@@ -212,9 +208,7 @@ void TrailerDialog::trailerClicked(QTableWidgetItem *item)
     ui->progressBar->setValue(0);
 
     ui->stackedWidget->slideInIdx(2);
-
-    Phonon::MediaSource source(result.trailerUrl);
-    m_mediaObject->setCurrentSource(source);
+    m_mediaPlayer->setMedia(QMediaContent(result.trailerUrl));
 }
 
 void TrailerDialog::backToResults()
@@ -224,7 +218,7 @@ void TrailerDialog::backToResults()
 
 void TrailerDialog::backToTrailers()
 {
-    m_mediaObject->stop();
+    m_mediaPlayer->stop();
     m_videoWidget->hide();
     ui->stackedWidget->slideInIdx(1);
 }
@@ -359,33 +353,31 @@ void TrailerDialog::downloadReadyRead()
 
 void TrailerDialog::onNewTotalTime(qint64 totalTime)
 {
-    m_totalTime = totalTime;
-    updateTime(m_mediaObject->currentTime());
+    m_totalTime = (totalTime < 0) ? 0 : totalTime;
+    onUpdateTime(m_mediaPlayer->position());
+    ui->seekSlider->setEnabled(m_totalTime != 0);
 }
 
-void TrailerDialog::onTick(qint64 time)
-{
-    updateTime(time);
-}
-
-void TrailerDialog::updateTime(qint64 currentTime)
+void TrailerDialog::onUpdateTime(qint64 currentTime)
 {
     QString tTime = QString("%1:%2").arg(m_totalTime/1000/60).arg((m_totalTime/1000)%60, 2, 10, QChar('0'));
     QString cTime = QString("%1:%2").arg(currentTime/1000/60).arg((currentTime/1000)%60, 2, 10, QChar('0'));
     ui->time->setText(QString("%1 / %2").arg(cTime).arg(tTime));
+
+    int position = 0;
+    if (m_totalTime > 0)
+        position = qRound(((float)currentTime/m_totalTime)*100);
+    ui->seekSlider->setValue(position);
 }
 
-void TrailerDialog::onStateChanged(Phonon::State newState)
+void TrailerDialog::onStateChanged(QMediaPlayer::State newState)
 {
     switch (newState) {
-    case Phonon::PlayingState:
-    case Phonon::LoadingState:
-    case Phonon::BufferingState:
+    case QMediaPlayer::PlayingState:
         ui->btnPlayPause->setIcon(QIcon(":/img/video_pause_64.png"));
         break;
-    case Phonon::StoppedState:
-    case Phonon::PausedState:
-    case Phonon::ErrorState:
+    case QMediaPlayer::StoppedState:
+    case QMediaPlayer::PausedState:
         ui->btnPlayPause->setIcon(QIcon(":/img/video_play_64.png"));
         break;
     }
@@ -393,16 +385,13 @@ void TrailerDialog::onStateChanged(Phonon::State newState)
 
 void TrailerDialog::onPlayPause()
 {
-    switch (m_mediaObject->state()) {
-    case Phonon::PlayingState:
-    case Phonon::LoadingState:
-    case Phonon::BufferingState:
-        m_mediaObject->pause();
+    switch (m_mediaPlayer->state()) {
+    case QMediaPlayer::PlayingState:
+        m_mediaPlayer->pause();
         break;
-    case Phonon::StoppedState:
-    case Phonon::PausedState:
-    case Phonon::ErrorState:
-        m_mediaObject->play();
+    case QMediaPlayer::StoppedState:
+    case QMediaPlayer::PausedState:
+        m_mediaPlayer->play();
         break;
     }
 }
@@ -411,4 +400,11 @@ void TrailerDialog::onAnimationFinished()
 {
     if (ui->stackedWidget->currentIndex() == 2)
         m_videoWidget->show();
+}
+
+void TrailerDialog::onSliderPositionChanged()
+{
+    if (m_totalTime == 0)
+        return;
+    m_mediaPlayer->setPosition(qRound((float)m_totalTime*ui->seekSlider->value()/100));
 }

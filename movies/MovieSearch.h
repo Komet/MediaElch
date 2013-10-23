@@ -21,6 +21,7 @@ public:
     ~MovieSearch();
 
 public slots:
+    int exec();
     int exec(QString searchString, QString id, QString tmdbId);
     static MovieSearch *instance(QWidget *parent = 0);
     QString scraperId();

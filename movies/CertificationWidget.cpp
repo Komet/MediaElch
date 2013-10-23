@@ -15,13 +15,8 @@ CertificationWidget::CertificationWidget(QWidget *parent) :
     ui(new Ui::CertificationWidget)
 {
     ui->setupUi(this);
-#if QT_VERSION >= 0x050000
     ui->certifications->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->movies->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#else
-    ui->certifications->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-    ui->movies->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#endif
     QFont font = ui->certificationName->font();
     font.setPointSize(font.pointSize()+4);
     ui->certificationName->setFont(font);

@@ -64,6 +64,10 @@ int ConcertSearch::exec(QString searchString)
     return QDialog::exec();
 }
 
+int ConcertSearch::exec()
+{
+    return 0;
+}
 
 /*** GETTER ***/
 

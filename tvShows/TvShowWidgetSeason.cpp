@@ -84,7 +84,7 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
     missingLabel->setAlignment(Qt::AlignCenter);
     QGraphicsScene *scene = new QGraphicsScene(this);
     QGraphicsProxyWidget *proxy = scene->addWidget(missingLabel);
-    proxy->rotate(-45);
+    proxy->setRotation(proxy->rotation()-45);
     proxy->setMaximumHeight(300);
     proxy->setMaximumWidth(300);
     m_missingView = new QGraphicsView(scene);

@@ -25,11 +25,7 @@ ImageDialog::ImageDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->searchTerm->setType(MyLineEdit::TypeLoading);
-#if QT_VERSION >= 0x050000
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#else
-    ui->results->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#endif
 
 #ifdef Q_OS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
@@ -91,6 +87,11 @@ ImageDialog::ImageDialog(QWidget *parent) :
 ImageDialog::~ImageDialog()
 {
     delete ui;
+}
+
+int ImageDialog::exec()
+{
+    return 0;
 }
 
 /**

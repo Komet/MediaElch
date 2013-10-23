@@ -20,6 +20,7 @@ public:
     ~ConcertSearch();
 
 public slots:
+    int exec();
     int exec(QString searchString);
     static ConcertSearch *instance(QWidget *parent = 0);
     int scraperNo();

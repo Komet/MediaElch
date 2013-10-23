@@ -21,15 +21,9 @@ SetsWidget::SetsWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-#if QT_VERSION >= 0x050000
     ui->sets->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->movies->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->movies->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-#else
-    ui->sets->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-    ui->movies->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-    ui->movies->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-#endif
     ui->buttonPreviewBackdrop->setEnabled(false);
     ui->buttonPreviewPoster->setEnabled(false);
 

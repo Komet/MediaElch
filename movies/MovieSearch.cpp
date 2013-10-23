@@ -62,6 +62,11 @@ int MovieSearch::exec(QString searchString, QString id, QString tmdbId)
     return QDialog::exec();
 }
 
+int MovieSearch::exec()
+{
+    return 0;
+}
+
 /*** GETTER ***/
 
 /**

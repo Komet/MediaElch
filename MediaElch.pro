@@ -4,10 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network script xml sql phonon
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-greaterThan(QT_MAJOR_VERSION, 4): include(qtmacextras/src/qtmacextras.pri)
+QT       += core gui network script xml sql widgets multimedia multimediawidgets concurrent
 
 LIBS += -lmediainfo -lzen -lz -lquazip
 
@@ -166,7 +163,6 @@ SOURCES += main.cpp\
     scrapers/AdultDvdEmpire.cpp
 
 macx {
-    OBJECTIVE_SOURCES += mac/MacFullscreen.mm
     OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm
 }
 
@@ -279,7 +275,6 @@ HEADERS  += main/MainWindow.h \
     smallWidgets/StyledPushButton.h \
     export/ExportDialog.h \
     smallWidgets/MessageLabel.h \
-    mac/MacFullscreen.h \
     smallWidgets/SearchOverlay.h \
     tvShows/ItemWidgetShow.h \
     scrapers/CustomMovieScraper.h \

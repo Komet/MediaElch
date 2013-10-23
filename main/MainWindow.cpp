@@ -30,20 +30,6 @@
 #include "tvShows/TvTunesDialog.h"
 #include "xbmc/XbmcSync.h"
 
-#ifdef Q_OS_MAC
-#if QT_VERSION >= 0x050000
-    #define IS_MAC_AND_QT5
-#endif
-#endif
-
-#ifdef IS_MAC_AND_QT5
-#include "qtmacextras/src/qtmacunifiedtoolbar.h"
-#endif
-
-#ifdef Q_OS_MAC
-    #include "mac/MacFullscreen.h"
-#endif
-
 MainWindow *MainWindow::m_instance = 0;
 
 /**
@@ -95,24 +81,8 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     if (m_settings->mainWindowSize().isValid() && !m_settings->mainWindowPosition().isNull()) {
-        #ifdef Q_OS_MAC
-            // Ugly workaround from https://bugreports.qt-project.org/browse/QTBUG-3116
-            // to fix invisible toolbar on mac
-            bool workaround = !isVisible();
-            if (workaround) {
-                // make "invisible"
-                setWindowOpacity(0); // let Qt update its frameStruts
-                show();
-            }
-            resize(m_settings->mainWindowSize());
-            if (workaround) {
-                move(m_settings->mainWindowPosition());
-                setWindowOpacity(1);
-            }
-        #else
         resize(m_settings->mainWindowSize());
         move(m_settings->mainWindowPosition());
-        #endif
         #ifdef Q_OS_WIN32
         if (m_settings->mainWindowMaximized())
             showMaximized();
@@ -120,10 +90,6 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     // Size for Screenshots
     // resize(1121, 735);
-
-    #ifdef Q_OS_MAC
-        MacFullscreen::addFullscreen(this);
-    #endif
 
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setMovie(Movie*)));
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setEnabledTrue(Movie*)));
@@ -259,15 +225,9 @@ void MainWindow::setupToolbar()
 {
     qDebug() << "Entered";
 
-#ifdef IS_MAC_AND_QT5
-    QtMacUnifiedToolBar *toolBar = new QtMacUnifiedToolBar(this);
-    ui->mainToolBar->setVisible(false);
-#else
+//    QtMacUnifiedToolBar *toolBar = new QtMacUnifiedToolBar(this);
+//    ui->mainToolBar->setVisible(false);
     QToolBar *toolBar = ui->mainToolBar;
-#ifdef Q_OS_MAC
-    setUnifiedTitleAndToolBarOnMac(true);
-#endif
-#endif
 
     QPainter p;
     QList<QPixmap> icons;
@@ -323,10 +283,6 @@ void MainWindow::setupToolbar()
     toolBar->addAction(m_actionXbmc);
     toolBar->addAction(m_actionExport);
     toolBar->addAction(m_actionAbout);
-#ifndef IS_MAC_AND_QT5
-    m_filterWidget->setParent(toolBar);
-    toolBar->addWidget(m_filterWidget);
-#endif
 #ifndef APPSTORE
     toolBar->addAction(m_actionLike);
 #endif
@@ -346,10 +302,6 @@ void MainWindow::setupToolbar()
     m_actionSave->setEnabled(false);
     m_actionSaveAll->setEnabled(false);
     m_actionRename->setEnabled(false);
-
-#ifdef IS_MAC_AND_QT5
-    toolBar->showInWindowForWidget(this);
-#endif
 
 #ifdef Q_OS_WIN32
     toolBar->setStyleSheet("QToolButton {border: 0; padding: 5px;} QToolBar { border-bottom: 1px solid rgba(0, 0, 0, 100); }");

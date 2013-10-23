@@ -470,10 +470,7 @@ void ConcertWidget::updateImages(QList<int> images)
     foreach (const int &imageType, images) {
         foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage*>()) {
             if (cImage->imageType() == imageType) {
-                if (Settings::instance()->advanced()->threadedImageLoading())
-                    QtConcurrent::run(this, &ConcertWidget::updateImage, imageType, cImage);
-                else
-                    updateImage(imageType, cImage);
+                updateImage(imageType, cImage);
                 break;
             }
         }

@@ -10,11 +10,7 @@ MovieSearchWidget::MovieSearchWidget(QWidget *parent) :
     ui(new Ui::MovieSearchWidget)
 {
     ui->setupUi(this);
-#if QT_VERSION >= 0x050000
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#else
-    ui->results->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#endif
     ui->searchString->setType(MyLineEdit::TypeLoading);
 
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers())

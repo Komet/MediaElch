@@ -3,14 +3,13 @@
 
 #include <QDialog>
 #include <QFile>
+#include <QMediaPlayer>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QTableWidgetItem>
+#include <QVideoWidget>
 #include "globals/Globals.h"
 #include "movies/Movie.h"
-
-#include "phonon/MediaObject"
-#include "phonon/VideoWidget"
 
 namespace Ui {
 class TrailerDialog;
@@ -26,6 +25,7 @@ public:
     static TrailerDialog *instance(QWidget *parent = 0);
 
 public slots:
+    int exec();
     int exec(Movie *movie);
     void reject();
 
@@ -42,11 +42,12 @@ private slots:
     void downloadProgress(qint64 received, qint64 total);
     void downloadFinished();
     void downloadReadyRead();
-    void onTick(qint64 time);
     void onNewTotalTime(qint64 totalTime);
-    void onStateChanged(Phonon::State newState);
+    void onStateChanged(QMediaPlayer::State newState);
     void onPlayPause();
     void onAnimationFinished();
+    void onUpdateTime(qint64 currentTime);
+    void onSliderPositionChanged();
 
 private:
     Ui::TrailerDialog *ui;
@@ -60,11 +61,10 @@ private:
     QFile m_output;
     bool m_downloadInProgress;
     QString m_trailerFileName;
-    Phonon::MediaObject *m_mediaObject;
-    Phonon::VideoWidget *m_videoWidget;
+    QVideoWidget *m_videoWidget;
+    QMediaPlayer *m_mediaPlayer;
     qint64 m_totalTime;
     void clear();
-    void updateTime(qint64 currentTime);
 };
 
 #endif // TRAILERDIALOG_H

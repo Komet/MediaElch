@@ -1,6 +1,7 @@
 #include "ImportDialog.h"
 #include "ui_ImportDialog.h"
 
+#include <QMessageBox>
 #include <QMovie>
 #include "globals/Helper.h"
 #include "data/ImageCache.h"
@@ -570,7 +571,7 @@ void ImportDialog::onFileWatcherTimeout()
     if (sourceSize == 0)
         return;
 
-    ui->progressBar->setValue(qRound(destinationSize*100/sourceSize));
+    ui->progressBar->setValue(qRound((float)destinationSize*100/sourceSize));
 }
 
 void ImportDialog::onMovingFilesFinished()

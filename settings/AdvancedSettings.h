@@ -28,7 +28,6 @@ public:
     QHash<QString, QString> studioMappings() const;
     QHash<QString, QString> countryMappings() const;
     bool useFirstStudioOnly() const;
-    bool threadedImageLoading() const;
     bool forceCache() const;
     bool portableMode() const;
 
@@ -47,7 +46,6 @@ private:
     QHash<QString, QString> m_studioMappings;
     QHash<QString, QString> m_countryMappings;
     bool m_useFirstStudioOnly;
-    bool m_threadedImageLoading;
     bool m_forceCache;
     bool m_portableMode;
 

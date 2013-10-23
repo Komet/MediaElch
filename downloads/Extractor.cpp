@@ -44,11 +44,11 @@ void Extractor::extract(QString baseName, QStringList files, QString password)
     QFileInfo fi(file);
 
     QStringList parameters;
-    parameters << "e" << "-o+" << "-y";
+    parameters << "x" << "-o+" << "-y";
     if (!password.isEmpty())
         parameters << "-p\"" + password + "\"";
     parameters << file;
-    parameters << fi.path();
+    //parameters << fi.path();
 
     QProcess *process = new QProcess(this);
     m_processes.append(process);
@@ -66,6 +66,7 @@ void Extractor::onReadyRead()
 {
     QProcess *process = static_cast<QProcess*>(QObject::sender());
     QString msg = process->readAllStandardOutput();
+    qDebug() << msg;
     QRegExp rx("([0-9]*)%");
     if (rx.indexIn(msg) != -1)
         emit sigProgress(process->property("baseName").toString(), rx.cap(1).toInt());

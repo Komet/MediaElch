@@ -13,65 +13,48 @@
 
 static QFile data;
 
-#if QT_VERSION < 0x050000
-
-void messageOutput(QtMsgType type, const char *msg)
-{
-    if (!data.isOpen())
-        return;
-
-    QTextStream out(&data);
-    QString newLine = "\n";
-    #ifdef Q_OS_WIN32
-        newLine = "\r\n";
-    #endif
-
-    switch (type) {
-    case QtDebugMsg:
-        out << msg << newLine;
-        break;
-    case QtWarningMsg:
-        out << "WARNING: " << msg << newLine;
-        break;
-    case QtCriticalMsg:
-        out << "CRITICAL: " << msg << newLine;
-        break;
-    case QtFatalMsg:
-        out << "FATAL: " << msg << newLine;
-        abort();
-    }
-}
-
-#else
-
 void messageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
-    if (!data.isOpen())
-        return;
+    bool toFile = data.isOpen();
 
     QByteArray localMsg = msg.toLocal8Bit();
-    QTextStream out(&data);
+    QTextStream out;
+    if (toFile)
+        out.setDevice(&data);
     QString newLine = "\n";
     #ifdef Q_OS_WIN32
         newLine = "\r\n";
     #endif
 
+    QString f = QString("%1").arg(context.function, -70, QChar(' '));
+
     switch (type) {
     case QtDebugMsg:
-        out << "[" << context.function << "] " << localMsg << newLine;
+        if (toFile)
+            out << "[" << context.function << "] " << localMsg << newLine;
+        else
+            fprintf(stderr, "%s %s%s", qPrintable(f), qPrintable(localMsg), qPrintable(newLine));
         break;
     case QtWarningMsg:
-        out << "WARNING: " << "[" << context.function << "] " << localMsg << newLine;
+        if (toFile)
+            out << "WARNING: " << "[" << context.function << "] " << localMsg << newLine;
+        else
+            fprintf(stderr, "WARNING: %s %s%s", qPrintable(f), qPrintable(localMsg), qPrintable(newLine));
         break;
     case QtCriticalMsg:
-        out << "CRITICAL: " << "[" << context.function << "] " << localMsg << newLine;
+        if (toFile)
+            out << "CRITICAL: " << "[" << context.function << "] " << localMsg << newLine;
+        else
+            fprintf(stderr, "CRITICAL: %s %s%s", qPrintable(f), qPrintable(localMsg), qPrintable(newLine));
         break;
     case QtFatalMsg:
-        out << "FATAL: " << "[" << context.function << "] " << localMsg << newLine;
+        if (toFile)
+            out << "FATAL: " << "[" << context.function << "] " << localMsg << newLine;
+        else
+            fprintf(stderr, "FATAL: %s %s%s", qPrintable(f), qPrintable(localMsg), qPrintable(newLine));
         abort();
     }
 }
-#endif
 
 int main(int argc, char *argv[])
 {
@@ -99,9 +82,6 @@ int main(int argc, char *argv[])
     // Add fonts
     QFontDatabase::addApplicationFont(":/PathwayGothicOne.ttf");
 
-#if QT_VERSION < 0x050000
-    QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
-#endif
     QCoreApplication::setOrganizationName("kvibes");
     QCoreApplication::setApplicationName("MediaElch");
     QCoreApplication::setApplicationVersion("1.8-dev");
@@ -112,12 +92,8 @@ int main(int argc, char *argv[])
         if (!data.open(QFile::WriteOnly | QFile::Truncate))
             QMessageBox::critical(0, QObject::tr("Logfile could not be openened"),
                                   QObject::tr("The logfile %1 could not be openend for writing.").arg(Settings::instance()->advanced()->logFile()));
-#if QT_VERSION >= 0x050000
-        qInstallMessageHandler(messageOutput);
-#else
-        qInstallMsgHandler(messageOutput);
-#endif
     }
+    qInstallMessageHandler(messageOutput);
 
     MainWindow w;
     w.show();

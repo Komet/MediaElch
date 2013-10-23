@@ -34,13 +34,8 @@ MovieWidget::MovieWidget(QWidget *parent) :
     m_backgroundLabel->lower();
     ui->movieName->clear();
 
-#if QT_VERSION >= 0x050000
     ui->actors->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->actors->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#else
-    ui->actors->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-    ui->actors->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#endif
     ui->artStackedWidget->setAnimation(QEasingCurve::OutCubic);
     ui->artStackedWidget->setSpeed(300);
     ui->localTrailer->setBadgeType(Badge::LabelSuccess);
@@ -631,10 +626,7 @@ void MovieWidget::updateImages(QList<int> images)
     foreach (const int &imageType, images) {
         foreach (ClosableImage *cImage, ui->artStackedWidget->findChildren<ClosableImage*>()) {
             if (cImage->imageType() == imageType) {
-                if (Settings::instance()->advanced()->threadedImageLoading())
-                    QtConcurrent::run(this, &MovieWidget::updateImage, imageType, cImage);
-                else
-                    updateImage(imageType, cImage);
+                updateImage(imageType, cImage);
                 break;
             }
         }

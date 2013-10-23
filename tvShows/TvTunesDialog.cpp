@@ -2,7 +2,6 @@
 #include "ui_TvTunesDialog.h"
 
 #include <QMessageBox>
-#include "phonon/AudioOutput"
 
 #include "globals/Manager.h"
 
@@ -14,12 +13,9 @@ TvTunesDialog::TvTunesDialog(QWidget *parent) :
 
     m_totalTime = 0;
 
-#if QT_VERSION >= 0x050000
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#else
-    ui->results->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#endif
     ui->searchString->setType(MyLineEdit::TypeLoading);
+    ui->seekSlider->setEnabled(false);
 
 #ifdef Q_OS_MAC
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
@@ -42,20 +38,16 @@ TvTunesDialog::TvTunesDialog(QWidget *parent) :
     connect(ui->buttonCancelDownload, SIGNAL(clicked()), this, SLOT(cancelDownload()));
     connect(Manager::instance()->tvTunes(), SIGNAL(sigSearchDone(QList<ScraperSearchResult>)), this, SLOT(onShowResults(QList<ScraperSearchResult>)));
 
-    m_mediaObject = new Phonon::MediaObject(this);
-    m_mediaObject->setTickInterval(1000);
-    Phonon::AudioOutput *audioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
-    Phonon::createPath(m_mediaObject, audioOutput);
-    ui->seekSlider->setMediaObject(m_mediaObject);
-
-    connect(m_mediaObject, SIGNAL(stateChanged(Phonon::State,Phonon::State)), this, SLOT(onStateChanged(Phonon::State)));
-    connect(m_mediaObject, SIGNAL(totalTimeChanged(qint64)), this, SLOT(onNewTotalTime(qint64)));
-    connect(m_mediaObject, SIGNAL(tick(qint64)), this, SLOT(onTick(qint64)));
+    m_mediaPlayer = new QMediaPlayer();
+    connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), this, SLOT(onNewTotalTime(qint64)));
+    connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), this, SLOT(onUpdateTime(qint64)));
+    connect(m_mediaPlayer, SIGNAL(stateChanged(QMediaPlayer::State)), this, SLOT(onStateChanged(QMediaPlayer::State)));
     connect(ui->btnPlayPause, SIGNAL(clicked()), this, SLOT(onPlayPause()));
 }
 
 TvTunesDialog::~TvTunesDialog()
 {
+    m_mediaPlayer->deleteLater();
     delete ui;
 }
 
@@ -69,7 +61,7 @@ TvTunesDialog *TvTunesDialog::instance(QWidget *parent)
 
 void TvTunesDialog::clear()
 {
-    m_mediaObject->stop();
+    m_mediaPlayer->stop();
     ui->btnPlayPause->setEnabled(false);
     ui->buttonDownload->setEnabled(false);
     ui->results->clearContents();
@@ -118,45 +110,41 @@ void TvTunesDialog::onShowResults(QList<ScraperSearchResult> results)
 
 void TvTunesDialog::onResultClicked(QTableWidgetItem *item)
 {
-    m_mediaObject->stop();
+    m_mediaPlayer->stop();
     QString url = item->data(Qt::UserRole).toString();
     m_themeUrl = url;
-    Phonon::MediaSource source(url);
-    m_mediaObject->setCurrentSource(source);
-    m_mediaObject->play();
+    m_mediaPlayer->setMedia(QMediaContent(url));
+    m_mediaPlayer->play();
     ui->btnPlayPause->setEnabled(true);
     ui->buttonDownload->setEnabled(true);
 }
 
 void TvTunesDialog::onNewTotalTime(qint64 totalTime)
 {
-    m_totalTime = totalTime;
-    updateTime(m_mediaObject->currentTime());
+    m_totalTime = (totalTime < 0) ? 0 : totalTime;
+    onUpdateTime(m_mediaPlayer->position());
 }
 
-void TvTunesDialog::onTick(qint64 time)
-{
-    updateTime(time);
-}
-
-void TvTunesDialog::updateTime(qint64 currentTime)
+void TvTunesDialog::onUpdateTime(qint64 currentTime)
 {
     QString tTime = QString("%1:%2").arg(m_totalTime/1000/60).arg((m_totalTime/1000)%60, 2, 10, QChar('0'));
     QString cTime = QString("%1:%2").arg(currentTime/1000/60).arg((currentTime/1000)%60, 2, 10, QChar('0'));
     ui->time->setText(QString("%1 / %2").arg(cTime).arg(tTime));
+
+    int position = 0;
+    if (m_totalTime > 0)
+        position = qRound(((float)currentTime/m_totalTime)*100);
+    ui->seekSlider->setValue(position);
 }
 
-void TvTunesDialog::onStateChanged(Phonon::State newState)
+void TvTunesDialog::onStateChanged(QMediaPlayer::State newState)
 {
     switch (newState) {
-    case Phonon::PlayingState:
-    case Phonon::LoadingState:
-    case Phonon::BufferingState:
+    case QMediaPlayer::PlayingState:
         ui->btnPlayPause->setIcon(QIcon(":/img/video_pause_64.png"));
         break;
-    case Phonon::StoppedState:
-    case Phonon::PausedState:
-    case Phonon::ErrorState:
+    case QMediaPlayer::StoppedState:
+    case QMediaPlayer::PausedState:
         ui->btnPlayPause->setIcon(QIcon(":/img/video_play_64.png"));
         break;
     }
@@ -164,16 +152,13 @@ void TvTunesDialog::onStateChanged(Phonon::State newState)
 
 void TvTunesDialog::onPlayPause()
 {
-    switch (m_mediaObject->state()) {
-    case Phonon::PlayingState:
-    case Phonon::LoadingState:
-    case Phonon::BufferingState:
-        m_mediaObject->pause();
+    switch (m_mediaPlayer->state()) {
+    case QMediaPlayer::PlayingState:
+        m_mediaPlayer->stop();
         break;
-    case Phonon::StoppedState:
-    case Phonon::PausedState:
-    case Phonon::ErrorState:
-        m_mediaObject->play();
+    case QMediaPlayer::StoppedState:
+    case QMediaPlayer::PausedState:
+        m_mediaPlayer->play();
         break;
     }
 }
@@ -297,7 +282,7 @@ void TvTunesDialog::downloadReadyRead()
 
 void TvTunesDialog::onClose()
 {
-    m_mediaObject->stop();
+    m_mediaPlayer->stop();
     if (m_downloadInProgress)
         cancelDownload();
     if (m_fileDownloaded)

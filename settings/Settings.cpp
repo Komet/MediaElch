@@ -1130,7 +1130,7 @@ QString Settings::databaseDir()
     if (advanced()->portableMode())
         return applicationDir();
     else
-        return QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+        return QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 }
 
 QString Settings::imageCacheDir()
@@ -1138,7 +1138,7 @@ QString Settings::imageCacheDir()
     if (advanced()->portableMode())
         return applicationDir();
     else
-        return QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+        return QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 }
 
 QString Settings::exportTemplatesDir()
@@ -1146,7 +1146,7 @@ QString Settings::exportTemplatesDir()
     if (advanced()->portableMode())
         return applicationDir() + QDir::separator() + "export_themes";
     else
-        return QDesktopServices::storageLocation(QDesktopServices::DataLocation) + QDir::separator() + "export_themes";
+        return QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QDir::separator() + "export_themes";
 
 }
 

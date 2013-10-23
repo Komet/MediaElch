@@ -28,13 +28,8 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     m_show = 0;
 
     ui->showTitle->clear();
-#if QT_VERSION >= 0x050000
     ui->actors->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->actors->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#else
-    ui->actors->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-    ui->actors->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#endif
     QFont font = ui->showTitle->font();
     font.setPointSize(font.pointSize()+4);
     ui->showTitle->setFont(font);
