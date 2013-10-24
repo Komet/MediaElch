@@ -31,6 +31,7 @@ ClosableImage::ClosableImage(QWidget *parent) :
     #else
     m_font.setPointSize(m_font.pointSize()-2);
     #endif
+    m_font.setFamily("Helvetica Neue");
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -140,6 +141,7 @@ void ClosableImage::paintEvent(QPaintEvent *event)
         QFontMetrics fm(m_font);
         int resWidth = fm.width(res);
         p.setFont(m_font);
+        p.setPen(QColor(102, 102, 102));
         p.drawText(width()-resWidth-9, height()-20, resWidth, 20, Qt::AlignRight | Qt::AlignBottom, res);
         p.drawPixmap(0, height()-16, 16, 16, m_zoomIn);
         drawTitle(p);

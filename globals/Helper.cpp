@@ -1,8 +1,17 @@
 #include "Helper.h"
 
 #include <QBuffer>
+#include <QComboBox>
+#include <QDateEdit>
+#include <QDateTimeEdit>
 #include <QDir>
+#include <QDoubleSpinBox>
+#include <QGraphicsDropShadowEffect>
+#include <QLabel>
+#include <QLineEdit>
 #include <QRegExp>
+#include <QSpinBox>
+#include <QWidget>
 #include "globals/Globals.h"
 #include "settings/Settings.h"
 
@@ -286,4 +295,124 @@ QString Helper::formatFileSize(const qint64 &size)
         return QString("%1 kB").arg(QString::number((float)size/1024, 'f', 2));
     else
         return QString("%1 B").arg(QString::number((float)size, 'f', 2));
+}
+
+void Helper::removeFocusRect(QWidget *widget)
+{
+    foreach (QLineEdit *edit, widget->findChildren<QLineEdit*>())
+        edit->setAttribute(Qt::WA_MacShowFocusRect, false);
+    foreach (QComboBox *box, widget->findChildren<QComboBox*>())
+        box->setAttribute(Qt::WA_MacShowFocusRect, false);
+    foreach (QSpinBox *box, widget->findChildren<QSpinBox*>())
+        box->setAttribute(Qt::WA_MacShowFocusRect, false);
+    foreach (QDoubleSpinBox *box, widget->findChildren<QDoubleSpinBox*>())
+        box->setAttribute(Qt::WA_MacShowFocusRect, false);
+    foreach (QDateEdit *dateEdit, widget->findChildren<QDateEdit*>())
+        dateEdit->setAttribute(Qt::WA_MacShowFocusRect, false);
+    foreach (QDateTimeEdit *dateTimeEdit, widget->findChildren<QDateTimeEdit*>())
+        dateTimeEdit->setAttribute(Qt::WA_MacShowFocusRect, false);
+}
+
+void Helper::applyStyle(QWidget *widget, bool removeFocusRect)
+{
+    if (removeFocusRect)
+        Helper::removeFocusRect(widget);
+
+    QStringList styleSheet = QStringList()
+        << "QLabel {"
+        << "    font-family: \"Helvetica Neue\";"
+        << "    color: #666666;"
+        << "}"
+
+        << "QLineEdit, QSpinBox, QDateTimeEdit, QTextEdit, QComboBox, QDoubleSpinBox, QCheckBox {"
+        << "    border: 0;"
+        << "    border-bottom: 1px dotted #e0e0e0;"
+        << "}"
+
+        << "QComboBox::down-arrow {"
+        << "    image: url(':/img/ui_select.png');"
+        << "    width: 16px;"
+        << "    height: 16px;"
+        << "}"
+
+        << "QComboBox { margin-left: 5px; padding-right: 5px; }"
+
+        << "QCheckBox::indicator:unchecked {"
+        << "    image: url(':/img/ui_uncheck.png');"
+        << "    width: 16px;"
+        << "    height: 16px;"
+        << "}"
+
+        << "QCheckBox::indicator:checked {"
+        << "    image: url(':/img/ui_check.png');"
+        << "    width: 16px;"
+        << "    height: 16px;"
+        << "}"
+
+        << "QComboBox::drop-down {"
+        << "    background-color: #ffffff;"
+        << "}"
+
+        << "QTabWidget::pane {"
+        << "    border-top: 1px solid #ebebeb;"
+        << "    margin-top: -1px;"
+        << "}"
+
+        << "QTabBar::tab {"
+        << "    padding: 8px;"
+        << "    color: #666666;"
+        << "    border: 0;"
+        << "    font-family: \"Helvetica Neue\";"
+        << "}"
+
+        << "QTabBar::tab:selected {"
+        << "    border: 1px solid #ebebeb;"
+        << "    border-bottom: 1px solid #ffffff;"
+        << "    border-top-left-radius: 4px;"
+        << "    border-top-right-radius: 4px;"
+        << "}"
+
+        << "QTabBar::tab:first:!selected {"
+        << "    border-left: none;"
+        << "}"
+
+        << "QTableWidget {"
+        << "    border: none;"
+        << "    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);"
+        << "    alternate-background-color: #f9f9f9;"
+        << "    selection-color: #ffffff;"
+        << "}"
+
+        << "QTableWidget QHeaderView::section {"
+        << "    background-color: #f9f9f9;"
+        << "    color: rgb(27, 105, 165);"
+        << "    border: none;"
+        << "    border-left: 1px solid #f0f0f0;"
+        << "    font-weight: normal;"
+        << "    padding-top: 4px;"
+        << "    padding-bottom: 4px;"
+        << "    margin-top: 1px;"
+        << "    margin-bottom: 1px;"
+        << "}"
+
+        << "QTableWidget QHeaderView::section:first {"
+        << "    border: none;"
+        << "}"
+
+        << ";";
+
+    widget->setStyleSheet(widget->styleSheet() + styleSheet.join("\n"));
+}
+
+void Helper::applyEffect(QWidget *parent)
+{
+    foreach (QLabel *label, parent->findChildren<QLabel*>()) {
+        if (label->property("dropShadow").toBool()) {
+            QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(parent);
+            effect->setColor(QColor(0, 0, 0, 30));
+            effect->setOffset(4);
+            effect->setBlurRadius(8);
+            label->setGraphicsEffect(effect);
+        }
+    }
 }

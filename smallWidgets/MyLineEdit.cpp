@@ -185,9 +185,9 @@ void MyLineEdit::addAdditionalStyleSheet(QString style)
 void MyLineEdit::setShowMagnifier(bool show)
 {
     if (m_showMagnifier && !show)
-        m_paddingLeft -= 20;
+        m_paddingLeft -= 24;
     else if (!m_showMagnifier && show)
-        m_paddingLeft += 20;
+        m_paddingLeft += 24;
 
     m_showMagnifier = show;
 
@@ -216,7 +216,12 @@ void MyLineEdit::setShowMagnifier(bool show)
 void MyLineEdit::addFilter(Filter *filter)
 {
     QLabel *label = new QLabel(this);
-    label->setStyleSheet("background-color: #d0d0d0; border: 1px solid #d0d0d0; border-radius: 2px; font-size: 10px;");
+    if (filter->info() == MovieFilters::Title || filter->info() == MovieFilters::Path || filter->info() == ConcertFilters::Title || filter->info() == TvShowFilters::Title)
+        label->setStyleSheet("background-color: #999999; border: 1px solid #999999; border-radius: 2px; font-size: 10px; color: #ffffff;");
+    else if (filter->info() == MovieFilters::ImdbId)
+        label->setStyleSheet("background-color: #F0AD4E; border: 1px solid #F0AD4E; border-radius: 2px; font-size: 10px; color: #ffffff;");
+    else
+        label->setStyleSheet("background-color: #5BC0DE; border: 1px solid #5BC0DE; border-radius: 2px; font-size: 10px; color: #ffffff;");
     label->setText(filter->shortText());
     label->show();
     m_filterLabels.append(label);
@@ -269,7 +274,7 @@ void MyLineEdit::drawFilters()
     }
 
     if (hidden > 0) {
-        m_moreLabel->move(m_paddingLeft, 3);
+        m_moreLabel->move(m_paddingLeft, 1);
         m_moreLabel->show();
         paddingLeft += m_moreLabel->width();
     } else {
@@ -278,7 +283,7 @@ void MyLineEdit::drawFilters()
 
     foreach (QLabel *l, m_filterLabels) {
         if (l->isVisible() || l == m_filterLabels.last()) {
-            l->move(paddingLeft, 3);
+            l->move(paddingLeft, 1);
             paddingLeft += l->width()+2;
         }
     }

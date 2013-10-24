@@ -1,9 +1,12 @@
 #include "FilterWidget.h"
 #include "ui_FilterWidget.h"
 
+#include <QGraphicsDropShadowEffect>
 #include "globals/Globals.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
+#include "main/MainWindow.h"
+#include "main/Navbar.h"
 
 /**
  * @brief FilterWidget::FilterWidget
@@ -15,13 +18,13 @@ FilterWidget::FilterWidget(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->lineEdit->setShowMagnifier(true);
-    ui->lineEdit->addAdditionalStyleSheet("QLineEdit { border: 1px solid rgba(0, 0, 0, 100); border-radius: 10px; }");
     ui->lineEdit->setType(MyLineEdit::TypeClear);
     ui->lineEdit->setAttribute(Qt::WA_MacShowFocusRect, false);
 
     m_list = new QListWidget();
     m_list->setWindowFlags(Qt::WindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint));
-    m_list->setAttribute(Qt::WA_ShowWithoutActivating);
+    m_list->setAttribute(Qt::WA_ShowWithoutActivating, true);
+    m_list->setAttribute(Qt::WA_MacShowFocusRect, false);
 
     m_activeWidget = WidgetMovies;
 
@@ -29,9 +32,15 @@ FilterWidget::FilterWidget(QWidget *parent) :
     palette.setColor(QPalette::Highlight, palette.color(QPalette::Highlight));
     palette.setColor(QPalette::HighlightedText, palette.color(QPalette::HighlightedText));
     m_list->setPalette(palette);
-    m_list->setStyleSheet(QString("background-color: transparent; border: 1px solid rgba(255, 255, 255, 200); border-radius: 5px;"));
+    m_list->setStyleSheet(QString("background-color: #ffffff; border: 1px solid #f0f0f0; border-radius: 5px;"));
     m_list->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_list->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+    effect->setBlurRadius(16);
+    effect->setOffset(0);
+    effect->setColor(QColor(0, 0, 0, 100));
+    m_list->setGraphicsEffect(effect);
 
     connect(ui->lineEdit, SIGNAL(textEdited(QString)), this, SLOT(onFilterTextChanged(QString)));
     connect(ui->lineEdit, SIGNAL(keyDown()), this, SLOT(onKeyDown()));
@@ -102,6 +111,7 @@ void FilterWidget::onKeyUp()
  */
 void FilterWidget::onFilterTextChanged(QString text)
 {
+    m_list->setParent(MainWindow::instance()->centralWidget());
     if (text.length() < 3) {
         m_list->hide();
         return;
@@ -156,7 +166,8 @@ void FilterWidget::onFilterTextChanged(QString text)
 
         m_list->setFixedHeight(qMin(300, height));
         m_list->setFixedWidth(m_list->sizeHintForColumn(0)+5);
-        m_list->move(ui->lineEdit->mapToGlobal(QPoint(ui->lineEdit->paddingLeft(), ui->lineEdit->height())));
+        QPoint globalPos = ui->lineEdit->mapToGlobal(QPoint(ui->lineEdit->paddingLeft(), ui->lineEdit->height()));
+        m_list->move(MainWindow::instance()->centralWidget()->mapFromGlobal(globalPos));
         m_list->show();
     } else {
         m_list->hide();

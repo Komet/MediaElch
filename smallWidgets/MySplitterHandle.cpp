@@ -10,7 +10,7 @@ MySplitterHandle::MySplitterHandle(Qt::Orientation orientation, QSplitter *paren
 void MySplitterHandle::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
-    painter.fillRect(event->rect(), QBrush(QColor(0, 0, 0, 100)));
+    painter.fillRect(event->rect(), QBrush(QColor(235, 235, 235)));
 }
 
 QSize MySplitterHandle::sizeHint() const

@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui network script xml sql widgets multimedia multimediawidgets concurrent
+macx: QT += macextras
 
 LIBS += -lmediainfo -lzen -lz -lquazip
 
@@ -53,7 +54,6 @@ SOURCES += main.cpp\
     scrapers/VideoBuster.cpp \
     scrapers/OFDb.cpp \
     scrapers/Cinefacts.cpp \
-    smallWidgets/FilterWidget.cpp \
     smallWidgets/MyTableWidget.cpp \
     main/MessageBox.cpp \
     main/Message.cpp \
@@ -160,7 +160,9 @@ SOURCES += main.cpp\
     tvShows/TvShowUpdater.cpp \
     scrapers/AEBN.cpp \
     scrapers/HotMovies.cpp \
-    scrapers/AdultDvdEmpire.cpp
+    scrapers/AdultDvdEmpire.cpp \
+    main/Navbar.cpp \
+    smallWidgets/FilterWidget.cpp
 
 macx {
     OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm
@@ -300,7 +302,8 @@ HEADERS  += main/MainWindow.h \
     tvShows/TvShowUpdater.h \
     scrapers/AEBN.h \
     scrapers/HotMovies.h \
-    scrapers/AdultDvdEmpire.h
+    scrapers/AdultDvdEmpire.h \
+    main/Navbar.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -346,7 +349,8 @@ FORMS    += main/MainWindow.ui \
     movies/MovieSearchWidget.ui \
     downloads/ImportDialog.ui \
     concerts/ConcertSearchWidget.ui \
-    tvShows/TvShowSearchEpisode.ui
+    tvShows/TvShowSearchEpisode.ui \
+    main/Navbar.ui
 
 RESOURCES += \
     MediaElch.qrc \

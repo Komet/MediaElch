@@ -225,87 +225,21 @@ void MainWindow::setupToolbar()
 {
     qDebug() << "Entered";
 
-//    QtMacUnifiedToolBar *toolBar = new QtMacUnifiedToolBar(this);
-//    ui->mainToolBar->setVisible(false);
-    QToolBar *toolBar = ui->mainToolBar;
+    connect(ui->navbar, SIGNAL(sigSearch()), this, SLOT(onActionSearch()));
+    connect(ui->navbar, SIGNAL(sigSave()), this, SLOT(onActionSave()));
+    connect(ui->navbar, SIGNAL(sigSaveAll()), this, SLOT(onActionSaveAll()));
+    connect(ui->navbar, SIGNAL(sigReload()), this, SLOT(onActionReload()));
+    connect(ui->navbar, SIGNAL(sigAbout()), m_aboutDialog, SLOT(exec()));
+    connect(ui->navbar, SIGNAL(sigSettings()), m_settingsWindow, SLOT(show()));
+    connect(ui->navbar, SIGNAL(sigLike()), m_supportDialog, SLOT(exec()));
+    connect(ui->navbar, SIGNAL(sigSync()), this, SLOT(onActionXbmc()));
+    connect(ui->navbar, SIGNAL(sigRename()), this, SLOT(onActionRename()));
+    connect(ui->navbar, SIGNAL(sigExport()), m_exportDialog, SLOT(exec()));
 
-    QPainter p;
-    QList<QPixmap> icons;
-    icons << QPixmap(":/img/spanner.png") << QPixmap(":/img/info.png") << QPixmap(":/img/folder_in.png")
-          << QPixmap(":/img/magnifier.png") <<QPixmap(":/img/save.png")
-          << QPixmap(":/img/storage.png") << QPixmap(":/img/heart.png") << QPixmap(":/img/arrow_circle_right.png")
-          << QPixmap(":/img/xbmc.png") << QPixmap(":/img/folder_64.png") << QPixmap(":/img/export.png");
-    for (int i=0, n=icons.count() ; i<n ; ++i) {
-        p.begin(&icons[i]);
-        p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-        p.fillRect(icons[i].rect(), QColor(0, 0, 0, 100));
-        p.end();
-    }
-
-    m_actionSearch = new QAction(QIcon(icons[3]), tr("Search"), this);
-    m_actionSearch->setShortcut(QKeySequence::Find);
-    m_actionSearch->setToolTip(tr("Search (%1)").arg(QKeySequence(QKeySequence::Find).toString(QKeySequence::NativeText)));
-
-    m_actionSave = new QAction(QIcon(icons[4]), tr("Save"), this);
-    m_actionSave->setShortcut(QKeySequence::Save);
-    m_actionSave->setToolTip(tr("Save (%1)").arg(QKeySequence(QKeySequence::Save).toString(QKeySequence::NativeText)));
-
-    m_actionSaveAll = new QAction(QIcon(icons[5]), tr("Save All"), this);
-    QKeySequence seqSaveAll(Qt::CTRL+Qt::ShiftModifier+Qt::Key_S);
-    m_actionSaveAll->setShortcut(seqSaveAll);
-    m_actionSaveAll->setToolTip(tr("Save All (%1)").arg(seqSaveAll.toString(QKeySequence::NativeText)));
-
-    m_actionReload = new QAction(QIcon(icons[7]), tr("Reload"), this);
-    m_actionReload->setShortcut(QKeySequence::Refresh);
-    m_actionReload->setToolTip(tr("Reload all files (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
-
-    m_actionRename = new QAction(QIcon(icons[9]), tr("Rename"), this);
-    m_actionRename->setToolTip(tr("Rename selected files"));
-
-    m_actionSettings = new QAction(QIcon(icons[0]), tr("Settings"), this);
-
-    m_actionXbmc = new QAction(QIcon(icons[8]), tr("XBMC"), this);
-    m_actionXbmc->setToolTip(tr("Synchronize to XBMC"));
-
-    m_actionExport = new QAction(QIcon(icons[10]), tr("Export"), this);
-    m_actionExport->setToolTip(tr("Export Database"));
-
-    m_actionAbout = new QAction(QIcon(icons[1]), tr("About"), this);
-
-    m_actionLike = new QAction(QIcon(icons[6]), tr("Donate"), this);
-
-    toolBar->addAction(m_actionSearch);
-    toolBar->addAction(m_actionSave);
-    toolBar->addAction(m_actionSaveAll);
-    toolBar->addAction(m_actionReload);
-    toolBar->addAction(m_actionRename);
-    toolBar->addAction(m_actionSettings);
-    toolBar->addAction(m_actionXbmc);
-    toolBar->addAction(m_actionExport);
-    toolBar->addAction(m_actionAbout);
-#ifndef APPSTORE
-    toolBar->addAction(m_actionLike);
-#endif
-
-    connect(m_actionSearch, SIGNAL(triggered()), this, SLOT(onActionSearch()));
-    connect(m_actionSave, SIGNAL(triggered()), this, SLOT(onActionSave()));
-    connect(m_actionSaveAll, SIGNAL(triggered()), this, SLOT(onActionSaveAll()));
-    connect(m_actionReload, SIGNAL(triggered()), this, SLOT(onActionReload()));
-    connect(m_actionAbout, SIGNAL(triggered()), m_aboutDialog, SLOT(exec()));
-    connect(m_actionSettings, SIGNAL(triggered()), m_settingsWindow, SLOT(show()));
-    connect(m_actionLike, SIGNAL(triggered()), m_supportDialog, SLOT(exec()));
-    connect(m_actionXbmc, SIGNAL(triggered()), this, SLOT(onActionXbmc()));
-    connect(m_actionRename, SIGNAL(triggered()), this, SLOT(onActionRename()));
-    connect(m_actionExport, SIGNAL(triggered()), m_exportDialog, SLOT(exec()));
-
-    m_actionSearch->setEnabled(false);
-    m_actionSave->setEnabled(false);
-    m_actionSaveAll->setEnabled(false);
-    m_actionRename->setEnabled(false);
-
-#ifdef Q_OS_WIN32
-    toolBar->setStyleSheet("QToolButton {border: 0; padding: 5px;} QToolBar { border-bottom: 1px solid rgba(0, 0, 0, 100); }");
-#endif
+    ui->navbar->setActionSearchEnabled(false);
+    ui->navbar->setActionSaveEnabled(false);
+    ui->navbar->setActionSaveAllEnabled(false);
+    ui->navbar->setActionRenameEnabled(false);
 }
 
 /**
@@ -380,22 +314,22 @@ void MainWindow::onMenu(MainWidgets widget)
     setNewMarks();
     setNewMarkForImports(ui->downloadsWidget->hasNewItems());
 
-    m_actionSearch->setEnabled(m_actions[widget][ActionSearch]);
-    m_actionSave->setEnabled(m_actions[widget][ActionSave]);
-    m_actionSaveAll->setEnabled(m_actions[widget][ActionSaveAll]);
-    m_actionRename->setEnabled(m_actions[widget][ActionRename]);
+    ui->navbar->setActionSearchEnabled(m_actions[widget][ActionSearch]);
+    ui->navbar->setActionSaveEnabled(m_actions[widget][ActionSave]);
+    ui->navbar->setActionSaveAllEnabled(m_actions[widget][ActionSaveAll]);
+    ui->navbar->setActionRenameEnabled(m_actions[widget][ActionRename]);
     m_filterWidget->setEnabled(m_actions[widget][ActionFilterWidget]);
     m_filterWidget->setActiveWidget(widget);
 
-    m_actionReload->setEnabled(widget == WidgetMovies || widget == WidgetTvShows || widget == WidgetConcerts || widget == WidgetDownloads);
+    ui->navbar->setActionReloadEnabled(widget == WidgetMovies || widget == WidgetTvShows || widget == WidgetConcerts || widget == WidgetDownloads);
     if (widget == WidgetMovies)
-        m_actionReload->setToolTip(tr("Reload all Movies (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+        ui->navbar->setReloadToolTip(tr("Reload all Movies (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
     else if (widget == WidgetTvShows)
-        m_actionReload->setToolTip(tr("Reload all TV Shows (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+        ui->navbar->setReloadToolTip(tr("Reload all TV Shows (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
     else if (widget == WidgetConcerts)
-        m_actionReload->setToolTip(tr("Reload all Concerts (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+        ui->navbar->setReloadToolTip(tr("Reload all Concerts (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
     else if (widget == WidgetDownloads)
-        m_actionReload->setToolTip(tr("Reload all Downloads (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+        ui->navbar->setReloadToolTip(tr("Reload all Downloads (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
 }
 
 /**
@@ -605,14 +539,14 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
         (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1) ||
         (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 3)) {
-        m_actionSave->setEnabled(enabled);
-        m_actionSaveAll->setEnabled(enabled);
-        m_actionRename->setEnabled(enabled);
+        ui->navbar->setActionSaveEnabled(enabled);
+        ui->navbar->setActionSaveAllEnabled(enabled);
+        ui->navbar->setActionRenameEnabled(enabled);
     }
     if ((widget == WidgetMovieSets && ui->stackedWidget->currentIndex() == 2) ||
         (widget == WidgetCertifications && ui->stackedWidget->currentIndex() == 5) ||
         (widget == WidgetGenres && ui->stackedWidget->currentIndex() == 4))
-        m_actionSave->setEnabled(enabled);
+        ui->navbar->setActionSaveEnabled(enabled);
 }
 
 /**
@@ -628,7 +562,7 @@ void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
         (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1) ||
         (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 3))
-        m_actionSearch->setEnabled(enabled);
+        ui->navbar->setActionSearchEnabled(enabled);
 }
 
 /**

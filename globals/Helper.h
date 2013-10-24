@@ -27,6 +27,9 @@ public:
     static QString mapStudio(const QString &text);
     static QString mapCountry(const QString &text);
     static QString formatFileSize(const qint64 &size);
+    static void removeFocusRect(QWidget *widget);
+    static void applyStyle(QWidget *widget, bool removeFocusRect = true);
+    static void applyEffect(QWidget *parent);
 };
 
 #endif // HELPER_H

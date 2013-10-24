@@ -112,11 +112,6 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
             return movie->fileLastModified();
         } else if (role == Qt::UserRole+6) {
             return movie->syncNeeded();
-        /*
-        } else if (role == Qt::ForegroundRole) {
-            if (movie->hasChanged())
-                return QColor(255, 0, 0);
-        */
         } else if (role == Qt::FontRole) {
             if (movie->hasChanged()) {
                 QFont font;

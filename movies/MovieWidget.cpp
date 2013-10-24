@@ -12,6 +12,7 @@
 #include "data/ImageCache.h"
 #include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/LocaleStringCompare.h"
@@ -53,7 +54,6 @@ MovieWidget::MovieWidget(QWidget *parent) :
     #endif
     ui->actorResolution->setFont(font);
 
-    font.setBold(true);
     ui->labelBanner->setFont(font);
     ui->labelClearArt->setFont(font);
     ui->labelDiscArt->setFont(font);
@@ -167,6 +167,9 @@ MovieWidget::MovieWidget(QWidget *parent) :
     p.end();
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
+
+    Helper::applyStyle(ui->groupBox_3);
+    Helper::applyEffect(ui->groupBox_3);
 }
 
 /**
