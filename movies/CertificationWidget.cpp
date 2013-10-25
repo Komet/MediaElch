@@ -3,7 +3,7 @@
 
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
-#include "main/MessageBox.h"
+#include "notifications/NotificationBox.h"
 #include "sets/MovieListDialog.h"
 
 /**
@@ -273,7 +273,7 @@ void CertificationWidget::onSaveInformation()
     }
     m_addedCertifications.clear();
     loadCertifications();
-    MessageBox::instance()->showMessage(tr("All Movies Saved"));
+    NotificationBox::instance()->showMessage(tr("All Movies Saved"));
 }
 
 void CertificationWidget::onJumpToMovie(QTableWidgetItem *item)

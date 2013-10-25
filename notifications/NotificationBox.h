@@ -1,28 +1,23 @@
-#ifndef MESSAGEBOX_H
-#define MESSAGEBOX_H
+#ifndef NOTIFICATIONBOX_H
+#define NOTIFICATIONBOX_H
 
 #include <QTimer>
 #include <QWidget>
 #include "globals/Globals.h"
-#include "Message.h"
+#include "main/Message.h"
 
 namespace Ui {
-class MessageBox;
+class NotificationBox;
 }
 
-/**
- * @brief The MessageBox class
- * This class displays messages
- * @see Message
- */
-class MessageBox : public QWidget
+class NotificationBox : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit MessageBox(QWidget *parent = 0);
-    ~MessageBox();
-    static MessageBox *instance(QWidget *parent = 0);
+    explicit NotificationBox(QWidget *parent = 0);
+    ~NotificationBox();
+    static NotificationBox *instance(QWidget *parent = 0);
     void reposition(QSize size);
     int showMessage(QString message, int timeout = 3000);
     void showProgressBar(QString message, int id, bool unique = false);
@@ -35,11 +30,11 @@ public slots:
     void removeMessage(int id);
 
 private:
-    Ui::MessageBox *ui;
+    Ui::NotificationBox *ui;
     QSize m_parentSize;
     int m_msgCounter;
     QList<Message*> m_messages;
     void adjustSize();
 };
 
-#endif // MESSAGEBOX_H
+#endif // NOTIFICATIONBOX_H

@@ -7,7 +7,7 @@
 #include <QTcpSocket>
 #include <QTimer>
 #include "movies/Movie.h"
-#include "qjsonrpcservice.h"
+// #include "qjsonrpcservice.h"
 
 namespace Ui {
 class XbmcSync;
@@ -53,14 +53,14 @@ private slots:
     void onRadioContents();
     void onRadioWatched();
     void onButtonClose();
-    void processMessage(QJsonRpcMessage msg);
+    // void processMessage(QJsonRpcMessage msg);
     void triggerReload();
 
 private:
     Ui::XbmcSync *ui;
 
     QTcpSocket *m_socket;
-    QJsonRpcSocket *m_client;
+    // QJsonRpcSocket *m_client;
     QList<Movie*> m_moviesToSync;
     QList<Concert*> m_concertsToSync;
     QList<TvShow*> m_tvShowsToSync;

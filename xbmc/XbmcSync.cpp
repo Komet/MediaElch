@@ -5,7 +5,7 @@
 #include <QScriptValue>
 #include <QScriptValueIterator>
 #include "globals/Manager.h"
-#include "main/MessageBox.h"
+#include "notifications/NotificationBox.h"
 #include "settings/Settings.h"
 
 XbmcSync::XbmcSync(QWidget *parent) :
@@ -18,7 +18,7 @@ XbmcSync::XbmcSync(QWidget *parent) :
     m_cancelRenameArtwork = false;
     m_artworkWasRenamed = false;
     m_reloadTimeOut = 2000;
-    m_client = 0;
+    // m_client = 0;
     m_socket = new QTcpSocket(this);
 
     connect(ui->buttonSync, SIGNAL(clicked()), this, SLOT(startSync()));
@@ -147,16 +147,18 @@ void XbmcSync::startSync()
         return;
     }
 
+    /*
     if (!m_client) {
         m_client = new QJsonRpcSocket(m_socket, this);
         connect(m_client, SIGNAL(messageReceived(QJsonRpcMessage)), this, SLOT(processMessage(QJsonRpcMessage)));
     }
+    */
     QVariantMap limits;
     limits.insert("end", 100000);
     QVariantMap params;
     params.insert("limits", limits);
     params.insert("properties", QStringList() << "file" << "lastplayed" << "playcount");
-
+/*
     if (!m_moviesToSync.isEmpty()) {
         m_elements.append(ElementMovies);
         QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.GetMovies", params);
@@ -187,10 +189,12 @@ void XbmcSync::startSync()
         ui->status->setText(tr("Getting contents from XBMC"));
         ui->buttonSync->setEnabled(false);
     }
+    */
 }
 
 void XbmcSync::onMovieListFinished()
 {
+    /*
     QJsonRpcServiceReply *reply = static_cast<QJsonRpcServiceReply *>(sender());
     if (!reply) {
         qDebug() << "invalid response received";
@@ -210,10 +214,12 @@ void XbmcSync::onMovieListFinished()
         }
     }
     checkIfListsReady(ElementMovies);
+    */
 }
 
 void XbmcSync::onConcertListFinished()
 {
+    /*
     QJsonRpcServiceReply *reply = static_cast<QJsonRpcServiceReply *>(sender());
     if (!reply) {
         qDebug() << "invalid response received";
@@ -233,10 +239,12 @@ void XbmcSync::onConcertListFinished()
         }
     }
     checkIfListsReady(ElementConcerts);
+    */
 }
 
 void XbmcSync::onTvShowListFinished()
 {
+    /*
     QJsonRpcServiceReply *reply = static_cast<QJsonRpcServiceReply *>(sender());
     if (!reply) {
         qDebug() << "invalid response received";
@@ -256,10 +264,12 @@ void XbmcSync::onTvShowListFinished()
         }
     }
     checkIfListsReady(ElementTvShows);
+    */
 }
 
 void XbmcSync::onEpisodeListFinished()
 {
+    /*
     QJsonRpcServiceReply *reply = static_cast<QJsonRpcServiceReply *>(sender());
     if (!reply) {
         qDebug() << "invalid response received";
@@ -279,6 +289,7 @@ void XbmcSync::onEpisodeListFinished()
         }
     }
     checkIfListsReady(ElementEpisodes);
+    */
 }
 
 void XbmcSync::checkIfListsReady(Elements element)
@@ -344,6 +355,7 @@ void XbmcSync::setupItemsToRemove()
 
 void XbmcSync::removeItems()
 {
+    /*
     if (!m_moviesToRemove.isEmpty()) {
         ui->status->setText(tr("Removing movies from database"));
         int id = m_moviesToRemove.takeFirst();
@@ -385,10 +397,12 @@ void XbmcSync::removeItems()
     }
 
     QTimer::singleShot(m_reloadTimeOut, this, SLOT(triggerReload()));
+    */
 }
 
 void XbmcSync::onRemoveFinished()
 {
+    /*
     QJsonRpcServiceReply *reply = static_cast<QJsonRpcServiceReply *>(sender());
     if (reply)
         reply->deleteLater();
@@ -400,13 +414,16 @@ void XbmcSync::onRemoveFinished()
         removeItems();
     else
         QTimer::singleShot(m_reloadTimeOut, this, SLOT(triggerReload()));
+        */
 }
 
 void XbmcSync::triggerReload()
 {
+    /*
     ui->status->setText(tr("Trigger scan for new items"));
     QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.Scan");
     connect(reply, SIGNAL(finished()), this, SLOT(onScanFinished()));
+    */
 }
 
 void XbmcSync::onScanFinished()
@@ -561,18 +578,18 @@ XbmcSync::XbmcData XbmcSync::parseXbmcDataFromMap(QMap<QString, QVariant> map)
     d.playCount = map.value("playcount").toInt();
     return d;
 }
-
+/*
 void XbmcSync::processMessage(QJsonRpcMessage msg)
 {
     if (msg.method() == "VideoLibrary.OnScanFinished") {
-        MessageBox::instance()->showMessage(tr("XBMC Library Scan has finished"));
+        NotificationBox::instance()->showMessage(tr("XBMC Library Scan has finished"));
         if (ui->chkClean->isChecked())
             m_client->invokeRemoteMethod("VideoLibrary.Clean");
     } else if (msg.method() == "VideoLibrary.OnCleanFinished") {
-        MessageBox::instance()->showMessage(tr("Cleaning XBMC Library has finished"));
+        NotificationBox::instance()->showMessage(tr("Cleaning XBMC Library has finished"));
     }
 }
-
+*/
 void XbmcSync::updateFolderLastModified(Movie *movie)
 {
     if (movie->files().isEmpty())

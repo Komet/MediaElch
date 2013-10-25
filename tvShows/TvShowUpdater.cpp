@@ -9,7 +9,7 @@
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Manager.h"
-#include "main/MessageBox.h"
+#include "notifications/NotificationBox.h"
 #include "scrapers/TheTvDb.h"
 
 TvShowUpdater::TvShowUpdater(QObject *parent) :
@@ -54,19 +54,19 @@ void TvShowUpdater::updateShow(TvShow *show, bool force)
         return;
     }
 
-    MessageBox::instance()->showProgressBar(tr("Updating TV Shows"), Constants::TvShowUpdaterProgressMessageId, true);
-    int value = MessageBox::instance()->value(Constants::TvShowUpdaterProgressMessageId);
-    int maxValue = MessageBox::instance()->maxValue(Constants::TvShowUpdaterProgressMessageId);
-    MessageBox::instance()->progressBarProgress(value, maxValue+1, Constants::TvShowUpdaterProgressMessageId);
+    NotificationBox::instance()->showProgressBar(tr("Updating TV Shows"), Constants::TvShowUpdaterProgressMessageId, true);
+    int value = NotificationBox::instance()->value(Constants::TvShowUpdaterProgressMessageId);
+    int maxValue = NotificationBox::instance()->maxValue(Constants::TvShowUpdaterProgressMessageId);
+    NotificationBox::instance()->progressBarProgress(value, maxValue+1, Constants::TvShowUpdaterProgressMessageId);
 }
 
 void TvShowUpdater::onLoadFinished()
 {
-    int value = MessageBox::instance()->value(Constants::TvShowUpdaterProgressMessageId);
-    int maxValue = MessageBox::instance()->maxValue(Constants::TvShowUpdaterProgressMessageId);
-    MessageBox::instance()->progressBarProgress(value+1, maxValue, Constants::TvShowUpdaterProgressMessageId);
+    int value = NotificationBox::instance()->value(Constants::TvShowUpdaterProgressMessageId);
+    int maxValue = NotificationBox::instance()->maxValue(Constants::TvShowUpdaterProgressMessageId);
+    NotificationBox::instance()->progressBarProgress(value+1, maxValue, Constants::TvShowUpdaterProgressMessageId);
     if (value+1 == maxValue)
-        MessageBox::instance()->hideProgressBar(Constants::TvShowUpdaterProgressMessageId);
+        NotificationBox::instance()->hideProgressBar(Constants::TvShowUpdaterProgressMessageId);
 
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();

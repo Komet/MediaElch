@@ -18,7 +18,7 @@
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
 #include "globals/TrailerDialog.h"
-#include "main/MessageBox.h"
+#include "notifications/NotificationBox.h"
 #include "main/Update.h"
 #include "movies/MovieMultiScrapeDialog.h"
 #include "movies/MovieSearch.h"
@@ -68,7 +68,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_exportDialog = new ExportDialog(this);
     setupToolbar();
 
-    MessageBox::instance(this)->reposition(this->size());
+    NotificationBox::instance(this)->reposition(this->size());
     Manager::instance();
 
     if (!m_settings->mainSplitterState().isNull()) {
@@ -214,7 +214,7 @@ void MainWindow::resizeEvent(QResizeEvent *event)
         ui->concertWidget->setBigWindow(false);
     }
 
-    MessageBox::instance()->reposition(event->size());
+    NotificationBox::instance()->reposition(event->size());
     QWidget::resizeEvent(event);
 }
 
@@ -250,7 +250,7 @@ void MainWindow::setupToolbar()
 void MainWindow::progressStarted(QString msg, int id)
 {
     qDebug() << "Entered, msg=" << msg << "id=" << id;
-    MessageBox::instance()->showProgressBar(msg, id);
+    NotificationBox::instance()->showProgressBar(msg, id);
 }
 
 /**
@@ -261,7 +261,7 @@ void MainWindow::progressStarted(QString msg, int id)
  */
 void MainWindow::progressProgress(int current, int max, int id)
 {
-    MessageBox::instance()->progressBarProgress(current, max, id);
+    NotificationBox::instance()->progressBarProgress(current, max, id);
 }
 
 /**
@@ -271,7 +271,7 @@ void MainWindow::progressProgress(int current, int max, int id)
 void MainWindow::progressFinished(int id)
 {
     qDebug() << "Entered, id=" << id;
-    MessageBox::instance()->hideProgressBar(id);
+    NotificationBox::instance()->hideProgressBar(id);
 }
 
 /**

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MessageBox</class>
- <widget class="QWidget" name="MessageBox">
+ <class>NotificationBox</class>
+ <widget class="QWidget" name="NotificationBox">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -29,7 +29,16 @@
    <property name="spacing">
     <number>0</number>
    </property>
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <item>
@@ -38,7 +47,16 @@
       <property name="spacing">
        <number>5</number>
       </property>
-      <property name="margin">
+      <property name="leftMargin">
+       <number>12</number>
+      </property>
+      <property name="topMargin">
+       <number>12</number>
+      </property>
+      <property name="rightMargin">
+       <number>12</number>
+      </property>
+      <property name="bottomMargin">
        <number>12</number>
       </property>
      </layout>

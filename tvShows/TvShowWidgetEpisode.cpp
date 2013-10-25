@@ -15,7 +15,7 @@
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
-#include "main/MessageBox.h"
+#include "notifications/NotificationBox.h"
 #include "tvShows/TvShowSearch.h"
 
 /**
@@ -531,7 +531,7 @@ void TvShowWidgetEpisode::onSaveInformation()
     onSetEnabled(true);
     m_savingWidget->hide();
     ui->buttonRevert->setVisible(false);
-    MessageBox::instance()->showMessage(tr("Episode Saved"));
+    NotificationBox::instance()->showMessage(tr("Episode Saved"));
 }
 
 /**

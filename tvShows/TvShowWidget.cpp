@@ -4,7 +4,7 @@
 #include <QTimer>
 #include "globals/Globals.h"
 #include "globals/Manager.h"
-#include "main/MessageBox.h"
+#include "notifications/NotificationBox.h"
 
 /**
  * @brief TvShowWidget::TvShowWidget
@@ -161,26 +161,26 @@ void TvShowWidget::onSaveAll()
     }
     qDebug() << "episodesToSave=" << episodesToSave;
 
-    MessageBox::instance()->showProgressBar(tr("Saving changed TV Shows and Episodes"), Constants::TvShowWidgetSaveProgressMessageId);
+    NotificationBox::instance()->showProgressBar(tr("Saving changed TV Shows and Episodes"), Constants::TvShowWidgetSaveProgressMessageId);
     qApp->processEvents();
 
     for (int i=0, n=shows.count() ; i<n ; ++i) {
         if (shows[i]->hasChanged()) {
             qDebug() << "SAVING TV SHOW" << shows[i]->name();
             shows[i]->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
-            MessageBox::instance()->progressBarProgress(++episodesSaved, episodesToSave, Constants::TvShowWidgetSaveProgressMessageId);
+            NotificationBox::instance()->progressBarProgress(++episodesSaved, episodesToSave, Constants::TvShowWidgetSaveProgressMessageId);
             qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
         }
         for (int x=0, y=shows[i]->episodes().count() ; x<y ; ++x) {
             if (shows[i]->episodes().at(x)->hasChanged()) {
                 shows[i]->episodes().at(x)->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
-                MessageBox::instance()->progressBarProgress(++episodesSaved, episodesToSave, Constants::TvShowWidgetSaveProgressMessageId);
+                NotificationBox::instance()->progressBarProgress(++episodesSaved, episodesToSave, Constants::TvShowWidgetSaveProgressMessageId);
                 qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
             }
         }
     }
-    MessageBox::instance()->hideProgressBar(Constants::TvShowWidgetSaveProgressMessageId);
-    MessageBox::instance()->showMessage(tr("All TV Shows and Episodes Saved"));
+    NotificationBox::instance()->hideProgressBar(Constants::TvShowWidgetSaveProgressMessageId);
+    NotificationBox::instance()->showMessage(tr("All TV Shows and Episodes Saved"));
 }
 
 /**

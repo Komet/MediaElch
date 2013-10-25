@@ -1,16 +1,16 @@
-#include "main/MessageBox.h"
-#include "ui_MessageBox.h"
+#include "notifications/NotificationBox.h"
+#include "ui_NotificationBox.h"
 
 #include <QDebug>
 #include <QLabel>
 
 /**
- * @brief MessageBox::MessageBox
+ * @brief NotificationBox::NotificationBox
  * @param parent
  */
-MessageBox::MessageBox(QWidget *parent) :
+NotificationBox::NotificationBox(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::MessageBox)
+    ui(new Ui::NotificationBox)
 {
     ui->setupUi(this);
     m_msgCounter = 0;
@@ -18,9 +18,9 @@ MessageBox::MessageBox(QWidget *parent) :
 }
 
 /**
- * @brief MessageBox::~MessageBox
+ * @brief NotificationBox::~NotificationBox
  */
-MessageBox::~MessageBox()
+NotificationBox::~NotificationBox()
 {
     delete ui;
 }
@@ -30,11 +30,11 @@ MessageBox::~MessageBox()
  * @param parent Parent widget (used when called the first time)
  * @return Instance of message box
  */
-MessageBox *MessageBox::instance(QWidget *parent)
+NotificationBox *NotificationBox::instance(QWidget *parent)
 {
-    static MessageBox *m_instance = 0;
+    static NotificationBox *m_instance = 0;
     if (m_instance == 0) {
-        m_instance = new MessageBox(parent);
+        m_instance = new NotificationBox(parent);
     }
     return m_instance;
 }
@@ -43,7 +43,7 @@ MessageBox *MessageBox::instance(QWidget *parent)
  * @brief Repositions the message box in the upper right corner
  * @param size Size of the parent widget (MainWidget)
  */
-void MessageBox::reposition(QSize size)
+void NotificationBox::reposition(QSize size)
 {
     this->move(size.width()-this->size().width(), 0);
     m_parentSize = size;
@@ -52,7 +52,7 @@ void MessageBox::reposition(QSize size)
 /**
  * @brief Adjusts the size to hold all the messages
  */
-void MessageBox::adjustSize()
+void NotificationBox::adjustSize()
 {
     qDebug() << "Entered";
     int height = 48;
@@ -69,7 +69,7 @@ void MessageBox::adjustSize()
  * @param timeout How long should it be visible
  * @return Id of the message
  */
-int MessageBox::showMessage(QString message, int timeout)
+int NotificationBox::showMessage(QString message, int timeout)
 {
     qDebug() << "Entered, message=" << message << "timeout=" << timeout;
     m_msgCounter++;
@@ -89,7 +89,7 @@ int MessageBox::showMessage(QString message, int timeout)
  * @brief Removes a message
  * @param id Id of the message to remove
  */
-void MessageBox::removeMessage(int id)
+void NotificationBox::removeMessage(int id)
 {
     qDebug() << "Entered, id=" << id;
     foreach (Message *msg, m_messages) {
@@ -109,7 +109,7 @@ void MessageBox::removeMessage(int id)
  * @param message Message to display
  * @param id Id of the message
  */
-void MessageBox::showProgressBar(QString message, int id, bool unique)
+void NotificationBox::showProgressBar(QString message, int id, bool unique)
 {
     qDebug() << "Entered, message=" << message << "id=" << id;
     if (unique) {
@@ -136,7 +136,7 @@ void MessageBox::showProgressBar(QString message, int id, bool unique)
  * @param max Maximum value
  * @param id Id of the message
  */
-void MessageBox::progressBarProgress(int current, int max, int id)
+void NotificationBox::progressBarProgress(int current, int max, int id)
 {
     foreach (Message *msg, m_messages) {
         if (msg->id() == id)
@@ -148,13 +148,13 @@ void MessageBox::progressBarProgress(int current, int max, int id)
  * @brief Hides a message with progress bar
  * @param id Id of message to hide
  */
-void MessageBox::hideProgressBar(int id)
+void NotificationBox::hideProgressBar(int id)
 {
     qDebug() << "Entered, id=" << id;
     removeMessage(id);
 }
 
-int MessageBox::maxValue(int id)
+int NotificationBox::maxValue(int id)
 {
     foreach (Message *msg, m_messages) {
         if (msg->id() == id)
@@ -164,7 +164,7 @@ int MessageBox::maxValue(int id)
     return 0;
 }
 
-int MessageBox::value(int id)
+int NotificationBox::value(int id)
 {
     foreach (Message *msg, m_messages) {
         if (msg->id() == id)
