@@ -1,6 +1,8 @@
 #include "Navbar.h"
 #include "ui_Navbar.h"
 
+#include <QPainter>
+
 Navbar::Navbar(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Navbar)
@@ -8,7 +10,7 @@ Navbar::Navbar(QWidget *parent) :
     ui->setupUi(this);
 
     ui->btnSearch->setShortcut(QKeySequence::Find);
-    ui->btnSearch->setToolTip(tr("Search (%1)").arg(QKeySequence(QKeySequence::Find).toString(QKeySequence::NativeText)));
+    ui->btnSearch->setToolTip(tr("Scrape (%1)").arg(QKeySequence(QKeySequence::Find).toString(QKeySequence::NativeText)));
 
     ui->btnSave->setShortcut(QKeySequence::Save);
     ui->btnSave->setToolTip(tr("Save (%1)").arg(QKeySequence(QKeySequence::Save).toString(QKeySequence::NativeText)));
@@ -32,6 +34,28 @@ Navbar::Navbar(QWidget *parent) :
     connect(ui->btnDonate, SIGNAL(clicked()), this, SIGNAL(sigLike()));
 
     connect(ui->filterWidget, SIGNAL(sigFilterChanged(QList<Filter*>,QString)), this, SIGNAL(sigFilterChanged(QList<Filter*>,QString)));
+
+    QList<QColor> navbarColors;
+    navbarColors << QColor(241, 96, 106, 255);
+    navbarColors << QColor(248, 155, 53, 255);
+    navbarColors << QColor(248, 155, 53, 255);
+    navbarColors << QColor(221, 222, 48, 255);
+    navbarColors << QColor(106, 195, 133, 255);
+    navbarColors << QColor(106, 195, 133, 255);
+    navbarColors << QColor(107, 183, 228, 255);
+    navbarColors << QColor(107, 183, 228, 255);
+    navbarColors << QColor(206, 139, 188, 255);
+
+    QPainter p;
+    int i=0;
+    foreach (QToolButton *button, ui->widget->findChildren<QToolButton*>()) {
+        QPixmap pixmap = button->icon().pixmap(64, 64);
+        p.begin(&pixmap);
+        p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+        p.fillRect(pixmap.rect(), navbarColors.at(i++%navbarColors.count()));
+        p.end();
+        button->setIcon(QIcon(pixmap));
+    }
 }
 
 Navbar::~Navbar()
