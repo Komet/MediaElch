@@ -45,7 +45,7 @@ NotificationBox *NotificationBox::instance(QWidget *parent)
  */
 void NotificationBox::reposition(QSize size)
 {
-    this->move(size.width()-this->size().width(), 0);
+    this->move(size.width()-this->size().width(), 40);
     m_parentSize = size;
 }
 
