@@ -11,7 +11,6 @@
 #include "main/AboutDialog.h"
 #include "main/FileScannerDialog.h"
 #include "renamer/Renamer.h"
-#include "smallWidgets/FilterWidget.h"
 #include "settings/Settings.h"
 #include "settings/SettingsWindow.h"
 #include "support/SupportDialog.h"
@@ -94,7 +93,6 @@ private:
     QAction *m_actionExport;
     QMap<MainWidgets, QMap<MainActions, bool> > m_actions;
     QMap<MainWidgets, QIcon> m_icons;
-    FilterWidget *m_filterWidget;
     static MainWindow *m_instance;
     void setupToolbar();
 };

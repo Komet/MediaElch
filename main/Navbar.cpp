@@ -30,6 +30,8 @@ Navbar::Navbar(QWidget *parent) :
     connect(ui->btnExport, SIGNAL(clicked()), this, SIGNAL(sigExport()));
     connect(ui->btnAbout, SIGNAL(clicked()), this, SIGNAL(sigAbout()));
     connect(ui->btnDonate, SIGNAL(clicked()), this, SIGNAL(sigLike()));
+
+    connect(ui->filterWidget, SIGNAL(sigFilterChanged(QList<Filter*>,QString)), this, SIGNAL(sigFilterChanged(QList<Filter*>,QString)));
 }
 
 Navbar::~Navbar()
@@ -65,4 +67,14 @@ void Navbar::setActionRenameEnabled(bool enabled)
 void Navbar::setReloadToolTip(QString toolTip)
 {
     ui->btnReload->setToolTip(toolTip);
+}
+
+void Navbar::setFilterWidgetEnabled(bool enabled)
+{
+    ui->filterWidget->setEnabled(enabled);
+}
+
+void Navbar::setActiveWidget(MainWidgets widget)
+{
+    ui->filterWidget->setActiveWidget(widget);
 }

@@ -322,6 +322,9 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect)
         << "QLabel {"
         << "    font-family: \"Helvetica Neue\";"
         << "    color: #666666;"
+    #ifndef Q_OS_MACX
+        << "    font-size: 12px;"
+    #endif
         << "}"
 
         << "QLineEdit, QSpinBox, QDateTimeEdit, QTextEdit, QComboBox, QDoubleSpinBox, QCheckBox {"
@@ -363,6 +366,9 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect)
         << "    color: #666666;"
         << "    border: 0;"
         << "    font-family: \"Helvetica Neue\";"
+    #ifndef Q_OS_MACX
+        << "    font-size: 12px; width: 80px;"
+    #endif
         << "}"
 
         << "QTabBar::tab:selected {"
