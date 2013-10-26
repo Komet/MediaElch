@@ -3,11 +3,11 @@
 
 #include <QDialog>
 #include <QMutex>
+#include <QNetworkAccessManager>
 #include <QScriptValue>
 #include <QTcpSocket>
 #include <QTimer>
 #include "movies/Movie.h"
-// #include "qjsonrpcservice.h"
 
 namespace Ui {
 class XbmcSync;
@@ -53,14 +53,12 @@ private slots:
     void onRadioContents();
     void onRadioWatched();
     void onButtonClose();
-    // void processMessage(QJsonRpcMessage msg);
     void triggerReload();
 
 private:
     Ui::XbmcSync *ui;
 
-    QTcpSocket *m_socket;
-    // QJsonRpcSocket *m_client;
+    QNetworkAccessManager m_qnam;
     QList<Movie*> m_moviesToSync;
     QList<Concert*> m_concertsToSync;
     QList<TvShow*> m_tvShowsToSync;
@@ -82,6 +80,9 @@ private:
     bool m_renameArtworkInProgress;
     bool m_artworkWasRenamed;
     int m_reloadTimeOut;
+    int m_requestId;
+    QString m_host;
+    int m_port;
 
     int findId(QStringList files, QMap<int, XbmcData> items);
     bool compareFiles(QStringList files, QStringList xbmcFiles, int level);

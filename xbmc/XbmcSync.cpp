@@ -1,6 +1,9 @@
 #include "XbmcSync.h"
 #include "ui_XbmcSync.h"
 
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QScriptEngine>
 #include <QScriptValue>
 #include <QScriptValueIterator>
@@ -18,8 +21,7 @@ XbmcSync::XbmcSync(QWidget *parent) :
     m_cancelRenameArtwork = false;
     m_artworkWasRenamed = false;
     m_reloadTimeOut = 2000;
-    // m_client = 0;
-    m_socket = new QTcpSocket(this);
+    m_requestId = 0;
 
     connect(ui->buttonSync, SIGNAL(clicked()), this, SLOT(startSync()));
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(onButtonClose()));
@@ -131,55 +133,69 @@ void XbmcSync::startSync()
         }
     }
 
-    QString host = Settings::instance()->xbmcHost();
-    int port = Settings::instance()->xbmcPort();
+    m_host = Settings::instance()->xbmcHost();
+    m_port = Settings::instance()->xbmcPort();
 
-    if (host.isEmpty() || port == 0) {
+    if (m_host.isEmpty() || m_port == 0) {
         ui->status->setText(tr("Please fill in your XBMC host and port."));
         return;
     }
 
-    if (!m_socket->isOpen())
-        m_socket->connectToHost(host, port);
-    if (!m_socket->waitForConnected()) {
-        qDebug() << "could not connect to server: " << m_socket->errorString();
-        ui->status->setText(tr("Could not connect to XBMC: %1").arg(m_socket->errorString()));
-        return;
-    }
-
-    /*
-    if (!m_client) {
-        m_client = new QJsonRpcSocket(m_socket, this);
-        connect(m_client, SIGNAL(messageReceived(QJsonRpcMessage)), this, SLOT(processMessage(QJsonRpcMessage)));
-    }
-    */
-    QVariantMap limits;
+    QJsonObject limits;
     limits.insert("end", 100000);
-    QVariantMap params;
+
+    QJsonArray properties;
+    properties.append(QString("file"));
+
+    QJsonObject params;
     params.insert("limits", limits);
-    params.insert("properties", QStringList() << "file" << "lastplayed" << "playcount");
-/*
+    params.insert("properties", properties);
+
+    QJsonObject o;
+    o.insert("jsonrpc", QString("2.0"));
+    o.insert("params", params);
+
     if (!m_moviesToSync.isEmpty()) {
         m_elements.append(ElementMovies);
-        QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.GetMovies", params);
+        o.insert("method", QString("VideoLibrary.GetMovies"));
+        o.insert("id", ++m_requestId);
+        QNetworkRequest request(QString("http://%1:%2/jsonrpc").arg(m_host).arg(m_port));
+        request.setRawHeader("Content-Type", "application/json");
+        request.setRawHeader("Accept", "application/json");
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
         connect(reply, SIGNAL(finished()), this, SLOT(onMovieListFinished()));
     }
 
     if (!m_concertsToSync.isEmpty()) {
         m_elements.append(ElementConcerts);
-        QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.GetMusicVideos", params);
+        o.insert("method", QString("VideoLibrary.GetMusicVideos"));
+        o.insert("id", ++m_requestId);
+        QNetworkRequest request(QString("http://%1:%2/jsonrpc").arg(m_host).arg(m_port));
+        request.setRawHeader("Content-Type", "application/json");
+        request.setRawHeader("Accept", "application/json");
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
         connect(reply, SIGNAL(finished()), this, SLOT(onConcertListFinished()));
     }
 
     if (!m_tvShowsToSync.isEmpty()) {
         m_elements.append(ElementTvShows);
-        QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.GetTvShows", params);
+        o.insert("method", QString("VideoLibrary.GetTvShows"));
+        o.insert("id", ++m_requestId);
+        QNetworkRequest request(QString("http://%1:%2/jsonrpc").arg(m_host).arg(m_port));
+        request.setRawHeader("Content-Type", "application/json");
+        request.setRawHeader("Accept", "application/json");
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
         connect(reply, SIGNAL(finished()), this, SLOT(onTvShowListFinished()));
     }
 
     if (!m_episodesToSync.isEmpty()) {
         m_elements.append(ElementEpisodes);
-        QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.GetEpisodes", params);
+        o.insert("method", QString("VideoLibrary.GetEpisodes"));
+        o.insert("id", ++m_requestId);
+        QNetworkRequest request(QString("http://%1:%2/jsonrpc").arg(m_host).arg(m_port));
+        request.setRawHeader("Content-Type", "application/json");
+        request.setRawHeader("Accept", "application/json");
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
         connect(reply, SIGNAL(finished()), this, SLOT(onEpisodeListFinished()));
     }
 
@@ -189,20 +205,20 @@ void XbmcSync::startSync()
         ui->status->setText(tr("Getting contents from XBMC"));
         ui->buttonSync->setEnabled(false);
     }
-    */
 }
 
 void XbmcSync::onMovieListFinished()
 {
-    /*
-    QJsonRpcServiceReply *reply = static_cast<QJsonRpcServiceReply *>(sender());
+    QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
     if (!reply) {
         qDebug() << "invalid response received";
         return;
     }
     reply->deleteLater();
 
-    QMapIterator<QString, QVariant> it(reply->response().result().toMap());
+    QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+    QJsonObject obj = doc.object();
+    QMapIterator<QString, QVariant> it(obj.value("result").toObject().toVariantMap());
     while (it.hasNext()) {
         it.next();
         if (it.key() == "movies" && it.value().toList().size() > 0) {
@@ -214,82 +230,81 @@ void XbmcSync::onMovieListFinished()
         }
     }
     checkIfListsReady(ElementMovies);
-    */
 }
 
 void XbmcSync::onConcertListFinished()
 {
-    /*
-    QJsonRpcServiceReply *reply = static_cast<QJsonRpcServiceReply *>(sender());
+    QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
     if (!reply) {
         qDebug() << "invalid response received";
         return;
     }
     reply->deleteLater();
 
-    QMapIterator<QString, QVariant> it(reply->response().result().toMap());
+    QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+    QJsonObject obj = doc.object();
+    QMapIterator<QString, QVariant> it(obj.value("result").toObject().toVariantMap());
     while (it.hasNext()) {
         it.next();
         if (it.key() == "musicvideos" && it.value().toList().size() > 0) {
             foreach (QVariant var, it.value().toList()) {
                 if (var.toMap().value("musicvideoid").toInt() == 0)
                     continue;
-                m_xbmcConcerts.insert(var.toMap().value("musicvideoid").toInt(), parseXbmcDataFromMap(var.toMap()));
+                m_xbmcMovies.insert(var.toMap().value("musicvideoid").toInt(), parseXbmcDataFromMap(var.toMap()));
             }
         }
     }
     checkIfListsReady(ElementConcerts);
-    */
 }
 
 void XbmcSync::onTvShowListFinished()
 {
-    /*
-    QJsonRpcServiceReply *reply = static_cast<QJsonRpcServiceReply *>(sender());
+    QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
     if (!reply) {
         qDebug() << "invalid response received";
         return;
     }
     reply->deleteLater();
 
-    QMapIterator<QString, QVariant> it(reply->response().result().toMap());
+    QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+    QJsonObject obj = doc.object();
+    QMapIterator<QString, QVariant> it(obj.value("result").toObject().toVariantMap());
     while (it.hasNext()) {
         it.next();
         if (it.key() == "tvshows" && it.value().toList().size() > 0) {
             foreach (QVariant var, it.value().toList()) {
                 if (var.toMap().value("tvshowid").toInt() == 0)
                     continue;
-                m_xbmcShows.insert(var.toMap().value("tvshowid").toInt(), parseXbmcDataFromMap(var.toMap()));
+                m_xbmcMovies.insert(var.toMap().value("tvshowid").toInt(), parseXbmcDataFromMap(var.toMap()));
             }
         }
     }
     checkIfListsReady(ElementTvShows);
-    */
 }
 
 void XbmcSync::onEpisodeListFinished()
 {
-    /*
-    QJsonRpcServiceReply *reply = static_cast<QJsonRpcServiceReply *>(sender());
+    QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
     if (!reply) {
         qDebug() << "invalid response received";
         return;
     }
     reply->deleteLater();
 
-    QMapIterator<QString, QVariant> it(reply->response().result().toMap());
+    QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+    QJsonObject obj = doc.object();
+    QMapIterator<QString, QVariant> it(obj.value("result").toObject().toVariantMap());
     while (it.hasNext()) {
         it.next();
         if (it.key() == "episodes" && it.value().toList().size() > 0) {
             foreach (QVariant var, it.value().toList()) {
                 if (var.toMap().value("episodeid").toInt() == 0)
                     continue;
-                m_xbmcEpisodes.insert(var.toMap().value("episodeid").toInt(), parseXbmcDataFromMap(var.toMap()));
+                m_xbmcMovies.insert(var.toMap().value("episodeid").toInt(), parseXbmcDataFromMap(var.toMap()));
             }
         }
     }
     checkIfListsReady(ElementEpisodes);
-    */
 }
 
 void XbmcSync::checkIfListsReady(Elements element)
@@ -355,13 +370,21 @@ void XbmcSync::setupItemsToRemove()
 
 void XbmcSync::removeItems()
 {
-    /*
+    QJsonObject o;
+    o.insert("jsonrpc", QString("2.0"));
+    o.insert("id", ++m_requestId);
+
     if (!m_moviesToRemove.isEmpty()) {
         ui->status->setText(tr("Removing movies from database"));
         int id = m_moviesToRemove.takeFirst();
-        QVariantMap params;
+        QJsonObject params;
         params.insert("movieid", id);
-        QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.RemoveMovie", params);
+        o.insert("params", params);
+        o.insert("method", QString("VideoLibrary.RemoveMovie"));
+        QNetworkRequest request(QString("http://%1:%2/jsonrpc").arg(m_host).arg(m_port));
+        request.setRawHeader("Content-Type", "application/json");
+        request.setRawHeader("Accept", "application/json");
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
         connect(reply, SIGNAL(finished()), this, SLOT(onRemoveFinished()));
         return;
     }
@@ -369,9 +392,14 @@ void XbmcSync::removeItems()
     if (!m_concertsToRemove.isEmpty()) {
         ui->status->setText(tr("Removing concerts from database"));
         int id = m_concertsToRemove.takeFirst();
-        QVariantMap params;
+        QJsonObject params;
         params.insert("musicvideoid", id);
-        QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.RemoveMusicVideo", params);
+        o.insert("params", params);
+        o.insert("method", QString("VideoLibrary.RemoveMusicVideo"));
+        QNetworkRequest request(QString("http://%1:%2/jsonrpc").arg(m_host).arg(m_port));
+        request.setRawHeader("Content-Type", "application/json");
+        request.setRawHeader("Accept", "application/json");
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
         connect(reply, SIGNAL(finished()), this, SLOT(onRemoveFinished()));
         return;
     }
@@ -379,9 +407,14 @@ void XbmcSync::removeItems()
     if (!m_tvShowsToRemove.isEmpty()) {
         ui->status->setText(tr("Removing TV shows from database"));
         int id = m_tvShowsToRemove.takeFirst();
-        QVariantMap params;
+        QJsonObject params;
         params.insert("tvshowid", id);
-        QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.RemoveTVShow", params);
+        o.insert("params", params);
+        o.insert("method", QString("VideoLibrary.RemoveTVShow"));
+        QNetworkRequest request(QString("http://%1:%2/jsonrpc").arg(m_host).arg(m_port));
+        request.setRawHeader("Content-Type", "application/json");
+        request.setRawHeader("Accept", "application/json");
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
         connect(reply, SIGNAL(finished()), this, SLOT(onRemoveFinished()));
         return;
     }
@@ -389,21 +422,25 @@ void XbmcSync::removeItems()
     if (!m_episodesToRemove.isEmpty()) {
         ui->status->setText(tr("Removing episodes from database"));
         int id = m_episodesToRemove.takeFirst();
-        QVariantMap params;
+
+        QJsonObject params;
         params.insert("episodeid", id);
-        QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.RemoveEpisode", params);
+        o.insert("params", params);
+        o.insert("method", QString("VideoLibrary.RemoveEpisode"));
+        QNetworkRequest request(QString("http://%1:%2/jsonrpc").arg(m_host).arg(m_port));
+        request.setRawHeader("Content-Type", "application/json");
+        request.setRawHeader("Accept", "application/json");
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
         connect(reply, SIGNAL(finished()), this, SLOT(onRemoveFinished()));
         return;
     }
 
     QTimer::singleShot(m_reloadTimeOut, this, SLOT(triggerReload()));
-    */
 }
 
 void XbmcSync::onRemoveFinished()
 {
-    /*
-    QJsonRpcServiceReply *reply = static_cast<QJsonRpcServiceReply *>(sender());
+    QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
     if (reply)
         reply->deleteLater();
 
@@ -414,16 +451,22 @@ void XbmcSync::onRemoveFinished()
         removeItems();
     else
         QTimer::singleShot(m_reloadTimeOut, this, SLOT(triggerReload()));
-        */
 }
 
 void XbmcSync::triggerReload()
 {
-    /*
     ui->status->setText(tr("Trigger scan for new items"));
-    QJsonRpcServiceReply *reply = m_client->invokeRemoteMethod("VideoLibrary.Scan");
+
+    QJsonObject o;
+    o.insert("jsonrpc", QString("2.0"));
+    o.insert("method", QString("VideoLibrary.Scan"));
+    o.insert("id", ++m_requestId);
+
+    QNetworkRequest request(QString("http://%1:%2/jsonrpc").arg(m_host).arg(m_port));
+    request.setRawHeader("Content-Type", "application/json");
+    request.setRawHeader("Accept", "application/json");
+    QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
     connect(reply, SIGNAL(finished()), this, SLOT(onScanFinished()));
-    */
 }
 
 void XbmcSync::onScanFinished()
@@ -578,18 +621,7 @@ XbmcSync::XbmcData XbmcSync::parseXbmcDataFromMap(QMap<QString, QVariant> map)
     d.playCount = map.value("playcount").toInt();
     return d;
 }
-/*
-void XbmcSync::processMessage(QJsonRpcMessage msg)
-{
-    if (msg.method() == "VideoLibrary.OnScanFinished") {
-        NotificationBox::instance()->showMessage(tr("XBMC Library Scan has finished"));
-        if (ui->chkClean->isChecked())
-            m_client->invokeRemoteMethod("VideoLibrary.Clean");
-    } else if (msg.method() == "VideoLibrary.OnCleanFinished") {
-        NotificationBox::instance()->showMessage(tr("Cleaning XBMC Library has finished"));
-    }
-}
-*/
+
 void XbmcSync::updateFolderLastModified(Movie *movie)
 {
     if (movie->files().isEmpty())
