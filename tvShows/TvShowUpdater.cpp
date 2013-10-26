@@ -4,8 +4,8 @@
 #include <QDebug>
 #include <QNetworkReply>
 #include <QNetworkRequest>
-#include <quazip/quazip.h>
-#include <quazip/quazipfile.h>
+#include "quazip/quazip/quazip.h"
+#include "quazip/quazip/quazipfile.h"
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Manager.h"
