@@ -53,6 +53,14 @@ void messageOutput(QtMsgType type, const QMessageLogContext &context, const QStr
         else
             fprintf(stderr, "FATAL: %s %s%s", qPrintable(f), qPrintable(localMsg), qPrintable(newLine));
         abort();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
+    case QtTraceMsg:
+        if (toFile)
+            out << "TRACE: " << "[" << context.function << "] " << localMsg << newLine;
+        else
+            fprintf(stderr, "TRACE: %s %s%s", qPrintable(f), qPrintable(localMsg), qPrintable(newLine));
+        break;
+#endif
     }
 }
 
