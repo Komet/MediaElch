@@ -1,6 +1,9 @@
 #include "MediaFlags.h"
 #include "ui_MediaFlags.h"
 
+#include <QDebug>
+#include <QPainter>
+
 /**
  * @brief MediaFlags::MediaFlags
  * @param parent
@@ -66,7 +69,7 @@ void MediaFlags::setupResolution(StreamDetails *streamDetails)
 
     ui->mediaFlagResolution->setVisible(heightFlag != "");
     if (heightFlag != "")
-        ui->mediaFlagResolution->setPixmap(QPixmap(":/media/resolution/" + heightFlag).scaledToHeight(m_height, Qt::SmoothTransformation));
+        ui->mediaFlagResolution->setPixmap(colorIcon(":/media/resolution/" + heightFlag));
 }
 
 /**
@@ -80,7 +83,7 @@ void MediaFlags::setupAspect(StreamDetails *streamDetails)
     QString aspectFlag = QString::number(aspect, 'f', 2);
     ui->mediaFlagAspect->setVisible(availableAspects.contains(aspectFlag));
     if (availableAspects.contains(aspectFlag))
-        ui->mediaFlagAspect->setPixmap(QPixmap(":/media/aspect/" + aspectFlag).scaledToHeight(m_height, Qt::SmoothTransformation));
+        ui->mediaFlagAspect->setPixmap(colorIcon(":/media/aspect/" + aspectFlag));
 }
 
 /**
@@ -94,7 +97,7 @@ void MediaFlags::setupCodec(StreamDetails *streamDetails)
     if (codec.startsWith("divx"))
         codec = "divx";
     if (availableCodecs.contains(codec))
-        ui->mediaFlagCodec->setPixmap(QPixmap(":/media/codec/" + codec).scaledToHeight(m_height, Qt::SmoothTransformation));
+        ui->mediaFlagCodec->setPixmap(colorIcon(":/media/codec/" + codec));
     ui->mediaFlagCodec->setVisible(availableCodecs.contains(codec));
 }
 
@@ -114,7 +117,7 @@ void MediaFlags::setupAudio(StreamDetails *streamDetails)
             codec = "dolbydigital";
 
         if (availableCodecs.contains(codec)) {
-            ui->mediaFlagAudio->setPixmap(QPixmap(":/media/audio/" + codec).scaledToHeight(m_height, Qt::SmoothTransformation));
+            ui->mediaFlagAudio->setPixmap(colorIcon(":/media/audio/" + codec));
             visible = true;
         }
     }
@@ -137,6 +140,22 @@ void MediaFlags::setupChannels(StreamDetails *streamDetails)
         channels = -1;
 
     if (channels != -1)
-        ui->mediaFlagChannels->setPixmap(QPixmap(QString(":/media/channels/%1").arg(channels)).scaledToHeight(m_height, Qt::SmoothTransformation));
+        ui->mediaFlagChannels->setPixmap(colorIcon(QString(":/media/channels/%1").arg(channels)));
     ui->mediaFlagChannels->setVisible(channels != -1);
+}
+
+QPixmap MediaFlags::colorIcon(QString icon)
+{
+    static QMap<QString, QPixmap> pixmaps;
+    if (pixmaps.contains(icon))
+        return pixmaps.value(icon);
+
+    QPixmap pixmap = QPixmap(icon).scaledToHeight(m_height, Qt::SmoothTransformation);
+    QPainter p;
+    p.begin(&pixmap);
+    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    p.fillRect(pixmap.rect(), QColor(34, 79, 127, 255));
+    p.end();
+    pixmaps.insert(icon, pixmap);
+    return pixmap;
 }

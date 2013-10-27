@@ -30,6 +30,7 @@ private:
     void setupCodec(StreamDetails *streamDetails);
     void setupAudio(StreamDetails *streamDetails);
     void setupChannels(StreamDetails *streamDetails);
+    QPixmap colorIcon(QString icon);
 };
 
 #endif // MEDIAFLAGS_H
