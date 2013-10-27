@@ -420,6 +420,11 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
         << "    background-color: #3071A9;"
         << "}"
 
+        << "QPushButton::disabled {"
+        << "    background-color: #83b1d9;"
+        << "    border: 1px solid #7ca7cb;"
+        << "}"
+
         << ";";
 
     widget->setStyleSheet(widget->styleSheet() + styleSheet.join("\n"));
