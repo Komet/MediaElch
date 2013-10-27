@@ -394,17 +394,32 @@ void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, TvShowUpdateType up
     if (updateType == UpdateAllEpisodes || updateType == UpdateNewEpisodes || updateType == UpdateShowAndAllEpisodes || updateType == UpdateShowAndNewEpisodes) {
         for (int i=0, n=domDoc.elementsByTagName("Episode").count() ; i<n ; ++i) {
             QDomElement elem = domDoc.elementsByTagName("Episode").at(i).toElement();
-            if (!elem.elementsByTagName("SeasonNumber").isEmpty() && !elem.elementsByTagName("EpisodeNumber").isEmpty()) {
+
+            TvShowEpisode *episode = 0;
+            if (Settings::instance()->tvShowDvdOrder() && !elem.elementsByTagName("DVD_season").isEmpty() && !elem.elementsByTagName("DVD_episodenumber").isEmpty()) {
+                QRegExp rx("^(\\d*)\\D*");
+                int seasonNumber = -1;
+                int episodeNumber = -1;
+                QString seasonText = elem.elementsByTagName("DVD_season").at(0).toElement().text();
+                QString episodeText = elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text();
+                if (rx.indexIn(QString("%1").arg(seasonText), 0) != -1)
+                    seasonNumber = rx.cap(1).toInt();
+                if (rx.indexIn(QString("%1").arg(episodeText), 0) != -1)
+                    episodeNumber = rx.cap(1).toInt();
+                episode = show->episode(seasonNumber, episodeNumber);
+            } else if (!elem.elementsByTagName("SeasonNumber").isEmpty() && !elem.elementsByTagName("EpisodeNumber").isEmpty()) {
                 int seasonNumber = elem.elementsByTagName("SeasonNumber").at(0).toElement().text().toInt();
                 int episodeNumber = elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt();
-                TvShowEpisode *episode = show->episode(seasonNumber, episodeNumber);
-                if (!episode->isValid())
-                    continue;
-                if (updateType == UpdateAllEpisodes || updateType == UpdateShowAndAllEpisodes ||
-                        ((updateType == UpdateNewEpisodes || updateType == UpdateShowAndNewEpisodes) && !episode->infoLoaded())) {
-                    episode->clear(infosToLoad);
-                    parseAndAssignSingleEpisodeInfos(elem, episode, infosToLoad);
-                }
+                episode = show->episode(seasonNumber, episodeNumber);
+            }
+
+            if (!episode || !episode->isValid())
+                continue;
+
+            if (updateType == UpdateAllEpisodes || updateType == UpdateShowAndAllEpisodes ||
+                    ((updateType == UpdateNewEpisodes || updateType == UpdateShowAndNewEpisodes) && !episode->infoLoaded())) {
+                episode->clear(infosToLoad);
+                parseAndAssignSingleEpisodeInfos(elem, episode, infosToLoad);
             }
         }
     }
