@@ -38,13 +38,17 @@ QString NameFormatter::excludeWords(QString name)
     rx.setCaseSensitivity(Qt::CaseInsensitive);
     foreach (const QString &word, m_exWords) {
         pos = 0;
-        rx.setPattern("(^|[\\(\\s\\-\\.]+)" + word + "([\\s\\-\\.\\)]+|$)");
+        rx.setPattern("(^|[\\(\\s\\-\\.\\[]+)" + word + "([\\s\\-\\.\\)\\],]+|$)");
         pos = rx.indexIn(name);
         while (pos >= 0) {
             name = name.remove(pos, rx.cap(0).length());
             name = name.insert(pos, ' ');
             pos = rx.indexIn(name);
         }
+
+        QStringList braces = QStringList() << "(" << ")" << "[" << "]";
+        if (braces.contains(word))
+            name.replace(word, "");
     }
 
     // remove " - _" at the end of a name
