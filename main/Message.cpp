@@ -2,6 +2,7 @@
 #include "ui_Message.h"
 
 #include <QDebug>
+#include <QGraphicsDropShadowEffect>
 #include "globals/Globals.h"
 
 /**
@@ -18,6 +19,12 @@ Message::Message(QWidget *parent) :
     ui->progressBar->setMaximum(0);
     m_timer = new QTimer;
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
+
+    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+    effect->setColor(QColor(0, 0, 0, 30));
+    effect->setOffset(4);
+    effect->setBlurRadius(8);
+    setGraphicsEffect(effect);
 }
 
 /**

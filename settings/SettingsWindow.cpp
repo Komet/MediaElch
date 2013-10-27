@@ -9,7 +9,7 @@
 #include "data/Storage.h"
 #include "export/ExportTemplateLoader.h"
 #include "globals/Manager.h"
-#include "main/MessageBox.h"
+#include "notifications/NotificationBox.h"
 #include "settings/DataFile.h"
 #include "settings/ExportTemplateWidget.h"
 
@@ -386,7 +386,7 @@ void SettingsWindow::saveSettings()
     Manager::instance()->movieFileSearcher()->setMovieDirectories(m_settings->movieDirectories());
     Manager::instance()->tvShowFileSearcher()->setMovieDirectories(m_settings->tvShowDirectories());
     Manager::instance()->concertFileSearcher()->setConcertDirectories(m_settings->concertDirectories());
-    MessageBox::instance()->showMessage(tr("Settings saved"));
+    NotificationBox::instance()->showMessage(tr("Settings saved"));
 }
 
 void SettingsWindow::addDir(QString dir, bool separateFolders, bool autoReload, SettingsDirType dirType)

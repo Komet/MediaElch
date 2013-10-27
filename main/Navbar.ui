@@ -45,11 +45,11 @@
 	border-bottom: 1px solid #ebebeb;
 }</string>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0,0,0,0,0,0,0,0,1,0">
+     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0,0,0,0,0,0,0,0,1,0,0">
       <item>
        <widget class="QToolButton" name="btnSearch">
         <property name="toolTip">
-         <string>Search</string>
+         <string>Scrape</string>
         </property>
         <property name="styleSheet">
          <string notr="true">padding-left: 2px;</string>
@@ -59,7 +59,7 @@
         </property>
         <property name="icon">
          <iconset resource="../MediaElch.qrc">
-          <normaloff>:/img/magnifier.png</normaloff>:/img/magnifier.png</iconset>
+          <normaloff>:/img/scrape2.png</normaloff>:/img/scrape2.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -110,26 +110,6 @@
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="btnReload">
-        <property name="toolTip">
-         <string>Reload</string>
-        </property>
-        <property name="text">
-         <string>...</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../MediaElch.qrc">
-          <normaloff>:/img/arrow_circle_right.png</normaloff>:/img/arrow_circle_right.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>20</width>
-          <height>20</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QToolButton" name="btnRename">
         <property name="toolTip">
          <string>Rename selected files</string>
@@ -140,26 +120,6 @@
         <property name="icon">
          <iconset resource="../MediaElch.qrc">
           <normaloff>:/img/folder_64.png</normaloff>:/img/folder_64.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>20</width>
-          <height>20</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="btnSettings">
-        <property name="toolTip">
-         <string>Settings</string>
-        </property>
-        <property name="text">
-         <string>...</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../MediaElch.qrc">
-          <normaloff>:/img/spanner.png</normaloff>:/img/spanner.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -200,6 +160,46 @@
         <property name="icon">
          <iconset resource="../MediaElch.qrc">
           <normaloff>:/img/export.png</normaloff>:/img/export.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btnReload">
+        <property name="toolTip">
+         <string>Reload</string>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../MediaElch.qrc">
+          <normaloff>:/img/arrow_circle_right.png</normaloff>:/img/arrow_circle_right.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btnSettings">
+        <property name="toolTip">
+         <string>Settings</string>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../MediaElch.qrc">
+          <normaloff>:/img/spanner.png</normaloff>:/img/spanner.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -258,29 +258,58 @@
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="btnDonate">
-        <property name="toolTip">
-         <string>Donate</string>
+       <widget class="QPushButton" name="btnDonate">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">QToolButton {
-	border: 0;
+         <string notr="true">QPushButton {
+	background-color: #428BCA;
+	border: 1px solid #357EBD;
+	border-radius: 4px;
+	color: #ffffff;
+	font-family: Helvetica Neue;
+	padding: 2px;
+	padding-left: 4px;
+	padding-right: 4px;
+
+	background-color: #D9534F;
+	border-color: #D43F3A;
+
+	background-color: #9c8ec3;
+	border-color: #877ba8;
 }</string>
         </property>
         <property name="text">
-         <string>...</string>
+         <string>Donate</string>
         </property>
         <property name="icon">
          <iconset resource="../MediaElch.qrc">
-          <normaloff>:/img/heart.png</normaloff>:/img/heart.png</iconset>
+          <normaloff>:/img/money_64.png</normaloff>:/img/money_64.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>20</width>
-          <height>20</height>
+          <width>12</width>
+          <height>12</height>
          </size>
         </property>
        </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>10</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </widget>

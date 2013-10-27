@@ -18,7 +18,7 @@
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
 #include "globals/TrailerDialog.h"
-#include "main/MessageBox.h"
+#include "notifications/NotificationBox.h"
 #include "main/Update.h"
 #include "movies/MovieMultiScrapeDialog.h"
 #include "movies/MovieSearch.h"
@@ -60,7 +60,6 @@ MainWindow::MainWindow(QWidget *parent) :
     m_aboutDialog = new AboutDialog(ui->centralWidget);
     m_supportDialog = new SupportDialog(ui->centralWidget);
     m_settingsWindow = new SettingsWindow(ui->centralWidget);
-    m_filterWidget = new FilterWidget();
     m_fileScannerDialog = new FileScannerDialog(ui->centralWidget);
     m_xbmcSync = new XbmcSync(ui->centralWidget);
     m_renamer = new Renamer(ui->centralWidget);
@@ -68,7 +67,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_exportDialog = new ExportDialog(this);
     setupToolbar();
 
-    MessageBox::instance(this)->reposition(this->size());
+    NotificationBox::instance(this)->reposition(this->size());
     Manager::instance();
 
     if (!m_settings->mainSplitterState().isNull()) {
@@ -119,7 +118,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->tvShowWidget, SIGNAL(sigDownloadsProgress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
     connect(ui->tvShowWidget, SIGNAL(sigDownloadsFinished(int)), this, SLOT(progressFinished(int)));
 
-    connect(m_filterWidget, SIGNAL(sigFilterChanged(QList<Filter*>,QString)), this, SLOT(onFilterChanged(QList<Filter*>,QString)));
+    connect(ui->navbar, SIGNAL(sigFilterChanged(QList<Filter*>,QString)), this, SLOT(onFilterChanged(QList<Filter*>,QString)));
 
     connect(ui->movieSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
     connect(ui->tvShowSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
@@ -214,7 +213,7 @@ void MainWindow::resizeEvent(QResizeEvent *event)
         ui->concertWidget->setBigWindow(false);
     }
 
-    MessageBox::instance()->reposition(event->size());
+    NotificationBox::instance()->reposition(event->size());
     QWidget::resizeEvent(event);
 }
 
@@ -250,7 +249,7 @@ void MainWindow::setupToolbar()
 void MainWindow::progressStarted(QString msg, int id)
 {
     qDebug() << "Entered, msg=" << msg << "id=" << id;
-    MessageBox::instance()->showProgressBar(msg, id);
+    NotificationBox::instance()->showProgressBar(msg, id);
 }
 
 /**
@@ -261,7 +260,7 @@ void MainWindow::progressStarted(QString msg, int id)
  */
 void MainWindow::progressProgress(int current, int max, int id)
 {
-    MessageBox::instance()->progressBarProgress(current, max, id);
+    NotificationBox::instance()->progressBarProgress(current, max, id);
 }
 
 /**
@@ -271,7 +270,7 @@ void MainWindow::progressProgress(int current, int max, int id)
 void MainWindow::progressFinished(int id)
 {
     qDebug() << "Entered, id=" << id;
-    MessageBox::instance()->hideProgressBar(id);
+    NotificationBox::instance()->hideProgressBar(id);
 }
 
 /**
@@ -318,8 +317,8 @@ void MainWindow::onMenu(MainWidgets widget)
     ui->navbar->setActionSaveEnabled(m_actions[widget][ActionSave]);
     ui->navbar->setActionSaveAllEnabled(m_actions[widget][ActionSaveAll]);
     ui->navbar->setActionRenameEnabled(m_actions[widget][ActionRename]);
-    m_filterWidget->setEnabled(m_actions[widget][ActionFilterWidget]);
-    m_filterWidget->setActiveWidget(widget);
+    ui->navbar->setFilterWidgetEnabled(m_actions[widget][ActionFilterWidget]);
+    ui->navbar->setActiveWidget(widget);
 
     ui->navbar->setActionReloadEnabled(widget == WidgetMovies || widget == WidgetTvShows || widget == WidgetConcerts || widget == WidgetDownloads);
     if (widget == WidgetMovies)

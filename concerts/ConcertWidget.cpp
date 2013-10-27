@@ -17,7 +17,7 @@
 #include "globals/ImagePreviewDialog.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
-#include "main/MessageBox.h"
+#include "notifications/NotificationBox.h"
 
 /**
  * @brief ConcertWidget::ConcertWidget
@@ -607,7 +607,7 @@ void ConcertWidget::onSaveInformation()
     updateConcertInfo();
     setEnabledTrue();
     m_savingWidget->hide();
-    MessageBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_concert->name()));
+    NotificationBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_concert->name()));
     ui->buttonRevert->setVisible(false);
 }
 
@@ -630,7 +630,7 @@ void ConcertWidget::onSaveAll()
     }
     setEnabledTrue();
     m_savingWidget->hide();
-    MessageBox::instance()->showMessage(tr("All Concerts Saved"));
+    NotificationBox::instance()->showMessage(tr("All Concerts Saved"));
     ui->buttonRevert->setVisible(false);
 }
 

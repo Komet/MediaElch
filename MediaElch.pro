@@ -4,10 +4,12 @@
 #
 #-------------------------------------------------
 
+include(quazip/quazip/quazip.pri)
+
 QT       += core gui network script xml sql widgets multimedia multimediawidgets concurrent
 macx: QT += macextras
 
-LIBS += -lmediainfo -lzen -lz -lquazip
+LIBS += -lmediainfo -lzen -lz
 
 unix:LIBS += -lcurl
 macx:LIBS += -framework Foundation
@@ -32,9 +34,6 @@ ICON = MediaElch.icns
 RC_FILE = MediaElch.rc
 QMAKE_INFO_PLIST = MediaElch.plist
 
-QMAKE_CFLAGS += -gdwarf-2
-QMAKE_CXXFLAGS += -gdwarf-2
-
 SOURCES += main.cpp\
         main/MainWindow.cpp \
     movies/Movie.cpp \
@@ -55,7 +54,7 @@ SOURCES += main.cpp\
     scrapers/OFDb.cpp \
     scrapers/Cinefacts.cpp \
     smallWidgets/MyTableWidget.cpp \
-    main/MessageBox.cpp \
+    notifications/NotificationBox.cpp \
     main/Message.cpp \
     data/TvShow.cpp \
     data/TvShowFileSearcher.cpp \
@@ -191,7 +190,7 @@ HEADERS  += main/MainWindow.h \
     scrapers/Cinefacts.h \
     smallWidgets/FilterWidget.h \
     smallWidgets/MyTableWidget.h \
-    main/MessageBox.h \
+    notifications/NotificationBox.h \
     main/Message.h \
     data/TvShow.h \
     data/TvShowFileSearcher.h \
@@ -311,7 +310,7 @@ FORMS    += main/MainWindow.ui \
     movies/FilesWidget.ui \
     main/AboutDialog.ui \
     smallWidgets/FilterWidget.ui \
-    main/MessageBox.ui \
+    notifications/NotificationBox.ui \
     main/Message.ui \
     tvShows/TvShowFilesWidget.ui \
     tvShows/TvShowWidget.ui \
@@ -370,30 +369,3 @@ TRANSLATIONS += \
     i18n/MediaElch_es_ES.ts \
     i18n/MediaElch_it.ts \
     i18n/MediaElch_zh_CN.ts
-
-# qjsonrpc
-INCLUDEPATH += $$PWD/qjsonrpc/src
-INCLUDEPATH += $$PWD/qjsonrpc/src/json
-HEADERS += \
-    qjsonrpc/src/qjsonrpcservice_p.h \
-    qjsonrpc/src/qjsonrpcmessage_p.h \
-    qjsonrpc/src/qjsonrpcservice.h \
-    qjsonrpc/src/qjsonrpcmessage.h \
-    qjsonrpc/src/qjsonrpc_export.h \
-    qjsonrpc/src/json/qjson_p.h \
-    qjsonrpc/src/json/qjsonwriter_p.h \
-    qjsonrpc/src/json/qjsonparser_p.h \
-    qjsonrpc/src/json/qjsondocument.h \
-    qjsonrpc/src/json/qjsonobject.h \
-    qjsonrpc/src/json/qjsonvalue.h \
-    qjsonrpc/src/json/qjsonarray.h
-SOURCES += \
-    qjsonrpc/src/qjsonrpcservice.cpp \
-    qjsonrpc/src/qjsonrpcmessage.cpp \
-    qjsonrpc/src/json/qjson.cpp \
-    qjsonrpc/src/json/qjsondocument.cpp \
-    qjsonrpc/src/json/qjsonobject.cpp \
-    qjsonrpc/src/json/qjsonarray.cpp \
-    qjsonrpc/src/json/qjsonvalue.cpp \
-    qjsonrpc/src/json/qjsonwriter.cpp \
-    qjsonrpc/src/json/qjsonparser.cpp

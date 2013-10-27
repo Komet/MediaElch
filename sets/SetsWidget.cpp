@@ -8,7 +8,7 @@
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
-#include "main/MessageBox.h"
+#include "notifications/NotificationBox.h"
 #include "sets/MovieListDialog.h"
 
 /**
@@ -411,7 +411,7 @@ void SetsWidget::saveSet()
         m_setBackdrops[setName] = QImage();
     }
 
-    MessageBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(setName));
+    NotificationBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(setName));
 }
 
 /**

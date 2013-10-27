@@ -2,6 +2,8 @@
 #define NAVBAR_H
 
 #include <QWidget>
+#include "globals/Globals.h"
+#include "globals/Filter.h"
 
 namespace Ui {
 class Navbar;
@@ -21,6 +23,10 @@ public:
     void setActionRenameEnabled(bool enabled);
     void setReloadToolTip(QString toolTip);
 
+public slots:
+    void setActiveWidget(MainWidgets widget);
+    void setFilterWidgetEnabled(bool enabled);
+
 signals:
     void sigSearch();
     void sigSave();
@@ -32,6 +38,7 @@ signals:
     void sigExport();
     void sigAbout();
     void sigLike();
+    void sigFilterChanged(QList<Filter*>, QString);
 
 private:
     Ui::Navbar *ui;

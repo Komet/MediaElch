@@ -3,7 +3,7 @@
 
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
-#include "main/MessageBox.h"
+#include "notifications/NotificationBox.h"
 #include "sets/MovieListDialog.h"
 
 /**
@@ -282,7 +282,7 @@ void GenreWidget::onSaveInformation()
 
     m_addedGenres.clear();
     loadGenres();
-    MessageBox::instance()->showMessage(tr("All Movies Saved"));
+    NotificationBox::instance()->showMessage(tr("All Movies Saved"));
 }
 
 void GenreWidget::onJumpToMovie(QTableWidgetItem *item)

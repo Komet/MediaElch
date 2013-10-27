@@ -10,7 +10,7 @@
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
-#include "main/MessageBox.h"
+#include "notifications/NotificationBox.h"
 
 TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
     QWidget(parent),
@@ -169,7 +169,7 @@ void TvShowWidgetSeason::onSaveInformation()
     m_show->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
     m_savingWidget->hide();
     onSetEnabled(true);
-    MessageBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_show->name()));
+    NotificationBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_show->name()));
 }
 
 void TvShowWidgetSeason::onSetEnabled(bool enabled)
