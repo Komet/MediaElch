@@ -9,6 +9,7 @@
 #include <QGraphicsDropShadowEffect>
 #include <QLabel>
 #include <QLineEdit>
+#include <QPushButton>
 #include <QRegExp>
 #include <QSpinBox>
 #include <QWidget>
@@ -313,7 +314,7 @@ void Helper::removeFocusRect(QWidget *widget)
         dateTimeEdit->setAttribute(Qt::WA_MacShowFocusRect, false);
 }
 
-void Helper::applyStyle(QWidget *widget, bool removeFocusRect)
+void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
 {
     if (removeFocusRect)
         Helper::removeFocusRect(widget);
@@ -336,10 +337,12 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect)
         << "    image: url(':/img/ui_select.png');"
         << "    width: 16px;"
         << "    height: 16px;"
-        << "}"
+        << "}";
 
-        << "QComboBox { margin-left: 5px; padding-right: 5px; }"
+        if (!isTable)
+            styleSheet << "QComboBox { margin-left: 5px; padding-right: 5px; }";
 
+        styleSheet
         << "QCheckBox::indicator:unchecked {"
         << "    image: url(':/img/ui_uncheck.png');"
         << "    width: 16px;"
@@ -405,6 +408,18 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect)
         << "    border: none;"
         << "}"
 
+        << "QPushButton {"
+        << "    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #428BCA, stop:1 #3071A9);"
+        << "    color: #ffffff;"
+        << "    border: 1px solid #2D6CA2;"
+        << "    border-radius: 4px;"
+        << "    padding: 4px;"
+        << "}"
+
+        << "QPushButton::pressed {"
+        << "    background-color: #3071A9;"
+        << "}"
+
         << ";";
 
     widget->setStyleSheet(widget->styleSheet() + styleSheet.join("\n"));
@@ -419,6 +434,16 @@ void Helper::applyEffect(QWidget *parent)
             effect->setOffset(4);
             effect->setBlurRadius(8);
             label->setGraphicsEffect(effect);
+        }
+    }
+
+    foreach (QPushButton *button, parent->findChildren<QPushButton*>()) {
+        if (button->property("dropShadow").toBool()) {
+            QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(parent);
+            effect->setColor(QColor(0, 0, 0, 30));
+            effect->setOffset(2);
+            effect->setBlurRadius(4);
+            button->setGraphicsEffect(effect);
         }
     }
 }

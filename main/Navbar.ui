@@ -264,20 +264,17 @@
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
-	background-color: #428BCA;
-	border: 1px solid #357EBD;
 	border-radius: 4px;
 	color: #ffffff;
 	font-family: Helvetica Neue;
 	padding: 2px;
 	padding-left: 4px;
 	padding-right: 4px;
-
-	background-color: #D9534F;
-	border-color: #D43F3A;
-
 	background-color: #9c8ec3;
-	border-color: #877ba8;
+	border: 1px solid #877ba8;
+
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #F0AD4E, stop:1 #EC971F);
+	border: 1px solid #EB9316;
 }</string>
         </property>
         <property name="text">

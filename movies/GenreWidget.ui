@@ -19,7 +19,16 @@
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <item>
@@ -33,9 +42,10 @@
      <widget class="QTableWidget" name="genres">
       <property name="styleSheet">
        <string notr="true">#genres {
-	alternate-background-color: rgb(243, 246, 250);
+	alternate-background-color: #f9f9f9;
 	selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
 	color: #395265;
+    selection-color: #ffffff;
 }
 </string>
       </property>
@@ -61,10 +71,7 @@
       </column>
      </widget>
      <widget class="QWidget" name="horizontalLayoutWidget">
-      <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,1,0">
-       <property name="spacing">
-        <number>0</number>
-       </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,1">
        <property name="leftMargin">
         <number>0</number>
        </property>
@@ -81,8 +88,8 @@
         <widget class="QLabel" name="genreName">
          <property name="font">
           <font>
-           <family>Pathway Gothic One</family>
-           <pointsize>20</pointsize>
+           <family>Helvetica Neue</family>
+           <pointsize>22</pointsize>
           </font>
          </property>
          <property name="styleSheet">
@@ -98,32 +105,13 @@
         </widget>
        </item>
        <item>
-        <widget class="QWidget" name="widget" native="true">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>3</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>3</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(100, 100, 100, 255), stop:0.2 rgba(100, 100, 100, 50), stop:1 rgba(255, 255, 255, 0));
-</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QGroupBox" name="groupBox">
          <property name="styleSheet">
           <string notr="true">QGroupBox {
 	border-radius: 0;
-	background-color: rgba(255, 255, 255, 200);
-}</string>
+	background-color: transparent;
+}
+</string>
          </property>
          <property name="title">
           <string/>
@@ -133,36 +121,6 @@
            <layout class="QVBoxLayout" name="verticalLayout_4">
             <item>
              <widget class="QTableWidget" name="movies">
-              <property name="styleSheet">
-               <string notr="true">#movies {
-	border: 1px solid rgba(0, 0, 0, 100);
-	alternate-background-color: rgb(243, 246, 250);
-	selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
-	color: #395265;
-}
-
-QHeaderView::section {
-    background-color: #f9f9f9;
-    color: rgb(27, 105, 165);
-    border: none;
-    border-left: 1px solid #f0f0f0;
-    font-weight: normal;
-    font-size: 12pt;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    margin-top: 1px;
-    margin-bottom: 1px;
-}
-
-QHeaderView::section:first {
-    border: none;
-}
-
-QHeaderView::section:checked
-{
-}
-</string>
-              </property>
               <property name="editTriggers">
                <set>QAbstractItemView::NoEditTriggers</set>
               </property>
@@ -206,11 +164,10 @@ QHeaderView::section:checked
                  <string>Add Movie</string>
                 </property>
                 <property name="text">
-                 <string/>
+                 <string>Add Movie</string>
                 </property>
-                <property name="icon">
-                 <iconset resource="../MediaElch.qrc">
-                  <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
+                <property name="dropShadow" stdset="0">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -220,11 +177,10 @@ QHeaderView::section:checked
                  <string>Remove Current Movie</string>
                 </property>
                 <property name="text">
-                 <string/>
+                 <string>Remove Movie</string>
                 </property>
-                <property name="icon">
-                 <iconset resource="../MediaElch.qrc">
-                  <normaloff>:/img/minus.png</normaloff>:/img/minus.png</iconset>
+                <property name="dropShadow" stdset="0">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -285,26 +241,6 @@ QHeaderView::section:checked
          </layout>
         </widget>
        </item>
-       <item>
-        <widget class="QWidget" name="widget_2" native="true">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>3</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>3</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(100, 100, 100, 255), stop:0.2 rgba(100, 100, 100, 50), stop:1 rgba(255, 255, 255, 0));
-</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
     </widget>
@@ -319,9 +255,7 @@ QHeaderView::section:checked
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="../MediaElch.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>buttonAddMovie</sender>

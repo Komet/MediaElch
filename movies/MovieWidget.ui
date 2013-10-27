@@ -85,7 +85,7 @@
        <property name="font">
         <font>
          <family>Helvetica Neue</family>
-         <pointsize>18</pointsize>
+         <pointsize>22</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -664,7 +664,10 @@
                   </property>
                   <property name="icon">
                    <iconset resource="../MediaElch.qrc">
-                    <normaloff>:/img/minus.png</normaloff>:/img/minus.png</iconset>
+                    <normaloff>:/img/minus_white.png</normaloff>:/img/minus_white.png</iconset>
+                  </property>
+                  <property name="dropShadow" stdset="0">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -691,7 +694,10 @@
                   </property>
                   <property name="icon">
                    <iconset resource="../MediaElch.qrc">
-                    <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
+                    <normaloff>:/img/plus_white.png</normaloff>:/img/plus_white.png</iconset>
+                  </property>
+                  <property name="dropShadow" stdset="0">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -820,6 +826,9 @@
                 <property name="text">
                  <string>Add Images</string>
                 </property>
+                <property name="dropShadow" stdset="0">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
              </layout>
@@ -838,12 +847,18 @@
                 <property name="text">
                  <string>Aspect Ratio</string>
                 </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
                </widget>
               </item>
               <item row="4" column="0">
                <widget class="QLabel" name="label_32">
                 <property name="text">
                  <string>Scantype</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                 </property>
                </widget>
               </item>
@@ -862,12 +877,18 @@
                 <property name="text">
                  <string>Resolution</string>
                 </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
                </widget>
               </item>
               <item row="1" column="0">
                <widget class="QLabel" name="label_31">
                 <property name="text">
                  <string>Codec</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                 </property>
                </widget>
               </item>
@@ -933,25 +954,21 @@
               </item>
               <item row="6" column="0">
                <widget class="QLabel" name="labelStreamDetailsAudio">
-                <property name="font">
-                 <font>
-                  <family>Helvetica Neue</family>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Audio</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                 </property>
                </widget>
               </item>
               <item row="0" column="0">
                <widget class="QLabel" name="label_27">
-                <property name="font">
-                 <font>
-                  <family>Helvetica Neue</family>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Video</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                 </property>
                </widget>
               </item>
@@ -969,6 +986,9 @@
                <widget class="QLabel" name="label_33">
                 <property name="text">
                  <string>Duration</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                 </property>
                </widget>
               </item>
@@ -999,7 +1019,10 @@
                 </property>
                 <property name="icon">
                  <iconset resource="../MediaElch.qrc">
-                  <normaloff>:/img/arrow_circle_right.png</normaloff>:/img/arrow_circle_right.png</iconset>
+                  <normaloff>:/img/arrow_circle_right_white.png</normaloff>:/img/arrow_circle_right_white.png</iconset>
+                </property>
+                <property name="dropShadow" stdset="0">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>

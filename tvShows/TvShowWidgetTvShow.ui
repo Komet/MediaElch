@@ -14,17 +14,16 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#scrollArea {
-	background: transparent;
+   <string notr="true">#tabWidget {
+	border: 0;
 }
-#scrollAreaWidgetContents {
-	background: transparent;
-}</string>
+
+#tab, #tab_2, #tab1 {
+	background-color: #ffffff;
+}
+</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,1,0">
-   <property name="spacing">
-    <number>0</number>
-   </property>
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
    <property name="leftMargin">
     <number>0</number>
    </property>
@@ -79,8 +78,8 @@
       <widget class="QLabel" name="showTitle">
        <property name="font">
         <font>
-         <family>Pathway Gothic One</family>
-         <pointsize>20</pointsize>
+         <family>Helvetica Neue</family>
+         <pointsize>22</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -98,37 +97,18 @@
     </layout>
    </item>
    <item>
-    <widget class="QWidget" name="widget" native="true">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>3</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>3</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(100, 100, 100, 255), stop:0.2 rgba(100, 100, 100, 50), stop:1 rgba(255, 255, 255, 0));
-</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QGroupBox" name="groupBox_3">
      <property name="styleSheet">
       <string notr="true">QGroupBox {
 	border-radius: 0;
-	background-color: rgba(255, 255, 255, 200);
-}</string>
+	background-color: transparent;
+}
+</string>
      </property>
      <property name="title">
       <string/>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,0">
+     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,0,0">
       <item>
        <widget class="QTabWidget" name="tabWidget">
         <property name="focusPolicy">
@@ -182,7 +162,11 @@
              </widget>
             </item>
             <item row="3" column="1">
-             <widget class="QDoubleSpinBox" name="rating"/>
+             <widget class="QDoubleSpinBox" name="rating">
+              <property name="buttonSymbols">
+               <enum>QAbstractSpinBox::NoButtons</enum>
+              </property>
+             </widget>
             </item>
             <item row="4" column="0">
              <widget class="QLabel" name="label_8">
@@ -210,6 +194,9 @@
             </item>
             <item row="5" column="1">
              <widget class="QDateEdit" name="firstAired">
+              <property name="buttonSymbols">
+               <enum>QAbstractSpinBox::NoButtons</enum>
+              </property>
               <property name="displayFormat">
                <string>dd.MM.yyyy</string>
               </property>
@@ -291,6 +278,9 @@
             </item>
             <item row="6" column="1">
              <widget class="QSpinBox" name="runtime">
+              <property name="buttonSymbols">
+               <enum>QAbstractSpinBox::NoButtons</enum>
+              </property>
               <property name="suffix">
                <string> Minutes</string>
               </property>
@@ -363,16 +353,19 @@
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_8">
                   <item>
-                   <widget class="QPushButton" name="buttonAddActor">
+                   <widget class="QPushButton" name="buttonRemoveActor">
                     <property name="toolTip">
-                     <string>Add Actor</string>
+                     <string>Remove Actor</string>
                     </property>
                     <property name="text">
                      <string/>
                     </property>
                     <property name="icon">
                      <iconset resource="../MediaElch.qrc">
-                      <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
+                      <normaloff>:/img/minus_white.png</normaloff>:/img/minus_white.png</iconset>
+                    </property>
+                    <property name="dropShadow" stdset="0">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -389,36 +382,22 @@
                     </property>
                    </spacer>
                   </item>
-                 </layout>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_7">
                   <item>
-                   <widget class="QPushButton" name="buttonRemoveActor">
+                   <widget class="QPushButton" name="buttonAddActor">
                     <property name="toolTip">
-                     <string>Remove Actor</string>
+                     <string>Add Actor</string>
                     </property>
                     <property name="text">
                      <string/>
                     </property>
                     <property name="icon">
                      <iconset resource="../MediaElch.qrc">
-                      <normaloff>:/img/minus.png</normaloff>:/img/minus.png</iconset>
+                      <normaloff>:/img/plus_white.png</normaloff>:/img/plus_white.png</iconset>
+                    </property>
+                    <property name="dropShadow" stdset="0">
+                     <bool>true</bool>
                     </property>
                    </widget>
-                  </item>
-                  <item>
-                   <spacer name="horizontalSpacer_2">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
                   </item>
                  </layout>
                 </item>
@@ -466,6 +445,9 @@
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="dropShadow" stdset="0">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -568,12 +550,34 @@
               <property name="text">
                <string>Add Images</string>
               </property>
+              <property name="dropShadow" stdset="0">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
            </layout>
           </item>
          </layout>
         </widget>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line">
+        <property name="styleSheet">
+         <string notr="true">color: #ebebeb;</string>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="lineWidth">
+         <number>1</number>
+        </property>
+        <property name="midLineWidth">
+         <number>0</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
        </widget>
       </item>
       <item>
@@ -590,7 +594,16 @@
         <item>
          <widget class="QWidget" name="artStackedWidgetButtons" native="true">
           <layout class="QHBoxLayout" name="horizontalLayout_11">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
             <number>0</number>
            </property>
            <item>
@@ -706,17 +719,20 @@ QPushButton::hover {
           </property>
           <widget class="QWidget" name="page">
            <layout class="QVBoxLayout" name="verticalLayout_5">
-            <property name="margin">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
              <number>0</number>
             </property>
             <item>
              <widget class="QLabel" name="labelPoster">
-              <property name="font">
-               <font>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
               <property name="text">
                <string>Poster</string>
               </property>
@@ -757,16 +773,13 @@ QPushButton::hover {
               <property name="myFixedHeight" stdset="0">
                <number>290</number>
               </property>
+              <property name="dropShadow" stdset="0">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
             <item>
              <widget class="QLabel" name="labelFanart">
-              <property name="font">
-               <font>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
               <property name="text">
                <string>Fanart</string>
               </property>
@@ -806,6 +819,9 @@ QPushButton::hover {
               </property>
               <property name="myFixedHeight" stdset="0">
                <number>120</number>
+              </property>
+              <property name="dropShadow" stdset="0">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -848,6 +864,9 @@ QPushButton::hover {
               <property name="myFixedHeight" stdset="0">
                <number>102</number>
               </property>
+              <property name="dropShadow" stdset="0">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
             <item>
@@ -867,17 +886,20 @@ QPushButton::hover {
           </widget>
           <widget class="QWidget" name="page_2">
            <layout class="QVBoxLayout" name="verticalLayout_7">
-            <property name="margin">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
              <number>0</number>
             </property>
             <item>
              <widget class="QLabel" name="labelLogo">
-              <property name="font">
-               <font>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
               <property name="text">
                <string>Logo</string>
               </property>
@@ -918,16 +940,13 @@ QPushButton::hover {
               <property name="myFixedHeight" stdset="0">
                <number>110</number>
               </property>
+              <property name="dropShadow" stdset="0">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
             <item>
              <widget class="QLabel" name="labelClearArt">
-              <property name="font">
-               <font>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
               <property name="text">
                <string>Clear Art</string>
               </property>
@@ -968,16 +987,13 @@ QPushButton::hover {
               <property name="myFixedHeight" stdset="0">
                <number>155</number>
               </property>
+              <property name="dropShadow" stdset="0">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
             <item>
              <widget class="QLabel" name="labelCharacterArt">
-              <property name="font">
-               <font>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
               <property name="text">
                <string>Character Art</string>
               </property>
@@ -1018,16 +1034,13 @@ QPushButton::hover {
               <property name="myFixedHeight" stdset="0">
                <number>200</number>
               </property>
+              <property name="dropShadow" stdset="0">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
             <item>
              <widget class="QLabel" name="labelBanner">
-              <property name="font">
-               <font>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
               <property name="text">
                <string>Banner</string>
               </property>
@@ -1065,6 +1078,9 @@ QPushButton::hover {
               <property name="myFixedHeight" stdset="0">
                <number>53</number>
               </property>
+              <property name="dropShadow" stdset="0">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
             <item>
@@ -1089,26 +1105,6 @@ QPushButton::hover {
      </layout>
     </widget>
    </item>
-   <item>
-    <widget class="QWidget" name="widget_2" native="true">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>3</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>3</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(100, 100, 100, 255), stop:0.2 rgba(100, 100, 100, 50), stop:1 rgba(255, 255, 255, 0));
-</string>
-     </property>
-    </widget>
-   </item>
   </layout>
  </widget>
  <customwidgets>
@@ -1117,6 +1113,11 @@ QPushButton::hover {
    <extends>QStackedWidget</extends>
    <header>smallWidgets/SlidingStackedWidget.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Badge</class>
+   <extends>QLabel</extends>
+   <header>smallWidgets/Badge.h</header>
   </customwidget>
   <customwidget>
    <class>MyLabel</class>
@@ -1128,11 +1129,6 @@ QPushButton::hover {
    <extends>QWidget</extends>
    <header>smallWidgets/TagCloud.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Badge</class>
-   <extends>QLabel</extends>
-   <header>smallWidgets/Badge.h</header>
   </customwidget>
   <customwidget>
    <class>ImageGallery</class>

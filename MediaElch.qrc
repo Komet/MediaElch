@@ -77,6 +77,9 @@
         <file>img/ui_uncheck.png</file>
         <file>img/scrape2.png</file>
         <file>img/money_64.png</file>
+        <file>img/arrow_circle_right_white.png</file>
+        <file>img/minus_white.png</file>
+        <file>img/plus_white.png</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>

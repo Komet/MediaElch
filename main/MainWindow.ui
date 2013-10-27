@@ -19,12 +19,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#centralWidget {
-/*	background-image: url(:/img/pattern2.png);*/
 	background-color: #ebebeb;
-}
-
-#scrollArea, #scrollArea_3, #scrollArea_2 {
-/*	background-image: url(:/img/pattern2.png);*/
 }
 
 #menuWidget {
@@ -32,7 +27,7 @@
 	border-right: 1px solid rgb(34, 34, 34);
 }
 
-#scrollArea, #scrollAreaWidgetContents_2 {
+#scrollArea, #scrollAreaWidgetContents_2, #scrollAreaWidgetContents_3, #scrollAreaWidgetContents_4, #scrollArea_3, #scrollArea_2, #page_5, #page_6, #page_3 {
 	background-color: #ffffff;
 }
 </string>
@@ -553,11 +548,6 @@ margin-top: 15px;</string>
              </property>
             </widget>
             <widget class="QScrollArea" name="scrollArea_2">
-             <property name="styleSheet">
-              <string notr="true">QScrollArea, #scrollAreaWidgetContents_3 {
-	background-color: transparent;
-}</string>
-             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -603,12 +593,6 @@ margin-top: 15px;</string>
          </layout>
         </widget>
         <widget class="QWidget" name="page_3">
-         <property name="styleSheet">
-          <string notr="true">#page_3 {
-	background-image: url(:/img/pattern2.png);
-}
-</string>
-         </property>
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <property name="leftMargin">
            <number>0</number>
@@ -661,12 +645,6 @@ margin-top: 15px;</string>
              </property>
             </widget>
             <widget class="QScrollArea" name="scrollArea_3">
-             <property name="styleSheet">
-              <string notr="true">QScrollArea, #scrollAreaWidgetContents_4 {
-	background-color: transparent;
-}
-</string>
-             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -712,12 +690,6 @@ margin-top: 15px;</string>
          </layout>
         </widget>
         <widget class="QWidget" name="page_5">
-         <property name="styleSheet">
-          <string notr="true">#page_5 {
-	background-image: url(:/img/pattern2.png);
-}
-</string>
-         </property>
          <layout class="QVBoxLayout" name="verticalLayout_6">
           <property name="leftMargin">
            <number>0</number>
@@ -737,12 +709,6 @@ margin-top: 15px;</string>
          </layout>
         </widget>
         <widget class="QWidget" name="page_6">
-         <property name="styleSheet">
-          <string notr="true">#page_6 {
-	background-image: url(:/img/pattern2.png);
-}
-</string>
-         </property>
          <layout class="QVBoxLayout" name="verticalLayout_7">
           <property name="leftMargin">
            <number>0</number>
@@ -762,12 +728,6 @@ margin-top: 15px;</string>
          </layout>
         </widget>
         <widget class="QWidget" name="page_4">
-         <property name="styleSheet">
-          <string notr="true">#page_4 {
-	background-image: url(:/img/pattern2.png);
-}
-</string>
-         </property>
          <layout class="QVBoxLayout" name="verticalLayout_10">
           <property name="leftMargin">
            <number>0</number>

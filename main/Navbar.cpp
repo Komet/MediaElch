@@ -1,6 +1,7 @@
 #include "Navbar.h"
 #include "ui_Navbar.h"
 
+#include <QGraphicsDropShadowEffect>
 #include <QPainter>
 
 Navbar::Navbar(QWidget *parent) :
@@ -56,6 +57,12 @@ Navbar::Navbar(QWidget *parent) :
         p.end();
         button->setIcon(QIcon(pixmap));
     }
+
+    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+    effect->setColor(QColor(0, 0, 0, 30));
+    effect->setOffset(2);
+    effect->setBlurRadius(4);
+    ui->btnDonate->setGraphicsEffect(effect);
 }
 
 Navbar::~Navbar()

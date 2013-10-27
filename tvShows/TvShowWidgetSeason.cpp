@@ -21,18 +21,14 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
     m_season = -1;
 
     ui->title->clear();
-    QFont font = ui->title->font();
-    font.setPointSize(font.pointSize()+4);
-    ui->title->setFont(font);
 
-    font = ui->labelPoster->font();
+    QFont font = ui->labelPoster->font();
     #ifdef Q_OS_WIN32
         font.setPointSize(font.pointSize()-1);
     #else
         font.setPointSize(font.pointSize()-2);
     #endif
 
-    font.setBold(true);
     ui->labelFanart->setFont(font);
     ui->labelBanner->setFont(font);
     ui->labelPoster->setFont(font);
@@ -93,6 +89,9 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
     m_missingView->setStyleSheet("background-color: transparent; border: none;");
     m_missingView->setParent(ui->groupBox_3);
     m_missingView->setVisible(false);
+
+    Helper::applyStyle(ui->groupBox_3);
+    Helper::applyEffect(ui->groupBox_3);
 }
 
 TvShowWidgetSeason::~TvShowWidgetSeason()

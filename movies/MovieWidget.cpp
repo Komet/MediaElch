@@ -42,11 +42,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->localTrailer->setBadgeType(Badge::LabelSuccess);
     ui->localTrailer->setVisible(false);
 
-    QFont font = ui->movieName->font();
-    font.setPointSize(font.pointSize()+4);
-    ui->movieName->setFont(font);
-
-    font = ui->actorResolution->font();
+    QFont font = ui->actorResolution->font();
     #ifdef Q_OS_WIN32
         font.setPointSize(font.pointSize()-1);
     #else

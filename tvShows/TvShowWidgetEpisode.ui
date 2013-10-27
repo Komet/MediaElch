@@ -13,10 +13,17 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,1,0">
-   <property name="spacing">
-    <number>0</number>
-   </property>
+  <property name="styleSheet">
+   <string notr="true">#tabWidget {
+	border: 0;
+}
+
+#tab, #tab_2, #tab1 {
+	background-color: #ffffff;
+}
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
    <property name="leftMargin">
     <number>0</number>
    </property>
@@ -73,8 +80,8 @@
       <widget class="QLabel" name="episodeName">
        <property name="font">
         <font>
-         <family>Pathway Gothic One</family>
-         <pointsize>20</pointsize>
+         <family>Helvetica Neue</family>
+         <pointsize>22</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -108,32 +115,13 @@
     </layout>
    </item>
    <item>
-    <widget class="QWidget" name="widget" native="true">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>3</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>3</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(100, 100, 100, 255), stop:0.2 rgba(100, 100, 100, 50), stop:1 rgba(255, 255, 255, 0));
-</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QGroupBox" name="groupBox_3">
      <property name="styleSheet">
       <string notr="true">QGroupBox {
 	border-radius: 0;
-	background-color: rgba(255, 255, 255, 200);
-}</string>
+	background-color: transparent;
+}
+</string>
      </property>
      <property name="title">
       <string/>
@@ -145,7 +133,7 @@
          <enum>Qt::NoFocus</enum>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="tab1">
          <attribute name="title">
@@ -159,6 +147,9 @@
             </property>
             <property name="rowWrapPolicy">
              <enum>QFormLayout::WrapLongRows</enum>
+            </property>
+            <property name="labelAlignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
             <item row="0" column="0">
              <widget class="QLabel" name="label">
@@ -205,6 +196,9 @@
              <layout class="QHBoxLayout" name="horizontalLayout_6">
               <item>
                <widget class="QSpinBox" name="season">
+                <property name="buttonSymbols">
+                 <enum>QAbstractSpinBox::NoButtons</enum>
+                </property>
                 <property name="maximum">
                  <number>99999</number>
                 </property>
@@ -235,6 +229,9 @@
               </item>
               <item>
                <widget class="QSpinBox" name="episode">
+                <property name="buttonSymbols">
+                 <enum>QAbstractSpinBox::NoButtons</enum>
+                </property>
                 <property name="maximum">
                  <number>99999</number>
                 </property>
@@ -258,6 +255,9 @@
             </item>
             <item row="5" column="1">
              <widget class="QDoubleSpinBox" name="rating">
+              <property name="buttonSymbols">
+               <enum>QAbstractSpinBox::NoButtons</enum>
+              </property>
               <property name="decimals">
                <number>1</number>
               </property>
@@ -292,6 +292,9 @@
             </item>
             <item row="7" column="1">
              <widget class="QDateEdit" name="firstAired">
+              <property name="buttonSymbols">
+               <enum>QAbstractSpinBox::NoButtons</enum>
+              </property>
               <property name="displayFormat">
                <string>dd.MM.yyyy</string>
               </property>
@@ -328,6 +331,9 @@
              <layout class="QHBoxLayout" name="horizontalLayout_7">
               <item>
                <widget class="QSpinBox" name="displaySeason">
+                <property name="buttonSymbols">
+                 <enum>QAbstractSpinBox::NoButtons</enum>
+                </property>
                 <property name="minimum">
                  <number>-1</number>
                 </property>
@@ -361,6 +367,9 @@
               </item>
               <item>
                <widget class="QSpinBox" name="displayEpisode">
+                <property name="buttonSymbols">
+                 <enum>QAbstractSpinBox::NoButtons</enum>
+                </property>
                 <property name="minimum">
                  <number>-1</number>
                 </property>
@@ -374,7 +383,11 @@
             <item row="8" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout">
               <item>
-               <widget class="QSpinBox" name="playCount"/>
+               <widget class="QSpinBox" name="playCount">
+                <property name="buttonSymbols">
+                 <enum>QAbstractSpinBox::NoButtons</enum>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QLabel" name="label_11">
@@ -385,6 +398,9 @@
               </item>
               <item>
                <widget class="QDateTimeEdit" name="lastPlayed">
+                <property name="buttonSymbols">
+                 <enum>QAbstractSpinBox::NoButtons</enum>
+                </property>
                 <property name="displayFormat">
                  <string>dd.MM.yyyy HH:mm</string>
                 </property>
@@ -401,6 +417,9 @@
             </item>
             <item row="9" column="1">
              <widget class="QTimeEdit" name="epBookmark">
+              <property name="buttonSymbols">
+               <enum>QAbstractSpinBox::NoButtons</enum>
+              </property>
               <property name="displayFormat">
                <string>HH:mm:ss</string>
               </property>
@@ -441,9 +460,6 @@
               <property name="showGrid">
                <bool>false</bool>
               </property>
-              <attribute name="horizontalHeaderVisible">
-               <bool>false</bool>
-              </attribute>
               <attribute name="horizontalHeaderStretchLastSection">
                <bool>true</bool>
               </attribute>
@@ -452,7 +468,7 @@
               </attribute>
               <column>
                <property name="text">
-                <string>Genre</string>
+                <string>Writer</string>
                </property>
               </column>
              </widget>
@@ -469,7 +485,10 @@
                 </property>
                 <property name="icon">
                  <iconset resource="../MediaElch.qrc">
-                  <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
+                  <normaloff>:/img/plus_white.png</normaloff>:/img/plus_white.png</iconset>
+                </property>
+                <property name="dropShadow" stdset="0">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -483,7 +502,10 @@
                 </property>
                 <property name="icon">
                  <iconset resource="../MediaElch.qrc">
-                  <normaloff>:/img/minus.png</normaloff>:/img/minus.png</iconset>
+                  <normaloff>:/img/minus_white.png</normaloff>:/img/minus_white.png</iconset>
+                </property>
+                <property name="dropShadow" stdset="0">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -540,9 +562,6 @@
               <property name="showGrid">
                <bool>false</bool>
               </property>
-              <attribute name="horizontalHeaderVisible">
-               <bool>false</bool>
-              </attribute>
               <attribute name="horizontalHeaderStretchLastSection">
                <bool>true</bool>
               </attribute>
@@ -551,7 +570,7 @@
               </attribute>
               <column>
                <property name="text">
-                <string>Studio</string>
+                <string>Director</string>
                </property>
               </column>
              </widget>
@@ -568,7 +587,10 @@
                 </property>
                 <property name="icon">
                  <iconset resource="../MediaElch.qrc">
-                  <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
+                  <normaloff>:/img/plus_white.png</normaloff>:/img/plus_white.png</iconset>
+                </property>
+                <property name="dropShadow" stdset="0">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -582,7 +604,10 @@
                 </property>
                 <property name="icon">
                  <iconset resource="../MediaElch.qrc">
-                  <normaloff>:/img/minus.png</normaloff>:/img/minus.png</iconset>
+                  <normaloff>:/img/minus_white.png</normaloff>:/img/minus_white.png</iconset>
+                </property>
+                <property name="dropShadow" stdset="0">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -630,6 +655,12 @@
               <property name="editTriggers">
                <set>QAbstractItemView::DoubleClicked</set>
               </property>
+              <property name="selectionMode">
+               <enum>QAbstractItemView::SingleSelection</enum>
+              </property>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
               <property name="showGrid">
                <bool>false</bool>
               </property>
@@ -656,16 +687,19 @@
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_9">
                 <item>
-                 <widget class="QPushButton" name="buttonAddActor">
+                 <widget class="QPushButton" name="buttonRemoveActor">
                   <property name="toolTip">
-                   <string>Add Actor</string>
+                   <string>Remove Actor</string>
                   </property>
                   <property name="text">
                    <string/>
                   </property>
                   <property name="icon">
                    <iconset resource="../MediaElch.qrc">
-                    <normaloff>:/img/plus.png</normaloff>:/img/plus.png</iconset>
+                    <normaloff>:/img/minus_white.png</normaloff>:/img/minus_white.png</iconset>
+                  </property>
+                  <property name="dropShadow" stdset="0">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -682,36 +716,22 @@
                   </property>
                  </spacer>
                 </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_10">
                 <item>
-                 <widget class="QPushButton" name="buttonRemoveActor">
+                 <widget class="QPushButton" name="buttonAddActor">
                   <property name="toolTip">
-                   <string>Remove Actor</string>
+                   <string>Add Actor</string>
                   </property>
                   <property name="text">
                    <string/>
                   </property>
                   <property name="icon">
                    <iconset resource="../MediaElch.qrc">
-                    <normaloff>:/img/minus.png</normaloff>:/img/minus.png</iconset>
+                    <normaloff>:/img/plus_white.png</normaloff>:/img/plus_white.png</iconset>
+                  </property>
+                  <property name="dropShadow" stdset="0">
+                   <bool>true</bool>
                   </property>
                  </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_8">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
                 </item>
                </layout>
               </item>
@@ -760,6 +780,9 @@
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
+                <property name="dropShadow" stdset="0">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
               <item>
@@ -803,12 +826,18 @@
               <property name="text">
                <string>Aspect Ratio</string>
               </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
              </widget>
             </item>
             <item row="4" column="0">
              <widget class="QLabel" name="label_32">
               <property name="text">
                <string>Scantype</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
               </property>
              </widget>
             </item>
@@ -827,12 +856,18 @@
               <property name="text">
                <string>Resolution</string>
               </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
              </widget>
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_31">
               <property name="text">
                <string>Codec</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
               </property>
              </widget>
             </item>
@@ -907,6 +942,9 @@
               <property name="text">
                <string>Audio</string>
               </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
              </widget>
             </item>
             <item row="0" column="0">
@@ -919,6 +957,9 @@
               </property>
               <property name="text">
                <string>Video</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
               </property>
              </widget>
             </item>
@@ -936,6 +977,9 @@
              <widget class="QLabel" name="label_33">
               <property name="text">
                <string>Duration</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
               </property>
              </widget>
             </item>
@@ -966,7 +1010,10 @@
               </property>
               <property name="icon">
                <iconset resource="../MediaElch.qrc">
-                <normaloff>:/img/arrow_circle_right.png</normaloff>:/img/arrow_circle_right.png</iconset>
+                <normaloff>:/img/arrow_circle_right_white.png</normaloff>:/img/arrow_circle_right_white.png</iconset>
+              </property>
+              <property name="dropShadow" stdset="0">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -1003,6 +1050,25 @@
        </widget>
       </item>
       <item>
+       <widget class="Line" name="line">
+        <property name="styleSheet">
+         <string notr="true">color: #ebebeb;</string>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="lineWidth">
+         <number>1</number>
+        </property>
+        <property name="midLineWidth">
+         <number>0</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <property name="leftMargin">
          <number>10</number>
@@ -1012,12 +1078,6 @@
         </property>
         <item>
          <widget class="QLabel" name="labelThumbnail">
-          <property name="font">
-           <font>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
           <property name="text">
            <string>Thumbnail</string>
           </property>
@@ -1058,6 +1118,9 @@
           <property name="myFixedHeight" stdset="0">
            <number>120</number>
           </property>
+          <property name="dropShadow" stdset="0">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
         <item>
@@ -1078,26 +1141,6 @@
      </layout>
     </widget>
    </item>
-   <item>
-    <widget class="QWidget" name="widget_2" native="true">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>3</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>3</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(100, 100, 100, 255), stop:0.2 rgba(100, 100, 100, 50), stop:1 rgba(255, 255, 255, 0));
-</string>
-     </property>
-    </widget>
-   </item>
   </layout>
  </widget>
  <customwidgets>
@@ -1107,15 +1150,15 @@
    <header>smallWidgets/MyLabel.h</header>
   </customwidget>
   <customwidget>
-   <class>ClosableImage</class>
-   <extends>QLabel</extends>
-   <header>smallWidgets/ClosableImage.h</header>
-  </customwidget>
-  <customwidget>
    <class>MediaFlags</class>
    <extends>QWidget</extends>
    <header>smallWidgets/MediaFlags.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ClosableImage</class>
+   <extends>QLabel</extends>
+   <header>smallWidgets/ClosableImage.h</header>
   </customwidget>
  </customwidgets>
  <resources>

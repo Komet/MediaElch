@@ -28,7 +28,7 @@ public:
     static QString mapCountry(const QString &text);
     static QString formatFileSize(const qint64 &size);
     static void removeFocusRect(QWidget *widget);
-    static void applyStyle(QWidget *widget, bool removeFocusRect = true);
+    static void applyStyle(QWidget *widget, bool removeFocusRect = true, bool isTable = false);
     static void applyEffect(QWidget *parent);
 };
 

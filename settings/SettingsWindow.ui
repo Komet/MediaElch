@@ -332,7 +332,16 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_12">
-                <property name="margin">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
                  <number>0</number>
                 </property>
                 <item>
@@ -675,7 +684,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_3">
+      <widget class="QWidget" name="page_tvshows">
        <layout class="QVBoxLayout" name="verticalLayout_7" stretch="0,0,1">
         <item>
          <widget class="QLabel" name="label_46">
@@ -1077,12 +1086,12 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_6">
+      <widget class="QWidget" name="page_xbmc">
        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1">
         <item>
          <widget class="QLabel" name="label_7">
           <property name="text">
-           <string>If you want to use the synchronization feature you need to enable &quot;Allow programs on other systems to control XBMC&quot; within XBMC (Settings -&gt; Services -&gt; Remote Control).</string>
+           <string>If you want to use the synchronization feature you need to enable &quot;Allow programs on other systems to control XBMC&quot; within XBMC (Settings -&gt; Services -&gt; Remote Control). Enter the port of the webserver here (usually 80 or 8080).</string>
           </property>
           <property name="wordWrap">
            <bool>true</bool>
@@ -1118,7 +1127,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
           <item row="1" column="1">
            <widget class="QLineEdit" name="xbmcPort">
             <property name="placeholderText">
-             <string>9090</string>
+             <string>8080</string>
             </property>
            </widget>
           </item>

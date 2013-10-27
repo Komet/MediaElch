@@ -32,18 +32,13 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     ui->artStackedWidget->setAnimation(QEasingCurve::OutCubic);
     ui->artStackedWidget->setSpeed(300);
 
-    QFont font = ui->concertName->font();
-    font.setPointSize(font.pointSize()+4);
-    ui->concertName->setFont(font);
-
-    font = ui->labelClearArt->font();
+    QFont font = ui->labelClearArt->font();
     #ifdef Q_OS_WIN32
         font.setPointSize(font.pointSize()-1);
     #else
         font.setPointSize(font.pointSize()-2);
     #endif
 
-    font.setBold(true);
     ui->labelClearArt->setFont(font);
     ui->labelDiscArt->setFont(font);
     ui->labelFanart->setFont(font);
@@ -125,6 +120,9 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     p.end();
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
+
+    Helper::applyStyle(ui->groupBox_3);
+    Helper::applyEffect(ui->groupBox_3);
 }
 
 /**

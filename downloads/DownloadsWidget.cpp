@@ -10,6 +10,7 @@
 #include "data/Storage.h"
 #include "downloads/ImportActions.h"
 #include "downloads/UnpackButtons.h"
+#include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "notifications/MacNotificationHandler.h"
 #include "notifications/Notificator.h"
@@ -45,6 +46,9 @@ DownloadsWidget::DownloadsWidget(QWidget *parent) :
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(scanDownloadFolders()));
 
     scanDownloadFolders();
+
+    Helper::applyStyle(ui->tablePackages, true, false);
+    Helper::applyStyle(ui->tableImports, true, false);
 }
 
 DownloadsWidget::~DownloadsWidget()

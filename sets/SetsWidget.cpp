@@ -5,6 +5,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
@@ -27,23 +28,14 @@ SetsWidget::SetsWidget(QWidget *parent) :
     ui->buttonPreviewBackdrop->setEnabled(false);
     ui->buttonPreviewPoster->setEnabled(false);
 
-    QFont font = ui->setName->font();
-    font.setPointSize(font.pointSize()+4);
-    ui->setName->setFont(font);
 #ifdef Q_OS_MAC
     QFont setsFont = ui->sets->font();
     setsFont.setPointSize(setsFont.pointSize()-2);
     ui->sets->setFont(setsFont);
 #endif
 
-    font = ui->posterResolution->font();
-    #ifdef Q_OS_WIN32
-    font.setPointSize(font.pointSize()-1);
-    #else
-    font.setPointSize(font.pointSize()-2);
-    #endif
-    ui->posterResolution->setFont(font);
-    ui->backdropResolution->setFont(font);
+    Helper::applyStyle(ui->groupBox_3);
+    Helper::applyEffect(ui->groupBox_3);
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();

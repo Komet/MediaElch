@@ -15,15 +15,27 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#ItemWidgetShow {
+/*
 	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(230, 230, 230, 255));
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #f5f7f8, stop:1 #f1f4f6);
+*/
+/*	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #f5f7f8, stop:1 #f1f4f6);*/
+	background-color: #ffffff;
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>3</number>
    </property>
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <item>

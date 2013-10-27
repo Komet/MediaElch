@@ -1,6 +1,7 @@
 #include "GenreWidget.h"
 #include "ui_GenreWidget.h"
 
+#include "globals/Helper.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "notifications/NotificationBox.h"
@@ -17,9 +18,6 @@ GenreWidget::GenreWidget(QWidget *parent) :
     ui->setupUi(this);
     ui->genres->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->movies->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    QFont font = ui->genreName->font();
-    font.setPointSize(font.pointSize()+4);
-    ui->genreName->setFont(font);
 
 #ifdef Q_OS_MAC
     QFont genresFont = ui->genres->font();
@@ -40,6 +38,8 @@ GenreWidget::GenreWidget(QWidget *parent) :
 
     connect(ui->genres, SIGNAL(itemSelectionChanged()), this, SLOT(onGenreSelected()));
     connect(ui->genres, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onGenreNameChanged(QTableWidgetItem*)));
+
+    Helper::applyStyle(ui->groupBox);
 }
 
 /**

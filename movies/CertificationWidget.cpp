@@ -1,6 +1,7 @@
 #include "CertificationWidget.h"
 #include "ui_CertificationWidget.h"
 
+#include "globals/Helper.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "notifications/NotificationBox.h"
@@ -17,9 +18,6 @@ CertificationWidget::CertificationWidget(QWidget *parent) :
     ui->setupUi(this);
     ui->certifications->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->movies->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    QFont font = ui->certificationName->font();
-    font.setPointSize(font.pointSize()+4);
-    ui->certificationName->setFont(font);
 
 #ifdef Q_OS_MAC
     QFont certificationsFont = ui->certifications->font();
@@ -40,6 +38,8 @@ CertificationWidget::CertificationWidget(QWidget *parent) :
     connect(ui->certifications, SIGNAL(itemSelectionChanged()), this, SLOT(onCertificationSelected()));
     connect(ui->certifications, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onCertificationNameChanged(QTableWidgetItem*)));
     connect(ui->movies, SIGNAL(itemDoubleClicked(QTableWidgetItem*)), this, SLOT(onJumpToMovie(QTableWidgetItem*)));
+
+    Helper::applyStyle(ui->groupBox);
 }
 
 /**

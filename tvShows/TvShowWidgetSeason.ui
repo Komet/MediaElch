@@ -13,10 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,1,0">
-   <property name="spacing">
-    <number>0</number>
-   </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1">
    <property name="leftMargin">
     <number>0</number>
    </property>
@@ -73,8 +70,8 @@
       <widget class="QLabel" name="title">
        <property name="font">
         <font>
-         <family>Pathway Gothic One</family>
-         <pointsize>20</pointsize>
+         <family>Helvetica Neue</family>
+         <pointsize>22</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -105,32 +102,13 @@
     </layout>
    </item>
    <item>
-    <widget class="QWidget" name="widget" native="true">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>3</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>3</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(100, 100, 100, 255), stop:0.2 rgba(100, 100, 100, 50), stop:1 rgba(255, 255, 255, 0));
-</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QGroupBox" name="groupBox_3">
      <property name="styleSheet">
       <string notr="true">QGroupBox {
 	border-radius: 0;
-	background-color: rgba(255, 255, 255, 200);
-}</string>
+	background-color: transparent;
+}
+</string>
      </property>
      <property name="title">
       <string/>
@@ -190,6 +168,9 @@
           <property name="myFixedHeight" stdset="0">
            <number>102</number>
           </property>
+          <property name="dropShadow" stdset="0">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
         <item>
@@ -211,12 +192,6 @@
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="QLabel" name="labelPoster">
-          <property name="font">
-           <font>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
           <property name="text">
            <string>Poster</string>
           </property>
@@ -257,16 +232,13 @@
           <property name="myFixedHeight" stdset="0">
            <number>290</number>
           </property>
+          <property name="dropShadow" stdset="0">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
         <item>
          <widget class="QLabel" name="labelFanart">
-          <property name="font">
-           <font>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
           <property name="text">
            <string>Fanart</string>
           </property>
@@ -307,16 +279,13 @@
           <property name="myFixedHeight" stdset="0">
            <number>120</number>
           </property>
+          <property name="dropShadow" stdset="0">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
         <item>
          <widget class="QLabel" name="labelBanner">
-          <property name="font">
-           <font>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
           <property name="text">
            <string>Banner</string>
           </property>
@@ -354,6 +323,9 @@
           <property name="myFixedHeight" stdset="0">
            <number>53</number>
           </property>
+          <property name="dropShadow" stdset="0">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
         <item>
@@ -372,26 +344,6 @@
        </layout>
       </item>
      </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QWidget" name="widget_2" native="true">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>3</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>3</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(100, 100, 100, 255), stop:0.2 rgba(100, 100, 100, 50), stop:1 rgba(255, 255, 255, 0));
-</string>
-     </property>
     </widget>
    </item>
   </layout>

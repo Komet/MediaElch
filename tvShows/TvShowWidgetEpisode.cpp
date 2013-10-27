@@ -12,6 +12,7 @@
 #include "data/ImageCache.h"
 #include "globals/ComboDelegate.h"
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
@@ -36,18 +37,12 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     ui->actors->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->actors->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    QFont font = ui->episodeName->font();
-    font.setPointSize(font.pointSize()+4);
-    ui->episodeName->setFont(font);
-
-    font = ui->labelThumbnail->font();
+    QFont font = ui->labelThumbnail->font();
     #ifdef Q_OS_WIN32
         font.setPointSize(font.pointSize()-1);
     #else
         font.setPointSize(font.pointSize()-2);
     #endif
-
-    font.setBold(true);
     ui->labelThumbnail->setFont(font);
 
     font = ui->actorResolution->font();
@@ -138,6 +133,9 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     m_missingView->setStyleSheet("background-color: transparent; border: none;");
     m_missingView->setParent(ui->groupBox_3);
     m_missingView->setVisible(false);
+
+    Helper::applyStyle(ui->groupBox_3);
+    Helper::applyEffect(ui->groupBox_3);
 }
 
 /**
