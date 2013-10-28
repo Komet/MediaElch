@@ -1,290 +1,46 @@
-mediaelch (1.7-1) precise; urgency=low
+mediaelch (2.0-1) raring; urgency=low
 
-  * Store last used scraper in settings
-  * media-passion.org scraper
-  * Get IMDB Id from filename
-  * Add runtime from thetvdb
-  * Ability to paste a link to a picture
-  * Option to use the IMDB Ratings regardless of which scraper is used
-  * Banner for movies
-  * XBMC Sync: Clean database
-  * Add TV Show Thumbs from Fanart.tv
-  * Better keyboard navigation in file lists
-  * Remove quit button from toolbar
-  * Improve mapping to allow empty values in advanced settings
-  * Context Menu: Improve scrape option
-  * Strip braces in search term
-  * Add video category to .desktop file
-  * Allow selecting multiple movies when adding them to sets/genres/certifications
-  * Sort title for tv shows
-  * Use airs before/airsafter to set display season and episode
-  * OFDB: Load movie by id
-  * RegEx for "Season X Episode Y"
-  * TV Show data sometimes lost
-  * IMDB API url changed
-  * DVD order wrong
-  * Don't save empty actor image and thumb tag
-  * TV Show File Scanner detects wrong episode numbers
-  * Stacked Files: Duration in Streamdetails
-  * Display title of movies with dots
-  * Wrong nfo filename when renaming stacked movies
-  * Duplicate fileinfo tag
-  * Add placeholder for episode and season banner image
+  * HD-Trailers.net: Add apple trailer download support
+  * Media Passion: Support for Logos and ClearArts
+  * Language Support in fanart.tv
+  * Option to update only movies with IMDb Id
+  * Import movies, episodes and concerts
+  * Show missing Episodes
+  * Update notification
+  * BluRay/DVD Disc option in fanart.tv
+  * Scrape posters from fanart.tv
+  * Portable mode via advancedsettings.xml
+  * Scraper for Adult DVD Empire
+  * Scraper for AEBN
+  * Scraper for HotMovies
+  * Upgrade to Qt5
+  * Improve exclude words detection
+  * Filter for movie sets
+  * Filter for IMDb ID
+  * Exclude words also in directory names
+  * Search by IMDb id or TMDb id by default
+  * Also rename .srt subtitles
+  * Actors for tv show episodes
+  * TheTvDb: Search by ID
+  * Speed up loading items
+  * Add warning for extra fanarts when sep. folders is not cheked
+  * GUI updates
+  * Fix hd-trailers.net scraping
+  * Poster naming of stacked files
+  * Wrong parsing of filenames from stacked movies
+  * Skip dots in movie titles when searching
+  * TV show season fanart not found/scraped
+  * Media Passion: Titles with accents give no results
+  * Renaming fails if new name only differs in capitalization
+  * Adjust MovieMaze Scraper
+  * Cinefacts scraper broken
+  * Check DVD aired order
+  * Runtime of *.ts files is not detected
+  * Images from SMB shares under Windows cannot be chosen
+  * Filescanner might skip some movies
+  * MediaPassion: Discart sometimes not found
+  * MediaPassion: Original title not scraped
+  * Some images are not renamed when renaming movies
+  * TV Show list jumps to not clicked items
 
- -- Daniel Kabel <daniel.kabel@me.com>  Thu, 8 Aug 2013 11:10:26 +0200
-
-mediaelch (1.6-1) precise; urgency=low
-
-  * Added filter for local trailers
-  * Media Status Column “Trailer” now regards local trailers
-  * Bulk loading of streamdetails now overwrites movie runtime
-  * Bugfix: Also saved last movie while multi scraping
-  * Added media status columns for actors and IMDB Id
-  * Bugfix: Correctly load CD art for BluRay and DVD structures
-  * Added local image cache
-  * Improved matching of season/episode in filenames
-  * Bugfix: Skipping of extra files in BluRay and DVD structures
-  * Small GUI changes
-  * TV Shows: Show all banners not just season specific
-  * Bugfix: Opening movie folders in network shares
-  * Option to use DVD order when scraping tv shows
-  * Save DVD and BluRay fanart inside the directory structures
-  * Correctly detect stream details in DVD structures
-  * Bugfix: Cinefacts scraper didn’t find year and countries
-  * Option to delete images
-  * Changed default rename pattern for tv show episodes
-  * Added filter items for studios, countries and filename
-  * Fixed tag cloud UI bug
-  * Bugfix: “Watched” Filter showed unwatched movies
-  * Automatically set playcount when watched flag changes
-  * Bugfix: Downloading season artwork
-  * Added director and tags filter
-  * Added downloading of tv themes
-  * Bugfix: Missing Qt translation added
-  * Double click movie in Genre, Certification or Sets Widget jumps to movie
-  * Use locale aware sorting in lists
-  * Bugfix: Store tvdbid also in id tag
-  * Added support for multi-episode files
-  * NFO parser is more tolerant with thousands separators
-  * Bugfix: Don’t write illegal last played date
-  * Bugfix: Don’t write empty stream details
-  * Artwork can be loaded separately
-  * Settings: Directory string editable manually
-  * Filters for Resolution and format
-  * Added option in advancedsettings to only store the first studio (helpful for displaying studio logos in XBMC)
-  * Added button to set YouTube dummy link
-  * Bugfix: Channel count detection wrong for DTS-HD and others
-  * Bugfix: Use correct info labels for audio formats
-    
- -- Daniel Kabel <daniel.kabel@me.com>  Mon, 21 Apr 2013 19:46:42 +0200
-
-mediaelch (1.5-1) precise; urgency=low
-
-  * Bugfix: Replace illegal characters in filenames on Windows
-  * Reduced memory usage when multi scrape movies
-  * Sort lists case insensitive
-  * Added .wtv files to scanners
-  * Changed default filename from cdart.png to disc.png
-  * Movies -> Votes: Display thousands separator
-  * Bugfix: Skip downloading of actor images in tv shows if set in settings
-  * Correct naming of nfo files and images in stacked movies
-  * Fixed opening of movie folders in Windows
-  * Save TV Show update option
-  * Default exclude words set
-  * Show saving progress
-  * Bugfix: Saving of poster and fanarts for DVD and BluRay structures
-  * Skip extra files in DVD structures
-  * Show all fanarts from The TV Db when choosing season fanart
-  * Save tv show specials season artwork as season-special-*.jpg
-  * Use JSON RPC to communicate with XBMC
-  * Fixed XBMC sync
-  * Moved advanced settings to advancedsettings.xml
-  * Option to ignore articles when sorting
-  * Map genres while scraping to custom genres
-  * Extensions for file scanners are now customizable
-  * Added alphabetical scroll list
-  * Automatically reload files after saving settings
-  * Use correct nfo filename when renaming episodes
-  * StreamDetails: Map audio and video codecs to custom values
-  * Add genres in genre widget
-  * Add certifications in certifications widget
-  * Add movie sets in sets widget
-  * Remove movie sets in sets widget
-  * Rename movie sets in sets widget
-  * Bugfix: Correct sorting of stacked files
-  * Show multi scrape dialog when multiple movies are selected
-  * Map certifications while scraping to custom certifications
-  * Choose between English GB and English US certifications for The Movie DB
-  * Handling of movie set posters and fanarts (compatible with “Movie Set Artwork Automator”)
-  * Media Status Columns added
-  * TV Shows: ID Tag get’s no longer removed
-  * Bugfix: Loading only fanarts was not possible
-  * Bugfix: Studios autocompleter showed duplicates
-  * Map Studios and Countries to custom values while scraping
-    
- -- Daniel Kabel <daniel.kabel@me.com>  Mon, 04 Mar 2013 19:38:58 +0100
-
-mediaelch (1.4-1) unstable; urgency=low
-
-  * Added option to set username and password for XBMC webserver
-  * Retrieve play count and last played from XBMC
-  * Removed SQL Interface
-  * Added .img file extension for movies and concerts
-  * Speedup loading items from cache database (Thanks to garretn)
-  * Fixed wrong xml tag fileinfos -> fileinfo
-  * Added support for wmv, ogm, mov and divx files
-  * Removed media center path from settings
-  * Store files separately in cache database to avoid "," bug
-  * Fixes for Qt5 support
-  * Added action in context menu: Open Folder
-  * Bugfix: Show resolution for images from TMDB
-  * Improved TV Show scraping: select infos to load
-  * Added displayseason and displayepisode for TV Show episodes
-  * Added option to scrape multiple movies at once
-  * Art Widget: Show all images when window is big enough
-  * Show badge if local trailer is available
-  * Added HD-Trailers.net Scraper
-  * Added Trailer Preview
-  * Added support for Tags
-  * Fixed Cinefacts Scraper
-  * Added support for TV Show Season Fanarts and Banners
-  * Added option to enable/disable downloading of actor images
-  * Added option to choose between default filenames for Eden and Frodo
-  * Added option to rename artwork to match Frodo naming scheme
-  * Added support for extra fanarts
-  * Added Fanart.tv Music Artists as source for concert backdrops and logos
-  * Use ScrollAreas in MainWindow to allow smaller window height
-  * Renaming of Movies,  TV Shows and Concerts
-  * Fixed naming of posters and fanarts with stacked files
-    
- -- Daniel Kabel <daniel.kabel@me.com>  Mon, 04 Feb 2013 20:10:23 +0100
-
-mediaelch (1.3-1) unstable; urgency=low
-
-  * Ignore .actors folder while scanning
-  * Fixed Fanart.tv scraper
-  * Fixed VideoBuster scraper
-  * Cache the contents of nfo files to speedup start
-  * Fixed switched filenames of clearart and logo
-  * Small GUI and translation fixes
-  * Added support for .rmvb files
-  * Only save really changed movies when merging genres or certifications
-  * Added support for artist and album in concerts
-  * Editable outline in movies
-  * Added Trailer Downloader
-  * Added IMDB Scraper
-  * Added XBMC Sync option
-  * Added Portuguese translation (Thanks to Wanilton Campos)
-  * Added Rating votes and Top 250 fields for movies
-  * Bugfix: Loading of StreamDetails failed in Windows when filenames had special characters
-    
- -- Daniel Kabel <daniel.kabel@me.com>  Thu, 06 Nov 2012 18:55:47 +0100
-
-mediaelch (1.2-1) unstable; urgency=low
-
-  * Support for streamdetails (resolution, codec, audio etc)
-  * Filenames for nfos and images now fully customizable
-  * Added french translation (Many thanks to foX aCe)
-  * Mark HD/SD content from Fanart.tv
-  * Skip -sample files
-  * Change sort order of movies
-  * Minor GUI improvements
-  * Pickup movie set from TMDb
-  * Save episodeguide url in tv show xml
-  * Windows: Added missing SSL libraries (needed by VideoBuster Scraper)
-  * Bugfix: Possible crash when selecting a movie, tv show or concert
-    
- -- Daniel Kabel <daniel.kabel@me.com>  Mon, 12 Nov 2012 17:51:35 +0100
-
-mediaelch (1.1-1) unstable; urgency=low
-
-  * Fanart.tv: Support for Logos, Clear Arts, CD Arts and Character Arts
-  * Improved filter widget
-  * Organize movies: move into separate directories (Thanks to googl1)
-  * Prefer locale posters from TMDb (Thanks to jhenkens)
-  * Show new mark on tv show seasons
-  * Added .dat, .ts, .vob and .flv file extensions
-  * Simple caching of scanned folder to speedup scanning for files
-  * Added director and writer fields for movies
-  * A proxy can be used for network request
-  * Episodes with naming pattern 1×01 are now recognized
-  * Highlight new entries in sidebar
-  * Small GUI improvements
-  * Increased maximum season and episode numbers
-  * Bugfix: Fixed memory problem
-  * Bugfix: Handle network timeouts while downloading images
-  
- -- Daniel Kabel <daniel.kabel@me.com>  Mon, 22 Oct 2012 18:14:25 +0200
-
-mediaelch (1.0-1) unstable; urgency=low
-
-  * Added Concert/MusicVideo scraping
-  * Added keyboard shortcuts
-  * Rudimentary command line interface
-  * Editing of sort titles possible
-  * Option to save trailer urls in YouTube plugin format
-  * Choose between different files for nfos, posters, fanarts and banners
-  * Settings is now a dialog
-  * Added .strm file extension
-  * Bugfix: Adding of tv show directories possible again
-  
- -- Daniel Kabel <daniel.kabel@me.com>  Fri, 5 Oct 2012 13:10:48 +0200
-
-mediaelch (0.9.6-1) unstable; urgency=low
-
-  * Ignore files in directory “Extras” (thanks to KBagust)
-  * Allow TV Show episodes to have . inbetween season and episode numbers (thanks to KBagust)
-  * Added debug output
-  * Bugfix: Toolbar hidden in Mac OS X with small resolutions
-  
- -- Daniel Kabel <daniel.kabel@me.com>  Thu, 20 Sep 2012 15:37:18 +0200
-
-mediaelch (0.9.5-1) unstable; urgency=low
-
-  * TV show episodes are grouped by seasons
-  * Markers for new movies and TV shows
-  * Skip empty values and images in TMDb
-  * Added support .m4v file extension
-  * Increased size of Fanart/Poster dialog
-  * Feature: Revert changes
-  * Bugfix: Crash when loading MediaElch
-  * Bugfix: Scraping issues with special characters in movie titles
-  * Bugfix: TV Shows had wrong path when episodes are in subfolders
-  * Bugfix: Confusion in SQL interfaces when different episodes have equal filenames
-  * Bugfix: Checkbox “separate folders” won’t show when adding a movie directory
-  * Bugfix: Changing just poster or fanart in tv shows won’t enable the save button
-
- -- Daniel Kabel <daniel.kabel@me.com>  Thu, 20 Sep 2012 15:37:18 +0200
-
-mediaelch (0.9.4-1) unstable; urgency=low
-
-  * Fixed not escaped characters in SQL interface
-
- -- Daniel Kabel <daniel.kabel@me.com>  Thu, 29 Jul 2012 19:20:31 +0200
-
-mediaelch (0.9.3-1) unstable; urgency=low
-
-  * Added support for TV Show banners
-  * Added Set Editor (add/remove movies from sets, reorder movies, change posters and backdrops)
-  * View and change images of actors
-  * Skip trailer files when searching for movies
-  * Rudimentary support for stub files (need to be created on your own)
-  * Switched to TMDb API v3
-  * Local certifications from TMDb
-  * Support metafiles like movie.nfo, movie.tbn, movie.jpg, fanart.jpg, folder.jpg
-  * Select which infos should be loaded from a scraper
-  * Fixed a bug when using SQL interfaces and "movies are stored in separate folders" is checked in XBMC
-
- -- Daniel Kabel <daniel.kabel@me.com>  Thu, 29 Jul 2012 15:09:32 +0200
-
-mediaelch (0.9.2-1) unstable; urgency=low
-
-  * Bugfixes and some new features
-
- -- Daniel Kabel <daniel.kabel@me.com>  Thu, 25 Jul 2012 20:51:02 +0200
-
-mediaelch (0.9.1-1) unstable; urgency=low
-
-  * Initial release
-
- -- Daniel Kabel <daniel.kabel@me.com>  Thu, 19 Jul 2012 20:21:18 +0200
+ -- Daniel Kabel <info@kvibes.de>  Mon, 28 Oct 2013 16:59:24 +0100
