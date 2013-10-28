@@ -87,12 +87,9 @@ int main(int argc, char *argv[])
         editTranslator.load(":/i18n/" + filename);
     a.installTranslator(&editTranslator);
 
-    // Add fonts
-    QFontDatabase::addApplicationFont(":/PathwayGothicOne.ttf");
-
     QCoreApplication::setOrganizationName("kvibes");
     QCoreApplication::setApplicationName("MediaElch");
-    QCoreApplication::setApplicationVersion("1.8-dev");
+    QCoreApplication::setApplicationVersion("2.0");
 
     Settings::instance(qApp)->loadSettings();
     if (Settings::instance()->advanced()->debugLog() && !Settings::instance()->advanced()->logFile().isEmpty()) {

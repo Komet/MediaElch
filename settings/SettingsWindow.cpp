@@ -715,7 +715,7 @@ void SettingsWindow::onShowAdultScrapers()
 {
     bool show = ui->chkEnableAdultScrapers->isChecked();
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
-        if (scraper->isAdult()) {
+        if (scraper->isAdult() && scraper->hasSettings()) {
             ui->gridLayoutScrapers->itemAtPosition(m_scraperRows.value(scraper), 0)->widget()->setVisible(show);
             ui->gridLayoutScrapers->itemAtPosition(m_scraperRows.value(scraper), 1)->widget()->setVisible(show);
         }
