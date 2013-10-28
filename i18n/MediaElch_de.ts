@@ -239,7 +239,7 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="181"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Film entfernen</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="197"/>
@@ -1861,7 +1861,7 @@
     <message>
         <location filename="../movies/GenreWidget.ui" line="180"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Film entfernen</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="196"/>
@@ -3656,7 +3656,7 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../main/Navbar.ui" line="52"/>
         <source>Scrape</source>
-        <translation type="unfinished"/>
+        <translation>Scrape</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="58"/>
@@ -3719,7 +3719,7 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../main/Navbar.cpp" line="14"/>
         <source>Scrape (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Scrape (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="17"/>
@@ -3778,7 +3778,7 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../quazip/quazip/quazipfile.cpp" line="217"/>
         <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished"/>
+        <translation>ZIP/UNZIP API Fehler %1</translation>
     </message>
 </context>
 <context>
@@ -4131,7 +4131,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../sets/SetsWidget.ui" line="191"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Film entfernen</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="213"/>
@@ -4490,12 +4490,12 @@ Bei Serien müssen Episoden in Unterverzeichnissen mit dem Namen der Serie sein.
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1094"/>
         <source>If you want to use the synchronization feature you need to enable &quot;Allow programs on other systems to control XBMC&quot; within XBMC (Settings -&gt; Services -&gt; Remote Control). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation type="unfinished"/>
+        <translation>Um die Synchronisation zu benutzen, musst du in XBMC &quot;Steuerung über entfernte Programme zulassen&quot; aktivieren (Einstellungen -&gt; Dienste -&gt; Fernsteuerung). Trag den Port des Webservers hier ein (normalerweise 80 oder 8080).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1130"/>
         <source>8080</source>
-        <translation type="unfinished"/>
+        <translation>8080</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="263"/>
