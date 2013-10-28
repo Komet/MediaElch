@@ -558,7 +558,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="371"/>
         <source>Not watched</source>
-        <translation type="unfinished"/>
+        <translation>Nicht gesehen</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="393"/>
@@ -3325,7 +3325,7 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../movies/MovieWidget.ui" line="372"/>
         <source>Not watched</source>
-        <translation type="unfinished"/>
+        <translation>Nicht gesehen</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="381"/>
