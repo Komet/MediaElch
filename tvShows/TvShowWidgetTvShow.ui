@@ -327,6 +327,12 @@
                 <property name="editTriggers">
                  <set>QAbstractItemView::DoubleClicked</set>
                 </property>
+                <property name="selectionMode">
+                 <enum>QAbstractItemView::SingleSelection</enum>
+                </property>
+                <property name="selectionBehavior">
+                 <enum>QAbstractItemView::SelectRows</enum>
+                </property>
                 <property name="showGrid">
                  <bool>false</bool>
                 </property>
@@ -632,10 +638,11 @@
 	margin: 4px;
 	width: 8px;
 	height: 8px;
+	background-color: rgba(0, 0, 0, 50);
 }
 
 QPushButton::checked {
-	background-color: rgba(0, 0, 0, 50);
+	background-color: #428BCA;
 }
 
 QPushButton::hover {
@@ -666,10 +673,11 @@ QPushButton::hover {
 	margin: 5px;
 	width: 8px;
 	height: 8px;
+	background-color: rgba(0, 0, 0, 50);
 }
 
 QPushButton::checked {
-	background-color: rgba(0, 0, 0, 50);
+	background-color: #428BCA;
 }
 
 QPushButton::hover {

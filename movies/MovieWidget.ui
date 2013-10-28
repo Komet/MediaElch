@@ -1135,10 +1135,11 @@
 	margin: 4px;
 	width: 8px;
 	height: 8px;
+	background-color: rgba(0, 0, 0, 50);
 }
 
 QPushButton::checked {
-	background-color: rgba(0, 0, 0, 50);
+	background-color: #428BCA;
 }
 
 QPushButton::hover {
@@ -1169,10 +1170,11 @@ QPushButton::hover {
 	margin: 5px;
 	width: 8px;
 	height: 8px;
+	background-color: rgba(0, 0, 0, 50);
 }
 
 QPushButton::checked {
-	background-color: rgba(0, 0, 0, 50);
+	background-color: #428BCA;
 }
 
 QPushButton::hover {
