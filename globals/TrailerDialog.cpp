@@ -27,7 +27,7 @@ TrailerDialog::TrailerDialog(QWidget *parent) :
     ui->stackedWidget->setSpeed(400);
 
 #ifdef Q_OS_MAC
-    setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
+    // setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
 #else
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif

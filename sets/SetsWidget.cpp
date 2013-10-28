@@ -34,6 +34,12 @@ SetsWidget::SetsWidget(QWidget *parent) :
     ui->sets->setFont(setsFont);
 #endif
 
+#ifdef Q_OS_WIN
+    QFont nameFont = ui->setName->font();
+    nameFont.setPointSize(nameFont.pointSize()-4);
+    ui->setName->setFont(nameFont);
+#endif
+
     Helper::applyStyle(ui->groupBox_3);
     Helper::applyEffect(ui->groupBox_3);
 

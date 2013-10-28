@@ -40,6 +40,12 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
         font.setPointSize(font.pointSize()-2);
     #endif
 
+#ifdef Q_OS_WIN
+    QFont nameFont = ui->showTitle->font();
+    nameFont.setPointSize(nameFont.pointSize()-4);
+    ui->showTitle->setFont(nameFont);
+#endif
+
     ui->labelClearArt->setFont(font);
     ui->labelCharacterArt->setFont(font);
     ui->labelFanart->setFont(font);

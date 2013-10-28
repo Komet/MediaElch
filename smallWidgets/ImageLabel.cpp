@@ -12,7 +12,11 @@ ImageLabel::ImageLabel(QWidget *parent) :
     ui->setupUi(this);
     ui->resolution->setText("");
     QFont font = ui->resolution->font();
+#ifdef Q_OS_WIN32
+    font.setPointSize(font.pointSize()-1);
+#else
     font.setPointSize(font.pointSize()-2);
+#endif
     ui->resolution->setFont(font);
 }
 

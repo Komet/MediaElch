@@ -31,34 +31,34 @@ void messageOutput(QtMsgType type, const QMessageLogContext &context, const QStr
     switch (type) {
     case QtDebugMsg:
         if (toFile)
-            out << "[" << context.function << "] " << localMsg << newLine;
+            out << "[" << f << "] " << localMsg << newLine;
         else
             fprintf(stderr, "%s %s%s", qPrintable(f), qPrintable(localMsg), qPrintable(newLine));
         break;
     case QtWarningMsg:
         if (toFile)
-            out << "WARNING: " << "[" << context.function << "] " << localMsg << newLine;
+            out << "[" << f << "] " << "WARNING: " << localMsg << newLine;
         else
-            fprintf(stderr, "WARNING: %s %s%s", qPrintable(f), qPrintable(localMsg), qPrintable(newLine));
+            fprintf(stderr, "%s WARNING: %s%s", qPrintable(f), qPrintable(localMsg), qPrintable(newLine));
         break;
     case QtCriticalMsg:
         if (toFile)
-            out << "CRITICAL: " << "[" << context.function << "] " << localMsg << newLine;
+            out << "[" << f << "] " << "CRITICAL: " << localMsg << newLine;
         else
-            fprintf(stderr, "CRITICAL: %s %s%s", qPrintable(f), qPrintable(localMsg), qPrintable(newLine));
+            fprintf(stderr, "%s CRITICAL: %s%s", qPrintable(f), qPrintable(localMsg), qPrintable(newLine));
         break;
     case QtFatalMsg:
         if (toFile)
-            out << "FATAL: " << "[" << context.function << "] " << localMsg << newLine;
+            out << "[" << f << "] " << "FATAL: " << localMsg << newLine;
         else
-            fprintf(stderr, "FATAL: %s %s%s", qPrintable(f), qPrintable(localMsg), qPrintable(newLine));
+            fprintf(stderr, "%s FATAL: %s%s", qPrintable(f), qPrintable(localMsg), qPrintable(newLine));
         abort();
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
     case QtTraceMsg:
         if (toFile)
-            out << "TRACE: " << "[" << context.function << "] " << localMsg << newLine;
+            out << "[" << f << "] " << "TRACE: " << localMsg << newLine;
         else
-            fprintf(stderr, "TRACE: %s %s%s", qPrintable(f), qPrintable(localMsg), qPrintable(newLine));
+            fprintf(stderr, "%s TRACE: %s%s", qPrintable(f), qPrintable(localMsg), qPrintable(newLine));
         break;
 #endif
     }

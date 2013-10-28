@@ -3,7 +3,7 @@
  <class>TrailerDialog</class>
  <widget class="QDialog" name="TrailerDialog">
   <property name="windowModality">
-   <enum>Qt::WindowModal</enum>
+   <enum>Qt::ApplicationModal</enum>
   </property>
   <property name="geometry">
    <rect>
@@ -223,7 +223,7 @@ selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, 
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="page_3">
+     <widget class="QWidget" name="page_trailerPreview">
       <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,0,0,0,0">
        <property name="leftMargin">
         <number>0</number>
@@ -397,15 +397,15 @@ selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, 
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MyLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>smallWidgets/MyLineEdit.h</header>
-  </customwidget>
-  <customwidget>
    <class>SlidingStackedWidget</class>
    <extends>QStackedWidget</extends>
    <header>smallWidgets/SlidingStackedWidget.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MyLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>smallWidgets/MyLineEdit.h</header>
   </customwidget>
  </customwidgets>
  <resources>

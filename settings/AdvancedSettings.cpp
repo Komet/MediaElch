@@ -9,6 +9,7 @@
 AdvancedSettings::AdvancedSettings(QObject *parent) :
     QObject(parent)
 {
+    m_portableMode = false;
     loadSettings();
 }
 

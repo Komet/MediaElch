@@ -25,6 +25,12 @@ GenreWidget::GenreWidget(QWidget *parent) :
     ui->genres->setFont(genresFont);
 #endif
 
+#ifdef Q_OS_WIN
+    QFont nameFont = ui->genreName->font();
+    nameFont.setPointSize(nameFont.pointSize()-4);
+    ui->genreName->setFont(nameFont);
+#endif
+
     ui->genres->setContextMenuPolicy(Qt::CustomContextMenu);
     m_tableContextMenu = new QMenu(ui->genres);
     QAction *actionAddGenre = new QAction(tr("Add Genre"), this);

@@ -25,6 +25,12 @@ CertificationWidget::CertificationWidget(QWidget *parent) :
     ui->certifications->setFont(certificationsFont);
 #endif
 
+#ifdef Q_OS_WIN
+    QFont nameFont = ui->certificationName->font();
+    nameFont.setPointSize(nameFont.pointSize()-4);
+    ui->certificationName->setFont(nameFont);
+#endif
+
     ui->certifications->setContextMenuPolicy(Qt::CustomContextMenu);
     m_tableContextMenu = new QMenu(this);
     QAction *actionAddCertification = new QAction(tr("Add Certification"), this);

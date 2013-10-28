@@ -22,6 +22,12 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
 
     ui->title->clear();
 
+#ifdef Q_OS_WIN
+    QFont nameFont = ui->title->font();
+    nameFont.setPointSize(nameFont.pointSize()-4);
+    ui->title->setFont(nameFont);
+#endif
+
     QFont font = ui->labelPoster->font();
     #ifdef Q_OS_WIN32
         font.setPointSize(font.pointSize()-1);
