@@ -3669,52 +3669,52 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
         <location filename="../main/Navbar.ui" line="198"/>
         <location filename="../main/Navbar.ui" line="223"/>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="75"/>
         <source>Save</source>
-        <translation type="unfinished"/>
+        <translation>Speichern</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="95"/>
         <source>Save All</source>
-        <translation type="unfinished"/>
+        <translation>Alle Speichern</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="115"/>
         <source>Rename selected files</source>
-        <translation type="unfinished"/>
+        <translation>Ausgewählte Dateien umbenennen</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="135"/>
         <source>Synchronize to XBMC</source>
-        <translation type="unfinished"/>
+        <translation>Synchronisiere XBMC</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="155"/>
         <source>Export Database</source>
-        <translation type="unfinished"/>
+        <translation>Datenbank exportieren</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="175"/>
         <source>Reload</source>
-        <translation type="unfinished"/>
+        <translation>Neu laden</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="195"/>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="215"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Über</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="281"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Spenden</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="14"/>
@@ -3724,17 +3724,17 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../main/Navbar.cpp" line="17"/>
         <source>Save (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Speichern (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="21"/>
         <source>Save All (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Alle Speichern (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="24"/>
         <source>Reload all files (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Lädt alle Dateien neu (%1)</translation>
     </message>
 </context>
 <context>
@@ -3742,7 +3742,7 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../notifications/NotificationBox.ui" line="26"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Form</translation>
     </message>
 </context>
 <context>
@@ -4121,7 +4121,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../sets/SetsWidget.ui" line="178"/>
         <source>Add Movie</source>
-        <translation type="unfinished"/>
+        <translation>Film hinzufügen</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="188"/>
@@ -5795,7 +5795,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="471"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>Drehbuch</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="545"/>
@@ -5805,7 +5805,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="573"/>
         <source>Director</source>
-        <translation type="unfinished"/>
+        <translation>Regisseur</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="583"/>

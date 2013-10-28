@@ -3668,27 +3668,27 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../main/Navbar.ui" line="198"/>
         <location filename="../main/Navbar.ui" line="223"/>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="75"/>
         <source>Save</source>
-        <translation type="unfinished"/>
+        <translation>Uložit</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="95"/>
         <source>Save All</source>
-        <translation type="unfinished"/>
+        <translation>Uložit vše</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="115"/>
         <source>Rename selected files</source>
-        <translation type="unfinished"/>
+        <translation>Přejmenovat zvolené soubory</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="135"/>
         <source>Synchronize to XBMC</source>
-        <translation type="unfinished"/>
+        <translation>Synchronizovat s XBMC</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="155"/>
@@ -3698,22 +3698,22 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main/Navbar.ui" line="175"/>
         <source>Reload</source>
-        <translation type="unfinished"/>
+        <translation>Obnovit</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="195"/>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>Nastavení</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="215"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>O</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="281"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Podpořit</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="14"/>
@@ -3723,17 +3723,17 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main/Navbar.cpp" line="17"/>
         <source>Save (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Uložit (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="21"/>
         <source>Save All (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Uložit vše (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="24"/>
         <source>Reload all files (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Obnovit všechny soubory (%1)</translation>
     </message>
 </context>
 <context>
@@ -3741,7 +3741,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../notifications/NotificationBox.ui" line="26"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulář</translation>
     </message>
 </context>
 <context>
@@ -4120,7 +4120,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="178"/>
         <source>Add Movie</source>
-        <translation type="unfinished"/>
+        <translation>Přidat film</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="188"/>
@@ -5793,7 +5793,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="471"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>Scénárista</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="545"/>
@@ -5803,7 +5803,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="573"/>
         <source>Director</source>
-        <translation type="unfinished"/>
+        <translation>Režisér</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="583"/>

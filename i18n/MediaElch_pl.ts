@@ -239,7 +239,7 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="181"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Usuń film</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="197"/>
@@ -1862,7 +1862,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../movies/GenreWidget.ui" line="180"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Usuń film</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="196"/>
@@ -3659,7 +3659,7 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
     <message>
         <location filename="../main/Navbar.ui" line="52"/>
         <source>Scrape</source>
-        <translation type="unfinished"/>
+        <translation>Ekstraktuj</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="58"/>
@@ -3672,72 +3672,72 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
         <location filename="../main/Navbar.ui" line="198"/>
         <location filename="../main/Navbar.ui" line="223"/>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="75"/>
         <source>Save</source>
-        <translation type="unfinished"/>
+        <translation>Zapisz</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="95"/>
         <source>Save All</source>
-        <translation type="unfinished"/>
+        <translation>Zapisz wszystko</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="115"/>
         <source>Rename selected files</source>
-        <translation type="unfinished"/>
+        <translation>Zmień nazwę wybranych plików</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="135"/>
         <source>Synchronize to XBMC</source>
-        <translation type="unfinished"/>
+        <translation>Synchronizuj z XBMC</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="155"/>
         <source>Export Database</source>
-        <translation type="unfinished"/>
+        <translation>Eksportuj bazę</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="175"/>
         <source>Reload</source>
-        <translation type="unfinished"/>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="195"/>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>Ustawienia</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="215"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>O</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="281"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Darowizna</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="14"/>
         <source>Scrape (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Ekstraktuj (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="17"/>
         <source>Save (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Zapisz (#1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="21"/>
         <source>Save All (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Zapisz wszystko (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="24"/>
         <source>Reload all files (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Odśwież wszystkie pliki (%1)</translation>
     </message>
 </context>
 <context>
@@ -3745,7 +3745,7 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
     <message>
         <location filename="../notifications/NotificationBox.ui" line="26"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formatka</translation>
     </message>
 </context>
 <context>
@@ -3781,7 +3781,7 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
     <message>
         <location filename="../quazip/quazip/quazipfile.cpp" line="217"/>
         <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished"/>
+        <translation>Błąd API ZIP/UNZIP %1</translation>
     </message>
 </context>
 <context>
@@ -4124,7 +4124,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../sets/SetsWidget.ui" line="178"/>
         <source>Add Movie</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj film</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="188"/>
@@ -4134,7 +4134,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../sets/SetsWidget.ui" line="191"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Usuń film</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="213"/>
@@ -4494,12 +4494,12 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1094"/>
         <source>If you want to use the synchronization feature you need to enable &quot;Allow programs on other systems to control XBMC&quot; within XBMC (Settings -&gt; Services -&gt; Remote Control). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation type="unfinished"/>
+        <translation>Jeśli chcesz używać funkcji synchronizacji, musisz włączyć w programie XBMC funkcję &quot;Pozwól programom na innych systemach kontrolować XBMC&quot; (Ustawienia -&gt; Usługi -&gt; Zdalne sterowanie).  Wprowadź tutaj port wbudowanego w XBMC serwera webowego (zazwyczaj 80 lub 8080).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1130"/>
         <source>8080</source>
-        <translation type="unfinished"/>
+        <translation>8080</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="263"/>
@@ -5799,7 +5799,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="471"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>Scenariusz</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="545"/>
@@ -5809,7 +5809,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="573"/>
         <source>Director</source>
-        <translation type="unfinished"/>
+        <translation>Reżyseria</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="583"/>

@@ -3669,52 +3669,52 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
         <location filename="../main/Navbar.ui" line="198"/>
         <location filename="../main/Navbar.ui" line="223"/>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="75"/>
         <source>Save</source>
-        <translation type="unfinished"/>
+        <translation>Salvar</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="95"/>
         <source>Save All</source>
-        <translation type="unfinished"/>
+        <translation>Salvar Tudo</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="115"/>
         <source>Rename selected files</source>
-        <translation type="unfinished"/>
+        <translation>Renomear arquivos selecionados</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="135"/>
         <source>Synchronize to XBMC</source>
-        <translation type="unfinished"/>
+        <translation>Sincronize para XBMC</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="155"/>
         <source>Export Database</source>
-        <translation type="unfinished"/>
+        <translation>Exportar Banco de Dados</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="175"/>
         <source>Reload</source>
-        <translation type="unfinished"/>
+        <translation>Recarregar</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="195"/>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>Ajustes</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="215"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Sobre</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="281"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Doar</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="14"/>
@@ -3724,17 +3724,17 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../main/Navbar.cpp" line="17"/>
         <source>Save (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Salvar (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="21"/>
         <source>Save All (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Salvar Tudo (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="24"/>
         <source>Reload all files (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Recarregar Todos os Arquivos (%1)</translation>
     </message>
 </context>
 <context>
@@ -3742,7 +3742,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../notifications/NotificationBox.ui" line="26"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulário</translation>
     </message>
 </context>
 <context>
@@ -4117,7 +4117,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="178"/>
         <source>Add Movie</source>
-        <translation type="unfinished"/>
+        <translation>Adicionar Filme</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="188"/>
@@ -5791,7 +5791,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="471"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>Roteirista</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="545"/>
@@ -5801,7 +5801,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="573"/>
         <source>Director</source>
-        <translation type="unfinished"/>
+        <translation>Diretor</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="583"/>

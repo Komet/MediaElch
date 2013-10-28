@@ -3670,52 +3670,52 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
         <location filename="../main/Navbar.ui" line="198"/>
         <location filename="../main/Navbar.ui" line="223"/>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="75"/>
         <source>Save</source>
-        <translation type="unfinished"/>
+        <translation>Sauvegarder</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="95"/>
         <source>Save All</source>
-        <translation type="unfinished"/>
+        <translation>Sauvegarder tout</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="115"/>
         <source>Rename selected files</source>
-        <translation type="unfinished"/>
+        <translation>Renommer les fichiers sélectionnés</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="135"/>
         <source>Synchronize to XBMC</source>
-        <translation type="unfinished"/>
+        <translation>Synchroniser avec XBMC</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="155"/>
         <source>Export Database</source>
-        <translation type="unfinished"/>
+        <translation>Exporter base de données</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="175"/>
         <source>Reload</source>
-        <translation type="unfinished"/>
+        <translation>Recharger</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="195"/>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>Réglages</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="215"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>À propos</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="281"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Faire un don</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="14"/>
@@ -3725,17 +3725,17 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     <message>
         <location filename="../main/Navbar.cpp" line="17"/>
         <source>Save (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Sauvegarder (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="21"/>
         <source>Save All (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Sauvegarder tout (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="24"/>
         <source>Reload all files (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Recharger tous les fichiers (%1)</translation>
     </message>
 </context>
 <context>
@@ -3743,7 +3743,7 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     <message>
         <location filename="../notifications/NotificationBox.ui" line="26"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulaire</translation>
     </message>
 </context>
 <context>
@@ -4122,7 +4122,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="178"/>
         <source>Add Movie</source>
-        <translation type="unfinished"/>
+        <translation>Ajouter Film</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="188"/>
@@ -5797,7 +5797,7 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="471"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>Scénariste</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="545"/>
@@ -5807,7 +5807,7 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="573"/>
         <source>Director</source>
-        <translation type="unfinished"/>
+        <translation>Réalisateur</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="583"/>

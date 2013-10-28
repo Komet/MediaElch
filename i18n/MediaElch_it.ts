@@ -3740,7 +3740,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../notifications/NotificationBox.ui" line="26"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Scheda</translation>
     </message>
 </context>
 <context>
@@ -4115,7 +4115,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="178"/>
         <source>Add Movie</source>
-        <translation type="unfinished"/>
+        <translation>Aggiungi Film</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="188"/>
@@ -5792,7 +5792,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="573"/>
         <source>Director</source>
-        <translation type="unfinished"/>
+        <translation>Regista</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="583"/>

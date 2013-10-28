@@ -239,7 +239,7 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="181"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar película</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="197"/>
@@ -1861,7 +1861,7 @@
     <message>
         <location filename="../movies/GenreWidget.ui" line="180"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar película</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="196"/>
@@ -3656,7 +3656,7 @@ i desea buscar por un TMDB o OFDb Identificador favor, añadiendo al principio &
     <message>
         <location filename="../main/Navbar.ui" line="52"/>
         <source>Scrape</source>
-        <translation type="unfinished"/>
+        <translation>Scrape</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="58"/>
@@ -3669,72 +3669,72 @@ i desea buscar por un TMDB o OFDb Identificador favor, añadiendo al principio &
         <location filename="../main/Navbar.ui" line="198"/>
         <location filename="../main/Navbar.ui" line="223"/>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="75"/>
         <source>Save</source>
-        <translation type="unfinished"/>
+        <translation>Guardar</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="95"/>
         <source>Save All</source>
-        <translation type="unfinished"/>
+        <translation>Guardar todo</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="115"/>
         <source>Rename selected files</source>
-        <translation type="unfinished"/>
+        <translation>Renombrar archivos seleccionados</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="135"/>
         <source>Synchronize to XBMC</source>
-        <translation type="unfinished"/>
+        <translation>Sincronizar con XBMC</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="155"/>
         <source>Export Database</source>
-        <translation type="unfinished"/>
+        <translation>Exportar base de datos</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="175"/>
         <source>Reload</source>
-        <translation type="unfinished"/>
+        <translation>Recargar</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="195"/>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>Configuraciones</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="215"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Sobre</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="281"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Donar</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="14"/>
         <source>Scrape (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Scrape (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="17"/>
         <source>Save (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Guardar (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="21"/>
         <source>Save All (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Guardar todo (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="24"/>
         <source>Reload all files (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Recargar todos los archivos  (%1)</translation>
     </message>
 </context>
 <context>
@@ -3742,7 +3742,7 @@ i desea buscar por un TMDB o OFDb Identificador favor, añadiendo al principio &
     <message>
         <location filename="../notifications/NotificationBox.ui" line="26"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Forma</translation>
     </message>
 </context>
 <context>
@@ -3778,7 +3778,7 @@ i desea buscar por un TMDB o OFDb Identificador favor, añadiendo al principio &
     <message>
         <location filename="../quazip/quazip/quazipfile.cpp" line="217"/>
         <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished"/>
+        <translation>ZIP/UNZIP API error %1</translation>
     </message>
 </context>
 <context>
@@ -4121,7 +4121,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../sets/SetsWidget.ui" line="178"/>
         <source>Add Movie</source>
-        <translation type="unfinished"/>
+        <translation>Agregar película</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="188"/>
@@ -4131,7 +4131,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../sets/SetsWidget.ui" line="191"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar película</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="213"/>
@@ -4489,12 +4489,12 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1094"/>
         <source>If you want to use the synchronization feature you need to enable &quot;Allow programs on other systems to control XBMC&quot; within XBMC (Settings -&gt; Services -&gt; Remote Control). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation type="unfinished"/>
+        <translation>Si desea utilizar la función de sincronización necesita habilitar &quot;Permitir programas en otros sistemas de control de XBMC&quot; en XBMC (Ajustes -&gt; Servicios -&gt; Control remoto). Introduce el puerto de webserver aquí (normalmente 80 o 8080).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1130"/>
         <source>8080</source>
-        <translation type="unfinished"/>
+        <translation>8080</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="263"/>
@@ -5795,7 +5795,7 @@ Después MediaElch comprueba automáticamente si hay nuevos episodios en el arra
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="471"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>Escritor</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="545"/>
@@ -5805,7 +5805,7 @@ Después MediaElch comprueba automáticamente si hay nuevos episodios en el arra
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="573"/>
         <source>Director</source>
-        <translation type="unfinished"/>
+        <translation>Director</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="583"/>
