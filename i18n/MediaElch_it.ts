@@ -638,36 +638,36 @@
         <translation>Ricarica dal file</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="885"/>
+        <location filename="../concerts/ConcertWidget.ui" line="887"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="907"/>
-        <location filename="../concerts/ConcertWidget.ui" line="954"/>
-        <location filename="../concerts/ConcertWidget.ui" line="1030"/>
-        <location filename="../concerts/ConcertWidget.ui" line="1077"/>
-        <location filename="../concerts/ConcertWidget.ui" line="1124"/>
+        <location filename="../concerts/ConcertWidget.ui" line="909"/>
+        <location filename="../concerts/ConcertWidget.ui" line="956"/>
+        <location filename="../concerts/ConcertWidget.ui" line="1032"/>
+        <location filename="../concerts/ConcertWidget.ui" line="1079"/>
+        <location filename="../concerts/ConcertWidget.ui" line="1126"/>
         <source>Click to Change</source>
         <translation>Clicca per cambiare</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="932"/>
+        <location filename="../concerts/ConcertWidget.ui" line="934"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="1008"/>
+        <location filename="../concerts/ConcertWidget.ui" line="1010"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="1055"/>
+        <location filename="../concerts/ConcertWidget.ui" line="1057"/>
         <source>Clear Art</source>
         <translation>Rimuovi Art</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.ui" line="1102"/>
+        <location filename="../concerts/ConcertWidget.ui" line="1104"/>
         <source>CD Art</source>
         <translation>CD Art</translation>
     </message>
@@ -3494,59 +3494,59 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>Ricarica dal file</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1240"/>
-        <location filename="../movies/MovieWidget.ui" line="1280"/>
+        <location filename="../movies/MovieWidget.ui" line="1242"/>
+        <location filename="../movies/MovieWidget.ui" line="1282"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1262"/>
-        <location filename="../movies/MovieWidget.ui" line="1312"/>
-        <location filename="../movies/MovieWidget.ui" line="1362"/>
-        <location filename="../movies/MovieWidget.ui" line="1438"/>
-        <location filename="../movies/MovieWidget.ui" line="1488"/>
-        <location filename="../movies/MovieWidget.ui" line="1538"/>
-        <location filename="../movies/MovieWidget.ui" line="1588"/>
+        <location filename="../movies/MovieWidget.ui" line="1264"/>
+        <location filename="../movies/MovieWidget.ui" line="1314"/>
+        <location filename="../movies/MovieWidget.ui" line="1364"/>
+        <location filename="../movies/MovieWidget.ui" line="1440"/>
+        <location filename="../movies/MovieWidget.ui" line="1490"/>
+        <location filename="../movies/MovieWidget.ui" line="1540"/>
+        <location filename="../movies/MovieWidget.ui" line="1590"/>
         <source>Click to Change</source>
         <translation>Clicca per cambiare</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1290"/>
-        <location filename="../movies/MovieWidget.ui" line="1330"/>
+        <location filename="../movies/MovieWidget.ui" line="1292"/>
+        <location filename="../movies/MovieWidget.ui" line="1332"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1340"/>
-        <location filename="../movies/MovieWidget.ui" line="1377"/>
+        <location filename="../movies/MovieWidget.ui" line="1342"/>
+        <location filename="../movies/MovieWidget.ui" line="1379"/>
         <source>Thumb</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1416"/>
-        <location filename="../movies/MovieWidget.ui" line="1456"/>
+        <location filename="../movies/MovieWidget.ui" line="1418"/>
+        <location filename="../movies/MovieWidget.ui" line="1458"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1466"/>
-        <location filename="../movies/MovieWidget.ui" line="1506"/>
+        <location filename="../movies/MovieWidget.ui" line="1468"/>
+        <location filename="../movies/MovieWidget.ui" line="1508"/>
         <source>Clear Art</source>
         <translation>Rimuovi Art</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1516"/>
+        <location filename="../movies/MovieWidget.ui" line="1518"/>
         <source>Disc Art</source>
         <translation>CD Art</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1556"/>
+        <location filename="../movies/MovieWidget.ui" line="1558"/>
         <source>CD Art</source>
         <translation>CD Art</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1566"/>
-        <location filename="../movies/MovieWidget.ui" line="1603"/>
+        <location filename="../movies/MovieWidget.ui" line="1568"/>
+        <location filename="../movies/MovieWidget.ui" line="1605"/>
         <source>Banner</source>
         <translation type="unfinished"/>
     </message>
@@ -6169,93 +6169,93 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="338"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="344"/>
         <source>Actor</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="343"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="349"/>
         <source>Role</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="388"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="394"/>
         <source>Add Actor</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="358"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="364"/>
         <source>Remove Actor</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="438"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1067"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="444"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1075"/>
         <source>Click to change</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="457"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="463"/>
         <source>Resolution</source>
         <translation>Risoluzione</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="506"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="512"/>
         <source>Extra Fanarts</source>
         <translation>Fanats Extra</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="528"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="534"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation>Suggerimento: le immagini chiuse saranno cancellate al momento del salvataggio.</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="551"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="557"/>
         <source>Add Images</source>
         <translation>Aggiungi Immagine</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="737"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="745"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="759"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="806"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="853"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="926"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="973"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1020"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="767"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="814"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="861"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="934"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="981"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1028"/>
         <source>Click to Change</source>
         <translation>Clicca per cambiare</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="784"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="792"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="831"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="839"/>
         <source>Thumb</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1045"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1053"/>
         <source>Banner</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="904"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="912"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="951"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="959"/>
         <source>Clear Art</source>
         <translation>Rimuovi Art</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="998"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1006"/>
         <source>Character Art</source>
         <translation type="unfinished"/>
     </message>
