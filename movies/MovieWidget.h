@@ -91,7 +91,7 @@ private slots:
     void onRuntimeChange(int value);
     void onCertificationChange(QString text);
     void onTrailerChange(QString text);
-    void onWatchedChange(int state);
+    void onWatchedClicked();
     void onPlayCountChange(int value);
     void onLastWatchedChange(QDateTime dateTime);
     void onOverviewChange();

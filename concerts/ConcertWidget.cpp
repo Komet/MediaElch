@@ -45,6 +45,8 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     ui->labelLogo->setFont(font);
     ui->labelPoster->setFont(font);
 
+    ui->badgeWatched->setBadgeType(Badge::BadgeInfo);
+
     m_concert = 0;
 
     ui->poster->setImageType(ImageType::ConcertPoster);
@@ -101,7 +103,7 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     connect(ui->runtime, SIGNAL(valueChanged(int)), this, SLOT(onRuntimeChange(int)));
     connect(ui->playcount, SIGNAL(valueChanged(int)), this, SLOT(onPlayCountChange(int)));
     connect(ui->certification, SIGNAL(editTextChanged(QString)), this, SLOT(onCertificationChange(QString)));
-    connect(ui->watched, SIGNAL(stateChanged(int)), this, SLOT(onWatchedChange(int)));
+    connect(ui->badgeWatched, SIGNAL(clicked()), this, SLOT(onWatchedClicked()));
     connect(ui->released, SIGNAL(dateChanged(QDate)), this, SLOT(onReleasedChange(QDate)));
     connect(ui->lastPlayed, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(onLastWatchedChange(QDateTime)));
     connect(ui->overview, SIGNAL(textChanged()), this, SLOT(onOverviewChange()));
@@ -391,7 +393,6 @@ void ConcertWidget::updateConcertInfo()
     ui->runtime->blockSignals(true);
     ui->playcount->blockSignals(true);
     ui->certification->blockSignals(true);
-    ui->watched->blockSignals(true);
     ui->released->blockSignals(true);
     ui->lastPlayed->blockSignals(true);
     ui->overview->blockSignals(true);
@@ -412,7 +413,7 @@ void ConcertWidget::updateConcertInfo()
     ui->playcount->setValue(m_concert->playcount());
     ui->lastPlayed->setDateTime(m_concert->lastPlayed());
     ui->overview->setPlainText(m_concert->overview());
-    ui->watched->setChecked(m_concert->watched());
+    ui->badgeWatched->setActive(m_concert->watched());
 
     QStringList certifications;
     QStringList genres;
@@ -447,7 +448,6 @@ void ConcertWidget::updateConcertInfo()
     ui->rating->blockSignals(false);
     ui->runtime->blockSignals(false);
     ui->playcount->blockSignals(false);
-    ui->watched->blockSignals(false);
     ui->released->blockSignals(false);
     ui->lastPlayed->blockSignals(false);
     ui->overview->blockSignals(false);
@@ -458,7 +458,7 @@ void ConcertWidget::updateConcertInfo()
     ui->tagline->setEnabled(Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertTagline));
     ui->certification->setEnabled(Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertCertification));
     ui->trailer->setEnabled(Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertTrailer));
-    ui->watched->setEnabled(Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertWatched));
+    ui->badgeWatched->setEnabled(Manager::instance()->mediaCenterInterfaceConcert()->hasFeature(MediaCenterFeatures::EditConcertWatched));
 
     ui->buttonRevert->setVisible(m_concert->hasChanged());
 }
@@ -803,15 +803,16 @@ void ConcertWidget::onTrailerChange(QString text)
     ui->buttonRevert->setVisible(true);
 }
 
-/**
- * @brief Marks the concert as changed when the watched state has changed
- */
-void ConcertWidget::onWatchedChange(int state)
+void ConcertWidget::onWatchedClicked()
 {
     if (!m_concert)
         return;
-    m_concert->setWatched(state == Qt::Checked);
-    if (state == Qt::Checked) {
+
+    bool active = !ui->badgeWatched->isActive();
+    ui->badgeWatched->setActive(active);
+    m_concert->setWatched(active);
+
+    if (active) {
         if (m_concert->playcount() < 1)
             ui->playcount->setValue(1);
         if (!m_concert->lastPlayed().isValid())
@@ -828,7 +829,7 @@ void ConcertWidget::onPlayCountChange(int value)
     if (!m_concert)
         return;
     m_concert->setPlayCount(value);
-    ui->watched->setChecked(value > 0);
+    ui->badgeWatched->setActive(value > 0);
     ui->buttonRevert->setVisible(true);
 }
 

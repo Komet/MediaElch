@@ -41,6 +41,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->artStackedWidget->setSpeed(300);
     ui->localTrailer->setBadgeType(Badge::LabelSuccess);
     ui->localTrailer->setVisible(false);
+    ui->badgeWatched->setBadgeType(Badge::BadgeInfo);
 
     QFont font = ui->actorResolution->font();
     #ifdef Q_OS_WIN32
@@ -141,7 +142,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->playcount, SIGNAL(valueChanged(int)), this, SLOT(onPlayCountChange(int)));
     connect(ui->certification, SIGNAL(editTextChanged(QString)), this, SLOT(onCertificationChange(QString)));
     connect(ui->set, SIGNAL(editTextChanged(QString)), this, SLOT(onSetChange(QString)));
-    connect(ui->watched, SIGNAL(stateChanged(int)), this, SLOT(onWatchedChange(int)));
+    connect(ui->badgeWatched, SIGNAL(clicked()), this, SLOT(onWatchedClicked()));
     connect(ui->released, SIGNAL(dateChanged(QDate)), this, SLOT(onReleasedChange(QDate)));
     connect(ui->lastPlayed, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(onLastWatchedChange(QDateTime)));
     connect(ui->overview, SIGNAL(textChanged()), this, SLOT(onOverviewChange()));
@@ -508,7 +509,6 @@ void MovieWidget::updateMovieInfo()
     ui->playcount->blockSignals(true);
     ui->set->blockSignals(true);
     ui->certification->blockSignals(true);
-    ui->watched->blockSignals(true);
     ui->released->blockSignals(true);
     ui->lastPlayed->blockSignals(true);
     ui->overview->blockSignals(true);
@@ -534,7 +534,7 @@ void MovieWidget::updateMovieInfo()
     ui->lastPlayed->setDateTime(m_movie->lastPlayed());
     ui->overview->setPlainText(m_movie->overview());
     ui->outline->setPlainText(m_movie->outline());
-    ui->watched->setChecked(m_movie->watched());
+    ui->badgeWatched->setActive(m_movie->watched());
     ui->writer->setText(m_movie->writer());
     ui->director->setText(m_movie->director());
 
@@ -607,7 +607,6 @@ void MovieWidget::updateMovieInfo()
     ui->top250->blockSignals(false);
     ui->runtime->blockSignals(false);
     ui->playcount->blockSignals(false);
-    ui->watched->blockSignals(false);
     ui->released->blockSignals(false);
     ui->lastPlayed->blockSignals(false);
     ui->overview->blockSignals(false);
@@ -1183,15 +1182,15 @@ void MovieWidget::onTrailerChange(QString text)
     ui->buttonRevert->setVisible(true);
 }
 
-/**
- * @brief Marks the movie as changed when the watched state has changed
- */
-void MovieWidget::onWatchedChange(int state)
+void MovieWidget::onWatchedClicked()
 {
     if (!m_movie)
         return;
-    m_movie->setWatched(state == Qt::Checked);
-    if (state == Qt::Checked) {
+
+    bool active = !ui->badgeWatched->isActive();
+    ui->badgeWatched->setActive(active);
+    m_movie->setWatched(active);
+    if (active) {
         if (m_movie->playcount() < 1)
             ui->playcount->setValue(1);
         if (!m_movie->lastPlayed().isValid())
@@ -1208,7 +1207,7 @@ void MovieWidget::onPlayCountChange(int value)
     if (!m_movie)
         return;
     m_movie->setPlayCount(value);
-    ui->watched->setChecked(value > 0);
+    ui->badgeWatched->setActive(value > 0);
     ui->buttonRevert->setVisible(true);
 }
 

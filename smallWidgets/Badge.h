@@ -2,6 +2,7 @@
 #define BADGE_H
 
 #include <QLabel>
+#include <QMouseEvent>
 #include <QPaintEvent>
 
 class Badge : public QLabel
@@ -25,6 +26,10 @@ public:
 
 protected:
     void paintEvent(QPaintEvent *event);
+    void mousePressEvent(QMouseEvent *ev);
+
+signals:
+    void clicked();
 
 private:
     Badge::BadgeType m_badgeType;

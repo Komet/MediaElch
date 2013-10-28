@@ -361,9 +361,15 @@
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QCheckBox" name="watched">
+                 <widget class="Badge" name="badgeWatched">
                   <property name="text">
                    <string>Watched</string>
+                  </property>
+                  <property name="activeText" stdset="0">
+                   <string>Watched</string>
+                  </property>
+                  <property name="inactiveText" stdset="0">
+                   <string>Not watched</string>
                   </property>
                  </widget>
                 </item>

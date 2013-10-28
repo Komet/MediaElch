@@ -94,6 +94,12 @@ void Badge::setActive(const bool &active)
         m_badgeType = active ? Badge::BadgeInfo : Badge::BadgeDefault;
         break;
     }
+
+    if (active && !property("activeText").toString().isEmpty())
+        setText(property("activeText").toString());
+    else if (!active && !property("inactiveText").toString().isEmpty())
+        setText(property("inactiveText").toString());
+
     applyStyleSheet();
 }
 
@@ -183,4 +189,11 @@ void Badge::applyStyleSheet()
     style.append("}");
     setStyleSheet(style);
     resize(sizeHint().width(), sizeHint().height());
+}
+
+void Badge::mousePressEvent(QMouseEvent *ev)
+{
+    if (ev->button() == Qt::LeftButton)
+        emit clicked();
+    QLabel::mousePressEvent(ev);
 }
