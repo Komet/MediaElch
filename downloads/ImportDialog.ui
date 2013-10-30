@@ -27,7 +27,7 @@
    <item>
     <widget class="SlidingStackedWidget" name="stackedWidget">
      <widget class="MovieSearchWidget" name="movieSearchWidget"/>
-     <widget class="QWidget" name="page_2">
+     <widget class="QWidget" name="importPage2">
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,1,0">
@@ -449,6 +449,11 @@
    <container>1</container>
   </customwidget>
   <customwidget>
+   <class>Badge</class>
+   <extends>QLabel</extends>
+   <header>smallWidgets/Badge.h</header>
+  </customwidget>
+  <customwidget>
    <class>MovieSearchWidget</class>
    <extends>QWidget</extends>
    <header>movies/MovieSearchWidget.h</header>
@@ -465,11 +470,6 @@
    <extends>QWidget</extends>
    <header>tvShows/TvShowSearchEpisode.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Badge</class>
-   <extends>QLabel</extends>
-   <header>smallWidgets/Badge.h</header>
   </customwidget>
  </customwidgets>
  <resources>

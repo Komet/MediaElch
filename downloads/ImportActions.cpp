@@ -14,7 +14,7 @@ ImportActions::ImportActions(QWidget *parent) :
     connect(ui->btnImport, SIGNAL(clicked()), this, SLOT(onImport()));
     connect(ui->btnDelete, SIGNAL(clicked()), this, SLOT(onDelete()));
     m_tvShow = 0;
-    m_importDialog = new ImportDialog(this);
+    m_importDialog = new ImportDialog(parent);
 }
 
 ImportActions::~ImportActions()
