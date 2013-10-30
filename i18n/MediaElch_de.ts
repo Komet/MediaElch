@@ -6493,42 +6493,42 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
         <translation>Bitte trage deinen XBMC Host und Port ein.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="205"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="221"/>
         <source>Getting contents from XBMC</source>
         <translation>Hole Inhalte von XBMC</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="378"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="394"/>
         <source>Removing movies from database</source>
         <translation>Entferne Filme aus der Bibliothek</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="393"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="413"/>
         <source>Removing concerts from database</source>
         <translation>Entferne Konzerte aus der Bibliothek</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="408"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="432"/>
         <source>Removing TV shows from database</source>
         <translation>Entferne Serien aus der Bibliothek</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="423"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="451"/>
         <source>Removing episodes from database</source>
         <translation>Entferne Episoden aus der Bibliothek</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="458"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="490"/>
         <source>Trigger scan for new items</source>
         <translation>Löse Aktualisierung der Bibliothek aus</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="474"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="510"/>
         <source>Finished. XBMC is now loading your updated items.</source>
         <translation>Fertig. XBMC aktualisiert nun die Bibliothek.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="509"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="545"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Fertig. Die Anzahl der Wiedergaben und das Datum der letzten Wiedergabe wurden aktualisiert.</translation>
     </message>

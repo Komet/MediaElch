@@ -440,7 +440,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="213"/>
         <source>Logo, Clear Art, CD Art</source>
-        <translation>Logo, Clear Art, CD Art</translation>
+        <translation>Logo, Clear Art, Grafika płyty</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="216"/>
@@ -670,7 +670,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="1104"/>
         <source>CD Art</source>
-        <translation>CD Art</translation>
+        <translation>Grafika płyty</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="72"/>
@@ -1390,7 +1390,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="537"/>
         <source>Movie has no Extra Fanarts</source>
-        <translation>Film bez dodatkowych plików fangrafów</translation>
+        <translation>Film bez dodatkowych fangrafów</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="537"/>
@@ -1476,7 +1476,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
         <location filename="../smallWidgets/FilterWidget.cpp" line="555"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="556"/>
         <source>No Clear Art</source>
-        <translation>Bez Clear Art</translation>
+        <translation>Brak Clear Art</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="558"/>
@@ -1527,25 +1527,25 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="570"/>
         <source>Movie has CD Art</source>
-        <translation>Film z CD Art</translation>
+        <translation>Film z grafiką płyty</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="570"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="571"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="574"/>
         <source>CD Art</source>
-        <translation>CD Art</translation>
+        <translation>Grafika płyty</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="573"/>
         <source>Movie has no CD Art</source>
-        <translation>Film bez CD Art</translation>
+        <translation>Film bez grafiki płyty</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="573"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="574"/>
         <source>No CD Art</source>
-        <translation>Brak CD Art</translation>
+        <translation>Brak grafiki płyty</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="576"/>
@@ -3000,7 +3000,7 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="291"/>
         <source>CD Art</source>
-        <translation>CD Art</translation>
+        <translation>Grafika płyty</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="281"/>
@@ -3030,7 +3030,7 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="373"/>
         <source>Update only movies with IMDB Id/TheMovieDb Id</source>
-        <translation>Aktualizuj tylko film, które posiadają identyfikator IMDB/TMDB</translation>
+        <translation>Aktualizuj tylko filmy, które posiadają identyfikator IMDB/TMDB</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="388"/>
@@ -3208,7 +3208,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="281"/>
         <source>CD Art</source>
-        <translation>CD Art</translation>
+        <translation>Grafika płyty</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="288"/>
@@ -3481,7 +3481,7 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
     <message>
         <location filename="../movies/MovieWidget.ui" line="974"/>
         <source>Video</source>
-        <translation>Video</translation>
+        <translation>Wideo</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="994"/>
@@ -3542,12 +3542,12 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
     <message>
         <location filename="../movies/MovieWidget.ui" line="1518"/>
         <source>Disc Art</source>
-        <translation>Okładka płyty</translation>
+        <translation>Grafika dysku</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1558"/>
         <source>CD Art</source>
-        <translation>CD Art</translation>
+        <translation>Grafika płyty</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1568"/>
@@ -4065,7 +4065,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../renamer/Renamer.cpp" line="386"/>
         <source>&lt;b&gt;Rename CD Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmień nazwę pliku CD Art&lt;/b&gt;z &quot;%1&quot; na &quot;%2&quot;</translation>
+        <translation>&lt;b&gt;Zmień nazwę pliku grafiki płyty&lt;/b&gt;z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="402"/>
@@ -4375,7 +4375,7 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
         <location filename="../settings/SettingsWindow.ui" line="1021"/>
         <location filename="../settings/SettingsWindow.cpp" line="666"/>
         <source>Disc Art</source>
-        <translation>Okładka płyty</translation>
+        <translation>Grafika dysku</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="555"/>
@@ -4441,7 +4441,7 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="665"/>
         <source>Artwork directory</source>
-        <translation>Folder fangrafów</translation>
+        <translation>Folder grafik</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="677"/>
@@ -4466,7 +4466,7 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="759"/>
         <source>Character Art</source>
-        <translation>Grafiki postaci</translation>
+        <translation>Grafika postaci</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="766"/>
@@ -5421,7 +5421,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="55"/>
         <source>Show missing episodes</source>
-        <translation>Pokazuj brakujące odcinki</translation>
+        <translation>Pokaż brakujące odcinki</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="328"/>
@@ -5746,7 +5746,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="245"/>
         <source>Display Season</source>
-        <translation>Pokaż sezon</translation>
+        <translation>Wyświetlaj sezon</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="252"/>
@@ -5796,7 +5796,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="364"/>
         <source>Display Episode</source>
-        <translation>Pokaż odcinek</translation>
+        <translation>Wyświetlaj odcinek</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="414"/>
@@ -5919,7 +5919,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="959"/>
         <source>Video</source>
-        <translation>Video</translation>
+        <translation>Wideo</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="979"/>
@@ -6497,42 +6497,42 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
         <translation>Proszę wprowadzić adres i port XBMC</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="205"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="221"/>
         <source>Getting contents from XBMC</source>
         <translation>Pobieranie zawartości z XBMC</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="378"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="394"/>
         <source>Removing movies from database</source>
         <translation>Usuwanie filmów z bazy</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="393"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="413"/>
         <source>Removing concerts from database</source>
         <translation>Usuwanie koncertów z bazy</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="408"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="432"/>
         <source>Removing TV shows from database</source>
         <translation>Usuwanie seriali z bazy</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="423"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="451"/>
         <source>Removing episodes from database</source>
         <translation>Usuwanie odcinków z bazy</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="458"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="490"/>
         <source>Trigger scan for new items</source>
         <translation>Uruchomienie skanowania dla nowych elementów</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="474"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="510"/>
         <source>Finished. XBMC is now loading your updated items.</source>
         <translation>Zakończone. XBMC wczytuje teraz zaktualizowane elementy.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="509"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="545"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Zakończone. Liczba odtworzeń i data ostatniego odtwarzania wybranych elementów zostały zaktualizowane.</translation>
     </message>

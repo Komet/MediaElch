@@ -239,7 +239,7 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="181"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Enlever Film</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="197"/>
@@ -558,7 +558,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="371"/>
         <source>Not watched</source>
-        <translation type="unfinished"/>
+        <translation>Non vu</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="393"/>
@@ -1867,7 +1867,7 @@
     <message>
         <location filename="../movies/GenreWidget.ui" line="180"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Enlever Film</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="196"/>
@@ -3325,7 +3325,7 @@ Si vous voulez effectuer une recherche par un TMDB ou OFDb ID s&apos;il vous pla
     <message>
         <location filename="../movies/MovieWidget.ui" line="372"/>
         <source>Not watched</source>
-        <translation type="unfinished"/>
+        <translation>Non vu</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="381"/>
@@ -3669,7 +3669,7 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     <message>
         <location filename="../main/Navbar.ui" line="52"/>
         <source>Scrape</source>
-        <translation type="unfinished"/>
+        <translation>Scrape</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="58"/>
@@ -3732,7 +3732,7 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     <message>
         <location filename="../main/Navbar.cpp" line="14"/>
         <source>Scrape (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Scrape (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="17"/>
@@ -3791,7 +3791,7 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     <message>
         <location filename="../quazip/quazip/quazipfile.cpp" line="217"/>
         <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished"/>
+        <translation>ZIP/UNZIP erreur d&apos;API %1</translation>
     </message>
 </context>
 <context>
@@ -4144,7 +4144,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="191"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Enlever Film</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="213"/>
@@ -4503,12 +4503,12 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1094"/>
         <source>If you want to use the synchronization feature you need to enable &quot;Allow programs on other systems to control XBMC&quot; within XBMC (Settings -&gt; Services -&gt; Remote Control). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation type="unfinished"/>
+        <translation>Si vous souhaitez utiliser la fonction de synchronisation vous devez activer &quot;Autoriser les programmes sur d&apos;autres systèmes pour contrôler XBMC» dans XBMC (Paramètres -&gt; Services -&gt; télécommande). Entrez le port du serveur web ici (généralement 80 ou 8080).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1130"/>
         <source>8080</source>
-        <translation type="unfinished"/>
+        <translation>8080</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="263"/>
@@ -6495,42 +6495,42 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
         <translation>S&apos;il vous plaît veuillez renseigner votre hôte et le port de XBMC.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="205"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="221"/>
         <source>Getting contents from XBMC</source>
         <translation>Obtenir le contenu de XBMC</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="378"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="394"/>
         <source>Removing movies from database</source>
         <translation>Suppression des films de la base de données</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="393"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="413"/>
         <source>Removing concerts from database</source>
         <translation>Suppressiondes concerts de la base de données</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="408"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="432"/>
         <source>Removing TV shows from database</source>
         <translation>Suppression des séries TV de la base de données</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="423"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="451"/>
         <source>Removing episodes from database</source>
         <translation>Suppression des épisodes de la base de données</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="458"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="490"/>
         <source>Trigger scan for new items</source>
         <translation>Déclencher l&apos;analyse des nouveaux éléments</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="474"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="510"/>
         <source>Finished. XBMC is now loading your updated items.</source>
         <translation>Terminer. XBMC a désormais mis à jour tous vos articles.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="509"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="545"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Terminer. Vos éléments les compteurs de lecture et la dernière date de lecture ont été mise à jour.</translation>
     </message>
