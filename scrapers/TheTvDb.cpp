@@ -556,7 +556,7 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show, TvShowUpdateType 
                 int season = elem.elementsByTagName("Season").at(0).toElement().text().toInt();
                 show->addSeasonBanner(season, p);
             }
-        } else if (bannerType == "series" && infosToLoad.contains(TvShowScraperInfos::Banner)) {
+        } else if (bannerType == "series" && (infosToLoad.contains(TvShowScraperInfos::Banner) || infosToLoad.contains(TvShowScraperInfos::SeasonBanner))) {
             Poster p;
             if (!elem.elementsByTagName("id").isEmpty())
                 p.id = elem.elementsByTagName("id").at(0).toElement().text();

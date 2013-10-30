@@ -134,6 +134,7 @@ void TheTvDbImages::onLoadTvShowDataFinished()
         posters = m_dummyShow->backdrops();
     } else if (m_currentType == ImageType::TvShowSeasonBanner) {
         posters = m_dummyShow->seasonBanners(m_season, true);
+        posters << m_dummyShow->banners();
     } else if (m_currentType == ImageType::TvShowEpisodeThumb && !m_dummyEpisode->thumbnail().isEmpty()) {
         Poster p;
         p.thumbUrl = m_dummyEpisode->thumbnail();

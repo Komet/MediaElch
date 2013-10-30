@@ -222,14 +222,18 @@ void TvShowWidgetSeason::onChooseImage()
     ImageDialog::instance()->clear();
     ImageDialog::instance()->setTvShow(m_show);
     ImageDialog::instance()->setSeason(m_season);
-    if (image->imageType() == ImageType::TvShowSeasonPoster)
+    if (image->imageType() == ImageType::TvShowSeasonPoster) {
         ImageDialog::instance()->setDownloads(m_show->seasonPosters(m_season));
-    else if (image->imageType() == ImageType::TvShowSeasonBackdrop)
+    } else if (image->imageType() == ImageType::TvShowSeasonBackdrop) {
         ImageDialog::instance()->setDownloads(m_show->seasonBackdrops(m_season));
-    else if (image->imageType() == ImageType::TvShowSeasonBanner)
-        ImageDialog::instance()->setDownloads(m_show->seasonBanners(m_season));
-    else
+    } else if (image->imageType() == ImageType::TvShowSeasonBanner) {
+        QList<Poster> banners;
+        banners << m_show->seasonBanners(m_season, true);
+        banners << m_show->banners();
+        ImageDialog::instance()->setDownloads(banners);
+    } else {
         ImageDialog::instance()->setDownloads(QList<Poster>());
+    }
     ImageDialog::instance()->exec(image->imageType());
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
