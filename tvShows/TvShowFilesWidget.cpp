@@ -365,10 +365,12 @@ void TvShowFilesWidget::renewModel(bool force)
 {
     qDebug() << "Entered";
     if (force) {
+        disconnect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)));
         m_tvShowProxyModel->setSourceModel(0);
         m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
         ui->files->setModel(0);
         ui->files->setModel(m_tvShowProxyModel);
+        connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)), Qt::QueuedConnection);
     }
 }
 
