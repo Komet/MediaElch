@@ -368,10 +368,6 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
         << "    padding: 8px;"
         << "    color: #666666;"
         << "    border: 0;"
-        << "    font-family: \"Helvetica Neue\";"
-    #ifndef Q_OS_MACX
-        << "    font-size: 12px; width: 80px;"
-    #endif
         << "}"
 
         << "QTabBar::tab:selected {"
@@ -426,6 +422,17 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
         << "}"
 
         << ";";
+
+        foreach (QTabWidget *tabWidget, widget->findChildren<QTabWidget*>()) {
+            QFont font = tabWidget->font();
+            font.setFamily("Helvetica Neue");
+            #ifdef Q_OS_MAC
+                font.setPointSize(13);
+            #else
+                font.setPixelSize(12);
+            #endif
+            tabWidget->setFont(font);
+        }
 
     widget->setStyleSheet(widget->styleSheet() + styleSheet.join("\n"));
 }
