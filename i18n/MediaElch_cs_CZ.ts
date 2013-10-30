@@ -6491,42 +6491,42 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <translation>Vyplňte prosím adresu a port vašeho XBMC.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="205"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="221"/>
         <source>Getting contents from XBMC</source>
         <translation>Získávání obsahu z XBMC</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="378"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="394"/>
         <source>Removing movies from database</source>
         <translation>Odstraňování filmů z databáze</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="393"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="413"/>
         <source>Removing concerts from database</source>
         <translation>Odstraňování koncertů z databáze</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="408"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="432"/>
         <source>Removing TV shows from database</source>
         <translation>Odstraňování TV Seriálů z databáze</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="423"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="451"/>
         <source>Removing episodes from database</source>
         <translation>Odstraňování Epizod z databáze</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="458"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="490"/>
         <source>Trigger scan for new items</source>
         <translation>Spustit sken nových položek</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="474"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="510"/>
         <source>Finished. XBMC is now loading your updated items.</source>
         <translation>Dokončeno. XBMC nyní načítá vaše upravené položky.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="509"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="545"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Dokončeno. Počet přehrání a Poslední přehrání Vašich položek bylo aktualizováno.</translation>
     </message>
