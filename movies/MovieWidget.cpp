@@ -669,7 +669,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoAspectRatio->setValue(streamDetails->videoDetails().value("aspect").toDouble());
     ui->videoCodec->setText(streamDetails->videoDetails().value("codec"));
     ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
-    QTime time;
+    QTime time(0, 0, 0, 0);
     time = time.addSecs(streamDetails->videoDetails().value("durationinseconds").toInt());
     ui->videoDuration->setTime(time);
     if (reloadFromFile)
