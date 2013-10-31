@@ -227,6 +227,7 @@ void DownloadsWidget::onUnpack(QString baseName, QString password)
             ui->tablePackages->setCellWidget(row, 4, 0);
         }
     }
+    m_watcher->blockSignals(true);
     m_extractor->extract(baseName, m_packages[baseName].files, password);
 }
 
@@ -272,6 +273,8 @@ void DownloadsWidget::onExtractorError(QString baseName, QString msg)
 #else
     QMessageBox::warning(this, tr("Extraction failed"), tr("Extraction of %1 has failed: %2").arg(baseName).arg(msg));
 #endif
+
+    m_watcher->blockSignals(false);
 }
 
 void DownloadsWidget::onExtractorFinished(QString baseName, bool success)
@@ -292,6 +295,8 @@ void DownloadsWidget::onExtractorFinished(QString baseName, bool success)
 
     if (success)
         Notificator::instance()->notify(Notificator::Information, tr("Extraction finished"), tr("Extraction of %1 finished").arg(baseName));
+
+    m_watcher->blockSignals(false);
 }
 
 void DownloadsWidget::onExtractorProgress(QString baseName, int progress)

@@ -66,7 +66,6 @@ void Extractor::onReadyRead()
 {
     QProcess *process = static_cast<QProcess*>(QObject::sender());
     QString msg = process->readAllStandardOutput();
-    qDebug() << msg;
     QRegExp rx("([0-9]*)%");
     if (rx.indexIn(msg) != -1)
         emit sigProgress(process->property("baseName").toString(), rx.cap(1).toInt());
