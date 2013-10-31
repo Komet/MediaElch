@@ -32,7 +32,7 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     ui->artStackedWidget->setAnimation(QEasingCurve::OutCubic);
     ui->artStackedWidget->setSpeed(300);
 
-#ifdef Q_OS_WIN
+#ifndef Q_OS_MAC
     QFont nameFont = ui->concertName->font();
     nameFont.setPointSize(nameFont.pointSize()-4);
     ui->concertName->setFont(nameFont);

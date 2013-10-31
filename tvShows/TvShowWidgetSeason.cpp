@@ -22,7 +22,7 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
 
     ui->title->clear();
 
-#ifdef Q_OS_WIN
+#ifndef Q_OS_MAC
     QFont nameFont = ui->title->font();
     nameFont.setPointSize(nameFont.pointSize()-4);
     ui->title->setFont(nameFont);

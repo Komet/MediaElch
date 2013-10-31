@@ -25,7 +25,7 @@ GenreWidget::GenreWidget(QWidget *parent) :
     ui->genres->setFont(genresFont);
 #endif
 
-#ifdef Q_OS_WIN
+#ifndef Q_OS_MAC
     QFont nameFont = ui->genreName->font();
     nameFont.setPointSize(nameFont.pointSize()-4);
     ui->genreName->setFont(nameFont);

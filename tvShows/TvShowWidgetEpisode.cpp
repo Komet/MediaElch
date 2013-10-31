@@ -37,7 +37,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     ui->actors->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->actors->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-#ifdef Q_OS_WIN
+#ifndef Q_OS_MAC
     QFont nameFont = ui->episodeName->font();
     nameFont.setPointSize(nameFont.pointSize()-4);
     ui->episodeName->setFont(nameFont);

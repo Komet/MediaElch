@@ -44,14 +44,14 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->localTrailer->setVisible(false);
     ui->badgeWatched->setBadgeType(Badge::BadgeInfo);
 
-#ifdef Q_OS_WIN
+#ifndef Q_OS_MAC
     QFont nameFont = ui->movieName->font();
     nameFont.setPointSize(nameFont.pointSize()-4);
     ui->movieName->setFont(nameFont);
 #endif
 
     QFont font = ui->actorResolution->font();
-    #ifdef Q_OS_WIN
+    #ifndef Q_OS_MAC
         font.setPointSize(font.pointSize()-1);
     #else
         font.setPointSize(font.pointSize()-2);

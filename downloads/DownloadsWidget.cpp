@@ -35,6 +35,13 @@ DownloadsWidget::DownloadsWidget(QWidget *parent) :
     ui->tablePackages->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 #endif
 
+#ifndef Q_OS_MAC
+    QFont titleFont = ui->labelArchives->font();
+    titleFont.setPointSize(titleFont.pointSize()-4);
+    ui->labelArchives->setFont(titleFont);
+    ui->labelImportable->setFont(titleFont);
+#endif
+
     m_extractor = new Extractor(this);
     m_watcher = new QFileSystemWatcher(this);
 

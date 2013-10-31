@@ -25,7 +25,7 @@ CertificationWidget::CertificationWidget(QWidget *parent) :
     ui->certifications->setFont(certificationsFont);
 #endif
 
-#ifdef Q_OS_WIN
+#ifndef Q_OS_MAC
     QFont nameFont = ui->certificationName->font();
     nameFont.setPointSize(nameFont.pointSize()-4);
     ui->certificationName->setFont(nameFont);

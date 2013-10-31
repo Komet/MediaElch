@@ -34,7 +34,7 @@ SetsWidget::SetsWidget(QWidget *parent) :
     ui->sets->setFont(setsFont);
 #endif
 
-#ifdef Q_OS_WIN
+#ifndef Q_OS_MAC
     QFont nameFont = ui->setName->font();
     nameFont.setPointSize(nameFont.pointSize()-4);
     ui->setName->setFont(nameFont);
