@@ -2,7 +2,6 @@
 #define TVSHOWWIDGETSEASON_H
 
 #include <QLabel>
-#include <QGraphicsView>
 #include <QMovie>
 #include <QResizeEvent>
 #include <QWidget>
@@ -49,7 +48,6 @@ private:
     QLabel *m_savingWidget;
     QMovie *m_loadingMovie;
     DownloadManager *m_downloadManager;
-    QGraphicsView *m_missingView;
     void updateImages(QList<int> images);
 };
 

@@ -2,7 +2,6 @@
 #define TVSHOWWIDGETEPISODE_H
 
 #include <QLabel>
-#include <QGraphicsView>
 #include <QPointer>
 #include <QTableWidgetItem>
 #include <QWidget>
@@ -84,7 +83,6 @@ private:
     QList<QWidget*> m_streamDetailsWidgets;
     QList< QList<QLineEdit*> > m_streamDetailsAudio;
     QList< QList<QLineEdit*> > m_streamDetailsSubtitles;
-    QGraphicsView *m_missingView;
 
     void updateEpisodeInfo();
 };
