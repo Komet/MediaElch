@@ -1,3 +1,19 @@
+mediaelch (2.0.1-1) raring; urgency=low
+
+  * Show all banners for seasons
+  * Improve tabs ui
+  * Import: Disable automatic reload during extraction
+  * Streamdetails detects runtime of 0
+  * Selected items in scrapers are not saved
+  * Episodes can not be selected
+  * Custom scraper broken
+  * TV Shows: Selected item has no background color in Windows
+  * Import: Single subtitles are detected as importable item
+  * Second window in Linux visible
+  * Choosing local images broken
+
+ -- Daniel Kabel <daniel.kabel@me.com>  Thu, 31 Oct 2013 19:16:23 +0100
+
 mediaelch (2.0-1) raring; urgency=low
 
   * HD-Trailers.net: Add apple trailer download support

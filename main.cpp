@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
 
     QCoreApplication::setOrganizationName("kvibes");
     QCoreApplication::setApplicationName("MediaElch");
-    QCoreApplication::setApplicationVersion("2.0");
+    QCoreApplication::setApplicationVersion("2.0.1");
 
     Settings::instance(qApp)->loadSettings();
     if (Settings::instance()->advanced()->debugLog() && !Settings::instance()->advanced()->logFile().isEmpty()) {
