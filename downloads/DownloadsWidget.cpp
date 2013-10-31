@@ -108,6 +108,16 @@ void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
         }
     }
 
+    QMapIterator<QString, Import> it(imports);
+    QStringList onlyExtraFiles;
+    while (it.hasNext()) {
+        it.next();
+        if (it.value().files.isEmpty())
+            onlyExtraFiles.append(it.key());
+    }
+    foreach (const QString &base, onlyExtraFiles)
+        imports.remove(base);
+
     m_watcher->addPaths(dirs);
 
     if (scanDownloads)
