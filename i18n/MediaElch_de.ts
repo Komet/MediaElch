@@ -2280,7 +2280,7 @@
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="379"/>
         <source>Movie information was loaded</source>
-        <translation>Filminformationen wurde geladen</translation>
+        <translation>Filminformationen wurden geladen</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="392"/>

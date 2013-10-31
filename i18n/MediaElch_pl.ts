@@ -142,7 +142,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="96"/>
         <source>MediaElch was built with &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt;</source>
-        <translation>MediaElch został zbudowany przy pomocy &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt;</translation>
+        <translation>MediaElch został oparty o &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="109"/>
@@ -3241,7 +3241,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="96"/>
         <source>Movie Name</source>
-        <translation>Tytuł filmu</translation>
+        <translation>Nazwa filmu</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="146"/>
@@ -3382,7 +3382,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="582"/>
         <source>Outline</source>
-        <translation>Opis</translation>
+        <translation>Zarys fabuły</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="595"/>
@@ -3881,7 +3881,7 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
     <message>
         <location filename="../renamer/Renamer.ui" line="312"/>
         <source>Multi-File Naming</source>
-        <translation>Nazewnictwo wieloplikowe</translation>
+        <translation>Nazewnictwo wielocześciowe</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="322"/>
@@ -3949,17 +3949,17 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../renamer/Renamer.ui" line="438"/>
         <source>Dry Run</source>
-        <translation>Uruchomienie</translation>
+        <translation>Testuj</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="448"/>
         <source>Rename</source>
-        <translation>Zmień nazwę</translation>
+        <translation>Uruchom</translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="39"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation><numerusform>Tytuł filmu %n zostanie zmieniony</numerusform><numerusform>Tytuły filmów %n zostaną zmienione</numerusform><numerusform>Tytuł filmu(ów) %n zostanie zmieniony</numerusform></translation>
+        <translation><numerusform>Nazwa filmu zostanie zmieniona</numerusform><numerusform>Nazwy %n filmów zostaną zmienione</numerusform><numerusform>Nazwa(y) %n filmów zostaną zmienione</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="42"/>
@@ -4274,7 +4274,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../settings/SettingsWindow.ui" line="242"/>
         <source>Download actor images</source>
-        <translation>Pobierz zdjęcia aktora</translation>
+        <translation>Pobieraj miniatury aktorów</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="188"/>
@@ -4287,8 +4287,8 @@ p, li { white-space: pre-wrap; }⏎
         <location filename="../settings/SettingsWindow.ui" line="45"/>
         <source>Add one or more directories containing your movies, TV Shows, concerts or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.</source>
-        <translation>Dodaj jeden lub więcej folderów zawierających Twoje filmy, seriale lub koncerty do zaimportowania.⏎
-Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</translation>
+        <translation>Dodaj jeden lub więcej folderów zawierających filmy, seriale lub koncerty do zaimportowania.
+Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="249"/>
@@ -4315,7 +4315,7 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="377"/>
         <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
-        <translation>Połącz wielw ekstraktorów w jeden własny ekstraktor. Wybranie ekstraktorów innych niż IDMB, TMDB i Fanart.tv, może wymagać wielokrotnego wyszukiwania, gdyż tylko te wcześniej wymienione współdzielą identyfikator.</translation>
+        <translation>Połącz wiele ekstraktorów w jeden dostosowany ekstraktor. Wybranie ekstraktorów innych niż IDMB, TMDB i Fanart.tv, może wymagać wielokrotnego wyszukiwania, gdyż tylko te trzy współdzielą identyfikator.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="407"/>
@@ -4337,7 +4337,7 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
         <location filename="../settings/SettingsWindow.ui" line="453"/>
         <location filename="../settings/SettingsWindow.ui" line="986"/>
         <source>Nfo</source>
-        <translation>Plik NFO</translation>
+        <translation>NFO</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="460"/>
@@ -4394,12 +4394,12 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="596"/>
         <source>Movie outline</source>
-        <translation>Opis filmu</translation>
+        <translation>Zarys fabuły filmu</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="603"/>
         <source>Use plot when outline is not available</source>
-        <translation>Użyj fabuły, jeśli opis jest niedostępny</translation>
+        <translation>Użyj fabuły, jeśli zarys fabuły jest niedostępny</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="610"/>
@@ -4409,7 +4409,7 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="618"/>
         <source>Artwork next to movies</source>
-        <translation>Grafiki obok filmów</translation>
+        <translation>Grafiki razem z filmami</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="623"/>
@@ -4419,7 +4419,7 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="631"/>
         <source>Movie Set Poster Filename</source>
-        <translation>Nazwa pliku plakatu dla kolekcji filmowej</translation>
+        <translation>Nazwa pliku plakatu kolekcji filmowej</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="638"/>
@@ -4461,7 +4461,7 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="717"/>
         <source>Show nfo</source>
-        <translation>Pokaż plik NFO</translation>
+        <translation>Plik NFO serialu</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="759"/>
@@ -6274,7 +6274,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1006"/>
         <source>Character Art</source>
-        <translation>Grafiki postaci</translation>
+        <translation>Grafika postaci</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="76"/>
