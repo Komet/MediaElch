@@ -880,7 +880,14 @@ QList<int> Settings::scraperInfos(MainWidgets widget, QString scraperId)
         item = "Concerts";
     else if (widget == WidgetTvShows)
         item = "TvShows";
-    return settings()->value(QString("Scrapers/%1/%2").arg(item).arg(scraperId)).value<QList<int> >();
+    QList<int> infos;
+    foreach (const QString &info, settings()->value(QString("Scrapers/%1/%2").arg(item).arg(scraperId)).toString().split(","))
+        infos << info.toInt();
+
+    if (!infos.isEmpty() && infos.first() == 0)
+        infos.clear();
+
+    return infos;
 }
 
 void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<int> items)
@@ -892,7 +899,10 @@ void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<int>
         item = "Concerts";
     else if (widget == WidgetTvShows)
         item = "TvShows";
-    settings()->setValue(QString("Scrapers/%1/%2").arg(item).arg(scraperNo), QVariant::fromValue<QList<int> >(items));
+    QStringList infos;
+    foreach (int info, items)
+        infos << QString("%1").arg(info);
+    settings()->setValue(QString("Scrapers/%1/%2").arg(item).arg(scraperNo), infos.join(","));
 }
 
 bool Settings::downloadActorImages()
