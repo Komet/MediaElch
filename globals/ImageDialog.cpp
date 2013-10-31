@@ -10,6 +10,7 @@
 #include <QMovie>
 #include <QPainter>
 #include <QSize>
+#include <QStandardPaths>
 #include <QTimer>
 #include "data/ImageProviderInterface.h"
 #include "globals/Manager.h"
@@ -514,7 +515,6 @@ void ImageDialog::cancelDownloads()
 void ImageDialog::chooseLocalImage()
 {
     QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), QDir::homePath(), tr("Images (*.jpg *.jpeg *.png)"));
-    qDebug() << "Filename=" << fileName;
     if (!fileName.isNull()) {
         int index = m_elements.size();
         DownloadElement d;
@@ -537,9 +537,10 @@ void ImageDialog::chooseLocalImage()
                 file.close();
             }
             ui->gallery->addImage(ba, fileName);
-            m_imageUrls.append(QUrl(fileName));
+
+            m_imageUrls.append(QUrl::fromLocalFile(fileName));
         } else {
-            m_imageUrl = QUrl(fileName);
+            m_imageUrl = QUrl::fromLocalFile(fileName);
             accept();
         }
     }
