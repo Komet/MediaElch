@@ -789,53 +789,53 @@
         <translation>Articles importables</translation>
     </message>
     <message numerus="yes">
-        <location filename="../downloads/DownloadsWidget.cpp" line="193"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="315"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="210"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="337"/>
         <source>%n file(s)</source>
         <translation><numerusform>%n fichier</numerusform><numerusform>%n fichiers</numerusform></translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="259"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="261"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="263"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="275"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="277"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="279"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="281"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="295"/>
         <source>Extraction failed</source>
         <translation>Extraction échoué</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="259"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="277"/>
         <source>Exctraction of %1 has failed: %2</source>
         <translation>Extraction de %1 a échoué : %2</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="261"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="263"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="279"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="281"/>
         <source>Extraction of %1 has failed: %2</source>
         <translation>Extraction de %1 a échoué : %2</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="273"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="284"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="293"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="304"/>
         <source>Extraction finished</source>
         <translation>Extraction terminée</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="284"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="304"/>
         <source>Extraction of %1 finished</source>
         <translation>Extraction de  %1 terminé</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="324"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="346"/>
         <source>Movie</source>
         <translation>Film</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="325"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="347"/>
         <source>TV Show</source>
         <translation>Séries TV</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="326"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="348"/>
         <source>Concert</source>
         <translation>Concerts</translation>
     </message>
@@ -2075,17 +2075,17 @@
         <translation>Accepter Images</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="143"/>
+        <location filename="../globals/ImageDialog.cpp" line="144"/>
         <source>Default</source>
         <translation>Par défault</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="516"/>
+        <location filename="../globals/ImageDialog.cpp" line="517"/>
         <source>Choose Image</source>
         <translation>Choisir image</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="516"/>
+        <location filename="../globals/ImageDialog.cpp" line="517"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>Images (*.jpg *.jpeg *.png)</translation>
     </message>
@@ -5702,311 +5702,311 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="63"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="76"/>
         <source>Episode has changed. Click to revert changes.</source>
         <translation>Épisode a changé. Cliquer pour annuler les modifications.</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="92"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="105"/>
         <source>Episode Title</source>
         <translation>Titre de l&apos;Épisode</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="140"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="176"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="157"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="193"/>
         <source>Files</source>
         <translation>Fichiers</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="171"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="207"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="181"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="217"/>
         <source>Show Title</source>
         <translation>Titre de la Série</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="191"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="227"/>
         <source>Season</source>
         <translation>Saison</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="226"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="262"/>
         <source>Episode</source>
         <translation>Épisode</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="245"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="281"/>
         <source>Display Season</source>
         <translation>Afficher Saison</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="252"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="288"/>
         <source>Rating</source>
         <translation>Note</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="272"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="308"/>
         <source>Certification</source>
         <translation>Certification</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="289"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="325"/>
         <source>First Aired</source>
         <translation>Première diffusion</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="299"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="335"/>
         <source>dd.MM.yyyy</source>
         <translation>dd.MM.yyyy</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="306"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="342"/>
         <source>Play Count</source>
         <translation>Compteur de lecture</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="395"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="431"/>
         <source>Last Played</source>
         <translation>Dernière fois joué</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="405"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="441"/>
         <source>dd.MM.yyyy HH:mm</source>
         <translation>dd.MM.yyyy HH:mm</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="313"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="349"/>
         <source>Studio</source>
         <translation>Studio</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="323"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="359"/>
         <source>Overview</source>
         <translation>Synopsis</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="364"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="400"/>
         <source>Display Episode</source>
         <translation>Afficher épisode</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="414"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="450"/>
         <source>Bookmark</source>
         <translation>Favoris</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="434"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="470"/>
         <source>Extended</source>
         <translation>Étendue</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="471"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="507"/>
         <source>Writer</source>
         <translation>Scénariste</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="545"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="581"/>
         <source>Directors</source>
         <translation>Réalisateur</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="573"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="609"/>
         <source>Director</source>
         <translation>Réalisateur</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="583"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="619"/>
         <source>Add Director</source>
         <translation>Ajouter Réalisateur</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="600"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="636"/>
         <source>Remove Director</source>
         <translation>Supprimer Réalisateur</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="443"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="479"/>
         <source>Writers</source>
         <translation>Scénariste</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="481"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="517"/>
         <source>Add Writer</source>
         <translation>Ajouter Scénariste</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="498"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="534"/>
         <source>Remove Writer</source>
         <translation>Supprimer Scénariste</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="647"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="683"/>
         <source>Actors</source>
         <translation>Acteurs</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="672"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="708"/>
         <source>Actor</source>
         <translation>Acteur</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="677"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="713"/>
         <source>Role</source>
         <translation>Rôle</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="722"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="758"/>
         <source>Add Actor</source>
         <translation>Ajouter Acteur</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="692"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="728"/>
         <source>Remove Actor</source>
         <translation>Supprimer Acteur</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="772"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="808"/>
         <source>Click to change</source>
         <translation>Cliquer pour changer</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="819"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="855"/>
         <source>Streamdetails</source>
         <translation>Détails de flux</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="827"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="863"/>
         <source>Aspect Ratio</source>
         <translation>Aspect Ratio</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="837"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="873"/>
         <source>Scantype</source>
         <translation>Scantype</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="791"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="857"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="827"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="893"/>
         <source>Resolution</source>
         <translation>Résolution</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="867"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="453"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="456"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="903"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="434"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="437"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="905"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="941"/>
         <source>x</source>
         <translation>x</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="943"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="979"/>
         <source>Audio</source>
         <translation>Audio</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="959"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="995"/>
         <source>Video</source>
         <translation>Vidéo</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="979"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1015"/>
         <source>Duration</source>
         <translation>Durée</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="424"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="998"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="460"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1034"/>
         <source>HH:mm:ss</source>
         <translation>HH:mm:ss</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1009"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1045"/>
         <source>Reload from File</source>
         <translation>Recharger à partir du fichier</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1082"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1118"/>
         <source>Thumbnail</source>
         <translation>Vignette</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1104"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1140"/>
         <source>Click to Change</source>
         <translation>Cliquer pour Changer</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="125"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.ui" line="147"/>
         <source>Episode missing</source>
         <translation>pisode manquant</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="446"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="480"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="427"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="461"/>
         <source>Track %1</source>
         <translation>Piste  %1</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="452"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="455"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="483"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="484"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="433"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="436"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="464"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="465"/>
         <source>Language</source>
         <translation>Langue</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="454"/>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="457"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="435"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="438"/>
         <source>Channels</source>
         <translation>Canaux</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="472"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="453"/>
         <source>Subtitles</source>
         <translation>Sous-titres</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="538"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="519"/>
         <source>Episode Saved</source>
         <translation>Épisode sauvegarder</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="673"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="654"/>
         <source>Unknown Director</source>
         <translation>Réalisateur inconnu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="722"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="703"/>
         <source>Unknown Writer</source>
         <translation>Scénariste inconnu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="940"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="921"/>
         <source>Unknown Actor</source>
         <translation>Acteur inconnu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="941"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="922"/>
         <source>Unknown Role</source>
         <translation>Rôle inconnu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="1002"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="983"/>
         <source>Choose Image</source>
         <translation>Choisir image</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="1002"/>
+        <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="983"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Images (*.jpg *.jpeg)</translation>
     </message>
@@ -6019,59 +6019,59 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="53"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="66"/>
         <source>Episode has changed. Click to revert changes.</source>
         <translation>Épisode a changé. Cliquer pour annuler les modifications.</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="82"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="95"/>
         <source>Title</source>
         <translation>Titre</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="135"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="177"/>
         <source>Thumb</source>
         <translation>Vignette</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="196"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="238"/>
         <source>Poster</source>
         <translation>Affiche</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="157"/>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="218"/>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="265"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="199"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="260"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="307"/>
         <source>Click to Change</source>
         <translation>Cliquer pour changer</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="243"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="285"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="290"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="332"/>
         <source>Banner</source>
         <translation>Bannière</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="312"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="354"/>
         <source>Click to change</source>
         <translation>Cliquer pour changer</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.cpp" line="81"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="140"/>
         <source>Season missing</source>
         <translation>Saison manquante</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.cpp" line="122"/>
+        <location filename="../tvShows/TvShowWidgetSeason.cpp" line="103"/>
         <source>Season %1</source>
         <translation>Saison %1</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.cpp" line="177"/>
+        <location filename="../tvShows/TvShowWidgetSeason.cpp" line="158"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauvegarder</translation>
     </message>
