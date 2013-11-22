@@ -790,7 +790,7 @@
     </message>
     <message numerus="yes">
         <location filename="../downloads/DownloadsWidget.cpp" line="210"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="337"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="338"/>
         <source>%n file(s)</source>
         <translation><numerusform>um: %n arquivo(s)</numerusform><numerusform>outro: %n arquivo(s)</numerusform></translation>
     </message>
@@ -825,17 +825,17 @@
         <translation>Descompactação de %1 finalizada</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="346"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="347"/>
         <source>Movie</source>
         <translation>Filme</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="347"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="348"/>
         <source>TV Show</source>
         <translation>Seriado</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="348"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="349"/>
         <source>Concert</source>
         <translation>Concerto</translation>
     </message>

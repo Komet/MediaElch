@@ -790,7 +790,7 @@
     </message>
     <message numerus="yes">
         <location filename="../downloads/DownloadsWidget.cpp" line="210"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="337"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="338"/>
         <source>%n file(s)</source>
         <translation><numerusform>%n fil(er)</numerusform><numerusform>%n file(s) </numerusform></translation>
     </message>
@@ -825,17 +825,17 @@
         <translation>Extraction av %1 er ferdig</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="346"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="347"/>
         <source>Movie</source>
         <translation>Film</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="347"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="348"/>
         <source>TV Show</source>
         <translation>TV-Serier</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="348"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="349"/>
         <source>Concert</source>
         <translation>Konserter</translation>
     </message>

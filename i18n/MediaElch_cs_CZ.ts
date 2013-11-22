@@ -142,12 +142,12 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="96"/>
         <source>MediaElch was built with &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt;</source>
-        <translation>MediaElch was built with &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt;</translation>
+        <translation>MediaElch byl vytvořen pomocí &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt; knihovny</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="109"/>
         <source>Icon Sets: Retina by &quot;The Working Group&quot; and &quot;Capital Suite&quot; by &quot;capital18 (Jugal Paryani)&quot;</source>
-        <translation>Sada Ikon: Retina od &quot;The Working Group&quot; a &quot;Capital Suite&quot; od &quot;capital18 (Jugal Paryani)&quot;</translation>
+        <translation>Sady ikon: Retina od &quot;The Working Group&quot; a &quot;Capital Suite&quot; od &quot;capital18 (Jugal Paryani)&quot;</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="119"/>
@@ -185,7 +185,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="228"/>
         <source>TV Shows</source>
-        <translation>TV Seriálů</translation>
+        <translation>Seriálů</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="261"/>
@@ -234,12 +234,12 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="178"/>
         <source>Remove Current Movie</source>
-        <translation>Odstranit současný film</translation>
+        <translation>Odstranit vybraný film</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="181"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Odebrat film</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="197"/>
@@ -249,7 +249,7 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="207"/>
         <source>Please keep in mind that the changes you make here (renaming or deleting certifications) will be made for every movie.</source>
-        <translation>Mějte na paměti, že změny které zde provedete (přejmenování nebo smazání certifikací), budou použity na všechny filmy.</translation>
+        <translation>Mějte na paměti, že změny které zde provedete (přejmenování nebo smazání certifikátů), budou použity na všechny filmy.</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="36"/>
@@ -389,7 +389,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="143"/>
         <source>Tagline</source>
-        <translation>Motto</translation>
+        <translation>Moto</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="150"/>
@@ -497,7 +497,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="206"/>
         <source>Tagline</source>
-        <translation>Motto</translation>
+        <translation>Moto</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="216"/>
@@ -732,7 +732,7 @@
     <message>
         <location filename="../scrapers/CustomMovieScraper.cpp" line="32"/>
         <source>Custom Movie Scraper</source>
-        <translation type="unfinished"/>
+        <translation>Vlastní filmový Scraper</translation>
     </message>
 </context>
 <context>
@@ -790,7 +790,7 @@
     </message>
     <message numerus="yes">
         <location filename="../downloads/DownloadsWidget.cpp" line="210"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="337"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="338"/>
         <source>%n file(s)</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
@@ -825,17 +825,17 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="346"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="347"/>
         <source>Movie</source>
         <translation>Film</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="347"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="348"/>
         <source>TV Show</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="348"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="349"/>
         <source>Concert</source>
         <translation>Koncerty</translation>
     </message>
@@ -861,7 +861,7 @@
     <message>
         <location filename="../export/ExportDialog.ui" line="51"/>
         <source>Theme</source>
-        <translation type="unfinished"/>
+        <translation>Téma</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="61"/>
@@ -891,7 +891,7 @@
     <message>
         <location filename="../export/ExportDialog.cpp" line="30"/>
         <source>You need to install at least one theme.</source>
-        <translation type="unfinished"/>
+        <translation>Musíte nainstalovat alespoň jedno téma.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="63"/>
@@ -924,7 +924,7 @@
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="36"/>
         <source>Theme Name</source>
-        <translation type="unfinished"/>
+        <translation>Název tématu</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="46"/>
@@ -950,7 +950,7 @@
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="26"/>
         <source>by %1</source>
-        <translation type="unfinished"/>
+        <translation>od %1</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="29"/>
@@ -965,7 +965,7 @@
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="35"/>
         <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <translation>Odinstalovat</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="48"/>
@@ -1611,7 +1611,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="589"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="592"/>
         <source>Seen</source>
-        <translation>Viděno</translation>
+        <translation>Zhlédnuto</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="591"/>
@@ -1760,7 +1760,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="625"/>
         <source>IMDB</source>
-        <translation type="unfinished"/>
+        <translation>IMDB</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="627"/>
@@ -1862,12 +1862,12 @@
     <message>
         <location filename="../movies/GenreWidget.ui" line="177"/>
         <source>Remove Current Movie</source>
-        <translation>Odstranit současný film</translation>
+        <translation>Odstranit vybraný film</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="180"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Odebrat film</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="196"/>
@@ -2018,7 +2018,7 @@
     <message>
         <location filename="../globals/ImageDialog.ui" line="38"/>
         <source>Enter a search term or URL</source>
-        <translation type="unfinished"/>
+        <translation>Zadejte hledaný výraz nebo URL</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="85"/>
@@ -2536,7 +2536,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="34"/>
         <source>IMDB</source>
-        <translation type="unfinished"/>
+        <translation>IMDB</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="35"/>
@@ -2988,7 +2988,7 @@ operace zrušena.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="201"/>
         <source>Tagline</source>
-        <translation>Motto</translation>
+        <translation>Moto</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="301"/>
@@ -3115,7 +3115,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="155"/>
         <source>Tagline</source>
-        <translation>Motto</translation>
+        <translation>Moto</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="162"/>
@@ -3273,7 +3273,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="233"/>
         <source>Tagline</source>
-        <translation>Motto</translation>
+        <translation>Moto</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="243"/>
@@ -3822,7 +3822,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../renamer/Renamer.ui" line="189"/>
         <source>Part number of the current file</source>
-        <translation>Číslo části současného souboru</translation>
+        <translation>Číslo části vybraného souboru</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="202"/>
@@ -4142,7 +4142,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="191"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Odebrat film</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="213"/>
@@ -4304,7 +4304,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="371"/>
         <source>Custom Movie Scraper</source>
-        <translation type="unfinished"/>
+        <translation>Vlastní filmový Scraper</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="377"/>
@@ -4314,7 +4314,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="407"/>
         <source>Item</source>
-        <translation type="unfinished"/>
+        <translation>Položka</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="428"/>
@@ -4331,7 +4331,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="453"/>
         <location filename="../settings/SettingsWindow.ui" line="986"/>
         <source>Nfo</source>
-        <translation type="unfinished"/>
+        <translation>Nfo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="460"/>
@@ -4480,7 +4480,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="787"/>
         <source>Episode thumbnail</source>
-        <translation type="unfinished"/>
+        <translation>Náhled epizody</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="794"/>
@@ -4490,7 +4490,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="921"/>
         <source>Season Thumb</source>
-        <translation type="unfinished"/>
+        <translation>Náhled řady</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="961"/>
@@ -4578,7 +4578,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1271"/>
         <source>Theme</source>
-        <translation type="unfinished"/>
+        <translation>Téma</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1298"/>
@@ -4627,7 +4627,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1457"/>
         <source>Network</source>
-        <translation>Společnost</translation>
+        <translation>Síť</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1497"/>
@@ -4688,7 +4688,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="576"/>
         <source>Theme &quot;%1&quot; was successfully uninstalled</source>
-        <translation type="unfinished"/>
+        <translation>Téma &quot;%1&quot; bylo úspěšně odinstalováno</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="588"/>
@@ -4703,7 +4703,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="630"/>
         <source>Tagline</source>
-        <translation>Motto</translation>
+        <translation>Moto</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="632"/>
@@ -5795,7 +5795,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="450"/>
         <source>Bookmark</source>
-        <translation type="unfinished"/>
+        <translation>Záložka</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="470"/>
