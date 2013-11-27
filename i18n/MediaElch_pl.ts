@@ -450,7 +450,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="230"/>
         <source>(Un)Check all</source>
-        <translation>O(d)znacz wszystko</translation>
+        <translation>Za(Od)znacz wszystko</translation>
     </message>
 </context>
 <context>
@@ -483,7 +483,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="172"/>
         <source>Name</source>
-        <translation>Tytuł</translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="186"/>
@@ -544,7 +544,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="380"/>
         <source>Overview</source>
-        <translation>Przegląd</translation>
+        <translation>Opis</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="246"/>
@@ -725,7 +725,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="637"/>
         <source>All Concerts Saved</source>
-        <translation>Zapisano dane wszystkich koncertów</translation>
+        <translation>Zapisano zmiany wszystkich koncertów</translation>
     </message>
 </context>
 <context>
@@ -791,9 +791,9 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     </message>
     <message numerus="yes">
         <location filename="../downloads/DownloadsWidget.cpp" line="210"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="337"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="338"/>
         <source>%n file(s)</source>
-        <translation><numerusform>%n plik</numerusform><numerusform>%n plików</numerusform><numerusform>%n plik(i)</numerusform></translation>
+        <translation><numerusform>%n plik</numerusform><numerusform>%n plików</numerusform><numerusform>%n plik(ów)</numerusform></translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="277"/>
@@ -806,7 +806,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="277"/>
         <source>Exctraction of %1 has failed: %2</source>
-        <translation>Ekstrakcja %1 zakończyła się niepowodzeniem: %2</translation>
+        <translation>Rozpakowywanie %1 zakończyło się niepowodzeniem: %2</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="279"/>
@@ -826,17 +826,17 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
         <translation>Rozpakowywanie %1 zakończone</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="346"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="347"/>
         <source>Movie</source>
         <translation>Film</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="347"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="348"/>
         <source>TV Show</source>
         <translation>Serial</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="348"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="349"/>
         <source>Concert</source>
         <translation>Koncert</translation>
     </message>
@@ -847,7 +847,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
         <location filename="../export/ExportDialog.ui" line="23"/>
         <location filename="../export/ExportDialog.ui" line="132"/>
         <source>Export</source>
-        <translation>Eksport</translation>
+        <translation>Eksportuj</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="32"/>
@@ -907,7 +907,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../export/ExportDialog.cpp" line="80"/>
         <source>Could not create export directory.</source>
-        <translation>Nie można utworzyć folderu eksportu</translation>
+        <translation>Nie można utworzyć folderu eksportu.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="126"/>
@@ -971,7 +971,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="48"/>
         <source>Updating...</source>
-        <translation>Aktualziacja...</translation>
+        <translation>Aktualizacja...</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="52"/>
@@ -989,7 +989,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../downloads/Extractor.cpp" line="28"/>
         <source>No files to extract</source>
-        <translation>Brak plików do ekstrakcji</translation>
+        <translation>Brak plików do rozpakowania</translation>
     </message>
     <message>
         <location filename="../downloads/Extractor.cpp" line="38"/>
@@ -1169,7 +1169,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../movies/FilesWidget.ui" line="168"/>
         <source>Name</source>
-        <translation>Tytuł</translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.ui" line="194"/>
@@ -1189,7 +1189,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../movies/FilesWidget.cpp" line="58"/>
         <source>Media Status Columns</source>
-        <translation>Kolumny statu mediów</translation>
+        <translation>Kolumny stanu mediów</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="68"/>
@@ -1307,12 +1307,12 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="450"/>
         <source>Set &quot;%1&quot;</source>
-        <translation>Zbiór &quot;%1&quot;</translation>
+        <translation>Seria &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="451"/>
         <source>Set</source>
-        <translation>Zbiór</translation>
+        <translation>Seria</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="467"/>
@@ -1453,7 +1453,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
         <location filename="../smallWidgets/FilterWidget.cpp" line="549"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="550"/>
         <source>No Logo</source>
-        <translation>Brak logo</translation>
+        <translation>Brak loga</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="552"/>
@@ -1481,7 +1481,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="558"/>
         <source>Movie has Banner</source>
-        <translation>Film posiada baner</translation>
+        <translation>Film z banerem</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="558"/>
@@ -1493,7 +1493,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="561"/>
         <source>Movie has no Banner</source>
-        <translation>Film nie posiada baneru</translation>
+        <translation>Film bez baneru</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="561"/>
@@ -1504,7 +1504,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="564"/>
         <source>Movie has Thumb</source>
-        <translation>Film posiada miniaturę</translation>
+        <translation>Film z miniaturą</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="564"/>
@@ -1516,7 +1516,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="567"/>
         <source>Movie has no Thumb</source>
-        <translation>Film nie posiada miniatury</translation>
+        <translation>Film bez miniatury</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="567"/>
@@ -1701,7 +1701,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="612"/>
         <source>Movie has no Studio</source>
-        <translation>Film z wytwórnią</translation>
+        <translation>Film bez wytwórni</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="612"/>
@@ -1873,13 +1873,13 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../movies/GenreWidget.ui" line="196"/>
         <source>Double click a genre to rename it, right click to delete. If you want to merge two genres just give them the same name.</source>
-        <translation>Kliknij dwa razy na gatunek, aby go zmienić, prawym przyciskiem, aby usunąć.
+        <translation>Kliknij dwa razy na gatunek, aby go zmienić, kliknij prawym przyciskiem, aby usunąć.
 Jeśli chcesz połączyć dwa gatunki, po prostu nadaj im tę samą nazwę.</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="206"/>
         <source>Please keep in mind that the changes you make here (renaming or deleting genres) will be made for every movie.</source>
-        <translation>Pamiętaj, że zmiany, które tutaj dokonasz (zmiana nazwy i usuwanie gatunku) dotyczą wszystkich filmów.</translation>
+        <translation>Pamiętaj, że zmiany, które tutaj dokonasz (zmiana nazwy i usunięcie gatunku) dotyczą wszystkich filmów.</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.cpp" line="36"/>
@@ -1899,7 +1899,7 @@ Jeśli chcesz połączyć dwa gatunki, po prostu nadaj im tę samą nazwę.</tra
     <message>
         <location filename="../movies/GenreWidget.cpp" line="291"/>
         <source>All Movies Saved</source>
-        <translation>Zapisano dane wszystkich filmów</translation>
+        <translation>Zapisano zmiany wszystkich filmów</translation>
     </message>
 </context>
 <context>
@@ -2340,7 +2340,7 @@ Jeśli chcesz połączyć dwa gatunki, po prostu nadaj im tę samą nazwę.</tra
     <message numerus="yes">
         <location filename="../downloads/ImportDialog.cpp" line="641"/>
         <source>Import of %n file(s) has finished</source>
-        <translation><numerusform>Importowanie pliku %n zostało zakończone</numerusform><numerusform>Importowanie plików %n zostało zakończone</numerusform><numerusform>Importowanie pliku(ów) %n zostało zakończone</numerusform></translation>
+        <translation><numerusform>Importowanie pliku zostało zakończone</numerusform><numerusform>Importowanie %n plików zostało zakończone</numerusform><numerusform>Importowanie %n pliku(ów) zostało zakończone</numerusform></translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="644"/>
@@ -2427,7 +2427,7 @@ Jeśli chcesz połączyć dwa gatunki, po prostu nadaj im tę samą nazwę.</tra
     <message>
         <location filename="../main/MainWindow.ui" line="142"/>
         <source>Movie Sets</source>
-        <translation>Kolekcja filmowa</translation>
+        <translation>Serie filmowe</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="175"/>
@@ -2792,7 +2792,7 @@ Main menu entry (tooltip)</extracomment>
         <location filename="../data/MovieFilesOrganizer.cpp" line="93"/>
         <source>%1
  Operation Canceled.</source>
-        <translation>%1⏎
+        <translation>%1
 Operacja anulowana.</translation>
     </message>
 </context>
@@ -2940,7 +2940,7 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="101"/>
         <source>Set</source>
-        <translation>Kolekcja</translation>
+        <translation>Seria</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="111"/>
@@ -3020,7 +3020,7 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="340"/>
         <source>(Un)Check all</source>
-        <translation>O(d)znacz wszystko</translation>
+        <translation>Za(od)znacz wszystko</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="366"/>
@@ -3060,7 +3060,7 @@ Operacja anulowana.</translation>
     <message numerus="yes">
         <location filename="../movies/MovieMultiScrapeDialog.cpp" line="175"/>
         <source>Scraping of %n movies has finished.</source>
-        <translation><numerusform>Ekstrakcja %n filmu została zakończona.</numerusform><numerusform>Ekstrakcja %n filmów została zakończona.</numerusform><numerusform>Ekstrakcja %n filmów została zakończona.</numerusform></translation>
+        <translation><numerusform>Ekstrakcja filmu została zakończona.</numerusform><numerusform>Ekstrakcja %n filmów została zakończona.</numerusform><numerusform>Ekstrakcja %n filmów została zakończona.</numerusform></translation>
     </message>
 </context>
 <context>
@@ -3113,7 +3113,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="148"/>
         <source>Set</source>
-        <translation>Zbiór</translation>
+        <translation>Seria</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="155"/>
@@ -3223,7 +3223,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="309"/>
         <source>(Un)Check all</source>
-        <translation>O(d)znacz wszystko</translation>
+        <translation>Za(Od)znacz wszystko</translation>
     </message>
 </context>
 <context>
@@ -3241,7 +3241,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="96"/>
         <source>Movie Name</source>
-        <translation>Nazwa filmu</translation>
+        <translation>Tytuł filmu</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="146"/>
@@ -3256,7 +3256,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="180"/>
         <source>Name</source>
-        <translation>Tytuł</translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="190"/>
@@ -3271,7 +3271,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="210"/>
         <source>Set</source>
-        <translation>Kolekcja</translation>
+        <translation>Seria</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="233"/>
@@ -3643,7 +3643,7 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
     <message>
         <location filename="../movies/MovieWidget.cpp" line="817"/>
         <source>All Movies Saved</source>
-        <translation>Zapisano dane wszystkich filmów</translation>
+        <translation>Zapisano zmiany wszystkich filmów</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="839"/>
@@ -3739,7 +3739,7 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
     <message>
         <location filename="../main/Navbar.cpp" line="17"/>
         <source>Save (%1)</source>
-        <translation>Zapisz (#1)</translation>
+        <translation>Zapisz (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="21"/>
@@ -3765,12 +3765,12 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
     <message>
         <location filename="../main.cpp" line="98"/>
         <source>Logfile could not be openened</source>
-        <translation>Logfile could not be openened</translation>
+        <translation>Plik logów nie może zostać otworzony</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="99"/>
         <source>The logfile %1 could not be openend for writing.</source>
-        <translation>Plik logów %1 nie może zostać otwarty do zapisu.</translation>
+        <translation>Plik logów %1 nie może zostać otworzony do zapisu.</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="341"/>
@@ -3891,7 +3891,7 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
     <message>
         <location filename="../renamer/Renamer.ui" line="329"/>
         <source>Rename Directories</source>
-        <translation>Zmień nazwę folderów</translation>
+        <translation>Zmień nazwy folderów</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="339"/>
@@ -3959,22 +3959,22 @@ p, li { white-space: pre-wrap; }⏎
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="39"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation><numerusform>Nazwa filmu zostanie zmieniona</numerusform><numerusform>Nazwy %n filmów zostaną zmienione</numerusform><numerusform>Nazwa(y) %n filmów zostaną zmienione</numerusform></translation>
+        <translation><numerusform>Nazwa filmu zostanie zmieniona</numerusform><numerusform>Nazwy %n filmów zostaną zmienione</numerusform><numerusform>Nazwy %n filmów zostaną zmienione</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="42"/>
         <source>%n Concert(s) will be renamed</source>
-        <translation><numerusform>Tytuł koncertu %n zostanie zmieniony</numerusform><numerusform>Tytuły koncertów %n zostaną zmienione</numerusform><numerusform>Tytuł koncertu(ów) %n zostanie zmieniony</numerusform></translation>
+        <translation><numerusform>Nazwa %n koncertu zostanie zmieniona</numerusform><numerusform>Nazwy %n koncertów zostaną zmienione</numerusform><numerusform>Nazwy %n koncertów zostaną zmienione</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="45"/>
         <source>%n TV Show(s) and %1</source>
-        <translation><numerusform>Serial(e) %n i %1</numerusform><numerusform>Serial(e) %n i %1</numerusform><numerusform>Serial(e) %n i %1</numerusform></translation>
+        <translation><numerusform>Nazwa %n serialu i %1</numerusform><numerusform>Nazwy %n seriali i %1</numerusform><numerusform>Nazwy %n seriali i %1</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="45"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation><numerusform>Tytuł odcinku %n zostanie zmieniony.</numerusform><numerusform>Tytuły odcinków %n zostaną zmienione.</numerusform><numerusform>Tytuł odcinku(ów) %n zostanie zmieniony</numerusform></translation>
+        <translation><numerusform>Nazwa %n odcinka zostanie zmieniona</numerusform><numerusform>Nazwy %n odcinków zostaną zmienione</numerusform><numerusform>Nazwy %n odcinków zostaną zmienione</numerusform></translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="169"/>
@@ -4028,7 +4028,7 @@ p, li { white-space: pre-wrap; }⏎
         <location filename="../renamer/Renamer.cpp" line="508"/>
         <location filename="../renamer/Renamer.cpp" line="693"/>
         <source>&lt;b&gt;Rename NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmień nazwę pliku NFO&lt;/b&gt;z &quot;%1&quot; na &quot;%2&quot;</translation>
+        <translation>&lt;b&gt;Zmień nazwę NFO&lt;/b&gt;z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="284"/>
@@ -4045,27 +4045,27 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../renamer/Renamer.cpp" line="318"/>
         <source>&lt;b&gt;Rename Banner&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmień nazwę banera&lt;/b&gt;z &quot;%1&quot; na &quot;%2&quot;</translation>
+        <translation>&lt;b&gt;Zmień nazwę banera&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="335"/>
         <source>&lt;b&gt;Rename Thumb&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmień nazwę miniatury&lt;/b&gt;z &quot;%1&quot; na &quot;%2&quot;</translation>
+        <translation>&lt;b&gt;Zmień nazwę miniatury&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="352"/>
         <source>&lt;b&gt;Rename Logo&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmień nazwę pliku logo&lt;/b&gt;z &quot;%1&quot; na &quot;%2&quot;</translation>
+        <translation>&lt;b&gt;Zmień nazwę pliku logo&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="369"/>
         <source>&lt;b&gt;Rename Clear Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmień nazwę pliku Clear Art&lt;/b&gt;z &quot;%1&quot; na &quot;%2&quot;</translation>
+        <translation>&lt;b&gt;Zmień nazwę pliku Clear Art&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="386"/>
         <source>&lt;b&gt;Rename CD Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmień nazwę pliku grafiki płyty&lt;/b&gt;z &quot;%1&quot; na &quot;%2&quot;</translation>
+        <translation>&lt;b&gt;Zmień nazwę pliku grafiki płyty&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="402"/>
@@ -4093,7 +4093,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../renamer/Renamer.cpp" line="574"/>
         <source>&lt;b&gt;Move NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Przenieś plik NFO&lt;/b&gt;z &quot;%1&quot; do &quot;%2&quot;</translation>
+        <translation>&lt;b&gt;Przenieś NFO&lt;/b&gt;z &quot;%1&quot; do &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="581"/>
@@ -4111,7 +4111,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../sets/SetsWidget.ui" line="78"/>
         <source>Set</source>
-        <translation>Kolekcja</translation>
+        <translation>Seria</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="109"/>
@@ -4131,7 +4131,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../sets/SetsWidget.ui" line="175"/>
         <source>Add movie to set</source>
-        <translation>Dodaj film do kolekcji</translation>
+        <translation>Dodaj film do serii</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="178"/>
@@ -4141,7 +4141,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../sets/SetsWidget.ui" line="188"/>
         <source>Remove selected movie from set</source>
-        <translation>Usuń wybrany film z kolekcji</translation>
+        <translation>Usuń wybrany film z serii</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="191"/>
@@ -4181,7 +4181,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../sets/SetsWidget.cpp" line="64"/>
         <source>Add Movie Set</source>
-        <translation>Dodaj kolekcję filmową</translation>
+        <translation>Dodaj serię filmową</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.cpp" line="65"/>
@@ -4196,7 +4196,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../sets/SetsWidget.cpp" line="437"/>
         <source>New Movie Set</source>
-        <translation>Nowa kolekcja filmowa</translation>
+        <translation>Nowa seria filmowa</translation>
     </message>
 </context>
 <context>
@@ -4264,7 +4264,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../settings/SettingsWindow.ui" line="228"/>
         <source>Automatically load and save stream details from files</source>
-        <translation>Automatycznie wczytaj i zapisz metadane strumienia z plików</translation>
+        <translation>Automatycznie wczytaj i zapisuj metadane strumienia z plików</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="235"/>
@@ -4315,7 +4315,7 @@ Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="377"/>
         <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
-        <translation>Połącz wiele ekstraktorów w jeden dostosowany ekstraktor. Wybranie ekstraktorów innych niż IDMB, TMDB i Fanart.tv, może wymagać wielokrotnego wyszukiwania, gdyż tylko te trzy współdzielą identyfikator.</translation>
+        <translation>Połącz wiele ekstraktorów w jeden własny ekstraktor. Wybranie ekstraktorów innych niż IDMB, TMDB i Fanart.tv, może wymagać wielokrotnego wyszukiwania, gdyż tylko te trzy współdzielą identyfikator.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="407"/>
@@ -4404,7 +4404,7 @@ Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="610"/>
         <source>Movie Set Artwork</source>
-        <translation>Grafika kolekcji filmowej</translation>
+        <translation>Grafika serii filmowej</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="618"/>
@@ -4419,7 +4419,7 @@ Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="631"/>
         <source>Movie Set Poster Filename</source>
-        <translation>Nazwa pliku plakatu kolekcji filmowej</translation>
+        <translation>Nazwa pliku plakatu serii filmowej</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="638"/>
@@ -4430,7 +4430,7 @@ Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="648"/>
         <source>Movie Set Fanart Filname</source>
-        <translation>Nazwa pliku fangrafu kolekcji filmowej</translation>
+        <translation>Nazwa pliku fangrafu serii filmowej</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="655"/>
@@ -4451,7 +4451,7 @@ Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="692"/>
         <source>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Poniżej widoczne są nazwy plików, które są używane podczas wczytywania i zapisywania seriali. Możesz je edytować według uznania, ponadto możesz używać wielu plików oddzielając je przecinkiem.</translation>
+        <translation>Poniżej widoczne są nazwy plików, które są używane podczas wczytywania i zapisywania seriali. Możesz je edytować według uznania, dodatkowo możesz używać wielu plików oddzielając je przecinkiem.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="702"/>
@@ -4461,7 +4461,7 @@ Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="717"/>
         <source>Show nfo</source>
-        <translation>Plik NFO serialu</translation>
+        <translation>NFO serialu</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="759"/>
@@ -4481,7 +4481,7 @@ Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="780"/>
         <source>Episode nfo</source>
-        <translation>Plik NFO odcinka</translation>
+        <translation>NFO odcinka</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="787"/>
@@ -4638,7 +4638,7 @@ Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1497"/>
         <source>Export</source>
-        <translation>Eksport</translation>
+        <translation>Eksportuj</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="389"/>
@@ -4678,7 +4678,7 @@ Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="539"/>
         <source>Choose a directory where your movie set artwork is stored</source>
-        <translation>Wybierz folder, w którym przechowywane są grafiki kolekcji filmowej</translation>
+        <translation>Wybierz folder, w którym przechowywane są grafiki serii filmowej</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="568"/>
@@ -4784,7 +4784,7 @@ Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="662"/>
         <source>Set</source>
-        <translation>Kolekcja</translation>
+        <translation>Seria</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="674"/>
@@ -4802,12 +4802,12 @@ Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</transla
     <message>
         <location filename="../support/SupportDialog.ui" line="17"/>
         <source>Support MediaElch</source>
-        <translation>Wsparcie MediaElch</translation>
+        <translation>Wesprzyj MediaElch</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="30"/>
         <source>If you like MediaElch and wish to support it you have the chance to do so! You can donate as much as you like via PayPal.</source>
-        <translation>Jeśli podoba Ci się MediaElch i chciałbyś wesprzeć proces jego tworzenia, masz szansę to zrobić. Możesz wesprzeć finansowo autora programu za pośrednictwem PayPal.</translation>
+        <translation>Jeśli podoba Ci się MediaElch i chciałbyś wesprzeć proces jego tworzenia, masz szansę to zrobić! Możesz ofiarować darowzinę autorowi programu za pośrednictwem PayPal.</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="40"/>
@@ -4827,7 +4827,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../support/SupportDialog.ui" line="74"/>
         <source>MediaElch makes use of various movie and tv show databases. These databases also need your help to keep their services up and running for free. If you don&apos;t want to donate you can also contribute information and missing artwork if possible.</source>
-        <translation>MediaElch używa różnych baz filmów i seriali. Te bazy także potrzebują pomocy finansowej, aby móc dostarczać swoje usługi za darmo. Jeśli nie chcesz ich wspomagać finansowo, zawsze możesz wnieść swój wkład, wprowadzając brakujące informacje i grafiki.</translation>
+        <translation>MediaElch używa wielu baz filmów i seriali. Te bazy także potrzebują pomocy finansowej, aby móc bezpłatnie oferować swoje usługi. Jeśli nie chcesz ich wesprzeć darowizną, możesz pomóc wprowadzając brakujące informacje i grafiki.</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="84"/>
@@ -5391,12 +5391,12 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="49"/>
         <source>Mark as watched</source>
-        <translation>Oznacz jako oglądany</translation>
+        <translation>Zaznacz jako oglądany</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
         <source>Mark as unwatched</source>
-        <translation>Oznacz jako nieoglądany</translation>
+        <translation>Zaznacz jako nieoglądany</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="51"/>
@@ -5426,7 +5426,7 @@ p, li { white-space: pre-wrap; }⏎
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="328"/>
         <source>Show update needed</source>
-        <translation>Informuj o aktualizacjach</translation>
+        <translation>NIezbędna aktualizacja serialu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="329"/>
@@ -5454,7 +5454,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="30"/>
         <source>If you want to search by an TheTvDb id please prefix it with &quot;id&quot; (e.g. id123).</source>
-        <translation>Jeśli chcesz wyszukać przy pomocy identyfikatora TVDB poprzedź go prefiksem &quot;id&quot; (np. id123).</translation>
+        <translation>Jeśli chcesz wyszukać przy pomocy identyfikatora TVDB, poprzedź go prefiksem &quot;id&quot; (np. id123).</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="70"/>
@@ -5564,22 +5564,22 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="317"/>
         <source>(Un)Check all</source>
-        <translation>O(d)znacz wszystko</translation>
+        <translation>Za(Od)znacz wszystko</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="348"/>
         <source>Update TV Show only</source>
-        <translation>Aktualizuj tylko seriale</translation>
+        <translation>Aktualizuj tylko serial</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="353"/>
         <source>Update TV Show and new Episodes</source>
-        <translation>Aktualizuj seriale i nowe odcinki</translation>
+        <translation>Aktualizuj serial i nowe odcinki</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="358"/>
         <source>Update TV Show and all Episodes</source>
-        <translation>Aktualizuj seriale i wszystkie odcinki</translation>
+        <translation>Aktualizuj serial i wszystkie odcinki</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="363"/>
@@ -5667,7 +5667,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="206"/>
         <source>(Un)Check all</source>
-        <translation>O(d)znacz wszystko</translation>
+        <translation>Za(Od)znacz wszystko</translation>
     </message>
 </context>
 <context>
@@ -5688,12 +5688,12 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="164"/>
         <source>Saving changed TV Shows and Episodes</source>
-        <translation>Zapisywanie zmian danych seriali i odcinków</translation>
+        <translation>Zapisywanie zmienionych seriali i odcinków</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="183"/>
         <source>All TV Shows and Episodes Saved</source>
-        <translation>Wszystkie zmiany danych seriali i odcinków zostały zapisane</translation>
+        <translation>Wszystkie zmienione seriale i odcinki zostały zapisane</translation>
     </message>
 </context>
 <context>
@@ -5726,7 +5726,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="207"/>
         <source>Name</source>
-        <translation>Tytuł</translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="217"/>
@@ -6108,7 +6108,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="150"/>
         <source>Name</source>
-        <translation>Tytuł</translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="160"/>
@@ -6415,7 +6415,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="119"/>
         <source>Delete this archive</source>
-        <translation>Usuń te archiwum</translation>
+        <translation>Usuń to archiwum</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="50"/>
@@ -6430,12 +6430,12 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="64"/>
         <source>Delete archive?</source>
-        <translation>Usunąć archiwum</translation>
+        <translation>Usunąć archiwum?</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="65"/>
         <source>Do you really want to delete this archive?</source>
-        <translation>Jesteś pewien, że chcesz usunąć te archiwum?</translation>
+        <translation>Jesteś pewien, że chcesz usunąć to archiwum?</translation>
     </message>
 </context>
 <context>
@@ -6448,7 +6448,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
         <source>Please make sure you have setup your sources in XBMC and that &quot;Allow programs on other systems to control XBMC&quot; is enabled (Remote Control).</source>
-        <translation>Upewnij się, że dodałeś źródła w programie XBMC i funkcja &quot;Pozwól programom na innych systemach kontrolować XBMC&quot; (Ustawienia -&gt; Usługi -&gt; Zdalne sterowanie) jest włączona.</translation>
+        <translation>Upewnij się, że dodałeś źródła w programie XBMC, a funkcja &quot;Pozwól programom na innych systemach kontrolować XBMC&quot; jest włączona  (Ustawienia -&gt; Usługi -&gt; Zdalne sterowanie).</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="36"/>
@@ -6458,7 +6458,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="46"/>
         <source>This will tell XBMC to remove the changed movies, concerts or shows. Afterwards a XBMC library update is triggered and the removed items will be picked up again.</source>
-        <translation>Funkcja ta wymusi usunięcie przez XBMC zmienionych filmów, koncertów i seriali. Następnie zostanie wywołana aktualizacja biblioteki XBMC i usunięte elementy zostaną dodane ponownie.</translation>
+        <translation>Funkcja ta wymusi usunięcie przez XBMC zmienionych filmów, koncertów i seriali. Następnie zostanie wywołana aktualizacja biblioteki XBMC i usunięte elementy zostaną dodane ponownie z uwzględnienie zmian.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="56"/>
@@ -6468,7 +6468,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
         <source>Retrieve watched status</source>
-        <translation>Pobierz stan obejrzenia</translation>
+        <translation>Pobierz stan oglądania</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="70"/>
@@ -6494,7 +6494,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="140"/>
         <source>Please fill in your XBMC host and port.</source>
-        <translation>Proszę wprowadzić adres i port XBMC</translation>
+        <translation>Proszę wprowadzić adres i port XBMC.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="221"/>
