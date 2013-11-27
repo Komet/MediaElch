@@ -43,12 +43,10 @@ DownloadsWidget::DownloadsWidget(QWidget *parent) :
 #endif
 
     m_extractor = new Extractor(this);
-    m_watcher = new QFileSystemWatcher(this);
 
     connect(m_extractor, SIGNAL(sigError(QString,QString)), this, SLOT(onExtractorError(QString,QString)));
     connect(m_extractor, SIGNAL(sigFinished(QString, bool)), this, SLOT(onExtractorFinished(QString, bool)));
     connect(m_extractor, SIGNAL(sigProgress(QString,int)), this, SLOT(onExtractorProgress(QString,int)));
-    connect(m_watcher, SIGNAL(directoryChanged(QString)), this, SLOT(scanDownloadFolders()));
 
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(scanDownloadFolders()));
 
@@ -67,20 +65,13 @@ void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
 {
     QMutexLocker locker(&m_mutex);
 
-    QStringList dirs;
-    if (!m_watcher->directories().isEmpty())
-        m_watcher->removePaths(m_watcher->directories());
-
     QMap<QString, Package> packages;
     QMap<QString, Import> imports;
     foreach (SettingsDir settingsDir, Settings::instance()->downloadDirectories()) {
         QString dir = settingsDir.path;
-        dirs << dir;
         QDirIterator it(dir, QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files, QDirIterator::Subdirectories | QDirIterator::FollowSymlinks);
         while (it.hasNext()) {
             it.next();
-            if (it.fileInfo().isDir())
-                dirs << it.filePath();
             if (isPackage(it.fileInfo())) {
                 QString base = baseName(it.fileInfo());
                 if (packages.contains(base)) {
@@ -124,8 +115,6 @@ void DownloadsWidget::scanDownloadFolders(bool scanDownloads, bool scanImports)
     }
     foreach (const QString &base, onlyExtraFiles)
         imports.remove(base);
-
-    m_watcher->addPaths(dirs);
 
     if (scanDownloads)
         updatePackagesList(packages);
@@ -234,7 +223,6 @@ void DownloadsWidget::onUnpack(QString baseName, QString password)
             ui->tablePackages->setCellWidget(row, 4, 0);
         }
     }
-    m_watcher->blockSignals(true);
     m_extractor->extract(baseName, m_packages[baseName].files, password);
 }
 
@@ -252,6 +240,8 @@ void DownloadsWidget::onDelete(QString baseName)
             break;
         }
     }
+
+    scanDownloadFolders(true, false);
 }
 
 void DownloadsWidget::onDeleteImport(QString baseName)
@@ -268,6 +258,8 @@ void DownloadsWidget::onDeleteImport(QString baseName)
             break;
         }
     }
+
+    scanDownloadFolders(false, true);
 }
 
 void DownloadsWidget::onExtractorError(QString baseName, QString msg)
@@ -280,8 +272,6 @@ void DownloadsWidget::onExtractorError(QString baseName, QString msg)
 #else
     QMessageBox::warning(this, tr("Extraction failed"), tr("Extraction of %1 has failed: %2").arg(baseName).arg(msg));
 #endif
-
-    m_watcher->blockSignals(false);
 }
 
 void DownloadsWidget::onExtractorFinished(QString baseName, bool success)
@@ -304,7 +294,6 @@ void DownloadsWidget::onExtractorFinished(QString baseName, bool success)
         Notificator::instance()->notify(Notificator::Information, tr("Extraction finished"), tr("Extraction of %1 finished").arg(baseName));
 
     scanDownloadFolders(true, true);
-    m_watcher->blockSignals(false);
 }
 
 void DownloadsWidget::onExtractorProgress(QString baseName, int progress)
@@ -342,6 +331,10 @@ void DownloadsWidget::updateImportsList(QMap<QString, Import> imports)
         ui->tableImports->setItem(row, 1, item1);
         ui->tableImports->setItem(row, 2, new MyTableWidgetItem(it.value().size, true));
 
+        QString guessedType;
+        QString guessedDir;
+        bool guessed = Manager::instance()->database()->guessImport(it.value().baseName, guessedType, guessedDir);
+
         QComboBox *importType = new QComboBox(this);
         importType->setProperty("baseName", it.value().baseName);
         importType->addItem(tr("Movie"), "movie");
@@ -360,8 +353,47 @@ void DownloadsWidget::updateImportsList(QMap<QString, Import> imports)
         actions->setBaseName(it.value().baseName);
         ui->tableImports->setCellWidget(row, 5, actions);
         connect(actions, SIGNAL(sigDelete(QString)), this, SLOT(onDeleteImport(QString)));
+        connect(actions, SIGNAL(sigDialogClosed()), this, SLOT(scanDownloadFolders()));
 
         onChangeImportType(0, importType);
+
+        if (guessed) {
+            importType->blockSignals(true);
+            importDetail->blockSignals(true);
+            if (guessedType == "movie") {
+                importType->setCurrentIndex(0);
+                onChangeImportType(0, importType);
+                for (int i=0, n=importDetail->count() ; i<n ; ++i) {
+                    if (importDetail->itemText(i) == guessedDir) {
+                        importDetail->setCurrentIndex(i);
+                        onChangeImportDetail(i, importDetail);
+                        break;
+                    }
+                }
+            } else if (guessedType == "tvshow") {
+                importType->setCurrentIndex(1);
+                onChangeImportType(1, importType);
+                for (int i=0, n=importDetail->count() ; i<n ; ++i) {
+                    if (importDetail->itemData(i, Qt::UserRole).value<Storage*>()->show()->dir() == guessedDir) {
+                        importDetail->setCurrentIndex(i);
+                        onChangeImportDetail(i, importDetail);
+                        break;
+                    }
+                }
+            } else if (guessedType == "concert") {
+                importType->setCurrentIndex(2);
+                onChangeImportType(2, importType);
+                for (int i=0, n=importDetail->count() ; i<n ; ++i) {
+                    if (importDetail->itemText(i) == guessedDir) {
+                        importDetail->setCurrentIndex(i);
+                        onChangeImportDetail(i, importDetail);
+                        break;
+                    }
+                }
+            }
+            importType->blockSignals(false);
+            importDetail->blockSignals(false);
+        }
     }
 }
 

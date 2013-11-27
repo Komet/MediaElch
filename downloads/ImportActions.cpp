@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include <QMessageBox>
+#include "globals/Manager.h"
 
 ImportActions::ImportActions(QWidget *parent) :
     QWidget(parent),
@@ -96,13 +97,18 @@ void ImportActions::onImport()
 
     if (type() == "movie") {
         m_importDialog->setImportDir(importDir());
-        m_importDialog->execMovie(baseName());
+        if (m_importDialog->execMovie(baseName()) == QDialog::Accepted)
+            Manager::instance()->database()->addImport(baseName(), type(), importDir());
     } else if (type() == "tvshow") {
-        m_importDialog->execTvShow(baseName(), tvShow());
+        if (m_importDialog->execTvShow(baseName(), tvShow()) == QDialog::Accepted)
+            Manager::instance()->database()->addImport(baseName(), type(), tvShow()->dir());
     } else if (type() == "concert") {
         m_importDialog->setImportDir(importDir());
-        m_importDialog->execConcert(baseName());
+        if (m_importDialog->execConcert(baseName()) == QDialog::Accepted)
+            Manager::instance()->database()->addImport(baseName(), type(), importDir());
     }
+
+    emit sigDialogClosed();
 }
 
 void ImportActions::onDelete()

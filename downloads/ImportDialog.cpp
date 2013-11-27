@@ -100,7 +100,7 @@ int ImportDialog::exec()
     return QDialog::exec();
 }
 
-void ImportDialog::execMovie(QString searchString)
+int ImportDialog::execMovie(QString searchString)
 {
     QString id;
     QRegExp rx("tt(\\d+)");
@@ -135,10 +135,10 @@ void ImportDialog::execMovie(QString searchString)
 
     setDefaults(Renamer::TypeMovies);
 
-    exec();
+    return exec();
 }
 
-void ImportDialog::execTvShow(QString searchString, TvShow *tvShow)
+int ImportDialog::execTvShow(QString searchString, TvShow *tvShow)
 {
     Q_UNUSED(searchString);
 
@@ -185,10 +185,10 @@ void ImportDialog::execTvShow(QString searchString, TvShow *tvShow)
 
     setDefaults(Renamer::TypeTvShows);
 
-    exec();
+    return exec();
 }
 
-void ImportDialog::execConcert(QString searchString)
+int ImportDialog::execConcert(QString searchString)
 {
     m_type = "concert";
     m_filesToMove.clear();
@@ -216,7 +216,7 @@ void ImportDialog::execConcert(QString searchString)
 
     setDefaults(Renamer::TypeConcerts);
 
-    exec();
+    return exec();
 }
 
 void ImportDialog::setDefaults(int renameType)

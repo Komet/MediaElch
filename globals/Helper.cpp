@@ -459,3 +459,36 @@ void Helper::applyEffect(QWidget *parent)
         }
     }
 }
+
+qreal Helper::similarity(const QString &s1, const QString &s2)
+{
+    const int len1 = s1.length();
+    const int len2 = s2.length();
+
+    if (s1 == s2)
+        return 1;
+
+    if (len1 == 0 || len2 == 0)
+        return 0;
+
+    QList<QList<int> > d;
+
+    d.insert(0, QList<int>());
+    d[0].insert(0, 0);
+    for (int i=1 ; i<=len1 ; ++i) {
+        d.insert(i, QList<int>());
+        d[i].insert(0, i);
+    }
+    for (int i=1; i<=len2 ; ++i)
+        d[0].insert(i, i);
+
+    for (int i=1 ; i<=len1; ++i) {
+        for (int j=1 ; j<=len2 ; ++j) {
+            d[i].insert(j, qMin(qMin(d[i - 1][j] + 1,d[i][j - 1] + 1),
+                                d[i - 1][j - 1] + (s1.at(i-1) == s2.at(j-1) ? 0 : 1) ));
+        }
+    }
+
+    qreal dist = d[len1][len2];
+    return 1-(dist/qMax(len1, len2));
+}

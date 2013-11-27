@@ -3,7 +3,6 @@
 
 #include <QComboBox>
 #include <QFileInfo>
-#include <QFileSystemWatcher>
 #include <QMap>
 #include <QMutex>
 #include <QWidget>
@@ -64,7 +63,6 @@ private:
     QMap<QString, Package> m_packages;
     QMap<QString, Import> m_imports;
     Extractor *m_extractor;
-    QFileSystemWatcher *m_watcher;
     QMutex m_mutex;
 };
 

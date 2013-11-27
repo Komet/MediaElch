@@ -35,9 +35,9 @@ public:
 
 public slots:
     int exec();
-    void execMovie(QString searchString);
-    void execTvShow(QString searchString, TvShow *tvShow);
-    void execConcert(QString searchString);
+    int execMovie(QString searchString);
+    int execTvShow(QString searchString, TvShow *tvShow);
+    int execConcert(QString searchString);
     void reject();
     void accept();
 

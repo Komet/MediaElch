@@ -44,6 +44,9 @@ public:
     void addEpisodeToShowList(TvShowEpisode *episode, int showsSettingsId, QString tvdbid);
     QList<TvShowEpisode*> showsEpisodes(TvShow *show);
 
+    void addImport(QString fileName, QString type, QString path);
+    bool guessImport(QString fileName, QString &type, QString &path);
+
 private:
     QSqlDatabase *m_db;
 };

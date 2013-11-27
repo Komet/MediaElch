@@ -6,6 +6,7 @@
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QSqlRecord>
+#include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "mediaCenterPlugins/XbmcXml.h"
 #include "settings/Settings.h"
@@ -28,7 +29,7 @@ Database::Database(QObject *parent) :
     } else {
         QSqlQuery query(*m_db);
 
-        int dbVersion = 10;
+        int dbVersion = 11;
         bool dbIsUpToDate = false;
 
         query.prepare("SELECT * FROM sqlite_master WHERE name ='settings' and type='table';");
@@ -60,6 +61,8 @@ Database::Database(QObject *parent) :
             query.prepare("DROP TABLE IF EXISTS episodeFiles;");
             query.exec();
             query.prepare("DROP TABLE IF EXISTS settings;");
+            query.exec();
+            query.prepare("DROP TABLE IF EXISTS importCache;");
             query.exec();
 
             query.prepare("CREATE TABLE IF NOT EXISTS settings( "
@@ -157,6 +160,12 @@ Database::Database(QObject *parent) :
         query.prepare("CREATE INDEX id_episode_idx ON episodeFiles(idEpisode);");
         query.exec();
 
+        query.prepare("CREATE TABLE IF NOT EXISTS importCache ( "
+                      "\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"filename\" text NOT NULL, "
+                      "\"type\" text NOT NULL, "
+                      "\"path\" text NOT NULL);");
+        query.exec();
 
         query.prepare("PRAGMA synchronous=0;");
         query.exec();
@@ -660,4 +669,40 @@ QList<TvShowEpisode*> Database::showsEpisodes(TvShow *show)
         episodes.append(episode);
     }
     return episodes;
+}
+
+void Database::addImport(QString fileName, QString type, QString path)
+{
+    int id = 1;
+    QSqlQuery query(db());
+    query.prepare("SELECT MAX(id) FROM importCache");
+    query.exec();
+    if (query.next())
+        id = query.value(0).toInt()+1;
+
+    query.prepare("INSERT INTO importCache(id, filename, type, path) VALUES(:id, :filename, :type, :path)");
+    query.bindValue(":id", id);
+    query.bindValue(":filename", fileName);
+    query.bindValue(":type", type);
+    query.bindValue(":path", path);
+    query.exec();
+}
+
+bool Database::guessImport(QString fileName, QString &type, QString &path)
+{
+    qreal bestMatch = 0;
+
+    QSqlQuery query(db());
+    query.prepare("SELECT filename, type, path FROM importCache");
+    query.exec();
+    while (query.next()) {
+        qreal p = Helper::similarity(fileName, query.value(query.record().indexOf("filename")).toString());
+        if (p > 0.7 && p > bestMatch) {
+            bestMatch = p;
+            type = query.value(query.record().indexOf("type")).toString();
+            path = query.value(query.record().indexOf("path")).toString();
+        }
+    }
+
+    return (bestMatch != 0);
 }

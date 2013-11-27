@@ -33,6 +33,7 @@ public:
 
 signals:
     void sigDelete(QString);
+    void sigDialogClosed();
 
 private slots:
     void onImport();

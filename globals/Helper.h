@@ -30,6 +30,7 @@ public:
     static void removeFocusRect(QWidget *widget);
     static void applyStyle(QWidget *widget, bool removeFocusRect = true, bool isTable = false);
     static void applyEffect(QWidget *parent);
+    static qreal similarity(const QString &s1, const QString &s2);
 };
 
 #endif // HELPER_H
