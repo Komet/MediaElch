@@ -790,53 +790,53 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
         <translation>Elementy do zaimportowania</translation>
     </message>
     <message numerus="yes">
-        <location filename="../downloads/DownloadsWidget.cpp" line="210"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="338"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="199"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="327"/>
         <source>%n file(s)</source>
         <translation><numerusform>%n plik</numerusform><numerusform>%n plików</numerusform><numerusform>%n plik(ów)</numerusform></translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="277"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="279"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="281"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="295"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="269"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="271"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="273"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="285"/>
         <source>Extraction failed</source>
         <translation>Rozpakowywanie zakończone niepowodzeniem</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="277"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="269"/>
         <source>Exctraction of %1 has failed: %2</source>
         <translation>Rozpakowywanie %1 zakończyło się niepowodzeniem: %2</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="279"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="281"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="271"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="273"/>
         <source>Extraction of %1 has failed: %2</source>
         <translation>Rozpakowywanie %1 zakończyło się niepowodzeniem: %2</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="293"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="304"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="283"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="294"/>
         <source>Extraction finished</source>
         <translation>Rozpakowywanie zakończone</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="304"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="294"/>
         <source>Extraction of %1 finished</source>
         <translation>Rozpakowywanie %1 zakończone</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="347"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="340"/>
         <source>Movie</source>
         <translation>Film</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="348"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="341"/>
         <source>TV Show</source>
         <translation>Serial</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="349"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="342"/>
         <source>Concert</source>
         <translation>Koncert</translation>
     </message>
@@ -2136,12 +2136,12 @@ Jeśli chcesz połączyć dwa gatunki, po prostu nadaj im tę samą nazwę.</tra
         <translation>Usuń</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportActions.cpp" line="111"/>
+        <location filename="../downloads/ImportActions.cpp" line="117"/>
         <source>Delete file?</source>
         <translation>Usunąć plik?</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportActions.cpp" line="112"/>
+        <location filename="../downloads/ImportActions.cpp" line="118"/>
         <source>Do you really want to delete this file?</source>
         <translation>Jesteś pewien, że chcesz usunąć ten plik?</translation>
     </message>
