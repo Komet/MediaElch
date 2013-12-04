@@ -789,53 +789,53 @@
         <translation type="unfinished"/>
     </message>
     <message numerus="yes">
-        <location filename="../downloads/DownloadsWidget.cpp" line="210"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="338"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="199"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="327"/>
         <source>%n file(s)</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="277"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="279"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="281"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="295"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="269"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="271"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="273"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="285"/>
         <source>Extraction failed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="277"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="269"/>
         <source>Exctraction of %1 has failed: %2</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="279"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="281"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="271"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="273"/>
         <source>Extraction of %1 has failed: %2</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="293"/>
-        <location filename="../downloads/DownloadsWidget.cpp" line="304"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="283"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="294"/>
         <source>Extraction finished</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="304"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="294"/>
         <source>Extraction of %1 finished</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="347"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="340"/>
         <source>Movie</source>
         <translation>Film</translation>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="348"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="341"/>
         <source>TV Show</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../downloads/DownloadsWidget.cpp" line="349"/>
+        <location filename="../downloads/DownloadsWidget.cpp" line="342"/>
         <source>Concert</source>
         <translation>Koncerty</translation>
     </message>
@@ -851,12 +851,12 @@
     <message>
         <location filename="../export/ExportDialog.ui" line="32"/>
         <source>Export your complete collection.</source>
-        <translation type="unfinished"/>
+        <translation>Exportovat celou vaši kolekci</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="39"/>
         <source>Message</source>
-        <translation type="unfinished"/>
+        <translation>Zpráva</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="51"/>
@@ -866,7 +866,7 @@
     <message>
         <location filename="../export/ExportDialog.ui" line="61"/>
         <source>Items to export</source>
-        <translation type="unfinished"/>
+        <translation>Položky k exportu</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="68"/>
@@ -2134,12 +2134,12 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../downloads/ImportActions.cpp" line="111"/>
+        <location filename="../downloads/ImportActions.cpp" line="117"/>
         <source>Delete file?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../downloads/ImportActions.cpp" line="112"/>
+        <location filename="../downloads/ImportActions.cpp" line="118"/>
         <source>Do you really want to delete this file?</source>
         <translation type="unfinished"/>
     </message>
@@ -4573,7 +4573,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1240"/>
         <source>Message</source>
-        <translation type="unfinished"/>
+        <translation>Zpráva</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1271"/>
