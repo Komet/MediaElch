@@ -396,7 +396,11 @@ void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, TvShowUpdateType up
             QDomElement elem = domDoc.elementsByTagName("Episode").at(i).toElement();
 
             TvShowEpisode *episode = 0;
-            if (Settings::instance()->tvShowDvdOrder() && !elem.elementsByTagName("DVD_season").isEmpty() && !elem.elementsByTagName("DVD_episodenumber").isEmpty()) {
+            if (Settings::instance()->tvShowDvdOrder() &&
+                    !elem.elementsByTagName("DVD_season").isEmpty() &&
+                    !elem.elementsByTagName("DVD_season").at(0).toElement().text().isEmpty() &&
+                    !elem.elementsByTagName("DVD_episodenumber").isEmpty() &&
+                    !elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text().isEmpty()) {
                 QRegExp rx("^(\\d*)\\D*");
                 int seasonNumber = -1;
                 int episodeNumber = -1;
@@ -651,7 +655,10 @@ void TheTvDb::onEpisodeLoadFinished()
                 if (episode->season() == seasonNumber && episode->episode() == episodeNumber)
                     airedElem = elem;
             }
-            if (!elem.elementsByTagName("DVD_season").isEmpty() && !elem.elementsByTagName("DVD_episodenumber").isEmpty()) {
+            if (!elem.elementsByTagName("DVD_season").isEmpty() &&
+                    !elem.elementsByTagName("DVD_season").at(0).toElement().text().isEmpty() &&
+                    !elem.elementsByTagName("DVD_episodenumber").isEmpty() &&
+                    !elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text().isEmpty()) {
                 QRegExp rx("^(\\d*)\\D*");
                 int seasonNumber = -1;
                 int episodeNumber = -1;
