@@ -3788,12 +3788,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="98"/>
+        <location filename="../main.cpp" line="90"/>
         <source>Logfile could not be openened</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="99"/>
+        <location filename="../main.cpp" line="91"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation type="unfinished"></translation>
     </message>
