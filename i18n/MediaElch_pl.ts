@@ -3763,12 +3763,12 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="98"/>
+        <location filename="../main.cpp" line="90"/>
         <source>Logfile could not be openened</source>
         <translation>Plik logów nie może zostać otworzony</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="99"/>
+        <location filename="../main.cpp" line="91"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>Plik logów %1 nie może zostać otworzony do zapisu.</translation>
     </message>
