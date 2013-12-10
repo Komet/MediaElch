@@ -30,6 +30,8 @@ public:
     QPoint settingsWindowPosition();
     QSize importDialogSize();
     QPoint importDialogPosition();
+    QSize makeMkvDialogSize();
+    QPoint makeMkvDialogPosition();
     bool mainWindowMaximized();
     QByteArray mainSplitterState();
     QList<SettingsDir> movieDirectories();
@@ -37,6 +39,7 @@ public:
     QList<SettingsDir> concertDirectories();
     QList<SettingsDir> downloadDirectories();
     QString unrar();
+    QString makeMkvCon();
     bool deleteArchives();
     QString excludeWords();
     QString xbmcHost();
@@ -84,6 +87,8 @@ public:
     void setSettingsWindowPosition(QPoint settingsWindowPosition);
     void setImportDialogSize(QSize size);
     void setImportDialogPosition(QPoint position);
+    void setMakeMkvDialogSize(QSize size);
+    void setMakeMkvDialogPosition(QPoint position);
     void setMainWindowMaximized(bool max);
     void setMainSplitterState(QByteArray state);
     void setMovieDirectories(QList<SettingsDir> dirs);
@@ -91,6 +96,7 @@ public:
     void setConcertDirectories(QList<SettingsDir> dirs);
     void setDownloadDirectories(QList<SettingsDir> dirs);
     void setUnrar(QString unrar);
+    void setMakeMkvCon(QString makeMkvCon);
     void setDeleteArchives(bool deleteArchives);
     void setExcludeWords(QString words);
     void setUseProxy(bool use);
@@ -144,6 +150,7 @@ private:
     QList<SettingsDir> m_concertDirectories;
     QList<SettingsDir> m_downloadDirectories;
     QString m_unrar;
+    QString m_makeMkvCon;
     bool m_deleteArchives;
     QString m_excludeWords;
     QSize m_mainWindowSize;
@@ -152,6 +159,8 @@ private:
     QPoint m_settingsWindowPosition;
     QSize m_importDialogSize;
     QPoint m_importDialogPosition;
+    QSize m_makeMkvDialogSize;
+    QPoint m_makeMkvDialogPosition;
     bool m_mainWindowMaximized;
     QByteArray m_mainSplitterState;
     bool m_useProxy;

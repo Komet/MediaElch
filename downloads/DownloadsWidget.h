@@ -7,6 +7,7 @@
 #include <QMutex>
 #include <QWidget>
 #include "downloads/Extractor.h"
+#include "downloads/MakeMkvDialog.h"
 
 namespace Ui {
 class DownloadsWidget;
@@ -51,6 +52,7 @@ private slots:
     void onExtractorProgress(QString baseName, int progress);
     void onChangeImportType(int currentIndex, QComboBox *sender = 0);
     void onChangeImportDetail(int currentIndex, QComboBox *sender = 0);
+    void onImportWithMakeMkv();
 
 private:
     Ui::DownloadsWidget *ui;
@@ -64,6 +66,7 @@ private:
     QMap<QString, Import> m_imports;
     Extractor *m_extractor;
     QMutex m_mutex;
+    MakeMkvDialog *m_makeMkvDialog;
 };
 
 #endif // DOWNLOADSWIDGET_H

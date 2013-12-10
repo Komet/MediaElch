@@ -29,6 +29,7 @@ DownloadsWidget::DownloadsWidget(QWidget *parent) :
     ui->tablePackages->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tablePackages->setColumnWidth(3, 200);
     ui->tableImports->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->btnImportMakeMkv->setButtonStyle(StyledPushButton::StyleLightBlue);
 
 #ifdef Q_OS_WIN32
     ui->tableImports->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
@@ -43,10 +44,12 @@ DownloadsWidget::DownloadsWidget(QWidget *parent) :
 #endif
 
     m_extractor = new Extractor(this);
+    m_makeMkvDialog = new MakeMkvDialog(this);
 
     connect(m_extractor, SIGNAL(sigError(QString,QString)), this, SLOT(onExtractorError(QString,QString)));
     connect(m_extractor, SIGNAL(sigFinished(QString, bool)), this, SLOT(onExtractorFinished(QString, bool)));
     connect(m_extractor, SIGNAL(sigProgress(QString,int)), this, SLOT(onExtractorProgress(QString,int)));
+    connect(ui->btnImportMakeMkv, SIGNAL(clicked()), this, SLOT(onImportWithMakeMkv()));
 
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(scanDownloadFolders()));
 
@@ -485,4 +488,16 @@ void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox *sender)
 bool DownloadsWidget::hasNewItems()
 {
     return !m_imports.isEmpty() || !m_packages.isEmpty();
+}
+
+void DownloadsWidget::onImportWithMakeMkv()
+{
+    if (!QFileInfo(Settings::instance()->makeMkvCon()).isExecutable()) {
+        QMessageBox::warning(this, tr("makemkvcon missing"),
+                             tr("Please set the correct path to makemkvcon in MediaElchs settings."),
+                             QMessageBox::Ok);
+        return;
+    }
+
+    m_makeMkvDialog->exec();
 }

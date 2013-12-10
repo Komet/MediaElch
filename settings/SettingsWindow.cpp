@@ -109,6 +109,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     connect(ExportTemplateLoader::instance(this), SIGNAL(sigTemplateInstalled(ExportTemplate*,bool)), this, SLOT(onTemplateInstalled(ExportTemplate*,bool)));
     connect(ExportTemplateLoader::instance(this), SIGNAL(sigTemplateUninstalled(ExportTemplate*,bool)), this, SLOT(onTemplateUninstalled(ExportTemplate*,bool)));
     connect(ui->btnChooseUnrar, SIGNAL(clicked()), this, SLOT(onChooseUnrar()));
+    connect(ui->btnChooseMakemkvcon, SIGNAL(clicked()), this, SLOT(onChooseMakeMkvCon()));
     connect(ui->chkEnableAdultScrapers, SIGNAL(clicked()), this, SLOT(onShowAdultScrapers()));
 
     ui->movieNfo->setProperty("dataFileType", DataFileType::MovieNfo);
@@ -298,6 +299,7 @@ void SettingsWindow::loadSettings()
 
     ui->chkDeleteArchives->setChecked(m_settings->deleteArchives());
     ui->unrarPath->setText(m_settings->unrar());
+    ui->makemkvconPath->setText(m_settings->makeMkvCon());
 }
 
 void SettingsWindow::saveSettings()
@@ -379,6 +381,7 @@ void SettingsWindow::saveSettings()
 
     // Downloads
     m_settings->setUnrar(ui->unrarPath->text());
+    m_settings->setMakeMkvCon(ui->makemkvconPath->text());
     m_settings->setDeleteArchives(ui->chkDeleteArchives->isChecked());
 
     m_settings->saveSettings();
@@ -680,6 +683,13 @@ void SettingsWindow::onChooseUnrar()
     QString unrar = QFileDialog::getOpenFileName(this, tr("Choose unrar"), QDir::homePath());
     if (!unrar.isEmpty())
         ui->unrarPath->setText(unrar);
+}
+
+void SettingsWindow::onChooseMakeMkvCon()
+{
+    QString makeMkvCon = QFileDialog::getOpenFileName(this, tr("Choose makemkvcon"), QDir::homePath());
+    if (!makeMkvCon.isEmpty())
+        ui->makemkvconPath->setText(makeMkvCon);
 }
 
 void SettingsWindow::onDirTypeChanged(QComboBox *comboBox)

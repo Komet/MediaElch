@@ -252,9 +252,12 @@ void Settings::loadSettings()
 
     // Downloads
     m_unrar = settings()->value("Downloads/Unrar").toString();
+    m_makeMkvCon = settings()->value("Downloads/MakeMkvCon").toString();
     m_deleteArchives = settings()->value("Downloads/DeleteArchives", false).toBool();
     m_importDialogSize = settings()->value("Downloads/ImportDialogSize").toSize();
     m_importDialogPosition = settings()->value("Downloads/ImportDialogPosition").toPoint();
+    m_makeMkvDialogSize = settings()->value("Downloads/MakeMkvDialogSize").toSize();
+    m_makeMkvDialogPosition = settings()->value("Downloads/MakeMkvDialogPosition").toPoint();
     m_keepDownloadSource = settings()->value("Downloads/KeepSource", true).toBool();
 
     // Movies
@@ -384,6 +387,7 @@ void Settings::saveSettings()
     settings()->endArray();
 
     settings()->setValue("Downloads/Unrar", m_unrar);
+    settings()->setValue("Downloads/MakeMkvCon", m_makeMkvCon);
     settings()->setValue("Downloads/DeleteArchives", m_deleteArchives);
     settings()->setValue("Downloads/KeepSource", m_keepDownloadSource);
 
@@ -454,6 +458,16 @@ QSize Settings::importDialogSize()
 QPoint Settings::importDialogPosition()
 {
     return m_importDialogPosition;
+}
+
+QSize Settings::makeMkvDialogSize()
+{
+    return m_makeMkvDialogSize;
+}
+
+QPoint Settings::makeMkvDialogPosition()
+{
+    return m_makeMkvDialogPosition;
 }
 
 /**
@@ -694,6 +708,18 @@ void Settings::setImportDialogPosition(QPoint position)
 {
     m_importDialogPosition = position;
     settings()->setValue("Downloads/ImportDialogPosition", position);
+}
+
+void Settings::setMakeMkvDialogSize(QSize size)
+{
+    m_makeMkvDialogSize = size;
+    settings()->setValue("Downloads/MakeMkvDialogSize", size);
+}
+
+void Settings::setMakeMkvDialogPosition(QPoint position)
+{
+    m_makeMkvDialogPosition = position;
+    settings()->setValue("Downloads/MakeMkvDialogPosition", position);
 }
 
 /**
@@ -1168,4 +1194,14 @@ void Settings::setShowAdultScrapers(bool show)
 bool Settings::showAdultScrapers() const
 {
     return m_showAdultScrapers;
+}
+
+void Settings::setMakeMkvCon(QString makeMkvCon)
+{
+    m_makeMkvCon = makeMkvCon;
+}
+
+QString Settings::makeMkvCon()
+{
+    return m_makeMkvCon;
 }

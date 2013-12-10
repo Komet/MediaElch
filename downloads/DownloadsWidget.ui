@@ -146,24 +146,48 @@
        </spacer>
       </item>
       <item>
-       <widget class="QLabel" name="labelImportable">
-        <property name="font">
-         <font>
-          <family>Helvetica Neue</family>
-          <pointsize>22</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: #224f7f;
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="labelImportable">
+          <property name="font">
+           <font>
+            <family>Helvetica Neue</family>
+            <pointsize>22</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: #224f7f;
 </string>
-        </property>
-        <property name="text">
-         <string>Importable items</string>
-        </property>
-        <property name="indent">
-         <number>12</number>
-        </property>
-       </widget>
+          </property>
+          <property name="text">
+           <string>Importable items</string>
+          </property>
+          <property name="indent">
+           <number>12</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="StyledPushButton" name="btnImportMakeMkv">
+          <property name="text">
+           <string>Import movie with MakeMKV</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
        <widget class="QTableWidget" name="tableImports">
@@ -234,6 +258,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>StyledPushButton</class>
+   <extends>QPushButton</extends>
+   <header>smallWidgets/StyledPushButton.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -49,6 +49,7 @@ private slots:
     void onTemplateInstalled(ExportTemplate *exportTemplate, bool success);
     void onTemplateUninstalled(ExportTemplate *exportTemplate, bool success);
     void onChooseUnrar();
+    void onChooseMakeMkvCon();
     void onDirTypeChanged(QComboBox *comboBox = 0);
     void onShowAdultScrapers();
 
