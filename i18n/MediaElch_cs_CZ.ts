@@ -2563,37 +2563,37 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="243"/>
         <source>Placeholders</source>
-        <translation type="unfinished"/>
+        <translation>Zástupné tagy</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="251"/>
         <source>Original Title</source>
-        <translation type="unfinished"/>
+        <translation>Originální název</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="280"/>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Popis</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="303"/>
         <source>Title</source>
-        <translation type="unfinished"/>
+        <translation>Název</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="326"/>
         <source>File extension</source>
-        <translation type="unfinished"/>
+        <translation>Přípona souboru</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="342"/>
         <source>Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Zástupce</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="365"/>
         <source>Year</source>
-        <translation type="unfinished"/>
+        <translation>Rok</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="375"/>
@@ -2603,22 +2603,22 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="382"/>
         <source>Part number of the current file</source>
-        <translation type="unfinished"/>
+        <translation>Číslo části vybraného souboru</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="399"/>
         <source>Directory Naming</source>
-        <translation type="unfinished"/>
+        <translation>Pojmenování adresářů</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="409"/>
         <source>File Naming</source>
-        <translation type="unfinished"/>
+        <translation>Pojmenování souborů</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="419"/>
         <source>Multi-File Naming</source>
-        <translation type="unfinished"/>
+        <translation>Více-Souborový Název</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="429"/>
@@ -2628,7 +2628,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="473"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>Zavřít</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="493"/>
