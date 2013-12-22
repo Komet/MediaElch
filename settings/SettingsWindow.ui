@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>873</width>
-    <height>675</height>
+    <width>977</width>
+    <height>625</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -37,6 +37,9 @@
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="SlidingStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
       <widget class="QWidget" name="page_0">
        <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,1,0,0">
         <item>
@@ -147,10 +150,24 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
           <property name="fieldGrowthPolicy">
            <enum>QFormLayout::ExpandingFieldsGrow</enum>
           </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Store trailer URLs in YouTube Plugin format</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="1">
            <widget class="QCheckBox" name="useYoutubePluginUrls">
             <property name="text">
              <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>Automatically load and save stream details from files</string>
             </property>
            </widget>
           </item>
@@ -161,10 +178,24 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
             </property>
            </widget>
           </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>Ignore articles when sorting (&quot;The&quot;)</string>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="1">
            <widget class="QCheckBox" name="chkIgnoreArticlesWhenSorting">
             <property name="text">
              <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_10">
+            <property name="text">
+             <string>Download actor images</string>
             </property>
            </widget>
           </item>
@@ -175,6 +206,13 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
             </property>
            </widget>
           </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_56">
+            <property name="text">
+             <string>Check for Updates on start</string>
+            </property>
+           </widget>
+          </item>
           <item row="4" column="1">
            <widget class="QCheckBox" name="chkCheckForUpdates">
             <property name="text">
@@ -182,7 +220,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
             </property>
            </widget>
           </item>
-          <item row="8" column="0">
+          <item row="6" column="0">
            <widget class="QLabel" name="label_excludeWords">
             <property name="text">
              <string>Words to exclude from media names (seperated by commas and non case-sensitive)</string>
@@ -195,7 +233,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
             </property>
            </widget>
           </item>
-          <item row="8" column="1">
+          <item row="6" column="1">
            <widget class="QTextEdit" name="excludeWordsText">
             <property name="maximumSize">
              <size>
@@ -208,96 +246,15 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="1">
-           <widget class="QCheckBox" name="chkDeleteArchives">
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_5">
-            <property name="text">
-             <string>Store trailer URLs in YouTube Plugin format</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>Automatically load and save stream details from files</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_8">
-            <property name="text">
-             <string>Ignore articles when sorting (&quot;The&quot;)</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_10">
-            <property name="text">
-             <string>Download actor images</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label_56">
-            <property name="text">
-             <string>Check for Updates on start</string>
-            </property>
-           </widget>
-          </item>
           <item row="5" column="0">
-           <widget class="QLabel" name="label_57">
+           <widget class="QLabel" name="label_54">
             <property name="text">
-             <string>Automatically delete archives after extraction</string>
+             <string>Startup section</string>
             </property>
            </widget>
           </item>
-          <item row="6" column="0">
-           <widget class="QLabel" name="label_58">
-            <property name="text">
-             <string>Path to unrar</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1">
-           <layout class="QHBoxLayout" name="horizontalLayout_5">
-            <item>
-             <widget class="QLineEdit" name="unrarPath"/>
-            </item>
-            <item>
-             <widget class="QPushButton" name="btnChooseUnrar">
-              <property name="text">
-               <string>Choose</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="7" column="0">
-           <widget class="QLabel" name="label_53">
-            <property name="text">
-             <string>Path to makemkvcon</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1">
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
-            <item>
-             <widget class="QLineEdit" name="makemkvconPath"/>
-            </item>
-            <item>
-             <widget class="QPushButton" name="btnChooseMakemkvcon">
-              <property name="text">
-               <string>Choose</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
+          <item row="5" column="1">
+           <widget class="QComboBox" name="comboStartupSection"/>
           </item>
          </layout>
         </item>
@@ -1296,6 +1253,70 @@ border: none;</string>
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="page_9">
+       <layout class="QVBoxLayout" name="verticalLayout_13">
+        <item>
+         <layout class="QFormLayout" name="formLayout_8">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_57">
+            <property name="text">
+             <string>Automatically delete archives after extraction</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QCheckBox" name="chkDeleteArchives">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_58">
+            <property name="text">
+             <string>Path to unrar</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <widget class="QLineEdit" name="unrarPath"/>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnChooseUnrar">
+              <property name="text">
+               <string>Choose</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_53">
+            <property name="text">
+             <string>Path to makemkvcon</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QLineEdit" name="makemkvconPath"/>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnChooseMakemkvcon">
+              <property name="text">
+               <string>Choose</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
     <item>
@@ -1367,6 +1388,7 @@ border: none;</string>
    <addaction name="actionXBMC"/>
    <addaction name="actionNetwork"/>
    <addaction name="actionExport"/>
+   <addaction name="actionImport"/>
   </widget>
   <action name="actionMovies">
    <property name="icon">
@@ -1529,6 +1551,29 @@ border: none;</string>
     <number>7</number>
    </property>
   </action>
+  <action name="actionImport">
+   <property name="icon">
+    <iconset resource="../MediaElch.qrc">
+     <normaloff>:/settings/import.png</normaloff>:/settings/import.png</iconset>
+   </property>
+   <property name="text">
+    <string>Import</string>
+   </property>
+   <property name="toolTip">
+    <string>Import</string>
+   </property>
+   <property name="iconNormal" stdset="0">
+    <iconset resource="../MediaElch.qrc">
+     <normaloff>:/settings/import.png</normaloff>:/settings/import.png</iconset>
+   </property>
+   <property name="iconActive" stdset="0">
+    <iconset resource="../MediaElch.qrc">
+     <normaloff>:/settings/import_active.png</normaloff>:/settings/import_active.png</iconset>
+   </property>
+   <property name="page" stdset="0">
+    <number>8</number>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -1672,6 +1717,22 @@ border: none;</string>
     <hint type="destinationlabel">
      <x>437</x>
      <y>317</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionImport</sender>
+   <signal>triggered()</signal>
+   <receiver>SettingsWindow</receiver>
+   <slot>onAction()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>488</x>
+     <y>312</y>
     </hint>
    </hints>
   </connection>

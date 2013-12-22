@@ -149,6 +149,11 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->horizontalSpacerButtons->setGeometry(QRect(0, 0, 1, 1));
 #endif
 
+    ui->comboStartupSection->addItem(tr("Movies"), "movies");
+    ui->comboStartupSection->addItem(tr("TV Shows"), "tvshows");
+    ui->comboStartupSection->addItem(tr("Concerts"), "concerts");
+    ui->comboStartupSection->addItem(tr("Import"), "import");
+
     loadSettings();
 }
 
@@ -225,6 +230,13 @@ void SettingsWindow::loadSettings()
     ui->chkCheckForUpdates->setChecked(m_settings->checkForUpdates());
     ui->chkEnableAdultScrapers->setChecked(m_settings->showAdultScrapers());
     onShowAdultScrapers();
+
+    for (int i=0, n=ui->comboStartupSection->count() ; i<n ; ++i) {
+        if (ui->comboStartupSection->itemData(i, Qt::UserRole) == m_settings->startupSection()) {
+            ui->comboStartupSection->setCurrentIndex(i);
+            break;
+        }
+    }
 
     // Directories
     ui->dirs->setRowCount(0);
@@ -324,6 +336,7 @@ void SettingsWindow::saveSettings()
     m_settings->setIgnoreArticlesWhenSorting(ui->chkIgnoreArticlesWhenSorting->isChecked());
     m_settings->setCheckForUpdates(ui->chkCheckForUpdates->isChecked());
     m_settings->setShowAdultScrapers(ui->chkEnableAdultScrapers->isChecked());
+    m_settings->setStartupSection(ui->comboStartupSection->itemData(ui->comboStartupSection->currentIndex()).toString());
 
     m_settings->setXbmcHost(ui->xbmcHost->text());
     m_settings->setXbmcPort(ui->xbmcPort->text().toInt());

@@ -78,6 +78,7 @@ public:
     QString imageCacheDir();
     QString exportTemplatesDir();
     bool showAdultScrapers() const;
+    QString startupSection();
 
     bool autoLoadStreamDetails();
 
@@ -132,6 +133,7 @@ public:
     void setMultiScrapeOnlyWithId(bool onlyWithId);
     void setMultiScrapeSaveEach(bool saveEach);
     void setShowAdultScrapers(bool show);
+    void setStartupSection(QString startupSection);
 
     static QString applicationDir();
 
@@ -193,6 +195,7 @@ private:
     bool m_multiScrapeOnlyWithId;
     bool m_multiScrapeSaveEach;
     bool m_showAdultScrapers;
+    QString m_startupSection;
 
     void setupProxy();
 };

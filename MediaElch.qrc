@@ -163,5 +163,7 @@
         <file alias="xbmc_active.png">img/settings/xbmc_active.png</file>
         <file alias="downloads_active.png">img/settings/downloads_active.png</file>
         <file alias="downloads.png">img/settings/downloads.png</file>
+        <file alias="import_active.png">img/settings/import_active.png</file>
+        <file alias="import.png">img/settings/import.png</file>
     </qresource>
 </RCC>

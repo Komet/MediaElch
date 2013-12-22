@@ -101,6 +101,7 @@ void Settings::loadSettings()
     m_ignoreArticlesWhenSorting = settings()->value("IgnoreArticlesWhenSorting", false).toBool();
     m_checkForUpdates = settings()->value("CheckForUpdates", true).toBool();
     m_showAdultScrapers = settings()->value("Scrapers/ShowAdult", false).toBool();
+    m_startupSection = settings()->value("StartupSection", "movies").toString();
 
     // XBMC
     m_xbmcHost = settings()->value("XBMC/RemoteHost").toString();
@@ -282,6 +283,7 @@ void Settings::saveSettings()
     settings()->setValue("IgnoreArticlesWhenSorting", m_ignoreArticlesWhenSorting);
     settings()->setValue("CheckForUpdates", m_checkForUpdates);
     settings()->setValue("Scrapers/ShowAdult", m_showAdultScrapers);
+    settings()->setValue("StartupSection", m_startupSection);
 
     // XBMC
     settings()->setValue("XBMC/RemoteHost", m_xbmcHost);
@@ -1204,4 +1206,14 @@ void Settings::setMakeMkvCon(QString makeMkvCon)
 QString Settings::makeMkvCon()
 {
     return m_makeMkvCon;
+}
+
+void Settings::setStartupSection(QString startupSection)
+{
+    m_startupSection = startupSection;
+}
+
+QString Settings::startupSection()
+{
+    return m_startupSection;
 }

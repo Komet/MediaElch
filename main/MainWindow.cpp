@@ -169,9 +169,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->labelDownloads->setFont(font);
 #endif
 
+    if (Settings::instance()->startupSection() == "tvshows")
+        onMenuTvShows();
+    else if (Settings::instance()->startupSection() == "concerts")
+        onMenuConcerts();
+    else if (Settings::instance()->startupSection() == "import")
+        onMenuDownloads();
+    else
+        onMenuMovies();
+
     // hack. without only the fileScannerDialog pops up and blocks until it has finished
     show();
-    onMenu(WidgetMovies);
 
     // Start scanning for files
     QTimer::singleShot(0, m_fileScannerDialog, SLOT(exec()));
