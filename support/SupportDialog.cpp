@@ -1,6 +1,8 @@
 #include "SupportDialog.h"
 #include "ui_SupportDialog.h"
 
+#include "settings/Settings.h"
+
 SupportDialog::SupportDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SupportDialog)
@@ -11,9 +13,17 @@ SupportDialog::SupportDialog(QWidget *parent) :
 #else
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
+
+    connect(ui->btnAlreadyDonated, SIGNAL(clicked()), this, SLOT(onAlreadyDonated()));
 }
 
 SupportDialog::~SupportDialog()
 {
     delete ui;
+}
+
+void SupportDialog::onAlreadyDonated()
+{
+    Settings::instance()->setDonated(true);
+    accept();
 }

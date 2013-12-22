@@ -79,6 +79,7 @@ public:
     QString exportTemplatesDir();
     bool showAdultScrapers() const;
     QString startupSection();
+    bool donated() const;
 
     bool autoLoadStreamDetails();
 
@@ -134,6 +135,7 @@ public:
     void setMultiScrapeSaveEach(bool saveEach);
     void setShowAdultScrapers(bool show);
     void setStartupSection(QString startupSection);
+    void setDonated(bool donated);
 
     static QString applicationDir();
 
@@ -142,6 +144,7 @@ public slots:
 
 signals:
     void sigSettingsSaved();
+    void sigDonated(bool);
 
 private:
     QSettings *m_settings;
@@ -196,6 +199,7 @@ private:
     bool m_multiScrapeSaveEach;
     bool m_showAdultScrapers;
     QString m_startupSection;
+    bool m_donated;
 
     void setupProxy();
 };

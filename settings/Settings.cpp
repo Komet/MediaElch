@@ -102,6 +102,7 @@ void Settings::loadSettings()
     m_checkForUpdates = settings()->value("CheckForUpdates", true).toBool();
     m_showAdultScrapers = settings()->value("Scrapers/ShowAdult", false).toBool();
     m_startupSection = settings()->value("StartupSection", "movies").toString();
+    m_donated = settings()->value("Donated", false).toBool();
 
     // XBMC
     m_xbmcHost = settings()->value("XBMC/RemoteHost").toString();
@@ -284,6 +285,7 @@ void Settings::saveSettings()
     settings()->setValue("CheckForUpdates", m_checkForUpdates);
     settings()->setValue("Scrapers/ShowAdult", m_showAdultScrapers);
     settings()->setValue("StartupSection", m_startupSection);
+    settings()->setValue("Donated", m_donated);
 
     // XBMC
     settings()->setValue("XBMC/RemoteHost", m_xbmcHost);
@@ -1216,4 +1218,17 @@ void Settings::setStartupSection(QString startupSection)
 QString Settings::startupSection()
 {
     return m_startupSection;
+}
+
+void Settings::setDonated(bool donated)
+{
+    m_donated = donated;
+    settings()->setValue("Donated", m_donated);
+    settings()->sync();
+    emit sigDonated(donated);
+}
+
+bool Settings::donated() const
+{
+    return m_donated;
 }

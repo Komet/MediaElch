@@ -3,6 +3,7 @@
 
 #include <QGraphicsDropShadowEffect>
 #include <QPainter>
+#include "settings/Settings.h"
 
 Navbar::Navbar(QWidget *parent) :
     QWidget(parent),
@@ -36,6 +37,8 @@ Navbar::Navbar(QWidget *parent) :
 
     connect(ui->filterWidget, SIGNAL(sigFilterChanged(QList<Filter*>,QString)), this, SIGNAL(sigFilterChanged(QList<Filter*>,QString)));
 
+    connect(Settings::instance(), SIGNAL(sigDonated(bool)), this, SLOT(onDonated(bool)));
+
     QList<QColor> navbarColors;
     navbarColors << QColor(241, 96, 106, 255);
     navbarColors << QColor(248, 155, 53, 255);
@@ -63,6 +66,7 @@ Navbar::Navbar(QWidget *parent) :
     effect->setOffset(2);
     effect->setBlurRadius(4);
     ui->btnDonate->setGraphicsEffect(effect);
+    ui->btnDonate->setVisible(!Settings::instance()->donated());
 }
 
 Navbar::~Navbar()
@@ -108,4 +112,9 @@ void Navbar::setFilterWidgetEnabled(bool enabled)
 void Navbar::setActiveWidget(MainWidgets widget)
 {
     ui->filterWidget->setActiveWidget(widget);
+}
+
+void Navbar::onDonated(bool donated)
+{
+    ui->btnDonate->setVisible(!donated);
 }

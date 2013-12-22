@@ -40,6 +40,9 @@ signals:
     void sigLike();
     void sigFilterChanged(QList<Filter*>, QString);
 
+private slots:
+    void onDonated(bool donated);
+
 private:
     Ui::Navbar *ui;
 };

@@ -18,6 +18,9 @@ public:
     explicit SupportDialog(QWidget *parent = 0);
     ~SupportDialog();
 
+private slots:
+    void onAlreadyDonated();
+
 private:
     Ui::SupportDialog *ui;
 };
