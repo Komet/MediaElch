@@ -239,7 +239,7 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="181"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>영화 제거</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="197"/>
@@ -429,7 +429,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="199"/>
         <source>Backdrop</source>
-        <translation>팬아트</translation>
+        <translation>배경</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="206"/>
@@ -439,7 +439,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="213"/>
         <source>Logo, Clear Art, CD Art</source>
-        <translation type="unfinished"/>
+        <translation>로고, 클리어 아트, CD 아트</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="216"/>
@@ -558,7 +558,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="371"/>
         <source>Not watched</source>
-        <translation type="unfinished"/>
+        <translation>미시청</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="393"/>
@@ -732,7 +732,7 @@
     <message>
         <location filename="../scrapers/CustomMovieScraper.cpp" line="32"/>
         <source>Custom Movie Scraper</source>
-        <translation type="unfinished"/>
+        <translation>사용자 영화 자료수집기</translation>
     </message>
 </context>
 <context>
@@ -781,7 +781,7 @@
         <location filename="../downloads/DownloadsWidget.ui" line="117"/>
         <location filename="../downloads/DownloadsWidget.ui" line="236"/>
         <source>Size</source>
-        <translation type="unfinished"/>
+        <translation>크기</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="163"/>
@@ -797,7 +797,7 @@
         <location filename="../downloads/DownloadsWidget.cpp" line="202"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="330"/>
         <source>%n file(s)</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 파일</numerusform></translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="272"/>
@@ -805,18 +805,18 @@
         <location filename="../downloads/DownloadsWidget.cpp" line="276"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="288"/>
         <source>Extraction failed</source>
-        <translation type="unfinished"/>
+        <translation>압축 풀기 실패</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="272"/>
         <source>Exctraction of %1 has failed: %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 압축 풀기 실패: %2</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="274"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="276"/>
         <source>Extraction of %1 has failed: %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 압축 풀기 실패: %2</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="286"/>
@@ -827,7 +827,7 @@
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="297"/>
         <source>Extraction of %1 finished</source>
-        <translation type="unfinished"/>
+        <translation>%1 압축 풀기 완료</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="343"/>
@@ -837,12 +837,12 @@
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="344"/>
         <source>TV Show</source>
-        <translation type="unfinished"/>
+        <translation>TV 쇼</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="345"/>
         <source>Concert</source>
-        <translation type="unfinished"/>
+        <translation>콘서트</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="496"/>
@@ -871,12 +871,12 @@
     <message>
         <location filename="../export/ExportDialog.ui" line="39"/>
         <source>Message</source>
-        <translation type="unfinished"/>
+        <translation>메지지</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="51"/>
         <source>Theme</source>
-        <translation type="unfinished"/>
+        <translation>테마</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="61"/>
@@ -939,7 +939,7 @@
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="36"/>
         <source>Theme Name</source>
-        <translation type="unfinished"/>
+        <translation>테마 이름</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="46"/>
@@ -1003,12 +1003,12 @@
     <message>
         <location filename="../downloads/Extractor.cpp" line="28"/>
         <source>No files to extract</source>
-        <translation type="unfinished"/>
+        <translation>압축을 풀 파일 없음</translation>
     </message>
     <message>
         <location filename="../downloads/Extractor.cpp" line="38"/>
         <source>Unrar not found</source>
-        <translation type="unfinished"/>
+        <translation>Unrar 찾을 수 없음</translation>
     </message>
 </context>
 <context>
@@ -1136,7 +1136,7 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="51"/>
         <source>3D</source>
-        <translation type="unfinished"/>
+        <translation>3D</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="52"/>
@@ -1156,7 +1156,7 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="57"/>
         <source>Preferred Disc Type</source>
-        <translation type="unfinished"/>
+        <translation>선호하는 디스크 종류</translation>
     </message>
 </context>
 <context>
@@ -1262,7 +1262,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="140"/>
         <source>IMDB ID &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>IMDB ID &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="363"/>
@@ -1321,7 +1321,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="450"/>
         <source>Set &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>시리즈 &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="451"/>
@@ -1415,14 +1415,14 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="540"/>
         <source>Movie has Backdrop</source>
-        <translation>영화 팬아트 있음</translation>
+        <translation>영화 배경 있음</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="540"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="541"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="544"/>
         <source>Backdrop</source>
-        <translation>팬아트</translation>
+        <translation>배경</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="541"/>
@@ -1433,18 +1433,18 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="543"/>
         <source>Movie has no Backdrop</source>
-        <translation>영화 팬아트 없음</translation>
+        <translation>영화 배경 없음</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="543"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="544"/>
         <source>No Backdrop</source>
-        <translation>팬아트 없음</translation>
+        <translation>배경 없음</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="544"/>
         <source>No Fanart</source>
-        <translation type="unfinished"/>
+        <translation>팬아트 없음</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="546"/>
@@ -1764,18 +1764,18 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="624"/>
         <source>Movie has no IMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>영화 IMDB ID 없음</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="624"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="625"/>
         <source>No IMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>IMDB ID 없음</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="625"/>
         <source>IMDB</source>
-        <translation type="unfinished"/>
+        <translation>IMDB</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="627"/>
@@ -1882,7 +1882,7 @@
     <message>
         <location filename="../movies/GenreWidget.ui" line="180"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>영화 제거</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="196"/>
@@ -2057,17 +2057,17 @@
     <message>
         <location filename="../globals/ImageDialog.ui" line="210"/>
         <source>Zoom out</source>
-        <translation type="unfinished"/>
+        <translation>줌 아웃</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="240"/>
         <source>Preview size</source>
-        <translation type="unfinished"/>
+        <translation>미리보기 크기</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="268"/>
         <source>Zoom in</source>
-        <translation type="unfinished"/>
+        <translation>줌 인</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="293"/>
@@ -2123,7 +2123,7 @@
     <message>
         <location filename="../globals/ImagePreviewDialog.ui" line="17"/>
         <source>Preview</source>
-        <translation type="unfinished"/>
+        <translation>미리보기</translation>
     </message>
     <message>
         <location filename="../globals/ImagePreviewDialog.ui" line="82"/>
@@ -2141,22 +2141,22 @@
     <message>
         <location filename="../downloads/ImportActions.ui" line="26"/>
         <source>Import</source>
-        <translation type="unfinished"/>
+        <translation>가져오기</translation>
     </message>
     <message>
         <location filename="../downloads/ImportActions.ui" line="33"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>삭제</translation>
     </message>
     <message>
         <location filename="../downloads/ImportActions.cpp" line="117"/>
         <source>Delete file?</source>
-        <translation type="unfinished"/>
+        <translation>파일 삭제?</translation>
     </message>
     <message>
         <location filename="../downloads/ImportActions.cpp" line="118"/>
         <source>Do you really want to delete this file?</source>
-        <translation type="unfinished"/>
+        <translation>파일을 정말 삭제하겠습니까?</translation>
     </message>
 </context>
 <context>
@@ -2169,17 +2169,17 @@
     <message>
         <location filename="../downloads/ImportDialog.ui" line="37"/>
         <source>Loading</source>
-        <translation type="unfinished"/>
+        <translation>불러오는 중</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="44"/>
         <source>Success</source>
-        <translation type="unfinished"/>
+        <translation>성공</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="51"/>
         <source>Loading movie...</source>
-        <translation type="unfinished"/>
+        <translation>영화 불러오는 중...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="73"/>
@@ -2275,90 +2275,90 @@
     <message>
         <location filename="../downloads/ImportDialog.ui" line="436"/>
         <source>Import</source>
-        <translation type="unfinished"/>
+        <translation>가져오기</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="288"/>
         <source>Loading movie information...</source>
-        <translation type="unfinished"/>
+        <translation>영화 정보 가져오는 중...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="304"/>
         <source>Loading concert information...</source>
-        <translation type="unfinished"/>
+        <translation>콘서트 정보 가져오는 중...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="322"/>
         <source>Loading episode information...</source>
-        <translation type="unfinished"/>
+        <translation>에피소드 정보 가져오는 중...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="379"/>
         <source>Movie information was loaded</source>
-        <translation type="unfinished"/>
+        <translation>영화 정보 가져오기 완료</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="392"/>
         <source>Concert information was loaded</source>
-        <translation type="unfinished"/>
+        <translation>콘서트 정보 가져오기 완료</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="410"/>
         <location filename="../downloads/ImportDialog.cpp" line="427"/>
         <source>Episode information was loaded</source>
-        <translation type="unfinished"/>
+        <translation>에피소드 정보 가져오기 완료</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="439"/>
         <source>Renaming not possible</source>
-        <translation type="unfinished"/>
+        <translation>이름 변경 불가</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="439"/>
         <source>Please enter all naming patterns</source>
-        <translation type="unfinished"/>
+        <translation>모든 이름 형식을 입력하세요</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="456"/>
         <location filename="../downloads/ImportDialog.cpp" line="514"/>
         <source>Creating destination directory failed</source>
-        <translation type="unfinished"/>
+        <translation>대상 디렉터리 만들기 실패</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="457"/>
         <location filename="../downloads/ImportDialog.cpp" line="515"/>
         <source>The destination directory %1 could not be created</source>
-        <translation type="unfinished"/>
+        <translation>대상 디렉터리 %1 을(를) 만들 수 없습니다</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="473"/>
         <source>Importing movie...</source>
-        <translation type="unfinished"/>
+        <translation>영화 가져오는 중...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="501"/>
         <source>Importing episode...</source>
-        <translation type="unfinished"/>
+        <translation>에피소드 가져오는 중...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="532"/>
         <source>Importing concert...</source>
-        <translation type="unfinished"/>
+        <translation>콘서트 가져오는 중...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="641"/>
         <source>Import finished</source>
-        <translation type="unfinished"/>
+        <translation>가져오기 완료</translation>
     </message>
     <message numerus="yes">
         <location filename="../downloads/ImportDialog.cpp" line="641"/>
         <source>Import of %n file(s) has finished</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 파일 가져오기 완료</numerusform></translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="644"/>
         <source>Import has finished</source>
-        <translation type="unfinished"/>
+        <translation>가져오기 완료</translation>
     </message>
 </context>
 <context>
@@ -2475,7 +2475,7 @@
         <extracomment>Main menu entry
 ----------
 Main menu entry (tooltip)</extracomment>
-        <translation type="unfinished"/>
+        <translation>가져오기</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="757"/>
@@ -2515,7 +2515,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.cpp" line="706"/>
         <source>Updates available</source>
-        <translation type="unfinished"/>
+        <translation>업데이트 사용 가능</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="707"/>
@@ -2538,27 +2538,27 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="114"/>
         <source>Import Tracks</source>
-        <translation type="unfinished"/>
+        <translation>트랙 가져오기</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="162"/>
         <source>Backup Disc</source>
-        <translation type="unfinished"/>
+        <translation>백업 디스크</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="207"/>
         <source>Loading</source>
-        <translation type="unfinished"/>
+        <translation>불러오는 중</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="214"/>
         <source>Success</source>
-        <translation type="unfinished"/>
+        <translation>성공</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="221"/>
         <source>Loading movie...</source>
-        <translation type="unfinished"/>
+        <translation>영화 불러오는 중...</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="243"/>
@@ -2598,12 +2598,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="375"/>
         <source>&lt;partNo&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;partNo&gt;</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="382"/>
         <source>Part number of the current file</source>
-        <translation type="unfinished"/>
+        <translation>현재 파일의 파트 번호</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="399"/>
@@ -2623,7 +2623,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="429"/>
         <source>Import directory</source>
-        <translation type="unfinished"/>
+        <translation>디렉터리 가져오기</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="473"/>
@@ -2633,37 +2633,37 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="493"/>
         <source>Import</source>
-        <translation type="unfinished"/>
+        <translation>가져오기</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="191"/>
         <source>No tracks selected</source>
-        <translation type="unfinished"/>
+        <translation>선택한 트랙 없음</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="192"/>
         <source>Please select at least one track you want to import.</source>
-        <translation type="unfinished"/>
+        <translation>최소 한 개의 가져올 트랙을 선택하세요.</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="227"/>
         <source>Loading movie information...</source>
-        <translation type="unfinished"/>
+        <translation>영화 정보 불러오는 중...</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="252"/>
         <source>Movie information was loaded</source>
-        <translation type="unfinished"/>
+        <translation>영화 정보 가져오기 완료</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="273"/>
         <source>Creating destination directory failed</source>
-        <translation type="unfinished"/>
+        <translation>대상 디렉터리 만들기 실패</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="274"/>
         <source>The destination directory %1 could not be created</source>
-        <translation type="unfinished"/>
+        <translation>대상 디렉터리 %1 을(를) 만들 수 없습니다</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="358"/>
@@ -2678,7 +2678,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="361"/>
         <source>Import has finished</source>
-        <translation type="unfinished"/>
+        <translation>가져오기 완료</translation>
     </message>
 </context>
 <context>
@@ -2709,7 +2709,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="34"/>
         <source>IMDB</source>
-        <translation type="unfinished"/>
+        <translation>IMDB</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="35"/>
@@ -2719,167 +2719,167 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="38"/>
         <source>Argentina</source>
-        <translation type="unfinished"/>
+        <translation>아르헨티나</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="39"/>
         <source>Australia</source>
-        <translation type="unfinished"/>
+        <translation>오스트레일리아</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="40"/>
         <source>Belgium</source>
-        <translation type="unfinished"/>
+        <translation>벨기에</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="41"/>
         <source>Brazil</source>
-        <translation type="unfinished"/>
+        <translation>브라질</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="42"/>
         <source>Canada</source>
-        <translation type="unfinished"/>
+        <translation>캐나다</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="43"/>
         <source>Chile</source>
-        <translation type="unfinished"/>
+        <translation>칠레</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="44"/>
         <source>Finland</source>
-        <translation type="unfinished"/>
+        <translation>핀란드</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="45"/>
         <source>France</source>
-        <translation type="unfinished"/>
+        <translation>프랑스</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="46"/>
         <source>Germany</source>
-        <translation type="unfinished"/>
+        <translation>독일</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="47"/>
         <source>Hong Kong</source>
-        <translation type="unfinished"/>
+        <translation>홍콩</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="48"/>
         <source>Iceland</source>
-        <translation type="unfinished"/>
+        <translation>아이슬란드</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="49"/>
         <source>India</source>
-        <translation type="unfinished"/>
+        <translation>인도</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="50"/>
         <source>Ireland</source>
-        <translation type="unfinished"/>
+        <translation>아일랜드</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="51"/>
         <source>Israel</source>
-        <translation type="unfinished"/>
+        <translation>이스라엘</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="52"/>
         <source>Italy</source>
-        <translation type="unfinished"/>
+        <translation>이탈리아</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="53"/>
         <source>Japan</source>
-        <translation type="unfinished"/>
+        <translation>일본</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="54"/>
         <source>Malaysia</source>
-        <translation type="unfinished"/>
+        <translation>말레이지아</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="55"/>
         <source>Netherlands</source>
-        <translation type="unfinished"/>
+        <translation>네덜란드</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="56"/>
         <source>New Zealand</source>
-        <translation type="unfinished"/>
+        <translation>뉴질랜드</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="57"/>
         <source>Norway</source>
-        <translation type="unfinished"/>
+        <translation>노르웨이</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="58"/>
         <source>Peru</source>
-        <translation type="unfinished"/>
+        <translation>페루</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="59"/>
         <source>Philippines</source>
-        <translation type="unfinished"/>
+        <translation>필리핀</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="60"/>
         <source>Portugal</source>
-        <translation type="unfinished"/>
+        <translation>포르투갈</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="61"/>
         <source>Singapore</source>
-        <translation type="unfinished"/>
+        <translation>싱가포르</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="62"/>
         <source>South Africa</source>
-        <translation type="unfinished"/>
+        <translation>남아프리카</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="63"/>
         <source>South Korea</source>
-        <translation type="unfinished"/>
+        <translation>대한민국</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="64"/>
         <source>Spain</source>
-        <translation type="unfinished"/>
+        <translation>스페인</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="65"/>
         <source>Sweden</source>
-        <translation type="unfinished"/>
+        <translation>스웨덴</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="66"/>
         <source>Switzerland</source>
-        <translation type="unfinished"/>
+        <translation>스위스</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="67"/>
         <source>UK</source>
-        <translation type="unfinished"/>
+        <translation>영국</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="68"/>
         <source>USA</source>
-        <translation type="unfinished"/>
+        <translation>미국</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="71"/>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>사용자명</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="73"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>비밀번호</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="75"/>
@@ -2906,19 +2906,19 @@ Main menu entry (tooltip)</extracomment>
         <location filename="../scrapers/MediaPassion.cpp" line="159"/>
         <location filename="../scrapers/MediaPassion.cpp" line="204"/>
         <source>In order to use this scraper you have to set your username and password in MediaElchs settings.</source>
-        <translation type="unfinished"/>
+        <translation>이 자료수집기를 사용하려면 MediaElch 설정에서 사용자명과 비밀번호를 설정하여야 합니다</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="193"/>
         <location filename="../scrapers/MediaPassion.cpp" line="247"/>
         <source>Scraper returned an error</source>
-        <translation type="unfinished"/>
+        <translation>자료수집기 오류</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="193"/>
         <location filename="../scrapers/MediaPassion.cpp" line="247"/>
         <source>The scraper returned the following error: %1</source>
-        <translation type="unfinished"/>
+        <translation>자료 수집기에서 오류가 발생하였습니다: %1</translation>
     </message>
 </context>
 <context>
@@ -3156,7 +3156,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="261"/>
         <source>Backdrop</source>
-        <translation>팬아트</translation>
+        <translation>배경</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="201"/>
@@ -3338,7 +3338,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="225"/>
         <source>Backdrop</source>
-        <translation>팬아트</translation>
+        <translation>배경</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="232"/>
@@ -3497,7 +3497,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="372"/>
         <source>Not watched</source>
-        <translation type="unfinished"/>
+        <translation>미시청</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="381"/>
@@ -3858,27 +3858,27 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main/Navbar.ui" line="75"/>
         <source>Save</source>
-        <translation type="unfinished"/>
+        <translation>저장</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="95"/>
         <source>Save All</source>
-        <translation type="unfinished"/>
+        <translation>모두 저장</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="115"/>
         <source>Rename selected files</source>
-        <translation type="unfinished"/>
+        <translation>선택한 파일 이름 변경</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="135"/>
         <source>Synchronize to XBMC</source>
-        <translation type="unfinished"/>
+        <translation>XBMC에 동기화</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="155"/>
         <source>Export Database</source>
-        <translation type="unfinished"/>
+        <translation>데이터베이스 내보내기</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="175"/>
@@ -3898,7 +3898,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main/Navbar.ui" line="281"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>기부</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="14"/>
@@ -3949,12 +3949,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main/MainWindow.cpp" line="710"/>
         <source>Don&apos;t check for updates</source>
-        <translation type="unfinished"/>
+        <translation>업데이트 확인 안 함</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="332"/>
         <source>Don&apos;t show this hint again</source>
-        <translation type="unfinished"/>
+        <translation>힌트 다시 보지 않기</translation>
     </message>
 </context>
 <context>
@@ -3962,7 +3962,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../quazip/quazip/quazipfile.cpp" line="217"/>
         <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished"/>
+        <translation>ZIP/UNZIP API 오류 %1</translation>
     </message>
 </context>
 <context>
@@ -3995,7 +3995,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../renamer/Renamer.ui" line="189"/>
         <source>Part number of the current file</source>
-        <translation type="unfinished"/>
+        <translation>현재 파일의 파트 번호</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="202"/>
@@ -4055,7 +4055,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../renamer/Renamer.ui" line="322"/>
         <source>&lt;title&gt; (&lt;year&gt;)</source>
-        <translation type="unfinished"/>
+        <translation>&lt;title&gt; (&lt;year&gt;)</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="329"/>
@@ -4070,7 +4070,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../renamer/Renamer.ui" line="352"/>
         <source>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="359"/>
@@ -4080,7 +4080,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../renamer/Renamer.ui" line="369"/>
         <source>&lt;title&gt;.&lt;extension&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;title&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="376"/>
@@ -4095,7 +4095,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../renamer/Renamer.ui" line="390"/>
         <source>Season &lt;season&gt;</source>
-        <translation type="unfinished"/>
+        <translation>시즌 &lt;season&gt;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="402"/>
@@ -4104,7 +4104,11 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.Lucida Grande UI'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Lucida Grande UI&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="415"/>
@@ -4114,7 +4118,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.ui" line="438"/>
         <source>Dry Run</source>
-        <translation type="unfinished"/>
+        <translation>결과 미리보기</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="448"/>
@@ -4210,27 +4214,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="318"/>
         <source>&lt;b&gt;Rename Banner&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;배너 이름 변경r&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="335"/>
         <source>&lt;b&gt;Rename Thumb&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;썸네일 이름 변경&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="352"/>
         <source>&lt;b&gt;Rename Logo&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;로고 이름 변경&lt;/b&gt; &quot;%1&quot;에서 &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="369"/>
         <source>&lt;b&gt;Rename Clear Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;끌리어 아트 이름 변경t&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="386"/>
         <source>&lt;b&gt;Rename CD Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;CD 아트 이름 변경&lt;/b&gt; &quot;%1&quot; 에서 &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="402"/>
@@ -4311,7 +4315,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="191"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>영화 제거</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="213"/>
@@ -4341,7 +4345,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="293"/>
         <source>Backdrop</source>
-        <translation>팬아트</translation>
+        <translation>배경</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.cpp" line="64"/>
@@ -4429,23 +4433,23 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWindow.ui" line="228"/>
         <source>Automatically load and save stream details from files</source>
-        <translation type="unfinished"/>
+        <translation>파일에서 스트림 정보를 자동으로 가져와 저장합니다.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="235"/>
         <source>Ignore articles when sorting (&quot;The&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>정렬할 때 무시 (&quot;The&quot;)</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="242"/>
         <source>Download actor images</source>
-        <translation type="unfinished"/>
+        <translation>배우 이미지 다운로드</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="188"/>
         <location filename="../settings/SettingsWindow.ui" line="207"/>
         <source>Words to exclude from media names (seperated by commas and non case-sensitive)</source>
-        <translation type="unfinished"/>
+        <translation>미디어 이름에서 제외할 단어 (쉼표로 구분하며 대소문자 구분 없음)</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="45"/>
@@ -4456,7 +4460,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="249"/>
         <source>Check for Updates on start</source>
-        <translation type="unfinished"/>
+        <translation>시작할 때 업데이트 확인</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="284"/>
@@ -4473,12 +4477,12 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="321"/>
         <source>Enable adult movie scrapers</source>
-        <translation type="unfinished"/>
+        <translation>성인 영화 자료수집 사용</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="392"/>
         <source>Custom Movie Scraper</source>
-        <translation type="unfinished"/>
+        <translation>사용자 영화 자료수집기</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="398"/>
@@ -4488,7 +4492,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="428"/>
         <source>Item</source>
-        <translation type="unfinished"/>
+        <translation>항목</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="449"/>
@@ -4505,7 +4509,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="474"/>
         <location filename="../settings/SettingsWindow.ui" line="1007"/>
         <source>Nfo</source>
-        <translation type="unfinished"/>
+        <translation>Nfo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="481"/>
@@ -4520,7 +4524,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="752"/>
         <location filename="../settings/SettingsWindow.ui" line="1021"/>
         <source>Backdrop</source>
-        <translation>팬아트</translation>
+        <translation>배경</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="495"/>
@@ -4562,17 +4566,17 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="617"/>
         <source>Movie outline</source>
-        <translation type="unfinished"/>
+        <translation>영화 개요</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="624"/>
         <source>Use plot when outline is not available</source>
-        <translation type="unfinished"/>
+        <translation>개요를 사용할 수 없는 경우 줄거리 사용</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="631"/>
         <source>Movie Set Artwork</source>
-        <translation type="unfinished"/>
+        <translation>시리즈 영화 아트쿼크</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="639"/>
@@ -4587,34 +4591,34 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="652"/>
         <source>Movie Set Poster Filename</source>
-        <translation type="unfinished"/>
+        <translation>시리즈 영화 포스터 파일이름</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="659"/>
         <location filename="../settings/SettingsWindow.ui" line="662"/>
         <source>folder.jpg</source>
-        <translation type="unfinished"/>
+        <translation>folder.jpg</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="669"/>
         <source>Movie Set Fanart Filname</source>
-        <translation type="unfinished"/>
+        <translation>시리즈 영화 팬아트 파일이름</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="676"/>
         <location filename="../settings/SettingsWindow.ui" line="679"/>
         <source>fanart.jpg</source>
-        <translation type="unfinished"/>
+        <translation>fanart.jpg</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="686"/>
         <source>Artwork directory</source>
-        <translation type="unfinished"/>
+        <translation>아트워크 디렉터리</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="698"/>
         <source>Choose directory</source>
-        <translation type="unfinished"/>
+        <translation>디렉터리 선택</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="713"/>
@@ -4629,7 +4633,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="738"/>
         <source>Show nfo</source>
-        <translation type="unfinished"/>
+        <translation>쇼 nfo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="780"/>
@@ -4644,17 +4648,17 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="794"/>
         <source>Season Backdrop</source>
-        <translation type="unfinished"/>
+        <translation>시즌 배경</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="801"/>
         <source>Episode nfo</source>
-        <translation type="unfinished"/>
+        <translation>에피소드 nfo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="808"/>
         <source>Episode thumbnail</source>
-        <translation type="unfinished"/>
+        <translation>에피소드 썸네일</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="815"/>
@@ -4664,7 +4668,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="942"/>
         <source>Season Thumb</source>
-        <translation type="unfinished"/>
+        <translation>시즌 썸네일</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="982"/>
@@ -4679,55 +4683,55 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1151"/>
         <source>8080</source>
-        <translation type="unfinished"/>
+        <translation>8080</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="263"/>
         <source>Path to unrar</source>
-        <translation type="unfinished"/>
+        <translation>unrar 경로</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="256"/>
         <source>Automatically delete archives after extraction</source>
-        <translation type="unfinished"/>
+        <translation>압축을 푼 다음 압축파일 자동 삭제</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="275"/>
         <location filename="../settings/SettingsWindow.ui" line="296"/>
         <source>Choose</source>
-        <translation type="unfinished"/>
+        <translation>선택</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1130"/>
         <location filename="../settings/SettingsWindow.ui" line="1166"/>
         <source>Host</source>
-        <translation type="unfinished"/>
+        <translation>호스트</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1137"/>
         <source>127.0.0.1</source>
-        <translation type="unfinished"/>
+        <translation>127.0.0.1</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1144"/>
         <location filename="../settings/SettingsWindow.ui" line="1173"/>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation>포트</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1180"/>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>사용자명</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1187"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>비밀번호</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1214"/>
         <source>Enable Proxy</source>
-        <translation type="unfinished"/>
+        <translation>프락시 사용</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1221"/>
@@ -4738,22 +4742,22 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1229"/>
         <source>HTTP</source>
-        <translation type="unfinished"/>
+        <translation>HTTP</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1234"/>
         <source>SOCKS 5</source>
-        <translation type="unfinished"/>
+        <translation>SOCKS 5</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1261"/>
         <source>Message</source>
-        <translation type="unfinished"/>
+        <translation>메지지</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1292"/>
         <source>Theme</source>
-        <translation type="unfinished"/>
+        <translation>테마</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1319"/>
@@ -4764,7 +4768,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1326"/>
         <source>Save Settings</source>
-        <translation type="unfinished"/>
+        <translation>설정 저장</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1336"/>
@@ -4797,7 +4801,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1458"/>
         <source>XBMC</source>
-        <translation type="unfinished"/>
+        <translation>XBMC</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1478"/>
@@ -4812,7 +4816,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="392"/>
         <source>Settings saved</source>
-        <translation type="unfinished"/>
+        <translation>설정 저장됨</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="426"/>
@@ -4991,7 +4995,12 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Helvetica'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=6EU9GPSQ8PSUA&quot;&gt;&lt;img src=&quot;:/img/btn_donate_LG.gif&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Helvetica&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=6EU9GPSQ8PSUA&quot;&gt;&lt;img src=&quot;:/img/btn_donate_LG.gif&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="74"/>
@@ -5455,7 +5464,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../globals/TrailerDialog.ui" line="178"/>
         <source>Preview</source>
-        <translation type="unfinished"/>
+        <translation>미리보기</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="183"/>
@@ -5591,7 +5600,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="55"/>
         <source>Show missing episodes</source>
-        <translation type="unfinished"/>
+        <translation>누락 에피소드 보기</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="328"/>
@@ -5844,7 +5853,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowUpdater.cpp" line="57"/>
         <source>Updating TV Shows</source>
-        <translation type="unfinished"/>
+        <translation>TV 쇼 업데이트 중</translation>
     </message>
 </context>
 <context>
@@ -5915,7 +5924,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="281"/>
         <source>Display Season</source>
-        <translation type="unfinished"/>
+        <translation>시즌 표시</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="288"/>
@@ -5965,7 +5974,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="400"/>
         <source>Display Episode</source>
-        <translation type="unfinished"/>
+        <translation>에피소드 표시</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="450"/>
@@ -6257,7 +6266,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="63"/>
         <source>TV Show has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>TV 쇼가 변경되었습니다. 변경 사항을 되돌리려면 클릭하세요.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="90"/>
@@ -6317,17 +6326,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="227"/>
         <source>Existing</source>
-        <translation type="unfinished"/>
+        <translation>있음</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="234"/>
         <source>Missing</source>
-        <translation type="unfinished"/>
+        <translation>없음</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="244"/>
         <source>Download Theme</source>
-        <translation type="unfinished"/>
+        <translation>테마 다운로드</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="275"/>
@@ -6501,7 +6510,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="17"/>
         <source>TV Tunes</source>
-        <translation type="unfinished"/>
+        <translation>TV Tunes</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="60"/>
@@ -6564,47 +6573,47 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="69"/>
         <source>Cancel extraction</source>
-        <translation type="unfinished"/>
+        <translation>압축 풀기 취소</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="89"/>
         <source>Extract without password</source>
-        <translation type="unfinished"/>
+        <translation>비밀번호 없이 압축 풀기</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="92"/>
         <source>Extract</source>
-        <translation type="unfinished"/>
+        <translation>압축 풀기</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="99"/>
         <source>Extract with password</source>
-        <translation type="unfinished"/>
+        <translation>비밀번호로 압축 풀기</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="119"/>
         <source>Delete this archive</source>
-        <translation type="unfinished"/>
+        <translation>압축파일 삭제</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="50"/>
         <source>Extraction password</source>
-        <translation type="unfinished"/>
+        <translation>압축 풀기 비밀번호</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="50"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>비밀번호</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="64"/>
         <source>Delete archive?</source>
-        <translation type="unfinished"/>
+        <translation>압축파일을 식제하겠습니까?</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="65"/>
         <source>Do you really want to delete this archive?</source>
-        <translation type="unfinished"/>
+        <translation>압축파일을 정말 삭제하겠습니까?</translation>
     </message>
 </context>
 <context>
@@ -6617,12 +6626,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
         <source>Please make sure you have setup your sources in XBMC and that &quot;Allow programs on other systems to control XBMC&quot; is enabled (Remote Control).</source>
-        <translation type="unfinished"/>
+        <translation>XBMC에서 소스를 추가하고 XBMC 설정의 원격제어 섹션에서 &quot;다른 시스템의 프로그램이 XBMC를 제어하는 것을 허용&quot; 항목을 켜야 합니다.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="36"/>
         <source>Update contents</source>
-        <translation type="unfinished"/>
+        <translation>콘텐츠 업데이트</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="46"/>
@@ -6637,12 +6646,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
         <source>Retrieve watched status</source>
-        <translation type="unfinished"/>
+        <translation>시청 상태 복구</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="70"/>
         <source>The fields last played and playcount will be retrieved from XBMC.</source>
-        <translation type="unfinished"/>
+        <translation>마지막 재생, 재생 횟수 필드를 XBMC에서 다시 가져옵니다.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="101"/>
@@ -6663,32 +6672,32 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="140"/>
         <source>Please fill in your XBMC host and port.</source>
-        <translation type="unfinished"/>
+        <translation>XBMC 호스트와 포트 번호를 입력하세요.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="221"/>
         <source>Getting contents from XBMC</source>
-        <translation type="unfinished"/>
+        <translation>XBMC에서 콘서트 가져오는 중</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="394"/>
         <source>Removing movies from database</source>
-        <translation type="unfinished"/>
+        <translation>데이터베이스에서 영화 제거 중</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="413"/>
         <source>Removing concerts from database</source>
-        <translation type="unfinished"/>
+        <translation>데이터베이스에서 콘서트 제거 중</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="432"/>
         <source>Removing TV shows from database</source>
-        <translation type="unfinished"/>
+        <translation>데이터베이스에서 TV 쇼 제거 중</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="451"/>
         <source>Removing episodes from database</source>
-        <translation type="unfinished"/>
+        <translation>데이터베이스에서 에피소드 제거 중</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="490"/>
