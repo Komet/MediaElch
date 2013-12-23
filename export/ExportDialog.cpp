@@ -472,7 +472,7 @@ void ExportDialog::replaceMultiBlock(QString &m, QString blockName, QStringList 
             }
             list << subItem;
         }
-        m.replace(block, list.join("\n"));
+        m.replace(block, list.join(" "));
     }
 }
 
