@@ -597,6 +597,12 @@ void FilterWidget::initFilters()
     m_movieFilters << new Filter(tr("Movie has no Genre"), tr("No Genre"),
                                  QStringList() << tr("Genre") << tr("No Genre"), MovieFilters::Genres, false);
 
+    m_movieFilters << new Filter(tr("Movie has Rating"), tr("Rating"),
+                                 QStringList() << tr("Rating"), MovieFilters::Rating, true);
+
+    m_movieFilters << new Filter(tr("Movie has no Rating"), tr("No Rating"),
+                                 QStringList() << tr("Rating") << tr("No Rating"), MovieFilters::Rating, false);
+
     m_movieFilters << new Filter(tr("Stream Details loaded"), tr("Stream Details"),
                                  QStringList() << tr("Stream Details"), MovieFilters::StreamDetails, true);
 

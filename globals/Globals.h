@@ -282,6 +282,7 @@ namespace MovieFilters {
     const int Thumb         = 23;
     const int ImdbId        = 24;
     const int Set           = 25;
+    const int Rating        = 28;
 }
 
 namespace TvShowFilters {

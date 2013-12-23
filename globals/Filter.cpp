@@ -136,6 +136,8 @@ bool Filter::accepts(Movie *movie)
         return (m_hasInfo && movie->director() == m_shortText) || (!m_hasInfo && movie->director().isEmpty());
     if (m_info == MovieFilters::ImdbId)
         return (m_hasInfo && movie->id() == m_shortText) || (!m_hasInfo && movie->id().isEmpty());
+    if (m_info == MovieFilters::Rating)
+        return (m_hasInfo && movie->rating() != 0) || (!m_hasInfo && movie->rating() == 0);
 
     if (m_info == MovieFilters::Quality) {
         if (m_shortText == "1080p") {
