@@ -1676,7 +1676,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="601"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="604"/>
         <source>Rating</source>
-        <translation type="unfinished"/>
+        <translation>Hodnocení</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="603"/>

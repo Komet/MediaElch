@@ -1670,25 +1670,25 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="600"/>
         <source>Movie has Rating</source>
-        <translation type="unfinished"/>
+        <translation>Film z oceną</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="600"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="601"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="604"/>
         <source>Rating</source>
-        <translation type="unfinished"/>
+        <translation>Ocena</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="603"/>
         <source>Movie has no Rating</source>
-        <translation type="unfinished"/>
+        <translation>Film bez oceny</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="603"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="604"/>
         <source>No Rating</source>
-        <translation type="unfinished"/>
+        <translation>Brak oceny</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="606"/>

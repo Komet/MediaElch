@@ -1669,25 +1669,25 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="600"/>
         <source>Movie has Rating</source>
-        <translation type="unfinished"/>
+        <translation>La película tiene puntuación</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="600"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="601"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="604"/>
         <source>Rating</source>
-        <translation type="unfinished"/>
+        <translation>Puntuación</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="603"/>
         <source>Movie has no Rating</source>
-        <translation type="unfinished"/>
+        <translation>La película no tiene puntuación</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="603"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="604"/>
         <source>No Rating</source>
-        <translation type="unfinished"/>
+        <translation>No hay puntuación</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="606"/>
