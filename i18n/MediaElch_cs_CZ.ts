@@ -1282,7 +1282,7 @@
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="382"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="613"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="619"/>
         <source>Studio</source>
         <translation>Studio</translation>
     </message>
@@ -1293,7 +1293,7 @@
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="400"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="616"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="622"/>
         <source>Country</source>
         <translation>Země</translation>
     </message>
@@ -1345,14 +1345,14 @@
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="485"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="619"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="625"/>
         <source>Director</source>
         <translation>Režisér</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="524"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="638"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="640"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="644"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="646"/>
         <source>Title</source>
         <translation>Název</translation>
     </message>
@@ -1668,180 +1668,203 @@
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="600"/>
-        <source>Stream Details loaded</source>
-        <translation>Podrobnosti streamu načteny</translation>
+        <source>Movie has Rating</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="600"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="601"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="604"/>
-        <source>Stream Details</source>
-        <translation>Podrobnosti streamu</translation>
+        <source>Rating</source>
+        <translation>Hodnocení</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="603"/>
-        <source>Stream Details not loaded</source>
-        <translation>Podrobnosti streamu nebyly načteny</translation>
+        <source>Movie has no Rating</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="603"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="604"/>
-        <source>No Stream Details</source>
-        <translation>Žádné podrobnosti streamu</translation>
+        <source>No Rating</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="606"/>
-        <source>Movie has Actors</source>
-        <translation>Filmy s herci</translation>
+        <source>Stream Details loaded</source>
+        <translation>Podrobnosti streamu načteny</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="606"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="607"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="610"/>
-        <source>Actors</source>
-        <translation>Herci</translation>
+        <source>Stream Details</source>
+        <translation>Podrobnosti streamu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="609"/>
-        <source>Movie has no Actors</source>
-        <translation>Filmy bez herců</translation>
+        <source>Stream Details not loaded</source>
+        <translation>Podrobnosti streamu nebyly načteny</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="609"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="610"/>
-        <source>No Actors</source>
-        <translation>Žádní Herci</translation>
+        <source>No Stream Details</source>
+        <translation>Žádné podrobnosti streamu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="612"/>
-        <source>Movie has no Studio</source>
-        <translation>Filmy bez studia</translation>
+        <source>Movie has Actors</source>
+        <translation>Filmy s herci</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="612"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="613"/>
-        <source>No Studio</source>
-        <translation>Žádné Studio</translation>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="616"/>
+        <source>Actors</source>
+        <translation>Herci</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="615"/>
-        <source>Movie has no Country</source>
-        <translation>Filmy bez země</translation>
+        <source>Movie has no Actors</source>
+        <translation>Filmy bez herců</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="615"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="616"/>
-        <source>No Country</source>
-        <translation>Žádná Zěmě</translation>
+        <source>No Actors</source>
+        <translation>Žádní Herci</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="618"/>
-        <source>Movie has no Director</source>
-        <translation>Filmy bez režiséra</translation>
+        <source>Movie has no Studio</source>
+        <translation>Filmy bez studia</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="618"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="619"/>
+        <source>No Studio</source>
+        <translation>Žádné Studio</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="621"/>
+        <source>Movie has no Country</source>
+        <translation>Filmy bez země</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="621"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="622"/>
+        <source>No Country</source>
+        <translation>Žádná Zěmě</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="624"/>
+        <source>Movie has no Director</source>
+        <translation>Filmy bez režiséra</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="624"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="625"/>
         <source>No Director</source>
         <translation>Žádný Režisér</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="621"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="627"/>
         <source>Movie has no Tags</source>
         <translation>Filmy bez tagů</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="621"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="622"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="627"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="628"/>
         <source>No Tags</source>
         <translation>Žádný Tag</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="622"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="628"/>
         <source>Tags</source>
         <translation>Tagy</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="624"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="630"/>
         <source>Movie has no IMDB ID</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="624"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="625"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="630"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="631"/>
         <source>No IMDB ID</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="625"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="631"/>
         <source>IMDB</source>
         <translation>IMDB</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="627"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="633"/>
         <source>Resolution 720p</source>
         <translation>Rozlišení 720p</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="627"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="628"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="633"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="634"/>
         <source>720p</source>
         <translation>720p</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="628"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="630"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="632"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="634"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="636"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="638"/>
         <source>Resolution</source>
         <translation>Rozlišení</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="629"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="635"/>
         <source>Resolution 1080p</source>
         <translation>Rozlišení 1080p</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="629"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="630"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="635"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="636"/>
         <source>1080p</source>
         <translation>1080p</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="631"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="637"/>
         <source>Resolution SD</source>
         <translation>Rozlišení SD</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="631"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="632"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="637"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="638"/>
         <source>SD</source>
         <translation>SD</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="633"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="639"/>
         <source>Format DVD</source>
         <translation>DVD formá</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="633"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="634"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="639"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="640"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="634"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="636"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="640"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="642"/>
         <source>Format</source>
         <translation>Formát</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="635"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="641"/>
         <source>BluRay Format</source>
         <translation>Formát BluRay</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="635"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="636"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="641"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="642"/>
         <source>BluRay</source>
         <translation>BluRay</translation>
     </message>
