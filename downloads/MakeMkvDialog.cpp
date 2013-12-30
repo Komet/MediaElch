@@ -263,7 +263,7 @@ void MakeMkvDialog::onImport()
 
     m_importDir = ui->comboImportDir->currentText();
     QDir dir(ui->comboImportDir->currentText());
-    if (ui->comboImportDir->currentData().toBool()) {
+    if (ui->comboImportDir->itemData(ui->comboImportDir->currentIndex()).toBool()) {
         QString newFolderName = ui->directoryNaming->text();
         newFolderName.replace("<title>", m_movie->name());
         newFolderName.replace("<originalTitle>", m_movie->originalName());
@@ -278,7 +278,7 @@ void MakeMkvDialog::onImport()
         m_importDir = dir.absolutePath();
     }
 
-    int driveId = ui->comboDrives->currentData().toInt();
+    int driveId = ui->comboDrives->itemData(ui->comboDrives->currentIndex()).toInt();
     QMapIterator<int, QString> it(m_tracks);
     while (it.hasNext()) {
         it.next();
@@ -310,7 +310,7 @@ void MakeMkvDialog::onTrackImported(int trackId)
     m_movie->setFiles(files);
     m_tracks.remove(trackId);
 
-    int driveId = ui->comboDrives->currentData().toInt();
+    int driveId = ui->comboDrives->itemData(ui->comboDrives->currentIndex()).toInt();
     QMapIterator<int, QString> it(m_tracks);
     while (it.hasNext()) {
         it.next();
@@ -344,7 +344,7 @@ void MakeMkvDialog::importFinished()
         m_movie->setFiles(files);
     }
 
-    m_movie->setInSeparateFolder(ui->comboImportDir->currentData().toBool());
+    m_movie->setInSeparateFolder(ui->comboImportDir->itemData(ui->comboImportDir->currentIndex()).toBool());
     if (!m_movie->files().isEmpty())
         m_movie->setFileLastModified(QFileInfo(m_movie->files().first()).lastModified());
     m_movie->controller()->loadStreamDetailsFromFile();
