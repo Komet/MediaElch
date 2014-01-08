@@ -876,7 +876,7 @@
     <message>
         <location filename="../export/ExportDialog.ui" line="51"/>
         <source>Theme</source>
-        <translation>Téma</translation>
+        <translation>Motiv</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="61"/>
@@ -906,27 +906,27 @@
     <message>
         <location filename="../export/ExportDialog.cpp" line="30"/>
         <source>You need to install at least one theme.</source>
-        <translation>Musíte nainstalovat alespoň jedno téma.</translation>
+        <translation>Musíte nainstalovat alespoň jeden motiv.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="63"/>
         <source>You need to select at least one entry to export.</source>
-        <translation type="unfinished"/>
+        <translation>Musíte vybrat alespoň jednu položku k exportu.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="72"/>
         <source>Export directory</source>
-        <translation type="unfinished"/>
+        <translation>Cílový adresář pro export</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="80"/>
         <source>Could not create export directory.</source>
-        <translation type="unfinished"/>
+        <translation>Nelze vytvořit cílový adresář pro export.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="126"/>
         <source>Export completed.</source>
-        <translation type="unfinished"/>
+        <translation>Export dokončen.</translation>
     </message>
 </context>
 <context>
@@ -939,7 +939,7 @@
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="36"/>
         <source>Theme Name</source>
-        <translation>Název tématu</translation>
+        <translation>Název motivu</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="46"/>
@@ -960,7 +960,7 @@
         <location filename="../settings/ExportTemplateWidget.ui" line="99"/>
         <location filename="../settings/ExportTemplateWidget.cpp" line="38"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Nainstalovat</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="26"/>
@@ -975,7 +975,7 @@
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="32"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizovat</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="35"/>
@@ -985,17 +985,17 @@
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="48"/>
         <source>Updating...</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizace...</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="52"/>
         <source>Installing...</source>
-        <translation type="unfinished"/>
+        <translation>Instalace...</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="56"/>
         <source>Uninstalling...</source>
-        <translation type="unfinished"/>
+        <translation>Odinstalace...</translation>
     </message>
 </context>
 <context>
@@ -2414,12 +2414,12 @@
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="309"/>
         <source>Synchronization needed</source>
-        <translation type="unfinished"/>
+        <translation>Je vyžadovaná synchronizace</translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/ItemWidgetShow.cpp" line="31"/>
         <source>%n Episodes</source>
-        <translation><numerusform>%n Epizoda</numerusform><numerusform>%n Epizod</numerusform><numerusform>%n Epizod</numerusform></translation>
+        <translation><numerusform>%n epizoda</numerusform><numerusform>%n epizod</numerusform><numerusform>%n epizod</numerusform></translation>
     </message>
 </context>
 <context>
@@ -2727,7 +2727,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="33"/>
         <source>Allocine</source>
-        <translation type="unfinished"/>
+        <translation>Allocine</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="34"/>
@@ -2737,162 +2737,162 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="35"/>
         <source>Cine Passion</source>
-        <translation type="unfinished"/>
+        <translation>Cine Passion</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="38"/>
         <source>Argentina</source>
-        <translation type="unfinished"/>
+        <translation>Argentina</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="39"/>
         <source>Australia</source>
-        <translation type="unfinished"/>
+        <translation>Austrálie</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="40"/>
         <source>Belgium</source>
-        <translation type="unfinished"/>
+        <translation>Belgie</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="41"/>
         <source>Brazil</source>
-        <translation type="unfinished"/>
+        <translation>Brazílie</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="42"/>
         <source>Canada</source>
-        <translation type="unfinished"/>
+        <translation>Kanada</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="43"/>
         <source>Chile</source>
-        <translation type="unfinished"/>
+        <translation>Chile</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="44"/>
         <source>Finland</source>
-        <translation type="unfinished"/>
+        <translation>Finsko</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="45"/>
         <source>France</source>
-        <translation type="unfinished"/>
+        <translation>Francie</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="46"/>
         <source>Germany</source>
-        <translation type="unfinished"/>
+        <translation>Německo</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="47"/>
         <source>Hong Kong</source>
-        <translation type="unfinished"/>
+        <translation>Hongkong</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="48"/>
         <source>Iceland</source>
-        <translation type="unfinished"/>
+        <translation>Island</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="49"/>
         <source>India</source>
-        <translation type="unfinished"/>
+        <translation>Indie</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="50"/>
         <source>Ireland</source>
-        <translation type="unfinished"/>
+        <translation>Irsko</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="51"/>
         <source>Israel</source>
-        <translation type="unfinished"/>
+        <translation>Izrael</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="52"/>
         <source>Italy</source>
-        <translation type="unfinished"/>
+        <translation>Itálie</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="53"/>
         <source>Japan</source>
-        <translation type="unfinished"/>
+        <translation>Japonsko</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="54"/>
         <source>Malaysia</source>
-        <translation type="unfinished"/>
+        <translation>Malaizie </translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="55"/>
         <source>Netherlands</source>
-        <translation type="unfinished"/>
+        <translation>Nizozemí</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="56"/>
         <source>New Zealand</source>
-        <translation type="unfinished"/>
+        <translation>Nový Zéland</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="57"/>
         <source>Norway</source>
-        <translation type="unfinished"/>
+        <translation>Norsko</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="58"/>
         <source>Peru</source>
-        <translation type="unfinished"/>
+        <translation>Peru</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="59"/>
         <source>Philippines</source>
-        <translation type="unfinished"/>
+        <translation>Filipíny</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="60"/>
         <source>Portugal</source>
-        <translation type="unfinished"/>
+        <translation>Portugalsko</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="61"/>
         <source>Singapore</source>
-        <translation type="unfinished"/>
+        <translation>Singapur</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="62"/>
         <source>South Africa</source>
-        <translation type="unfinished"/>
+        <translation>Jižní Afrika</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="63"/>
         <source>South Korea</source>
-        <translation type="unfinished"/>
+        <translation>Jižní Korea</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="64"/>
         <source>Spain</source>
-        <translation type="unfinished"/>
+        <translation>Španělsko</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="65"/>
         <source>Sweden</source>
-        <translation type="unfinished"/>
+        <translation>Švédsko</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="66"/>
         <source>Switzerland</source>
-        <translation type="unfinished"/>
+        <translation>Švýcarsko</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="67"/>
         <source>UK</source>
-        <translation type="unfinished"/>
+        <translation>UK</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="68"/>
         <source>USA</source>
-        <translation type="unfinished"/>
+        <translation>USA</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="71"/>
@@ -2923,25 +2923,25 @@ Main menu entry (tooltip)</extracomment>
         <location filename="../scrapers/MediaPassion.cpp" line="158"/>
         <location filename="../scrapers/MediaPassion.cpp" line="203"/>
         <source>No username and password</source>
-        <translation type="unfinished"/>
+        <translation>Žádné uživatelské jméno a heslo</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="159"/>
         <location filename="../scrapers/MediaPassion.cpp" line="204"/>
         <source>In order to use this scraper you have to set your username and password in MediaElchs settings.</source>
-        <translation type="unfinished"/>
+        <translation>Aby bylo možné tento scraper použít, musíte v nastavení MediaElch zadat uživatelské jméno a heslo.</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="193"/>
         <location filename="../scrapers/MediaPassion.cpp" line="247"/>
         <source>Scraper returned an error</source>
-        <translation type="unfinished"/>
+        <translation>Scraper vrátil chybu</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="193"/>
         <location filename="../scrapers/MediaPassion.cpp" line="247"/>
         <source>The scraper returned the following error: %1</source>
-        <translation type="unfinished"/>
+        <translation>Scraper vrátil následující chybu: %1</translation>
     </message>
 </context>
 <context>
@@ -3010,7 +3010,7 @@ operace zrušena.</translation>
     <message>
         <location filename="../sets/MovieListDialog.ui" line="74"/>
         <source>Add selected movies</source>
-        <translation type="unfinished"/>
+        <translation>Přidat vybrané filmy</translation>
     </message>
     <message>
         <location filename="../sets/MovieListDialog.ui" line="94"/>
@@ -4511,7 +4511,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="355"/>
         <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
-        <translation type="unfinished"/>
+        <translation>Vytvořte si vlastní scraper zkombinováním několika jiných. Jelikož scrapery pro IMDB, The Movie DB a Fanart.tv mezi sebou sdílejí stejné ID, může u jiných být nutné použít více vyhledávacích dotazů.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="385"/>
@@ -4521,7 +4521,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="406"/>
         <source>Below you see the filenames which are used for loading and saving your movies. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"/>
+        <translation>Níže vidíte názvy souborů, které jsou použity pro načítání a ukládání vašich filmů. Můžete je upravit dle libosti. Pokud potřebujete použít více souborů oddělte je čárkou.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="416"/>
@@ -4647,7 +4647,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="670"/>
         <source>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"/>
+        <translation>Níže vidíte názvy souborů, které jsou použity pro načítání a ukládání vašich seriálů. Můžete je upravit dle libosti. Pokud potřebujete použít více souborů oddělte je čárkou.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="680"/>
@@ -4657,7 +4657,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="695"/>
         <source>Show nfo</source>
-        <translation type="unfinished"/>
+        <translation>Nfo seriálu</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="737"/>
@@ -4677,7 +4677,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="758"/>
         <source>Episode nfo</source>
-        <translation type="unfinished"/>
+        <translation>Nfo epizody</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="765"/>
@@ -4697,7 +4697,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="939"/>
         <source>Below you see the filenames which are used for loading and saving your concerts. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"/>
+        <translation>Níže vidíte názvy souborů, které jsou použity pro načítání a ukládání vašich koncertů. Můžete je upravit dle libosti. Pokud potřebujete použít více souborů oddělte je čárkou.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1072"/>
@@ -4788,7 +4788,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1249"/>
         <source>Theme</source>
-        <translation>Téma</translation>
+        <translation>Motiv</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1340"/>
@@ -4804,7 +4804,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1357"/>
         <source>toolBar</source>
-        <translation type="unfinished"/>
+        <translation>toolBar</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1399"/>
@@ -4830,7 +4830,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1460"/>
         <source>Global</source>
-        <translation type="unfinished"/>
+        <translation>Hlavní</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1480"/>
@@ -4890,23 +4890,23 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="584"/>
         <source>Theme &quot;%1&quot; was successfully installed</source>
-        <translation type="unfinished"/>
+        <translation>Motiv &quot;%1&quot; byl úspěšně nainstalován</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="586"/>
         <location filename="../settings/SettingsWindow.cpp" line="594"/>
         <source>There was an error while processing the theme &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Během zpracování motivu &quot;%1&quot; nastala chyba.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="592"/>
         <source>Theme &quot;%1&quot; was successfully uninstalled</source>
-        <translation>Téma &quot;%1&quot; bylo úspěšně odinstalováno</translation>
+        <translation>Motiv&quot;%1&quot; byl úspěšně odinstalován</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="604"/>
         <source>Don&apos;t use</source>
-        <translation type="unfinished"/>
+        <translation>Nezjišťovat</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="644"/>
@@ -4996,7 +4996,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="690"/>
         <source>Unsupported</source>
-        <translation type="unfinished"/>
+        <translation>Nepodporováno</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="696"/>
@@ -6375,7 +6375,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="244"/>
         <source>Download Theme</source>
-        <translation>Stáhnout Znělku</translation>
+        <translation>Stáhnout znělku</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="275"/>
@@ -6680,7 +6680,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="56"/>
         <source>Remove non-existent items from XBMCs database (Clean library)</source>
-        <translation type="unfinished"/>
+        <translation>Odstranit neexistující položky z databáze XBMC (Vyčistit knihovnu)</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
