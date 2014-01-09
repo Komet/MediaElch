@@ -1669,7 +1669,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="600"/>
         <source>Movie has Rating</source>
-        <translation type="unfinished"/>
+        <translation>O Filme tem Avaliação</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="600"/>
@@ -1681,13 +1681,13 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="603"/>
         <source>Movie has no Rating</source>
-        <translation type="unfinished"/>
+        <translation>O Filme não tem Avaliação</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="603"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="604"/>
         <source>No Rating</source>
-        <translation type="unfinished"/>
+        <translation>Sem Avaliação</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="606"/>
@@ -3460,7 +3460,7 @@ Se quiser procurar um ID TMDB ou OFDb, por favor utilize o prefixo &quot;id&quot
     <message>
         <location filename="../movies/MovieWidget.ui" line="200"/>
         <source>Sort Title</source>
-        <translation>Título para Ordenação</translation>
+        <translation>Título da Lista</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="210"/>
@@ -4319,7 +4319,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="152"/>
         <source>Sorttitle</source>
-        <translation>TítuloOrdenação</translation>
+        <translation>TítuloDaLista</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="175"/>
@@ -4490,7 +4490,7 @@ Os Episódios de Séries TV têm de estar em sub-pastas com o nome da série.</t
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1298"/>
         <source>Path to makemkvcon</source>
-        <translation>Localização do makemkvcon</translation>
+        <translation>Localização de makemkvcon</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="272"/>
@@ -4688,7 +4688,7 @@ Os Episódios de Séries TV têm de estar em sub-pastas com o nome da série.</t
     <message>
         <location filename="../settings/SettingsWindow.ui" line="765"/>
         <source>Episode thumbnail</source>
-        <translation>Miniatura do episódio</translation>
+        <translation>Miniatura de Episódio</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="772"/>
@@ -4698,7 +4698,7 @@ Os Episódios de Séries TV têm de estar em sub-pastas com o nome da série.</t
     <message>
         <location filename="../settings/SettingsWindow.ui" line="899"/>
         <source>Season Thumb</source>
-        <translation>Miniatura da temporada</translation>
+        <translation>Miniatura de Temporada</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="939"/>
@@ -6397,7 +6397,7 @@ Após isso, o MediaElch verificará automaticamente novos episódios ao iniciar.
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="295"/>
         <source>Sort Title</source>
-        <translation>Título para Ordenação</translation>
+        <translation>Título da Lista</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="308"/>
