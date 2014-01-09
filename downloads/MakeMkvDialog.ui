@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>741</width>
-    <height>459</height>
+    <height>466</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
    <item>
     <widget class="SlidingStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page">
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -471,6 +471,9 @@ QToolButton::disabled {
       <widget class="QPushButton" name="btnClose">
        <property name="text">
         <string>Close</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
        </property>
       </widget>
      </item>

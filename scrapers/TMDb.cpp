@@ -254,14 +254,27 @@ void TMDb::search(QString searchStr)
     QString searchTitle;
     QString searchYear;
     QUrl url;
+    QString includeAdult = (Settings::instance()->showAdultScrapers()) ? "true" : "false";
     QRegExp rx("^tt\\d+$");
     QRegExp rxTmdbId("^id\\d+$");
     if (rx.exactMatch(searchStr)) {
-        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(searchStr).arg(TMDb::apiKey()).arg(m_language));
+        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3&include_adult=%4")
+                   .arg(searchStr)
+                   .arg(TMDb::apiKey())
+                   .arg(m_language)
+                   .arg(includeAdult));
     } else if (rxTmdbId.exactMatch(searchStr)) {
-        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(searchStr.mid(2)).arg(TMDb::apiKey()).arg(m_language));
+        url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3&include_adult=%4")
+                   .arg(searchStr.mid(2))
+                   .arg(TMDb::apiKey())
+                   .arg(m_language)
+                   .arg(includeAdult));
     } else {
-        url.setUrl(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&query=%3").arg(TMDb::apiKey()).arg(m_language).arg(encodedSearch));
+        url.setUrl(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&include_adult=%3&query=%4")
+                   .arg(TMDb::apiKey())
+                   .arg(m_language)
+                   .arg(includeAdult)
+                   .arg(encodedSearch));
         QList<QRegExp> rxYears;
         rxYears << QRegExp("^(.*) \\((\\d{4})\\)$") << QRegExp("^(.*) (\\d{4})$") << QRegExp("^(.*) - (\\d{4})$");
         foreach (QRegExp rxYear, rxYears) {
@@ -269,7 +282,12 @@ void TMDb::search(QString searchStr)
             if (rxYear.exactMatch(searchStr)) {
                 searchTitle = rxYear.cap(1);
                 searchYear = rxYear.cap(2);
-                url.setUrl(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&year=%3&query=%4").arg(TMDb::apiKey()).arg(m_language).arg(searchYear).arg(searchTitle));
+                url.setUrl(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&include_adult=%3&year=%4&query=%5")
+                           .arg(TMDb::apiKey())
+                           .arg(m_language)
+                           .arg(includeAdult)
+                           .arg(searchYear)
+                           .arg(searchTitle));
                 break;
             }
         }
