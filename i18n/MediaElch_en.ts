@@ -2665,7 +2665,7 @@ Main menu entry (tooltip)</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../downloads/MakeMkvDialog.ui" line="493"/>
+        <location filename="../downloads/MakeMkvDialog.ui" line="496"/>
         <source>Import</source>
         <translation type="unfinished"></translation>
     </message>
