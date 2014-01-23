@@ -240,6 +240,19 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                             ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                     }
 
+                    foreach (const QString &trailerFile, currentDir.entryList(QStringList() << fi.completeBaseName() + "-trailer.*", QDir::Files | QDir::NoDotAndDotDot)) {
+                        QFileInfo trailer(fi.canonicalPath() + "/" + trailerFile);
+                        QString newTrailerFileName = newFileName;
+                        newTrailerFileName = newTrailerFileName.left(newTrailerFileName.lastIndexOf(".")) + "-trailer." + trailer.suffix();
+                        if (trailer.fileName() != newTrailerFileName) {
+                            ui->results->append(tr("<b>Rename File</b> \"%1\" to \"%2\"").arg(trailer.fileName()).arg(newTrailerFileName));
+                            if (!dryRun) {
+                                if (!rename(fi.canonicalPath() + "/" + trailerFile, fi.canonicalPath() + "/" + newTrailerFileName))
+                                    ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                            }
+                        }
+                    }
+
                     QStringList filters;
                     foreach (const QString &extra, m_extraFiles)
                         filters << baseName + extra;
