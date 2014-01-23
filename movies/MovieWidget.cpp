@@ -379,8 +379,6 @@ void MovieWidget::setDisabledTrue()
 void MovieWidget::setMovie(Movie *movie)
 {
     qDebug() << "Entered, movie=" << movie->name();
-    // @todo: remove
-    qDebug() << "TAG IS" << movie->label();
     movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
     if (!movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         movie->controller()->loadStreamDetailsFromFile();

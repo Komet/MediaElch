@@ -27,7 +27,7 @@ void MovieMaze::onSearchFinished()
     QList<ScraperSearchResult> results;
 
     if (m_searchReply->error() == QNetworkReply::NoError ) {
-        QString msg = m_searchReply->readAll();
+        QString msg = QString::fromLatin1(m_searchReply->readAll());
         m_searchReply->deleteLater();
 
         int pos = 0;
@@ -58,7 +58,7 @@ void MovieMaze::loadMovieTrailers(QString id)
 void MovieMaze::onLoadFinished()
 {
     if (m_loadReply->error() == QNetworkReply::NoError ) {
-        QString msg = m_loadReply->readAll();
+        QString msg = QString::fromLatin1(m_loadReply->readAll());
         m_currentTrailers.append(parseTrailers(msg));
 
         int pos=0;
@@ -82,7 +82,7 @@ void MovieMaze::onLoadFinished()
 void MovieMaze::onSubLoadFinished()
 {
     if (m_loadReply->error() == QNetworkReply::NoError ) {
-        QString msg = m_loadReply->readAll();
+        QString msg = QString::fromLatin1(m_loadReply->readAll());
         m_currentTrailers.append(parseTrailers(msg));
     }
     m_loadReply->deleteLater();
