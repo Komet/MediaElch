@@ -8,6 +8,7 @@
 #include <QTableWidget>
 #include <QTimer>
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "movies/MovieMultiScrapeDialog.h"
@@ -65,6 +66,17 @@ FilesWidget::FilesWidget(QWidget *parent) :
         mediaStatusColumnsMenu->addAction(action);
     }
 
+    QMenu *labelsMenu = new QMenu(tr("Label"), ui->files);
+    QMapIterator<int, QString> it(Helper::labels());
+    while (it.hasNext()) {
+        it.next();
+        QAction *action = new QAction(it.value(), this);
+        action->setIcon(Helper::iconForLabel(it.key()));
+        action->setProperty("color", it.key());
+        connect(action, SIGNAL(triggered()), this, SLOT(onLabel()));
+        labelsMenu->addAction(action);
+    }
+
     QAction *actionMultiScrape = new QAction(tr("Load Information"), this);
     QAction *actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
     QAction *actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
@@ -85,6 +97,7 @@ FilesWidget::FilesWidget(QWidget *parent) :
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(actionOpenFolder);
     m_contextMenu->addSeparator();
+    m_contextMenu->addMenu(labelsMenu);
     m_contextMenu->addMenu(mediaStatusColumnsMenu);
 
     connect(actionMultiScrape, SIGNAL(triggered()), this, SLOT(multiScrape()));
@@ -454,4 +467,17 @@ void FilesWidget::onActionMediaStatusColumn()
     Settings::instance()->setMediaStatusColumns(columns);
     Settings::instance()->saveSettings();
     renewModel();
+}
+
+void FilesWidget::onLabel()
+{
+    QAction *action = static_cast<QAction*>(QObject::sender());
+    if (!action)
+        return;
+
+    int color = action->property("color").toInt();
+    foreach (Movie *movie, selectedMovies()) {
+        movie->setLabel(color);
+        Manager::instance()->database()->setLabel(movie->files(), color);
+    }
 }

@@ -123,6 +123,8 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
                 return m_newIcon;
             else if (movie->syncNeeded())
                 return m_syncIcon;
+        } else if (role == Qt::BackgroundRole) {
+            return Helper::colorForLabel(movie->label());
         }
     } else if (role == Qt::DecorationRole) {
         QString icon;

@@ -31,6 +31,9 @@ public:
     static void applyStyle(QWidget *widget, bool removeFocusRect = true, bool isTable = false);
     static void applyEffect(QWidget *parent);
     static qreal similarity(const QString &s1, const QString &s2);
+    static QMap<int, QString> labels();
+    static QColor colorForLabel(int label);
+    static QIcon iconForLabel(int label);
 };
 
 #endif // HELPER_H

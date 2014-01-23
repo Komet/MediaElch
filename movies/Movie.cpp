@@ -36,6 +36,7 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_streamDetailsLoaded = false;
     m_databaseId = -1;
     m_discType = DiscSingle;
+    m_label = Labels::NO_LABEL;
     setFiles(files);
 }
 
@@ -1393,6 +1394,16 @@ QList<int> Movie::imageTypes()
                         << ImageType::MovieCdArt << ImageType::MovieClearArt
                         << ImageType::MovieLogo << ImageType::MovieThumb
                         << ImageType::MovieBackdrop;
+}
+
+void Movie::setLabel(int label)
+{
+    m_label = label;
+}
+
+int Movie::label()
+{
+    return m_label;
 }
 
 /*** DEBUG ***/

@@ -8,13 +8,14 @@
  * @param info Filter type
  * @param hasInfo Info should be there or not
  */
-Filter::Filter(QString text, QString shortText, QStringList filterText, int info, bool hasInfo)
+Filter::Filter(QString text, QString shortText, QStringList filterText, int info, bool hasInfo, int data)
 {
     m_text = text;
     m_shortText = shortText;
     m_filterText = filterText;
     m_info = info;
     m_hasInfo = hasInfo;
+    m_data = data;
 }
 
 /**
@@ -160,6 +161,9 @@ bool Filter::accepts(Movie *movie)
         }
         return false;
     }
+
+    if (m_info == MovieFilters::Label)
+        return movie->label() == m_data;
 
     return true;
 }

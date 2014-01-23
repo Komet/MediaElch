@@ -283,6 +283,7 @@ namespace MovieFilters {
     const int ImdbId        = 24;
     const int Set           = 25;
     const int Rating        = 28;
+    const int Label         = 29;
 }
 
 namespace TvShowFilters {
@@ -357,5 +358,16 @@ enum MediaStatusColumns {
     MediaStatusFirst = MediaStatusId,
     MediaStatusLast = MediaStatusActors
 };
+
+namespace Labels {
+    const int NO_LABEL = 0;
+    const int RED    = 1;
+    const int ORANGE = 2;
+    const int YELLOW = 3;
+    const int GREEN  = 4;
+    const int BLUE   = 5;
+    const int PURPLE = 6;
+    const int GREY   = 7;
+}
 
 #endif // GLOBALS_H

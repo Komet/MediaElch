@@ -70,6 +70,7 @@ private slots:
     void scrollToAlpha(QString alpha);
     void onLeftEdge(bool isEdge);
     void onActionMediaStatusColumn();
+    void onLabel();
 
 private:
     Ui::FilesWidget *ui;

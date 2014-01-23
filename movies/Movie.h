@@ -100,7 +100,7 @@ public:
     void setWriter(QString writer);
     void setDirector(QString director);
     void addStudio(QString studio);
-    void addTag(QString tag);
+    void addTag(QString label);
     void setTrailer(QUrl trailer);
     void setActors(QList<Actor> actors);
     void addActor(Actor actor);
@@ -133,7 +133,7 @@ public:
     void removeStudio(QString studio);
     void removeGenre(QString *genre);
     void removeGenre(QString genre);
-    void removeTag(QString tag);
+    void removeTag(QString label);
 
     QList<Poster> posters() const;
     QList<Poster> backdrops() const;
@@ -156,6 +156,9 @@ public:
     void clearExtraFanartData();
     void clearImages();
     void removeImage(int type);
+
+    void setLabel(int label);
+    int label();
 
     // Images
     bool hasExtraFanarts() const;
@@ -230,6 +233,7 @@ private:
     int m_databaseId;
     QDateTime m_dateAdded;
     DiscType m_discType;
+    int m_label;
 
     // Images
     QMap<int, QByteArray> m_images;

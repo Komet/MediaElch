@@ -29,7 +29,7 @@ Database::Database(QObject *parent) :
     } else {
         QSqlQuery query(*m_db);
 
-        int dbVersion = 11;
+        int dbVersion = 13;
         bool dbIsUpToDate = false;
 
         query.prepare("SELECT * FROM sqlite_master WHERE name ='settings' and type='table';");
@@ -63,6 +63,8 @@ Database::Database(QObject *parent) :
             query.prepare("DROP TABLE IF EXISTS settings;");
             query.exec();
             query.prepare("DROP TABLE IF EXISTS importCache;");
+            query.exec();
+            query.prepare("DROP TABLE IF EXISTS labels;");
             query.exec();
 
             query.prepare("CREATE TABLE IF NOT EXISTS settings( "
@@ -160,6 +162,15 @@ Database::Database(QObject *parent) :
         query.prepare("CREATE INDEX id_episode_idx ON episodeFiles(idEpisode);");
         query.exec();
 
+        query.prepare("CREATE TABLE IF NOT EXISTS labels ( "
+                      "\"idLabel\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                      "\"color\" integer NOT NULL, "
+                      "\"fileName\" text NOT NULL);");
+        query.exec();
+        query.prepare("CREATE INDEX id_label_filename_idx ON tags(fileName);");
+        query.exec();
+
+
         query.prepare("CREATE TABLE IF NOT EXISTS importCache ( "
                       "\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
                       "\"filename\" text NOT NULL, "
@@ -256,6 +267,8 @@ void Database::add(Movie *movie, QString path)
         query.exec();
     }
 
+    setLabel(movie->files(), movie->label());
+
     movie->setDatabaseId(insertId);
 }
 
@@ -278,12 +291,15 @@ QList<Movie*> Database::movies(QString path)
     query.bindValue(":path", path.toUtf8());
     query.exec();
     while (query.next()) {
+        int label = Labels::NO_LABEL;
         QStringList files;
-        queryFiles.prepare("SELECT file FROM movieFiles WHERE idMovie=:idMovie ORDER BY file");
+        queryFiles.prepare("SELECT MF.file, L.color FROM movieFiles MF LEFT JOIN labels L ON MF.file=L.fileName WHERE MF.idMovie=:idMovie ORDER BY MF.file");
         queryFiles.bindValue(":idMovie", query.value(query.record().indexOf("idMovie")).toInt());
         queryFiles.exec();
-        while (queryFiles.next())
+        while (queryFiles.next()) {
             files << QString::fromUtf8(queryFiles.value(queryFiles.record().indexOf("file")).toByteArray());
+            label = queryFiles.value(queryFiles.record().indexOf("color")).toInt();
+        }
 
         Movie *movie = new Movie(files, Manager::instance()->movieFileSearcher());
         movie->setDatabaseId(query.value(query.record().indexOf("idMovie")).toInt());
@@ -299,6 +315,7 @@ QList<Movie*> Database::movies(QString path)
         movie->setHasImage(ImageType::MovieThumb, query.value(query.record().indexOf("hasThumb")).toInt() == 1);
         movie->setHasExtraFanarts(query.value(query.record().indexOf("hasExtraFanarts")).toInt() == 1);
         movie->setDiscType(static_cast<DiscType>(query.value(query.record().indexOf("discType")).toInt()));
+        movie->setLabel(label);
         movies.append(movie);
     }
     return movies;
@@ -705,4 +722,48 @@ bool Database::guessImport(QString fileName, QString &type, QString &path)
     }
 
     return (bestMatch != 0);
+}
+
+void Database::setLabel(QStringList fileNames, int color)
+{
+    QSqlQuery query(db());
+    int id = 1;
+    query.prepare("SELECT MAX(idLabel) FROM labels");
+    query.exec();
+    if (query.next())
+        id = query.value(0).toInt()+1;
+
+    foreach (const QString &fileName, fileNames) {
+        query.prepare("SELECT idLabel FROM labels WHERE fileName=:fileName");
+        query.bindValue(":fileName", fileName.toUtf8());
+        query.exec();
+        if (query.next()) {
+            int idLabel = query.value(query.record().indexOf("idLabel")).toInt();
+            query.prepare("UPDATE labels SET color=:color WHERE idLabel=:idLabel");
+            query.bindValue(":idLabel", idLabel);
+            query.bindValue(":color", color);
+            query.exec();
+        } else {
+            query.prepare("INSERT INTO labels(idLabel, color, fileName) VALUES(:idLabel, :color, :fileName)");
+            query.bindValue(":idLabel", id);
+            query.bindValue(":color", color);
+            query.bindValue(":fileName", fileName.toUtf8());
+            query.exec();
+        }
+    }
+}
+
+int Database::getLabel(QStringList fileNames)
+{
+    if (fileNames.isEmpty())
+        return Labels::NO_LABEL;
+
+    QSqlQuery query(db());
+    query.prepare("SELECT color FROM labels WHERE fileName=:fileName");
+    query.bindValue(":fileName", fileNames.first().toUtf8());
+    query.exec();
+    if (query.next())
+        return query.value(query.record().indexOf("color")).toInt();
+
+    return Labels::NO_LABEL;
 }

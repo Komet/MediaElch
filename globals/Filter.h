@@ -15,7 +15,7 @@
 class Filter
 {
 public:
-    explicit Filter(QString text, QString shortText, QStringList filterText, int info, bool hasInfo);
+    explicit Filter(QString text, QString shortText, QStringList filterText, int info, bool hasInfo, int data = 0);
     bool accepts(QString text) const;
     bool accepts(Movie *movie);
     bool accepts(Concert *concert);
@@ -32,6 +32,7 @@ private:
     QStringList m_filterText;
     int m_info;
     bool m_hasInfo;
+    int m_data;
 };
 
 Q_DECLARE_METATYPE(Filter*)

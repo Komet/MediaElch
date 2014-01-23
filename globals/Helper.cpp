@@ -9,6 +9,7 @@
 #include <QGraphicsDropShadowEffect>
 #include <QLabel>
 #include <QLineEdit>
+#include <QPainter>
 #include <QPushButton>
 #include <QRegExp>
 #include <QSpinBox>
@@ -491,4 +492,66 @@ qreal Helper::similarity(const QString &s1, const QString &s2)
 
     qreal dist = d[len1][len2];
     return 1-(dist/qMax(len1, len2));
+}
+
+QMap<int, QString> Helper::labels()
+{
+    QMap<int, QString> labels;
+    labels.insert(Labels::NO_LABEL, QObject::tr("No Label"));
+    labels.insert(Labels::RED, QObject::tr("Red"));
+    labels.insert(Labels::ORANGE, QObject::tr("Orange"));
+    labels.insert(Labels::YELLOW, QObject::tr("Yellow"));
+    labels.insert(Labels::GREEN, QObject::tr("Green"));
+    labels.insert(Labels::BLUE, QObject::tr("Blue"));
+    labels.insert(Labels::PURPLE, QObject::tr("Purple"));
+    labels.insert(Labels::GREY, QObject::tr("Grey"));
+    return labels;
+}
+
+QColor Helper::colorForLabel(int label)
+{
+    switch (label) {
+    case Labels::RED:
+        return QColor(252, 124, 126);
+        break;
+    case Labels::ORANGE:
+        return QColor(253, 189, 65);
+        break;
+    case Labels::YELLOW:
+        return QColor(245, 228, 68);
+        break;
+    case Labels::GREEN:
+        return QColor(182, 223, 55);
+        break;
+    case Labels::BLUE:
+        return QColor(132, 201, 253);
+        break;
+    case Labels::PURPLE:
+        return QColor(226, 167, 253);
+        break;
+    case Labels::GREY:
+        return QColor(200, 200, 200);
+        break;
+    case Labels::NO_LABEL:
+    default:
+        return QColor(0, 0, 0, 0);
+        break;
+    }
+}
+
+QIcon Helper::iconForLabel(int label)
+{
+    QColor color = Helper::colorForLabel(label);
+    QPainter p;
+    QPixmap pixmap(32, 32);
+    pixmap.fill(Qt::transparent);
+    p.begin(&pixmap);
+    p.setRenderHint(QPainter::Antialiasing, true);
+    p.setBrush(QBrush(color));
+    QPen pen(color.darker(200));
+    pen.setWidth(2);
+    p.setPen(pen);
+    p.drawEllipse(4, 4, 24, 24);
+    p.end();
+    return QIcon(pixmap);
 }

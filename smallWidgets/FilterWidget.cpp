@@ -3,6 +3,7 @@
 
 #include <QGraphicsDropShadowEffect>
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "main/MainWindow.h"
@@ -297,6 +298,15 @@ void FilterWidget::setupMovieFilters()
     qSort(directors.begin(), directors.end(), LocaleStringCompare());
     qSort(sets.begin(), sets.end(), LocaleStringCompare());
 
+    if (m_movieLabelFilters.isEmpty()) {
+        QMapIterator<int, QString> it(Helper::labels());
+        while (it.hasNext()) {
+            it.next();
+            m_movieLabelFilters << new Filter(tr("Label \"%1\"").arg(it.value()), it.value(),
+                                              QStringList() << tr("Label") << it.value(), MovieFilters::Label, true, it.key());
+        }
+    }
+
     // Clear out all filters which doesn't exist
     foreach (Filter *filter, m_movieGenreFilters) {
         if (!genres.contains(filter->shortText())) {
@@ -496,7 +506,8 @@ void FilterWidget::setupMovieFilters()
             << m_movieCertificationFilters
             << m_movieSetsFilters
             << m_movieTagsFilters
-            << m_movieDirectorFilters;
+            << m_movieDirectorFilters
+            << m_movieLabelFilters;
     m_filters = filters;
 }
 

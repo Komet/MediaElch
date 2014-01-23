@@ -176,6 +176,7 @@ void MovieFileSearcher::reload(bool force)
                 movie->setFileLastModified(m_lastModifications.value(files.at(0)));
                 movie->setDiscType(discType);
                 movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
+                movie->setLabel(Manager::instance()->database()->getLabel(movie->files()));
                 Manager::instance()->database()->add(movie, con.path);
                 movies.append(movie);
                 emit currentDir(movie->name());
@@ -203,6 +204,7 @@ void MovieFileSearcher::reload(bool force)
                     movie->setInSeparateFolder(con.inSeparateFolder);
                     movie->setFileLastModified(m_lastModifications.value(it.value().at(0)));
                     movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
+                    movie->setLabel(Manager::instance()->database()->getLabel(movie->files()));
                     Manager::instance()->database()->add(movie, con.path);
                     movies.append(movie);
                     emit currentDir(movie->name());
