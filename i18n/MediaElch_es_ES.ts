@@ -1208,7 +1208,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="69"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Etiqueta</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="80"/>
@@ -1272,12 +1272,12 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="305"/>
         <source>Label &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Etiqueta &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="306"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Etiqueta</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="373"/>
@@ -3998,42 +3998,42 @@ i desea buscar por un TMDB o OFDb Identificador favor, añadiendo al principio &
     <message>
         <location filename="../globals/Helper.cpp" line="500"/>
         <source>No Label</source>
-        <translation type="unfinished"/>
+        <translation>No hay etiqueta</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="501"/>
         <source>Red</source>
-        <translation type="unfinished"/>
+        <translation>Red</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="502"/>
         <source>Orange</source>
-        <translation type="unfinished"/>
+        <translation>Naranja</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="503"/>
         <source>Yellow</source>
-        <translation type="unfinished"/>
+        <translation>Amarillo</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="504"/>
         <source>Green</source>
-        <translation type="unfinished"/>
+        <translation>Verde</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="505"/>
         <source>Blue</source>
-        <translation type="unfinished"/>
+        <translation>Azul</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="506"/>
         <source>Purple</source>
-        <translation type="unfinished"/>
+        <translation>Morado</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="507"/>
         <source>Grey</source>
-        <translation type="unfinished"/>
+        <translation>Gris</translation>
     </message>
 </context>
 <context>

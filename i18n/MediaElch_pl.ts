@@ -1209,7 +1209,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../movies/FilesWidget.cpp" line="69"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Etykieta</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="80"/>
@@ -1273,12 +1273,12 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="305"/>
         <source>Label &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Etykieta &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="306"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Etykieta</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="373"/>
@@ -1900,7 +1900,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../movies/GenreWidget.ui" line="100"/>
         <source>TextLabel</source>
-        <translation>Etykieta tekstowa</translation>
+        <translation>Etykieta</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="141"/>
@@ -2971,7 +2971,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/Message.ui" line="76"/>
         <source>TextLabel</source>
-        <translation>Etykieta tekstowa</translation>
+        <translation>Etykieta</translation>
     </message>
 </context>
 <context>
@@ -4001,42 +4001,42 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
     <message>
         <location filename="../globals/Helper.cpp" line="500"/>
         <source>No Label</source>
-        <translation type="unfinished"/>
+        <translation>Brak etykiety</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="501"/>
         <source>Red</source>
-        <translation type="unfinished"/>
+        <translation>Czerwony</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="502"/>
         <source>Orange</source>
-        <translation type="unfinished"/>
+        <translation>Pomarańczowy</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="503"/>
         <source>Yellow</source>
-        <translation type="unfinished"/>
+        <translation>Żółty</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="504"/>
         <source>Green</source>
-        <translation type="unfinished"/>
+        <translation>Zielony</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="505"/>
         <source>Blue</source>
-        <translation type="unfinished"/>
+        <translation>Niebieski</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="506"/>
         <source>Purple</source>
-        <translation type="unfinished"/>
+        <translation>Fioletowy</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="507"/>
         <source>Grey</source>
-        <translation type="unfinished"/>
+        <translation>Szary</translation>
     </message>
 </context>
 <context>
