@@ -514,8 +514,17 @@ void ImageDialog::cancelDownloads()
  */
 void ImageDialog::chooseLocalImage()
 {
-    QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), QDir::homePath(), tr("Images (*.jpg *.jpeg *.png)"));
+    QString path = Settings::instance()->lastImagePath();
+    // @todo: check if this bug has been fixed in 5.2.1
+#ifdef Q_OS_MAC
+#if (QT_VERSION <= QT_VERSION_CHECK(5, 2, 0))
+    path.append("/*");
+#endif
+#endif
+    QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), path, tr("Images (*.jpg *.jpeg *.png)"));
     if (!fileName.isNull()) {
+        QFileInfo fi(fileName);
+        Settings::instance()->setLastImagePath(fi.absoluteDir().canonicalPath());
         int index = m_elements.size();
         DownloadElement d;
         d.originalUrl = fileName;

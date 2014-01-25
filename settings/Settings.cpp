@@ -103,6 +103,7 @@ void Settings::loadSettings()
     m_showAdultScrapers = settings()->value("Scrapers/ShowAdult", false).toBool();
     m_startupSection = settings()->value("StartupSection", "movies").toString();
     m_donated = settings()->value("Donated", false).toBool();
+    m_lastImagePath = settings()->value("LastImagePath", QDir::homePath()).toString();
 
     // XBMC
     m_xbmcHost = settings()->value("XBMC/RemoteHost").toString();
@@ -288,6 +289,7 @@ void Settings::saveSettings()
     settings()->setValue("Scrapers/ShowAdult", m_showAdultScrapers);
     settings()->setValue("StartupSection", m_startupSection);
     settings()->setValue("Donated", m_donated);
+    settings()->setValue("LastImagePath", m_lastImagePath);
 
     // XBMC
     settings()->setValue("XBMC/RemoteHost", m_xbmcHost);
@@ -1255,4 +1257,15 @@ void Settings::setXbmcPassword(QString password)
 QString Settings::xbmcPassword()
 {
     return m_xbmcPassword;
+}
+
+void Settings::setLastImagePath(QString path)
+{
+    m_lastImagePath = path;
+    settings()->sync();
+}
+
+QString Settings::lastImagePath()
+{
+    return m_lastImagePath;
 }

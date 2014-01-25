@@ -82,6 +82,7 @@ public:
     bool showAdultScrapers() const;
     QString startupSection();
     bool donated() const;
+    QString lastImagePath();
 
     bool autoLoadStreamDetails();
 
@@ -140,6 +141,7 @@ public:
     void setShowAdultScrapers(bool show);
     void setStartupSection(QString startupSection);
     void setDonated(bool donated);
+    void setLastImagePath(QString path);
 
     static QString applicationDir();
 
@@ -206,6 +208,7 @@ private:
     bool m_showAdultScrapers;
     QString m_startupSection;
     bool m_donated;
+    QString m_lastImagePath;
 
     void setupProxy();
 };
