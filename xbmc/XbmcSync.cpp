@@ -4,6 +4,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QMessageBox>
 #include <QScriptEngine>
 #include <QScriptValue>
 #include <QScriptValueIterator>
@@ -23,9 +24,12 @@ XbmcSync::XbmcSync(QWidget *parent) :
     m_reloadTimeOut = 2000;
     m_requestId = 0;
 
+    connect(&m_qnam, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)), this, SLOT(onAuthRequired(QNetworkReply*,QAuthenticator*)));
+
     connect(ui->buttonSync, SIGNAL(clicked()), this, SLOT(startSync()));
     connect(ui->buttonClose, SIGNAL(clicked()), this, SLOT(onButtonClose()));
     connect(ui->radioUpdateContents, SIGNAL(clicked()), this, SLOT(onRadioContents()));
+    connect(ui->radioClean, SIGNAL(clicked()), this, SLOT(onRadioClean()));
     connect(ui->radioGetWatched, SIGNAL(clicked()), this, SLOT(onRadioWatched()));
     ui->progressBar->setVisible(false);
     onRadioContents();
@@ -133,11 +137,13 @@ void XbmcSync::startSync()
         }
     }
 
-    m_host = Settings::instance()->xbmcHost();
-    m_port = Settings::instance()->xbmcPort();
-
-    if (m_host.isEmpty() || m_port == 0) {
+    if (Settings::instance()->xbmcHost().isEmpty() || Settings::instance()->xbmcPort() == 0) {
         ui->status->setText(tr("Please fill in your XBMC host and port."));
+        return;
+    }
+
+    if (ui->radioClean->isChecked()) {
+        triggerClean();
         return;
     }
 
@@ -159,7 +165,7 @@ void XbmcSync::startSync()
         m_elements.append(ElementMovies);
         o.insert("method", QString("VideoLibrary.GetMovies"));
         o.insert("id", ++m_requestId);
-        QNetworkRequest request(QString("http://%1:%2/jsonrpc").arg(m_host).arg(m_port));
+        QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
@@ -174,7 +180,7 @@ void XbmcSync::startSync()
         m_elements.append(ElementConcerts);
         o.insert("method", QString("VideoLibrary.GetMusicVideos"));
         o.insert("id", ++m_requestId);
-        QNetworkRequest request(QString("http://%1:%2/jsonrpc").arg(m_host).arg(m_port));
+        QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
@@ -189,7 +195,7 @@ void XbmcSync::startSync()
         m_elements.append(ElementTvShows);
         o.insert("method", QString("VideoLibrary.GetTvShows"));
         o.insert("id", ++m_requestId);
-        QNetworkRequest request(QString("http://%1:%2/jsonrpc").arg(m_host).arg(m_port));
+        QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
@@ -204,7 +210,7 @@ void XbmcSync::startSync()
         m_elements.append(ElementEpisodes);
         o.insert("method", QString("VideoLibrary.GetEpisodes"));
         o.insert("id", ++m_requestId);
-        QNetworkRequest request(QString("http://%1:%2/jsonrpc").arg(m_host).arg(m_port));
+        QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
@@ -232,6 +238,9 @@ void XbmcSync::onMovieListFinished()
     }
     reply->deleteLater();
 
+    if (reply->error() != QNetworkReply::NoError)
+        QMessageBox::warning(this, tr("Network error"), reply->errorString());
+
     QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
     QJsonObject obj = doc.object();
     QMapIterator<QString, QVariant> it(obj.value("result").toObject().toVariantMap());
@@ -256,6 +265,9 @@ void XbmcSync::onConcertListFinished()
         return;
     }
     reply->deleteLater();
+
+    if (reply->error() != QNetworkReply::NoError)
+        QMessageBox::warning(this, tr("Network error"), reply->errorString());
 
     QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
     QJsonObject obj = doc.object();
@@ -282,6 +294,9 @@ void XbmcSync::onTvShowListFinished()
     }
     reply->deleteLater();
 
+    if (reply->error() != QNetworkReply::NoError)
+        QMessageBox::warning(this, tr("Network error"), reply->errorString());
+
     QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
     QJsonObject obj = doc.object();
     QMapIterator<QString, QVariant> it(obj.value("result").toObject().toVariantMap());
@@ -306,6 +321,9 @@ void XbmcSync::onEpisodeListFinished()
         return;
     }
     reply->deleteLater();
+
+    if (reply->error() != QNetworkReply::NoError)
+        QMessageBox::warning(this, tr("Network error"), reply->errorString());
 
     QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
     QJsonObject obj = doc.object();
@@ -397,7 +415,7 @@ void XbmcSync::removeItems()
         params.insert("movieid", id);
         o.insert("params", params);
         o.insert("method", QString("VideoLibrary.RemoveMovie"));
-        QNetworkRequest request(QString("http://%1:%2/jsonrpc").arg(m_host).arg(m_port));
+        QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
@@ -416,7 +434,7 @@ void XbmcSync::removeItems()
         params.insert("musicvideoid", id);
         o.insert("params", params);
         o.insert("method", QString("VideoLibrary.RemoveMusicVideo"));
-        QNetworkRequest request(QString("http://%1:%2/jsonrpc").arg(m_host).arg(m_port));
+        QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
@@ -435,7 +453,7 @@ void XbmcSync::removeItems()
         params.insert("tvshowid", id);
         o.insert("params", params);
         o.insert("method", QString("VideoLibrary.RemoveTVShow"));
-        QNetworkRequest request(QString("http://%1:%2/jsonrpc").arg(m_host).arg(m_port));
+        QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
@@ -455,7 +473,7 @@ void XbmcSync::removeItems()
         params.insert("episodeid", id);
         o.insert("params", params);
         o.insert("method", QString("VideoLibrary.RemoveEpisode"));
-        QNetworkRequest request(QString("http://%1:%2/jsonrpc").arg(m_host).arg(m_port));
+        QNetworkRequest request(xbmcUrl());
         request.setRawHeader("Content-Type", "application/json");
         request.setRawHeader("Accept", "application/json");
         #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
@@ -494,7 +512,7 @@ void XbmcSync::triggerReload()
     o.insert("method", QString("VideoLibrary.Scan"));
     o.insert("id", ++m_requestId);
 
-    QNetworkRequest request(QString("http://%1:%2/jsonrpc").arg(m_host).arg(m_port));
+    QNetworkRequest request(xbmcUrl());
     request.setRawHeader("Content-Type", "application/json");
     request.setRawHeader("Accept", "application/json");
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
@@ -508,6 +526,30 @@ void XbmcSync::triggerReload()
 void XbmcSync::onScanFinished()
 {
     ui->status->setText(tr("Finished. XBMC is now loading your updated items."));
+    ui->buttonSync->setEnabled(true);
+}
+
+void XbmcSync::triggerClean()
+{
+    QJsonObject o;
+    o.insert("jsonrpc", QString("2.0"));
+    o.insert("method", QString("VideoLibrary.Clean"));
+    o.insert("id", ++m_requestId);
+
+    QNetworkRequest request(xbmcUrl());
+    request.setRawHeader("Content-Type", "application/json");
+    request.setRawHeader("Accept", "application/json");
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson(QJsonDocument::Compact));
+    #else
+        QNetworkReply *reply = m_qnam.post(request, QJsonDocument(o).toJson());
+    #endif
+    connect(reply, SIGNAL(finished()), this, SLOT(onCleanFinished()));
+}
+
+void XbmcSync::onCleanFinished()
+{
+    ui->status->setText(tr("Finished. XBMC is now cleaning your database."));
     ui->buttonSync->setEnabled(true);
 }
 
@@ -636,16 +678,24 @@ QStringList XbmcSync::splitFile(QString file)
 void XbmcSync::onRadioContents()
 {
     ui->labelContents->setVisible(true);
-    ui->chkClean->setVisible(true);
     ui->labelWatched->setVisible(false);
+    ui->labelClean->setVisible(false);
     m_syncType = SyncContents;
+}
+
+void XbmcSync::onRadioClean()
+{
+    ui->labelContents->setVisible(false);
+    ui->labelWatched->setVisible(false);
+    ui->labelClean->setVisible(true);
+    m_syncType = SyncClean;
 }
 
 void XbmcSync::onRadioWatched()
 {
     ui->labelContents->setVisible(false);
-    ui->chkClean->setVisible(false);
     ui->labelWatched->setVisible(true);
+    ui->labelClean->setVisible(false);
     m_syncType = SyncWatched;
 }
 
@@ -720,4 +770,25 @@ void XbmcSync::updateFolderLastModified(TvShowEpisode *episode)
         file.close();
         file.remove();
     }
+}
+
+void XbmcSync::onAuthRequired(QNetworkReply *reply, QAuthenticator *authenticator)
+{
+    Q_UNUSED(reply);
+
+    authenticator->setUser(Settings::instance()->xbmcUser());
+    authenticator->setPassword(Settings::instance()->xbmcPassword());
+}
+
+QString XbmcSync::xbmcUrl()
+{
+    QString url = "http://";
+    if (!Settings::instance()->xbmcUser().isEmpty()) {
+        url.append(Settings::instance()->xbmcUser());
+        if (!Settings::instance()->xbmcPassword().isEmpty())
+            url.append(":" + Settings::instance()->xbmcPassword());
+        url.append("@");
+    }
+    url.append(QString("%1:%2/jsonrpc").arg(Settings::instance()->xbmcHost()).arg(Settings::instance()->xbmcPort()));
+    return url;
 }

@@ -23,7 +23,7 @@
    <item>
     <widget class="QLabel" name="label_5">
      <property name="text">
-      <string>Please make sure you have setup your sources in XBMC and that &quot;Allow programs on other systems to control XBMC&quot; is enabled (Remote Control).</string>
+      <string>Please make sure you have setup your sources in XBMC and that the webserver is enabled (XBMC -&gt; Settings -&gt; Services -&gt; Webserver).</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -51,9 +51,16 @@
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="chkClean">
+    <widget class="QRadioButton" name="radioClean">
      <property name="text">
       <string>Remove non-existent items from XBMCs database (Clean library)</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="labelClean">
+     <property name="text">
+      <string>XBMC will remove not longer existing items from your database.</string>
      </property>
     </widget>
    </item>

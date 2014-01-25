@@ -267,6 +267,8 @@ void SettingsWindow::loadSettings()
         ui->xbmcPort->setText(QString::number(m_settings->xbmcPort()));
     else
         ui->xbmcPort->clear();
+    ui->xbmcUser->setText(m_settings->xbmcUser());
+    ui->xbmcPassword->setText(m_settings->xbmcPassword());
 
     foreach (QLineEdit *lineEdit, findChildren<QLineEdit*>()) {
         if (lineEdit->property("dataFileType").isNull())
@@ -340,6 +342,8 @@ void SettingsWindow::saveSettings()
 
     m_settings->setXbmcHost(ui->xbmcHost->text());
     m_settings->setXbmcPort(ui->xbmcPort->text().toInt());
+    m_settings->setXbmcUser(ui->xbmcUser->text());
+    m_settings->setXbmcPassword(ui->xbmcPassword->text());
 
     // Proxy
     m_settings->setUseProxy(ui->chkUseProxy->isChecked());

@@ -1,9 +1,11 @@
 #ifndef XBMCSYNC_H
 #define XBMCSYNC_H
 
+#include <QAuthenticator>
 #include <QDialog>
 #include <QMutex>
 #include <QNetworkAccessManager>
+#include <QNetworkReply>
 #include <QScriptValue>
 #include <QTcpSocket>
 #include <QTimer>
@@ -25,7 +27,7 @@ public:
     };
 
     enum SyncType {
-        SyncContents, SyncWatched
+        SyncContents, SyncWatched, SyncClean
     };
 
     struct XbmcData {
@@ -50,10 +52,14 @@ private slots:
     void onEpisodeListFinished();
     void onRemoveFinished();
     void onScanFinished();
+    void onCleanFinished();
     void onRadioContents();
+    void onRadioClean();
     void onRadioWatched();
     void onButtonClose();
     void triggerReload();
+    void triggerClean();
+    void onAuthRequired(QNetworkReply *reply, QAuthenticator *authenticator);
 
 private:
     Ui::XbmcSync *ui;
@@ -81,8 +87,6 @@ private:
     bool m_artworkWasRenamed;
     int m_reloadTimeOut;
     int m_requestId;
-    QString m_host;
-    int m_port;
 
     int findId(QStringList files, QMap<int, XbmcData> items);
     bool compareFiles(QStringList files, QStringList xbmcFiles, int level);
@@ -96,6 +100,7 @@ private:
     void updateFolderLastModified(Concert *concert);
     void updateFolderLastModified(TvShow *show);
     void updateFolderLastModified(TvShowEpisode *episode);
+    QString xbmcUrl();
 };
 
 #endif // XBMCSYNC_H

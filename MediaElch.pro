@@ -358,7 +358,6 @@ FORMS    += main/MainWindow.ui \
 
 RESOURCES += \
     MediaElch.qrc \
-    fonts.qrc \
     i18n.qrc
 
 TRANSLATIONS += \

@@ -1069,7 +1069,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
         <item>
          <widget class="QLabel" name="label_7">
           <property name="text">
-           <string>If you want to use the synchronization feature you need to enable &quot;Allow programs on other systems to control XBMC&quot; within XBMC (Settings -&gt; Services -&gt; Remote Control). Enter the port of the webserver here (usually 80 or 8080).</string>
+           <string>If you want to use the synchronization feature you need to enable the webserver within XBMC (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</string>
           </property>
           <property name="wordWrap">
            <bool>true</bool>
@@ -1106,6 +1106,30 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
            <widget class="QLineEdit" name="xbmcPort">
             <property name="placeholderText">
              <string>8080</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_55">
+            <property name="text">
+             <string>User</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_59">
+            <property name="text">
+             <string>Password</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="xbmcUser"/>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="xbmcPassword">
+            <property name="echoMode">
+             <enum>QLineEdit::Password</enum>
             </property>
            </widget>
           </item>

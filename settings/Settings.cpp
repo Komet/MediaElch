@@ -106,7 +106,9 @@ void Settings::loadSettings()
 
     // XBMC
     m_xbmcHost = settings()->value("XBMC/RemoteHost").toString();
-    m_xbmcPort = settings()->value("XBMC/RemotePort", 9090).toInt();
+    m_xbmcPort = settings()->value("XBMC/RemotePort", 80).toInt();
+    m_xbmcUser = settings()->value("XBMC/RemoteUser").toString();
+    m_xbmcPassword = settings()->value("XBMC/RemotePassword").toString();
 
     // Proxy
     m_useProxy = settings()->value("Proxy/Enable", false).toBool();
@@ -290,6 +292,8 @@ void Settings::saveSettings()
     // XBMC
     settings()->setValue("XBMC/RemoteHost", m_xbmcHost);
     settings()->setValue("XBMC/RemotePort", m_xbmcPort);
+    settings()->setValue("XBMC/RemoteUser", m_xbmcUser);
+    settings()->setValue("XBMC/RemotePassword", m_xbmcPassword);
 
     // Proxy
     settings()->setValue("Proxy/Enable", m_useProxy);
@@ -1231,4 +1235,24 @@ void Settings::setDonated(bool donated)
 bool Settings::donated() const
 {
     return m_donated;
+}
+
+void Settings::setXbmcUser(QString user)
+{
+    m_xbmcUser = user;
+}
+
+QString Settings::xbmcUser()
+{
+    return m_xbmcUser;
+}
+
+void Settings::setXbmcPassword(QString password)
+{
+    m_xbmcPassword = password;
+}
+
+QString Settings::xbmcPassword()
+{
+    return m_xbmcPassword;
 }
