@@ -328,7 +328,7 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
     if (!domDoc.elementsByTagName("originaltitle").isEmpty())
         movie->setOriginalName(domDoc.elementsByTagName("originaltitle").at(0).toElement().text());
     if (!domDoc.elementsByTagName("rating").isEmpty())
-        movie->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().toFloat());
+        movie->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toFloat());
     if (!domDoc.elementsByTagName("votes").isEmpty())
         movie->setVotes(domDoc.elementsByTagName("votes").at(0).toElement().text().replace(",", "").replace(".", "").toInt());
     if (!domDoc.elementsByTagName("top250").isEmpty())
@@ -722,7 +722,7 @@ bool XbmcXml::loadConcert(Concert *concert, QString initialNfoContent)
     if (!domDoc.elementsByTagName("album").isEmpty() )
         concert->setAlbum(domDoc.elementsByTagName("album").at(0).toElement().text());
     if (!domDoc.elementsByTagName("rating").isEmpty())
-        concert->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().toFloat());
+        concert->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toFloat());
     if (!domDoc.elementsByTagName("year").isEmpty())
         concert->setReleased(QDate::fromString(domDoc.elementsByTagName("year").at(0).toElement().text(), "yyyy"));
     if (!domDoc.elementsByTagName("plot").isEmpty())
@@ -857,7 +857,7 @@ bool XbmcXml::loadTvShow(TvShow *show, QString initialNfoContent)
     if (!domDoc.elementsByTagName("showtitle").isEmpty() )
         show->setShowTitle(domDoc.elementsByTagName("showtitle").at(0).toElement().text());
     if (!domDoc.elementsByTagName("rating").isEmpty())
-        show->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().toFloat());
+        show->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toFloat());
     if (!domDoc.elementsByTagName("plot").isEmpty())
         show->setOverview(domDoc.elementsByTagName("plot").at(0).toElement().text());
     if (!domDoc.elementsByTagName("mpaa").isEmpty())
@@ -992,7 +992,7 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoConten
     if (!episodeDetails.elementsByTagName("displayepisode").isEmpty())
         episode->setDisplayEpisode(episodeDetails.elementsByTagName("displayepisode").at(0).toElement().text().toInt());
     if (!episodeDetails.elementsByTagName("rating").isEmpty())
-        episode->setRating(episodeDetails.elementsByTagName("rating").at(0).toElement().text().toFloat());
+        episode->setRating(episodeDetails.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toFloat());
     if (!episodeDetails.elementsByTagName("plot").isEmpty())
         episode->setOverview(episodeDetails.elementsByTagName("plot").at(0).toElement().text());
     if (!episodeDetails.elementsByTagName("mpaa").isEmpty())
