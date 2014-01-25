@@ -254,8 +254,10 @@ void MovieMultiScrapeDialog::onSearchFinished(QList<ScraperSearchResult> results
             connect(searchScrapers.first(), SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(onSearchFinished(QList<ScraperSearchResult>)), Qt::UniqueConnection);
             if ((searchScrapers.first()->identifier() == "tmdb" || searchScrapers.first()->identifier() == "imdb") && !m_currentMovie->id().isEmpty())
                 searchScrapers.first()->search(m_currentMovie->id());
-            else if (searchScrapers.first()->identifier() == "tmdb" && !m_currentMovie->tmdbId().isEmpty())
+            else if (searchScrapers.first()->identifier() == "tmdb" && !m_currentMovie->tmdbId().isEmpty() && !m_currentMovie->tmdbId().startsWith("tt"))
                 searchScrapers.first()->search("id" + m_currentMovie->tmdbId());
+            else if (searchScrapers.first()->identifier() == "tmdb" && !m_currentMovie->tmdbId().isEmpty())
+                searchScrapers.first()->search(m_currentMovie->tmdbId());
             else
                 searchScrapers.first()->search(m_currentMovie->name());
             return;

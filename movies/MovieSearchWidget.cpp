@@ -104,8 +104,10 @@ void MovieSearchWidget::search(QString searchString, QString id, QString tmdbId)
 
     if (scraper->identifier() == "imdb" && !m_id.isEmpty())
         ui->searchString->setText(m_id);
-    else if (scraper->identifier() == "tmdb" && !m_tmdbId.isEmpty())
+    else if (scraper->identifier() == "tmdb" && !m_tmdbId.isEmpty() && !m_tmdbId.startsWith("tt"))
         ui->searchString->setText("id" + m_tmdbId);
+    else if (scraper->identifier() == "tmdb" && !m_tmdbId.isEmpty())
+        ui->searchString->setText(m_tmdbId);
     else if (scraper->identifier() == "tmdb" && !m_id.isEmpty())
         ui->searchString->setText(m_id);
     else
