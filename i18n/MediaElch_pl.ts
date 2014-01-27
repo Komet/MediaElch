@@ -4825,12 +4825,12 @@ Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1072"/>
         <source>If you want to use the synchronization feature you need to enable the webserver within XBMC (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation type="unfinished"/>
+        <translation>Jeśli chcesz używać funkcji synchronizacji musisz włączyć serwer internetowy w XBMC (Ustawienia -&gt; Usługi -&gt; Serwer internetowy). Wprowadź numer portu serwera (zazwyczaj 80 lub 8080).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1115"/>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Użytkownik</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1195"/>
@@ -6738,7 +6738,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
         <source>Please make sure you have setup your sources in XBMC and that the webserver is enabled (XBMC -&gt; Settings -&gt; Services -&gt; Webserver).</source>
-        <translation type="unfinished"/>
+        <translation>Upewnij się, że ustawiłeś swoje źródła w XBMC, a funkcja serwera internetowego jest włączona (XBMC -&gt; Ustawienia -&gt; Usługi -&gt; Serwer internetowy).</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="36"/>
@@ -6758,7 +6758,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
         <source>XBMC will remove not longer existing items from your database.</source>
-        <translation type="unfinished"/>
+        <translation>XBMC usunie nie istniejące pozycje ze swojej bazy.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="70"/>
@@ -6802,7 +6802,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
         <location filename="../xbmc/XbmcSync.cpp" line="298"/>
         <location filename="../xbmc/XbmcSync.cpp" line="326"/>
         <source>Network error</source>
-        <translation type="unfinished"/>
+        <translation>Błąd połączenia</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="412"/>
@@ -6837,7 +6837,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="552"/>
         <source>Finished. XBMC is now cleaning your database.</source>
-        <translation type="unfinished"/>
+        <translation>Zakończono. XBMC czyści teraz swoją bazę.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="587"/>

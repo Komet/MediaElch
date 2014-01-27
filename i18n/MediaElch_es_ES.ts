@@ -4820,12 +4820,12 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1072"/>
         <source>If you want to use the synchronization feature you need to enable the webserver within XBMC (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation type="unfinished"/>
+        <translation>Si desea utilizar la función de sincronización necesita habilitar el servidor web dentro de XBMC (Configuración -&gt; Servicios -&gt; Servidor web). Introduzca el puerto del servidor web aquí (por lo general 80 o 8080).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1115"/>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Usuario</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1195"/>
@@ -6734,7 +6734,7 @@ Después MediaElch comprueba automáticamente si hay nuevos episodios en el arra
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
         <source>Please make sure you have setup your sources in XBMC and that the webserver is enabled (XBMC -&gt; Settings -&gt; Services -&gt; Webserver).</source>
-        <translation type="unfinished"/>
+        <translation>Por favor, asegúrese de que tiene sus fuentes en la configuración XBMC y que el servidor web está habilitado (XBMC -&gt; Configuración -&gt; Servicios -&gt; Webserver).</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="36"/>
@@ -6754,7 +6754,7 @@ Después MediaElch comprueba automáticamente si hay nuevos episodios en el arra
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
         <source>XBMC will remove not longer existing items from your database.</source>
-        <translation type="unfinished"/>
+        <translation>XBMC eliminará los elementos que ya no existentes en su base de datos.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="70"/>
@@ -6798,7 +6798,7 @@ Después MediaElch comprueba automáticamente si hay nuevos episodios en el arra
         <location filename="../xbmc/XbmcSync.cpp" line="298"/>
         <location filename="../xbmc/XbmcSync.cpp" line="326"/>
         <source>Network error</source>
-        <translation type="unfinished"/>
+        <translation>Error de red</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="412"/>
@@ -6833,7 +6833,7 @@ Después MediaElch comprueba automáticamente si hay nuevos episodios en el arra
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="552"/>
         <source>Finished. XBMC is now cleaning your database.</source>
-        <translation type="unfinished"/>
+        <translation>Terminado. XBMC está ahora limpiando tu base de datos.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="587"/>
