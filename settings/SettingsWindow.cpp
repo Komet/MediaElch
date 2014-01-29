@@ -270,17 +270,6 @@ void SettingsWindow::loadSettings()
     ui->xbmcUser->setText(m_settings->xbmcUser());
     ui->xbmcPassword->setText(m_settings->xbmcPassword());
 
-    foreach (QLineEdit *lineEdit, findChildren<QLineEdit*>()) {
-        if (lineEdit->property("dataFileType").isNull())
-            continue;
-        int dataFileType = lineEdit->property("dataFileType").toInt();
-        QList<DataFile> dataFiles = m_settings->dataFiles(dataFileType);
-        QStringList filenames;
-        foreach (DataFile dataFile, dataFiles)
-            filenames << dataFile.fileName();
-        lineEdit->setText(filenames.join(","));
-    }
-
     // Movie set artwork
     for (int i=0, n=ui->comboMovieSetArtwork->count() ; i<n ; ++i) {
         if (ui->comboMovieSetArtwork->itemData(i).toInt() == m_settings->movieSetArtworkType()) {
@@ -291,6 +280,16 @@ void SettingsWindow::loadSettings()
     ui->movieSetArtworkDir->setText(m_settings->movieSetArtworkDirectory());
     onComboMovieSetArtworkChanged();
 
+    foreach (QLineEdit *lineEdit, findChildren<QLineEdit*>()) {
+        if (lineEdit->property("dataFileType").isNull())
+            continue;
+        int dataFileType = lineEdit->property("dataFileType").toInt();
+        QList<DataFile> dataFiles = m_settings->dataFiles(dataFileType);
+        QStringList filenames;
+        foreach (DataFile dataFile, dataFiles)
+            filenames << dataFile.fileName();
+        lineEdit->setText(filenames.join(","));
+    }
 
     QList<int> infos = QList<int>() << MovieScraperInfos::Title << MovieScraperInfos::Set << MovieScraperInfos::Tagline
                                     << MovieScraperInfos::Rating << MovieScraperInfos::Released << MovieScraperInfos::Runtime
