@@ -1208,7 +1208,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="69"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Etiqueta</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="80"/>
@@ -1272,12 +1272,12 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="305"/>
         <source>Label &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Etiqueta &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="306"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Etiqueta</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="373"/>
@@ -3998,42 +3998,42 @@ Se quiser procurar um ID TMDB ou OFDb, por favor utilize o prefixo &quot;id&quot
     <message>
         <location filename="../globals/Helper.cpp" line="500"/>
         <source>No Label</source>
-        <translation type="unfinished"/>
+        <translation>Sem Etiqueta</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="501"/>
         <source>Red</source>
-        <translation type="unfinished"/>
+        <translation>Vermelho</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="502"/>
         <source>Orange</source>
-        <translation type="unfinished"/>
+        <translation>Laranja</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="503"/>
         <source>Yellow</source>
-        <translation type="unfinished"/>
+        <translation>Amarelo</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="504"/>
         <source>Green</source>
-        <translation type="unfinished"/>
+        <translation>Verde</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="505"/>
         <source>Blue</source>
-        <translation type="unfinished"/>
+        <translation>Azul</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="506"/>
         <source>Purple</source>
-        <translation type="unfinished"/>
+        <translation>Roxo</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="507"/>
         <source>Grey</source>
-        <translation type="unfinished"/>
+        <translation>Cinzento</translation>
     </message>
 </context>
 <context>
@@ -4821,12 +4821,12 @@ Os Episódios de Séries TV têm de estar em sub-pastas com o nome da série.</t
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1072"/>
         <source>If you want to use the synchronization feature you need to enable the webserver within XBMC (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation type="unfinished"/>
+        <translation>Se pretender usar a funcionalidade de sincronização, precisa de activar o webserver no XBMC (Definições -&gt; Serviços -&gt; Remoto). Introduza a porta do webserver aqui (provavelmente 80 ou 8080)</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1115"/>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Utilizador</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1195"/>
@@ -6735,7 +6735,7 @@ Após isso, o MediaElch verificará automaticamente novos episódios ao iniciar.
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
         <source>Please make sure you have setup your sources in XBMC and that the webserver is enabled (XBMC -&gt; Settings -&gt; Services -&gt; Webserver).</source>
-        <translation type="unfinished"/>
+        <translation>Por favor certifique-se de que definiu as fontes no XBMC e que o webserver está activado (XBMC -&gt; Definições -&gt; Serviços -&gt; Remoto).</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="36"/>
@@ -6755,7 +6755,7 @@ Após isso, o MediaElch verificará automaticamente novos episódios ao iniciar.
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
         <source>XBMC will remove not longer existing items from your database.</source>
-        <translation type="unfinished"/>
+        <translation>O XBMC irá remover itens não existentes da sua base de dados.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="70"/>
@@ -6799,7 +6799,7 @@ Após isso, o MediaElch verificará automaticamente novos episódios ao iniciar.
         <location filename="../xbmc/XbmcSync.cpp" line="298"/>
         <location filename="../xbmc/XbmcSync.cpp" line="326"/>
         <source>Network error</source>
-        <translation type="unfinished"/>
+        <translation>Erro de rede</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="412"/>
@@ -6834,7 +6834,7 @@ Após isso, o MediaElch verificará automaticamente novos episódios ao iniciar.
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="552"/>
         <source>Finished. XBMC is now cleaning your database.</source>
-        <translation type="unfinished"/>
+        <translation>Concluído. Agora, o XBMC limpará a sua base de dados.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="587"/>
