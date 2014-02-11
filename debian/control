@@ -9,7 +9,7 @@ Vcs-Git: git://github.com/Komet/MediaElch.git
 
 Package: mediaelch
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libqt5sql5, libqt5sql5-sqlite, libqt5script5, libqt5core5, libqt5gui5, libqt5network5, libqt5concurrent5, libqt5graphicaleffects5, libqt5multimedia5, libqt5multimediawidgets5, libqt5xml5, libmediainfo0, zlib1g, libzen0, libcurl3, libpulse0
+Depends: ${shlibs:Depends}, ${misc:Depends}, libqt5sql5, libqt5sql5-sqlite, libqt5script5, libqt5core5, libqt5gui5, libqt5network5, libqt5concurrent5, libqt5graphicaleffects5 | libqt5qml-graphicaleffects, libqt5multimedia5, libqt5multimediawidgets5, libqt5xml5, libmediainfo0, zlib1g, libzen0, libcurl3, libpulse0
 Description: XBMC Media Manager
  MediaElch is your Media Manager for handling Movies and TV Shows in XBMC. 
  It is designed to gather information from various movie databases on the internet and store these information directly to XBMCs database or in nfo files. 
