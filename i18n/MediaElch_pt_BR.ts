@@ -1208,7 +1208,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="69"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Etiqueta</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="80"/>
@@ -1272,12 +1272,12 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="305"/>
         <source>Label &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Etiqueta &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="306"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Etiqueta</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="373"/>
@@ -3998,42 +3998,42 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../globals/Helper.cpp" line="500"/>
         <source>No Label</source>
-        <translation type="unfinished"/>
+        <translation>Sem Etiqueta</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="501"/>
         <source>Red</source>
-        <translation type="unfinished"/>
+        <translation>Vermelha</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="502"/>
         <source>Orange</source>
-        <translation type="unfinished"/>
+        <translation>Laranja</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="503"/>
         <source>Yellow</source>
-        <translation type="unfinished"/>
+        <translation>Amarela</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="504"/>
         <source>Green</source>
-        <translation type="unfinished"/>
+        <translation>Verde</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="505"/>
         <source>Blue</source>
-        <translation type="unfinished"/>
+        <translation>Azul</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="506"/>
         <source>Purple</source>
-        <translation type="unfinished"/>
+        <translation>Roxa</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="507"/>
         <source>Grey</source>
-        <translation type="unfinished"/>
+        <translation>Cinza</translation>
     </message>
 </context>
 <context>
@@ -4602,7 +4602,7 @@ Episódios de seriados devem estar localizados em subdiretórios com o nome do s
         <location filename="../settings/SettingsWindow.ui" line="438"/>
         <location filename="../settings/SettingsWindow.ui" line="702"/>
         <location filename="../settings/SettingsWindow.ui" line="971"/>
-        <location filename="../settings/SettingsWindow.cpp" line="664"/>
+        <location filename="../settings/SettingsWindow.cpp" line="663"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
@@ -4617,7 +4617,7 @@ Episódios de seriados devem estar localizados em subdiretórios com o nome do s
         <location filename="../settings/SettingsWindow.ui" line="452"/>
         <location filename="../settings/SettingsWindow.ui" line="723"/>
         <location filename="../settings/SettingsWindow.ui" line="985"/>
-        <location filename="../settings/SettingsWindow.cpp" line="684"/>
+        <location filename="../settings/SettingsWindow.cpp" line="683"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
@@ -4625,28 +4625,28 @@ Episódios de seriados devem estar localizados em subdiretórios com o nome do s
         <location filename="../settings/SettingsWindow.ui" line="459"/>
         <location filename="../settings/SettingsWindow.ui" line="730"/>
         <location filename="../settings/SettingsWindow.ui" line="992"/>
-        <location filename="../settings/SettingsWindow.cpp" line="688"/>
+        <location filename="../settings/SettingsWindow.cpp" line="687"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="466"/>
         <location filename="../settings/SettingsWindow.ui" line="999"/>
-        <location filename="../settings/SettingsWindow.cpp" line="686"/>
+        <location filename="../settings/SettingsWindow.cpp" line="685"/>
         <source>Disc Art</source>
         <translation>Arte do Disco</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="533"/>
         <location filename="../settings/SettingsWindow.ui" line="716"/>
-        <location filename="../settings/SettingsWindow.cpp" line="690"/>
+        <location filename="../settings/SettingsWindow.cpp" line="689"/>
         <source>Banner</source>
         <translation>Banner</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="540"/>
         <location filename="../settings/SettingsWindow.ui" line="906"/>
-        <location filename="../settings/SettingsWindow.cpp" line="692"/>
+        <location filename="../settings/SettingsWindow.cpp" line="691"/>
         <source>Thumb</source>
         <translation>Miniatura</translation>
     </message>
@@ -4821,12 +4821,12 @@ Episódios de seriados devem estar localizados em subdiretórios com o nome do s
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1072"/>
         <source>If you want to use the synchronization feature you need to enable the webserver within XBMC (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation type="unfinished"/>
+        <translation>se você deseja usar o recurso de sincronização você deve antes ativer o webserver dentro do XBMC. (Ajustes -&gt;Rede -&gt;Webserver). Entre a porta do webserver aqui (usualmente 80 ou 8080).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1115"/>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Usuário</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1195"/>
@@ -4861,7 +4861,7 @@ Episódios de seriados devem estar localizados em subdiretórios com o nome do s
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1364"/>
-        <location filename="../settings/SettingsWindow.cpp" line="492"/>
+        <location filename="../settings/SettingsWindow.cpp" line="491"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -4878,21 +4878,21 @@ Episódios de seriados devem estar localizados em subdiretórios com o nome do s
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1423"/>
         <location filename="../settings/SettingsWindow.cpp" line="152"/>
-        <location filename="../settings/SettingsWindow.cpp" line="443"/>
+        <location filename="../settings/SettingsWindow.cpp" line="442"/>
         <source>Movies</source>
         <translation>Filmes</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1443"/>
         <location filename="../settings/SettingsWindow.cpp" line="153"/>
-        <location filename="../settings/SettingsWindow.cpp" line="443"/>
+        <location filename="../settings/SettingsWindow.cpp" line="442"/>
         <source>TV Shows</source>
         <translation>Seriados</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1464"/>
         <location filename="../settings/SettingsWindow.cpp" line="154"/>
-        <location filename="../settings/SettingsWindow.cpp" line="443"/>
+        <location filename="../settings/SettingsWindow.cpp" line="442"/>
         <source>Concerts</source>
         <translation>Concertos</translation>
     </message>
@@ -4917,163 +4917,163 @@ Episódios de seriados devem estar localizados em subdiretórios com o nome do s
         <translation>Exportar</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="409"/>
+        <location filename="../settings/SettingsWindow.cpp" line="408"/>
         <source>Settings saved</source>
         <translation>Ajustes salvos</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="443"/>
+        <location filename="../settings/SettingsWindow.cpp" line="442"/>
         <source>Downloads</source>
         <translation>Transferências</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="479"/>
+        <location filename="../settings/SettingsWindow.cpp" line="478"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
         <translation>Organizar filmes somente funciona para filmes que não tenham sido já ordenados em pastas separadas.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="487"/>
+        <location filename="../settings/SettingsWindow.cpp" line="486"/>
         <source>Are you sure?</source>
         <translation>Você tem certeza?</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="488"/>
+        <location filename="../settings/SettingsWindow.cpp" line="487"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
         <translation>Esta operação ordena todos os filmes deste diretório para sub-diretórios separando-os com base no nome do arquivo. Clique em &quot;Ok&quot;, se isso é o que você deseja fazer. </translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="491"/>
+        <location filename="../settings/SettingsWindow.cpp" line="490"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="537"/>
+        <location filename="../settings/SettingsWindow.cpp" line="536"/>
         <source>Choose a directory containing your movies, TV show or concerts</source>
         <translation>Escolha um diretório contendo seus filmes, seriados ou concertos</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="559"/>
+        <location filename="../settings/SettingsWindow.cpp" line="558"/>
         <source>Choose a directory where your movie set artwork is stored</source>
         <translation>Escolha um diretório onde suas artes dos filmes serão armazenadas</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="588"/>
+        <location filename="../settings/SettingsWindow.cpp" line="587"/>
         <source>Theme &quot;%1&quot; was successfully installed</source>
         <translation>Tema &quot;%1&quot; foi instalado com sucesso</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="590"/>
-        <location filename="../settings/SettingsWindow.cpp" line="598"/>
+        <location filename="../settings/SettingsWindow.cpp" line="589"/>
+        <location filename="../settings/SettingsWindow.cpp" line="597"/>
         <source>There was an error while processing the theme &quot;%1&quot;</source>
         <translation>Ocorreu um erro enquanto processando o tema &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="596"/>
+        <location filename="../settings/SettingsWindow.cpp" line="595"/>
         <source>Theme &quot;%1&quot; was successfully uninstalled</source>
         <translation>Tema &quot;%1&quot; foi desinstalado com sucesso</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="608"/>
+        <location filename="../settings/SettingsWindow.cpp" line="607"/>
         <source>Don&apos;t use</source>
         <translation>Não use</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="648"/>
+        <location filename="../settings/SettingsWindow.cpp" line="647"/>
         <source>Title</source>
         <translation>Título</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="650"/>
+        <location filename="../settings/SettingsWindow.cpp" line="649"/>
         <source>Tagline</source>
         <translation>Linha de Tag</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="652"/>
+        <location filename="../settings/SettingsWindow.cpp" line="651"/>
         <source>Rating</source>
         <translation>Classificação</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="654"/>
+        <location filename="../settings/SettingsWindow.cpp" line="653"/>
         <source>Released</source>
         <translation>Lançado</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="656"/>
+        <location filename="../settings/SettingsWindow.cpp" line="655"/>
         <source>Runtime</source>
         <translation>Duração</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="658"/>
+        <location filename="../settings/SettingsWindow.cpp" line="657"/>
         <source>Certification</source>
         <translation>Certificação</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="660"/>
+        <location filename="../settings/SettingsWindow.cpp" line="659"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="662"/>
+        <location filename="../settings/SettingsWindow.cpp" line="661"/>
         <source>Plot</source>
         <translation>Enredo</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="666"/>
+        <location filename="../settings/SettingsWindow.cpp" line="665"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="668"/>
+        <location filename="../settings/SettingsWindow.cpp" line="667"/>
         <source>Actors</source>
         <translation>Elenco</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="670"/>
+        <location filename="../settings/SettingsWindow.cpp" line="669"/>
         <source>Genres</source>
         <translation>Gêneros</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="672"/>
+        <location filename="../settings/SettingsWindow.cpp" line="671"/>
         <source>Studios</source>
         <translation>Estúdios</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="674"/>
+        <location filename="../settings/SettingsWindow.cpp" line="673"/>
         <source>Countries</source>
         <translation>Países</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="676"/>
+        <location filename="../settings/SettingsWindow.cpp" line="675"/>
         <source>Writer</source>
         <translation>Roteirista</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="678"/>
+        <location filename="../settings/SettingsWindow.cpp" line="677"/>
         <source>Director</source>
         <translation>Diretor</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="680"/>
+        <location filename="../settings/SettingsWindow.cpp" line="679"/>
         <source>Tags</source>
         <translation>Etiquetas</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="682"/>
+        <location filename="../settings/SettingsWindow.cpp" line="681"/>
         <source>Set</source>
         <translation>Coletânea</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="694"/>
+        <location filename="../settings/SettingsWindow.cpp" line="693"/>
         <source>Unsupported</source>
         <translation>Não Suportado</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="700"/>
+        <location filename="../settings/SettingsWindow.cpp" line="699"/>
         <source>Choose unrar</source>
         <translation>Escolha unrar</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="707"/>
+        <location filename="../settings/SettingsWindow.cpp" line="706"/>
         <source>Choose makemkvcon</source>
         <translation>Escolha makemvkcon</translation>
     </message>
@@ -6734,7 +6734,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
         <source>Please make sure you have setup your sources in XBMC and that the webserver is enabled (XBMC -&gt; Settings -&gt; Services -&gt; Webserver).</source>
-        <translation type="unfinished"/>
+        <translation>Por favor, verifique se você configurou suas fontes no XBMC e que o webserver está habilitado (XBMC -&gt; Ajustes -&gt; Rede -&gt; Webserver).</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="36"/>
@@ -6754,7 +6754,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
         <source>XBMC will remove not longer existing items from your database.</source>
-        <translation type="unfinished"/>
+        <translation>XBMC irá remover itens não mais existentes de seu banco de dados.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="70"/>
@@ -6798,7 +6798,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
         <location filename="../xbmc/XbmcSync.cpp" line="298"/>
         <location filename="../xbmc/XbmcSync.cpp" line="326"/>
         <source>Network error</source>
-        <translation type="unfinished"/>
+        <translation>Erro na rede</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="412"/>
@@ -6833,7 +6833,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="552"/>
         <source>Finished. XBMC is now cleaning your database.</source>
-        <translation type="unfinished"/>
+        <translation>Finalizado. XBMC está agora limpando seu banco de dados.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="587"/>

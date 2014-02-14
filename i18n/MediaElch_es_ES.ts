@@ -4601,7 +4601,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="438"/>
         <location filename="../settings/SettingsWindow.ui" line="702"/>
         <location filename="../settings/SettingsWindow.ui" line="971"/>
-        <location filename="../settings/SettingsWindow.cpp" line="664"/>
+        <location filename="../settings/SettingsWindow.cpp" line="663"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
@@ -4616,7 +4616,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="452"/>
         <location filename="../settings/SettingsWindow.ui" line="723"/>
         <location filename="../settings/SettingsWindow.ui" line="985"/>
-        <location filename="../settings/SettingsWindow.cpp" line="684"/>
+        <location filename="../settings/SettingsWindow.cpp" line="683"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
@@ -4624,28 +4624,28 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="459"/>
         <location filename="../settings/SettingsWindow.ui" line="730"/>
         <location filename="../settings/SettingsWindow.ui" line="992"/>
-        <location filename="../settings/SettingsWindow.cpp" line="688"/>
+        <location filename="../settings/SettingsWindow.cpp" line="687"/>
         <source>Clear Art</source>
         <translation>Arte limpia</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="466"/>
         <location filename="../settings/SettingsWindow.ui" line="999"/>
-        <location filename="../settings/SettingsWindow.cpp" line="686"/>
+        <location filename="../settings/SettingsWindow.cpp" line="685"/>
         <source>Disc Art</source>
         <translation>Arte CD</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="533"/>
         <location filename="../settings/SettingsWindow.ui" line="716"/>
-        <location filename="../settings/SettingsWindow.cpp" line="690"/>
+        <location filename="../settings/SettingsWindow.cpp" line="689"/>
         <source>Banner</source>
         <translation>Banner</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="540"/>
         <location filename="../settings/SettingsWindow.ui" line="906"/>
-        <location filename="../settings/SettingsWindow.cpp" line="692"/>
+        <location filename="../settings/SettingsWindow.cpp" line="691"/>
         <source>Thumb</source>
         <translation>Miniatura</translation>
     </message>
@@ -4860,7 +4860,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1364"/>
-        <location filename="../settings/SettingsWindow.cpp" line="492"/>
+        <location filename="../settings/SettingsWindow.cpp" line="491"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -4877,21 +4877,21 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1423"/>
         <location filename="../settings/SettingsWindow.cpp" line="152"/>
-        <location filename="../settings/SettingsWindow.cpp" line="443"/>
+        <location filename="../settings/SettingsWindow.cpp" line="442"/>
         <source>Movies</source>
         <translation>Películas</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1443"/>
         <location filename="../settings/SettingsWindow.cpp" line="153"/>
-        <location filename="../settings/SettingsWindow.cpp" line="443"/>
+        <location filename="../settings/SettingsWindow.cpp" line="442"/>
         <source>TV Shows</source>
         <translation>Series</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1464"/>
         <location filename="../settings/SettingsWindow.cpp" line="154"/>
-        <location filename="../settings/SettingsWindow.cpp" line="443"/>
+        <location filename="../settings/SettingsWindow.cpp" line="442"/>
         <source>Concerts</source>
         <translation>Conciertos</translation>
     </message>
@@ -4916,163 +4916,163 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <translation>Exportar</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="409"/>
+        <location filename="../settings/SettingsWindow.cpp" line="408"/>
         <source>Settings saved</source>
         <translation>Configuraciones salvadas</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="443"/>
+        <location filename="../settings/SettingsWindow.cpp" line="442"/>
         <source>Downloads</source>
         <translation>Descargas</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="479"/>
+        <location filename="../settings/SettingsWindow.cpp" line="478"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
         <translation>Organización de películas solo funciona en películas, no en carpetas separadas ya.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="487"/>
+        <location filename="../settings/SettingsWindow.cpp" line="486"/>
         <source>Are you sure?</source>
         <translation>¿Estás seguro?</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="488"/>
+        <location filename="../settings/SettingsWindow.cpp" line="487"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
         <translation>Con esta operación se clasifica todas las películas de este directorio a los subdirectorios separados basados ​​en el nombre del archivo. Haga clic en &quot;OK&quot;, si eso es, lo que quieren hacer.</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="491"/>
+        <location filename="../settings/SettingsWindow.cpp" line="490"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="537"/>
+        <location filename="../settings/SettingsWindow.cpp" line="536"/>
         <source>Choose a directory containing your movies, TV show or concerts</source>
         <translation>Elige un directorio que contiene tus películas, series o conciertos</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="559"/>
+        <location filename="../settings/SettingsWindow.cpp" line="558"/>
         <source>Choose a directory where your movie set artwork is stored</source>
         <translation>Elige un directorio donde tus ilustraciones de conjuntos de películas son almacenados</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="588"/>
+        <location filename="../settings/SettingsWindow.cpp" line="587"/>
         <source>Theme &quot;%1&quot; was successfully installed</source>
         <translation>Tema &quot;%1&quot; se ha instalado correctamente</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="590"/>
-        <location filename="../settings/SettingsWindow.cpp" line="598"/>
+        <location filename="../settings/SettingsWindow.cpp" line="589"/>
+        <location filename="../settings/SettingsWindow.cpp" line="597"/>
         <source>There was an error while processing the theme &quot;%1&quot;</source>
         <translation>Hubo un error al procesar el tema &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="596"/>
+        <location filename="../settings/SettingsWindow.cpp" line="595"/>
         <source>Theme &quot;%1&quot; was successfully uninstalled</source>
         <translation>Tema &quot;%1&quot; se ha desinstalado con éxito</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="608"/>
+        <location filename="../settings/SettingsWindow.cpp" line="607"/>
         <source>Don&apos;t use</source>
         <translation>No usar</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="648"/>
+        <location filename="../settings/SettingsWindow.cpp" line="647"/>
         <source>Title</source>
         <translation>Título</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="650"/>
+        <location filename="../settings/SettingsWindow.cpp" line="649"/>
         <source>Tagline</source>
         <translation>Lema</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="652"/>
+        <location filename="../settings/SettingsWindow.cpp" line="651"/>
         <source>Rating</source>
         <translation>Calificación</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="654"/>
+        <location filename="../settings/SettingsWindow.cpp" line="653"/>
         <source>Released</source>
         <translation>Lanzado</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="656"/>
+        <location filename="../settings/SettingsWindow.cpp" line="655"/>
         <source>Runtime</source>
         <translation>Duración</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="658"/>
+        <location filename="../settings/SettingsWindow.cpp" line="657"/>
         <source>Certification</source>
         <translation>Certificación</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="660"/>
+        <location filename="../settings/SettingsWindow.cpp" line="659"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="662"/>
+        <location filename="../settings/SettingsWindow.cpp" line="661"/>
         <source>Plot</source>
         <translation>Argumento</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="666"/>
+        <location filename="../settings/SettingsWindow.cpp" line="665"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="668"/>
+        <location filename="../settings/SettingsWindow.cpp" line="667"/>
         <source>Actors</source>
         <translation>Actores</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="670"/>
+        <location filename="../settings/SettingsWindow.cpp" line="669"/>
         <source>Genres</source>
         <translation>Géneros</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="672"/>
+        <location filename="../settings/SettingsWindow.cpp" line="671"/>
         <source>Studios</source>
         <translation>Estudio</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="674"/>
+        <location filename="../settings/SettingsWindow.cpp" line="673"/>
         <source>Countries</source>
         <translation>Paises </translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="676"/>
+        <location filename="../settings/SettingsWindow.cpp" line="675"/>
         <source>Writer</source>
         <translation>Escritor</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="678"/>
+        <location filename="../settings/SettingsWindow.cpp" line="677"/>
         <source>Director</source>
         <translation>Director</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="680"/>
+        <location filename="../settings/SettingsWindow.cpp" line="679"/>
         <source>Tags</source>
         <translation>Etiquetas</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="682"/>
+        <location filename="../settings/SettingsWindow.cpp" line="681"/>
         <source>Set</source>
         <translation>conjunto</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="694"/>
+        <location filename="../settings/SettingsWindow.cpp" line="693"/>
         <source>Unsupported</source>
         <translation>No compatible</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="700"/>
+        <location filename="../settings/SettingsWindow.cpp" line="699"/>
         <source>Choose unrar</source>
         <translation>Elige descompresor</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.cpp" line="707"/>
+        <location filename="../settings/SettingsWindow.cpp" line="706"/>
         <source>Choose makemkvcon</source>
         <translation>Elige makemkvcon</translation>
     </message>
