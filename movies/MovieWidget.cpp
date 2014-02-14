@@ -315,7 +315,10 @@ void MovieWidget::clear()
     ui->videoWidth->clear();
     ui->videoWidth->blockSignals(blocked);
 
-    ui->actor->setPixmap(QPixmap(":/img/man.png"));
+    QPixmap pixmap(":/img/man.png");
+    pixmap.setDevicePixelRatio(devicePixelRatio());
+    ui->actor->setPixmap(pixmap);
+
     ui->actorResolution->setText("");
     ui->genreCloud->clear();
     ui->countryCloud->clear();
@@ -936,22 +939,30 @@ void MovieWidget::onActorChanged()
 {
     if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount() ||
         ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
-        ui->actor->setPixmap(QPixmap(":/img/man.png"));
+        QPixmap pixmap(":/img/man.png");
+        pixmap.setDevicePixelRatio(devicePixelRatio());
+        ui->actor->setPixmap(pixmap);
         ui->actorResolution->setText("");
         return;
     }
 
     Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
     if (!actor->image.isNull()) {
-        QImage img = QImage::fromData(actor->image);
-        ui->actor->setPixmap(QPixmap::fromImage(img).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        ui->actorResolution->setText(QString("%1 x %2").arg(img.width()).arg(img.height()));
+        QPixmap p = QPixmap::fromImage(QImage::fromData(actor->image));
+        p = p.scaled(QSize(120, 180) * ui->actor->devicePixelRatio(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        p.setDevicePixelRatio(ui->actor->devicePixelRatio());
+        ui->actor->setPixmap(p);
+        ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
     } else if (!Manager::instance()->mediaCenterInterface()->actorImageName(m_movie, *actor).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->actorImageName(m_movie, *actor));
-        ui->actor->setPixmap(p.scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        p = p.scaled(QSize(120, 180) * ui->actor->devicePixelRatio(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        p.setDevicePixelRatio(ui->actor->devicePixelRatio());
+        ui->actor->setPixmap(p);
         ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
     } else {
-        ui->actor->setPixmap(QPixmap(":/img/man.png"));
+        QPixmap pixmap(":/img/man.png");
+        pixmap.setDevicePixelRatio(devicePixelRatio());
+        ui->actor->setPixmap(pixmap);
         ui->actorResolution->setText("");
     }
 }

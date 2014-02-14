@@ -163,7 +163,7 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
         }
 
         if (!icon.isEmpty())
-            return QIcon(QPixmap(":mediaStatus/" + icon));
+            return QIcon(":mediaStatus/" + icon);
 
     } else if (role == Qt::ToolTipRole) {
         return MovieModel::mediaStatusToText(MovieModel::columnToMediaStatus(index.column()));

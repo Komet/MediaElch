@@ -37,12 +37,13 @@ ClosableImage::ClosableImage(QWidget *parent) :
     m_loadingMovie->start();
 
     m_zoomIn = QPixmap(":/img/zoom_in.png");
+    m_zoomIn.setDevicePixelRatio(devicePixelRatio());
     QPainter p;
     p.begin(&m_zoomIn);
     p.setCompositionMode(QPainter::CompositionMode_SourceIn);
     p.fillRect(m_zoomIn.rect(), QColor(0, 0, 0, 150));
     p.end();
-    m_zoomIn = m_zoomIn.scaledToWidth(16, Qt::SmoothTransformation);
+    m_zoomIn = m_zoomIn.scaledToWidth(16 * devicePixelRatio(), Qt::SmoothTransformation);
 }
 
 void ClosableImage::mousePressEvent(QMouseEvent *ev)
@@ -54,6 +55,7 @@ void ClosableImage::mousePressEvent(QMouseEvent *ev)
         if (!confirmDeleteImage())
             return;
         m_pixmap = QPixmap::grabWidget(this);
+        m_pixmap.setDevicePixelRatio(devicePixelRatio());
         m_anim = new QPropertyAnimation(this);
         m_anim->setEasingCurve(QEasingCurve::InQuad);
         m_anim->setTargetObject(this);
@@ -113,7 +115,7 @@ void ClosableImage::paintEvent(QPaintEvent *event)
 
     if (!m_pixmap.isNull()) {
         int h = height()*(width()-2*m_mySize)/width();
-        p.drawPixmap(m_mySize, (height()-h)/2, m_pixmap.scaledToWidth(width()-2*m_mySize));
+        p.drawPixmap(m_mySize, (height()-h)/2, m_pixmap.scaledToWidth((width()-2*m_mySize) * devicePixelRatio()));
         return;
     }
 
@@ -124,18 +126,21 @@ void ClosableImage::paintEvent(QPaintEvent *event)
         img = QImage::fromData(m_image);
         origWidth = img.width();
         origHeight = img.height();
-        img = img.scaledToWidth(width()-9, Qt::SmoothTransformation);
+        img = img.scaledToWidth((width()-9)*devicePixelRatio(), Qt::SmoothTransformation);
     } else if (!m_imagePath.isEmpty()) {
-        img = ImageCache::instance()->image(m_imagePath, width()-9, 0, origWidth, origHeight);
+        img = ImageCache::instance()->image(m_imagePath, (width()-9)*devicePixelRatio(), 0, origWidth, origHeight);
     } else {
-        p.drawPixmap((width()-m_defaultPixmap.width())/2, (height()-m_defaultPixmap.height())/2, m_defaultPixmap);
+        p.drawPixmap((width()-m_defaultPixmap.width() / m_defaultPixmap.devicePixelRatio())/2, (height()-m_defaultPixmap.height() / m_defaultPixmap.devicePixelRatio())/2, m_defaultPixmap);
         drawTitle(p);
         return;
     }
 
+    img.setDevicePixelRatio(devicePixelRatio());
     QRect r = rect();
     p.drawImage(0, 7, img);
-    p.drawImage(r.width()-25, 0, QImage(":/img/closeImage.png"));
+    QImage closeImg = QImage(":/img/closeImage.png").scaled(QSize(20, 20) * devicePixelRatio(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    closeImg.setDevicePixelRatio(devicePixelRatio());
+    p.drawImage(r.width()-21, 0, closeImg);
     if (m_showZoomAndResolution) {
         QString res = QString("%1x%2").arg(origWidth).arg(origHeight);
         QFontMetrics fm(m_font);
@@ -268,6 +273,7 @@ int ClosableImage::myFixedHeight() const
 void ClosableImage::setDefaultPixmap(QPixmap pixmap)
 {
     m_defaultPixmap = pixmap;
+    m_defaultPixmap.setDevicePixelRatio(devicePixelRatio());
 }
 
 void ClosableImage::setClickable(const bool &clickable)

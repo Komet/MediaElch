@@ -14,6 +14,23 @@ ItemWidgetShow::ItemWidgetShow(QWidget *parent) :
     font.setPointSize(font.pointSize()-1);
 #endif
     ui->episodes->setFont(font);
+
+    QPixmap iSync(":/img/reload_orange.png");
+    iSync = iSync.scaled(ui->iconSync->size() * ui->iconSync->devicePixelRatio(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    iSync.setDevicePixelRatio(ui->iconSync->devicePixelRatio());
+    ui->iconSync->setPixmap(iSync);
+
+    QPixmap iNew(":/img/star_blue.png");
+    iNew = iNew.scaled(ui->iconNew->size() * ui->iconNew->devicePixelRatio(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    iNew.setDevicePixelRatio(ui->iconNew->devicePixelRatio());
+    ui->iconNew->setPixmap(iNew);
+
+    QPixmap iMissing(":/img/missing.png");
+    iMissing = iMissing.scaled(ui->iconMissing->size() * ui->iconMissing->devicePixelRatio(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    iMissing.setDevicePixelRatio(ui->iconMissing->devicePixelRatio());
+    ui->iconMissing->setPixmap(iMissing);
+
+
 }
 
 ItemWidgetShow::~ItemWidgetShow()
@@ -43,42 +60,66 @@ void ItemWidgetShow::setNew(const bool &isNew)
 
 void ItemWidgetShow::setHasPoster(const bool &has)
 {
-    ui->iconPoster->setPixmap(ui->iconPoster->property(has ? "iconGreen" : "iconRed").value<QPixmap>());
+    QPixmap p = ui->iconPoster->property(has ? "iconGreen" : "iconRed").value<QPixmap>().scaled(ui->iconPoster->size() * ui->iconPoster->devicePixelRatio(),
+                                                                                                Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    p.setDevicePixelRatio(ui->iconPoster->devicePixelRatio());
+    ui->iconPoster->setPixmap(p);
 }
 
 void ItemWidgetShow::setHasFanart(const bool &has)
 {
-    ui->iconFanart->setPixmap(ui->iconFanart->property(has ? "iconGreen" : "iconRed").value<QPixmap>());
+    QPixmap p = ui->iconFanart->property(has ? "iconGreen" : "iconRed").value<QPixmap>().scaled(ui->iconFanart->size() * ui->iconFanart->devicePixelRatio(),
+                                                                                                Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    p.setDevicePixelRatio(ui->iconFanart->devicePixelRatio());
+    ui->iconFanart->setPixmap(p);
 }
 
 void ItemWidgetShow::setHasExtraFanart(const bool &has)
 {
-    ui->iconExtraFanarts->setPixmap(ui->iconExtraFanarts->property(has ? "iconGreen" : "iconRed").value<QPixmap>());
+    QPixmap p = ui->iconExtraFanarts->property(has ? "iconGreen" : "iconRed").value<QPixmap>().scaled(ui->iconExtraFanarts->size() * ui->iconExtraFanarts->devicePixelRatio(),
+                                                                                                Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    p.setDevicePixelRatio(ui->iconExtraFanarts->devicePixelRatio());
+    ui->iconExtraFanarts->setPixmap(p);
 }
 
 void ItemWidgetShow::setHasLogo(const bool &has)
 {
-    ui->iconLogo->setPixmap(ui->iconLogo->property(has ? "iconGreen" : "iconRed").value<QPixmap>());
+    QPixmap p = ui->iconLogo->property(has ? "iconGreen" : "iconRed").value<QPixmap>().scaled(ui->iconLogo->size() * ui->iconLogo->devicePixelRatio(),
+                                                                                                Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    p.setDevicePixelRatio(ui->iconLogo->devicePixelRatio());
+    ui->iconLogo->setPixmap(p);
 }
 
 void ItemWidgetShow::setHasClearArt(const bool &has)
 {
-    ui->iconClearArt->setPixmap(ui->iconClearArt->property(has ? "iconGreen" : "iconRed").value<QPixmap>());
+    QPixmap p = ui->iconClearArt->property(has ? "iconGreen" : "iconRed").value<QPixmap>().scaled(ui->iconClearArt->size() * ui->iconClearArt->devicePixelRatio(),
+                                                                                                Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    p.setDevicePixelRatio(ui->iconClearArt->devicePixelRatio());
+    ui->iconClearArt->setPixmap(p);
 }
 
 void ItemWidgetShow::setHasCharacterArt(const bool &has)
 {
-    ui->iconCharacterArt->setPixmap(ui->iconCharacterArt->property(has ? "iconGreen" : "iconRed").value<QPixmap>());
+    QPixmap p = ui->iconCharacterArt->property(has ? "iconGreen" : "iconRed").value<QPixmap>().scaled(ui->iconCharacterArt->size() * ui->iconCharacterArt->devicePixelRatio(),
+                                                                                                Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    p.setDevicePixelRatio(ui->iconCharacterArt->devicePixelRatio());
+    ui->iconCharacterArt->setPixmap(p);
 }
 
 void ItemWidgetShow::setHasBanner(const bool &has)
 {
-    ui->iconBanner->setPixmap(ui->iconBanner->property(has ? "iconGreen" : "iconRed").value<QPixmap>());
+    QPixmap p = ui->iconBanner->property(has ? "iconGreen" : "iconRed").value<QPixmap>().scaled(ui->iconBanner->size() * ui->iconBanner->devicePixelRatio(),
+                                                                                                Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    p.setDevicePixelRatio(ui->iconBanner->devicePixelRatio());
+    ui->iconBanner->setPixmap(p);
 }
 
 void ItemWidgetShow::setHasThumb(const bool &has)
 {
-    ui->iconThumb->setPixmap(ui->iconThumb->property(has ? "iconGreen" : "iconRed").value<QPixmap>());
+    QPixmap p = ui->iconThumb->property(has ? "iconGreen" : "iconRed").value<QPixmap>().scaled(ui->iconThumb->size() * ui->iconThumb->devicePixelRatio(),
+                                                                                                Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    p.setDevicePixelRatio(ui->iconThumb->devicePixelRatio());
+    ui->iconThumb->setPixmap(p);
 }
 
 void ItemWidgetShow::setMissingEpisodes(const bool &missing)

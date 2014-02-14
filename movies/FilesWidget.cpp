@@ -48,6 +48,7 @@ FilesWidget::FilesWidget(QWidget *parent) :
         ui->files->setColumnHidden(i, true);
     }
     ui->files->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+    ui->files->setIconSize(QSize(12, 12));
 
     foreach (const MediaStatusColumns &column, Settings::instance()->mediaStatusColumns())
         ui->files->setColumnHidden(MovieModel::mediaStatusToColumn(column), false);

@@ -340,8 +340,10 @@ void ImageDialog::downloadFinished()
     }
 
     m_elements[m_currentDownloadIndex].pixmap.loadFromData(m_currentDownloadReply->readAll());
+    m_elements[m_currentDownloadIndex].pixmap.setDevicePixelRatio(devicePixelRatio());
     if (!m_elements[m_currentDownloadIndex].pixmap.isNull()) {
-        m_elements[m_currentDownloadIndex].scaledPixmap = m_elements[m_currentDownloadIndex].pixmap.scaledToWidth(getColumnWidth()-10, Qt::SmoothTransformation);
+        m_elements[m_currentDownloadIndex].scaledPixmap = m_elements[m_currentDownloadIndex].pixmap.scaledToWidth((getColumnWidth()-10) * devicePixelRatio(), Qt::SmoothTransformation);
+        m_elements[m_currentDownloadIndex].scaledPixmap.setDevicePixelRatio(devicePixelRatio());
         m_elements[m_currentDownloadIndex].cellWidget->setImage(m_elements[m_currentDownloadIndex].scaledPixmap);
         m_elements[m_currentDownloadIndex].cellWidget->setHint(m_elements[m_currentDownloadIndex].resolution, m_elements[m_currentDownloadIndex].hint);
     }
@@ -372,7 +374,9 @@ void ImageDialog::renderTable()
         item->setData(Qt::UserRole, m_elements[i].originalUrl);
         ImageLabel *label = new ImageLabel(ui->table);
         if (!m_elements[i].pixmap.isNull()) {
-            label->setImage(m_elements[i].pixmap.scaledToWidth(getColumnWidth()-10, Qt::SmoothTransformation));
+            QPixmap pixmap = m_elements[i].pixmap.scaledToWidth((getColumnWidth()-10) * devicePixelRatio(), Qt::SmoothTransformation);
+            pixmap.setDevicePixelRatio(devicePixelRatio());
+            label->setImage(pixmap);
             label->setHint(m_elements[i].resolution, m_elements[i].hint);
         }
         m_elements[i].cellWidget = label;

@@ -20,6 +20,11 @@ AboutDialog::AboutDialog(QWidget *parent) :
 #else
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
+
+    QPixmap p(":/img/MediaElch.png");
+    p = p.scaled(ui->icon->size() * ui->icon->devicePixelRatio(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    p.setDevicePixelRatio(ui->icon->devicePixelRatio());
+    ui->icon->setPixmap(p);
 }
 
 /**

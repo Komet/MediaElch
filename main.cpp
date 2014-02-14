@@ -82,6 +82,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName("kvibes");
     QCoreApplication::setApplicationName("MediaElch");
     QCoreApplication::setApplicationVersion("2.1-dev");
+    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
     Settings::instance(qApp)->loadSettings();
     if (Settings::instance()->advanced()->debugLog() && !Settings::instance()->advanced()->logFile().isEmpty()) {

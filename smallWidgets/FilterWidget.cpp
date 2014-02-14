@@ -37,11 +37,13 @@ FilterWidget::FilterWidget(QWidget *parent) :
     m_list->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_list->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
-    effect->setBlurRadius(16);
-    effect->setOffset(0);
-    effect->setColor(QColor(0, 0, 0, 100));
-    m_list->setGraphicsEffect(effect);
+    if (m_list->devicePixelRatio() == 1) {
+        QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+        effect->setBlurRadius(16);
+        effect->setOffset(0);
+        effect->setColor(QColor(0, 0, 0, 100));
+        m_list->setGraphicsEffect(effect);
+    }
 
     connect(ui->lineEdit, SIGNAL(textEdited(QString)), this, SLOT(onFilterTextChanged(QString)));
     connect(ui->lineEdit, SIGNAL(keyDown()), this, SLOT(onKeyDown()));

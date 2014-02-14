@@ -61,11 +61,13 @@ Navbar::Navbar(QWidget *parent) :
         button->setIcon(QIcon(pixmap));
     }
 
-    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
-    effect->setColor(QColor(0, 0, 0, 30));
-    effect->setOffset(2);
-    effect->setBlurRadius(4);
-    ui->btnDonate->setGraphicsEffect(effect);
+    if (ui->btnDonate->devicePixelRatio() == 1) {
+        QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+        effect->setColor(QColor(0, 0, 0, 30));
+        effect->setOffset(2);
+        effect->setBlurRadius(4);
+        ui->btnDonate->setGraphicsEffect(effect);
+    }
     ui->btnDonate->setVisible(!Settings::instance()->donated());
 }
 
