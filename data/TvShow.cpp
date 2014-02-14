@@ -30,6 +30,7 @@ TvShow::TvShow(QString dir, QObject *parent) :
     m_hasTune = false;
     m_runtime = 0;
     m_showMissingEpisodes = false;
+    m_hideSpecialsInMissingEpisodes = false;
 }
 
 /**
@@ -1343,6 +1344,18 @@ bool TvShow::showMissingEpisodes() const
     return m_showMissingEpisodes;
 }
 
+void TvShow::setHideSpecialsInMissingEpisodes(bool hideSpecials, bool updateDatabase)
+{
+    m_hideSpecialsInMissingEpisodes = hideSpecials;
+    if (updateDatabase)
+        Manager::instance()->database()->setHideSpecialsInMissingEpisodes(this, hideSpecials);
+}
+
+bool TvShow::hideSpecialsInMissingEpisodes() const
+{
+    return m_hideSpecialsInMissingEpisodes;
+}
+
 void TvShow::fillMissingEpisodes()
 {
     QList<TvShowEpisode*> episodes = Manager::instance()->database()->showsEpisodes(this);
@@ -1355,6 +1368,11 @@ void TvShow::fillMissingEpisodes()
             }
         }
         if (found) {
+            episode->deleteLater();
+            continue;
+        }
+
+        if (episode->season() == 0 && hideSpecialsInMissingEpisodes()) {
             episode->deleteLater();
             continue;
         }

@@ -78,6 +78,7 @@ public:
     bool hasDummyEpisodes() const;
     bool hasDummyEpisodes(int season) const;
     bool showMissingEpisodes() const;
+    bool hideSpecialsInMissingEpisodes() const;
 
     void setName(QString name);
     void setShowTitle(QString title);
@@ -118,6 +119,7 @@ public:
     void setRuntime(int runtime);
     void setSortTitle(QString sortTitle);
     void setShowMissingEpisodes(bool showMissing, bool updateDatabase = true);
+    void setHideSpecialsInMissingEpisodes(bool hideSpecials, bool updateDatabase = true);
 
     void removeActor(Actor *actor);
     void removeGenre(QString genre);
@@ -204,6 +206,7 @@ private:
     QMap<int, QList<int> > m_imagesToRemove;
     QMap<int, bool> m_hasImage;
     bool m_showMissingEpisodes;
+    bool m_hideSpecialsInMissingEpisodes;
 
     QMap<int, QByteArray> m_images;
     QMap<int, QMap<int, QByteArray> > m_seasonImages;

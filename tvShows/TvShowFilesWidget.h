@@ -53,6 +53,7 @@ private slots:
     void unmarkForSync();
     void openFolder();
     void showMissingEpisodes();
+    void hideSpecialsInMissingEpisodes();
 
 private:
     Ui::TvShowFilesWidget *ui;
@@ -64,6 +65,7 @@ private:
     TvShowEpisode *m_lastEpisode;
     int m_lastSeason;
     QAction *m_actionShowMissingEpisodes;
+    QAction *m_actionHideSpecialsInMissingEpisodes;
 };
 
 #endif // TVSHOWFILESWIDGET_H

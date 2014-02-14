@@ -54,6 +54,8 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     QAction *actionOpenFolder = new QAction(tr("Open TV Show Folder"), this);
     m_actionShowMissingEpisodes = new QAction(tr("Show missing episodes"), this);
     m_actionShowMissingEpisodes->setCheckable(true);
+    m_actionHideSpecialsInMissingEpisodes = new QAction(tr("Hide specials in missing episodes"), this);
+    m_actionHideSpecialsInMissingEpisodes->setCheckable(true);
     m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionScanForEpisodes);
     m_contextMenu->addSeparator();
@@ -68,6 +70,7 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     m_contextMenu->addAction(actionOpenFolder);
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(m_actionShowMissingEpisodes);
+    m_contextMenu->addAction(m_actionHideSpecialsInMissingEpisodes);
 
     connect(actionScanForEpisodes, SIGNAL(triggered()), this, SLOT(scanForEpisodes()));
     connect(actionMarkAsWatched, SIGNAL(triggered()), this, SLOT(markAsWatched()));
@@ -77,6 +80,7 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     connect(actionUnmarkForSync, SIGNAL(triggered()), this, SLOT(unmarkForSync()));
     connect(actionOpenFolder, SIGNAL(triggered()), this, SLOT(openFolder()));
     connect(m_actionShowMissingEpisodes, SIGNAL(triggered()), this, SLOT(showMissingEpisodes()));
+    connect(m_actionHideSpecialsInMissingEpisodes, SIGNAL(triggered()), this, SLOT(hideSpecialsInMissingEpisodes()));
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
     connect(ui->files, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)), Qt::QueuedConnection);
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)), Qt::QueuedConnection);
@@ -113,9 +117,12 @@ void TvShowFilesWidget::showContextMenu(QPoint point)
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
         if (item->type() != TypeTvShow) {
             m_actionShowMissingEpisodes->setEnabled(false);
+            m_actionHideSpecialsInMissingEpisodes->setEnabled(false);
         } else {
             m_actionShowMissingEpisodes->setEnabled(true);
             m_actionShowMissingEpisodes->setChecked(item->tvShow()->showMissingEpisodes());
+            m_actionHideSpecialsInMissingEpisodes->setEnabled(item->tvShow()->showMissingEpisodes());
+            m_actionHideSpecialsInMissingEpisodes->setChecked(item->tvShow()->hideSpecialsInMissingEpisodes());
         }
     }
 
@@ -319,6 +326,7 @@ void TvShowFilesWidget::openFolder()
 
 void TvShowFilesWidget::showMissingEpisodes()
 {
+    m_contextMenu->close();
     foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
@@ -350,6 +358,21 @@ void TvShowFilesWidget::showMissingEpisodes()
             } else {
                 item->tvShow()->clearMissingEpisodes();
             }
+        }
+    }
+}
+
+void TvShowFilesWidget::hideSpecialsInMissingEpisodes()
+{
+    m_contextMenu->close();
+    foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
+        QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
+        TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
+        if (item->type() == TypeTvShow) {
+            item->tvShow()->setHideSpecialsInMissingEpisodes(!item->tvShow()->hideSpecialsInMissingEpisodes());
+            m_actionHideSpecialsInMissingEpisodes->setChecked(item->tvShow()->hideSpecialsInMissingEpisodes());
+            item->tvShow()->clearMissingEpisodes();
+            item->tvShow()->fillMissingEpisodes();
         }
     }
 }

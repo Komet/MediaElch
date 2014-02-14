@@ -38,6 +38,7 @@ public:
     int episodeCount();
 
     void setShowMissingEpisodes(TvShow *show, bool showMissing);
+    void setHideSpecialsInMissingEpisodes(TvShow *show, bool hideSpecials);
     int showsSettingsId(TvShow *show);
     void clearEpisodeList(int showsSettingsId);
     void cleanUpEpisodeList(int showsSettingsId);
