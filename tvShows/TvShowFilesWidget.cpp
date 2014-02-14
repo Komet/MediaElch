@@ -125,6 +125,7 @@ void TvShowFilesWidget::showContextMenu(QPoint point)
 
 void TvShowFilesWidget::scanForEpisodes()
 {
+    m_contextMenu->close();
     QModelIndex sourceIndex = m_tvShowProxyModel->mapToSource(ui->files->currentIndex());
     if (!sourceIndex.isValid())
         return;
@@ -144,6 +145,7 @@ void TvShowFilesWidget::scanForEpisodes()
 
 void TvShowFilesWidget::markAsWatched()
 {
+    m_contextMenu->close();
     foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
@@ -176,6 +178,7 @@ void TvShowFilesWidget::markAsWatched()
 
 void TvShowFilesWidget::markAsUnwatched()
 {
+    m_contextMenu->close();
     foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
@@ -204,6 +207,7 @@ void TvShowFilesWidget::markAsUnwatched()
 
 void TvShowFilesWidget::loadStreamDetails()
 {
+    m_contextMenu->close();
     QList<TvShowEpisode*> episodes;
 
     foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
@@ -238,6 +242,7 @@ void TvShowFilesWidget::loadStreamDetails()
 
 void TvShowFilesWidget::markForSync()
 {
+    m_contextMenu->close();
     foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
@@ -263,6 +268,7 @@ void TvShowFilesWidget::markForSync()
 
 void TvShowFilesWidget::unmarkForSync()
 {
+    m_contextMenu->close();
     foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
         QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
@@ -287,6 +293,7 @@ void TvShowFilesWidget::unmarkForSync()
 
 void TvShowFilesWidget::openFolder()
 {
+    m_contextMenu->close();
     QModelIndex index = m_tvShowProxyModel->mapToSource(ui->files->currentIndex());
     TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
     QString dir;

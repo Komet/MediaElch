@@ -176,6 +176,7 @@ void CertificationWidget::onCertificationNameChanged(QTableWidgetItem *item)
 
 void CertificationWidget::addCertification()
 {
+    m_tableContextMenu->close();
     QString certificationName = tr("New Certification");
     int adder = -1;
     bool certificationExists;
@@ -210,6 +211,7 @@ void CertificationWidget::addCertification()
  */
 void CertificationWidget::deleteCertification()
 {
+    m_tableContextMenu->close();
     if (ui->certifications->currentRow() < 0 || ui->certifications->currentRow() >= ui->certifications->rowCount()) {
         qWarning() << "Invalid row" << ui->certifications->currentRow();
         return;

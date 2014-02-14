@@ -446,6 +446,7 @@ void SetsWidget::onPreviewPoster()
 
 void SetsWidget::onAddMovieSet()
 {
+    m_tableContextMenu->close();
     QString setName = tr("New Movie Set");
     int adder = -1;
     bool setExists;
@@ -483,6 +484,7 @@ void SetsWidget::onAddMovieSet()
 
 void SetsWidget::onRemoveMovieSet()
 {
+    m_tableContextMenu->close();
     if (ui->sets->currentRow() < 0 || ui->sets->currentRow() >= ui->sets->rowCount()) {
         qWarning() << "Invalid row" << ui->sets->currentRow();
         return;

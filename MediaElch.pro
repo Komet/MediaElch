@@ -101,7 +101,6 @@ SOURCES += main.cpp\
     globals/ComboDelegate.cpp \
     data/StreamDetails.cpp \
     smallWidgets/MediaFlags.cpp \
-    settings/DataFileListWidget.cpp \
     data/Database.cpp \
     smallWidgets/LoadingStreamDetails.cpp \
     trailerProviders/MovieMaze.cpp \
@@ -242,7 +241,6 @@ HEADERS  += main/MainWindow.h \
     globals/ComboDelegate.h \
     data/StreamDetails.h \
     smallWidgets/MediaFlags.h \
-    settings/DataFileListWidget.h \
     data/Database.h \
     smallWidgets/LoadingStreamDetails.h \
     trailerProviders/TrailerProvider.h \

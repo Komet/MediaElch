@@ -96,6 +96,7 @@ void ConcertFilesWidget::showContextMenu(QPoint point)
 
 void ConcertFilesWidget::markAsWatched()
 {
+    m_contextMenu->close();
     foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Concert *concert = Manager::instance()->concertModel()->concert(row);
@@ -111,6 +112,7 @@ void ConcertFilesWidget::markAsWatched()
 
 void ConcertFilesWidget::markAsUnwatched()
 {
+    m_contextMenu->close();
     foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Concert *concert = Manager::instance()->concertModel()->concert(row);
@@ -125,6 +127,7 @@ void ConcertFilesWidget::markAsUnwatched()
 
 void ConcertFilesWidget::loadStreamDetails()
 {
+    m_contextMenu->close();
     QList<Concert*> concerts;
     foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
@@ -144,6 +147,7 @@ void ConcertFilesWidget::loadStreamDetails()
 
 void ConcertFilesWidget::markForSync()
 {
+    m_contextMenu->close();
     foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Concert *concert = Manager::instance()->concertModel()->concert(row);
@@ -154,6 +158,7 @@ void ConcertFilesWidget::markForSync()
 
 void ConcertFilesWidget::unmarkForSync()
 {
+    m_contextMenu->close();
     foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Concert *concert = Manager::instance()->concertModel()->concert(row);
@@ -164,6 +169,7 @@ void ConcertFilesWidget::unmarkForSync()
 
 void ConcertFilesWidget::openFolder()
 {
+    m_contextMenu->close();
     int row = ui->files->currentIndex().data(Qt::UserRole).toInt();
     Concert *concert = Manager::instance()->concertModel()->concert(row);
     if (concert->files().isEmpty())

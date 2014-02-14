@@ -158,6 +158,7 @@ void FilesWidget::showContextMenu(QPoint point)
 
 void FilesWidget::multiScrape()
 {
+    m_contextMenu->close();
     QList<Movie*> movies = selectedMovies();
     if (movies.isEmpty())
         return;
@@ -175,6 +176,7 @@ void FilesWidget::multiScrape()
 
 void FilesWidget::markAsWatched()
 {
+    m_contextMenu->close();
     foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Movie *movie = Manager::instance()->movieModel()->movie(row);
@@ -190,6 +192,7 @@ void FilesWidget::markAsWatched()
 
 void FilesWidget::markAsUnwatched()
 {
+    m_contextMenu->close();
     foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Movie *movie = Manager::instance()->movieModel()->movie(row);
@@ -204,6 +207,7 @@ void FilesWidget::markAsUnwatched()
 
 void FilesWidget::loadStreamDetails()
 {
+    m_contextMenu->close();
     QList<Movie*> movies;
     foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
@@ -224,6 +228,7 @@ void FilesWidget::loadStreamDetails()
 
 void FilesWidget::markForSync()
 {
+    m_contextMenu->close();
     foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Movie *movie = Manager::instance()->movieModel()->movie(row);
@@ -234,6 +239,7 @@ void FilesWidget::markForSync()
 
 void FilesWidget::unmarkForSync()
 {
+    m_contextMenu->close();
     foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Movie *movie = Manager::instance()->movieModel()->movie(row);
@@ -244,6 +250,7 @@ void FilesWidget::unmarkForSync()
 
 void FilesWidget::openFolder()
 {
+    m_contextMenu->close();
     int row = ui->files->currentIndex().data(Qt::UserRole).toInt();
     Movie *movie = Manager::instance()->movieModel()->movie(row);
     if (movie->files().isEmpty())
@@ -454,6 +461,7 @@ void FilesWidget::selectMovie(Movie *movie)
 
 void FilesWidget::onActionMediaStatusColumn()
 {
+    m_contextMenu->close();
     QAction *action = static_cast<QAction*>(QObject::sender());
     if (!action)
         return;
@@ -472,6 +480,7 @@ void FilesWidget::onActionMediaStatusColumn()
 
 void FilesWidget::onLabel()
 {
+    m_contextMenu->close();
     QAction *action = static_cast<QAction*>(QObject::sender());
     if (!action)
         return;

@@ -180,6 +180,7 @@ void GenreWidget::onGenreNameChanged(QTableWidgetItem *item)
 
 void GenreWidget::addGenre()
 {
+    m_tableContextMenu->close();
     QString genreName = tr("New Genre");
     int adder = -1;
     bool genreExists;
@@ -214,6 +215,7 @@ void GenreWidget::addGenre()
  */
 void GenreWidget::deleteGenre()
 {
+    m_tableContextMenu->close();
     if (ui->genres->currentRow() < 0 || ui->genres->currentRow() >= ui->genres->rowCount()) {
         qWarning() << "Invalid row" << ui->genres->currentRow();
         return;
