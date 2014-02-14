@@ -200,8 +200,11 @@ void MovieMultiScrapeDialog::scrapeNext()
     ui->progressAll->setValue(ui->progressAll->maximum()-m_queue.size()-1);
     ui->progressMovie->setValue(0);
 
-    if (ui->chkOnlyImdb->isChecked() &&
-            ((m_currentMovie->id().isEmpty() && m_isImdb) || (m_currentMovie->tmdbId().isEmpty() && m_currentMovie->id().isEmpty() && m_isTmdb))) {
+    if (ui->chkOnlyImdb->isChecked() && (
+            (m_currentMovie->id().isEmpty() && m_isImdb) ||
+            (m_currentMovie->tmdbId().isEmpty() && m_currentMovie->id().isEmpty() && m_isTmdb) ||
+            (m_currentMovie->id().isEmpty() && m_currentMovie->tmdbId().isEmpty() && m_scraperInterface->identifier() == "custom-movie")
+        )) {
         scrapeNext();
         return;
     }
@@ -328,6 +331,4 @@ void MovieMultiScrapeDialog::setChkBoxesEnabled()
         box->setChecked((infos.contains(box->myData().toInt()) || infos.isEmpty()) && scraperSupports.contains(box->myData().toInt()));
     }
     onChkToggled();
-
-    ui->chkOnlyImdb->setEnabled(scraper->identifier() == "imdb" || scraper->identifier() == "tmdb");
 }
