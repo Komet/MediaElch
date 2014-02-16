@@ -27,12 +27,16 @@ signals:
 
 private slots:
     void onSearchFinished();
+    void onSearchIdFinished();
     void onLoadFinished();
+    void onPosterLoadFinished();
 
 private:
     QNetworkAccessManager *qnam();
-    QList<ScraperSearchResult> parseSearch(QString json);
-    void parseAndAssignInfos(QString json, Movie *movie, QList<int> infos);
+    QList<ScraperSearchResult> parseSearch(QString html);
+    void parseAndAssignInfos(QString html, Movie *movie, QList<int> infos);
+    void parseAndAssignPoster(QString html, Movie *movie, QList<int> infos);
+    QString parsePosters(QString html);
 
     QNetworkAccessManager m_qnam;
     QList<int> m_scraperSupports;
