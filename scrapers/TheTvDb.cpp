@@ -385,7 +385,7 @@ void TheTvDb::parseAndAssignInfos(QString xml, TvShow *show, TvShowUpdateType up
             if (infosToLoad.contains(TvShowScraperInfos::Rating) && !elem.elementsByTagName("Rating").isEmpty())
                 show->setRating(elem.elementsByTagName("Rating").at(0).toElement().text().toFloat());
             if (infosToLoad.contains(TvShowScraperInfos::Title) && !elem.elementsByTagName("SeriesName").isEmpty())
-                show->setName(elem.elementsByTagName("SeriesName").at(0).toElement().text());
+                show->setName(elem.elementsByTagName("SeriesName").at(0).toElement().text().trimmed());
             if (infosToLoad.contains(TvShowScraperInfos::Runtime) && !elem.elementsByTagName("Runtime").isEmpty())
                 show->setRuntime(elem.elementsByTagName("Runtime").at(0).toElement().text().toInt());
         }
@@ -583,7 +583,7 @@ void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *
     if (infosToLoad.contains(TvShowScraperInfos::Director) && !elem.elementsByTagName("Director").isEmpty())
         episode->setDirectors(elem.elementsByTagName("Director").at(0).toElement().text().split("|", QString::SkipEmptyParts));
     if (infosToLoad.contains(TvShowScraperInfos::Title) && !elem.elementsByTagName("EpisodeName").isEmpty())
-        episode->setName(elem.elementsByTagName("EpisodeName").at(0).toElement().text());
+        episode->setName(elem.elementsByTagName("EpisodeName").at(0).toElement().text().trimmed());
     if (infosToLoad.contains(TvShowScraperInfos::FirstAired) && !elem.elementsByTagName("FirstAired").isEmpty())
         episode->setFirstAired(QDate::fromString(elem.elementsByTagName("FirstAired").at(0).toElement().text(), "yyyy-MM-dd"));
     if (infosToLoad.contains(TvShowScraperInfos::Overview) && !elem.elementsByTagName("Overview").isEmpty())
