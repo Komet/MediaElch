@@ -864,7 +864,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../export/ExportDialog.ui" line="61"/>
         <source>Items to export</source>
-        <translation>Elementy do wyeksportowania</translation>
+        <translation>Elementy</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="68"/>
@@ -4256,7 +4256,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../renamer/Renamer.cpp" line="743"/>
         <location filename="../renamer/Renamer.cpp" line="764"/>
         <source>Failed</source>
-        <translation>Nieudany</translation>
+        <translation>Niepowodzenie</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="280"/>
@@ -4885,7 +4885,7 @@ Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1484"/>
         <source>Global</source>
-        <translation>Globalny</translation>
+        <translation>Ogólne</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1504"/>
