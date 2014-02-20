@@ -88,9 +88,9 @@ private:
     int m_reloadTimeOut;
     int m_requestId;
 
-    int findId(QStringList files, QMap<int, XbmcData> items);
-    bool compareFiles(QStringList files, QStringList xbmcFiles, int level);
-    QStringList splitFile(QString file);
+    int findId(const QStringList &files, const QMap<int, XbmcData> &items);
+    bool compareFiles(const QStringList &files, const QStringList &xbmcFiles, const int &level);
+    QStringList splitFile(const QString &file);
     void setupItemsToRemove();
     void removeItems();
     void updateWatched();

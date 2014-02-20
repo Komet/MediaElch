@@ -152,6 +152,8 @@ void XbmcSync::startSync()
 
     QJsonArray properties;
     properties.append(QString("file"));
+    properties.append(QString("playcount"));
+    properties.append(QString("lastplayed"));
 
     QJsonObject params;
     params.insert("limits", limits);
@@ -558,9 +560,11 @@ void XbmcSync::updateWatched()
     foreach (Movie *movie, m_moviesToSync) {
         int id = findId(movie->files(), m_xbmcMovies);
         if (id > 0) {
+            movie->blockSignals(true);
             movie->setWatched(m_xbmcMovies.value(id).playCount > 0);
             movie->setPlayCount(m_xbmcMovies.value(id).playCount);
             movie->setLastPlayed(m_xbmcMovies.value(id).lastPlayed);
+            movie->blockSignals(false);
         }
         movie->setSyncNeeded(false);
     }
@@ -568,9 +572,11 @@ void XbmcSync::updateWatched()
     foreach (Concert *concert, m_concertsToSync) {
         int id = findId(concert->files(), m_xbmcConcerts);
         if (id > 0) {
+            concert->blockSignals(true);
             concert->setWatched(m_xbmcConcerts.value(id).playCount > 0);
             concert->setPlayCount(m_xbmcConcerts.value(id).playCount);
             concert->setLastPlayed(m_xbmcConcerts.value(id).lastPlayed);
+            concert->blockSignals(false);
         }
         concert->setSyncNeeded(false);
     }
@@ -578,8 +584,10 @@ void XbmcSync::updateWatched()
     foreach (TvShowEpisode *episode, m_episodesToSync) {
         int id = findId(episode->files(), m_xbmcEpisodes);
         if (id > 0) {
+            episode->blockSignals(true);
             episode->setPlayCount(m_xbmcEpisodes.value(id).playCount);
             episode->setLastPlayed(m_xbmcEpisodes.value(id).lastPlayed);
+            episode->blockSignals(false);
         }
         episode->setSyncNeeded(false);
     }
@@ -588,7 +596,7 @@ void XbmcSync::updateWatched()
     ui->buttonSync->setEnabled(true);
 }
 
-int XbmcSync::findId(QStringList files, QMap<int, XbmcData> items)
+int XbmcSync::findId(const QStringList &files, const QMap<int, XbmcData> &items)
 {
     if (files.isEmpty())
         return -1;
@@ -621,7 +629,7 @@ int XbmcSync::findId(QStringList files, QMap<int, XbmcData> items)
         return -1;
 }
 
-bool XbmcSync::compareFiles(QStringList files, QStringList xbmcFiles, int level)
+bool XbmcSync::compareFiles(const QStringList &files, const QStringList &xbmcFiles, const int &level)
 {
     if (files.count() == 1 && xbmcFiles.count() == 1) {
         QStringList file = splitFile(files.at(0));
@@ -666,7 +674,7 @@ bool XbmcSync::compareFiles(QStringList files, QStringList xbmcFiles, int level)
     return false;
 }
 
-QStringList XbmcSync::splitFile(QString file)
+QStringList XbmcSync::splitFile(const QString &file)
 {
     // Windows file names must not contain /
     if (file.contains("/"))
