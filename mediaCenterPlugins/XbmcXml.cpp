@@ -73,15 +73,12 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie)
     xml.writeTextElement("sorttitle", movie->sortTitle());
     xml.writeTextElement("trailer", Helper::formatTrailerUrl(movie->trailer().toString()));
     xml.writeTextElement("watched", (movie->watched()) ? "true" : "false");
-    foreach (const QString &studio, movie->studios()) {
-        xml.writeTextElement("studio", studio);
-        if (Settings::instance()->advanced()->useFirstStudioOnly())
-            break;
-    }
-    foreach (const QString &genre, movie->genres())
-        xml.writeTextElement("genre", genre);
-    foreach (const QString &country, movie->countries())
-        xml.writeTextElement("country", country);
+    if (Settings::instance()->advanced()->useFirstStudioOnly() && !movie->studios().isEmpty())
+        xml.writeTextElement("studio", movie->studios().first());
+    else
+        xml.writeTextElement("studio", movie->studios().join(" / "));
+    xml.writeTextElement("genre", movie->genres().join(" / "));
+    xml.writeTextElement("country", movie->countries().join(" / "));
     foreach (const QString &tag, movie->tags())
         xml.writeTextElement("tag", tag);
     foreach (const Actor &actor, movie->actors()) {
@@ -375,12 +372,18 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
         movie->setWatched(movie->playcount() > 0);
     }
 
-    for (int i=0, n=domDoc.elementsByTagName("studio").size() ; i<n ; i++)
-        movie->addStudio(domDoc.elementsByTagName("studio").at(i).toElement().text());
-    for (int i=0, n=domDoc.elementsByTagName("genre").size() ; i<n ; i++)
-        movie->addGenre(domDoc.elementsByTagName("genre").at(i).toElement().text());
-    for (int i=0, n=domDoc.elementsByTagName("country").size() ; i<n ; i++)
-        movie->addCountry(domDoc.elementsByTagName("country").at(i).toElement().text());
+    for (int i=0, n=domDoc.elementsByTagName("studio").size() ; i<n ; i++) {
+        foreach (const QString &studio, domDoc.elementsByTagName("studio").at(i).toElement().text().split(" / ", QString::SkipEmptyParts))
+            movie->addStudio(studio);
+    }
+    for (int i=0, n=domDoc.elementsByTagName("genre").size() ; i<n ; i++) {
+        foreach (const QString &genre, domDoc.elementsByTagName("genre").at(i).toElement().text().split(" / ", QString::SkipEmptyParts))
+            movie->addGenre(genre);
+    }
+    for (int i=0, n=domDoc.elementsByTagName("country").size() ; i<n ; i++) {
+        foreach (const QString &country, domDoc.elementsByTagName("country").at(i).toElement().text().split(" / ", QString::SkipEmptyParts))
+            movie->addCountry(country);
+    }
     for (int i=0, n=domDoc.elementsByTagName("tag").size() ; i<n ; i++)
         movie->addTag(domDoc.elementsByTagName("tag").at(i).toElement().text());
     for (int i=0, n=domDoc.elementsByTagName("actor").size() ; i<n ; i++) {
@@ -573,8 +576,7 @@ void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert)
     xml.writeTextElement("lastplayed", concert->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
     xml.writeTextElement("trailer", Helper::formatTrailerUrl(concert->trailer().toString()));
     xml.writeTextElement("watched", (concert->watched()) ? "true" : "false");
-    foreach (const QString &genre, concert->genres())
-        xml.writeTextElement("genre", genre);
+    xml.writeTextElement("genre", concert->genres().join(" / "));
     foreach (const QString &tag, concert->tags())
         xml.writeTextElement("tag", tag);
     foreach (const Poster &poster, concert->posters()) {
@@ -742,8 +744,10 @@ bool XbmcXml::loadConcert(Concert *concert, QString initialNfoContent)
     if (!domDoc.elementsByTagName("watched").isEmpty())
         concert->setWatched(domDoc.elementsByTagName("watched").at(0).toElement().text() == "true" ? true : false);
 
-    for (int i=0, n=domDoc.elementsByTagName("genre").size() ; i<n ; i++)
-        concert->addGenre(domDoc.elementsByTagName("genre").at(i).toElement().text());
+    for (int i=0, n=domDoc.elementsByTagName("genre").size() ; i<n ; i++) {
+        foreach (const QString &genre, domDoc.elementsByTagName("genre").at(i).toElement().text().split(" / ", QString::SkipEmptyParts))
+            concert->addGenre(genre);
+    }
     for (int i=0, n=domDoc.elementsByTagName("tag").size() ; i<n ; i++)
         concert->addTag(domDoc.elementsByTagName("tag").at(i).toElement().text());
     for (int i=0, n=domDoc.elementsByTagName("thumb").size() ; i<n ; i++) {
@@ -871,8 +875,10 @@ bool XbmcXml::loadTvShow(TvShow *show, QString initialNfoContent)
     if (!domDoc.elementsByTagName("runtime").isEmpty())
         show->setRuntime(domDoc.elementsByTagName("runtime").at(0).toElement().text().toInt());
 
-    for (int i=0, n=domDoc.elementsByTagName("genre").size() ; i<n ; i++)
-        show->addGenre(domDoc.elementsByTagName("genre").at(i).toElement().text());
+    for (int i=0, n=domDoc.elementsByTagName("genre").size() ; i<n ; i++) {
+        foreach (const QString &genre, domDoc.elementsByTagName("genre").at(i).toElement().text().split(" / ", QString::SkipEmptyParts))
+            show->addGenre(genre);
+    }
     for (int i=0, n=domDoc.elementsByTagName("tag").size() ; i<n ; i++)
         show->addTag(domDoc.elementsByTagName("tag").at(i).toElement().text());
     for (int i=0, n=domDoc.elementsByTagName("actor").size() ; i<n ; i++) {
@@ -1261,8 +1267,7 @@ void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show)
         xml.writeEndElement();
     }
 
-    foreach (const QString &genre, show->genres())
-        xml.writeTextElement("genre", genre);
+    xml.writeTextElement("genre", show->genres().join(" / "));
     foreach (const QString &tag, show->tags())
         xml.writeTextElement("tag", tag);
 
