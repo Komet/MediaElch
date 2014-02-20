@@ -509,7 +509,7 @@ void ConcertWidget::updateStreamDetails(bool reloadFromFile)
     StreamDetails *streamDetails = m_concert->streamDetails();
     ui->videoWidth->setValue(streamDetails->videoDetails().value("width").toInt());
     ui->videoHeight->setValue(streamDetails->videoDetails().value("height").toInt());
-    ui->videoAspectRatio->setValue(streamDetails->videoDetails().value("aspect").toDouble());
+    ui->videoAspectRatio->setValue(QString(streamDetails->videoDetails().value("aspect")).replace(",", ".").toDouble());
     ui->videoCodec->setText(streamDetails->videoDetails().value("codec"));
     ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
     QTime time(0, 0, 0, 0);
