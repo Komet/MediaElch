@@ -6771,55 +6771,55 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
         <translation>Bitte trage deinen XBMC Host und Port ein.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="227"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="229"/>
         <source>Getting contents from XBMC</source>
         <translation>Hole Inhalte von XBMC</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="242"/>
-        <location filename="../xbmc/XbmcSync.cpp" line="270"/>
-        <location filename="../xbmc/XbmcSync.cpp" line="298"/>
-        <location filename="../xbmc/XbmcSync.cpp" line="326"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="244"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="272"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="300"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="328"/>
         <source>Network error</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="412"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="414"/>
         <source>Removing movies from database</source>
         <translation>Entferne Filme aus der Bibliothek</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="431"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="433"/>
         <source>Removing concerts from database</source>
         <translation>Entferne Konzerte aus der Bibliothek</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="450"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="452"/>
         <source>Removing TV shows from database</source>
         <translation>Entferne Serien aus der Bibliothek</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="469"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="471"/>
         <source>Removing episodes from database</source>
         <translation>Entferne Episoden aus der Bibliothek</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="508"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="510"/>
         <source>Trigger scan for new items</source>
         <translation>Löse Aktualisierung der Bibliothek aus</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="528"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="530"/>
         <source>Finished. XBMC is now loading your updated items.</source>
         <translation>Fertig. XBMC aktualisiert nun die Bibliothek.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="552"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="554"/>
         <source>Finished. XBMC is now cleaning your database.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="587"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="595"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Fertig. Die Anzahl der Wiedergaben und das Datum der letzten Wiedergabe wurden aktualisiert.</translation>
     </message>
