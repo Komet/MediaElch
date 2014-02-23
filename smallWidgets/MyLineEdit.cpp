@@ -196,7 +196,7 @@ void MyLineEdit::setShowMagnifier(bool show)
         if (m_magnifierLabel != 0)
             delete m_magnifierLabel;
         QPixmap magn(":/img/magnifier.png");
-        magn = magn.scaled(QSize(14, 14) * devicePixelRatio(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        magn = magn.scaled(QSize(14, 14) * Helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
         Helper::setDevicePixelRatio(magn, Helper::devicePixelRatio(this));
         QPainter p;
         p.begin(&magn);

@@ -39,6 +39,7 @@ public:
     static qreal devicePixelRatio(QLabel *label);
     static qreal devicePixelRatio(QPushButton *button);
     static qreal devicePixelRatio(QWidget *widget);
+    static qreal devicePixelRatio(const QPixmap &pixmap);
     static void setDevicePixelRatio(QPixmap &pixmap, qreal devicePixelRatio);
     static void setDevicePixelRatio(QImage &image, qreal devicePixelRatio);
 };

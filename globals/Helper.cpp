@@ -596,3 +596,12 @@ qreal Helper::devicePixelRatio(QWidget *widget)
     return 1.0;
 #endif
 }
+
+qreal Helper::devicePixelRatio(const QPixmap &pixmap)
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
+    return pixmap.devicePixelRatio();
+#else
+    return 1.0;
+#endif
+}

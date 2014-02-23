@@ -116,7 +116,7 @@ void ClosableImage::paintEvent(QPaintEvent *event)
 
     if (!m_pixmap.isNull()) {
         int h = height()*(width()-2*m_mySize)/width();
-        p.drawPixmap(m_mySize, (height()-h)/2, m_pixmap.scaledToWidth((width()-2*m_mySize) * devicePixelRatio()));
+        p.drawPixmap(m_mySize, (height()-h)/2, m_pixmap.scaledToWidth((width()-2*m_mySize) * Helper::devicePixelRatio(this)));
         return;
     }
 
@@ -127,11 +127,11 @@ void ClosableImage::paintEvent(QPaintEvent *event)
         img = QImage::fromData(m_image);
         origWidth = img.width();
         origHeight = img.height();
-        img = img.scaledToWidth((width()-9)*devicePixelRatio(), Qt::SmoothTransformation);
+        img = img.scaledToWidth((width()-9)*Helper::devicePixelRatio(this), Qt::SmoothTransformation);
     } else if (!m_imagePath.isEmpty()) {
-        img = ImageCache::instance()->image(m_imagePath, (width()-9)*devicePixelRatio(), 0, origWidth, origHeight);
+        img = ImageCache::instance()->image(m_imagePath, (width()-9)*Helper::devicePixelRatio(this), 0, origWidth, origHeight);
     } else {
-        p.drawPixmap((width()-m_defaultPixmap.width() / m_defaultPixmap.devicePixelRatio())/2, (height()-m_defaultPixmap.height() / m_defaultPixmap.devicePixelRatio())/2, m_defaultPixmap);
+        p.drawPixmap((width()-m_defaultPixmap.width() / Helper::devicePixelRatio(m_defaultPixmap))/2, (height()-m_defaultPixmap.height() / Helper::devicePixelRatio(m_defaultPixmap))/2, m_defaultPixmap);
         drawTitle(p);
         return;
     }
