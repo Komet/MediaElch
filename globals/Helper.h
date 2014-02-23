@@ -2,6 +2,8 @@
 #define HELPER_H
 
 #include <QImage>
+#include <QLabel>
+#include <QPushButton>
 #include <QString>
 
 /**
@@ -34,6 +36,11 @@ public:
     static QMap<int, QString> labels();
     static QColor colorForLabel(int label);
     static QIcon iconForLabel(int label);
+    static qreal devicePixelRatio(QLabel *label);
+    static qreal devicePixelRatio(QPushButton *button);
+    static qreal devicePixelRatio(QWidget *widget);
+    static void setDevicePixelRatio(QPixmap &pixmap, qreal devicePixelRatio);
+    static void setDevicePixelRatio(QImage &image, qreal devicePixelRatio);
 };
 
 #endif // HELPER_H

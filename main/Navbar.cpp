@@ -3,6 +3,7 @@
 
 #include <QGraphicsDropShadowEffect>
 #include <QPainter>
+#include "globals/Helper.h"
 #include "settings/Settings.h"
 
 Navbar::Navbar(QWidget *parent) :
@@ -61,7 +62,7 @@ Navbar::Navbar(QWidget *parent) :
         button->setIcon(QIcon(pixmap));
     }
 
-    if (ui->btnDonate->devicePixelRatio() == 1) {
+    if (Helper::devicePixelRatio(this) == 1) {
         QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
         effect->setColor(QColor(0, 0, 0, 30));
         effect->setOffset(2);

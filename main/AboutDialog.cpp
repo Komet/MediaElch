@@ -2,6 +2,7 @@
 #include "ui_AboutDialog.h"
 
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 #include "globals/Manager.h"
 
 /**
@@ -22,8 +23,8 @@ AboutDialog::AboutDialog(QWidget *parent) :
 #endif
 
     QPixmap p(":/img/MediaElch.png");
-    p = p.scaled(ui->icon->size() * ui->icon->devicePixelRatio(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    p.setDevicePixelRatio(ui->icon->devicePixelRatio());
+    p = p.scaled(ui->icon->size() * Helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    Helper::setDevicePixelRatio(p, Helper::devicePixelRatio(this));
     ui->icon->setPixmap(p);
 }
 

@@ -12,6 +12,7 @@
 #include <QToolTip>
 #include <qmath.h>
 #include "data/ImageCache.h"
+#include "globals/Helper.h"
 #include "globals/ImagePreviewDialog.h"
 #include "settings/Settings.h"
 
@@ -37,13 +38,13 @@ ClosableImage::ClosableImage(QWidget *parent) :
     m_loadingMovie->start();
 
     m_zoomIn = QPixmap(":/img/zoom_in.png");
-    m_zoomIn.setDevicePixelRatio(devicePixelRatio());
+    Helper::setDevicePixelRatio(m_zoomIn, Helper::devicePixelRatio(this));
     QPainter p;
     p.begin(&m_zoomIn);
     p.setCompositionMode(QPainter::CompositionMode_SourceIn);
     p.fillRect(m_zoomIn.rect(), QColor(0, 0, 0, 150));
     p.end();
-    m_zoomIn = m_zoomIn.scaledToWidth(16 * devicePixelRatio(), Qt::SmoothTransformation);
+    m_zoomIn = m_zoomIn.scaledToWidth(16 * Helper::devicePixelRatio(this), Qt::SmoothTransformation);
 }
 
 void ClosableImage::mousePressEvent(QMouseEvent *ev)
@@ -55,7 +56,7 @@ void ClosableImage::mousePressEvent(QMouseEvent *ev)
         if (!confirmDeleteImage())
             return;
         m_pixmap = QPixmap::grabWidget(this);
-        m_pixmap.setDevicePixelRatio(devicePixelRatio());
+        Helper::setDevicePixelRatio(m_pixmap, Helper::devicePixelRatio(this));
         m_anim = new QPropertyAnimation(this);
         m_anim->setEasingCurve(QEasingCurve::InQuad);
         m_anim->setTargetObject(this);
@@ -135,11 +136,11 @@ void ClosableImage::paintEvent(QPaintEvent *event)
         return;
     }
 
-    img.setDevicePixelRatio(devicePixelRatio());
+    Helper::setDevicePixelRatio(img, Helper::devicePixelRatio(this));
     QRect r = rect();
     p.drawImage(0, 7, img);
-    QImage closeImg = QImage(":/img/closeImage.png").scaled(QSize(20, 20) * devicePixelRatio(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    closeImg.setDevicePixelRatio(devicePixelRatio());
+    QImage closeImg = QImage(":/img/closeImage.png").scaled(QSize(20, 20) * Helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    Helper::setDevicePixelRatio(closeImg, Helper::devicePixelRatio(this));
     p.drawImage(r.width()-21, 0, closeImg);
     if (m_showZoomAndResolution) {
         QString res = QString("%1x%2").arg(origWidth).arg(origHeight);
@@ -273,7 +274,7 @@ int ClosableImage::myFixedHeight() const
 void ClosableImage::setDefaultPixmap(QPixmap pixmap)
 {
     m_defaultPixmap = pixmap;
-    m_defaultPixmap.setDevicePixelRatio(devicePixelRatio());
+    Helper::setDevicePixelRatio(m_defaultPixmap, Helper::devicePixelRatio(this));
 }
 
 void ClosableImage::setClickable(const bool &clickable)

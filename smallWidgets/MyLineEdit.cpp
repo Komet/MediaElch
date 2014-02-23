@@ -7,6 +7,7 @@
 #include <QToolButton>
 
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 
 /**
  * @brief MyLineEdit::MyLineEdit
@@ -196,7 +197,7 @@ void MyLineEdit::setShowMagnifier(bool show)
             delete m_magnifierLabel;
         QPixmap magn(":/img/magnifier.png");
         magn = magn.scaled(QSize(14, 14) * devicePixelRatio(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        magn.setDevicePixelRatio(devicePixelRatio());
+        Helper::setDevicePixelRatio(magn, Helper::devicePixelRatio(this));
         QPainter p;
         p.begin(&magn);
         p.setCompositionMode(QPainter::CompositionMode_SourceIn);

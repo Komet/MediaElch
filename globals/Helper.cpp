@@ -441,7 +441,7 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
 void Helper::applyEffect(QWidget *parent)
 {
     foreach (QLabel *label, parent->findChildren<QLabel*>()) {
-        if (label->property("dropShadow").toBool() && label->devicePixelRatio() == 1) {
+        if (label->property("dropShadow").toBool() && Helper::devicePixelRatio(label) == 1) {
             QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(parent);
             effect->setColor(QColor(0, 0, 0, 30));
             effect->setOffset(4);
@@ -451,7 +451,7 @@ void Helper::applyEffect(QWidget *parent)
     }
 
     foreach (QPushButton *button, parent->findChildren<QPushButton*>()) {
-        if (button->property("dropShadow").toBool() && button->devicePixelRatio() == 1) {
+        if (button->property("dropShadow").toBool() && Helper::devicePixelRatio(button) == 1) {
             QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(parent);
             effect->setColor(QColor(0, 0, 0, 30));
             effect->setOffset(2);
@@ -554,4 +554,45 @@ QIcon Helper::iconForLabel(int label)
     p.drawEllipse(4, 4, 24, 24);
     p.end();
     return QIcon(pixmap);
+}
+
+qreal Helper::devicePixelRatio(QLabel *label)
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
+    return label->devicePixelRatio();
+#else
+    return 1.0;
+#endif
+}
+
+qreal Helper::devicePixelRatio(QPushButton *button)
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
+    return button->devicePixelRatio();
+#else
+    return 1.0;
+#endif
+}
+
+void Helper::setDevicePixelRatio(QPixmap &pixmap, qreal devicePixelRatio)
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
+    pixmap.setDevicePixelRatio(devicePixelRatio);
+#endif
+}
+
+void Helper::setDevicePixelRatio(QImage &image, qreal devicePixelRatio)
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
+    image.setDevicePixelRatio(devicePixelRatio);
+#endif
+}
+
+qreal Helper::devicePixelRatio(QWidget *widget)
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
+    return widget->devicePixelRatio();
+#else
+    return 1.0;
+#endif
 }

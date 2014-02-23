@@ -37,7 +37,7 @@ FilterWidget::FilterWidget(QWidget *parent) :
     m_list->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_list->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    if (m_list->devicePixelRatio() == 1) {
+    if (Helper::devicePixelRatio(m_list) == 1) {
         QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
         effect->setBlurRadius(16);
         effect->setOffset(0);

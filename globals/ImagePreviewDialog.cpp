@@ -5,6 +5,7 @@
 #include <QScrollBar>
 
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 
 /**
  * @brief ImagePreviewDialog::ImagePreviewDialog
@@ -53,7 +54,7 @@ ImagePreviewDialog *ImagePreviewDialog::instance(QWidget *parent)
 void ImagePreviewDialog::setImage(QPixmap img)
 {
     qDebug() << "Entered";
-    img.setDevicePixelRatio(devicePixelRatio());
+    Helper::setDevicePixelRatio(img, Helper::devicePixelRatio(this));
     ui->image->setPixmap(img);
 }
 
