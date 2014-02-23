@@ -3953,12 +3953,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="91"/>
+        <location filename="../main.cpp" line="93"/>
         <source>Logfile could not be openened</source>
         <translation>Arquivo de log não pode ser aberto</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="92"/>
+        <location filename="../main.cpp" line="94"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>O arquivo de log %1 não pode ser aberto para escrita.</translation>
     </message>
@@ -5694,7 +5694,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="57"/>
         <source>Hide specials in missing episodes</source>
-        <translation type="unfinished"/>
+        <translation>Ocultar especiais em episódios ausentes</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="343"/>

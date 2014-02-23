@@ -3953,12 +3953,12 @@ i desea buscar por un TMDB o OFDb Identificador favor, añadiendo al principio &
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="91"/>
+        <location filename="../main.cpp" line="93"/>
         <source>Logfile could not be openened</source>
         <translation>El archivo de registro no se pudo abrir</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="92"/>
+        <location filename="../main.cpp" line="94"/>
         <source>The logfile %1 could not be openend for writing.</source>
         <translation>El archivo %1 de registro no se pudo abrir.</translation>
     </message>
