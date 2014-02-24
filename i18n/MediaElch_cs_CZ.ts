@@ -198,7 +198,7 @@
         <translation>Koncertů</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.cpp" line="16"/>
+        <location filename="../main/AboutDialog.cpp" line="17"/>
         <source>MediaElch %1 - %2</source>
         <translation>MediaElch %1 - %2</translation>
     </message>
@@ -275,27 +275,27 @@
 <context>
     <name>ClosableImage</name>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="87"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="88"/>
         <source>Delete Image</source>
         <translation>Odstranit obrázek</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="93"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="94"/>
         <source>Zoom Image</source>
         <translation>Zvětšit obrázek</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="99"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="100"/>
         <source>Select another image</source>
         <translation>Vybrat jiný obrázek</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="344"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="345"/>
         <source>Really delete image?</source>
         <translation>Opravdu si přejete odstranit obrázek?</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="345"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="346"/>
         <source>Are you sure you want to delete this image?</source>
         <translation>Jste si jistí, že chcete odstranit tento obrázek?</translation>
     </message>
@@ -2110,17 +2110,17 @@
         <translation>Přijmout obrázky</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="144"/>
+        <location filename="../globals/ImageDialog.cpp" line="145"/>
         <source>Default</source>
         <translation>Výchozí</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="528"/>
+        <location filename="../globals/ImageDialog.cpp" line="529"/>
         <source>Choose Image</source>
         <translation>Vyberte obrázek</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="528"/>
+        <location filename="../globals/ImageDialog.cpp" line="529"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>Obrázky (*.jpg *.jpeg *.png)</translation>
     </message>
@@ -2414,7 +2414,7 @@
         <translation>Je vyžadovaná synchronizace</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/ItemWidgetShow.cpp" line="48"/>
+        <location filename="../tvShows/ItemWidgetShow.cpp" line="50"/>
         <source>%n Episodes</source>
         <translation><numerusform>%n epizoda</numerusform><numerusform>%n epizod</numerusform><numerusform>%n epizod</numerusform></translation>
     </message>
@@ -3921,22 +3921,22 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>Podpořit</translation>
     </message>
     <message>
-        <location filename="../main/Navbar.cpp" line="15"/>
+        <location filename="../main/Navbar.cpp" line="16"/>
         <source>Scrape (%1)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../main/Navbar.cpp" line="18"/>
+        <location filename="../main/Navbar.cpp" line="19"/>
         <source>Save (%1)</source>
         <translation>Uložit (%1)</translation>
     </message>
     <message>
-        <location filename="../main/Navbar.cpp" line="22"/>
+        <location filename="../main/Navbar.cpp" line="23"/>
         <source>Save All (%1)</source>
         <translation>Uložit vše (%1)</translation>
     </message>
     <message>
-        <location filename="../main/Navbar.cpp" line="25"/>
+        <location filename="../main/Navbar.cpp" line="26"/>
         <source>Reload all files (%1)</source>
         <translation>Obnovit všechny soubory (%1)</translation>
     </message>
@@ -3962,7 +3962,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>Log soubor %1 nemohl být otevřen pro zápis.</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="347"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="348"/>
         <source>Do not ask again</source>
         <translation>Znovu se neptat</translation>
     </message>
