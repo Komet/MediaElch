@@ -4,32 +4,32 @@
     <message>
         <location filename="../scrapers/AEBN.cpp" line="16"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>Bulgaria</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="17"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Kiina</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="18"/>
         <source>Croatian</source>
-        <translation type="unfinished"/>
+        <translation>Kroatia</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="19"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>Tšekki</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="20"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>Tanska</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="21"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Hollanti</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="22"/>
@@ -39,12 +39,12 @@
     <message>
         <location filename="../scrapers/AEBN.cpp" line="23"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>Suomi</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="24"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Ranska</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="25"/>
@@ -54,72 +54,72 @@
     <message>
         <location filename="../scrapers/AEBN.cpp" line="26"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>Kreikka</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="27"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Heprea</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="28"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Unkari</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="29"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Italia</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="30"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Japani</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="31"/>
         <source>Korean</source>
-        <translation type="unfinished"/>
+        <translation>Korea</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="32"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Norja</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="33"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Puola</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="34"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Portugali</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="35"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>Venäjä</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="36"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>Slovenia</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="37"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Espanja</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="38"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Ruotsi</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="39"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>Turkki</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="41"/>
@@ -843,27 +843,27 @@
         <location filename="../export/ExportDialog.ui" line="23"/>
         <location filename="../export/ExportDialog.ui" line="132"/>
         <source>Export</source>
-        <translation type="unfinished"/>
+        <translation>Vie</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="32"/>
         <source>Export your complete collection.</source>
-        <translation type="unfinished"/>
+        <translation>Vie koko kirjasto.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="39"/>
         <source>Message</source>
-        <translation type="unfinished"/>
+        <translation>Viesti</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="51"/>
         <source>Theme</source>
-        <translation type="unfinished"/>
+        <translation>Teema</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="61"/>
         <source>Items to export</source>
-        <translation type="unfinished"/>
+        <translation>Vietävät kohteet</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="68"/>
@@ -888,27 +888,27 @@
     <message>
         <location filename="../export/ExportDialog.cpp" line="30"/>
         <source>You need to install at least one theme.</source>
-        <translation type="unfinished"/>
+        <translation>Sinun täytyy asentaa vähintään yksi teema.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="63"/>
         <source>You need to select at least one entry to export.</source>
-        <translation type="unfinished"/>
+        <translation>Sinun täytyy valita vähintään yksi kohde vietäväksi.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="72"/>
         <source>Export directory</source>
-        <translation type="unfinished"/>
+        <translation>Vientihakemisto</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="80"/>
         <source>Could not create export directory.</source>
-        <translation type="unfinished"/>
+        <translation>Vientihakemistoa ei voitu luoda.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="126"/>
         <source>Export completed.</source>
-        <translation type="unfinished"/>
+        <translation>Vienti valmis.</translation>
     </message>
 </context>
 <context>
@@ -921,17 +921,17 @@
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="36"/>
         <source>Theme Name</source>
-        <translation type="unfinished"/>
+        <translation>Teeman nimi</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="46"/>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Versio</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="59"/>
         <source>Author</source>
-        <translation type="unfinished"/>
+        <translation>Tekijä</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="68"/>
@@ -942,42 +942,42 @@
         <location filename="../settings/ExportTemplateWidget.ui" line="99"/>
         <location filename="../settings/ExportTemplateWidget.cpp" line="38"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Asenna</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="26"/>
         <source>by %1</source>
-        <translation type="unfinished"/>
+        <translation>- %1</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="29"/>
         <source>Version %1</source>
-        <translation type="unfinished"/>
+        <translation>Versio %1</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="32"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="35"/>
         <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <translation>Poista</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="48"/>
         <source>Updating...</source>
-        <translation type="unfinished"/>
+        <translation>Päivitetään...</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="52"/>
         <source>Installing...</source>
-        <translation type="unfinished"/>
+        <translation>Asennetaan...</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="56"/>
         <source>Uninstalling...</source>
-        <translation type="unfinished"/>
+        <translation>Poistetaan...</translation>
     </message>
 </context>
 <context>
@@ -998,32 +998,32 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="26"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>Bulgaria</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="27"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Kiina</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="28"/>
         <source>Croatian</source>
-        <translation type="unfinished"/>
+        <translation>Kroatia</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="29"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>Tšekki</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="30"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>Tanska</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="31"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Hollanti</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="32"/>
@@ -1033,12 +1033,12 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="33"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>Suomi</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="34"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Ranska</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="35"/>
@@ -1048,72 +1048,72 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="36"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>Kreikka</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="37"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Heprea</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="38"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Unkari</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="39"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Italia</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="40"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Japani</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="41"/>
         <source>Korean</source>
-        <translation type="unfinished"/>
+        <translation>Korea</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="42"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Norja</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="43"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Puola</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="44"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Portugali</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="45"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>Venäjä</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="46"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>Slovenia</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="47"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Espanja</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="48"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Ruotsi</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="49"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>Turkki</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="51"/>
@@ -1940,27 +1940,27 @@
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="17"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>Bulgaria</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="18"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Kiina</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="19"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>Tšekki</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="20"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>Tanska</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="21"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Hollanti</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="22"/>
@@ -1970,12 +1970,12 @@
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="23"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>Suomi</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="24"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Ranska</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="25"/>
@@ -1985,57 +1985,57 @@
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="26"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>Kreikka</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="27"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Heprea</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="28"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Unkari</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="29"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Italia</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="30"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Japani</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="31"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Norja</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="32"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Puola</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="33"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Portugali</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="34"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>Venäjä</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="35"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Espanja</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="36"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Ruotsi</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="39"/>
@@ -2406,17 +2406,17 @@
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="377"/>
         <source>new</source>
-        <translation type="unfinished"/>
+        <translation>uusi</translation>
     </message>
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="399"/>
         <source>Synchronization needed</source>
-        <translation type="unfinished"/>
+        <translation>Synkronointi tarvitaan</translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/ItemWidgetShow.cpp" line="50"/>
         <source>%n Episodes</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n jakso</numerusform><numerusform>%n jaksoa</numerusform></translation>
     </message>
 </context>
 <context>
@@ -2719,7 +2719,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="30"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Ranska</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="33"/>
@@ -2734,172 +2734,172 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="35"/>
         <source>Cine Passion</source>
-        <translation type="unfinished"/>
+        <translation>Cine Passion</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="38"/>
         <source>Argentina</source>
-        <translation type="unfinished"/>
+        <translation>Argentiina</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="39"/>
         <source>Australia</source>
-        <translation type="unfinished"/>
+        <translation>Australia</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="40"/>
         <source>Belgium</source>
-        <translation type="unfinished"/>
+        <translation>Belgia</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="41"/>
         <source>Brazil</source>
-        <translation type="unfinished"/>
+        <translation>Brasilia</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="42"/>
         <source>Canada</source>
-        <translation type="unfinished"/>
+        <translation>Kanada</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="43"/>
         <source>Chile</source>
-        <translation type="unfinished"/>
+        <translation>Chile</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="44"/>
         <source>Finland</source>
-        <translation type="unfinished"/>
+        <translation>Suomi</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="45"/>
         <source>France</source>
-        <translation type="unfinished"/>
+        <translation>Ranska</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="46"/>
         <source>Germany</source>
-        <translation type="unfinished"/>
+        <translation>Saksa</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="47"/>
         <source>Hong Kong</source>
-        <translation type="unfinished"/>
+        <translation>Hong Kong</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="48"/>
         <source>Iceland</source>
-        <translation type="unfinished"/>
+        <translation>Islanti</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="49"/>
         <source>India</source>
-        <translation type="unfinished"/>
+        <translation>Intia</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="50"/>
         <source>Ireland</source>
-        <translation type="unfinished"/>
+        <translation>Irlanti</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="51"/>
         <source>Israel</source>
-        <translation type="unfinished"/>
+        <translation>Israel</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="52"/>
         <source>Italy</source>
-        <translation type="unfinished"/>
+        <translation>Italia</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="53"/>
         <source>Japan</source>
-        <translation type="unfinished"/>
+        <translation>Japani</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="54"/>
         <source>Malaysia</source>
-        <translation type="unfinished"/>
+        <translation>Malesia</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="55"/>
         <source>Netherlands</source>
-        <translation type="unfinished"/>
+        <translation>Alankomaat</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="56"/>
         <source>New Zealand</source>
-        <translation type="unfinished"/>
+        <translation>Uusi Seelanti</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="57"/>
         <source>Norway</source>
-        <translation type="unfinished"/>
+        <translation>Norja</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="58"/>
         <source>Peru</source>
-        <translation type="unfinished"/>
+        <translation>Peru</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="59"/>
         <source>Philippines</source>
-        <translation type="unfinished"/>
+        <translation>Filippiinit</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="60"/>
         <source>Portugal</source>
-        <translation type="unfinished"/>
+        <translation>Portugali</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="61"/>
         <source>Singapore</source>
-        <translation type="unfinished"/>
+        <translation>Singapore</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="62"/>
         <source>South Africa</source>
-        <translation type="unfinished"/>
+        <translation>Etelä-Afrikka</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="63"/>
         <source>South Korea</source>
-        <translation type="unfinished"/>
+        <translation>Etelä-Korea</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="64"/>
         <source>Spain</source>
-        <translation type="unfinished"/>
+        <translation>Espanja</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="65"/>
         <source>Sweden</source>
-        <translation type="unfinished"/>
+        <translation>Ruotsi</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="66"/>
         <source>Switzerland</source>
-        <translation type="unfinished"/>
+        <translation>Sveitsi</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="67"/>
         <source>UK</source>
-        <translation type="unfinished"/>
+        <translation>Englanti</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="68"/>
         <source>USA</source>
-        <translation type="unfinished"/>
+        <translation>Yhdysvallat</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="71"/>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Käyttäjätunnus</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="73"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Salasana</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="75"/>
@@ -2920,7 +2920,7 @@ Main menu entry (tooltip)</extracomment>
         <location filename="../scrapers/MediaPassion.cpp" line="158"/>
         <location filename="../scrapers/MediaPassion.cpp" line="203"/>
         <source>No username and password</source>
-        <translation type="unfinished"/>
+        <translation>Ei käyttäjätunnusta ja salasanaa</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="159"/>
@@ -3007,7 +3007,7 @@ Toiminto peruutettu.</translation>
     <message>
         <location filename="../sets/MovieListDialog.ui" line="74"/>
         <source>Add selected movies</source>
-        <translation type="unfinished"/>
+        <translation>Lisää valitut elokuvat</translation>
     </message>
     <message>
         <location filename="../sets/MovieListDialog.ui" line="94"/>
@@ -4436,57 +4436,57 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWindow.ui" line="81"/>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>Tyyppi</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="86"/>
         <source>Path</source>
-        <translation type="unfinished"/>
+        <translation>Polku</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="91"/>
         <source>Sep. folders</source>
-        <translation type="unfinished"/>
+        <translation>Eril. hakemistoissa</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="94"/>
         <source>Items are in separate folders</source>
-        <translation type="unfinished"/>
+        <translation>Kohteet sijaitsevat erillisissä kansioissa</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="99"/>
         <source>Reload On Start</source>
-        <translation type="unfinished"/>
+        <translation>Lataa uudelleen käynnistyessä</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="102"/>
         <source>Automatically reload contents on start</source>
-        <translation type="unfinished"/>
+        <translation>Lataa sisältö uudelleen ohjelman käynnistyessä</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="112"/>
         <source>Add</source>
-        <translation type="unfinished"/>
+        <translation>Lisää</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="119"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Poista</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="126"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort movies into separate directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Järjestä elokuvat erillisiin hakemistoihin&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="129"/>
         <source>Organize</source>
-        <translation type="unfinished"/>
+        <translation>Järjestele</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="156"/>
         <source>Store trailer URLs in YouTube Plugin format</source>
-        <translation type="unfinished"/>
+        <translation>Tallenna trailerien URL-osoitteet YouTube-liitännäisen muodossa</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="170"/>
@@ -4496,12 +4496,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWindow.ui" line="184"/>
         <source>Ignore articles when sorting (&quot;The&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>Jätä artikkelit huomioimatta järjestettäessä (&quot;The&quot;)</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="198"/>
         <source>Download actor images</source>
-        <translation type="unfinished"/>
+        <translation>Lataa näyttelijöiden kuvat</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="226"/>
@@ -4555,7 +4555,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="385"/>
         <source>Item</source>
-        <translation type="unfinished"/>
+        <translation>Kohde</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="406"/>
@@ -4566,13 +4566,13 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="416"/>
         <location filename="../settings/SettingsWindow.ui" line="949"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
-        <translation type="unfinished"/>
+        <translation>Voit käyttää paikkamerkkiä &lt;baseFileName&gt;, joka on tiedoston nimi ilman päätettä.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="431"/>
         <location filename="../settings/SettingsWindow.ui" line="964"/>
         <source>Nfo</source>
-        <translation type="unfinished"/>
+        <translation>Nfo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="438"/>
@@ -4660,7 +4660,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="616"/>
         <location filename="../settings/SettingsWindow.ui" line="619"/>
         <source>folder.jpg</source>
-        <translation type="unfinished"/>
+        <translation>folder.jpg</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="626"/>
@@ -4671,7 +4671,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="633"/>
         <location filename="../settings/SettingsWindow.ui" line="636"/>
         <source>fanart.jpg</source>
-        <translation type="unfinished"/>
+        <translation>fanart.jpg</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="643"/>
@@ -4681,7 +4681,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="655"/>
         <source>Choose directory</source>
-        <translation type="unfinished"/>
+        <translation>Valitse hakemisto</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="670"/>
@@ -4696,7 +4696,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="695"/>
         <source>Show nfo</source>
-        <translation type="unfinished"/>
+        <translation>Näytä nfo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="737"/>
@@ -4706,7 +4706,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="744"/>
         <source>Season Poster</source>
-        <translation type="unfinished"/>
+        <translation>Kauden juliste</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="751"/>
@@ -4716,7 +4716,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="758"/>
         <source>Episode nfo</source>
-        <translation type="unfinished"/>
+        <translation>Jakson nfo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="765"/>
@@ -4775,24 +4775,24 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1094"/>
         <source>127.0.0.1</source>
-        <translation type="unfinished"/>
+        <translation>127.0.0.1</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1101"/>
         <location filename="../settings/SettingsWindow.ui" line="1154"/>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation>Portti</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1161"/>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Käyttäjätunnus</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1122"/>
         <location filename="../settings/SettingsWindow.ui" line="1168"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Salasana</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1072"/>
@@ -4807,33 +4807,33 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1195"/>
         <source>Enable Proxy</source>
-        <translation type="unfinished"/>
+        <translation>Käytä välityspalvelinta</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1202"/>
         <source>Type</source>
         <comment>Proxy Type</comment>
-        <translation type="unfinished"/>
+        <translation>Tyyppi</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1210"/>
         <source>HTTP</source>
-        <translation type="unfinished"/>
+        <translation>HTTP</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1215"/>
         <source>SOCKS 5</source>
-        <translation type="unfinished"/>
+        <translation>SOCKS 5</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1242"/>
         <source>Message</source>
-        <translation type="unfinished"/>
+        <translation>Viesti</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1273"/>
         <source>Theme</source>
-        <translation type="unfinished"/>
+        <translation>Teema</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1364"/>
@@ -4844,7 +4844,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1371"/>
         <source>Save Settings</source>
-        <translation type="unfinished"/>
+        <translation>Tallenna asetukset</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1381"/>
@@ -4875,27 +4875,27 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1484"/>
         <source>Global</source>
-        <translation type="unfinished"/>
+        <translation>Yleiset</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1504"/>
         <source>XBMC</source>
-        <translation type="unfinished"/>
+        <translation>XBMC</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1524"/>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>VerkkoVerkko</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1564"/>
         <source>Export</source>
-        <translation type="unfinished"/>
+        <translation>Vienti</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="408"/>
         <source>Settings saved</source>
-        <translation type="unfinished"/>
+        <translation>Asetukset tallennettu</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="442"/>
@@ -4905,27 +4905,27 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="478"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvien järjesteleminen toimii vain elokuville, jotka eivät ole erillisissä kansioissa.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="486"/>
         <source>Are you sure?</source>
-        <translation type="unfinished"/>
+        <translation>Oletko varma?</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="487"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
-        <translation type="unfinished"/>
+        <translation>Tämä toiminto järjestää kaikki tässä hakemistossa sijaitsevat elokuvat alihakemistoihin tiedostonimen perusteella. Klikkaa &quot;Ok&quot;, jos haluat suorittaa toiminnon.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="490"/>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="536"/>
         <source>Choose a directory containing your movies, TV show or concerts</source>
-        <translation type="unfinished"/>
+        <translation>Valitse hakemisto, joka sisältää elokuvat, TV-sarjat tai konsertit</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="558"/>
@@ -4935,23 +4935,23 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="587"/>
         <source>Theme &quot;%1&quot; was successfully installed</source>
-        <translation type="unfinished"/>
+        <translation>Teema &quot;%1&quot; asennettiin onnistuneesti</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="589"/>
         <location filename="../settings/SettingsWindow.cpp" line="597"/>
         <source>There was an error while processing the theme &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Teeman &quot;%1&quot; asentamisessa tapahtui virhe</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="595"/>
         <source>Theme &quot;%1&quot; was successfully uninstalled</source>
-        <translation type="unfinished"/>
+        <translation>Teema &quot;%1&quot; poistettiin onnistuneesti</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="607"/>
         <source>Don&apos;t use</source>
-        <translation type="unfinished"/>
+        <translation>Älä käytä</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="647"/>
@@ -5095,7 +5095,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../support/SupportDialog.ui" line="127"/>
         <source>Thanks for your help and support!</source>
-        <translation type="unfinished"/>
+        <translation>Kiitos avustasi ja tuestasi!</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="149"/>
@@ -5113,32 +5113,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="28"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>Bulgaria</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="29"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Kiina</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="30"/>
         <source>Croatian</source>
-        <translation type="unfinished"/>
+        <translation>Kroatia</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="31"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>Tšekki</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="32"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>Tanska</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="33"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Hollanti</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="34"/>
@@ -5148,17 +5148,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="35"/>
         <source>English (US)</source>
-        <translation type="unfinished"/>
+        <translation>Englanti (US)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="36"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>Suomi</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="37"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Ranska</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="38"/>
@@ -5168,72 +5168,72 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="39"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>Kreikka</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="40"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Heprea</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="41"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Unkari</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="42"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Italia</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="43"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Japani</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="44"/>
         <source>Korean</source>
-        <translation type="unfinished"/>
+        <translation>Korea</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="45"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Norja</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="46"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Puola</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="47"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Portugali</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="48"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>Venäjä</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="49"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>Slovenia</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="50"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Espanja</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="51"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Ruotsi</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="52"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>Turkki</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="54"/>
@@ -5246,32 +5246,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="28"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>Bulgaria</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="29"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Kiina</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="30"/>
         <source>Croatian</source>
-        <translation type="unfinished"/>
+        <translation>Kroatia</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="31"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>Tšekki</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="32"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>Tanska</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="33"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Hollanti</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="34"/>
@@ -5281,17 +5281,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="35"/>
         <source>English (US)</source>
-        <translation type="unfinished"/>
+        <translation>Englanti (US)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="36"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>Suomi</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="37"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Ranska</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="38"/>
@@ -5301,72 +5301,72 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="39"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>Kreikka</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="40"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Heprea</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="41"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Unkari</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="42"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Italia</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="43"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Japani</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="44"/>
         <source>Korean</source>
-        <translation type="unfinished"/>
+        <translation>Korea</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="45"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Norja</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="46"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Puola</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="47"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Portugali</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="48"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>Venäjä</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="49"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>Slovenia</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="50"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Espanja</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="51"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Ruotsi</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="52"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>Turkki</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="54"/>
@@ -5392,32 +5392,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="28"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>Bulgaria</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="29"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Kiina</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="30"/>
         <source>Croatian</source>
-        <translation type="unfinished"/>
+        <translation>Kroatia</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="31"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>Tšekki</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="32"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>Tanska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="33"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Hollanti</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="34"/>
@@ -5427,12 +5427,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="35"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>Suomi</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="36"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Ranska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="37"/>
@@ -5442,72 +5442,72 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="38"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>Kreikka</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="39"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Heprea</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="40"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Unkari</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="41"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Italia</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="42"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Japani</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="43"/>
         <source>Korean</source>
-        <translation type="unfinished"/>
+        <translation>Korea</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="44"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Norja</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="45"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Puola</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="46"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Portugali</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="47"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>Venäjä</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="48"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>Slovenia</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="49"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Espanja</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="50"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Ruotsi</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="51"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>Turkki</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="53"/>
@@ -5557,17 +5557,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../globals/TrailerDialog.ui" line="198"/>
         <source>Back to Search Results</source>
-        <translation type="unfinished"/>
+        <translation>Takaisin hakutuloksiin</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="280"/>
         <source>0:00 / 0:00</source>
-        <translation type="unfinished"/>
+        <translation>0:00 / 0:00</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="294"/>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>URL</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="325"/>
@@ -5577,37 +5577,37 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../globals/TrailerDialog.ui" line="348"/>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>Lataa</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="355"/>
         <source>Cancel Download</source>
-        <translation type="unfinished"/>
+        <translation>Peruuta lataus</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="366"/>
         <source>Back to Trailers</source>
-        <translation type="unfinished"/>
+        <translation>Takaisin trailereihin</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="313"/>
         <source>Download Finished</source>
-        <translation type="unfinished"/>
+        <translation>Lataus valmistunut</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="323"/>
         <source>The file %1 already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Tiedosto %1 on jo olemassa.</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="324"/>
         <source>Do you want to overwrite it?</source>
-        <translation type="unfinished"/>
+        <translation>Haluatko ylikirjoittaa?</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="336"/>
         <source>Download Canceled</source>
-        <translation type="unfinished"/>
+        <translation>Lataus peruutettu</translation>
     </message>
 </context>
 <context>
@@ -5615,22 +5615,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="52"/>
         <source>Searching for TV Shows...</source>
-        <translation type="unfinished"/>
+        <translation>Etsitään TV-sarjoja...</translation>
     </message>
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="71"/>
         <source>Loading TV Shows...</source>
-        <translation type="unfinished"/>
+        <translation>Ladataan TV-sarjoja...</translation>
     </message>
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="182"/>
         <source>Searching for Episodes...</source>
-        <translation type="unfinished"/>
+        <translation>Etsitään jaksoja...</translation>
     </message>
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="220"/>
         <source>Loading Episodes...</source>
-        <translation type="unfinished"/>
+        <translation>Ladataan jaksoja...</translation>
     </message>
 </context>
 <context>
@@ -5643,7 +5643,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="48"/>
         <source>Search for new episodes</source>
-        <translation type="unfinished"/>
+        <translation>Etsi uusia jaksoja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="49"/>
@@ -5673,7 +5673,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="54"/>
         <source>Open TV Show Folder</source>
-        <translation type="unfinished"/>
+        <translation>Avaa hakemisto</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="55"/>
@@ -5702,7 +5702,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../data/TvShowModelItem.cpp" line="137"/>
         <source>Season %1</source>
-        <translation type="unfinished"/>
+        <translation>Kausi %1</translation>
     </message>
 </context>
 <context>
@@ -5740,7 +5740,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="140"/>
         <source>First aired</source>
-        <translation type="unfinished"/>
+        <translation>Ensimmäinen esitys</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="150"/>
@@ -5775,7 +5775,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="210"/>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Verkko</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="220"/>
@@ -5795,7 +5795,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="250"/>
         <source>Season Poster</source>
-        <translation type="unfinished"/>
+        <translation>Kauden juliste</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="260"/>
@@ -5830,32 +5830,32 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="348"/>
         <source>Update TV Show only</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä vain TV-sarja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="353"/>
         <source>Update TV Show and new Episodes</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä TV-sarja ja uudet jaksot</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="358"/>
         <source>Update TV Show and all Episodes</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä TV-sarja ja kaikki jaksot</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="363"/>
         <source>Update new Episodes</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä uudet jaksot</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="368"/>
         <source>Update all episodes</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä kaikki jaksot</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="376"/>
         <source>DVD Order</source>
-        <translation type="unfinished"/>
+        <translation>DVD-järjestys</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="396"/>
@@ -5893,7 +5893,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="129"/>
         <source>First aired</source>
-        <translation type="unfinished"/>
+        <translation>Ensimmäinen esitys</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="139"/>
@@ -5918,7 +5918,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="179"/>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Verkko</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="189"/>
@@ -5949,12 +5949,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="164"/>
         <source>Saving changed TV Shows and Episodes</source>
-        <translation type="unfinished"/>
+        <translation>Tallennetaan muokattuja TV-sarjoja ja jaksoja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="183"/>
         <source>All TV Shows and Episodes Saved</source>
-        <translation type="unfinished"/>
+        <translation>Kaikki TV-sarjat ja jaksot tallennettu</translation>
     </message>
 </context>
 <context>
@@ -5967,12 +5967,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="76"/>
         <source>Episode has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Jakso on muuttunut. Klikkaa peruuttaaksesi muutokset.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="105"/>
         <source>Episode Title</source>
-        <translation type="unfinished"/>
+        <translation>Jakson nimi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="176"/>
@@ -5997,12 +5997,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="227"/>
         <source>Season</source>
-        <translation type="unfinished"/>
+        <translation>Kausi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="262"/>
         <source>Episode</source>
-        <translation type="unfinished"/>
+        <translation>Jakso</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="281"/>
@@ -6022,7 +6022,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="325"/>
         <source>First Aired</source>
-        <translation type="unfinished"/>
+        <translation>Ensimmäinen esitys</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="335"/>
@@ -6062,7 +6062,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="450"/>
         <source>Bookmark</source>
-        <translation type="unfinished"/>
+        <translation>Kirjanmerkki</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="470"/>
@@ -6077,7 +6077,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="581"/>
         <source>Directors</source>
-        <translation type="unfinished"/>
+        <translation>Ohjaajat</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="609"/>
@@ -6087,27 +6087,27 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="619"/>
         <source>Add Director</source>
-        <translation type="unfinished"/>
+        <translation>Lisää ohjaaja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="636"/>
         <source>Remove Director</source>
-        <translation type="unfinished"/>
+        <translation>Poista ohjaaja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="479"/>
         <source>Writers</source>
-        <translation type="unfinished"/>
+        <translation>Käsikirjoittajat</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="517"/>
         <source>Add Writer</source>
-        <translation type="unfinished"/>
+        <translation>Lisää käsikirjoittaja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="534"/>
         <source>Remove Writer</source>
-        <translation type="unfinished"/>
+        <translation>Poista käsikirjoittaja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="683"/>
@@ -6241,17 +6241,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="519"/>
         <source>Episode Saved</source>
-        <translation type="unfinished"/>
+        <translation>Jakso tallennettu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="654"/>
         <source>Unknown Director</source>
-        <translation type="unfinished"/>
+        <translation>Tuntematon ohjaaja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="703"/>
         <source>Unknown Writer</source>
-        <translation type="unfinished"/>
+        <translation>Tuntematon käsikirjoittaja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="921"/>
@@ -6284,7 +6284,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="66"/>
         <source>Episode has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Jakso on muuttunut. Klikkaa peruuttaaksesi muutokset.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="95"/>
@@ -6331,7 +6331,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.cpp" line="103"/>
         <source>Season %1</source>
-        <translation type="unfinished"/>
+        <translation>Kausi %1</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.cpp" line="158"/>
@@ -6349,7 +6349,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="63"/>
         <source>TV Show has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>TV-sarja on muuttunut. Klikkaa peruutaaksesi muutokset.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="90"/>
@@ -6384,7 +6384,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="191"/>
         <source>First Aired</source>
-        <translation type="unfinished"/>
+        <translation>Ensimmäinen esitys</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="201"/>
@@ -6414,12 +6414,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="234"/>
         <source>Missing</source>
-        <translation type="unfinished"/>
+        <translation>Puuttuu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="244"/>
         <source>Download Theme</source>
-        <translation type="unfinished"/>
+        <translation>Lataa teema</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="275"/>
@@ -6603,7 +6603,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="102"/>
         <source>0:00 / 0:00</source>
-        <translation type="unfinished"/>
+        <translation>0:00 / 0:00</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="129"/>
@@ -6613,12 +6613,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="152"/>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>Lataa</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="159"/>
         <source>Cancel Download</source>
-        <translation type="unfinished"/>
+        <translation>Peruuta lataus</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="183"/>
@@ -6628,22 +6628,22 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvTunesDialog.cpp" line="245"/>
         <source>Download Finished</source>
-        <translation type="unfinished"/>
+        <translation>Lataus valmistunut</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.cpp" line="250"/>
         <source>The file %1 already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Tiedosto %1 on jo olemassa.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.cpp" line="251"/>
         <source>Do you want to overwrite it?</source>
-        <translation type="unfinished"/>
+        <translation>Haluatko ylikirjoittaa?</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.cpp" line="265"/>
         <source>Download Canceled</source>
-        <translation type="unfinished"/>
+        <translation>Lataus peruutettu</translation>
     </message>
 </context>
 <context>
@@ -6686,7 +6686,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="50"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Salasana</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="64"/>
@@ -6704,7 +6704,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="17"/>
         <source>XBMC Synchronization</source>
-        <translation type="unfinished"/>
+        <translation>XBMC-synkronointi</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
@@ -6714,7 +6714,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="36"/>
         <source>Update contents</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä konsertit</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="46"/>
@@ -6724,7 +6724,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="56"/>
         <source>Remove non-existent items from XBMCs database (Clean library)</source>
-        <translation type="unfinished"/>
+        <translation>Poista XBMC:stä kohteet, joita ei löydy (kirjaston puhdistus)</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
@@ -6739,13 +6739,13 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="77"/>
         <source>The fields last played and playcount will be retrieved from XBMC.</source>
-        <translation type="unfinished"/>
+        <translation>Viimeksi toistettu ja toistokerrat -kenttien tiedot haetaan XBMC:stä.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="108"/>
         <location filename="../xbmc/XbmcSync.ui" line="115"/>
         <source>Status</source>
-        <translation type="unfinished"/>
+        <translation>Tila</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="133"/>
@@ -6755,17 +6755,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="156"/>
         <source>Start</source>
-        <translation type="unfinished"/>
+        <translation>Aloita</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="141"/>
         <source>Please fill in your XBMC host and port.</source>
-        <translation type="unfinished"/>
+        <translation>Täytä XBMC:n osoite ja portti.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="229"/>
         <source>Getting contents from XBMC</source>
-        <translation type="unfinished"/>
+        <translation>Haetaan XBMC:n sisältöä</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="244"/>
@@ -6778,32 +6778,32 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="414"/>
         <source>Removing movies from database</source>
-        <translation type="unfinished"/>
+        <translation>Poistetaan elokuvia tietokannasta</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="433"/>
         <source>Removing concerts from database</source>
-        <translation type="unfinished"/>
+        <translation>Poistetaan konsertteja tietokannasta</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="452"/>
         <source>Removing TV shows from database</source>
-        <translation type="unfinished"/>
+        <translation>Poistetaan TV-sarjoja tietokannasta</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="471"/>
         <source>Removing episodes from database</source>
-        <translation type="unfinished"/>
+        <translation>Poistetaan jaksoja tietokannasta</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="510"/>
         <source>Trigger scan for new items</source>
-        <translation type="unfinished"/>
+        <translation>Aseta uusien kohteiden automaattinen tarkastus</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="530"/>
         <source>Finished. XBMC is now loading your updated items.</source>
-        <translation type="unfinished"/>
+        <translation>Valmis. XBMC lataa nyt päivitetyt kohteet.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="554"/>
@@ -6813,7 +6813,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="595"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
-        <translation type="unfinished"/>
+        <translation>Valmis. Kohteiden toistokerrat ja viimeksi toistettu -tieto on päivitetty.</translation>
     </message>
 </context>
 </TS>
