@@ -435,12 +435,17 @@ QList<int> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
     foreach (const QString &pattern, patterns) {
         rx.setPattern(pattern);
         int pos = 0;
-        while (rx.indexIn(filename, pos) != -1) {
+        int lastPos = -1;
+        while ((pos = rx.indexIn(filename, pos)) != -1) {
+            // if between the last match and this one are more than five characters: break
+            // this way we can try to filter "false matches" like in "21x04 - Hammond vs. 6x6.mp4"
+            if (lastPos != -1 && lastPos < pos+5)
+                break;
             episodes << rx.cap(2).toInt();
-            if (pos == 0)
-                pos = rx.indexIn(filename);
             pos += rx.matchedLength();
+            lastPos = pos;
         }
+        pos = lastPos;
 
         // Pattern matched
         if (!episodes.isEmpty()) {
