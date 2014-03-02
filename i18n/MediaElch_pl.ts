@@ -198,7 +198,7 @@
         <translation>Koncerty</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.cpp" line="16"/>
+        <location filename="../main/AboutDialog.cpp" line="17"/>
         <source>MediaElch %1 - %2</source>
         <translation>MediaElch %1 - %2</translation>
     </message>
@@ -276,27 +276,27 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
 <context>
     <name>ClosableImage</name>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="87"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="88"/>
         <source>Delete Image</source>
         <translation>Usuń obraz</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="93"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="94"/>
         <source>Zoom Image</source>
         <translation>Powiększ obraz</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="99"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="100"/>
         <source>Select another image</source>
         <translation>Wybierz inny obraz</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="344"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="345"/>
         <source>Really delete image?</source>
         <translation>Na pewno usunąć obraz?</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="345"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="346"/>
         <source>Are you sure you want to delete this image?</source>
         <translation>Jesteś pewien, że chcesz usunąć ten obraz?</translation>
     </message>
@@ -2112,17 +2112,17 @@ Jeśli chcesz połączyć dwa gatunki, po prostu nadaj im tę samą nazwę.</tra
         <translation>Zaakceptuj obrazy</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="144"/>
+        <location filename="../globals/ImageDialog.cpp" line="145"/>
         <source>Default</source>
         <translation>Domyślny</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="528"/>
+        <location filename="../globals/ImageDialog.cpp" line="529"/>
         <source>Choose Image</source>
         <translation>Wybierz obraz</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="528"/>
+        <location filename="../globals/ImageDialog.cpp" line="529"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>Obrazy (*.jpg *.jpeg *.png)</translation>
     </message>
@@ -2416,7 +2416,7 @@ Jeśli chcesz połączyć dwa gatunki, po prostu nadaj im tę samą nazwę.</tra
         <translation>Wymagana synchronizacja</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/ItemWidgetShow.cpp" line="48"/>
+        <location filename="../tvShows/ItemWidgetShow.cpp" line="50"/>
         <source>%n Episodes</source>
         <translation><numerusform>%n odcinek</numerusform><numerusform>%n odcinków</numerusform><numerusform>%n odcinków</numerusform></translation>
     </message>
@@ -3925,22 +3925,22 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
         <translation>Darowizna</translation>
     </message>
     <message>
-        <location filename="../main/Navbar.cpp" line="15"/>
+        <location filename="../main/Navbar.cpp" line="16"/>
         <source>Scrape (%1)</source>
         <translation>Ekstraktuj (%1)</translation>
     </message>
     <message>
-        <location filename="../main/Navbar.cpp" line="18"/>
+        <location filename="../main/Navbar.cpp" line="19"/>
         <source>Save (%1)</source>
         <translation>Zapisz (%1)</translation>
     </message>
     <message>
-        <location filename="../main/Navbar.cpp" line="22"/>
+        <location filename="../main/Navbar.cpp" line="23"/>
         <source>Save All (%1)</source>
         <translation>Zapisz wszystko (%1)</translation>
     </message>
     <message>
-        <location filename="../main/Navbar.cpp" line="25"/>
+        <location filename="../main/Navbar.cpp" line="26"/>
         <source>Reload all files (%1)</source>
         <translation>Odśwież wszystkie pliki (%1)</translation>
     </message>
@@ -3966,7 +3966,7 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
         <translation>Plik logów %1 nie może zostać otworzony do zapisu.</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="347"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="348"/>
         <source>Do not ask again</source>
         <translation>Nie pytaj ponownie</translation>
     </message>

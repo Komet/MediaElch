@@ -1,130 +1,130 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_CN" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi" version="2.0">
 <context>
     <name>AEBN</name>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="16"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>Bulgaria</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="17"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Kiina</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="18"/>
         <source>Croatian</source>
-        <translation type="unfinished"/>
+        <translation>Kroatia</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="19"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>Tšekki</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="20"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>Tanska</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="21"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Hollanti</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="22"/>
         <source>English</source>
-        <translation type="unfinished"/>
+        <translation>Englanti</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="23"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>Suomi</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="24"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Ranska</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="25"/>
         <source>German</source>
-        <translation type="unfinished"/>
+        <translation>Saksa</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="26"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>Kreikka</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="27"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Heprea</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="28"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Unkari</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="29"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Italia</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="30"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Japani</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="31"/>
         <source>Korean</source>
-        <translation type="unfinished"/>
+        <translation>Korea</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="32"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Norja</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="33"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Puola</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="34"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Portugali</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="35"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>Venäjä</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="36"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>Slovenia</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="37"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Espanja</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="38"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Ruotsi</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="39"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>Turkki</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="41"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>Kieli</translation>
     </message>
 </context>
 <context>
@@ -132,7 +132,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="23"/>
         <source>About MediaElch</source>
-        <translation>关于 MediaElch</translation>
+        <translation>Tietoa MediaElchistä</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="43"/>
@@ -142,7 +142,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="108"/>
         <source>MediaElch was built with &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>MediaElch on toteutettu &lt;a href=&quot;http://www.qt-project.org&quot;&gt;Qt&lt;/a&gt;:lla</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="121"/>
@@ -152,12 +152,12 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="131"/>
         <source>MediaElch Icon by Kathrin Luckner</source>
-        <translation>MediaElch 的图标由 Kathrin Luckner 制作</translation>
+        <translation>MediaElch -kuvakeen on tehnyt Kathrin Luckner</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="141"/>
         <source>Stream Details detection with &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Mediatietojen tunnistaminen on toteutettu käyttäen &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;:a</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="148"/>
@@ -167,12 +167,12 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="198"/>
         <source>Your Collection</source>
-        <translation>您的收藏</translation>
+        <translation>Kokoelmasi</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="207"/>
         <source>Movies</source>
-        <translation>电影</translation>
+        <translation>Elokuvat</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="214"/>
@@ -185,17 +185,17 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="240"/>
         <source>TV Shows</source>
-        <translation>电视剧</translation>
+        <translation>TV-sarjat</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="273"/>
         <source>Episodes</source>
-        <translation>播出季</translation>
+        <translation>Jakost</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="306"/>
         <source>Concerts</source>
-        <translation>音乐会</translation>
+        <translation>Konsertit</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.cpp" line="17"/>
@@ -213,7 +213,7 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="70"/>
         <source>Certification</source>
-        <translation>分级</translation>
+        <translation>Sisältöluokitus</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="101"/>
@@ -223,53 +223,53 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="142"/>
         <source>Movie</source>
-        <translation>电影</translation>
+        <translation>Elokuva</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="165"/>
         <location filename="../movies/CertificationWidget.ui" line="168"/>
         <source>Add Movie</source>
-        <translation>添加电影</translation>
+        <translation>Lisää elokuva</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="178"/>
         <source>Remove Current Movie</source>
-        <translation>删除当前电影</translation>
+        <translation>Poista elokuva</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="181"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Nimeä elokuva uudelleen</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="197"/>
         <source>Double click a certification to rename it, right click to delete. If you want to merge two certifications just give them the same name.</source>
-        <translation type="unfinished"/>
+        <translation>Kaksoisklikkaa sisältöluokitusta nimetäksesi se uudelleen, klikkaa oikealla poistaaksesi. Voit yhdistää kaksi sisältöluokitusta antamalla niille samat nimet.</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="207"/>
         <source>Please keep in mind that the changes you make here (renaming or deleting certifications) will be made for every movie.</source>
-        <translation type="unfinished"/>
+        <translation>Tekemäsi muutokset (sisältöluokitusten nimeäminen ja poistaminen) suoritetaan jokaiseen elokuvaan.</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="36"/>
         <source>Add Certification</source>
-        <translation type="unfinished"/>
+        <translation>Lisää sisältöluokitus</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="37"/>
         <source>Delete Certification</source>
-        <translation type="unfinished"/>
+        <translation>Poista sisältöluokitus</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="180"/>
         <source>New Certification</source>
-        <translation type="unfinished"/>
+        <translation>Uusi sisältöluokitus</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="284"/>
         <source>All Movies Saved</source>
-        <translation>更新内容已保存</translation>
+        <translation>Kaikki elokuvat tallennettu</translation>
     </message>
 </context>
 <context>
@@ -277,27 +277,27 @@
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="88"/>
         <source>Delete Image</source>
-        <translation>删除图像</translation>
+        <translation>Poista kuva</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="94"/>
         <source>Zoom Image</source>
-        <translation>放大图片</translation>
+        <translation>Kuvan suurentaminen</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="100"/>
         <source>Select another image</source>
-        <translation>另选一幅图片</translation>
+        <translation>Valitse toinen kuva</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="345"/>
         <source>Really delete image?</source>
-        <translation>确定要删除图片吗？</translation>
+        <translation>Haluatko varmasti poistaa kuvan?</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="346"/>
         <source>Are you sure you want to delete this image?</source>
-        <translation>你确定要删除这张图片吗？</translation>
+        <translation>Haluatko varmasti poistaa kuvan?</translation>
     </message>
 </context>
 <context>
@@ -305,12 +305,12 @@
     <message>
         <location filename="../data/ConcertFileSearcher.cpp" line="48"/>
         <source>Searching for Concerts...</source>
-        <translation>正在搜索音乐会资料...</translation>
+        <translation>Etsitään konsertteja...</translation>
     </message>
     <message>
         <location filename="../data/ConcertFileSearcher.cpp" line="67"/>
         <source>Loading Concerts...</source>
-        <translation>加载音乐会资料...</translation>
+        <translation>Ladataan konsertteja...</translation>
     </message>
 </context>
 <context>
@@ -318,32 +318,32 @@
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="44"/>
         <source>Mark as watched</source>
-        <translation>标记为已观看</translation>
+        <translation>Merkkaa katsotuksi</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="45"/>
         <source>Mark as unwatched</source>
-        <translation>标记为未观看</translation>
+        <translation>Merkkaa katsomattomaksi</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="46"/>
         <source>Load Stream Details</source>
-        <translation>加载媒体流详情</translation>
+        <translation>Lataa mediatiedot</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="47"/>
         <source>Add to Synchronization Queue</source>
-        <translation type="unfinished"/>
+        <translation>Lisää synkronointijonoon</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="48"/>
         <source>Remove from Synchronization Queue</source>
-        <translation type="unfinished"/>
+        <translation>Poista synkronointijonosta</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="49"/>
         <source>Open Concert Folder</source>
-        <translation>打开音乐会视频文件夹</translation>
+        <translation>Avaa konserttihakemisto</translation>
     </message>
 </context>
 <context>
@@ -351,12 +351,12 @@
     <message>
         <location filename="../concerts/ConcertSearch.ui" line="17"/>
         <source>Search Result</source>
-        <translation>搜索结果</translation>
+        <translation>Hakutulokset</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearch.ui" line="48"/>
         <source>Close</source>
-        <translation>关闭</translation>
+        <translation>Sulje</translation>
     </message>
 </context>
 <context>
@@ -369,87 +369,87 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="25"/>
         <source>Scraper</source>
-        <translation>刮削器</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="86"/>
         <source>Result</source>
-        <translation type="unfinished"/>
+        <translation>Tulos</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="113"/>
         <source>Infos to load</source>
-        <translation type="unfinished"/>
+        <translation>Ladattavat tiedot</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="136"/>
         <source>Title</source>
-        <translation>片名</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="143"/>
         <source>Tagline</source>
-        <translation>标语</translation>
+        <translation>Tagit</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="150"/>
         <source>Rating</source>
-        <translation>评分</translation>
+        <translation>Arvostelu</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="157"/>
         <source>Released</source>
-        <translation>首映日期</translation>
+        <translation>Julkaistu</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="164"/>
         <source>Runtime</source>
-        <translation>片长</translation>
+        <translation>Kesto</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="171"/>
         <source>Certification</source>
-        <translation>分级</translation>
+        <translation>Sisältöluokitus</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="178"/>
         <source>Trailer</source>
-        <translation>预告片</translation>
+        <translation>Traileri</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="185"/>
         <source>Overview</source>
-        <translation>预览</translation>
+        <translation>Kuvaus</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="192"/>
         <source>Poster</source>
-        <translation>海报</translation>
+        <translation>Juliste</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="199"/>
         <source>Backdrop</source>
-        <translation>剧照</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="206"/>
         <source>Genres</source>
-        <translation>类型</translation>
+        <translation>Tyylilajit</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="213"/>
         <source>Logo, Clear Art, CD Art</source>
-        <translation>Logo, Clear Art, CD Art</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="216"/>
         <source>Artwork</source>
-        <translation type="unfinished"/>
+        <translation>Kuvamateriaali</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="230"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished"/>
+        <translation>Kaikki</translation>
     </message>
 </context>
 <context>
@@ -462,170 +462,170 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="63"/>
         <source>Concert has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Konsertti on muuttunut. Klikkaa peruaksesi muutokset.</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="96"/>
         <source>Concert Name</source>
-        <translation type="unfinished"/>
+        <translation>Konsertin nimi</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="141"/>
         <source>Information</source>
-        <translation>资料</translation>
+        <translation>Tiedot</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="158"/>
         <source>Files</source>
-        <translation>文件</translation>
+        <translation>Tiedostot</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="172"/>
         <source>Name</source>
-        <translation>名称</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="186"/>
         <source>Artist</source>
-        <translation>艺术家</translation>
+        <translation>Artisti</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="196"/>
         <source>Album</source>
-        <translation>专辑</translation>
+        <translation>Albumi</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="206"/>
         <source>Tagline</source>
-        <translation>标语</translation>
+        <translation>Tunnisteet</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="216"/>
         <source>Rating</source>
-        <translation>评分</translation>
+        <translation>Arvostelu</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="236"/>
         <source>Released</source>
-        <translation>首映日期</translation>
+        <translation>Julkaistu</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="253"/>
         <source>Runtime</source>
-        <translation>片长</translation>
+        <translation>Kesto</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="273"/>
         <source>Certification</source>
-        <translation>分级</translation>
+        <translation>Sisältöluokitus</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="290"/>
         <source>Trailer</source>
-        <translation>预告片</translation>
+        <translation>Traileri</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="365"/>
         <location filename="../concerts/ConcertWidget.ui" line="368"/>
         <source>Watched</source>
-        <translation>看过</translation>
+        <translation>Katsottu</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="300"/>
         <source>Play Count</source>
-        <translation>播放次数</translation>
+        <translation>Toistokerrat</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="335"/>
         <source>Last Played</source>
-        <translation>上次播放</translation>
+        <translation>Toistettu viimeksi</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="380"/>
         <source>Overview</source>
-        <translation>预览</translation>
+        <translation>Kuvaus</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="246"/>
         <source>yyyy</source>
-        <translation>年</translation>
+        <translation>vvvv</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="263"/>
         <source> Minutes</source>
-        <translation>分钟</translation>
+        <translation>Minuuttia</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="371"/>
         <source>Not watched</source>
-        <translation type="unfinished"/>
+        <translation>Ei katsottu</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="393"/>
         <source>Extended</source>
-        <translation type="unfinished"/>
+        <translation>Lisätiedot</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="419"/>
         <source>Extra Fanarts</source>
-        <translation>其他剧照</translation>
+        <translation> </translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="441"/>
         <source>Hint: Closed images will be deleted on save.</source>
-        <translation>注意：如果关闭图像，保存时将删除该图像。</translation>
+        <translation>Vihje: Suljetut kuvat poistetaan tallennettaessa.</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="464"/>
         <source>Add Images</source>
-        <translation>添加图像</translation>
+        <translation>Lisää kuvia</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="477"/>
         <source>Streamdetails</source>
-        <translation type="unfinished"/>
+        <translation>Mediatiedot</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="485"/>
         <source>Aspect Ratio</source>
-        <translation type="unfinished"/>
+        <translation>Kuvasuhde</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="495"/>
         <source>Scantype</source>
-        <translation>扫描类型</translation>
+        <translation>Lomitus</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="515"/>
         <source>Resolution</source>
-        <translation>分辨率</translation>
+        <translation>Resoluutio</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="525"/>
         <location filename="../concerts/ConcertWidget.cpp" line="536"/>
         <location filename="../concerts/ConcertWidget.cpp" line="539"/>
         <source>Codec</source>
-        <translation>编码</translation>
+        <translation>Koodekki</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="563"/>
         <source>x</source>
-        <translation type="unfinished"/>
+        <translation>x</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="601"/>
         <source>Audio</source>
-        <translation>音频</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="617"/>
         <source>Video</source>
-        <translation>视频</translation>
+        <translation>Video</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="637"/>
         <source>Duration</source>
-        <translation>片长</translation>
+        <translation>Kesto</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="656"/>
@@ -635,12 +635,12 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="667"/>
         <source>Reload from File</source>
-        <translation type="unfinished"/>
+        <translation>Lataa uudelleen tiedostosta</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="887"/>
         <source>Poster</source>
-        <translation>海报</translation>
+        <translation>Juliste</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="909"/>
@@ -649,53 +649,53 @@
         <location filename="../concerts/ConcertWidget.ui" line="1079"/>
         <location filename="../concerts/ConcertWidget.ui" line="1126"/>
         <source>Click to Change</source>
-        <translation>点击修改</translation>
+        <translation>Klikkaa vaihtaaksesi</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="934"/>
         <source>Fanart</source>
-        <translation>剧照</translation>
+        <translation>Fanitaide</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="1010"/>
         <source>Logo</source>
-        <translation>徽标</translation>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="1057"/>
         <source>Clear Art</source>
-        <translation>剪贴画</translation>
+        <translation>Clear Art</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="1104"/>
         <source>CD Art</source>
-        <translation>CD封面</translation>
+        <translation>CD-kuva</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="72"/>
         <source>Genres</source>
-        <translation>类型</translation>
+        <translation>Tyylilajit</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="73"/>
         <source>Add Genre</source>
-        <translation>添加类型</translation>
+        <translation>Lisää tyylilaji</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="77"/>
         <source>Tags</source>
-        <translation>标签</translation>
+        <translation>Tunnisteet</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="78"/>
         <source>Add Tag</source>
-        <translation>添加标签</translation>
+        <translation>Lisää tunniste</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="529"/>
         <location filename="../concerts/ConcertWidget.cpp" line="563"/>
         <source>Track %1</source>
-        <translation>音轨 %1</translation>
+        <translation>Raita %1</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="535"/>
@@ -703,28 +703,28 @@
         <location filename="../concerts/ConcertWidget.cpp" line="566"/>
         <location filename="../concerts/ConcertWidget.cpp" line="567"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>Kieli</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="537"/>
         <location filename="../concerts/ConcertWidget.cpp" line="540"/>
         <source>Channels</source>
-        <translation>声道</translation>
+        <translation>Kanavat</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="555"/>
         <source>Subtitles</source>
-        <translation>字幕</translation>
+        <translation>Tekstitys</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="614"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 已保存</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; tallennettu</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="637"/>
         <source>All Concerts Saved</source>
-        <translation>全部音乐会已保存</translation>
+        <translation>Kaikki konsertit tallennettu</translation>
     </message>
 </context>
 <context>
@@ -751,35 +751,35 @@
         <location filename="../downloads/DownloadsWidget.ui" line="107"/>
         <location filename="../downloads/DownloadsWidget.ui" line="226"/>
         <source>Name</source>
-        <translation>名称</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="112"/>
         <location filename="../downloads/DownloadsWidget.ui" line="231"/>
         <source>Files</source>
-        <translation>文件</translation>
+        <translation>Tiedostot</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="117"/>
         <location filename="../downloads/DownloadsWidget.ui" line="236"/>
         <source>Size</source>
-        <translation type="unfinished"/>
+        <translation>Koko</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="163"/>
         <source>Importable items</source>
-        <translation type="unfinished"/>
+        <translation>Tuotavat kohteet</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="186"/>
         <source>Import movie with MakeMKV</source>
-        <translation type="unfinished"/>
+        <translation>Tuo elokuva käyttäen MakeMKV:tä</translation>
     </message>
     <message numerus="yes">
         <location filename="../downloads/DownloadsWidget.cpp" line="202"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="330"/>
         <source>%n file(s)</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n tiedosto</numerusform><numerusform>%n tiedostoa</numerusform></translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="272"/>
@@ -787,12 +787,12 @@
         <location filename="../downloads/DownloadsWidget.cpp" line="276"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="288"/>
         <source>Extraction failed</source>
-        <translation type="unfinished"/>
+        <translation>Purkaminen epäonnistui</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="272"/>
         <source>Exctraction of %1 has failed: %2</source>
-        <translation type="unfinished"/>
+        <translation>Kohteen %1 purkaminen epäonnistui: %2</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="274"/>
@@ -804,32 +804,32 @@
         <location filename="../downloads/DownloadsWidget.cpp" line="286"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="297"/>
         <source>Extraction finished</source>
-        <translation type="unfinished"/>
+        <translation>Purkaminen valmis</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="297"/>
         <source>Extraction of %1 finished</source>
-        <translation type="unfinished"/>
+        <translation>Kohteen %1 purkaminen valmis</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="343"/>
         <source>Movie</source>
-        <translation>电影</translation>
+        <translation>Elokuva</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="344"/>
         <source>TV Show</source>
-        <translation type="unfinished"/>
+        <translation>TV-sarja</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="345"/>
         <source>Concert</source>
-        <translation>音乐会</translation>
+        <translation>Konsertti</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="496"/>
         <source>makemkvcon missing</source>
-        <translation type="unfinished"/>
+        <translation>makemkvcon puuttuu</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="497"/>
@@ -843,72 +843,72 @@
         <location filename="../export/ExportDialog.ui" line="23"/>
         <location filename="../export/ExportDialog.ui" line="132"/>
         <source>Export</source>
-        <translation type="unfinished"/>
+        <translation>Vie</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="32"/>
         <source>Export your complete collection.</source>
-        <translation type="unfinished"/>
+        <translation>Vie koko kirjasto.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="39"/>
         <source>Message</source>
-        <translation type="unfinished"/>
+        <translation>Viesti</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="51"/>
         <source>Theme</source>
-        <translation type="unfinished"/>
+        <translation>Teema</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="61"/>
         <source>Items to export</source>
-        <translation type="unfinished"/>
+        <translation>Vietävät kohteet</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="68"/>
         <source>Movies</source>
-        <translation>电影</translation>
+        <translation>Elokuvat</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="78"/>
         <source>TV Shows</source>
-        <translation>电视剧</translation>
+        <translation>TV-sarjat</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="88"/>
         <source>Concerts</source>
-        <translation>音乐会</translation>
+        <translation>Konsertit</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="109"/>
         <source>Close</source>
-        <translation>关闭</translation>
+        <translation>Sulje</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="30"/>
         <source>You need to install at least one theme.</source>
-        <translation type="unfinished"/>
+        <translation>Sinun täytyy asentaa vähintään yksi teema.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="63"/>
         <source>You need to select at least one entry to export.</source>
-        <translation type="unfinished"/>
+        <translation>Sinun täytyy valita vähintään yksi kohde vietäväksi.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="72"/>
         <source>Export directory</source>
-        <translation type="unfinished"/>
+        <translation>Vientihakemisto</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="80"/>
         <source>Could not create export directory.</source>
-        <translation type="unfinished"/>
+        <translation>Vientihakemistoa ei voitu luoda.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="126"/>
         <source>Export completed.</source>
-        <translation type="unfinished"/>
+        <translation>Vienti valmis.</translation>
     </message>
 </context>
 <context>
@@ -921,63 +921,63 @@
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="36"/>
         <source>Theme Name</source>
-        <translation type="unfinished"/>
+        <translation>Teeman nimi</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="46"/>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Versio</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="59"/>
         <source>Author</source>
-        <translation type="unfinished"/>
+        <translation>Tekijä</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="68"/>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Kuvaus</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="99"/>
         <location filename="../settings/ExportTemplateWidget.cpp" line="38"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Asenna</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="26"/>
         <source>by %1</source>
-        <translation type="unfinished"/>
+        <translation>- %1</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="29"/>
         <source>Version %1</source>
-        <translation type="unfinished"/>
+        <translation>Versio %1</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="32"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="35"/>
         <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <translation>Poista</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="48"/>
         <source>Updating...</source>
-        <translation type="unfinished"/>
+        <translation>Päivitetään...</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="52"/>
         <source>Installing...</source>
-        <translation type="unfinished"/>
+        <translation>Asennetaan...</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="56"/>
         <source>Uninstalling...</source>
-        <translation type="unfinished"/>
+        <translation>Poistetaan...</translation>
     </message>
 </context>
 <context>
@@ -985,12 +985,12 @@
     <message>
         <location filename="../downloads/Extractor.cpp" line="28"/>
         <source>No files to extract</source>
-        <translation type="unfinished"/>
+        <translation>Ei purettavia tiedostoja</translation>
     </message>
     <message>
         <location filename="../downloads/Extractor.cpp" line="38"/>
         <source>Unrar not found</source>
-        <translation type="unfinished"/>
+        <translation>Unrar-sovellusta ei löytynyt</translation>
     </message>
 </context>
 <context>
@@ -998,142 +998,142 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="26"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>Bulgaria</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="27"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Kiina</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="28"/>
         <source>Croatian</source>
-        <translation type="unfinished"/>
+        <translation>Kroatia</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="29"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>Tšekki</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="30"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>Tanska</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="31"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Hollanti</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="32"/>
         <source>English</source>
-        <translation type="unfinished"/>
+        <translation>Englanti</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="33"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>Suomi</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="34"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Ranska</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="35"/>
         <source>German</source>
-        <translation type="unfinished"/>
+        <translation>Saksa</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="36"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>Kreikka</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="37"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Heprea</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="38"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Unkari</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="39"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Italia</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="40"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Japani</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="41"/>
         <source>Korean</source>
-        <translation type="unfinished"/>
+        <translation>Korea</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="42"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Norja</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="43"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Puola</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="44"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Portugali</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="45"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>Venäjä</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="46"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>Slovenia</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="47"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Espanja</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="48"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Ruotsi</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="49"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>Turkki</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="51"/>
         <source>3D</source>
-        <translation type="unfinished"/>
+        <translation>3D</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="52"/>
         <source>BluRay</source>
-        <translation type="unfinished"/>
+        <translation>BluRay</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="53"/>
         <source>DVD</source>
-        <translation type="unfinished"/>
+        <translation>DVD</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="55"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>Kieli</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="57"/>
@@ -1146,7 +1146,7 @@
     <message>
         <location filename="../main/FileScannerDialog.ui" line="17"/>
         <source>File Scanner</source>
-        <translation>文件扫描器</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../main/FileScannerDialog.ui" line="30"/>
@@ -1160,27 +1160,27 @@
     <message>
         <location filename="../movies/FilesWidget.ui" line="142"/>
         <source>New</source>
-        <translation>新增</translation>
+        <translation>Uusi</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.ui" line="168"/>
         <source>Name</source>
-        <translation>名称</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.ui" line="194"/>
         <source>Date Added</source>
-        <translation>添加日期</translation>
+        <translation>Päivämäärä lisätty</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.ui" line="220"/>
         <source>Seen</source>
-        <translation type="unfinished"/>
+        <translation>Nähty</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.ui" line="246"/>
         <source>Year</source>
-        <translation>年份</translation>
+        <translation>Vuosi</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="60"/>
@@ -1195,37 +1195,37 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="81"/>
         <source>Load Information</source>
-        <translation type="unfinished"/>
+        <translation>Lataa tiedot</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="82"/>
         <source>Mark as watched</source>
-        <translation>标记为已观看</translation>
+        <translation>Merkkaa katsotuksi</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="83"/>
         <source>Mark as unwatched</source>
-        <translation>标记为未观看</translation>
+        <translation>Merkkaa katsomattomaksi</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="84"/>
         <source>Load Stream Details</source>
-        <translation>加载媒体流详情</translation>
+        <translation>Lataa mediatiedot</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="85"/>
         <source>Add to Synchronization Queue</source>
-        <translation type="unfinished"/>
+        <translation>Lisää synkronointijonoon</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="86"/>
         <source>Remove from Synchronization Queue</source>
-        <translation type="unfinished"/>
+        <translation>Poista synkronointijonosta</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="87"/>
         <source>Open Movie Folder</source>
-        <translation>打开电影所在文件夹</translation>
+        <translation>Avaa elokuvahakemisto</translation>
     </message>
 </context>
 <context>
@@ -1233,23 +1233,23 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.ui" line="24"/>
         <source>Filter</source>
-        <translation>筛选器</translation>
+        <translation>Suodatin</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="131"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="199"/>
         <source>Title contains &quot;%1&quot;</source>
-        <translation>片名包括  &quot;%1&quot;</translation>
+        <translation>Nimi sisältää &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="137"/>
         <source>Filename contains &quot;%1&quot;</source>
-        <translation>文件名包括  &quot;%1&quot;</translation>
+        <translation>Tiedostonimi sisältää &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="143"/>
         <source>IMDB ID &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>IMDB ID &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="307"/>
@@ -1264,168 +1264,168 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="375"/>
         <source>Genre &quot;%1&quot;</source>
-        <translation>类型  &quot;%1&quot;</translation>
+        <translation>Tyylilaji &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="376"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="611"/>
         <source>Genre</source>
-        <translation>类型</translation>
+        <translation>Tyylilaji</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="393"/>
         <source>Studio &quot;%1&quot;</source>
-        <translation>制片公司  &quot;%1&quot;</translation>
+        <translation>Studio &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="394"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="632"/>
         <source>Studio</source>
-        <translation>制片公司</translation>
+        <translation>Studio</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="411"/>
         <source>Country &quot;%1&quot;</source>
-        <translation>国家  &quot;%1&quot;</translation>
+        <translation>Maa &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="412"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="635"/>
         <source>Country</source>
-        <translation>国家</translation>
+        <translation>Maa</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="428"/>
         <source>Released %1</source>
-        <translation>上映  &quot;%1&quot;</translation>
+        <translation>Julkaistu %1</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="429"/>
         <source>Year</source>
-        <translation>年份</translation>
+        <translation>Vuosi</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="445"/>
         <source>Certification &quot;%1&quot;</source>
-        <translation>分级  &quot;%1&quot;</translation>
+        <translation>Sisältöluokitus &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="446"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="608"/>
         <source>Certification</source>
-        <translation>分级</translation>
+        <translation>Sisältöluokitus</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="462"/>
         <source>Set &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Sarja &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="463"/>
         <source>Set</source>
-        <translation type="unfinished"/>
+        <translation>Sarja</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="479"/>
         <source>Tag &quot;%1&quot;</source>
-        <translation>标签  &quot;%1&quot;</translation>
+        <translation>Tunniste &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="480"/>
         <source>Tag</source>
-        <translation>标签</translation>
+        <translation>Tunniste</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="496"/>
         <source>Director &quot;%1&quot;</source>
-        <translation>导演  &quot;%1&quot;</translation>
+        <translation>Ohjaaja &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="497"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="638"/>
         <source>Director</source>
-        <translation>导演</translation>
+        <translation>Ohjaaja</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="537"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="657"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="659"/>
         <source>Title</source>
-        <translation>片名</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="538"/>
         <source>Filename</source>
-        <translation>文件名</translation>
+        <translation>Tiedostonimi</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="539"/>
         <source>IMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>IMDB ID</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="541"/>
         <source>Movie has Poster</source>
-        <translation>有海报的电影</translation>
+        <translation>Elokuvalla on juliste</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="541"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="542"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="545"/>
         <source>Poster</source>
-        <translation>海报</translation>
+        <translation>Juliste</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="544"/>
         <source>Movie has no Poster</source>
-        <translation>无海报的电影</translation>
+        <translation>Elokuvalla ei ole julistetta</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="544"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="545"/>
         <source>No Poster</source>
-        <translation>无海报</translation>
+        <translation>Ei julistetta</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="547"/>
         <source>Movie has Extra Fanarts</source>
-        <translation>有“其他剧照”的电影</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="547"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="548"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="551"/>
         <source>Extra Fanarts</source>
-        <translation>其他剧照</translation>
+        <translation> </translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="550"/>
         <source>Movie has no Extra Fanarts</source>
-        <translation>无“其他剧照”的电影</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="550"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="551"/>
         <source>No Extra Fanarts</source>
-        <translation>无其他剧照</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="553"/>
         <source>Movie has Backdrop</source>
-        <translation>有剧照的电影</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="553"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="554"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="557"/>
         <source>Backdrop</source>
-        <translation>剧照</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="554"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="557"/>
         <source>Fanart</source>
-        <translation>剧照</translation>
+        <translation>Fanitaide</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="556"/>
@@ -1446,25 +1446,25 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="559"/>
         <source>Movie has Logo</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvalla on logo</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="559"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="560"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="563"/>
         <source>Logo</source>
-        <translation>徽标</translation>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="562"/>
         <source>Movie has no Logo</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvalla ei ole logoa</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="562"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="563"/>
         <source>No Logo</source>
-        <translation type="unfinished"/>
+        <translation>Ei logoa</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="565"/>
@@ -1476,7 +1476,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="566"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="569"/>
         <source>Clear Art</source>
-        <translation>剪贴画</translation>
+        <translation>Clear Art</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="568"/>
@@ -1545,7 +1545,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="584"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="587"/>
         <source>CD Art</source>
-        <translation>CD封面</translation>
+        <translation>CD-kuva</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="586"/>
@@ -1561,7 +1561,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="589"/>
         <source>Movie has Trailer</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvalla on traileri</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="589"/>
@@ -1570,71 +1570,71 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="596"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="599"/>
         <source>Trailer</source>
-        <translation>预告片</translation>
+        <translation>Traileri</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="592"/>
         <source>Movie has no Trailer</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvalla ei ole traileria</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="592"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="593"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="599"/>
         <source>No Trailer</source>
-        <translation type="unfinished"/>
+        <translation>Ei traileria</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="595"/>
         <source>Movie has local Trailer</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvalla on paikallinen traileri</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="595"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="596"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="599"/>
         <source>Local Trailer</source>
-        <translation type="unfinished"/>
+        <translation>Paikallinen traileri</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="598"/>
         <source>Movie has no local Trailer</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvalla ei ole paikallista traileria</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="598"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="599"/>
         <source>No local Trailer</source>
-        <translation type="unfinished"/>
+        <translation>Ei paikallista traileria</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="601"/>
         <source>Movie is Watched</source>
-        <translation type="unfinished"/>
+        <translation>Elokuva on katsottu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="601"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="602"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="605"/>
         <source>Watched</source>
-        <translation>看过</translation>
+        <translation>Katsottu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="602"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="605"/>
         <source>Seen</source>
-        <translation type="unfinished"/>
+        <translation>Nähty</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="604"/>
         <source>Movie is Unwatched</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvaa ei ole katsottu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="604"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="605"/>
         <source>Unwatched</source>
-        <translation type="unfinished"/>
+        <translation>Katsomaton</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="605"/>
@@ -1644,198 +1644,198 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="607"/>
         <source>Movie has no Certification</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvalla ei ole sisältöluokitusta</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="607"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="608"/>
         <source>No Certification</source>
-        <translation type="unfinished"/>
+        <translation>Ei sisältöluokitusta</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="610"/>
         <source>Movie has no Genre</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvalla ei ole tyylilajia</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="610"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="611"/>
         <source>No Genre</source>
-        <translation type="unfinished"/>
+        <translation>Ei tyylilajia</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="613"/>
         <source>Movie has Rating</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvalla on arvostelu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="613"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="614"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="617"/>
         <source>Rating</source>
-        <translation>评分</translation>
+        <translation>Arvostelu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="616"/>
         <source>Movie has no Rating</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvalla ei ole arvostelua</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="616"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="617"/>
         <source>No Rating</source>
-        <translation type="unfinished"/>
+        <translation>Ei arvostelua</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="619"/>
         <source>Stream Details loaded</source>
-        <translation type="unfinished"/>
+        <translation>Mediatiedot ladattu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="619"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="620"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="623"/>
         <source>Stream Details</source>
-        <translation type="unfinished"/>
+        <translation>Mediatiedot</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="622"/>
         <source>Stream Details not loaded</source>
-        <translation type="unfinished"/>
+        <translation>Mediatietoja ei ole ladattu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="622"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="623"/>
         <source>No Stream Details</source>
-        <translation type="unfinished"/>
+        <translation>Ei mediatietoja</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="625"/>
         <source>Movie has Actors</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvalla on näyttelijät</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="625"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="626"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="629"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Näyttelijät</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="628"/>
         <source>Movie has no Actors</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvalla ei ole näyttelijöitä</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="628"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="629"/>
         <source>No Actors</source>
-        <translation type="unfinished"/>
+        <translation>Ei näyttelijöitä</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="631"/>
         <source>Movie has no Studio</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvalla ei ole studiota</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="631"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="632"/>
         <source>No Studio</source>
-        <translation type="unfinished"/>
+        <translation>Ei studiota</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="634"/>
         <source>Movie has no Country</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvalla ei ole maata</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="634"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="635"/>
         <source>No Country</source>
-        <translation type="unfinished"/>
+        <translation>Ei maata</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="637"/>
         <source>Movie has no Director</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvalla ei ole ohjaajaa</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="637"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="638"/>
         <source>No Director</source>
-        <translation type="unfinished"/>
+        <translation>Ei ohjaajaa</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="640"/>
         <source>Movie has no Tags</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvalla ei ole tunnisteita</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="640"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="641"/>
         <source>No Tags</source>
-        <translation type="unfinished"/>
+        <translation>Ei tunnisteita</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="641"/>
         <source>Tags</source>
-        <translation>标签</translation>
+        <translation>Tunnisteet</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="643"/>
         <source>Movie has no IMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvalla ei ole IMDB ID:tä</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="643"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="644"/>
         <source>No IMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>Ei IMDB ID:tä</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="644"/>
         <source>IMDB</source>
-        <translation type="unfinished"/>
+        <translation>IMDB</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="646"/>
         <source>Resolution 720p</source>
-        <translation type="unfinished"/>
+        <translation>Resoluutio 720p</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="646"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="647"/>
         <source>720p</source>
-        <translation type="unfinished"/>
+        <translation>720p resoluutio</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="647"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="649"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="651"/>
         <source>Resolution</source>
-        <translation>分辨率</translation>
+        <translation>Resoluutio</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="648"/>
         <source>Resolution 1080p</source>
-        <translation type="unfinished"/>
+        <translation>1080p resoluutio</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="648"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="649"/>
         <source>1080p</source>
-        <translation type="unfinished"/>
+        <translation>1080p</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="650"/>
         <source>Resolution SD</source>
-        <translation type="unfinished"/>
+        <translation>SD-resoluutio</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="650"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="651"/>
         <source>SD</source>
-        <translation type="unfinished"/>
+        <translation>SD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="652"/>
@@ -1846,7 +1846,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="652"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="653"/>
         <source>DVD</source>
-        <translation type="unfinished"/>
+        <translation>DVD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="653"/>
@@ -1863,7 +1863,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="654"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="655"/>
         <source>BluRay</source>
-        <translation type="unfinished"/>
+        <translation>BluRay</translation>
     </message>
 </context>
 <context>
@@ -1876,7 +1876,7 @@
     <message>
         <location filename="../movies/GenreWidget.ui" line="69"/>
         <source>Genre</source>
-        <translation>类型</translation>
+        <translation>Tyylilaji</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="100"/>
@@ -1886,23 +1886,23 @@
     <message>
         <location filename="../movies/GenreWidget.ui" line="141"/>
         <source>Movie</source>
-        <translation>电影</translation>
+        <translation>Elokuva</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="164"/>
         <location filename="../movies/GenreWidget.ui" line="167"/>
         <source>Add Movie</source>
-        <translation>添加电影</translation>
+        <translation>Lisää elokuva</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="177"/>
         <source>Remove Current Movie</source>
-        <translation>删除当前电影</translation>
+        <translation>Poista elokuva</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="180"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Poista elokuva</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="196"/>
@@ -1917,22 +1917,22 @@
     <message>
         <location filename="../movies/GenreWidget.cpp" line="36"/>
         <source>Add Genre</source>
-        <translation>添加类型</translation>
+        <translation>Lisää tyylilaji</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.cpp" line="37"/>
         <source>Delete Genre</source>
-        <translation type="unfinished"/>
+        <translation>Poista tyylilaji</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.cpp" line="184"/>
         <source>New Genre</source>
-        <translation type="unfinished"/>
+        <translation>Uusi tyylilaji</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.cpp" line="293"/>
         <source>All Movies Saved</source>
-        <translation>更新内容已保存</translation>
+        <translation>Kaikki elokuvat tallennettu</translation>
     </message>
 </context>
 <context>
@@ -1940,107 +1940,107 @@
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="17"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>Bulgaria</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="18"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Kiina</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="19"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>Tšekki</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="20"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>Tanska</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="21"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Hollanti</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="22"/>
         <source>English</source>
-        <translation type="unfinished"/>
+        <translation>Englanti</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="23"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>Suomi</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="24"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Ranska</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="25"/>
         <source>German</source>
-        <translation type="unfinished"/>
+        <translation>Saksa</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="26"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>Kreikka</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="27"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Heprea</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="28"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Unkari</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="29"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Italia</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="30"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Japani</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="31"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Norja</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="32"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Puola</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="33"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Portugali</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="34"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>Venäjä</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="35"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Espanja</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="36"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Ruotsi</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="39"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>Kieli</translation>
     </message>
 </context>
 <context>
@@ -2048,7 +2048,7 @@
     <message>
         <location filename="../globals/ImageDialog.ui" line="17"/>
         <source>Choose an Image</source>
-        <translation type="unfinished"/>
+        <translation>Valitse kuva</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="38"/>
@@ -2058,7 +2058,7 @@
     <message>
         <location filename="../globals/ImageDialog.ui" line="85"/>
         <source>Movie</source>
-        <translation>电影</translation>
+        <translation>Elokuva</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="133"/>
@@ -2072,17 +2072,17 @@
     <message>
         <location filename="../globals/ImageDialog.ui" line="165"/>
         <source>No images found</source>
-        <translation>未能找到有关图片</translation>
+        <translation>Kuvia ei löytynyt</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="210"/>
         <source>Zoom out</source>
-        <translation>放大</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="240"/>
         <source>Preview size</source>
-        <translation type="unfinished"/>
+        <translation>Esikatselukoko</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="268"/>
@@ -2092,37 +2092,37 @@
     <message>
         <location filename="../globals/ImageDialog.ui" line="293"/>
         <source>Loading...</source>
-        <translation type="unfinished"/>
+        <translation>Ladataan...</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="316"/>
         <source>Choose Local Image</source>
-        <translation type="unfinished"/>
+        <translation>Valitse paikalinen kuva</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="329"/>
         <source>Close</source>
-        <translation>关闭</translation>
+        <translation>Sulje</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="336"/>
         <source>Accept Images</source>
-        <translation type="unfinished"/>
+        <translation>Hyväksy kuvat</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="145"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Oletus</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="529"/>
         <source>Choose Image</source>
-        <translation type="unfinished"/>
+        <translation>Valitse kuva</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="529"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
-        <translation type="unfinished"/>
+        <translation>Kuvat (*.jpg *.jpeg *.png)</translation>
     </message>
 </context>
 <context>
@@ -2135,7 +2135,7 @@
     <message>
         <location filename="../smallWidgets/ImageLabel.ui" line="45"/>
         <source>Resolution</source>
-        <translation>分辨率</translation>
+        <translation>Resoluutio</translation>
     </message>
 </context>
 <context>
@@ -2143,12 +2143,12 @@
     <message>
         <location filename="../globals/ImagePreviewDialog.ui" line="17"/>
         <source>Preview</source>
-        <translation type="unfinished"/>
+        <translation>Esikatselu</translation>
     </message>
     <message>
         <location filename="../globals/ImagePreviewDialog.ui" line="82"/>
         <source>Close</source>
-        <translation>关闭</translation>
+        <translation>Sulje</translation>
     </message>
 </context>
 <context>
@@ -2161,22 +2161,22 @@
     <message>
         <location filename="../downloads/ImportActions.ui" line="26"/>
         <source>Import</source>
-        <translation type="unfinished"/>
+        <translation>Tuonti</translation>
     </message>
     <message>
         <location filename="../downloads/ImportActions.ui" line="33"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Poista</translation>
     </message>
     <message>
         <location filename="../downloads/ImportActions.cpp" line="117"/>
         <source>Delete file?</source>
-        <translation type="unfinished"/>
+        <translation>Poistetaanko tiedosto?</translation>
     </message>
     <message>
         <location filename="../downloads/ImportActions.cpp" line="118"/>
         <source>Do you really want to delete this file?</source>
-        <translation type="unfinished"/>
+        <translation>Haluatko varmasti poistaa tiedoston?</translation>
     </message>
 </context>
 <context>
@@ -2189,196 +2189,196 @@
     <message>
         <location filename="../downloads/ImportDialog.ui" line="37"/>
         <source>Loading</source>
-        <translation type="unfinished"/>
+        <translation>Ladataan</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="44"/>
         <source>Success</source>
-        <translation type="unfinished"/>
+        <translation>Valmis</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="51"/>
         <source>Loading movie...</source>
-        <translation type="unfinished"/>
+        <translation>Ladataan elokuvaa...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="73"/>
         <source>Placeholders</source>
-        <translation type="unfinished"/>
+        <translation>Paikkamerkit</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="94"/>
         <source>Artist</source>
-        <translation>艺术家</translation>
+        <translation>Artisti</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="104"/>
         <source>Title of the show</source>
-        <translation type="unfinished"/>
+        <translation>Sarjan nimi</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="111"/>
         <source>Year</source>
-        <translation>年份</translation>
+        <translation>Vuosi</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="121"/>
         <source>Album</source>
-        <translation>专辑</translation>
+        <translation>Albumi</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="131"/>
         <source>Season Number</source>
-        <translation type="unfinished"/>
+        <translation>Kauden numero</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="147"/>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Kuvaus</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="157"/>
         <source>Episode Number</source>
-        <translation type="unfinished"/>
+        <translation>Jakson numero</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="197"/>
         <source>Original Title</source>
-        <translation type="unfinished"/>
+        <translation>Alkuperäinen nimi</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="207"/>
         <source>Title</source>
-        <translation>片名</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="227"/>
         <source>File extension</source>
-        <translation type="unfinished"/>
+        <translation>Tiedostopääte</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="282"/>
         <source>Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Paikkamerkki</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="312"/>
         <source>Directory Naming</source>
-        <translation type="unfinished"/>
+        <translation>Hakemiston nimeäminen</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="322"/>
         <source>File Naming</source>
-        <translation type="unfinished"/>
+        <translation>Tiedoston nimeäminen</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="339"/>
         <source>Use Season Directories</source>
-        <translation type="unfinished"/>
+        <translation>Käytä kausihakemistoja</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="346"/>
         <source>Season Directory Naming</source>
-        <translation type="unfinished"/>
+        <translation>Kausihakemiston nimeäminen</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="363"/>
         <source>Keep source files after import</source>
-        <translation type="unfinished"/>
+        <translation>Säilytä lähdetiedostot tuonnin jälkeen</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="406"/>
         <location filename="../downloads/ImportDialog.ui" line="416"/>
         <source>Close</source>
-        <translation>关闭</translation>
+        <translation>Sulje</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="436"/>
         <source>Import</source>
-        <translation type="unfinished"/>
+        <translation>Tuo</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="288"/>
         <source>Loading movie information...</source>
-        <translation type="unfinished"/>
+        <translation>Ladataan elokuvatietoja...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="304"/>
         <source>Loading concert information...</source>
-        <translation type="unfinished"/>
+        <translation>Ladataan konserttitietoja...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="322"/>
         <source>Loading episode information...</source>
-        <translation type="unfinished"/>
+        <translation>Ladataan jaksotietoja...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="379"/>
         <source>Movie information was loaded</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvatiedot ladattu</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="392"/>
         <source>Concert information was loaded</source>
-        <translation type="unfinished"/>
+        <translation>Konserttitiedot ladattu</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="410"/>
         <location filename="../downloads/ImportDialog.cpp" line="427"/>
         <source>Episode information was loaded</source>
-        <translation type="unfinished"/>
+        <translation>Jaksotiedot ladattu</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="439"/>
         <source>Renaming not possible</source>
-        <translation type="unfinished"/>
+        <translation>Nimeäminen ei ole mahdollista</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="439"/>
         <source>Please enter all naming patterns</source>
-        <translation type="unfinished"/>
+        <translation>Määrittele kaikki nimeämiskäytännöt</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="456"/>
         <location filename="../downloads/ImportDialog.cpp" line="514"/>
         <source>Creating destination directory failed</source>
-        <translation type="unfinished"/>
+        <translation>Kohdehakemiston luominen epäonnistui</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="457"/>
         <location filename="../downloads/ImportDialog.cpp" line="515"/>
         <source>The destination directory %1 could not be created</source>
-        <translation type="unfinished"/>
+        <translation>Kohdehakemistoa %1 ei voitu luoda</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="473"/>
         <source>Importing movie...</source>
-        <translation type="unfinished"/>
+        <translation>Tuodaan elokuvaa...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="501"/>
         <source>Importing episode...</source>
-        <translation type="unfinished"/>
+        <translation>Tuodaan jaksoa...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="532"/>
         <source>Importing concert...</source>
-        <translation type="unfinished"/>
+        <translation>Tuodaan konserttia...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="641"/>
         <source>Import finished</source>
-        <translation type="unfinished"/>
+        <translation>Tuonti valmis</translation>
     </message>
     <message numerus="yes">
         <location filename="../downloads/ImportDialog.cpp" line="641"/>
         <source>Import of %n file(s) has finished</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n tiedoston tuonti valmis</numerusform><numerusform>%n tiedoston tuonti valmis</numerusform></translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="644"/>
         <source>Import has finished</source>
-        <translation type="unfinished"/>
+        <translation>Tuonti valmis</translation>
     </message>
 </context>
 <context>
@@ -2401,22 +2401,22 @@
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="115"/>
         <source>Poster</source>
-        <translation>海报</translation>
+        <translation>Juliste</translation>
     </message>
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="377"/>
         <source>new</source>
-        <translation>新增</translation>
+        <translation>uusi</translation>
     </message>
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="399"/>
         <source>Synchronization needed</source>
-        <translation type="unfinished"/>
+        <translation>Synkronointi tarvitaan</translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/ItemWidgetShow.cpp" line="50"/>
         <source>%n Episodes</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n jakso</numerusform><numerusform>%n jaksoa</numerusform></translation>
     </message>
 </context>
 <context>
@@ -2424,17 +2424,17 @@
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="23"/>
         <source>Loading Stream Details</source>
-        <translation type="unfinished"/>
+        <translation>Ladataan mediatietoja</translation>
     </message>
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="32"/>
         <source>Loading Stream Details...</source>
-        <translation type="unfinished"/>
+        <translation>Ladataan mediatietoja...</translation>
     </message>
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="46"/>
         <source>File</source>
-        <translation type="unfinished"/>
+        <translation>Tiedosto</translation>
     </message>
 </context>
 <context>
@@ -2448,29 +2448,29 @@
         <location filename="../main/MainWindow.ui" line="93"/>
         <location filename="../main/MainWindow.ui" line="109"/>
         <source>Movies</source>
-        <translation>电影</translation>
+        <translation>Elokuvat</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="119"/>
         <location filename="../main/MainWindow.ui" line="270"/>
         <location filename="../main/MainWindow.ui" line="374"/>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="142"/>
         <source>Movie Sets</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvasarjat</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="175"/>
         <source>Genres</source>
-        <translation>类型</translation>
+        <translation>Tyylilajit</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="208"/>
         <source>Certifications</source>
-        <translation type="unfinished"/>
+        <translation>Sisältösuositukset</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="244"/>
@@ -2480,13 +2480,13 @@
     <message>
         <location filename="../main/MainWindow.ui" line="260"/>
         <source>TV Shows</source>
-        <translation>电视剧</translation>
+        <translation>TV-sarjat</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="296"/>
         <location filename="../main/MainWindow.ui" line="312"/>
         <source>Concerts</source>
-        <translation>音乐会</translation>
+        <translation>Konsertit</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="348"/>
@@ -2495,47 +2495,47 @@
         <extracomment>Main menu entry
 ----------
 Main menu entry (tooltip)</extracomment>
-        <translation type="unfinished"/>
+        <translation>Tuonti</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="757"/>
         <source>Settings</source>
-        <translation>设置</translation>
+        <translation>Asetukset</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="762"/>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Lopeta</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="767"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Tietoa</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="333"/>
         <source>Reload all Movies (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä elokuvat (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="335"/>
         <source>Reload all TV Shows (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä TV-sarjat (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="337"/>
         <source>Reload all Concerts (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä konsertit (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="339"/>
         <source>Reload all Downloads (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä kaikki lataukset (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="714"/>
         <source>Updates available</source>
-        <translation type="unfinished"/>
+        <translation>Päivityksiä saatavilla</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="715"/>
@@ -2548,7 +2548,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="17"/>
         <source>Dialog</source>
-        <translation type="unfinished"/>
+        <translation>Dialogi</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="50"/>
@@ -2558,147 +2558,147 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="114"/>
         <source>Import Tracks</source>
-        <translation type="unfinished"/>
+        <translation>Tuo raitoja</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="162"/>
         <source>Backup Disc</source>
-        <translation type="unfinished"/>
+        <translation>Varmuuskopioi levy</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="207"/>
         <source>Loading</source>
-        <translation type="unfinished"/>
+        <translation>Ladataan</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="214"/>
         <source>Success</source>
-        <translation type="unfinished"/>
+        <translation>Valmis</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="221"/>
         <source>Loading movie...</source>
-        <translation type="unfinished"/>
+        <translation>Ladataan elokuvaa...</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="243"/>
         <source>Placeholders</source>
-        <translation type="unfinished"/>
+        <translation>Paikkamerkit</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="251"/>
         <source>Original Title</source>
-        <translation type="unfinished"/>
+        <translation>Alkuperäinen nimi</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="280"/>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Kuvaus</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="303"/>
         <source>Title</source>
-        <translation>片名</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="326"/>
         <source>File extension</source>
-        <translation type="unfinished"/>
+        <translation>Tiedostopääte</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="342"/>
         <source>Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Paikkamerkki</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="365"/>
         <source>Year</source>
-        <translation>年份</translation>
+        <translation>Vuosi</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="375"/>
         <source>&lt;partNo&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;partNo&gt;</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="382"/>
         <source>Part number of the current file</source>
-        <translation type="unfinished"/>
+        <translation>Tämän tiedoston osanumero</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="399"/>
         <source>Directory Naming</source>
-        <translation type="unfinished"/>
+        <translation>Hakemiston nimeäminen</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="409"/>
         <source>File Naming</source>
-        <translation type="unfinished"/>
+        <translation>Tiedoston nimeäminen</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="419"/>
         <source>Multi-File Naming</source>
-        <translation type="unfinished"/>
+        <translation>Usean tiedoston nimeäminen</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="429"/>
         <source>Import directory</source>
-        <translation type="unfinished"/>
+        <translation>Tuontihakemisto</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="473"/>
         <source>Close</source>
-        <translation>关闭</translation>
+        <translation>Sulje</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="496"/>
         <source>Import</source>
-        <translation type="unfinished"/>
+        <translation>Tuonti</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="191"/>
         <source>No tracks selected</source>
-        <translation type="unfinished"/>
+        <translation>Yhtään raitaa ei ole valittu</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="192"/>
         <source>Please select at least one track you want to import.</source>
-        <translation type="unfinished"/>
+        <translation>Valitse vähintään yksi raita tuotavaksi.</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="227"/>
         <source>Loading movie information...</source>
-        <translation type="unfinished"/>
+        <translation>Ladataan elokuvatietoja...</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="252"/>
         <source>Movie information was loaded</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvatiedot ladattu</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="273"/>
         <source>Creating destination directory failed</source>
-        <translation type="unfinished"/>
+        <translation>Kohdehakemiston luominen epäonnistui</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="274"/>
         <source>The destination directory %1 could not be created</source>
-        <translation type="unfinished"/>
+        <translation>Kohdehakemistoa %1 ei voitu luoda</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="358"/>
         <source>MakeMKV import finished</source>
-        <translation type="unfinished"/>
+        <translation>MakeMKV-tuonti valmis</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="358"/>
         <source>Import with MakeMKV has finished</source>
-        <translation type="unfinished"/>
+        <translation>Tuonti käyttäen MakeMKV:tä on valmis</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="361"/>
         <source>Import has finished</source>
-        <translation type="unfinished"/>
+        <translation>Tuonti valmis</translation>
     </message>
 </context>
 <context>
@@ -2714,213 +2714,213 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="29"/>
         <source>English</source>
-        <translation type="unfinished"/>
+        <translation>Englanti</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="30"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Ranska</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="33"/>
         <source>Allocine</source>
-        <translation type="unfinished"/>
+        <translation>Allocine</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="34"/>
         <source>IMDB</source>
-        <translation type="unfinished"/>
+        <translation>IMDB</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="35"/>
         <source>Cine Passion</source>
-        <translation type="unfinished"/>
+        <translation>Cine Passion</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="38"/>
         <source>Argentina</source>
-        <translation type="unfinished"/>
+        <translation>Argentiina</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="39"/>
         <source>Australia</source>
-        <translation type="unfinished"/>
+        <translation>Australia</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="40"/>
         <source>Belgium</source>
-        <translation type="unfinished"/>
+        <translation>Belgia</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="41"/>
         <source>Brazil</source>
-        <translation type="unfinished"/>
+        <translation>Brasilia</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="42"/>
         <source>Canada</source>
-        <translation type="unfinished"/>
+        <translation>Kanada</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="43"/>
         <source>Chile</source>
-        <translation type="unfinished"/>
+        <translation>Chile</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="44"/>
         <source>Finland</source>
-        <translation type="unfinished"/>
+        <translation>Suomi</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="45"/>
         <source>France</source>
-        <translation type="unfinished"/>
+        <translation>Ranska</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="46"/>
         <source>Germany</source>
-        <translation type="unfinished"/>
+        <translation>Saksa</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="47"/>
         <source>Hong Kong</source>
-        <translation type="unfinished"/>
+        <translation>Hong Kong</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="48"/>
         <source>Iceland</source>
-        <translation type="unfinished"/>
+        <translation>Islanti</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="49"/>
         <source>India</source>
-        <translation type="unfinished"/>
+        <translation>Intia</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="50"/>
         <source>Ireland</source>
-        <translation type="unfinished"/>
+        <translation>Irlanti</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="51"/>
         <source>Israel</source>
-        <translation type="unfinished"/>
+        <translation>Israel</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="52"/>
         <source>Italy</source>
-        <translation type="unfinished"/>
+        <translation>Italia</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="53"/>
         <source>Japan</source>
-        <translation type="unfinished"/>
+        <translation>Japani</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="54"/>
         <source>Malaysia</source>
-        <translation type="unfinished"/>
+        <translation>Malesia</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="55"/>
         <source>Netherlands</source>
-        <translation type="unfinished"/>
+        <translation>Alankomaat</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="56"/>
         <source>New Zealand</source>
-        <translation type="unfinished"/>
+        <translation>Uusi Seelanti</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="57"/>
         <source>Norway</source>
-        <translation type="unfinished"/>
+        <translation>Norja</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="58"/>
         <source>Peru</source>
-        <translation type="unfinished"/>
+        <translation>Peru</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="59"/>
         <source>Philippines</source>
-        <translation type="unfinished"/>
+        <translation>Filippiinit</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="60"/>
         <source>Portugal</source>
-        <translation type="unfinished"/>
+        <translation>Portugali</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="61"/>
         <source>Singapore</source>
-        <translation type="unfinished"/>
+        <translation>Singapore</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="62"/>
         <source>South Africa</source>
-        <translation type="unfinished"/>
+        <translation>Etelä-Afrikka</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="63"/>
         <source>South Korea</source>
-        <translation type="unfinished"/>
+        <translation>Etelä-Korea</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="64"/>
         <source>Spain</source>
-        <translation type="unfinished"/>
+        <translation>Espanja</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="65"/>
         <source>Sweden</source>
-        <translation type="unfinished"/>
+        <translation>Ruotsi</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="66"/>
         <source>Switzerland</source>
-        <translation type="unfinished"/>
+        <translation>Sveitsi</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="67"/>
         <source>UK</source>
-        <translation type="unfinished"/>
+        <translation>Englanti</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="68"/>
         <source>USA</source>
-        <translation type="unfinished"/>
+        <translation>Yhdysvallat</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="71"/>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Käyttäjätunnus</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="73"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Salasana</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="75"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>Kieli</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="77"/>
         <source>Rating</source>
-        <translation>评分</translation>
+        <translation>Arvostelu</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="79"/>
         <source>Certification</source>
-        <translation>分级</translation>
+        <translation>Sisältöluokitus</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="158"/>
         <location filename="../scrapers/MediaPassion.cpp" line="203"/>
         <source>No username and password</source>
-        <translation type="unfinished"/>
+        <translation>Ei käyttäjätunnusta ja salasanaa</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="159"/>
@@ -2959,12 +2959,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../data/MovieFileSearcher.cpp" line="35"/>
         <source>Searching for Movies...</source>
-        <translation type="unfinished"/>
+        <translation>Etsitään elokuvia...</translation>
     </message>
     <message>
         <location filename="../data/MovieFileSearcher.cpp" line="122"/>
         <source>Loading Movies...</source>
-        <translation type="unfinished"/>
+        <translation>Ladataan elokuvia...</translation>
     </message>
 </context>
 <context>
@@ -2972,18 +2972,19 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../data/MovieFilesOrganizer.cpp" line="35"/>
         <source>Source %1 is no directory</source>
-        <translation type="unfinished"/>
+        <translation>Lähde %1 ei ole hakemisto</translation>
     </message>
     <message>
         <location filename="../data/MovieFilesOrganizer.cpp" line="92"/>
         <source>Operation not possible.</source>
-        <translation type="unfinished"/>
+        <translation>Toiminto ei ole mahdollinen.</translation>
     </message>
     <message>
         <location filename="../data/MovieFilesOrganizer.cpp" line="93"/>
         <source>%1
  Operation Canceled.</source>
-        <translation type="unfinished"/>
+        <translation>%1
+Toiminto peruutettu.</translation>
     </message>
 </context>
 <context>
@@ -2991,27 +2992,27 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../sets/MovieListDialog.ui" line="17"/>
         <source>Choose a movie</source>
-        <translation type="unfinished"/>
+        <translation>Valitse elokuva</translation>
     </message>
     <message>
         <location filename="../sets/MovieListDialog.ui" line="26"/>
         <source>Filter</source>
-        <translation>筛选器</translation>
+        <translation>Suodatin</translation>
     </message>
     <message>
         <location filename="../sets/MovieListDialog.ui" line="64"/>
         <source>Result</source>
-        <translation type="unfinished"/>
+        <translation>Tulos</translation>
     </message>
     <message>
         <location filename="../sets/MovieListDialog.ui" line="74"/>
         <source>Add selected movies</source>
-        <translation type="unfinished"/>
+        <translation>Lisää valitut elokuvat</translation>
     </message>
     <message>
         <location filename="../sets/MovieListDialog.ui" line="94"/>
         <source>Close</source>
-        <translation>关闭</translation>
+        <translation>SuljeSulje</translation>
     </message>
 </context>
 <context>
@@ -3019,12 +3020,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../trailerProviders/MovieMaze.cpp" line="118"/>
         <source>German</source>
-        <translation type="unfinished"/>
+        <translation>Saksa</translation>
     </message>
     <message>
         <location filename="../trailerProviders/MovieMaze.cpp" line="120"/>
         <source>English</source>
-        <translation type="unfinished"/>
+        <translation>Englanti</translation>
     </message>
 </context>
 <context>
@@ -3032,7 +3033,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../data/MovieModel.cpp" line="283"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Näyttelijät</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="285"/>
@@ -3042,32 +3043,32 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../data/MovieModel.cpp" line="287"/>
         <source>Extra Fanarts</source>
-        <translation>其他剧照</translation>
+        <translation> </translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="289"/>
         <source>Fanart</source>
-        <translation>剧照</translation>
+        <translation>FanitaideFanitaide</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="291"/>
         <source>Poster</source>
-        <translation>海报</translation>
+        <translation>JulisteJuliste</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="293"/>
         <source>Stream Details</source>
-        <translation type="unfinished"/>
+        <translation>Mediatiedot</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="295"/>
         <source>Trailer</source>
-        <translation>预告片</translation>
+        <translation>Traileri</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="297"/>
         <source>IMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>IMDB ID</translation>
     </message>
 </context>
 <context>
@@ -3085,112 +3086,112 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="48"/>
         <source>Scraper</source>
-        <translation>刮削器</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="92"/>
         <source>Infos to load</source>
-        <translation type="unfinished"/>
+        <translation>Ladattavat tiedot</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="151"/>
         <source>Countries</source>
-        <translation type="unfinished"/>
+        <translation>Maat</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="241"/>
         <source>Studios</source>
-        <translation type="unfinished"/>
+        <translation>Studiot</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="171"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Näyttelijät</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="311"/>
         <source>Logo</source>
-        <translation>徽标</translation>
+        <translation>LogoLogo</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="231"/>
         <source>Director</source>
-        <translation>导演</translation>
+        <translation>Ohjaaja</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="141"/>
         <source>Poster</source>
-        <translation>海报</translation>
+        <translation>JulisteJuliste</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="121"/>
         <source>Rating</source>
-        <translation>评分</translation>
+        <translation>Arvostelu</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="101"/>
         <source>Set</source>
-        <translation type="unfinished"/>
+        <translation>Sarja</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="111"/>
         <source>Title</source>
-        <translation>片名</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="181"/>
         <source>Certification</source>
-        <translation>分级</translation>
+        <translation>Sisältöluokitus</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="221"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>Kirjoittaja</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="211"/>
         <source>Released</source>
-        <translation>首映日期</translation>
+        <translation>JulkaistuJulkaistu</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="161"/>
         <source>Runtime</source>
-        <translation>片长</translation>
+        <translation>Kesto</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="131"/>
         <source>Overview</source>
-        <translation>预览</translation>
+        <translation>Kuvaus</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="191"/>
         <source>Trailer</source>
-        <translation>预告片</translation>
+        <translation>Traileri</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="251"/>
         <source>Genres</source>
-        <translation>类型</translation>
+        <translation>Tyylilajit</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="261"/>
         <source>Backdrop</source>
-        <translation>剧照</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="201"/>
         <source>Tagline</source>
-        <translation>标语</translation>
+        <translation>Tagit</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="301"/>
         <source>Clear Art</source>
-        <translation>剪贴画</translation>
+        <translation>Clear Art</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="291"/>
         <source>CD Art</source>
-        <translation>CD封面</translation>
+        <translation>CD-kuva</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="281"/>
@@ -3205,12 +3206,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="321"/>
         <source>Tags</source>
-        <translation>标签</translation>
+        <translation>Tunnisteet</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="340"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished"/>
+        <translation>Kaikki</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="366"/>
@@ -3220,27 +3221,27 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="373"/>
         <source>Update only movies with IMDB Id/TheMovieDb Id</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä vain elokuvat, joilla on IMDB ID/TheMovieDb ID</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="388"/>
         <source>1/20</source>
-        <translation type="unfinished"/>
+        <translation>1/20</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="395"/>
         <source>Movie</source>
-        <translation>电影</translation>
+        <translation>ElokuvaElokuva</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="420"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Peruuta</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="443"/>
         <source>Close</source>
-        <translation>关闭</translation>
+        <translation>SuljeSulje</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="456"/>
@@ -3250,7 +3251,7 @@ Main menu entry (tooltip)</extracomment>
     <message numerus="yes">
         <location filename="../movies/MovieMultiScrapeDialog.cpp" line="175"/>
         <source>Scraping of %n movies has finished.</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
 <context>
@@ -3258,12 +3259,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieSearch.ui" line="17"/>
         <source>Search Result</source>
-        <translation>搜索结果</translation>
+        <translation>Hakutulokset</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearch.ui" line="48"/>
         <source>Close</source>
-        <translation>关闭</translation>
+        <translation>Sulje</translation>
     </message>
 </context>
 <context>
@@ -3276,128 +3277,129 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="25"/>
         <source>Scraper</source>
-        <translation>刮削器</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="50"/>
         <source>When using IMDB you can also use the IMDB id as search query.
 If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Käyttäessäsi IMDB:tä, voit käyttää hakulauseena myös IMDB ID:tä.
+Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;id&quot;.</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="91"/>
         <source>Result</source>
-        <translation type="unfinished"/>
+        <translation>Tulos</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="118"/>
         <source>Infos to load</source>
-        <translation type="unfinished"/>
+        <translation>Ladattavat tiedot</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="141"/>
         <source>Title</source>
-        <translation>片名</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="148"/>
         <source>Set</source>
-        <translation type="unfinished"/>
+        <translation>Sarja</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="155"/>
         <source>Tagline</source>
-        <translation>标语</translation>
+        <translation>Tagit</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="162"/>
         <source>Rating</source>
-        <translation>评分</translation>
+        <translation>Arvostelu</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="169"/>
         <source>Released</source>
-        <translation>首映日期</translation>
+        <translation>Julkaistu</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="176"/>
         <source>Runtime</source>
-        <translation>片长</translation>
+        <translation>Kesto</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="183"/>
         <source>Director</source>
-        <translation>导演</translation>
+        <translation>Ohjaaja</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="190"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>Kirjoittaja</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="197"/>
         <source>Certification</source>
-        <translation>分级</translation>
+        <translation>Sisältöluokitus</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="204"/>
         <source>Trailer</source>
-        <translation>预告片</translation>
+        <translation>Traileri</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="211"/>
         <source>Overview</source>
-        <translation>预览</translation>
+        <translation>Kuvaus</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="218"/>
         <source>Poster</source>
-        <translation>海报</translation>
+        <translation>Juliste</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="225"/>
         <source>Backdrop</source>
-        <translation>剧照</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="232"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Näyttelijät</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="239"/>
         <source>Genres</source>
-        <translation>类型</translation>
+        <translation>Tyylilajit</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="246"/>
         <source>Studios</source>
-        <translation type="unfinished"/>
+        <translation>Studiot</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="253"/>
         <source>Countries</source>
-        <translation type="unfinished"/>
+        <translation>Maat</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="260"/>
         <source>Tags</source>
-        <translation>标签</translation>
+        <translation>Tunnisteet</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="267"/>
         <source>Logo</source>
-        <translation>徽标</translation>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="274"/>
         <source>Clear Art</source>
-        <translation>剪贴画</translation>
+        <translation>Clear Art</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="281"/>
         <source>CD Art</source>
-        <translation>CD封面</translation>
+        <translation>CD-kuva</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="288"/>
@@ -3412,7 +3414,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="309"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished"/>
+        <translation>Kaikki</translation>
     </message>
 </context>
 <context>
@@ -3425,32 +3427,32 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="63"/>
         <source>Movie has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Elokuva on muuttunut. Klikkaa peruuttaaksesi muutokset.</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="96"/>
         <source>Movie Name</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvan nimi</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="146"/>
         <source>Information</source>
-        <translation>资料</translation>
+        <translation>Tiedot</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="166"/>
         <source>Files</source>
-        <translation>文件</translation>
+        <translation>Tiedostot</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="180"/>
         <source>Name</source>
-        <translation>名称</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="190"/>
         <source>Original Name</source>
-        <translation>原始片名</translation>
+        <translation>Alkuperäinen nimi</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="200"/>
@@ -3460,68 +3462,68 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="210"/>
         <source>Set</source>
-        <translation type="unfinished"/>
+        <translation>Sarja</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="233"/>
         <source>Tagline</source>
-        <translation>标语</translation>
+        <translation>Tagit</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="243"/>
         <source>Rating</source>
-        <translation>评分</translation>
+        <translation>Arvostelu</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="250"/>
         <source>Released</source>
-        <translation>首映日期</translation>
+        <translation>Julkaistu</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="257"/>
         <source>Director</source>
-        <translation>导演</translation>
+        <translation>Ohjaaja</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="267"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>Kirjoittaja</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="277"/>
         <source>Certification</source>
-        <translation>分级</translation>
+        <translation>Sisältöluokitus</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="294"/>
         <source>Trailer</source>
-        <translation>预告片</translation>
+        <translation>Traileri</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="301"/>
         <source>Play Count</source>
-        <translation>播放次数</translation>
+        <translation>Toistokerrat</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="336"/>
         <source>Last Played</source>
-        <translation>上次播放</translation>
+        <translation>Toistettu viimeksi</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="366"/>
         <location filename="../movies/MovieWidget.ui" line="369"/>
         <source>Watched</source>
-        <translation>看过</translation>
+        <translation>Katsottu</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="372"/>
         <source>Not watched</source>
-        <translation type="unfinished"/>
+        <translation>Ei katsottu</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="381"/>
         <source>Plot</source>
-        <translation type="unfinished"/>
+        <translation>Juoni</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="399"/>
@@ -3531,166 +3533,166 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="421"/>
         <source>Download Trailer</source>
-        <translation type="unfinished"/>
+        <translation>Lataa traileri</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="437"/>
         <source>Local trailer is available</source>
-        <translation type="unfinished"/>
+        <translation>Paikallinen traileri saatavilla</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="440"/>
         <source>Local Trailer</source>
-        <translation type="unfinished"/>
+        <translation>Paikallinen traileri</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="480"/>
         <source>Votes</source>
-        <translation type="unfinished"/>
+        <translation>Ääniä</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="513"/>
         <source>Top 250</source>
-        <translation type="unfinished"/>
+        <translation>Top 250</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="537"/>
         <source>yyyy</source>
-        <translation>年</translation>
+        <translation>vvvv</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="560"/>
         <source>Runtime</source>
-        <translation>片长</translation>
+        <translation>Kesto</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="570"/>
         <source> Minutes</source>
-        <translation>分钟</translation>
+        <translation>Minuuttia</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="582"/>
         <source>Outline</source>
-        <translation type="unfinished"/>
+        <translation>Tiivistelmä</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="595"/>
         <source>Extended</source>
-        <translation type="unfinished"/>
+        <translation>Lisätiedot</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="627"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Näyttelijät </translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="646"/>
         <source>Actor</source>
-        <translation type="unfinished"/>
+        <translation>Näyytelijä</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="651"/>
         <source>Role</source>
-        <translation type="unfinished"/>
+        <translation>Rooli</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="666"/>
         <source>Remove Actor</source>
-        <translation type="unfinished"/>
+        <translation>Poista näyttelijä</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="696"/>
         <source>Add Actor</source>
-        <translation type="unfinished"/>
+        <translation>Lisä näyttelijä</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="733"/>
         <source>Click to change</source>
-        <translation type="unfinished"/>
+        <translation>Klikkaa muuttaaksesi</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="752"/>
         <location filename="../movies/MovieWidget.ui" line="884"/>
         <source>Resolution</source>
-        <translation>分辨率</translation>
+        <translation>Resoluutio</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="778"/>
         <source>Extra Fanarts</source>
-        <translation>其他剧照</translation>
+        <translation> </translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="790"/>
         <source>Support for extra fanarts is only available when your movies are stored in separate folders. Check the settings if you&apos;ve stored your movies in separate folders already.</source>
-        <translation type="unfinished"/>
+        <translation>Tuki fanitaiteelle on saatavilla vain kun elokuvat sijaitsevat erillisissä kansioissa. Tarkista asetuksista, sijaitsevatko elokuvat jo erillisissä kansioissa.</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="810"/>
         <source>Hint: Closed images will be deleted on save.</source>
-        <translation>注意：如果关闭图像，保存时将删除该图像。</translation>
+        <translation>Vihje: Suljetut kuvat poistetaan tallennettaessa.</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="833"/>
         <source>Add Images</source>
-        <translation>添加图像</translation>
+        <translation>Lisää kuvia </translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="846"/>
         <source>Streamdetails</source>
-        <translation type="unfinished"/>
+        <translation>Mediatiedot</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="854"/>
         <source>Aspect Ratio</source>
-        <translation type="unfinished"/>
+        <translation>Kuvasuhde</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="864"/>
         <source>Scantype</source>
-        <translation>扫描类型</translation>
+        <translation>Lomitus</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="894"/>
         <location filename="../movies/MovieWidget.cpp" line="696"/>
         <location filename="../movies/MovieWidget.cpp" line="699"/>
         <source>Codec</source>
-        <translation>编码</translation>
+        <translation>Koodekki</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="932"/>
         <source>x</source>
-        <translation type="unfinished"/>
+        <translation>x</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="964"/>
         <source>Audio</source>
-        <translation>音频</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="974"/>
         <source>Video</source>
-        <translation>视频</translation>
+        <translation>Video</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="994"/>
         <source>Duration</source>
-        <translation>片长</translation>
+        <translation>Kesto</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1013"/>
         <source>HH:mm:ss</source>
-        <translation>HH:mm:ss</translation>
+        <translation>HH:mm:ss </translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1024"/>
         <source>Reload from File</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä tiedostosta</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1242"/>
         <location filename="../movies/MovieWidget.ui" line="1282"/>
         <source>Poster</source>
-        <translation>海报</translation>
+        <translation>Juliste </translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1264"/>
@@ -3701,13 +3703,13 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../movies/MovieWidget.ui" line="1540"/>
         <location filename="../movies/MovieWidget.ui" line="1590"/>
         <source>Click to Change</source>
-        <translation>点击修改</translation>
+        <translation>Klikkaa vaihtaaksesi</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1292"/>
         <location filename="../movies/MovieWidget.ui" line="1332"/>
         <source>Fanart</source>
-        <translation>剧照</translation>
+        <translation>Fanitaide</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1342"/>
@@ -3719,13 +3721,13 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../movies/MovieWidget.ui" line="1418"/>
         <location filename="../movies/MovieWidget.ui" line="1458"/>
         <source>Logo</source>
-        <translation>徽标</translation>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1468"/>
         <location filename="../movies/MovieWidget.ui" line="1508"/>
         <source>Clear Art</source>
-        <translation>剪贴画</translation>
+        <translation>Clear Art</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1518"/>
@@ -3735,7 +3737,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="1558"/>
         <source>CD Art</source>
-        <translation>CD封面</translation>
+        <translation>CD-kuva</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1568"/>
@@ -3746,53 +3748,53 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.cpp" line="79"/>
         <source>Genres</source>
-        <translation>类型</translation>
+        <translation>Tyylilajit</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="80"/>
         <source>Add Genre</source>
-        <translation>添加类型</translation>
+        <translation>Lisää tyylilaji</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="84"/>
         <source>Tags</source>
-        <translation>标签</translation>
+        <translation>Tunnisteet</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="85"/>
         <source>Add Tag</source>
-        <translation>添加标签</translation>
+        <translation>Lisää tunniste</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="89"/>
         <source>Countries</source>
-        <translation type="unfinished"/>
+        <translation>Maat</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="90"/>
         <source>Add Country</source>
-        <translation type="unfinished"/>
+        <translation>Lisää maa</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="94"/>
         <source>Studios</source>
-        <translation type="unfinished"/>
+        <translation>Studiot</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="95"/>
         <source>Add Studio</source>
-        <translation type="unfinished"/>
+        <translation>Lisää studio</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="464"/>
         <source>Downloading images...</source>
-        <translation type="unfinished"/>
+        <translation>Ladataan kuvia...</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="689"/>
         <location filename="../movies/MovieWidget.cpp" line="723"/>
         <source>Track %1</source>
-        <translation>音轨 %1</translation>
+        <translation>Raita %1</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="695"/>
@@ -3800,58 +3802,58 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../movies/MovieWidget.cpp" line="726"/>
         <location filename="../movies/MovieWidget.cpp" line="727"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>Kieli</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="697"/>
         <location filename="../movies/MovieWidget.cpp" line="700"/>
         <source>Channels</source>
-        <translation>声道</translation>
+        <translation>Kanavat</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="715"/>
         <source>Subtitles</source>
-        <translation>字幕</translation>
+        <translation>Tekstitys</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="776"/>
         <source>Saving movie...</source>
-        <translation type="unfinished"/>
+        <translation>Tallennetaan elokuvaa...</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="784"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 已保存</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; tallennettu</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="804"/>
         <source>Saving movies...</source>
-        <translation type="unfinished"/>
+        <translation>Tallennetaan elokuvia...</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="820"/>
         <source>All Movies Saved</source>
-        <translation>更新内容已保存</translation>
+        <translation>Kaikki elokuvat tallennettu</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="842"/>
         <source>Unknown Actor</source>
-        <translation type="unfinished"/>
+        <translation>Tuntematon näyttelijä</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="843"/>
         <source>Unknown Role</source>
-        <translation type="unfinished"/>
+        <translation>Tuntematon rooli</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="980"/>
         <source>Choose Image</source>
-        <translation type="unfinished"/>
+        <translation>Valitse kuva</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="980"/>
         <source>Images (*.jpg *.jpeg)</source>
-        <translation type="unfinished"/>
+        <translation>Kuvat (*.jpg *.jpeg)</translation>
     </message>
 </context>
 <context>
@@ -3872,52 +3874,52 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../main/Navbar.ui" line="198"/>
         <location filename="../main/Navbar.ui" line="223"/>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="75"/>
         <source>Save</source>
-        <translation>保存</translation>
+        <translation>Tallenna</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="95"/>
         <source>Save All</source>
-        <translation>全部保存</translation>
+        <translation>Tallenna kaikki</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="115"/>
         <source>Rename selected files</source>
-        <translation type="unfinished"/>
+        <translation>Nimeä valitut tiedostot uudelleen</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="135"/>
         <source>Synchronize to XBMC</source>
-        <translation type="unfinished"/>
+        <translation>Synkronoi XBMC</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="155"/>
         <source>Export Database</source>
-        <translation type="unfinished"/>
+        <translation>Vie tietokanta</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="175"/>
         <source>Reload</source>
-        <translation>重新载入</translation>
+        <translation>Päivitä</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="195"/>
         <source>Settings</source>
-        <translation>设置</translation>
+        <translation>Asetukset</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="215"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Tietoa</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="281"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Lahjoita</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="16"/>
@@ -3927,17 +3929,17 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main/Navbar.cpp" line="19"/>
         <source>Save (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Tallenna (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="23"/>
         <source>Save All (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Tallenna kaikki (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="26"/>
         <source>Reload all files (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä kaikki tiedostot (%1)</translation>
     </message>
 </context>
 <context>
@@ -3953,27 +3955,27 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main.cpp" line="93"/>
         <source>Logfile could not be openened</source>
-        <translation type="unfinished"/>
+        <translation>Lokitiedostoa ei voitu avata</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="94"/>
         <source>The logfile %1 could not be openend for writing.</source>
-        <translation type="unfinished"/>
+        <translation>Lokitiedostoa %1 ei voitu avata kirjoittamista varten.</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="348"/>
         <source>Do not ask again</source>
-        <translation type="unfinished"/>
+        <translation>Älä kysy uudelleen</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="718"/>
         <source>Don&apos;t check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Älä tarkista päivityksiä</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="347"/>
         <source>Don&apos;t show this hint again</source>
-        <translation type="unfinished"/>
+        <translation>Älä näytä tätä vihjettä uudelleen</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="500"/>
@@ -3983,37 +3985,37 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../globals/Helper.cpp" line="501"/>
         <source>Red</source>
-        <translation type="unfinished"/>
+        <translation>Punainen</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="502"/>
         <source>Orange</source>
-        <translation type="unfinished"/>
+        <translation>Oranssi</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="503"/>
         <source>Yellow</source>
-        <translation type="unfinished"/>
+        <translation>Keltainen</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="504"/>
         <source>Green</source>
-        <translation type="unfinished"/>
+        <translation>Vihreä</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="505"/>
         <source>Blue</source>
-        <translation type="unfinished"/>
+        <translation>Sininen</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="506"/>
         <source>Purple</source>
-        <translation type="unfinished"/>
+        <translation>Violetti</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="507"/>
         <source>Grey</source>
-        <translation type="unfinished"/>
+        <translation>Harmaa</translation>
     </message>
 </context>
 <context>
@@ -4021,7 +4023,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../quazip/quazip/quazipfile.cpp" line="217"/>
         <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished"/>
+        <translation>ZIP/UNZIP API virhe %1</translation>
     </message>
 </context>
 <context>
@@ -4034,127 +4036,127 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../renamer/Renamer.ui" line="30"/>
         <source>Info</source>
-        <translation type="unfinished"/>
+        <translation>Tietoa</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="40"/>
         <source>Placeholders</source>
-        <translation type="unfinished"/>
+        <translation>Paikkamerkit</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="119"/>
         <source>Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Paikkamerkki</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="179"/>
         <source>File extension</source>
-        <translation type="unfinished"/>
+        <translation>Tiedostopääte</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="189"/>
         <source>Part number of the current file</source>
-        <translation type="unfinished"/>
+        <translation>Tämän tiedoston osanumero</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="202"/>
         <source>Title</source>
-        <translation>片名</translation>
+        <translation>Nimike</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="212"/>
         <source>Original Title</source>
-        <translation type="unfinished"/>
+        <translation>Alkuperäinen nimi</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="222"/>
         <source>Year</source>
-        <translation>年份</translation>
+        <translation>VuosiVuosi</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="232"/>
         <source>Episode Number</source>
-        <translation type="unfinished"/>
+        <translation>Jakson numero</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="242"/>
         <source>Season Number</source>
-        <translation type="unfinished"/>
+        <translation>Kauden numero</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="252"/>
         <source>Title of the show</source>
-        <translation type="unfinished"/>
+        <translation>Sarjan nimi</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="259"/>
         <source>Artist</source>
-        <translation>艺术家</translation>
+        <translation>Artisti</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="269"/>
         <source>Album</source>
-        <translation>专辑</translation>
+        <translation>Albumi</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="285"/>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Kuvaus</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="302"/>
         <source>Use Season Directories</source>
-        <translation type="unfinished"/>
+        <translation>Käytä kausihakemistoja</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="312"/>
         <source>Multi-File Naming</source>
-        <translation type="unfinished"/>
+        <translation>Usean tiedoston nimeäminen</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="322"/>
         <source>&lt;title&gt; (&lt;year&gt;)</source>
-        <translation type="unfinished"/>
+        <translation>&lt;title&gt; (&lt;year&gt;)</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="329"/>
         <source>Rename Directories</source>
-        <translation type="unfinished"/>
+        <translation>Nimeä hakemistot uudelleen</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="339"/>
         <source>Rename Files</source>
-        <translation type="unfinished"/>
+        <translation>Nimeä tiedostot uudelleen</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="352"/>
         <source>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="359"/>
         <source>Directory Naming</source>
-        <translation type="unfinished"/>
+        <translation>Hakemiston nimeäminen</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="369"/>
         <source>&lt;title&gt;.&lt;extension&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;title&gt;.&lt;extension&gt;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="376"/>
         <source>File Naming</source>
-        <translation type="unfinished"/>
+        <translation>Tiedoston nimeäminen</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="383"/>
         <source>Season Directory Naming</source>
-        <translation type="unfinished"/>
+        <translation>Kausihakemiston nimeäminen</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="390"/>
         <source>Season &lt;season&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Season &lt;season&gt;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="402"/>
@@ -4168,43 +4170,43 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.ui" line="415"/>
         <source>Close</source>
-        <translation>关闭</translation>
+        <translation>Sulje</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="438"/>
         <source>Dry Run</source>
-        <translation type="unfinished"/>
+        <translation>Koeaja</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="448"/>
         <source>Rename</source>
-        <translation>更名</translation>
+        <translation>Nimeä uudelleen</translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="39"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n Elokuva nimetään uudelleen</numerusform><numerusform>%n Elokuvaa nimetään uudelleen</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="42"/>
         <source>%n Concert(s) will be renamed</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n konsertti nimetään uudelleen</numerusform><numerusform>%n konserttia nimetään uudelleen</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="45"/>
         <source>%n TV Show(s) and %1</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="45"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n jakso nimetään uudelleen</numerusform><numerusform>%n jaksoa nimetään uudelleen</numerusform></translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="169"/>
         <location filename="../renamer/Renamer.cpp" line="186"/>
         <source>Finished</source>
-        <translation type="unfinished"/>
+        <translation>Valmis</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="237"/>
@@ -4247,7 +4249,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../renamer/Renamer.cpp" line="743"/>
         <location filename="../renamer/Renamer.cpp" line="764"/>
         <source>Failed</source>
-        <translation type="unfinished"/>
+        <translation>Epäonnistui</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="280"/>
@@ -4308,18 +4310,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="555"/>
         <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Luo hakemisto&lt;/b&gt; &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="570"/>
         <location filename="../renamer/Renamer.cpp" line="579"/>
         <source>&lt;b&gt;Move Episode&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Siirrä jakso&lt;/b&gt; &quot;%1&quot; -&gt; &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="587"/>
         <source>&lt;b&gt;Move NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Siirrä NFO&lt;/b&gt; &quot;%1&quot; -&gt; &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="594"/>
@@ -4337,7 +4339,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="78"/>
         <source>Set</source>
-        <translation type="unfinished"/>
+        <translation>Sarja</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="109"/>
@@ -4347,7 +4349,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="147"/>
         <source>Movie</source>
-        <translation>电影</translation>
+        <translation>Elokuva</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="152"/>
@@ -4357,39 +4359,39 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="175"/>
         <source>Add movie to set</source>
-        <translation type="unfinished"/>
+        <translation>Lisää elokuva sarjaan</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="178"/>
         <source>Add Movie</source>
-        <translation>添加电影</translation>
+        <translation>Lisää elokuva</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="188"/>
         <source>Remove selected movie from set</source>
-        <translation type="unfinished"/>
+        <translation>Poista valittu elokuva sarjasta</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="191"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Poista elokuva</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="213"/>
         <source>Poster</source>
-        <translation>海报</translation>
+        <translation>Juliste</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="235"/>
         <location filename="../sets/SetsWidget.ui" line="315"/>
         <source>Click to Change</source>
-        <translation>点击修改</translation>
+        <translation>Klikkaa vaihtaaksesi</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="259"/>
         <location filename="../sets/SetsWidget.ui" line="339"/>
         <source>Full preview</source>
-        <translation type="unfinished"/>
+        <translation>Täysi esikatselu</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="278"/>
@@ -4397,32 +4399,32 @@ p, li { white-space: pre-wrap; }
         <location filename="../sets/SetsWidget.ui" line="358"/>
         <location filename="../sets/SetsWidget.ui" line="361"/>
         <source>Resolution</source>
-        <translation>分辨率</translation>
+        <translation>Resoluutio</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="293"/>
         <source>Backdrop</source>
-        <translation>剧照</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../sets/SetsWidget.cpp" line="64"/>
         <source>Add Movie Set</source>
-        <translation type="unfinished"/>
+        <translation>Lisää elokuvasarja</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.cpp" line="65"/>
         <source>Delete Movie Set</source>
-        <translation type="unfinished"/>
+        <translation>Poista elokuvasarja</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.cpp" line="424"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 已保存</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; tallennettu</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.cpp" line="450"/>
         <source>New Movie Set</source>
-        <translation type="unfinished"/>
+        <translation>Uusi elokuvasarja</translation>
     </message>
 </context>
 <context>
@@ -4430,77 +4432,77 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWindow.ui" line="23"/>
         <source>Settings</source>
-        <translation>设置</translation>
+        <translation>Asetukset</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="81"/>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>Tyyppi</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="86"/>
         <source>Path</source>
-        <translation type="unfinished"/>
+        <translation>Polku</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="91"/>
         <source>Sep. folders</source>
-        <translation type="unfinished"/>
+        <translation>Eril. hakemistoissa</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="94"/>
         <source>Items are in separate folders</source>
-        <translation type="unfinished"/>
+        <translation>Kohteet sijaitsevat erillisissä kansioissa</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="99"/>
         <source>Reload On Start</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä käynnistyessä</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="102"/>
         <source>Automatically reload contents on start</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä sisältö ohjelman käynnistyessä</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="112"/>
         <source>Add</source>
-        <translation type="unfinished"/>
+        <translation>Lisää</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="119"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Poista</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="126"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort movies into separate directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Järjestä elokuvat erillisiin hakemistoihin&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="129"/>
         <source>Organize</source>
-        <translation type="unfinished"/>
+        <translation>Järjestele</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="156"/>
         <source>Store trailer URLs in YouTube Plugin format</source>
-        <translation type="unfinished"/>
+        <translation>Tallenna trailerien URL-osoitteet YouTube-liitännäisen muodossa</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="170"/>
         <source>Automatically load and save stream details from files</source>
-        <translation type="unfinished"/>
+        <translation>Lataa ja tallenna tiedostojen mediatiedot automaattisesti</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="184"/>
         <source>Ignore articles when sorting (&quot;The&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>Jätä artikkelit huomioimatta järjestettäessä (&quot;The&quot;)</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="198"/>
         <source>Download actor images</source>
-        <translation type="unfinished"/>
+        <translation>Lataa näyttelijöiden kuvat</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="226"/>
@@ -4517,24 +4519,24 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="212"/>
         <source>Check for Updates on start</source>
-        <translation type="unfinished"/>
+        <translation>Tarkista päivitykset ohjelman käynnistyessä</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1322"/>
         <source>Path to makemkvcon</source>
-        <translation type="unfinished"/>
+        <translation>Polku makemkvcon-tiedostoon</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="272"/>
         <location filename="../settings/SettingsWindow.ui" line="390"/>
         <location filename="../settings/SettingsWindow.ui" line="1544"/>
         <source>Scraper</source>
-        <translation>刮削器</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="252"/>
         <source>Startup section</source>
-        <translation type="unfinished"/>
+        <translation>Käynnistysosio</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="278"/>
@@ -4554,7 +4556,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="385"/>
         <source>Item</source>
-        <translation type="unfinished"/>
+        <translation>Kohde</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="406"/>
@@ -4565,13 +4567,13 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="416"/>
         <location filename="../settings/SettingsWindow.ui" line="949"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
-        <translation type="unfinished"/>
+        <translation>Voit käyttää paikkamerkkiä &lt;baseFileName&gt;, joka on tiedoston nimi ilman päätettä.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="431"/>
         <location filename="../settings/SettingsWindow.ui" line="964"/>
         <source>Nfo</source>
-        <translation type="unfinished"/>
+        <translation>Nfo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="438"/>
@@ -4579,14 +4581,14 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="971"/>
         <location filename="../settings/SettingsWindow.cpp" line="663"/>
         <source>Poster</source>
-        <translation>海报</translation>
+        <translation>Juliste</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="445"/>
         <location filename="../settings/SettingsWindow.ui" line="709"/>
         <location filename="../settings/SettingsWindow.ui" line="978"/>
         <source>Backdrop</source>
-        <translation>剧照</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="452"/>
@@ -4594,7 +4596,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="985"/>
         <location filename="../settings/SettingsWindow.cpp" line="683"/>
         <source>Logo</source>
-        <translation>徽标</translation>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="459"/>
@@ -4602,7 +4604,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="992"/>
         <location filename="../settings/SettingsWindow.cpp" line="687"/>
         <source>Clear Art</source>
-        <translation>剪贴画</translation>
+        <translation>Clear Art</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="466"/>
@@ -4628,27 +4630,27 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="574"/>
         <source>Movie outline</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvan tiivistelmä</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="581"/>
         <source>Use plot when outline is not available</source>
-        <translation type="unfinished"/>
+        <translation>Käytä juonta, kun tiivistelmää ei ole saatavilla</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="588"/>
         <source>Movie Set Artwork</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvasarjan kuvamateriaali</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="596"/>
         <source>Artwork next to movies</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvan hakemisto</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="601"/>
         <source>Separate artwork directory</source>
-        <translation type="unfinished"/>
+        <translation>Erillinen hakemisto kuvamateriaalille</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="609"/>
@@ -4659,7 +4661,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="616"/>
         <location filename="../settings/SettingsWindow.ui" line="619"/>
         <source>folder.jpg</source>
-        <translation type="unfinished"/>
+        <translation>folder.jpg</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="626"/>
@@ -4670,17 +4672,17 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="633"/>
         <location filename="../settings/SettingsWindow.ui" line="636"/>
         <source>fanart.jpg</source>
-        <translation type="unfinished"/>
+        <translation>fanart.jpg</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="643"/>
         <source>Artwork directory</source>
-        <translation type="unfinished"/>
+        <translation>Hakemisto kuvamateriaalille</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="655"/>
         <source>Choose directory</source>
-        <translation type="unfinished"/>
+        <translation>Valitse hakemisto</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="670"/>
@@ -4695,7 +4697,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="695"/>
         <source>Show nfo</source>
-        <translation type="unfinished"/>
+        <translation>Näytä nfo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="737"/>
@@ -4705,7 +4707,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="744"/>
         <source>Season Poster</source>
-        <translation type="unfinished"/>
+        <translation>Kauden juliste</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="751"/>
@@ -4715,7 +4717,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="758"/>
         <source>Episode nfo</source>
-        <translation type="unfinished"/>
+        <translation>Jakson nfo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="765"/>
@@ -4740,7 +4742,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1108"/>
         <source>8080</source>
-        <translation type="unfinished"/>
+        <translation>8080</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1301"/>
@@ -4752,46 +4754,46 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="1587"/>
         <location filename="../settings/SettingsWindow.cpp" line="155"/>
         <source>Import</source>
-        <translation type="unfinished"/>
+        <translation>Tuonti</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1287"/>
         <source>Automatically delete archives after extraction</source>
-        <translation type="unfinished"/>
+        <translation>Poista arkistotiedostot automaattisesti purkamisen jälkeen</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1313"/>
         <location filename="../settings/SettingsWindow.ui" line="1334"/>
         <source>Choose</source>
-        <translation type="unfinished"/>
+        <translation>Valitse</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1087"/>
         <location filename="../settings/SettingsWindow.ui" line="1147"/>
         <source>Host</source>
-        <translation type="unfinished"/>
+        <translation>Isäntä</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1094"/>
         <source>127.0.0.1</source>
-        <translation type="unfinished"/>
+        <translation>127.0.0.1</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1101"/>
         <location filename="../settings/SettingsWindow.ui" line="1154"/>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation>Portti</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1161"/>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Käyttäjätunnus</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1122"/>
         <location filename="../settings/SettingsWindow.ui" line="1168"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Salasana</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1072"/>
@@ -4801,49 +4803,49 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1115"/>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Käyttäjä</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1195"/>
         <source>Enable Proxy</source>
-        <translation type="unfinished"/>
+        <translation>Käytä välityspalvelinta</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1202"/>
         <source>Type</source>
         <comment>Proxy Type</comment>
-        <translation type="unfinished"/>
+        <translation>Tyyppi</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1210"/>
         <source>HTTP</source>
-        <translation type="unfinished"/>
+        <translation>HTTP</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1215"/>
         <source>SOCKS 5</source>
-        <translation type="unfinished"/>
+        <translation>SOCKS 5</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1242"/>
         <source>Message</source>
-        <translation type="unfinished"/>
+        <translation>Viesti</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1273"/>
         <source>Theme</source>
-        <translation type="unfinished"/>
+        <translation>Teema</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1364"/>
         <location filename="../settings/SettingsWindow.cpp" line="491"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Peruuta</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1371"/>
         <source>Save Settings</source>
-        <translation type="unfinished"/>
+        <translation>Tallenna asetukset</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1381"/>
@@ -4855,187 +4857,187 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.cpp" line="152"/>
         <location filename="../settings/SettingsWindow.cpp" line="442"/>
         <source>Movies</source>
-        <translation>电影</translation>
+        <translation>Elokuvat</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1443"/>
         <location filename="../settings/SettingsWindow.cpp" line="153"/>
         <location filename="../settings/SettingsWindow.cpp" line="442"/>
         <source>TV Shows</source>
-        <translation>电视剧</translation>
+        <translation>TV-sarjat</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1464"/>
         <location filename="../settings/SettingsWindow.cpp" line="154"/>
         <location filename="../settings/SettingsWindow.cpp" line="442"/>
         <source>Concerts</source>
-        <translation>音乐会</translation>
+        <translation>Konsertit</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1484"/>
         <source>Global</source>
-        <translation type="unfinished"/>
+        <translation>Yleiset</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1504"/>
         <source>XBMC</source>
-        <translation type="unfinished"/>
+        <translation>XBMC</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1524"/>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>VerkkoVerkko</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1564"/>
         <source>Export</source>
-        <translation type="unfinished"/>
+        <translation>Vienti</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="408"/>
         <source>Settings saved</source>
-        <translation type="unfinished"/>
+        <translation>Asetukset tallennettu</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="442"/>
         <source>Downloads</source>
-        <translation type="unfinished"/>
+        <translation>Lataukset</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="478"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvien järjesteleminen toimii vain elokuville, jotka eivät ole erillisissä kansioissa.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="486"/>
         <source>Are you sure?</source>
-        <translation type="unfinished"/>
+        <translation>Oletko varma?</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="487"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
-        <translation type="unfinished"/>
+        <translation>Tämä toiminto järjestää kaikki tässä hakemistossa sijaitsevat elokuvat alihakemistoihin tiedostonimen perusteella. Klikkaa &quot;Ok&quot;, jos haluat suorittaa toiminnon.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="490"/>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="536"/>
         <source>Choose a directory containing your movies, TV show or concerts</source>
-        <translation type="unfinished"/>
+        <translation>Valitse hakemisto, joka sisältää elokuvat, TV-sarjat tai konsertit</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="558"/>
         <source>Choose a directory where your movie set artwork is stored</source>
-        <translation type="unfinished"/>
+        <translation>Valitse hakemisto, johon elokuvasarjojen kuvamateriaalit tallennetaan</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="587"/>
         <source>Theme &quot;%1&quot; was successfully installed</source>
-        <translation type="unfinished"/>
+        <translation>Teema &quot;%1&quot; asennettiin onnistuneesti</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="589"/>
         <location filename="../settings/SettingsWindow.cpp" line="597"/>
         <source>There was an error while processing the theme &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Teeman &quot;%1&quot; asentamisessa tapahtui virhe</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="595"/>
         <source>Theme &quot;%1&quot; was successfully uninstalled</source>
-        <translation type="unfinished"/>
+        <translation>Teema &quot;%1&quot; poistettiin onnistuneesti</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="607"/>
         <source>Don&apos;t use</source>
-        <translation type="unfinished"/>
+        <translation>Älä käytä</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="647"/>
         <source>Title</source>
-        <translation>片名</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="649"/>
         <source>Tagline</source>
-        <translation>标语</translation>
+        <translation>Tagit</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="651"/>
         <source>Rating</source>
-        <translation>评分</translation>
+        <translation>Arvostelu</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="653"/>
         <source>Released</source>
-        <translation>首映日期</translation>
+        <translation>Julkaistu</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="655"/>
         <source>Runtime</source>
-        <translation>片长</translation>
+        <translation>Kesto</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="657"/>
         <source>Certification</source>
-        <translation>分级</translation>
+        <translation>Sisältöluokitus</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="659"/>
         <source>Trailer</source>
-        <translation>预告片</translation>
+        <translation>Traileri</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="661"/>
         <source>Plot</source>
-        <translation type="unfinished"/>
+        <translation>Juoni</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="665"/>
         <source>Fanart</source>
-        <translation>剧照</translation>
+        <translation>Fanitaide</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="667"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Näyttelijät</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="669"/>
         <source>Genres</source>
-        <translation>类型</translation>
+        <translation>Tyylilajit</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="671"/>
         <source>Studios</source>
-        <translation type="unfinished"/>
+        <translation>Studiot</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="673"/>
         <source>Countries</source>
-        <translation type="unfinished"/>
+        <translation>Maat</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="675"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>Kirjoittaja</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="677"/>
         <source>Director</source>
-        <translation>导演</translation>
+        <translation>Ohjaaja</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="679"/>
         <source>Tags</source>
-        <translation>标签</translation>
+        <translation>Tunnisteet</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="681"/>
         <source>Set</source>
-        <translation type="unfinished"/>
+        <translation>Sarja</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="693"/>
@@ -5050,7 +5052,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="706"/>
         <source>Choose makemkvcon</source>
-        <translation type="unfinished"/>
+        <translation>Valitse makemkvcon</translation>
     </message>
 </context>
 <context>
@@ -5073,7 +5075,12 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Helvetica'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=6EU9GPSQ8PSUA&quot;&gt;&lt;img src=&quot;:/img/btn_donate_LG.gif&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Helvetica&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=6EU9GPSQ8PSUA&quot;&gt;&lt;img src=&quot;:/img/btn_donate_LG.gif&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="74"/>
@@ -5084,27 +5091,28 @@ p, li { white-space: pre-wrap; }
         <location filename="../support/SupportDialog.ui" line="84"/>
         <source>&lt;a href=&quot;http://www.themoviedb.org&quot;&gt;www.themoviedb.org&lt;/a&gt;
 </source>
-        <translation type="unfinished"/>
+        <translation>&lt;a href=&quot;http://www.themoviedb.org&quot;&gt;www.themoviedb.org&lt;/a&gt;
+</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="95"/>
         <source>&lt;a href=&quot;http://www.thetvdb.com&quot;&gt;TheTVDB.com&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;a href=&quot;http://www.thetvdb.com&quot;&gt;TheTVDB.com&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="127"/>
         <source>Thanks for your help and support!</source>
-        <translation type="unfinished"/>
+        <translation>Kiitos avustasi ja tuestasi!</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="149"/>
         <source>Hide donate button</source>
-        <translation type="unfinished"/>
+        <translation>Piilota lahjoituspainike</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="172"/>
         <source>Close</source>
-        <translation>关闭</translation>
+        <translation>Sulje</translation>
     </message>
 </context>
 <context>
@@ -5112,132 +5120,132 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="28"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>Bulgaria</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="29"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Kiina</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="30"/>
         <source>Croatian</source>
-        <translation type="unfinished"/>
+        <translation>Kroatia</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="31"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>Tšekki</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="32"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>Tanska</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="33"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Hollanti</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="34"/>
         <source>English</source>
-        <translation type="unfinished"/>
+        <translation>Englanti</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="35"/>
         <source>English (US)</source>
-        <translation type="unfinished"/>
+        <translation>Englanti (US)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="36"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>Suomi</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="37"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Ranska</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="38"/>
         <source>German</source>
-        <translation type="unfinished"/>
+        <translation>Saksa</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="39"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>Kreikka</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="40"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Heprea</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="41"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Unkari</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="42"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Italia</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="43"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Japani</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="44"/>
         <source>Korean</source>
-        <translation type="unfinished"/>
+        <translation>Korea</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="45"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Norja</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="46"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Puola</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="47"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Portugali</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="48"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>Venäjä</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="49"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>Slovenia</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="50"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Espanja</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="51"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Ruotsi</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="52"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>Turkki</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="54"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>Kieli</translation>
     </message>
 </context>
 <context>
@@ -5245,132 +5253,132 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="28"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>Bulgaria</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="29"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Kiina</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="30"/>
         <source>Croatian</source>
-        <translation type="unfinished"/>
+        <translation>Kroatia</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="31"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>Tšekki</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="32"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>Tanska</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="33"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Hollanti</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="34"/>
         <source>English</source>
-        <translation type="unfinished"/>
+        <translation>Englanti</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="35"/>
         <source>English (US)</source>
-        <translation type="unfinished"/>
+        <translation>Englanti (US)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="36"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>Suomi</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="37"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Ranska</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="38"/>
         <source>German</source>
-        <translation type="unfinished"/>
+        <translation>Saksa</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="39"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>Kreikka</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="40"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Heprea</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="41"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Unkari</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="42"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Italia</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="43"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Japani</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="44"/>
         <source>Korean</source>
-        <translation type="unfinished"/>
+        <translation>Korea</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="45"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Norja</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="46"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Puola</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="47"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Portugali</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="48"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>Venäjä</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="49"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>Slovenia</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="50"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Espanja</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="51"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Ruotsi</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="52"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>Turkki</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="54"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>Kieli</translation>
     </message>
 </context>
 <context>
@@ -5383,7 +5391,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../smallWidgets/TagCloud.ui" line="34"/>
         <source>Tag</source>
-        <translation>标签</translation>
+        <translation>Tunniste</translation>
     </message>
 </context>
 <context>
@@ -5391,127 +5399,127 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="28"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>Bulgaria</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="29"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Kiina</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="30"/>
         <source>Croatian</source>
-        <translation type="unfinished"/>
+        <translation>Kroatia</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="31"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>Tšekki</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="32"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>Tanska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="33"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Hollanti</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="34"/>
         <source>English</source>
-        <translation type="unfinished"/>
+        <translation>Englanti</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="35"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>Suomi</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="36"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Ranska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="37"/>
         <source>German</source>
-        <translation type="unfinished"/>
+        <translation>Saksa</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="38"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>Kreikka</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="39"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Heprea</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="40"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Unkari</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="41"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Italia</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="42"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Japani</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="43"/>
         <source>Korean</source>
-        <translation type="unfinished"/>
+        <translation>Korea</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="44"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Norja</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="45"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Puola</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="46"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Portugali</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="47"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>Venäjä</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="48"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>Slovenia</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="49"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Espanja</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="50"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Ruotsi</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="51"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>Turkki</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="53"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>Kieli</translation>
     </message>
 </context>
 <context>
@@ -5519,54 +5527,54 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../globals/TrailerDialog.ui" line="17"/>
         <source>Trailer</source>
-        <translation>预告片</translation>
+        <translation>Traileri</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="47"/>
         <source>Scraper</source>
-        <translation>刮削器</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="93"/>
         <source>Result</source>
-        <translation type="unfinished"/>
+        <translation>Tulos</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="116"/>
         <location filename="../globals/TrailerDialog.ui" line="218"/>
         <location filename="../globals/TrailerDialog.ui" line="386"/>
         <source>Close</source>
-        <translation>关闭</translation>
+        <translation>Sulje</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="178"/>
         <source>Preview</source>
-        <translation type="unfinished"/>
+        <translation>Esikatselu</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="183"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>Kieli</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="188"/>
         <source>Title</source>
-        <translation>片名</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="198"/>
         <source>Back to Search Results</source>
-        <translation type="unfinished"/>
+        <translation>Takaisin hakutuloksiin</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="280"/>
         <source>0:00 / 0:00</source>
-        <translation type="unfinished"/>
+        <translation>0:00 / 0:00</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="294"/>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>URL</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="325"/>
@@ -5576,37 +5584,37 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../globals/TrailerDialog.ui" line="348"/>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>Lataa</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="355"/>
         <source>Cancel Download</source>
-        <translation type="unfinished"/>
+        <translation>Peruuta lataus</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="366"/>
         <source>Back to Trailers</source>
-        <translation type="unfinished"/>
+        <translation>Takaisin trailereihin</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="313"/>
         <source>Download Finished</source>
-        <translation type="unfinished"/>
+        <translation>Lataus valmistunut</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="323"/>
         <source>The file %1 already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Tiedosto %1 on jo olemassa.</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="324"/>
         <source>Do you want to overwrite it?</source>
-        <translation type="unfinished"/>
+        <translation>Haluatko ylikirjoittaa?</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="336"/>
         <source>Download Canceled</source>
-        <translation type="unfinished"/>
+        <translation>Lataus peruutettu</translation>
     </message>
 </context>
 <context>
@@ -5614,22 +5622,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="52"/>
         <source>Searching for TV Shows...</source>
-        <translation type="unfinished"/>
+        <translation>Etsitään TV-sarjoja...</translation>
     </message>
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="71"/>
         <source>Loading TV Shows...</source>
-        <translation type="unfinished"/>
+        <translation>Ladataan TV-sarjoja...</translation>
     </message>
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="182"/>
         <source>Searching for Episodes...</source>
-        <translation type="unfinished"/>
+        <translation>Etsitään jaksoja...</translation>
     </message>
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="220"/>
         <source>Loading Episodes...</source>
-        <translation type="unfinished"/>
+        <translation>Ladataan jaksoja...</translation>
     </message>
 </context>
 <context>
@@ -5642,58 +5650,59 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="48"/>
         <source>Search for new episodes</source>
-        <translation type="unfinished"/>
+        <translation>Etsi uusia jaksoja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="49"/>
         <source>Mark as watched</source>
-        <translation>标记为已观看</translation>
+        <translation>Merkkaa katsotuksi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
         <source>Mark as unwatched</source>
-        <translation>标记为未观看</translation>
+        <translation>Merkkaa katsomattomaksi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="51"/>
         <source>Load Stream Details</source>
-        <translation>加载媒体流详情</translation>
+        <translation>Ladataan mediatiedot</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="52"/>
         <source>Add to Synchronization Queue</source>
-        <translation type="unfinished"/>
+        <translation>Lisää synkronointijonoon</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="53"/>
         <source>Remove from Synchronization Queue</source>
-        <translation type="unfinished"/>
+        <translation>Poista synkronointijonosta</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="54"/>
         <source>Open TV Show Folder</source>
-        <translation type="unfinished"/>
+        <translation>Avaa hakemisto</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="55"/>
         <source>Show missing episodes</source>
-        <translation type="unfinished"/>
+        <translation>Näytä puuttuvat jaksot</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="57"/>
         <source>Hide specials in missing episodes</source>
-        <translation type="unfinished"/>
+        <translation>Piilota erikoisjaksot puuttuvista jaksoista</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="343"/>
         <source>Show update needed</source>
-        <translation type="unfinished"/>
+        <translation>Näytä vaadittavat päivitykset</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="344"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
-        <translation type="unfinished"/>
+        <translation>TV-sarja täytyy päivittää kerran, jotta puuttuvat jaksot voidaan näyttää.
+Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen yhteydessä.</translation>
     </message>
 </context>
 <context>
@@ -5701,7 +5710,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../data/TvShowModelItem.cpp" line="137"/>
         <source>Season %1</source>
-        <translation type="unfinished"/>
+        <translation>Kausi %1</translation>
     </message>
 </context>
 <context>
@@ -5709,92 +5718,92 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="17"/>
         <source>Search Result</source>
-        <translation>搜索结果</translation>
+        <translation>Hakutulokset</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="30"/>
         <source>If you want to search by an TheTvDb id please prefix it with &quot;id&quot; (e.g. id123).</source>
-        <translation type="unfinished"/>
+        <translation>Jos haluat etsiä TheTvDb ID:n perusteella, käytä etuliitettä &quot;id&quot; (esim. id123).</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="70"/>
         <source>Result</source>
-        <translation type="unfinished"/>
+        <translation>Tulos</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="97"/>
         <source>Infos to load</source>
-        <translation type="unfinished"/>
+        <translation>Ladattavat tiedot</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="120"/>
         <source>Title</source>
-        <translation>片名</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="130"/>
         <source>Rating</source>
-        <translation>评分</translation>
+        <translation>Arvostelu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="140"/>
         <source>First aired</source>
-        <translation type="unfinished"/>
+        <translation>Ensimmäinen esitys</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="150"/>
         <source>Runtime</source>
-        <translation>片长</translation>
+        <translation>Kesto</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="160"/>
         <source>Director</source>
-        <translation>导演</translation>
+        <translation>Ohjaaja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="170"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>Kirjoittaja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="180"/>
         <source>Certification</source>
-        <translation>分级</translation>
+        <translation>Sisältöluokitus</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="190"/>
         <source>Overview</source>
-        <translation>预览</translation>
+        <translation>Kuvaus</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="200"/>
         <source>Genres</source>
-        <translation>类型</translation>
+        <translation>Tyylilajit</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="210"/>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Verkko</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="220"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Näyttelijät</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="230"/>
         <source>Fanart</source>
-        <translation>剧照</translation>
+        <translation>Fanitaide</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="240"/>
         <source>Poster</source>
-        <translation>海报</translation>
+        <translation>Juliste</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="250"/>
         <source>Season Poster</source>
-        <translation type="unfinished"/>
+        <translation>Kauden juliste</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="260"/>
@@ -5819,47 +5828,47 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="300"/>
         <source>Artwork</source>
-        <translation type="unfinished"/>
+        <translation>Kuvamateriaali</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="317"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished"/>
+        <translation>Kaikki</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="348"/>
         <source>Update TV Show only</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä vain TV-sarja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="353"/>
         <source>Update TV Show and new Episodes</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä TV-sarja ja uudet jaksot</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="358"/>
         <source>Update TV Show and all Episodes</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä TV-sarja ja kaikki jaksot</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="363"/>
         <source>Update new Episodes</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä uudet jaksot</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="368"/>
         <source>Update all episodes</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä kaikki jaksot</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="376"/>
         <source>DVD Order</source>
-        <translation type="unfinished"/>
+        <translation>DVD-järjestys</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="396"/>
         <source>Close</source>
-        <translation>关闭</translation>
+        <translation>Sulje</translation>
     </message>
 </context>
 <context>
@@ -5872,52 +5881,52 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="59"/>
         <source>Result</source>
-        <translation type="unfinished"/>
+        <translation>Tulos</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="86"/>
         <source>Infos to load</source>
-        <translation type="unfinished"/>
+        <translation>Ladattavat tiedot</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="109"/>
         <source>Title</source>
-        <translation>片名</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="119"/>
         <source>Rating</source>
-        <translation>评分</translation>
+        <translation>Arvostelu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="129"/>
         <source>First aired</source>
-        <translation type="unfinished"/>
+        <translation>Ensimmäinen esitys</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="139"/>
         <source>Director</source>
-        <translation>导演</translation>
+        <translation>Ohjaaja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="149"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>Kirjoittaja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="159"/>
         <source>Certification</source>
-        <translation>分级</translation>
+        <translation>Sisältöluokitus</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="169"/>
         <source>Overview</source>
-        <translation>预览</translation>
+        <translation>Kuvaus</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="179"/>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Verkko</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="189"/>
@@ -5927,7 +5936,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="206"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished"/>
+        <translation>Kaikki</translation>
     </message>
 </context>
 <context>
@@ -5935,7 +5944,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowUpdater.cpp" line="57"/>
         <source>Updating TV Shows</source>
-        <translation type="unfinished"/>
+        <translation>Päivitetään TV-sarjoja</translation>
     </message>
 </context>
 <context>
@@ -5948,12 +5957,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="164"/>
         <source>Saving changed TV Shows and Episodes</source>
-        <translation type="unfinished"/>
+        <translation>Tallennetaan muokattuja TV-sarjoja ja jaksoja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="183"/>
         <source>All TV Shows and Episodes Saved</source>
-        <translation type="unfinished"/>
+        <translation>Kaikki TV-sarjat ja jaksot tallennettu</translation>
     </message>
 </context>
 <context>
@@ -5966,42 +5975,42 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="76"/>
         <source>Episode has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Jakso on muuttunut. Klikkaa peruuttaaksesi muutokset.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="105"/>
         <source>Episode Title</source>
-        <translation type="unfinished"/>
+        <translation>Jakson nimi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="176"/>
         <source>Information</source>
-        <translation>资料</translation>
+        <translation>Tiedot</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="193"/>
         <source>Files</source>
-        <translation>文件</translation>
+        <translation>Tiedostot</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="207"/>
         <source>Name</source>
-        <translation>名称</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="217"/>
         <source>Show Title</source>
-        <translation type="unfinished"/>
+        <translation>Jakson nimi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="227"/>
         <source>Season</source>
-        <translation type="unfinished"/>
+        <translation>Kausi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="262"/>
         <source>Episode</source>
-        <translation type="unfinished"/>
+        <translation>Jakso</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="281"/>
@@ -6011,17 +6020,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="288"/>
         <source>Rating</source>
-        <translation>评分</translation>
+        <translation>Arvostelu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="308"/>
         <source>Certification</source>
-        <translation>分级</translation>
+        <translation>Sisältöluokitus</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="325"/>
         <source>First Aired</source>
-        <translation type="unfinished"/>
+        <translation>Ensimmäinen esitys</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="335"/>
@@ -6031,12 +6040,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="342"/>
         <source>Play Count</source>
-        <translation>播放次数</translation>
+        <translation>Toistokerrat</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="431"/>
         <source>Last Played</source>
-        <translation>上次播放</translation>
+        <translation>Toistettu viimeksi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="441"/>
@@ -6046,12 +6055,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="349"/>
         <source>Studio</source>
-        <translation>制片公司</translation>
+        <translation>Studio</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="359"/>
         <source>Overview</source>
-        <translation>预览</translation>
+        <translation>Kuvaus</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="400"/>
@@ -6061,130 +6070,130 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="450"/>
         <source>Bookmark</source>
-        <translation type="unfinished"/>
+        <translation>Kirjanmerkki</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="470"/>
         <source>Extended</source>
-        <translation type="unfinished"/>
+        <translation>Lisätiedot</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="507"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>Kirjoittaja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="581"/>
         <source>Directors</source>
-        <translation type="unfinished"/>
+        <translation>Ohjaajat</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="609"/>
         <source>Director</source>
-        <translation>导演</translation>
+        <translation>Ohjaaja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="619"/>
         <source>Add Director</source>
-        <translation type="unfinished"/>
+        <translation>Lisää ohjaaja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="636"/>
         <source>Remove Director</source>
-        <translation type="unfinished"/>
+        <translation>Poista ohjaaja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="479"/>
         <source>Writers</source>
-        <translation type="unfinished"/>
+        <translation>Kirjoittajat</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="517"/>
         <source>Add Writer</source>
-        <translation type="unfinished"/>
+        <translation>Lisää kirjoittaja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="534"/>
         <source>Remove Writer</source>
-        <translation type="unfinished"/>
+        <translation>Poista kirjoittaja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="683"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Näyttelijät</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="708"/>
         <source>Actor</source>
-        <translation type="unfinished"/>
+        <translation>Näyytelijä</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="713"/>
         <source>Role</source>
-        <translation type="unfinished"/>
+        <translation>Rooli</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="758"/>
         <source>Add Actor</source>
-        <translation type="unfinished"/>
+        <translation>Lisä näyttelijä</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="728"/>
         <source>Remove Actor</source>
-        <translation type="unfinished"/>
+        <translation>Poista näyttelijä</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="808"/>
         <source>Click to change</source>
-        <translation type="unfinished"/>
+        <translation>Klikkaa muuttaaksesi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="855"/>
         <source>Streamdetails</source>
-        <translation type="unfinished"/>
+        <translation>Mediatiedot</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="863"/>
         <source>Aspect Ratio</source>
-        <translation type="unfinished"/>
+        <translation>Kuvasuhde</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="873"/>
         <source>Scantype</source>
-        <translation>扫描类型</translation>
+        <translation>Lomitus</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="827"/>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="893"/>
         <source>Resolution</source>
-        <translation>分辨率</translation>
+        <translation>Resoluutio</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="903"/>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="434"/>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="437"/>
         <source>Codec</source>
-        <translation>编码</translation>
+        <translation>Koodekki</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="941"/>
         <source>x</source>
-        <translation type="unfinished"/>
+        <translation>x</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="979"/>
         <source>Audio</source>
-        <translation>音频</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="995"/>
         <source>Video</source>
-        <translation>视频</translation>
+        <translation>Video</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1015"/>
         <source>Duration</source>
-        <translation>片长</translation>
+        <translation>Kesto</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="460"/>
@@ -6195,7 +6204,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1045"/>
         <source>Reload from File</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä tiedostosta</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1118"/>
@@ -6205,18 +6214,18 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1140"/>
         <source>Click to Change</source>
-        <translation>点击修改</translation>
+        <translation>Klikkaa vaihtaaksesi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="147"/>
         <source>Episode missing</source>
-        <translation type="unfinished"/>
+        <translation>Jakso puuttuu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="427"/>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="461"/>
         <source>Track %1</source>
-        <translation>音轨 %1</translation>
+        <translation>Raita %1</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="433"/>
@@ -6224,53 +6233,53 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="464"/>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="465"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>Kieli</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="435"/>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="438"/>
         <source>Channels</source>
-        <translation>声道</translation>
+        <translation>Kanavat</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="453"/>
         <source>Subtitles</source>
-        <translation>字幕</translation>
+        <translation>Tekstitys</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="519"/>
         <source>Episode Saved</source>
-        <translation type="unfinished"/>
+        <translation>Jakso tallennettu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="654"/>
         <source>Unknown Director</source>
-        <translation type="unfinished"/>
+        <translation>Tuntematon ohjaaja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="703"/>
         <source>Unknown Writer</source>
-        <translation type="unfinished"/>
+        <translation>Tuntematon kirjoittaja</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="921"/>
         <source>Unknown Actor</source>
-        <translation type="unfinished"/>
+        <translation>Tuntematon näyttelijä</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="922"/>
         <source>Unknown Role</source>
-        <translation type="unfinished"/>
+        <translation>Tuntematon rooli</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="983"/>
         <source>Choose Image</source>
-        <translation type="unfinished"/>
+        <translation>Valitse kuva</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="983"/>
         <source>Images (*.jpg *.jpeg)</source>
-        <translation type="unfinished"/>
+        <translation>Kuvat (*.jpg *.jpeg)</translation>
     </message>
 </context>
 <context>
@@ -6283,12 +6292,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="66"/>
         <source>Episode has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Jakso on muuttunut. Klikkaa peruuttaaksesi muutokset.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="95"/>
         <source>Title</source>
-        <translation>片名</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="177"/>
@@ -6298,19 +6307,19 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="238"/>
         <source>Poster</source>
-        <translation>海报</translation>
+        <translation>Juliste</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="199"/>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="260"/>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="307"/>
         <source>Click to Change</source>
-        <translation>点击修改</translation>
+        <translation>Klikkaa vaihtaaksesi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="285"/>
         <source>Fanart</source>
-        <translation>剧照</translation>
+        <translation>Fanitaide</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="332"/>
@@ -6320,22 +6329,22 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="354"/>
         <source>Click to change</source>
-        <translation type="unfinished"/>
+        <translation>Klikkaa muuttaaksesi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="140"/>
         <source>Season missing</source>
-        <translation type="unfinished"/>
+        <translation>Kausi puuttuu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.cpp" line="103"/>
         <source>Season %1</source>
-        <translation type="unfinished"/>
+        <translation>Kausi %1</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.cpp" line="158"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 已保存</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; tallennettu</translation>
     </message>
 </context>
 <context>
@@ -6348,17 +6357,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="63"/>
         <source>TV Show has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>TV-sarja on muuttunut. Klikkaa peruutaaksesi muutokset.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="90"/>
         <source>Show Title</source>
-        <translation type="unfinished"/>
+        <translation>Jakson nimi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="122"/>
         <source>Information</source>
-        <translation>资料</translation>
+        <translation>Tiedot</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="136"/>
@@ -6368,22 +6377,22 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="150"/>
         <source>Name</source>
-        <translation>名称</translation>
+        <translation>Nimi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="160"/>
         <source>Rating</source>
-        <translation>评分</translation>
+        <translation>Arvostelu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="174"/>
         <source>Certification</source>
-        <translation>分级</translation>
+        <translation>Sisältöluokitus</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="191"/>
         <source>First Aired</source>
-        <translation type="unfinished"/>
+        <translation>Ensimmäinen esitys</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="201"/>
@@ -6393,12 +6402,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="208"/>
         <source>Studio</source>
-        <translation>制片公司</translation>
+        <translation>Studio</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="265"/>
         <source>Overview</source>
-        <translation>预览</translation>
+        <translation>Kuvaus</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="218"/>
@@ -6413,22 +6422,22 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="234"/>
         <source>Missing</source>
-        <translation type="unfinished"/>
+        <translation>Puuttuu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="244"/>
         <source>Download Theme</source>
-        <translation type="unfinished"/>
+        <translation>Lataa teema</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="275"/>
         <source>Runtime</source>
-        <translation>片长</translation>
+        <translation>Kesto</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="285"/>
         <source> Minutes</source>
-        <translation>分钟</translation>
+        <translation>Minuuttia</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="295"/>
@@ -6438,63 +6447,63 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="308"/>
         <source>Extended</source>
-        <translation type="unfinished"/>
+        <translation>Lisätiedot</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="319"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Näyttelijät</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="344"/>
         <source>Actor</source>
-        <translation type="unfinished"/>
+        <translation>Näyytelijä</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="349"/>
         <source>Role</source>
-        <translation type="unfinished"/>
+        <translation>Rooli</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="394"/>
         <source>Add Actor</source>
-        <translation type="unfinished"/>
+        <translation>Lisä näyttelijä</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="364"/>
         <source>Remove Actor</source>
-        <translation type="unfinished"/>
+        <translation>Poista näyttelijä</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="444"/>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1075"/>
         <source>Click to change</source>
-        <translation type="unfinished"/>
+        <translation>Klikkaa muuttaaksesi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="463"/>
         <source>Resolution</source>
-        <translation>分辨率</translation>
+        <translation>Resoluutio</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="512"/>
         <source>Extra Fanarts</source>
-        <translation>其他剧照</translation>
+        <translation> </translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="534"/>
         <source>Hint: Closed images will be deleted on save.</source>
-        <translation>注意：如果关闭图像，保存时将删除该图像。</translation>
+        <translation>Vihje: Suljetut kuvat poistetaan tallennettaessa.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="557"/>
         <source>Add Images</source>
-        <translation>添加图像</translation>
+        <translation>Lisää kuvia</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="745"/>
         <source>Poster</source>
-        <translation>海报</translation>
+        <translation>Juliste</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="767"/>
@@ -6504,12 +6513,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="981"/>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1028"/>
         <source>Click to Change</source>
-        <translation>点击修改</translation>
+        <translation>Klikkaa vaihtaaksesi</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="792"/>
         <source>Fanart</source>
-        <translation>剧照</translation>
+        <translation>Fanitaide</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="839"/>
@@ -6524,12 +6533,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="912"/>
         <source>Logo</source>
-        <translation>徽标</translation>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="959"/>
         <source>Clear Art</source>
-        <translation>剪贴画</translation>
+        <translation>Clear Art</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1006"/>
@@ -6539,52 +6548,52 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="76"/>
         <source>Genres</source>
-        <translation>类型</translation>
+        <translation>Tyylilajit</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="77"/>
         <source>Add Genre</source>
-        <translation>添加类型</translation>
+        <translation>Lisää tyylilaji</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="81"/>
         <source>Tags</source>
-        <translation>标签</translation>
+        <translation>Tunnisteet</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="82"/>
         <source>Add Tag</source>
-        <translation>添加标签</translation>
+        <translation>Lisää tunniste</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="369"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 已保存</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; tallennettu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="607"/>
         <source>Downloading images...</source>
-        <translation type="unfinished"/>
+        <translation>Ladataan kuvia...</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="743"/>
         <source>Unknown Actor</source>
-        <translation type="unfinished"/>
+        <translation>Tuntematon näyttelijä</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="744"/>
         <source>Unknown Role</source>
-        <translation type="unfinished"/>
+        <translation>Tuntematon rooli</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="822"/>
         <source>Choose Image</source>
-        <translation type="unfinished"/>
+        <translation>Valitse kuva</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="822"/>
         <source>Images (*.jpg *.jpeg)</source>
-        <translation type="unfinished"/>
+        <translation>Kuvat (*.jpg *.jpeg)</translation>
     </message>
 </context>
 <context>
@@ -6597,12 +6606,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="60"/>
         <source>Result</source>
-        <translation type="unfinished"/>
+        <translation>Tulos</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="102"/>
         <source>0:00 / 0:00</source>
-        <translation type="unfinished"/>
+        <translation>0:00 / 0:00</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="129"/>
@@ -6612,37 +6621,37 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="152"/>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>Lataa</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="159"/>
         <source>Cancel Download</source>
-        <translation type="unfinished"/>
+        <translation>Peruuta lataus</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="183"/>
         <source>Close</source>
-        <translation>关闭</translation>
+        <translation>Sulje</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.cpp" line="245"/>
         <source>Download Finished</source>
-        <translation type="unfinished"/>
+        <translation>Lataus valmistunut</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.cpp" line="250"/>
         <source>The file %1 already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Tiedosto %1 on jo olemassa.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.cpp" line="251"/>
         <source>Do you want to overwrite it?</source>
-        <translation type="unfinished"/>
+        <translation>Haluatko ylikirjoittaa?</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.cpp" line="265"/>
         <source>Download Canceled</source>
-        <translation type="unfinished"/>
+        <translation>Lataus peruutettu</translation>
     </message>
 </context>
 <context>
@@ -6655,27 +6664,27 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="69"/>
         <source>Cancel extraction</source>
-        <translation type="unfinished"/>
+        <translation>Peruuta purkaminen</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="89"/>
         <source>Extract without password</source>
-        <translation type="unfinished"/>
+        <translation>Pura ilman salasanaa</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="92"/>
         <source>Extract</source>
-        <translation type="unfinished"/>
+        <translation>Pura</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="99"/>
         <source>Extract with password</source>
-        <translation type="unfinished"/>
+        <translation>Pura käyttäen salasanaa</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="119"/>
         <source>Delete this archive</source>
-        <translation type="unfinished"/>
+        <translation>Poista tämä arkisto</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="50"/>
@@ -6685,17 +6694,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="50"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Salasana</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="64"/>
         <source>Delete archive?</source>
-        <translation type="unfinished"/>
+        <translation>Poistetaanko arkisto?</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="65"/>
         <source>Do you really want to delete this archive?</source>
-        <translation type="unfinished"/>
+        <translation>Haluatko varmasti poistaa arkiston?</translation>
     </message>
 </context>
 <context>
@@ -6703,7 +6712,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="17"/>
         <source>XBMC Synchronization</source>
-        <translation type="unfinished"/>
+        <translation>XBMC-synkronointi</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
@@ -6713,7 +6722,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="36"/>
         <source>Update contents</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä konsertit</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="46"/>
@@ -6723,12 +6732,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="56"/>
         <source>Remove non-existent items from XBMCs database (Clean library)</source>
-        <translation type="unfinished"/>
+        <translation>Poista XBMC:stä kohteet, joita ei löydy (kirjaston puhdistus)</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
         <source>XBMC will remove not longer existing items from your database.</source>
-        <translation type="unfinished"/>
+        <translation>XBMC poistaa tietokannasta kohteet, joita ei enää ole.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="70"/>
@@ -6738,33 +6747,33 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="77"/>
         <source>The fields last played and playcount will be retrieved from XBMC.</source>
-        <translation type="unfinished"/>
+        <translation>Viimeksi toistettu ja toistokerrat -kenttien tiedot haetaan XBMC:stä.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="108"/>
         <location filename="../xbmc/XbmcSync.ui" line="115"/>
         <source>Status</source>
-        <translation type="unfinished"/>
+        <translation>Tila</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="133"/>
         <source>Close</source>
-        <translation>关闭</translation>
+        <translation>Sulje</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="156"/>
         <source>Start</source>
-        <translation type="unfinished"/>
+        <translation>Aloita</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="141"/>
         <source>Please fill in your XBMC host and port.</source>
-        <translation type="unfinished"/>
+        <translation>Täytä XBMC:n osoite ja portti.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="229"/>
         <source>Getting contents from XBMC</source>
-        <translation type="unfinished"/>
+        <translation>Haetaan XBMC:n sisältöä</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="244"/>
@@ -6772,47 +6781,47 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <location filename="../xbmc/XbmcSync.cpp" line="300"/>
         <location filename="../xbmc/XbmcSync.cpp" line="328"/>
         <source>Network error</source>
-        <translation type="unfinished"/>
+        <translation>Verkkovirhe</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="414"/>
         <source>Removing movies from database</source>
-        <translation type="unfinished"/>
+        <translation>Poistetaan elokuvia tietokannasta</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="433"/>
         <source>Removing concerts from database</source>
-        <translation type="unfinished"/>
+        <translation>Poistetaan konsertteja tietokannasta</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="452"/>
         <source>Removing TV shows from database</source>
-        <translation type="unfinished"/>
+        <translation>Poistetaan TV-sarjoja tietokannasta</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="471"/>
         <source>Removing episodes from database</source>
-        <translation type="unfinished"/>
+        <translation>Poistetaan jaksoja tietokannasta</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="510"/>
         <source>Trigger scan for new items</source>
-        <translation type="unfinished"/>
+        <translation>Aseta uusien kohteiden automaattinen tarkastus</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="530"/>
         <source>Finished. XBMC is now loading your updated items.</source>
-        <translation type="unfinished"/>
+        <translation>Valmis. XBMC lataa nyt päivitetyt kohteet.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="554"/>
         <source>Finished. XBMC is now cleaning your database.</source>
-        <translation type="unfinished"/>
+        <translation>Valmis. XBMC puhdistaa nyt tietokantasi.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="595"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
-        <translation type="unfinished"/>
+        <translation>Valmis. Kohteiden toistokerrat ja viimeksi toistettu -tieto on päivitetty.</translation>
     </message>
 </context>
 </TS>

@@ -198,7 +198,7 @@
         <translation>Concerts</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.cpp" line="16"/>
+        <location filename="../main/AboutDialog.cpp" line="17"/>
         <source>MediaElch %1 - %2</source>
         <translation>MediaElch %1 - %2</translation>
     </message>
@@ -275,27 +275,27 @@
 <context>
     <name>ClosableImage</name>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="87"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="88"/>
         <source>Delete Image</source>
         <translation>Supprimer l&apos;image</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="93"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="94"/>
         <source>Zoom Image</source>
         <translation>Zoom Image</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="99"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="100"/>
         <source>Select another image</source>
         <translation>Sélectionner une autre image</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="344"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="345"/>
         <source>Really delete image?</source>
         <translation>Vraiment supprimer l&apos;image ?</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="345"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="346"/>
         <source>Are you sure you want to delete this image?</source>
         <translation>Êtes-vous sûr de vouloir supprimer cette image ?</translation>
     </message>
@@ -2110,17 +2110,17 @@
         <translation>Accepter Images</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="144"/>
+        <location filename="../globals/ImageDialog.cpp" line="145"/>
         <source>Default</source>
         <translation>Par défault</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="528"/>
+        <location filename="../globals/ImageDialog.cpp" line="529"/>
         <source>Choose Image</source>
         <translation>Choisir image</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="528"/>
+        <location filename="../globals/ImageDialog.cpp" line="529"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>Images (*.jpg *.jpeg *.png)</translation>
     </message>
@@ -2414,7 +2414,7 @@
         <translation>Synchronisation nécessaire </translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/ItemWidgetShow.cpp" line="48"/>
+        <location filename="../tvShows/ItemWidgetShow.cpp" line="50"/>
         <source>%n Episodes</source>
         <translation><numerusform>%n Épisode</numerusform><numerusform>%n Épisodes</numerusform></translation>
     </message>
@@ -3923,22 +3923,22 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
         <translation>Faire un don</translation>
     </message>
     <message>
-        <location filename="../main/Navbar.cpp" line="15"/>
+        <location filename="../main/Navbar.cpp" line="16"/>
         <source>Scrape (%1)</source>
         <translation>Scrape (%1)</translation>
     </message>
     <message>
-        <location filename="../main/Navbar.cpp" line="18"/>
+        <location filename="../main/Navbar.cpp" line="19"/>
         <source>Save (%1)</source>
         <translation>Sauvegarder (%1)</translation>
     </message>
     <message>
-        <location filename="../main/Navbar.cpp" line="22"/>
+        <location filename="../main/Navbar.cpp" line="23"/>
         <source>Save All (%1)</source>
         <translation>Sauvegarder tout (%1)</translation>
     </message>
     <message>
-        <location filename="../main/Navbar.cpp" line="25"/>
+        <location filename="../main/Navbar.cpp" line="26"/>
         <source>Reload all files (%1)</source>
         <translation>Recharger tous les fichiers (%1)</translation>
     </message>
@@ -3964,7 +3964,7 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
         <translation>Le fichier journal %1 n&apos;a pas pu être ouvert en écriture.</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="347"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="348"/>
         <source>Do not ask again</source>
         <translation>Ne pas demander à nouveau</translation>
     </message>
