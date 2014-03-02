@@ -125,8 +125,10 @@ bool MovieController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
 void MovieController::loadData(QMap<ScraperInterface*, QString> ids, ScraperInterface *scraperInterface, QList<int> infos)
 {
     m_infosToLoad = infos;
-    if (scraperInterface->identifier() == "tmdb")
+    if (scraperInterface->identifier() == "tmdb" && !ids.values().first().startsWith("tt"))
         m_movie->setTmdbId(ids.values().first());
+    else if (scraperInterface->identifier() == "imdb" || scraperInterface->identifier() == "tmdb" && ids.values().first().startsWith("tt"))
+        m_movie->setId(ids.values().first());
     scraperInterface->loadData(ids, m_movie, infos);
 }
 

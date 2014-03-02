@@ -404,7 +404,8 @@ QList<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage)
  */
 void TMDb::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos)
 {
-    movie->setTmdbId(ids.values().first());
+    if (!ids.values().first().startsWith("tt"))
+        movie->setTmdbId(ids.values().first());
     movie->clear(infos);
 
     QUrl url;
