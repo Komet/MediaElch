@@ -88,7 +88,7 @@ MainWindow::MainWindow(QWidget *parent) :
         #endif
     }
     // Size for Screenshots
-    // resize(1121, 735);
+    // resize(1200, 676);
 
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setMovie(Movie*)));
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setEnabledTrue(Movie*)));

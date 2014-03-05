@@ -20,5 +20,7 @@
         <file>i18n/MediaElch_pt_BR.qm</file>
         <file>i18n/MediaElch_pt_PT.qm</file>
         <file>i18n/MediaElch_zh_CN.qm</file>
+        <file>i18n/MediaElch_fi.qm</file>
+        <file>i18n/MediaElch_ko.qm</file>
     </qresource>
 </RCC>

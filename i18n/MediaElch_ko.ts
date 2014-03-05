@@ -9,7 +9,7 @@
     <message>
         <location filename="../scrapers/AEBN.cpp" line="17"/>
         <source>Chinese</source>
-        <translation>중국어</translation>
+        <translation>중국어</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="18"/>
@@ -424,7 +424,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="192"/>
         <source>Poster</source>
-        <translation>포스터</translation>
+        <translation>포스터</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="199"/>
@@ -615,7 +615,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="601"/>
         <source>Audio</source>
-        <translation>오디오</translation>
+        <translation>오디오</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="617"/>
@@ -640,7 +640,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="887"/>
         <source>Poster</source>
-        <translation>포스터</translation>
+        <translation>포스터</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="909"/>
@@ -1003,7 +1003,7 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="27"/>
         <source>Chinese</source>
-        <translation>중국어</translation>
+        <translation>중국어</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="28"/>
@@ -1373,7 +1373,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="542"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="545"/>
         <source>Poster</source>
-        <translation>포스터</translation>
+        <translation>포스터</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="544"/>
@@ -1945,7 +1945,7 @@
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="18"/>
         <source>Chinese</source>
-        <translation>중국어</translation>
+        <translation>중국어</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="19"/>
@@ -2305,7 +2305,7 @@
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="304"/>
         <source>Loading concert information...</source>
-        <translation>콘서트 정보 가져오는 중...</translation>
+        <translation>콘서트 정보 가져오는 중...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="322"/>
@@ -2401,7 +2401,7 @@
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="115"/>
         <source>Poster</source>
-        <translation>포스터</translation>
+        <translation>포스터</translation>
     </message>
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="377"/>
@@ -3053,7 +3053,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../data/MovieModel.cpp" line="291"/>
         <source>Poster</source>
-        <translation>포스터</translation>
+        <translation>포스터</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="293"/>
@@ -3121,7 +3121,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="141"/>
         <source>Poster</source>
-        <translation>포스터</translation>
+        <translation>포스터</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="121"/>
@@ -3353,7 +3353,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="218"/>
         <source>Poster</source>
-        <translation>포스터</translation>
+        <translation>포스터</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="225"/>
@@ -3665,7 +3665,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="964"/>
         <source>Audio</source>
-        <translation>오디오</translation>
+        <translation>오디오</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="974"/>
@@ -3691,7 +3691,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../movies/MovieWidget.ui" line="1242"/>
         <location filename="../movies/MovieWidget.ui" line="1282"/>
         <source>Poster</source>
-        <translation>포스터</translation>
+        <translation>포스터</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1264"/>
@@ -4382,7 +4382,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="213"/>
         <source>Poster</source>
-        <translation>포스터</translation>
+        <translation>포스터</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="235"/>
@@ -4584,7 +4584,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="971"/>
         <location filename="../settings/SettingsWindow.cpp" line="663"/>
         <source>Poster</source>
-        <translation>포스터</translation>
+        <translation>포스터</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="445"/>
@@ -5128,7 +5128,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="29"/>
         <source>Chinese</source>
-        <translation>중국어</translation>
+        <translation>중국어</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="30"/>
@@ -5407,7 +5407,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="29"/>
         <source>Chinese</source>
-        <translation>중국어</translation>
+        <translation>중국어</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="30"/>
@@ -5800,7 +5800,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="240"/>
         <source>Poster</source>
-        <translation>포스터</translation>
+        <translation>포스터</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="250"/>
@@ -6185,7 +6185,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="979"/>
         <source>Audio</source>
-        <translation>오디오</translation>
+        <translation>오디오</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="995"/>
@@ -6309,7 +6309,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="238"/>
         <source>Poster</source>
-        <translation>포스터</translation>
+        <translation>포스터</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="199"/>
@@ -6505,7 +6505,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="745"/>
         <source>Poster</source>
-        <translation>포스터</translation>
+        <translation>포스터</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="767"/>
