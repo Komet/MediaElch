@@ -2547,8 +2547,8 @@ Main menu entry (tooltip)</extracomment>
     <name>MakeMkvDialog</name>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="17"/>
-        <source>Dialog</source>
-        <translation>Diálogo</translation>
+        <source>MediaElch</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="50"/>
