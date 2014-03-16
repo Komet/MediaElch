@@ -1,3 +1,38 @@
+mediaelch (2.1-1) raring; urgency=low
+
+  * OS X Retina display support
+  * MakeMKV integration
+  * Option to hide donate button
+  * Custom labels for movies
+  * Select startup section
+  * Export: Remove line breaks genre block
+  * Words to exclude: add mkv
+  * Automatically guess import type and folder
+  * Missing episodes: Hide specials
+  * Show adult movies from TMDB
+  * Filter for movies with/without rating
+  * Replace underscores with spaces in movie names
+  * Only update movies with id in custom scraper
+  * Use different IMDB Scraper (mymovieapi.com down)
+  * Read ratings with comma separated decimals
+  * Save last used path when manually selecting images
+  * Trim title from the tv db
+  * Context menus stay sometimes in front
+  * StreamDetails: Aspect ratio sometimes displayed as 0.000
+  * XBMC synchronization broken
+  * Disable filesystemwatcher for imports
+  * Multiscraping: IMDB id is set as TMDB id
+  * Settings: Movie set artwork filenames are not display correctly
+  * MovieMaze: Wrong encoding
+  * Some episode names lead to detecting multiple episodes
+  * Extracting password protected files fails
+  * Updating new episodes with dvd order fails
+  * Trailers are not renamed
+  * Scraper adds sometimes "id" before IMDB ids
+  * Multiscrape: Only movies with id are scraped
+
+ -- Daniel Kabel <daniel.kabel@me.com>  Sun, 16 Mar 2014 17:31:45 +0100
+
 mediaelch (2.0.1-1) raring; urgency=low
 
   * Show all banners for seasons
