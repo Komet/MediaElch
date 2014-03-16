@@ -3995,7 +3995,7 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../globals/Helper.cpp" line="503"/>
         <source>Yellow</source>
-        <translation>Geld</translation>
+        <translation>Gelb</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="504"/>

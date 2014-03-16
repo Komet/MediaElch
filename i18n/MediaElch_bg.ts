@@ -157,7 +157,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="141"/>
         <source>Stream Details detection with &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</source>
-        <translation>Откриване на стрийм метаданните посредством &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</translation>
+        <translation>Откриване на стрийм детайлите посредством &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="148"/>
@@ -244,7 +244,7 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="197"/>
         <source>Double click a certification to rename it, right click to delete. If you want to merge two certifications just give them the same name.</source>
-        <translation>Кликнете два пъти върху възрастовата категория за да я промените, кликнете с десния бутон, за да я изтриете. Ако искате да комбинирате две категории просто да им дайте едно и също име.</translation>
+        <translation>Кликнете два пъти върху възрастовата категория за да я промените, кликнете с десния бутон, за да я изтриете. Ако искате да комбинирате две категории просто им дайте едно и също име.</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="207"/>
@@ -553,7 +553,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="263"/>
         <source> Minutes</source>
-        <translation>Минути</translation>
+        <translation>минути</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="371"/>
@@ -635,7 +635,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="667"/>
         <source>Reload from File</source>
-        <translation>Зареди от файла</translation>
+        <translation>Обнови от файла</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="887"/>
@@ -768,7 +768,7 @@
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="163"/>
         <source>Importable items</source>
-        <translation type="unfinished"/>
+        <translation>Елементи за импортиране</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="186"/>
@@ -990,7 +990,7 @@
     <message>
         <location filename="../downloads/Extractor.cpp" line="38"/>
         <source>Unrar not found</source>
-        <translation>Unrar не е намерен</translation>
+        <translation>Не е намерена разархивираща програма</translation>
     </message>
 </context>
 <context>
@@ -1185,7 +1185,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="60"/>
         <source>Media Status Columns</source>
-        <translation type="unfinished"/>
+        <translation>Статус колони за медиите</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="70"/>
@@ -1907,7 +1907,7 @@
     <message>
         <location filename="../movies/GenreWidget.ui" line="196"/>
         <source>Double click a genre to rename it, right click to delete. If you want to merge two genres just give them the same name.</source>
-        <translation>Кликнете два пъти върху жанра за да го промените, кликнете с десния бутон, за да го изтриете. Ако искате да комбинирате два жанра просто да им дайте едно и също име.</translation>
+        <translation>Кликнете два пъти върху жанра за да го промените, кликнете с десния бутон, за да го изтриете. Ако искате да комбинирате два жанра просто им дайте едно и също име.</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="206"/>
@@ -2424,12 +2424,12 @@
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="23"/>
         <source>Loading Stream Details</source>
-        <translation>Зареждане на стрийм детайли</translation>
+        <translation>Зареждане на стрийм детайлите</translation>
     </message>
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="32"/>
         <source>Loading Stream Details...</source>
-        <translation>Зареждане на стрийм детайли...</translation>
+        <translation>Зареждане на стрийм детайлите...</translation>
     </message>
     <message>
         <location filename="../smallWidgets/LoadingStreamDetails.ui" line="46"/>
@@ -2515,22 +2515,22 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.cpp" line="333"/>
         <source>Reload all Movies (%1)</source>
-        <translation>Презареди всички филми (%1)</translation>
+        <translation>Обнови всички филми (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="335"/>
         <source>Reload all TV Shows (%1)</source>
-        <translation>Презареди всички ТВ шоута (%1)</translation>
+        <translation>Обнови всички ТВ шоута (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="337"/>
         <source>Reload all Concerts (%1)</source>
-        <translation>Презареди всички концерти (%1)</translation>
+        <translation>Обнови всички концерти (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="339"/>
         <source>Reload all Downloads (%1)</source>
-        <translation>Презареди всички изтегляния (%1)</translation>
+        <translation>Обнови всички изтегляния (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="714"/>
@@ -3904,7 +3904,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main/Navbar.ui" line="175"/>
         <source>Reload</source>
-        <translation>Презареди</translation>
+        <translation>Обнови</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="195"/>
@@ -3939,7 +3939,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main/Navbar.cpp" line="26"/>
         <source>Reload all files (%1)</source>
-        <translation>Презареди всички файлове (%1)</translation>
+        <translation>Обнови всички файлове (%1)</translation>
     </message>
 </context>
 <context>
@@ -4461,12 +4461,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWindow.ui" line="99"/>
         <source>Reload On Start</source>
-        <translation>Презареждай при стартиране</translation>
+        <translation>Обновявай при стартиране</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="102"/>
         <source>Automatically reload contents on start</source>
-        <translation>Автоматично презареждай съдържанието при стартиране</translation>
+        <translation>Автоматично обновявай съдържанието при стартиране</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="112"/>
@@ -4557,7 +4557,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="355"/>
         <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
-        <translation type="unfinished"/>
+        <translation>Комбинирайте няколко скрепери в един, за да получите свой персонализиран скрепер. Ако изберете други скрепери като IMDB, The Movie DB и Fanart.tv за комбинирано търсене, може да не се получи, тъй като само тези трите споделят идентификаторите си.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="385"/>
@@ -4753,7 +4753,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1301"/>
         <source>Path to unrar</source>
-        <translation>Папка за разархивиране</translation>
+        <translation>Път до разархивиращата програма</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1584"/>
@@ -4856,7 +4856,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1381"/>
         <source>toolBar</source>
-        <translation type="unfinished"/>
+        <translation>Лента с инструменти</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1423"/>
@@ -5053,7 +5053,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="699"/>
         <source>Choose unrar</source>
-        <translation type="unfinished"/>
+        <translation>Изберете разархивираща програма</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="706"/>
@@ -6210,7 +6210,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1045"/>
         <source>Reload from File</source>
-        <translation>Зареди от файл</translation>
+        <translation>Обнови от файла</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1118"/>
@@ -6748,7 +6748,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="70"/>
         <source>Retrieve watched status</source>
-        <translation>Изтегли статуса за преглеждане</translation>
+        <translation>Изтегли преглеждания статус</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="77"/>
