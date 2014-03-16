@@ -2547,8 +2547,8 @@ Main menu entry (tooltip)</extracomment>
     <name>MakeMkvDialog</name>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="17"/>
-        <source>Dialog</source>
-        <translation type="unfinished"/>
+        <source>MediaElch</source>
+        <translation>MediaElch</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="50"/>
@@ -2658,7 +2658,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="191"/>
         <source>No tracks selected</source>
-        <translation type="unfinished"/>
+        <translation>Keine Titel ausgewählt</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="192"/>
