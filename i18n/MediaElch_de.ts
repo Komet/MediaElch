@@ -773,7 +773,7 @@
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="186"/>
         <source>Import movie with MakeMKV</source>
-        <translation type="unfinished"/>
+        <translation>Film mit MakeMKV importieren</translation>
     </message>
     <message numerus="yes">
         <location filename="../downloads/DownloadsWidget.cpp" line="202"/>
@@ -829,12 +829,12 @@
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="496"/>
         <source>makemkvcon missing</source>
-        <translation type="unfinished"/>
+        <translation>makemkvcon fehlt</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="497"/>
         <source>Please set the correct path to makemkvcon in MediaElchs settings.</source>
-        <translation type="unfinished"/>
+        <translation>Bitte setze den korrekten Pfad zu makemkvcon in MediaElchs Einstellungen.</translation>
     </message>
 </context>
 <context>
@@ -1190,7 +1190,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="70"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Label</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="81"/>
@@ -1254,12 +1254,12 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="307"/>
         <source>Label &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Label &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="308"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Label</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="375"/>
@@ -1666,7 +1666,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="613"/>
         <source>Movie has Rating</source>
-        <translation type="unfinished"/>
+        <translation>Film hat keine Bewertung</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="613"/>
@@ -1678,13 +1678,13 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="616"/>
         <source>Movie has no Rating</source>
-        <translation type="unfinished"/>
+        <translation>Film hat keine Bewertung</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="616"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="617"/>
         <source>No Rating</source>
-        <translation type="unfinished"/>
+        <translation>Keine Bewertung</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="619"/>
@@ -2553,17 +2553,17 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="50"/>
         <source>Scan</source>
-        <translation type="unfinished"/>
+        <translation>Scan</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="114"/>
         <source>Import Tracks</source>
-        <translation type="unfinished"/>
+        <translation>Tracks importieren</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="162"/>
         <source>Backup Disc</source>
-        <translation type="unfinished"/>
+        <translation>Disc Backup</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="207"/>
@@ -2618,7 +2618,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="375"/>
         <source>&lt;partNo&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;partNo&gt;</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="382"/>
@@ -2643,7 +2643,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="429"/>
         <source>Import directory</source>
-        <translation type="unfinished"/>
+        <translation>Import Verzeichnis</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="473"/>
@@ -2663,7 +2663,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="192"/>
         <source>Please select at least one track you want to import.</source>
-        <translation type="unfinished"/>
+        <translation>Bitte wähle mindestens einen Titel aus, den du importieren möchtest.</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="227"/>
@@ -2688,12 +2688,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="358"/>
         <source>MakeMKV import finished</source>
-        <translation type="unfinished"/>
+        <translation>MakeMKV Import abgeschlossen</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="358"/>
         <source>Import with MakeMKV has finished</source>
-        <translation type="unfinished"/>
+        <translation>Import mit MakeMKV ist fertig</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="361"/>
@@ -3980,42 +3980,42 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../globals/Helper.cpp" line="500"/>
         <source>No Label</source>
-        <translation type="unfinished"/>
+        <translation>Kein Label</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="501"/>
         <source>Red</source>
-        <translation type="unfinished"/>
+        <translation>Rot</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="502"/>
         <source>Orange</source>
-        <translation type="unfinished"/>
+        <translation>Orange</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="503"/>
         <source>Yellow</source>
-        <translation type="unfinished"/>
+        <translation>Geld</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="504"/>
         <source>Green</source>
-        <translation type="unfinished"/>
+        <translation>Grün</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="505"/>
         <source>Blue</source>
-        <translation type="unfinished"/>
+        <translation>Blau</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="506"/>
         <source>Purple</source>
-        <translation type="unfinished"/>
+        <translation>Lila</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="507"/>
         <source>Grey</source>
-        <translation type="unfinished"/>
+        <translation>Grau</translation>
     </message>
 </context>
 <context>
@@ -4525,7 +4525,7 @@ Bei Serien müssen Episoden in Unterverzeichnissen mit dem Namen der Serie sein.
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1322"/>
         <source>Path to makemkvcon</source>
-        <translation type="unfinished"/>
+        <translation>Pfad zu makemkvcon</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="272"/>
@@ -4537,7 +4537,7 @@ Bei Serien müssen Episoden in Unterverzeichnissen mit dem Namen der Serie sein.
     <message>
         <location filename="../settings/SettingsWindow.ui" line="252"/>
         <source>Startup section</source>
-        <translation type="unfinished"/>
+        <translation>Startbereich</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="278"/>
@@ -4799,12 +4799,12 @@ Bei Serien müssen Episoden in Unterverzeichnissen mit dem Namen der Serie sein.
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1072"/>
         <source>If you want to use the synchronization feature you need to enable the webserver within XBMC (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation type="unfinished"/>
+        <translation>Um die Synchronisation zu benutzen, musst du in XBMC den Webserver aktivieren (Einstellungen -&gt; Dienste -&gt; Webserver). Trag den Port des Webservers hier ein (normalerweise 80 oder 8080).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1115"/>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Benutzer</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1195"/>
@@ -5053,7 +5053,7 @@ Bei Serien müssen Episoden in Unterverzeichnissen mit dem Namen der Serie sein.
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="706"/>
         <source>Choose makemkvcon</source>
-        <translation type="unfinished"/>
+        <translation>makemkvcon auswählen</translation>
     </message>
 </context>
 <context>
@@ -5107,7 +5107,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../support/SupportDialog.ui" line="149"/>
         <source>Hide donate button</source>
-        <translation type="unfinished"/>
+        <translation>Spenden Button verstecken</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="172"/>
@@ -5690,7 +5690,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="57"/>
         <source>Hide specials in missing episodes</source>
-        <translation type="unfinished"/>
+        <translation>Verstecke Specials in fehlenden Episoden</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="343"/>
@@ -6717,7 +6717,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
         <source>Please make sure you have setup your sources in XBMC and that the webserver is enabled (XBMC -&gt; Settings -&gt; Services -&gt; Webserver).</source>
-        <translation type="unfinished"/>
+        <translation>Achte bitte darauf, dass deine Quellen in XBMC eingerichtet sind und das Webserver in XBMC aktiviert ist (Einstellungen -&gt; Dienste -&gt; Webserver).</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="36"/>
@@ -6737,7 +6737,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
         <source>XBMC will remove not longer existing items from your database.</source>
-        <translation type="unfinished"/>
+        <translation>XBMC bereinigt deine Datenbank und löscht Filme, die nicht mehr vorhanden sind.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="70"/>
@@ -6781,7 +6781,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
         <location filename="../xbmc/XbmcSync.cpp" line="300"/>
         <location filename="../xbmc/XbmcSync.cpp" line="328"/>
         <source>Network error</source>
-        <translation type="unfinished"/>
+        <translation>Netzwerk Fehler</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="414"/>
@@ -6816,7 +6816,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="554"/>
         <source>Finished. XBMC is now cleaning your database.</source>
-        <translation type="unfinished"/>
+        <translation>Fertig. XBMC bereinigt jetzt deine Datenbank.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="595"/>
