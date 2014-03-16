@@ -33,7 +33,7 @@ mediaelch (2.1-1) raring; urgency=low
 
  -- Daniel Kabel <daniel.kabel@me.com>  Sun, 16 Mar 2014 17:31:45 +0100
 
-mediaelch (2.0.1-1) raring; urgency=low
+mediaelch (2.0.6-1) raring; urgency=low
 
   * Show all banners for seasons
   * Improve tabs ui
