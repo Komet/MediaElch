@@ -127,7 +127,7 @@ void MovieController::loadData(QMap<ScraperInterface*, QString> ids, ScraperInte
     m_infosToLoad = infos;
     if (scraperInterface->identifier() == "tmdb" && !ids.values().first().startsWith("tt"))
         m_movie->setTmdbId(ids.values().first());
-    else if (scraperInterface->identifier() == "imdb" || scraperInterface->identifier() == "tmdb" && ids.values().first().startsWith("tt"))
+    else if (scraperInterface->identifier() == "imdb" || (scraperInterface->identifier() == "tmdb" && ids.values().first().startsWith("tt")))
         m_movie->setId(ids.values().first());
     scraperInterface->loadData(ids, m_movie, infos);
 }
