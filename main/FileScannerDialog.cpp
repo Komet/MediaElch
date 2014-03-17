@@ -69,8 +69,8 @@ int FileScannerDialog::exec()
     ui->status->setText("");
     ui->progressBar->setValue(0);
     ui->currentDir->setText("");
-    adjustSize();
     QDialog::show();
+    adjustSize();
 
     if (m_forceReload)
         ImageCache::instance()->clearCache();
