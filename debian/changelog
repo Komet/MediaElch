@@ -1,3 +1,9 @@
+mediaelch (2.1.1-1) saucy; urgency=low
+
+  * Filescanner dialog not visible
+
+ -- Daniel Kabel <daniel.kabel@me.com>  Mon, 17 Mar 2014 11:04:03 +0100
+
 mediaelch (2.1-1) saucy; urgency=low
 
   * OS X Retina display support
