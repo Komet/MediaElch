@@ -4915,7 +4915,7 @@ Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="478"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
-        <translation>Organizacja filmów działa tylko na filmach, nie przenosi ich jeszcze do oddzielnych folderów.</translation>
+        <translation>Porządkowanie filmów działa tylko na filmach, nie przenosi ich jeszcze do oddzielnych folderów.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="486"/>

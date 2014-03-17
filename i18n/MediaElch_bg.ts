@@ -779,7 +779,7 @@
         <location filename="../downloads/DownloadsWidget.cpp" line="202"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="330"/>
         <source>%n file(s)</source>
-        <translation><numerusform>%n файл(а)</numerusform><numerusform>%n файл(а)</numerusform></translation>
+        <translation><numerusform>%n файл</numerusform><numerusform>%n файла</numerusform></translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="272"/>
@@ -888,7 +888,7 @@
     <message>
         <location filename="../export/ExportDialog.cpp" line="30"/>
         <source>You need to install at least one theme.</source>
-        <translation>Трябва да инсталирате най-малко една тема.</translation>
+        <translation>Трябва да инсталирате поне една тема.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="63"/>
@@ -908,7 +908,7 @@
     <message>
         <location filename="../export/ExportDialog.cpp" line="126"/>
         <source>Export completed.</source>
-        <translation>Експортирането завърши.</translation>
+        <translation>Експортирането приключи.</translation>
     </message>
 </context>
 <context>
@@ -962,7 +962,7 @@
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="35"/>
         <source>Uninstall</source>
-        <translation>Деинсталирай</translation>
+        <translation>Премахни</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="48"/>
@@ -977,7 +977,7 @@
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="56"/>
         <source>Uninstalling...</source>
-        <translation>Деинсталиране...</translation>
+        <translation>Премахване...</translation>
     </message>
 </context>
 <context>
@@ -2563,7 +2563,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="162"/>
         <source>Backup Disc</source>
-        <translation>Резервно копие на диска</translation>
+        <translation>Бекъп на диска</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="207"/>
@@ -3076,7 +3076,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="23"/>
         <source>Movie Multi Scrape</source>
-        <translation>Мулти извличане на филми</translation>
+        <translation>Мулти филмово извличане</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="36"/>
@@ -3101,7 +3101,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="241"/>
         <source>Studios</source>
-        <translation>Студио</translation>
+        <translation>Студиа</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="171"/>
@@ -3251,7 +3251,7 @@ Main menu entry (tooltip)</extracomment>
     <message numerus="yes">
         <location filename="../movies/MovieMultiScrapeDialog.cpp" line="175"/>
         <source>Scraping of %n movies has finished.</source>
-        <translation><numerusform>Извличането на %n филм приключи.</numerusform><numerusform>Извличането на %n филма приключи.</numerusform></translation>
+        <translation><numerusform>Приключи извличането на %n филм.</numerusform><numerusform>Приключи извличането на %n филма.</numerusform></translation>
     </message>
 </context>
 <context>
@@ -3533,7 +3533,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="421"/>
         <source>Download Trailer</source>
-        <translation>Изтегли трейлър</translation>
+        <translation>Изтегли трейлъра</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="437"/>
@@ -3568,7 +3568,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="570"/>
         <source> Minutes</source>
-        <translation>Минути</translation>
+        <translation>минути</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="582"/>
@@ -3624,7 +3624,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="790"/>
         <source>Support for extra fanarts is only available when your movies are stored in separate folders. Check the settings if you&apos;ve stored your movies in separate folders already.</source>
-        <translation>Поддръжката на допълнителните фанарти е достъпна само, когато филмите се съхраняват в отделни папки. Проверете настройките, за да видите дали вече съхранявате филмите си в отделни папки.</translation>
+        <translation>Поддръжката на допълнителните фанарти е достъпна само, когато филмите съхраняващи се в отделни папки. Проверете настройките, за да видите дали вече съхранявате филмите си в отделни папки.</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="810"/>
@@ -3686,7 +3686,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="1024"/>
         <source>Reload from File</source>
-        <translation>Зареди от файл</translation>
+        <translation>Обнови от файл</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1242"/>
@@ -4146,12 +4146,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../renamer/Renamer.ui" line="376"/>
         <source>File Naming</source>
-        <translation>Именуване на файл</translation>
+        <translation>Именуване на файловете</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="383"/>
         <source>Season Directory Naming</source>
-        <translation>Именуване на директория за сезон</translation>
+        <translation>Именуване на директория за сезоните</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="390"/>
@@ -4363,7 +4363,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="175"/>
         <source>Add movie to set</source>
-        <translation>Добавете филм към поредицата</translation>
+        <translation>Добавете филма към поредица</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="178"/>
@@ -4423,7 +4423,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.cpp" line="424"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; е съхранен</translation>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; бе съхранена</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.cpp" line="450"/>
@@ -4451,7 +4451,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWindow.ui" line="91"/>
         <source>Sep. folders</source>
-        <translation>Отд. папки</translation>
+        <translation>Отделни папки</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="94"/>
@@ -4519,8 +4519,8 @@ p, li { white-space: pre-wrap; }
         <location filename="../settings/SettingsWindow.ui" line="48"/>
         <source>Add one or more directories containing your movies, TV Shows, concerts or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.</source>
-        <translation>Добавете една или повече директории с вашите филми, телевизионни предавания, концерти или файлове за импортиране. 
-Епизодите на тв предаванията трябва да са в подпапки с името на предаването.</translation>
+        <translation>Добавете една или повече директории със своите филми, телевизионни предавания, концерти или файлове за импортиране. 
+Епизодите на тв предаванията трябва да са в подпапки именувани с името на предаването.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="212"/>
@@ -4557,7 +4557,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="355"/>
         <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
-        <translation>Комбинирайте няколко скрепери в един, за да получите свой персонализиран скрепер. Ако изберете други скрепери като IMDB, The Movie DB и Fanart.tv за комбинирано търсене, може да не се получи, тъй като само тези трите споделят идентификаторите си.</translation>
+        <translation>Комбинирайте няколко скрепери в един, за да получите свой персонализиран скрепер. Ако изберете други скрепери освен IMDB, The Movie DB и Fanart.tv за комбинирано търсене, може да не се получи, тъй като само тези трите споделят идентификаторите си.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="385"/>
@@ -4573,7 +4573,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="416"/>
         <location filename="../settings/SettingsWindow.ui" line="949"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
-        <translation>Можете да използвате пълнителя &lt;baseFileName&gt;, това е името на файла, без разширението.</translation>
+        <translation>Можете да използвате пълнителя &lt;baseFileName&gt; за името на файла, без разширението.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="431"/>
@@ -4698,7 +4698,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="680"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
-        <translation>Можете да използвате пълнителя &lt;baseFileName&gt;, това е името на файла, без разширението и за сезонните постери &lt;seasonNumber&gt;, това е номерът на сезона.</translation>
+        <translation>Можете да използвате пълнителя &lt;baseFileName&gt; за името на файла, без разширението и за сезонните постери &lt;seasonNumber&gt; за номерът на сезона.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="695"/>
@@ -4953,12 +4953,12 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="595"/>
         <source>Theme &quot;%1&quot; was successfully uninstalled</source>
-        <translation>Темата &quot;%1&quot; бе успешно деинсталирана</translation>
+        <translation>Темата &quot;%1&quot; бе успешно премахната</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="607"/>
         <source>Don&apos;t use</source>
-        <translation>Не използвайт</translation>
+        <translation>Не използвай</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="647"/>
@@ -5091,7 +5091,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../support/SupportDialog.ui" line="74"/>
         <source>MediaElch makes use of various movie and tv show databases. These databases also need your help to keep their services up and running for free. If you don&apos;t want to donate you can also contribute information and missing artwork if possible.</source>
-        <translation>MediaElch използва разнообразни бази данни за филмови и тв предавания. Тези бази данни също се нуждаят от вашата помощ, за да поддържат своите услуги и да работят безплатно. Ако не искате да направите дарение можете също така да предоставите информация и/или липсващите изображения, ако е възможно.</translation>
+        <translation>MediaElch използва разнообразни бази данни за филмови и тв предавания. Тези бази данни също се нуждаят от вашата помощ, за да поддържат своите услуги и да работят безплатно. Ако не искате да направите дарение, можете да предоставите информация и/или да добавите липсващите изображения, ако е възможно.</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="84"/>
@@ -5686,7 +5686,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="54"/>
         <source>Open TV Show Folder</source>
-        <translation>Отвори папката с ТВ шоута</translation>
+        <translation>Отвори папката с ТВ шоутата</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="55"/>
@@ -5696,7 +5696,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="57"/>
         <source>Hide specials in missing episodes</source>
-        <translation>Скрий специалните в липсващи епизоди</translation>
+        <translation>Скрий специалните епизоди от липсващи епизоди</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="343"/>
@@ -5950,7 +5950,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowUpdater.cpp" line="57"/>
         <source>Updating TV Shows</source>
-        <translation>Актуализиране на ТВ предаванията</translation>
+        <translation>Актуализиране на ТВ шоутата</translation>
     </message>
 </context>
 <context>
@@ -5968,7 +5968,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="183"/>
         <source>All TV Shows and Episodes Saved</source>
-        <translation>Всички ТВ шоута и епизода са съхранени</translation>
+        <translation>Всички ТВ шоута и епизоди са съхранени</translation>
     </message>
 </context>
 <context>
@@ -6443,7 +6443,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="285"/>
         <source> Minutes</source>
-        <translation>Минути</translation>
+        <translation>минути</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="295"/>
@@ -6718,7 +6718,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="17"/>
         <source>XBMC Synchronization</source>
-        <translation>XBMC синхронизация</translation>
+        <translation>Синхронизиране с XBMC</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
@@ -6733,7 +6733,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="46"/>
         <source>This will tell XBMC to remove the changed movies, concerts or shows. Afterwards a XBMC library update is triggered and the removed items will be picked up again.</source>
-        <translation>Тази функция ще принуди XBMC да премахне промените филми, концерти и сериали. След това XBMC ще актуализира библиотека си и изтрити елементи ще бъдат добавени отново, за да се отразят промените.</translation>
+        <translation>Тази функция ще принуди XBMC да премахне промените филми, концерти и шоута. След това XBMC ще актуализира библиотека си и изтритите елементи ще бъдат добавени отново, за да се отразят промените.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="56"/>
@@ -6779,7 +6779,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="229"/>
         <source>Getting contents from XBMC</source>
-        <translation>Получи съдържание от XBMC</translation>
+        <translation>Получи съдържанията от XBMC</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="244"/>
