@@ -124,7 +124,7 @@
     <message>
         <location filename="../scrapers/AEBN.cpp" line="41"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>语言</translation>
     </message>
 </context>
 <context>
@@ -254,7 +254,7 @@
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="36"/>
         <source>Add Certification</source>
-        <translation type="unfinished"/>
+        <translation>添加分级信息</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.cpp" line="37"/>
@@ -659,7 +659,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="1010"/>
         <source>Logo</source>
-        <translation>徽标</translation>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="1057"/>
@@ -703,7 +703,7 @@
         <location filename="../concerts/ConcertWidget.cpp" line="566"/>
         <location filename="../concerts/ConcertWidget.cpp" line="567"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>语言</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="537"/>
@@ -829,12 +829,12 @@
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="496"/>
         <source>makemkvcon missing</source>
-        <translation type="unfinished"/>
+        <translation>未找到makemkvcon</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="497"/>
         <source>Please set the correct path to makemkvcon in MediaElchs settings.</source>
-        <translation type="unfinished"/>
+        <translation>请在 MediaElchs 的设置中输入 makemkvcon 的正确路径。</translation>
     </message>
 </context>
 <context>
@@ -843,7 +843,7 @@
         <location filename="../export/ExportDialog.ui" line="23"/>
         <location filename="../export/ExportDialog.ui" line="132"/>
         <source>Export</source>
-        <translation type="unfinished"/>
+        <translation>输出</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="32"/>
@@ -1133,7 +1133,7 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="55"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>语言</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="57"/>
@@ -1453,7 +1453,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="560"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="563"/>
         <source>Logo</source>
-        <translation>徽标</translation>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="562"/>
@@ -1492,25 +1492,25 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="571"/>
         <source>Movie has Banner</source>
-        <translation type="unfinished"/>
+        <translation>该电影有宽幅海报</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="571"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="572"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="575"/>
         <source>Banner</source>
-        <translation type="unfinished"/>
+        <translation>宽幅海报</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="574"/>
         <source>Movie has no Banner</source>
-        <translation type="unfinished"/>
+        <translation>该电影无宽幅海报</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="574"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="575"/>
         <source>No Banner</source>
-        <translation type="unfinished"/>
+        <translation>无宽幅海报</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="577"/>
@@ -1892,7 +1892,7 @@
         <location filename="../movies/GenreWidget.ui" line="164"/>
         <location filename="../movies/GenreWidget.ui" line="167"/>
         <source>Add Movie</source>
-        <translation>添加电影</translation>
+        <translation>新增电影</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="177"/>
@@ -2040,7 +2040,7 @@
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="39"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>语言</translation>
     </message>
 </context>
 <context>
@@ -2460,7 +2460,7 @@
     <message>
         <location filename="../main/MainWindow.ui" line="142"/>
         <source>Movie Sets</source>
-        <translation type="unfinished"/>
+        <translation>系列电影</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="175"/>
@@ -2475,7 +2475,7 @@
     <message>
         <location filename="../main/MainWindow.ui" line="244"/>
         <source>Shows</source>
-        <translation type="unfinished"/>
+        <translation>电视剧</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="260"/>
@@ -2520,7 +2520,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.cpp" line="335"/>
         <source>Reload all TV Shows (%1)</source>
-        <translation type="unfinished"/>
+        <translation>重新加载所有电视剧 (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="337"/>
@@ -2904,7 +2904,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="75"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>语言</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="77"/>
@@ -3006,7 +3006,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../sets/MovieListDialog.ui" line="74"/>
         <source>Add selected movies</source>
-        <translation type="unfinished"/>
+        <translation>添加已选电影</translation>
     </message>
     <message>
         <location filename="../sets/MovieListDialog.ui" line="94"/>
@@ -3110,7 +3110,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="311"/>
         <source>Logo</source>
-        <translation>徽标</translation>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="231"/>
@@ -3145,7 +3145,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="221"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>编剧</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="211"/>
@@ -3195,7 +3195,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="281"/>
         <source>Banner</source>
-        <translation type="unfinished"/>
+        <translation>宽幅海报</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="271"/>
@@ -3332,7 +3332,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="190"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>编剧</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="197"/>
@@ -3387,7 +3387,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="267"/>
         <source>Logo</source>
-        <translation>徽标</translation>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="274"/>
@@ -3402,7 +3402,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="288"/>
         <source>Banner</source>
-        <translation type="unfinished"/>
+        <translation>宽幅海报</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="295"/>
@@ -3455,7 +3455,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="200"/>
         <source>Sort Title</source>
-        <translation type="unfinished"/>
+        <translation>排序片名</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="210"/>
@@ -3485,7 +3485,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="267"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>编剧</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="277"/>
@@ -3521,7 +3521,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="381"/>
         <source>Plot</source>
-        <translation type="unfinished"/>
+        <translation>剧情</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="399"/>
@@ -3571,7 +3571,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="582"/>
         <source>Outline</source>
-        <translation type="unfinished"/>
+        <translation>剧情简介</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="595"/>
@@ -3601,7 +3601,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="696"/>
         <source>Add Actor</source>
-        <translation type="unfinished"/>
+        <translation>添加演员</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="733"/>
@@ -3719,7 +3719,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../movies/MovieWidget.ui" line="1418"/>
         <location filename="../movies/MovieWidget.ui" line="1458"/>
         <source>Logo</source>
-        <translation>徽标</translation>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1468"/>
@@ -3730,7 +3730,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="1518"/>
         <source>Disc Art</source>
-        <translation type="unfinished"/>
+        <translation>光盘封面</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1558"/>
@@ -3741,7 +3741,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../movies/MovieWidget.ui" line="1568"/>
         <location filename="../movies/MovieWidget.ui" line="1605"/>
         <source>Banner</source>
-        <translation type="unfinished"/>
+        <translation>宽幅海报</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="79"/>
@@ -3771,7 +3771,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.cpp" line="90"/>
         <source>Add Country</source>
-        <translation type="unfinished"/>
+        <translation>添加国家或地区</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="94"/>
@@ -3781,7 +3781,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.cpp" line="95"/>
         <source>Add Studio</source>
-        <translation type="unfinished"/>
+        <translation>添加制片公司</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="464"/>
@@ -3800,7 +3800,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../movies/MovieWidget.cpp" line="726"/>
         <location filename="../movies/MovieWidget.cpp" line="727"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>语言</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="697"/>
@@ -4271,7 +4271,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="331"/>
         <source>&lt;b&gt;Rename Banner&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;重命名宽幅海报&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="348"/>
@@ -4352,12 +4352,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="152"/>
         <source>Sorttitle</source>
-        <translation type="unfinished"/>
+        <translation>排序片名</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="175"/>
         <source>Add movie to set</source>
-        <translation type="unfinished"/>
+        <translation>把电影添加到指定系列电影中</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="178"/>
@@ -4407,7 +4407,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.cpp" line="64"/>
         <source>Add Movie Set</source>
-        <translation type="unfinished"/>
+        <translation>添加系列电影</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.cpp" line="65"/>
@@ -4465,7 +4465,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWindow.ui" line="112"/>
         <source>Add</source>
-        <translation type="unfinished"/>
+        <translation>添加</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="119"/>
@@ -4594,7 +4594,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="985"/>
         <location filename="../settings/SettingsWindow.cpp" line="683"/>
         <source>Logo</source>
-        <translation>徽标</translation>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="459"/>
@@ -4609,14 +4609,14 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="999"/>
         <location filename="../settings/SettingsWindow.cpp" line="685"/>
         <source>Disc Art</source>
-        <translation type="unfinished"/>
+        <translation>光盘封面</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="533"/>
         <location filename="../settings/SettingsWindow.ui" line="716"/>
         <location filename="../settings/SettingsWindow.cpp" line="689"/>
         <source>Banner</source>
-        <translation type="unfinished"/>
+        <translation>宽幅海报</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="540"/>
@@ -4628,12 +4628,12 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="574"/>
         <source>Movie outline</source>
-        <translation type="unfinished"/>
+        <translation>电影剧情简介</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="581"/>
         <source>Use plot when outline is not available</source>
-        <translation type="unfinished"/>
+        <translation>当未刮削到剧情简介时，用剧情简介填充</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="588"/>
@@ -4725,7 +4725,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="772"/>
         <source>Season Banner</source>
-        <translation type="unfinished"/>
+        <translation>播出季宽幅海报</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="899"/>
@@ -4874,7 +4874,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1484"/>
         <source>Global</source>
-        <translation type="unfinished"/>
+        <translation>全局设置</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1504"/>
@@ -4884,12 +4884,12 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1524"/>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>网络设置</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1564"/>
         <source>Export</source>
-        <translation type="unfinished"/>
+        <translation>输出</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="408"/>
@@ -4990,7 +4990,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="661"/>
         <source>Plot</source>
-        <translation type="unfinished"/>
+        <translation>剧情</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="665"/>
@@ -5020,7 +5020,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="675"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>编剧</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="677"/>
@@ -5237,7 +5237,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="54"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>语言</translation>
     </message>
 </context>
 <context>
@@ -5370,7 +5370,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="54"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>语言</translation>
     </message>
 </context>
 <context>
@@ -5511,7 +5511,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="53"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>语言</translation>
     </message>
 </context>
 <context>
@@ -5546,7 +5546,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../globals/TrailerDialog.ui" line="183"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>语言</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="188"/>
@@ -5614,12 +5614,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="52"/>
         <source>Searching for TV Shows...</source>
-        <translation type="unfinished"/>
+        <translation>正在搜索 电视剧...</translation>
     </message>
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="71"/>
         <source>Loading TV Shows...</source>
-        <translation type="unfinished"/>
+        <translation> 正在加载电视剧...</translation>
     </message>
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="182"/>
@@ -5754,7 +5754,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="170"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>编剧</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="180"/>
@@ -5774,7 +5774,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="210"/>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>网络设置</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="220"/>
@@ -5804,12 +5804,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="270"/>
         <source>Season Banner</source>
-        <translation type="unfinished"/>
+        <translation>播出季宽幅海报</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="280"/>
         <source>Banner</source>
-        <translation type="unfinished"/>
+        <translation>宽幅海报</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="290"/>
@@ -5902,7 +5902,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="149"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>编剧</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="159"/>
@@ -5917,7 +5917,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="179"/>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>网络设置</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="189"/>
@@ -5935,7 +5935,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowUpdater.cpp" line="57"/>
         <source>Updating TV Shows</source>
-        <translation type="unfinished"/>
+        <translation>更新电视剧资料</translation>
     </message>
 </context>
 <context>
@@ -5948,12 +5948,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="164"/>
         <source>Saving changed TV Shows and Episodes</source>
-        <translation type="unfinished"/>
+        <translation>保存电视剧及其播出季信息的变更</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="183"/>
         <source>All TV Shows and Episodes Saved</source>
-        <translation type="unfinished"/>
+        <translation>电视剧及其播出季资料已保存</translation>
     </message>
 </context>
 <context>
@@ -6071,7 +6071,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="507"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>编剧</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="581"/>
@@ -6086,7 +6086,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="619"/>
         <source>Add Director</source>
-        <translation type="unfinished"/>
+        <translation>添加导演</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="636"/>
@@ -6096,17 +6096,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="479"/>
         <source>Writers</source>
-        <translation type="unfinished"/>
+        <translation>编剧</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="517"/>
         <source>Add Writer</source>
-        <translation type="unfinished"/>
+        <translation>添加编剧</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="534"/>
         <source>Remove Writer</source>
-        <translation type="unfinished"/>
+        <translation>删除编剧</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="683"/>
@@ -6126,7 +6126,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="758"/>
         <source>Add Actor</source>
-        <translation type="unfinished"/>
+        <translation>添加演员</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="728"/>
@@ -6224,7 +6224,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="464"/>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="465"/>
         <source>Language</source>
-        <translation>对白</translation>
+        <translation>语言</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="435"/>
@@ -6250,7 +6250,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="703"/>
         <source>Unknown Writer</source>
-        <translation type="unfinished"/>
+        <translation>未知编剧</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="921"/>
@@ -6315,7 +6315,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="332"/>
         <source>Banner</source>
-        <translation type="unfinished"/>
+        <translation>宽幅海报</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="354"/>
@@ -6433,7 +6433,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="295"/>
         <source>Sort Title</source>
-        <translation type="unfinished"/>
+        <translation>排序片名</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="308"/>
@@ -6458,7 +6458,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="394"/>
         <source>Add Actor</source>
-        <translation type="unfinished"/>
+        <translation>添加演员</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="364"/>
@@ -6519,12 +6519,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1053"/>
         <source>Banner</source>
-        <translation type="unfinished"/>
+        <translation>宽幅海报</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="912"/>
         <source>Logo</source>
-        <translation>徽标</translation>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="959"/>
