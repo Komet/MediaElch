@@ -3201,7 +3201,7 @@ Toiminto peruutettu.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="271"/>
         <source>Thumb</source>
-        <translation>Ei esikatselukuvaa</translation>
+        <translation>Esikatselukuvaa</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="321"/>
@@ -4451,7 +4451,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWindow.ui" line="91"/>
         <source>Sep. folders</source>
-        <translation>Erillisissä hakemistoissa</translation>
+        <translation>Erillisissä kansioissa</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="94"/>
@@ -4518,7 +4518,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../settings/SettingsWindow.ui" line="48"/>
         <source>Add one or more directories containing your movies, TV Shows, concerts or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.</source>
-        <translation>Lisää yksi tai useampi hakemista, joka sisältää elokuvasi, TV-sarjasi, konserttisi tai tuotavat tiedostot.
+        <translation>Lisää yksi tai useampi hakemisto, joka sisältää elokuvasi, TV-sarjasi, konserttisi tai tuotavat tiedostot.
 TV-sarjojen jaksojen tulee olla alihakemistoissa, jotka on nimetty sarjojen mukaisesti.</translation>
     </message>
     <message>
