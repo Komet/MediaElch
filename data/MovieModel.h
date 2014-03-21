@@ -19,7 +19,7 @@ public:
     explicit MovieModel(QObject *parent = 0);
     void addMovie(Movie *movie);
     void clear();
-    QList<Movie*> movies();
+    virtual QList<Movie*> movies();
     Movie *movie(int row);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;

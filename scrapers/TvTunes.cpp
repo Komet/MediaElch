@@ -13,7 +13,7 @@ TvTunes::TvTunes(QObject *parent) :
 void TvTunes::search(QString searchStr)
 {
     searchStr = searchStr.replace(" ", "+");
-    searchStr = Helper::urlEncode(searchStr);
+    searchStr = Helper::instance()->urlEncode(searchStr);
 
     QUrl url(QString("http://www.televisiontunes.com/search.php?searWords=%1&search=").arg(searchStr));
     QNetworkRequest request(url);

@@ -389,7 +389,7 @@ void MediaPassion::parseAndAssignInfos(QString data, Movie *movie, QList<int> in
                 if (xml.name() == "trailer" && !trailerSet) {
                     QString trailer = xml.readElementText();
                     if (!trailer.isEmpty()) {
-                        movie->setTrailer(QUrl(Helper::formatTrailerUrl(trailer)));
+                        movie->setTrailer(QUrl(Helper::instance()->formatTrailerUrl(trailer)));
                         trailerSet = true;
                     }
                 } else {
@@ -401,7 +401,7 @@ void MediaPassion::parseAndAssignInfos(QString data, Movie *movie, QList<int> in
                 if (xml.name() == "country") {
                     QString country = xml.readElementText();
                     if (!country.isEmpty())
-                        movie->addCountry(Helper::mapCountry(country));
+                        movie->addCountry(Helper::instance()->mapCountry(country));
                 } else {
                     xml.skipCurrentElement();
                 }
@@ -411,7 +411,7 @@ void MediaPassion::parseAndAssignInfos(QString data, Movie *movie, QList<int> in
                 if (xml.name() == "genre") {
                     QString genre = xml.readElementText();
                     if (!genre.isEmpty())
-                        movie->addGenre(Helper::mapGenre(genre));
+                        movie->addGenre(Helper::instance()->mapGenre(genre));
                 } else {
                     xml.skipCurrentElement();
                 }
@@ -421,7 +421,7 @@ void MediaPassion::parseAndAssignInfos(QString data, Movie *movie, QList<int> in
                 if (xml.name() == "studio") {
                     QString studio = xml.readElementText();
                     if (!studio.isEmpty())
-                        movie->addStudio(Helper::mapStudio(studio));
+                        movie->addStudio(Helper::instance()->mapStudio(studio));
                 } else {
                     xml.skipCurrentElement();
                 }

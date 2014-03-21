@@ -166,4 +166,16 @@
         <file alias="import_active.png">img/settings/import_active.png</file>
         <file alias="import.png">img/settings/import.png</file>
     </qresource>
+    <qresource prefix="/settings_line">
+        <file alias="tvshows.png">img/settings_line/desktop_64px.png</file>
+        <file alias="network.png">img/settings_line/globe_64px.png</file>
+        <file alias="scraper.png">img/settings_line/magnifying-glass_64px.png</file>
+        <file alias="concerts.png">img/settings_line/mic_64px.png</file>
+        <file alias="global.png">img/settings_line/tools-2_64px.png</file>
+        <file alias="movies.png">img/settings_line/video_64px.png</file>
+        <file alias="downloads.png">img/settings_line/download_64px.png</file>
+        <file alias="plugins.png">img/settings_line/puzzle_64px.png</file>
+        <file alias="export.png">img/settings_line/upload_64px.png</file>
+        <file alias="xbmc.png">img/settings_line/xbmc.png</file>
+    </qresource>
 </RCC>

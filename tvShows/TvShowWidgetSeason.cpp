@@ -77,8 +77,8 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
 
     ui->missingLabel->setVisible(false);
 
-    Helper::applyStyle(ui->groupBox_3);
-    Helper::applyEffect(ui->groupBox_3);
+    Helper::instance()->applyStyle(ui->groupBox_3);
+    Helper::instance()->applyEffect(ui->groupBox_3);
 }
 
 TvShowWidgetSeason::~TvShowWidgetSeason()
@@ -177,7 +177,7 @@ void TvShowWidgetSeason::onDownloadFinished(DownloadManagerElement elem)
     foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage*>()) {
         if (image->imageType() == elem.imageType) {
             if (elem.imageType == ImageType::TvShowSeasonBackdrop)
-                Helper::resizeBackdrop(elem.data);
+                Helper::instance()->resizeBackdrop(elem.data);
             if (m_show == elem.show)
                 image->setImage(elem.data);
             ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(elem.show, elem.imageType, elem.season));

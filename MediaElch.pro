@@ -162,7 +162,10 @@ SOURCES += main.cpp\
     main/Navbar.cpp \
     smallWidgets/FilterWidget.cpp \
     downloads/MakeMkvDialog.cpp \
-    downloads/MakeMkvCon.cpp
+    downloads/MakeMkvCon.cpp \
+    plugins/PluginManager.cpp \
+    plugins/PluginsWidget.cpp \
+    plugins/PluginManagerDialog.cpp
 
 macx {
     OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm
@@ -304,7 +307,11 @@ HEADERS  += main/MainWindow.h \
     scrapers/AdultDvdEmpire.h \
     main/Navbar.h \
     downloads/MakeMkvDialog.h \
-    downloads/MakeMkvCon.h
+    downloads/MakeMkvCon.h \
+    plugins/PluginInterface.h \
+    plugins/PluginManager.h \
+    plugins/PluginsWidget.h \
+    plugins/PluginManagerDialog.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -352,7 +359,9 @@ FORMS    += main/MainWindow.ui \
     concerts/ConcertSearchWidget.ui \
     tvShows/TvShowSearchEpisode.ui \
     main/Navbar.ui \
-    downloads/MakeMkvDialog.ui
+    downloads/MakeMkvDialog.ui \
+    plugins/PluginsWidget.ui \
+    plugins/PluginManagerDialog.ui
 
 RESOURCES += \
     MediaElch.qrc \

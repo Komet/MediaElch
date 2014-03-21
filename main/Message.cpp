@@ -21,7 +21,7 @@ Message::Message(QWidget *parent) :
     m_timer = new QTimer;
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
-    if (Helper::devicePixelRatio(this) == 1) {
+    if (Helper::instance()->devicePixelRatio(this) == 1) {
         QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
         effect->setColor(QColor(0, 0, 0, 30));
         effect->setOffset(4);

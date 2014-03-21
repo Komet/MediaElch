@@ -121,8 +121,8 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
 
     ui->missingLabel->setVisible(false);
 
-    Helper::applyStyle(ui->groupBox_3);
-    Helper::applyEffect(ui->groupBox_3);
+    Helper::instance()->applyStyle(ui->groupBox_3);
+    Helper::instance()->applyEffect(ui->groupBox_3);
 }
 
 /**

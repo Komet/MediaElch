@@ -10,6 +10,7 @@
 #include "export/ExportDialog.h"
 #include "main/AboutDialog.h"
 #include "main/FileScannerDialog.h"
+#include "plugins/PluginInterface.h"
 #include "renamer/Renamer.h"
 #include "settings/Settings.h"
 #include "settings/SettingsWindow.h"
@@ -35,6 +36,7 @@ public:
 
 public slots:
     void setNewMarks();
+    void addPlugin(PluginInterface *plugin);
 
 protected:
     void resizeEvent(QResizeEvent *event);
@@ -69,6 +71,7 @@ private slots:
     void setNewMarkForImports(bool hasItems);
     void onNewVersion(QString version);
     void updateTvShows();
+    void onPluginMenu();
 
 private:
     Ui::MainWindow *ui;
@@ -94,6 +97,7 @@ private:
     QMap<MainWidgets, QMap<MainActions, bool> > m_actions;
     QMap<MainWidgets, QIcon> m_icons;
     static MainWindow *m_instance;
+    QMap<int, PluginInterface*> m_plugins;
     void setupToolbar();
 };
 

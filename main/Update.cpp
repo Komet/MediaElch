@@ -7,6 +7,7 @@
 #include <QRegExp>
 #include <QUrl>
 #include <QXmlStreamReader>
+#include "globals/Helper.h"
 
 Update::Update(QObject *parent) :
     QObject(parent)
@@ -68,50 +69,8 @@ bool Update::checkIfNewVersion(QString msg, QString &version)
     if (xmlVersion.isEmpty())
         return false;
 
-    int mMajor;
-    int mMinor;
-    int mBugfix;
-    int xmlMajor;
-    int xmlMinor;
-    int xmlBugfix;
-
-    QRegExp rxBig("^([0-9])\\.([0-9])\\.([0-9])");
-    QRegExp rxNormal("^([0-9])\\.([0-9])");
-
-    if (rxBig.indexIn(QApplication::applicationVersion()) != -1) {
-        mMajor = rxBig.cap(1).toInt();
-        mMinor = rxBig.cap(2).toInt();
-        mBugfix = rxBig.cap(3).toInt();
-    } else if (rxNormal.indexIn(QApplication::applicationVersion()) != -1) {
-        mMajor = rxNormal.cap(1).toInt();
-        mMinor = rxNormal.cap(2).toInt();
-        mBugfix = 0;
-    } else {
-        return false;
-    }
-
-    if (rxBig.indexIn(xmlVersion) != -1) {
-        xmlMajor = rxBig.cap(1).toInt();
-        xmlMinor = rxBig.cap(2).toInt();
-        xmlBugfix = rxBig.cap(3).toInt();
-    } else if (rxNormal.indexIn(xmlVersion) != -1) {
-        xmlMajor = rxNormal.cap(1).toInt();
-        xmlMinor = rxNormal.cap(2).toInt();
-        xmlBugfix = 0;
-    } else {
-        return false;
-    }
-
+    int result = Helper::instance()->compareVersionNumbers(QApplication::applicationVersion(), xmlVersion);
     version = QString("MediaElch %1 - %2").arg(xmlVersion).arg(codeName);
 
-    if (xmlMajor > mMajor)
-        return true;
-
-    if (xmlMajor == mMajor && xmlMinor > mMinor)
-        return true;
-
-    if (xmlMajor == mMajor && xmlMinor == mMinor && xmlBugfix > mBugfix)
-        return true;
-
-    return false;
+    return (result == 1);
 }

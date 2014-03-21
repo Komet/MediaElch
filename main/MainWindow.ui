@@ -230,6 +230,9 @@
         </widget>
        </item>
        <item>
+        <layout class="QVBoxLayout" name="layoutMovies"/>
+       </item>
+       <item>
         <widget class="QLabel" name="labelShows">
          <property name="font">
           <font>
@@ -280,6 +283,9 @@ margin-top: 15px;</string>
           </size>
          </property>
         </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="layoutTvShows"/>
        </item>
        <item>
         <widget class="QLabel" name="labelConcerts">
@@ -334,6 +340,9 @@ margin-top: 15px;</string>
         </widget>
        </item>
        <item>
+        <layout class="QVBoxLayout" name="layoutConcerts"/>
+       </item>
+       <item>
         <widget class="QLabel" name="labelDownloads">
          <property name="font">
           <font>
@@ -384,6 +393,31 @@ margin-top: 15px;</string>
           </size>
          </property>
         </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="layoutImport"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelPlugins">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgba(255, 255, 255, 200);
+margin-top: 15px;</string>
+         </property>
+         <property name="text">
+          <string>Plugins</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="layoutPlugins"/>
        </item>
        <item>
         <spacer name="verticalSpacer">
@@ -565,7 +599,7 @@ margin-top: 15px;</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>100</width>
+                <width>49</width>
                 <height>30</height>
                </rect>
               </property>
@@ -662,7 +696,7 @@ margin-top: 15px;</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>100</width>
+                <width>49</width>
                 <height>30</height>
                </rect>
               </property>

@@ -21,9 +21,9 @@ public:
     void setSubtitleDetail(int streamNumber, QString key, QString value);
     void clear();
 
-    QMap<QString, QString> videoDetails();
-    QList<QMap<QString, QString> > audioDetails();
-    QList<QMap<QString, QString> > subtitleDetails();
+    virtual QMap<QString, QString> videoDetails();
+    virtual QList<QMap<QString, QString> > audioDetails();
+    virtual QList<QMap<QString, QString> > subtitleDetails();
 
 private:
     QString videoFormat(QString format, QString version);

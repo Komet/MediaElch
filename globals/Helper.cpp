@@ -9,6 +9,7 @@
 #include <QGraphicsDropShadowEffect>
 #include <QLabel>
 #include <QLineEdit>
+#include <QListWidget>
 #include <QPainter>
 #include <QPushButton>
 #include <QRegExp>
@@ -16,6 +17,19 @@
 #include <QWidget>
 #include "globals/Globals.h"
 #include "settings/Settings.h"
+
+Helper::Helper(QObject *parent) :
+    QObject(parent)
+{
+}
+
+Helper *Helper::instance(QObject *parent)
+{
+    static Helper *m_instance = 0;
+    if (!m_instance)
+        m_instance = new Helper(parent);
+    return m_instance;
+}
 
 /**
  * @brief Encodes a string to latin1 percent encoding needed for some scrapers
@@ -169,7 +183,7 @@ QByteArray &Helper::resizeBackdrop(QByteArray &image)
 {
     bool resized;
     QImage img = QImage::fromData(image);
-    Helper::resizeBackdrop(img, resized);
+    Helper::instance()->resizeBackdrop(img, resized);
     if (!resized)
         return image;
     QBuffer buffer(&image);
@@ -253,7 +267,7 @@ QStringList Helper::mapGenre(const QStringList &genres)
 
     QStringList mappedGenres;
     foreach (const QString &genre, genres)
-        mappedGenres << Helper::mapGenre(genre);
+        mappedGenres << Helper::instance()->mapGenre(genre);
     return mappedGenres;
 }
 
@@ -301,6 +315,8 @@ QString Helper::formatFileSize(const qint64 &size)
 
 void Helper::removeFocusRect(QWidget *widget)
 {
+    foreach (QListWidget *list, widget->findChildren<QListWidget*>())
+        list->setAttribute(Qt::WA_MacShowFocusRect, false);
     foreach (QLineEdit *edit, widget->findChildren<QLineEdit*>())
         edit->setAttribute(Qt::WA_MacShowFocusRect, false);
     foreach (QComboBox *box, widget->findChildren<QComboBox*>())
@@ -318,7 +334,7 @@ void Helper::removeFocusRect(QWidget *widget)
 void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
 {
     if (removeFocusRect)
-        Helper::removeFocusRect(widget);
+        Helper::instance()->removeFocusRect(widget);
 
     QStringList styleSheet = QStringList()
         << "QLabel {"
@@ -361,18 +377,18 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
         << "}"
 
         << "QTabWidget::pane {"
-        << "    border-top: 1px solid #ebebeb;"
+        << "    border-top: 1px solid #dddddd;"
         << "    margin-top: -1px;"
         << "}"
 
         << "QTabBar::tab {"
         << "    padding: 8px;"
-        << "    color: #666666;"
+        << "    color: #777777;"
         << "    border: 0;"
         << "}"
 
         << "QTabBar::tab:selected {"
-        << "    border: 1px solid #ebebeb;"
+        << "    border: 1px solid #dddddd;"
         << "    border-bottom: 1px solid #ffffff;"
         << "    border-top-left-radius: 4px;"
         << "    border-top-right-radius: 4px;"
@@ -432,6 +448,7 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
             #else
                 font.setPixelSize(12);
             #endif
+            font.setWeight(QFont::DemiBold);
             tabWidget->setFont(font);
         }
 
@@ -441,7 +458,7 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
 void Helper::applyEffect(QWidget *parent)
 {
     foreach (QLabel *label, parent->findChildren<QLabel*>()) {
-        if (label->property("dropShadow").toBool() && Helper::devicePixelRatio(label) == 1) {
+        if (label->property("dropShadow").toBool() && Helper::instance()->devicePixelRatio(label) == 1) {
             QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(parent);
             effect->setColor(QColor(0, 0, 0, 30));
             effect->setOffset(4);
@@ -451,7 +468,7 @@ void Helper::applyEffect(QWidget *parent)
     }
 
     foreach (QPushButton *button, parent->findChildren<QPushButton*>()) {
-        if (button->property("dropShadow").toBool() && Helper::devicePixelRatio(button) == 1) {
+        if (button->property("dropShadow").toBool() && Helper::instance()->devicePixelRatio(button) == 1) {
             QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(parent);
             effect->setColor(QColor(0, 0, 0, 30));
             effect->setOffset(2);
@@ -541,7 +558,7 @@ QColor Helper::colorForLabel(int label)
 
 QIcon Helper::iconForLabel(int label)
 {
-    QColor color = Helper::colorForLabel(label);
+    QColor color = Helper::instance()->colorForLabel(label);
     QPainter p;
     QPixmap pixmap(32, 32);
     pixmap.fill(Qt::transparent);
@@ -604,4 +621,58 @@ qreal Helper::devicePixelRatio(const QPixmap &pixmap)
 #else
     return 1.0;
 #endif
+}
+
+int Helper::compareVersionNumbers(const QString &oldVersion, const QString &newVersion)
+{
+    int mMajor;
+    int mMinor;
+    int mBugfix;
+    int xmlMajor;
+    int xmlMinor;
+    int xmlBugfix;
+
+    QRegExp rxBig("^([0-9])\\.([0-9])\\.([0-9])");
+    QRegExp rxNormal("^([0-9])\\.([0-9])");
+
+    if (rxBig.indexIn(oldVersion) != -1) {
+        mMajor = rxBig.cap(1).toInt();
+        mMinor = rxBig.cap(2).toInt();
+        mBugfix = rxBig.cap(3).toInt();
+    } else if (rxNormal.indexIn(oldVersion) != -1) {
+        mMajor = rxNormal.cap(1).toInt();
+        mMinor = rxNormal.cap(2).toInt();
+        mBugfix = 0;
+    } else {
+        return 0;
+    }
+
+    if (rxBig.indexIn(newVersion) != -1) {
+        xmlMajor = rxBig.cap(1).toInt();
+        xmlMinor = rxBig.cap(2).toInt();
+        xmlBugfix = rxBig.cap(3).toInt();
+    } else if (rxNormal.indexIn(newVersion) != -1) {
+        xmlMajor = rxNormal.cap(1).toInt();
+        xmlMinor = rxNormal.cap(2).toInt();
+        xmlBugfix = 0;
+    } else {
+        return 0;
+    }
+
+    if (xmlMajor > mMajor)
+        return 1;
+    else if (xmlMajor < mMajor)
+        return -1;
+
+    if (xmlMajor == mMajor && xmlMinor > mMinor)
+        return 1;
+    else if (xmlMajor == mMajor && xmlMinor < mMinor)
+        return -1;
+
+    if (xmlMajor == mMajor && xmlMinor == mMinor && xmlBugfix > mBugfix)
+        return 1;
+    else if (xmlMajor == mMajor && xmlMinor == mMinor && xmlBugfix < mBugfix)
+        return -1;
+
+    return 0;
 }

@@ -77,7 +77,7 @@ QList<int> VideoBuster::scraperNativelySupports()
 void VideoBuster::search(QString searchStr)
 {
     qDebug() << "Entered, searchStr=" << searchStr;
-    QString encodedSearch = Helper::toLatin1PercentEncoding(searchStr);
+    QString encodedSearch = Helper::instance()->toLatin1PercentEncoding(searchStr);
     QUrl url(QString("https://www.videobuster.de/titlesearch.php?tab_search_content=movies&view=title_list_view_option_list&search_title=%1").arg(encodedSearch).toUtf8());
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
@@ -202,14 +202,14 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
     pos = 0;
     rx.setPattern("Produktion:</div>.*<div class=\"content\">(.*)([0-9]+|</div>)");
     while (infos.contains(MovieScraperInfos::Countries) && (pos = rx.indexIn(html, pos)) != -1) {
-        movie->addCountry(Helper::mapCountry(rx.cap(1).trimmed()));
+        movie->addCountry(Helper::instance()->mapCountry(rx.cap(1).trimmed()));
         pos += rx.matchedLength();
     }
 
     // MPAA
     rx.setPattern("FSK ab ([0-9]+) ");
     if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1)
-        movie->setCertification(Helper::mapCertification("FSK " + rx.cap(1)));
+        movie->setCertification(Helper::instance()->mapCertification("FSK " + rx.cap(1)));
 
     // Actors
     pos = 0;
@@ -224,7 +224,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
     // Studio
     rx.setPattern("Studio:</div>.*<div class=\"content\">([^<]*)</div>");
     if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1)
-        movie->addStudio(Helper::mapStudio(rx.cap(1).trimmed()));
+        movie->addStudio(Helper::instance()->mapStudio(rx.cap(1).trimmed()));
 
     // Runtime
     rx.setPattern("Laufzeit ca. ([0-9]*) Minuten");
@@ -239,7 +239,7 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
     // Genres
     rx.setPattern("<a href='/genrelist.php/.*>([^<]*)</a>");
     if (infos.contains(MovieScraperInfos::Genres) && rx.indexIn(html) != -1)
-        movie->addGenre(Helper::mapGenre(rx.cap(1).trimmed()));
+        movie->addGenre(Helper::instance()->mapGenre(rx.cap(1).trimmed()));
 
     // Tagline
     rx.setPattern("class=\"long_name\">([^<]*)</p>");

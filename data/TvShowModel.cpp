@@ -53,7 +53,7 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
 
     TvShowModelItem *item = getItem(index);
     if (role == Qt::DisplayRole) {
-        return Helper::appendArticle(item->data(0).toString());
+        return Helper::instance()->appendArticle(item->data(0).toString());
     } else if (role == Qt::DecorationRole) {
         // new episodes or sync needed
         if (item->data(3).toBool())

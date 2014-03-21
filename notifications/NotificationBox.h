@@ -19,7 +19,7 @@ public:
     ~NotificationBox();
     static NotificationBox *instance(QWidget *parent = 0);
     void reposition(QSize size);
-    int showMessage(QString message, int timeout = 3000);
+    virtual int showMessage(QString message, int timeout = 3000);
     void showProgressBar(QString message, int id, bool unique = false);
     void hideProgressBar(int id);
     void progressBarProgress(int current, int max, int id);

@@ -7,6 +7,7 @@
 #include <QNetworkProxy>
 #include "data/ScraperInterface.h"
 #include "globals/Manager.h"
+#include "plugins/PluginManager.h"
 #include "renamer/Renamer.h"
 
 /**
@@ -270,6 +271,8 @@ void Settings::loadSettings()
     m_multiScrapeSaveEach = settings()->value("Movies/MultiScrapeSaveEach", false).toBool();
 
     m_showMissingEpisodesHint = settings()->value("TvShows/ShowMissingEpisodesHint", true).toBool();
+
+    PluginManager::instance()->loadSettings();
 }
 
 /**
@@ -405,6 +408,8 @@ void Settings::saveSettings()
 
     settings()->setValue("Movies/MultiScrapeOnlyWithId", m_multiScrapeOnlyWithId);
     settings()->setValue("Movies/MultiScrapeSaveEach", m_multiScrapeSaveEach);
+
+    PluginManager::instance()->saveSettings();
 
     settings()->sync();
 
@@ -1268,4 +1273,53 @@ void Settings::setLastImagePath(QString path)
 QString Settings::lastImagePath()
 {
     return m_lastImagePath;
+}
+
+QStringList Settings::pluginDirs()
+{
+#if defined(Q_OS_MAC)
+    QStringList dirs = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+    if (dirs.isEmpty())
+        return QStringList();
+    QDir pluginDir(dirs.first());
+    if (!pluginDir.cd("plugins") && !pluginDir.mkdir("plugins"))
+        return QStringList();
+    pluginDir.cd("plugins");
+    return QStringList() << pluginDir.absolutePath();
+#elif defined(Q_OS_WIN)
+    QStringList dirs = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+    if (advanced()->portableMode())
+        dirs = QStringList() << applicationDir();
+    if (dirs.isEmpty())
+        return QStringList();
+    QDir pluginDir(dirs.first());
+    if (!pluginDir.cd("plugins") && !pluginDir.mkdir("plugins"))
+        return QStringList();
+    pluginDir.cd("plugins");
+    return QStringList() << pluginDir.absolutePath();
+#elif defined(Q_OS_UNIX)
+    QStringList dirs;
+    QStringList sDirs = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+    if (!sDirs.isEmpty()) {
+        QDir pluginDir(sDirs.first());
+        if (!pluginDir.cd("plugins"))
+            pluginDir.mkdir("plugins");
+        if (pluginDir.cd("plugins"))
+            dirs << pluginDir.absolutePath();
+    }
+    dirs << "/usr/lib/MediaElch" << "/usr/local/lib/MediaElch";
+    return dirs;
+#endif
+    return QStringList();
+}
+
+void Settings::setLicenseKey(PluginManager::Plugin plugin, const QString &licenseKey)
+{
+    m_settings->setValue("Plugins/" + plugin.identifier + "/LicenseKey", licenseKey);
+    m_settings->sync();
+}
+
+QString Settings::licenseKey(PluginManager::Plugin plugin) const
+{
+    return m_settings->value("Plugins/" + plugin.identifier + "/LicenseKey").toString();
 }

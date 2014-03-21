@@ -45,7 +45,7 @@ GenreWidget::GenreWidget(QWidget *parent) :
     connect(ui->genres, SIGNAL(itemSelectionChanged()), this, SLOT(onGenreSelected()));
     connect(ui->genres, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onGenreNameChanged(QTableWidgetItem*)));
 
-    Helper::applyStyle(ui->groupBox);
+    Helper::instance()->applyStyle(ui->groupBox);
 }
 
 /**

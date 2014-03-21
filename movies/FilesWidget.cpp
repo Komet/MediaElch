@@ -68,11 +68,11 @@ FilesWidget::FilesWidget(QWidget *parent) :
     }
 
     QMenu *labelsMenu = new QMenu(tr("Label"), ui->files);
-    QMapIterator<int, QString> it(Helper::labels());
+    QMapIterator<int, QString> it(Helper::instance()->labels());
     while (it.hasNext()) {
         it.next();
         QAction *action = new QAction(it.value(), this);
-        action->setIcon(Helper::iconForLabel(it.key()));
+        action->setIcon(Helper::instance()->iconForLabel(it.key()));
         action->setProperty("color", it.key());
         connect(action, SIGNAL(triggered()), this, SLOT(onLabel()));
         labelsMenu->addAction(action);

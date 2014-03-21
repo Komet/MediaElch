@@ -7,6 +7,7 @@
 #include <QSize>
 
 #include "globals/Globals.h"
+#include "plugins/PluginManager.h"
 #include "settings/AdvancedSettings.h"
 #include "settings/DataFile.h"
 
@@ -143,7 +144,11 @@ public:
     void setDonated(bool donated);
     void setLastImagePath(QString path);
 
+    void setLicenseKey(PluginManager::Plugin plugin, const QString &licenseKey);
+    QString licenseKey(PluginManager::Plugin plugin) const;
+
     static QString applicationDir();
+    static QStringList pluginDirs();
 
 public slots:
     void saveSettings();

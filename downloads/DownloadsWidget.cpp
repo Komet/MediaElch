@@ -55,8 +55,8 @@ DownloadsWidget::DownloadsWidget(QWidget *parent) :
 
     scanDownloadFolders();
 
-    Helper::applyStyle(ui->tablePackages, true, false);
-    Helper::applyStyle(ui->tableImports, true, false);
+    Helper::instance()->applyStyle(ui->tablePackages, true, false);
+    Helper::instance()->applyStyle(ui->tableImports, true, false);
 }
 
 DownloadsWidget::~DownloadsWidget()

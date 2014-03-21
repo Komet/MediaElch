@@ -6,14 +6,17 @@
 #include <QDir>
 #include <QMessageBox>
 #include <QPainter>
+#include <QPluginLoader>
 #include <QTimer>
 #include <QToolBar>
 
 #include "concerts/ConcertSearch.h"
 #include "data/MediaCenterInterface.h"
+#include "data/Storage.h"
 #include "globals/NameFormatter.h"
 #include "data/ScraperInterface.h"
 #include "globals/Globals.h"
+#include "globals/Helper.h"
 #include "globals/ImageDialog.h"
 #include "globals/ImagePreviewDialog.h"
 #include "globals/Manager.h"
@@ -23,6 +26,8 @@
 #include "movies/MovieMultiScrapeDialog.h"
 #include "movies/MovieSearch.h"
 #include "notifications/Notificator.h"
+#include "plugins/PluginInterface.h"
+#include "plugins/PluginManager.h"
 #include "sets/MovieListDialog.h"
 #include "settings/Settings.h"
 #include "tvShows/TvShowSearch.h"
@@ -67,8 +72,10 @@ MainWindow::MainWindow(QWidget *parent) :
     m_exportDialog = new ExportDialog(this);
     setupToolbar();
 
+    Helper::instance(this);
     NotificationBox::instance(this)->reposition(this->size());
     Manager::instance();
+    PluginManager::instance(this);
 
     if (!m_settings->mainSplitterState().isNull()) {
         ui->movieSplitter->restoreState(m_settings->mainSplitterState());
@@ -168,6 +175,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->labelShows->setFont(font);
     ui->labelDownloads->setFont(font);
 #endif
+
+    ui->labelPlugins->setVisible(false);
+    connect(PluginManager::instance(), SIGNAL(sigAddPlugin(PluginInterface*)), this, SLOT(addPlugin(PluginInterface*)));
+    PluginManager::instance()->loadPlugins();
 
     if (Settings::instance()->startupSection() == "tvshows")
         onMenuTvShows();
@@ -287,6 +298,12 @@ void MainWindow::progressFinished(int id)
  */
 void MainWindow::onMenu(MainWidgets widget)
 {
+    foreach (QToolButton *btn, ui->menuWidget->findChildren<QToolButton*>()) {
+        if (btn->property("iconInactive").isValid())
+            btn->setIcon(btn->property("iconInactive").value<QIcon>());
+    }
+
+    // @todo: get rid of this reset icons hell
     m_icons.insert(WidgetMovies, QIcon(":/img/video_menu.png"));
     m_icons.insert(WidgetTvShows, QIcon(":/img/display_on_menu.png"));
     m_icons.insert(WidgetMovieSets, QIcon(":/img/movieSets_menu.png"));
@@ -430,6 +447,8 @@ void MainWindow::onActionSearch()
         QTimer::singleShot(0, ui->tvShowWidget, SLOT(onStartScraperSearch()));
     } else if (ui->stackedWidget->currentIndex() == 3) {
         QTimer::singleShot(0, ui->concertWidget, SLOT(onStartScraperSearch()));
+    } else if (m_plugins.contains(ui->stackedWidget->currentIndex())) {
+        m_plugins.value(ui->stackedWidget->currentIndex())->doAction(PluginInterface::ActionSearch);
     }
 }
 
@@ -452,6 +471,8 @@ void MainWindow::onActionSave()
         ui->genreWidget->onSaveInformation();
     else if (ui->stackedWidget->currentIndex() == 5)
         ui->certificationWidget->onSaveInformation();
+    else if (m_plugins.contains(ui->stackedWidget->currentIndex()))
+        m_plugins.value(ui->stackedWidget->currentIndex())->doAction(PluginInterface::ActionSave);
     setNewMarks();
 }
 
@@ -468,6 +489,8 @@ void MainWindow::onActionSaveAll()
         ui->tvShowWidget->onSaveAll();
     else if (ui->stackedWidget->currentIndex() == 3)
         ui->concertWidget->onSaveAll();
+    else if (m_plugins.contains(ui->stackedWidget->currentIndex()))
+        m_plugins.value(ui->stackedWidget->currentIndex())->doAction(PluginInterface::ActionSaveAll);
     setNewMarks();
 }
 
@@ -478,6 +501,11 @@ void MainWindow::onActionReload()
 {
     if (ui->stackedWidget->currentIndex() == 6) {
         ui->downloadsWidget->scanDownloadFolders();
+        return;
+    }
+
+    if (m_plugins.contains(ui->stackedWidget->currentIndex())) {
+        m_plugins.value(ui->stackedWidget->currentIndex())->doAction(PluginInterface::ActionReload);
         return;
     }
 
@@ -505,6 +533,9 @@ void MainWindow::onActionRename()
     } else if (ui->stackedWidget->currentIndex() == 3) {
         m_renamer->setRenameType(Renamer::TypeConcerts);
         m_renamer->setConcerts(ui->concertFilesWidget->selectedConcerts());
+    } else if (m_plugins.contains(ui->stackedWidget->currentIndex())) {
+        m_plugins.value(ui->stackedWidget->currentIndex())->doAction(PluginInterface::ActionRename);
+        return;
     } else {
         return;
     }
@@ -731,4 +762,80 @@ void MainWindow::updateTvShows()
         if (show->showMissingEpisodes())
             TvShowUpdater::instance()->updateShow(show);
     }
+}
+
+void MainWindow::addPlugin(PluginInterface *plugin)
+{
+    int index = ui->stackedWidget->addWidget(plugin->widget());
+    QToolButton *button = new QToolButton(this);
+    button->setIconSize(QSize(24, 24));
+    button->setIcon(plugin->menuIcon(false));
+    button->setStyleSheet("QToolButton { border: 0; margin-left: 10px; margin-right: 10px;}");
+    button->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
+    button->setToolTip(plugin->name());
+    button->setProperty("iconInactive", plugin->menuIcon(false));
+    button->setProperty("iconActive", plugin->menuIcon(true));
+    button->setProperty("storage", Storage::toVariant(button, plugin));
+    button->setProperty("page", index);
+    m_plugins.insert(index, plugin);
+
+    connect(button, SIGNAL(clicked()), this, SLOT(onPluginMenu()));
+    switch (plugin->section()) {
+    case PluginInterface::SectionMovies:
+        ui->layoutMovies->addWidget(button);
+        break;
+    case PluginInterface::SectionTvShows:
+        ui->layoutTvShows->addWidget(button);
+        break;
+    case PluginInterface::SectionConcerts:
+        ui->layoutConcerts->addWidget(button);
+        break;
+    case PluginInterface::SectionImport:
+        ui->layoutImport->addWidget(button);
+        break;
+    default:
+        ui->labelPlugins->setVisible(true);
+        ui->layoutPlugins->addWidget(button);
+        break;
+    }
+}
+
+void MainWindow::onPluginMenu()
+{
+    QToolButton *button = static_cast<QToolButton*>(QObject::sender());
+    if (!button)
+        return;
+
+    // @todo: remove this f**king things... ;)
+    m_icons.insert(WidgetMovies, QIcon(":/img/video_menu.png"));
+    m_icons.insert(WidgetTvShows, QIcon(":/img/display_on_menu.png"));
+    m_icons.insert(WidgetMovieSets, QIcon(":/img/movieSets_menu.png"));
+    m_icons.insert(WidgetGenres, QIcon(":/img/genre_menu.png"));
+    m_icons.insert(WidgetCertifications, QIcon(":/img/certification2_menu.png"));
+    m_icons.insert(WidgetConcerts, QIcon(":/img/concerts_menu.png"));
+    m_icons.insert(WidgetDownloads, QIcon(":/img/downloads_menu.png"));
+    ui->buttonMovies->setIcon(m_icons.value(WidgetMovies));
+    ui->buttonMovieSets->setIcon(m_icons.value(WidgetMovieSets));
+    ui->buttonGenres->setIcon(m_icons.value(WidgetGenres));
+    ui->buttonCertifications->setIcon(m_icons.value(WidgetCertifications));
+    ui->buttonTvshows->setIcon(m_icons.value(WidgetTvShows));
+    ui->buttonConcerts->setIcon(m_icons.value(WidgetConcerts));
+    ui->buttonDownloads->setIcon(m_icons.value(WidgetDownloads));
+
+    foreach (QToolButton *btn, ui->menuWidget->findChildren<QToolButton*>()) {
+        if (btn->property("iconInactive").isValid())
+            btn->setIcon(btn->property("iconInactive").value<QIcon>());
+    }
+    button->setIcon(button->property("iconActive").value<QIcon>());
+    ui->stackedWidget->setCurrentIndex(button->property("page").toInt());
+
+    PluginInterface *plugin = button->property("storage").value<Storage*>()->pluginInterface();
+
+    ui->navbar->setActionSearchEnabled(plugin->enabledActions().contains(PluginInterface::ActionSearch));
+    ui->navbar->setActionSaveEnabled(plugin->enabledActions().contains(PluginInterface::ActionSave));
+    ui->navbar->setActionSaveAllEnabled(plugin->enabledActions().contains(PluginInterface::ActionSaveAll));
+    ui->navbar->setActionReloadEnabled(plugin->enabledActions().contains(PluginInterface::ActionReload));
+    ui->navbar->setActionRenameEnabled(plugin->enabledActions().contains(PluginInterface::ActionRename));
+    ui->navbar->setFilterWidgetEnabled(false);
+    ui->navbar->setReloadToolTip(tr("Reload (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
 }
