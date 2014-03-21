@@ -120,6 +120,12 @@ void IMDB::onSearchIdFinished()
         if (rx.indexIn(msg) != -1) {
             result.name = rx.cap(1);
             result.released = QDate::fromString(rx.cap(2), "yyyy");
+        } else {
+            rx.setPattern("<h1 class=\"header\"> <span class=\"itemprop\" itemprop=\"name\">(.*)</span>[^<]*<span class=\"nobr\">\\(([0-9]*)\\)</span>");
+            if (rx.indexIn(msg) != -1) {
+                result.name = rx.cap(1);
+                result.released = QDate::fromString(rx.cap(2), "yyyy");
+            }
         }
 
         rx.setPattern("<link rel=\"canonical\" href=\"http://www.imdb.com/title/(.*)/\" />");
