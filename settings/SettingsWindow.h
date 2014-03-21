@@ -68,6 +68,7 @@ private:
     QMap<ScraperInterface*, int> m_scraperRows;
     QMap<int, PluginInterface*> m_plugins;
     PluginManagerDialog *m_pluginDialog;
+    bool m_pluginsInstallable;
 
     void loadSettings();
     void saveSettings();

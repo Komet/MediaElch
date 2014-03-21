@@ -308,8 +308,8 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>60</width>
-                 <height>16</height>
+                 <width>100</width>
+                 <height>30</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -1347,62 +1347,57 @@ border: none;</string>
       <widget class="QWidget" name="page_10">
        <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="0,1">
         <item>
-         <widget class="QListWidget" name="pluginList">
-          <property name="styleSheet">
-           <string notr="true">QListWidget {
+         <layout class="QVBoxLayout" name="verticalLayout_16">
+          <item>
+           <widget class="QListWidget" name="pluginList">
+            <property name="styleSheet">
+             <string notr="true">QListWidget {
 	selection-background-color: rgba(70, 155, 198, 70);
 }</string>
-          </property>
-          <property name="wordWrap">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_14" stretch="0,0">
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
-             <spacer name="horizontalSpacer_3">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+             <widget class="StyledPushButton" name="btnInstallPlugin">
+              <property name="text">
+               <string>Install</string>
               </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
+             </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="btnUpdatePlugin">
+             <widget class="StyledPushButton" name="btnUpdatePlugin">
               <property name="text">
                <string>Update</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="btnUninstallPlugin">
+             <widget class="StyledPushButton" name="btnUninstallPlugin">
               <property name="text">
                <string>Uninstall</string>
               </property>
              </widget>
             </item>
-            <item>
-             <spacer name="horizontalSpacer_2">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
            </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_14" stretch="0,0">
+          <item>
+           <widget class="QLabel" name="pluginsLinux">
+            <property name="text">
+             <string>Installing and updating plugins through MediaElch is currently not supported under Linux. You need to add the ppa or compile plugins on your own.</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QStackedWidget" name="pluginSettings">
@@ -1450,43 +1445,6 @@ border: none;</string>
                  <set>Qt::AlignCenter</set>
                 </property>
                </widget>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_9">
-                <item>
-                 <spacer name="horizontalSpacer_4">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="btnInstallPlugin">
-                  <property name="text">
-                   <string>Install</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_5">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
               </item>
               <item>
                <spacer name="verticalSpacer_3">
@@ -1794,6 +1752,11 @@ border: none;</string>
    <class>MessageLabel</class>
    <extends>QLabel</extends>
    <header>smallWidgets/MessageLabel.h</header>
+  </customwidget>
+  <customwidget>
+   <class>StyledPushButton</class>
+   <extends>QPushButton</extends>
+   <header>smallWidgets/StyledPushButton.h</header>
   </customwidget>
  </customwidgets>
  <resources>

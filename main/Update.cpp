@@ -1,13 +1,16 @@
 #include "Update.h"
 
 #include <QApplication>
+#include <QCheckBox>
 #include <QDebug>
+#include <QMessageBox>
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QRegExp>
 #include <QUrl>
 #include <QXmlStreamReader>
 #include "globals/Helper.h"
+#include "settings/Settings.h"
 
 Update::Update(QObject *parent) :
     QObject(parent)
@@ -35,8 +38,22 @@ void Update::onCheckFinished()
     if (reply->error() == QNetworkReply::NoError ) {
         QString msg = QString::fromUtf8(reply->readAll());
         QString version;
-        if (checkIfNewVersion(msg, version))
-            emit sigNewVersion(version);
+        if (checkIfNewVersion(msg, version)) {
+            QMessageBox msgBox;
+            msgBox.setIcon(QMessageBox::Information);
+            msgBox.setWindowTitle(tr("Updates available"));
+            msgBox.setText(tr("%1 is now available.<br>Get it now on %2").arg(version).arg("<a href=\"http://www.mediaelch.de\">http://www.mediaelch.de</a>"));
+            msgBox.setStandardButtons(QMessageBox::Ok);
+            msgBox.setIconPixmap(QPixmap(":/img/MediaElch.png").scaledToWidth(64, Qt::SmoothTransformation));
+            QCheckBox dontCheck(QObject::tr("Don't check for updates"), &msgBox);
+            dontCheck.blockSignals(true);
+            msgBox.addButton(&dontCheck, QMessageBox::ActionRole);
+            msgBox.exec();
+            if (dontCheck.checkState() == Qt::Checked) {
+                Settings::instance()->setCheckForUpdates(false);
+                Settings::instance()->saveSettings();
+            }
+        }
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }

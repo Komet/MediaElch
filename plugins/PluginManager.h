@@ -18,6 +18,7 @@ public:
         QString minimumVersion;
         QString sha1Osx;
         QString sha1Win;
+        QString localFileName;
         bool installed;
         bool updateAvailable;
         PluginInterface *plugin;
@@ -37,6 +38,7 @@ public slots:
 
 signals:
     void sigAddPlugin(PluginInterface*);
+    void sigRemovePlugin(PluginInterface*);
     void sigPluginListUpdated(QList<PluginManager::Plugin>);
     void sigLicenseInvalid(PluginManager::Plugin);
     void sigPluginInstalled(PluginManager::Plugin);
@@ -54,7 +56,7 @@ private:
 
     void downloadPluginList();
     void parsePluginData(QXmlStreamReader &xml);
-    void loadPlugin(const QString &fileName);
+    bool loadPlugin(const QString &fileName);
 };
 
 #endif // PLUGINMANAGER_H

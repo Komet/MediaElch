@@ -13,6 +13,7 @@ PluginManagerDialog::PluginManagerDialog(QWidget *parent) :
     connect(ui->btnUpdatePlugin, SIGNAL(clicked()), this, SLOT(onUpdatePlugin()));
     connect(PluginManager::instance(), SIGNAL(sigLicenseInvalid(PluginManager::Plugin)), this, SLOT(onInvalidLicense()));
     connect(PluginManager::instance(), SIGNAL(sigPluginInstalled(PluginManager::Plugin)), this, SLOT(onPluginInstalled()));
+    connect(PluginManager::instance(), SIGNAL(sigPluginUpdated(PluginManager::Plugin)), this, SLOT(onPluginUpdated()));
     connect(PluginManager::instance(), SIGNAL(sigPluginInstallFailure(PluginManager::Plugin)), this, SLOT(onPluginFailure()));
 }
 
@@ -23,7 +24,6 @@ PluginManagerDialog::~PluginManagerDialog()
 
 int PluginManagerDialog::exec()
 {
-    ui->licenseKey->setText("");
     ui->msgLabel->setText("");
     return QDialog::exec();
 }
@@ -31,6 +31,7 @@ int PluginManagerDialog::exec()
 void PluginManagerDialog::installPlugin(PluginManager::Plugin plugin)
 {
     m_plugin = plugin;
+    ui->licenseKey->setText("");
     ui->btnInstallPlugin->setVisible(true);
     ui->btnUpdatePlugin->setVisible(false);
     exec();
@@ -73,6 +74,7 @@ void PluginManagerDialog::onPluginInstalled()
     ui->btnInstallPlugin->setEnabled(true);
     ui->btnUpdatePlugin->setEnabled(true);
     ui->msgLabel->setText(tr("Plugin was installed successfully."));
+    reject();
 }
 
 void PluginManagerDialog::onPluginUpdated()
@@ -80,6 +82,7 @@ void PluginManagerDialog::onPluginUpdated()
     ui->btnInstallPlugin->setEnabled(true);
     ui->btnUpdatePlugin->setEnabled(true);
     ui->msgLabel->setText(tr("Plugin was updated successfully."));
+    reject();
 }
 
 void PluginManagerDialog::onPluginFailure()

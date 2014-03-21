@@ -93,6 +93,13 @@ void PluginManager::onPluginListDownloaded()
             xml.skipCurrentElement();
     }
 
+    foreach (PluginManager::Plugin plugin, m_plugins) {
+        if (plugin.updateAvailable) {
+            NotificationBox::instance()->showMessage(tr("Plugin updates available"), 5000);
+            break;
+        }
+    }
+
     emit sigPluginListUpdated(m_plugins);
 }
 
@@ -150,7 +157,7 @@ void PluginManager::parsePluginData(QXmlStreamReader &xml)
     m_plugins.append(plugin);
 }
 
-void PluginManager::loadPlugin(const QString &fileName)
+bool PluginManager::loadPlugin(const QString &fileName)
 {
     QPluginLoader loader(fileName);
     QObject *plugin = loader.instance();
@@ -159,9 +166,9 @@ void PluginManager::loadPlugin(const QString &fileName)
         if (iPlugin) {
             qDebug() << "Loading plugin" << iPlugin->name();
 
-            if (Helper::instance()->compareVersionNumbers(QApplication::applicationVersion(), iPlugin->minimumVersion())) {
-                NotificationBox::instance()->showMessage(tr("Plugin %1 requires at least MediaElch version %2").arg(iPlugin->name()).arg(iPlugin->minimumVersion()));
-                return;
+            if (Helper::instance()->compareVersionNumbers(QApplication::applicationVersion(), iPlugin->minimumVersion()) == 1) {
+                NotificationBox::instance()->showMessage(tr("Plugin %1 requires at least MediaElch version %2").arg(iPlugin->name()).arg(iPlugin->minimumVersion()), 7000);
+                return false;
             }
 
             iPlugin->init(Manager::instance()->movieModel(), Manager::instance()->tvShowModel(),
@@ -179,6 +186,7 @@ void PluginManager::loadPlugin(const QString &fileName)
                     m_plugins[i].plugin = iPlugin;
                     m_plugins[i].updateAvailable = false;
                     m_plugins[i].version = iPlugin->version();
+                    m_plugins[i].localFileName = fileName;
                     pluginFound = true;
                     break;
                 }
@@ -193,11 +201,14 @@ void PluginManager::loadPlugin(const QString &fileName)
                 plugin.plugin = iPlugin;
                 plugin.updateAvailable = false;
                 plugin.version = iPlugin->version();
+                plugin.localFileName = fileName;
                 m_plugins.append(plugin);
             }
             emit sigAddPlugin(iPlugin);
+            return true;
         }
     }
+    return false;
 }
 
 void PluginManager::installPlugin(PluginManager::Plugin plugin, const QString &licenseKey)
@@ -221,6 +232,7 @@ void PluginManager::onPluginDownloaded()
         return;
     reply->deleteLater();
     PluginManager::Plugin plugin = reply->property("storage").value<Storage*>()->plugin();
+    bool isUpdate = plugin.updateAvailable;
 
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
@@ -240,8 +252,6 @@ void PluginManager::onPluginDownloaded()
     }
     QString fileName = rx.cap(1);
 
-    qDebug() << fileName;
-
     QByteArray ba = reply->readAll();
     QString sha1 = QCryptographicHash::hash(ba, QCryptographicHash::Sha1).toHex();
     if ((m_os == "osx" && sha1 != plugin.sha1Osx) || (m_os == "win" && sha1 != plugin.sha1Win)) {
@@ -260,16 +270,38 @@ void PluginManager::onPluginDownloaded()
     f.write(ba);
     f.close();
 
-    loadPlugin(pluginFileName);
-    if (plugin.updateAvailable)
+    if (!loadPlugin(pluginFileName)) {
+        emit sigPluginInstallFailure(plugin);
+        return;
+    }
+
+    if (isUpdate)
         emit sigPluginUpdated(plugin);
     else
         emit sigPluginInstalled(plugin);
+    emit sigPluginListUpdated(m_plugins);
 }
 
 void PluginManager::uninstallPlugin(PluginManager::Plugin plugin)
 {
+    QFileInfo fi(plugin.localFileName);
+    if (!fi.isFile() || !fi.exists())
+        return;
 
+    for (int i=0, n=m_plugins.count() ; i<n ; ++i) {
+        if (m_plugins[i].localFileName == plugin.localFileName) {
+            m_plugins[i].installed = false;
+            m_plugins[i].updateAvailable = false;
+            m_plugins[i].localFileName = "";
+            break;
+        }
+    }
+
+    emit sigRemovePlugin(plugin.plugin);
+    qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
+    QFile f(plugin.localFileName);
+    f.remove();
+    emit sigPluginListUpdated(m_plugins);
 }
 
 void PluginManager::updatePlugin(PluginManager::Plugin plugin, const QString &licenseKey)

@@ -28,7 +28,7 @@ public:
     virtual QString version() const = 0;
     virtual QString minimumVersion() const = 0;
 
-    virtual QIcon menuIcon(bool active) = 0;
+    virtual QIcon menuIcon() = 0;
 
     virtual QList<PluginInterface::Actions> enabledActions() = 0;
     virtual void doAction(PluginInterface::Actions action) = 0;

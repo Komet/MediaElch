@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <QMainWindow>
 #include <QProgressBar>
+#include <QToolButton>
 #include "globals/Filter.h"
 #include "globals/Globals.h"
 #include "data/MovieFileSearcher.h"
@@ -36,7 +37,6 @@ public:
 
 public slots:
     void setNewMarks();
-    void addPlugin(PluginInterface *plugin);
 
 protected:
     void resizeEvent(QResizeEvent *event);
@@ -45,14 +45,7 @@ private slots:
     void progressProgress(int current, int max, int id);
     void progressFinished(int id);
     void progressStarted(QString msg, int id);
-    void onMenu(MainWidgets widget);
-    void onMenuMovies();
-    void onMenuMovieSets();
-    void onMenuTvShows();
-    void onMenuConcerts();
-    void onMenuGenres();
-    void onMenuCertifications();
-    void onMenuDownloads();
+    void onMenu(QToolButton *button = 0);
     void onActionSearch();
     void onActionSave();
     void onActionSaveAll();
@@ -68,10 +61,9 @@ private slots:
     void onFilesRenamed(Renamer::RenameType type = Renamer::TypeAll);
     void onRenewModels();
     void onJumpToMovie(Movie *movie);
-    void setNewMarkForImports(bool hasItems);
-    void onNewVersion(QString version);
     void updateTvShows();
-    void onPluginMenu();
+    void onAddPlugin(PluginInterface *plugin);
+    void onRemovePlugin(PluginInterface *plugin);
 
 private:
     Ui::MainWindow *ui;
@@ -99,6 +91,7 @@ private:
     static MainWindow *m_instance;
     QMap<int, PluginInterface*> m_plugins;
     void setupToolbar();
+    void setIcons(QToolButton *button);
 };
 
 #endif // MAINWINDOW_H
