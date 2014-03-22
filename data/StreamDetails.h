@@ -20,6 +20,8 @@ public:
     void setAudioDetail(int streamNumber, QString key, QString value);
     void setSubtitleDetail(int streamNumber, QString key, QString value);
     void clear();
+    bool hasAudioChannels(int channels);
+    bool hasAudioQuality(QString quality);
 
     virtual QMap<QString, QString> videoDetails();
     virtual QList<QMap<QString, QString> > audioDetails();
@@ -33,6 +35,12 @@ private:
     QMap<QString, QString> m_videoDetails;
     QList<QMap<QString, QString> > m_audioDetails;
     QList<QMap<QString, QString> > m_subtitles;
+    QList<int> m_availableChannels;
+    QList<QString> m_availableQualities;
+
+    QStringList m_hdAudioCodecs;
+    QStringList m_normalAudioCodecs;
+    QStringList m_sdAudioCodecs;
 };
 
 #endif // STREAMDETAILS_H

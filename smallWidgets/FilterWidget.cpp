@@ -643,16 +643,30 @@ void FilterWidget::initFilters()
     m_movieFilters << new Filter(tr("Movie has no IMDB ID"), tr("No IMDB ID"),
                                  QStringList() << tr("IMDB") << tr("No IMDB ID"), MovieFilters::ImdbId, false);
 
-    m_movieFilters << new Filter(tr("Resolution 720p"), tr("720p"),
+    m_movieFilters << new Filter(tr("Resolution 720p"), "720p",
                                  QStringList() << tr("Resolution") << tr("720p"), MovieFilters::Quality, true);
-    m_movieFilters << new Filter(tr("Resolution 1080p"), tr("1080p"),
+    m_movieFilters << new Filter(tr("Resolution 1080p"), "1080p",
                                  QStringList() << tr("Resolution") << tr("1080p"), MovieFilters::Quality, true);
-    m_movieFilters << new Filter(tr("Resolution SD"), tr("SD"),
+    m_movieFilters << new Filter(tr("Resolution SD"), "SD",
                                  QStringList() << tr("Resolution") << tr("SD"), MovieFilters::Quality, true);
-    m_movieFilters << new Filter(tr("Format DVD"), tr("DVD"),
+    m_movieFilters << new Filter(tr("Format DVD"), "DVD",
                                  QStringList() << tr("Format") << tr("DVD"), MovieFilters::Quality, true);
-    m_movieFilters << new Filter(tr("BluRay Format"), tr("BluRay"),
+    m_movieFilters << new Filter(tr("BluRay Format"), "BluRay",
                                  QStringList() << tr("Format") << tr("BluRay"), MovieFilters::Quality, true);
+
+    m_movieFilters << new Filter(tr("Channels 2.0"), "2.0",
+                                 QStringList() << tr("Audio") << tr("Channels") << "2.0", MovieFilters::AudioChannels, true);
+    m_movieFilters << new Filter(tr("Channels 5.1"), "5.1",
+                                 QStringList() << tr("Audio") << tr("Channels") << "5.1", MovieFilters::AudioChannels, true);
+    m_movieFilters << new Filter(tr("Channels 7.1"), "7.1",
+                                 QStringList() << tr("Audio") << tr("Channels") << "2.0", MovieFilters::AudioChannels, true);
+
+    m_movieFilters << new Filter(tr("Audio Quality HD"), "HD Audio",
+                                 QStringList() << tr("Audio") << tr("HD Audio") << "True HD" << "DTS HD" << "Dolby", MovieFilters::AudioQuality, true);
+    m_movieFilters << new Filter(tr("Audio Quality Normal"), "Normal Audio",
+                                 QStringList() << tr("Audio") << tr("Normal Audio") << "DTS" << "AC3" << "Dolby", MovieFilters::AudioQuality, true);
+    m_movieFilters << new Filter(tr("Audio Quality SD"), "SD Audio",
+                                 QStringList() << tr("Audio") << tr("SD Audio") << "MP3", MovieFilters::AudioQuality, true);
 
     m_tvShowFilters << new Filter(tr("Title"), "", QStringList(), TvShowFilters::Title, true);
 

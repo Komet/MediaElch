@@ -284,6 +284,8 @@ namespace MovieFilters {
     const int Set           = 25;
     const int Rating        = 28;
     const int Label         = 29;
+    const int AudioChannels = 30;
+    const int AudioQuality  = 31;
 }
 
 namespace TvShowFilters {

@@ -141,17 +141,34 @@ bool Filter::accepts(Movie *movie)
         return (m_hasInfo && movie->rating() != 0) || (!m_hasInfo && movie->rating() == 0);
 
     if (m_info == MovieFilters::Quality) {
-        if (m_shortText == "1080p") {
+        if (m_shortText == "1080p")
             return movie->streamDetails()->videoDetails().value("width").toInt() == 1920;
-        } else if (m_shortText == "720p") {
+        else if (m_shortText == "720p")
             return movie->streamDetails()->videoDetails().value("width").toInt() == 1280;
-        } else if (m_shortText == "SD") {
+        else if (m_shortText == "SD")
             return movie->streamDetails()->videoDetails().value("width").toInt() > 0 && movie->streamDetails()->videoDetails().value("width").toInt() <= 720;
-        } else if (m_shortText == "BluRay") {
+        else if (m_shortText == "BluRay")
             return movie->discType() == DiscBluRay;
-        } else if (m_shortText == "DVD") {
+        else if (m_shortText == "DVD")
             return movie->discType() == DiscDvd;
-        }
+    }
+
+    if (m_info == MovieFilters::AudioChannels) {
+        if (m_shortText == "2.0")
+            return movie->streamDetails()->hasAudioChannels(2);
+        else if (m_shortText == "5.1")
+            return movie->streamDetails()->hasAudioChannels(6);
+        else if (m_shortText == "7.1")
+            return movie->streamDetails()->hasAudioChannels(8);
+    }
+
+    if (m_info == MovieFilters::AudioQuality) {
+        if (m_shortText == "HD Audio")
+            return movie->streamDetails()->hasAudioQuality("hd");
+        if (m_shortText == "Normal Audio")
+            return movie->streamDetails()->hasAudioQuality("normal");
+        if (m_shortText == "SD Audio")
+            return movie->streamDetails()->hasAudioQuality("sd");
     }
 
     if (m_info == MovieFilters::Path) {
