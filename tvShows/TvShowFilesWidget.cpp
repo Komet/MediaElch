@@ -412,6 +412,7 @@ void TvShowFilesWidget::renewModel(bool force)
         ui->files->setModel(m_tvShowProxyModel);
         connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)), Qt::QueuedConnection);
     }
+    onViewUpdated();
 }
 
 /**
