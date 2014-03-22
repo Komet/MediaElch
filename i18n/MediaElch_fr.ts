@@ -2513,32 +2513,32 @@ Main menu entry (tooltip)</extracomment>
         <translation>À propos</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="333"/>
+        <location filename="../main/MainWindow.cpp" line="340"/>
         <source>Reload all Movies (%1)</source>
         <translation>Recharger tous les films (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="335"/>
+        <location filename="../main/MainWindow.cpp" line="342"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>Recharger toutes les séries TV (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="337"/>
+        <location filename="../main/MainWindow.cpp" line="344"/>
         <source>Reload all Concerts (%1)</source>
         <translation>Recharger tous les concerts (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="339"/>
+        <location filename="../main/MainWindow.cpp" line="346"/>
         <source>Reload all Downloads (%1)</source>
         <translation>Recharger tous les téléchargements (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="714"/>
+        <location filename="../main/MainWindow.cpp" line="720"/>
         <source>Updates available</source>
         <translation>Mises à jour disponibles</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="715"/>
+        <location filename="../main/MainWindow.cpp" line="721"/>
         <source>%1 is now available.&lt;br&gt;Get it now on %2</source>
         <translation>%1 est maintenant disponible.&lt;br&gt;L&apos;obtenir maintenant sur %2</translation>
     </message>
@@ -3969,7 +3969,7 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
         <translation>Ne pas demander à nouveau</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="718"/>
+        <location filename="../main/MainWindow.cpp" line="724"/>
         <source>Don&apos;t check for updates</source>
         <translation>Ne pas vérifier les mises à jour</translation>
     </message>
