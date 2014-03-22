@@ -17,6 +17,9 @@ StreamDetails::StreamDetails(QObject *parent, QStringList files) :
     QObject(parent)
 {
     m_files = files;
+    m_hdAudioCodecs << "dtshd_ma" << "dtshd_hra" << "truehd";
+    m_normalAudioCodecs << "DTS" << "dts" << "ac3" << "eac3" << "flac";
+    m_sdAudioCodecs << "mp3";
 }
 
 /**
@@ -27,6 +30,8 @@ void StreamDetails::clear()
     m_videoDetails.clear();
     m_audioDetails.clear();
     m_subtitles.clear();
+    m_availableChannels.clear();
+    m_availableQualities.clear();
 }
 
 /**
@@ -224,6 +229,16 @@ void StreamDetails::setAudioDetail(int streamNumber, QString key, QString value)
     if (streamNumber >= m_audioDetails.count())
         return;
     m_audioDetails[streamNumber].insert(key, value);
+
+    if (key == "channels" && !m_availableChannels.contains(value.toInt()))
+        m_availableChannels.append(value.toInt());
+
+    if (key == "codec" && m_hdAudioCodecs.contains(value) && !m_availableQualities.contains("hd"))
+        m_availableQualities.append("hd");
+    else if (key == "codec" && m_normalAudioCodecs.contains(value) && !m_availableQualities.contains("normal"))
+        m_availableQualities.append("normal");
+    else if (key == "codec" && m_sdAudioCodecs.contains(value) && !m_availableQualities.contains("sd"))
+        m_availableQualities.append("sd");
 }
 
 /**
@@ -266,4 +281,14 @@ QList<QMap<QString, QString> > StreamDetails::audioDetails()
 QList<QMap<QString, QString> > StreamDetails::subtitleDetails()
 {
     return m_subtitles;
+}
+
+bool StreamDetails::hasAudioChannels(int channels)
+{
+    return m_availableChannels.contains(channels);
+}
+
+bool StreamDetails::hasAudioQuality(QString quality)
+{
+    return m_availableQualities.contains(quality);
 }
