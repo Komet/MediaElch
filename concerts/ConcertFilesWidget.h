@@ -56,6 +56,7 @@ private slots:
     void openFolder();
     void scrollToAlpha(QString alpha);
     void onLeftEdge(bool isEdge);
+    void onViewUpdated();
 
 private:
     Ui::ConcertFilesWidget *ui;

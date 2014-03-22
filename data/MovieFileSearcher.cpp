@@ -47,6 +47,8 @@ void MovieFileSearcher::reload(bool force)
     int movieSum = 0;
     int movieCounter = 0;
 
+    emit progress(0, 0, m_progressMessageId);
+
     foreach (SettingsDir dir, m_directories) {
         if (m_aborted)
             return;
