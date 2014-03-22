@@ -37,7 +37,8 @@ Movie::Movie(QStringList files, QObject *parent) :
     m_databaseId = -1;
     m_discType = DiscSingle;
     m_label = Labels::NO_LABEL;
-    setFiles(files);
+    if (!files.isEmpty())
+        setFiles(files);
 }
 
 Movie::~Movie()

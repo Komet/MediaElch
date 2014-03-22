@@ -142,9 +142,11 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
             icon = (movie->hasImage(ImageType::MovieBackdrop)) ? "fanart/green" : "fanart/red";
             break;
         case MediaStatusExtraArts:
-            if (movie->hasImage(ImageType::MovieCdArt) && movie->hasImage(ImageType::MovieClearArt) && movie->hasImage(ImageType::MovieLogo))
+            if (movie->hasImage(ImageType::MovieCdArt) && movie->hasImage(ImageType::MovieClearArt) && movie->hasImage(ImageType::MovieLogo) &&
+                    movie->hasImage(ImageType::MovieBanner) && movie->hasImage(ImageType::MovieThumb))
                 icon = "extraArts/green";
-            else if (movie->hasImage(ImageType::MovieCdArt) || movie->hasImage(ImageType::MovieClearArt) || movie->hasImage(ImageType::MovieLogo))
+            else if (movie->hasImage(ImageType::MovieCdArt) || movie->hasImage(ImageType::MovieClearArt) || movie->hasImage(ImageType::MovieLogo) ||
+                     movie->hasImage(ImageType::MovieBanner) || movie->hasImage(ImageType::MovieThumb))
                 icon = "extraArts/yellow";
             else
                 icon = "extraArts/red";

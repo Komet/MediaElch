@@ -284,42 +284,44 @@ void Database::update(Movie *movie)
 
 QList<Movie*> Database::movies(QString path)
 {
-    QList<Movie*> movies;
     QSqlQuery query(db());
-    QSqlQuery queryFiles(db());
-    query.prepare("SELECT idMovie, content, lastModified, inSeparateFolder, hasPoster, hasBackdrop, hasLogo, hasClearArt, "
-                  "hasCdArt, hasBanner, hasThumb, hasExtraFanarts, discType FROM movies WHERE path=:path");
+    query.prepare("SELECT M.idMovie, M.content, M.lastModified, M.inSeparateFolder, M.hasPoster, M.hasBackdrop, M.hasLogo, M.hasClearArt, "
+                  "M.hasCdArt, M.hasBanner, M.hasThumb, M.hasExtraFanarts, M.discType, MF.file, L.color "
+                  "FROM movies M "
+                  "LEFT JOIN movieFiles MF ON MF.idMovie=M.idMovie "
+                  "LEFT JOIN labels L ON MF.file=L.fileName "
+                  "WHERE path=:path "
+                  "ORDER BY M.idMovie, MF.file");
     query.bindValue(":path", path.toUtf8());
     query.exec();
+    QMap<int, Movie*> movies;
     while (query.next()) {
-        int label = Labels::NO_LABEL;
-        QStringList files;
-        queryFiles.prepare("SELECT MF.file, L.color FROM movieFiles MF LEFT JOIN labels L ON MF.file=L.fileName WHERE MF.idMovie=:idMovie ORDER BY MF.file");
-        queryFiles.bindValue(":idMovie", query.value(query.record().indexOf("idMovie")).toInt());
-        queryFiles.exec();
-        while (queryFiles.next()) {
-            files << QString::fromUtf8(queryFiles.value(queryFiles.record().indexOf("file")).toByteArray());
-            label = queryFiles.value(queryFiles.record().indexOf("color")).toInt();
+        if (!movies.contains(query.value(query.record().indexOf("idMovie")).toInt())) {
+            int label = query.value(query.record().indexOf("color")).toInt();
+            Movie *movie = new Movie(QStringList(), Manager::instance()->movieFileSearcher());
+            movie->setDatabaseId(query.value(query.record().indexOf("idMovie")).toInt());
+            movie->setFileLastModified(query.value(query.record().indexOf("lastModified")).toDateTime());
+            movie->setInSeparateFolder(query.value(query.record().indexOf("inSeparateFolder")).toInt() == 1);
+            movie->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
+            movie->setHasImage(ImageType::MoviePoster, query.value(query.record().indexOf("hasPoster")).toInt() == 1);
+            movie->setHasImage(ImageType::MovieBackdrop, query.value(query.record().indexOf("hasBackdrop")).toInt() == 1);
+            movie->setHasImage(ImageType::MovieLogo, query.value(query.record().indexOf("hasLogo")).toInt() == 1);
+            movie->setHasImage(ImageType::MovieClearArt, query.value(query.record().indexOf("hasClearArt")).toInt() == 1);
+            movie->setHasImage(ImageType::MovieCdArt, query.value(query.record().indexOf("hasCdArt")).toInt() == 1);
+            movie->setHasImage(ImageType::MovieBanner, query.value(query.record().indexOf("hasBanner")).toInt() == 1);
+            movie->setHasImage(ImageType::MovieThumb, query.value(query.record().indexOf("hasThumb")).toInt() == 1);
+            movie->setHasExtraFanarts(query.value(query.record().indexOf("hasExtraFanarts")).toInt() == 1);
+            movie->setDiscType(static_cast<DiscType>(query.value(query.record().indexOf("discType")).toInt()));
+            movie->setLabel(label);
+            movies.insert(query.value(query.record().indexOf("idMovie")).toInt(), movie);
         }
 
-        Movie *movie = new Movie(files, Manager::instance()->movieFileSearcher());
-        movie->setDatabaseId(query.value(query.record().indexOf("idMovie")).toInt());
-        movie->setFileLastModified(query.value(query.record().indexOf("lastModified")).toDateTime());
-        movie->setInSeparateFolder(query.value(query.record().indexOf("inSeparateFolder")).toInt() == 1);
-        movie->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
-        movie->setHasImage(ImageType::MoviePoster, query.value(query.record().indexOf("hasPoster")).toInt() == 1);
-        movie->setHasImage(ImageType::MovieBackdrop, query.value(query.record().indexOf("hasBackdrop")).toInt() == 1);
-        movie->setHasImage(ImageType::MovieLogo, query.value(query.record().indexOf("hasLogo")).toInt() == 1);
-        movie->setHasImage(ImageType::MovieClearArt, query.value(query.record().indexOf("hasClearArt")).toInt() == 1);
-        movie->setHasImage(ImageType::MovieCdArt, query.value(query.record().indexOf("hasCdArt")).toInt() == 1);
-        movie->setHasImage(ImageType::MovieBanner, query.value(query.record().indexOf("hasBanner")).toInt() == 1);
-        movie->setHasImage(ImageType::MovieThumb, query.value(query.record().indexOf("hasThumb")).toInt() == 1);
-        movie->setHasExtraFanarts(query.value(query.record().indexOf("hasExtraFanarts")).toInt() == 1);
-        movie->setDiscType(static_cast<DiscType>(query.value(query.record().indexOf("discType")).toInt()));
-        movie->setLabel(label);
-        movies.append(movie);
+        QStringList files = movies.value(query.value(query.record().indexOf("idMovie")).toInt())->files();
+        files << query.value(query.record().indexOf("file")).toByteArray();
+        movies.value(query.value(query.record().indexOf("idMovie")).toInt())->setFiles(files);
     }
-    return movies;
+
+    return movies.values();
 }
 
 void Database::clearConcerts(QString path)
