@@ -949,16 +949,16 @@ void MovieWidget::onActorChanged()
     Actor *actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
     if (!actor->image.isNull()) {
         QPixmap p = QPixmap::fromImage(QImage::fromData(actor->image));
+        ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
         p = p.scaled(QSize(120, 180) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
         Helper::instance()->setDevicePixelRatio(p, Helper::instance()->devicePixelRatio(this));
         ui->actor->setPixmap(p);
-        ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
     } else if (!Manager::instance()->mediaCenterInterface()->actorImageName(m_movie, *actor).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->actorImageName(m_movie, *actor));
+        ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
         p = p.scaled(QSize(120, 180) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
         Helper::instance()->setDevicePixelRatio(p, Helper::instance()->devicePixelRatio(this));
         ui->actor->setPixmap(p);
-        ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
     } else {
         QPixmap pixmap(":/img/man.png");
         Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));

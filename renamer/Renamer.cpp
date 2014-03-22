@@ -105,7 +105,12 @@ void Renamer::reject()
 
     QDialog::reject();
     if (m_filesRenamed)
-        emit sigFilesRenamed(m_renameType);
+        QTimer::singleShot(0, this, SLOT(onRenamed()));
+}
+
+void Renamer::onRenamed()
+{
+    emit sigFilesRenamed(m_renameType);
 }
 
 void Renamer::setMovies(QList<Movie *> movies)

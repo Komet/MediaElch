@@ -498,7 +498,13 @@ void XbmcXml::writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDet
             continue;
         if (itVideo.value() == "")
             continue;
-        xml.writeTextElement(itVideo.key(), itVideo.value());
+
+        QString value = itVideo.value();
+
+        if (itVideo.key() == "aspect")
+            value = value.replace(",", ".");
+
+        xml.writeTextElement(itVideo.key(), value);
     }
     xml.writeEndElement();
 

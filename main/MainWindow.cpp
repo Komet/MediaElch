@@ -62,12 +62,12 @@ MainWindow::MainWindow(QWidget *parent) :
         m_actions.insert(static_cast<MainWidgets>(i), actions);
     }
 
-    m_aboutDialog = new AboutDialog(ui->centralWidget);
-    m_supportDialog = new SupportDialog(ui->centralWidget);
-    m_settingsWindow = new SettingsWindow(ui->centralWidget);
-    m_fileScannerDialog = new FileScannerDialog(ui->centralWidget);
-    m_xbmcSync = new XbmcSync(ui->centralWidget);
-    m_renamer = new Renamer(ui->centralWidget);
+    m_aboutDialog = new AboutDialog(this);
+    m_supportDialog = new SupportDialog(this);
+    m_settingsWindow = new SettingsWindow(this);
+    m_fileScannerDialog = new FileScannerDialog(this);
+    m_xbmcSync = new XbmcSync(this);
+    m_renamer = new Renamer(this);
     m_settings = Settings::instance(this);
     m_exportDialog = new ExportDialog(this);
     setupToolbar();
@@ -87,6 +87,13 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->concertSplitter->restoreState(m_settings->mainSplitterState());
         ui->genreWidget->splitter()->restoreState(m_settings->mainSplitterState());
         ui->certificationWidget->splitter()->restoreState(m_settings->mainSplitterState());
+    } else {
+        ui->movieSplitter->setSizes(QList<int>() << 200 << 600);
+        ui->tvShowSplitter->setSizes(QList<int>() << 200 << 600);
+        ui->setsWidget->splitter()->setSizes(QList<int>() << 200 << 600);
+        ui->concertSplitter->setSizes(QList<int>() << 200 << 600);
+        ui->genreWidget->splitter()->setSizes(QList<int>() << 200 << 600);
+        ui->certificationWidget->splitter()->setSizes(QList<int>() << 200 << 600);
     }
 
     if (m_settings->mainWindowSize().isValid() && !m_settings->mainWindowPosition().isNull()) {
@@ -156,16 +163,16 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->certificationWidget, SIGNAL(sigJumpToMovie(Movie*)), this, SLOT(onJumpToMovie(Movie*)));
     connect(ui->genreWidget, SIGNAL(sigJumpToMovie(Movie*)), this, SLOT(onJumpToMovie(Movie*)));
 
-    MovieSearch::instance(ui->centralWidget);
-    TvShowSearch::instance(ui->centralWidget);
-    ImageDialog::instance(ui->centralWidget);
-    MovieListDialog::instance(ui->centralWidget);
-    ImagePreviewDialog::instance(ui->centralWidget);
-    ConcertSearch::instance(ui->centralWidget);
-    TrailerDialog::instance(ui->centralWidget);
-    TvTunesDialog::instance(ui->centralWidget);
+    MovieSearch::instance(this);
+    TvShowSearch::instance(this);
+    ImageDialog::instance(this);
+    MovieListDialog::instance(this);
+    ImagePreviewDialog::instance(this);
+    ConcertSearch::instance(this);
+    TrailerDialog::instance(this);
+    TvTunesDialog::instance(this);
     NameFormatter::instance(this);
-    MovieMultiScrapeDialog::instance(ui->centralWidget);
+    MovieMultiScrapeDialog::instance(this);
     Notificator::instance(0, ui->centralWidget);
 
 #ifdef Q_OS_WIN32
@@ -488,9 +495,8 @@ void MainWindow::moveSplitter(int pos, int index)
         }
     }
 
-    foreach (QSplitter *splitter, splitters) {
+    foreach (QSplitter *splitter, splitters)
         splitter->setSizes(sizes);
-    }
 
     Manager::instance()->movieModel()->update();
     Manager::instance()->concertModel()->update();

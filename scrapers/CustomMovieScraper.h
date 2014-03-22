@@ -26,6 +26,7 @@ public:
     ScraperInterface *titleScraper();
     QWidget *settingsWidget();
     bool isAdult();
+    ScraperInterface *scraperForInfo(int info);
 
 private slots:
     void onTitleSearchDone(QList<ScraperSearchResult> results);
@@ -38,7 +39,6 @@ private:
     QList<ScraperInterface*> m_scrapers;
     QNetworkAccessManager m_qnam;
 
-    ScraperInterface *scraperForInfo(int info);
     QList<ScraperInterface*> scrapersForInfos(QList<int> infos);
     ImageProviderInterface *imageProviderForInfo(int info);
     QList<ImageProviderInterface*> imageProvidersForInfos(QList<int> infos);

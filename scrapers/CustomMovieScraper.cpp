@@ -209,6 +209,7 @@ void CustomMovieScraper::loadAllData(QMap<ScraperInterface *, QString> ids, Movi
 
     int loads = scrapersWithIds.count();
     movie->controller()->setProperty("customMovieScraperLoads", loads);
+    movie->controller()->setProperty("isCustomScraper", true);
 
     if (infos.contains(MovieScraperInfos::Backdrop) && Settings::instance()->customMovieScraper().value(MovieScraperInfos::Backdrop) == "images.fanarttv")
         movie->controller()->setForceFanartBackdrop(true);

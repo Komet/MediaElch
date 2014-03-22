@@ -43,6 +43,7 @@ private slots:
     void onChkRenameDirectories();
     void onChkRenameFiles();
     void onChkUseSeasonDirectories();
+    void onRenamed();
 
 private:
     Ui::Renamer *ui;

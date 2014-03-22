@@ -7,7 +7,6 @@
 include(quazip/quazip/quazip.pri)
 
 QT       += core gui network script xml sql widgets multimedia multimediawidgets concurrent
-macx: QT += macextras
 
 LIBS += -lmediainfo -lzen -lz
 

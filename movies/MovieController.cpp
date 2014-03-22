@@ -8,6 +8,7 @@
 #include "globals/Helper.h"
 #include "globals/NameFormatter.h"
 #include "globals/Manager.h"
+#include "scrapers/CustomMovieScraper.h"
 #include "settings/Settings.h"
 
 MovieController::MovieController(Movie *parent) :
@@ -182,22 +183,33 @@ void MovieController::scraperLoadDone(ScraperInterface *scraper)
     }
 
     QList<int> images;
+    ScraperInterface *sigScraper = scraper;
+
+    scraper = (property("isCustomScraper").toBool()) ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfos::Backdrop) : sigScraper;
     if (infosToLoad().contains(MovieScraperInfos::Backdrop) && (m_forceFanartBackdrop || !scraper->scraperNativelySupports().contains(MovieScraperInfos::Backdrop))) {
         images << ImageType::MovieBackdrop;
         m_movie->clear(QList<int>() << MovieScraperInfos::Backdrop);
     }
+
+    scraper = (property("isCustomScraper").toBool()) ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfos::Poster) : sigScraper;
     if (infosToLoad().contains(MovieScraperInfos::Poster) && (m_forceFanartPoster || !scraper->scraperNativelySupports().contains(MovieScraperInfos::Poster))) {
         images << ImageType::MoviePoster;
         m_movie->clear(QList<int>() << MovieScraperInfos::Poster);
     }
+
+    scraper = (property("isCustomScraper").toBool()) ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfos::ClearArt) : sigScraper;
     if (infosToLoad().contains(MovieScraperInfos::ClearArt) && (m_forceFanartClearArt || !scraper->scraperNativelySupports().contains(MovieScraperInfos::ClearArt))) {
         images << ImageType::MovieClearArt;
         m_movie->clear(QList<int>() << MovieScraperInfos::ClearArt);
     }
+
+        scraper = (property("isCustomScraper").toBool()) ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfos::CdArt) : sigScraper;
     if (infosToLoad().contains(MovieScraperInfos::CdArt) && (m_forceFanartCdArt || !scraper->scraperNativelySupports().contains(MovieScraperInfos::CdArt))) {
         images << ImageType::MovieCdArt;
         m_movie->clear(QList<int>() << MovieScraperInfos::CdArt);
     }
+
+    scraper = (property("isCustomScraper").toBool()) ? CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfos::Logo) : sigScraper;
     if (infosToLoad().contains(MovieScraperInfos::Logo) && (m_forceFanartLogo || !scraper->scraperNativelySupports().contains(MovieScraperInfos::Logo))) {
         images << ImageType::MovieLogo;
         m_movie->clear(QList<int>() << MovieScraperInfos::Logo);
@@ -266,6 +278,8 @@ void MovieController::onFanartLoadDone(Movie *movie, QMap<int, QList<Poster> > p
         if (!imageTypes.contains(it.key()))
             imageTypes.append(it.key());
     }
+
+    setProperty("isCustomScraper", false);
 
     if (downloads.isEmpty()) {
         emit sigLoadDone(m_movie);
