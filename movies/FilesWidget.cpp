@@ -26,6 +26,7 @@ FilesWidget::FilesWidget(QWidget *parent) :
 {
     m_instance = this;
     ui->setupUi(this);
+    ui->statusLabel->setText(tr("%n movies", "", 0));
 #ifdef Q_OS_MAC
     QFont font = ui->files->font();
     font.setPointSize(font.pointSize()-2);
@@ -121,6 +122,9 @@ FilesWidget::FilesWidget(QWidget *parent) :
     connect(ui->sortByLastAdded, SIGNAL(clicked()), this, SLOT(onSortByAdded()));
     connect(ui->sortBySeen, SIGNAL(clicked()), this, SLOT(onSortBySeen()));
     connect(ui->sortByYear, SIGNAL(clicked()), this, SLOT(onSortByYear()));
+
+    connect(m_movieProxyModel, SIGNAL(rowsInserted(QModelIndex,int,int)), this, SLOT(onViewUpdated()));
+    connect(m_movieProxyModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), this, SLOT(onViewUpdated()));
 }
 
 /**
@@ -304,6 +308,7 @@ void FilesWidget::setFilter(QList<Filter*> filters, QString text)
     m_movieProxyModel->setFilter(filters, text);
     m_movieProxyModel->setFilterWildcard("*" + text + "*");
     setAlphaListData();
+    onViewUpdated();
 }
 
 /**
@@ -490,4 +495,14 @@ void FilesWidget::onLabel()
         movie->setLabel(color);
         Manager::instance()->database()->setLabel(movie->files(), color);
     }
+}
+
+void FilesWidget::onViewUpdated()
+{
+    int movieCount = Manager::instance()->movieModel()->rowCount();
+    int visibleCount = m_movieProxyModel->rowCount();
+    if (movieCount == visibleCount)
+        ui->statusLabel->setText(tr("%n movies", "", movieCount));
+    else
+        ui->statusLabel->setText(tr("%1 of %n movies", "", movieCount).arg(visibleCount));
 }

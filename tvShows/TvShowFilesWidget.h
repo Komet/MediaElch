@@ -54,6 +54,7 @@ private slots:
     void openFolder();
     void showMissingEpisodes();
     void hideSpecialsInMissingEpisodes();
+    void onViewUpdated();
 
 private:
     Ui::TvShowFilesWidget *ui;

@@ -197,6 +197,13 @@ bool Filter::accepts(TvShow *show)
     return true;
 }
 
+bool Filter::accepts(TvShowEpisode *episode)
+{
+    if (m_info == TvShowFilters::Title)
+        return episode->name().contains(m_shortText, Qt::CaseInsensitive);
+    return true;
+}
+
 /**
  * @brief Checks if the filter accepts a concert object
  * @param concert Concert to check

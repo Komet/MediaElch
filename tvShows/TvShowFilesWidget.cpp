@@ -23,6 +23,8 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     m_instance = this;
     ui->setupUi(this);
 
+    ui->statusLabel->setText(tr("%n tv shows", "", 0) + ", " + tr("%n episodes", "", 0));
+
 #ifdef Q_OS_MAC
     QFont font = ui->files->font();
     font.setPointSize(font.pointSize()-2);
@@ -85,6 +87,9 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     connect(ui->files, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)), Qt::QueuedConnection);
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)), Qt::QueuedConnection);
     Manager::instance()->setTvShowFilesWidget(this);
+
+    connect(m_tvShowProxyModel, SIGNAL(rowsInserted(QModelIndex,int,int)), this, SLOT(onViewUpdated()));
+    connect(m_tvShowProxyModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), this, SLOT(onViewUpdated()));
 }
 
 /**
@@ -381,11 +386,15 @@ void TvShowFilesWidget::hideSpecialsInMissingEpisodes()
  * @brief Sets the filters
  * @param filters List of filters
  * @param text Filter text
+ * @todo: respect filters and not only filter text
  */
 void TvShowFilesWidget::setFilter(QList<Filter *> filters, QString text)
 {
+    if (!filters.isEmpty())
+        m_tvShowProxyModel->setFilterWildcard("*" + filters.first()->shortText() + "*");
+    else
+        m_tvShowProxyModel->setFilterWildcard("*" + text + "*");
     m_tvShowProxyModel->setFilter(filters, text);
-    m_tvShowProxyModel->setFilterWildcard("*" + text + "*");
 }
 
 /**
@@ -496,4 +505,16 @@ QList<TvShow*> TvShowFilesWidget::selectedShows()
             shows.append(item->tvShow());
     }
     return shows;
+}
+
+void TvShowFilesWidget::onViewUpdated()
+{
+    if (m_tvShowProxyModel->filterRegExp().pattern().isEmpty() || m_tvShowProxyModel->filterRegExp().pattern() == "**") {
+        int episodeCount = 0;
+        foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows())
+            episodeCount += show->episodeCount();
+        ui->statusLabel->setText(tr("%n tv shows", "", m_tvShowProxyModel->rowCount()) + ", " + tr("%n episodes", "", episodeCount));
+    } else {
+        ui->statusLabel->setText(tr("%1 of %n tv shows", "", Manager::instance()->tvShowModel()->tvShows().count()).arg(m_tvShowProxyModel->rowCount()));
+    }
 }

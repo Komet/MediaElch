@@ -71,6 +71,7 @@ private slots:
     void onLeftEdge(bool isEdge);
     void onActionMediaStatusColumn();
     void onLabel();
+    void onViewUpdated();
 
 private:
     Ui::FilesWidget *ui;

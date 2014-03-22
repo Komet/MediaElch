@@ -23,6 +23,7 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
 {
     m_instance = this;
     ui->setupUi(this);
+    ui->statusLabel->setText(tr("%n concerts", "", 0));
 #ifdef Q_OS_MAC
     QFont font = ui->files->font();
     font.setPointSize(font.pointSize()-2);
@@ -70,6 +71,9 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
     connect(ui->files, SIGNAL(sigLeftEdge(bool)), this, SLOT(onLeftEdge(bool)));
 
     connect(m_alphaList, SIGNAL(sigAlphaClicked(QString)), this, SLOT(scrollToAlpha(QString)));
+
+    connect(m_concertProxyModel, SIGNAL(rowsInserted(QModelIndex,int,int)), this, SLOT(onViewUpdated()));
+    connect(m_concertProxyModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), this, SLOT(onViewUpdated()));
 }
 
 /**
@@ -310,4 +314,15 @@ void ConcertFilesWidget::onLeftEdge(bool isEdge)
         m_alphaList->show();
     else
         m_alphaList->hide();
+}
+
+
+void ConcertFilesWidget::onViewUpdated()
+{
+    int concertCount = Manager::instance()->concertModel()->rowCount();
+    int visibleCount = m_concertProxyModel->rowCount();
+    if (concertCount == visibleCount)
+        ui->statusLabel->setText(tr("%n concerts", "", concertCount));
+    else
+        ui->statusLabel->setText(tr("%1 of %n concerts", "", concertCount).arg(visibleCount));
 }

@@ -20,12 +20,14 @@ public:
     bool accepts(Movie *movie);
     bool accepts(Concert *concert);
     bool accepts(TvShow *show);
+    bool accepts(TvShowEpisode *episode);
     QString text() const;
     QString shortText() const;
     int info() const;
     void setShortText(QString shortText);
     void setText(QString text);
     bool hasInfo() const;
+
 private:
     QString m_text;
     QString m_shortText;
