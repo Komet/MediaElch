@@ -90,6 +90,7 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
 
     connect(m_tvShowProxyModel, SIGNAL(rowsInserted(QModelIndex,int,int)), this, SLOT(onViewUpdated()));
     connect(m_tvShowProxyModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), this, SLOT(onViewUpdated()));
+    connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(onViewUpdated()));
 }
 
 /**
