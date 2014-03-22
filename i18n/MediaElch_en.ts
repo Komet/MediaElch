@@ -2524,32 +2524,32 @@ Main menu entry (tooltip)</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="333"/>
+        <location filename="../main/MainWindow.cpp" line="340"/>
         <source>Reload all Movies (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="335"/>
+        <location filename="../main/MainWindow.cpp" line="342"/>
         <source>Reload all TV Shows (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="337"/>
+        <location filename="../main/MainWindow.cpp" line="344"/>
         <source>Reload all Concerts (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="339"/>
+        <location filename="../main/MainWindow.cpp" line="346"/>
         <source>Reload all Downloads (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="714"/>
+        <location filename="../main/MainWindow.cpp" line="720"/>
         <source>Updates available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="715"/>
+        <location filename="../main/MainWindow.cpp" line="721"/>
         <source>%1 is now available.&lt;br&gt;Get it now on %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3980,7 +3980,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="718"/>
+        <location filename="../main/MainWindow.cpp" line="724"/>
         <source>Don&apos;t check for updates</source>
         <translation type="unfinished"></translation>
     </message>

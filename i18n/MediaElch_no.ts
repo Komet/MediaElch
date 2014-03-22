@@ -2513,32 +2513,32 @@ Main menu entry (tooltip)</extracomment>
         <translation>Om</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="333"/>
+        <location filename="../main/MainWindow.cpp" line="340"/>
         <source>Reload all Movies (%1)</source>
         <translation>Oppdater alle filmer (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="335"/>
+        <location filename="../main/MainWindow.cpp" line="342"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>Oppdater alle TV-serier (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="337"/>
+        <location filename="../main/MainWindow.cpp" line="344"/>
         <source>Reload all Concerts (%1)</source>
         <translation>Oppdater alle konserter (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="339"/>
+        <location filename="../main/MainWindow.cpp" line="346"/>
         <source>Reload all Downloads (%1)</source>
         <translation>Last alle nedlastinger (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="714"/>
+        <location filename="../main/MainWindow.cpp" line="720"/>
         <source>Updates available</source>
         <translation>Oppdateringer tilgjengelig</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="715"/>
+        <location filename="../main/MainWindow.cpp" line="721"/>
         <source>%1 is now available.&lt;br&gt;Get it now on %2</source>
         <translation>%1 er nå tilgjengelig.&lt;br&gt;Få den nå på %2</translation>
     </message>
@@ -3968,7 +3968,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
         <translation>Ikke spør igjen</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="718"/>
+        <location filename="../main/MainWindow.cpp" line="724"/>
         <source>Don&apos;t check for updates</source>
         <translation>Ikke se etter oppdateringer</translation>
     </message>
