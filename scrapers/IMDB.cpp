@@ -333,7 +333,12 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
         int pos = 0;
         while ((pos = rx.indexIn(content, pos)) != -1) {
             Actor a;
-            a.thumb = rx.cap(1);
+            QRegExp aRx("http://ia.media-imdb.com/images/(.*)/(.*)._V(.*)_S(.*)([0-9]*)_CR[0-9]*,[0-9]*,[0-9]*,[0-9]*_.jpg");
+            aRx.setMinimal(true);
+            if (aRx.indexIn(rx.cap(1)) != -1)
+                a.thumb = "http://ia.media-imdb.com/images/" + aRx.cap(1) + "/" + aRx.cap(2) + "._V" + aRx.cap(3) + "_SY317_CR0,0,214,317_.jpg";
+            else
+                a.thumb = rx.cap(1);
             a.name = rx.cap(2);
             a.role = rx.cap(3);
             movie->addActor(a);
