@@ -315,35 +315,46 @@
 </context>
 <context>
     <name>ConcertFilesWidget</name>
+    <message numerus="yes">
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="325"/>
+        <source>%n concerts</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+    </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="44"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="45"/>
         <source>Mark as watched</source>
         <translation>Marcar como &quot;visto&quot;</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="45"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="46"/>
         <source>Mark as unwatched</source>
         <translation>Marcar como &quot;por ver&quot;</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="46"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="47"/>
         <source>Load Stream Details</source>
         <translation>Carregar Detalhes da Pista</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="47"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="48"/>
         <source>Add to Synchronization Queue</source>
         <translation>Adicionar à Fila de Sincronização</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="48"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="49"/>
         <source>Remove from Synchronization Queue</source>
         <translation>Remover da Fila de Sincronização</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="49"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="50"/>
         <source>Open Concert Folder</source>
         <translation>Abrir Pasta do Concerto</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="327"/>
+        <source>%1 of %n concerts</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
 <context>
@@ -1158,74 +1169,85 @@
 <context>
     <name>FilesWidget</name>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="142"/>
+        <location filename="../movies/FilesWidget.ui" line="197"/>
         <source>New</source>
         <translation>Novo</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="168"/>
+        <location filename="../movies/FilesWidget.ui" line="224"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="194"/>
+        <location filename="../movies/FilesWidget.ui" line="251"/>
         <source>Date Added</source>
         <translation>Data de Adiçã</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="220"/>
+        <location filename="../movies/FilesWidget.ui" line="278"/>
         <source>Seen</source>
         <translation>Visto</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="246"/>
+        <location filename="../movies/FilesWidget.ui" line="305"/>
         <source>Year</source>
         <translation>Ano</translation>
     </message>
+    <message numerus="yes">
+        <location filename="../movies/FilesWidget.cpp" line="29"/>
+        <location filename="../movies/FilesWidget.cpp" line="505"/>
+        <source>%n movies</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+    </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="60"/>
+        <location filename="../movies/FilesWidget.cpp" line="61"/>
         <source>Media Status Columns</source>
         <translation>Colunas de Estado de Média</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="70"/>
+        <location filename="../movies/FilesWidget.cpp" line="71"/>
         <source>Label</source>
         <translation>Etiqueta</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="81"/>
+        <location filename="../movies/FilesWidget.cpp" line="82"/>
         <source>Load Information</source>
         <translation>Carregar Informação</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="82"/>
+        <location filename="../movies/FilesWidget.cpp" line="83"/>
         <source>Mark as watched</source>
         <translation>Marcar como &quot;visto&quot;</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="83"/>
+        <location filename="../movies/FilesWidget.cpp" line="84"/>
         <source>Mark as unwatched</source>
         <translation>Marcar como &quot;por ver&quot;</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="84"/>
+        <location filename="../movies/FilesWidget.cpp" line="85"/>
         <source>Load Stream Details</source>
         <translation>Carregar Detalhes da Pista</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="85"/>
+        <location filename="../movies/FilesWidget.cpp" line="86"/>
         <source>Add to Synchronization Queue</source>
         <translation>Adicionar à Fila de Sincronização</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="86"/>
+        <location filename="../movies/FilesWidget.cpp" line="87"/>
         <source>Remove from Synchronization Queue</source>
         <translation>Remover da Fila de Sincronização</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.cpp" line="87"/>
+        <location filename="../movies/FilesWidget.cpp" line="88"/>
         <source>Open Movie Folder</source>
         <translation>Abrir Pasta do Filme</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../movies/FilesWidget.cpp" line="507"/>
+        <source>%1 of %n movies</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
 <context>
@@ -1348,8 +1370,8 @@
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="537"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="657"/>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="659"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="671"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="673"/>
         <source>Title</source>
         <translation>Títul</translation>
     </message>
@@ -1803,7 +1825,6 @@
         <translation>Resolução 720p</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="646"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="647"/>
         <source>720p</source>
         <translation>720p</translation>
@@ -1821,7 +1842,6 @@
         <translation>Resolução 1080p</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="648"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="649"/>
         <source>1080p</source>
         <translation>1080p</translation>
@@ -1832,7 +1852,6 @@
         <translation>Resolução SD</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="650"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="651"/>
         <source>SD</source>
         <translation>SD</translation>
@@ -1843,7 +1862,6 @@
         <translation>Formato DVD</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="652"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="653"/>
         <source>DVD</source>
         <translation>DVD</translation>
@@ -1860,10 +1878,71 @@
         <translation>Formato BluRay</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/FilterWidget.cpp" line="654"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="655"/>
         <source>BluRay</source>
         <translation>BluRay</translation>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="657"/>
+        <source>Channels 2.0</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="658"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="660"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="662"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="665"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="667"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="669"/>
+        <source>Audio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="658"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="660"/>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="662"/>
+        <source>Channels</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="659"/>
+        <source>Channels 5.1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="661"/>
+        <source>Channels 7.1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="664"/>
+        <source>Audio Quality HD</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="665"/>
+        <source>HD Audio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="666"/>
+        <source>Audio Quality Normal</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="667"/>
+        <source>Normal Audio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="668"/>
+        <source>Audio Quality SD</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../smallWidgets/FilterWidget.cpp" line="669"/>
+        <source>SD Audio</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2962,7 +3041,7 @@ Main menu entry (tooltip)</extracomment>
         <translation>Procurando Filmes...</translation>
     </message>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="122"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="131"/>
         <source>Loading Movies...</source>
         <translation>Carregando Filmes...</translation>
     </message>
@@ -3031,42 +3110,42 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../data/MovieModel.cpp" line="283"/>
+        <location filename="../data/MovieModel.cpp" line="285"/>
         <source>Actors</source>
         <translation>Actores</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="285"/>
+        <location filename="../data/MovieModel.cpp" line="287"/>
         <source>Extra Arts</source>
         <translation>Arts Extras</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="287"/>
+        <location filename="../data/MovieModel.cpp" line="289"/>
         <source>Extra Fanarts</source>
         <translation>Fanarts Extra</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="289"/>
+        <location filename="../data/MovieModel.cpp" line="291"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="291"/>
+        <location filename="../data/MovieModel.cpp" line="293"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="293"/>
+        <location filename="../data/MovieModel.cpp" line="295"/>
         <source>Stream Details</source>
         <translation>Detalhes da Pista</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="295"/>
+        <location filename="../data/MovieModel.cpp" line="297"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="297"/>
+        <location filename="../data/MovieModel.cpp" line="299"/>
         <source>IMDB ID</source>
         <translation>ID IMDB</translation>
     </message>
@@ -3973,7 +4052,7 @@ Se quiser procurar um ID TMDB ou OFDb, por favor utilize o prefixo &quot;id&quot
         <translation>Não verificar actualizações</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="347"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="353"/>
         <source>Don&apos;t show this hint again</source>
         <translation>Não voltar a exibir esta dica</translation>
     </message>
@@ -4207,128 +4286,128 @@ p, li { white-space: pre-wrap; }
         <translation><numerusform>%n Episódio(s) será renomeado</numerusform><numerusform>%n Episódio(s) serão renomeados</numerusform></translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="169"/>
-        <location filename="../renamer/Renamer.cpp" line="186"/>
+        <location filename="../renamer/Renamer.cpp" line="174"/>
+        <location filename="../renamer/Renamer.cpp" line="191"/>
         <source>Finished</source>
         <translation>Concluído</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="237"/>
-        <location filename="../renamer/Renamer.cpp" line="248"/>
-        <location filename="../renamer/Renamer.cpp" line="263"/>
-        <location filename="../renamer/Renamer.cpp" line="489"/>
-        <location filename="../renamer/Renamer.cpp" line="502"/>
-        <location filename="../renamer/Renamer.cpp" line="676"/>
-        <location filename="../renamer/Renamer.cpp" line="689"/>
+        <location filename="../renamer/Renamer.cpp" line="242"/>
+        <location filename="../renamer/Renamer.cpp" line="253"/>
+        <location filename="../renamer/Renamer.cpp" line="268"/>
+        <location filename="../renamer/Renamer.cpp" line="494"/>
+        <location filename="../renamer/Renamer.cpp" line="507"/>
+        <location filename="../renamer/Renamer.cpp" line="681"/>
+        <location filename="../renamer/Renamer.cpp" line="694"/>
         <source>&lt;b&gt;Rename File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomear Ficheiro&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="240"/>
-        <location filename="../renamer/Renamer.cpp" line="251"/>
-        <location filename="../renamer/Renamer.cpp" line="266"/>
-        <location filename="../renamer/Renamer.cpp" line="283"/>
-        <location filename="../renamer/Renamer.cpp" line="300"/>
-        <location filename="../renamer/Renamer.cpp" line="317"/>
-        <location filename="../renamer/Renamer.cpp" line="334"/>
-        <location filename="../renamer/Renamer.cpp" line="351"/>
-        <location filename="../renamer/Renamer.cpp" line="368"/>
-        <location filename="../renamer/Renamer.cpp" line="385"/>
-        <location filename="../renamer/Renamer.cpp" line="402"/>
-        <location filename="../renamer/Renamer.cpp" line="422"/>
-        <location filename="../renamer/Renamer.cpp" line="492"/>
-        <location filename="../renamer/Renamer.cpp" line="505"/>
-        <location filename="../renamer/Renamer.cpp" line="524"/>
-        <location filename="../renamer/Renamer.cpp" line="541"/>
-        <location filename="../renamer/Renamer.cpp" line="558"/>
-        <location filename="../renamer/Renamer.cpp" line="573"/>
-        <location filename="../renamer/Renamer.cpp" line="582"/>
-        <location filename="../renamer/Renamer.cpp" line="590"/>
-        <location filename="../renamer/Renamer.cpp" line="597"/>
-        <location filename="../renamer/Renamer.cpp" line="626"/>
-        <location filename="../renamer/Renamer.cpp" line="679"/>
-        <location filename="../renamer/Renamer.cpp" line="692"/>
-        <location filename="../renamer/Renamer.cpp" line="709"/>
-        <location filename="../renamer/Renamer.cpp" line="726"/>
-        <location filename="../renamer/Renamer.cpp" line="743"/>
-        <location filename="../renamer/Renamer.cpp" line="764"/>
+        <location filename="../renamer/Renamer.cpp" line="245"/>
+        <location filename="../renamer/Renamer.cpp" line="256"/>
+        <location filename="../renamer/Renamer.cpp" line="271"/>
+        <location filename="../renamer/Renamer.cpp" line="288"/>
+        <location filename="../renamer/Renamer.cpp" line="305"/>
+        <location filename="../renamer/Renamer.cpp" line="322"/>
+        <location filename="../renamer/Renamer.cpp" line="339"/>
+        <location filename="../renamer/Renamer.cpp" line="356"/>
+        <location filename="../renamer/Renamer.cpp" line="373"/>
+        <location filename="../renamer/Renamer.cpp" line="390"/>
+        <location filename="../renamer/Renamer.cpp" line="407"/>
+        <location filename="../renamer/Renamer.cpp" line="427"/>
+        <location filename="../renamer/Renamer.cpp" line="497"/>
+        <location filename="../renamer/Renamer.cpp" line="510"/>
+        <location filename="../renamer/Renamer.cpp" line="529"/>
+        <location filename="../renamer/Renamer.cpp" line="546"/>
+        <location filename="../renamer/Renamer.cpp" line="563"/>
+        <location filename="../renamer/Renamer.cpp" line="578"/>
+        <location filename="../renamer/Renamer.cpp" line="587"/>
+        <location filename="../renamer/Renamer.cpp" line="595"/>
+        <location filename="../renamer/Renamer.cpp" line="602"/>
+        <location filename="../renamer/Renamer.cpp" line="631"/>
+        <location filename="../renamer/Renamer.cpp" line="684"/>
+        <location filename="../renamer/Renamer.cpp" line="697"/>
+        <location filename="../renamer/Renamer.cpp" line="714"/>
+        <location filename="../renamer/Renamer.cpp" line="731"/>
+        <location filename="../renamer/Renamer.cpp" line="748"/>
+        <location filename="../renamer/Renamer.cpp" line="769"/>
         <source>Failed</source>
         <translation>Erro</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="280"/>
-        <location filename="../renamer/Renamer.cpp" line="521"/>
-        <location filename="../renamer/Renamer.cpp" line="706"/>
+        <location filename="../renamer/Renamer.cpp" line="285"/>
+        <location filename="../renamer/Renamer.cpp" line="526"/>
+        <location filename="../renamer/Renamer.cpp" line="711"/>
         <source>&lt;b&gt;Rename NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomear NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="297"/>
-        <location filename="../renamer/Renamer.cpp" line="723"/>
+        <location filename="../renamer/Renamer.cpp" line="302"/>
+        <location filename="../renamer/Renamer.cpp" line="728"/>
         <source>&lt;b&gt;Rename Poster&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomear Poster&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="314"/>
-        <location filename="../renamer/Renamer.cpp" line="740"/>
+        <location filename="../renamer/Renamer.cpp" line="319"/>
+        <location filename="../renamer/Renamer.cpp" line="745"/>
         <source>&lt;b&gt;Rename Fanart&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomear Fanart&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="331"/>
+        <location filename="../renamer/Renamer.cpp" line="336"/>
         <source>&lt;b&gt;Rename Banner&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomear Faixa&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="348"/>
+        <location filename="../renamer/Renamer.cpp" line="353"/>
         <source>&lt;b&gt;Rename Thumb&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomear Miniatura&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="365"/>
+        <location filename="../renamer/Renamer.cpp" line="370"/>
         <source>&lt;b&gt;Rename Logo&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomear Logotipo&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="382"/>
+        <location filename="../renamer/Renamer.cpp" line="387"/>
         <source>&lt;b&gt;Rename Clear Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomear Clear Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="399"/>
+        <location filename="../renamer/Renamer.cpp" line="404"/>
         <source>&lt;b&gt;Rename CD Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomear CD Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="415"/>
-        <location filename="../renamer/Renamer.cpp" line="621"/>
-        <location filename="../renamer/Renamer.cpp" line="757"/>
+        <location filename="../renamer/Renamer.cpp" line="420"/>
+        <location filename="../renamer/Renamer.cpp" line="626"/>
+        <location filename="../renamer/Renamer.cpp" line="762"/>
         <source>&lt;b&gt;Rename Directory&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomear Pasta&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="538"/>
+        <location filename="../renamer/Renamer.cpp" line="543"/>
         <source>&lt;b&gt;Rename Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomear Miniatura&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="555"/>
+        <location filename="../renamer/Renamer.cpp" line="560"/>
         <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%1&quot;</source>
         <translation>&lt;b&gt;Criar Pasta&lt;/b&gt; &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="570"/>
-        <location filename="../renamer/Renamer.cpp" line="579"/>
+        <location filename="../renamer/Renamer.cpp" line="575"/>
+        <location filename="../renamer/Renamer.cpp" line="584"/>
         <source>&lt;b&gt;Move Episode&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Mover Episódio&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="587"/>
+        <location filename="../renamer/Renamer.cpp" line="592"/>
         <source>&lt;b&gt;Move NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Mover NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="594"/>
+        <location filename="../renamer/Renamer.cpp" line="599"/>
         <source>&lt;b&gt;Move Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Mover Miniatura&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
     </message>
@@ -5652,62 +5731,79 @@ p, li { white-space: pre-wrap; }
         <source>Form</source>
         <translation>Formulário</translation>
     </message>
+    <message numerus="yes">
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
+        <source>%n tv shows</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
+        <source>%n episodes</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+    </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="48"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
         <source>Search for new episodes</source>
         <translation>Procurando por novos episódios</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="49"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="51"/>
         <source>Mark as watched</source>
         <translation>Marcar como &quot;visto&quot;</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="52"/>
         <source>Mark as unwatched</source>
         <translation>Marcar como &quot;por ver&quot;</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="51"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="53"/>
         <source>Load Stream Details</source>
         <translation>Carregar Detalhes da Pista</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="52"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="54"/>
         <source>Add to Synchronization Queue</source>
         <translation>Adicionar à Fila de Sincronização</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="53"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="55"/>
         <source>Remove from Synchronization Queue</source>
         <translation>Remover da Fila de Sincronização</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="54"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="56"/>
         <source>Open TV Show Folder</source>
         <translation>Abrir Pasta da Série TV</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="55"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="57"/>
         <source>Show missing episodes</source>
         <translation>Exibir episódios em falta</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="57"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="59"/>
         <source>Hide specials in missing episodes</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="343"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="349"/>
         <source>Show update needed</source>
         <translation>É necessário actualizar a Série</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="344"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="350"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation>Precisa de actualizar a série uma vez para exibir episódios em falta.
 Após isso, o MediaElch verificará automaticamente novos episódios ao iniciar.</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="520"/>
+        <source>%1 of %n tv shows</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
 <context>
