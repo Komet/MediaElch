@@ -320,7 +320,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="325"/>
         <source>%n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n koncert</numerusform><numerusform>%n koncertów</numerusform><numerusform>%n koncertów</numerusform></translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="45"/>
@@ -355,7 +355,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="327"/>
         <source>%1 of %n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>1 z 1 koncertu</numerusform><numerusform>%1 z %n koncertów</numerusform><numerusform>%1 z %n koncertów</numerusform></translation>
     </message>
 </context>
 <context>
@@ -1198,7 +1198,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
         <location filename="../movies/FilesWidget.cpp" line="29"/>
         <location filename="../movies/FilesWidget.cpp" line="505"/>
         <source>%n movies</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n film</numerusform><numerusform>%n filmów</numerusform><numerusform>%n filmów</numerusform></translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="61"/>
@@ -1248,7 +1248,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="507"/>
         <source>%1 of %n movies</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 z %n filmu</numerusform><numerusform>%1 z %n filmów</numerusform><numerusform>%1 z %n filmów</numerusform></translation>
     </message>
 </context>
 <context>
@@ -1886,7 +1886,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="657"/>
         <source>Channels 2.0</source>
-        <translation type="unfinished"/>
+        <translation>Format 2.0</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="658"/>
@@ -1896,54 +1896,54 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
         <location filename="../smallWidgets/FilterWidget.cpp" line="667"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="669"/>
         <source>Audio</source>
-        <translation type="unfinished"/>
+        <translation>Dźwięk</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="658"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="660"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="662"/>
         <source>Channels</source>
-        <translation type="unfinished"/>
+        <translation>Kanały</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="659"/>
         <source>Channels 5.1</source>
-        <translation type="unfinished"/>
+        <translation>Format 5.1</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="661"/>
         <source>Channels 7.1</source>
-        <translation type="unfinished"/>
+        <translation>Format 7.1</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="664"/>
         <source>Audio Quality HD</source>
-        <translation type="unfinished"/>
+        <translation>Dźwięk jakości HD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="665"/>
         <source>HD Audio</source>
-        <translation type="unfinished"/>
+        <translation>Dźwięk HD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="666"/>
         <source>Audio Quality Normal</source>
-        <translation type="unfinished"/>
+        <translation>Standardowa jakość dźwięku</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="667"/>
         <source>Normal Audio</source>
-        <translation type="unfinished"/>
+        <translation>Dźwięk standardowy</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="668"/>
         <source>Audio Quality SD</source>
-        <translation type="unfinished"/>
+        <translation>Jakość dźwięku SD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="669"/>
         <source>SD Audio</source>
-        <translation type="unfinished"/>
+        <translation>Dźwięk SD</translation>
     </message>
 </context>
 <context>
@@ -4037,12 +4037,12 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
     <message>
         <location filename="../main.cpp" line="93"/>
         <source>Logfile could not be openened</source>
-        <translation>Plik logów nie może zostać otworzony</translation>
+        <translation>Plik dziennika nie może zostać otworzony</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="94"/>
         <source>The logfile %1 could not be openend for writing.</source>
-        <translation>Plik logów %1 nie może zostać otworzony do zapisu.</translation>
+        <translation>Plik dziennika %1 nie może zostać otworzony do zapisu.</translation>
     </message>
     <message>
         <location filename="../smallWidgets/ClosableImage.cpp" line="348"/>
@@ -5738,13 +5738,13 @@ p, li { white-space: pre-wrap; }⏎
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
         <source>%n tv shows</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n serial</numerusform><numerusform>%n seriali</numerusform><numerusform>%n seriali</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
         <source>%n episodes</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n odcinek</numerusform><numerusform>%n odcinków</numerusform><numerusform>%n odcinków</numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
@@ -5806,7 +5806,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="520"/>
         <source>%1 of %n tv shows</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 z %n serialu</numerusform><numerusform>%1 z %n seriali</numerusform><numerusform>%1 z %n seriali</numerusform></translation>
     </message>
 </context>
 <context>

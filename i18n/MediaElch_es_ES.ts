@@ -1885,7 +1885,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="657"/>
         <source>Channels 2.0</source>
-        <translation type="unfinished"/>
+        <translation>Canales 2.0</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="658"/>
@@ -1895,54 +1895,54 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="667"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="669"/>
         <source>Audio</source>
-        <translation type="unfinished"/>
+        <translation>Audio</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="658"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="660"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="662"/>
         <source>Channels</source>
-        <translation type="unfinished"/>
+        <translation>Canales</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="659"/>
         <source>Channels 5.1</source>
-        <translation type="unfinished"/>
+        <translation>Canales 5.1</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="661"/>
         <source>Channels 7.1</source>
-        <translation type="unfinished"/>
+        <translation>Canales 7.1</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="664"/>
         <source>Audio Quality HD</source>
-        <translation type="unfinished"/>
+        <translation>Audio Calidad HD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="665"/>
         <source>HD Audio</source>
-        <translation type="unfinished"/>
+        <translation>Audio HD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="666"/>
         <source>Audio Quality Normal</source>
-        <translation type="unfinished"/>
+        <translation>Audio Calidad Normal</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="667"/>
         <source>Normal Audio</source>
-        <translation type="unfinished"/>
+        <translation>Audio Normal</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="668"/>
         <source>Audio Quality SD</source>
-        <translation type="unfinished"/>
+        <translation>Audio Calidad SD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="669"/>
         <source>SD Audio</source>
-        <translation type="unfinished"/>
+        <translation>Audio SD</translation>
     </message>
 </context>
 <context>
