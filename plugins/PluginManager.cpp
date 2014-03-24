@@ -109,8 +109,8 @@ void PluginManager::parsePluginData(QXmlStreamReader &xml)
     QString identifier;
     QString version;
     QString minimumVersion;
-    QString sha1Osx;
-    QString sha1Win;
+    QList<PluginManager::PluginFile> files;
+
 
     while (xml.readNextStartElement()) {
         if (xml.name() == "name") {
@@ -121,13 +121,19 @@ void PluginManager::parsePluginData(QXmlStreamReader &xml)
             version = xml.readElementText();
         } else if (xml.name() == "minimumVersion") {
             minimumVersion = xml.readElementText();
-        } else if (xml.name() == "sha1") {
-            if (xml.attributes().value("os").toString() == "osx")
-                sha1Osx = xml.readElementText();
-            else if (xml.attributes().value("os").toString() == "win")
-                sha1Win = xml.readElementText();
-            else
-                xml.readElementText();
+        } else if (xml.name() == "files" && xml.attributes().value("os").toString() == m_os) {
+            while (xml.readNextStartElement()) {
+                if (xml.name() == "file") {
+                    PluginManager::PluginFile f;
+                    f.downloaded = false;
+                    f.sha1 = xml.attributes().value("sha1").toString();
+                    f.fileName = xml.readElementText();
+                    f.downloaded = false;
+                    files.append(f);
+                } else {
+                    xml.skipCurrentElement();
+                }
+            }
         } else {
             xml.skipCurrentElement();
         }
@@ -136,8 +142,7 @@ void PluginManager::parsePluginData(QXmlStreamReader &xml)
     for (int i=0, n=m_plugins.count() ; i<n ; ++i) {
         if (m_plugins[i].identifier == identifier) {
             m_plugins[i].version = version;
-            m_plugins[i].sha1Osx = sha1Osx;
-            m_plugins[i].sha1Win = sha1Win;
+            m_plugins[i].files = files;
             m_plugins[i].updateAvailable = (Helper::instance()->compareVersionNumbers(m_plugins[i].installedVersion, version) == 1);
             return;
         }
@@ -149,8 +154,7 @@ void PluginManager::parsePluginData(QXmlStreamReader &xml)
     plugin.installedVersion = "";
     plugin.minimumVersion = minimumVersion;
     plugin.name = name;
-    plugin.sha1Osx = sha1Osx;
-    plugin.sha1Win = sha1Win;
+    plugin.files = files;
     plugin.updateAvailable = false;
     plugin.version = version;
 
@@ -214,15 +218,40 @@ bool PluginManager::loadPlugin(const QString &fileName)
 void PluginManager::installPlugin(PluginManager::Plugin plugin, const QString &licenseKey)
 {
 
-    QUrlQuery queryData;
-    queryData.addQueryItem("keyNumber", licenseKey);
-    // @todo: change url
-    QUrl url(QString("http://community.local/api/plugin/%1/%2").arg(plugin.identifier).arg(m_os));
-    QNetworkRequest request(url);
-    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-    QNetworkReply *reply = m_qnam.post(request, queryData.toString().toUtf8());
-    reply->setProperty("storage", Storage::toVariant(reply, plugin));
-    connect(reply, SIGNAL(finished()), this, SLOT(onPluginDownloaded()));
+    for (int i=0, n=plugin.files.count() ; i<n ; ++i) {
+        if (plugin.files[i].downloaded == false) {
+            QUrlQuery queryData;
+            queryData.addQueryItem("keyNumber", licenseKey);
+            // @todo: change url
+            QUrl url(QString("http://community.local/api/plugin/%1/%2/%3").arg(plugin.identifier).arg(m_os).arg(plugin.files[i].fileName));
+            QNetworkRequest request(url);
+            request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+            QNetworkReply *reply = m_qnam.post(request, queryData.toString().toUtf8());
+            reply->setProperty("storage", Storage::toVariant(reply, plugin));
+            reply->setProperty("licenseKey", licenseKey);
+            connect(reply, SIGNAL(finished()), this, SLOT(onPluginDownloaded()));
+            return;
+        }
+    }
+
+    bool loaded = false;
+    for (int i=0, n=plugin.files.count() ; i<n ; ++i) {
+        qDebug() << "trying to load" << plugin.files[i].fileName;
+        if (!Settings::pluginDirs().isEmpty() && loadPlugin(Settings::pluginDirs().first() + "/" + plugin.files[i].fileName) && !loaded)
+            loaded = true;
+    }
+
+    if (!loaded) {
+        qDebug() << "no file loaded";
+        emit sigPluginInstallFailure(plugin);
+        return;
+    }
+
+    if (plugin.updateAvailable)
+        emit sigPluginUpdated(plugin);
+    else
+        emit sigPluginInstalled(plugin);
+    emit sigPluginListUpdated(m_plugins);
 }
 
 void PluginManager::onPluginDownloaded()
@@ -232,7 +261,7 @@ void PluginManager::onPluginDownloaded()
         return;
     reply->deleteLater();
     PluginManager::Plugin plugin = reply->property("storage").value<Storage*>()->plugin();
-    bool isUpdate = plugin.updateAvailable;
+    QString licenseKey = reply->property("licenseKey").toString();
 
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
@@ -254,9 +283,15 @@ void PluginManager::onPluginDownloaded()
 
     QByteArray ba = reply->readAll();
     QString sha1 = QCryptographicHash::hash(ba, QCryptographicHash::Sha1).toHex();
-    if ((m_os == "osx" && sha1 != plugin.sha1Osx) || (m_os == "win" && sha1 != plugin.sha1Win)) {
-        emit sigPluginInstallFailure(plugin);
-        return;
+    for (int i=0, n=plugin.files.count() ; i<n ; ++i) {
+        if (plugin.files[i].fileName == fileName) {
+            plugin.files[i].downloaded = true;
+            if (sha1 != plugin.files[i].sha1) {
+                qDebug() << plugin.files[i].fileName << "sha1 mismatch" << sha1 << plugin.files[i].sha1;
+                emit sigPluginInstallFailure(plugin);
+                return;
+            }
+        }
     }
 
     if (Settings::pluginDirs().isEmpty() || fileName.isEmpty()) {
@@ -270,16 +305,7 @@ void PluginManager::onPluginDownloaded()
     f.write(ba);
     f.close();
 
-    if (!loadPlugin(pluginFileName)) {
-        emit sigPluginInstallFailure(plugin);
-        return;
-    }
-
-    if (isUpdate)
-        emit sigPluginUpdated(plugin);
-    else
-        emit sigPluginInstalled(plugin);
-    emit sigPluginListUpdated(m_plugins);
+    installPlugin(plugin, licenseKey);
 }
 
 void PluginManager::uninstallPlugin(PluginManager::Plugin plugin)
@@ -293,6 +319,8 @@ void PluginManager::uninstallPlugin(PluginManager::Plugin plugin)
             m_plugins[i].installed = false;
             m_plugins[i].updateAvailable = false;
             m_plugins[i].localFileName = "";
+            for (int x=0, y=m_plugins[i].files.count() ; x<y ; ++x)
+                m_plugins[i].files[x].downloaded = false;
             break;
         }
     }

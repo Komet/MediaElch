@@ -10,18 +10,23 @@ class PluginManager : public QObject
 {
     Q_OBJECT
 public:
+    struct PluginFile {
+        QString fileName;
+        QString sha1;
+        bool downloaded;
+    };
+
     struct Plugin {
         QString name;
         QString identifier;
         QString version;
         QString installedVersion;
         QString minimumVersion;
-        QString sha1Osx;
-        QString sha1Win;
-        QString localFileName;
+        QList<PluginManager::PluginFile> files;
         bool installed;
         bool updateAvailable;
         PluginInterface *plugin;
+        QString localFileName;
     };
 
     explicit PluginManager(QObject *parent = 0);
