@@ -192,7 +192,7 @@ void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate *exportTemplate, 
 void ExportDialog::replaceVars(QString &m, Movie *movie, QDir dir, bool subDir)
 {
     m.replace("{{ MOVIE.LINK }}", QString("movies/%1.html").arg(movie->movieId()));
-		m.replace("{{ MOVIE.TMDB_ID }}", movie->tmdbId());
+    m.replace("{{ MOVIE.TMDB_ID }}", movie->tmdbId());
     m.replace("{{ MOVIE.TITLE }}", movie->name());
     m.replace("{{ MOVIE.YEAR }}", movie->released().isValid() ? movie->released().toString("yyyy") : "");
     m.replace("{{ MOVIE.ORIGINAL_TITLE }}", movie->originalName());
@@ -369,7 +369,7 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
 void ExportDialog::replaceVars(QString &m, TvShow *show, QDir dir, bool subDir)
 {
     m.replace("{{ TVSHOW.LINK }}", QString("tvshows/%1.html").arg(show->showId()));
-		m.replace("{{ TVSHOW.IMDB_ID }}", show->imdbId());
+    m.replace("{{ TVSHOW.IMDB_ID }}", show->imdbId());
     m.replace("{{ TVSHOW.TITLE }}", show->name());
     m.replace("{{ TVSHOW.RATING }}", QString::number(show->rating(), 'f', 1));
     m.replace("{{ TVSHOW.CERTIFICATION }}", show->certification());
