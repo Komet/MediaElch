@@ -192,6 +192,7 @@ void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate *exportTemplate, 
 void ExportDialog::replaceVars(QString &m, Movie *movie, QDir dir, bool subDir)
 {
     m.replace("{{ MOVIE.LINK }}", QString("movies/%1.html").arg(movie->movieId()));
+		m.replace("{{ MOVIE.TMDB_ID }}", movie->tmdbId());
     m.replace("{{ MOVIE.TITLE }}", movie->name());
     m.replace("{{ MOVIE.YEAR }}", movie->released().isValid() ? movie->released().toString("yyyy") : "");
     m.replace("{{ MOVIE.ORIGINAL_TITLE }}", movie->originalName());
@@ -212,6 +213,8 @@ void ExportDialog::replaceVars(QString &m, Movie *movie, QDir dir, bool subDir)
     m.replace("{{ MOVIE.RUNTIME }}", QString::number(movie->runtime(), 'f', 0));
     m.replace("{{ MOVIE.PLAY_COUNT }}", QString::number(movie->playcount(), 'f', 0));
     m.replace("{{ MOVIE.LAST_PLAYED }}", movie->lastPlayed().isValid() ? movie->lastPlayed().toString("yyyy-MM-dd hh:mm") : "");
+    m.replace("{{ MOVIE.DATE_ADDED }}", movie->dateAdded().isValid() ? movie->dateAdded().toString("yyyy-MM-dd hh:mm") : "");
+    m.replace("{{ MOVIE.FILE_LAST_MODIFIED }}", movie->fileLastModified().isValid() ? movie->fileLastModified().toString("yyyy-MM-dd hh:mm") : "");
 
     replaceSingleBlock(m, "TAGS", "TAG.NAME", movie->tags());
     replaceSingleBlock(m, "GENRES", "GENRE.NAME", movie->genres());
@@ -366,6 +369,7 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
 void ExportDialog::replaceVars(QString &m, TvShow *show, QDir dir, bool subDir)
 {
     m.replace("{{ TVSHOW.LINK }}", QString("tvshows/%1.html").arg(show->showId()));
+		m.replace("{{ TVSHOW.IMDB_ID }}", show->imdbId());
     m.replace("{{ TVSHOW.TITLE }}", show->name());
     m.replace("{{ TVSHOW.RATING }}", QString::number(show->rating(), 'f', 1));
     m.replace("{{ TVSHOW.CERTIFICATION }}", show->certification());
