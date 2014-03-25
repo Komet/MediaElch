@@ -319,7 +319,7 @@
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="325"/>
         <source>%n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n konsertti</numerusform><numerusform>%n konserttia</numerusform></translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="45"/>
@@ -354,7 +354,7 @@
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="327"/>
         <source>%1 of %n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 / %n konsertista</numerusform><numerusform>%1 / %n konsertista</numerusform></translation>
     </message>
 </context>
 <context>
@@ -1247,7 +1247,7 @@
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="507"/>
         <source>%1 of %n movies</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 / %n elokuvasta</numerusform><numerusform>%1 / %n elokuvasta</numerusform></translation>
     </message>
 </context>
 <context>
@@ -3280,7 +3280,7 @@ Toiminto peruutettu.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="271"/>
         <source>Thumb</source>
-        <translation>Esikatselukuvaa</translation>
+        <translation>Esikatselukuva</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="321"/>
@@ -3794,7 +3794,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
         <location filename="../movies/MovieWidget.ui" line="1342"/>
         <location filename="../movies/MovieWidget.ui" line="1379"/>
         <source>Thumb</source>
-        <translation>Ei esikatselukuvaa</translation>
+        <translation>Esikatselukuva</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1418"/>
@@ -4709,7 +4709,7 @@ TV-sarjojen jaksojen tulee olla alihakemistoissa, jotka on nimetty sarjojen muka
         <location filename="../settings/SettingsWindow.ui" line="906"/>
         <location filename="../settings/SettingsWindow.cpp" line="691"/>
         <source>Thumb</source>
-        <translation>Ei esikatselukuvaa</translation>
+        <translation>Esikatselukuva</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="574"/>
