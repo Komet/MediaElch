@@ -386,6 +386,7 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
 void ExportDialog::replaceVars(QString &m, TvShow *show, QDir dir, bool subDir)
 {
     m.replace("{{ TVSHOW.ID }}", show->Id());
+    m.replace("{{ TVSHOW.LINK }}", QString("tvshows/%1.html").arg(show->showId()));
     m.replace("{{ TVSHOW.IMDB_ID }}", show->imdbId());
     m.replace("{{ TVSHOW.TITLE }}", show->name());
     m.replace("{{ TVSHOW.RATING }}", QString::number(show->rating(), 'f', 1));
