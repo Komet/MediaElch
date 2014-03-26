@@ -4570,7 +4570,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWindow.ui" line="156"/>
         <source>Store trailer URLs in YouTube Plugin format</source>
-        <translation>Tallenna trailerien URL-osoitteet YouTube-liitännäisen muodossa</translation>
+        <translation>Tallenna trailerien URL-osoitteet YouTube-lisäosan muodossa</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="170"/>
