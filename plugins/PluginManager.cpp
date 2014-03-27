@@ -236,7 +236,6 @@ void PluginManager::installPlugin(PluginManager::Plugin plugin, const QString &l
 
     bool loaded = false;
     for (int i=0, n=plugin.files.count() ; i<n ; ++i) {
-        qDebug() << "trying to load" << plugin.files[i].fileName;
         if (!Settings::pluginDirs().isEmpty() && loadPlugin(Settings::pluginDirs().first() + "/" + plugin.files[i].fileName) && !loaded)
             loaded = true;
     }
