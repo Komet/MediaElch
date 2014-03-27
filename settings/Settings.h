@@ -211,7 +211,7 @@ private:
     QString m_lastImagePath;
 
     void setupProxy();
-    void fixWindowPosition(QPoint &p);
+    QPoint fixWindowPosition(QPoint p);
 };
 
 #endif // SETTINGS_H

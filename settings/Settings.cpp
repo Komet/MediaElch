@@ -1272,8 +1272,9 @@ QString Settings::lastImagePath()
     return m_lastImagePath;
 }
 
-void Settings::fixWindowPosition(QPoint &p)
+QPoint Settings::fixWindowPosition(QPoint p)
 {
     p.setX(qMax(0, p.x()));
     p.setY(qMax(0, p.y()));
+    return p;
 }
