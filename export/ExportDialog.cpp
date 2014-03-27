@@ -156,7 +156,6 @@ void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate *exportTemplate, 
     
     int pos = 0;
     while ((pos = rx.indexIn(listContent, pos)) != -1) {
-        //++count;
         pos += rx.matchedLength();
         
         listMovieBlock = rx.cap(0);
@@ -252,7 +251,6 @@ void ExportDialog::parseAndSaveConcerts(QDir dir, ExportTemplate *exportTemplate
     
     int pos = 0;
     while ((pos = rx.indexIn(listContent, pos)) != -1) {
-        //++count;
         pos += rx.matchedLength();
         
         listConcertBlock = rx.cap(0);
@@ -329,7 +327,6 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
 
     int pos = 0;
     while ((pos = rx.indexIn(listContent, pos)) != -1) {
-        //++count;
         pos += rx.matchedLength();
         
         listTvShowBlock = rx.cap(0);
@@ -417,7 +414,6 @@ void ExportDialog::replaceVars(QString &m, TvShow *show, QDir dir, bool subDir)
 
     int pos = 0;
     while ((pos = rx.indexIn(m, pos)) != -1) {
-        //++count;
         pos += rx.matchedLength();
         
         listSeasonBlock = rx.cap(0);
@@ -442,7 +438,6 @@ void ExportDialog::replaceVars(QString &m, TvShow *show, QDir dir, bool subDir)
 
         int pos = 0;
         while ((pos = rx.indexIn(s, pos)) != -1) {
-            //++count;
             pos += rx.matchedLength();
             
             listEpisodeBlock = rx.cap(0);
