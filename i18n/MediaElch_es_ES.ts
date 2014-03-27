@@ -3041,7 +3041,7 @@ Main menu entry (tooltip)</extracomment>
         <translation>Buscando películas...</translation>
     </message>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="131"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="135"/>
         <source>Loading Movies...</source>
         <translation>Cargando películas...</translation>
     </message>

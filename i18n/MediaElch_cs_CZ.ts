@@ -3041,7 +3041,7 @@ Main menu entry (tooltip)</extracomment>
         <translation>Vyhledávání filmů...</translation>
     </message>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="131"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="135"/>
         <source>Loading Movies...</source>
         <translation>Načítání filmů...</translation>
     </message>

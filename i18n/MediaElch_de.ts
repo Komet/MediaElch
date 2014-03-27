@@ -319,7 +319,7 @@
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="325"/>
         <source>%n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Ein Konzert</numerusform><numerusform>%n Konzerte</numerusform></translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="45"/>
@@ -354,7 +354,7 @@
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="327"/>
         <source>%1 of %n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 von einem Konzert</numerusform><numerusform>%1 von %n Konzerten</numerusform></translation>
     </message>
 </context>
 <context>
@@ -1197,7 +1197,7 @@
         <location filename="../movies/FilesWidget.cpp" line="29"/>
         <location filename="../movies/FilesWidget.cpp" line="505"/>
         <source>%n movies</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Ein Film</numerusform><numerusform>%n Filme</numerusform></translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="61"/>
@@ -1247,7 +1247,7 @@
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="507"/>
         <source>%1 of %n movies</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 von einem Film</numerusform><numerusform>%1 von %n Filmen</numerusform></translation>
     </message>
 </context>
 <context>
@@ -1885,7 +1885,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="657"/>
         <source>Channels 2.0</source>
-        <translation type="unfinished"/>
+        <translation>Kanäle 2.0</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="658"/>
@@ -1907,42 +1907,42 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="659"/>
         <source>Channels 5.1</source>
-        <translation type="unfinished"/>
+        <translation>Kanäle 5.1</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="661"/>
         <source>Channels 7.1</source>
-        <translation type="unfinished"/>
+        <translation>Kanäle 7.1</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="664"/>
         <source>Audio Quality HD</source>
-        <translation type="unfinished"/>
+        <translation>Audio Qualität HD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="665"/>
         <source>HD Audio</source>
-        <translation type="unfinished"/>
+        <translation>HD Audio</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="666"/>
         <source>Audio Quality Normal</source>
-        <translation type="unfinished"/>
+        <translation>Audio Qualität Normal</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="667"/>
         <source>Normal Audio</source>
-        <translation type="unfinished"/>
+        <translation>Normal Audio</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="668"/>
         <source>Audio Quality SD</source>
-        <translation type="unfinished"/>
+        <translation>Audio Qualität SD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="669"/>
         <source>SD Audio</source>
-        <translation type="unfinished"/>
+        <translation>SD Audio</translation>
     </message>
 </context>
 <context>
@@ -3041,7 +3041,7 @@ Main menu entry (tooltip)</extracomment>
         <translation>Suche nach Filmen...</translation>
     </message>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="131"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="135"/>
         <source>Loading Movies...</source>
         <translation>Lade Filme...</translation>
     </message>
@@ -4244,7 +4244,7 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.Lucida Grande UI'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt; &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt; p, li { white-space: pre-wrap; } &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Lucida Grande UI&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt; &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="415"/>
@@ -5730,13 +5730,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
         <source>%n tv shows</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Eine Serie</numerusform><numerusform>%n Serien</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
         <source>%n episodes</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Eine Episode</numerusform><numerusform>%n Episoden</numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
@@ -5798,7 +5798,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="520"/>
         <source>%1 of %n tv shows</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 von einer Serie</numerusform><numerusform>%1 von %n Serien</numerusform></translation>
     </message>
 </context>
 <context>
