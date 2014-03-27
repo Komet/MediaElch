@@ -153,7 +153,11 @@ void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate *exportTemplate, 
     QStringList movieList;
     QRegExp rx("\\{\\{ BEGIN_BLOCK_MOVIE \\}\\}(.*)\\{\\{ END_BLOCK_MOVIE \\}\\}");
     rx.setMinimal(true);
-    if (rx.indexIn(listContent) != -1) {
+    
+    int pos = 0;
+    while ((pos = rx.indexIn(listContent, pos)) != -1) {
+        pos += rx.matchedLength();
+        
         listMovieBlock = rx.cap(0);
         listMovieItem = rx.cap(1).trimmed();
     }
@@ -191,6 +195,7 @@ void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate *exportTemplate, 
 
 void ExportDialog::replaceVars(QString &m, Movie *movie, QDir dir, bool subDir)
 {
+    m.replace("{{ MOVIE.ID }}", QString::number(movie->movieId(), 'f', 0));
     m.replace("{{ MOVIE.LINK }}", QString("movies/%1.html").arg(movie->movieId()));
     m.replace("{{ MOVIE.TMDB_ID }}", movie->tmdbId());
     m.replace("{{ MOVIE.TITLE }}", movie->name());
@@ -243,7 +248,11 @@ void ExportDialog::parseAndSaveConcerts(QDir dir, ExportTemplate *exportTemplate
     QStringList concertList;
     QRegExp rx("\\{\\{ BEGIN_BLOCK_CONCERT \\}\\}(.*)\\{\\{ END_BLOCK_CONCERT \\}\\}");
     rx.setMinimal(true);
-    if (rx.indexIn(listContent) != -1) {
+    
+    int pos = 0;
+    while ((pos = rx.indexIn(listContent, pos)) != -1) {
+        pos += rx.matchedLength();
+        
         listConcertBlock = rx.cap(0);
         listConcertItem = rx.cap(1).trimmed();
     }
@@ -281,6 +290,7 @@ void ExportDialog::parseAndSaveConcerts(QDir dir, ExportTemplate *exportTemplate
 
 void ExportDialog::replaceVars(QString &m, Concert *concert, QDir dir, bool subDir)
 {
+    m.replace("{{ CONCERT.ID }}", QString::number(concert->concertId(), 'f', 0));
     m.replace("{{ CONCERT.LINK }}", QString("concerts/%1.html").arg(concert->concertId()));
     m.replace("{{ CONCERT.TITLE }}", concert->name());
     m.replace("{{ CONCERT.ARTIST }}", concert->artist());
@@ -314,7 +324,11 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
     QStringList tvShowList;
     QRegExp rx("\\{\\{ BEGIN_BLOCK_TVSHOW \\}\\}(.*)\\{\\{ END_BLOCK_TVSHOW \\}\\}");
     rx.setMinimal(true);
-    if (rx.indexIn(listContent) != -1) {
+
+    int pos = 0;
+    while ((pos = rx.indexIn(listContent, pos)) != -1) {
+        pos += rx.matchedLength();
+        
         listTvShowBlock = rx.cap(0);
         listTvShowItem = rx.cap(1).trimmed();
     }
@@ -368,6 +382,7 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
 
 void ExportDialog::replaceVars(QString &m, TvShow *show, QDir dir, bool subDir)
 {
+    m.replace("{{ TVSHOW.ID }}", QString::number(show->showId(), 'f', 0));
     m.replace("{{ TVSHOW.LINK }}", QString("tvshows/%1.html").arg(show->showId()));
     m.replace("{{ TVSHOW.IMDB_ID }}", show->imdbId());
     m.replace("{{ TVSHOW.TITLE }}", show->name());
@@ -396,7 +411,11 @@ void ExportDialog::replaceVars(QString &m, TvShow *show, QDir dir, bool subDir)
     QRegExp rx;
     rx.setMinimal(true);
     rx.setPattern("\\{\\{ BEGIN_BLOCK_SEASON \\}\\}(.*)\\{\\{ END_BLOCK_SEASON \\}\\}");
-    if (rx.indexIn(m) != -1) {
+
+    int pos = 0;
+    while ((pos = rx.indexIn(m, pos)) != -1) {
+        pos += rx.matchedLength();
+        
         listSeasonBlock = rx.cap(0);
         listSeasonItem = rx.cap(1).trimmed();
     }
@@ -416,7 +435,11 @@ void ExportDialog::replaceVars(QString &m, TvShow *show, QDir dir, bool subDir)
         QString listEpisodeBlock;
         QStringList episodeList;
         rx.setPattern("\\{\\{ BEGIN_BLOCK_EPISODE \\}\\}(.*)\\{\\{ END_BLOCK_EPISODE \\}\\}");
-        if (rx.indexIn(s) != -1) {
+
+        int pos = 0;
+        while ((pos = rx.indexIn(s, pos)) != -1) {
+            pos += rx.matchedLength();
+            
             listEpisodeBlock = rx.cap(0);
             listEpisodeItem = rx.cap(1).trimmed();
         }
