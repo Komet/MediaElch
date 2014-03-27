@@ -319,7 +319,7 @@
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="325"/>
         <source>%n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n conciertos</numerusform><numerusform>%n conciertos</numerusform></translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="45"/>
@@ -354,7 +354,7 @@
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="327"/>
         <source>%1 of %n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 of %n conciertos</numerusform><numerusform>%1 of %n conciertos</numerusform></translation>
     </message>
 </context>
 <context>
@@ -1197,7 +1197,7 @@
         <location filename="../movies/FilesWidget.cpp" line="29"/>
         <location filename="../movies/FilesWidget.cpp" line="505"/>
         <source>%n movies</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n películas</numerusform><numerusform>%n películas</numerusform></translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="61"/>
@@ -1247,7 +1247,7 @@
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="507"/>
         <source>%1 of %n movies</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 of %n películas</numerusform><numerusform>%1 of %n películas</numerusform></translation>
     </message>
 </context>
 <context>
@@ -1885,7 +1885,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="657"/>
         <source>Channels 2.0</source>
-        <translation type="unfinished"/>
+        <translation>Canales 2.0</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="658"/>
@@ -1895,54 +1895,54 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="667"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="669"/>
         <source>Audio</source>
-        <translation type="unfinished"/>
+        <translation>Audio</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="658"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="660"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="662"/>
         <source>Channels</source>
-        <translation type="unfinished"/>
+        <translation>Canales</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="659"/>
         <source>Channels 5.1</source>
-        <translation type="unfinished"/>
+        <translation>Canales 5.1</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="661"/>
         <source>Channels 7.1</source>
-        <translation type="unfinished"/>
+        <translation>Canales 7.1</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="664"/>
         <source>Audio Quality HD</source>
-        <translation type="unfinished"/>
+        <translation>Audio Calidad HD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="665"/>
         <source>HD Audio</source>
-        <translation type="unfinished"/>
+        <translation>Audio HD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="666"/>
         <source>Audio Quality Normal</source>
-        <translation type="unfinished"/>
+        <translation>Audio Calidad Normal</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="667"/>
         <source>Normal Audio</source>
-        <translation type="unfinished"/>
+        <translation>Audio Normal</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="668"/>
         <source>Audio Quality SD</source>
-        <translation type="unfinished"/>
+        <translation>Audio Calidad SD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="669"/>
         <source>SD Audio</source>
-        <translation type="unfinished"/>
+        <translation>Audio SD</translation>
     </message>
 </context>
 <context>
@@ -5734,13 +5734,13 @@ p, li { white-space: pre-wrap; }⏎
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
         <source>%n tv shows</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n series tv</numerusform><numerusform>%n series tv</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
         <source>%n episodes</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n episodios</numerusform><numerusform>%n episodios</numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
@@ -5802,7 +5802,7 @@ Después MediaElch comprueba automáticamente si hay nuevos episodios en el arra
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="520"/>
         <source>%1 of %n tv shows</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 of %n series tv</numerusform><numerusform>%1 of %n series tv</numerusform></translation>
     </message>
 </context>
 <context>

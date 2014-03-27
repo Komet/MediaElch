@@ -1895,14 +1895,14 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="667"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="669"/>
         <source>Audio</source>
-        <translation type="unfinished"/>
+        <translation>音频</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="658"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="660"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="662"/>
         <source>Channels</source>
-        <translation type="unfinished"/>
+        <translation>声道</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="659"/>
