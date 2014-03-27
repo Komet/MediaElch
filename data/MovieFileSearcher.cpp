@@ -71,6 +71,10 @@ void MovieFileSearcher::reload(bool force)
                 if (m_aborted)
                     return;
                 it.next();
+
+                if (it.fileInfo().isDir())
+                    emit currentDir(it.fileInfo().dir().dirName());
+
                 if (it.fileName().contains("-trailer", Qt::CaseInsensitive) || it.fileName().contains("-sample", Qt::CaseInsensitive))
                     continue;
 
