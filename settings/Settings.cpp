@@ -88,9 +88,7 @@ void Settings::loadSettings()
 {
     // Globals
     m_mainWindowSize = settings()->value("MainWindowSize").toSize();
-    m_mainWindowPosition = settings()->value("MainWindowPosition").toPoint();
     m_settingsWindowSize = settings()->value("SettingsWindowSize").toSize();
-    m_settingsWindowPosition = settings()->value("SettingsWindowPosition").toPoint();
     m_mainWindowMaximized = settings()->value("MainWindowMaximized").toBool();
     m_mainSplitterState = settings()->value("MainSplitterState").toByteArray();
     m_debugModeActivated = settings()->value("DebugModeActivated", false).toBool();
@@ -104,6 +102,12 @@ void Settings::loadSettings()
     m_startupSection = settings()->value("StartupSection", "movies").toString();
     m_donated = settings()->value("Donated", false).toBool();
     m_lastImagePath = settings()->value("LastImagePath", QDir::homePath()).toString();
+
+    // Window positions
+    m_mainWindowPosition = fixWindowPosition(settings()->value("MainWindowPosition").toPoint());
+    m_settingsWindowPosition = fixWindowPosition(settings()->value("SettingsWindowPosition").toPoint());
+    m_importDialogPosition = fixWindowPosition(settings()->value("Downloads/ImportDialogPosition").toPoint());
+    m_makeMkvDialogPosition = fixWindowPosition(settings()->value("Downloads/MakeMkvDialogPosition").toPoint());
 
     // XBMC
     m_xbmcHost = settings()->value("XBMC/RemoteHost").toString();
@@ -260,9 +264,7 @@ void Settings::loadSettings()
     m_makeMkvCon = settings()->value("Downloads/MakeMkvCon").toString();
     m_deleteArchives = settings()->value("Downloads/DeleteArchives", false).toBool();
     m_importDialogSize = settings()->value("Downloads/ImportDialogSize").toSize();
-    m_importDialogPosition = settings()->value("Downloads/ImportDialogPosition").toPoint();
     m_makeMkvDialogSize = settings()->value("Downloads/MakeMkvDialogSize").toSize();
-    m_makeMkvDialogPosition = settings()->value("Downloads/MakeMkvDialogPosition").toPoint();
     m_keepDownloadSource = settings()->value("Downloads/KeepSource", true).toBool();
 
     // Movies
@@ -1268,4 +1270,10 @@ void Settings::setLastImagePath(QString path)
 QString Settings::lastImagePath()
 {
     return m_lastImagePath;
+}
+
+void Settings::fixWindowPosition(QPoint &p)
+{
+    p.setX(qMax(0, p.x()));
+    p.setY(qMax(0, p.y()));
 }
