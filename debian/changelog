@@ -1,3 +1,21 @@
+mediaelch (2.1.2-1) saucy; urgency=low
+
+  * Add info about collection
+  * Join genres in nfo files
+  * Rename tv shows: dialog doesn't open ...
+  * Custom Scraper: Fanart always from fa...
+  * IMDB scraper sometimes displays no re...
+  * Only small actor images from imdb
+  * Windows: dialogs out of desktop
+  * Aspect ratio saved in localized version
+  * MediaStatusColumns: Extra Arts don't ...
+  * Speed up loading of movies from database
+  * Filter for audio formats
+  * IMDB scraper doesn't map advanced set...
+  * Add stream details to export function  
+
+ -- Daniel Kabel <daniel.kabel@me.com>  Thu, 27 Mar 2014 21:03:37 +0100
+
 mediaelch (2.1.1-1) saucy; urgency=low
 
   * Filescanner dialog not visible
