@@ -153,11 +153,11 @@ void ExportDialog::parseAndSaveMovies(QDir dir, ExportTemplate *exportTemplate, 
     QStringList movieList;
     QRegExp rx("\\{\\{ BEGIN_BLOCK_MOVIE \\}\\}(.*)\\{\\{ END_BLOCK_MOVIE \\}\\}");
     rx.setMinimal(true);
-    
+
     int pos = 0;
     while ((pos = rx.indexIn(listContent, pos)) != -1) {
         pos += rx.matchedLength();
-        
+
         listMovieBlock = rx.cap(0);
         listMovieItem = rx.cap(1).trimmed();
     }
@@ -234,6 +234,7 @@ void ExportDialog::replaceVars(QString &m, Movie *movie, QDir dir, bool subDir)
     }
     replaceMultiBlock(m, "ACTORS", QStringList() << "ACTOR.NAME" << "ACTOR.ROLE", QList<QStringList>() << actorNames << actorRoles);
 
+    replaceStreamDetailsVars(m, movie->streamDetails());
     replaceImages(m, dir, subDir, movie);
 }
 
@@ -248,11 +249,11 @@ void ExportDialog::parseAndSaveConcerts(QDir dir, ExportTemplate *exportTemplate
     QStringList concertList;
     QRegExp rx("\\{\\{ BEGIN_BLOCK_CONCERT \\}\\}(.*)\\{\\{ END_BLOCK_CONCERT \\}\\}");
     rx.setMinimal(true);
-    
+
     int pos = 0;
     while ((pos = rx.indexIn(listContent, pos)) != -1) {
         pos += rx.matchedLength();
-        
+
         listConcertBlock = rx.cap(0);
         listConcertItem = rx.cap(1).trimmed();
     }
@@ -307,6 +308,7 @@ void ExportDialog::replaceVars(QString &m, Concert *concert, QDir dir, bool subD
     m.replace("{{ CONCERT.TAGS }}", concert->tags().join(", "));
     m.replace("{{ CONCERT.GENRES }}", concert->genres().join(", "));
 
+    replaceStreamDetailsVars(m, concert->streamDetails());
     replaceSingleBlock(m, "TAGS", "TAG.NAME", concert->tags());
     replaceSingleBlock(m, "GENRES", "GENRE.NAME", concert->genres());
     replaceImages(m, dir, subDir, 0, concert);
@@ -328,7 +330,7 @@ void ExportDialog::parseAndSaveTvShows(QDir dir, ExportTemplate *exportTemplate,
     int pos = 0;
     while ((pos = rx.indexIn(listContent, pos)) != -1) {
         pos += rx.matchedLength();
-        
+
         listTvShowBlock = rx.cap(0);
         listTvShowItem = rx.cap(1).trimmed();
     }
@@ -415,7 +417,7 @@ void ExportDialog::replaceVars(QString &m, TvShow *show, QDir dir, bool subDir)
     int pos = 0;
     while ((pos = rx.indexIn(m, pos)) != -1) {
         pos += rx.matchedLength();
-        
+
         listSeasonBlock = rx.cap(0);
         listSeasonItem = rx.cap(1).trimmed();
     }
@@ -439,7 +441,7 @@ void ExportDialog::replaceVars(QString &m, TvShow *show, QDir dir, bool subDir)
         int pos = 0;
         while ((pos = rx.indexIn(s, pos)) != -1) {
             pos += rx.matchedLength();
-            
+
             listEpisodeBlock = rx.cap(0);
             listEpisodeItem = rx.cap(1).trimmed();
         }
@@ -473,9 +475,31 @@ void ExportDialog::replaceVars(QString &m, TvShowEpisode *episode, QDir dir, boo
     m.replace("{{ EPISODE.WRITERS }}", episode->writers().join(", "));
     m.replace("{{ EPISODE.DIRECTORS }}", episode->directors().join(", "));
 
+    replaceStreamDetailsVars(m, episode->streamDetails());
     replaceSingleBlock(m, "WRITERS", "WRITER.NAME", episode->writers());
     replaceSingleBlock(m, "DIRECTORS", "DIRECTOR.NAME", episode->directors());
     replaceImages(m, dir, subDir, 0, 0, 0, episode);
+}
+
+void ExportDialog::replaceStreamDetailsVars(QString &m, StreamDetails *streamDetails)
+{
+    m.replace("{{ FILEINFO.WIDTH }}", streamDetails->videoDetails().value("width", "0"));
+    m.replace("{{ FILEINFO.HEIGHT }}", streamDetails->videoDetails().value("height", "0"));
+    m.replace("{{ FILEINFO.ASPECT }}", streamDetails->videoDetails().value("aspect", "0"));
+    m.replace("{{ FILEINFO.CODEC }}", streamDetails->videoDetails().value("codec", ""));
+    m.replace("{{ FILEINFO.DURATION }}", streamDetails->videoDetails().value("durationinseconds", "0"));
+
+    QStringList audioCodecs;
+    QStringList audioChannels;
+    QStringList audioLanguages;
+    for (int i=0, n=streamDetails->audioDetails().count() ; i<n ; ++i) {
+        audioCodecs << streamDetails->audioDetails().at(i).value("codec");
+        audioChannels << streamDetails->audioDetails().at(i).value("channels");
+        audioLanguages << streamDetails->audioDetails().at(i).value("language");
+    }
+    m.replace("{{ FILEINFO.AUDIO.CODEC }}", audioCodecs.join("|"));
+    m.replace("{{ FILEINFO.AUDIO.CHANNELS }}", audioChannels.join("|"));
+    m.replace("{{ FILEINFO.AUDIO.LANGUAGE }}", audioLanguages.join("|"));
 }
 
 void ExportDialog::replaceSingleBlock(QString &m, QString blockName, QString itemName, QStringList replaces)
