@@ -13,6 +13,7 @@ void MyTableView::resizeEvent(QResizeEvent *event)
 {
     m_searchOverlay->setFixedWidth(event->size().width()-80);
     m_searchOverlay->move((event->size().width()-m_searchOverlay->width())/2, (event->size().height()-m_searchOverlay->height())/2);
+    QTableView::resizeEvent(event);
 }
 
 void MyTableView::setLastColumnWidth(int &width)
