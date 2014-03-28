@@ -48,6 +48,7 @@ private:
     void replaceVars(QString &m, TvShowEpisode *episode, QDir dir, bool subDir = false);
     void replaceSingleBlock(QString &m, QString blockName, QString itemName, QStringList replaces);
     void replaceMultiBlock(QString &m, QString blockName, QStringList itemNames, QList<QStringList> replaces);
+    void replaceStreamDetailsVars(QString &m, StreamDetails *streamDetails);
 };
 
 #endif // EXPORTDIALOG_H

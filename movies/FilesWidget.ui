@@ -17,7 +17,8 @@
 
 #files {
 	color: #395265;
-}</string>
+}
+</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">

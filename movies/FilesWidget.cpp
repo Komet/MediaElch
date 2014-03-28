@@ -146,13 +146,13 @@ FilesWidget *FilesWidget::instance()
 
 void FilesWidget::resizeEvent(QResizeEvent *event)
 {
-    Q_UNUSED(event);
     int scrollBarWidth = 0;
     if (ui->files->verticalScrollBar()->isVisible())
         scrollBarWidth = ui->files->verticalScrollBar()->width();
     m_alphaList->setRightSpace(scrollBarWidth+5);
     m_alphaList->setBottomSpace(ui->widget->height()+10);
     m_alphaList->adjustSize();
+    QWidget::resizeEvent(event);
 }
 
 void FilesWidget::showContextMenu(QPoint point)

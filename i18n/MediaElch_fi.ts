@@ -319,7 +319,7 @@
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="325"/>
         <source>%n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n konsertti</numerusform><numerusform>%n konserttia</numerusform></translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="45"/>
@@ -354,7 +354,7 @@
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="327"/>
         <source>%1 of %n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 / %n konsertista</numerusform><numerusform>%1 / %n konsertista</numerusform></translation>
     </message>
 </context>
 <context>
@@ -1197,7 +1197,7 @@
         <location filename="../movies/FilesWidget.cpp" line="29"/>
         <location filename="../movies/FilesWidget.cpp" line="505"/>
         <source>%n movies</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n elokuva</numerusform><numerusform>%n elokuvaa</numerusform></translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="61"/>
@@ -1247,7 +1247,7 @@
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="507"/>
         <source>%1 of %n movies</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 / %n elokuvasta</numerusform><numerusform>%1 / %n elokuvasta</numerusform></translation>
     </message>
 </context>
 <context>
@@ -1895,14 +1895,14 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="667"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="669"/>
         <source>Audio</source>
-        <translation type="unfinished"/>
+        <translation>Ääni</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="658"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="660"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="662"/>
         <source>Channels</source>
-        <translation type="unfinished"/>
+        <translation>Kanavat</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="659"/>
@@ -3041,7 +3041,7 @@ Main menu entry (tooltip)</extracomment>
         <translation>Etsitään elokuvia...</translation>
     </message>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="131"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="135"/>
         <source>Loading Movies...</source>
         <translation>Ladataan elokuvia...</translation>
     </message>
@@ -3280,7 +3280,7 @@ Toiminto peruutettu.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="271"/>
         <source>Thumb</source>
-        <translation>Esikatselukuvaa</translation>
+        <translation>Esikatselukuva</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="321"/>
@@ -3794,7 +3794,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
         <location filename="../movies/MovieWidget.ui" line="1342"/>
         <location filename="../movies/MovieWidget.ui" line="1379"/>
         <source>Thumb</source>
-        <translation>Ei esikatselukuvaa</translation>
+        <translation>Esikatselukuva</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1418"/>
@@ -4570,7 +4570,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWindow.ui" line="156"/>
         <source>Store trailer URLs in YouTube Plugin format</source>
-        <translation>Tallenna trailerien URL-osoitteet YouTube-liitännäisen muodossa</translation>
+        <translation>Tallenna trailerien URL-osoitteet YouTube-lisäosan muodossa</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="170"/>
@@ -4709,7 +4709,7 @@ TV-sarjojen jaksojen tulee olla alihakemistoissa, jotka on nimetty sarjojen muka
         <location filename="../settings/SettingsWindow.ui" line="906"/>
         <location filename="../settings/SettingsWindow.cpp" line="691"/>
         <source>Thumb</source>
-        <translation>Ei esikatselukuvaa</translation>
+        <translation>Esikatselukuva</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="574"/>
@@ -5735,13 +5735,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
         <source>%n tv shows</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n tv-sarja</numerusform><numerusform>%n tv-sarjaa</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
         <source>%n episodes</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n jakso</numerusform><numerusform>%n jaksoa</numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
@@ -5803,7 +5803,7 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="520"/>
         <source>%1 of %n tv shows</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 / %n tv-sarjasta</numerusform><numerusform>%1 / %n tv-sarjasta</numerusform></translation>
     </message>
 </context>
 <context>

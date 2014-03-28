@@ -1895,14 +1895,14 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="667"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="669"/>
         <source>Audio</source>
-        <translation type="unfinished"/>
+        <translation>오디오</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="658"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="660"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="662"/>
         <source>Channels</source>
-        <translation type="unfinished"/>
+        <translation>채널</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="659"/>
@@ -3041,7 +3041,7 @@ Main menu entry (tooltip)</extracomment>
         <translation>영화 찾는 중...</translation>
     </message>
     <message>
-        <location filename="../data/MovieFileSearcher.cpp" line="131"/>
+        <location filename="../data/MovieFileSearcher.cpp" line="135"/>
         <source>Loading Movies...</source>
         <translation>영화 불러오는 중...</translation>
     </message>
