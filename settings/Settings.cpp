@@ -1277,6 +1277,12 @@ QString Settings::lastImagePath()
 
 QStringList Settings::pluginDirs()
 {
+#if defined(PLUGIN_DIR_OVERRIDE)
+    #define str_(x) #x
+    #define str(x) str_(x)
+    return QStringList() << str(PLUGIN_DIR_OVERRIDE);
+#endif
+
 #if defined(Q_OS_MAC)
     QStringList dirs = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
     if (dirs.isEmpty())
