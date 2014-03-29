@@ -34,8 +34,12 @@ private slots:
     void resultClicked(QTableWidgetItem *item);
     void chkToggled();
     void chkAllToggled(bool toggled);
-    void onUpdateSearchString();
-    void onStoreSearchString(QString searchString);
+
+    //! \brief Update remote database id after switch of scraper.
+    void onUpdateSearchStringId();
+
+    //! \brief Handle switch of search identifier.
+    void onSearchIdentifierSwitched();
 
 private:
     Ui::MovieSearchWidget *ui;
@@ -46,11 +50,13 @@ private:
     ScraperInterface *m_currentCustomScraper;
     QString m_id;
     QString m_tmdbId;
-    QString m_searchString;
 
     void clear();
     void setChkBoxesEnabled(QList<int> scraperSupports);
     void setupScrapers();
+
+    //! \brief Switch between seach by id (\a flag == true) and search by movie title (\a flag == false).
+    void searchById( bool flag );
 };
 
 #endif // MOVIESEARCHWIDGET_H

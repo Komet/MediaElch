@@ -7,18 +7,15 @@
     <x>0</x>
     <y>0</y>
     <width>810</width>
-    <height>692</height>
+    <height>771</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="margin">
-    <number>0</number>
-   </property>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0">
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
@@ -45,12 +42,84 @@
     </layout>
    </item>
    <item>
-    <widget class="MyLineEdit" name="searchString">
-     <property name="toolTip">
-      <string>When using IMDB you can also use the IMDB id as search query.
-If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.</string>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QRadioButton" name="rBtnSearchTitle">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Activate to search by movie title.</string>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="text">
+        <string>Title:</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="MyLineEdit" name="searchStringTitle">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+         <horstretch>1</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Enter the movie title you wish to search for.
+Press the Enter key to start the search.</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="rBtnSearchId">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Activate to search by remote database id.</string>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="text">
+        <string>Id:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="MyLineEdit" name="searchStringId">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>When using IMDB you can also use the IMDB id as search query.
+If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.
+Press the Enter key to start the search.</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0">

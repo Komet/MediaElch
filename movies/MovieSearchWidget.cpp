@@ -11,17 +11,20 @@ MovieSearchWidget::MovieSearchWidget(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    ui->searchString->setType(MyLineEdit::TypeLoading);
+    this->ui->searchStringId->setType( MyLineEdit::TypeLoading );
+    this->ui->searchStringTitle->setType( MyLineEdit::TypeLoading );
 
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers())
         connect(scraper, SIGNAL(searchDone(QList<ScraperSearchResult>)), this, SLOT(showResults(QList<ScraperSearchResult>)));
     setupScrapers();
 
-    connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(onUpdateSearchString()), Qt::QueuedConnection);
-    connect(ui->comboScraper, SIGNAL(currentIndexChanged(int)), this, SLOT(search()), Qt::QueuedConnection);
-    connect(ui->searchString, SIGNAL(textEdited(QString)), this, SLOT(onStoreSearchString(QString)));
-    connect(ui->searchString, SIGNAL(returnPressed()), this, SLOT(search()));
-    connect(ui->results, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(resultClicked(QTableWidgetItem*)));
+    connect( ui->comboScraper,      SIGNAL( currentIndexChanged( int ) ),       this, SLOT( onUpdateSearchStringId() ), Qt::QueuedConnection );
+    connect( ui->comboScraper,      SIGNAL( currentIndexChanged( int ) ),       this, SLOT( search() ), Qt::QueuedConnection );
+    connect( ui->rBtnSearchId,      SIGNAL( clicked() ),                        this, SLOT( onSearchIdentifierSwitched() ) );
+    connect( ui->searchStringId,    SIGNAL( returnPressed() ),                  this, SLOT( search() ) );
+    connect( ui->rBtnSearchTitle,   SIGNAL( clicked() ),                        this, SLOT( onSearchIdentifierSwitched() ) );
+    connect( ui->searchStringTitle, SIGNAL( returnPressed() ),                  this, SLOT( search() ) );
+    connect( ui->results,           SIGNAL( itemClicked( QTableWidgetItem* ) ), this, SLOT( resultClicked( QTableWidgetItem* ) ) );
 
     ui->chkActors->setMyData(MovieScraperInfos::Actors);
     ui->chkBackdrop->setMyData(MovieScraperInfos::Backdrop);
@@ -82,36 +85,20 @@ void MovieSearchWidget::setupScrapers()
     ui->comboScraper->blockSignals(false);
 }
 
-void MovieSearchWidget::search(QString searchString, QString id, QString tmdbId)
+void MovieSearchWidget::search( QString searchString, QString id, QString tmdbId )
 {
     setupScrapers();
-    m_searchString = searchString.replace(".", " ");
+    QString searchStringTitle = searchString.replace( ".", " " );
+    searchStringTitle = searchStringTitle.replace( "_", " " );
     m_id = id;
     m_tmdbId = tmdbId;
-    ui->comboScraper->setEnabled(true);
-    ui->groupBox->setEnabled(true);
+    ui->comboScraper->setEnabled( true );
+    ui->groupBox->setEnabled( true );
     m_currentCustomScraper = 0;
     m_customScraperIds.clear();
 
-    int index = ui->comboScraper->currentIndex();
-    if (index < 0 || index >= Manager::instance()->scrapers().size()) {
-        return;
-    }
-    m_scraperId = ui->comboScraper->itemData(index, Qt::UserRole).toString();
-    ScraperInterface *scraper = Manager::instance()->scraper(m_scraperId);
-    if (!scraper)
-        return;
-
-    if (scraper->identifier() == "imdb" && !m_id.isEmpty())
-        ui->searchString->setText(m_id);
-    else if (scraper->identifier() == "tmdb" && !m_tmdbId.isEmpty() && !m_tmdbId.startsWith("tt"))
-        ui->searchString->setText("id" + m_tmdbId);
-    else if (scraper->identifier() == "tmdb" && !m_tmdbId.isEmpty())
-        ui->searchString->setText(m_tmdbId);
-    else if (scraper->identifier() == "tmdb" && !m_id.isEmpty())
-        ui->searchString->setText(m_id);
-    else
-        ui->searchString->setText(m_searchString);
+    this->ui->searchStringTitle->setText( searchStringTitle );
+    this->onUpdateSearchStringId();
 
     search();
 }
@@ -119,32 +106,60 @@ void MovieSearchWidget::search(QString searchString, QString id, QString tmdbId)
 void MovieSearchWidget::search()
 {
     qDebug() << "Entered";
+
     int index = ui->comboScraper->currentIndex();
-    if (index < 0 || index >= Manager::instance()->scrapers().size()) {
+    if( ( index < 0 ) || ( index >= Manager::instance()->scrapers().size() ) )
+    {
         return;
     }
-    m_scraperId = ui->comboScraper->itemData(index, Qt::UserRole).toString();
-    ScraperInterface *scraper = Manager::instance()->scraper(m_scraperId);
-    if (!scraper)
+    m_scraperId = ui->comboScraper->itemData( index, Qt::UserRole ).toString();
+    ScraperInterface *scraper = Manager::instance()->scraper( m_scraperId );
+    if( ! scraper )
+    {
         return;
+    }
 
-    if (m_scraperId == "custom-movie")
+    if( m_scraperId == "custom-movie" )
+    {
         m_currentCustomScraper = CustomMovieScraper::instance()->titleScraper();
+    }
 
-    setChkBoxesEnabled(Manager::instance()->scraper(m_scraperId)->scraperSupports());
+    setChkBoxesEnabled( Manager::instance()->scraper( m_scraperId )->scraperSupports() );
     clear();
-    ui->comboScraper->setEnabled(false);
-    ui->searchString->setLoading(true);
-    scraper->search(ui->searchString->text());
-    Settings::instance()->setCurrentMovieScraper(ui->comboScraper->currentIndex());
+    ui->comboScraper->setEnabled( false );
+    this->ui->rBtnSearchId->setEnabled( false );
+    this->ui->rBtnSearchTitle->setEnabled( false );
+
+    if( this->ui->rBtnSearchId->isChecked() )
+    {
+        this->ui->searchStringId->setLoading( true );
+        scraper->search( this->ui->searchStringId->text() );
+    }
+    else
+    {
+        this->ui->searchStringTitle->setLoading( true );
+        scraper->search( this->ui->searchStringTitle->text() );
+    }
+
+    Settings::instance()->setCurrentMovieScraper( ui->comboScraper->currentIndex() );
 }
 
 void MovieSearchWidget::showResults(QList<ScraperSearchResult> results)
 {
     qDebug() << "Entered, size of results=" << results.count();
     ui->comboScraper->setEnabled(m_customScraperIds.isEmpty());
-    ui->searchString->setLoading(false);
-    ui->searchString->setFocus();
+
+    if( this->ui->rBtnSearchId->isChecked() )
+    {
+        this->ui->searchStringId->setLoading( false );
+    }
+    else
+    {
+        this->ui->searchStringTitle->setLoading( false );
+    }
+    this->ui->rBtnSearchId->setEnabled( true );
+    this->ui->rBtnSearchTitle->setEnabled( true );
+
     foreach (const ScraperSearchResult &result, results) {
         QTableWidgetItem *item;
         if (!result.released.isNull())
@@ -247,28 +262,58 @@ QMap<ScraperInterface*, QString> MovieSearchWidget::customScraperIds()
     return m_customScraperIds;
 }
 
-void MovieSearchWidget::onUpdateSearchString()
+void MovieSearchWidget::onUpdateSearchStringId()
 {
     int index = ui->comboScraper->currentIndex();
-    if (index < 0 || index >= Manager::instance()->scrapers().size()) {
+    if( ( index < 0 ) || ( index >= Manager::instance()->scrapers().size() ) )
+    {
         return;
     }
-    m_scraperId = ui->comboScraper->itemData(index, Qt::UserRole).toString();
-    ScraperInterface *scraper = Manager::instance()->scraper(m_scraperId);
-    if (!scraper)
+    m_scraperId = ui->comboScraper->itemData( index, Qt::UserRole ).toString();
+    ScraperInterface *scraper = Manager::instance()->scraper( m_scraperId );
+    if( ! scraper )
+    {
         return;
+    }
 
-    if (scraper->identifier() == "imdb" && !m_id.isEmpty())
-        ui->searchString->setText(m_id);
-    else if (scraper->identifier() == "tmdb" && !m_tmdbId.isEmpty())
-        ui->searchString->setText("id" + m_tmdbId);
-    else if (scraper->identifier() == "tmdb" && !m_id.isEmpty())
-        ui->searchString->setText(m_id);
-    else
-        ui->searchString->setText(m_searchString);
+    ui->searchStringId->clear();
+    if( ( scraper->identifier() == "imdb" ) && ( ! m_id.isEmpty() ) )
+    {
+        ui->searchStringId->setText( m_id );
+    }
+    else if(    ( scraper->identifier() == "tmdb" )
+             && ( ! m_tmdbId.isEmpty() )
+             && ( ! m_tmdbId.startsWith( "tt" ) ) )
+    {
+        ui->searchStringId->setText( "id" + m_tmdbId );
+    }
+    else if( ( scraper->identifier() == "tmdb" ) && ( ! m_id.isEmpty() ) )
+    {
+        ui->searchStringId->setText( m_id );
+    }
+
+    bool flag = this->ui->searchStringId->text().isEmpty();
+    this->ui->rBtnSearchId->setChecked( ! flag );
+    this->ui->rBtnSearchTitle->setChecked( flag );
+    this->searchById( ! flag );
 }
 
-void MovieSearchWidget::onStoreSearchString(QString searchString)
+void MovieSearchWidget::onSearchIdentifierSwitched()
 {
-    m_searchString = searchString;
+    this->searchById( this->ui->rBtnSearchId->isChecked() );
+}
+
+void MovieSearchWidget::searchById( bool flag )
+{
+    this->ui->searchStringId->setEnabled( flag );
+    this->ui->searchStringTitle->setEnabled( ! flag );
+
+    if( flag )
+    {
+        this->ui->searchStringId->setFocus();
+    }
+    else
+    {
+        this->ui->searchStringTitle->setFocus();
+    }
 }
