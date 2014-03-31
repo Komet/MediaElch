@@ -109,32 +109,47 @@ void IMDB::onSearchFinished()
 
 void IMDB::onSearchIdFinished()
 {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = static_cast<QNetworkReply*>( QObject::sender() );
     QList<ScraperSearchResult> results;
-    if (reply->error() == QNetworkReply::NoError ) {
-        QString msg = QString::fromUtf8(reply->readAll());
+    if( reply->error() == QNetworkReply::NoError )
+    {
+        QString msg = QString::fromUtf8( reply->readAll() );
         ScraperSearchResult result;
+
         QRegExp rx;
         rx.setMinimal(true);
-        rx.setPattern("<h1 class=\"header\"> <span class=\"itemprop\" itemprop=\"name\">(.*)</span>[^<]*<span class=\"nobr\">\\(<a href=\"[^\"]*\" >([0-9]*)</a>\\)</span>");
-        if (rx.indexIn(msg) != -1) {
-            result.name = rx.cap(1);
-            result.released = QDate::fromString(rx.cap(2), "yyyy");
-        } else {
-            rx.setPattern("<h1 class=\"header\"> <span class=\"itemprop\" itemprop=\"name\">(.*)</span>[^<]*<span class=\"nobr\">\\(([0-9]*)\\)</span>");
-            if (rx.indexIn(msg) != -1) {
-                result.name = rx.cap(1);
-                result.released = QDate::fromString(rx.cap(2), "yyyy");
+        rx.setPattern( "<h1 class=\"header\"> <span class=\"itemprop\" itemprop=\"name\">(.*)</span>" );
+        if( rx.indexIn( msg ) != -1 )
+        {
+            result.name = rx.cap( 1 );
+        }
+        rx.setPattern( "<h1 class=\"header\"> <span class=\"itemprop\" itemprop=\"name\">.*<span class=\"nobr\">\\(<a href=\"[^\"]*\" >([0-9]*)</a>\\)</span>" );
+        if( rx.indexIn( msg ) != -1 )
+        {
+            result.released = QDate::fromString( rx.cap( 1 ), "yyyy" );
+        }
+        else
+        {
+            rx.setPattern( "<h1 class=\"header\"> <span class=\"itemprop\" itemprop=\"name\">.*</span>.*<span class=\"nobr\">\\(([0-9]*)\\)</span>" );
+            if( rx.indexIn( msg ) != -1 )
+            {
+                result.released = QDate::fromString( rx.cap( 1 ), "yyyy" );
             }
         }
 
-        rx.setPattern("<link rel=\"canonical\" href=\"http://www.imdb.com/title/(.*)/\" />");
-        if (rx.indexIn(msg) != -1)
-            result.id = rx.cap(1);
+        rx.setPattern( "<link rel=\"canonical\" href=\"http://www.imdb.com/title/(.*)/\" />" );
+        if( rx.indexIn( msg ) != -1 )
+        {
+            result.id = rx.cap( 1 );
+        }
 
-        if (!result.id.isEmpty() && !result.name.isEmpty())
-            results.append(result);
-    } else {
+        if( ( ! result.id.isEmpty() ) && ( ! result.name.isEmpty() ) )
+        {
+            results.append( result );
+        }
+    }
+    else
+    {
         qWarning() << "Network Error" << reply->errorString();
     }
     reply->deleteLater();
@@ -145,15 +160,16 @@ QList<ScraperSearchResult> IMDB::parseSearch(QString html)
 {
     QList<ScraperSearchResult> results;
 
-    QRegExp rx("<td class=\"result_text\"> <a href=\"/title/(.*)/[^\"]*\" >([^<]*)</a> \\(([0-9]*)\\) </td>");
-    rx.setMinimal(true);
+    QRegExp rx( "<td class=\"result_text\"> <a href=\"/title/([t]*[\\d]+)/[^\"]*\" >([^<]*)</a>(?: \\(I+\\) | )\\(([0-9]*)\\) (?:</td>|<br/>)" );
+    rx.setMinimal( true );
     int pos = 0;
-    while ((pos = rx.indexIn(html, pos)) != -1) {
+    while( ( pos = rx.indexIn( html, pos ) ) != -1 )
+    {
         ScraperSearchResult result;
-        result.name = rx.cap(2);
-        result.id = rx.cap(1);
-        result.released = QDate::fromString(rx.cap(3), "yyyy");
-        results.append(result);
+        result.name = rx.cap( 2 );
+        result.id = rx.cap( 1 );
+        result.released = QDate::fromString( rx.cap( 3 ), "yyyy" );
+        results.append( result );
         pos += rx.matchedLength();
     }
     return results;
