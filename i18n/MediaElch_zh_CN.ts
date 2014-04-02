@@ -2293,7 +2293,7 @@
     <message>
         <location filename="../downloads/ImportDialog.ui" line="104"/>
         <source>Title of the show</source>
-        <translation type="unfinished"/>
+        <translation>电视剧片名</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="111"/>
@@ -2308,7 +2308,7 @@
     <message>
         <location filename="../downloads/ImportDialog.ui" line="131"/>
         <source>Season Number</source>
-        <translation type="unfinished"/>
+        <translation>播出季序号</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="147"/>
@@ -2318,7 +2318,7 @@
     <message>
         <location filename="../downloads/ImportDialog.ui" line="157"/>
         <source>Episode Number</source>
-        <translation type="unfinished"/>
+        <translation>分集序号</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="197"/>
@@ -2495,7 +2495,7 @@
     <message numerus="yes">
         <location filename="../tvShows/ItemWidgetShow.cpp" line="50"/>
         <source>%n Episodes</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>第 %n 集</numerusform></translation>
     </message>
 </context>
 <context>
@@ -4155,17 +4155,17 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../renamer/Renamer.ui" line="232"/>
         <source>Episode Number</source>
-        <translation type="unfinished"/>
+        <translation>分集序号</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="242"/>
         <source>Season Number</source>
-        <translation type="unfinished"/>
+        <translation>播出季序号</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="252"/>
         <source>Title of the show</source>
-        <translation type="unfinished"/>
+        <translation>电视剧片名</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="259"/>
@@ -4235,7 +4235,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../renamer/Renamer.ui" line="390"/>
         <source>Season &lt;season&gt;</source>
-        <translation type="unfinished"/>
+        <translation>第 &lt;season&gt; 季</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="402"/>
@@ -4653,7 +4653,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="431"/>
         <location filename="../settings/SettingsWindow.ui" line="964"/>
         <source>Nfo</source>
-        <translation type="unfinished"/>
+        <translation>Nfo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="438"/>
@@ -4720,7 +4720,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="588"/>
         <source>Movie Set Artwork</source>
-        <translation type="unfinished"/>
+        <translation>系列电影艺术图片</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="596"/>
@@ -5140,7 +5140,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../support/SupportDialog.ui" line="17"/>
         <source>Support MediaElch</source>
-        <translation type="unfinished"/>
+        <translation>支持 MediaElch</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="30"/>
@@ -5176,7 +5176,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../support/SupportDialog.ui" line="127"/>
         <source>Thanks for your help and support!</source>
-        <translation type="unfinished"/>
+        <translation>感谢您的帮助和支持！</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="149"/>
@@ -5643,12 +5643,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../globals/TrailerDialog.ui" line="280"/>
         <source>0:00 / 0:00</source>
-        <translation type="unfinished"/>
+        <translation>0:00 / 0:00</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="294"/>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>URL</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="325"/>
@@ -5658,7 +5658,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../globals/TrailerDialog.ui" line="348"/>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>下载</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="355"/>
@@ -5801,7 +5801,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../data/TvShowModelItem.cpp" line="137"/>
         <source>Season %1</source>
-        <translation type="unfinished"/>
+        <translation>第 %1 季</translation>
     </message>
 </context>
 <context>
@@ -5899,7 +5899,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="260"/>
         <source>Season Fanart</source>
-        <translation type="unfinished"/>
+        <translation>播出季剧照</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="270"/>
@@ -6091,12 +6091,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="217"/>
         <source>Show Title</source>
-        <translation type="unfinished"/>
+        <translation>片名</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="227"/>
         <source>Season</source>
-        <translation type="unfinished"/>
+        <translation>播出季</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="262"/>
@@ -6425,12 +6425,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="140"/>
         <source>Season missing</source>
-        <translation type="unfinished"/>
+        <translation>缺失的播出季</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.cpp" line="103"/>
         <source>Season %1</source>
-        <translation type="unfinished"/>
+        <translation>第 %1 季</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.cpp" line="158"/>
@@ -6453,7 +6453,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="90"/>
         <source>Show Title</source>
-        <translation type="unfinished"/>
+        <translation>片名</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="122"/>
@@ -6702,7 +6702,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="102"/>
         <source>0:00 / 0:00</source>
-        <translation type="unfinished"/>
+        <translation>0:00 / 0:00</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="129"/>
@@ -6712,7 +6712,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="152"/>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>下载</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="159"/>
