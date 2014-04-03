@@ -45,7 +45,7 @@ NotificationBox *NotificationBox::instance(QWidget *parent)
  */
 void NotificationBox::reposition(QSize size)
 {
-    this->move(size.width()-this->size().width(), 40);
+    move(size.width()-this->size().width(), 40);
     m_parentSize = size;
 }
 
@@ -54,31 +54,31 @@ void NotificationBox::reposition(QSize size)
  */
 void NotificationBox::adjustSize()
 {
-    qDebug() << "Entered";
     int height = 48;
     foreach (const Message *msg, m_messages)
         height += msg->sizeHint().height() + ui->layoutMessages->spacing();
     height -= ui->layoutMessages->spacing();
-    qDebug() << "Setting size to" << size().width() << "x" << height;
     resize(this->size().width(), height);
 }
 
 /**
- * @brief Shows a message
- * @param message Message to show
- * @param timeout How long should it be visible
- * @return Id of the message
+ * @brief NotificationBox::showMessage
+ * @param message
+ * @param type
+ * @param timeout
+ * @return
+ * @todo: use type to display different styles
  */
-int NotificationBox::showMessage(QString message, int timeout)
+int NotificationBox::showMessage(QString message, NotificationBox::NotificationType type, int timeout)
 {
-    qDebug() << "Entered, message=" << message << "timeout=" << timeout;
     m_msgCounter++;
     Message *msg = new Message(this);
     msg->setMessage(message, timeout);
+    msg->setType(type);
     msg->setId(m_msgCounter);
     m_messages.append(msg);
-    adjustSize();
     ui->layoutMessages->addWidget(msg);
+    adjustSize();
     show();
     connect(msg, SIGNAL(sigHideMessage(int)), this, SLOT(removeMessage(int)));
     //qApp->processEvents(QEventLoop::WaitForMoreEvents);

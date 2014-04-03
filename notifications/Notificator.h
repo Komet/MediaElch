@@ -19,7 +19,7 @@ public:
     };
 
 public slots:
-    void notify(Class cls, const QString &title, const QString &text, const QIcon &icon = QIcon(), int timeout = 10000);
+    virtual void notify(Class cls, const QString &title, const QString &text, const QIcon &icon = QIcon(), int timeout = 10000);
 
 private:
     enum Mode {

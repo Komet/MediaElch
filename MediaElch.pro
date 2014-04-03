@@ -8,7 +8,7 @@ include(quazip/quazip/quazip.pri)
 
 QT       += core gui network script xml sql widgets multimedia multimediawidgets concurrent
 
-LIBS += -lmediainfo -lzen -lz
+LIBS += -lmediainfo -lzen -lz -lqca
 
 unix:LIBS += -lcurl
 macx:LIBS += -framework Foundation
@@ -130,7 +130,6 @@ SOURCES += main.cpp\
     export/ExportTemplateLoader.cpp \
     export/ExportTemplate.cpp \
     settings/ExportTemplateWidget.cpp \
-    smallWidgets/StyledPushButton.cpp \
     export/ExportDialog.cpp \
     smallWidgets/MessageLabel.cpp \
     smallWidgets/SearchOverlay.cpp \
@@ -275,7 +274,6 @@ HEADERS  += main/MainWindow.h \
     export/ExportTemplateLoader.h \
     export/ExportTemplate.h \
     settings/ExportTemplateWidget.h \
-    smallWidgets/StyledPushButton.h \
     export/ExportDialog.h \
     smallWidgets/MessageLabel.h \
     smallWidgets/SearchOverlay.h \

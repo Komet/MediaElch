@@ -148,7 +148,7 @@ public:
     QString licenseKey(PluginManager::Plugin plugin) const;
 
     static QString applicationDir();
-    static QStringList pluginDirs();
+    QStringList pluginDirs();
 
 public slots:
     void saveSettings();

@@ -13,6 +13,10 @@
 class Helper : public QObject
 {
 public:
+    enum ButtonStyle {
+        ButtonPrimary, ButtonInfo, ButtonDanger, ButtonSuccess, ButtonWarning
+    };
+
     Helper(QObject *parent = 0);
     static Helper *instance(QObject *parent = 0);
     virtual QString toLatin1PercentEncoding(QString str);
@@ -46,6 +50,7 @@ public:
     virtual void setDevicePixelRatio(QPixmap &pixmap, qreal devicePixelRatio);
     virtual void setDevicePixelRatio(QImage &image, qreal devicePixelRatio);
     virtual int compareVersionNumbers(const QString &oldVersion, const QString &newVersion);
+    virtual void setButtonStyle(QPushButton *button, Helper::ButtonStyle style);
 };
 
 #endif // HELPER_H

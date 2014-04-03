@@ -47,7 +47,6 @@
       <string notr="true">QWidget {
 	background-color: #ffffff;
 	color: rgb(27, 105, 165);
-	border-bottom: 1px solid #f0f0f0;
 	border-bottom: 1px solid rgb(248, 155, 53);
 }</string>
      </property>

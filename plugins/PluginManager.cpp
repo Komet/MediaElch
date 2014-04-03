@@ -9,6 +9,7 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "notifications/NotificationBox.h"
+#include "notifications/Notificator.h"
 #include "settings/Settings.h"
 
 PluginManager::PluginManager(QObject *parent) :
@@ -52,7 +53,7 @@ void PluginManager::saveSettings()
 
 void PluginManager::loadPlugins()
 {
-    QStringList dirs = Settings::pluginDirs();
+    QStringList dirs = Settings::instance()->pluginDirs();
     if (dirs.isEmpty())
         return;
 
@@ -95,7 +96,7 @@ void PluginManager::onPluginListDownloaded()
 
     foreach (PluginManager::Plugin plugin, m_plugins) {
         if (plugin.updateAvailable) {
-            NotificationBox::instance()->showMessage(tr("Plugin updates available"), 5000);
+            NotificationBox::instance()->showMessage(tr("Plugin updates available"), NotificationBox::NotificationInfo, 5000);
             break;
         }
     }
@@ -110,7 +111,6 @@ void PluginManager::parsePluginData(QXmlStreamReader &xml)
     QString version;
     QString minimumVersion;
     QList<PluginManager::PluginFile> files;
-
 
     while (xml.readNextStartElement()) {
         if (xml.name() == "name") {
@@ -163,6 +163,7 @@ void PluginManager::parsePluginData(QXmlStreamReader &xml)
 
 bool PluginManager::loadPlugin(const QString &fileName)
 {
+    qDebug() << "Trying to load" << fileName;
     QPluginLoader loader(fileName);
     QObject *plugin = loader.instance();
     if (plugin) {
@@ -171,12 +172,14 @@ bool PluginManager::loadPlugin(const QString &fileName)
             qDebug() << "Loading plugin" << iPlugin->name();
 
             if (Helper::instance()->compareVersionNumbers(QApplication::applicationVersion(), iPlugin->minimumVersion()) == 1) {
-                NotificationBox::instance()->showMessage(tr("Plugin %1 requires at least MediaElch version %2").arg(iPlugin->name()).arg(iPlugin->minimumVersion()), 7000);
+                NotificationBox::instance()->showMessage(tr("Plugin %1 requires at least MediaElch version %2").arg(iPlugin->name()).arg(iPlugin->minimumVersion()),
+                                                         NotificationBox::NotificationError,
+                                                         7000);
                 return false;
             }
 
             iPlugin->init(Manager::instance()->movieModel(), Manager::instance()->tvShowModel(),
-                          Manager::instance()->concertModel(), NotificationBox::instance(), Helper::instance());
+                          Manager::instance()->concertModel(), NotificationBox::instance(), Notificator::instance(), Helper::instance());
             iPlugin->loadSettings(Settings::instance()->settings());
             Helper::instance()->applyStyle(iPlugin->widget());
 
@@ -236,7 +239,7 @@ void PluginManager::installPlugin(PluginManager::Plugin plugin, const QString &l
 
     bool loaded = false;
     for (int i=0, n=plugin.files.count() ; i<n ; ++i) {
-        if (!Settings::pluginDirs().isEmpty() && loadPlugin(Settings::pluginDirs().first() + "/" + plugin.files[i].fileName) && !loaded)
+        if (!Settings::instance()->pluginDirs().isEmpty() && loadPlugin(Settings::instance()->pluginDirs().first() + "/" + plugin.files[i].fileName) && !loaded)
             loaded = true;
     }
 
@@ -293,12 +296,12 @@ void PluginManager::onPluginDownloaded()
         }
     }
 
-    if (Settings::pluginDirs().isEmpty() || fileName.isEmpty()) {
+    if (Settings::instance()->pluginDirs().isEmpty() || fileName.isEmpty()) {
         emit sigPluginInstallFailure(plugin);
         return;
     }
 
-    QString pluginFileName = Settings::pluginDirs().first() + "/" + fileName;
+    QString pluginFileName = Settings::instance()->pluginDirs().first() + "/" + fileName;
     QFile f(pluginFileName);
     f.open(QFile::WriteOnly);
     f.write(ba);

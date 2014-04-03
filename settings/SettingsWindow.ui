@@ -41,7 +41,7 @@
     <item>
      <widget class="SlidingStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>9</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page_0">
        <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,1,0,0">
@@ -308,8 +308,8 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>100</width>
-                 <height>30</height>
+                 <width>60</width>
+                 <height>16</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -1363,21 +1363,21 @@ border: none;</string>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
-             <widget class="StyledPushButton" name="btnInstallPlugin">
+             <widget class="QPushButton" name="btnInstallPlugin">
               <property name="text">
                <string>Install</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="StyledPushButton" name="btnUpdatePlugin">
+             <widget class="QPushButton" name="btnUpdatePlugin">
               <property name="text">
                <string>Update</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="StyledPushButton" name="btnUninstallPlugin">
+             <widget class="QPushButton" name="btnUninstallPlugin">
               <property name="text">
                <string>Uninstall</string>
               </property>
@@ -1752,11 +1752,6 @@ border: none;</string>
    <class>MessageLabel</class>
    <extends>QLabel</extends>
    <header>smallWidgets/MessageLabel.h</header>
-  </customwidget>
-  <customwidget>
-   <class>StyledPushButton</class>
-   <extends>QPushButton</extends>
-   <header>smallWidgets/StyledPushButton.h</header>
   </customwidget>
  </customwidgets>
  <resources>

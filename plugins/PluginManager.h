@@ -31,10 +31,10 @@ public:
 
     explicit PluginManager(QObject *parent = 0);
     static PluginManager *instance(QObject *parent = 0);
-    void loadPlugins();
     QList<PluginManager::Plugin> plugins();
 
 public slots:
+    void loadPlugins();
     void loadSettings();
     void saveSettings();
     void installPlugin(PluginManager::Plugin plugin, const QString &licenseKey);

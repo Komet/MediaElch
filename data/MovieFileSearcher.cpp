@@ -66,14 +66,17 @@ void MovieFileSearcher::reload(bool force)
                 continue;
             qDebug() << "Scanning directory" << dir.path;
             qDebug() << "Filters are" << Settings::instance()->advanced()->movieFilters();
+            QString lastDir;
             QDirIterator it(dir.path, Settings::instance()->advanced()->movieFilters(), QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files, QDirIterator::Subdirectories | QDirIterator::FollowSymlinks);
             while (it.hasNext()) {
                 if (m_aborted)
                     return;
                 it.next();
 
-                if (it.fileInfo().isDir())
+                if (it.fileInfo().dir().dirName() != lastDir) {
+                    lastDir = it.fileInfo().dir().dirName();
                     emit currentDir(it.fileInfo().dir().dirName());
+                }
 
                 if (it.fileName().contains("-trailer", Qt::CaseInsensitive) || it.fileName().contains("-sample", Qt::CaseInsensitive))
                     continue;

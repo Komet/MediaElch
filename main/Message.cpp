@@ -5,6 +5,7 @@
 #include <QGraphicsDropShadowEffect>
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "notifications/NotificationBox.h"
 
 /**
  * @brief Message::Message
@@ -28,6 +29,8 @@ Message::Message(QWidget *parent) :
         effect->setBlurRadius(8);
         setGraphicsEffect(effect);
     }
+
+    setType(NotificationBox::NotificationInfo);
 }
 
 /**
@@ -36,6 +39,24 @@ Message::Message(QWidget *parent) :
 Message::~Message()
 {
     delete ui;
+}
+
+void Message::setType(int type)
+{
+    switch (type) {
+    case NotificationBox::NotificationInfo:
+        setStyleSheet("#widget { border-left: 5px solid #5BC0DE; background-color: #F4F8FA; }");
+        break;
+    case NotificationBox::NotificationSuccess:
+        setStyleSheet("#widget { border-left: 5px solid #bcf1c5; background-color: #f4faf6; }");
+        break;
+    case NotificationBox::NotificationError:
+        setStyleSheet("#widget { border-left: 5px solid #D9534F; background-color: #FDF7F7; }");
+        break;
+    case NotificationBox::NotificationWarning:
+        setStyleSheet("#widget { border-left: 5px solid #F0AD4E; background-color: #FCF8F2; }");
+        break;
+    }
 }
 
 /**
