@@ -494,7 +494,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="172"/>
         <source>Name</source>
-        <translation>Nazwa</translation>
+        <translation>Tytuł</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="186"/>
@@ -580,7 +580,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="419"/>
         <source>Extra Fanarts</source>
-        <translation>Dodatkowe fangrafy</translation>
+        <translation>Dodatkowe tapety</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="441"/>
@@ -666,7 +666,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="934"/>
         <source>Fanart</source>
-        <translation>Fangraf</translation>
+        <translation>Tapeta</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="1010"/>
@@ -744,7 +744,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../scrapers/CustomMovieScraper.cpp" line="32"/>
         <source>Custom Movie Scraper</source>
-        <translation>Własny ekstraktor filmów</translation>
+        <translation>Zdefiniowany ekstraktor</translation>
     </message>
 </context>
 <context>
@@ -1170,27 +1170,27 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
 <context>
     <name>FilesWidget</name>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="197"/>
+        <location filename="../movies/FilesWidget.ui" line="198"/>
         <source>New</source>
         <translation>Nowy</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="224"/>
+        <location filename="../movies/FilesWidget.ui" line="225"/>
         <source>Name</source>
         <translation>Nazwa</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="251"/>
+        <location filename="../movies/FilesWidget.ui" line="252"/>
         <source>Date Added</source>
         <translation>Data dodania</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="278"/>
+        <location filename="../movies/FilesWidget.ui" line="279"/>
         <source>Seen</source>
         <translation>Oglądany</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="305"/>
+        <location filename="../movies/FilesWidget.ui" line="306"/>
         <source>Year</source>
         <translation>Rok</translation>
     </message>
@@ -1412,25 +1412,25 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="547"/>
         <source>Movie has Extra Fanarts</source>
-        <translation>Film z dodatkowymi fangrafami</translation>
+        <translation>Film z dodatkowymi tapetami</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="547"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="548"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="551"/>
         <source>Extra Fanarts</source>
-        <translation>Dodatkowe fangrafy</translation>
+        <translation>Dodatkowe tapeta</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="550"/>
         <source>Movie has no Extra Fanarts</source>
-        <translation>Film bez dodatkowych fangrafów</translation>
+        <translation>Film bez dodatkowych tapet</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="550"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="551"/>
         <source>No Extra Fanarts</source>
-        <translation>Brak dodatkowych fangrafów</translation>
+        <translation>Brak dodatkowych tapeta</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="553"/>
@@ -1448,7 +1448,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
         <location filename="../smallWidgets/FilterWidget.cpp" line="554"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="557"/>
         <source>Fanart</source>
-        <translation>Fangraf</translation>
+        <translation>Tapeta</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="556"/>
@@ -1464,7 +1464,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="557"/>
         <source>No Fanart</source>
-        <translation>Brak fangrafu</translation>
+        <translation>Brak tapety</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="559"/>
@@ -3124,12 +3124,12 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../data/MovieModel.cpp" line="289"/>
         <source>Extra Fanarts</source>
-        <translation>Dodatkowe fangrafy</translation>
+        <translation>Dodatkowe tapety</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="291"/>
         <source>Fanart</source>
-        <translation>Fangraf</translation>
+        <translation>Tapety</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="293"/>
@@ -3528,7 +3528,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="180"/>
         <source>Name</source>
-        <translation>Nazwa</translation>
+        <translation>Tytuł</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="190"/>
@@ -3700,12 +3700,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="778"/>
         <source>Extra Fanarts</source>
-        <translation>Dodatkowe fangrafy</translation>
+        <translation>Dodatkowe  tapety</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="790"/>
         <source>Support for extra fanarts is only available when your movies are stored in separate folders. Check the settings if you&apos;ve stored your movies in separate folders already.</source>
-        <translation>Wsparcie dla dodatkowych fangrafów jest dostępne tylko wtedy, gdy filmy znajdują się w oddzielnych folderach.
+        <translation>Wsparcie dla dodatkowych tapet jest dostępne tylko wtedy, gdy filmy znajdują się w oddzielnych folderach.
 Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folderach.</translation>
     </message>
     <message>
@@ -3791,7 +3791,7 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
         <location filename="../movies/MovieWidget.ui" line="1292"/>
         <location filename="../movies/MovieWidget.ui" line="1332"/>
         <source>Fanart</source>
-        <translation>Fangraf</translation>
+        <translation>Tapeta</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1342"/>
@@ -3943,7 +3943,7 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
     <message>
         <location filename="../main/Navbar.ui" line="52"/>
         <source>Scrape</source>
-        <translation>Ekstraktuj</translation>
+        <translation>Ekstrahuj</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="58"/>
@@ -4006,7 +4006,7 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
     <message>
         <location filename="../main/Navbar.cpp" line="16"/>
         <source>Scrape (%1)</source>
-        <translation>Ekstraktuj (%1)</translation>
+        <translation>Ekstrahuj (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="19"/>
@@ -4271,22 +4271,22 @@ p, li { white-space: pre-wrap; }
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="39"/>
         <source>%n Movie(s) will be renamed</source>
-        <translation><numerusform>Nazwa filmu zostanie zmieniona</numerusform><numerusform>Nazwy %n filmów zostaną zmienione</numerusform><numerusform>Nazwy %n filmów zostaną zmienione</numerusform></translation>
+        <translation><numerusform>Tytuł filmu zostanie zmieniony</numerusform><numerusform>Tytuły %n filmów zostaną zmienione</numerusform><numerusform>Tytuły %n filmów zostaną zmienione</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="42"/>
         <source>%n Concert(s) will be renamed</source>
-        <translation><numerusform>Nazwa %n koncertu zostanie zmieniona</numerusform><numerusform>Nazwy %n koncertów zostaną zmienione</numerusform><numerusform>Nazwy %n koncertów zostaną zmienione</numerusform></translation>
+        <translation><numerusform>Tytuł %n koncertu zostanie zmieniony</numerusform><numerusform>Tytuły %n koncertów zostaną zmienione</numerusform><numerusform>Tytuły %n koncertów zostaną zmienione</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="45"/>
         <source>%n TV Show(s) and %1</source>
-        <translation><numerusform>Nazwa %n serialu i %1</numerusform><numerusform>Nazwy %n seriali i %1</numerusform><numerusform>Nazwy %n seriali i %1</numerusform></translation>
+        <translation><numerusform>%n serial i %1</numerusform><numerusform>%n seriale i %1</numerusform><numerusform>Tytuły %n seriali i %1</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="45"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation><numerusform>Nazwa %n odcinka zostanie zmieniona</numerusform><numerusform>Nazwy %n odcinków zostaną zmienione</numerusform><numerusform>Nazwy %n odcinków zostaną zmienione</numerusform></translation>
+        <translation><numerusform>Tytuł %n odcinka zostanie zmieniony</numerusform><numerusform>Tytuły %n odcinków zostaną zmienione</numerusform><numerusform>Tytuły %n odcinków zostaną zmienione</numerusform></translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="174"/>
@@ -4354,7 +4354,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../renamer/Renamer.cpp" line="319"/>
         <location filename="../renamer/Renamer.cpp" line="745"/>
         <source>&lt;b&gt;Rename Fanart&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmień nazwę fangrafu&lt;/b&gt;z &quot;%1&quot; na &quot;%2&quot;</translation>
+        <translation>&lt;b&gt;Zmień nazwę tapety&lt;/b&gt;z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="336"/>
@@ -4634,7 +4634,7 @@ Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="349"/>
         <source>Custom Movie Scraper</source>
-        <translation>Własny ekstraktor filmów</translation>
+        <translation>Zdefiniowany ekstraktor</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="355"/>
@@ -4754,7 +4754,7 @@ Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="626"/>
         <source>Movie Set Fanart Filname</source>
-        <translation>Nazwa pliku fangrafu serii filmowej</translation>
+        <translation>Nazwa pliku tapety serii filmowej</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="633"/>
@@ -5085,7 +5085,7 @@ Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="665"/>
         <source>Fanart</source>
-        <translation>Fangraf</translation>
+        <translation>Tapeta</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="667"/>
@@ -5897,7 +5897,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="230"/>
         <source>Fanart</source>
-        <translation>Fangraf</translation>
+        <translation>Tapeta</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="240"/>
@@ -5912,7 +5912,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="260"/>
         <source>Season Fanart</source>
-        <translation>Fangraf sezonu</translation>
+        <translation>Tapeta sezonu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="270"/>
@@ -6099,7 +6099,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="207"/>
         <source>Name</source>
-        <translation>Nazwa</translation>
+        <translation>Tytuł</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="217"/>
@@ -6423,7 +6423,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="285"/>
         <source>Fanart</source>
-        <translation>Fangraf</translation>
+        <translation>Tapeta</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="332"/>
@@ -6481,7 +6481,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="150"/>
         <source>Name</source>
-        <translation>Nazwa</translation>
+        <translation>Tytuł</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="160"/>
@@ -6592,7 +6592,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="512"/>
         <source>Extra Fanarts</source>
-        <translation>Dodatkowe fangrafy</translation>
+        <translation>Dodatkowe tapety</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="534"/>
@@ -6622,7 +6622,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="792"/>
         <source>Fanart</source>
-        <translation>Fangraf</translation>
+        <translation>Tapety</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="839"/>

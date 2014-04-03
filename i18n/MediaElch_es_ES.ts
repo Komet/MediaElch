@@ -1169,27 +1169,27 @@
 <context>
     <name>FilesWidget</name>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="197"/>
+        <location filename="../movies/FilesWidget.ui" line="198"/>
         <source>New</source>
         <translation>Nuevo</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="224"/>
+        <location filename="../movies/FilesWidget.ui" line="225"/>
         <source>Name</source>
         <translation>Nombre</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="251"/>
+        <location filename="../movies/FilesWidget.ui" line="252"/>
         <source>Date Added</source>
         <translation>Fecha agregada</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="278"/>
+        <location filename="../movies/FilesWidget.ui" line="279"/>
         <source>Seen</source>
         <translation>Ver</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="305"/>
+        <location filename="../movies/FilesWidget.ui" line="306"/>
         <source>Year</source>
         <translation>Año</translation>
     </message>

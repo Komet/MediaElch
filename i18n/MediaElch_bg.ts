@@ -1169,27 +1169,27 @@
 <context>
     <name>FilesWidget</name>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="197"/>
+        <location filename="../movies/FilesWidget.ui" line="198"/>
         <source>New</source>
         <translation>Ново</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="224"/>
+        <location filename="../movies/FilesWidget.ui" line="225"/>
         <source>Name</source>
         <translation>Име</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="251"/>
+        <location filename="../movies/FilesWidget.ui" line="252"/>
         <source>Date Added</source>
         <translation>Дата на добавяне</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="278"/>
+        <location filename="../movies/FilesWidget.ui" line="279"/>
         <source>Seen</source>
         <translation>Гледано</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="305"/>
+        <location filename="../movies/FilesWidget.ui" line="306"/>
         <source>Year</source>
         <translation>Година</translation>
     </message>
