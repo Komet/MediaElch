@@ -744,7 +744,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../scrapers/CustomMovieScraper.cpp" line="32"/>
         <source>Custom Movie Scraper</source>
-        <translation>Własny ekstraktor filmów</translation>
+        <translation>Zdefiniowany ekstraktor</translation>
     </message>
 </context>
 <context>
@@ -3943,7 +3943,7 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
     <message>
         <location filename="../main/Navbar.ui" line="52"/>
         <source>Scrape</source>
-        <translation>Ekstraktuj</translation>
+        <translation>Ekstrahuj</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="58"/>
@@ -4006,7 +4006,7 @@ Zaznacz to ustawienie jeśli już przechowujesz swoje filmy w oddzielnych folder
     <message>
         <location filename="../main/Navbar.cpp" line="16"/>
         <source>Scrape (%1)</source>
-        <translation>Ekstraktuj (%1)</translation>
+        <translation>Ekstrahuj (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="19"/>
@@ -4634,7 +4634,7 @@ Odcinki seriali muszą znajdować się w podfolderach z nazwą serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="349"/>
         <source>Custom Movie Scraper</source>
-        <translation>Własny ekstraktor filmów</translation>
+        <translation>Zdefiniowany ekstraktor</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="355"/>
