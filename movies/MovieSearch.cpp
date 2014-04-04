@@ -1,6 +1,6 @@
 #include "MovieSearch.h"
 #include "ui_MovieSearch.h"
-
+#include "settings/Settings.h"
 #include <QDebug>
 
 /**
@@ -27,21 +27,9 @@ MovieSearch::MovieSearch(QWidget *parent) :
  */
 MovieSearch::~MovieSearch()
 {
-    delete ui;
-}
+    qDebug() << "Trace.";
 
-/**
- * @brief Returns an instance of the class
- * @param parent Parent widget
- * @return Instance of MovieSearch
- */
-MovieSearch* MovieSearch::instance(QWidget *parent)
-{
-    static MovieSearch *m_instance = 0;
-    if (m_instance == 0) {
-        m_instance = new MovieSearch(parent);
-    }
-    return m_instance;
+    delete ui;
 }
 
 /**
@@ -65,6 +53,22 @@ int MovieSearch::exec(QString searchString, QString id, QString tmdbId)
 int MovieSearch::exec()
 {
     return 0;
+}
+
+void MovieSearch::accept()
+{
+    qDebug() << "Trace.";
+
+    Settings::instance()->saveSettings();
+    QDialog::accept();
+}
+
+void MovieSearch::reject()
+{
+    qDebug() << "Trace.";
+
+    Settings::instance()->saveSettings();
+    QDialog::reject();
 }
 
 /*** GETTER ***/

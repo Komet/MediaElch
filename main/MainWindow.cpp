@@ -21,7 +21,6 @@
 #include "notifications/NotificationBox.h"
 #include "main/Update.h"
 #include "movies/MovieMultiScrapeDialog.h"
-#include "movies/MovieSearch.h"
 #include "notifications/Notificator.h"
 #include "sets/MovieListDialog.h"
 #include "settings/Settings.h"
@@ -152,7 +151,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(Update::instance(this), SIGNAL(sigNewVersion(QString)), this, SLOT(onNewVersion(QString)));
 
-    MovieSearch::instance(this);
     TvShowSearch::instance(this);
     ImageDialog::instance(this);
     MovieListDialog::instance(this);

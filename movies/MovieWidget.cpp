@@ -419,24 +419,29 @@ void MovieWidget::startScraperSearch()
     }
     emit setActionSearchEnabled(false, WidgetMovies);
     emit setActionSaveEnabled(false, WidgetMovies);
-    MovieSearch::instance()->exec(m_movie->name(), m_movie->id(), m_movie->tmdbId());
-    if (MovieSearch::instance()->result() == QDialog::Accepted) {
+
+    MovieSearch *searchDlg = new MovieSearch(this);
+    Q_CHECK_PTR(searchDlg);
+    searchDlg->exec(m_movie->name(), m_movie->id(), m_movie->tmdbId());
+    if (searchDlg->result() == QDialog::Accepted) {
         setDisabledTrue();
         QMap<ScraperInterface*, QString> ids;
         QList<int> infosToLoad;
-        if (MovieSearch::instance()->scraperId() == "custom-movie") {
-            ids = MovieSearch::instance()->customScraperIds();
+        if (searchDlg->scraperId() == "custom-movie") {
+            ids = searchDlg->customScraperIds();
             infosToLoad = Settings::instance()->scraperInfos(WidgetMovies, "custom-movie");
         } else {
-            ids.insert(0, MovieSearch::instance()->scraperMovieId());
-            infosToLoad = MovieSearch::instance()->infosToLoad();
+            ids.insert(0, searchDlg->scraperMovieId());
+            infosToLoad = searchDlg->infosToLoad();
         }
-        m_movie->controller()->loadData(ids, Manager::instance()->scraper(MovieSearch::instance()->scraperId()),
+        m_movie->controller()->loadData(ids, Manager::instance()->scraper(searchDlg->scraperId()),
                                         infosToLoad);
     } else {
         emit setActionSearchEnabled(true, WidgetMovies);
         emit setActionSaveEnabled(true, WidgetMovies);
     }
+
+    searchDlg->deleteLater();
 }
 
 void MovieWidget::onInfoLoadDone(Movie *movie)
