@@ -161,7 +161,8 @@ SOURCES += main.cpp\
     main/Navbar.cpp \
     smallWidgets/FilterWidget.cpp \
     downloads/MakeMkvDialog.cpp \
-    downloads/MakeMkvCon.cpp
+    downloads/MakeMkvCon.cpp \
+    globals/Globals.cpp
 
 macx {
     OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm

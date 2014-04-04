@@ -5,16 +5,6 @@
 #include "globals/Manager.h"
 #include "scrapers/CustomMovieScraper.h"
 
-
-QDebug operator<<(QDebug lhs, const ScraperSearchResult &rhs)
-{
-    lhs << QString("(\"%1\", \"%2\", %3)").arg(rhs.id)
-                                          .arg(rhs.name)
-                                          .arg(rhs.released.toString("yyyy"));
-    return lhs;
-}
-
-
 MovieSearchWidget::MovieSearchWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MovieSearchWidget)
@@ -151,7 +141,7 @@ void MovieSearchWidget::search()
 
 void MovieSearchWidget::showResults(QList<ScraperSearchResult> results)
 {
-    qDebug() << "results.count(): " << results.count() << ", results:" << results;
+    qDebug() << this << "results:" << results;
 
     ui->comboScraper->setEnabled(m_customScraperIds.isEmpty());
     ui->searchString->setLoading(false);

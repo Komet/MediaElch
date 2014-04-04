@@ -330,6 +330,7 @@ void TMDb::searchFinished()
     reply->deleteLater();
 
     if (nextPage == -1) {
+        qDebug() << "receiver count:" << this->receivers(SIGNAL(searchDone(QList<ScraperSearchResult>)));
         emit searchDone(results);
     } else {
         QUrl url(QString("http://api.themoviedb.org/3/search/movie?api_key=%1&language=%2&page=%3&query=%4").arg(TMDb::apiKey()).arg(m_language).arg(nextPage).arg(searchString));
