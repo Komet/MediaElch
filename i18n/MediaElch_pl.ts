@@ -451,7 +451,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="213"/>
         <source>Logo, Clear Art, CD Art</source>
-        <translation>Logo, Clear Art, Grafika płyty</translation>
+        <translation>Logo, Clear Art, Grafika dysku</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="216"/>
@@ -841,7 +841,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="496"/>
         <source>makemkvcon missing</source>
-        <translation>brakuje pliku makemkvcon</translation>
+        <translation>Brakuje pliku makemkvcon</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="497"/>
@@ -2355,7 +2355,7 @@ Jeśli chcesz połączyć dwa gatunki, po prostu nadaj im tę samą nazwę.</tra
     <message>
         <location filename="../downloads/ImportDialog.ui" line="339"/>
         <source>Use Season Directories</source>
-        <translation>Używaj folderów sezonu</translation>
+        <translation>Używaj osobnych folderów sezonów</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="346"/>
@@ -2386,7 +2386,7 @@ Jeśli chcesz połączyć dwa gatunki, po prostu nadaj im tę samą nazwę.</tra
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="304"/>
         <source>Loading concert information...</source>
-        <translation>Wczytywanie danych koncercu...</translation>
+        <translation>Wczytywanie danych koncertu...</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.cpp" line="322"/>
@@ -2900,7 +2900,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="54"/>
         <source>Malaysia</source>
-        <translation>Malezia</translation>
+        <translation>Malezja</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="55"/>
@@ -3480,7 +3480,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="281"/>
         <source>CD Art</source>
-        <translation>Grafika płyty</translation>
+        <translation>Grafika dysku</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="288"/>
@@ -3705,8 +3705,8 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="790"/>
         <source>Support for extra fanarts is only available when your movies are stored in separate folders. Check the settings if you&apos;ve stored your movies in separate folders already.</source>
-        <translation>Wsparcie dla dodatkowych tapet jest dostępne tylko wtedy, gdy filmy znajdują się w oddzielnych folderach.
-Zaznacz to ustawienie, jeśli już przechowujesz swoje filmy w oddzielnych folderach.</translation>
+        <translation>Wsparcie dla dodatkowych tapet jest dostępne tylko wtedy, gdy filmy znajdują się w osobnych folderach.
+Zaznacz to ustawienie, jeśli już przechowujesz swoje filmy w osobnych folderach.</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="810"/>
@@ -4021,7 +4021,7 @@ Zaznacz to ustawienie, jeśli już przechowujesz swoje filmy w oddzielnych folde
     <message>
         <location filename="../main/Navbar.cpp" line="26"/>
         <source>Reload all files (%1)</source>
-        <translation>Odśwież wszystkie pliki (%1)</translation>
+        <translation>Odśwież wszystko (%1)</translation>
     </message>
 </context>
 <context>
@@ -4092,7 +4092,7 @@ Zaznacz to ustawienie, jeśli już przechowujesz swoje filmy w oddzielnych folde
     <message>
         <location filename="../globals/Helper.cpp" line="506"/>
         <source>Purple</source>
-        <translation>Fioletowy</translation>
+        <translation>Liliowy</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="507"/>
@@ -4359,27 +4359,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="336"/>
         <source>&lt;b&gt;Rename Banner&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmień nazwę banera&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
+        <translation>&lt;b&gt;Zmiana nazwy banera&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="353"/>
         <source>&lt;b&gt;Rename Thumb&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmień nazwę miniatury&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
+        <translation>&lt;b&gt;Zmiana nazwy miniatury&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="370"/>
         <source>&lt;b&gt;Rename Logo&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmień nazwę loga&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
+        <translation>&lt;b&gt;Zmiana nazwy loga&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="387"/>
         <source>&lt;b&gt;Rename Clear Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmień nazwę Clear Art&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
+        <translation>&lt;b&gt;Zmiana nazwy Clear Art&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="404"/>
         <source>&lt;b&gt;Rename CD Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmień nazwę grafiki płyty&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
+        <translation>&lt;b&gt;Zmiana nazwy grafiki dysku&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="420"/>
@@ -4538,7 +4538,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWindow.ui" line="94"/>
         <source>Items are in separate folders</source>
-        <translation>Pozycje znajdują się w oddzielnych folderach</translation>
+        <translation>Pozycje znajdują się w osobnych folderach</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="99"/>
@@ -4563,7 +4563,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWindow.ui" line="126"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort movies into separate directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Przenieś filmy do oddzielnych folderów&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Przenieś filmy do osobnych folderów&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="129"/>
@@ -4718,7 +4718,7 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="574"/>
         <source>Movie outline</source>
-        <translation>Zarys fabuły filmu</translation>
+        <translation>Zarys fabuły</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="581"/>
@@ -4733,12 +4733,12 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="596"/>
         <source>Artwork next to movies</source>
-        <translation>Grafiki razem z filmami</translation>
+        <translation>Grafiki w folderze filmu</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="601"/>
         <source>Separate artwork directory</source>
-        <translation>Oddzielny folder grafik</translation>
+        <translation>Osobny folder grafik</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="609"/>
@@ -4842,12 +4842,12 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
         <location filename="../settings/SettingsWindow.ui" line="1587"/>
         <location filename="../settings/SettingsWindow.cpp" line="155"/>
         <source>Import</source>
-        <translation>Importuj</translation>
+        <translation>Import</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1287"/>
         <source>Automatically delete archives after extraction</source>
-        <translation>Automatycznie usuwaj archiwa po zakończeniu rozpakowywania</translation>
+        <translation>Usuwaj archiwa automatycznie po zakończeniu rozpakowywania</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1313"/>
@@ -4886,7 +4886,7 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1072"/>
         <source>If you want to use the synchronization feature you need to enable the webserver within XBMC (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation>Jeśli chcesz używać funkcji synchronizacji, musisz włączyć serwer internetowy w XBMC (Ustawienia -&gt; Usługi -&gt; Serwer internetowy). Wprowadź numer portu serwera (zazwyczaj 80 lub 8080).</translation>
+        <translation>Jeśli chcesz używać funkcji synchronizacji, musisz włączyć serwer internetowy w XBMC (Ustawienia -&gt; Usługi -&gt; Serwer internetowy). Wprowadź tutaj numer portu serwera (zazwyczaj 80 lub 8080).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1115"/>
@@ -4896,7 +4896,7 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1195"/>
         <source>Enable Proxy</source>
-        <translation>Włącz Proxy</translation>
+        <translation>Aktywuj Proxy</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1202"/>
@@ -4974,12 +4974,12 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1524"/>
         <source>Network</source>
-        <translation>Sieć</translation>
+        <translation>Internet</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1564"/>
         <source>Export</source>
-        <translation>Eksportuj</translation>
+        <translation>Eksport</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="408"/>
@@ -4994,7 +4994,7 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="478"/>
         <source>Organizing movies does only work on movies, not already sorted to separate folders.</source>
-        <translation>Porządkowanie filmów działa tylko na filmach, nie przenosi ich jeszcze do oddzielnych folderów.</translation>
+        <translation>Porządkowanie filmów działa tylko na filmach, które jeszcze nie znajdują się w osobnych folderach.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="486"/>
@@ -5004,7 +5004,7 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="487"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if thats, what you want to do. </source>
-        <translation>Ta operacja przenosi wszystkie filmy z tego folderu do oddzielnych podfolderów, o nazwie bazującej na nazwie plików. Kliknij &quot;Ok&quot;, jeśli jesteś pewien, że chcesz to zrobić.</translation>
+        <translation>Ta operacja przenosi wszystkie filmy z tego folderu do osobnych podfolderów, o nazwie bazującej na nazwie plików. Wciśnij &quot;Ok&quot;, jeśli jesteś pewien, że chcesz to zrobić.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="490"/>
