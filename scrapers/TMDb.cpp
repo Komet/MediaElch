@@ -287,7 +287,7 @@ void TMDb::search(QString searchStr)
                            .arg(m_language)
                            .arg(includeAdult)
                            .arg(searchYear)
-                           .arg(searchTitle));
+                           .arg(QString(QUrl::toPercentEncoding(searchTitle))));
                 break;
             }
         }
