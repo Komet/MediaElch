@@ -252,9 +252,14 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
         }
     }
 
-    rx.setPattern("<h4 class=\"inline\">Taglines:</h4>(.*)<span");
-    if (infos.contains(MovieScraperInfos::Tagline) && rx.indexIn(html) != -1)
-        movie->setTagline(rx.cap(1).trimmed());
+    rx.setPattern("<div class=\"txt-block\">.*<h4 class=\"inline\">Taglines:</h4>(.*)</div>");
+    if (infos.contains(MovieScraperInfos::Tagline) && rx.indexIn(html) != -1) {
+        QString tagline = rx.cap(1);
+        QRegExp rxMore("<span class=\"see-more inline\">.*</span>");
+        rxMore.setMinimal(true);
+        tagline.remove(rxMore);
+        movie->setTagline(tagline.trimmed());
+    }
 
     rx.setPattern("<div class=\"see-more inline canwrap\" itemprop=\"keywords\">(.*)</div>");
     if (infos.contains(MovieScraperInfos::Tags) && rx.indexIn(html) != -1) {
@@ -283,11 +288,14 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1)
         movie->setOutline(rx.cap(1).trimmed());
 
-    rx.setPattern("<div class=\"inline canwrap\" itemprop=\"description\">[^<]*<p>([^<]*)");
-    rx.setMinimal(false);
-    if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1)
-        movie->setOverview(rx.cap(1).trimmed());
-    rx.setMinimal(true);
+    rx.setPattern("<div class=\"inline canwrap\" itemprop=\"description\">(.*)</div>");
+    if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
+        QString overview = rx.cap(1).trimmed();
+        QRegExp rxWrittenBy("<em class=\"nobr\">.*</em>");
+        rxWrittenBy.setMinimal(true);
+        overview.remove(rxWrittenBy).remove(QRegExp("<[^>]*>"));
+        movie->setOverview(overview.trimmed());
+    }
 
     rx.setPattern("<div class=\"star-box-details\" itemtype=\"http://schema.org/AggregateRating\" itemscope itemprop=\"aggregateRating\">(.*)</div>");
     if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {

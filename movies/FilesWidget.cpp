@@ -260,12 +260,7 @@ void FilesWidget::openFolder()
     if (movie->files().isEmpty())
         return;
     QFileInfo fi(movie->files().at(0));
-    QUrl url;
-    if (fi.absolutePath().startsWith("\\\\") || fi.absolutePath().startsWith("//"))
-        url.setUrl(QDir::toNativeSeparators(fi.absolutePath()));
-    else
-        url = QUrl::fromLocalFile(fi.absolutePath());
-    QDesktopServices::openUrl(url);
+    QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
 }
 
 /**

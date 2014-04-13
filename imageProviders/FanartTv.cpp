@@ -63,7 +63,7 @@ FanartTv::FanartTv(QObject *parent)
     m_provides << ImageType::MovieBackdrop << ImageType::MovieLogo << ImageType::MovieClearArt << ImageType::MovieCdArt
                << ImageType::MovieBanner << ImageType::MovieThumb << ImageType::MoviePoster
                << ImageType::TvShowClearArt << ImageType::TvShowBackdrop << ImageType::TvShowBanner
-               << ImageType::TvShowThumb << ImageType::TvShowSeasonThumb
+               << ImageType::TvShowThumb << ImageType::TvShowSeasonThumb << ImageType::TvShowSeasonPoster
                << ImageType::TvShowLogos << ImageType::TvShowCharacterArt
                << ImageType::ConcertBackdrop << ImageType::ConcertLogo << ImageType::ConcertClearArt << ImageType::ConcertCdArt;
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
@@ -615,8 +615,7 @@ void FanartTv::tvShowEpisodeThumb(QString tvdbId, int season, int episode)
  */
 void FanartTv::tvShowSeason(QString tvdbId, int season)
 {
-    Q_UNUSED(tvdbId);
-    Q_UNUSED(season);
+    loadTvShowData(tvdbId, ImageType::TvShowSeasonPoster, season);
 }
 
 void FanartTv::tvShowSeasonBanners(QString tvdbId, int season)
@@ -653,6 +652,7 @@ QList<Poster> FanartTv::parseTvShowData(QString json, int type, int season)
     map.insert(ImageType::TvShowCharacterArt, QStringList() << "characterart");
     map.insert(ImageType::TvShowThumb, QStringList() << "tvthumb");
     map.insert(ImageType::TvShowSeasonThumb, QStringList() << "seasonthumb");
+    map.insert(ImageType::TvShowSeasonPoster, QStringList() << "seasonposter");
     QList<Poster> posters;
     QScriptValue sc;
     QScriptEngine engine;
@@ -671,7 +671,7 @@ QList<Poster> FanartTv::parseTvShowData(QString json, int type, int season)
                     if (vB.property("url").toString().isEmpty())
                         continue;
 
-                    if (type == ImageType::TvShowSeasonThumb && season != -2 && !vB.property("season").toString().isEmpty() && vB.property("season").toString().toInt() != season)
+                    if ((type == ImageType::TvShowSeasonThumb || type == ImageType::TvShowSeasonPoster) && season != -2 && !vB.property("season").toString().isEmpty() && vB.property("season").toString().toInt() != season)
                         continue;
 
                     Poster b;

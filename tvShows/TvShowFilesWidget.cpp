@@ -322,12 +322,7 @@ void TvShowFilesWidget::openFolder()
     if (dir.isEmpty())
         return;
 
-    QUrl url;
-    if (dir.startsWith("\\\\") || dir.startsWith("//"))
-        url.setUrl(QDir::toNativeSeparators(dir));
-    else
-        url = QUrl::fromLocalFile(dir);
-    QDesktopServices::openUrl(url);
+    QDesktopServices::openUrl(QUrl::fromLocalFile(dir));
 }
 
 void TvShowFilesWidget::showMissingEpisodes()

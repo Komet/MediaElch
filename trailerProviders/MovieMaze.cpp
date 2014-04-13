@@ -104,21 +104,21 @@ QList<TrailerResult> MovieMaze::parseTrailers(QString html)
     QRegExp rx;
     rx.setMinimal(true);
 
-    rx.setPattern("<div id=\"HeaderContent\">.*<h2>([^<]*)</h2>");
+    rx.setPattern("<div id=\"HeaderContent\">.*<h1>([^<]*)</h1>");
     if (rx.indexIn(html, 0) != -1)
         name = rx.cap(1);
 
-    rx.setPattern("<div class=\"trailer-choose\" .* data-image=\"([^\"]*)\".*<span class=\"trailer-language ([^\"]*)\">.*<a class=\"trailer-ico download\" href=\"([^\"]*)\"><span class=\"ico\">&nbsp;</span><span class=\"text\">Download</span></a>");
+    rx.setPattern("<div class=\"trailer-choose\" .* data-image=\"([^\"]*)\" .* data-downloadurl=\"([^\"]*)\">.*<span class=\"[^\"]*\">(.*)</span>");
     while ((pos = rx.indexIn(html, pos)) != -1) {
         TrailerResult result;
         result.name = name;
         result.preview = rx.cap(1);
-        result.language = rx.cap(2);
+        result.language = rx.cap(3);
         if (result.language == "de")
             result.language = tr("German");
         else if (result.language == "en")
             result.language = tr("English");
-        result.trailerUrl = rx.cap(3);
+        result.trailerUrl = rx.cap(2);
         result.previewImageLoaded = false;
         results.append(result);
         pos += rx.matchedLength();
