@@ -317,7 +317,7 @@
     <name>ConcertFilesWidget</name>
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="325"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="320"/>
         <source>%n concerts</source>
         <translation><numerusform>Ein Konzert</numerusform><numerusform>%n Konzerte</numerusform></translation>
     </message>
@@ -352,7 +352,7 @@
         <translation>Konzertverzeichnis öffnen</translation>
     </message>
     <message numerus="yes">
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="327"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="322"/>
         <source>%1 of %n concerts</source>
         <translation><numerusform>%1 von einem Konzert</numerusform><numerusform>%1 von %n Konzerten</numerusform></translation>
     </message>
@@ -1169,33 +1169,33 @@
 <context>
     <name>FilesWidget</name>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="198"/>
+        <location filename="../movies/FilesWidget.ui" line="197"/>
         <source>New</source>
         <translation>Neu</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="225"/>
+        <location filename="../movies/FilesWidget.ui" line="224"/>
         <source>Name</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="252"/>
+        <location filename="../movies/FilesWidget.ui" line="251"/>
         <source>Date Added</source>
         <translation>Hinzugefügt</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="279"/>
+        <location filename="../movies/FilesWidget.ui" line="278"/>
         <source>Seen</source>
         <translation>Gesehen</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="306"/>
+        <location filename="../movies/FilesWidget.ui" line="305"/>
         <source>Year</source>
         <translation>Jahr</translation>
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="29"/>
-        <location filename="../movies/FilesWidget.cpp" line="505"/>
+        <location filename="../movies/FilesWidget.cpp" line="500"/>
         <source>%n movies</source>
         <translation><numerusform>Ein Film</numerusform><numerusform>%n Filme</numerusform></translation>
     </message>
@@ -1245,7 +1245,7 @@
         <translation>Filmverzeichnis öffnen</translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/FilesWidget.cpp" line="507"/>
+        <location filename="../movies/FilesWidget.cpp" line="502"/>
         <source>%1 of %n movies</source>
         <translation><numerusform>%1 von einem Film</numerusform><numerusform>%1 von %n Filmen</numerusform></translation>
     </message>
@@ -4052,7 +4052,7 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
         <translation>Nicht mehr nach Updates suchen</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="353"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="348"/>
         <source>Don&apos;t show this hint again</source>
         <translation>Diesen Hinweis nicht wieder anzeigen</translation>
     </message>
@@ -5728,13 +5728,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="513"/>
         <source>%n tv shows</source>
         <translation><numerusform>Eine Serie</numerusform><numerusform>%n Serien</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="513"/>
         <source>%n episodes</source>
         <translation><numerusform>Eine Episode</numerusform><numerusform>%n Episoden</numerusform></translation>
     </message>
@@ -5784,19 +5784,19 @@ p, li { white-space: pre-wrap; }
         <translation>Verstecke Specials in fehlenden Episoden</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="349"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="344"/>
         <source>Show update needed</source>
         <translation>Aktualisierung der Serie nötig</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="350"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="345"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation>Du musst die Daten der Serie einmal neu laden, um fehlende Episoden anzuzeigen.
 Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="520"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="515"/>
         <source>%1 of %n tv shows</source>
         <translation><numerusform>%1 von einer Serie</numerusform><numerusform>%1 von %n Serien</numerusform></translation>
     </message>

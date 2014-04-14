@@ -318,7 +318,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <name>ConcertFilesWidget</name>
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="325"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="320"/>
         <source>%n concerts</source>
         <translation><numerusform>%n koncert</numerusform><numerusform>%n koncertów</numerusform><numerusform>%n koncertów</numerusform></translation>
     </message>
@@ -353,7 +353,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
         <translation>Otwórz folder koncertu</translation>
     </message>
     <message numerus="yes">
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="327"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="322"/>
         <source>%1 of %n concerts</source>
         <translation><numerusform>1 z 1 koncertu</numerusform><numerusform>%1 z %n koncertów</numerusform><numerusform>%1 z %n koncertów</numerusform></translation>
     </message>
@@ -1170,33 +1170,33 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
 <context>
     <name>FilesWidget</name>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="198"/>
+        <location filename="../movies/FilesWidget.ui" line="197"/>
         <source>New</source>
         <translation>Nowy</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="225"/>
+        <location filename="../movies/FilesWidget.ui" line="224"/>
         <source>Name</source>
         <translation>Nazwa</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="252"/>
+        <location filename="../movies/FilesWidget.ui" line="251"/>
         <source>Date Added</source>
         <translation>Data dodania</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="279"/>
+        <location filename="../movies/FilesWidget.ui" line="278"/>
         <source>Seen</source>
         <translation>Oglądany</translation>
     </message>
     <message>
-        <location filename="../movies/FilesWidget.ui" line="306"/>
+        <location filename="../movies/FilesWidget.ui" line="305"/>
         <source>Year</source>
         <translation>Rok</translation>
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="29"/>
-        <location filename="../movies/FilesWidget.cpp" line="505"/>
+        <location filename="../movies/FilesWidget.cpp" line="500"/>
         <source>%n movies</source>
         <translation><numerusform>%n film</numerusform><numerusform>%n filmów</numerusform><numerusform>%n filmów</numerusform></translation>
     </message>
@@ -1246,7 +1246,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
         <translation>Otwórz folder filmu</translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/FilesWidget.cpp" line="507"/>
+        <location filename="../movies/FilesWidget.cpp" line="502"/>
         <source>%1 of %n movies</source>
         <translation><numerusform>%1 z %n filmu</numerusform><numerusform>%1 z %n filmów</numerusform><numerusform>%1 z %n filmów</numerusform></translation>
     </message>
@@ -4055,7 +4055,7 @@ Zaznacz to ustawienie, jeśli już przechowujesz swoje filmy w osobnych folderac
         <translation>Nie sprawdzaj dostępności aktualizacji</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="353"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="348"/>
         <source>Don&apos;t show this hint again</source>
         <translation>Nie pokazuj tej wskazówki ponownie</translation>
     </message>
@@ -5736,13 +5736,13 @@ p, li { white-space: pre-wrap; }⏎
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="513"/>
         <source>%n tv shows</source>
         <translation><numerusform>%n serial</numerusform><numerusform>%n seriali</numerusform><numerusform>%n seriali</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="513"/>
         <source>%n episodes</source>
         <translation><numerusform>%n odcinek</numerusform><numerusform>%n odcinków</numerusform><numerusform>%n odcinków</numerusform></translation>
     </message>
@@ -5792,19 +5792,19 @@ p, li { white-space: pre-wrap; }⏎
         <translation>Ukrywaj odcinki specjalne w brakujących odcinkach</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="349"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="344"/>
         <source>Show update needed</source>
         <translation>Niezbędna aktualizacja serialu</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="350"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="345"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation>Należy jednorazowo zaktualizować serial, aby zobaczyć brakujące odcinki.
 Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odcinków podczas uruchomienia.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="520"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="515"/>
         <source>%1 of %n tv shows</source>
         <translation><numerusform>%1 z %n serialu</numerusform><numerusform>%1 z %n seriali</numerusform><numerusform>%1 z %n seriali</numerusform></translation>
     </message>
