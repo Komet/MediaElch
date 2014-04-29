@@ -4,12 +4,12 @@
     <message>
         <location filename="../scrapers/AEBN.cpp" line="16"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>保加利亚</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="17"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>中国</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="18"/>
@@ -19,17 +19,17 @@
     <message>
         <location filename="../scrapers/AEBN.cpp" line="19"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>捷克</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="20"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>丹麦</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="21"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>荷兰</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="22"/>
@@ -39,7 +39,7 @@
     <message>
         <location filename="../scrapers/AEBN.cpp" line="23"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>芬兰</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="24"/>
@@ -54,27 +54,27 @@
     <message>
         <location filename="../scrapers/AEBN.cpp" line="26"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>希腊</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="27"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>希伯来语</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="28"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>匈牙利</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="29"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>意大利</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="30"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>日本</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="31"/>
@@ -84,42 +84,42 @@
     <message>
         <location filename="../scrapers/AEBN.cpp" line="32"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>挪威语</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="33"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>波兰语</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="34"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>葡萄牙语</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="35"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>俄罗斯</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="36"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>斯洛文尼亚</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="37"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>西班牙</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="38"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>瑞典</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="39"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>土耳其</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="41"/>
@@ -1009,12 +1009,12 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="26"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>保加利亚</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="27"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>中国</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="28"/>
@@ -1024,17 +1024,17 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="29"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>捷克</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="30"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>丹麦</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="31"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>荷兰</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="32"/>
@@ -1044,7 +1044,7 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="33"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>芬兰</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="34"/>
@@ -1059,27 +1059,27 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="36"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>希腊</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="37"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>希伯来语</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="38"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>匈牙利</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="39"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>意大利</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="40"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>日本</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="41"/>
@@ -1089,47 +1089,47 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="42"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>挪威语</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="43"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>波兰语</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="44"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>葡萄牙语</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="45"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>俄罗斯</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="46"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>斯洛文尼亚</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="47"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>西班牙</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="48"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>瑞典</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="49"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>土耳其</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="51"/>
         <source>3D</source>
-        <translation type="unfinished"/>
+        <translation>3D</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="52"/>
@@ -1271,7 +1271,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="143"/>
         <source>IMDB ID &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>IMDB ID &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="307"/>
@@ -1340,7 +1340,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="462"/>
         <source>Set &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>系列电影 &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="463"/>
@@ -1463,7 +1463,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="557"/>
         <source>No Fanart</source>
-        <translation type="unfinished"/>
+        <translation>无剧照</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="559"/>
@@ -1806,18 +1806,18 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="643"/>
         <source>Movie has no IMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>无 IMDB ID 电影</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="643"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="644"/>
         <source>No IMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>无 IMDB ID</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="644"/>
         <source>IMDB</source>
-        <translation type="unfinished"/>
+        <translation>IMDB</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="646"/>
@@ -2019,27 +2019,27 @@
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="17"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>保加利亚</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="18"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>中国</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="19"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>捷克</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="20"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>丹麦</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="21"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>荷兰</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="22"/>
@@ -2049,7 +2049,7 @@
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="23"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>芬兰</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="24"/>
@@ -2064,57 +2064,57 @@
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="26"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>希腊</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="27"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>希伯来语</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="28"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>匈牙利</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="29"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>意大利</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="30"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>日本</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="31"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>挪威</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="32"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>波兰</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="33"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>葡萄牙</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="34"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>俄罗斯</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="35"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>西班牙</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="36"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>瑞典</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="39"/>
@@ -2808,7 +2808,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="34"/>
         <source>IMDB</source>
-        <translation type="unfinished"/>
+        <translation>IMDB</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="35"/>
@@ -3300,7 +3300,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="373"/>
         <source>Update only movies with IMDB Id/TheMovieDb Id</source>
-        <translation type="unfinished"/>
+        <translation>只更新有 IMDB Id 或 TheMovieDb Id 的电影</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="388"/>
@@ -4981,7 +4981,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="442"/>
         <source>Downloads</source>
-        <translation type="unfinished"/>
+        <translation>下载</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="478"/>
@@ -5194,12 +5194,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="28"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>保加利亚</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="29"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>中国</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="30"/>
@@ -5209,17 +5209,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="31"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>捷克</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="32"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>丹麦</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="33"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>荷兰</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="34"/>
@@ -5234,7 +5234,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="36"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>芬兰</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="37"/>
@@ -5249,27 +5249,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="39"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>希腊</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="40"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>希伯来语</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="41"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>匈牙利</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="42"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>意大利</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="43"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>日本</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="44"/>
@@ -5279,42 +5279,42 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="45"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>挪威语</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="46"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>波兰语</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="47"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>葡萄牙语</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="48"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>俄罗斯</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="49"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>斯洛文尼亚</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="50"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>西班牙</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="51"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>瑞典</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="52"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>土耳其</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="54"/>
@@ -5327,12 +5327,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="28"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>保加利亚</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="29"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>中国</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="30"/>
@@ -5342,17 +5342,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="31"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>捷克</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="32"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>丹麦</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="33"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>荷兰</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="34"/>
@@ -5367,7 +5367,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="36"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>芬兰</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="37"/>
@@ -5382,27 +5382,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="39"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>希腊</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="40"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>希伯来语</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="41"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>匈牙利</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="42"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>意大利</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="43"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>日本</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="44"/>
@@ -5412,42 +5412,42 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="45"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>挪威语</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="46"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>波兰语</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="47"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>葡萄牙语</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="48"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>俄罗斯</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="49"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>斯洛文尼亚</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="50"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>西班牙</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="51"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>瑞典</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="52"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>土耳其</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="54"/>
@@ -5473,12 +5473,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="28"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>保加利亚</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="29"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>中国</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="30"/>
@@ -5488,17 +5488,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="31"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>捷克</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="32"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>丹麦</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="33"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>荷兰</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="34"/>
@@ -5508,7 +5508,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="35"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>芬兰</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="36"/>
@@ -5523,27 +5523,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="38"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>希腊</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="39"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>希伯来语</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="40"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>匈牙利</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="41"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>意大利</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="42"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>日本</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="43"/>
@@ -5553,42 +5553,42 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="44"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>挪威语</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="45"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>波兰语</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="46"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>葡萄牙语</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="47"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>俄罗斯</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="48"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>斯洛文尼亚</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="49"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>西班牙</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="50"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>瑞典</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="51"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>土耳其</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="53"/>
@@ -5814,7 +5814,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="30"/>
         <source>If you want to search by an TheTvDb id please prefix it with &quot;id&quot; (e.g. id123).</source>
-        <translation type="unfinished"/>
+        <translation>如果您想根据 TheTvDb id 搜索刮削，请加前缀 &quot;id&quot; (如 id123)。</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="70"/>
