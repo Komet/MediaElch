@@ -73,11 +73,6 @@ void MovieFileSearcher::reload(bool force)
                     return;
                 it.next();
 
-                if (it.fileInfo().dir().dirName() != lastDir) {
-                    lastDir = it.fileInfo().dir().dirName();
-                    emit currentDir(it.fileInfo().dir().dirName());
-                }
-
                 if (it.fileName().contains("-trailer", Qt::CaseInsensitive) || it.fileName().contains("-sample", Qt::CaseInsensitive))
                     continue;
 
@@ -101,6 +96,11 @@ void MovieFileSearcher::reload(bool force)
                 // Skip BluRay backup folder
                 if (QString::compare("backup", dirName, Qt::CaseInsensitive) == 0 && QString::compare("index.bdmv", it.fileName(), Qt::CaseInsensitive) == 0)
                     continue;
+
+                if (it.fileInfo().dir().dirName() != lastDir) {
+                    lastDir = it.fileInfo().dir().dirName();
+                    emit currentDir(it.fileInfo().dir().dirName());
+                }
 
                 if (QString::compare("index.bdmv", it.fileName(), Qt::CaseInsensitive) == 0) {
                     qDebug() << "Found BluRay structure";
