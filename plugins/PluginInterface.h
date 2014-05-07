@@ -4,6 +4,7 @@
 #include <QIcon>
 #include <QSettings>
 #include <QString>
+#include <QTranslator>
 #include <QWidget>
 
 class PluginInterface
@@ -36,6 +37,8 @@ public:
     virtual bool hasSettings() = 0;
     virtual QWidget *settingsWidget() = 0;
     virtual QWidget *widget() = 0;
+
+    virtual QTranslator *pluginTranslator(const QString &locale) = 0;
 
 public slots:
     virtual void saveSettings(QSettings *settings) = 0;

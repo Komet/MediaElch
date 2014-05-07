@@ -178,6 +178,7 @@ bool PluginManager::loadPlugin(const QString &fileName)
                 return false;
             }
 
+            qApp->installTranslator(iPlugin->pluginTranslator(QLocale::system().name()));
             iPlugin->init(Manager::instance()->movieModel(), Manager::instance()->tvShowModel(),
                           Manager::instance()->concertModel(), NotificationBox::instance(), Notificator::instance(), Helper::instance());
             iPlugin->loadSettings(Settings::instance()->settings());
