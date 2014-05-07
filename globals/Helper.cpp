@@ -456,6 +456,23 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
         }
 
     widget->setStyleSheet(widget->styleSheet() + styleSheet.join("\n"));
+
+    foreach (QPushButton *button, widget->findChildren<QPushButton*>()) {
+        QString styleType = button->property("styleType").toString();
+        if (styleType.isEmpty())
+            continue;
+
+        if (styleType == "danger")
+            Helper::instance()->setButtonStyle(button, Helper::ButtonDanger);
+        else if (styleType == "info")
+            Helper::instance()->setButtonStyle(button, Helper::ButtonInfo);
+        else if (styleType == "primary")
+            Helper::instance()->setButtonStyle(button, Helper::ButtonPrimary);
+        else if (styleType == "success")
+            Helper::instance()->setButtonStyle(button, Helper::ButtonSuccess);
+        else if (styleType == "warning")
+            Helper::instance()->setButtonStyle(button, Helper::ButtonWarning);
+    }
 }
 
 void Helper::applyEffect(QWidget *parent)
