@@ -451,7 +451,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="213"/>
         <source>Logo, Clear Art, CD Art</source>
-        <translation>Logo, Clear Art, Grafika dysku</translation>
+        <translation>Logo, Przezroczysta grafika, Grafika dysku</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="216"/>
@@ -676,7 +676,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="1057"/>
         <source>Clear Art</source>
-        <translation>Clear Art</translation>
+        <translation>Przezroczysta grafika</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="1104"/>
@@ -1492,25 +1492,25 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="565"/>
         <source>Movie has Clear Art</source>
-        <translation>Film z Clear Art</translation>
+        <translation>Film z przezroczystą grafiką</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="565"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="566"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="569"/>
         <source>Clear Art</source>
-        <translation>Clear Art</translation>
+        <translation>Przezroczysta grafika</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="568"/>
         <source>Movie has no Clear Art</source>
-        <translation>Film bez Clear Art</translation>
+        <translation>Film bez przezroczystej grafiki</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="568"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="569"/>
         <source>No Clear Art</source>
-        <translation>Brak Clear Art</translation>
+        <translation>Brak przezroczystej grafiki</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="571"/>
@@ -3267,7 +3267,7 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="301"/>
         <source>Clear Art</source>
-        <translation>Clear Art</translation>
+        <translation>Przezroczysta grafika</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="291"/>
@@ -3475,7 +3475,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="274"/>
         <source>Clear Art</source>
-        <translation>Clear Art</translation>
+        <translation>Przezroczysta grafika</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="281"/>
@@ -3809,7 +3809,7 @@ Zaznacz to ustawienie, jeśli już przechowujesz swoje filmy w osobnych folderac
         <location filename="../movies/MovieWidget.ui" line="1468"/>
         <location filename="../movies/MovieWidget.ui" line="1508"/>
         <source>Clear Art</source>
-        <translation>Clear Art</translation>
+        <translation>Przezroczysta grafika</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1518"/>
@@ -4374,7 +4374,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="387"/>
         <source>&lt;b&gt;Rename Clear Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmiana nazwy Clear Art&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
+        <translation>&lt;b&gt;Zmiana nazwy przezroczystej grafiki&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="404"/>
@@ -4692,7 +4692,7 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
         <location filename="../settings/SettingsWindow.ui" line="992"/>
         <location filename="../settings/SettingsWindow.cpp" line="687"/>
         <source>Clear Art</source>
-        <translation>Clear Art</translation>
+        <translation>Przezroczysta grafika</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="466"/>
@@ -6642,7 +6642,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="959"/>
         <source>Clear Art</source>
-        <translation>Clear Art</translation>
+        <translation>Przezroczysta grafika</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1006"/>
