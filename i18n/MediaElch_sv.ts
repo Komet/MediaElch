@@ -743,7 +743,7 @@
     <message>
         <location filename="../scrapers/CustomMovieScraper.cpp" line="32"/>
         <source>Custom Movie Scraper</source>
-        <translation type="unfinished"/>
+        <translation>Anpassad Filmskrapa</translation>
     </message>
 </context>
 <context>
@@ -854,27 +854,27 @@
         <location filename="../export/ExportDialog.ui" line="23"/>
         <location filename="../export/ExportDialog.ui" line="132"/>
         <source>Export</source>
-        <translation type="unfinished"/>
+        <translation>Exportera</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="32"/>
         <source>Export your complete collection.</source>
-        <translation type="unfinished"/>
+        <translation>Exportera hela din samling.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="39"/>
         <source>Message</source>
-        <translation type="unfinished"/>
+        <translation>Meddelande</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="51"/>
         <source>Theme</source>
-        <translation type="unfinished"/>
+        <translation>Tema</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="61"/>
         <source>Items to export</source>
-        <translation type="unfinished"/>
+        <translation>Objekt att exportera</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.ui" line="68"/>
@@ -899,27 +899,27 @@
     <message>
         <location filename="../export/ExportDialog.cpp" line="30"/>
         <source>You need to install at least one theme.</source>
-        <translation type="unfinished"/>
+        <translation>Du behöver installera minst ett tema.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="63"/>
         <source>You need to select at least one entry to export.</source>
-        <translation type="unfinished"/>
+        <translation>Du måste markera minst ett objekt att exportera.</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="72"/>
         <source>Export directory</source>
-        <translation type="unfinished"/>
+        <translation>Exporteringskälla</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="80"/>
         <source>Could not create export directory.</source>
-        <translation type="unfinished"/>
+        <translation>Kunde inte skapa exporteringskälla</translation>
     </message>
     <message>
         <location filename="../export/ExportDialog.cpp" line="126"/>
         <source>Export completed.</source>
-        <translation type="unfinished"/>
+        <translation>Exportering slutförd</translation>
     </message>
 </context>
 <context>
@@ -932,63 +932,63 @@
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="36"/>
         <source>Theme Name</source>
-        <translation type="unfinished"/>
+        <translation>Temanamn</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="46"/>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Version</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="59"/>
         <source>Author</source>
-        <translation type="unfinished"/>
+        <translation>Skapare</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="68"/>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Beskrivning</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.ui" line="99"/>
         <location filename="../settings/ExportTemplateWidget.cpp" line="38"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Installera</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="26"/>
         <source>by %1</source>
-        <translation type="unfinished"/>
+        <translation>av %1</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="29"/>
         <source>Version %1</source>
-        <translation type="unfinished"/>
+        <translation>Version %1</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="32"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Uppdatera</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="35"/>
         <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <translation>Avinstallera</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="48"/>
         <source>Updating...</source>
-        <translation type="unfinished"/>
+        <translation>Uppdaterar...</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="52"/>
         <source>Installing...</source>
-        <translation type="unfinished"/>
+        <translation>Installerar...</translation>
     </message>
     <message>
         <location filename="../settings/ExportTemplateWidget.cpp" line="56"/>
         <source>Uninstalling...</source>
-        <translation type="unfinished"/>
+        <translation>Avinstallerar...</translation>
     </message>
 </context>
 <context>
@@ -1202,7 +1202,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="61"/>
         <source>Media Status Columns</source>
-        <translation type="unfinished"/>
+        <translation>Media Status Kolumner</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="71"/>
@@ -1514,48 +1514,48 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="571"/>
         <source>Movie has Banner</source>
-        <translation type="unfinished"/>
+        <translation>Filmen har Banner</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="571"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="572"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="575"/>
         <source>Banner</source>
-        <translation type="unfinished"/>
+        <translation>Banner</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="574"/>
         <source>Movie has no Banner</source>
-        <translation type="unfinished"/>
+        <translation>Filmen har ingen Banner</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="574"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="575"/>
         <source>No Banner</source>
-        <translation type="unfinished"/>
+        <translation>Ingen Banner</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="577"/>
         <source>Movie has Thumb</source>
-        <translation type="unfinished"/>
+        <translation>Filmen har Miniatyr</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="577"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="578"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="581"/>
         <source>Thumb</source>
-        <translation type="unfinished"/>
+        <translation>Miniatyr</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="580"/>
         <source>Movie has no Thumb</source>
-        <translation type="unfinished"/>
+        <translation>Filmen har ingen Miniatyr</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="580"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="581"/>
         <source>No Thumb</source>
-        <translation type="unfinished"/>
+        <translation>Ingen Miniatyr</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="583"/>
@@ -2132,7 +2132,7 @@
     <message>
         <location filename="../globals/ImageDialog.ui" line="38"/>
         <source>Enter a search term or URL</source>
-        <translation type="unfinished"/>
+        <translation>Ange en sökterm eller URL</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.ui" line="85"/>
@@ -2470,32 +2470,32 @@
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="76"/>
         <source>Episode Name</source>
-        <translation type="unfinished"/>
+        <translation>Avsnittsnamn</translation>
     </message>
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="89"/>
         <source>Episode Count</source>
-        <translation type="unfinished"/>
+        <translation>Antal Avsnitt</translation>
     </message>
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="115"/>
         <source>Poster</source>
-        <translation type="unfinished"/>
+        <translation>Poster</translation>
     </message>
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="377"/>
         <source>new</source>
-        <translation type="unfinished"/>
+        <translation>ny</translation>
     </message>
     <message>
         <location filename="../tvShows/ItemWidgetShow.ui" line="399"/>
         <source>Synchronization needed</source>
-        <translation type="unfinished"/>
+        <translation>Synkronisering krävs</translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/ItemWidgetShow.cpp" line="50"/>
         <source>%n Episodes</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n Avsnitt</numerusform><numerusform>%n Avsnitt</numerusform></translation>
     </message>
 </context>
 <context>
@@ -3086,7 +3086,7 @@ Processen avbruten.</translation>
     <message>
         <location filename="../sets/MovieListDialog.ui" line="74"/>
         <source>Add selected movies</source>
-        <translation type="unfinished"/>
+        <translation>Lägg till markerade filmer</translation>
     </message>
     <message>
         <location filename="../sets/MovieListDialog.ui" line="94"/>
@@ -3275,12 +3275,12 @@ Processen avbruten.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="281"/>
         <source>Banner</source>
-        <translation type="unfinished"/>
+        <translation>Banner</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="271"/>
         <source>Thumb</source>
-        <translation type="unfinished"/>
+        <translation>Miniatyr</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="321"/>
@@ -3606,7 +3606,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="399"/>
         <source>Insert YouTube Dummy Link</source>
-        <translation type="unfinished"/>
+        <translation>Lägg till YouTube Dummy Link</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="421"/>
@@ -3793,7 +3793,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../movies/MovieWidget.ui" line="1342"/>
         <location filename="../movies/MovieWidget.ui" line="1379"/>
         <source>Thumb</source>
-        <translation type="unfinished"/>
+        <translation>Miniatyr</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1418"/>
@@ -3810,7 +3810,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="1518"/>
         <source>Disc Art</source>
-        <translation type="unfinished"/>
+        <translation>Skivomslag</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1558"/>
@@ -3821,7 +3821,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../movies/MovieWidget.ui" line="1568"/>
         <location filename="../movies/MovieWidget.ui" line="1605"/>
         <source>Banner</source>
-        <translation type="unfinished"/>
+        <translation>Banner</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="79"/>
@@ -4510,83 +4510,83 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWindow.ui" line="23"/>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>Inställningar</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="81"/>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="86"/>
         <source>Path</source>
-        <translation type="unfinished"/>
+        <translation>Sökväg</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="91"/>
         <source>Sep. folders</source>
-        <translation type="unfinished"/>
+        <translation>Sep. mappar</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="94"/>
         <source>Items are in separate folders</source>
-        <translation type="unfinished"/>
+        <translation>Innehållet är i separata mappar</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="99"/>
         <source>Reload On Start</source>
-        <translation type="unfinished"/>
+        <translation>Ladda om vid programstart</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="102"/>
         <source>Automatically reload contents on start</source>
-        <translation type="unfinished"/>
+        <translation>Ladda om innehåll automatiskt vid programstart</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="112"/>
         <source>Add</source>
-        <translation type="unfinished"/>
+        <translation>Lägg till</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="119"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Ta bort</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="126"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort movies into separate directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sortera filmer till separata mappar&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="129"/>
         <source>Organize</source>
-        <translation type="unfinished"/>
+        <translation>Organisera</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="156"/>
         <source>Store trailer URLs in YouTube Plugin format</source>
-        <translation type="unfinished"/>
+        <translation>Lagra Trailer URL&apos;er i YouTube-plugin format</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="170"/>
         <source>Automatically load and save stream details from files</source>
-        <translation type="unfinished"/>
+        <translation>Ladda och spara ströminfo automatiskt ifrån filer</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="184"/>
         <source>Ignore articles when sorting (&quot;The&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>Ignorera artiklar vid sortering (&quot;The&quot;)</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="198"/>
         <source>Download actor images</source>
-        <translation type="unfinished"/>
+        <translation>Ladda ner bilder på skådespelare</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="226"/>
         <location filename="../settings/SettingsWindow.ui" line="245"/>
         <source>Words to exclude from media names (seperated by commas and non case-sensitive)</source>
-        <translation type="unfinished"/>
+        <translation>Ord att exkludera från media namn (separerade av komman och ej case-sensitive)</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="48"/>
@@ -4609,7 +4609,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
         <location filename="../settings/SettingsWindow.ui" line="390"/>
         <location filename="../settings/SettingsWindow.ui" line="1544"/>
         <source>Scraper</source>
-        <translation type="unfinished"/>
+        <translation>Skrapa</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="252"/>
@@ -4624,17 +4624,17 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="349"/>
         <source>Custom Movie Scraper</source>
-        <translation type="unfinished"/>
+        <translation>Anpassa filmskrapa</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="355"/>
         <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
-        <translation type="unfinished"/>
+        <translation>Kombinera flera skrapor till en egen anpassad skrapa. Om du väljer andra skrapor än IMDB, The Movie DB och Fanart.tv så kan flera sökningar vara nödvändiga eftersom alla tre delar ett id.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="385"/>
         <source>Item</source>
-        <translation type="unfinished"/>
+        <translation>Objekt</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="406"/>
@@ -5482,117 +5482,117 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="29"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Kinesiska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="30"/>
         <source>Croatian</source>
-        <translation type="unfinished"/>
+        <translation>Kroatiska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="31"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>Tjeckiska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="32"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>Danska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="33"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Nederländska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="34"/>
         <source>English</source>
-        <translation type="unfinished"/>
+        <translation>Engelska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="35"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>Finska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="36"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Franska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="37"/>
         <source>German</source>
-        <translation type="unfinished"/>
+        <translation>Tyska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="38"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>Grekiska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="39"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Hebreiska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="40"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Ungerska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="41"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Italienska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="42"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Japanska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="43"/>
         <source>Korean</source>
-        <translation type="unfinished"/>
+        <translation>Koreanska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="44"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Norska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="45"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Polska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="46"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Portugisiska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="47"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>Ryska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="48"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>Slovenska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="49"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Spanska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="50"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Svenska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="51"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>Turkiska</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="53"/>
@@ -5610,12 +5610,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../globals/TrailerDialog.ui" line="47"/>
         <source>Scraper</source>
-        <translation type="unfinished"/>
+        <translation>Skrapa</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="93"/>
         <source>Result</source>
-        <translation type="unfinished"/>
+        <translation>Resultat</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="116"/>
@@ -5627,72 +5627,72 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../globals/TrailerDialog.ui" line="178"/>
         <source>Preview</source>
-        <translation type="unfinished"/>
+        <translation>Förhandsgranska</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="183"/>
         <source>Language</source>
-        <translation type="unfinished"/>
+        <translation>Språk</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="188"/>
         <source>Title</source>
-        <translation type="unfinished"/>
+        <translation>Title</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="198"/>
         <source>Back to Search Results</source>
-        <translation type="unfinished"/>
+        <translation>Tillbaka till sökresultat</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="280"/>
         <source>0:00 / 0:00</source>
-        <translation type="unfinished"/>
+        <translation>0:00 / 0:00</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="294"/>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>URL</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="325"/>
         <source>Progress</source>
-        <translation type="unfinished"/>
+        <translation>Framsteg</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="348"/>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>Hämta</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="355"/>
         <source>Cancel Download</source>
-        <translation type="unfinished"/>
+        <translation>Avbryt hämtning</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="366"/>
         <source>Back to Trailers</source>
-        <translation type="unfinished"/>
+        <translation>Tillbaka till Trailers</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="313"/>
         <source>Download Finished</source>
-        <translation type="unfinished"/>
+        <translation>Hämtning slutförd</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="323"/>
         <source>The file %1 already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Filen %1 existerar redan</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="324"/>
         <source>Do you want to overwrite it?</source>
-        <translation type="unfinished"/>
+        <translation>Vill du ersätta den?</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="336"/>
         <source>Download Canceled</source>
-        <translation type="unfinished"/>
+        <translation>Hämtning avbruten</translation>
     </message>
 </context>
 <context>
@@ -5700,22 +5700,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="52"/>
         <source>Searching for TV Shows...</source>
-        <translation type="unfinished"/>
+        <translation>Letar efter TV-serier</translation>
     </message>
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="71"/>
         <source>Loading TV Shows...</source>
-        <translation type="unfinished"/>
+        <translation>Laddar TV-serier</translation>
     </message>
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="182"/>
         <source>Searching for Episodes...</source>
-        <translation type="unfinished"/>
+        <translation>Letar efter Avsnitt...</translation>
     </message>
     <message>
         <location filename="../data/TvShowFileSearcher.cpp" line="220"/>
         <source>Loading Episodes...</source>
-        <translation type="unfinished"/>
+        <translation>Laddar Avsnitt...</translation>
     </message>
 </context>
 <context>
@@ -5740,7 +5740,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
         <source>Search for new episodes</source>
-        <translation type="unfinished"/>
+        <translation>Leta efter nya avsnitt</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="51"/>
@@ -5770,7 +5770,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="56"/>
         <source>Open TV Show Folder</source>
-        <translation type="unfinished"/>
+        <translation>Öppna mapp för TV-serier</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="57"/>
@@ -5804,7 +5804,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../data/TvShowModelItem.cpp" line="137"/>
         <source>Season %1</source>
-        <translation type="unfinished"/>
+        <translation>Säsong %1</translation>
     </message>
 </context>
 <context>
@@ -5822,17 +5822,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="70"/>
         <source>Result</source>
-        <translation type="unfinished"/>
+        <translation>Resultat</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="97"/>
         <source>Infos to load</source>
-        <translation type="unfinished"/>
+        <translation>Information att ladda</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="120"/>
         <source>Title</source>
-        <translation type="unfinished"/>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="130"/>
@@ -5842,7 +5842,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="140"/>
         <source>First aired</source>
-        <translation type="unfinished"/>
+        <translation>Sändes</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="150"/>
@@ -5852,12 +5852,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="160"/>
         <source>Director</source>
-        <translation type="unfinished"/>
+        <translation>Regissör</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="170"/>
         <source>Writer</source>
-        <translation type="unfinished"/>
+        <translation>Manus</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="180"/>
@@ -5872,92 +5872,92 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="200"/>
         <source>Genres</source>
-        <translation type="unfinished"/>
+        <translation>Genrer</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="210"/>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>TV-bolag</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="220"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Skådespelare</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="230"/>
         <source>Fanart</source>
-        <translation type="unfinished"/>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="240"/>
         <source>Poster</source>
-        <translation type="unfinished"/>
+        <translation>Poster</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="250"/>
         <source>Season Poster</source>
-        <translation type="unfinished"/>
+        <translation>Säsongsposter</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="260"/>
         <source>Season Fanart</source>
-        <translation type="unfinished"/>
+        <translation>Säsongsfanart</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="270"/>
         <source>Season Banner</source>
-        <translation type="unfinished"/>
+        <translation>Säsongsbanner</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="280"/>
         <source>Banner</source>
-        <translation type="unfinished"/>
+        <translation>Banner</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="290"/>
         <source>Thumbnail</source>
-        <translation type="unfinished"/>
+        <translation>Miniatyrbild</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="300"/>
         <source>Artwork</source>
-        <translation type="unfinished"/>
+        <translation>Grafik</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="317"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished"/>
+        <translation>(Av)Markera alla</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="348"/>
         <source>Update TV Show only</source>
-        <translation type="unfinished"/>
+        <translation>Uppdatera endast TV-serie</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="353"/>
         <source>Update TV Show and new Episodes</source>
-        <translation type="unfinished"/>
+        <translation>Uppdatera TV-serie och nya Avsnitt</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="358"/>
         <source>Update TV Show and all Episodes</source>
-        <translation type="unfinished"/>
+        <translation>Uppdatera TV-serie och alla Avsnitt</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="363"/>
         <source>Update new Episodes</source>
-        <translation type="unfinished"/>
+        <translation>Uppdatera nya Avsnitt</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="368"/>
         <source>Update all episodes</source>
-        <translation type="unfinished"/>
+        <translation>Uppdatera alla Avsnitt</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="376"/>
         <source>DVD Order</source>
-        <translation type="unfinished"/>
+        <translation>DVD-ordning</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="396"/>
@@ -6051,12 +6051,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="164"/>
         <source>Saving changed TV Shows and Episodes</source>
-        <translation type="unfinished"/>
+        <translation>Sparar ändrade TV-serier och avsnitt</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidget.cpp" line="183"/>
         <source>All TV Shows and Episodes Saved</source>
-        <translation type="unfinished"/>
+        <translation>Alla TV-serier och avsnitt sparade</translation>
     </message>
 </context>
 <context>
@@ -6069,12 +6069,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="76"/>
         <source>Episode has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Avsnitt har ändrats. Klicka för att ångra ändringar.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="105"/>
         <source>Episode Title</source>
-        <translation type="unfinished"/>
+        <translation>Avsnittstitel</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="176"/>
@@ -6094,22 +6094,22 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="217"/>
         <source>Show Title</source>
-        <translation type="unfinished"/>
+        <translation>Serietitel</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="227"/>
         <source>Season</source>
-        <translation type="unfinished"/>
+        <translation>Säsong</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="262"/>
         <source>Episode</source>
-        <translation type="unfinished"/>
+        <translation>Avsnitt</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="281"/>
         <source>Display Season</source>
-        <translation type="unfinished"/>
+        <translation>Visa Säsong</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="288"/>
@@ -6124,12 +6124,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="325"/>
         <source>First Aired</source>
-        <translation type="unfinished"/>
+        <translation>Sändes</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="335"/>
         <source>dd.MM.yyyy</source>
-        <translation type="unfinished"/>
+        <translation>dd.MM.yyyy</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="342"/>
@@ -6144,12 +6144,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="441"/>
         <source>dd.MM.yyyy HH:mm</source>
-        <translation type="unfinished"/>
+        <translation>dd.MM.yyyy HH:mm</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="349"/>
         <source>Studio</source>
-        <translation type="unfinished"/>
+        <translation>Studio</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="359"/>
@@ -6159,7 +6159,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="400"/>
         <source>Display Episode</source>
-        <translation type="unfinished"/>
+        <translation>Visa Avsnitt</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="450"/>
@@ -6169,7 +6169,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="470"/>
         <source>Extended</source>
-        <translation type="unfinished"/>
+        <translation>Utökad</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="507"/>
@@ -6179,7 +6179,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="581"/>
         <source>Directors</source>
-        <translation type="unfinished"/>
+        <translation>Regissörer</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="609"/>
@@ -6189,27 +6189,27 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="619"/>
         <source>Add Director</source>
-        <translation type="unfinished"/>
+        <translation>Lägg till Regissör</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="636"/>
         <source>Remove Director</source>
-        <translation type="unfinished"/>
+        <translation>Ta bort Regissör</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="479"/>
         <source>Writers</source>
-        <translation type="unfinished"/>
+        <translation>Manus</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="517"/>
         <source>Add Writer</source>
-        <translation type="unfinished"/>
+        <translation>Lägg till Manusförfattare</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="534"/>
         <source>Remove Writer</source>
-        <translation type="unfinished"/>
+        <translation>Ta bort Manusförfattare</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="683"/>
@@ -6244,71 +6244,71 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="855"/>
         <source>Streamdetails</source>
-        <translation type="unfinished"/>
+        <translation>Ströminfo</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="863"/>
         <source>Aspect Ratio</source>
-        <translation type="unfinished"/>
+        <translation>Bildförhållande</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="873"/>
         <source>Scantype</source>
-        <translation type="unfinished"/>
+        <translation>Scanningstyp</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="827"/>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="893"/>
         <source>Resolution</source>
-        <translation type="unfinished"/>
+        <translation>Upplösning</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="903"/>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="434"/>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="437"/>
         <source>Codec</source>
-        <translation type="unfinished"/>
+        <translation>Codec</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="941"/>
         <source>x</source>
-        <translation type="unfinished"/>
+        <translation>x</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="979"/>
         <source>Audio</source>
-        <translation type="unfinished"/>
+        <translation>Ljud</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="995"/>
         <source>Video</source>
-        <translation type="unfinished"/>
+        <translation>Bild</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1015"/>
         <source>Duration</source>
-        <translation type="unfinished"/>
+        <translation>Speltid</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="460"/>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1034"/>
         <source>HH:mm:ss</source>
-        <translation type="unfinished"/>
+        <translation>HH:mm:ss</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1045"/>
         <source>Reload from File</source>
-        <translation type="unfinished"/>
+        <translation>Ladda om från fil</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1118"/>
         <source>Thumbnail</source>
-        <translation type="unfinished"/>
+        <translation>Miniatyrbild</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1140"/>
         <source>Click to Change</source>
-        <translation type="unfinished"/>
+        <translation>Klicka för att ändra</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="147"/>
@@ -6319,7 +6319,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="427"/>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="461"/>
         <source>Track %1</source>
-        <translation type="unfinished"/>
+        <translation>Spår %1</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="433"/>
@@ -6327,33 +6327,33 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="464"/>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="465"/>
         <source>Language</source>
-        <translation type="unfinished"/>
+        <translation>Språ</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="435"/>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="438"/>
         <source>Channels</source>
-        <translation type="unfinished"/>
+        <translation>Kanaler</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="453"/>
         <source>Subtitles</source>
-        <translation type="unfinished"/>
+        <translation>Undertexter</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="519"/>
         <source>Episode Saved</source>
-        <translation type="unfinished"/>
+        <translation>Avsnitt sparat</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="654"/>
         <source>Unknown Director</source>
-        <translation type="unfinished"/>
+        <translation>Okänd regissör</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="703"/>
         <source>Unknown Writer</source>
-        <translation type="unfinished"/>
+        <translation>Okänd manusförfattare</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="921"/>
@@ -6386,12 +6386,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="66"/>
         <source>Episode has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Avsnittet har ändrats. Klicka för att ångra.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="95"/>
         <source>Title</source>
-        <translation type="unfinished"/>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="177"/>
@@ -6401,29 +6401,29 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="238"/>
         <source>Poster</source>
-        <translation type="unfinished"/>
+        <translation>Poster</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="199"/>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="260"/>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="307"/>
         <source>Click to Change</source>
-        <translation type="unfinished"/>
+        <translation>Klicka för att ändra</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="285"/>
         <source>Fanart</source>
-        <translation type="unfinished"/>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="332"/>
         <source>Banner</source>
-        <translation type="unfinished"/>
+        <translation>Banner</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="354"/>
         <source>Click to change</source>
-        <translation type="unfinished"/>
+        <translation>Klicka för att ändra</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="140"/>
@@ -6433,12 +6433,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.cpp" line="103"/>
         <source>Season %1</source>
-        <translation type="unfinished"/>
+        <translation>Säsong %1</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.cpp" line="158"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sparad</translation>
     </message>
 </context>
 <context>
@@ -6451,12 +6451,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="63"/>
         <source>TV Show has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Serien har ändrats. Klicka för att ångra.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="90"/>
         <source>Show Title</source>
-        <translation type="unfinished"/>
+        <translation>Serietitel</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="122"/>
@@ -6466,7 +6466,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="136"/>
         <source>Dir</source>
-        <translation type="unfinished"/>
+        <translation>Källa</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="150"/>
@@ -6486,17 +6486,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="191"/>
         <source>First Aired</source>
-        <translation type="unfinished"/>
+        <translation>Sändes</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="201"/>
         <source>dd.MM.yyyy</source>
-        <translation type="unfinished"/>
+        <translation>dd.MM.yyyy</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="208"/>
         <source>Studio</source>
-        <translation type="unfinished"/>
+        <translation>Studio</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="265"/>
@@ -6506,22 +6506,22 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="218"/>
         <source>TV Tune</source>
-        <translation type="unfinished"/>
+        <translation>TV Tune</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="227"/>
         <source>Existing</source>
-        <translation type="unfinished"/>
+        <translation>Finns</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="234"/>
         <source>Missing</source>
-        <translation type="unfinished"/>
+        <translation>Saknas</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="244"/>
         <source>Download Theme</source>
-        <translation type="unfinished"/>
+        <translation>Hämta theme</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="275"/>
@@ -6541,63 +6541,63 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="308"/>
         <source>Extended</source>
-        <translation type="unfinished"/>
+        <translation>Utökad</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="319"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Skådespelare</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="344"/>
         <source>Actor</source>
-        <translation type="unfinished"/>
+        <translation>Skådespelare</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="349"/>
         <source>Role</source>
-        <translation type="unfinished"/>
+        <translation>Rol</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="394"/>
         <source>Add Actor</source>
-        <translation type="unfinished"/>
+        <translation>Lägg till Skådespelare</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="364"/>
         <source>Remove Actor</source>
-        <translation type="unfinished"/>
+        <translation>Ta bort Skådespelare</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="444"/>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1075"/>
         <source>Click to change</source>
-        <translation type="unfinished"/>
+        <translation>Klicka för att ändra</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="463"/>
         <source>Resolution</source>
-        <translation type="unfinished"/>
+        <translation>Upplösning</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="512"/>
         <source>Extra Fanarts</source>
-        <translation type="unfinished"/>
+        <translation>Extra Fanarts</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="534"/>
         <source>Hint: Closed images will be deleted on save.</source>
-        <translation type="unfinished"/>
+        <translation>Notera: Stängda bilder kommer att tas bort vid sparning.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="557"/>
         <source>Add Images</source>
-        <translation type="unfinished"/>
+        <translation>Lägg till Bilder</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="745"/>
         <source>Poster</source>
-        <translation type="unfinished"/>
+        <translation>Poster</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="767"/>
@@ -6607,12 +6607,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="981"/>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1028"/>
         <source>Click to Change</source>
-        <translation type="unfinished"/>
+        <translation>Klicka för att ändra</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="792"/>
         <source>Fanart</source>
-        <translation type="unfinished"/>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="839"/>
@@ -6622,72 +6622,72 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1053"/>
         <source>Banner</source>
-        <translation type="unfinished"/>
+        <translation>Banner</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="912"/>
         <source>Logo</source>
-        <translation type="unfinished"/>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="959"/>
         <source>Clear Art</source>
-        <translation type="unfinished"/>
+        <translation>Clear Art</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1006"/>
         <source>Character Art</source>
-        <translation type="unfinished"/>
+        <translation>Character Art</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="76"/>
         <source>Genres</source>
-        <translation type="unfinished"/>
+        <translation>Genrer</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="77"/>
         <source>Add Genre</source>
-        <translation type="unfinished"/>
+        <translation>Lägg till Genre</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="81"/>
         <source>Tags</source>
-        <translation type="unfinished"/>
+        <translation>Taggar</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="82"/>
         <source>Add Tag</source>
-        <translation type="unfinished"/>
+        <translation>Lägg till Tag</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="369"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sparad</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="607"/>
         <source>Downloading images...</source>
-        <translation type="unfinished"/>
+        <translation>Hämtar bilder...</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="743"/>
         <source>Unknown Actor</source>
-        <translation type="unfinished"/>
+        <translation>Okänd skådespelare</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="744"/>
         <source>Unknown Role</source>
-        <translation type="unfinished"/>
+        <translation>Okänd roll</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="822"/>
         <source>Choose Image</source>
-        <translation type="unfinished"/>
+        <translation>Välj Bild</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="822"/>
         <source>Images (*.jpg *.jpeg)</source>
-        <translation type="unfinished"/>
+        <translation>Bilder (*.jpg *.jpeg)</translation>
     </message>
 </context>
 <context>
@@ -6695,32 +6695,32 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="17"/>
         <source>TV Tunes</source>
-        <translation type="unfinished"/>
+        <translation>TV Tunes</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="60"/>
         <source>Result</source>
-        <translation type="unfinished"/>
+        <translation>Resultat</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="102"/>
         <source>0:00 / 0:00</source>
-        <translation type="unfinished"/>
+        <translation>0:00 / 0:00</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="129"/>
         <source>Progress</source>
-        <translation type="unfinished"/>
+        <translation>Framsteg</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="152"/>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>Hämta</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="159"/>
         <source>Cancel Download</source>
-        <translation type="unfinished"/>
+        <translation>Avbryt hämtning</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="183"/>
@@ -6730,22 +6730,22 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvTunesDialog.cpp" line="245"/>
         <source>Download Finished</source>
-        <translation type="unfinished"/>
+        <translation>Hämtning slutförd</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.cpp" line="250"/>
         <source>The file %1 already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Filen %1 finns redan.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.cpp" line="251"/>
         <source>Do you want to overwrite it?</source>
-        <translation type="unfinished"/>
+        <translation>Vill du ersätta den?</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.cpp" line="265"/>
         <source>Download Canceled</source>
-        <translation type="unfinished"/>
+        <translation>Hämtning avbruten</translation>
     </message>
 </context>
 <context>
@@ -6806,7 +6806,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="17"/>
         <source>XBMC Synchronization</source>
-        <translation type="unfinished"/>
+        <translation>XBMC Synkronisering</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
@@ -6816,12 +6816,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="36"/>
         <source>Update contents</source>
-        <translation type="unfinished"/>
+        <translation>Uppdatera innehåll</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="46"/>
         <source>This will tell XBMC to remove the changed movies, concerts or shows. Afterwards a XBMC library update is triggered and the removed items will be picked up again.</source>
-        <translation type="unfinished"/>
+        <translation>Detta säger till XBMC att ta bort ändra filmer, konserter och serier. Efteråt kommer XBMC att uppdatera biblioteket och borttagna objekt kommer läggas till på nytt.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="56"/>
@@ -6836,18 +6836,18 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="70"/>
         <source>Retrieve watched status</source>
-        <translation type="unfinished"/>
+        <translation>Hämta &apos;Sedd&apos;-status</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="77"/>
         <source>The fields last played and playcount will be retrieved from XBMC.</source>
-        <translation type="unfinished"/>
+        <translation>Fälten, senast spelad och spelantal, kommer att hämtas ifrån XBMC.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="108"/>
         <location filename="../xbmc/XbmcSync.ui" line="115"/>
         <source>Status</source>
-        <translation type="unfinished"/>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="133"/>
@@ -6857,17 +6857,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="156"/>
         <source>Start</source>
-        <translation type="unfinished"/>
+        <translation>Starta</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="141"/>
         <source>Please fill in your XBMC host and port.</source>
-        <translation type="unfinished"/>
+        <translation>Fyll i din XBMC värd och port.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="229"/>
         <source>Getting contents from XBMC</source>
-        <translation type="unfinished"/>
+        <translation>Hämtar innehåll ifrån XBMC</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="244"/>
@@ -6880,32 +6880,32 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="414"/>
         <source>Removing movies from database</source>
-        <translation type="unfinished"/>
+        <translation>Tar bort filmer ifrån databasen</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="433"/>
         <source>Removing concerts from database</source>
-        <translation type="unfinished"/>
+        <translation>Tar bort konserter ifrån databasen</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="452"/>
         <source>Removing TV shows from database</source>
-        <translation type="unfinished"/>
+        <translation>Tar bort TV-serier ifrån databasen</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="471"/>
         <source>Removing episodes from database</source>
-        <translation type="unfinished"/>
+        <translation>Tar bort Avsnitt ifrån databasen</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="510"/>
         <source>Trigger scan for new items</source>
-        <translation type="unfinished"/>
+        <translation>Aktivera scanning för nya objekt</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="530"/>
         <source>Finished. XBMC is now loading your updated items.</source>
-        <translation type="unfinished"/>
+        <translation>Slutförd. XBMC laddar nu uppdaterade objekt.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="554"/>
@@ -6915,7 +6915,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="595"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
-        <translation type="unfinished"/>
+        <translation>Slutförd. Objekten &apos;antal spelade&apos; och &apos;senast spelad&apos; har nu uppdaterats.</translation>
     </message>
 </context>
 </TS>
