@@ -3538,7 +3538,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="200"/>
         <source>Sort Title</source>
-        <translation>Tytuł sortujący</translation>
+        <translation>Tytuł sortowania</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="210"/>
@@ -4440,7 +4440,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="152"/>
         <source>Sorttitle</source>
-        <translation>Tytuł sortujący</translation>
+        <translation>Tytuł sortowania</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="175"/>
@@ -6546,7 +6546,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="295"/>
         <source>Sort Title</source>
-        <translation>Tytuł sortujący</translation>
+        <translation>Tytuł sortowania</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="308"/>
