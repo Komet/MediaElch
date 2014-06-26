@@ -609,7 +609,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
 
 void Renamer::renameShows(QList<TvShow *> shows, const QString &directoryPattern, const bool &renameDirectories, const bool &dryRun)
 {
-    if (renameDirectories && directoryPattern.isEmpty())
+    if ((renameDirectories && directoryPattern.isEmpty()) || !renameDirectories)
         return;
 
     foreach (TvShow *show, shows) {

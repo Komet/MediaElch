@@ -40,6 +40,11 @@ SetsWidget::SetsWidget(QWidget *parent) :
     ui->setName->setFont(nameFont);
 #endif
 
+    Helper::instance()->applyStyle(ui->movies);
+    Helper::instance()->applyStyle(ui->label_13);
+    Helper::instance()->applyStyle(ui->label_14);
+    Helper::instance()->applyStyle(ui->posterResolution);
+    Helper::instance()->applyStyle(ui->backdropResolution);
     Helper::instance()->applyStyle(ui->groupBox_3);
     Helper::instance()->applyEffect(ui->groupBox_3);
 

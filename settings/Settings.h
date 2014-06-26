@@ -144,9 +144,6 @@ public:
     void setDonated(bool donated);
     void setLastImagePath(QString path);
 
-    void setLicenseKey(PluginManager::Plugin plugin, const QString &licenseKey);
-    QString licenseKey(PluginManager::Plugin plugin) const;
-
     static QString applicationDir();
     QStringList pluginDirs();
 

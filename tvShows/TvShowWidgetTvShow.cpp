@@ -145,7 +145,8 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
 
-    Helper::instance()->applyStyle(ui->groupBox_3);
+    Helper::instance()->applyStyle(ui->artStackedWidget);
+    Helper::instance()->applyStyle(ui->tabWidget);
     Helper::instance()->applyEffect(ui->groupBox_3);
 }
 

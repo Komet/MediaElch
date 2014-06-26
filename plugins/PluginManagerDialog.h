@@ -25,7 +25,6 @@ public slots:
 private slots:
     void onInstallPlugin();
     void onUpdatePlugin();
-    void onInvalidLicense();
     void onPluginInstalled();
     void onPluginUpdated();
     void onPluginFailure();

@@ -37,9 +37,9 @@ public slots:
     void loadPlugins();
     void loadSettings();
     void saveSettings();
-    void installPlugin(PluginManager::Plugin plugin, const QString &licenseKey);
+    void installPlugin(PluginManager::Plugin plugin);
     void uninstallPlugin(PluginManager::Plugin plugin);
-    void updatePlugin(PluginManager::Plugin plugin, const QString &licenseKey);
+    void updatePlugin(PluginManager::Plugin plugin);
 
 signals:
     void sigAddPlugin(PluginInterface*);

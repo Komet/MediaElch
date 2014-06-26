@@ -1321,17 +1321,6 @@ QStringList Settings::pluginDirs()
     return QStringList();
 }
 
-void Settings::setLicenseKey(PluginManager::Plugin plugin, const QString &licenseKey)
-{
-    m_settings->setValue("Plugins/" + plugin.identifier + "/LicenseKey", licenseKey);
-    m_settings->sync();
-}
-
-QString Settings::licenseKey(PluginManager::Plugin plugin) const
-{
-    return m_settings->value("Plugins/" + plugin.identifier + "/LicenseKey").toString();
-}
-
 QPoint Settings::fixWindowPosition(QPoint p)
 {
     p.setX(qMax(0, p.x()));

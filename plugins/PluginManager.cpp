@@ -68,8 +68,7 @@ void PluginManager::loadPlugins()
 
 void PluginManager::downloadPluginList()
 {
-    // @todo: change url
-    QNetworkReply *reply = m_qnam.get(QNetworkRequest(QUrl("http://community.local/api/plugins")));
+    QNetworkReply *reply = m_qnam.get(QNetworkRequest(QUrl("http://community.kvibes.de/api/plugins")));
     connect(reply, SIGNAL(finished()), this, SLOT(onPluginListDownloaded()));
 }
 
@@ -219,20 +218,16 @@ bool PluginManager::loadPlugin(const QString &fileName)
     return false;
 }
 
-void PluginManager::installPlugin(PluginManager::Plugin plugin, const QString &licenseKey)
+void PluginManager::installPlugin(PluginManager::Plugin plugin)
 {
 
     for (int i=0, n=plugin.files.count() ; i<n ; ++i) {
         if (plugin.files[i].downloaded == false) {
-            QUrlQuery queryData;
-            queryData.addQueryItem("keyNumber", licenseKey);
-            // @todo: change url
-            QUrl url(QString("http://community.local/api/plugin/%1/%2/%3").arg(plugin.identifier).arg(m_os).arg(plugin.files[i].fileName));
+            QUrl url(QString("http://community.kvibes.de/api/plugin/%1/%2/%3").arg(plugin.identifier).arg(m_os).arg(plugin.files[i].fileName));
             QNetworkRequest request(url);
             request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-            QNetworkReply *reply = m_qnam.post(request, queryData.toString().toUtf8());
+            QNetworkReply *reply = m_qnam.get(request);
             reply->setProperty("storage", Storage::toVariant(reply, plugin));
-            reply->setProperty("licenseKey", licenseKey);
             connect(reply, SIGNAL(finished()), this, SLOT(onPluginDownloaded()));
             return;
         }
@@ -264,14 +259,10 @@ void PluginManager::onPluginDownloaded()
         return;
     reply->deleteLater();
     PluginManager::Plugin plugin = reply->property("storage").value<Storage*>()->plugin();
-    QString licenseKey = reply->property("licenseKey").toString();
 
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
-        if (reply->error() == QNetworkReply::ContentOperationNotPermittedError)
-            emit sigLicenseInvalid(plugin);
-        else
-            emit sigPluginInstallFailure(plugin);
+        emit sigPluginInstallFailure(plugin);
         return;
     }
 
@@ -308,7 +299,7 @@ void PluginManager::onPluginDownloaded()
     f.write(ba);
     f.close();
 
-    installPlugin(plugin, licenseKey);
+    installPlugin(plugin);
 }
 
 void PluginManager::uninstallPlugin(PluginManager::Plugin plugin)
@@ -335,8 +326,8 @@ void PluginManager::uninstallPlugin(PluginManager::Plugin plugin)
     emit sigPluginListUpdated(m_plugins);
 }
 
-void PluginManager::updatePlugin(PluginManager::Plugin plugin, const QString &licenseKey)
+void PluginManager::updatePlugin(PluginManager::Plugin plugin)
 {
     uninstallPlugin(plugin);
-    installPlugin(plugin, licenseKey);
+    installPlugin(plugin);
 }
