@@ -284,9 +284,9 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1)
         movie->setRuntime(rx.cap(1).toInt());
 
-    rx.setPattern("<p itemprop=\"description\">([^<]*)</p>");
+    rx.setPattern("<p itemprop=\"description\">(.*)</p>");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1)
-        movie->setOutline(rx.cap(1).trimmed());
+        movie->setOutline(rx.cap(1).remove(QRegExp("<[^>]*>")).trimmed());
 
     rx.setPattern("<div class=\"inline canwrap\" itemprop=\"description\">(.*)</div>");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
