@@ -956,9 +956,16 @@ void TvShowEpisode::removeActor(Actor *actor)
 
 bool TvShowEpisode::lessThan(TvShowEpisode *a, TvShowEpisode *b)
 {
-    QString aT = a->seasonString() + a->episodeString() + Helper::instance()->appendArticle(a->name());
-    QString bT = b->seasonString() + b->episodeString() + Helper::instance()->appendArticle(b->name());
-    return (QString::localeAwareCompare(aT, bT) < 0);
+    if (a->season() < b->season())
+        return true;
+    if (a->season() > b->season())
+        return false;
+    if (a->episode() < b->episode())
+        return true;
+    if (a->episode() > b->episode())
+        return false;
+
+    return (QString::localeAwareCompare(Helper::instance()->appendArticle(a->name()), Helper::instance()->appendArticle(b->name())) < 0);
 }
 
 /*** DEBUG ***/
