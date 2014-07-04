@@ -64,7 +64,7 @@ FanartTv::FanartTv(QObject *parent)
                << ImageType::MovieBanner << ImageType::MovieThumb << ImageType::MoviePoster
                << ImageType::TvShowClearArt << ImageType::TvShowBackdrop << ImageType::TvShowBanner
                << ImageType::TvShowThumb << ImageType::TvShowSeasonThumb << ImageType::TvShowSeasonPoster
-               << ImageType::TvShowLogos << ImageType::TvShowCharacterArt
+               << ImageType::TvShowLogos << ImageType::TvShowCharacterArt << ImageType::TvShowPoster
                << ImageType::ConcertBackdrop << ImageType::ConcertLogo << ImageType::ConcertClearArt << ImageType::ConcertCdArt;
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_searchResultLimit = 0;
@@ -542,7 +542,7 @@ void FanartTv::onLoadAllTvShowDataFinished()
  */
 void FanartTv::tvShowPosters(QString tvdbId)
 {
-    Q_UNUSED(tvdbId);
+    loadTvShowData(tvdbId, ImageType::TvShowPoster);
 }
 
 /**
@@ -643,7 +643,6 @@ void FanartTv::tvShowSeasonThumbs(QString tvdbId, int season)
  */
 QList<Poster> FanartTv::parseTvShowData(QString json, int type, int season)
 {
-    qDebug() << "season is" << season;
     QMap<int, QStringList> map;
     map.insert(ImageType::TvShowBackdrop, QStringList() << "showbackground");
     map.insert(ImageType::TvShowLogos, QStringList() << "hdtvlogo" << "clearlogo");
@@ -653,6 +652,7 @@ QList<Poster> FanartTv::parseTvShowData(QString json, int type, int season)
     map.insert(ImageType::TvShowThumb, QStringList() << "tvthumb");
     map.insert(ImageType::TvShowSeasonThumb, QStringList() << "seasonthumb");
     map.insert(ImageType::TvShowSeasonPoster, QStringList() << "seasonposter");
+    map.insert(ImageType::TvShowPoster, QStringList() << "tvposter");
     QList<Poster> posters;
     QScriptValue sc;
     QScriptEngine engine;
