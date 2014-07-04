@@ -193,6 +193,10 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->pluginsLinux->setVisible(false);
 #endif
 
+#if !defined(PLUGINS)
+    ui->actionPlugins->setVisible(false);
+#endif
+
     loadSettings();
 }
 

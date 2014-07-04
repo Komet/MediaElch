@@ -190,7 +190,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->labelPlugins->setVisible(false);
     connect(PluginManager::instance(), SIGNAL(sigAddPlugin(PluginInterface*)), this, SLOT(onAddPlugin(PluginInterface*)));
     connect(PluginManager::instance(), SIGNAL(sigRemovePlugin(PluginInterface*)), this, SLOT(onRemovePlugin(PluginInterface*)));
+#if defined(PLUGINS)
     PluginManager::instance()->loadPlugins();
+#endif
 
     if (Settings::instance()->startupSection() == "tvshows")
         onMenu(ui->buttonTvshows);
