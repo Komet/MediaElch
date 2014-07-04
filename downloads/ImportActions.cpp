@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include <QMessageBox>
+#include "globals/Helper.h"
 #include "globals/Manager.h"
 
 ImportActions::ImportActions(QWidget *parent) :
@@ -10,8 +11,8 @@ ImportActions::ImportActions(QWidget *parent) :
     ui(new Ui::ImportActions)
 {
     ui->setupUi(this);
-    ui->btnImport->setButtonStyle(StyledPushButton::StyleGreen);
-    ui->btnDelete->setButtonStyle(StyledPushButton::StyleRed);
+    Helper::instance()->setButtonStyle(ui->btnImport, Helper::ButtonSuccess);
+    Helper::instance()->setButtonStyle(ui->btnDelete, Helper::ButtonDanger);
     connect(ui->btnImport, SIGNAL(clicked()), this, SLOT(onImport()));
     connect(ui->btnDelete, SIGNAL(clicked()), this, SLOT(onDelete()));
     m_tvShow = 0;

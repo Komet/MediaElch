@@ -3,17 +3,17 @@
 
 #include <QInputDialog>
 #include <QMessageBox>
-#include "smallWidgets/StyledPushButton.h"
+#include "globals/Helper.h"
 
 UnpackButtons::UnpackButtons(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::UnpackButtons)
 {
     ui->setupUi(this);
-    ui->btnUnpack->setButtonStyle(StyledPushButton::StyleBlue);
-    ui->btnUnpackWithPassword->setButtonStyle(StyledPushButton::StyleLightBlue);
-    ui->btnStop->setButtonStyle(StyledPushButton::StyleYellow);
-    ui->btnDelete->setButtonStyle(StyledPushButton::StyleRed);
+    Helper::instance()->setButtonStyle(ui->btnUnpack, Helper::ButtonPrimary);
+    Helper::instance()->setButtonStyle(ui->btnUnpackWithPassword, Helper::ButtonInfo);
+    Helper::instance()->setButtonStyle(ui->btnStop, Helper::ButtonWarning);
+    Helper::instance()->setButtonStyle(ui->btnDelete, Helper::ButtonDanger);
     ui->progressBar->setVisible(false);
     ui->btnStop->setVisible(false);
     connect(ui->btnUnpack, SIGNAL(clicked()), this, SLOT(onUnpack()));

@@ -146,13 +146,13 @@ void ConcertFileSearcher::scanDir(QString startPath, QString path, QList<QString
             continue;
 
         // Handle DVD
-        if (Helper::isDvd(path + QDir::separator() + cDir)) {
+        if (Helper::instance()->isDvd(path + QDir::separator() + cDir)) {
             contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/VIDEO_TS/VIDEO_TS.IFO"));
             continue;
         }
 
         // Handle BluRay
-        if (Helper::isBluRay(path + QDir::separator() + cDir)) {
+        if (Helper::instance()->isBluRay(path + QDir::separator() + cDir)) {
             contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/BDMV/index.bdmv"));
             continue;
         }

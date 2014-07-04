@@ -95,7 +95,7 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
 
     if (index.column() == 0) {
         if (role == Qt::DisplayRole) {
-            return Helper::appendArticle(movie->name());
+            return Helper::instance()->appendArticle(movie->name());
         } else if (role == Qt::ToolTipRole) {
             if (movie->files().size() == 0)
                 return QVariant();
@@ -124,7 +124,7 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
             else if (movie->syncNeeded())
                 return m_syncIcon;
         } else if (role == Qt::BackgroundRole) {
-            return Helper::colorForLabel(movie->label());
+            return Helper::instance()->colorForLabel(movie->label());
         }
     } else if (role == Qt::DecorationRole) {
         QString icon;

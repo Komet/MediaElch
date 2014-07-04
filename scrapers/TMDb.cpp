@@ -626,7 +626,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
             QScriptValue vC = itC.value();
             if (vC.property("id").toString().isEmpty())
                 continue;
-            movie->addGenre(Helper::mapGenre(vC.property("name").toString()));
+            movie->addGenre(Helper::instance()->mapGenre(vC.property("name").toString()));
         }
     }
     if (infos.contains(MovieScraperInfos::Studios) && sc.property("production_companies").isArray()) {
@@ -636,7 +636,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
             QScriptValue vS = itS.value();
             if (vS.property("id").toString().isEmpty())
                 continue;
-            movie->addStudio(Helper::mapStudio(vS.property("name").toString()));
+            movie->addStudio(Helper::instance()->mapStudio(vS.property("name").toString()));
         }
     }
     if (infos.contains(MovieScraperInfos::Countries) && sc.property("production_countries").isArray()) {
@@ -646,7 +646,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
             QScriptValue vC = itC.value();
             if (vC.property("name").toString().isEmpty())
                 continue;
-            movie->addCountry(Helper::mapCountry(vC.property("name").toString()));
+            movie->addCountry(Helper::instance()->mapCountry(vC.property("name").toString()));
         }
     }
 
@@ -697,7 +697,7 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
             QScriptValue vC = itC.value();
             if (vC.property("source").toString().isEmpty())
                 continue;
-            movie->setTrailer(QUrl(Helper::formatTrailerUrl(QString("http://www.youtube.com/watch?v=%1").arg(vC.property("source").toString()))));
+            movie->setTrailer(QUrl(Helper::instance()->formatTrailerUrl(QString("http://www.youtube.com/watch?v=%1").arg(vC.property("source").toString()))));
             break;
         }
     }
@@ -755,15 +755,15 @@ void TMDb::parseAndAssignInfos(QString json, Movie *movie, QList<int> infos)
         }
 
         if (m_language2 == "US" && !us.isEmpty())
-            movie->setCertification(Helper::mapCertification(us));
+            movie->setCertification(Helper::instance()->mapCertification(us));
         else if (m_language == "en" && m_language2 == "" && !gb.isEmpty())
-            movie->setCertification(Helper::mapCertification(gb));
+            movie->setCertification(Helper::instance()->mapCertification(gb));
         else if (!locale.isEmpty())
-            movie->setCertification(Helper::mapCertification(locale));
+            movie->setCertification(Helper::instance()->mapCertification(locale));
         else if (!us.isEmpty())
-            movie->setCertification(Helper::mapCertification(us));
+            movie->setCertification(Helper::instance()->mapCertification(us));
         else if (!gb.isEmpty())
-            movie->setCertification(Helper::mapCertification(gb));
+            movie->setCertification(Helper::instance()->mapCertification(gb));
     }
 
 }

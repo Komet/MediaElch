@@ -32,6 +32,9 @@
 }
 #scrapersScrollArea {
 	background-color: transparent;
+}
+#pluginSettings {
+	background-color: transparent;
 }</string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -305,8 +308,8 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>100</width>
-                 <height>30</height>
+                 <width>60</width>
+                 <height>16</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -1341,6 +1344,129 @@ border: none;</string>
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="page_10">
+       <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="0,1">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_16">
+          <item>
+           <widget class="QListWidget" name="pluginList">
+            <property name="styleSheet">
+             <string notr="true">QListWidget {
+	selection-background-color: rgba(70, 155, 198, 70);
+}</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QPushButton" name="btnInstallPlugin">
+              <property name="text">
+               <string>Install</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnUpdatePlugin">
+              <property name="text">
+               <string>Update</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnUninstallPlugin">
+              <property name="text">
+               <string>Uninstall</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_14" stretch="0,0">
+          <item>
+           <widget class="QLabel" name="pluginsLinux">
+            <property name="text">
+             <string>Installing and updating plugins through MediaElch is currently not supported under Linux. You need to add the ppa or compile plugins on your own.</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QStackedWidget" name="pluginSettings">
+            <property name="currentIndex">
+             <number>2</number>
+            </property>
+            <widget class="QWidget" name="page_noPlugins">
+             <layout class="QHBoxLayout" name="horizontalLayout_7"/>
+            </widget>
+            <widget class="QWidget" name="page_noSettings">
+             <layout class="QHBoxLayout" name="horizontalLayout_8">
+              <item>
+               <widget class="QLabel" name="label_61">
+                <property name="text">
+                 <string>This plugin has no settings.</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="page_notInstalled">
+             <layout class="QVBoxLayout" name="verticalLayout_15">
+              <item>
+               <spacer name="verticalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_62">
+                <property name="text">
+                 <string>This plugin is not installed.</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_3">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
     <item>
@@ -1413,18 +1539,19 @@ border: none;</string>
    <addaction name="actionNetwork"/>
    <addaction name="actionExport"/>
    <addaction name="actionImport"/>
+   <addaction name="actionPlugins"/>
   </widget>
   <action name="actionMovies">
    <property name="icon">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/movies.png</normaloff>:/settings/movies.png</iconset>
+     <normaloff>:/settings_line/movies.png</normaloff>:/settings_line/movies.png</iconset>
    </property>
    <property name="text">
     <string>Movies</string>
    </property>
    <property name="iconNormal" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/movies.png</normaloff>:/settings/movies.png</iconset>
+     <normaloff>:/settings_line/movies.png</normaloff>:/settings_line/movies.png</iconset>
    </property>
    <property name="iconActive" stdset="0">
     <iconset resource="../MediaElch.qrc">
@@ -1437,14 +1564,14 @@ border: none;</string>
   <action name="actionTV_Shows">
    <property name="icon">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/tvshows.png</normaloff>:/settings/tvshows.png</iconset>
+     <normaloff>:/settings_line/tvshows.png</normaloff>:/settings_line/tvshows.png</iconset>
    </property>
    <property name="text">
     <string>TV Shows</string>
    </property>
    <property name="iconNormal" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/tvshows.png</normaloff>:/settings/tvshows.png</iconset>
+     <normaloff>:/settings_line/tvshows.png</normaloff>:/settings_line/tvshows.png</iconset>
    </property>
    <property name="iconActive" stdset="0">
     <iconset resource="../MediaElch.qrc">
@@ -1457,15 +1584,14 @@ border: none;</string>
   <action name="actionConcerts">
    <property name="icon">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/concerts.png</normaloff>
-     <normalon>:/img/concerts_menuActive.png</normalon>:/settings/concerts.png</iconset>
+     <normaloff>:/settings_line/concerts.png</normaloff>:/settings_line/concerts.png</iconset>
    </property>
    <property name="text">
     <string>Concerts</string>
    </property>
    <property name="iconNormal" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/concerts.png</normaloff>:/settings/concerts.png</iconset>
+     <normaloff>:/settings_line/concerts.png</normaloff>:/settings_line/concerts.png</iconset>
    </property>
    <property name="iconActive" stdset="0">
     <iconset resource="../MediaElch.qrc">
@@ -1478,14 +1604,14 @@ border: none;</string>
   <action name="actionGlobal">
    <property name="icon">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/global.png</normaloff>:/settings/global.png</iconset>
+     <normaloff>:/settings_line/global.png</normaloff>:/settings_line/global.png</iconset>
    </property>
    <property name="text">
     <string>Global</string>
    </property>
    <property name="iconNormal" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/global.png</normaloff>:/settings/global.png</iconset>
+     <normaloff>:/settings_line/global.png</normaloff>:/settings_line/global.png</iconset>
    </property>
    <property name="iconActive" stdset="0">
     <iconset resource="../MediaElch.qrc">
@@ -1498,14 +1624,14 @@ border: none;</string>
   <action name="actionXBMC">
    <property name="icon">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/xbmc.png</normaloff>:/settings/xbmc.png</iconset>
+     <normaloff>:/settings_line/xbmc.png</normaloff>:/settings_line/xbmc.png</iconset>
    </property>
    <property name="text">
     <string>XBMC</string>
    </property>
    <property name="iconNormal" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/xbmc.png</normaloff>:/settings/xbmc.png</iconset>
+     <normaloff>:/settings_line/xbmc.png</normaloff>:/settings_line/xbmc.png</iconset>
    </property>
    <property name="iconActive" stdset="0">
     <iconset resource="../MediaElch.qrc">
@@ -1518,14 +1644,14 @@ border: none;</string>
   <action name="actionNetwork">
    <property name="icon">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/network.png</normaloff>:/settings/network.png</iconset>
+     <normaloff>:/settings_line/network.png</normaloff>:/settings_line/network.png</iconset>
    </property>
    <property name="text">
     <string>Network</string>
    </property>
    <property name="iconNormal" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/network.png</normaloff>:/settings/network.png</iconset>
+     <normaloff>:/settings_line/network.png</normaloff>:/settings_line/network.png</iconset>
    </property>
    <property name="iconActive" stdset="0">
     <iconset resource="../MediaElch.qrc">
@@ -1538,14 +1664,14 @@ border: none;</string>
   <action name="actionScraper">
    <property name="icon">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/scraper.png</normaloff>:/settings/scraper.png</iconset>
+     <normaloff>:/settings_line/scraper.png</normaloff>:/settings_line/scraper.png</iconset>
    </property>
    <property name="text">
     <string>Scraper</string>
    </property>
    <property name="iconNormal" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/scraper.png</normaloff>:/settings/scraper.png</iconset>
+     <normaloff>:/settings_line/scraper.png</normaloff>:/settings_line/scraper.png</iconset>
    </property>
    <property name="iconActive" stdset="0">
     <iconset resource="../MediaElch.qrc">
@@ -1558,14 +1684,14 @@ border: none;</string>
   <action name="actionExport">
    <property name="icon">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/export.png</normaloff>:/settings/export.png</iconset>
+     <normaloff>:/settings_line/export.png</normaloff>:/settings_line/export.png</iconset>
    </property>
    <property name="text">
     <string>Export</string>
    </property>
    <property name="iconNormal" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/export.png</normaloff>:/settings/export.png</iconset>
+     <normaloff>:/settings_line/export.png</normaloff>:/settings_line/export.png</iconset>
    </property>
    <property name="iconActive" stdset="0">
     <iconset resource="../MediaElch.qrc">
@@ -1578,7 +1704,7 @@ border: none;</string>
   <action name="actionImport">
    <property name="icon">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/import.png</normaloff>:/settings/import.png</iconset>
+     <normaloff>:/settings_line/downloads.png</normaloff>:/settings_line/downloads.png</iconset>
    </property>
    <property name="text">
     <string>Import</string>
@@ -1588,7 +1714,7 @@ border: none;</string>
    </property>
    <property name="iconNormal" stdset="0">
     <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/import.png</normaloff>:/settings/import.png</iconset>
+     <normaloff>:/settings_line/downloads.png</normaloff>:/settings_line/downloads.png</iconset>
    </property>
    <property name="iconActive" stdset="0">
     <iconset resource="../MediaElch.qrc">
@@ -1596,6 +1722,22 @@ border: none;</string>
    </property>
    <property name="page" stdset="0">
     <number>8</number>
+   </property>
+  </action>
+  <action name="actionPlugins">
+   <property name="icon">
+    <iconset resource="../MediaElch.qrc">
+     <normaloff>:/settings_line/plugins.png</normaloff>:/settings_line/plugins.png</iconset>
+   </property>
+   <property name="text">
+    <string>Plugins</string>
+   </property>
+   <property name="iconNormal" stdset="0">
+    <iconset resource="../MediaElch.qrc">
+     <normaloff>:/settings_line/plugins.png</normaloff>:/settings_line/plugins.png</iconset>
+   </property>
+   <property name="page" stdset="0">
+    <number>9</number>
    </property>
   </action>
  </widget>
@@ -1746,6 +1888,22 @@ border: none;</string>
   </connection>
   <connection>
    <sender>actionImport</sender>
+   <signal>triggered()</signal>
+   <receiver>SettingsWindow</receiver>
+   <slot>onAction()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>488</x>
+     <y>312</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionPlugins</sender>
    <signal>triggered()</signal>
    <receiver>SettingsWindow</receiver>
    <slot>onAction()</slot>

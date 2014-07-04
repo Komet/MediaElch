@@ -9,6 +9,7 @@
 #include <QGraphicsDropShadowEffect>
 #include <QLabel>
 #include <QLineEdit>
+#include <QListWidget>
 #include <QPainter>
 #include <QPushButton>
 #include <QRegExp>
@@ -16,6 +17,19 @@
 #include <QWidget>
 #include "globals/Globals.h"
 #include "settings/Settings.h"
+
+Helper::Helper(QObject *parent) :
+    QObject(parent)
+{
+}
+
+Helper *Helper::instance(QObject *parent)
+{
+    static Helper *m_instance = 0;
+    if (!m_instance)
+        m_instance = new Helper(parent);
+    return m_instance;
+}
 
 /**
  * @brief Encodes a string to latin1 percent encoding needed for some scrapers
@@ -169,7 +183,7 @@ QByteArray &Helper::resizeBackdrop(QByteArray &image)
 {
     bool resized;
     QImage img = QImage::fromData(image);
-    Helper::resizeBackdrop(img, resized);
+    Helper::instance()->resizeBackdrop(img, resized);
     if (!resized)
         return image;
     QBuffer buffer(&image);
@@ -253,7 +267,7 @@ QStringList Helper::mapGenre(const QStringList &genres)
 
     QStringList mappedGenres;
     foreach (const QString &genre, genres)
-        mappedGenres << Helper::mapGenre(genre);
+        mappedGenres << Helper::instance()->mapGenre(genre);
     return mappedGenres;
 }
 
@@ -301,6 +315,8 @@ QString Helper::formatFileSize(const qint64 &size)
 
 void Helper::removeFocusRect(QWidget *widget)
 {
+    foreach (QListWidget *list, widget->findChildren<QListWidget*>())
+        list->setAttribute(Qt::WA_MacShowFocusRect, false);
     foreach (QLineEdit *edit, widget->findChildren<QLineEdit*>())
         edit->setAttribute(Qt::WA_MacShowFocusRect, false);
     foreach (QComboBox *box, widget->findChildren<QComboBox*>())
@@ -318,7 +334,7 @@ void Helper::removeFocusRect(QWidget *widget)
 void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
 {
     if (removeFocusRect)
-        Helper::removeFocusRect(widget);
+        Helper::instance()->removeFocusRect(widget);
 
     QStringList styleSheet = QStringList()
         << "QLabel {"
@@ -361,18 +377,18 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
         << "}"
 
         << "QTabWidget::pane {"
-        << "    border-top: 1px solid #ebebeb;"
+        << "    border-top: 1px solid #dddddd;"
         << "    margin-top: -1px;"
         << "}"
 
         << "QTabBar::tab {"
         << "    padding: 8px;"
-        << "    color: #666666;"
+        << "    color: #777777;"
         << "    border: 0;"
         << "}"
 
         << "QTabBar::tab:selected {"
-        << "    border: 1px solid #ebebeb;"
+        << "    border: 1px solid #dddddd;"
         << "    border-bottom: 1px solid #ffffff;"
         << "    border-top-left-radius: 4px;"
         << "    border-top-right-radius: 4px;"
@@ -411,6 +427,9 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
         << "    border: 1px solid #2D6CA2;"
         << "    border-radius: 4px;"
         << "    padding: 4px;"
+   #if defined(Q_OS_MAC)
+        << "    font-size: 11px;"
+   #endif
         << "}"
 
         << "QPushButton::pressed {"
@@ -432,16 +451,34 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
             #else
                 font.setPixelSize(12);
             #endif
+            font.setWeight(QFont::DemiBold);
             tabWidget->setFont(font);
         }
 
     widget->setStyleSheet(widget->styleSheet() + styleSheet.join("\n"));
+
+    foreach (QPushButton *button, widget->findChildren<QPushButton*>()) {
+        QString styleType = button->property("styleType").toString();
+        if (styleType.isEmpty())
+            continue;
+
+        if (styleType == "danger")
+            Helper::instance()->setButtonStyle(button, Helper::ButtonDanger);
+        else if (styleType == "info")
+            Helper::instance()->setButtonStyle(button, Helper::ButtonInfo);
+        else if (styleType == "primary")
+            Helper::instance()->setButtonStyle(button, Helper::ButtonPrimary);
+        else if (styleType == "success")
+            Helper::instance()->setButtonStyle(button, Helper::ButtonSuccess);
+        else if (styleType == "warning")
+            Helper::instance()->setButtonStyle(button, Helper::ButtonWarning);
+    }
 }
 
 void Helper::applyEffect(QWidget *parent)
 {
     foreach (QLabel *label, parent->findChildren<QLabel*>()) {
-        if (label->property("dropShadow").toBool() && Helper::devicePixelRatio(label) == 1) {
+        if (label->property("dropShadow").toBool() && Helper::instance()->devicePixelRatio(label) == 1) {
             QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(parent);
             effect->setColor(QColor(0, 0, 0, 30));
             effect->setOffset(4);
@@ -451,7 +488,7 @@ void Helper::applyEffect(QWidget *parent)
     }
 
     foreach (QPushButton *button, parent->findChildren<QPushButton*>()) {
-        if (button->property("dropShadow").toBool() && Helper::devicePixelRatio(button) == 1) {
+        if (button->property("dropShadow").toBool() && Helper::instance()->devicePixelRatio(button) == 1) {
             QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(parent);
             effect->setColor(QColor(0, 0, 0, 30));
             effect->setOffset(2);
@@ -541,7 +578,7 @@ QColor Helper::colorForLabel(int label)
 
 QIcon Helper::iconForLabel(int label)
 {
-    QColor color = Helper::colorForLabel(label);
+    QColor color = Helper::instance()->colorForLabel(label);
     QPainter p;
     QPixmap pixmap(32, 32);
     pixmap.fill(Qt::transparent);
@@ -604,4 +641,102 @@ qreal Helper::devicePixelRatio(const QPixmap &pixmap)
 #else
     return 1.0;
 #endif
+}
+
+int Helper::compareVersionNumbers(const QString &oldVersion, const QString &newVersion)
+{
+    int mMajor;
+    int mMinor;
+    int mBugfix;
+    int xmlMajor;
+    int xmlMinor;
+    int xmlBugfix;
+
+    QRegExp rxBig("^([0-9])\\.([0-9])\\.([0-9])");
+    QRegExp rxNormal("^([0-9])\\.([0-9])");
+
+    if (rxBig.indexIn(oldVersion) != -1) {
+        mMajor = rxBig.cap(1).toInt();
+        mMinor = rxBig.cap(2).toInt();
+        mBugfix = rxBig.cap(3).toInt();
+    } else if (rxNormal.indexIn(oldVersion) != -1) {
+        mMajor = rxNormal.cap(1).toInt();
+        mMinor = rxNormal.cap(2).toInt();
+        mBugfix = 0;
+    } else {
+        return 0;
+    }
+
+    if (rxBig.indexIn(newVersion) != -1) {
+        xmlMajor = rxBig.cap(1).toInt();
+        xmlMinor = rxBig.cap(2).toInt();
+        xmlBugfix = rxBig.cap(3).toInt();
+    } else if (rxNormal.indexIn(newVersion) != -1) {
+        xmlMajor = rxNormal.cap(1).toInt();
+        xmlMinor = rxNormal.cap(2).toInt();
+        xmlBugfix = 0;
+    } else {
+        return 0;
+    }
+
+    if (xmlMajor > mMajor)
+        return 1;
+    else if (xmlMajor < mMajor)
+        return -1;
+
+    if (xmlMajor == mMajor && xmlMinor > mMinor)
+        return 1;
+    else if (xmlMajor == mMajor && xmlMinor < mMinor)
+        return -1;
+
+    if (xmlMajor == mMajor && xmlMinor == mMinor && xmlBugfix > mBugfix)
+        return 1;
+    else if (xmlMajor == mMajor && xmlMinor == mMinor && xmlBugfix < mBugfix)
+        return -1;
+
+    return 0;
+}
+
+void Helper::setButtonStyle(QPushButton *button, Helper::ButtonStyle style)
+{
+    QString styleSheet;
+
+    styleSheet.append("QPushButton {");
+    styleSheet.append("padding: 4px;");
+    styleSheet.append("margin: 4px;");
+    styleSheet.append("border-radius: 4px;");
+#if defined(Q_OS_MAC)
+    styleSheet.append("font-size: 11px;");
+#endif
+    styleSheet.append("}");
+
+    if (style == Helper::ButtonDanger) {
+        styleSheet.append("QPushButton { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(238, 95, 91, 255), stop:1 rgba(189, 53, 47, 255)); border: 1px solid #C12E2A;}");
+        styleSheet.append("QPushButton::pressed { background-color: rgb(189, 53, 47); }");
+        styleSheet.append("QPushButton::disabled { background-color: rgb(213, 125, 120); }");
+        styleSheet.append("margin-bottom: 2px;");
+    } else if (style == Helper::ButtonPrimary) {
+        styleSheet.append("QPushButton { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(66, 139, 202, 255), stop:1 rgba(48, 113, 169, 255)); border: 1px solid #2D6CA2; }");
+        styleSheet.append("QPushButton::pressed { background-color: rgb(48, 113, 169); }");
+        styleSheet.append("QPushButton::disabled { background-color: rgb(66, 139, 202); }");
+        styleSheet.append("margin-bottom: 2px;");
+    } else if (style == Helper::ButtonInfo) {
+        styleSheet.append("QPushButton { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #5BC0DE, stop:1 #31B0D5); border: 1px solid #2AABD2; }");
+        styleSheet.append("QPushButton::pressed { background-color: #31B0D5; }");
+        styleSheet.append("QPushButton::disabled { background-color: #79cce4; }");
+        styleSheet.append("margin-bottom: 2px;");
+    } else if (style == Helper::ButtonWarning) {
+        styleSheet.append("QPushButton { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(251, 180, 80, 255), stop:1 rgba(248, 148, 6, 255)); border: 1px solid #EB9316; }");
+        styleSheet.append("QPushButton::pressed { background-color: rgb(248, 148, 6); }");
+        styleSheet.append("QPushButton::disabled { background-color: rgb(247, 177, 79); }");
+        styleSheet.append("margin-bottom: 2px;");
+    } else if (style == Helper::ButtonSuccess) {
+        styleSheet.append("QPushButton { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(98, 196, 98, 255), stop:1 rgba(81, 163, 81, 255)); border: 1px solid #419641; }");
+        styleSheet.append("QPushButton::pressed { background-color: rgb(81, 163, 81); }");
+        styleSheet.append("QPushButton::disabled { background-color: rgb(142, 196, 142); }");
+        styleSheet.append("margin-bottom: 2px;");
+    } else {
+        styleSheet = "";
+    }
+    button->setStyleSheet(styleSheet);
 }

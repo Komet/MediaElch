@@ -54,7 +54,7 @@ ImagePreviewDialog *ImagePreviewDialog::instance(QWidget *parent)
 void ImagePreviewDialog::setImage(QPixmap img)
 {
     qDebug() << "Entered";
-    Helper::setDevicePixelRatio(img, Helper::devicePixelRatio(this));
+    Helper::instance()->setDevicePixelRatio(img, Helper::instance()->devicePixelRatio(this));
     ui->image->setPixmap(img);
 }
 

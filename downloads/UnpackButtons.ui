@@ -64,7 +64,7 @@ QPushButton { color: #ffffff;  }</string>
     </widget>
    </item>
    <item>
-    <widget class="StyledPushButton" name="btnStop">
+    <widget class="QPushButton" name="btnStop">
      <property name="toolTip">
       <string>Cancel extraction</string>
      </property>
@@ -84,7 +84,7 @@ QPushButton { color: #ffffff;  }</string>
     </widget>
    </item>
    <item>
-    <widget class="StyledPushButton" name="btnUnpack">
+    <widget class="QPushButton" name="btnUnpack">
      <property name="toolTip">
       <string>Extract without password</string>
      </property>
@@ -94,7 +94,7 @@ QPushButton { color: #ffffff;  }</string>
     </widget>
    </item>
    <item>
-    <widget class="StyledPushButton" name="btnUnpackWithPassword">
+    <widget class="QPushButton" name="btnUnpackWithPassword">
      <property name="toolTip">
       <string>Extract with password</string>
      </property>
@@ -114,7 +114,7 @@ QPushButton { color: #ffffff;  }</string>
     </widget>
    </item>
    <item>
-    <widget class="StyledPushButton" name="btnDelete">
+    <widget class="QPushButton" name="btnDelete">
      <property name="toolTip">
       <string>Delete this archive</string>
      </property>
@@ -135,13 +135,6 @@ QPushButton { color: #ffffff;  }</string>
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>StyledPushButton</class>
-   <extends>QPushButton</extends>
-   <header>smallWidgets/StyledPushButton.h</header>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="../MediaElch.qrc"/>
  </resources>

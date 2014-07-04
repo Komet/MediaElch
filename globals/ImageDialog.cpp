@@ -341,10 +341,10 @@ void ImageDialog::downloadFinished()
     }
 
     m_elements[m_currentDownloadIndex].pixmap.loadFromData(m_currentDownloadReply->readAll());
-    Helper::setDevicePixelRatio(m_elements[m_currentDownloadIndex].pixmap, Helper::devicePixelRatio(this));
+    Helper::instance()->setDevicePixelRatio(m_elements[m_currentDownloadIndex].pixmap, Helper::instance()->devicePixelRatio(this));
     if (!m_elements[m_currentDownloadIndex].pixmap.isNull()) {
-        m_elements[m_currentDownloadIndex].scaledPixmap = m_elements[m_currentDownloadIndex].pixmap.scaledToWidth((getColumnWidth()-10) * Helper::devicePixelRatio(this), Qt::SmoothTransformation);
-        Helper::setDevicePixelRatio(m_elements[m_currentDownloadIndex].scaledPixmap, Helper::devicePixelRatio(this));
+        m_elements[m_currentDownloadIndex].scaledPixmap = m_elements[m_currentDownloadIndex].pixmap.scaledToWidth((getColumnWidth()-10) * Helper::instance()->devicePixelRatio(this), Qt::SmoothTransformation);
+        Helper::instance()->setDevicePixelRatio(m_elements[m_currentDownloadIndex].scaledPixmap, Helper::instance()->devicePixelRatio(this));
         m_elements[m_currentDownloadIndex].cellWidget->setImage(m_elements[m_currentDownloadIndex].scaledPixmap);
         m_elements[m_currentDownloadIndex].cellWidget->setHint(m_elements[m_currentDownloadIndex].resolution, m_elements[m_currentDownloadIndex].hint);
     }
@@ -375,8 +375,8 @@ void ImageDialog::renderTable()
         item->setData(Qt::UserRole, m_elements[i].originalUrl);
         ImageLabel *label = new ImageLabel(ui->table);
         if (!m_elements[i].pixmap.isNull()) {
-            QPixmap pixmap = m_elements[i].pixmap.scaledToWidth((getColumnWidth()-10) * Helper::devicePixelRatio(this), Qt::SmoothTransformation);
-            Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
+            QPixmap pixmap = m_elements[i].pixmap.scaledToWidth((getColumnWidth()-10) * Helper::instance()->devicePixelRatio(this), Qt::SmoothTransformation);
+            Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
             label->setImage(pixmap);
             label->setHint(m_elements[i].resolution, m_elements[i].hint);
         }

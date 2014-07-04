@@ -192,7 +192,7 @@ void ConcertController::onDownloadFinished(DownloadManagerElement elem)
     if (!elem.data.isEmpty()) {
         ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_concert, elem.imageType));
         if (elem.imageType == ImageType::ConcertBackdrop)
-            Helper::resizeBackdrop(elem.data);
+            Helper::instance()->resizeBackdrop(elem.data);
         m_concert->setImage(elem.imageType, elem.data);
     }
 

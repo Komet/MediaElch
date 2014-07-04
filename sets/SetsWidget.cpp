@@ -40,8 +40,13 @@ SetsWidget::SetsWidget(QWidget *parent) :
     ui->setName->setFont(nameFont);
 #endif
 
-    Helper::applyStyle(ui->groupBox_3);
-    Helper::applyEffect(ui->groupBox_3);
+    Helper::instance()->applyStyle(ui->movies);
+    Helper::instance()->applyStyle(ui->label_13);
+    Helper::instance()->applyStyle(ui->label_14);
+    Helper::instance()->applyStyle(ui->posterResolution);
+    Helper::instance()->applyStyle(ui->backdropResolution);
+    Helper::instance()->applyStyle(ui->groupBox_3);
+    Helper::instance()->applyEffect(ui->groupBox_3);
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -206,8 +211,8 @@ void SetsWidget::loadSet(QString set)
 
     if (!m_setPosters[set].isNull()) {
         QImage poster = m_setPosters[set];
-        QPixmap pixmap = QPixmap::fromImage(poster).scaled(QSize(200, 300) * Helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
+        QPixmap pixmap = QPixmap::fromImage(poster).scaled(QSize(200, 300) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
         ui->poster->setPixmap(pixmap);
         ui->posterResolution->setText(QString("%1x%2").arg(poster.width()).arg(poster.height()));
         ui->buttonPreviewPoster->setEnabled(true);
@@ -215,23 +220,23 @@ void SetsWidget::loadSet(QString set)
     } else if (Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages) &&
         !Manager::instance()->mediaCenterInterface()->movieSetPoster(set).isNull()) {
         QImage poster = Manager::instance()->mediaCenterInterface()->movieSetPoster(set);
-        QPixmap pixmap = QPixmap::fromImage(poster).scaled(QSize(200, 300) * Helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
+        QPixmap pixmap = QPixmap::fromImage(poster).scaled(QSize(200, 300) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
         ui->poster->setPixmap(pixmap);
         ui->posterResolution->setText(QString("%1x%2").arg(poster.width()).arg(poster.height()));
         ui->buttonPreviewPoster->setEnabled(true);
         m_currentPoster = poster;
     } else {
         QPixmap pixmap(":/img/film_reel.png");
-        Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
+        Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
         ui->poster->setPixmap(pixmap);
         ui->buttonPreviewPoster->setEnabled(false);
     }
 
     if (!m_setBackdrops[set].isNull()) {
         QImage backdrop = m_setBackdrops[set];
-        QPixmap pixmap = QPixmap::fromImage(backdrop).scaled(QSize(200, 112) * Helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
+        QPixmap pixmap = QPixmap::fromImage(backdrop).scaled(QSize(200, 112) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
         ui->backdrop->setPixmap(pixmap);
         ui->backdropResolution->setText(QString("%1x%2").arg(backdrop.width()).arg(backdrop.height()));
         ui->buttonPreviewBackdrop->setEnabled(true);
@@ -239,15 +244,15 @@ void SetsWidget::loadSet(QString set)
     } else if (Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages) &&
         !Manager::instance()->mediaCenterInterface()->movieSetBackdrop(set).isNull()) {
         QImage backdrop = Manager::instance()->mediaCenterInterface()->movieSetBackdrop(set);
-        QPixmap pixmap = QPixmap::fromImage(backdrop).scaled(QSize(200, 112) * Helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
+        QPixmap pixmap = QPixmap::fromImage(backdrop).scaled(QSize(200, 112) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
         ui->backdrop->setPixmap(pixmap);
         ui->backdropResolution->setText(QString("%1x%2").arg(backdrop.width()).arg(backdrop.height()));
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = backdrop;
     } else {
-        QPixmap pixmap = QPixmap(":/img/pictures_alt.png").scaled(QSize(64, 64) * Helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
+        QPixmap pixmap = QPixmap(":/img/pictures_alt.png").scaled(QSize(64, 64) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
         ui->backdrop->setPixmap(pixmap);
         ui->buttonPreviewBackdrop->setEnabled(false);
     }

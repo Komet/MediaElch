@@ -20,6 +20,7 @@ class Message : public QWidget
 public:
     explicit Message(QWidget *parent = 0);
     ~Message();
+    void setType(int type);
     void setMessage(QString message, int timeout = 3000);
     void showProgressBar(bool show);
     void setProgress(int current, int max);

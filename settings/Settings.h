@@ -7,6 +7,7 @@
 #include <QSize>
 
 #include "globals/Globals.h"
+#include "plugins/PluginManager.h"
 #include "settings/AdvancedSettings.h"
 #include "settings/DataFile.h"
 
@@ -144,6 +145,7 @@ public:
     void setLastImagePath(QString path);
 
     static QString applicationDir();
+    QStringList pluginDirs();
 
 public slots:
     void saveSettings();

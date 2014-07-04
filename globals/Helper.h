@@ -3,45 +3,54 @@
 
 #include <QImage>
 #include <QLabel>
+#include <QObject>
 #include <QPushButton>
 #include <QString>
 
 /**
  * @brief Some convenience functions are bundled here
  */
-class Helper
+class Helper : public QObject
 {
 public:
-    static QString toLatin1PercentEncoding(QString str);
-    static QString urlDecode(QString str);
-    static QString urlEncode(QString str);
-    static QString formatTrailerUrl(QString url);
-    static bool isDvd(QString path, bool noSubFolder = false);
-    static bool isBluRay(QString path);
-    static QImage &resizeBackdrop(QImage &image, bool &resized);
-    static QByteArray &resizeBackdrop(QByteArray &image);
-    static QString &sanitizeFileName(QString &fileName);
-    static QString stackedBaseName(const QString &fileName);
-    static QString appendArticle(const QString &text);
-    static QString mapGenre(const QString &text);
-    static QStringList mapGenre(const QStringList &genres);
-    static QString mapCertification(const QString &text);
-    static QString mapStudio(const QString &text);
-    static QString mapCountry(const QString &text);
-    static QString formatFileSize(const qint64 &size);
-    static void removeFocusRect(QWidget *widget);
-    static void applyStyle(QWidget *widget, bool removeFocusRect = true, bool isTable = false);
-    static void applyEffect(QWidget *parent);
-    static qreal similarity(const QString &s1, const QString &s2);
-    static QMap<int, QString> labels();
-    static QColor colorForLabel(int label);
-    static QIcon iconForLabel(int label);
-    static qreal devicePixelRatio(QLabel *label);
-    static qreal devicePixelRatio(QPushButton *button);
-    static qreal devicePixelRatio(QWidget *widget);
-    static qreal devicePixelRatio(const QPixmap &pixmap);
-    static void setDevicePixelRatio(QPixmap &pixmap, qreal devicePixelRatio);
-    static void setDevicePixelRatio(QImage &image, qreal devicePixelRatio);
+    enum ButtonStyle {
+        ButtonPrimary, ButtonInfo, ButtonDanger, ButtonSuccess, ButtonWarning
+    };
+
+    Helper(QObject *parent = 0);
+    static Helper *instance(QObject *parent = 0);
+    virtual QString toLatin1PercentEncoding(QString str);
+    virtual QString urlDecode(QString str);
+    virtual QString urlEncode(QString str);
+    virtual QString formatTrailerUrl(QString url);
+    virtual bool isDvd(QString path, bool noSubFolder = false);
+    virtual bool isBluRay(QString path);
+    virtual QImage &resizeBackdrop(QImage &image, bool &resized);
+    virtual QByteArray &resizeBackdrop(QByteArray &image);
+    virtual QString &sanitizeFileName(QString &fileName);
+    virtual QString stackedBaseName(const QString &fileName);
+    virtual QString appendArticle(const QString &text);
+    virtual QString mapGenre(const QString &text);
+    virtual QStringList mapGenre(const QStringList &genres);
+    virtual QString mapCertification(const QString &text);
+    virtual QString mapStudio(const QString &text);
+    virtual QString mapCountry(const QString &text);
+    virtual QString formatFileSize(const qint64 &size);
+    virtual void removeFocusRect(QWidget *widget);
+    virtual void applyStyle(QWidget *widget, bool removeFocusRect = true, bool isTable = false);
+    virtual void applyEffect(QWidget *parent);
+    virtual qreal similarity(const QString &s1, const QString &s2);
+    virtual QMap<int, QString> labels();
+    virtual QColor colorForLabel(int label);
+    virtual QIcon iconForLabel(int label);
+    virtual qreal devicePixelRatio(QLabel *label);
+    virtual qreal devicePixelRatio(QPushButton *button);
+    virtual qreal devicePixelRatio(QWidget *widget);
+    virtual qreal devicePixelRatio(const QPixmap &pixmap);
+    virtual void setDevicePixelRatio(QPixmap &pixmap, qreal devicePixelRatio);
+    virtual void setDevicePixelRatio(QImage &image, qreal devicePixelRatio);
+    virtual int compareVersionNumbers(const QString &oldVersion, const QString &newVersion);
+    virtual void setButtonStyle(QPushButton *button, Helper::ButtonStyle style);
 };
 
 #endif // HELPER_H

@@ -15,11 +15,15 @@ class NotificationBox : public QWidget
     Q_OBJECT
 
 public:
+    enum NotificationType {
+        NotificationInfo, NotificationWarning, NotificationSuccess, NotificationError
+    };
+
     explicit NotificationBox(QWidget *parent = 0);
     ~NotificationBox();
     static NotificationBox *instance(QWidget *parent = 0);
     void reposition(QSize size);
-    int showMessage(QString message, int timeout = 3000);
+    virtual int showMessage(QString message, NotificationBox::NotificationType type = NotificationInfo, int timeout = 5000);
     void showProgressBar(QString message, int id, bool unique = false);
     void hideProgressBar(int id);
     void progressBarProgress(int current, int max, int id);
@@ -27,7 +31,7 @@ public:
     int value(int id);
 
 public slots:
-    void removeMessage(int id);
+    virtual void removeMessage(int id);
 
 private:
     Ui::NotificationBox *ui;

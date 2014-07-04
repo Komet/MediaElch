@@ -29,7 +29,7 @@ DownloadsWidget::DownloadsWidget(QWidget *parent) :
     ui->tablePackages->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tablePackages->setColumnWidth(3, 200);
     ui->tableImports->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    ui->btnImportMakeMkv->setButtonStyle(StyledPushButton::StyleLightBlue);
+    Helper::instance()->setButtonStyle(ui->btnImportMakeMkv, Helper::ButtonInfo);
 
 #ifdef Q_OS_WIN32
     ui->tableImports->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
@@ -55,8 +55,8 @@ DownloadsWidget::DownloadsWidget(QWidget *parent) :
 
     scanDownloadFolders();
 
-    Helper::applyStyle(ui->tablePackages, true, false);
-    Helper::applyStyle(ui->tableImports, true, false);
+    Helper::instance()->applyStyle(ui->tablePackages, true, false);
+    Helper::instance()->applyStyle(ui->tableImports, true, false);
 }
 
 DownloadsWidget::~DownloadsWidget()

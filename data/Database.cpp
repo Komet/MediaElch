@@ -747,7 +747,7 @@ bool Database::guessImport(QString fileName, QString &type, QString &path)
     query.prepare("SELECT filename, type, path FROM importCache");
     query.exec();
     while (query.next()) {
-        qreal p = Helper::similarity(fileName, query.value(query.record().indexOf("filename")).toString());
+        qreal p = Helper::instance()->similarity(fileName, query.value(query.record().indexOf("filename")).toString());
         if (p > 0.7 && p > bestMatch) {
             bestMatch = p;
             type = query.value(query.record().indexOf("type")).toString();

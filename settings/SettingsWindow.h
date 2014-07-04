@@ -3,6 +3,7 @@
 
 #include <QCloseEvent>
 #include <QComboBox>
+#include <QListWidgetItem>
 #include <QMainWindow>
 
 #include "data/ConcertScraperInterface.h"
@@ -10,6 +11,9 @@
 #include "data/TvScraperInterface.h"
 #include "export/ExportTemplate.h"
 #include "globals/Globals.h"
+#include "plugins/PluginInterface.h"
+#include "plugins/PluginManager.h"
+#include "plugins/PluginManagerDialog.h"
 #include "settings/Settings.h"
 
 namespace Ui {
@@ -52,17 +56,26 @@ private slots:
     void onChooseMakeMkvCon();
     void onDirTypeChanged(QComboBox *comboBox = 0);
     void onShowAdultScrapers();
+    void onPluginListUpdated(QList<PluginManager::Plugin> plugins);
+    void onPluginActivated(QListWidgetItem *item);
+    void onInstallPlugin();
+    void onUninstallPlugin();
+    void onUpdatePlugin();
 
 private:
     Ui::SettingsWindow *ui;
     Settings *m_settings;
     QMap<ScraperInterface*, int> m_scraperRows;
+    QMap<int, PluginInterface*> m_plugins;
+    PluginManagerDialog *m_pluginDialog;
+    bool m_pluginsInstallable;
 
     void loadSettings();
     void saveSettings();
     void loadRemoteTemplates();
     QComboBox* comboForMovieScraperInfo(const int &info);
     QString titleForMovieScraperInfo(const int &info);
+    void setPluginActionsEnabled(const bool &enabled);
 };
 
 #endif // SETTINGSWINDOW_H

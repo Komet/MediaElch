@@ -21,14 +21,14 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="StyledPushButton" name="btnImport">
+    <widget class="QPushButton" name="btnImport">
      <property name="text">
       <string>Import</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="StyledPushButton" name="btnDelete">
+    <widget class="QPushButton" name="btnDelete">
      <property name="toolTip">
       <string>Delete</string>
      </property>
@@ -49,13 +49,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>StyledPushButton</class>
-   <extends>QPushButton</extends>
-   <header>smallWidgets/StyledPushButton.h</header>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="../MediaElch.qrc"/>
  </resources>

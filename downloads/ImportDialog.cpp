@@ -451,7 +451,7 @@ void ImportDialog::onImport()
             newFolderName.replace("<title>", m_movie->name());
             newFolderName.replace("<originalTitle>", m_movie->originalName());
             newFolderName.replace("<year>", m_movie->released().toString("yyyy"));
-            Helper::sanitizeFileName(newFolderName);
+            Helper::instance()->sanitizeFileName(newFolderName);
             if (!dir.mkdir(newFolderName)) {
                 QMessageBox::warning(this, tr("Creating destination directory failed"),
                                      tr("The destination directory %1 could not be created").arg(dir.absolutePath() + QDir::separator() + newFolderName));
@@ -465,7 +465,7 @@ void ImportDialog::onImport()
             newFileName.replace("<originalTitle>", m_movie->originalName());
             newFileName.replace("<year>", m_movie->released().toString("yyyy"));
             newFileName.replace("<extension>", fi.suffix());
-            Helper::sanitizeFileName(newFileName);
+            Helper::instance()->sanitizeFileName(newFileName);
             m_filesToMove.insert(file, dir.absolutePath() + QDir::separator() + newFileName);
             if (files().contains(file))
                 m_newFiles.append(dir.absolutePath() + QDir::separator() + newFileName);
@@ -478,7 +478,7 @@ void ImportDialog::onImport()
         if (ui->chkSeasonDirectories->isChecked()) {
             QString newFolderName = ui->seasonNaming->text();
             newFolderName.replace("<season>", m_episode->seasonString());
-            Helper::sanitizeFileName(newFolderName);
+            Helper::instance()->sanitizeFileName(newFolderName);
             dir.mkdir(newFolderName);
             dir.cd(newFolderName);
         }
@@ -492,7 +492,7 @@ void ImportDialog::onImport()
             newFileName.replace("<extension>", fi.suffix());
             newFileName.replace("<season>", m_episode->seasonString());
             newFileName.replace("<episode>", m_episode->episodeString());
-            Helper::sanitizeFileName(newFileName);
+            Helper::instance()->sanitizeFileName(newFileName);
             m_filesToMove.insert(file, dir.absolutePath() + QDir::separator() + newFileName);
             if (files().contains(file))
                 m_newFiles.append(dir.absolutePath() + QDir::separator() + newFileName);
@@ -509,7 +509,7 @@ void ImportDialog::onImport()
             newFolderName.replace("<artist>", m_concert->artist());
             newFolderName.replace("<album>", m_concert->album());
             newFolderName.replace("<year>", m_concert->released().toString("yyyy"));
-            Helper::sanitizeFileName(newFolderName);
+            Helper::instance()->sanitizeFileName(newFolderName);
             if (!dir.mkdir(newFolderName)) {
                 QMessageBox::warning(this, tr("Creating destination directory failed"),
                                      tr("The destination directory %1 could not be created").arg(dir.absolutePath() + QDir::separator() + newFolderName));
@@ -524,7 +524,7 @@ void ImportDialog::onImport()
             newFileName.replace("<album>", m_concert->album());
             newFileName.replace("<year>", m_concert->released().toString("yyyy"));
             newFileName.replace("<extension>", fi.suffix());
-            Helper::sanitizeFileName(newFileName);
+            Helper::instance()->sanitizeFileName(newFileName);
             m_filesToMove.insert(file, dir.absolutePath() + QDir::separator() + newFileName);
             if (files().contains(file))
                 m_newFiles.append(dir.absolutePath() + QDir::separator() + newFileName);

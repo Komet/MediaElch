@@ -65,7 +65,7 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <property name="spacing">
-        <number>12</number>
+        <number>16</number>
        </property>
        <property name="leftMargin">
         <number>6</number>
@@ -120,13 +120,16 @@
          </property>
          <property name="icon">
           <iconset resource="../MediaElch.qrc">
-           <normaloff>:/img/video_menuActive.png</normaloff>:/img/video_menuActive.png</iconset>
+           <normaloff>:/menu/movies.png</normaloff>:/menu/movies.png</iconset>
          </property>
          <property name="iconSize">
           <size>
-           <width>24</width>
-           <height>24</height>
+           <width>28</width>
+           <height>28</height>
           </size>
+         </property>
+         <property name="page" stdset="0">
+          <number>0</number>
          </property>
         </widget>
        </item>
@@ -153,13 +156,16 @@
          </property>
          <property name="icon">
           <iconset resource="../MediaElch.qrc">
-           <normaloff>:/img/movieSets_menu.png</normaloff>:/img/movieSets_menu.png</iconset>
+           <normaloff>:/menu/sets.png</normaloff>:/menu/sets.png</iconset>
          </property>
          <property name="iconSize">
           <size>
-           <width>24</width>
-           <height>24</height>
+           <width>28</width>
+           <height>28</height>
           </size>
+         </property>
+         <property name="page" stdset="0">
+          <number>2</number>
          </property>
         </widget>
        </item>
@@ -186,13 +192,16 @@
          </property>
          <property name="icon">
           <iconset resource="../MediaElch.qrc">
-           <normaloff>:/img/genre_menu.png</normaloff>:/img/genre_menu.png</iconset>
+           <normaloff>:/menu/genres.png</normaloff>:/menu/genres.png</iconset>
          </property>
          <property name="iconSize">
           <size>
-           <width>24</width>
-           <height>24</height>
+           <width>28</width>
+           <height>28</height>
           </size>
+         </property>
+         <property name="page" stdset="0">
+          <number>4</number>
          </property>
         </widget>
        </item>
@@ -219,15 +228,21 @@
          </property>
          <property name="icon">
           <iconset resource="../MediaElch.qrc">
-           <normaloff>:/img/certification2_menu.png</normaloff>:/img/certification2_menu.png</iconset>
+           <normaloff>:/menu/certifications.png</normaloff>:/menu/certifications.png</iconset>
          </property>
          <property name="iconSize">
           <size>
-           <width>24</width>
-           <height>24</height>
+           <width>28</width>
+           <height>28</height>
           </size>
          </property>
+         <property name="page" stdset="0">
+          <number>5</number>
+         </property>
         </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="layoutMovies"/>
        </item>
        <item>
         <widget class="QLabel" name="labelShows">
@@ -271,15 +286,21 @@ margin-top: 15px;</string>
          </property>
          <property name="icon">
           <iconset resource="../MediaElch.qrc">
-           <normaloff>:/img/display_on_menu.png</normaloff>:/img/display_on_menu.png</iconset>
+           <normaloff>:/menu/tvshows.png</normaloff>:/menu/tvshows.png</iconset>
          </property>
          <property name="iconSize">
           <size>
-           <width>24</width>
-           <height>24</height>
+           <width>28</width>
+           <height>28</height>
           </size>
          </property>
+         <property name="page" stdset="0">
+          <number>1</number>
+         </property>
         </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="layoutTvShows"/>
        </item>
        <item>
         <widget class="QLabel" name="labelConcerts">
@@ -323,15 +344,21 @@ margin-top: 15px;</string>
          </property>
          <property name="icon">
           <iconset resource="../MediaElch.qrc">
-           <normaloff>:/img/concerts_menu.png</normaloff>:/img/concerts_menu.png</iconset>
+           <normaloff>:/menu/concerts.png</normaloff>:/menu/concerts.png</iconset>
          </property>
          <property name="iconSize">
           <size>
-           <width>24</width>
-           <height>24</height>
+           <width>28</width>
+           <height>28</height>
           </size>
          </property>
+         <property name="page" stdset="0">
+          <number>3</number>
+         </property>
         </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="layoutConcerts"/>
        </item>
        <item>
         <widget class="QLabel" name="labelDownloads">
@@ -375,15 +402,43 @@ margin-top: 15px;</string>
          </property>
          <property name="icon">
           <iconset resource="../MediaElch.qrc">
-           <normaloff>:/img/downloads_menu.png</normaloff>:/img/downloads_menu.png</iconset>
+           <normaloff>:/menu/download.png</normaloff>:/menu/download.png</iconset>
          </property>
          <property name="iconSize">
           <size>
-           <width>24</width>
-           <height>24</height>
+           <width>28</width>
+           <height>28</height>
           </size>
          </property>
+         <property name="page" stdset="0">
+          <number>6</number>
+         </property>
         </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="layoutImport"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelPlugins">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgba(255, 255, 255, 200);
+margin-top: 15px;</string>
+         </property>
+         <property name="text">
+          <string>Plugins</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="layoutPlugins"/>
        </item>
        <item>
         <spacer name="verticalSpacer">
@@ -869,102 +924,6 @@ margin-top: 15px;</string>
  </resources>
  <connections>
   <connection>
-   <sender>buttonGenres</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>onMenuGenres()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>29</x>
-     <y>148</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>530</x>
-     <y>373</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonCertifications</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>onMenuCertifications()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>29</x>
-     <y>187</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>530</x>
-     <y>373</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonMovies</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>onMenuMovies()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>29</x>
-     <y>70</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>530</x>
-     <y>373</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonMovieSets</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>onMenuMovieSets()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>29</x>
-     <y>109</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>530</x>
-     <y>373</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonTvshows</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>onMenuTvShows()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>29</x>
-     <y>270</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>530</x>
-     <y>373</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonConcerts</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>onMenuConcerts()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>29</x>
-     <y>353</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>530</x>
-     <y>373</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>movieWidget</sender>
    <signal>setActionSaveEnabled(bool,MainWidgets)</signal>
    <receiver>MainWindow</receiver>
@@ -1108,32 +1067,10 @@ margin-top: 15px;</string>
     </hint>
    </hints>
   </connection>
-  <connection>
-   <sender>buttonDownloads</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>onMenuDownloads()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>32</x>
-     <y>421</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>530</x>
-     <y>373</y>
-    </hint>
-   </hints>
-  </connection>
  </connections>
  <slots>
-  <slot>onMenuGenres()</slot>
-  <slot>onMenuCertifications()</slot>
-  <slot>onMenuMovies()</slot>
-  <slot>onMenuMovieSets()</slot>
-  <slot>onMenuTvShows()</slot>
-  <slot>onMenuConcerts()</slot>
   <slot>onSetSaveEnabled(bool,MainWidgets)</slot>
   <slot>onSetSearchEnabled(bool,MainWidgets)</slot>
-  <slot>onMenuDownloads()</slot>
+  <slot>onMenu()</slot>
  </slots>
 </ui>

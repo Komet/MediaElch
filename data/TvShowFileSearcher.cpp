@@ -300,17 +300,17 @@ void TvShowFileSearcher::scanTvShowDir(QString startPath, QString path, QList<QS
             continue;
 
         // Handle DVD
-        if (Helper::isDvd(path + QDir::separator() + cDir)) {
+        if (Helper::instance()->isDvd(path + QDir::separator() + cDir)) {
             contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/VIDEO_TS/VIDEO_TS.IFO"));
             continue;
         }
-        if (Helper::isDvd(path + QDir::separator() + cDir, true)) {
+        if (Helper::instance()->isDvd(path + QDir::separator() + cDir, true)) {
             contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/VIDEO_TS.IFO"));
             continue;
         }
 
         // Handle BluRay
-        if (Helper::isBluRay(path + QDir::separator() + cDir)) {
+        if (Helper::instance()->isBluRay(path + QDir::separator() + cDir)) {
             contents.append(QStringList() << QDir::toNativeSeparators(path + "/" + cDir + "/BDMV/index.bdmv"));
             continue;
         }
@@ -384,9 +384,9 @@ int TvShowFileSearcher::getSeasonNumber(QStringList files)
     QStringList filenameParts = files.at(0).split(QDir::separator());
     QString filename = filenameParts.last();
     if (filename.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
-        if (filenameParts.count() > 1 && Helper::isDvd(files.at(0)))
+        if (filenameParts.count() > 1 && Helper::instance()->isDvd(files.at(0)))
             filename = filenameParts.at(filenameParts.count()-3);
-        else if (filenameParts.count() > 2 && Helper::isDvd(files.at(0), true))
+        else if (filenameParts.count() > 2 && Helper::instance()->isDvd(files.at(0), true))
             filename = filenameParts.at(filenameParts.count()-2);
     } else if (filename.endsWith("index.bdmv", Qt::CaseInsensitive)) {
         if (filenameParts.count() > 2)
@@ -418,9 +418,9 @@ QList<int> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
     QStringList filenameParts = files.at(0).split(QDir::separator());
     QString filename = filenameParts.last();
     if (filename.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
-        if (filenameParts.count() > 1 && Helper::isDvd(files.at(0)))
+        if (filenameParts.count() > 1 && Helper::instance()->isDvd(files.at(0)))
             filename = filenameParts.at(filenameParts.count()-3);
-        else if (filenameParts.count() > 2 && Helper::isDvd(files.at(0), true))
+        else if (filenameParts.count() > 2 && Helper::instance()->isDvd(files.at(0), true))
             filename = filenameParts.at(filenameParts.count()-2);
     } else if (filename.endsWith("index.bdmv", Qt::CaseInsensitive)) {
         if (filenameParts.count() > 2)
