@@ -978,7 +978,9 @@ void MovieWidget::onChangeActorImage()
         return;
     }
 
-    QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), QDir::homePath(), tr("Images (*.jpg *.jpeg)"));
+    static QString lastPath = QDir::homePath();
+
+    QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), lastPath, tr("Images (*.jpg *.jpeg)"));
     if (!fileName.isNull()) {
         QFile file(fileName);
         if (file.open(QIODevice::ReadOnly)) {
@@ -988,6 +990,8 @@ void MovieWidget::onChangeActorImage()
             onActorChanged();
             m_movie->setChanged(true);
             file.close();
+            QFileInfo fi(fileName);
+            lastPath = fi.absolutePath();
         }
     }
     ui->buttonRevert->setVisible(true);
