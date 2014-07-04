@@ -60,8 +60,6 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie)
     if (movie->runtime() > 0)
         xml.writeTextElement("runtime", QString("%1").arg(movie->runtime()));
     xml.writeTextElement("mpaa", movie->certification());
-    xml.writeTextElement("credits", movie->writer());
-    xml.writeTextElement("director", movie->director());
     xml.writeTextElement("playcount", QString("%1").arg(movie->playcount()));
     if (!movie->lastPlayed().isNull())
         xml.writeTextElement("lastplayed", movie->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
@@ -73,12 +71,22 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie)
     xml.writeTextElement("sorttitle", movie->sortTitle());
     xml.writeTextElement("trailer", Helper::instance()->formatTrailerUrl(movie->trailer().toString()));
     xml.writeTextElement("watched", (movie->watched()) ? "true" : "false");
-    if (Settings::instance()->advanced()->useFirstStudioOnly() && !movie->studios().isEmpty())
-        xml.writeTextElement("studio", movie->studios().first());
-    else
-        xml.writeTextElement("studio", movie->studios().join(" / "));
-    xml.writeTextElement("genre", movie->genres().join(" / "));
-    xml.writeTextElement("country", movie->countries().join(" / "));
+
+    foreach (const QString &credit, movie->writer().split(","))
+        xml.writeTextElement("credits", credit.trimmed());
+
+    foreach (const QString &director, movie->director().split(","))
+        xml.writeTextElement("director", director.trimmed());
+
+    foreach (const QString &studio, movie->studios())
+        xml.writeTextElement("studio", studio);
+
+    foreach (const QString &genre, movie->genres())
+        xml.writeTextElement("genre", genre);
+
+    foreach (const QString &country, movie->countries())
+        xml.writeTextElement("country", country);
+
     foreach (const QString &tag, movie->tags())
         xml.writeTextElement("tag", tag);
     foreach (const Actor &actor, movie->actors()) {
@@ -342,10 +350,6 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
         movie->setRuntime(domDoc.elementsByTagName("runtime").at(0).toElement().text().toInt());
     if (!domDoc.elementsByTagName("mpaa").isEmpty())
         movie->setCertification(domDoc.elementsByTagName("mpaa").at(0).toElement().text());
-    if (!domDoc.elementsByTagName("credits").isEmpty())
-        movie->setWriter(domDoc.elementsByTagName("credits").at(0).toElement().text());
-    if (!domDoc.elementsByTagName("director").isEmpty())
-        movie->setDirector(domDoc.elementsByTagName("director").at(0).toElement().text());
     if (!domDoc.elementsByTagName("playcount").isEmpty())
         movie->setPlayCount(domDoc.elementsByTagName("playcount").at(0).toElement().text().toInt());
     if (!domDoc.elementsByTagName("lastplayed").isEmpty()) {
@@ -372,18 +376,35 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
         movie->setWatched(movie->playcount() > 0);
     }
 
+    QStringList writers;
+    for (int i=0, n=domDoc.elementsByTagName("credits").size() ; i<n ; i++) {
+        foreach (const QString &writer, domDoc.elementsByTagName("credits").at(i).toElement().text().split(",", QString::SkipEmptyParts))
+            writers.append(writer.trimmed());
+    }
+    movie->setWriter(writers.join(", "));
+
+    QStringList directors;
+    for (int i=0, n=domDoc.elementsByTagName("director").size() ; i<n ; i++) {
+        foreach (const QString &director, domDoc.elementsByTagName("director").at(i).toElement().text().split(",", QString::SkipEmptyParts))
+            directors.append(director.trimmed());
+    }
+    movie->setDirector(directors.join(", "));
+
     for (int i=0, n=domDoc.elementsByTagName("studio").size() ; i<n ; i++) {
-        foreach (const QString &studio, domDoc.elementsByTagName("studio").at(i).toElement().text().split(" / ", QString::SkipEmptyParts))
-            movie->addStudio(studio);
+        foreach (const QString &studio, domDoc.elementsByTagName("studio").at(i).toElement().text().split("/", QString::SkipEmptyParts))
+            movie->addStudio(studio.trimmed());
     }
+
     for (int i=0, n=domDoc.elementsByTagName("genre").size() ; i<n ; i++) {
-        foreach (const QString &genre, domDoc.elementsByTagName("genre").at(i).toElement().text().split(" / ", QString::SkipEmptyParts))
-            movie->addGenre(genre);
+        foreach (const QString &genre, domDoc.elementsByTagName("genre").at(i).toElement().text().split("/", QString::SkipEmptyParts))
+            movie->addGenre(genre.trimmed());
     }
+
     for (int i=0, n=domDoc.elementsByTagName("country").size() ; i<n ; i++) {
         foreach (const QString &country, domDoc.elementsByTagName("country").at(i).toElement().text().split(" / ", QString::SkipEmptyParts))
-            movie->addCountry(country);
+            movie->addCountry(country.trimmed());
     }
+
     for (int i=0, n=domDoc.elementsByTagName("tag").size() ; i<n ; i++)
         movie->addTag(domDoc.elementsByTagName("tag").at(i).toElement().text());
     for (int i=0, n=domDoc.elementsByTagName("actor").size() ; i<n ; i++) {

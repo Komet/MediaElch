@@ -45,7 +45,6 @@ private:
     QHash<QString, QString> m_certificationMappings;
     QHash<QString, QString> m_studioMappings;
     QHash<QString, QString> m_countryMappings;
-    bool m_useFirstStudioOnly;
     bool m_forceCache;
     bool m_portableMode;
 
