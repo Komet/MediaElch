@@ -4048,22 +4048,22 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="17"/>
         <source>MediaElch</source>
-        <translation type="unfinished"/>
+        <translation>MediaElch</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="42"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>Fermer</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="65"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Mettre à jour</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="75"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Installer</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="49"/>
@@ -4096,13 +4096,13 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulaire</translation>
     </message>
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="38"/>
         <location filename="../plugins/PluginsWidget.ui" line="47"/>
         <source>TextLabel</source>
-        <translation type="unfinished"/>
+        <translation>TextLabel</translation>
     </message>
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="67"/>
@@ -4918,17 +4918,17 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1368"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Installer</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1375"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Mettre à jour</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1382"/>
         <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <translation>Désinstaller</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1395"/>
@@ -6930,12 +6930,12 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     <message>
         <location filename="../main/Update.cpp" line="44"/>
         <source>Updates available</source>
-        <translation type="unfinished"/>
+        <translation>Mises à jour disponibles</translation>
     </message>
     <message>
         <location filename="../main/Update.cpp" line="45"/>
         <source>%1 is now available.&lt;br&gt;Get it now on %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 est maintenant disponible.&lt;br&gt;L&apos;obtenir maintenant sur %2</translation>
     </message>
 </context>
 <context>

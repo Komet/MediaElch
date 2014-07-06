@@ -4046,22 +4046,22 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="17"/>
         <source>MediaElch</source>
-        <translation type="unfinished"/>
+        <translation>MediaElch</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="42"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>닫기</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="65"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>업데이트</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="75"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>설치</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="49"/>
@@ -4919,17 +4919,17 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1368"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>설치</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1375"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>업데이트</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1382"/>
         <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <translation>설치제거</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1395"/>
@@ -6930,7 +6930,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../main/Update.cpp" line="44"/>
         <source>Updates available</source>
-        <translation type="unfinished"/>
+        <translation>업데이트 사용 가능</translation>
     </message>
     <message>
         <location filename="../main/Update.cpp" line="45"/>

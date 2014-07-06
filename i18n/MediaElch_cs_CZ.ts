@@ -4046,22 +4046,22 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="17"/>
         <source>MediaElch</source>
-        <translation type="unfinished"/>
+        <translation>MediaElch</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="42"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>Zavřít</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="65"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizovat</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="75"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Nainstalovat</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="49"/>
@@ -4094,13 +4094,13 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulář</translation>
     </message>
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="38"/>
         <location filename="../plugins/PluginsWidget.ui" line="47"/>
         <source>TextLabel</source>
-        <translation type="unfinished"/>
+        <translation>TextLabel</translation>
     </message>
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="67"/>
@@ -4915,17 +4915,17 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1368"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Nainstalovat</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1375"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizovat</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1382"/>
         <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <translation>Odinstalovat</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1395"/>

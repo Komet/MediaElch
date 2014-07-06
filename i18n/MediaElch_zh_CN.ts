@@ -4047,12 +4047,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="17"/>
         <source>MediaElch</source>
-        <translation type="unfinished"/>
+        <translation>MediaElch</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="42"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>关闭</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="65"/>
@@ -6923,7 +6923,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../main/Update.cpp" line="44"/>
         <source>Updates available</source>
-        <translation type="unfinished"/>
+        <translation>有更新</translation>
     </message>
     <message>
         <location filename="../main/Update.cpp" line="45"/>

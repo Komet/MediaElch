@@ -4047,22 +4047,22 @@ Se quiser procurar um ID TMDB ou OFDb, por favor utilize o prefixo &quot;id&quot
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="17"/>
         <source>MediaElch</source>
-        <translation type="unfinished"/>
+        <translation>MediaElch</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="42"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>Fechar</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="65"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Actualizar</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="75"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Instalar</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="49"/>
@@ -4095,13 +4095,13 @@ Se quiser procurar um ID TMDB ou OFDb, por favor utilize o prefixo &quot;id&quot
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulário</translation>
     </message>
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="38"/>
         <location filename="../plugins/PluginsWidget.ui" line="47"/>
         <source>TextLabel</source>
-        <translation type="unfinished"/>
+        <translation>EtiquetaTexto</translation>
     </message>
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="67"/>
@@ -4921,17 +4921,17 @@ Os Episódios de Séries TV têm de estar em sub-pastas com o nome da série.</t
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1368"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Instalar</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1375"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Actualizar</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1382"/>
         <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <translation>Desinstalar</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1395"/>
@@ -6933,12 +6933,12 @@ Após isso, o MediaElch verificará automaticamente novos episódios ao iniciar.
     <message>
         <location filename="../main/Update.cpp" line="44"/>
         <source>Updates available</source>
-        <translation type="unfinished"/>
+        <translation>Actualizações disponíveis</translation>
     </message>
     <message>
         <location filename="../main/Update.cpp" line="45"/>
         <source>%1 is now available.&lt;br&gt;Get it now on %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 já está disponível.&lt;br&gt;Obtenha-o agora em %2</translation>
     </message>
 </context>
 <context>

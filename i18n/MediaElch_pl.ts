@@ -2581,7 +2581,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.ui" line="433"/>
         <source>Plugins</source>
-        <translation type="unfinished"/>
+        <translation>Wtyczki</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="812"/>
@@ -2601,7 +2601,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.cpp" line="688"/>
         <source>Reload (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Odśwież (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="695"/>
@@ -4037,12 +4037,12 @@ Zaznacz to ustawienie, jeśli już przechowujesz swoje filmy w osobnych folderac
     <message>
         <location filename="../plugins/PluginManager.cpp" line="98"/>
         <source>Plugin updates available</source>
-        <translation type="unfinished"/>
+        <translation>Dostępna aktualizacja wtyczki</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManager.cpp" line="174"/>
         <source>Plugin %1 requires at least MediaElch version %2</source>
-        <translation type="unfinished"/>
+        <translation>Wtyczka %1 wymaga MediaElch w wersji co najmniej %2</translation>
     </message>
 </context>
 <context>
@@ -4050,47 +4050,47 @@ Zaznacz to ustawienie, jeśli już przechowujesz swoje filmy w osobnych folderac
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="17"/>
         <source>MediaElch</source>
-        <translation type="unfinished"/>
+        <translation>MediaElch</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="42"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>Zamknij</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="65"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizuj</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="75"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Instaluj</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="49"/>
         <source>Plugin is being installed...</source>
-        <translation type="unfinished"/>
+        <translation>Instalowanie wtyczki...</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="56"/>
         <source>Plugin is being updated...</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizacja wtyczki...</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="64"/>
         <source>Plugin was installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Wtyczka została zainstalowana.</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="72"/>
         <source>Plugin was updated successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Wtyczka została zaktualizowana.</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="80"/>
         <source>An error occured while installing this plugin.</source>
-        <translation type="unfinished"/>
+        <translation>Podczas instalacji wtyczki wystąpił błąd.</translation>
     </message>
 </context>
 <context>
@@ -4098,23 +4098,23 @@ Zaznacz to ustawienie, jeśli już przechowujesz swoje filmy w osobnych folderac
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formatka</translation>
     </message>
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="38"/>
         <location filename="../plugins/PluginsWidget.ui" line="47"/>
         <source>TextLabel</source>
-        <translation type="unfinished"/>
+        <translation>Etykieta</translation>
     </message>
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="67"/>
         <source>Installed</source>
-        <translation type="unfinished"/>
+        <translation>Zainstalowana</translation>
     </message>
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="74"/>
         <source>Update available</source>
-        <translation type="unfinished"/>
+        <translation>Dostępna aktualizacja</translation>
     </message>
 </context>
 <context>
@@ -4925,32 +4925,32 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1368"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Instaluj</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1375"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizuj</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1382"/>
         <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <translation>Odinstaluj</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1395"/>
         <source>Installing and updating plugins through MediaElch is currently not supported under Linux. You need to add the ppa or compile plugins on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Instalowanie i aktualizacja wtyczek przy pomocy MediaElch nie jest aktualnie wspierana w systemie Linux. Musisz dodać repozytoria PPA lub skompilować wtyczki na własną rękę.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1415"/>
         <source>This plugin has no settings.</source>
-        <translation type="unfinished"/>
+        <translation>Wtyczka bez ustawień.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1442"/>
         <source>This plugin is not installed.</source>
-        <translation type="unfinished"/>
+        <translation>Wtyczka niezainstalowana.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1710"/>
@@ -4962,7 +4962,7 @@ Odcinki seriali muszą znajdować się w podfolderach o nazwie serialu.</transla
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1733"/>
         <source>Plugins</source>
-        <translation type="unfinished"/>
+        <translation>Wtyczki</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1290"/>
@@ -6936,12 +6936,12 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../main/Update.cpp" line="44"/>
         <source>Updates available</source>
-        <translation type="unfinished"/>
+        <translation>Dostępne aktualizacje</translation>
     </message>
     <message>
         <location filename="../main/Update.cpp" line="45"/>
         <source>%1 is now available.&lt;br&gt;Get it now on %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 jest dostępna. &lt;br&gt;Pobierz ją teraz z %2</translation>
     </message>
 </context>
 <context>
