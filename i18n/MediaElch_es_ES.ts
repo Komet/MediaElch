@@ -2579,7 +2579,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.ui" line="433"/>
         <source>Plugins</source>
-        <translation type="unfinished"/>
+        <translation>Plugins</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="812"/>
@@ -2599,7 +2599,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.cpp" line="688"/>
         <source>Reload (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Recarga (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="695"/>
@@ -4034,12 +4034,12 @@ i desea buscar por un TMDB o OFDb Identificador favor, añadiendo al principio &
     <message>
         <location filename="../plugins/PluginManager.cpp" line="98"/>
         <source>Plugin updates available</source>
-        <translation type="unfinished"/>
+        <translation>Actualizaciones de plugins disponibles</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManager.cpp" line="174"/>
         <source>Plugin %1 requires at least MediaElch version %2</source>
-        <translation type="unfinished"/>
+        <translation>Plugin %1 requiere al menos  MediaElch versión %2</translation>
     </message>
 </context>
 <context>
@@ -4067,27 +4067,27 @@ i desea buscar por un TMDB o OFDb Identificador favor, añadiendo al principio &
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="49"/>
         <source>Plugin is being installed...</source>
-        <translation type="unfinished"/>
+        <translation>Los plugins se están instalando...</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="56"/>
         <source>Plugin is being updated...</source>
-        <translation type="unfinished"/>
+        <translation>Plugin se está actualizando....</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="64"/>
         <source>Plugin was installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Plugin instalado correctamente.</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="72"/>
         <source>Plugin was updated successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Plugin actualizado correctamente.</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="80"/>
         <source>An error occured while installing this plugin.</source>
-        <translation type="unfinished"/>
+        <translation>Un error ocurrió cunado se instalaba el plugin.</translation>
     </message>
 </context>
 <context>
@@ -4106,12 +4106,12 @@ i desea buscar por un TMDB o OFDb Identificador favor, añadiendo al principio &
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="67"/>
         <source>Installed</source>
-        <translation type="unfinished"/>
+        <translation>Instalado</translation>
     </message>
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="74"/>
         <source>Update available</source>
-        <translation type="unfinished"/>
+        <translation>Actualización disponible</translation>
     </message>
 </context>
 <context>
@@ -4935,17 +4935,17 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1395"/>
         <source>Installing and updating plugins through MediaElch is currently not supported under Linux. You need to add the ppa or compile plugins on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Instalación y actualización de plugins a través de MediaElch no está soportado en Linux. Necesitas agregar la ppa o compilar los plugins tu mismo. </translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1415"/>
         <source>This plugin has no settings.</source>
-        <translation type="unfinished"/>
+        <translation>El plugin no tiene configuraciones.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1442"/>
         <source>This plugin is not installed.</source>
-        <translation type="unfinished"/>
+        <translation>El plugin no está instalado.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1710"/>
@@ -4957,7 +4957,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1733"/>
         <source>Plugins</source>
-        <translation type="unfinished"/>
+        <translation>Plugins</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1290"/>
