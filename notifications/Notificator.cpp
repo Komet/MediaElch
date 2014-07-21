@@ -44,6 +44,9 @@ void Notificator::notifyMacUserNotificationCenter(Class cls, const QString &titl
     Q_UNUSED(icon);
 #ifdef Q_OS_MAC
     MacNotificationHandler::instance()->showNotification(title, text);
+#else
+    Q_UNUSED(title);
+    Q_UNUSED(text);
 #endif
 }
 
