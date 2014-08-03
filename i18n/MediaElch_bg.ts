@@ -2579,7 +2579,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.ui" line="433"/>
         <source>Plugins</source>
-        <translation type="unfinished"/>
+        <translation>Добавки</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="812"/>
@@ -4959,7 +4959,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1733"/>
         <source>Plugins</source>
-        <translation type="unfinished"/>
+        <translation>Добавки</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1290"/>
