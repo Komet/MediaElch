@@ -2579,7 +2579,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.ui" line="433"/>
         <source>Plugins</source>
-        <translation type="unfinished"/>
+        <translation>Tillägg</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="812"/>
@@ -2599,7 +2599,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.cpp" line="688"/>
         <source>Reload (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Ladda om (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="695"/>
@@ -4034,12 +4034,12 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
     <message>
         <location filename="../plugins/PluginManager.cpp" line="98"/>
         <source>Plugin updates available</source>
-        <translation type="unfinished"/>
+        <translation>Tilläggsuppdateringar tillgängliga</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManager.cpp" line="174"/>
         <source>Plugin %1 requires at least MediaElch version %2</source>
-        <translation type="unfinished"/>
+        <translation>Tillägg %1 kräver minst MediaElch %2</translation>
     </message>
 </context>
 <context>
@@ -4067,27 +4067,27 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="49"/>
         <source>Plugin is being installed...</source>
-        <translation type="unfinished"/>
+        <translation>Tillägg installeras...</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="56"/>
         <source>Plugin is being updated...</source>
-        <translation type="unfinished"/>
+        <translation>Tillägg uppdateras...</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="64"/>
         <source>Plugin was installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Tillägget har installerats.</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="72"/>
         <source>Plugin was updated successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Tillägget har uppdaterats.</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="80"/>
         <source>An error occured while installing this plugin.</source>
-        <translation type="unfinished"/>
+        <translation>Ett fel uppstod vid installeringen av det här tillägget.</translation>
     </message>
 </context>
 <context>
@@ -4106,12 +4106,12 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="67"/>
         <source>Installed</source>
-        <translation type="unfinished"/>
+        <translation>Installerad</translation>
     </message>
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="74"/>
         <source>Update available</source>
-        <translation type="unfinished"/>
+        <translation>Uppdatering tillgänglig</translation>
     </message>
 </context>
 <context>
@@ -4936,17 +4936,17 @@ TV-avsnitt måste ligga i undermappar med namnat på serien.</translation>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1395"/>
         <source>Installing and updating plugins through MediaElch is currently not supported under Linux. You need to add the ppa or compile plugins on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Installering och uppdatering av tillägg genom MediaElch, stöds för tillfället inte under Linux. Du behöver lägga till PPA:n eller kompilera tillägg på egen hand.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1415"/>
         <source>This plugin has no settings.</source>
-        <translation type="unfinished"/>
+        <translation>Det här tillägget har inga inställningar.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1442"/>
         <source>This plugin is not installed.</source>
-        <translation type="unfinished"/>
+        <translation>Det här tillägget är inte installerat.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1710"/>
@@ -4958,7 +4958,7 @@ TV-avsnitt måste ligga i undermappar med namnat på serien.</translation>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1733"/>
         <source>Plugins</source>
-        <translation type="unfinished"/>
+        <translation>Tillägg</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1290"/>
