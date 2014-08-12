@@ -1,6 +1,7 @@
 #ifndef FANARTTV_H
 #define FANARTTV_H
 
+#include <QLineEdit>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QObject>
@@ -77,6 +78,7 @@ private slots:
 private:
     QList<int> m_provides;
     QString m_apiKey;
+    QString m_personalApiKey;
     QNetworkAccessManager m_qnam;
     int m_searchResultLimit;
     TheTvDb *m_tvdb;
@@ -86,6 +88,7 @@ private:
     QWidget *m_widget;
     QComboBox *m_box;
     QComboBox *m_discBox;
+    QLineEdit *m_personalApiKeyEdit;
 
     QNetworkAccessManager *qnam();
     QList<Poster> parseMovieData(QString json, int type);
@@ -95,6 +98,7 @@ private:
     QList<Poster> parseTvShowData(QString json, int type, int season = -2);
     void loadTvShowData(QString tvdbId, int type, int season = -2);
     void loadTvShowData(QString tvdbId, QList<int> types, TvShow *show);
+    QString keyParameter();
 };
 
 #endif // FANARTTV_H

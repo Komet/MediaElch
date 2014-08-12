@@ -71,6 +71,7 @@ private slots:
 private:
     QList<int> m_provides;
     QString m_apiKey;
+    QString m_personalApiKey;
     QNetworkAccessManager m_qnam;
     int m_searchResultLimit;
     QString m_language;
@@ -78,6 +79,7 @@ private:
 
     QNetworkAccessManager *qnam();
     QList<Poster> parseData(QString json, int type);
+    QString keyParameter();
 };
 
 #endif // FANARTTVMUSICARTISTS_H
