@@ -1143,14 +1143,19 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="55"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="56"/>
         <source>Language</source>
         <translation>Język</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="57"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="58"/>
         <source>Preferred Disc Type</source>
         <translation>Preferowany typ dysku</translation>
+    </message>
+    <message>
+        <location filename="../imageProviders/FanartTv.cpp" line="60"/>
+        <source>Personal API key</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
