@@ -1155,7 +1155,7 @@ Jeśli chcesz połączyć dwie kategorie wiekowe, po prostu nadaj im tę samą n
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="60"/>
         <source>Personal API key</source>
-        <translation type="unfinished"/>
+        <translation>Osobisty klucz API</translation>
     </message>
 </context>
 <context>
