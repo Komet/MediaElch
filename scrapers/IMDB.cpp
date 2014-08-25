@@ -230,16 +230,16 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
         movie->setName(rx.cap(1));
 
     rx.setPattern("<div class=\"txt-block\" itemprop=\"director\" itemscope itemtype=\"http://schema.org/Person\">[^<]*"
-                  "<h4 class=\"inline\">Director:</h4>[^<]"
-                  "<a href=\"[^\"]*\" itemprop='url'><span class=\"itemprop\" itemprop=\"name\">([^<]*)</span></a>");
+                  "<h4 class=\"inline\">Director:</h4>[^<]*"
+                  "<a href=\"[^\"]*\"(.*)itemprop='url'><span class=\"itemprop\" itemprop=\"name\">([^<]*)</span></a>");
     if (infos.contains(MovieScraperInfos::Director) && rx.indexIn(html) != -1)
-        movie->setDirector(rx.cap(1));
+        movie->setDirector(rx.cap(2));
 
     rx.setPattern("<div class=\"txt-block\" itemprop=\"creator\" itemscope itemtype=\"http://schema.org/Person\">[^<]*"
                   "<h4 class=\"inline\">Writer:</h4>[^<]"
-                  "<a href=\"[^\"]*\" itemprop='url'><span class=\"itemprop\" itemprop=\"name\">([^<]*)</span></a>");
+                  "<a href=\"[^\"]*\"(.*)itemprop='url'><span class=\"itemprop\" itemprop=\"name\">([^<]*)</span></a>");
     if (infos.contains(MovieScraperInfos::Writer) && rx.indexIn(html) != -1)
-        movie->setWriter(rx.cap(1));
+        movie->setWriter(rx.cap(2));
 
     rx.setPattern("<div class=\"see-more inline canwrap\" itemprop=\"genre\">[^<]*<h4 class=\"inline\">Genres:</h4>(.*)</div>");
     if (infos.contains(MovieScraperInfos::Genres) && rx.indexIn(html) != -1) {
@@ -272,9 +272,9 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
         }
     }
 
-    rx.setPattern("<a href=\"[^\"]*\" title=\"See all release dates\" >[^<]*<meta itemprop=\"datePublished\" content=\"([^\"]*)\" />");
+    rx.setPattern("<a href=\"[^\"]*\"(.*)title=\"See all release dates\" >[^<]*<meta itemprop=\"datePublished\" content=\"([^\"]*)\" />");
     if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1)
-        movie->setReleased(QDate::fromString(rx.cap(1), "yyyy-MM-dd"));
+        movie->setReleased(QDate::fromString(rx.cap(2), "yyyy-MM-dd"));
 
     rx.setPattern("itemprop=\"contentRating\" content=\"([^\"]*)\"></span>");
     if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1)
