@@ -1142,14 +1142,19 @@
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="55"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="56"/>
         <source>Language</source>
         <translation>Idioma</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="57"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="58"/>
         <source>Preferred Disc Type</source>
         <translation>Tipo de disco preferido</translation>
+    </message>
+    <message>
+        <location filename="../imageProviders/FanartTv.cpp" line="60"/>
+        <source>Personal API key</source>
+        <translation>API key personal</translation>
     </message>
 </context>
 <context>

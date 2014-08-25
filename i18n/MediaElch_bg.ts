@@ -1142,14 +1142,19 @@
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="55"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="56"/>
         <source>Language</source>
         <translation>Език</translation>
     </message>
     <message>
-        <location filename="../imageProviders/FanartTv.cpp" line="57"/>
+        <location filename="../imageProviders/FanartTv.cpp" line="58"/>
         <source>Preferred Disc Type</source>
         <translation>Предпочитан вид на диска</translation>
+    </message>
+    <message>
+        <location filename="../imageProviders/FanartTv.cpp" line="60"/>
+        <source>Personal API key</source>
+        <translation>Личен API ключ</translation>
     </message>
 </context>
 <context>
@@ -2599,7 +2604,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.cpp" line="688"/>
         <source>Reload (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Презареди (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="695"/>
@@ -4034,12 +4039,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../plugins/PluginManager.cpp" line="98"/>
         <source>Plugin updates available</source>
-        <translation type="unfinished"/>
+        <translation>Добавката е достъпна за актуализиране</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManager.cpp" line="174"/>
         <source>Plugin %1 requires at least MediaElch version %2</source>
-        <translation type="unfinished"/>
+        <translation>Добавката %1 изисква последната версия на MediaElch %2</translation>
     </message>
 </context>
 <context>
@@ -4067,27 +4072,27 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="49"/>
         <source>Plugin is being installed...</source>
-        <translation type="unfinished"/>
+        <translation>Добавката се инсталира...</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="56"/>
         <source>Plugin is being updated...</source>
-        <translation type="unfinished"/>
+        <translation>Добавката се актуализира...</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="64"/>
         <source>Plugin was installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Добавката е инсталирана успешно.</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="72"/>
         <source>Plugin was updated successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Добавката е актуализирана успешно.</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="80"/>
         <source>An error occured while installing this plugin.</source>
-        <translation type="unfinished"/>
+        <translation>Възникна грешка при инсталирането на тази добавка.</translation>
     </message>
 </context>
 <context>
@@ -4106,12 +4111,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="67"/>
         <source>Installed</source>
-        <translation type="unfinished"/>
+        <translation>Инсталирано</translation>
     </message>
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="74"/>
         <source>Update available</source>
-        <translation type="unfinished"/>
+        <translation>Достъпна актуализация</translation>
     </message>
 </context>
 <context>
@@ -4937,17 +4942,17 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1395"/>
         <source>Installing and updating plugins through MediaElch is currently not supported under Linux. You need to add the ppa or compile plugins on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Инсталирането и актуализирането на добавки чрез MediaElch в момента не се поддържа под Линукс. Трябва да добавите PPA или да компилирате добавките собственоръчно.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1415"/>
         <source>This plugin has no settings.</source>
-        <translation type="unfinished"/>
+        <translation>Тази добавка няма настройки.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1442"/>
         <source>This plugin is not installed.</source>
-        <translation type="unfinished"/>
+        <translation>Тази добавка не е инсталирана.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1710"/>
