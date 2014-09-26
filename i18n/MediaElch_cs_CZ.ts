@@ -310,7 +310,7 @@
     <message>
         <location filename="../data/ConcertFileSearcher.cpp" line="67"/>
         <source>Loading Concerts...</source>
-        <translation>Načítání Koncertů...</translation>
+        <translation>Načítání koncertů...</translation>
     </message>
 </context>
 <context>
@@ -319,7 +319,7 @@
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="320"/>
         <source>%n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n koncert</numerusform><numerusform>%n koncerty</numerusform><numerusform>%n koncertů</numerusform></translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="45"/>
@@ -354,7 +354,7 @@
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="322"/>
         <source>%1 of %n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 z %n koncertu</numerusform><numerusform>%1 ze %n koncertů</numerusform><numerusform>%1 z %n koncertů</numerusform></translation>
     </message>
 </context>
 <context>
@@ -362,7 +362,7 @@
     <message>
         <location filename="../concerts/ConcertSearch.ui" line="17"/>
         <source>Search Result</source>
-        <translation>Výsledek vyhledávání</translation>
+        <translation>Výsledky hledání</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearch.ui" line="48"/>
@@ -390,7 +390,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="113"/>
         <source>Infos to load</source>
-        <translation>Položky k načtení</translation>
+        <translation>Načíst tyto informace</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="136"/>
@@ -410,7 +410,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="157"/>
         <source>Released</source>
-        <translation>Vydáno</translation>
+        <translation>Datum vydání</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="164"/>
