@@ -2584,7 +2584,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.ui" line="433"/>
         <source>Plugins</source>
-        <translation type="unfinished"/>
+        <translation>Lisäosat</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="812"/>
@@ -2604,7 +2604,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.cpp" line="688"/>
         <source>Reload (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="695"/>
@@ -4039,12 +4039,12 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../plugins/PluginManager.cpp" line="98"/>
         <source>Plugin updates available</source>
-        <translation type="unfinished"/>
+        <translation>Lisäosiin on saatavilla päivityksiä</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManager.cpp" line="174"/>
         <source>Plugin %1 requires at least MediaElch version %2</source>
-        <translation type="unfinished"/>
+        <translation>Lisäosa %1 vaatii vähintään MediaElch:in version %2</translation>
     </message>
 </context>
 <context>
@@ -4072,27 +4072,27 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="49"/>
         <source>Plugin is being installed...</source>
-        <translation type="unfinished"/>
+        <translation>Lisäosaa asennetaan...</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="56"/>
         <source>Plugin is being updated...</source>
-        <translation type="unfinished"/>
+        <translation>Lisäosaa päivitetään...</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="64"/>
         <source>Plugin was installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Lisäosa asennettu.</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="72"/>
         <source>Plugin was updated successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Lisäosa päivitetty.</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="80"/>
         <source>An error occured while installing this plugin.</source>
-        <translation type="unfinished"/>
+        <translation>Lisäosan asennuksessa tapahtui virhe.</translation>
     </message>
 </context>
 <context>
@@ -4111,12 +4111,12 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="67"/>
         <source>Installed</source>
-        <translation type="unfinished"/>
+        <translation>Asennettu</translation>
     </message>
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="74"/>
         <source>Update available</source>
-        <translation type="unfinished"/>
+        <translation>Päivitys saatavilla</translation>
     </message>
 </context>
 <context>
@@ -4941,17 +4941,17 @@ TV-sarjojen jaksojen tulee olla alihakemistoissa, jotka on nimetty sarjojen muka
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1395"/>
         <source>Installing and updating plugins through MediaElch is currently not supported under Linux. You need to add the ppa or compile plugins on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Lisäosien asentamista ja päivittämistä MediaElch:in kautta ei ole tuettu Linux-järjestelmissä. Sinun tulee lisätä ppa-lähde tai kääntää lisäosat itse.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1415"/>
         <source>This plugin has no settings.</source>
-        <translation type="unfinished"/>
+        <translation>Lisäosalla ei ole asetuksia.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1442"/>
         <source>This plugin is not installed.</source>
-        <translation type="unfinished"/>
+        <translation>Lisäosaa ei ole asennettu.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1710"/>
@@ -4963,7 +4963,7 @@ TV-sarjojen jaksojen tulee olla alihakemistoissa, jotka on nimetty sarjojen muka
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1733"/>
         <source>Plugins</source>
-        <translation type="unfinished"/>
+        <translation>Lisäosat</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1290"/>
