@@ -17,8 +17,6 @@ contains(DEFINES, PLUGINS){
 unix:LIBS += -lcurl
 macx:LIBS += -framework Foundation
 
-DEFINES += UNICODE
-
 TARGET = MediaElch
 TEMPLATE = app
 

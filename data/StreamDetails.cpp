@@ -1,12 +1,23 @@
 #include "StreamDetails.h"
 
 #include <QApplication>
+#include <QDebug>
 #include <QDir>
 #include <QFileInfo>
-#include "MediaInfo/MediaInfo.h"
+#include <QProcess>
 #include "settings/Settings.h"
 
-using namespace MediaInfoLib;
+#include "MediaInfoDLL/MediaInfoDLL.h"
+using namespace MediaInfoDLL;
+
+#include <ZenLib/Ztring.h>
+#include <ZenLib/ZtringListList.h>
+using namespace ZenLib;
+#define wstring2QString(_DATA) \
+    QString::fromUtf8(Ztring(_DATA).To_UTF8().c_str())
+#define QString2wstring(_DATA) \
+    Ztring().From_UTF8(_DATA.toUtf8())
+
 
 /**
  * @brief StreamDetails::StreamDetails
@@ -73,16 +84,17 @@ void StreamDetails::loadStreamDetails()
         }
     }
 
-    MediaInfo MI;
-    MI.Option(QString("Info_Version").toStdWString(), QString("0.7.61;%1;%2").arg(QApplication::applicationName()).arg(QApplication::applicationVersion()).toStdWString());
-    MI.Option(QString("Internet").toStdWString(), QString("no").toStdWString());
+    loadWithLibrary();
+}
 
-#ifdef Q_OS_WIN32
-    MI.Open(m_files.first().toStdWString());
-#else
-    MI.Open(QString(m_files.first().toUtf8()).toStdWString());
-#endif
-    MI.Option(QString("Complete").toStdWString(), QString("1").toStdWString());
+void StreamDetails::loadWithLibrary()
+{
+    MediaInfo MI;
+    MI.Option(__T("Info_Version"), __T("0.7.70;MediaElch;2"));
+    MI.Option(__T("Internet"), __T("no"));
+    MI.Option(__T("Complete"), __T("1"));
+
+    MI.Open(m_files.first().toUtf8().data());
 
     int duration = 0;
     double aspectRatio;
@@ -91,42 +103,38 @@ void StreamDetails::loadStreamDetails()
     QString scanType;
     QString videoCodec;
 
-    int videoCount = QString::fromStdWString(MI.Get(Stream_General, 0, QString("VideoCount").toStdWString())).toInt();
-    int audioCount = QString::fromStdWString(MI.Get(Stream_General, 0, QString("AudioCount").toStdWString())).toInt();
-    int textCount = QString::fromStdWString(MI.Get(Stream_General, 0, QString("TextCount").toStdWString())).toInt();
+    int videoCount = QString(MI.Get(Stream_General, 0, __T("VideoCount")).c_str()).toInt();
+    int audioCount = QString(MI.Get(Stream_General, 0, __T("AudioCount")).c_str()).toInt();
+    int textCount = QString(MI.Get(Stream_General, 0, __T("TextCount")).c_str()).toInt();
 
     if (m_files.count() > 1) {
         foreach (const QString &file, m_files) {
             MediaInfo MI_duration;
-            MI_duration.Option(QString("Info_Version").toStdWString(), QString("0.7.61;%1;%2").arg(QApplication::applicationName()).arg(QApplication::applicationVersion()).toStdWString());
-            MI_duration.Option(QString("Internet").toStdWString(), QString("no").toStdWString());
-        #ifdef Q_OS_WIN32
-            MI_duration.Open(file.toStdWString());
-        #else
-            MI_duration.Open(QString(file.toUtf8()).toStdWString());
-        #endif
-            MI_duration.Option(QString("Complete").toStdWString(), QString("1").toStdWString());
-            duration += qRound(QString::fromStdWString(MI.Get(Stream_General, 0, QString("Duration").toStdWString())).toFloat()/1000);
+            MI_duration.Option(__T("Info_Version"), __T("0.7.70;MediaElch;2"));
+            MI_duration.Option(__T("Internet"), __T("no"));
+            MI_duration.Option(__T("Complete"), __T("1"));
+            MI_duration.Open(file.toUtf8().data());
+            duration += qRound(QString(MI_duration.Get(Stream_General, 0, __T("Duration")).c_str()).toFloat()/1000);
         }
     } else {
-        duration = qRound(QString::fromStdWString(MI.Get(Stream_General, 0, QString("Duration").toStdWString())).toFloat()/1000);
+        duration = qRound(QString(MI.Get(Stream_General, 0, __T("Duration")).c_str()).toFloat()/1000);
     }
 
     setVideoDetail("durationinseconds", QString("%1").arg(duration));
 
     if (videoCount > 0) {
-        aspectRatio = QString::fromStdWString(MI.Get(Stream_Video, 0, QString("DisplayAspectRatio").toStdWString())).toDouble();
-        width = QString::fromStdWString(MI.Get(Stream_Video, 0, QString("Width").toStdWString())).toInt();
-        height = QString::fromStdWString(MI.Get(Stream_Video, 0, QString("Height").toStdWString())).toInt();
-        scanType = QString::fromStdWString(MI.Get(Stream_Video, 0, QString("ScanType").toStdWString()));
+        aspectRatio = QString(MI.Get(Stream_Video, 0, __T("DisplayAspectRatio")).c_str()).toDouble();
+        width = QString(MI.Get(Stream_Video, 0, __T("Width")).c_str()).toInt();
+        height = QString(MI.Get(Stream_Video, 0, __T("Height")).c_str()).toInt();
+        scanType = QString(MI.Get(Stream_Video, 0, __T("ScanType")).c_str());
 
-        QString codec = QString::fromStdWString(MI.Get(Stream_Video, 0, QString("CodecID/Hint").toStdWString()));
+        QString codec = QString(MI.Get(Stream_Video, 0, __T("CodecID/Hint")).c_str());
         QString version;
         if (codec.isEmpty()) {
-            codec = QString::fromStdWString(MI.Get(Stream_Video, 0, QString("CodecID").toStdWString()));
+            codec = QString(MI.Get(Stream_Video, 0, __T("CodecID")).c_str());
             if (codec.isEmpty()) {
-                codec = QString::fromStdWString(MI.Get(Stream_Video, 0, QString("Format").toStdWString()));
-                version = QString::fromStdWString(MI.Get(Stream_Video, 0, QString("Format_Version").toStdWString()));
+                codec = QString(MI.Get(Stream_Video, 0, __T("Format")).c_str());
+                version = QString(MI.Get(Stream_Video, 0, __T("Format_Version")).c_str());
             }
         }
         videoCodec = videoFormat(codec, version);
@@ -139,10 +147,10 @@ void StreamDetails::loadStreamDetails()
     }
 
     for (int i=0 ; i<audioCount ; ++i) {
-        QString lang = QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Language/String3").toStdWString())).toLower();
-        QString audioCodec = audioFormat(QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Codec").toStdWString())),
-                                         QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Format_Profile").toStdWString())));
-        QString channels = QString::fromStdWString(MI.Get(Stream_Audio, i, QString("Channels").toStdWString()));
+        QString lang = QString(MI.Get(Stream_Audio, i, __T("Language/String3")).c_str()).toLower();
+        QString audioCodec = audioFormat(QString(MI.Get(Stream_Audio, i, __T("Codec")).c_str()),
+                                         QString(MI.Get(Stream_Audio, i, __T("Format_Profile")).c_str()));
+        QString channels = QString(MI.Get(Stream_Audio, i, __T("Channels")).c_str());
         QRegExp rx("^(\\d*)\\D*");
         if (rx.indexIn(QString("%1").arg(channels), 0) != -1)
             channels = rx.cap(1);
@@ -154,7 +162,7 @@ void StreamDetails::loadStreamDetails()
     }
 
     for (int i=0 ; i<textCount ; ++i) {
-        QString lang = QString::fromStdWString(MI.Get(Stream_Text, i, QString("Language/String3").toStdWString())).toLower();
+        QString lang = QString(MI.Get(Stream_Text, i, __T("Language/String3")).c_str()).toLower();
         setSubtitleDetail(i, "language", lang);
     }
     MI.Close();

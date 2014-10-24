@@ -30,6 +30,7 @@ public:
 private:
     QString videoFormat(QString format, QString version);
     QString audioFormat(const QString &codec, const QString &profile);
+    void loadWithLibrary();
 
     QStringList m_files;
     QMap<QString, QString> m_videoDetails;
