@@ -4,97 +4,97 @@
     <message>
         <location filename="../scrapers/AEBN.cpp" line="16"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>Болгарский</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="17"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Китайский</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="18"/>
         <source>Croatian</source>
-        <translation type="unfinished"/>
+        <translation>Хорватский</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="19"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>Чешский</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="20"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>Датский</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="21"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Нидерландский</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="22"/>
         <source>English</source>
-        <translation type="unfinished"/>
+        <translation>Английский</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="23"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>Финский</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="24"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Французский</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="25"/>
         <source>German</source>
-        <translation type="unfinished"/>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="26"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>Греческий</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="27"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Иврит</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="28"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Венгерский</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="29"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Итальянский</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="30"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Японский</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="31"/>
         <source>Korean</source>
-        <translation type="unfinished"/>
+        <translation>Корейский</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="32"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Норвежский</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="33"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Польский</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="34"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Португальский</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="35"/>
@@ -104,22 +104,22 @@
     <message>
         <location filename="../scrapers/AEBN.cpp" line="36"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>Словенский</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="37"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Испанский</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="38"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Шведский</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="39"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>Турецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/AEBN.cpp" line="41"/>
@@ -137,7 +137,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="43"/>
         <source>MediaElch</source>
-        <translation type="unfinished"/>
+        <translation>MediaElch</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="108"/>
@@ -162,7 +162,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="148"/>
         <source>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; основан на  &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="198"/>
@@ -200,7 +200,7 @@
     <message>
         <location filename="../main/AboutDialog.cpp" line="17"/>
         <source>MediaElch %1 - %2</source>
-        <translation type="unfinished"/>
+        <translation>MediaElch %1 - %2</translation>
     </message>
 </context>
 <context>
@@ -319,7 +319,7 @@
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="320"/>
         <source>%n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n концертов</numerusform><numerusform>%n концертов</numerusform><numerusform>%n концертов</numerusform></translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="45"/>
@@ -354,7 +354,7 @@
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="322"/>
         <source>%1 of %n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 из %n концертов</numerusform><numerusform>%1 из %n концертов</numerusform><numerusform>%1 из %n концертов</numerusform></translation>
     </message>
 </context>
 <context>
@@ -559,7 +559,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="246"/>
         <source>yyyy</source>
-        <translation type="unfinished"/>
+        <translation>yyyy</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="263"/>
@@ -641,7 +641,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="656"/>
         <source>HH:mm:ss</source>
-        <translation type="unfinished"/>
+        <translation>ЧЧ:мм:сс</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="667"/>
@@ -725,7 +725,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="556"/>
         <source>Subtitles</source>
-        <translation type="unfinished"/>
+        <translation>Субтитры</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="615"/>
@@ -1009,97 +1009,97 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="26"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>Болгарский</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="27"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Китайский</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="28"/>
         <source>Croatian</source>
-        <translation type="unfinished"/>
+        <translation>Хорватский</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="29"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>Чешский</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="30"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>Датский</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="31"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="32"/>
         <source>English</source>
-        <translation type="unfinished"/>
+        <translation>Английский</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="33"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>Финский</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="34"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Французский</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="35"/>
         <source>German</source>
-        <translation type="unfinished"/>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="36"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>Греческий</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="37"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Иврит</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="38"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Венгерский</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="39"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Итальянский</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="40"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Японский</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="41"/>
         <source>Korean</source>
-        <translation type="unfinished"/>
+        <translation>Корейский</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="42"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Норвежский</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="43"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Польский</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="44"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Португальский</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="45"/>
@@ -1109,27 +1109,27 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="46"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>Словенский</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="47"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Испанский</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="48"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Шведский</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="49"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>Турецкий</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="51"/>
         <source>3D</source>
-        <translation type="unfinished"/>
+        <translation>3D</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="52"/>
@@ -1176,7 +1176,7 @@
     <message>
         <location filename="../movies/FilesWidget.ui" line="196"/>
         <source>New</source>
-        <translation type="unfinished"/>
+        <translation>Новый</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.ui" line="223"/>
@@ -1186,12 +1186,12 @@
     <message>
         <location filename="../movies/FilesWidget.ui" line="250"/>
         <source>Date Added</source>
-        <translation type="unfinished"/>
+        <translation>Дата добавления</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.ui" line="277"/>
         <source>Seen</source>
-        <translation type="unfinished"/>
+        <translation>Просмотрено</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.ui" line="304"/>
@@ -1202,7 +1202,7 @@
         <location filename="../movies/FilesWidget.cpp" line="29"/>
         <location filename="../movies/FilesWidget.cpp" line="500"/>
         <source>%n movies</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n фильмов</numerusform><numerusform>%n фильмов</numerusform><numerusform>%n фильмов</numerusform></translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="61"/>
@@ -1212,12 +1212,12 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="71"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Надпись</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="82"/>
         <source>Load Information</source>
-        <translation type="unfinished"/>
+        <translation>Загрузить информацию</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="83"/>
@@ -1247,12 +1247,12 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="88"/>
         <source>Open Movie Folder</source>
-        <translation type="unfinished"/>
+        <translation>Открыть папку фильмов</translation>
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="502"/>
         <source>%1 of %n movies</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 из %n фильмов</numerusform><numerusform>%1 из %n фильмов</numerusform><numerusform>%1 из %n фильмов</numerusform></translation>
     </message>
 </context>
 <context>
@@ -1266,12 +1266,12 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="131"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="199"/>
         <source>Title contains &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Название содержит &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="137"/>
         <source>Filename contains &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Имя файла содержит &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="143"/>
@@ -1286,7 +1286,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="308"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Надпись</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="375"/>
@@ -1650,7 +1650,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="602"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="605"/>
         <source>Seen</source>
-        <translation type="unfinished"/>
+        <translation>Просмотрено</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="604"/>
@@ -1746,7 +1746,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="626"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="629"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Актёры</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="628"/>
@@ -2024,87 +2024,87 @@
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="17"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>Болгарский</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="18"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Китайский</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="19"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>Чешский</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="20"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>Датский</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="21"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="22"/>
         <source>English</source>
-        <translation type="unfinished"/>
+        <translation>Английский</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="23"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>Финский</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="24"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Французский</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="25"/>
         <source>German</source>
-        <translation type="unfinished"/>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="26"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>Греческий</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="27"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Иврит</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="28"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Венгерский</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="29"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Итальянский</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="30"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Японский</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="31"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Норвежский</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="32"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Польский</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="33"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Португальский</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="34"/>
@@ -2114,12 +2114,12 @@
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="35"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Испанский</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="36"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Шведский</translation>
     </message>
     <message>
         <location filename="../scrapers/HotMovies.cpp" line="39"/>
@@ -2268,7 +2268,7 @@
     <message>
         <location filename="../downloads/ImportDialog.ui" line="17"/>
         <source>MediaElch</source>
-        <translation type="unfinished"/>
+        <translation>MediaElch</translation>
     </message>
     <message>
         <location filename="../downloads/ImportDialog.ui" line="37"/>
@@ -2526,7 +2526,7 @@
     <message>
         <location filename="../main/MainWindow.ui" line="14"/>
         <source>MediaElch</source>
-        <translation type="unfinished"/>
+        <translation>MediaElch</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="93"/>
@@ -2632,7 +2632,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="17"/>
         <source>MediaElch</source>
-        <translation type="unfinished"/>
+        <translation>MediaElch</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="50"/>
@@ -2798,12 +2798,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="29"/>
         <source>English</source>
-        <translation type="unfinished"/>
+        <translation>Английский</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="30"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Французский</translation>
     </message>
     <message>
         <location filename="../scrapers/MediaPassion.cpp" line="33"/>
@@ -3103,12 +3103,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../trailerProviders/MovieMaze.cpp" line="118"/>
         <source>German</source>
-        <translation type="unfinished"/>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../trailerProviders/MovieMaze.cpp" line="120"/>
         <source>English</source>
-        <translation type="unfinished"/>
+        <translation>Английский</translation>
     </message>
 </context>
 <context>
@@ -3116,7 +3116,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../data/MovieModel.cpp" line="285"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Актёры</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="287"/>
@@ -3189,7 +3189,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="171"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Актёры</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="311"/>
@@ -3446,7 +3446,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="232"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Актёры</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="239"/>
@@ -3640,7 +3640,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="537"/>
         <source>yyyy</source>
-        <translation type="unfinished"/>
+        <translation>yyyy</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="560"/>
@@ -3665,27 +3665,27 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="627"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Актёры</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="646"/>
         <source>Actor</source>
-        <translation type="unfinished"/>
+        <translation>Актёр</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="651"/>
         <source>Role</source>
-        <translation type="unfinished"/>
+        <translation>Роль</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="666"/>
         <source>Remove Actor</source>
-        <translation type="unfinished"/>
+        <translation>Убрать актёра</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="696"/>
         <source>Add Actor</source>
-        <translation type="unfinished"/>
+        <translation>Добавить актёра</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="733"/>
@@ -3763,7 +3763,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="1013"/>
         <source>HH:mm:ss</source>
-        <translation type="unfinished"/>
+        <translation>ЧЧ:мм:сс</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1024"/>
@@ -3895,7 +3895,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.cpp" line="716"/>
         <source>Subtitles</source>
-        <translation type="unfinished"/>
+        <translation>Субтитры</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="777"/>
@@ -4050,7 +4050,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="17"/>
         <source>MediaElch</source>
-        <translation type="unfinished"/>
+        <translation>MediaElch</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.ui" line="42"/>
@@ -5204,7 +5204,7 @@ TV Show Episodes have to be in subfolders with the name of the show.</source>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="710"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Актёры</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="712"/>
@@ -5316,102 +5316,102 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="28"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>Болгарский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="29"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Китайский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="30"/>
         <source>Croatian</source>
-        <translation type="unfinished"/>
+        <translation>Хорватский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="31"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>Чешский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="32"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>Датский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="33"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="34"/>
         <source>English</source>
-        <translation type="unfinished"/>
+        <translation>Английский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="35"/>
         <source>English (US)</source>
-        <translation type="unfinished"/>
+        <translation>Английский (США)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="36"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>Финский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="37"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Французский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="38"/>
         <source>German</source>
-        <translation type="unfinished"/>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="39"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>Греческий</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="40"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Иврит</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="41"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Венгерский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="42"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Итальянский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="43"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Японский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="44"/>
         <source>Korean</source>
-        <translation type="unfinished"/>
+        <translation>Корейский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="45"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Норвежский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="46"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Польский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="47"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Португальский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="48"/>
@@ -5421,22 +5421,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDb.cpp" line="49"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>Словенский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="50"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Испанский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="51"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Шведский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="52"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>Турецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDb.cpp" line="54"/>
@@ -5449,102 +5449,102 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="28"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>Болгарский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="29"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Китайский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="30"/>
         <source>Croatian</source>
-        <translation type="unfinished"/>
+        <translation>Хорватский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="31"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>Чешский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="32"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>Датский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="33"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="34"/>
         <source>English</source>
-        <translation type="unfinished"/>
+        <translation>Английский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="35"/>
         <source>English (US)</source>
-        <translation type="unfinished"/>
+        <translation>Английский (США)</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="36"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>Финский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="37"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Французский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="38"/>
         <source>German</source>
-        <translation type="unfinished"/>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="39"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>Греческий</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="40"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Иврит</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="41"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Венгерский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="42"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Итальянский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="43"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Японский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="44"/>
         <source>Korean</source>
-        <translation type="unfinished"/>
+        <translation>Корейский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="45"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Норвежский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="46"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Польский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="47"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Португальский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="48"/>
@@ -5554,22 +5554,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="49"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>Словенский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="50"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Испанский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="51"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Шведский</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="52"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>Турецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/TMDbConcerts.cpp" line="54"/>
@@ -5595,97 +5595,97 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="28"/>
         <source>Bulgarian</source>
-        <translation type="unfinished"/>
+        <translation>Болгарский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="29"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Китайский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="30"/>
         <source>Croatian</source>
-        <translation type="unfinished"/>
+        <translation>Хорватский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="31"/>
         <source>Czech</source>
-        <translation type="unfinished"/>
+        <translation>Чешский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="32"/>
         <source>Danish</source>
-        <translation type="unfinished"/>
+        <translation>Датский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="33"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="34"/>
         <source>English</source>
-        <translation type="unfinished"/>
+        <translation>Английский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="35"/>
         <source>Finnish</source>
-        <translation type="unfinished"/>
+        <translation>Финский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="36"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Французский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="37"/>
         <source>German</source>
-        <translation type="unfinished"/>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="38"/>
         <source>Greek</source>
-        <translation type="unfinished"/>
+        <translation>Греческий</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="39"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Иврит</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="40"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Венгерский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="41"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Итальянский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="42"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Японский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="43"/>
         <source>Korean</source>
-        <translation type="unfinished"/>
+        <translation>Корейский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="44"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Норвежский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="45"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Польский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="46"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Португальский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="47"/>
@@ -5695,22 +5695,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="48"/>
         <source>Slovene</source>
-        <translation type="unfinished"/>
+        <translation>Словенский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="49"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Испанский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="50"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Шведский</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="51"/>
         <source>Turkish</source>
-        <translation type="unfinished"/>
+        <translation>Турецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/TheTvDb.cpp" line="53"/>
@@ -6000,7 +6000,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="220"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Актёры</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="230"/>
@@ -6332,27 +6332,27 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="683"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Актёры</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="708"/>
         <source>Actor</source>
-        <translation type="unfinished"/>
+        <translation>Актёр</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="713"/>
         <source>Role</source>
-        <translation type="unfinished"/>
+        <translation>Роль</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="758"/>
         <source>Add Actor</source>
-        <translation type="unfinished"/>
+        <translation>Добавить актёра</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="728"/>
         <source>Remove Actor</source>
-        <translation type="unfinished"/>
+        <translation>Убрать актёра</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="808"/>
@@ -6411,7 +6411,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="460"/>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1034"/>
         <source>HH:mm:ss</source>
-        <translation type="unfinished"/>
+        <translation>ЧЧ:мм:сс</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1045"/>
@@ -6456,7 +6456,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="454"/>
         <source>Subtitles</source>
-        <translation type="unfinished"/>
+        <translation>Субтитры</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="520"/>
@@ -6664,27 +6664,27 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="319"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Актёры</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="344"/>
         <source>Actor</source>
-        <translation type="unfinished"/>
+        <translation>Актёр</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="349"/>
         <source>Role</source>
-        <translation type="unfinished"/>
+        <translation>Роль</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="394"/>
         <source>Add Actor</source>
-        <translation type="unfinished"/>
+        <translation>Добавить актёра</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="364"/>
         <source>Remove Actor</source>
-        <translation type="unfinished"/>
+        <translation>Убрать актёра</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="444"/>
