@@ -1154,7 +1154,7 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="60"/>
         <source>Personal API key</source>
-        <translation type="unfinished"/>
+        <translation>Chave Pessoal API</translation>
     </message>
 </context>
 <context>
