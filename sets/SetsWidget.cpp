@@ -166,7 +166,7 @@ void SetsWidget::onSetSelected()
         return;
     }
 
-    QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
+    QString setName = ui->sets->item(ui->sets->currentRow(), 0)->text();
     loadSet(setName);
 }
 
@@ -298,7 +298,7 @@ void SetsWidget::onAddMovie()
         if (row < 0 || row >= ui->sets->rowCount())
             return;
 
-        QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
+        QString setName = ui->sets->item(ui->sets->currentRow(), 0)->text();
         foreach (Movie *movie, movies) {
             if (movie->set() == setName)
                 continue;
@@ -412,21 +412,28 @@ void SetsWidget::saveSet()
         qDebug() << "Invalid current row in sets";
         return;
     }
-    QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
-    foreach (Movie *movie, m_moviesToSave[setName])
-        movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
-    m_moviesToSave[setName].clear();
 
-    if (!m_setPosters[setName].isNull() && Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages)) {
-        Manager::instance()->mediaCenterInterface()->saveMovieSetPoster(setName, m_setPosters[setName]);
-        m_setPosters[setName] = QImage();
-    }
-    if (!m_setBackdrops[setName].isNull() && Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages)) {
-        Manager::instance()->mediaCenterInterface()->saveMovieSetBackdrop(setName, m_setBackdrops[setName]);
-        m_setBackdrops[setName] = QImage();
+    QStringList setNames;
+    setNames << ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
+    setNames << ui->sets->item(ui->sets->currentRow(), 0)->text();
+    setNames.removeDuplicates();
+
+    foreach (const QString &setName, setNames) {
+        foreach (Movie *movie, m_moviesToSave[setName])
+            movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
+        m_moviesToSave[setName].clear();
+
+        if (!m_setPosters[setName].isNull() && Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages)) {
+            Manager::instance()->mediaCenterInterface()->saveMovieSetPoster(setName, m_setPosters[setName]);
+            m_setPosters[setName] = QImage();
+        }
+        if (!m_setBackdrops[setName].isNull() && Manager::instance()->mediaCenterInterface()->hasFeature(MediaCenterFeatures::HandleMovieSetImages)) {
+            Manager::instance()->mediaCenterInterface()->saveMovieSetBackdrop(setName, m_setBackdrops[setName]);
+            m_setBackdrops[setName] = QImage();
+        }
     }
 
-    NotificationBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(setName));
+    NotificationBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(ui->sets->item(ui->sets->currentRow(), 0)->text()));
 }
 
 /**
@@ -511,7 +518,7 @@ void SetsWidget::onRemoveMovieSet()
 
 void SetsWidget::onSetNameChanged(QTableWidgetItem *item)
 {
-    QString newName = item->text();
+    QString newName = QString(item->text());
     QString origSetName = item->data(Qt::UserRole).toString();
     if (newName == origSetName)
         return;

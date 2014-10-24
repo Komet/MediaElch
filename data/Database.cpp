@@ -276,7 +276,7 @@ void Database::add(Movie *movie, QString path)
 void Database::update(Movie *movie)
 {
     QSqlQuery query(db());
-    query.prepare("UPDATE movies SET content=:content WHERE idMovie=:id");
+    query.prepare("UPDATE movies SET content=:content WHERE idMovie=:idMovie");
     query.bindValue(":content", movie->nfoContent().isEmpty() ? "" : movie->nfoContent());
     query.bindValue(":idMovie", movie->databaseId());
     query.exec();
