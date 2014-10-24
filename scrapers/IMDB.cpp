@@ -229,17 +229,35 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
     if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1)
         movie->setName(rx.cap(1));
 
-    rx.setPattern("<div class=\"txt-block\" itemprop=\"director\" itemscope itemtype=\"http://schema.org/Person\">[^<]*"
-                  "<h4 class=\"inline\">Director:</h4>[^<]*"
-                  "<a href=\"[^\"]*\"(.*)itemprop='url'><span class=\"itemprop\" itemprop=\"name\">([^<]*)</span></a>");
-    if (infos.contains(MovieScraperInfos::Director) && rx.indexIn(html) != -1)
-        movie->setDirector(rx.cap(2));
+    if (infos.contains(MovieScraperInfos::Director)) {
+        rx.setPattern("<div class=\"txt-block\" itemprop=\"director\" itemscope itemtype=\"http://schema.org/Person\">(.*)</div>");
+        if (rx.indexIn(html) != -1) {
+            QStringList directors;
+            QString directorsBlock = rx.cap(1);
+            rx.setPattern("<a href=\"[^\"]*\"(.*)itemprop='url'><span class=\"itemprop\" itemprop=\"name\">([^<]*)</span></a>");
+            int pos = 0;
+            while ((pos = rx.indexIn(directorsBlock, pos)) != -1) {
+                directors << rx.cap(2);
+                pos += rx.matchedLength();
+            }
+            movie->setDirector(directors.join(", "));
+        }
+    }
 
-    rx.setPattern("<div class=\"txt-block\" itemprop=\"creator\" itemscope itemtype=\"http://schema.org/Person\">[^<]*"
-                  "<h4 class=\"inline\">Writer:</h4>[^<]"
-                  "<a href=\"[^\"]*\"(.*)itemprop='url'><span class=\"itemprop\" itemprop=\"name\">([^<]*)</span></a>");
-    if (infos.contains(MovieScraperInfos::Writer) && rx.indexIn(html) != -1)
-        movie->setWriter(rx.cap(2));
+    if (infos.contains(MovieScraperInfos::Writer)) {
+        rx.setPattern("<div class=\"txt-block\" itemprop=\"creator\" itemscope itemtype=\"http://schema.org/Person\">(.*)</div>");
+        if (rx.indexIn(html) != -1) {
+            QStringList writers;
+            QString writersBlock = rx.cap(1);
+            rx.setPattern("<a href=\"[^\"]*\"(.*)itemprop='url'><span class=\"itemprop\" itemprop=\"name\">([^<]*)</span></a>");
+            int pos = 0;
+            while ((pos = rx.indexIn(writersBlock, pos)) != -1) {
+                writers << rx.cap(2);
+                pos += rx.matchedLength();
+            }
+            movie->setWriter(writers.join(", "));
+        }
+    }
 
     rx.setPattern("<div class=\"see-more inline canwrap\" itemprop=\"genre\">[^<]*<h4 class=\"inline\">Genres:</h4>(.*)</div>");
     if (infos.contains(MovieScraperInfos::Genres) && rx.indexIn(html) != -1) {
