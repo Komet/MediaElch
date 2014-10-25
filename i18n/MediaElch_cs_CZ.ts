@@ -3102,12 +3102,12 @@ operace zrušena.</translation>
 <context>
     <name>MovieMaze</name>
     <message>
-        <location filename="../trailerProviders/MovieMaze.cpp" line="118"/>
+        <location filename="../trailerProviders/MovieMaze.cpp" line="135"/>
         <source>German</source>
         <translation>Němčina</translation>
     </message>
     <message>
-        <location filename="../trailerProviders/MovieMaze.cpp" line="120"/>
+        <location filename="../trailerProviders/MovieMaze.cpp" line="137"/>
         <source>English</source>
         <translation>Angličtina</translation>
     </message>
@@ -4585,12 +4585,12 @@ p, li { white-space: pre-wrap; }
         <translation>Odstranit filmovou kolekci</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="429"/>
+        <location filename="../sets/SetsWidget.cpp" line="436"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; uložen</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="455"/>
+        <location filename="../sets/SetsWidget.cpp" line="462"/>
         <source>New Movie Set</source>
         <translation>Nová filmová kolekce</translation>
     </message>
