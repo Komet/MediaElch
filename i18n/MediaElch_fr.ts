@@ -3102,12 +3102,12 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieMaze</name>
     <message>
-        <location filename="../trailerProviders/MovieMaze.cpp" line="118"/>
+        <location filename="../trailerProviders/MovieMaze.cpp" line="135"/>
         <source>German</source>
         <translation>Allemand</translation>
     </message>
     <message>
-        <location filename="../trailerProviders/MovieMaze.cpp" line="120"/>
+        <location filename="../trailerProviders/MovieMaze.cpp" line="137"/>
         <source>English</source>
         <translation>Anglais</translation>
     </message>
@@ -4587,12 +4587,12 @@ p, li { white-space: pre-wrap; }
         <translation>Supprimer saga Film</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="429"/>
+        <location filename="../sets/SetsWidget.cpp" line="436"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="455"/>
+        <location filename="../sets/SetsWidget.cpp" line="462"/>
         <source>New Movie Set</source>
         <translation>Nouvelle saga Film</translation>
     </message>
