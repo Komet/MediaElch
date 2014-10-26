@@ -388,7 +388,7 @@ QString IMDB::parsePosters(QString html)
         return QString();
 
     QString content = rx.cap(1);
-    rx.setPattern("<a href=\"([^\"]*)\" >");
+    rx.setPattern("<a href=\"([^\"]*)\"[^\>]*>");
     if (rx.indexIn(content) == -1)
         return QString();
 
