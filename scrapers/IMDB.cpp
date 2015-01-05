@@ -262,7 +262,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
     rx.setPattern("<div class=\"see-more inline canwrap\" itemprop=\"genre\">[^<]*<h4 class=\"inline\">Genres:</h4>(.*)</div>");
     if (infos.contains(MovieScraperInfos::Genres) && rx.indexIn(html) != -1) {
         QString genres = rx.cap(1);
-        rx.setPattern("<a href=\"[^\"]*\" >([^<]*)</a>");
+        rx.setPattern("<a href=\"[^\"]*\"[^>]*>([^<]*)</a>");
         int pos = 0;
         while ((pos = rx.indexIn(genres, pos)) != -1) {
             movie->addGenre(Helper::instance()->mapGenre(rx.cap(1).trimmed()));
@@ -345,7 +345,7 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
     rx.setPattern("<div class=\"txt-block\">[^<]*<h4 class=\"inline\">Country:</h4>(.*)</div>");
     if (infos.contains(MovieScraperInfos::Countries) && rx.indexIn(html) != -1) {
         QString content = rx.cap(1);
-        rx.setPattern("<a href=\"[^\"]*\" itemprop='url'>([^<]*)</a>");
+        rx.setPattern("<a href=\"[^\"]*\"[\\n\\s]*itemprop='url'>([^<]*)</a>");
         int pos = 0;
         while ((pos = rx.indexIn(content, pos)) != -1) {
             movie->addCountry(Helper::instance()->mapCountry(rx.cap(1).trimmed()));
@@ -356,26 +356,46 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
     rx.setPattern("<table class=\"cast_list\">(.*)</table>");
     if (infos.contains(MovieScraperInfos::Actors) && rx.indexIn(html) != -1) {
         QString content = rx.cap(1);
-        rx.setPattern("<tr class=\"[^\"]*\">[^<]*<td class=\"primary_photo\">[^<]*<a href=\"[^\"]*\" ><img [^<]*loadlate=\"([^\"]*)\"[^<]* /></a>[^<]*</td>[^<]*"
-                      "<td class=\"itemprop\" itemprop=\"actor\" itemscope itemtype=\"http://schema.org/Person\">[^<]*<a href=\"[^\"]*\" itemprop='url'> <span class=\"itemprop\" itemprop=\"name\">([^<]*)</span>.*"
-                      "<a href=\"/character/[^\"]*\" >([^<]*)</a>");
+        rx.setPattern("<tr class=\"[^\"]*\">(.*)</tr>");
         int pos = 0;
         while ((pos = rx.indexIn(content, pos)) != -1) {
-            Actor a;
-            QRegExp aRx1("http://ia.media-imdb.com/images/(.*)/(.*)._V(.*)_S(.*)([0-9]*)_CR[0-9]*,[0-9]*,[0-9]*,[0-9]*_.jpg");
-            QRegExp aRx2("http://ia.media-imdb.com/images/(.*)/(.*)._V(.*)_S(.*)([0-9]*)_CR[0-9]*,[0-9]*,[0-9]*,[0-9]*_(.*)_.jpg");
-            aRx1.setMinimal(true);
-            aRx2.setMinimal(true);
-            if (aRx1.indexIn(rx.cap(1)) != -1)
-                a.thumb = "http://ia.media-imdb.com/images/" + aRx1.cap(1) + "/" + aRx1.cap(2) + "._V" + aRx1.cap(3) + "_SY317_CR0,0,214,317_.jpg";
-            else if (aRx2.indexIn(rx.cap(1)) != -1)
-                a.thumb = "http://ia.media-imdb.com/images/" + aRx2.cap(1) + "/" + aRx2.cap(2) + "._V" + aRx2.cap(3) + "_SY317_CR0,0,214,317_" + aRx2.cap(4) + "_.jpg";
-            else
-                a.thumb = rx.cap(1);
-            a.name = rx.cap(2);
-            a.role = rx.cap(3);
-            movie->addActor(a);
+            QString actor = rx.cap(1);
             pos += rx.matchedLength();
+
+            Actor a;
+
+            QRegExp rxName("<span class=\"itemprop\" itemprop=\"name\">(.*)</span>");
+            rxName.setMinimal(true);
+            if (rxName.indexIn(actor) != -1)
+                a.name = rxName.cap(1).trimmed();
+
+            QRegExp rxRole("<td class=\"character\">[\\s\\n]*<div>[\\s\\n](.*)[\\s\\n]*</div>");
+            rxRole.setMinimal(true);
+            if (rxRole.indexIn(actor) != -1) {
+                QString role = rxRole.cap(1);
+                rxRole.setPattern("<a href=\"[^\"]*\" >(.*)</a>");
+                if (rxRole.indexIn(role) != -1)
+                    role = rxRole.cap(1);
+                a.role = role.trimmed().replace(QRegExp("[\\s\\n]+"), " ");
+            }
+
+            QRegExp rxImg("<img [^<]*loadlate=\"([^\"]*)\"[^<]* />");
+            rxImg.setMinimal(true);
+            if (rxImg.indexIn(actor) != -1) {
+                QString img = rxImg.cap(1);
+                QRegExp aRx1("http://ia.media-imdb.com/images/(.*)/(.*)._V(.*)_S(.*)([0-9]*)_CR[0-9]*,[0-9]*,[0-9]*,[0-9]*_.jpg");
+                QRegExp aRx2("http://ia.media-imdb.com/images/(.*)/(.*)._V(.*)_S(.*)([0-9]*)_CR[0-9]*,[0-9]*,[0-9]*,[0-9]*_(.*)_.jpg");
+                aRx1.setMinimal(true);
+                aRx2.setMinimal(true);
+                if (aRx1.indexIn(img) != -1)
+                    a.thumb = "http://ia.media-imdb.com/images/" + aRx1.cap(1) + "/" + aRx1.cap(2) + "._V" + aRx1.cap(3) + "_SY317_CR0,0_.jpg";
+                else if (aRx2.indexIn(img) != -1)
+                    a.thumb = "http://ia.media-imdb.com/images/" + aRx2.cap(1) + "/" + aRx2.cap(2) + "._V" + aRx2.cap(3) + "_SY317_CR0,0_" + aRx2.cap(4) + "_.jpg";
+                else
+                    a.thumb = rx.cap(1);
+            }
+
+            movie->addActor(a);
         }
     }
 }
