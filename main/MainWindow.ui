@@ -361,6 +361,64 @@ margin-top: 15px;</string>
         <layout class="QVBoxLayout" name="layoutConcerts"/>
        </item>
        <item>
+        <widget class="QLabel" name="labelMusic">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgba(255, 255, 255, 200);
+margin-top: 15px;</string>
+         </property>
+         <property name="text">
+          <string>Music</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="buttonMusic">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Concerts</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QToolButton {
+	border: 0;
+	margin-left: 10px;
+	margin-right: 10px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../MediaElch.qrc">
+           <normaloff>:/menu/concerts.png</normaloff>:/menu/concerts.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>28</width>
+           <height>28</height>
+          </size>
+         </property>
+         <property name="page" stdset="0">
+          <number>7</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="layoutMusic"/>
+       </item>
+       <item>
         <widget class="QLabel" name="labelDownloads">
          <property name="font">
           <font>
@@ -620,7 +678,7 @@ margin-top: 15px;</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>49</width>
+                <width>100</width>
                 <height>30</height>
                </rect>
               </property>
@@ -717,7 +775,7 @@ margin-top: 15px;</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>49</width>
+                <width>100</width>
                 <height>30</height>
                </rect>
               </property>
@@ -798,6 +856,71 @@ margin-top: 15px;</string>
           </property>
           <item>
            <widget class="DownloadsWidget" name="downloadsWidget" native="true"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="music">
+         <layout class="QVBoxLayout" name="verticalLayout_13">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="MySplitter" name="musicSplitter">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <widget class="MusicFilesWidget" name="musicFilesWidget" native="true"/>
+            <widget class="QScrollArea" name="scrollArea_4">
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Plain</enum>
+             </property>
+             <property name="lineWidth">
+              <number>0</number>
+             </property>
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="scrollAreaWidgetContents">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>100</width>
+                <height>30</height>
+               </rect>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_12">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="MusicWidget" name="musicWidget" native="true"/>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -916,6 +1039,18 @@ margin-top: 15px;</string>
    <class>Navbar</class>
    <extends>QWidget</extends>
    <header>main/Navbar.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicFilesWidget</class>
+   <extends>QWidget</extends>
+   <header>music/MusicFilesWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicWidget</class>
+   <extends>QWidget</extends>
+   <header>music/MusicWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

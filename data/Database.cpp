@@ -801,3 +801,45 @@ int Database::getLabel(QStringList fileNames)
 
     return Labels::NO_LABEL;
 }
+
+void Database::clearArtists(QString path)
+{
+    // @todo: implement
+}
+
+void Database::add(Artist *artist, QString path)
+{
+    // @todo: implement
+}
+
+void Database::update(Artist *artist)
+{
+    // @todo: implement
+}
+
+QList<Artist*> Database::artists(QString path)
+{
+    // @todo: implement
+    return QList<Artist*>();
+}
+
+void Database::clearAlbums(QString path)
+{
+    // @todo: implement
+}
+
+void Database::add(Album *album, QString path)
+{
+    // @todo: implement
+}
+
+void Database::update(Album *album)
+{
+    // @todo: implement
+}
+
+QList<Album*> Database::albums(QString path)
+{
+    // @todo: implement
+    return QList<Album*>();
+}

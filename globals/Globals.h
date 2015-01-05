@@ -18,6 +18,7 @@ namespace Constants {
     const int TvShowWidgetSaveProgressMessageId    = 10004;
     const int ConcertFileSearcherProgressMessageId = 10005;
     const int TvShowUpdaterProgressMessageId       = 10006;
+    const int MusicFileSearcherProgressMessageId   = 10007;
     const int MovieProgressMessageId               = 20000;
     const int TvShowProgressMessageId              = 40000;
     const int EpisodeProgressMessageId             = 60000;
@@ -44,6 +45,10 @@ namespace TvShowRoles {
     const int LogoPath = Qt::UserRole+17;
 }
 
+namespace MusicRoles {
+    const int Type = Qt::UserRole+1;
+}
+
 namespace MediaCenterInterfaces {
     const int XbmcXml    = 1;
     const int XbmcMysql  = 2;
@@ -67,7 +72,7 @@ enum MainActions {
 };
 
 enum MainWidgets {
-    WidgetMovies, WidgetMovieSets, WidgetTvShows, WidgetConcerts, WidgetGenres, WidgetCertifications, WidgetDownloads
+    WidgetMovies, WidgetMovieSets, WidgetTvShows, WidgetConcerts, WidgetMusic, WidgetGenres, WidgetCertifications, WidgetDownloads
 };
 
 /**
@@ -120,6 +125,10 @@ enum TvShowType {
     TypeTvShow, TypeEpisode, TypeSeason
 };
 
+enum MusicType {
+    TypeArtist, TypeAlbum
+};
+
 enum ItemType {
     ItemMovie, ItemTvShow, ItemTvShowEpisode, ItemConcert
 };
@@ -142,7 +151,7 @@ struct SettingsDir {
 };
 
 enum SettingsDirType {
-    DirTypeMovies, DirTypeTvShows, DirTypeConcerts, DirTypeDownloads
+    DirTypeMovies, DirTypeTvShows, DirTypeConcerts, DirTypeDownloads, DirTypeMusic
 };
 
 enum ComboDelegateType {
@@ -180,6 +189,11 @@ namespace ImageType {
     const int MovieSetBackdrop     = 29;
     const int ConcertExtraFanart   = 30;
     const int TvShowExtraFanart    = 31;
+    const int ArtistThumb          = 32;
+    const int ArtistFanart         = 33;
+    const int ArtistLogo           = 34;
+    const int AlbumThumb           = 35;
+    const int AlbumCdArt           = 36;
 }
 
 namespace MovieScraperInfos {
@@ -253,6 +267,30 @@ namespace ConcertScraperInfos {
     const int ExtraArts     = 12;
     const int Tags          = 13;
     const int ExtraFanarts  = 14;
+}
+
+namespace MusicScraperInfos {
+    const int Name        = 1;
+    const int Genres      = 2;
+    const int Styles      = 3;
+    const int Moods       = 4;
+    const int YearsActive = 5;
+    const int Formed      = 6;
+    const int Born        = 7;
+    const int Died        = 8;
+    const int Disbanded   = 9;
+    const int Biography   = 10;
+    const int Thumb       = 11;
+    const int Fanart      = 12;
+    const int Logo        = 13;
+    const int Title       = 14;
+    const int Artist      = 15;
+    const int Review      = 16;
+    const int ReleaseDate = 17;
+    const int Label       = 18;
+    const int Rating      = 19;
+    const int Year        = 20;
+    const int CdArt       = 21;
 }
 
 // The filter numbers have to unique for MovieFilters, TvShowFilters and ConcertFilters
@@ -331,6 +369,13 @@ namespace DataFileType {
     const int TvShowThumb          = 28;
     const int MovieSetPoster       = 29;
     const int MovieSetBackdrop     = 30;
+    const int ArtistNfo            = 31;
+    const int AlbumNfo             = 32;
+    const int ArtistThumb          = 33;
+    const int ArtistFanart         = 34;
+    const int ArtistLogo           = 35;
+    const int AlbumThumb           = 36;
+    const int AlbumCdArt           = 37;
 }
 
 enum TvShowUpdateType {

@@ -36,17 +36,21 @@ FileScannerDialog::FileScannerDialog(QWidget *parent) :
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(onProgress(int,int)));
     connect(Manager::instance()->concertFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(onProgress(int,int)));
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(onProgress(int,int)));
+    connect(Manager::instance()->musicFileSearcher(), SIGNAL(progress(int,int,int)), this, SLOT(onProgress(int,int)));
 
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(currentDir(QString)), this, SLOT(onCurrentDir(QString)));
     connect(Manager::instance()->concertFileSearcher(), SIGNAL(currentDir(QString)), this, SLOT(onCurrentDir(QString)));
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(currentDir(QString)), this, SLOT(onCurrentDir(QString)));
+    connect(Manager::instance()->musicFileSearcher(), SIGNAL(currentDir(QString)), this, SLOT(onCurrentDir(QString)));
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(searchStarted(QString,int)), ui->status, SLOT(setText(QString)));
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(searchStarted(QString,int)), ui->status, SLOT(setText(QString)));
     connect(Manager::instance()->concertFileSearcher(), SIGNAL(searchStarted(QString,int)), ui->status, SLOT(setText(QString)));
+    connect(Manager::instance()->musicFileSearcher(), SIGNAL(searchStarted(QString,int)), ui->status, SLOT(setText(QString)));
 
     connect(Manager::instance()->movieFileSearcher(), SIGNAL(moviesLoaded(int)), this, SLOT(onLoadDone(int)));
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(onLoadDone(int)));
     connect(Manager::instance()->concertFileSearcher(), SIGNAL(concertsLoaded(int)), this, SLOT(onLoadDone(int)));
+    connect(Manager::instance()->musicFileSearcher(), SIGNAL(musicLoaded(int)), this, SLOT(onLoadDone(int)));
 }
 
 /**
@@ -65,6 +69,7 @@ int FileScannerDialog::exec()
     Manager::instance()->movieFileSearcher()->setMovieDirectories(Settings::instance()->movieDirectories());
     Manager::instance()->tvShowFileSearcher()->setMovieDirectories(Settings::instance()->tvShowDirectories());
     Manager::instance()->concertFileSearcher()->setConcertDirectories(Settings::instance()->concertDirectories());
+    Manager::instance()->musicFileSearcher()->setMusicDirectories(Settings::instance()->musicDirectories());
 
     ui->status->setText("");
     ui->progressBar->setValue(0);
@@ -83,6 +88,8 @@ int FileScannerDialog::exec()
         onStartConcertScanner();
     else if (m_reloadType == TypeEpisodes)
         onStartEpisodeScanner();
+    else if (m_reloadType == TypeMusic)
+        onStartMusicScanner();
 
     return 0;
 }
@@ -114,6 +121,10 @@ void FileScannerDialog::reject()
     if (m_reloadType == TypeConcerts || m_reloadType == TypeAll) {
         Manager::instance()->concertFileSearcher()->abort();
         Manager::instance()->concertModel()->clear();
+    }
+    if (m_reloadType == TypeMusic || m_reloadType == TypeAll) {
+        Manager::instance()->musicFileSearcher()->abort();
+        Manager::instance()->musicModel()->clear();
     }
 
     QDialog::reject();
@@ -195,6 +206,27 @@ void FileScannerDialog::onStartConcertScannerForce()
     Manager::instance()->concertFileSearcher()->reload(true);
 }
 
+void FileScannerDialog::onStartMusicScanner()
+{
+    ui->progressBar->setValue(0);
+    Manager::instance()->musicModel()->clear();
+    qApp->processEvents();
+    if (m_forceReload)
+        QTimer::singleShot(0, this, SLOT(onStartMusicScannerForce()));
+    else
+        QTimer::singleShot(0, this, SLOT(onStartMusicScannerCache()));
+}
+
+void FileScannerDialog::onStartMusicScannerCache()
+{
+    Manager::instance()->musicFileSearcher()->reload(false);
+}
+
+void FileScannerDialog::onStartMusicScannerForce()
+{
+    Manager::instance()->musicFileSearcher()->reload(true);
+}
+
 /**
  * @brief Updates the progress bar
  * @param current Current value
@@ -228,6 +260,8 @@ void FileScannerDialog::onLoadDone(int msgId)
     } else if (msgId == Constants::TvShowSearcherProgressMessageId) {
         onStartConcertScanner();
     } else if (msgId == Constants::ConcertFileSearcherProgressMessageId) {
+        onStartMusicScanner();
+    } else if (msgId == Constants::MusicFileSearcherProgressMessageId) {
         accept();
     }
 }

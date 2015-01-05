@@ -1067,6 +1067,112 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="page_music">
+       <layout class="QVBoxLayout" name="verticalLayout_17" stretch="0,1">
+        <item>
+         <widget class="QLabel" name="label_60">
+          <property name="text">
+           <string>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QFormLayout" name="formLayout_9">
+          <property name="fieldGrowthPolicy">
+           <enum>QFormLayout::ExpandingFieldsGrow</enum>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_64">
+            <property name="text">
+             <string>Artist Thumbnail</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="artistThumb">
+            <property name="maximumSize">
+             <size>
+              <width>400</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_65">
+            <property name="text">
+             <string>Artist Fanart</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="artistFanart">
+            <property name="maximumSize">
+             <size>
+              <width>400</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_66">
+            <property name="text">
+             <string>Artist Logo</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="artistLogo">
+            <property name="maximumSize">
+             <size>
+              <width>400</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_67">
+            <property name="text">
+             <string>Album Thumbnail</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="albumThumb">
+            <property name="maximumSize">
+             <size>
+              <width>400</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_68">
+            <property name="text">
+             <string>Album Disc Art</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLineEdit" name="albumDiscArt">
+            <property name="maximumSize">
+             <size>
+              <width>400</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
       <widget class="QWidget" name="page_xbmc">
        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1">
         <item>
@@ -1535,6 +1641,7 @@ border: none;</string>
    <addaction name="actionMovies"/>
    <addaction name="actionTV_Shows"/>
    <addaction name="actionConcerts"/>
+   <addaction name="actionMusic"/>
    <addaction name="actionXBMC"/>
    <addaction name="actionNetwork"/>
    <addaction name="actionExport"/>
@@ -1638,7 +1745,7 @@ border: none;</string>
      <normaloff>:/settings/xbmc_active.png</normaloff>:/settings/xbmc_active.png</iconset>
    </property>
    <property name="page" stdset="0">
-    <number>5</number>
+    <number>6</number>
    </property>
   </action>
   <action name="actionNetwork">
@@ -1658,7 +1765,7 @@ border: none;</string>
      <normaloff>:/settings/network_active.png</normaloff>:/settings/network_active.png</iconset>
    </property>
    <property name="page" stdset="0">
-    <number>6</number>
+    <number>7</number>
    </property>
   </action>
   <action name="actionScraper">
@@ -1698,7 +1805,7 @@ border: none;</string>
      <normaloff>:/settings/export_active.png</normaloff>:/settings/export_active.png</iconset>
    </property>
    <property name="page" stdset="0">
-    <number>7</number>
+    <number>8</number>
    </property>
   </action>
   <action name="actionImport">
@@ -1721,7 +1828,7 @@ border: none;</string>
      <normaloff>:/settings/import_active.png</normaloff>:/settings/import_active.png</iconset>
    </property>
    <property name="page" stdset="0">
-    <number>8</number>
+    <number>9</number>
    </property>
   </action>
   <action name="actionPlugins">
@@ -1737,7 +1844,30 @@ border: none;</string>
      <normaloff>:/settings_line/plugins.png</normaloff>:/settings_line/plugins.png</iconset>
    </property>
    <property name="page" stdset="0">
-    <number>9</number>
+    <number>10</number>
+   </property>
+  </action>
+  <action name="actionMusic">
+   <property name="icon">
+    <iconset resource="../MediaElch.qrc">
+     <normaloff>:/settings_line/concerts.png</normaloff>:/settings_line/concerts.png</iconset>
+   </property>
+   <property name="text">
+    <string>Music</string>
+   </property>
+   <property name="toolTip">
+    <string>Music</string>
+   </property>
+   <property name="iconNormal" stdset="0">
+    <iconset resource="../MediaElch.qrc">
+     <normaloff>:/settings_line/concerts.png</normaloff>:/settings_line/concerts.png</iconset>
+   </property>
+   <property name="iconActive" stdset="0">
+    <iconset resource="../MediaElch.qrc">
+     <normaloff>:/settings/concerts_active.png</normaloff>:/settings/concerts_active.png</iconset>
+   </property>
+   <property name="page" stdset="0">
+    <number>5</number>
    </property>
   </action>
  </widget>
@@ -1904,6 +2034,22 @@ border: none;</string>
   </connection>
   <connection>
    <sender>actionPlugins</sender>
+   <signal>triggered()</signal>
+   <receiver>SettingsWindow</receiver>
+   <slot>onAction()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>488</x>
+     <y>312</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionMusic</sender>
    <signal>triggered()</signal>
    <receiver>SettingsWindow</receiver>
    <slot>onAction()</slot>

@@ -165,7 +165,14 @@ SOURCES += main.cpp\
     downloads/MakeMkvCon.cpp \
     plugins/PluginManager.cpp \
     plugins/PluginsWidget.cpp \
-    plugins/PluginManagerDialog.cpp
+    plugins/PluginManagerDialog.cpp \
+    music/Artist.cpp \
+    music/Album.cpp \
+    music/MusicModel.cpp \
+    music/MusicModelItem.cpp \
+    music/MusicFileSearcher.cpp \
+    music/MusicWidget.cpp \
+    music/MusicFilesWidget.cpp
 
 macx {
     OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm
@@ -310,7 +317,14 @@ HEADERS  += main/MainWindow.h \
     plugins/PluginInterface.h \
     plugins/PluginManager.h \
     plugins/PluginsWidget.h \
-    plugins/PluginManagerDialog.h
+    plugins/PluginManagerDialog.h \
+    music/Artist.h \
+    music/Album.h \
+    music/MusicModel.h \
+    music/MusicModelItem.h \
+    music/MusicFileSearcher.h \
+    music/MusicWidget.h \
+    music/MusicFilesWidget.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -360,7 +374,9 @@ FORMS    += main/MainWindow.ui \
     main/Navbar.ui \
     downloads/MakeMkvDialog.ui \
     plugins/PluginsWidget.ui \
-    plugins/PluginManagerDialog.ui
+    plugins/PluginManagerDialog.ui \
+    music/MusicWidget.ui \
+    music/MusicFilesWidget.ui
 
 RESOURCES += \
     MediaElch.qrc \

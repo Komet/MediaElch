@@ -60,6 +60,12 @@ Settings::Settings(QObject *parent) :
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertCdArt, "disc.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertClearArt, "clearart.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertLogo, "logo.png", 0));
+
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::ArtistFanart, "fanart.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::ArtistLogo, "logo.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::ArtistThumb, "folder.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::AlbumCdArt, "disc.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::AlbumThumb, "folder.jpg", 0));
 }
 
 /**
@@ -179,6 +185,18 @@ void Settings::loadSettings()
         dir.separateFolders = settings()->value("sepFolders", false).toBool();
         dir.autoReload = settings()->value("autoReload", false).toBool();
         m_downloadDirectories.append(dir);
+    }
+    settings()->endArray();
+
+    m_musicDirectories.clear();
+    int musicSize = settings()->beginReadArray("Directories/Music");
+    for (int i=0 ; i<musicSize ; ++i) {
+        settings()->setArrayIndex(i);
+        SettingsDir dir;
+        dir.path = QDir::toNativeSeparators(settings()->value("path").toString());
+        dir.separateFolders = settings()->value("sepFolders", false).toBool();
+        dir.autoReload = settings()->value("autoReload", false).toBool();
+        m_musicDirectories.append(dir);
     }
     settings()->endArray();
 
@@ -349,6 +367,15 @@ void Settings::saveSettings()
         settings()->setValue("path", m_downloadDirectories.at(i).path);
         settings()->setValue("sepFolders", m_downloadDirectories.at(i).separateFolders);
         settings()->setValue("autoReload", m_downloadDirectories.at(i).autoReload);
+    }
+    settings()->endArray();
+
+    settings()->beginWriteArray("Directories/Music");
+    for (int i=0, n=m_musicDirectories.count() ; i<n ; ++i) {
+        settings()->setArrayIndex(i);
+        settings()->setValue("path", m_musicDirectories.at(i).path);
+        settings()->setValue("sepFolders", m_musicDirectories.at(i).separateFolders);
+        settings()->setValue("autoReload", m_musicDirectories.at(i).autoReload);
     }
     settings()->endArray();
 
@@ -530,6 +557,11 @@ QList<SettingsDir> Settings::tvShowDirectories()
 QList<SettingsDir> Settings::concertDirectories()
 {
     return m_concertDirectories;
+}
+
+QList<SettingsDir> Settings::musicDirectories()
+{
+    return m_musicDirectories;
 }
 
 /**
@@ -784,6 +816,11 @@ void Settings::setTvShowDirectories(QList<SettingsDir> dirs)
 void Settings::setConcertDirectories(QList<SettingsDir> dirs)
 {
     m_concertDirectories = dirs;
+}
+
+void Settings::setMusicDirectories(QList<SettingsDir> dirs)
+{
+    m_musicDirectories = dirs;
 }
 
 /**

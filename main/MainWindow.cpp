@@ -87,6 +87,7 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->concertSplitter->restoreState(m_settings->mainSplitterState());
         ui->genreWidget->splitter()->restoreState(m_settings->mainSplitterState());
         ui->certificationWidget->splitter()->restoreState(m_settings->mainSplitterState());
+        ui->musicSplitter->restoreState(m_settings->mainSplitterState());
     } else {
         ui->movieSplitter->setSizes(QList<int>() << 200 << 600);
         ui->tvShowSplitter->setSizes(QList<int>() << 200 << 600);
@@ -94,6 +95,7 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->concertSplitter->setSizes(QList<int>() << 200 << 600);
         ui->genreWidget->splitter()->setSizes(QList<int>() << 200 << 600);
         ui->certificationWidget->splitter()->setSizes(QList<int>() << 200 << 600);
+        ui->musicSplitter->setSizes(QList<int>() << 200 << 600);
     }
 
     if (m_settings->mainWindowSize().isValid() && !m_settings->mainWindowPosition().isNull()) {
@@ -121,6 +123,13 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->concertFilesWidget, SIGNAL(noConcertSelected()), ui->concertWidget, SLOT(clear()));
     connect(ui->concertFilesWidget, SIGNAL(noConcertSelected()), ui->concertWidget, SLOT(setDisabledTrue()));
 
+    connect(ui->musicFilesWidget, SIGNAL(sigArtistSelected(Artist*)), ui->musicWidget, SLOT(onArtistSelected(Artist*)));
+    connect(ui->musicFilesWidget, SIGNAL(sigAlbumSelected(Album*)), ui->musicWidget, SLOT(onAlbumSelected(Album*)));
+    connect(ui->musicFilesWidget, SIGNAL(sigArtistSelected(Artist*)), ui->musicWidget, SLOT(onSetEnabledTrue(Artist*)));
+    connect(ui->musicFilesWidget, SIGNAL(sigAlbumSelected(Album*)), ui->musicWidget, SLOT(onSetEnabledTrue(Album*)));
+    connect(ui->musicFilesWidget, SIGNAL(sigNothingSelected()), ui->musicWidget, SLOT(onClear()));
+    connect(ui->musicFilesWidget, SIGNAL(sigNothingSelected()), ui->musicWidget, SLOT(onSetDisabledTrue()));
+
     connect(ui->tvShowFilesWidget, SIGNAL(sigTvShowSelected(TvShow*)), ui->tvShowWidget, SLOT(onTvShowSelected(TvShow*)));
     connect(ui->tvShowFilesWidget, SIGNAL(sigSeasonSelected(TvShow*,int)), ui->tvShowWidget, SLOT(onSeasonSelected(TvShow*,int)));
     connect(ui->tvShowFilesWidget, SIGNAL(sigEpisodeSelected(TvShowEpisode*)), ui->tvShowWidget, SLOT(onEpisodeSelected(TvShowEpisode*)));
@@ -146,6 +155,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->genreWidget->splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
     connect(ui->certificationWidget->splitter(), SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
     connect(ui->concertSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
+    connect(ui->musicSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
 
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), ui->tvShowFilesWidget, SLOT(renewModel()));
     connect(Manager::instance()->tvShowFileSearcher(), SIGNAL(tvShowsLoaded(int)), this, SLOT(updateTvShows()));
@@ -198,6 +208,8 @@ MainWindow::MainWindow(QWidget *parent) :
         onMenu(ui->buttonTvshows);
     else if (Settings::instance()->startupSection() == "concerts")
         onMenu(ui->buttonConcerts);
+    else if (Settings::instance()->startupSection() == "music")
+        onMenu(ui->buttonMusic);
     else if (Settings::instance()->startupSection() == "import")
         onMenu(ui->buttonDownloads);
     else
@@ -240,10 +252,12 @@ void MainWindow::resizeEvent(QResizeEvent *event)
         ui->movieWidget->setBigWindow(true);
         ui->tvShowWidget->setBigWindow(true);
         ui->concertWidget->setBigWindow(true);
+        ui->musicWidget->setBigWindow(true);
     } else if (event->size().width() < 1500) {
         ui->movieWidget->setBigWindow(false);
         ui->tvShowWidget->setBigWindow(false);
         ui->concertWidget->setBigWindow(false);
+        ui->musicWidget->setBigWindow(false);
     }
 
     NotificationBox::instance()->reposition(event->size());
@@ -322,6 +336,8 @@ void MainWindow::onActionSearch()
         QTimer::singleShot(0, ui->tvShowWidget, SLOT(onStartScraperSearch()));
     } else if (ui->stackedWidget->currentIndex() == 3) {
         QTimer::singleShot(0, ui->concertWidget, SLOT(onStartScraperSearch()));
+    } else if (ui->stackedWidget->currentIndex() == 7) {
+        QTimer::singleShot(0, ui->musicWidget, SLOT(onStartScraperSearch()));
     } else if (m_plugins.contains(ui->stackedWidget->currentIndex())) {
         m_plugins.value(ui->stackedWidget->currentIndex())->doAction(PluginInterface::ActionSearch);
     }
@@ -346,6 +362,8 @@ void MainWindow::onActionSave()
         ui->genreWidget->onSaveInformation();
     else if (ui->stackedWidget->currentIndex() == 5)
         ui->certificationWidget->onSaveInformation();
+    else if (ui->stackedWidget->currentIndex() == 7)
+        ui->musicWidget->onSaveInformation();
     else if (m_plugins.contains(ui->stackedWidget->currentIndex()))
         m_plugins.value(ui->stackedWidget->currentIndex())->doAction(PluginInterface::ActionSave);
     setNewMarks();
@@ -364,6 +382,8 @@ void MainWindow::onActionSaveAll()
         ui->tvShowWidget->onSaveAll();
     else if (ui->stackedWidget->currentIndex() == 3)
         ui->concertWidget->onSaveAll();
+    else if (ui->stackedWidget->currentIndex() == 7)
+        ui->musicWidget->onSaveAll();
     else if (m_plugins.contains(ui->stackedWidget->currentIndex()))
         m_plugins.value(ui->stackedWidget->currentIndex())->doAction(PluginInterface::ActionSaveAll);
     setNewMarks();
@@ -392,6 +412,8 @@ void MainWindow::onActionReload()
         m_fileScannerDialog->setReloadType(FileScannerDialog::TypeTvShows);
     else if (ui->stackedWidget->currentIndex() == 3)
         m_fileScannerDialog->setReloadType(FileScannerDialog::TypeConcerts);
+    else if (ui->stackedWidget->currentIndex() == 7)
+        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeMusic);
 
     m_fileScannerDialog->exec();
 }
@@ -432,6 +454,8 @@ void MainWindow::onFilterChanged(QList<Filter *> filters, QString text)
         ui->tvShowFilesWidget->setFilter(filters, text);
     else if (ui->stackedWidget->currentIndex() == 3)
         ui->concertFilesWidget->setFilter(filters, text);
+    else if (ui->stackedWidget->currentIndex() == 7)
+        ui->musicFilesWidget->setFilter(filters, text);
 }
 
 /**
@@ -444,17 +468,21 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
     qDebug() << "Entered, enabled=" << enabled;
 
     m_actions[widget][ActionSave] = enabled;
+
     if (widget != WidgetMovieSets && widget != WidgetCertifications) {
         m_actions[widget][ActionSaveAll] = enabled;
-        m_actions[widget][ActionRename] = enabled;
+        if (widget != WidgetMusic)
+            m_actions[widget][ActionRename] = enabled;
     }
 
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
         (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1) ||
+        (widget == WidgetMusic && ui->stackedWidget->currentIndex() == 7) ||
         (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 3)) {
         ui->navbar->setActionSaveEnabled(enabled);
         ui->navbar->setActionSaveAllEnabled(enabled);
-        ui->navbar->setActionRenameEnabled(enabled);
+        if (widget != WidgetConcerts)
+            ui->navbar->setActionRenameEnabled(enabled);
     }
     if ((widget == WidgetMovieSets && ui->stackedWidget->currentIndex() == 2) ||
         (widget == WidgetCertifications && ui->stackedWidget->currentIndex() == 5) ||
@@ -474,7 +502,8 @@ void MainWindow::onSetSearchEnabled(bool enabled, MainWidgets widget)
 
     if ((widget == WidgetMovies && ui->stackedWidget->currentIndex() == 0) ||
         (widget == WidgetTvShows && ui->stackedWidget->currentIndex() == 1) ||
-        (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 3))
+        (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 3) ||
+        (widget == WidgetMusic && ui->stackedWidget->currentIndex() == 7))
         ui->navbar->setActionSearchEnabled(enabled);
 }
 
@@ -489,7 +518,7 @@ void MainWindow::moveSplitter(int pos, int index)
     QList<int> sizes;
     QList<QSplitter*> splitters;
     splitters << ui->movieSplitter << ui->tvShowSplitter << ui->setsWidget->splitter() << ui->genreWidget->splitter()
-              << ui->certificationWidget->splitter() << ui->concertSplitter;
+              << ui->certificationWidget->splitter() << ui->concertSplitter << ui->musicSplitter;
     foreach (QSplitter *splitter, splitters) {
         if (splitter->sizes().at(0) == pos) {
             sizes = splitter->sizes();
@@ -579,6 +608,7 @@ void MainWindow::onRenewModels()
     ui->filesWidget->renewModel();
     ui->tvShowFilesWidget->renewModel();
     ui->concertFilesWidget->renewModel();
+    ui->musicFilesWidget->renewModel();
     ui->downloadsWidget->scanDownloadFolders();
 }
 
@@ -687,7 +717,7 @@ void MainWindow::onMenu(QToolButton *button)
         ui->navbar->setFilterWidgetEnabled(false);
         ui->navbar->setReloadToolTip(tr("Reload (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
     } else {
-        ui->navbar->setActionReloadEnabled(page == 0 || page == 1 || page == 3 || page == 6);
+        ui->navbar->setActionReloadEnabled(page == 0 || page == 1 || page == 3 || page == 6 || page == 7);
         MainWidgets widget;
         switch (page) {
         case 0:
@@ -724,6 +754,11 @@ void MainWindow::onMenu(QToolButton *button)
             // Import
             widget = WidgetDownloads;
             ui->navbar->setReloadToolTip(tr("Reload all Downloads (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+            break;
+        case 7:
+            // Music
+            ui->navbar->setReloadToolTip(tr("Reload Music (%1)").arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+            widget = WidgetMusic;
             break;
         }
         ui->navbar->setActionSearchEnabled(m_actions[widget][ActionSearch]);

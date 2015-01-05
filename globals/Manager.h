@@ -21,6 +21,9 @@
 #include "scrapers/TvTunes.h"
 #include "trailerProviders/TrailerProvider.h"
 #include "tvShows/TvShowFilesWidget.h"
+#include "music/MusicFileSearcher.h"
+#include "music/MusicModel.h"
+#include "music/MusicFilesWidget.h"
 
 /**
  * @brief The Manager class
@@ -48,16 +51,20 @@ public:
     MovieFileSearcher* movieFileSearcher();
     TvShowFileSearcher* tvShowFileSearcher();
     ConcertFileSearcher* concertFileSearcher();
+    MusicFileSearcher* musicFileSearcher();
     Database* database();
     MovieModel* movieModel();
     TvShowModel* tvShowModel();
     TvShowProxyModel *tvShowProxyModel();
     ConcertModel* concertModel();
+    MusicModel* musicModel();
     FileScannerDialog *fileScannerDialog();
     FanartTv* fanartTv();
     TvShowFilesWidget *tvShowFilesWidget();
+    MusicFilesWidget *musicFilesWidget();
     TvTunes* tvTunes();
     void setTvShowFilesWidget(TvShowFilesWidget *widget);
+    void setMusicFilesWidget(MusicFilesWidget *widget);
     void setFileScannerDialog(FileScannerDialog *dialog);
     static QList<ScraperInterface*> constructNativeScrapers(QObject *parent);
 
@@ -77,11 +84,14 @@ private:
     TvShowModel* m_tvShowModel;
     TvShowProxyModel* m_tvShowProxyModel;
     ConcertModel* m_concertModel;
+    MusicModel* m_musicModel;
     Settings *m_settings;
     Database *m_database;
     TvShowFilesWidget *m_tvShowFilesWidget;
+    MusicFilesWidget *m_musicFilesWidget;
     FileScannerDialog *m_fileScannerDialog;
     TvTunes *m_tvTunes;
+    MusicFileSearcher *m_musicFileSearcher;
 };
 
 #endif // MANAGER_H

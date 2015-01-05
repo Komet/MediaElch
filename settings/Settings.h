@@ -39,6 +39,7 @@ public:
     QList<SettingsDir> tvShowDirectories();
     QList<SettingsDir> concertDirectories();
     QList<SettingsDir> downloadDirectories();
+    QList<SettingsDir> musicDirectories();
     QString unrar();
     QString makeMkvCon();
     bool deleteArchives();
@@ -101,6 +102,7 @@ public:
     void setTvShowDirectories(QList<SettingsDir> dirs);
     void setConcertDirectories(QList<SettingsDir> dirs);
     void setDownloadDirectories(QList<SettingsDir> dirs);
+    void setMusicDirectories(QList<SettingsDir> dirs);
     void setUnrar(QString unrar);
     void setMakeMkvCon(QString makeMkvCon);
     void setDeleteArchives(bool deleteArchives);
@@ -162,6 +164,7 @@ private:
     QList<SettingsDir> m_tvShowDirectories;
     QList<SettingsDir> m_concertDirectories;
     QList<SettingsDir> m_downloadDirectories;
+    QList<SettingsDir> m_musicDirectories;
     QString m_unrar;
     QString m_makeMkvCon;
     bool m_deleteArchives;

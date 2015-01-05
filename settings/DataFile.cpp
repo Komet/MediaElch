@@ -152,6 +152,18 @@ int DataFile::dataFileTypeForImageType(int imageType)
     case ImageType::TvShowSeasonThumb:
         return DataFileType::TvShowSeasonThumb;
 
+    case ImageType::AlbumCdArt:
+        return DataFileType::AlbumCdArt;
+    case ImageType::AlbumThumb:
+        return DataFileType::AlbumThumb;
+
+    case ImageType::ArtistFanart:
+        return DataFileType::ArtistFanart;
+    case ImageType::ArtistLogo:
+        return DataFileType::ArtistLogo;
+    case ImageType::ArtistThumb:
+        return DataFileType::ArtistThumb;
+
     default:
         return -1;
     }

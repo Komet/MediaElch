@@ -42,10 +42,12 @@ Manager::Manager(QObject *parent) :
     m_movieFileSearcher = new MovieFileSearcher(this);
     m_tvShowFileSearcher = new TvShowFileSearcher(this);
     m_concertFileSearcher = new ConcertFileSearcher(this);
+    m_musicFileSearcher = new MusicFileSearcher(this);
     m_movieModel = new MovieModel(this);
     m_tvShowModel = new TvShowModel(this);
     m_tvShowProxyModel = new TvShowProxyModel(this);
     m_concertModel = new ConcertModel(this);
+    m_musicModel = new MusicModel(this);
     m_database = new Database(this);
 
     m_mediaCenters.append(new XbmcXml(this));
@@ -138,6 +140,11 @@ ConcertFileSearcher *Manager::concertFileSearcher()
     return m_concertFileSearcher;
 }
 
+MusicFileSearcher *Manager::musicFileSearcher()
+{
+    return m_musicFileSearcher;
+}
+
 /**
  * @brief Returns a list of all movie scrapers
  * @return List of pointers of movie scrapers
@@ -200,6 +207,11 @@ TvShowModel *Manager::tvShowModel()
 ConcertModel *Manager::concertModel()
 {
     return m_concertModel;
+}
+
+MusicModel *Manager::musicModel()
+{
+    return m_musicModel;
 }
 
 /**
@@ -269,6 +281,16 @@ void Manager::setTvShowFilesWidget(TvShowFilesWidget *widget)
 TvShowFilesWidget *Manager::tvShowFilesWidget()
 {
     return m_tvShowFilesWidget;
+}
+
+void Manager::setMusicFilesWidget(MusicFilesWidget *widget)
+{
+    m_musicFilesWidget = widget;
+}
+
+MusicFilesWidget *Manager::musicFilesWidget()
+{
+    return m_musicFilesWidget;
 }
 
 FileScannerDialog *Manager::fileScannerDialog()

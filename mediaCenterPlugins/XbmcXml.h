@@ -10,6 +10,8 @@
 #include "movies/Movie.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
+#include "music/Album.h"
+#include "music/Artist.h"
 
 /**
  * @brief The XbmcXml class
@@ -39,6 +41,11 @@ public:
     void saveMovieSetPoster(QString setName, QImage poster);
     void saveMovieSetBackdrop(QString setName, QImage backdrop);
 
+    bool saveArtist(Artist *artist);
+    bool saveAlbum(Album *album);
+    bool loadArtist(Artist *artist, QString initialNfoContent = "");
+    bool loadAlbum(Album *album, QString initialNfoContent = "");
+
     QString actorImageName(Movie *movie, Actor actor);
     QString actorImageName(TvShow *show, Actor actor);
     QString actorImageName(TvShowEpisode *episode, Actor actor);
@@ -47,10 +54,14 @@ public:
     QString imageFileName(Concert *concert, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString imageFileName(TvShowEpisode *episode, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
     QString imageFileName(TvShow *show, int type, int season = -1, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+    QString imageFileName(Artist *artist, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
+    QString imageFileName(Album *album, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false);
 
     QString nfoFilePath(Movie *movie);
     QString nfoFilePath(Concert *concert);
     QString nfoFilePath(TvShowEpisode *episode);
+    QString nfoFilePath(Artist *artist);
+    QString nfoFilePath(Album *album);
 
     static void writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode);
     static void writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDetails);
@@ -59,6 +70,8 @@ private:
     void writeMovieXml(QXmlStreamWriter &xml, Movie *movie);
     void writeConcertXml(QXmlStreamWriter &xml, Concert *concert);
     void writeTvShowXml(QXmlStreamWriter &xml, TvShow *show);
+    void writeArtistXml(QXmlStreamWriter &xml, Artist *artist);
+    void writeAlbumXml(QXmlStreamWriter &xml, Album *album);
     bool loadStreamDetails(StreamDetails *streamDetails, QDomDocument domDoc);
     void loadStreamDetails(StreamDetails *streamDetails, QDomElement elem);
     bool saveFile(QString filename, QByteArray data);
