@@ -2,14 +2,15 @@
 
 Artist::Artist(QString path, QObject *parent) : QObject(parent)
 {
+    m_controller = new ArtistController(this);
     m_hasChanged = false;
     m_modelItem = 0;
-    setPath(path);
+    m_databaseId = -1;
+    m_path = path;
 }
 
 Artist::~Artist()
 {
-
 }
 
 QString Artist::path() const
@@ -201,7 +202,7 @@ void Artist::setRawImage(int imageType, QByteArray image)
     setHasChanged(true);
 }
 
-void Artist::removeRawImage(int imageType)
+void Artist::removeImage(int imageType)
 {
     if (!m_rawImages.value(imageType, QByteArray()).isNull())
         m_rawImages.remove(imageType);
@@ -322,4 +323,34 @@ QList<int> Artist::imagesToRemove() const
 void Artist::setImagesToRemove(const QList<int> &imagesToRemove)
 {
     m_imagesToRemove = imagesToRemove;
+}
+
+int Artist::databaseId() const
+{
+    return m_databaseId;
+}
+
+void Artist::setDatabaseId(int databaseId)
+{
+    m_databaseId = databaseId;
+}
+
+ArtistController *Artist::controller() const
+{
+    return m_controller;
+}
+
+void Artist::setController(ArtistController *controller)
+{
+    m_controller = controller;
+}
+
+QString Artist::mbId() const
+{
+    return m_mbId;
+}
+
+void Artist::setMbId(const QString &mbId)
+{
+    m_mbId = mbId;
 }

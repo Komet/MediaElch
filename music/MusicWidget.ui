@@ -1,21 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>MusicWidget</class>
  <widget class="QWidget" name="MusicWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>910</width>
+    <height>662</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QStackedWidget" name="stackedWidget">
+     <widget class="MusicWidgetArtist" name="artist"/>
+     <widget class="MusicWidgetAlbum" name="album"/>
+    </widget>
+   </item>
+  </layout>
  </widget>
- <pixmapfunction/>
+ <customwidgets>
+  <customwidget>
+   <class>MusicWidgetArtist</class>
+   <extends>QWidget</extends>
+   <header>music/MusicWidgetArtist.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicWidgetAlbum</class>
+   <extends>QWidget</extends>
+   <header>music/MusicWidgetAlbum.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
  <connections/>
 </ui>

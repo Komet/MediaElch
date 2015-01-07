@@ -55,7 +55,7 @@ public:
     void clearAlbums(QString path = "");
     void add(Album *album, QString path);
     void update(Album *album);
-    QList<Album*> albums(QString path);
+    QList<Album*> albums(Artist *artist);
 
     void addImport(QString fileName, QString type, QString path);
     bool guessImport(QString fileName, QString &type, QString &path);
@@ -65,6 +65,7 @@ public:
 
 private:
     QSqlDatabase *m_db;
+    void updateDbVersion(int version);
 };
 
 #endif // DATABASE_H

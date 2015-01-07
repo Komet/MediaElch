@@ -84,6 +84,16 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
             scraperCounter++;
         }
     }
+    foreach (MusicScraperInterface *scraper, Manager::instance()->musicScrapers()) {
+        if (scraper->hasSettings()) {
+            QLabel *name = new QLabel("<b>" + scraper->name() + "</b>");
+            name->setAlignment(Qt::AlignRight);
+            name->setStyleSheet("margin-top: 3px;");
+            ui->gridLayoutScrapers->addWidget(name, scraperCounter, 0);
+            ui->gridLayoutScrapers->addWidget(scraper->settingsWidget(), scraperCounter, 1);
+            scraperCounter++;
+        }
+    }
 
     foreach (ImageProviderInterface *scraper, Manager::instance()->imageProviders()) {
         if (scraper->hasSettings()) {

@@ -1,15 +1,19 @@
-#ifndef MEDIAPASSIONIMAGES_H
-#define MEDIAPASSIONIMAGES_H
+#ifndef FANARTTVMUSIC_H
+#define FANARTTVMUSIC_H
 
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QObject>
+#include "globals/Globals.h"
 #include "data/ImageProviderInterface.h"
-#include "movies/Movie.h"
-#include "scrapers/MediaPassion.h"
+#include "scrapers/TMDb.h"
+#include "scrapers/TheTvDb.h"
 
-class MediaPassionImages : public ImageProviderInterface
+class FanartTvMusic : public ImageProviderInterface
 {
     Q_OBJECT
 public:
-    explicit MediaPassionImages(QObject *parent = 0);
+    explicit FanartTvMusic(QObject *parent = 0);
     QString name();
     QString identifier();
     void movieImages(Movie *movie, QString tmdbId, QList<int> types);
@@ -22,8 +26,8 @@ public:
     void movieCdArts(QString tmdbId);
     void concertImages(Concert *concert, QString tmdbId, QList<int> types);
     void concertPosters(QString tmdbId);
-    void concertBackdrops(QString tmdbId);
-    void concertLogos(QString tmdbId);
+    void concertBackdrops(QString mbId);
+    void concertLogos(QString mbId);
     void concertClearArts(QString tmdbId);
     void concertCdArts(QString tmdbId);
     void tvShowImages(TvShow *show, QString tvdbId, QList<int> types);
@@ -69,15 +73,24 @@ signals:
     void sigImagesLoaded(Album *, QMap<int, QList<Poster> >);
 
 private slots:
-    void onSearchMovieFinished(QList<ScraperSearchResult> results);
-    void onLoadImagesFinished();
+    void onSearchArtistFinished();
+    void onLoadArtistFinished();
+    void onSearchAlbumFinished();
+    void onLoadAlbumFinished();
+    void onLoadAllArtistDataFinished();
+    void onLoadAllAlbumDataFinished();
 
 private:
     QList<int> m_provides;
-    MediaPassion *m_mediaPassion;
-    Movie *m_dummyMovie;
-    int m_imageType;
+    QString m_apiKey;
+    QString m_personalApiKey;
+    QNetworkAccessManager m_qnam;
     int m_searchResultLimit;
+    QString m_language;
+
+    QNetworkAccessManager *qnam();
+    QList<Poster> parseData(QString json, int type);
+    QString keyParameter();
 };
 
-#endif // MEDIAPASSIONIMAGES_H
+#endif // FANARTTVMUSIC_H

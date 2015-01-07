@@ -29,6 +29,10 @@ public slots:
     void onSaveInformation();
     void onSaveAll();
 
+signals:
+    void sigSetActionSearchEnabled(bool, MainWidgets);
+    void sigSetActionSaveEnabled(bool, MainWidgets);
+
 private:
     Ui::MusicWidget *ui;
 };

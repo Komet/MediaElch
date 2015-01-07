@@ -407,3 +407,55 @@ QWidget* TheTvDbImages::settingsWidget()
 {
     return 0;
 }
+
+void TheTvDbImages::searchAlbum(QString artistName, QString searchStr, int limit)
+{
+    Q_UNUSED(artistName);
+    Q_UNUSED(searchStr);
+    Q_UNUSED(limit);
+}
+
+void TheTvDbImages::searchArtist(QString searchStr, int limit)
+{
+    Q_UNUSED(searchStr);
+    Q_UNUSED(limit);
+}
+
+void TheTvDbImages::artistFanarts(QString mbId)
+{
+    Q_UNUSED(mbId);
+}
+
+void TheTvDbImages::artistLogos(QString mbId)
+{
+    Q_UNUSED(mbId);
+}
+
+void TheTvDbImages::artistThumbs(QString mbId)
+{
+    Q_UNUSED(mbId);
+}
+
+void TheTvDbImages::albumCdArts(QString mbId)
+{
+    Q_UNUSED(mbId);
+}
+
+void TheTvDbImages::albumThumbs(QString mbId)
+{
+    Q_UNUSED(mbId);
+}
+
+void TheTvDbImages::artistImages(Artist *artist, QString mbId, QList<int> types)
+{
+    Q_UNUSED(artist);
+    Q_UNUSED(mbId);
+    Q_UNUSED(types);
+}
+
+void TheTvDbImages::albumImages(Album *album, QString mbId, QList<int> types)
+{
+    Q_UNUSED(album);
+    Q_UNUSED(mbId);
+    Q_UNUSED(types);
+}

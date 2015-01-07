@@ -1,6 +1,7 @@
 #ifndef MUSICFILESWIDGET_H
 #define MUSICFILESWIDGET_H
 
+#include <QModelIndex>
 #include <QWidget>
 
 #include "globals/Filter.h"
@@ -28,6 +29,9 @@ signals:
     void sigArtistSelected(Artist*);
     void sigAlbumSelected(Album*);
     void sigNothingSelected();
+
+private slots:
+    void onItemSelected(QModelIndex index);
 
 private:
     Ui::MusicFilesWidget *ui;

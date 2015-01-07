@@ -1782,6 +1782,8 @@ bool XbmcXml::loadArtist(Artist *artist, QString initialNfoContent)
 
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
+    if (!domDoc.elementsByTagName("mbid").isEmpty())
+        artist->setMbId(domDoc.elementsByTagName("mbid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("name").isEmpty())
         artist->setName(domDoc.elementsByTagName("name").at(0).toElement().text());
     if (!domDoc.elementsByTagName("genre").isEmpty())
@@ -1849,6 +1851,8 @@ bool XbmcXml::loadAlbum(Album *album, QString initialNfoContent)
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
 
+    if (!domDoc.elementsByTagName("mbid").isEmpty())
+        album->setMbId(domDoc.elementsByTagName("mbid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("title").isEmpty())
         album->setTitle(domDoc.elementsByTagName("title").at(0).toElement().text());
     if (!domDoc.elementsByTagName("artist").isEmpty())
@@ -2067,6 +2071,8 @@ bool XbmcXml::saveAlbum(Album *album)
 void XbmcXml::writeArtistXml(QXmlStreamWriter &xml, Artist *artist)
 {
     xml.writeStartElement("artist");
+    if (!artist->mbId().isEmpty())
+        xml.writeTextElement("mbid", artist->mbId());
     xml.writeTextElement("name", artist->name());
     xml.writeTextElement("genre", artist->genres().join(" / "));
     foreach (const QString &style, artist->styles())
@@ -2101,6 +2107,8 @@ void XbmcXml::writeArtistXml(QXmlStreamWriter &xml, Artist *artist)
 void XbmcXml::writeAlbumXml(QXmlStreamWriter &xml, Album *album)
 {
     xml.writeStartElement("album");
+    if (!album->mbId().isEmpty())
+        xml.writeTextElement("mbid", album->mbId());
     xml.writeTextElement("title", album->title());
     xml.writeTextElement("artist", album->artist());
     xml.writeTextElement("genre", album->genres().join(" / "));

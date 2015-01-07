@@ -10,6 +10,7 @@
 #include "data/ImageProviderInterface.h"
 #include "data/MediaCenterInterface.h"
 #include "data/MovieFileSearcher.h"
+#include "data/MusicScraperInterface.h"
 #include "data/ScraperInterface.h"
 #include "data/TvScraperInterface.h"
 #include "data/TvShowFileSearcher.h"
@@ -42,6 +43,7 @@ public:
     ScraperInterface* scraper(const QString &identifier);
     QList<TvScraperInterface*> tvScrapers();
     QList<ConcertScraperInterface*> concertScrapers();
+    QList<MusicScraperInterface*> musicScrapers();
     QList<ImageProviderInterface*> imageProviders();
     QList<ImageProviderInterface*> imageProviders(int type);
     QList<TrailerProvider*> trailerProviders();
@@ -75,6 +77,7 @@ private:
     QList<ScraperInterface*> m_scrapers;
     QList<TvScraperInterface*> m_tvScrapers;
     QList<ConcertScraperInterface*> m_concertScrapers;
+    QList<MusicScraperInterface*> m_musicScrapers;
     QList<ImageProviderInterface*> m_imageProviders;
     QList<TrailerProvider*> m_trailerProviders;
     MovieFileSearcher* m_movieFileSearcher;

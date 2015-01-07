@@ -759,3 +759,55 @@ QString FanartTv::keyParameter()
 {
     return (!m_personalApiKey.isEmpty()) ? QString("api_key=%1&client_key=%2").arg(m_apiKey).arg(m_personalApiKey) : QString("api_key=%1").arg(m_apiKey);
 }
+
+void FanartTv::searchAlbum(QString artistName, QString searchStr, int limit)
+{
+    Q_UNUSED(artistName);
+    Q_UNUSED(searchStr);
+    Q_UNUSED(limit);
+}
+
+void FanartTv::searchArtist(QString searchStr, int limit)
+{
+    Q_UNUSED(searchStr);
+    Q_UNUSED(limit);
+}
+
+void FanartTv::artistFanarts(QString mbId)
+{
+    Q_UNUSED(mbId);
+}
+
+void FanartTv::artistLogos(QString mbId)
+{
+    Q_UNUSED(mbId);
+}
+
+void FanartTv::artistThumbs(QString mbId)
+{
+    Q_UNUSED(mbId);
+}
+
+void FanartTv::albumCdArts(QString mbId)
+{
+    Q_UNUSED(mbId);
+}
+
+void FanartTv::albumThumbs(QString mbId)
+{
+    Q_UNUSED(mbId);
+}
+
+void FanartTv::artistImages(Artist *artist, QString mbId, QList<int> types)
+{
+    Q_UNUSED(artist);
+    Q_UNUSED(mbId);
+    Q_UNUSED(types);
+}
+
+void FanartTv::albumImages(Album *album, QString mbId, QList<int> types)
+{
+    Q_UNUSED(album);
+    Q_UNUSED(mbId);
+    Q_UNUSED(types);
+}

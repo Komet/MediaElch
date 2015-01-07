@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MusicSearchWidget</class>
+ <widget class="QWidget" name="MusicSearchWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>722</width>
+    <height>648</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string notr="true">Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Scraper</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboScraper"/>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="MyLineEdit" name="searchString">
+     <property name="toolTip">
+      <string>When using IMDB you can also use the IMDB id as search query.
+If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0">
+     <item>
+      <widget class="QTableWidget" name="results">
+       <property name="styleSheet">
+        <string notr="true">alternate-background-color: rgb(243, 246, 250);
+color: #395265;
+selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
+</string>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <property name="alternatingRowColors">
+        <bool>true</bool>
+       </property>
+       <property name="selectionMode">
+        <enum>QAbstractItemView::SingleSelection</enum>
+       </property>
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectRows</enum>
+       </property>
+       <property name="showGrid">
+        <bool>false</bool>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <column>
+        <property name="text">
+         <string>Result</string>
+        </property>
+       </column>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	border: 1px solid rgba(0, 0, 0, 100);
+	border-radius: 5px;
+	background-color: rgba(255, 255, 255, 200);
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Infos to load</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>8</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkName">
+          <property name="text">
+           <string>Name</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">artist</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkBorn">
+          <property name="text">
+           <string>Born</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">artist</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkFormed">
+          <property name="text">
+           <string>Formed</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">artist</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkYearsActive">
+          <property name="text">
+           <string>Years Active</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">artist</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkDisbanded">
+          <property name="text">
+           <string>Disbanded</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">artist</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkDied">
+          <property name="text">
+           <string>Died</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">artist</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkBiography">
+          <property name="text">
+           <string>Biography</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">artist</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkArtist">
+          <property name="text">
+           <string>Artist</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">album</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkLabel">
+          <property name="text">
+           <string>Label</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">album</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkReview">
+          <property name="text">
+           <string>Review</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">album</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkYear">
+          <property name="text">
+           <string>Year</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">album</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkRating">
+          <property name="text">
+           <string>Rating</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">album</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkReleaseDate">
+          <property name="text">
+           <string>Release Date</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">album</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkTitle">
+          <property name="text">
+           <string>Title</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">album</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkGenres">
+          <property name="text">
+           <string>Genres</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">both</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkStyles">
+          <property name="text">
+           <string>Styles</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">both</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkMoods">
+          <property name="text">
+           <string>Moods</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">both</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkThumb">
+          <property name="text">
+           <string>Thumbnail</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">artist</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkFanart">
+          <property name="text">
+           <string>Fanart</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">artist</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkLogo">
+          <property name="text">
+           <string>Logo</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">artist</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkCover">
+          <property name="text">
+           <string>Cover</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">album</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkCdArt">
+          <property name="text">
+           <string>CD Art</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">album</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="Line" name="line">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="chkUnCheckAll">
+          <property name="text">
+           <string>(Un)Check all</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyCheckBox</class>
+   <extends>QCheckBox</extends>
+   <header location="global">smallWidgets/MyCheckBox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MyLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>smallWidgets/MyLineEdit.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

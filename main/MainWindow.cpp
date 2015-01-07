@@ -25,6 +25,7 @@
 #include "main/Update.h"
 #include "movies/MovieMultiScrapeDialog.h"
 #include "movies/MovieSearch.h"
+#include "music/MusicSearch.h"
 #include "notifications/Notificator.h"
 #include "plugins/PluginInterface.h"
 #include "plugins/PluginManager.h"
@@ -174,6 +175,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->genreWidget, SIGNAL(sigJumpToMovie(Movie*)), this, SLOT(onJumpToMovie(Movie*)));
 
     MovieSearch::instance(this);
+    MusicSearch::instance(this);
     TvShowSearch::instance(this);
     ImageDialog::instance(this);
     MovieListDialog::instance(this);

@@ -213,6 +213,8 @@ void Settings::loadSettings()
         scraper->loadSettings(*settings());
     foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers())
         scraper->loadSettings(*settings());
+    foreach (MusicScraperInterface *scraper, Manager::instance()->musicScrapers())
+        scraper->loadSettings(*settings());
     foreach (ImageProviderInterface *scraper, Manager::instance()->imageProviders())
         scraper->loadSettings(*settings());
 
@@ -390,6 +392,10 @@ void Settings::saveSettings()
             scraper->saveSettings(*settings());
     }
     foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers()) {
+        if (scraper->hasSettings())
+            scraper->saveSettings(*settings());
+    }
+    foreach (MusicScraperInterface *scraper, Manager::instance()->musicScrapers()) {
         if (scraper->hasSettings())
             scraper->saveSettings(*settings());
     }
@@ -960,6 +966,8 @@ QList<int> Settings::scraperInfos(MainWidgets widget, QString scraperId)
         item = "Concerts";
     else if (widget == WidgetTvShows)
         item = "TvShows";
+    else if (widget == WidgetMusic)
+        item = "Music";
     QList<int> infos;
     foreach (const QString &info, settings()->value(QString("Scrapers/%1/%2").arg(item).arg(scraperId)).toString().split(","))
         infos << info.toInt();
@@ -979,6 +987,8 @@ void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<int>
         item = "Concerts";
     else if (widget == WidgetTvShows)
         item = "TvShows";
+    else if (widget == WidgetMusic)
+        item = "Music";
     QStringList infos;
     foreach (int info, items)
         infos << QString("%1").arg(info);

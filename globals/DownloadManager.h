@@ -8,9 +8,12 @@
 #include <QUrl>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
+
+#include "data/TvShowEpisode.h"
 #include "globals/DownloadManagerElement.h"
 #include "globals/Globals.h"
-#include "data/TvShowEpisode.h"
+#include "music/Album.h"
+#include "music/Artist.h"
 
 /**
  * @brief The DownloadManager class
@@ -36,6 +39,8 @@ signals:
     void allDownloadsFinished(Movie*);
     void allDownloadsFinished(TvShow*);
     void allDownloadsFinished(Concert*);
+    void allDownloadsFinished(Artist*);
+    void allDownloadsFinished(Album*);
 
 private slots:
     void downloadProgress(qint64 received, qint64 total);

@@ -24,6 +24,18 @@ Storage::Storage(QObject *parent, TvShowEpisode *episode) :
     m_episode = QPointer<TvShowEpisode>(episode);
 }
 
+Storage::Storage(QObject *parent, Artist *artist) :
+    QObject(parent)
+{
+    m_artist = QPointer<Artist>(artist);
+}
+
+Storage::Storage(QObject *parent, Album *album) :
+    QObject(parent)
+{
+    m_album = QPointer<Album>(album);
+}
+
 Storage::Storage(QObject *parent, QList<ScraperSearchResult> results) :
     QObject(parent)
 {
@@ -94,6 +106,20 @@ TvShowEpisode *Storage::episode()
     return 0;
 }
 
+Artist *Storage::artist()
+{
+    if (m_artist)
+        return m_artist;
+    return 0;
+}
+
+Album *Storage::album()
+{
+    if (m_album)
+        return m_album;
+    return 0;
+}
+
 ExportTemplate *Storage::exportTemplate()
 {
     if (m_exportTemplate)
@@ -150,6 +176,22 @@ QVariant Storage::toVariant(QObject *parent, TvShow *show)
 QVariant Storage::toVariant(QObject *parent, TvShowEpisode *episode)
 {
     Storage *storage = new Storage(parent, episode);
+    QVariant var;
+    var.setValue(storage);
+    return var;
+}
+
+QVariant Storage::toVariant(QObject *parent, Artist *artist)
+{
+    Storage *storage = new Storage(parent, artist);
+    QVariant var;
+    var.setValue(storage);
+    return var;
+}
+
+QVariant Storage::toVariant(QObject *parent, Album *album)
+{
+    Storage *storage = new Storage(parent, album);
     QVariant var;
     var.setValue(storage);
     return var;

@@ -166,6 +166,10 @@ int ImageDialog::exec(int type)
         ui->searchTerm->setText(formatSearchText(m_tvShow->name()));
     else if (m_itemType == ItemTvShowEpisode)
         ui->searchTerm->setText(formatSearchText(m_tvShowEpisode->tvShow()->name()));
+    else if (m_itemType == ItemAlbum)
+        ui->searchTerm->setText(formatSearchText(m_album->title()));
+    else if (m_itemType == ItemArtist)
+        ui->searchTerm->setText(formatSearchText(m_artist->name()));
     else
         ui->searchTerm->clear();
 
@@ -494,6 +498,18 @@ void ImageDialog::setTvShowEpisode(TvShowEpisode *episode)
     m_itemType = ItemTvShowEpisode;
 }
 
+void ImageDialog::setArtist(Artist *artist)
+{
+    m_artist = artist;
+    m_itemType = ItemArtist;
+}
+
+void ImageDialog::setAlbum(Album *album)
+{
+    m_album = album;
+    m_itemType = ItemAlbum;
+}
+
 /**
  * @brief Cancels the current download and clears the download queue
  */
@@ -684,6 +700,12 @@ void ImageDialog::onSearch(bool onlyFirstResult)
     } else if (m_itemType == ItemTvShowEpisode) {
         initialSearchTerm = m_tvShowEpisode->tvShow()->name();
         id = m_tvShowEpisode->tvShow()->tvdbId();
+    } else if (m_itemType == ItemAlbum) {
+        initialSearchTerm = m_album->title();
+        id = m_album->mbId();
+    } else if (m_itemType == ItemArtist) {
+        initialSearchTerm = m_artist->name();
+        id = m_artist->mbId();
     }
 
     clearSearch();
@@ -709,6 +731,10 @@ void ImageDialog::onSearch(bool onlyFirstResult)
             m_currentProvider->searchConcert(searchTerm, limit);
         else if (m_itemType == ItemTvShow || m_itemType == ItemTvShowEpisode)
             m_currentProvider->searchTvShow(searchTerm, limit);
+        else if (m_itemType == ItemArtist)
+            m_currentProvider->searchArtist(searchTerm, limit);
+        else if (m_itemType == ItemAlbum)
+            m_currentProvider->searchAlbum(m_album->artist(), searchTerm, limit);
     }
 }
 
@@ -801,8 +827,19 @@ void ImageDialog::loadImagesFromProvider(QString id)
     } else if (m_itemType == ItemTvShowEpisode) {
         if (m_type == ImageType::TvShowEpisodeThumb)
             m_currentProvider->tvShowEpisodeThumb(id, m_tvShowEpisode->season(), m_tvShowEpisode->episode());
+    } else if (m_itemType == ItemArtist) {
+        if (m_type == ImageType::ArtistFanart)
+            m_currentProvider->artistFanarts(id);
+        else if (m_type == ImageType::ArtistLogo)
+            m_currentProvider->artistLogos(id);
+        else if (m_type == ImageType::ArtistThumb)
+            m_currentProvider->artistThumbs(id);
+    } else if (m_itemType == ItemAlbum) {
+        if (m_type == ImageType::AlbumCdArt)
+            m_currentProvider->albumCdArts(id);
+        else if (m_type == ImageType::AlbumThumb)
+            m_currentProvider->albumThumbs(id);
     }
-
 }
 
 /**

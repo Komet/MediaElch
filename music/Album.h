@@ -4,7 +4,11 @@
 #include <QObject>
 #include "globals/Globals.h"
 #include "MusicModelItem.h"
+#include "Artist.h"
+#include "AlbumController.h"
 
+class AlbumController;
+class Artist;
 class MusicModelItem;
 
 class Album : public QObject
@@ -61,7 +65,7 @@ public:
 
     QByteArray rawImage(int imageType);
     void setRawImage(int imageType, QByteArray image);
-    void removeRawImage(int imageType);
+    void removeImage(int imageType);
     void clearImages();
 
     void clear();
@@ -77,6 +81,18 @@ public:
 
     QList<int> imagesToRemove() const;
     void setImagesToRemove(const QList<int> &imagesToRemove);
+
+    int databaseId() const;
+    void setDatabaseId(int databaseId);
+
+    Artist *artistObj() const;
+    void setArtistObj(Artist *artistObj);
+
+    AlbumController *controller() const;
+    void setController(AlbumController *controller);
+
+    QString mbId() const;
+    void setMbId(const QString &mbId);
 
 signals:
     void sigChanged(Album*);
@@ -99,6 +115,10 @@ private:
     QList<int> m_imagesToRemove;
     MusicModelItem *m_modelItem;
     QString m_nfoContent;
+    int m_databaseId;
+    Artist *m_artistObj;
+    AlbumController *m_controller;
+    QString m_mbId;
 };
 
 #endif // ALBUM_H

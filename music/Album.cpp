@@ -2,16 +2,18 @@
 
 Album::Album(QString path, QObject *parent) : QObject(parent)
 {
+    m_controller = new AlbumController(this);;
     m_hasChanged = false;
     m_rating = 0;
     m_year = 0;
     m_modelItem = 0;
-    setPath(path);
+    m_databaseId = -1;
+    m_artistObj = 0;
+    m_path = path;
 }
 
 Album::~Album()
 {
-
 }
 
 QString Album::path() const
@@ -213,7 +215,7 @@ void Album::setRawImage(int imageType, QByteArray image)
     setHasChanged(true);
 }
 
-void Album::removeRawImage(int imageType)
+void Album::removeImage(int imageType)
 {
     if (!m_rawImages.value(imageType, QByteArray()).isNull())
         m_rawImages.remove(imageType);
@@ -240,7 +242,7 @@ void Album::clear()
           << MusicScraperInfos::Label
           << MusicScraperInfos::Rating
           << MusicScraperInfos::Year
-          << MusicScraperInfos::Thumb
+          << MusicScraperInfos::Cover
           << MusicScraperInfos::CdArt;
     clear(infos);
     m_nfoContent.clear();
@@ -267,7 +269,7 @@ void Album::clear(QList<int> infos)
     if (infos.contains(MusicScraperInfos::Year))
         m_year = 0;
 
-    if (infos.contains(MusicScraperInfos::Thumb)) {
+    if (infos.contains(MusicScraperInfos::Cover)) {
         if (!m_images.contains(ImageType::AlbumThumb))
             m_images.insert(ImageType::AlbumThumb, QList<Poster>());
         m_images[ImageType::AlbumThumb].clear();
@@ -314,4 +316,44 @@ QList<int> Album::imagesToRemove() const
 void Album::setImagesToRemove(const QList<int> &imagesToRemove)
 {
     m_imagesToRemove = imagesToRemove;
+}
+
+int Album::databaseId() const
+{
+    return m_databaseId;
+}
+
+void Album::setDatabaseId(int databaseId)
+{
+    m_databaseId = databaseId;
+}
+
+Artist *Album::artistObj() const
+{
+    return m_artistObj;
+}
+
+void Album::setArtistObj(Artist *artistObj)
+{
+    m_artistObj = artistObj;
+}
+
+AlbumController *Album::controller() const
+{
+    return m_controller;
+}
+
+void Album::setController(AlbumController *controller)
+{
+    m_controller = controller;
+}
+
+QString Album::mbId() const
+{
+    return m_mbId;
+}
+
+void Album::setMbId(const QString &mbId)
+{
+    m_mbId = mbId;
 }

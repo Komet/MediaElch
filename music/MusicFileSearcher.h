@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include "../globals/Globals.h"
+#include "../music/Album.h"
+#include "../music/Artist.h"
 
 class MusicFileSearcher : public QObject
 {
@@ -12,8 +14,8 @@ public:
     ~MusicFileSearcher();
 
     void setMusicDirectories(QList<SettingsDir> directories);
-    //static TvShowEpisode *loadEpisodeData(TvShowEpisode *episode);
-    //static TvShowEpisode *reloadEpisodeData(TvShowEpisode *episode);
+    static Artist *loadArtistData(Artist *artist);
+    static Album *loadAlbumData(Album *album);
 
 public slots:
     void reload(bool force);

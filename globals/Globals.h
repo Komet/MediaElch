@@ -130,7 +130,7 @@ enum MusicType {
 };
 
 enum ItemType {
-    ItemMovie, ItemTvShow, ItemTvShowEpisode, ItemConcert
+    ItemMovie, ItemTvShow, ItemTvShowEpisode, ItemConcert, ItemArtist, ItemAlbum
 };
 
 enum DiscType {
@@ -291,6 +291,7 @@ namespace MusicScraperInfos {
     const int Rating      = 19;
     const int Year        = 20;
     const int CdArt       = 21;
+    const int Cover       = 22;
 }
 
 // The filter numbers have to unique for MovieFilters, TvShowFilters and ConcertFilters

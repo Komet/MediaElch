@@ -27,7 +27,7 @@
 	border-right: 1px solid rgb(34, 34, 34);
 }
 
-#scrollArea, #scrollAreaWidgetContents_2, #scrollAreaWidgetContents_3, #scrollAreaWidgetContents_4, #scrollArea_3, #scrollArea_2, #page_5, #page_6, #page_3 {
+#scrollArea, #scrollAreaWidgetContents_2, #scrollAreaWidgetContents_3, #scrollAreaWidgetContents_4, #scrollArea_3, #scrollArea_2, #page_5, #page_6, #page_3, #scrollAreaWidgetContents_5 {
 	background-color: #ffffff;
 }
 </string>
@@ -547,7 +547,7 @@ margin-top: 15px;</string>
       <item>
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="currentIndex">
-         <number>0</number>
+         <number>7</number>
         </property>
         <widget class="QWidget" name="page">
          <layout class="QHBoxLayout" name="horizontalLayout">
@@ -678,7 +678,7 @@ margin-top: 15px;</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>100</width>
+                <width>49</width>
                 <height>30</height>
                </rect>
               </property>
@@ -775,7 +775,7 @@ margin-top: 15px;</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>100</width>
+                <width>49</width>
                 <height>30</height>
                </rect>
               </property>
@@ -892,13 +892,13 @@ margin-top: 15px;</string>
              <property name="widgetResizable">
               <bool>true</bool>
              </property>
-             <widget class="QWidget" name="scrollAreaWidgetContents">
+             <widget class="QWidget" name="scrollAreaWidgetContents_5">
               <property name="geometry">
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>100</width>
-                <height>30</height>
+                <width>77</width>
+                <height>690</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -1052,6 +1052,10 @@ margin-top: 15px;</string>
    <extends>QWidget</extends>
    <header>music/MusicWidget.h</header>
    <container>1</container>
+   <slots>
+    <signal>sigSetActionSearchEnabled(bool,MainWidgets)</signal>
+    <signal>sigSetActionSaveEnabled(bool,MainWidgets)</signal>
+   </slots>
   </customwidget>
  </customwidgets>
  <resources>
@@ -1195,6 +1199,38 @@ margin-top: 15px;</string>
     <hint type="sourcelabel">
      <x>560</x>
      <y>380</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>530</x>
+     <y>373</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>musicWidget</sender>
+   <signal>sigSetActionSearchEnabled(bool,MainWidgets)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onSetSaveEnabled(bool,MainWidgets)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1022</x>
+     <y>401</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>530</x>
+     <y>373</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>musicWidget</sender>
+   <signal>sigSetActionSearchEnabled(bool,MainWidgets)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onSetSearchEnabled(bool,MainWidgets)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1022</x>
+     <y>401</y>
     </hint>
     <hint type="destinationlabel">
      <x>530</x>

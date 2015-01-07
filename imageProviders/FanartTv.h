@@ -47,6 +47,13 @@ public:
     void tvShowSeasonBackdrops(QString tvdbId, int season);
     void tvShowSeasonThumbs(QString tvdbId, int season);
     void tvShowThumbs(QString tvdbId);
+    void artistFanarts(QString mbId);
+    void artistLogos(QString mbId);
+    void artistThumbs(QString mbId);
+    void albumCdArts(QString mbId);
+    void albumThumbs(QString mbId);
+    void artistImages(Artist *artist, QString mbId, QList<int> types);
+    void albumImages(Album *album, QString mbId, QList<int> types);
     QList<int> provides();
     bool hasSettings();
     void loadSettings(QSettings &settings);
@@ -58,6 +65,8 @@ public slots:
     void searchMovie(QString searchStr, int limit = 0);
     void searchConcert(QString searchStr, int limit = 0);
     void searchTvShow(QString searchStr, int limit = 0);
+    void searchArtist(QString searchStr, int limit = 0);
+    void searchAlbum(QString artistName, QString searchStr, int limit = 0);
 
 signals:
     void sigSearchDone(QList<ScraperSearchResult>);
@@ -65,6 +74,8 @@ signals:
     void sigImagesLoaded(Movie *, QMap<int, QList<Poster> >);
     void sigImagesLoaded(Concert *, QMap<int, QList<Poster> >);
     void sigImagesLoaded(TvShow *, QMap<int, QList<Poster> >);
+    void sigImagesLoaded(Artist *, QMap<int, QList<Poster> >);
+    void sigImagesLoaded(Album *, QMap<int, QList<Poster> >);
 
 private slots:
     void onSearchMovieFinished(QList<ScraperSearchResult> results);

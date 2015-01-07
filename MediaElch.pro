@@ -172,7 +172,15 @@ SOURCES += main.cpp\
     music/MusicModelItem.cpp \
     music/MusicFileSearcher.cpp \
     music/MusicWidget.cpp \
-    music/MusicFilesWidget.cpp
+    music/MusicFilesWidget.cpp \
+    music/ArtistController.cpp \
+    music/AlbumController.cpp \
+    music/MusicWidgetArtist.cpp \
+    music/MusicWidgetAlbum.cpp \
+    imageProviders/FanartTvMusic.cpp \
+    music/MusicSearch.cpp \
+    music/MusicSearchWidget.cpp \
+    scrapers/TheAudioDb.cpp
 
 macx {
     OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm
@@ -324,7 +332,16 @@ HEADERS  += main/MainWindow.h \
     music/MusicModelItem.h \
     music/MusicFileSearcher.h \
     music/MusicWidget.h \
-    music/MusicFilesWidget.h
+    music/MusicFilesWidget.h \
+    music/ArtistController.h \
+    music/AlbumController.h \
+    music/MusicWidgetArtist.h \
+    music/MusicWidgetAlbum.h \
+    imageProviders/FanartTvMusic.h \
+    music/MusicSearch.h \
+    music/MusicSearchWidget.h \
+    data/MusicScraperInterface.h \
+    scrapers/TheAudioDb.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -376,7 +393,11 @@ FORMS    += main/MainWindow.ui \
     plugins/PluginsWidget.ui \
     plugins/PluginManagerDialog.ui \
     music/MusicWidget.ui \
-    music/MusicFilesWidget.ui
+    music/MusicFilesWidget.ui \
+    music/MusicWidgetArtist.ui \
+    music/MusicWidgetAlbum.ui \
+    music/MusicSearch.ui \
+    music/MusicSearchWidget.ui
 
 RESOURCES += \
     MediaElch.qrc \

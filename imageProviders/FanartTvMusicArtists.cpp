@@ -110,7 +110,6 @@ void FanartTvMusicArtists::concertBackdrops(QString mbId)
     connect(reply, SIGNAL(finished()), this, SLOT(onLoadConcertFinished()));
 }
 
-
 void FanartTvMusicArtists::concertLogos(QString mbId)
 {
     QUrl url;
@@ -350,4 +349,56 @@ QWidget* FanartTvMusicArtists::settingsWidget()
 QString FanartTvMusicArtists::keyParameter()
 {
     return (!m_personalApiKey.isEmpty()) ? QString("api_key=%1&client_key=%2").arg(m_apiKey).arg(m_personalApiKey) : QString("api_key=%1").arg(m_apiKey);
+}
+
+void FanartTvMusicArtists::searchAlbum(QString artistName, QString searchStr, int limit)
+{
+    Q_UNUSED(artistName);
+    Q_UNUSED(searchStr);
+    Q_UNUSED(limit);
+}
+
+void FanartTvMusicArtists::searchArtist(QString searchStr, int limit)
+{
+    Q_UNUSED(searchStr);
+    Q_UNUSED(limit);
+}
+
+void FanartTvMusicArtists::artistFanarts(QString mbId)
+{
+    Q_UNUSED(mbId);
+}
+
+void FanartTvMusicArtists::artistLogos(QString mbId)
+{
+    Q_UNUSED(mbId);
+}
+
+void FanartTvMusicArtists::artistThumbs(QString mbId)
+{
+    Q_UNUSED(mbId);
+}
+
+void FanartTvMusicArtists::albumCdArts(QString mbId)
+{
+    Q_UNUSED(mbId);
+}
+
+void FanartTvMusicArtists::albumThumbs(QString mbId)
+{
+    Q_UNUSED(mbId);
+}
+
+void FanartTvMusicArtists::artistImages(Artist *artist, QString mbId, QList<int> types)
+{
+    Q_UNUSED(artist);
+    Q_UNUSED(mbId);
+    Q_UNUSED(types);
+}
+
+void FanartTvMusicArtists::albumImages(Album *album, QString mbId, QList<int> types)
+{
+    Q_UNUSED(album);
+    Q_UNUSED(mbId);
+    Q_UNUSED(types);
 }

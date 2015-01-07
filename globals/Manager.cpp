@@ -5,6 +5,7 @@
 #include <QSqlQuery>
 #include "globals/Globals.h"
 #include "imageProviders/FanartTv.h"
+#include "imageProviders/FanartTvMusic.h"
 #include "imageProviders/FanartTvMusicArtists.h"
 #include "imageProviders/MediaPassionImages.h"
 #include "imageProviders/TMDbImages.h"
@@ -18,6 +19,7 @@
 #include "scrapers/IMDB.h"
 #include "scrapers/MediaPassion.h"
 #include "scrapers/OFDb.h"
+#include "scrapers/TheAudioDb.h"
 #include "scrapers/TheTvDb.h"
 #include "scrapers/TMDb.h"
 #include "scrapers/TMDbConcerts.h"
@@ -39,6 +41,7 @@ Manager::Manager(QObject *parent) :
     m_scrapers.append(new AdultDvdEmpire(parent));
     m_tvScrapers.append(new TheTvDb(this));
     m_concertScrapers.append(new TMDbConcerts(this));
+    m_musicScrapers.append(new TheAudioDb(this));
     m_movieFileSearcher = new MovieFileSearcher(this);
     m_tvShowFileSearcher = new TvShowFileSearcher(this);
     m_concertFileSearcher = new ConcertFileSearcher(this);
@@ -55,6 +58,7 @@ Manager::Manager(QObject *parent) :
     m_mediaCentersConcert.append(new XbmcXml(this));
 
     m_imageProviders.append(new FanartTv(this));
+    m_imageProviders.append(new FanartTvMusic(this));
     m_imageProviders.append(new FanartTvMusicArtists(this));
     m_imageProviders.append(new MediaPassionImages(this));
     m_imageProviders.append(new TMDbImages(this));
@@ -180,6 +184,11 @@ QList<TvScraperInterface*> Manager::tvScrapers()
 QList<ConcertScraperInterface*> Manager::concertScrapers()
 {
     return m_concertScrapers;
+}
+
+QList<MusicScraperInterface*> Manager::musicScrapers()
+{
+    return m_musicScrapers;
 }
 
 /**

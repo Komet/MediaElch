@@ -10,6 +10,8 @@
 #include "export/ExportTemplate.h"
 #include "globals/Globals.h"
 #include "movies/Movie.h"
+#include "music/Album.h"
+#include "music/Artist.h"
 #include "plugins/PluginInterface.h"
 #include "plugins/PluginManager.h"
 
@@ -21,6 +23,8 @@ public:
     explicit Storage(QObject *parent, Concert *concert);
     explicit Storage(QObject *parent, TvShow *show);
     explicit Storage(QObject *parent, TvShowEpisode *episode);
+    explicit Storage(QObject *parent, Artist *artist);
+    explicit Storage(QObject *parent, Album *album);
     explicit Storage(QObject *parent, QList<ScraperSearchResult> results);
     explicit Storage(QObject *parent, QList<int> infosToLoad);
     explicit Storage(QObject *parent, ExportTemplate *exportTemplate);
@@ -32,6 +36,8 @@ public:
     Concert *concert();
     TvShow *show();
     TvShowEpisode *episode();
+    Artist *artist();
+    Album *album();
     QList<ScraperSearchResult> results();
     QList<int> infosToLoad();
     ExportTemplate *exportTemplate();
@@ -43,6 +49,8 @@ public:
     static QVariant toVariant(QObject *parent, Concert *concert);
     static QVariant toVariant(QObject *parent, TvShow *show);
     static QVariant toVariant(QObject *parent, TvShowEpisode *episode);
+    static QVariant toVariant(QObject *parent, Artist *artist);
+    static QVariant toVariant(QObject *parent, Album *album);
     static QVariant toVariant(QObject *parent, QList<ScraperSearchResult> results);
     static QVariant toVariant(QObject *parent, QList<int> infosToLoad);
     static QVariant toVariant(QObject *parent, ExportTemplate *exportTemplate);
@@ -56,6 +64,8 @@ private:
     QPointer<Concert> m_concert;
     QPointer<TvShow> m_show;
     QPointer<TvShowEpisode> m_episode;
+    QPointer<Artist> m_artist;
+    QPointer<Album> m_album;
     QList<ScraperSearchResult> m_results;
     QList<int> m_infosToLoad;
     QPointer<ExportTemplate> m_exportTemplate;
