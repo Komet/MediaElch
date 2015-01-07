@@ -23,7 +23,13 @@ public:
 public slots:
     int exec();
     int exec(QString searchString, QString id, QString tmdbId);
-    static MovieSearch *instance(QWidget *parent = 0);
+
+    //! \brief Reimplemented from QDialog. Saves persitent user changes.
+    void accept();
+
+    //! \brief Reimplemented from QDialog. Saves persitent user changes.
+    void reject();
+
     QString scraperId();
     QString scraperMovieId();
     QList<int> infosToLoad();

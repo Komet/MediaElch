@@ -39,6 +39,10 @@ private slots:
 
 private:
     Ui::MovieSearchWidget *ui;
+
+    //! \brief The movie scrapers.
+    QMap<QString, ScraperInterface *> m_scrapers;
+
     QString m_scraperId;
     QString m_scraperMovieId;
     QList<int> m_infosToLoad;
