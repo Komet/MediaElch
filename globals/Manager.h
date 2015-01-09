@@ -19,6 +19,7 @@
 #include "data/TvShowProxyModel.h"
 #include "imageProviders/FanartTv.h"
 #include "main/FileScannerDialog.h"
+#include "main/MyIconFont.h"
 #include "scrapers/TvTunes.h"
 #include "trailerProviders/TrailerProvider.h"
 #include "tvShows/TvShowFilesWidget.h"
@@ -65,6 +66,7 @@ public:
     TvShowFilesWidget *tvShowFilesWidget();
     MusicFilesWidget *musicFilesWidget();
     TvTunes* tvTunes();
+    MyIconFont *iconFont();
     void setTvShowFilesWidget(TvShowFilesWidget *widget);
     void setMusicFilesWidget(MusicFilesWidget *widget);
     void setFileScannerDialog(FileScannerDialog *dialog);
@@ -95,6 +97,7 @@ private:
     FileScannerDialog *m_fileScannerDialog;
     TvTunes *m_tvTunes;
     MusicFileSearcher *m_musicFileSearcher;
+    MyIconFont *m_iconFont;
 };
 
 #endif // MANAGER_H

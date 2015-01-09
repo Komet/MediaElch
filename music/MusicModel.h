@@ -22,6 +22,7 @@ public:
     MusicModelItem *getItem(const QModelIndex &index) const;
     QList<Artist*> artists();
     void removeArtist(Artist *artist);
+    int hasNewArtistsOrAlbums();
 
 private slots:
     void onSigChanged(MusicModelItem *artistItem, MusicModelItem *albumItem);

@@ -22,6 +22,8 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->setupUi(this);
 
     m_pluginDialog = new PluginManagerDialog(this);
+    m_buttonActiveColor = QColor(70, 155, 198);
+    m_buttonColor = QColor(128, 129, 132);
 
 #ifdef Q_OS_MAC
     QFont smallFont = ui->labelGlobal->font();
@@ -179,15 +181,13 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     foreach (QAction *action, findChildren<QAction*>()) {
         if (!action->property("page").isValid())
             continue;
-        QPixmap pixmap = action->icon().pixmap(64, 64);
-        action->setProperty("iconNormal", QIcon(pixmap));
-        p.begin(&pixmap);
-        p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-        p.fillRect(pixmap.rect(), QColor(70, 155, 198));
-        p.end();
-        action->setProperty("iconActive", QIcon(pixmap));
+        action->setIcon(Manager::instance()->iconFont()->icon(action->property("iconName").toString(), m_buttonColor));
     }
-    ui->actionGlobal->setIcon(ui->actionGlobal->property("iconActive").value<QIcon>());
+    ui->actionGlobal->setIcon(Manager::instance()->iconFont()->icon(ui->actionGlobal->property("iconName").toString(), m_buttonActiveColor));
+
+#ifndef PLUGINS
+    ui->actionPlugins->setVisible(false);
+#endif
 
     connect(PluginManager::instance(), SIGNAL(sigPluginListUpdated(QList<PluginManager::Plugin>)), this, SLOT(onPluginListUpdated(QList<PluginManager::Plugin>)));
     connect(ui->pluginList, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), this, SLOT(onPluginActivated(QListWidgetItem*)));
@@ -262,8 +262,8 @@ void SettingsWindow::onAction()
 {
     QAction *triggeredAction = static_cast<QAction*>(sender());
     foreach (QAction *action, ui->toolBar->actions())
-        action->setIcon(action->property("iconNormal").value<QIcon>());
-    triggeredAction->setIcon(triggeredAction->property("iconActive").value<QIcon>());
+        action->setIcon(Manager::instance()->iconFont()->icon(action->property("iconName").toString(), m_buttonColor));
+    triggeredAction->setIcon(Manager::instance()->iconFont()->icon(triggeredAction->property("iconName").toString(), m_buttonActiveColor));
     ui->stackedWidget->slideInIdx(triggeredAction->property("page").toInt());
 }
 

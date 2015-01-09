@@ -85,6 +85,7 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget *parent) :
     ui->buttonRevert->setVisible(false);
 
     Helper::instance()->applyStyle(ui->tabWidget);
+    Helper::instance()->applyStyle(ui->artWidget);
     Helper::instance()->applyEffect(ui->groupBox_3);
 }
 

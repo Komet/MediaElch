@@ -90,6 +90,8 @@ private:
     QMap<MainWidgets, QIcon> m_icons;
     static MainWindow *m_instance;
     QMap<int, PluginInterface*> m_plugins;
+    QColor m_buttonColor;
+    QColor m_buttonActiveColor;
     void setupToolbar();
     void setIcons(QToolButton *button);
 };

@@ -35,7 +35,7 @@ public:
     ~DownloadsWidget();
     void updatePackagesList(QMap<QString, Package> packages);
     void updateImportsList(QMap<QString, Import> imports);
-    bool hasNewItems();
+    int hasNewItems();
 
 public slots:
     void scanDownloadFolders(bool scanDownloads = true, bool scanImports = true);

@@ -26,7 +26,7 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     QModelIndex index(int row, int column, const QModelIndex &parent) const;
     QModelIndex parent(const QModelIndex &child) const;
-    bool hasNewMovies();
+    int hasNewMovies();
     static int mediaStatusToColumn(MediaStatusColumns column);
     static QString mediaStatusToText(MediaStatusColumns column);
     static MediaStatusColumns columnToMediaStatus(int column);

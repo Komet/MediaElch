@@ -180,7 +180,8 @@ SOURCES += main.cpp\
     imageProviders/FanartTvMusic.cpp \
     music/MusicSearch.cpp \
     music/MusicSearchWidget.cpp \
-    scrapers/TheAudioDb.cpp
+    scrapers/TheAudioDb.cpp \
+    main/MyIconFont.cpp
 
 macx {
     OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm
@@ -341,7 +342,8 @@ HEADERS  += main/MainWindow.h \
     music/MusicSearch.h \
     music/MusicSearchWidget.h \
     data/MusicScraperInterface.h \
-    scrapers/TheAudioDb.h
+    scrapers/TheAudioDb.h \
+    main/MyIconFont.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

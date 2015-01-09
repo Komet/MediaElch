@@ -68,6 +68,9 @@ Manager::Manager(QObject *parent) :
     m_trailerProviders.append(new HdTrailers(this));
 
     m_tvTunes = new TvTunes(this);
+
+    m_iconFont = new MyIconFont(this);
+    m_iconFont->initFontAwesome();
 }
 
 /**
@@ -332,4 +335,9 @@ QList<ScraperInterface*> Manager::constructNativeScrapers(QObject *parent)
     nativeScrapers.append(new OFDb(parent));
     nativeScrapers.append(new VideoBuster(parent));
     return nativeScrapers;
+}
+
+MyIconFont *Manager::iconFont()
+{
+    return m_iconFont;
 }

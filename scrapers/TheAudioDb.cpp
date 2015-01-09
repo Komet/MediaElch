@@ -228,9 +228,9 @@ void TheAudioDb::parseAndAssignInfos(QString json, Album *album, QList<int> info
     if (infos.contains(MusicScraperInfos::Moods) && !sc.property("strMood").isNull())
         album->addMood(sc.property("strMood").toString());
     if (infos.contains(MusicScraperInfos::Review)) {
-        if (!sc.property("strDescription" + m_language.toUpper()).toString().isEmpty())
+        if (!sc.property("strDescription" + m_language.toUpper()).isNull())
             album->setReview(sc.property("strDescription" + m_language.toUpper()).toString());
-        else
+        else if (!sc.property("strDescriptionEN").isNull())
             album->setReview(sc.property("strDescriptionEN").toString());
     }
 }
@@ -268,9 +268,9 @@ void TheAudioDb::parseAndAssignInfos(QString json, Artist *artist, QList<int> in
     if (infos.contains(MusicScraperInfos::Moods) && !sc.property("strMood").isNull())
         artist->addMood(sc.property("strMood").toString());
     if (infos.contains(MusicScraperInfos::Biography)) {
-        if (!sc.property("strDescription" + m_language.toUpper()).toString().isEmpty())
+        if (!sc.property("strBiography" + m_language.toUpper()).isNull())
             artist->setBiography(sc.property("strBiography" + m_language.toUpper()).toString());
-        else
+        else if (!sc.property("strBiographyEN").isNull())
             artist->setBiography(sc.property("strBiographyEN").toString());
     }
 }

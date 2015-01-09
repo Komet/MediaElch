@@ -485,9 +485,9 @@ void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox *sender)
     actions->setExtraFiles(m_imports[baseName].extraFiles);
 }
 
-bool DownloadsWidget::hasNewItems()
+int DownloadsWidget::hasNewItems()
 {
-    return !m_imports.isEmpty() || !m_packages.isEmpty();
+    return m_imports.count() + m_packages.count();
 }
 
 void DownloadsWidget::onImportWithMakeMkv()

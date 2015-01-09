@@ -178,11 +178,12 @@ QList<Concert*> ConcertModel::concerts()
  * @brief Checks if there are new concerts (concerts where infoLoaded is false)
  * @return True if there are new concerts
  */
-bool ConcertModel::hasNewConcerts()
+int ConcertModel::hasNewConcerts()
 {
+    int newConcerts = 0;
     foreach (Concert *concert, m_concerts) {
         if (!concert->controller()->infoLoaded())
-            return true;
+            newConcerts++;
     }
-    return false;
+    return newConcerts;
 }

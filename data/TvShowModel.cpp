@@ -261,17 +261,18 @@ QList<TvShow*> TvShowModel::tvShows()
  * @brief Checks if there are new shows or episodes (shows or episodes where infoLoaded is false)
  * @return True if there are new shows or episodes
  */
-bool TvShowModel::hasNewShowOrEpisode()
+int TvShowModel::hasNewShowOrEpisode()
 {
+    int newShows = 0;
     foreach (TvShow *show, tvShows()) {
         if (!show->infoLoaded())
-            return true;
+            newShows++;
         foreach (TvShowEpisode *episode, show->episodes()) {
             if (!episode->infoLoaded())
-                return true;
+                newShows++;
         }
     }
-    return false;
+    return newShows;
 }
 
 /**

@@ -69,6 +69,8 @@ private:
     QMap<int, PluginInterface*> m_plugins;
     PluginManagerDialog *m_pluginDialog;
     bool m_pluginsInstallable;
+    QColor m_buttonColor;
+    QColor m_buttonActiveColor;
 
     void loadSettings();
     void saveSettings();

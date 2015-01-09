@@ -148,3 +148,19 @@ void MusicModel::removeArtist(Artist *artist)
         }
     }
 }
+
+int MusicModel::hasNewArtistsOrAlbums()
+{
+    int newItems = 0;
+
+    foreach (Artist *artist, artists()) {
+        if (!artist->controller()->infoLoaded())
+            newItems++;
+        for (int i=0, n=artist->modelItem()->childNumber() ; i<n ; ++i) {
+            if (artist->modelItem()->child(i) && artist->modelItem()->child(i)->album() && !artist->modelItem()->child(i)->album()->controller()->infoLoaded())
+                newItems++;
+        }
+    }
+
+    return newItems;
+}

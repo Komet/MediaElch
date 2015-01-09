@@ -73,9 +73,6 @@ MainWindow::MainWindow(QWidget *parent) :
     m_exportDialog = new ExportDialog(this);
     setupToolbar();
 
-    foreach (QToolButton *btn, ui->menuWidget->findChildren<QToolButton*>())
-        setIcons(btn);
-
     Helper::instance(this);
     NotificationBox::instance(this)->reposition(this->size());
     Manager::instance();
@@ -110,8 +107,12 @@ MainWindow::MainWindow(QWidget *parent) :
     // Size for Screenshots
     // resize(1200, 676);
 
-    foreach (QToolButton *btn, ui->menuWidget->findChildren<QToolButton*>())
+    m_buttonActiveColor = QColor(70, 155, 198);
+    m_buttonColor = QColor(128, 129, 132);
+    foreach (QToolButton *btn, ui->menuWidget->findChildren<QToolButton*>()) {
         connect(btn, SIGNAL(clicked()), this, SLOT(onMenu()));
+        btn->setIcon(Manager::instance()->iconFont()->icon(btn->property("iconName").toString(), m_buttonColor));
+    }
 
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setMovie(Movie*)));
     connect(ui->filesWidget, SIGNAL(movieSelected(Movie*)), ui->movieWidget, SLOT(setEnabledTrue(Movie*)));
@@ -537,36 +538,40 @@ void MainWindow::moveSplitter(int pos, int index)
 
 /**
  * @brief Sets or removes the new mark in the main menu on the left
+ * @todo: should be called after each save
  */
 void MainWindow::setNewMarks()
 {
-    if (Manager::instance()->movieModel()->hasNewMovies()) {
-        if (ui->buttonMovies->property("isActive").toBool())
-            ui->buttonMovies->setIcon(ui->buttonMovies->property("iconActiveNew").value<QIcon>());
-        else
-            ui->buttonMovies->setIcon(ui->buttonMovies->property("iconInactiveNew").value<QIcon>());
-    }
+    int newMovies = Manager::instance()->movieModel()->hasNewMovies();
+    int newShows = Manager::instance()->tvShowModel()->hasNewShowOrEpisode();
+    int newConcerts = Manager::instance()->concertModel()->hasNewConcerts();
+    int newMusic = Manager::instance()->musicModel()->hasNewArtistsOrAlbums();
+    int newDownloads = ui->downloadsWidget->hasNewItems();
 
-    if (Manager::instance()->tvShowModel()->hasNewShowOrEpisode()) {
-        if (ui->buttonTvshows->property("isActive").toBool())
-            ui->buttonTvshows->setIcon(ui->buttonTvshows->property("iconActiveNew").value<QIcon>());
-        else
-            ui->buttonTvshows->setIcon(ui->buttonTvshows->property("iconInactiveNew").value<QIcon>());
-    }
+    ui->buttonMovies->setIcon(Manager::instance()->iconFont()->icon(ui->buttonMovies->property("iconName").toString(),
+                                                                    (ui->buttonMovies->property("isActive").toBool()) ? m_buttonActiveColor : m_buttonColor,
+                                                                    (newMovies > 0) ? "star" : "",
+                                                                    newMovies));
 
-    if (Manager::instance()->concertModel()->hasNewConcerts()) {
-        if (ui->buttonConcerts->property("isActive").toBool())
-            ui->buttonConcerts->setIcon(ui->buttonConcerts->property("iconActiveNew").value<QIcon>());
-        else
-            ui->buttonConcerts->setIcon(ui->buttonConcerts->property("iconInactiveNew").value<QIcon>());
-    }
+    ui->buttonTvshows->setIcon(Manager::instance()->iconFont()->icon(ui->buttonTvshows->property("iconName").toString(),
+                                                                     (ui->buttonTvshows->property("isActive").toBool()) ? m_buttonActiveColor : m_buttonColor,
+                                                                     (newShows > 0) ? "star" : "",
+                                                                     newShows));
 
-    if (ui->downloadsWidget->hasNewItems()) {
-        if (ui->buttonDownloads->property("isActive").toBool())
-            ui->buttonDownloads->setIcon(ui->buttonDownloads->property("iconActiveNew").value<QIcon>());
-        else
-            ui->buttonDownloads->setIcon(ui->buttonDownloads->property("iconInactiveNew").value<QIcon>());
-    }
+    ui->buttonConcerts->setIcon(Manager::instance()->iconFont()->icon(ui->buttonConcerts->property("iconName").toString(),
+                                                                      (ui->buttonConcerts->property("isActive").toBool()) ? m_buttonActiveColor : m_buttonColor,
+                                                                      (newConcerts > 0) ? "star" : "",
+                                                                      newConcerts));
+
+    ui->buttonMusic->setIcon(Manager::instance()->iconFont()->icon(ui->buttonMusic->property("iconName").toString(),
+                                                                   (ui->buttonMusic->property("isActive").toBool()) ? m_buttonActiveColor : m_buttonColor,
+                                                                   (newMusic > 0) ? "star" : "",
+                                                                   newMusic));
+
+    ui->buttonDownloads->setIcon(Manager::instance()->iconFont()->icon(ui->buttonDownloads->property("iconName").toString(),
+                                                                       (ui->buttonDownloads->property("isActive").toBool()) ? m_buttonActiveColor : m_buttonColor,
+                                                                       (newDownloads > 0) ? "star" : "",
+                                                                       newDownloads));
 
     ui->filesWidget->setAlphaListData();
     ui->concertFilesWidget->setAlphaListData();
@@ -640,7 +645,6 @@ void MainWindow::onAddPlugin(PluginInterface *plugin)
     button->setProperty("storage", Storage::toVariant(button, plugin));
     button->setProperty("page", index);
     button->setProperty("isPlugin", true);
-    setIcons(button);
     m_plugins.insert(index, plugin);
 
     connect(button, SIGNAL(clicked()), this, SLOT(onMenu()));
@@ -700,10 +704,10 @@ void MainWindow::onMenu(QToolButton *button)
 
 
     foreach (QToolButton *btn, ui->menuWidget->findChildren<QToolButton*>()) {
-        btn->setIcon(btn->property("iconInactive").value<QIcon>());
+        btn->setIcon(Manager::instance()->iconFont()->icon(btn->property("iconName").toString(), m_buttonColor));
         btn->setProperty("isActive", false);
     }
-    button->setIcon(button->property("iconActive").value<QIcon>());
+    button->setIcon(Manager::instance()->iconFont()->icon(button->property("iconName").toString(), m_buttonActiveColor));
     button->setProperty("isActive", true);
     setNewMarks();
 
@@ -772,35 +776,4 @@ void MainWindow::onMenu(QToolButton *button)
     }
 
     ui->stackedWidget->setCurrentIndex(page);
-}
-
-void MainWindow::setIcons(QToolButton *button)
-{
-    // iconActive, iconInactive, iconActiveNew, iconInactiveNew
-    QPainter p;
-    QPixmap ribbon(":/menu/star.png");
-    QPixmap pixmap = button->icon().pixmap(64, 64);
-
-    p.begin(&pixmap);
-    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    p.fillRect(pixmap.rect(), QColor(180, 180, 180));
-    p.end();
-    button->setProperty("iconInactive", QIcon(pixmap));
-
-    p.begin(&pixmap);
-    p.drawPixmap(pixmap.width()-ribbon.width(), pixmap.height()-ribbon.height(), ribbon.width(), ribbon.height(), ribbon);
-    p.end();
-    button->setProperty("iconInactiveNew", QIcon(pixmap));
-
-    pixmap = button->icon().pixmap(64, 64);
-    p.begin(&pixmap);
-    p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    p.fillRect(pixmap.rect(), QColor(70, 155, 198));
-    p.end();
-    button->setProperty("iconActive", QIcon(pixmap));
-
-    p.begin(&pixmap);
-    p.drawPixmap(pixmap.width()-ribbon.width(), pixmap.height()-ribbon.height(), ribbon.width(), ribbon.height(), ribbon);
-    p.end();
-    button->setProperty("iconActiveNew", QIcon(pixmap));
 }

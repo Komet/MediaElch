@@ -23,7 +23,7 @@
    <string>Settings</string>
   </property>
   <property name="unifiedTitleAndToolBarOnMac">
-   <bool>true</bool>
+   <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
@@ -48,8 +48,9 @@
         <item>
          <widget class="QLabel" name="labelGlobal">
           <property name="text">
-           <string>Add one or more directories containing your movies, TV Shows, concerts or files to import.
-TV Show Episodes have to be in subfolders with the name of the show.</string>
+           <string>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
+TV Show Episodes have to be in subfolders with the name of the show.
+The directories containg your music must contain subdirectories for each artist which contain directories of albums.</string>
           </property>
           <property name="wordWrap">
            <bool>true</bool>
@@ -308,8 +309,8 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>60</width>
-                 <height>16</height>
+                 <width>100</width>
+                 <height>30</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -1649,225 +1650,130 @@ border: none;</string>
    <addaction name="actionPlugins"/>
   </widget>
   <action name="actionMovies">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/movies.png</normaloff>:/settings_line/movies.png</iconset>
-   </property>
    <property name="text">
     <string>Movies</string>
-   </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/movies.png</normaloff>:/settings_line/movies.png</iconset>
-   </property>
-   <property name="iconActive" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/movies_active.png</normaloff>:/settings/movies_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>2</number>
    </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">film</string>
+   </property>
   </action>
   <action name="actionTV_Shows">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/tvshows.png</normaloff>:/settings_line/tvshows.png</iconset>
-   </property>
    <property name="text">
     <string>TV Shows</string>
-   </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/tvshows.png</normaloff>:/settings_line/tvshows.png</iconset>
-   </property>
-   <property name="iconActive" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/tvshows_active.png</normaloff>:/settings/tvshows_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>3</number>
    </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">monitor</string>
+   </property>
   </action>
   <action name="actionConcerts">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/concerts.png</normaloff>:/settings_line/concerts.png</iconset>
-   </property>
    <property name="text">
     <string>Concerts</string>
-   </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/concerts.png</normaloff>:/settings_line/concerts.png</iconset>
-   </property>
-   <property name="iconActive" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/concerts_active.png</normaloff>:/settings/concerts_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>4</number>
    </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">micro</string>
+   </property>
   </action>
   <action name="actionGlobal">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/global.png</normaloff>:/settings_line/global.png</iconset>
-   </property>
    <property name="text">
     <string>Global</string>
-   </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/global.png</normaloff>:/settings_line/global.png</iconset>
-   </property>
-   <property name="iconActive" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/global_active.png</normaloff>:/settings/global_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>0</number>
    </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">tools</string>
+   </property>
   </action>
   <action name="actionXBMC">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/xbmc.png</normaloff>:/settings_line/xbmc.png</iconset>
-   </property>
    <property name="text">
     <string>XBMC</string>
-   </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/xbmc.png</normaloff>:/settings_line/xbmc.png</iconset>
-   </property>
-   <property name="iconActive" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/xbmc_active.png</normaloff>:/settings/xbmc_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>6</number>
    </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">network</string>
+   </property>
   </action>
   <action name="actionNetwork">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/network.png</normaloff>:/settings_line/network.png</iconset>
-   </property>
    <property name="text">
     <string>Network</string>
-   </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/network.png</normaloff>:/settings_line/network.png</iconset>
-   </property>
-   <property name="iconActive" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/network_active.png</normaloff>:/settings/network_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>7</number>
    </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">world</string>
+   </property>
   </action>
   <action name="actionScraper">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/scraper.png</normaloff>:/settings_line/scraper.png</iconset>
-   </property>
    <property name="text">
     <string>Scraper</string>
-   </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/scraper.png</normaloff>:/settings_line/scraper.png</iconset>
-   </property>
-   <property name="iconActive" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/scraper_active.png</normaloff>:/settings/scraper_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>1</number>
    </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">search</string>
+   </property>
   </action>
   <action name="actionExport">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/export.png</normaloff>:/settings_line/export.png</iconset>
-   </property>
    <property name="text">
     <string>Export</string>
-   </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/export.png</normaloff>:/settings_line/export.png</iconset>
-   </property>
-   <property name="iconActive" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/export_active.png</normaloff>:/settings/export_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>8</number>
    </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">cloud_upload</string>
+   </property>
   </action>
   <action name="actionImport">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/downloads.png</normaloff>:/settings_line/downloads.png</iconset>
-   </property>
    <property name="text">
     <string>Import</string>
    </property>
    <property name="toolTip">
     <string>Import</string>
-   </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/downloads.png</normaloff>:/settings_line/downloads.png</iconset>
-   </property>
-   <property name="iconActive" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/import_active.png</normaloff>:/settings/import_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>9</number>
    </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">download</string>
+   </property>
   </action>
   <action name="actionPlugins">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/plugins.png</normaloff>:/settings_line/plugins.png</iconset>
-   </property>
    <property name="text">
     <string>Plugins</string>
-   </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/plugins.png</normaloff>:/settings_line/plugins.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>10</number>
    </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">box2</string>
+   </property>
   </action>
   <action name="actionMusic">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/concerts.png</normaloff>:/settings_line/concerts.png</iconset>
-   </property>
    <property name="text">
     <string>Music</string>
    </property>
    <property name="toolTip">
     <string>Music</string>
    </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings_line/concerts.png</normaloff>:/settings_line/concerts.png</iconset>
-   </property>
-   <property name="iconActive" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/concerts_active.png</normaloff>:/settings/concerts_active.png</iconset>
-   </property>
    <property name="page" stdset="0">
     <number>5</number>
+   </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">music</string>
    </property>
   </action>
  </widget>
@@ -1884,9 +1790,7 @@ border: none;</string>
    <header>smallWidgets/MessageLabel.h</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="../MediaElch.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>actionGlobal</sender>

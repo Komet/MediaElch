@@ -116,11 +116,7 @@
 }</string>
          </property>
          <property name="text">
-          <string>...</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../MediaElch.qrc">
-           <normaloff>:/menu/movies.png</normaloff>:/menu/movies.png</iconset>
+          <string notr="true"/>
          </property>
          <property name="iconSize">
           <size>
@@ -130,6 +126,9 @@
          </property>
          <property name="page" stdset="0">
           <number>0</number>
+         </property>
+         <property name="iconName" stdset="0">
+          <string notr="true">film</string>
          </property>
         </widget>
        </item>
@@ -152,11 +151,7 @@
 }</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="../MediaElch.qrc">
-           <normaloff>:/menu/sets.png</normaloff>:/menu/sets.png</iconset>
+          <string notr="true"/>
          </property>
          <property name="iconSize">
           <size>
@@ -166,6 +161,9 @@
          </property>
          <property name="page" stdset="0">
           <number>2</number>
+         </property>
+         <property name="iconName" stdset="0">
+          <string notr="true">photo_gallery</string>
          </property>
         </widget>
        </item>
@@ -188,11 +186,7 @@
 }</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="../MediaElch.qrc">
-           <normaloff>:/menu/genres.png</normaloff>:/menu/genres.png</iconset>
+          <string notr="true"/>
          </property>
          <property name="iconSize">
           <size>
@@ -202,6 +196,9 @@
          </property>
          <property name="page" stdset="0">
           <number>4</number>
+         </property>
+         <property name="iconName" stdset="0">
+          <string notr="true">notebook</string>
          </property>
         </widget>
        </item>
@@ -224,11 +221,7 @@
 }</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="../MediaElch.qrc">
-           <normaloff>:/menu/certifications.png</normaloff>:/menu/certifications.png</iconset>
+          <string notr="true"/>
          </property>
          <property name="iconSize">
           <size>
@@ -238,6 +231,9 @@
          </property>
          <property name="page" stdset="0">
           <number>5</number>
+         </property>
+         <property name="iconName" stdset="0">
+          <string notr="true">key</string>
          </property>
         </widget>
        </item>
@@ -282,11 +278,7 @@ margin-top: 15px;</string>
 }</string>
          </property>
          <property name="text">
-          <string>...</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../MediaElch.qrc">
-           <normaloff>:/menu/tvshows.png</normaloff>:/menu/tvshows.png</iconset>
+          <string notr="true"/>
          </property>
          <property name="iconSize">
           <size>
@@ -296,6 +288,9 @@ margin-top: 15px;</string>
          </property>
          <property name="page" stdset="0">
           <number>1</number>
+         </property>
+         <property name="iconName" stdset="0">
+          <string notr="true">monitor</string>
          </property>
         </widget>
        </item>
@@ -340,11 +335,7 @@ margin-top: 15px;</string>
 }</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="../MediaElch.qrc">
-           <normaloff>:/menu/concerts.png</normaloff>:/menu/concerts.png</iconset>
+          <string notr="true"/>
          </property>
          <property name="iconSize">
           <size>
@@ -354,6 +345,9 @@ margin-top: 15px;</string>
          </property>
          <property name="page" stdset="0">
           <number>3</number>
+         </property>
+         <property name="iconName" stdset="0">
+          <string notr="true">micro</string>
          </property>
         </widget>
        </item>
@@ -388,7 +382,7 @@ margin-top: 15px;</string>
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Concerts</string>
+          <string>Music</string>
          </property>
          <property name="styleSheet">
           <string notr="true">QToolButton {
@@ -398,11 +392,7 @@ margin-top: 15px;</string>
 }</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="../MediaElch.qrc">
-           <normaloff>:/menu/concerts.png</normaloff>:/menu/concerts.png</iconset>
+          <string notr="true"/>
          </property>
          <property name="iconSize">
           <size>
@@ -412,6 +402,9 @@ margin-top: 15px;</string>
          </property>
          <property name="page" stdset="0">
           <number>7</number>
+         </property>
+         <property name="iconName" stdset="0">
+          <string notr="true">music</string>
          </property>
         </widget>
        </item>
@@ -456,11 +449,7 @@ margin-top: 15px;</string>
 }</string>
          </property>
          <property name="text">
-          <string>...</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../MediaElch.qrc">
-           <normaloff>:/menu/download.png</normaloff>:/menu/download.png</iconset>
+          <string notr="true"/>
          </property>
          <property name="iconSize">
           <size>
@@ -470,6 +459,9 @@ margin-top: 15px;</string>
          </property>
          <property name="page" stdset="0">
           <number>6</number>
+         </property>
+         <property name="iconName" stdset="0">
+          <string notr="true">download</string>
          </property>
         </widget>
        </item>
@@ -600,8 +592,8 @@ margin-top: 15px;</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>77</width>
-                <height>690</height>
+                <width>49</width>
+                <height>30</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_2">

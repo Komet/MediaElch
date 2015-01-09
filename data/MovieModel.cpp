@@ -226,14 +226,15 @@ QList<Movie*> MovieModel::movies()
  * @brief Checks if there are new movies (movies where infoLoaded is false)
  * @return True if there are new movies
  */
-bool MovieModel::hasNewMovies()
+int MovieModel::hasNewMovies()
 {
+    int newMovies = 0;
     foreach (Movie *movie, m_movies) {
         if (!movie->controller()->infoLoaded())
-            return true;
+            newMovies++;
     }
 
-    return false;
+    return newMovies;
 }
 
 int MovieModel::mediaStatusToColumn(MediaStatusColumns column)
