@@ -149,6 +149,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->tvShowWidget, SIGNAL(sigDownloadsProgress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
     connect(ui->tvShowWidget, SIGNAL(sigDownloadsFinished(int)), this, SLOT(progressFinished(int)));
 
+    connect(ui->musicWidget, SIGNAL(sigDownloadsStarted(QString,int)), this, SLOT(progressStarted(QString,int)));
+    connect(ui->musicWidget, SIGNAL(sigDownloadsProgress(int,int,int)), this, SLOT(progressProgress(int,int,int)));
+    connect(ui->musicWidget, SIGNAL(sigDownloadsFinished(int)), this, SLOT(progressFinished(int)));
+
     connect(ui->navbar, SIGNAL(sigFilterChanged(QList<Filter*>,QString)), this, SLOT(onFilterChanged(QList<Filter*>,QString)));
 
     connect(ui->movieSplitter, SIGNAL(splitterMoved(int,int)), this, SLOT(moveSplitter(int,int)));
@@ -538,7 +542,6 @@ void MainWindow::moveSplitter(int pos, int index)
 
 /**
  * @brief Sets or removes the new mark in the main menu on the left
- * @todo: should be called after each save
  */
 void MainWindow::setNewMarks()
 {
@@ -615,7 +618,6 @@ void MainWindow::onRenewModels()
     ui->filesWidget->renewModel();
     ui->tvShowFilesWidget->renewModel();
     ui->concertFilesWidget->renewModel();
-    ui->musicFilesWidget->renewModel();
     ui->downloadsWidget->scanDownloadFolders();
 }
 

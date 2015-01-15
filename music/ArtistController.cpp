@@ -38,7 +38,7 @@ bool ArtistController::loadData(MediaCenterInterface *mediaCenterInterface, bool
 
     if (!infoLoaded) {
         QFileInfo fi(m_artist->path());
-        m_artist->setName(fi.baseName());
+        m_artist->setName(fi.fileName());
     }
     m_infoLoaded = infoLoaded;
     m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
@@ -54,6 +54,8 @@ bool ArtistController::saveData(MediaCenterInterface *mediaCenterInterface)
         m_infoLoaded = saved;
     m_artist->setHasChanged(false);
     m_artist->clearImages();
+    if (saved)
+        emit sigSaved(m_artist);
     return saved;
 }
 

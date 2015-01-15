@@ -31,13 +31,14 @@ MusicSearch* MusicSearch::instance(QWidget *parent)
     return m_instance;
 }
 
-int MusicSearch::exec(QString type, QString searchString)
+int MusicSearch::exec(QString type, QString searchString, QString artistName)
 {
     QSize newSize;
     newSize.setHeight(parentWidget()->size().height()-200);
     newSize.setWidth(qMin(600, parentWidget()->size().width()-400));
     resize(newSize);
     ui->musicSearchWidget->setType(type);
+    ui->musicSearchWidget->setArtistName(artistName);
     ui->musicSearchWidget->search(searchString);
     return QDialog::exec();
 }

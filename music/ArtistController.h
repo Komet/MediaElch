@@ -42,6 +42,7 @@ signals:
     void sigImage(Artist*,int,QByteArray);
     void sigLoadImagesStarted(Artist*);
     void sigDownloadProgress(Artist*, int, int);
+    void sigSaved(Artist*);
 
 private slots:
     void onAllDownloadsFinished();

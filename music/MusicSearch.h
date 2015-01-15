@@ -19,7 +19,7 @@ public:
 
 public slots:
     int exec();
-    int exec(QString type, QString searchString);
+    int exec(QString type, QString searchString, QString artistName = QString());
     static MusicSearch *instance(QWidget *parent = 0);
     int scraperNo();
     QString scraperId();

@@ -157,6 +157,7 @@ void FanartTvMusic::onSearchAlbumFinished()
         QString msg = QString::fromUtf8(reply->readAll());
         QDomDocument domDoc;
         domDoc.setContent(msg);
+        QStringList searchIds;
         for (int i=0, n=domDoc.elementsByTagName("release").count() ; i<n ; ++i) {
             QDomElement elem = domDoc.elementsByTagName("release").at(i).toElement();
             QString name;
@@ -174,7 +175,10 @@ void FanartTvMusic::onSearchAlbumFinished()
                     ScraperSearchResult result;
                     result.id = releaseGroupElem.attribute("id");
                     result.name = name;
-                    results.append(result);
+                    if (!searchIds.contains(result.id)) {
+                        results.append(result);
+                        searchIds.append(result.id);
+                    }
                 }
             }
         }
@@ -220,6 +224,15 @@ QList<Poster> FanartTvMusic::parseData(QString json, int type)
     QScriptValue sc;
     QScriptEngine engine;
     sc = engine.evaluate("(" + QString(json) + ")");
+
+    if (type == ImageType::AlbumCdArt || type == ImageType::AlbumThumb) {
+        QScriptValueIterator it(sc.property("albums"));
+        while (it.hasNext()) {
+            it.next();
+            sc = it.value();
+            break;
+        }
+    }
 
     foreach (const QString &section, map.value(type)) {
         if (sc.property(section).isArray()) {

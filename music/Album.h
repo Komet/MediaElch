@@ -48,8 +48,8 @@ public:
     QString review() const;
     void setReview(const QString &review);
 
-    QDate releaseDate() const;
-    void setReleaseDate(const QDate &releaseDate);
+    QString releaseDate() const;
+    void setReleaseDate(const QString &releaseDate);
 
     QString label() const;
     void setLabel(const QString &label);
@@ -94,6 +94,9 @@ public:
     QString mbId() const;
     void setMbId(const QString &mbId);
 
+    QString allMusicId() const;
+    void setAllMusicId(const QString &allMusicId);
+
 signals:
     void sigChanged(Album*);
 
@@ -106,7 +109,7 @@ private:
     QStringList m_styles;
     QStringList m_moods;
     QString m_review;
-    QDate m_releaseDate;
+    QString m_releaseDate;
     QString m_label;
     qreal m_rating;
     int m_year;
@@ -119,6 +122,7 @@ private:
     Artist *m_artistObj;
     AlbumController *m_controller;
     QString m_mbId;
+    QString m_allMusicId;
 };
 
 #endif // ALBUM_H

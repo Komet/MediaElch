@@ -241,7 +241,6 @@ void MusicWidgetArtist::updateArtistInfo()
     completer->setCaseSensitivity(Qt::CaseInsensitive);
     ui->studioCloud->setCompleter(completer);
     */
-
 }
 
 void MusicWidgetArtist::updateImage(int imageType, ClosableImage *image)
@@ -384,6 +383,8 @@ void MusicWidgetArtist::onInfoLoadDone(Artist *artist)
 
 void MusicWidgetArtist::onLoadDone(Artist *artist)
 {
+    emit sigDownloadsFinished(Constants::MusicArtistProgressMessageId+artist->databaseId());
+
     if (m_artist != artist)
         return;
 
@@ -392,8 +393,7 @@ void MusicWidgetArtist::onLoadDone(Artist *artist)
 
 void MusicWidgetArtist::onDownloadProgress(Artist *artist, int current, int maximum)
 {
-    // emit actorDownloadProgress(maximum-current, maximum, Constants::MovieProgressMessageId+movie->movieId());
-    qDebug() << "Download progress" << current << maximum;
+    emit sigDownloadsProgress(maximum-current, maximum, Constants::MusicArtistProgressMessageId+artist->databaseId());
 }
 
 void MusicWidgetArtist::onLoadingImages(Artist *artist, QList<int> imageTypes)
@@ -413,8 +413,7 @@ void MusicWidgetArtist::onLoadingImages(Artist *artist, QList<int> imageTypes)
 
 void MusicWidgetArtist::onLoadImagesStarted(Artist *artist)
 {
-    // emit actorDownloadStarted(tr("Downloading images..."), Constants::MovieProgressMessageId+movie->movieId());
-    qDebug() << "Loading images started";
+    emit sigDownloadsStarted(tr("Downloading images..."), Constants::MusicArtistProgressMessageId+artist->databaseId());
 }
 
 void MusicWidgetArtist::onSetImage(Artist *artist, int type, QByteArray data)

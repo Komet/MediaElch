@@ -2,6 +2,7 @@
 #define MUSICMODEL_H
 
 #include <QAbstractItemModel>
+#include <QIcon>
 #include <QObject>
 #include "Artist.h"
 
@@ -30,6 +31,7 @@ private slots:
 
 private:
     MusicModelItem *m_rootItem;
+    QIcon m_newIcon;
 };
 
 #endif // MUSICMODEL_H

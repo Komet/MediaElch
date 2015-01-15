@@ -35,7 +35,16 @@ enum MyIconFontName {
     icon_network = 0xe69e,
     icon_world = 0xe691,
     icon_box2 = 0xe673,
-    icon_search = 0xe618
+    icon_search = 0xe618,
+    icon_angle_up = 0xe682,
+    icon_angle_up_circle = 0xe683,
+    icon_angle_right = 0xe684,
+    icon_angle_right_circle = 0xe685,
+    icon_angle_left = 0xe686,
+    icon_angle_left_circle = 0xe687,
+    icon_angle_down = 0xe688,
+    icon_angle_down_circle = 0xe689,
+    icon_star = 0xe611
 };
 
 

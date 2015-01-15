@@ -318,6 +318,15 @@ bool MyIconFont::initFontAwesome( )
     m.insert("world", icon_world);
     m.insert("box2", icon_box2);
     m.insert("search", icon_search);
+    m.insert("angle_right", icon_angle_right);
+    m.insert("angle_right_circle", icon_angle_right_circle);
+    m.insert("angle_up", icon_angle_up);
+    m.insert("angle_up_circle", icon_angle_up_circle);
+    m.insert("angle_down", icon_angle_down);
+    m.insert("angle_down_circle", icon_angle_down_circle);
+    m.insert("angle_left", icon_angle_left);
+    m.insert("angle_left_circle", icon_angle_left_circle);
+    m.insert("star", icon_star);
 
     return true;
 }

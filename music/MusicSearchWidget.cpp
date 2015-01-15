@@ -29,7 +29,7 @@ MusicSearchWidget::MusicSearchWidget(QWidget *parent) :
     ui->chkDisbanded->setMyData(MusicScraperInfos::Disbanded);
     ui->chkDied->setMyData(MusicScraperInfos::Died);
     ui->chkBiography->setMyData(MusicScraperInfos::Biography);
-    ui->chkArtist->setMyData(MusicScraperInfos::Label);
+    ui->chkArtist->setMyData(MusicScraperInfos::Artist);
     ui->chkLabel->setMyData(MusicScraperInfos::Label);
     ui->chkReview->setMyData(MusicScraperInfos::Review);
     ui->chkYear->setMyData(MusicScraperInfos::Year);
@@ -79,13 +79,10 @@ void MusicSearchWidget::search()
     clear();
     ui->comboScraper->setEnabled(false);
     ui->searchString->setLoading(true);
-    if (m_type == "artist") {
+    if (m_type == "artist")
         Manager::instance()->musicScrapers().at(m_scraperNo)->searchArtist(ui->searchString->text());
-    } else if (m_type == "album") {
-        QString artistName;
-        // @todo: set artist name
-        Manager::instance()->musicScrapers().at(m_scraperNo)->searchAlbum(artistName, ui->searchString->text());
-    }
+    else if (m_type == "album")
+        Manager::instance()->musicScrapers().at(m_scraperNo)->searchAlbum(m_artistName, ui->searchString->text());
 }
 
 void MusicSearchWidget::showResults(QList<ScraperSearchResult> results)
@@ -124,7 +121,7 @@ void MusicSearchWidget::chkToggled()
     ui->chkUnCheckAll->setChecked(allToggled);
 
     int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
-    Settings::instance()->setScraperInfos(WidgetMusic, QString::number(scraperNo), m_infosToLoad);
+    Settings::instance()->setScraperInfos(WidgetMusic, m_type + "/" + QString::number(scraperNo), m_infosToLoad);
 }
 
 void MusicSearchWidget::chkAllToggled(bool toggled)
@@ -154,7 +151,7 @@ QList<int> MusicSearchWidget::infosToLoad()
 void MusicSearchWidget::setChkBoxesEnabled(QList<int> scraperSupports)
 {
     int scraperNo = ui->comboScraper->itemData(ui->comboScraper->currentIndex(), Qt::UserRole).toInt();
-    QList<int> infos = Settings::instance()->scraperInfos(WidgetMusic, QString::number(scraperNo));
+    QList<int> infos = Settings::instance()->scraperInfos(WidgetMusic, m_type + "/" + QString::number(scraperNo));
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
         box->setEnabled(scraperSupports.contains(box->myData().toInt()));
@@ -163,9 +160,14 @@ void MusicSearchWidget::setChkBoxesEnabled(QList<int> scraperSupports)
     chkToggled();
 }
 
-void MusicSearchWidget::setType(QString type)
+void MusicSearchWidget::setType(const QString &type)
 {
     m_type = type;
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>())
         box->setVisible(box->property("type").toString() == "both" || box->property("type").toString() == type);
+}
+
+void MusicSearchWidget::setArtistName(const QString &artistName)
+{
+    m_artistName = artistName;
 }

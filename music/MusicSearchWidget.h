@@ -23,7 +23,8 @@ public slots:
     int scraperNo();
     QString scraperId();
     QList<int> infosToLoad();
-    void setType(QString type);
+    void setType(const QString &type);
+    void setArtistName(const QString &artistName);
 
 signals:
     void sigResultClicked();
@@ -41,6 +42,7 @@ private:
     QString m_scraperId;
     QList<int> m_infosToLoad;
     QString m_type;
+    QString m_artistName;
 
     void clear();
     void setChkBoxesEnabled(QList<int> scraperSupports);

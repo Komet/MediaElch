@@ -31,7 +31,6 @@ void MusicFileSearcher::reload(bool force)
 
     emit searchStarted(tr("Searching for Music..."), m_progressMessageId);
     Manager::instance()->musicModel()->clear();
-    Manager::instance()->musicFilesWidget()->renewModel();
 
     QList<Artist*> artists;
     QList<Artist*> artistsFromDb;
@@ -69,6 +68,7 @@ void MusicFileSearcher::reload(bool force)
                     Album *album = new Album(itAlbums.filePath(), this);
                     album->setTitle(itAlbums.fileInfo().baseName());
                     album->setArtistObj(artist);
+                    artist->addAlbum(album);
                     albums.append(album);
                     albumPaths.insert(album, dir.path);
                 }

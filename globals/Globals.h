@@ -23,6 +23,9 @@ namespace Constants {
     const int TvShowProgressMessageId              = 40000;
     const int EpisodeProgressMessageId             = 60000;
     const int ConcertProgressMessageId             = 80000;
+    const int MusicArtistProgressMessageId         = 100000;
+    const int MusicAlbumProgressMessageId          = 200000;
+    const int MusicWidgetSaveProgressMessageId     = 300000;
 }
 
 namespace TvShowRoles {
@@ -47,6 +50,10 @@ namespace TvShowRoles {
 
 namespace MusicRoles {
     const int Type = Qt::UserRole+1;
+    const int IsNew = Qt::UserRole+2;
+    const int HasChanged = Qt::UserRole+3;
+    const int NumOfAlbums = Qt::UserRole+4;
+    const int SelectionForeground = Qt::UserRole+5;
 }
 
 namespace MediaCenterInterfaces {

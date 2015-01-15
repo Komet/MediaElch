@@ -6,6 +6,7 @@
 MusicModel::MusicModel(QObject *parent) : QAbstractItemModel(parent)
 {
     m_rootItem = new MusicModelItem(0);
+    m_newIcon = QIcon(":/img/star_blue.png");
 }
 
 MusicModel::~MusicModel()
@@ -30,14 +31,32 @@ QVariant MusicModel::data(const QModelIndex &index, int role) const
         return Helper::instance()->appendArticle(item->data(0).toString());
     } else if (role == MusicRoles::Type) {
         return item->type();
+    } else if (role == MusicRoles::IsNew) {
+        return item->data(role);
     } else if (role == Qt::ForegroundRole) {
-        if (item->data(2).toBool())
+        if (item->data(MusicRoles::HasChanged).toBool())
             return QColor(255, 0, 0);
+        else
+            return QColor(17, 51, 80);
     } else if (role == Qt::FontRole) {
         QFont font;
-        if (item->data(2).toBool())
+        if (item->data(MusicRoles::HasChanged).toBool())
             font.setItalic(true);
+        if (item->data(MusicRoles::Type).toInt() == TypeArtist)
+            font.setBold(true);
+        else
+            font.setPointSize(font.pointSize()-1);
         return font;
+    } else if (role == Qt::DecorationRole) {
+        if (item->data(MusicRoles::IsNew).toBool())
+            return m_newIcon;
+    } else if (role == Qt::SizeHintRole) {
+        return QSize(0, (item->data(MusicRoles::Type) == TypeArtist) ? 44 : 28);
+    } else if (role == MusicRoles::NumOfAlbums) {
+        if (item->data(MusicRoles::Type) == TypeArtist)
+            return item->data(MusicRoles::NumOfAlbums);
+    } else if (role == MusicRoles::SelectionForeground) {
+        return QColor(255, 255, 255);
     }
 
     return QVariant();
@@ -75,6 +94,8 @@ MusicModelItem *MusicModel::appendChild(Artist *artist)
     endInsertRows();
     connect(item, &MusicModelItem::sigChanged, this, &MusicModel::onSigChanged);
     connect(artist, &Artist::sigChanged, this, &MusicModel::onArtistChanged);
+    connect(artist->controller(), &ArtistController::sigSaved, this, &MusicModel::onArtistChanged);
+    connect(item, &MusicModelItem::sigIntChanged, this, &MusicModel::onSigChanged);
     return item;
 }
 

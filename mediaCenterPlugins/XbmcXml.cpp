@@ -1769,6 +1769,8 @@ bool XbmcXml::loadArtist(Artist *artist, QString initialNfoContent)
             return false;
 
         QFile file(nfoFile);
+        if (!file.exists())
+            return false;
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
             qWarning() << "File" << nfoFile << "could not be opened for reading";
             return false;
@@ -1784,6 +1786,8 @@ bool XbmcXml::loadArtist(Artist *artist, QString initialNfoContent)
     domDoc.setContent(nfoContent);
     if (!domDoc.elementsByTagName("mbid").isEmpty())
         artist->setMbId(domDoc.elementsByTagName("mbid").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("allmusicid").isEmpty())
+        artist->setAllMusicId(domDoc.elementsByTagName("allmusicid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("name").isEmpty())
         artist->setName(domDoc.elementsByTagName("name").at(0).toElement().text());
     if (!domDoc.elementsByTagName("genre").isEmpty())
@@ -1810,12 +1814,18 @@ bool XbmcXml::loadArtist(Artist *artist, QString initialNfoContent)
         if (parentTag == "artist") {
             Poster p;
             p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
-            p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
+            if (!domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview").isEmpty())
+                p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
+            else
+                p.thumbUrl = p.originalUrl;
             artist->addImage(ImageType::ArtistThumb, p);
         } else if (parentTag == "fanart") {
             Poster p;
             p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
-            p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
+            if (!domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview").isEmpty())
+                p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
+            else
+                p.thumbUrl = p.originalUrl;
             artist->addImage(ImageType::ArtistFanart, p);
         }
     }
@@ -1837,6 +1847,8 @@ bool XbmcXml::loadAlbum(Album *album, QString initialNfoContent)
             return false;
 
         QFile file(nfoFile);
+        if (!file.exists())
+            return false;
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
             qWarning() << "File" << nfoFile << "could not be opened for reading";
             return false;
@@ -1853,6 +1865,8 @@ bool XbmcXml::loadAlbum(Album *album, QString initialNfoContent)
 
     if (!domDoc.elementsByTagName("mbid").isEmpty())
         album->setMbId(domDoc.elementsByTagName("mbid").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("allmusicid").isEmpty())
+        album->setAllMusicId(domDoc.elementsByTagName("allmusicid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("title").isEmpty())
         album->setTitle(domDoc.elementsByTagName("title").at(0).toElement().text());
     if (!domDoc.elementsByTagName("artist").isEmpty())
@@ -1868,7 +1882,7 @@ bool XbmcXml::loadAlbum(Album *album, QString initialNfoContent)
     if (!domDoc.elementsByTagName("label").isEmpty())
         album->setLabel(domDoc.elementsByTagName("label").at(0).toElement().text());
     if (!domDoc.elementsByTagName("releasedate").isEmpty())
-        album->setReleaseDate(QDate::fromString(domDoc.elementsByTagName("releasedate").at(0).toElement().text(), "yyyy-MM-dd"));
+        album->setReleaseDate(domDoc.elementsByTagName("releasedate").at(0).toElement().text());
     if (!domDoc.elementsByTagName("year").isEmpty())
         album->setYear(domDoc.elementsByTagName("year").at(0).toElement().text().toInt());
     if (!domDoc.elementsByTagName("rating").isEmpty())
@@ -1876,7 +1890,10 @@ bool XbmcXml::loadAlbum(Album *album, QString initialNfoContent)
     for (int i=0, n=domDoc.elementsByTagName("thumb").size() ; i<n ; i++) {
         Poster p;
         p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
-        p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
+        if (!domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview").isEmpty())
+            p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
+        else
+            p.thumbUrl = p.originalUrl;
         album->addImage(ImageType::AlbumThumb, p);
     }
 
@@ -2073,6 +2090,8 @@ void XbmcXml::writeArtistXml(QXmlStreamWriter &xml, Artist *artist)
     xml.writeStartElement("artist");
     if (!artist->mbId().isEmpty())
         xml.writeTextElement("mbid", artist->mbId());
+    if (!artist->allMusicId().isEmpty())
+        xml.writeTextElement("allmusicid", artist->allMusicId());
     xml.writeTextElement("name", artist->name());
     xml.writeTextElement("genre", artist->genres().join(" / "));
     foreach (const QString &style, artist->styles())
@@ -2109,6 +2128,8 @@ void XbmcXml::writeAlbumXml(QXmlStreamWriter &xml, Album *album)
     xml.writeStartElement("album");
     if (!album->mbId().isEmpty())
         xml.writeTextElement("mbid", album->mbId());
+    if (!album->allMusicId().isEmpty())
+        xml.writeTextElement("allmusicid", album->allMusicId());
     xml.writeTextElement("title", album->title());
     xml.writeTextElement("artist", album->artist());
     xml.writeTextElement("genre", album->genres().join(" / "));
@@ -2118,9 +2139,11 @@ void XbmcXml::writeAlbumXml(QXmlStreamWriter &xml, Album *album)
         xml.writeTextElement("mood", mood);
     xml.writeTextElement("review", album->review());
     xml.writeTextElement("label", album->label());
-    xml.writeTextElement("rating", QString("%1").arg(album->rating()));
-    xml.writeTextElement("releasedate", album->releaseDate().toString("yyyy-MM-dd"));
-    xml.writeTextElement("year", QString("%1").arg(album->year()));
+    if (album->rating() > 0)
+        xml.writeTextElement("rating", QString("%1").arg(album->rating()));
+    xml.writeTextElement("releasedate", album->releaseDate());
+    if (album->year() > 0)
+        xml.writeTextElement("year", QString("%1").arg(album->year()));
 
     foreach (const Poster &poster, album->images(ImageType::ArtistThumb)) {
         xml.writeStartElement("thumb");

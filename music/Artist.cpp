@@ -354,3 +354,28 @@ void Artist::setMbId(const QString &mbId)
 {
     m_mbId = mbId;
 }
+
+QList<Album*> Artist::albums() const
+{
+    return m_albums;
+}
+
+void Artist::setAlbums(const QList<Album*> &albums)
+{
+    m_albums = albums;
+}
+
+void Artist::addAlbum(Album *album)
+{
+    m_albums.append(album);
+}
+
+QString Artist::allMusicId() const
+{
+    return m_allMusicId;
+}
+
+void Artist::setAllMusicId(const QString &allMusicId)
+{
+    m_allMusicId = allMusicId;
+}

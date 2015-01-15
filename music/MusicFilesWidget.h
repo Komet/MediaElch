@@ -7,6 +7,7 @@
 #include "globals/Filter.h"
 #include "Artist.h"
 #include "Album.h"
+#include "MusicProxyModel.h"
 
 namespace Ui {
 class MusicFilesWidget;
@@ -23,7 +24,6 @@ public:
 
 public slots:
     void setFilter(QList<Filter*> filters, QString text);
-    void renewModel();
 
 signals:
     void sigArtistSelected(Artist*);
@@ -36,6 +36,7 @@ private slots:
 private:
     Ui::MusicFilesWidget *ui;
     static MusicFilesWidget *m_instance;
+    MusicProxyModel *m_proxyModel;
 };
 
 #endif // MUSICFILESWIDGET_H

@@ -41,12 +41,34 @@ QVariant MusicModelItem::data(int column) const
 {
     Q_UNUSED(column);
     switch (column) {
-    case 2:
+    case MusicRoles::Type:
+        return type();
+        break;
+    case MusicRoles::HasChanged:
+        if (m_album)
+            return m_album->hasChanged();
         if (m_artist)
             return m_artist->hasChanged();
-        else if (m_album)
-            return m_album->hasChanged();
+    case MusicRoles::NumOfAlbums:
+        if (m_artist)
+            return m_artist->albums().count();
         break;
+    case MusicRoles::IsNew:
+    {
+        if (m_album)
+            return !m_album->controller()->infoLoaded();
+
+        if (m_artist && !m_artist->controller()->infoLoaded())
+            return true;
+
+        if (m_artist) {
+            foreach (Album *album, m_artist->albums()) {
+                if (!album->controller()->infoLoaded())
+                    return true;
+            }
+        }
+        return false;
+    }
     default:
         if (m_artist)
             return m_artist->name();
@@ -74,6 +96,7 @@ MusicModelItem *MusicModelItem::appendChild(Album *album)
     album->setModelItem(item);
     m_childItems.append(item);
     connect(album, SIGNAL(sigChanged(Album*)), this, SLOT(onAlbumChanged(Album*)), Qt::UniqueConnection);
+    connect(album->controller(), SIGNAL(sigSaved(Album*)), this, SLOT(onAlbumChanged(Album*)), Qt::UniqueConnection);
     return item;
 }
 
@@ -113,7 +136,7 @@ Album *MusicModelItem::album()
     return m_album;
 }
 
-int MusicModelItem::type()
+int MusicModelItem::type() const
 {
     if (m_artist)
         return TypeArtist;

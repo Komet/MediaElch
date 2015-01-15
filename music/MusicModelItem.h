@@ -28,7 +28,7 @@ public:
     void setAlbum(Album *album);
     Artist *artist();
     Album *album();
-    int type();
+    int type() const;
 
 signals:
     void sigIntChanged(MusicModelItem*, MusicModelItem*);

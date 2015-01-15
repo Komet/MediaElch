@@ -147,12 +147,12 @@ void Album::setReview(const QString &review)
     setHasChanged(true);
 }
 
-QDate Album::releaseDate() const
+QString Album::releaseDate() const
 {
     return m_releaseDate;
 }
 
-void Album::setReleaseDate(const QDate &releaseDate)
+void Album::setReleaseDate(const QString &releaseDate)
 {
     m_releaseDate = releaseDate;
     setHasChanged(true);
@@ -261,7 +261,7 @@ void Album::clear(QList<int> infos)
     if (infos.contains(MusicScraperInfos::Review))
         m_review.clear();
     if (infos.contains(MusicScraperInfos::ReleaseDate))
-        m_releaseDate = QDate(2000, 2, 30);
+        m_releaseDate.clear();
     if (infos.contains(MusicScraperInfos::Label))
         m_label.clear();
     if (infos.contains(MusicScraperInfos::Rating))
@@ -356,4 +356,14 @@ QString Album::mbId() const
 void Album::setMbId(const QString &mbId)
 {
     m_mbId = mbId;
+}
+
+QString Album::allMusicId() const
+{
+    return m_allMusicId;
+}
+
+void Album::setAllMusicId(const QString &allMusicId)
+{
+    m_allMusicId = allMusicId;
 }

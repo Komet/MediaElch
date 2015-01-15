@@ -89,6 +89,13 @@ public:
     QString mbId() const;
     void setMbId(const QString &mbId);
 
+    QList<Album*> albums() const;
+    void setAlbums(const QList<Album*> &albums);
+    void addAlbum(Album *album);
+
+    QString allMusicId() const;
+    void setAllMusicId(const QString &allMusicId);
+
 signals:
     void sigChanged(Artist*);
 
@@ -113,6 +120,8 @@ private:
     int m_databaseId;
     ArtistController *m_controller;
     QString m_mbId;
+    QString m_allMusicId;
+    QList<Album*> m_albums;
 };
 
 #endif // ARTIST_H

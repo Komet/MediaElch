@@ -14,11 +14,12 @@ MusicFilesWidget::MusicFilesWidget(QWidget *parent) :
     Manager::instance()->setMusicFilesWidget(this);
     ui->setupUi(this);
 
-    ui->music->setModel(Manager::instance()->musicModel());
-    ui->music->sortByColumn(0);
+    m_proxyModel = new MusicProxyModel(this);
+    m_proxyModel->setSourceModel(Manager::instance()->musicModel());
+    ui->music->setModel(m_proxyModel);
+    ui->music->sortByColumn(0, Qt::AscendingOrder);
     ui->music->setAttribute(Qt::WA_MacShowFocusRect, false);
 
-    //connect(ui->music, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemSelected(QModelIndex)), Qt::QueuedConnection);
     connect(ui->music->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemSelected(QModelIndex)), Qt::QueuedConnection);
 }
 
@@ -34,15 +35,13 @@ MusicFilesWidget *MusicFilesWidget::instance()
 
 void MusicFilesWidget::setFilter(QList<Filter *> filters, QString text)
 {
-}
-
-void MusicFilesWidget::renewModel()
-{
+    Q_UNUSED(filters);
+    Q_UNUSED(text);
 }
 
 void MusicFilesWidget::onItemSelected(QModelIndex index)
 {
-    QModelIndex sourceIndex = index;
+    QModelIndex sourceIndex = m_proxyModel->mapToSource(index);
     if (Manager::instance()->musicModel()->getItem(sourceIndex)->type() == TypeArtist)
         emit sigArtistSelected(Manager::instance()->musicModel()->getItem(sourceIndex)->artist());
     else if (Manager::instance()->musicModel()->getItem(sourceIndex)->type() == TypeAlbum)

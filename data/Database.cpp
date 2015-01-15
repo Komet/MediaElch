@@ -945,6 +945,7 @@ QList<Album*> Database::albums(Artist *artist)
         album->setDatabaseId(query.value(query.record().indexOf("idAlbum")).toInt());
         album->setNfoContent(QString::fromUtf8(query.value(query.record().indexOf("content")).toByteArray()));
         album->setArtistObj(artist);
+        artist->addAlbum(album);
         albums.append(album);
     }
     return albums;

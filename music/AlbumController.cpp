@@ -37,7 +37,7 @@ bool AlbumController::loadData(MediaCenterInterface *mediaCenterInterface, bool 
 
     if (!infoLoaded) {
         QFileInfo fi(m_album->path());
-        m_album->setTitle(fi.baseName());
+        m_album->setTitle(fi.fileName());
     }
     m_infoLoaded = infoLoaded;
     m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
@@ -53,6 +53,8 @@ bool AlbumController::saveData(MediaCenterInterface *mediaCenterInterface)
         m_infoLoaded = saved;
     m_album->setHasChanged(false);
     m_album->clearImages();
+    if (saved)
+        emit sigSaved(m_album);
     return saved;
 }
 
