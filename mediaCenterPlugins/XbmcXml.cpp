@@ -1426,6 +1426,16 @@ QStringList XbmcXml::extraFanartNames(TvShow *show)
     return files;
 }
 
+QStringList XbmcXml::extraFanartNames(Artist *artist)
+{
+    QDir dir(artist->path() + "/extrafanart");
+    QStringList files;
+    QStringList filters = QStringList() << "*.jpg" << "*.jpeg" << "*.JPEG" << "*.Jpeg" << "*.JPeg";
+    foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name))
+        files << QDir::toNativeSeparators(dir.path() + "/" + file);
+    return files;
+}
+
 QImage XbmcXml::movieSetPoster(QString setName)
 {
     foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::MovieSetPoster)) {
@@ -2031,6 +2041,18 @@ bool XbmcXml::saveArtist(Artist *artist)
                     QFile(artist->path() + "/" + saveFileName).remove();
             }
         }
+    }
+
+    foreach (const QString &file, artist->extraFanartsToRemove())
+        QFile::remove(file);
+    QDir dir(artist->path() + "/extrafanart");
+    if (!dir.exists() && !artist->extraFanartImagesToAdd().isEmpty())
+        QDir(artist->path()).mkdir("extrafanart");
+    foreach (QByteArray img, artist->extraFanartImagesToAdd()) {
+        int num = 1;
+        while (QFileInfo(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num)).exists())
+            ++num;
+        saveFile(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num), img);
     }
 
     return true;

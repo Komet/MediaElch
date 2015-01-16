@@ -40,6 +40,7 @@ public:
     virtual QStringList extraFanartNames(Movie *movie) = 0;
     virtual QStringList extraFanartNames(TvShow *show) = 0;
     virtual QStringList extraFanartNames(Concert *concert) = 0;
+    virtual QStringList extraFanartNames(Artist *artist) = 0;
 
     virtual bool saveArtist(Artist *artist) = 0;
     virtual bool saveAlbum(Album *album) = 0;

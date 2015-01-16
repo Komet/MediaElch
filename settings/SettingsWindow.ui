@@ -309,8 +309,8 @@ The directories containg your music must contain subdirectories for each artist 
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>100</width>
-                 <height>30</height>
+                 <width>883</width>
+                 <height>418</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -1167,6 +1167,20 @@ The directories containg your music must contain subdirectories for each artist 
               <width>400</width>
               <height>16777215</height>
              </size>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_63">
+            <property name="text">
+             <string>Download Extra Fanarts for Artists</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QSpinBox" name="artistExtraFanarts">
+            <property name="maximum">
+             <number>20</number>
             </property>
            </widget>
           </item>

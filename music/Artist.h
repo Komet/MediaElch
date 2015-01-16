@@ -96,6 +96,14 @@ public:
     QString allMusicId() const;
     void setAllMusicId(const QString &allMusicId);
 
+    QList<ExtraFanart> extraFanarts(MediaCenterInterface *mediaCenterInterface);
+    QStringList extraFanartsToRemove();
+    QList<QByteArray> extraFanartImagesToAdd();
+    void addExtraFanart(QByteArray fanart);
+    void removeExtraFanart(QByteArray fanart);
+    void removeExtraFanart(QString file);
+    void clearExtraFanartData();
+
 signals:
     void sigChanged(Artist*);
 
@@ -122,6 +130,10 @@ private:
     QString m_mbId;
     QString m_allMusicId;
     QList<Album*> m_albums;
+
+    QStringList m_extraFanartsToRemove;
+    QStringList m_extraFanarts;
+    QList<QByteArray> m_extraFanartImagesToAdd;
 };
 
 #endif // ARTIST_H

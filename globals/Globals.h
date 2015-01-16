@@ -201,6 +201,7 @@ namespace ImageType {
     const int ArtistLogo           = 34;
     const int AlbumThumb           = 35;
     const int AlbumCdArt           = 36;
+    const int ArtistExtraFanart    = 37;
 }
 
 namespace MovieScraperInfos {
@@ -277,28 +278,29 @@ namespace ConcertScraperInfos {
 }
 
 namespace MusicScraperInfos {
-    const int Name        = 1;
-    const int Genres      = 2;
-    const int Styles      = 3;
-    const int Moods       = 4;
-    const int YearsActive = 5;
-    const int Formed      = 6;
-    const int Born        = 7;
-    const int Died        = 8;
-    const int Disbanded   = 9;
-    const int Biography   = 10;
-    const int Thumb       = 11;
-    const int Fanart      = 12;
-    const int Logo        = 13;
-    const int Title       = 14;
-    const int Artist      = 15;
-    const int Review      = 16;
-    const int ReleaseDate = 17;
-    const int Label       = 18;
-    const int Rating      = 19;
-    const int Year        = 20;
-    const int CdArt       = 21;
-    const int Cover       = 22;
+    const int Name         = 1;
+    const int Genres       = 2;
+    const int Styles       = 3;
+    const int Moods        = 4;
+    const int YearsActive  = 5;
+    const int Formed       = 6;
+    const int Born         = 7;
+    const int Died         = 8;
+    const int Disbanded    = 9;
+    const int Biography    = 10;
+    const int Thumb        = 11;
+    const int Fanart       = 12;
+    const int Logo         = 13;
+    const int Title        = 14;
+    const int Artist       = 15;
+    const int Review       = 16;
+    const int ReleaseDate  = 17;
+    const int Label        = 18;
+    const int Rating       = 19;
+    const int Year         = 20;
+    const int CdArt        = 21;
+    const int Cover        = 22;
+    const int ExtraFanarts = 23;
 }
 
 // The filter numbers have to unique for MovieFilters, TvShowFilters and ConcertFilters

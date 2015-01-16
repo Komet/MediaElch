@@ -54,6 +54,7 @@ bool ArtistController::saveData(MediaCenterInterface *mediaCenterInterface)
         m_infoLoaded = saved;
     m_artist->setHasChanged(false);
     m_artist->clearImages();
+    m_artist->clearExtraFanartData();
     if (saved)
         emit sigSaved(m_artist);
     return saved;
@@ -89,6 +90,22 @@ void ArtistController::loadImage(int type, QUrl url)
     m_downloadManager->addDownload(d);
 }
 
+void ArtistController::loadImages(int type, QList<QUrl> urls)
+{
+    bool started = false;
+    foreach (const QUrl &url, urls) {
+        DownloadManagerElement d;
+        d.artist = m_artist;
+        d.imageType = type;
+        d.url = url;
+        if (!started) {
+            emit sigLoadingImages(m_artist, QList<int>() << type);
+            started = true;
+        }
+        m_downloadManager->addDownload(d);
+    }
+}
+
 void ArtistController::onAllDownloadsFinished()
 {
     m_downloadsInProgress = false;
@@ -102,7 +119,10 @@ void ArtistController::onDownloadFinished(DownloadManagerElement elem)
     m_downloadsLeft--;
     emit sigDownloadProgress(m_artist, m_downloadsLeft, m_downloadsSize);
 
-    if (!elem.data.isEmpty()) {
+    if (!elem.data.isEmpty() && elem.imageType == ImageType::ArtistExtraFanart) {
+        Helper::instance()->resizeBackdrop(elem.data);
+        m_artist->addExtraFanart(elem.data);
+    } else if (!elem.data.isEmpty()) {
         ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_artist, elem.imageType));
         if (elem.imageType == ImageType::ArtistFanart)
             Helper::instance()->resizeBackdrop(elem.data);
@@ -141,6 +161,9 @@ void ArtistController::scraperLoadDone(MusicScraperInterface *scraper)
         images << ImageType::ArtistFanart;
         m_artist->clear(QList<int>() << MusicScraperInfos::Fanart);
     }
+    if (m_infosToLoad.contains(MusicScraperInfos::ExtraFanarts)) {
+        images << ImageType::ArtistExtraFanart;
+    }
     if (m_infosToLoad.contains(MusicScraperInfos::Logo)) {
         images << ImageType::ArtistLogo;
         m_artist->clear(QList<int>() << MusicScraperInfos::Logo);
@@ -177,11 +200,22 @@ void ArtistController::onFanartLoadDone(Artist *artist, QMap<int, QList<Poster> 
         it.next();
         if (it.value().isEmpty())
             continue;
-        DownloadManagerElement d;
-        d.imageType = it.key();
-        d.url = it.value().at(0).originalUrl;
-        d.artist = m_artist;
-        downloads.append(d);
+
+        if (it.key() == ImageType::ArtistExtraFanart) {
+            for (int i=0, n=it.value().length() ; i<n && i<Settings::instance()->extraFanartsMusicArtists() ; ++i) {
+                DownloadManagerElement d;
+                d.imageType = it.key();
+                d.url = it.value().at(i).originalUrl;
+                d.artist = m_artist;
+                downloads.append(d);
+            }
+        } else {
+            DownloadManagerElement d;
+            d.imageType = it.key();
+            d.url = it.value().at(0).originalUrl;
+            d.artist = m_artist;
+            downloads.append(d);
+        }
         if (!imageTypes.contains(it.key()))
             imageTypes.append(it.key());
     }

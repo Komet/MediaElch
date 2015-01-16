@@ -214,6 +214,7 @@ void Artist::removeImage(int imageType)
 void Artist::clearImages()
 {
     m_rawImages.clear();
+    m_extraFanartImagesToAdd.clear();
 }
 
 bool Artist::hasChanged() const
@@ -286,6 +287,11 @@ void Artist::clear(QList<int> infos)
             m_images.insert(ImageType::ArtistLogo, QList<Poster>());
         m_images[ImageType::ArtistLogo].clear();
         m_rawImages.insert(ImageType::ArtistLogo, QByteArray());
+    }
+    if (infos.contains(MusicScraperInfos::ExtraFanarts)) {
+        m_extraFanartsToRemove.clear();
+        m_extraFanartImagesToAdd.clear();
+        m_extraFanarts.clear();
     }
 }
 
@@ -378,4 +384,60 @@ QString Artist::allMusicId() const
 void Artist::setAllMusicId(const QString &allMusicId)
 {
     m_allMusicId = allMusicId;
+}
+
+void Artist::addExtraFanart(QByteArray fanart)
+{
+    m_extraFanartImagesToAdd.append(fanart);
+    setHasChanged(true);
+}
+
+void Artist::removeExtraFanart(QByteArray fanart)
+{
+    m_extraFanartImagesToAdd.removeOne(fanart);
+    setHasChanged(true);
+}
+
+void Artist::removeExtraFanart(QString file)
+{
+    m_extraFanarts.removeOne(file);
+    m_extraFanartsToRemove.append(file);
+    setHasChanged(true);
+}
+
+QList<ExtraFanart> Artist::extraFanarts(MediaCenterInterface *mediaCenterInterface)
+{
+    if (m_extraFanarts.isEmpty())
+        m_extraFanarts = mediaCenterInterface->extraFanartNames(this);
+    foreach (const QString &file, m_extraFanartsToRemove)
+        m_extraFanarts.removeOne(file);
+    QList<ExtraFanart> fanarts;
+    foreach (const QString &file, m_extraFanarts) {
+        ExtraFanart f;
+        f.path = file;
+        fanarts.append(f);
+    }
+    foreach (const QByteArray &img, m_extraFanartImagesToAdd) {
+        ExtraFanart f;
+        f.image = img;
+        fanarts.append(f);
+    }
+    return fanarts;
+}
+
+QStringList Artist::extraFanartsToRemove()
+{
+    return m_extraFanartsToRemove;
+}
+
+QList<QByteArray> Artist::extraFanartImagesToAdd()
+{
+    return m_extraFanartImagesToAdd;
+}
+
+void Artist::clearExtraFanartData()
+{
+    m_extraFanartImagesToAdd.clear();
+    m_extraFanartsToRemove.clear();
+    m_extraFanarts.clear();
 }

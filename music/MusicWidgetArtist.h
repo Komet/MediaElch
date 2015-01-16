@@ -47,6 +47,9 @@ private slots:
     void onLoadingImages(Artist *artist, QList<int> imageTypes);
     void onLoadImagesStarted(Artist *artist);
     void onSetImage(Artist *artist, int type, QByteArray data);
+    void onRemoveExtraFanart(const QString &file);
+    void onRemoveExtraFanart(const QByteArray &image);
+    void onAddExtraFanart();
 
 private:
     Ui::MusicWidgetArtist *ui;

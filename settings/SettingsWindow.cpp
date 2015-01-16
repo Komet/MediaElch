@@ -375,6 +375,8 @@ void SettingsWindow::loadSettings()
     ui->chkDeleteArchives->setChecked(m_settings->deleteArchives());
     ui->unrarPath->setText(m_settings->unrar());
     ui->makemkvconPath->setText(m_settings->makeMkvCon());
+
+    ui->artistExtraFanarts->setValue(m_settings->extraFanartsMusicArtists());
 }
 
 void SettingsWindow::saveSettings()
@@ -465,6 +467,8 @@ void SettingsWindow::saveSettings()
     m_settings->setUnrar(ui->unrarPath->text());
     m_settings->setMakeMkvCon(ui->makemkvconPath->text());
     m_settings->setDeleteArchives(ui->chkDeleteArchives->isChecked());
+
+    m_settings->setExtraFanartsMusicArtists(ui->artistExtraFanarts->value());
 
     m_settings->saveSettings();
 

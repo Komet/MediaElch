@@ -75,6 +75,10 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget *parent) :
     connect(ui->died, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
     connect(ui->biography, SIGNAL(textChanged()), this, SLOT(onBiographyChanged()));
 
+    connect(ui->fanarts, SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
+    connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
+    connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddExtraFanart()));
+
     QPainter p;
     QPixmap revert(":/img/arrow_circle_left.png");
     p.begin(&revert);
@@ -143,6 +147,7 @@ void MusicWidgetArtist::onClear()
     ui->thumb->clear();
     ui->fanart->clear();
     ui->logo->clear();
+    ui->fanarts->clear();
 
     ui->buttonRevert->setVisible(false);
 }
@@ -217,6 +222,7 @@ void MusicWidgetArtist::updateArtistInfo()
     updateImage(ImageType::ArtistFanart, ui->fanart);
     updateImage(ImageType::ArtistThumb, ui->thumb);
     updateImage(ImageType::ArtistLogo, ui->logo);
+    ui->fanarts->setImages(m_artist->extraFanarts(Manager::instance()->mediaCenterInterface()));
 
     QStringList genres;
     QStringList styles;
@@ -232,15 +238,6 @@ void MusicWidgetArtist::updateArtistInfo()
     ui->genreCloud->setTags(genres, m_artist->genres());
     ui->styleCloud->setTags(styles, m_artist->styles());
     ui->moodCloud->setTags(moods, m_artist->moods());
-
-    /*
-    ui->tagCloud->setTags(tags, m_movie->tags());
-    ui->countryCloud->setTags(countries, m_movie->countries());
-    ui->studioCloud->setTags(m_movie->studios(), m_movie->studios());
-    QCompleter *completer = new QCompleter(studios, this);
-    completer->setCaseSensitivity(Qt::CaseInsensitive);
-    ui->studioCloud->setCompleter(completer);
-    */
 }
 
 void MusicWidgetArtist::updateImage(int imageType, ClosableImage *image)
@@ -388,6 +385,7 @@ void MusicWidgetArtist::onLoadDone(Artist *artist)
     if (m_artist != artist)
         return;
 
+    ui->fanarts->setLoading(false);
     onSetEnabled(true);
 }
 
@@ -408,6 +406,9 @@ void MusicWidgetArtist::onLoadingImages(Artist *artist, QList<int> imageTypes)
         }
     }
 
+    if (imageTypes.contains(ImageType::ArtistExtraFanart))
+        ui->fanarts->setLoading(true);
+
     ui->groupBox_3->update();
 }
 
@@ -421,10 +422,51 @@ void MusicWidgetArtist::onSetImage(Artist *artist, int type, QByteArray data)
     if (artist != m_artist)
         return;
 
+    if (type == ImageType::ArtistExtraFanart) {
+        ui->fanarts->addImage(data);
+        return;
+    }
+
     foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage*>()) {
         if (image->imageType() == type) {
             image->setLoading(false);
             image->setImage(data);
         }
+    }
+}
+
+void MusicWidgetArtist::onRemoveExtraFanart(const QByteArray &image)
+{
+    if (!m_artist)
+        return;
+    m_artist->removeExtraFanart(image);
+    ui->buttonRevert->setVisible(true);
+}
+
+void MusicWidgetArtist::onRemoveExtraFanart(const QString &file)
+{
+    if (!m_artist)
+        return;
+    m_artist->removeExtraFanart(file);
+    ui->buttonRevert->setVisible(true);
+}
+
+void MusicWidgetArtist::onAddExtraFanart()
+{
+    if (!m_artist)
+        return;
+
+    ImageDialog::instance()->setImageType(ImageType::ArtistExtraFanart);
+    ImageDialog::instance()->clear();
+    ImageDialog::instance()->setMultiSelection(true);
+    ImageDialog::instance()->setArtist(m_artist);
+    ImageDialog::instance()->setDownloads(m_artist->images(ImageType::ArtistFanart));
+    ImageDialog::instance()->exec(ImageType::ArtistFanart);
+
+    if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
+        ui->fanarts->setLoading(true);
+        emit sigSetActionSaveEnabled(false, WidgetMusic);
+        m_artist->controller()->loadImages(ImageType::ArtistExtraFanart, ImageDialog::instance()->imageUrls());
+        ui->buttonRevert->setVisible(true);
     }
 }

@@ -706,7 +706,8 @@ QList<int> UniversalMusicScraper::scraperSupports()
                         << MusicScraperInfos::Cover
                         << MusicScraperInfos::YearsActive
                         << MusicScraperInfos::ReleaseDate
-                        << MusicScraperInfos::Year;
+                        << MusicScraperInfos::Year
+                        << MusicScraperInfos::ExtraFanarts;
 }
 
 QWidget *UniversalMusicScraper::settingsWidget()

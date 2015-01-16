@@ -335,6 +335,16 @@ selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, 
          </widget>
         </item>
         <item>
+         <widget class="MyCheckBox" name="chkExtraFanarts">
+          <property name="text">
+           <string>Extra Fanarts</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">artist</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="MyCheckBox" name="chkLogo">
           <property name="text">
            <string>Logo</string>

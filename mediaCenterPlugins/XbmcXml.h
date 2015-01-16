@@ -36,6 +36,7 @@ public:
     QStringList extraFanartNames(Movie *movie);
     QStringList extraFanartNames(Concert *concert);
     QStringList extraFanartNames(TvShow *show);
+    QStringList extraFanartNames(Artist *artist);
     QImage movieSetPoster(QString setName);
     QImage movieSetBackdrop(QString setName);
     void saveMovieSetPoster(QString setName, QImage poster);

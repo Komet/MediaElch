@@ -294,6 +294,8 @@ void Settings::loadSettings()
 
     m_showMissingEpisodesHint = settings()->value("TvShows/ShowMissingEpisodesHint", true).toBool();
 
+    m_extraFanartsMusicArtists = settings()->value("Music/Artists/ExtraFanarts", 0).toInt();
+
     PluginManager::instance()->loadSettings();
 }
 
@@ -443,6 +445,8 @@ void Settings::saveSettings()
 
     settings()->setValue("Movies/MultiScrapeOnlyWithId", m_multiScrapeOnlyWithId);
     settings()->setValue("Movies/MultiScrapeSaveEach", m_multiScrapeSaveEach);
+
+    settings()->setValue("Music/Artists/ExtraFanarts", m_extraFanartsMusicArtists);
 
     PluginManager::instance()->saveSettings();
 
@@ -1373,4 +1377,15 @@ QPoint Settings::fixWindowPosition(QPoint p)
     p.setX(qMax(0, p.x()));
     p.setY(qMax(0, p.y()));
     return p;
+}
+
+
+int Settings::extraFanartsMusicArtists() const
+{
+    return m_extraFanartsMusicArtists;
+}
+
+void Settings::setExtraFanartsMusicArtists(int extraFanartsMusicArtists)
+{
+    m_extraFanartsMusicArtists = extraFanartsMusicArtists;
 }

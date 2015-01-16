@@ -41,6 +41,7 @@ MusicSearchWidget::MusicSearchWidget(QWidget *parent) :
     ui->chkMoods->setMyData(MusicScraperInfos::Moods);
     ui->chkThumb->setMyData(MusicScraperInfos::Thumb);
     ui->chkFanart->setMyData(MusicScraperInfos::Fanart);
+    ui->chkExtraFanarts->setMyData(MusicScraperInfos::ExtraFanarts);
     ui->chkLogo->setMyData(MusicScraperInfos::Logo);
     ui->chkCover->setMyData(MusicScraperInfos::Cover);
     ui->chkCdArt->setMyData(MusicScraperInfos::CdArt);

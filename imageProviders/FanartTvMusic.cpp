@@ -12,7 +12,8 @@ FanartTvMusic::FanartTvMusic(QObject *parent)
 {
     setParent(parent);
     m_provides << ImageType::AlbumCdArt << ImageType::AlbumThumb <<
-                  ImageType::ArtistFanart << ImageType::ArtistLogo << ImageType::ArtistThumb;
+                  ImageType::ArtistFanart << ImageType::ArtistLogo << ImageType::ArtistThumb <<
+                  ImageType::ArtistExtraFanart;
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_searchResultLimit = 0;
     m_language = "en";
@@ -216,6 +217,7 @@ QList<Poster> FanartTvMusic::parseData(QString json, int type)
 {
     QMap<int, QStringList> map;
     map.insert(ImageType::ArtistFanart, QStringList() << "artistbackground");
+    map.insert(ImageType::ArtistExtraFanart, QStringList() << "artistbackground");
     map.insert(ImageType::ArtistLogo, QStringList() << "hdmusiclogo" << "musiclogo");
     map.insert(ImageType::ArtistThumb, QStringList() << "artistthumb");
     map.insert(ImageType::AlbumCdArt, QStringList() << "cdart");

@@ -149,6 +149,9 @@ public:
     static QString applicationDir();
     QStringList pluginDirs();
 
+    int extraFanartsMusicArtists() const;
+    void setExtraFanartsMusicArtists(int extraFanartsMusicArtists);
+
 public slots:
     void saveSettings();
 
@@ -214,6 +217,7 @@ private:
     QString m_startupSection;
     bool m_donated;
     QString m_lastImagePath;
+    int m_extraFanartsMusicArtists;
 
     void setupProxy();
     QPoint fixWindowPosition(QPoint p);
