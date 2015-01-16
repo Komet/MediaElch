@@ -57,6 +57,7 @@ private slots:
     void scrollToAlpha(QString alpha);
     void onLeftEdge(bool isEdge);
     void onViewUpdated();
+    void playConcert(QModelIndex idx);
 
 private:
     Ui::ConcertFilesWidget *ui;

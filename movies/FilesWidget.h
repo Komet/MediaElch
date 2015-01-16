@@ -72,6 +72,7 @@ private slots:
     void onActionMediaStatusColumn();
     void onLabel();
     void onViewUpdated();
+    void playMovie(QModelIndex idx);
 
 private:
     Ui::FilesWidget *ui;

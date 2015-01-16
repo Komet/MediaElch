@@ -86,6 +86,7 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
     connect(ui->files, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)), Qt::QueuedConnection);
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)), Qt::QueuedConnection);
+    connect(ui->files, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(playEpisode(QModelIndex)));
     Manager::instance()->setTvShowFilesWidget(this);
 
     connect(m_tvShowProxyModel, SIGNAL(rowsInserted(QModelIndex,int,int)), this, SLOT(onViewUpdated()));
@@ -514,4 +515,18 @@ void TvShowFilesWidget::onViewUpdated()
     } else {
         ui->statusLabel->setText(tr("%1 of %n tv shows", "", Manager::instance()->tvShowModel()->tvShows().count()).arg(m_tvShowProxyModel->rowCount()));
     }
+}
+
+void TvShowFilesWidget::playEpisode(QModelIndex idx)
+{
+    if (!idx.isValid())
+        return;
+
+    if (m_tvShowProxyModel->data(idx, TvShowRoles::Type).toInt() != TypeEpisode)
+        return;
+
+    QString fileName = m_tvShowProxyModel->data(idx, TvShowRoles::FilePath).toString();
+    if (fileName.isEmpty())
+        return;
+    QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
 }

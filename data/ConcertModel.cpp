@@ -94,7 +94,7 @@ QVariant ConcertModel::data(const QModelIndex &index, int role) const
     Concert *concert = m_concerts[index.row()];
     if (index.column() == 0 && role == Qt::DisplayRole) {
         return Helper::instance()->appendArticle(concert->name());
-    } else if (index.column() == 0 && role == Qt::ToolTipRole) {
+    } else if (index.column() == 0 && (role == Qt::ToolTipRole || role == Qt::UserRole+4)) {
         if (concert->files().size() == 0)
             return QVariant();
         return concert->files().at(0);

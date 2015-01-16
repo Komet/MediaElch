@@ -46,6 +46,7 @@ namespace TvShowRoles {
     const int HasCharacterArt = Qt::UserRole+15;
     const int MissingEpisodes = Qt::UserRole+16;
     const int LogoPath = Qt::UserRole+17;
+    const int FilePath = Qt::UserRole+18;
 }
 
 namespace MusicRoles {

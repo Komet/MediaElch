@@ -114,6 +114,7 @@ FilesWidget::FilesWidget(QWidget *parent) :
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
     connect(ui->files->model(), SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(setAlphaListData()));
     connect(ui->files, SIGNAL(sigLeftEdge(bool)), this, SLOT(onLeftEdge(bool)));
+    connect(ui->files, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(playMovie(QModelIndex)));
 
     connect(m_alphaList, SIGNAL(sigAlphaClicked(QString)), this, SLOT(scrollToAlpha(QString)));
 
@@ -500,4 +501,14 @@ void FilesWidget::onViewUpdated()
         ui->statusLabel->setText(tr("%n movies", "", movieCount));
     else
         ui->statusLabel->setText(tr("%1 of %n movies", "", movieCount).arg(visibleCount));
+}
+
+void FilesWidget::playMovie(QModelIndex idx)
+{
+    if (!idx.isValid())
+        return;
+    QString fileName = m_movieProxyModel->data(idx, Qt::UserRole+7).toString();
+    if (fileName.isEmpty())
+        return;
+    QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
 }

@@ -106,6 +106,9 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
         return item->data(109);
     } else if (role == TvShowRoles::LogoPath) {
         return item->data(110);
+    } else if (role == TvShowRoles::FilePath && item->type() == TypeEpisode) {
+        if (!item->tvShowEpisode()->files().isEmpty())
+            return item->tvShowEpisode()->files().first();
     }
     return QVariant();
 }

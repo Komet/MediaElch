@@ -55,6 +55,7 @@ private slots:
     void showMissingEpisodes();
     void hideSpecialsInMissingEpisodes();
     void onViewUpdated();
+    void playEpisode(QModelIndex idx);
 
 private:
     Ui::TvShowFilesWidget *ui;
