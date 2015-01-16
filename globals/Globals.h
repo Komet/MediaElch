@@ -344,6 +344,10 @@ namespace ConcertFilters {
     const int Title         = 27;
 }
 
+namespace MusicFilters {
+    const int Title         = 32;
+}
+
 enum SortBy {
     SortByName, SortBySeen, SortByAdded, SortByYear, SortByNew
 };

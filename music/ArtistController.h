@@ -31,6 +31,7 @@ public:
     void setInfoFromNfoLoaded(bool infoFromNfoLoaded);
 
     bool downloadsInProgress() const;
+    void abortDownloads();
 
     void loadImage(int type, QUrl url);
     void loadImages(int type, QList<QUrl> urls);

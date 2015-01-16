@@ -39,7 +39,6 @@ int MusicModelItem::columnCount() const
 
 QVariant MusicModelItem::data(int column) const
 {
-    Q_UNUSED(column);
     switch (column) {
     case MusicRoles::Type:
         return type();

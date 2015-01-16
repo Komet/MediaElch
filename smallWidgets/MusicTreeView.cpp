@@ -53,6 +53,7 @@ void MusicTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &optio
 
 
     if (index.data(MusicRoles::Type).toInt() == TypeArtist) {
+
         QRect branches(option.rect.x()+5, option.rect.y()+5, 20, option.rect.height()-10);
         drawBranches(painter, branches, index);
 
@@ -104,6 +105,7 @@ void MusicTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &optio
         painter->setFont(index.data(Qt::FontRole).value<QFont>());
         painter->setPen(index.data(isSelected ? MusicRoles::SelectionForeground : Qt::ForegroundRole).value<QColor>());
         painter->drawText(albumRect, index.data().toString(), QTextOption(Qt::AlignVCenter));
+
     }
 
     painter->restore();

@@ -218,7 +218,7 @@ void UniversalMusicScraper::onArtistRelsFinished()
         }
     }
 
-    if (m_prefer == "allmusic")
+    if (m_prefer == "allmusic" && !artist->allMusicId().isEmpty())
         loadAmData(artist->allMusicId(), artist, infos);
     else
         loadTadbData(artist->mbId(), artist, infos);
@@ -250,7 +250,7 @@ void UniversalMusicScraper::onAlbumRelsFinished()
         }
     }
 
-    if (m_prefer == "allmusic")
+    if (m_prefer == "allmusic" && !album->allMusicId().isEmpty())
         loadAmData(album->allMusicId(), album, infos);
     else
         loadTadbData(album->mbId(), album, infos);
@@ -272,7 +272,7 @@ void UniversalMusicScraper::onTadbArtistLoadFinished()
         qWarning() << "Network Error (load)" << reply->errorString();
     }
 
-    if (m_lastScraper == "theaudiodb" || !infosLeft(infos, artist))
+    if (m_lastScraper == "theaudiodb" || !infosLeft(infos, artist) || artist->allMusicId().isEmpty())
         artist->controller()->scraperLoadDone(this);
     else
         loadAmData(artist->allMusicId(), artist, infos);
@@ -294,7 +294,7 @@ void UniversalMusicScraper::onTadbAlbumLoadFinished()
         qWarning() << "Network Error (load)" << reply->errorString();
     }
 
-    if (m_lastScraper == "theaudiodb" || !infosLeft(infos, album))
+    if (m_lastScraper == "theaudiodb" || !infosLeft(infos, album) || album->allMusicId().isEmpty())
         album->controller()->scraperLoadDone(this);
     else
         loadAmData(album->allMusicId(), album, infos);
@@ -329,13 +329,13 @@ void UniversalMusicScraper::parseAndAssignTadbInfos(QString json, Album *album, 
     if (shouldLoad(MusicScraperInfos::Year, infos, album) && !sc.property("intYearReleased").isNull() && sc.property("intYearReleased").toInt32() > 0)
         album->setYear(sc.property("intYearReleased").toString().toInt());
 
-    if (shouldLoad(MusicScraperInfos::Genres, infos, album) && !sc.property("strGenre").isNull())
+    if (shouldLoad(MusicScraperInfos::Genres, infos, album) && !sc.property("strGenre").isNull() && sc.property("strGenre").toString() != "...")
         album->addGenre(sc.property("strGenre").toString());
 
-    if (shouldLoad(MusicScraperInfos::Styles, infos, album) && !sc.property("strStyle").isNull())
+    if (shouldLoad(MusicScraperInfos::Styles, infos, album) && !sc.property("strStyle").isNull() && sc.property("strStyle").toString() != "...")
         album->addStyle(sc.property("strStyle").toString());
 
-    if (shouldLoad(MusicScraperInfos::Moods, infos, album) && !sc.property("strMood").isNull())
+    if (shouldLoad(MusicScraperInfos::Moods, infos, album) && !sc.property("strMood").isNull() && sc.property("strMood").toString() != "...")
         album->addMood(sc.property("strMood").toString());
 
     if (shouldLoad(MusicScraperInfos::Review, infos, album)) {
@@ -378,13 +378,13 @@ void UniversalMusicScraper::parseAndAssignTadbInfos(QString json, Artist *artist
     if (shouldLoad(MusicScraperInfos::Disbanded, infos, artist) && !sc.property("strDisbanded").isNull())
         artist->setDisbanded(sc.property("strDisbanded").toString());
 
-    if (shouldLoad(MusicScraperInfos::Genres, infos, artist) && !sc.property("strGenre").isNull())
+    if (shouldLoad(MusicScraperInfos::Genres, infos, artist) && !sc.property("strGenre").isNull() && sc.property("strGenre").toString() != "...")
         artist->addGenre(sc.property("strGenre").toString());
 
-    if (shouldLoad(MusicScraperInfos::Styles, infos, artist) && !sc.property("strStyle").isNull())
+    if (shouldLoad(MusicScraperInfos::Styles, infos, artist) && !sc.property("strStyle").isNull() && sc.property("strStyle").toString() != "...")
         artist->addStyle(sc.property("strStyle").toString());
 
-    if (shouldLoad(MusicScraperInfos::Moods, infos, artist) && !sc.property("strMood").isNull())
+    if (shouldLoad(MusicScraperInfos::Moods, infos, artist) && !sc.property("strMood").isNull() && sc.property("strMood").toString() != "...")
         artist->addMood(sc.property("strMood").toString());
 
     if (shouldLoad(MusicScraperInfos::Biography, infos, artist)) {

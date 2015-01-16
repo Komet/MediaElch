@@ -29,6 +29,7 @@ public:
     void setInfoFromNfoLoaded(bool infoFromNfoLoaded);
 
     bool downloadsInProgress() const;
+    void abortDownloads();
 
     void loadImage(int type, QUrl url);
     void scraperLoadDone(MusicScraperInterface *scraper);

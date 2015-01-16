@@ -48,6 +48,7 @@ private:
     QList<Filter*> m_movieSetsFilters;
     QList<Filter*> m_tvShowFilters;
     QList<Filter*> m_concertFilters;
+    QList<Filter*> m_musicFilters;
     QList<Filter*> m_movieLabelFilters;
     QListWidget *m_list;
     QList<Filter*> m_activeFilters;
@@ -57,6 +58,7 @@ private:
     void setupMovieFilters();
     void setupTvShowFilters();
     void setupConcertFilters();
+    void setupMusicFilters();
     void storeFilters(MainWidgets widget);
     void loadFilters(MainWidgets widget);
 };

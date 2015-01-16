@@ -6,7 +6,6 @@
 MusicModel::MusicModel(QObject *parent) : QAbstractItemModel(parent)
 {
     m_rootItem = new MusicModelItem(0);
-    m_newIcon = QIcon(":/img/star_blue.png");
 }
 
 MusicModel::~MusicModel()
@@ -47,9 +46,6 @@ QVariant MusicModel::data(const QModelIndex &index, int role) const
         else
             font.setPointSize(font.pointSize()-1);
         return font;
-    } else if (role == Qt::DecorationRole) {
-        if (item->data(MusicRoles::IsNew).toBool())
-            return m_newIcon;
     } else if (role == Qt::SizeHintRole) {
         return QSize(0, (item->data(MusicRoles::Type) == TypeArtist) ? 44 : 28);
     } else if (role == MusicRoles::NumOfAlbums) {
@@ -78,7 +74,6 @@ QModelIndex MusicModel::index(int row, int column, const QModelIndex &parent) co
         return QModelIndex();
 
     MusicModelItem *parentItem = getItem(parent);
-
     MusicModelItem *childItem = parentItem->child(row);
     if (childItem)
         return createIndex(row, column, childItem);

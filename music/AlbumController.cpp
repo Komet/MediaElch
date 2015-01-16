@@ -191,3 +191,8 @@ void AlbumController::onFanartLoadDone(Album *album, QMap<int, QList<Poster> > p
     m_downloadsLeft = downloads.count();
     m_downloadManager->setDownloads(downloads);
 }
+
+void AlbumController::abortDownloads()
+{
+    m_downloadManager->abortDownloads();
+}

@@ -25,6 +25,7 @@
 #include "main/Update.h"
 #include "movies/MovieMultiScrapeDialog.h"
 #include "movies/MovieSearch.h"
+#include "music/MusicMultiScrapeDialog.h"
 #include "music/MusicSearch.h"
 #include "notifications/Notificator.h"
 #include "plugins/PluginInterface.h"
@@ -58,7 +59,8 @@ MainWindow::MainWindow(QWidget *parent) :
         for (int n=ActionSearch ; n!=ActionExport ; n++) {
             actions.insert(static_cast<MainActions>(n), false);
         }
-        if (static_cast<MainWidgets>(i) == WidgetMovies || static_cast<MainWidgets>(i) == WidgetTvShows || static_cast<MainWidgets>(i) == WidgetConcerts)
+        if (static_cast<MainWidgets>(i) == WidgetMovies || static_cast<MainWidgets>(i) == WidgetTvShows ||
+                static_cast<MainWidgets>(i) == WidgetConcerts || static_cast<MainWidgets>(i) == WidgetMusic)
             actions[ActionFilterWidget] = true;
         m_actions.insert(static_cast<MainWidgets>(i), actions);
     }
@@ -190,6 +192,7 @@ MainWindow::MainWindow(QWidget *parent) :
     TvTunesDialog::instance(this);
     NameFormatter::instance(this);
     MovieMultiScrapeDialog::instance(this);
+    MusicMultiScrapeDialog::instance(this);
     Notificator::instance(0, ui->centralWidget);
 
 #ifdef Q_OS_WIN32
@@ -344,7 +347,10 @@ void MainWindow::onActionSearch()
     } else if (ui->stackedWidget->currentIndex() == 3) {
         QTimer::singleShot(0, ui->concertWidget, SLOT(onStartScraperSearch()));
     } else if (ui->stackedWidget->currentIndex() == 7) {
-        QTimer::singleShot(0, ui->musicWidget, SLOT(onStartScraperSearch()));
+        if ((ui->musicFilesWidget->selectedArtists().count() + ui->musicFilesWidget->selectedAlbums().count()) > 1)
+            ui->musicFilesWidget->multiScrape();
+        else
+            QTimer::singleShot(0, ui->musicWidget, SLOT(onStartScraperSearch()));
     } else if (m_plugins.contains(ui->stackedWidget->currentIndex())) {
         m_plugins.value(ui->stackedWidget->currentIndex())->doAction(PluginInterface::ActionSearch);
     }
@@ -454,7 +460,6 @@ void MainWindow::onActionRename()
  */
 void MainWindow::onFilterChanged(QList<Filter *> filters, QString text)
 {
-    qDebug() << "Filter has changed";
     if (ui->stackedWidget->currentIndex() == 0)
         ui->filesWidget->setFilter(filters, text);
     else if (ui->stackedWidget->currentIndex() == 1)
@@ -714,6 +719,7 @@ void MainWindow::onMenu(QToolButton *button)
     setNewMarks();
 
     int page = button->property("page").toInt();
+    ui->stackedWidget->setCurrentIndex(page);
 
     if (button->property("isPlugin").toBool()) {
         PluginInterface *plugin = button->property("storage").value<Storage*>()->pluginInterface();
@@ -776,6 +782,4 @@ void MainWindow::onMenu(QToolButton *button)
         ui->navbar->setFilterWidgetEnabled(m_actions[widget][ActionFilterWidget]);
         ui->navbar->setActiveWidget(widget);
     }
-
-    ui->stackedWidget->setCurrentIndex(page);
 }

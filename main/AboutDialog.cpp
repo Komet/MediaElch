@@ -45,14 +45,19 @@ int AboutDialog::exec()
    adjustSize();
 
    int episodes = 0;
-   foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows()) {
+   foreach (TvShow *show, Manager::instance()->tvShowModel()->tvShows())
        episodes += show->episodes().count();
-   }
+
+   int albums = 0;
+   foreach (Artist *artist, Manager::instance()->musicModel()->artists())
+       albums += artist->albums().count();
 
    ui->numMovies->setText(QString::number(Manager::instance()->movieModel()->movies().count()));
    ui->numConcerts->setText(QString::number(Manager::instance()->concertModel()->concerts().count()));
    ui->numShows->setText(QString::number(Manager::instance()->tvShowModel()->tvShows().count()));
    ui->numEpisodes->setText(QString::number(episodes));
+   ui->numArtists->setText(QString::number(Manager::instance()->musicModel()->artists().count()));
+   ui->numAlbums->setText(QString::number(albums));
 
    return QDialog::exec();
 }

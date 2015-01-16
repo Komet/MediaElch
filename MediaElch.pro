@@ -183,7 +183,8 @@ SOURCES += main.cpp\
     main/MyIconFont.cpp \
     music/MusicProxyModel.cpp \
     smallWidgets/MusicTreeView.cpp \
-    scrapers/UniversalMusicScraper.cpp
+    scrapers/UniversalMusicScraper.cpp \
+    music/MusicMultiScrapeDialog.cpp
 
 macx {
     OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm
@@ -347,7 +348,8 @@ HEADERS  += main/MainWindow.h \
     main/MyIconFont.h \
     music/MusicProxyModel.h \
     smallWidgets/MusicTreeView.h \
-    scrapers/UniversalMusicScraper.h
+    scrapers/UniversalMusicScraper.h \
+    music/MusicMultiScrapeDialog.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -403,7 +405,8 @@ FORMS    += main/MainWindow.ui \
     music/MusicWidgetArtist.ui \
     music/MusicWidgetAlbum.ui \
     music/MusicSearch.ui \
-    music/MusicSearchWidget.ui
+    music/MusicSearchWidget.ui \
+    music/MusicMultiScrapeDialog.ui
 
 RESOURCES += \
     MediaElch.qrc \

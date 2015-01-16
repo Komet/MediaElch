@@ -189,7 +189,8 @@ void FilterWidget::addSelectedFilter()
             return;
         // no entry selected, add the title filter
         foreach (Filter *f, m_filters) {
-            if (f->info() == MovieFilters::Title || f->info() == ConcertFilters::Title || f->info() == TvShowFilters::Title) {
+            if (f->info() == MovieFilters::Title || f->info() == ConcertFilters::Title ||
+                    f->info() == TvShowFilters::Title || f->info() == MusicFilters::Title) {
                 filter = f;
                 break;
             }
@@ -250,6 +251,8 @@ void FilterWidget::setupFilters()
         setupTvShowFilters();
     else if (m_activeWidget == WidgetConcerts)
         setupConcertFilters();
+    else if (m_activeWidget == WidgetMusic)
+        setupMusicFilters();
 }
 
 /**
@@ -529,6 +532,11 @@ void FilterWidget::setupConcertFilters()
     m_filters = m_concertFilters;
 }
 
+void FilterWidget::setupMusicFilters()
+{
+    m_filters = m_musicFilters;
+}
+
 /**
  * @brief Initially sets up filters
  */
@@ -671,6 +679,8 @@ void FilterWidget::initFilters()
     m_tvShowFilters << new Filter(tr("Title"), "", QStringList(), TvShowFilters::Title, true);
 
     m_concertFilters << new Filter(tr("Title"), "", QStringList(), ConcertFilters::Title, true);
+
+    m_musicFilters << new Filter(tr("Title"), "", QStringList(), MusicFilters::Title, true);
 }
 
 /**
@@ -719,6 +729,8 @@ void FilterWidget::loadFilters(MainWidgets widget)
         if (m_tvShowFilters.contains(filter))
             continue;
         if (m_concertFilters.contains(filter))
+            continue;
+        if (m_musicFilters.contains(filter))
             continue;
         m_activeFilters.removeOne(filter);
     }

@@ -21,9 +21,12 @@ public:
     explicit MusicFilesWidget(QWidget *parent = 0);
     ~MusicFilesWidget();
     static MusicFilesWidget *instance();
+    QList<Artist*> selectedArtists();
+    QList<Album*> selectedAlbums();
 
 public slots:
     void setFilter(QList<Filter*> filters, QString text);
+    void multiScrape();
 
 signals:
     void sigArtistSelected(Artist*);
@@ -32,6 +35,7 @@ signals:
 
 private slots:
     void onItemSelected(QModelIndex index);
+    void updateStatusLabel();
 
 private:
     Ui::MusicFilesWidget *ui;
