@@ -108,11 +108,13 @@ void MediaFlags::setupCodec(StreamDetails *streamDetails)
 void MediaFlags::setupAudio(StreamDetails *streamDetails)
 {
     bool visible = false;
-    QStringList availableCodecs = QStringList() << "dtshdma" << "dolbytruehd" << "dts" << "dolbydigital" << "flac" << "vorbis" << "mp3" << "mp2";
+    QStringList availableCodecs = QStringList() << "dtshdma" << "dtshdhra" << "dolbytruehd" << "dts" << "dolbydigital" << "flac" << "vorbis" << "mp3" << "mp2";
     if (streamDetails->audioDetails().count() > 0) {
         QString codec = streamDetails->audioDetails().at(0).value("codec").toLower();
-        if (codec == "dts-hd")
+        if (codec == "dtshd-ma" || codec == "dts-hd" || codec == "dtshd_ma")
             codec = "dtshdma";
+        if (codec == "dtshd-hra" || codec == "dtshd_hra")
+            codec = "dtshdhra";
         if (codec == "ac3")
             codec = "dolbydigital";
 

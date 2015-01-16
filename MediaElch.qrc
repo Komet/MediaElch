@@ -81,6 +81,7 @@
         <file alias="codec/flv">mediaFlags/codec/flv.png</file>
         <file alias="codec/h264">mediaFlags/codec/h264.png</file>
         <file alias="codec/xvid">mediaFlags/codec/xvid.png</file>
+        <file alias="audio/dtshdhra">mediaFlags/audio/dtshdhra.png</file>
     </qresource>
     <qresource prefix="/mediaStatus">
         <file alias="actors/green">img/mediaStatus/actors_green.png</file>
