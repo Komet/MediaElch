@@ -338,10 +338,9 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
 
     QStringList styleSheet = QStringList()
         << "QLabel {"
-        << "    font-family: \"Helvetica Neue\";"
         << "    color: #666666;"
-    #ifndef Q_OS_MACX
-        << "    font-size: 12px;"
+    #ifndef Q_OS_WIN
+        << "    font-family: \"Helvetica Neue\";"
     #endif
         << "}"
 

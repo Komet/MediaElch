@@ -6,6 +6,7 @@
 MusicModel::MusicModel(QObject *parent) : QAbstractItemModel(parent)
 {
     m_rootItem = new MusicModelItem(0);
+    m_newIcon = QIcon(":/img/star_blue.png");
 }
 
 MusicModel::~MusicModel()
@@ -41,18 +42,30 @@ QVariant MusicModel::data(const QModelIndex &index, int role) const
         QFont font;
         if (item->data(MusicRoles::HasChanged).toBool())
             font.setItalic(true);
-        if (item->data(MusicRoles::Type).toInt() == TypeArtist)
+        if (item->data(MusicRoles::Type).toInt() == TypeArtist) {
             font.setBold(true);
-        else
+        } else {
+#ifdef Q_OS_MAC
             font.setPointSize(font.pointSize()-1);
+#endif
+        }
         return font;
     } else if (role == Qt::SizeHintRole) {
+#ifdef Q_OS_WIN
+        return QSize(0, (item->data(MusicRoles::Type) == TypeArtist) ? 22 : 22);
+#else
         return QSize(0, (item->data(MusicRoles::Type) == TypeArtist) ? 44 : 28);
+#endif
     } else if (role == MusicRoles::NumOfAlbums) {
         if (item->data(MusicRoles::Type) == TypeArtist)
             return item->data(MusicRoles::NumOfAlbums);
     } else if (role == MusicRoles::SelectionForeground) {
         return QColor(255, 255, 255);
+    } else if (role == Qt::DecorationRole) {
+#ifdef Q_OS_WIN
+        if (item->data(MusicRoles::IsNew).toBool())
+            return m_newIcon;
+#endif
     }
 
     return QVariant();

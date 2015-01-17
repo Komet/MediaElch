@@ -15,6 +15,10 @@ MusicTreeView::~MusicTreeView()
 
 void MusicTreeView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
 {
+#ifdef Q_OS_WIN
+    QTreeView::drawBranches(painter, rect, index);
+    return;
+#endif
     if (index.model()->data(index, MusicRoles::Type).toInt() != TypeArtist)
         return;
 
@@ -32,6 +36,10 @@ void MusicTreeView::drawBranches(QPainter *painter, const QRect &rect, const QMo
 
 void MusicTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+#ifdef Q_OS_WIN
+    QTreeView::drawRow(painter, option, index);
+    return;
+#endif
     painter->save();
 
     int albumIndent = 40;
@@ -47,10 +55,10 @@ void MusicTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &optio
         else
             opt.features &= ~QStyleOptionViewItem::Alternate;
     }
+
     if (isSelected)
         opt.state |= QStyle::State_Selected;
     style()->drawPrimitive(QStyle::PE_PanelItemViewRow, &opt, painter, this);
-
 
     if (index.data(MusicRoles::Type).toInt() == TypeArtist) {
 
@@ -79,7 +87,9 @@ void MusicTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &optio
         painter->drawText(artistRect, index.data(Qt::DisplayRole).toString(), QTextOption(Qt::AlignVCenter));
 
         font = painter->font();
+#ifdef Q_OS_MAC
         font.setPointSize(font.pointSize()-2);
+#endif
         font.setBold(false);
         painter->setFont(font);
         painter->drawText(albumsRect, tr("%n album(s)", "", index.data(MusicRoles::NumOfAlbums).toInt()), QTextOption(Qt::AlignVCenter));

@@ -59,7 +59,13 @@ public:
         drawSize = qRound(starRect.height()*options.value("scale-factor").toFloat());
         painter->setBrush(starColor);
         painter->setPen(starColor);
+#ifdef Q_OS_MAC
         painter->setFont(QFont("", drawSize-6));
+#else
+        QFont f;
+        f.setPointSize(6);
+        painter->setFont(f);
+#endif
         painter->setRenderHint(QPainter::Antialiasing, true);
         painter->drawEllipse(starRect);
         painter->setPen(QColor(255, 255, 255));

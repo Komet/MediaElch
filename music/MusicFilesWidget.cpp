@@ -22,6 +22,10 @@ MusicFilesWidget::MusicFilesWidget(QWidget *parent) :
     ui->music->setAttribute(Qt::WA_MacShowFocusRect, false);
     ui->statusLabel->clear();
 
+#ifdef Q_OS_WIN
+    ui->music->setAnimated(false);
+#endif
+
     connect(ui->music->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemSelected(QModelIndex)), Qt::QueuedConnection);
     connect(m_proxyModel, SIGNAL(rowsInserted(QModelIndex,int,int)), this, SLOT(updateStatusLabel()));
     connect(m_proxyModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), this, SLOT(updateStatusLabel()));

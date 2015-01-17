@@ -54,6 +54,9 @@ Navbar::Navbar(QWidget *parent) :
 
     int i=0;
     foreach (QToolButton *btn, ui->widget->findChildren<QToolButton*>()) {
+#ifdef Q_OS_WIN
+        btn->setIconSize(QSize(32, 32));
+#endif
         btn->setIcon(Manager::instance()->iconFont()->icon(btn->property("iconName").toString(),
                                                            navbarColors.at(i++%navbarColors.count()),
                                                            btn->property("iconPainter").toString(),

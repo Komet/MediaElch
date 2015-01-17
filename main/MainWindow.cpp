@@ -204,6 +204,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->labelMovies->setFont(font);
     ui->labelConcerts->setFont(font);
     ui->labelShows->setFont(font);
+    ui->labelMusic->setFont(font);
     ui->labelDownloads->setFont(font);
 #endif
 
@@ -212,6 +213,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(PluginManager::instance(), SIGNAL(sigRemovePlugin(PluginInterface*)), this, SLOT(onRemovePlugin(PluginInterface*)));
 #if defined(PLUGINS)
     PluginManager::instance()->loadPlugins();
+#endif
+
+#ifdef Q_OS_WIN
+    foreach (QToolButton *btn, ui->menuWidget->findChildren<QToolButton*>())
+        btn->setIconSize(QSize(32, 32));
+    ui->navbar->setFixedHeight(56);
 #endif
 
     if (Settings::instance()->startupSection() == "tvshows")
