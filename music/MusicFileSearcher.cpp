@@ -56,6 +56,7 @@ void MusicFileSearcher::reload(bool force)
                     break;
 
                 it.next();
+
                 emit currentDir(it.fileInfo().baseName());
                 Artist *artist = new Artist(it.filePath(), this);
                 artist->setName(it.fileInfo().baseName());
@@ -65,6 +66,12 @@ void MusicFileSearcher::reload(bool force)
                 QDirIterator itAlbums(it.filePath(), QDir::NoDotAndDotDot | QDir::Dirs, QDirIterator::FollowSymlinks);
                 while (itAlbums.hasNext()) {
                     itAlbums.next();
+
+                    if (itAlbums.fileInfo().baseName() == "extrafanart")
+                        continue;
+                    if (itAlbums.fileInfo().baseName() == "extrathumbs")
+                        continue;
+
                     Album *album = new Album(itAlbums.filePath(), this);
                     album->setTitle(itAlbums.fileInfo().baseName());
                     album->setArtistObj(artist);
