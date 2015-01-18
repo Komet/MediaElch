@@ -119,6 +119,7 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     connect(ui->videoHeight, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
     connect(ui->videoWidth, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
     connect(ui->videoScantype, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->stereoMode, SIGNAL(currentIndexChanged(int)), this, SLOT(onStreamDetailsEdited()));
 
     QPainter p;
     QPixmap revert(":/img/arrow_circle_left.png");
@@ -132,6 +133,7 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     Helper::instance()->applyStyle(ui->artStackedWidget);
     Helper::instance()->applyStyle(ui->tabWidget);
     Helper::instance()->applyEffect(ui->groupBox_3);
+    Helper::instance()->fillStereoModeCombo(ui->stereoMode);
 }
 
 /**
@@ -217,6 +219,10 @@ void ConcertWidget::clear()
     blocked = ui->videoWidth->blockSignals(true);
     ui->videoWidth->clear();
     ui->videoWidth->blockSignals(blocked);
+
+    blocked = ui->stereoMode->blockSignals(true);
+    ui->stereoMode->setCurrentIndex(0);
+    ui->stereoMode->blockSignals(blocked);
 
     ui->buttonRevert->setVisible(false);
 }
@@ -447,6 +453,7 @@ void ConcertWidget::updateConcertInfo()
     ui->videoHeight->setEnabled(m_concert->streamDetailsLoaded());
     ui->videoWidth->setEnabled(m_concert->streamDetailsLoaded());
     ui->videoScantype->setEnabled(m_concert->streamDetailsLoaded());
+    ui->stereoMode->setEnabled(m_concert->streamDetailsLoaded());
 
     updateImages(QList<int>() << ImageType::ConcertPoster << ImageType::ConcertBackdrop << ImageType::ConcertLogo << ImageType::ConcertCdArt << ImageType::ConcertClearArt);
 
@@ -503,6 +510,7 @@ void ConcertWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoDuration->blockSignals(true);
     ui->videoWidth->blockSignals(true);
     ui->videoHeight->blockSignals(true);
+    ui->streamDetails->blockSignals(true);
 
     if (reloadFromFile)
         m_concert->controller()->loadStreamDetailsFromFile();
@@ -513,6 +521,11 @@ void ConcertWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoAspectRatio->setValue(QString(streamDetails->videoDetails().value("aspect")).replace(",", ".").toDouble());
     ui->videoCodec->setText(streamDetails->videoDetails().value("codec"));
     ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
+    ui->stereoMode->setCurrentIndex(0);
+    for (int i=0, n=ui->stereoMode->count() ; i<n ; ++i) {
+        if (ui->stereoMode->itemData(i).toString() == streamDetails->videoDetails().value("stereomode"))
+            ui->stereoMode->setCurrentIndex(i);
+    }
     QTime time(0, 0, 0, 0);
     time = time.addSecs(streamDetails->videoDetails().value("durationinseconds").toInt());
     ui->videoDuration->setTime(time);
@@ -583,6 +596,7 @@ void ConcertWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoDuration->blockSignals(false);
     ui->videoWidth->blockSignals(false);
     ui->videoHeight->blockSignals(false);
+    ui->streamDetails->blockSignals(false);
 }
 
 /**
@@ -597,6 +611,7 @@ void ConcertWidget::onReloadStreamDetails()
     ui->videoHeight->setEnabled(true);
     ui->videoWidth->setEnabled(true);
     ui->videoScantype->setEnabled(true);
+    ui->stereoMode->setEnabled(true);
 }
 
 /**
@@ -874,6 +889,7 @@ void ConcertWidget::onStreamDetailsEdited()
     details->setVideoDetail("height", ui->videoHeight->text());
     details->setVideoDetail("scantype", ui->videoScantype->text());
     details->setVideoDetail("durationinseconds", QString("%1").arg(-ui->videoDuration->time().secsTo(QTime(0, 0))));
+    details->setVideoDetail("stereomode", ui->stereoMode->currentData().toString());
 
     for (int i=0, n=m_streamDetailsAudio.count() ; i<n ; ++i) {
         details->setAudioDetail(i, "language", m_streamDetailsAudio[i][0]->text());

@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QProcess>
+#include "globals/Helper.h"
 #include "settings/Settings.h"
 
 #include "MediaInfoDLL/MediaInfoDLL.h"
@@ -139,11 +140,14 @@ void StreamDetails::loadWithLibrary()
         }
         videoCodec = videoFormat(codec, version);
 
+        QString multiView = QString(MI.Get(Stream_Video, 0, __T("MultiView_Layout")).c_str());
+
         setVideoDetail("codec", videoCodec);
         setVideoDetail("aspect", QString("%1").arg(aspectRatio));
         setVideoDetail("width", QString("%1").arg(width));
         setVideoDetail("height", QString("%1").arg(height));
         setVideoDetail("scantype", scanType);
+        setVideoDetail("stereomode", stereoFormat(multiView));
     }
 
     for (int i=0 ; i<audioCount ; ++i) {
@@ -212,6 +216,13 @@ QString StreamDetails::audioFormat(const QString &codec, const QString &profile)
     if (Settings::instance()->advanced()->audioCodecMappings().contains(xbmcFormat))
         return Settings::instance()->advanced()->audioCodecMappings().value(xbmcFormat);
     return xbmcFormat;
+}
+
+QString StreamDetails::stereoFormat(const QString &format)
+{
+    if (Helper::instance()->stereoModes().contains(format.toLower()))
+        return Helper::instance()->stereoModes().value(format.toLower());
+    return "";
 }
 
 /**

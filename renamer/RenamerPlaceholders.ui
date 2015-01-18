@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RenamerPlaceholders</class>
+ <widget class="QWidget" name="RenamerPlaceholders">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>642</width>
+    <height>486</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Placeholders</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,1">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_31">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Placeholder</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="1">
+         <widget class="QLabel" name="descArtist">
+          <property name="text">
+           <string>Artist</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="0">
+         <widget class="QLabel" name="labelArtist">
+          <property name="text">
+           <string notr="true">&lt;artist&gt;</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="0">
+         <widget class="QLabel" name="label3d">
+          <property name="text">
+           <string notr="true">{3D}...{/3D}</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+            <string>tvshow</string>
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="descExtension">
+          <property name="text">
+           <string>File extension</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+            <string>tvshow</string>
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLabel" name="descOriginalTitle">
+          <property name="text">
+           <string>Original Title</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="0">
+         <widget class="QLabel" name="labelAlbum">
+          <property name="text">
+           <string notr="true">&lt;album&gt;</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="descPartNo">
+          <property name="text">
+           <string>Part number of the current file</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+            <string>tvshow</string>
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="labelSortTitle">
+          <property name="text">
+           <string notr="true">&lt;sortTitle&gt;</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="labelOriginalTitle">
+          <property name="text">
+           <string notr="true">&lt;originalTitle&gt;</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="1">
+         <widget class="QLabel" name="descAlbum">
+          <property name="text">
+           <string>Album</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="labelTitle">
+          <property name="text">
+           <string notr="true">&lt;title&gt;</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+            <string>tvshow</string>
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="labelYear">
+          <property name="text">
+           <string notr="true">&lt;year&gt;</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+            <string>tvshow</string>
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLabel" name="descTitle">
+          <property name="text">
+           <string>Title</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+            <string>tvshow</string>
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1">
+         <widget class="QLabel" name="descSeason">
+          <property name="text">
+           <string>Season Number</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>tvshow</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="14" column="0">
+         <widget class="QLabel" name="labelDvd">
+          <property name="text">
+           <string notr="true">{dvd}...{/dvd}</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="labelEpisode">
+          <property name="text">
+           <string notr="true">&lt;episode&gt;</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>tvshow</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="16" column="0">
+         <widget class="QLabel" name="labelMovieSet">
+          <property name="text">
+           <string notr="true">{movieset}...&lt;movieset&gt;...{/movieset}</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="labelPartNo">
+          <property name="text">
+           <string notr="true">&lt;partNo&gt;</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+            <string>tvshow</string>
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="0">
+         <widget class="QLabel" name="labelShowTitle">
+          <property name="text">
+           <string notr="true">&lt;showTitle&gt;</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>tvshow</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="1">
+         <widget class="QLabel" name="descShowTitle">
+          <property name="text">
+           <string>Title of the show</string>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>tvshow</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0">
+         <widget class="QLabel" name="labelSeason">
+          <property name="text">
+           <string notr="true">&lt;season&gt;</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>tvshow</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QLabel" name="descYear">
+          <property name="text">
+           <string>Year</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+            <string>tvshow</string>
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="label_32">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Description</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLabel" name="descSortTitle">
+          <property name="text">
+           <string>Sort Title</string>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <widget class="QLabel" name="descEpisode">
+          <property name="text">
+           <string>Episode Number</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>tvshow</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="labelExtension">
+          <property name="text">
+           <string notr="true">&lt;extension&gt;</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+            <string>tvshow</string>
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="0">
+         <widget class="QLabel" name="labelResolution">
+          <property name="text">
+           <string notr="true">&lt;resolution&gt;</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+            <string>tvshow</string>
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="13" column="0">
+         <widget class="QLabel" name="labelBluray">
+          <property name="text">
+           <string notr="true">{bluray}...{/bluray}</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="17" column="0">
+         <widget class="QLabel" name="labelImdbId">
+          <property name="text">
+           <string notr="true">{imdbId}...&lt;imdbid&gt;...{/imdbId}</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="1">
+         <widget class="QLabel" name="descResolution">
+          <property name="text">
+           <string>Resolution (1080p, 720p, ...)</string>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+            <string>tvshow</string>
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="13" column="1">
+         <widget class="QLabel" name="descBluray">
+          <property name="text">
+           <string>File/directory is BluRay</string>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="14" column="1">
+         <widget class="QLabel" name="descDvd">
+          <property name="text">
+           <string>File/directory is DVD</string>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="1">
+         <widget class="QLabel" name="desc3d">
+          <property name="text">
+           <string>File is 3D</string>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+            <string>tvshow</string>
+            <string>concert</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="16" column="1">
+         <widget class="QLabel" name="descMovieSet">
+          <property name="text">
+           <string>Movie set name</string>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+        <item row="17" column="1">
+         <widget class="QLabel" name="descImdbId">
+          <property name="text">
+           <string>IMDB Id</string>
+          </property>
+          <property name="itemTypes" stdset="0">
+           <stringlist notr="true">
+            <string>movie</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

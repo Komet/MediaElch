@@ -39,7 +39,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="SlidingStackedWidget" name="stackedWidget">
+     <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
        <number>0</number>
       </property>
@@ -309,8 +309,8 @@ The directories containg your music must contain subdirectories for each artist 
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>883</width>
-                 <height>418</height>
+                 <width>100</width>
+                 <height>30</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -1792,12 +1792,6 @@ border: none;</string>
   </action>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>SlidingStackedWidget</class>
-   <extends>QStackedWidget</extends>
-   <header>smallWidgets/SlidingStackedWidget.h</header>
-   <container>1</container>
-  </customwidget>
   <customwidget>
    <class>MessageLabel</class>
    <extends>QLabel</extends>

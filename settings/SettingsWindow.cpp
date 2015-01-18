@@ -44,8 +44,8 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->customScraperTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     ui->stackedWidget->setCurrentIndex(0);
-    ui->stackedWidget->setAnimation(QEasingCurve::Linear);
-    ui->stackedWidget->setSpeed(200);
+    //ui->stackedWidget->setAnimation(QEasingCurve::Linear);
+    //ui->stackedWidget->setSpeed(200);
 
     m_settings = Settings::instance(this);
 
@@ -264,7 +264,8 @@ void SettingsWindow::onAction()
     foreach (QAction *action, ui->toolBar->actions())
         action->setIcon(Manager::instance()->iconFont()->icon(action->property("iconName").toString(), m_buttonColor));
     triggeredAction->setIcon(Manager::instance()->iconFont()->icon(triggeredAction->property("iconName").toString(), m_buttonActiveColor));
-    ui->stackedWidget->slideInIdx(triggeredAction->property("page").toInt());
+    //ui->stackedWidget->slideInIdx(triggeredAction->property("page").toInt());
+    ui->stackedWidget->setCurrentIndex(triggeredAction->property("page").toInt());
 }
 
 void SettingsWindow::loadSettings()

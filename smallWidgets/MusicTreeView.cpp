@@ -89,6 +89,8 @@ void MusicTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &optio
         font = painter->font();
 #ifdef Q_OS_MAC
         font.setPointSize(font.pointSize()-2);
+#else
+        font.setPointSize(font.pointSize()-1);
 #endif
         font.setBold(false);
         painter->setFont(font);

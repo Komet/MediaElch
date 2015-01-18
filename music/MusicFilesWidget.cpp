@@ -20,7 +20,8 @@ MusicFilesWidget::MusicFilesWidget(QWidget *parent) :
     ui->music->setModel(m_proxyModel);
     ui->music->sortByColumn(0, Qt::AscendingOrder);
     ui->music->setAttribute(Qt::WA_MacShowFocusRect, false);
-    ui->statusLabel->clear();
+
+    ui->statusLabel->setText(tr("%n artist(s)", "", 0) + ", " + tr("%n album(s)", "", 0));
 
 #ifdef Q_OS_WIN
     ui->music->setAnimated(false);

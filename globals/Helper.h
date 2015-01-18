@@ -1,6 +1,7 @@
 #ifndef HELPER_H
 #define HELPER_H
 
+#include <QComboBox>
 #include <QImage>
 #include <QLabel>
 #include <QObject>
@@ -51,6 +52,9 @@ public:
     virtual void setDevicePixelRatio(QImage &image, qreal devicePixelRatio);
     virtual int compareVersionNumbers(const QString &oldVersion, const QString &newVersion);
     virtual void setButtonStyle(QPushButton *button, Helper::ButtonStyle style);
+    virtual void fillStereoModeCombo(QComboBox *box);
+    virtual QMap<QString, QString> stereoModes();
+    virtual QString matchResolution(int width, int height);
 };
 
 #endif // HELPER_H

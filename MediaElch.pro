@@ -16,6 +16,9 @@ contains(DEFINES, PLUGINS){
 
 unix:LIBS += -lcurl
 macx:LIBS += -framework Foundation
+unix:!macx {
+    LIBS += -ldl
+}
 
 TARGET = MediaElch
 TEMPLATE = app
@@ -184,7 +187,8 @@ SOURCES += main.cpp\
     music/MusicProxyModel.cpp \
     smallWidgets/MusicTreeView.cpp \
     scrapers/UniversalMusicScraper.cpp \
-    music/MusicMultiScrapeDialog.cpp
+    music/MusicMultiScrapeDialog.cpp \
+    renamer/RenamerPlaceholders.cpp
 
 macx {
     OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm
@@ -349,7 +353,8 @@ HEADERS  += main/MainWindow.h \
     music/MusicProxyModel.h \
     smallWidgets/MusicTreeView.h \
     scrapers/UniversalMusicScraper.h \
-    music/MusicMultiScrapeDialog.h
+    music/MusicMultiScrapeDialog.h \
+    renamer/RenamerPlaceholders.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -406,7 +411,8 @@ FORMS    += main/MainWindow.ui \
     music/MusicWidgetAlbum.ui \
     music/MusicSearch.ui \
     music/MusicSearchWidget.ui \
-    music/MusicMultiScrapeDialog.ui
+    music/MusicMultiScrapeDialog.ui \
+    renamer/RenamerPlaceholders.ui
 
 RESOURCES += \
     MediaElch.qrc \

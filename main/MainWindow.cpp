@@ -500,7 +500,7 @@ void MainWindow::onSetSaveEnabled(bool enabled, MainWidgets widget)
         (widget == WidgetConcerts && ui->stackedWidget->currentIndex() == 3)) {
         ui->navbar->setActionSaveEnabled(enabled);
         ui->navbar->setActionSaveAllEnabled(enabled);
-        if (widget != WidgetConcerts)
+        if (widget != WidgetConcerts && widget != WidgetMusic)
             ui->navbar->setActionRenameEnabled(enabled);
     }
     if ((widget == WidgetMovieSets && ui->stackedWidget->currentIndex() == 2) ||

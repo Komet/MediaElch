@@ -23,6 +23,8 @@ Renamer::Renamer(QWidget *parent) :
     onChkRenameFiles();
 
     m_extraFiles = Settings::instance()->advanced()->subtitleFilters();
+    ui->helpLabel->setText(tr("Please see %1 for help and examples on how to use the renamer.")
+                           .arg("<a href=\"http://community.kvibes.de/topic/show/renamer\">http://community.kvibes.de/topic/show/renamer</a>"));
 }
 
 Renamer::~Renamer()
@@ -69,23 +71,7 @@ int Renamer::exec()
     ui->seasonNaming->setVisible(m_renameType == TypeTvShows);
     ui->labelSeasonDirectory->setVisible(m_renameType == TypeTvShows);
 
-    // Movies
-    ui->labelOriginalTitle->setVisible(m_renameType == TypeMovies);
-    ui->descOriginalTitle->setVisible(m_renameType == TypeMovies);
-
-    // Concerts
-    ui->labelAlbum->setVisible(m_renameType == TypeConcerts);
-    ui->descAlbum->setVisible(m_renameType == TypeConcerts);
-    ui->labelArtist->setVisible(m_renameType == TypeConcerts);
-    ui->descArtist->setVisible(m_renameType == TypeConcerts);
-
-    // TV Shows
-    ui->labelEpisode->setVisible(m_renameType == TypeTvShows);
-    ui->descEpisode->setVisible(m_renameType == TypeTvShows);
-    ui->labelSeason->setVisible(m_renameType == TypeTvShows);
-    ui->descSeason->setVisible(m_renameType == TypeTvShows);
-    ui->labelShowTitle->setVisible(m_renameType == TypeTvShows);
-    ui->descShowTitle->setVisible(m_renameType == TypeTvShows);
+    ui->placeholders->setType(m_renameType);
 
     ui->results->clear();
     ui->btnDryRun->setEnabled(true);
@@ -232,11 +218,17 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                 QFileInfo fi(file);
                 QString baseName = fi.completeBaseName();
                 QDir currentDir = fi.dir();
-                newFileName.replace("<title>", movie->name());
-                newFileName.replace("<originalTitle>", movie->originalName());
-                newFileName.replace("<year>", movie->released().toString("yyyy"));
-                newFileName.replace("<extension>", fi.suffix());
-                newFileName.replace("<partNo>", QString::number(++partNo));
+                Renamer::replace(newFileName, "title", movie->name());
+                Renamer::replace(newFileName, "originalTitle", movie->originalName());
+                Renamer::replace(newFileName, "sortTitle", movie->sortTitle());
+                Renamer::replace(newFileName, "year", movie->released().toString("yyyy"));
+                Renamer::replace(newFileName, "extension", fi.suffix());
+                Renamer::replace(newFileName, "partNo", QString::number(++partNo));
+                Renamer::replace(newFileName, "resolution", Helper::instance()->matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
+                                                                                                movie->streamDetails()->videoDetails().value("height").toInt()));
+                Renamer::replaceCondition(newFileName, "imdbId", movie->id());
+                Renamer::replaceCondition(newFileName, "movieset", movie->set());
+                Renamer::replaceCondition(newFileName, "3D", movie->streamDetails()->videoDetails().value("stereomode") != "");
                 Helper::instance()->sanitizeFileName(newFileName);
                 if (fi.fileName() != newFileName) {
                     ui->results->append(tr("<b>Rename File</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(newFileName));
@@ -412,9 +404,16 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
         }
 
         if (renameDirectories && movie->inSeparateFolder()) {
-            newFolderName.replace("<title>", movie->name());
-            newFolderName.replace("<originalTitle>", movie->originalName());
-            newFolderName.replace("<year>", movie->released().toString("yyyy"));
+            Renamer::replace(newFolderName, "title", movie->name());
+            Renamer::replace(newFolderName, "originalTitle", movie->originalName());
+            Renamer::replace(newFolderName, "sortTitle", movie->sortTitle());
+            Renamer::replace(newFolderName, "year", movie->released().toString("yyyy"));
+            Renamer::replace(newFolderName, "resolution", Helper::instance()->matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
+                                                                                              movie->streamDetails()->videoDetails().value("height").toInt()));
+            Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
+            Renamer::replaceCondition(newFolderName, "dvd", isDvd);
+            Renamer::replaceCondition(newFolderName, "3D", movie->streamDetails()->videoDetails().value("stereomode") != "");
+            Renamer::replaceCondition(newFolderName, "movieset", movie->set());
             Helper::instance()->sanitizeFileName(newFolderName);
             if (dir.dirName() != newFolderName)
                 ui->results->append(tr("<b>Rename Directory</b> \"%1\" to \"%2\"").arg(dir.dirName()).arg(newFolderName));
@@ -472,21 +471,24 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
                 QFileInfo fi(file);
                 QString baseName = fi.completeBaseName();
                 QDir currentDir = fi.dir();
-                newFileName.replace("<title>", episode->name());
-                newFileName.replace("<showTitle>", episode->showTitle());
-                newFileName.replace("<year>", episode->firstAired().toString("yyyy"));
-                newFileName.replace("<extension>", fi.suffix());
-                newFileName.replace("<season>", episode->seasonString());
-                newFileName.replace("<partNo>", QString::number(++partNo));
+                Renamer::replace(newFileName, "title", episode->name());
+                Renamer::replace(newFileName, "showTitle", episode->showTitle());
+                Renamer::replace(newFileName, "year", episode->firstAired().toString("yyyy"));
+                Renamer::replace(newFileName, "extension", fi.suffix());
+                Renamer::replace(newFileName, "season", episode->seasonString());
+                Renamer::replace(newFileName, "partNo", QString::number(++partNo));
+                Renamer::replace(newFileName, "resolution", Helper::instance()->matchResolution(episode->streamDetails()->videoDetails().value("width").toInt(),
+                                                                                                episode->streamDetails()->videoDetails().value("height").toInt()));
+                Renamer::replaceCondition(newFileName, "3D", episode->streamDetails()->videoDetails().value("stereomode") != "");
 
                 if (multiEpisodes.count() > 1) {
                     QStringList episodeStrings;
                     foreach (TvShowEpisode *subEpisode, multiEpisodes)
                         episodeStrings.append(subEpisode->episodeString());
                     qSort(episodeStrings);
-                    newFileName.replace("<episode>", episodeStrings.join("-"));
+                    Renamer::replace(newFileName, "episode", episodeStrings.join("-"));
                 } else {
-                    newFileName.replace("<episode>", episode->episodeString());
+                    Renamer::replace(newFileName, "episode", episode->episodeString());
                 }
 
                 Helper::instance()->sanitizeFileName(newFileName);
@@ -553,7 +555,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
         if (useSeasonDirectories) {
             QDir showDir(episode->tvShow()->dir());
             QString seasonDirName = seasonPattern;
-            seasonDirName.replace("<season>", episode->seasonString());
+            Renamer::replace(seasonDirName, "season", episode->seasonString());
             Helper::instance()->sanitizeFileName(seasonDirName);
             QDir seasonDir(showDir.path() + "/" + seasonDirName);
             if (!seasonDir.exists()) {
@@ -618,9 +620,9 @@ void Renamer::renameShows(QList<TvShow *> shows, const QString &directoryPattern
 
         QDir dir(show->dir());
         QString newFolderName = directoryPattern;
-        newFolderName.replace("<title>", show->name());
-        newFolderName.replace("<showTitle>", show->name());
-        newFolderName.replace("<year>", show->firstAired().toString("yyyy"));
+        Renamer::replace(newFolderName, "title", show->name());
+        Renamer::replace(newFolderName, "showTitle", show->name());
+        Renamer::replace(newFolderName, "year", show->firstAired().toString("yyyy"));
         Helper::instance()->sanitizeFileName(newFolderName);
         if (newFolderName != dir.dirName()) {
             ui->results->append(tr("<b>Rename Directory</b> \"%1\" to \"%2\"").arg(dir.dirName()).arg(newFolderName));
@@ -670,12 +672,16 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
                 QFileInfo fi(file);
                 QString baseName = fi.completeBaseName();
                 QDir currentDir = fi.dir();
-                newFileName.replace("<title>", concert->name());
-                newFileName.replace("<artist>", concert->artist());
-                newFileName.replace("<album>", concert->album());
-                newFileName.replace("<year>", concert->released().toString("yyyy"));
-                newFileName.replace("<extension>", fi.suffix());
-                newFileName.replace("<partNo>", QString::number(++partNo));
+
+                Renamer::replace(newFileName, "title", concert->name());
+                Renamer::replace(newFileName, "artist", concert->artist());
+                Renamer::replace(newFileName, "album", concert->album());
+                Renamer::replace(newFileName, "year", concert->released().toString("yyyy"));
+                Renamer::replace(newFileName, "extension", fi.suffix());
+                Renamer::replace(newFileName, "partNo", QString::number(++partNo));
+                Renamer::replace(newFileName, "resolution", Helper::instance()->matchResolution(concert->streamDetails()->videoDetails().value("width").toInt(),
+                                                                                                concert->streamDetails()->videoDetails().value("height").toInt()));
+                Renamer::replaceCondition(newFileName, "3D", concert->streamDetails()->videoDetails().value("stereomode") != "");
                 Helper::instance()->sanitizeFileName(newFileName);
                 if (fi.fileName() != newFileName) {
                     ui->results->append(tr("<b>Rename File</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(newFileName));
@@ -753,10 +759,15 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
         }
 
         if (renameDirectories && concert->inSeparateFolder()) {
-            newFolderName.replace("<title>", concert->name());
-            newFolderName.replace("<artist>", concert->artist());
-            newFolderName.replace("<album>", concert->album());
-            newFolderName.replace("<year>", concert->released().toString("yyyy"));
+            Renamer::replace(newFolderName, "title", concert->name());
+            Renamer::replace(newFolderName, "artist", concert->artist());
+            Renamer::replace(newFolderName, "album", concert->album());
+            Renamer::replace(newFolderName, "year", concert->released().toString("yyyy"));
+            Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
+            Renamer::replaceCondition(newFolderName, "dvd", isDvd);
+            Renamer::replaceCondition(newFolderName, "3D", concert->streamDetails()->videoDetails().value("stereomode") != "");
+            Renamer::replace(newFolderName, "resolution", Helper::instance()->matchResolution(concert->streamDetails()->videoDetails().value("width").toInt(),
+                                                                                              concert->streamDetails()->videoDetails().value("height").toInt()));
             Helper::instance()->sanitizeFileName(newFolderName);
             if (dir.dirName() != newFolderName)
                 ui->results->append(tr("<b>Rename Directory</b> \"%1\" to \"%2\"").arg(dir.dirName()).arg(newFolderName));
@@ -801,4 +812,34 @@ bool Renamer::rename(QDir &dir, QString newName)
         QDir tmpDir;
         return tmpDir.rename(dir.path(), newName);
     }
+}
+
+QString Renamer::replace(QString &text, const QString &search, const QString &replace)
+{
+    text.replace("<" + search + ">", replace);
+    return text;
+}
+
+QString Renamer::replaceCondition(QString &text, const QString &condition, const QString &replace)
+{
+    QRegExp rx("\\{" + condition + "\\}(.*)\\{/" + condition + "\\}");
+    rx.setMinimal(true);
+    if (rx.indexIn(text) == -1)
+        return Renamer::replace(text, condition, replace);
+
+    QString search = QString("{%1}%2{/%1}").arg(condition).arg(rx.cap(1));
+    text.replace(search, !replace.isEmpty() ? rx.cap(1) : "");
+    return Renamer::replace(text, condition, replace);
+}
+
+QString Renamer::replaceCondition(QString &text, const QString &condition, bool hasCondition)
+{
+    QRegExp rx("\\{" + condition + "\\}(.*)\\{/" + condition + "\\}");
+    rx.setMinimal(true);
+    if (rx.indexIn(text) == -1)
+        return text;
+
+    QString search = QString("{%1}%2{/%1}").arg(condition).arg(rx.cap(1));
+    text.replace(search, hasCondition ? rx.cap(1) : "");
+    return text;
 }

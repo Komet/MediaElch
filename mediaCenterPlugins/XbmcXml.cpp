@@ -466,7 +466,7 @@ void XbmcXml::loadStreamDetails(StreamDetails* streamDetails, QDomElement elem)
 {
     if (!elem.elementsByTagName("video").isEmpty()) {
         QDomElement videoElem = elem.elementsByTagName("video").at(0).toElement();
-        QStringList details = (QStringList() << "codec" << "aspect" << "width" << "height" << "durationinseconds" << "scantype");
+        QStringList details = (QStringList() << "codec" << "aspect" << "width" << "height" << "durationinseconds" << "scantype" << "stereomode");
         foreach (const QString &detail, details) {
             if (!videoElem.elementsByTagName(detail).isEmpty())
                 streamDetails->setVideoDetail(detail, videoElem.elementsByTagName(detail).at(0).toElement().text());

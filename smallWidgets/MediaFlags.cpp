@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include <QPainter>
+#include "../globals/Helper.h"
 
 /**
  * @brief MediaFlags::MediaFlags
@@ -52,21 +53,9 @@ void MediaFlags::setStreamDetails(StreamDetails *streamDetails)
  */
 void MediaFlags::setupResolution(StreamDetails *streamDetails)
 {
-    QString heightFlag;
     int height = streamDetails->videoDetails().value("height").toInt();
     int width = streamDetails->videoDetails().value("width").toInt();
-    if (height >= 1072 || width >= 1912) {
-        heightFlag = "1080";
-    } else if (height >= 712 || width >= 1272) {
-        heightFlag = "720";
-    } else if (height >= 576) {
-        heightFlag = "576";
-    } else if (height >= 540) {
-        heightFlag = "540";
-    } else if (height >= 480) {
-        heightFlag = "480";
-    }
-
+    QString heightFlag = Helper::instance()->matchResolution(width, height);
     ui->mediaFlagResolution->setVisible(heightFlag != "");
     if (heightFlag != "")
         ui->mediaFlagResolution->setPixmap(colorIcon(":/media/resolution/" + heightFlag));
