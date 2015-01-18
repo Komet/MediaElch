@@ -244,7 +244,9 @@ void Artist::clear()
           << MusicScraperInfos::Biography
           << MusicScraperInfos::Thumb
           << MusicScraperInfos::Fanart
-          << MusicScraperInfos::Logo;
+          << MusicScraperInfos::Logo
+          << MusicScraperInfos::Discography
+          << MusicScraperInfos::ExtraFanarts;
     clear(infos);
     m_nfoContent.clear();
 }
@@ -293,6 +295,8 @@ void Artist::clear(QList<int> infos)
         m_extraFanartImagesToAdd.clear();
         m_extraFanarts.clear();
     }
+    if (infos.contains(MusicScraperInfos::Discography))
+        m_discography.clear();
 }
 
 MusicModelItem *Artist::modelItem() const
@@ -440,4 +444,40 @@ void Artist::clearExtraFanartData()
     m_extraFanartImagesToAdd.clear();
     m_extraFanartsToRemove.clear();
     m_extraFanarts.clear();
+}
+
+void Artist::setDiscographyAlbums(QList<DiscographyAlbum> albums)
+{
+    m_discography = albums;
+    setHasChanged(true);
+}
+
+void Artist::addDiscographyAlbum(DiscographyAlbum album)
+{
+    m_discography.append(album);
+    setHasChanged(true);
+}
+
+void Artist::removeDiscographyAlbum(DiscographyAlbum *album)
+{
+    for (int i=0, n=m_discography.size() ; i<n ; ++i) {
+        if (&m_discography[i] == album) {
+            m_discography.removeAt(i);
+            break;
+        }
+    }
+    setHasChanged(true);
+}
+
+QList<DiscographyAlbum> Artist::discographyAlbums() const
+{
+    return m_discography;
+}
+
+QList<DiscographyAlbum*> Artist::discographyAlbumsPointer()
+{
+    QList<DiscographyAlbum*> albums;
+    for (int i=0, n=m_discography.size() ; i<n ; i++)
+        albums.append(&(m_discography[i]));
+    return albums;
 }

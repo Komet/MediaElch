@@ -45,6 +45,7 @@ MusicSearchWidget::MusicSearchWidget(QWidget *parent) :
     ui->chkLogo->setMyData(MusicScraperInfos::Logo);
     ui->chkCover->setMyData(MusicScraperInfos::Cover);
     ui->chkCdArt->setMyData(MusicScraperInfos::CdArt);
+    ui->chkDiscography->setMyData(MusicScraperInfos::Discography);
 
     foreach (MyCheckBox *box, ui->groupBox->findChildren<MyCheckBox*>()) {
         if (box->myData().toInt() > 0)

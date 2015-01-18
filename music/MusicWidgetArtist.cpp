@@ -38,6 +38,11 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget *parent) :
     ui->thumb->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->fanart->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
+    ui->discography->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+    ui->discography->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->btnAddAlbum->setIcon(Manager::instance()->iconFont()->icon("plus", QColor(255, 255, 255)));
+    ui->btnRemoveAlbum->setIcon(Manager::instance()->iconFont()->icon("close", QColor(255, 255, 255)));
+
     ui->genreCloud->setText(tr("Genres"));
     ui->genreCloud->setPlaceholder(tr("Add Genre"));
     connect(ui->genreCloud, SIGNAL(activated(QString)), this, SLOT(onAddCloudItem(QString)));
@@ -78,6 +83,10 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget *parent) :
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
     connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddExtraFanart()));
+
+    connect(ui->btnAddAlbum, SIGNAL(clicked()), this, SLOT(onAddAlbum()));
+    connect(ui->btnRemoveAlbum, SIGNAL(clicked()), this, SLOT(onRemoveAlbum()));
+    connect(ui->discography, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onAlbumEdited(QTableWidgetItem*)));
 
     QPainter p;
     QPixmap revert(":/img/arrow_circle_left.png");
@@ -137,9 +146,14 @@ void MusicWidgetArtist::onClear()
     clearContents(ui->yearsActive);
     clearContents(ui->disbanded);
     clearContents(ui->died);
+
     bool blocked = ui->biography->blockSignals(true);
     ui->biography->clear();
     ui->biography->blockSignals(blocked);
+
+    blocked = ui->discography->blockSignals(true);
+    ui->discography->setRowCount(0);
+    ui->discography->blockSignals(false);
 
     ui->genreCloud->clear();
     ui->styleCloud->clear();
@@ -218,6 +232,16 @@ void MusicWidgetArtist::updateArtistInfo()
     ui->biography->blockSignals(true);
     ui->biography->setPlainText(m_artist->biography());
     ui->biography->blockSignals(false);
+
+    ui->discography->blockSignals(true);
+    foreach (DiscographyAlbum *album, m_artist->discographyAlbumsPointer()) {
+        int row = ui->discography->rowCount();
+        ui->discography->insertRow(row);
+        ui->discography->setItem(row, 0, new QTableWidgetItem(album->title));
+        ui->discography->setItem(row, 1, new QTableWidgetItem(album->year));
+        ui->discography->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(album));
+    }
+    ui->discography->blockSignals(false);
 
     updateImage(ImageType::ArtistFanart, ui->fanart);
     updateImage(ImageType::ArtistThumb, ui->thumb);
@@ -469,4 +493,54 @@ void MusicWidgetArtist::onAddExtraFanart()
         m_artist->controller()->loadImages(ImageType::ArtistExtraFanart, ImageDialog::instance()->imageUrls());
         ui->buttonRevert->setVisible(true);
     }
+}
+
+void MusicWidgetArtist::onAddAlbum()
+{
+    if (!m_artist)
+        return;
+
+    DiscographyAlbum a;
+    a.title = tr("Unknown Album");
+    a.year = "";
+    m_artist->addDiscographyAlbum(a);
+
+    DiscographyAlbum *album = m_artist->discographyAlbumsPointer().last();
+
+    ui->discography->blockSignals(true);
+    int row = ui->discography->rowCount();
+    ui->discography->insertRow(row);
+    ui->discography->setItem(row, 0, new QTableWidgetItem(album->title));
+    ui->discography->setItem(row, 1, new QTableWidgetItem(album->year));
+    ui->discography->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(album));
+    ui->discography->scrollToBottom();
+    ui->discography->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
+}
+
+void MusicWidgetArtist::onRemoveAlbum()
+{
+    int row = ui->discography->currentRow();
+    if (!m_artist || row < 0 || row >= ui->discography->rowCount() || !ui->discography->currentItem()->isSelected())
+        return;
+
+    DiscographyAlbum *album = ui->discography->item(row, 0)->data(Qt::UserRole).value<DiscographyAlbum*>();
+    if (!album)
+        return;
+    m_artist->removeDiscographyAlbum(album);
+    ui->discography->blockSignals(true);
+    ui->discography->removeRow(row);
+    ui->discography->blockSignals(false);
+    ui->buttonRevert->setVisible(true);
+}
+
+void MusicWidgetArtist::onAlbumEdited(QTableWidgetItem *item)
+{
+    DiscographyAlbum *album = ui->discography->item(item->row(), 0)->data(Qt::UserRole).value<DiscographyAlbum*>();
+    if (item->column() == 0)
+        album->title = item->text();
+    else if (item->column() == 1)
+        album->year = item->text();
+    m_artist->setHasChanged(true);
+    ui->buttonRevert->setVisible(true);
 }

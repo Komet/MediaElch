@@ -44,7 +44,9 @@ enum MyIconFontName {
     icon_angle_left_circle = 0xe687,
     icon_angle_down = 0xe688,
     icon_angle_down_circle = 0xe689,
-    icon_star = 0xe611
+    icon_star = 0xe611,
+    icon_plus = 0xe623,
+    icon_close = 0xe680
 };
 
 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>722</width>
-    <height>648</height>
+    <height>660</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -208,6 +208,16 @@ selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, 
          <widget class="MyCheckBox" name="chkBiography">
           <property name="text">
            <string>Biography</string>
+          </property>
+          <property name="type" stdset="0">
+           <string notr="true">artist</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="MyCheckBox" name="chkDiscography">
+          <property name="text">
+           <string>Discography</string>
           </property>
           <property name="type" stdset="0">
            <string notr="true">artist</string>

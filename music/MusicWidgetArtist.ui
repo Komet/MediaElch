@@ -18,7 +18,7 @@
 	border: 0;
 }
 
-#tab, #tab_2, #tab_3 {
+#tab, #tab_2, #tab_3, #tab_4 {
 	background-color: #ffffff;
 }
 </string>
@@ -302,6 +302,79 @@
              </size>
             </property>
            </spacer>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tab_4">
+         <attribute name="title">
+          <string>Discography</string>
+         </attribute>
+         <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,0">
+          <item>
+           <widget class="QTableWidget" name="discography">
+            <property name="editTriggers">
+             <set>QAbstractItemView::DoubleClicked</set>
+            </property>
+            <property name="selectionBehavior">
+             <enum>QAbstractItemView::SelectRows</enum>
+            </property>
+            <property name="showGrid">
+             <bool>false</bool>
+            </property>
+            <attribute name="horizontalHeaderDefaultSectionSize">
+             <number>200</number>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <column>
+             <property name="text">
+              <string>Title</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Year</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QPushButton" name="btnAddAlbum">
+              <property name="text">
+               <string>Add Album</string>
+              </property>
+              <property name="dropShadow" stdset="0">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnRemoveAlbum">
+              <property name="text">
+               <string>Remove Album</string>
+              </property>
+              <property name="dropShadow" stdset="0">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>

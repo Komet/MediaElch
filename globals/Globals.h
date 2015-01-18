@@ -98,6 +98,12 @@ Q_DECLARE_METATYPE(Actor*)
 Q_DECLARE_METATYPE(QString*)
 Q_DECLARE_METATYPE(QList<int>)
 
+struct DiscographyAlbum {
+    QString title;
+    QString year;
+};
+Q_DECLARE_METATYPE(DiscographyAlbum*)
+
 /**
  * @brief The ScraperSearchResult struct
  */
@@ -302,6 +308,7 @@ namespace MusicScraperInfos {
     const int CdArt        = 21;
     const int Cover        = 22;
     const int ExtraFanarts = 23;
+    const int Discography  = 24;
 }
 
 // The filter numbers have to unique for MovieFilters, TvShowFilters and ConcertFilters

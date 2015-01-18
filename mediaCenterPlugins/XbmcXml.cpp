@@ -1840,6 +1840,15 @@ bool XbmcXml::loadArtist(Artist *artist, QString initialNfoContent)
         }
     }
 
+    for (int i=0, n=domDoc.elementsByTagName("album").size() ; i<n ; i++) {
+        DiscographyAlbum a;
+        if (!domDoc.elementsByTagName("album").at(i).toElement().elementsByTagName("title").isEmpty())
+            a.title = domDoc.elementsByTagName("album").at(i).toElement().elementsByTagName("title").at(0).toElement().text();
+        if (!domDoc.elementsByTagName("album").at(i).toElement().elementsByTagName("year").isEmpty())
+            a.year = domDoc.elementsByTagName("album").at(i).toElement().elementsByTagName("year").at(0).toElement().text();
+        artist->addDiscographyAlbum(a);
+    }
+
     artist->setHasChanged(false);
 
     return true;
@@ -2141,6 +2150,13 @@ void XbmcXml::writeArtistXml(QXmlStreamWriter &xml, Artist *artist)
         xml.writeEndElement();
     }
     xml.writeEndElement();
+
+    foreach (const DiscographyAlbum &album, artist->discographyAlbums()) {
+        xml.writeStartElement("album");
+        xml.writeTextElement("title", album.title);
+        xml.writeTextElement("year", album.year);
+        xml.writeEndElement();
+    }
 
     xml.writeEndElement();
 }

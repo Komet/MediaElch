@@ -333,6 +333,8 @@ bool MyIconFont::initFontAwesome( )
     m.insert("angle_left", icon_angle_left);
     m.insert("angle_left_circle", icon_angle_left_circle);
     m.insert("star", icon_star);
+    m.insert("plus", icon_plus);
+    m.insert("close", icon_close);
 
     return true;
 }

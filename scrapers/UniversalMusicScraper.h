@@ -38,6 +38,8 @@ private slots:
     void onAmBiographyLoadFinished();
     void onArtistRelsFinished();
     void onAlbumRelsFinished();
+    void onTadbDiscographyLoadFinished();
+    void onAmDiscographyLoadFinished();
 
 private:
     QString m_tadbApiKey;
@@ -52,14 +54,18 @@ private:
     QNetworkAccessManager *qnam();
     void loadTadbData(QString mbId, Artist *artist, QList<int> infos);
     void loadTadbData(QString mbId, Album *album, QList<int> infos);
+    void loadTadbDiscography(QString mbId, Artist *artist, QList<int> infos);
     void loadAmData(QString allMusicId, Artist *artist, QList<int> infos);
     void loadAmData(QString allMusicId, Album *album, QList<int> infos);
     void loadAmBiography(QString allMusicId, Artist *artist, QList<int> infos);
+    void loadAmDiscography(QString allMusicId, Artist *artist, QList<int> infos);
     void parseAndAssignTadbInfos(QString json, Artist *artist, QList<int> infos);
     void parseAndAssignTadbInfos(QString json, Album *album, QList<int> infos);
+    void parseAndAssignTadbDiscography(QString json, Artist *artist, QList<int> infos);
     void parseAndAssignAmInfos(QString html, Artist *artist, QList<int> infos);
     void parseAndAssignAmInfos(QString html, Album *album, QList<int> infos);
     void parseAndAssignAmBiography(QString html, Artist *artist, QList<int> infos);
+    void parseAndAssignAmDiscography(QString html, Artist *artist, QList<int> infos);
     QString trim(QString text);
     bool shouldLoad(int info, QList<int> infos, Artist *artist);
     bool shouldLoad(int info, QList<int> infos, Album *album);

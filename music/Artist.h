@@ -104,6 +104,12 @@ public:
     void removeExtraFanart(QString file);
     void clearExtraFanartData();
 
+    void setDiscographyAlbums(QList<DiscographyAlbum> albums);
+    void addDiscographyAlbum(DiscographyAlbum album);
+    void removeDiscographyAlbum(DiscographyAlbum *album);
+    QList<DiscographyAlbum> discographyAlbums() const;
+    QList<DiscographyAlbum*> discographyAlbumsPointer();
+
 signals:
     void sigChanged(Artist*);
 
@@ -130,6 +136,7 @@ private:
     QString m_mbId;
     QString m_allMusicId;
     QList<Album*> m_albums;
+    QList<DiscographyAlbum> m_discography;
 
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;

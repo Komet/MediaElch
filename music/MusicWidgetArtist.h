@@ -3,6 +3,7 @@
 
 #include <QLineEdit>
 #include <QPointer>
+#include <QTableWidgetItem>
 #include <QWidget>
 #include "../smallWidgets/ClosableImage.h"
 #include "../music/Artist.h"
@@ -50,6 +51,9 @@ private slots:
     void onRemoveExtraFanart(const QString &file);
     void onRemoveExtraFanart(const QByteArray &image);
     void onAddExtraFanart();
+    void onAddAlbum();
+    void onRemoveAlbum();
+    void onAlbumEdited(QTableWidgetItem *item);
 
 private:
     Ui::MusicWidgetArtist *ui;
