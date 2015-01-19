@@ -415,7 +415,7 @@
         </size>
        </property>
        <property name="text">
-        <string>1/20</string>
+        <string notr="true">1/20</string>
        </property>
       </widget>
      </item>
