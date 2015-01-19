@@ -819,10 +819,6 @@
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="272"/>
-        <source>Exctraction of %1 has failed: %2</source>
-        <translation>Entpacken von %1 fehlgeschlagen: %2</translation>
-    </message>
-    <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="274"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="276"/>
         <source>Extraction of %1 has failed: %2</source>
