@@ -4097,11 +4097,6 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="418"/>
-        <source>1/20</source>
-        <translation>1/20</translation>
-    </message>
-    <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="450"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
@@ -4310,7 +4305,7 @@ Si vous voulez effectuer une recherche par un TMDB ou OFDb ID s&apos;il vous pla
     <name>MusicWidgetAlbum</name>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="63"/>
-        <source>Artist has changed. Click to revert changes.</source>
+        <source>Album has changed. Click to revert changes.</source>
         <translation type="unfinished"/>
     </message>
     <message>

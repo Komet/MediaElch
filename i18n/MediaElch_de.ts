@@ -4096,11 +4096,6 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
         <translation>Jeden Interpreten und jedes Album automatisch nach dem Laden der Informationen speichern</translation>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="418"/>
-        <source>1/20</source>
-        <translation>1/20</translation>
-    </message>
-    <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="450"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
@@ -4309,8 +4304,8 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <name>MusicWidgetAlbum</name>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="63"/>
-        <source>Artist has changed. Click to revert changes.</source>
-        <translation>Mache Änderungen an diesem Interpreten rückgängig.</translation>
+        <source>Album has changed. Click to revert changes.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="96"/>
