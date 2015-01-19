@@ -4096,11 +4096,6 @@ i desea buscar por un TMDB o OFDb Identificador favor, añadiendo al principio &
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="418"/>
-        <source>1/20</source>
-        <translation>1/20</translation>
-    </message>
-    <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="450"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
@@ -4309,7 +4304,7 @@ i desea buscar por un TMDB o OFDb Identificador favor, añadiendo al principio &
     <name>MusicWidgetAlbum</name>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="63"/>
-        <source>Artist has changed. Click to revert changes.</source>
+        <source>Album has changed. Click to revert changes.</source>
         <translation type="unfinished"/>
     </message>
     <message>

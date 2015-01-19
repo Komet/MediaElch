@@ -4096,11 +4096,6 @@ Se quiser procurar um ID TMDB ou OFDb, por favor utilize o prefixo &quot;id&quot
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="418"/>
-        <source>1/20</source>
-        <translation>1/20</translation>
-    </message>
-    <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="450"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
@@ -4309,7 +4304,7 @@ Se quiser procurar um ID TMDB ou OFDb, por favor utilize o prefixo &quot;id&quot
     <name>MusicWidgetAlbum</name>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="63"/>
-        <source>Artist has changed. Click to revert changes.</source>
+        <source>Album has changed. Click to revert changes.</source>
         <translation type="unfinished"/>
     </message>
     <message>
