@@ -309,8 +309,8 @@ The directories containg your music must contain subdirectories for each artist 
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>100</width>
-                 <height>30</height>
+                 <width>883</width>
+                 <height>418</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -1193,7 +1193,7 @@ The directories containg your music must contain subdirectories for each artist 
         <item>
          <widget class="QLabel" name="label_7">
           <property name="text">
-           <string>If you want to use the synchronization feature you need to enable the webserver within XBMC (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</string>
+           <string>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</string>
           </property>
           <property name="wordWrap">
            <bool>true</bool>
@@ -1709,7 +1709,7 @@ border: none;</string>
   </action>
   <action name="actionXBMC">
    <property name="text">
-    <string>XBMC</string>
+    <string>Kodi</string>
    </property>
    <property name="page" stdset="0">
     <number>6</number>

@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>XBMC Synchronization</string>
+   <string>Kodi Synchronization</string>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -23,7 +23,7 @@
    <item>
     <widget class="QLabel" name="label_5">
      <property name="text">
-      <string>Please make sure you have setup your sources in XBMC and that the webserver is enabled (XBMC -&gt; Settings -&gt; Services -&gt; Webserver).</string>
+      <string>Please make sure you have setup your sources in Kodi and that the webserver is enabled (Kodi -&gt; Settings -&gt; Services -&gt; Webserver).</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -43,7 +43,7 @@
    <item>
     <widget class="QLabel" name="labelContents">
      <property name="text">
-      <string>This will tell XBMC to remove the changed movies, concerts or shows. Afterwards a XBMC library update is triggered and the removed items will be picked up again.</string>
+      <string>This will tell Kodi to remove the changed movies, concerts or shows. Afterwards a Kodi library update is triggered and the removed items will be picked up again.</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -53,14 +53,14 @@
    <item>
     <widget class="QRadioButton" name="radioClean">
      <property name="text">
-      <string>Remove non-existent items from XBMCs database (Clean library)</string>
+      <string>Remove non-existent items from Kodis database (Clean library)</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QLabel" name="labelClean">
      <property name="text">
-      <string>XBMC will remove not longer existing items from your database.</string>
+      <string>Kodi will remove not longer existing items from your database.</string>
      </property>
     </widget>
    </item>
@@ -74,7 +74,7 @@
    <item>
     <widget class="QLabel" name="labelWatched">
      <property name="text">
-      <string>The fields last played and playcount will be retrieved from XBMC.</string>
+      <string>The fields last played and playcount will be retrieved from Kodi.</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>

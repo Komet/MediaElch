@@ -131,7 +131,7 @@
       <item>
        <widget class="QToolButton" name="btnSync">
         <property name="toolTip">
-         <string>Synchronize to XBMC</string>
+         <string>Synchronize to Kodi</string>
         </property>
         <property name="text">
          <string notr="true"/>
