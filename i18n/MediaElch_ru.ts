@@ -3956,7 +3956,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="46"/>
         <source>Infos to load</source>
-        <translation type="unfinished"/>
+        <translation>Информация к загрузке</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="55"/>
@@ -3966,7 +3966,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="68"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Название</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="81"/>
@@ -4006,7 +4006,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="172"/>
         <source>Logo</source>
-        <translation type="unfinished"/>
+        <translation>Логотип</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="182"/>
@@ -4036,12 +4036,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="244"/>
         <source>Genres</source>
-        <translation type="unfinished"/>
+        <translation>Жанры</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="257"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Надпись</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="270"/>
@@ -4051,12 +4051,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="283"/>
         <source>Rating</source>
-        <translation type="unfinished"/>
+        <translation>Рейтинг</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="296"/>
         <source>Year</source>
-        <translation type="unfinished"/>
+        <translation>Год</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="309"/>
@@ -4066,12 +4066,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="322"/>
         <source>Artist</source>
-        <translation type="unfinished"/>
+        <translation>Артист</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="335"/>
         <source>Title</source>
-        <translation type="unfinished"/>
+        <translation>Название</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="348"/>
@@ -4106,7 +4106,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="473"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>Закрыть</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="486"/>
@@ -4124,12 +4124,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearch.ui" line="17"/>
         <source>Search Result</source>
-        <translation type="unfinished"/>
+        <translation>Результат поиска</translation>
     </message>
     <message>
         <location filename="../music/MusicSearch.ui" line="48"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>Закрыть</translation>
     </message>
 </context>
 <context>
@@ -4148,17 +4148,17 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="100"/>
         <source>Result</source>
-        <translation type="unfinished"/>
+        <translation>Результат</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="127"/>
         <source>Infos to load</source>
-        <translation type="unfinished"/>
+        <translation>Информация к загрузке</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="150"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Название</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="160"/>
@@ -4198,12 +4198,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="230"/>
         <source>Artist</source>
-        <translation type="unfinished"/>
+        <translation>Артист</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="240"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Надпись</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="250"/>
@@ -4213,12 +4213,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="260"/>
         <source>Year</source>
-        <translation type="unfinished"/>
+        <translation>Год</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="270"/>
         <source>Rating</source>
-        <translation type="unfinished"/>
+        <translation>Рейтинг</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="280"/>
@@ -4228,12 +4228,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="290"/>
         <source>Title</source>
-        <translation type="unfinished"/>
+        <translation>Название</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="300"/>
         <source>Genres</source>
-        <translation type="unfinished"/>
+        <translation>Жанры</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="310"/>
@@ -4263,7 +4263,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="360"/>
         <source>Logo</source>
-        <translation type="unfinished"/>
+        <translation>Логотип</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="370"/>
@@ -4317,7 +4317,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="138"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Информация</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="158"/>
@@ -4327,27 +4327,27 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="179"/>
         <source>Artist</source>
-        <translation type="unfinished"/>
+        <translation>Артист</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="200"/>
         <source>Title</source>
-        <translation type="unfinished"/>
+        <translation>Название</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="207"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Надпись</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="214"/>
         <source>Rating</source>
-        <translation type="unfinished"/>
+        <translation>Рейтинг</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="221"/>
         <source>Year</source>
-        <translation type="unfinished"/>
+        <translation>Год</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="228"/>
@@ -4374,7 +4374,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../music/MusicWidgetAlbum.ui" line="386"/>
         <location filename="../music/MusicWidgetAlbum.ui" line="452"/>
         <source>Click to Change</source>
-        <translation type="unfinished"/>
+        <translation>Нажать чтобы изменить</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="430"/>
@@ -4385,12 +4385,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="39"/>
         <source>Genres</source>
-        <translation type="unfinished"/>
+        <translation>Жанры</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="40"/>
         <source>Add Genre</source>
-        <translation type="unfinished"/>
+        <translation>Добавить жанр</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="44"/>
@@ -4420,7 +4420,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="173"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; сохранён</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="429"/>
@@ -4443,7 +4443,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="138"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Информация</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="158"/>
@@ -4453,7 +4453,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="179"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Название</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="207"/>
@@ -4498,12 +4498,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="332"/>
         <source>Title</source>
-        <translation type="unfinished"/>
+        <translation>Название</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="337"/>
         <source>Year</source>
-        <translation type="unfinished"/>
+        <translation>Год</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="347"/>
@@ -4523,12 +4523,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="405"/>
         <source>Hint: Closed images will be deleted on save.</source>
-        <translation type="unfinished"/>
+        <translation>Подсказка: Закрытые изображения будут удалены при сохранении.</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="428"/>
         <source>Add Images</source>
-        <translation type="unfinished"/>
+        <translation>Добавить изображения</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="486"/>
@@ -4542,7 +4542,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../music/MusicWidgetArtist.ui" line="574"/>
         <location filename="../music/MusicWidgetArtist.ui" line="640"/>
         <source>Click to Change</source>
-        <translation type="unfinished"/>
+        <translation>Нажать чтобы изменить</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="552"/>
@@ -4553,17 +4553,17 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="618"/>
         <source>Logo</source>
-        <translation type="unfinished"/>
+        <translation>Логотип</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="46"/>
         <source>Genres</source>
-        <translation type="unfinished"/>
+        <translation>Жанры</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="47"/>
         <source>Add Genre</source>
-        <translation type="unfinished"/>
+        <translation>Добавить жанр</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="51"/>
@@ -4593,7 +4593,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="192"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; сохранён</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="441"/>
@@ -5091,7 +5091,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Форма</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="32"/>
@@ -5106,7 +5106,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="56"/>
         <source>Artist</source>
-        <translation type="unfinished"/>
+        <translation>Артист</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="109"/>
@@ -5126,12 +5126,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="215"/>
         <source>Album</source>
-        <translation type="unfinished"/>
+        <translation>Альбом</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="270"/>
         <source>Title</source>
-        <translation type="unfinished"/>
+        <translation>Название</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="287"/>
@@ -5146,12 +5146,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="425"/>
         <source>Year</source>
-        <translation type="unfinished"/>
+        <translation>Год</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="448"/>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Описание</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="458"/>
@@ -7618,77 +7618,77 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="25"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Китайский</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="26"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Нидерландский</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="27"/>
         <source>English</source>
-        <translation type="unfinished"/>
+        <translation>Английский</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="28"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Французский</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="29"/>
         <source>German</source>
-        <translation type="unfinished"/>
+        <translation>Немецкий</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="30"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Иврит</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="31"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Венгерский</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="32"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Итальянский</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="33"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Японский</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="34"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Норвежский</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="35"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Польский</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="36"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Португальский</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="37"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>Русский</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="38"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Испанский</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="39"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Шведский</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="41"/>
@@ -7708,7 +7708,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="45"/>
         <source>Language</source>
-        <translation type="unfinished"/>
+        <translation>Язык</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="47"/>

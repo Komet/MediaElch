@@ -202,12 +202,12 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="339"/>
         <source>Artists</source>
-        <translation type="unfinished"/>
+        <translation>Interpreten</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="369"/>
         <source>Albums</source>
-        <translation type="unfinished"/>
+        <translation>Alben</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.cpp" line="17"/>
@@ -658,7 +658,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="663"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"/>
+        <translation>Stereo Mode</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="680"/>
@@ -1171,7 +1171,7 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="60"/>
         <source>Personal API key</source>
-        <translation type="unfinished"/>
+        <translation>Persönlicher API Schlüssel</translation>
     </message>
 </context>
 <context>
@@ -2527,7 +2527,7 @@
         <location filename="../main/MainWindow.ui" line="369"/>
         <location filename="../main/MainWindow.ui" line="385"/>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>Musik</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="426"/>
@@ -2541,7 +2541,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.ui" line="483"/>
         <source>Plugins</source>
-        <translation type="unfinished"/>
+        <translation>Plugins</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="927"/>
@@ -2561,7 +2561,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.cpp" line="739"/>
         <source>Reload (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Neu laden (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="746"/>
@@ -2586,7 +2586,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.cpp" line="781"/>
         <source>Reload Music (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Musik neu laden (%1)</translation>
     </message>
 </context>
 <context>
@@ -3732,7 +3732,7 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../movies/MovieWidget.ui" line="1020"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"/>
+        <translation>Stereo Mode</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1041"/>
@@ -3912,12 +3912,12 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../music/MusicFileSearcher.cpp" line="32"/>
         <source>Searching for Music...</source>
-        <translation type="unfinished"/>
+        <translation>Suche nach Musik...</translation>
     </message>
     <message>
         <location filename="../music/MusicFileSearcher.cpp" line="95"/>
         <source>Loading Music...</source>
-        <translation type="unfinished"/>
+        <translation>Lade Musik...</translation>
     </message>
 </context>
 <context>
@@ -3925,27 +3925,27 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="24"/>
         <source>%n artist(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n Interpret</numerusform><numerusform>%n Interpreten</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="24"/>
         <source>%n album(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n Album</numerusform><numerusform>%n Alben</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="69"/>
         <source>%n artists</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n Interpret</numerusform><numerusform>%n Interpreten</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="69"/>
         <source>%n albums</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n Album</numerusform><numerusform>%n Alben</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="71"/>
         <source>%1 of %n artists</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 von einem Interpret</numerusform><numerusform>%1 von %n Interpreten</numerusform></translation>
     </message>
 </context>
 <context>
@@ -3953,172 +3953,172 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="17"/>
         <source>Music Multi Scrape</source>
-        <translation type="unfinished"/>
+        <translation>Multi-Musik Scraper</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="46"/>
         <source>Infos to load</source>
-        <translation type="unfinished"/>
+        <translation>Lade Infos</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="55"/>
         <source>Born</source>
-        <translation type="unfinished"/>
+        <translation>Geboren</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="68"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="81"/>
         <source>Years Active</source>
-        <translation type="unfinished"/>
+        <translation>Aktive Jahre</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="94"/>
         <source>Died</source>
-        <translation type="unfinished"/>
+        <translation>Gestorben</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="107"/>
         <source>Formed</source>
-        <translation type="unfinished"/>
+        <translation>Gegründet</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="120"/>
         <source>Disbanded</source>
-        <translation type="unfinished"/>
+        <translation>Getrennt</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="133"/>
         <source>Biography</source>
-        <translation type="unfinished"/>
+        <translation>Biographie</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="146"/>
         <source>CD Art</source>
-        <translation type="unfinished"/>
+        <translation>CD Art</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="159"/>
         <source>Cover</source>
-        <translation type="unfinished"/>
+        <translation>Cover</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="172"/>
         <source>Logo</source>
-        <translation type="unfinished"/>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="182"/>
         <source>Extra Fanarts</source>
-        <translation type="unfinished"/>
+        <translation>Extra Fanarts</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="195"/>
         <source>Fanart</source>
-        <translation type="unfinished"/>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="208"/>
         <source>Thumbnail</source>
-        <translation type="unfinished"/>
+        <translation>Bild</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="218"/>
         <source>Moods</source>
-        <translation type="unfinished"/>
+        <translation>Stimmungen</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="231"/>
         <source>Styles</source>
-        <translation type="unfinished"/>
+        <translation>Stile</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="244"/>
         <source>Genres</source>
-        <translation type="unfinished"/>
+        <translation>Genres</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="257"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Label</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="270"/>
         <source>Release Date</source>
-        <translation type="unfinished"/>
+        <translation>Erscheinungsdatum</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="283"/>
         <source>Rating</source>
-        <translation type="unfinished"/>
+        <translation>Bewertung</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="296"/>
         <source>Year</source>
-        <translation type="unfinished"/>
+        <translation>Jahr</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="309"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Rezension</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="322"/>
         <source>Artist</source>
-        <translation type="unfinished"/>
+        <translation>Interpret</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="335"/>
         <source>Title</source>
-        <translation type="unfinished"/>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="348"/>
         <source>Discography</source>
-        <translation type="unfinished"/>
+        <translation>Diskographie</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="370"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished"/>
+        <translation>Alle aus/abwählen</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="396"/>
         <source>Scrape all albums of selected artists (and not only selected albums)</source>
-        <translation type="unfinished"/>
+        <translation>Informationen für alle Alben der ausgewählten Interpreten laden</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="403"/>
         <source>Automatically save each artist and album after scraping</source>
-        <translation type="unfinished"/>
+        <translation>Jeden Interpreten und jedes Album automatisch nach dem Laden der Informationen speichern</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="418"/>
         <source>1/20</source>
-        <translation type="unfinished"/>
+        <translation>1/20</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="450"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="473"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>Schließen</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="486"/>
         <source>Start Scraping</source>
-        <translation type="unfinished"/>
+        <translation>Informationen Laden</translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicMultiScrapeDialog.cpp" line="200"/>
         <source>Scraping of %n items has finished.</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Informationen für %n Interpret und Album wurden geladen.</numerusform><numerusform>Informationen für %n Interpreten und Alben wurden geladen.</numerusform></translation>
     </message>
 </context>
 <context>
@@ -4126,12 +4126,12 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../music/MusicSearch.ui" line="17"/>
         <source>Search Result</source>
-        <translation type="unfinished"/>
+        <translation>Suchergebnis</translation>
     </message>
     <message>
         <location filename="../music/MusicSearch.ui" line="48"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>Schließen</translation>
     </message>
 </context>
 <context>
@@ -4139,148 +4139,149 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="34"/>
         <source>Scraper</source>
-        <translation type="unfinished"/>
+        <translation>Scraper</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="59"/>
         <source>When using IMDB you can also use the IMDB id as search query.
 If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Wenn du IMDB benutzt, kannst du auch eine IMDB ID eingeben.
+Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; voran.</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="100"/>
         <source>Result</source>
-        <translation type="unfinished"/>
+        <translation>Ergebnis</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="127"/>
         <source>Infos to load</source>
-        <translation type="unfinished"/>
+        <translation>Lade Infos</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="150"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="160"/>
         <source>Born</source>
-        <translation type="unfinished"/>
+        <translation>Geboren</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="170"/>
         <source>Formed</source>
-        <translation type="unfinished"/>
+        <translation>Gegründet</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="180"/>
         <source>Years Active</source>
-        <translation type="unfinished"/>
+        <translation>Aktive Jahre</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="190"/>
         <source>Disbanded</source>
-        <translation type="unfinished"/>
+        <translation>Getrennt</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="200"/>
         <source>Died</source>
-        <translation type="unfinished"/>
+        <translation>Gestorben</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="210"/>
         <source>Biography</source>
-        <translation type="unfinished"/>
+        <translation>Biographie</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="220"/>
         <source>Discography</source>
-        <translation type="unfinished"/>
+        <translation>Diskographie</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="230"/>
         <source>Artist</source>
-        <translation type="unfinished"/>
+        <translation>Interpret</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="240"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Label</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="250"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Rezension</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="260"/>
         <source>Year</source>
-        <translation type="unfinished"/>
+        <translation>Jahr</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="270"/>
         <source>Rating</source>
-        <translation type="unfinished"/>
+        <translation>Bewertung</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="280"/>
         <source>Release Date</source>
-        <translation type="unfinished"/>
+        <translation>Erscheinungsdatum</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="290"/>
         <source>Title</source>
-        <translation type="unfinished"/>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="300"/>
         <source>Genres</source>
-        <translation type="unfinished"/>
+        <translation>Genres</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="310"/>
         <source>Styles</source>
-        <translation type="unfinished"/>
+        <translation>Stile</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="320"/>
         <source>Moods</source>
-        <translation type="unfinished"/>
+        <translation>Stimmungen</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="330"/>
         <source>Thumbnail</source>
-        <translation type="unfinished"/>
+        <translation>Vorschau</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="340"/>
         <source>Fanart</source>
-        <translation type="unfinished"/>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="350"/>
         <source>Extra Fanarts</source>
-        <translation type="unfinished"/>
+        <translation>Extra Fanarts</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="360"/>
         <source>Logo</source>
-        <translation type="unfinished"/>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="370"/>
         <source>Cover</source>
-        <translation type="unfinished"/>
+        <translation>Cover</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="380"/>
         <source>CD Art</source>
-        <translation type="unfinished"/>
+        <translation>CD Art</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="397"/>
         <source>(Un)Check all</source>
-        <translation type="unfinished"/>
+        <translation>Alle aus/abwählen</translation>
     </message>
 </context>
 <context>
@@ -4288,7 +4289,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../smallWidgets/MusicTreeView.cpp" line="97"/>
         <source>%n album(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform>%n Alben</numerusform></translation>
     </message>
 </context>
 <context>
@@ -4296,12 +4297,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidget.cpp" line="114"/>
         <source>Saving changed Artists and Albums</source>
-        <translation type="unfinished"/>
+        <translation>Speichere geänderte Interpreten und Alben</translation>
     </message>
     <message>
         <location filename="../music/MusicWidget.cpp" line="130"/>
         <source>All Artists and Albums Saved</source>
-        <translation type="unfinished"/>
+        <translation>Alle Interpreten und Alben gespeichert</translation>
     </message>
 </context>
 <context>
@@ -4309,125 +4310,125 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="63"/>
         <source>Artist has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Mache Änderungen an diesem Interpreten rückgängig.</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="96"/>
         <source>Album Name</source>
-        <translation type="unfinished"/>
+        <translation>Album Titel</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="138"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Informationen</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="158"/>
         <source>Path</source>
-        <translation type="unfinished"/>
+        <translation>Verzeichnis</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="179"/>
         <source>Artist</source>
-        <translation type="unfinished"/>
+        <translation>Interpret</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="200"/>
         <source>Title</source>
-        <translation type="unfinished"/>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="207"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Label</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="214"/>
         <source>Rating</source>
-        <translation type="unfinished"/>
+        <translation>Bewertung</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="221"/>
         <source>Year</source>
-        <translation type="unfinished"/>
+        <translation>Jahr</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="228"/>
         <source>Release Date</source>
-        <translation type="unfinished"/>
+        <translation>Erscheinungsdatum</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="235"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Rezension</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="278"/>
         <source>Extended</source>
-        <translation type="unfinished"/>
+        <translation>Erweitert</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="364"/>
         <location filename="../music/MusicWidgetAlbum.ui" line="404"/>
         <source>Cover</source>
-        <translation type="unfinished"/>
+        <translation>Cover</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="386"/>
         <location filename="../music/MusicWidgetAlbum.ui" line="452"/>
         <source>Click to Change</source>
-        <translation type="unfinished"/>
+        <translation>Zum Ändern klicken</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="430"/>
         <location filename="../music/MusicWidgetAlbum.ui" line="470"/>
         <source>Disc Art</source>
-        <translation type="unfinished"/>
+        <translation>CD Art</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="39"/>
         <source>Genres</source>
-        <translation type="unfinished"/>
+        <translation>Genres</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="40"/>
         <source>Add Genre</source>
-        <translation type="unfinished"/>
+        <translation>Genre hinzufügen</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="44"/>
         <source>Moods</source>
-        <translation type="unfinished"/>
+        <translation>Stimmungen</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="45"/>
         <source>Add Mood</source>
-        <translation type="unfinished"/>
+        <translation>Stimmung hinzufügen</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="49"/>
         <source>Styles</source>
-        <translation type="unfinished"/>
+        <translation>Stile</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="50"/>
         <source>Add Style</source>
-        <translation type="unfinished"/>
+        <translation>Stil hinzufügen</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="167"/>
         <source>Saving Album...</source>
-        <translation type="unfinished"/>
+        <translation>Speichere Album...</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="173"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="429"/>
         <source>Downloading images...</source>
-        <translation type="unfinished"/>
+        <translation>Lade Bilder...</translation>
     </message>
 </context>
 <context>
@@ -4435,177 +4436,177 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="63"/>
         <source>Artist has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Mache Änderungen an diesem Interpreten rückgängig.</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="96"/>
         <source>Artist Name</source>
-        <translation type="unfinished"/>
+        <translation>Interpret</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="138"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Informationen</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="158"/>
         <source>Path</source>
-        <translation type="unfinished"/>
+        <translation>Verzeichnis</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="179"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="207"/>
         <source>Born</source>
-        <translation type="unfinished"/>
+        <translation>Geboren</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="214"/>
         <source>Formed</source>
-        <translation type="unfinished"/>
+        <translation>Gegründet</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="221"/>
         <source>Years active</source>
-        <translation type="unfinished"/>
+        <translation>Aktive Jahre</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="228"/>
         <source>Disbanded</source>
-        <translation type="unfinished"/>
+        <translation>Getrennt</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="235"/>
         <source>Died</source>
-        <translation type="unfinished"/>
+        <translation>Gestorben</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="256"/>
         <source>Biography</source>
-        <translation type="unfinished"/>
+        <translation>Biographie</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="269"/>
         <source>Extended</source>
-        <translation type="unfinished"/>
+        <translation>Erweitert</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="310"/>
         <source>Discography</source>
-        <translation type="unfinished"/>
+        <translation>Diskographie</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="332"/>
         <source>Title</source>
-        <translation type="unfinished"/>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="337"/>
         <source>Year</source>
-        <translation type="unfinished"/>
+        <translation>Jahr</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="347"/>
         <source>Add Album</source>
-        <translation type="unfinished"/>
+        <translation>Album hinzufügen</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="357"/>
         <source>Remove Album</source>
-        <translation type="unfinished"/>
+        <translation>Album entfernen</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="383"/>
         <source>Extra Fanarts</source>
-        <translation type="unfinished"/>
+        <translation>Extra Fanarts</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="405"/>
         <source>Hint: Closed images will be deleted on save.</source>
-        <translation type="unfinished"/>
+        <translation>Hinweis: Geschlossene Bilder werden beim Speichern gelöscht.</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="428"/>
         <source>Add Images</source>
-        <translation type="unfinished"/>
+        <translation>Bilder hinzufügen</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="486"/>
         <location filename="../music/MusicWidgetArtist.ui" line="526"/>
         <location filename="../music/MusicWidgetArtist.ui" line="658"/>
         <source>Thumb</source>
-        <translation type="unfinished"/>
+        <translation>Thumb</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="508"/>
         <location filename="../music/MusicWidgetArtist.ui" line="574"/>
         <location filename="../music/MusicWidgetArtist.ui" line="640"/>
         <source>Click to Change</source>
-        <translation type="unfinished"/>
+        <translation>Zum Ändern klicken</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="552"/>
         <location filename="../music/MusicWidgetArtist.ui" line="592"/>
         <source>Fanart</source>
-        <translation type="unfinished"/>
+        <translation>Fanart</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="618"/>
         <source>Logo</source>
-        <translation type="unfinished"/>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="46"/>
         <source>Genres</source>
-        <translation type="unfinished"/>
+        <translation>Genres</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="47"/>
         <source>Add Genre</source>
-        <translation type="unfinished"/>
+        <translation>Genre hinzufügen</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="51"/>
         <source>Moods</source>
-        <translation type="unfinished"/>
+        <translation>Stimmungen</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="52"/>
         <source>Add Mood</source>
-        <translation type="unfinished"/>
+        <translation>Stimmung hinzufügen</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="56"/>
         <source>Styles</source>
-        <translation type="unfinished"/>
+        <translation>Stile</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="57"/>
         <source>Add Style</source>
-        <translation type="unfinished"/>
+        <translation>Stil hinzufügen</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="186"/>
         <source>Saving Artist...</source>
-        <translation type="unfinished"/>
+        <translation>Speichere Interpret...</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="192"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; gespeichert</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="441"/>
         <source>Downloading images...</source>
-        <translation type="unfinished"/>
+        <translation>Lade Bilder...</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="504"/>
         <source>Unknown Album</source>
-        <translation type="unfinished"/>
+        <translation>Unbekanntes Album</translation>
     </message>
 </context>
 <context>
@@ -4633,7 +4634,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main/Navbar.ui" line="134"/>
         <source>Synchronize to Kodi</source>
-        <translation type="unfinished"/>
+        <translation>Synchronisiere mit Kodi</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="153"/>
@@ -4694,12 +4695,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../plugins/PluginManager.cpp" line="98"/>
         <source>Plugin updates available</source>
-        <translation type="unfinished"/>
+        <translation>Plugin Aktualisierungen verfügbar</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManager.cpp" line="174"/>
         <source>Plugin %1 requires at least MediaElch version %2</source>
-        <translation type="unfinished"/>
+        <translation>Plugin %1 benötigt mindestens MediaElch Version %2</translation>
     </message>
 </context>
 <context>
@@ -4727,27 +4728,27 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="49"/>
         <source>Plugin is being installed...</source>
-        <translation type="unfinished"/>
+        <translation>Plugin wird installiert...</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="56"/>
         <source>Plugin is being updated...</source>
-        <translation type="unfinished"/>
+        <translation>Plugin wird aktualisiert...</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="64"/>
         <source>Plugin was installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Plugin wurde erfolgreich installiert.</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="72"/>
         <source>Plugin was updated successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Plugin wurde erfolgreich aktualisiert.</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="80"/>
         <source>An error occured while installing this plugin.</source>
-        <translation type="unfinished"/>
+        <translation>Ein Fehler trat währen der Installation des Plugins auf.</translation>
     </message>
 </context>
 <context>
@@ -4766,12 +4767,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="67"/>
         <source>Installed</source>
-        <translation type="unfinished"/>
+        <translation>Installiert</translation>
     </message>
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="74"/>
         <source>Update available</source>
-        <translation type="unfinished"/>
+        <translation>Aktualisierung verfügbar</translation>
     </message>
 </context>
 <context>
@@ -4919,7 +4920,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation> </translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="171"/>
@@ -4939,7 +4940,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="26"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
-        <translation type="unfinished"/>
+        <translation>Bitte besuche %1 für weitere Informationen zum Umbenennen von Dateien.</translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="41"/>
@@ -5093,107 +5094,107 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="32"/>
         <source>Placeholders</source>
-        <translation type="unfinished"/>
+        <translation>Platzhalter</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="46"/>
         <source>Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Platzhalter</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="56"/>
         <source>Artist</source>
-        <translation type="unfinished"/>
+        <translation>Interpret</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="109"/>
         <source>File extension</source>
-        <translation type="unfinished"/>
+        <translation>Dateiendung</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="126"/>
         <source>Original Title</source>
-        <translation type="unfinished"/>
+        <translation>Original Titel</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="159"/>
         <source>Part number of the current file</source>
-        <translation type="unfinished"/>
+        <translation>Teilnummer der aktuellen Datei</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="215"/>
         <source>Album</source>
-        <translation type="unfinished"/>
+        <translation>Album</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="270"/>
         <source>Title</source>
-        <translation type="unfinished"/>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="287"/>
         <source>Season Number</source>
-        <translation type="unfinished"/>
+        <translation>Staffel</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="395"/>
         <source>Title of the show</source>
-        <translation type="unfinished"/>
+        <translation>Titel der Serie</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="425"/>
         <source>Year</source>
-        <translation type="unfinished"/>
+        <translation>Jahr</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="448"/>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Beschreibung</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="458"/>
         <source>Sort Title</source>
-        <translation type="unfinished"/>
+        <translation>Titel für Sortierung</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="470"/>
         <source>Episode Number</source>
-        <translation type="unfinished"/>
+        <translation>Episode</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="562"/>
         <source>Resolution (1080p, 720p, ...)</source>
-        <translation type="unfinished"/>
+        <translation>Auflösung (1080p, 720p, ...)</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="576"/>
         <source>File/directory is BluRay</source>
-        <translation type="unfinished"/>
+        <translation>Datei/Verzeichnis ist BluRay</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="589"/>
         <source>File/directory is DVD</source>
-        <translation type="unfinished"/>
+        <translation>Datei/Verzeichnis ist DVD</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="602"/>
         <source>File is 3D</source>
-        <translation type="unfinished"/>
+        <translation>Datei ist 3D</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="616"/>
         <source>Movie set name</source>
-        <translation type="unfinished"/>
+        <translation>Name der Zusammenstellung</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="628"/>
         <source>IMDB Id</source>
-        <translation type="unfinished"/>
+        <translation>IMDB Id</translation>
     </message>
 </context>
 <context>
@@ -5399,7 +5400,8 @@ p, li { white-space: pre-wrap; }
         <source>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.
 The directories containg your music must contain subdirectories for each artist which contain directories of albums.</source>
-        <translation type="unfinished"/>
+        <translation>Füge Verzeichnisse hinzu, die deine Filme, Serien, Konzerte, Musik oder Downloads enthalten. Bei Serien müssen Episoden in Unterverzeichnissen mit dem Namen der Serie sein.
+Deine Musik muss in Unterverzeichnissen mit Interpreten und Alben organisiert sein.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="256"/>
@@ -5610,42 +5612,42 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1076"/>
         <source>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"/>
+        <translation>Unten siehst du eine Liste mit Dateinamen, die zum Laden und Speichern deiner Interpreten und Alben benutzt werden. Du kannst sie wie gewünscht bearbeiten. Wenn du mehrere Dateien verwenden möchtest, trenne sie durch ein Komma.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1091"/>
         <source>Artist Thumbnail</source>
-        <translation type="unfinished"/>
+        <translation>Interpreten Vorschau</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1108"/>
         <source>Artist Fanart</source>
-        <translation type="unfinished"/>
+        <translation>Interpreten Fanart</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1125"/>
         <source>Artist Logo</source>
-        <translation type="unfinished"/>
+        <translation>Interpreten Logo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1142"/>
         <source>Album Thumbnail</source>
-        <translation type="unfinished"/>
+        <translation>Album Cover</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1159"/>
         <source>Album Disc Art</source>
-        <translation type="unfinished"/>
+        <translation>Album CD Art</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1176"/>
         <source>Download Extra Fanarts for Artists</source>
-        <translation type="unfinished"/>
+        <translation>Lade Extra Fanarts für Interpreten</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1196"/>
         <source>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation type="unfinished"/>
+        <translation>Um die Synchronisation zu benutzen, musst du in Kodi den Webserver aktivieren (Einstellungen -&gt; Dienste -&gt; Webserver). Trag den Port des Webservers hier ein (normalerweise 80 oder 8080).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1232"/>
@@ -5675,22 +5677,22 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1516"/>
         <source>Installing and updating plugins through MediaElch is currently not supported under Linux. You need to add the ppa or compile plugins on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Die Installation von Plugins durch MediaElch ist unter Linux momentan möglich.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1536"/>
         <source>This plugin has no settings.</source>
-        <translation type="unfinished"/>
+        <translation>Dieses Plugin hat keine Einstellungen.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1563"/>
         <source>This plugin is not installed.</source>
-        <translation type="unfinished"/>
+        <translation>Dieses Plugin ist nicht installiert.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1712"/>
         <source>Kodi</source>
-        <translation type="unfinished"/>
+        <translation>Kodi</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1756"/>
@@ -5702,7 +5704,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1770"/>
         <source>Plugins</source>
-        <translation type="unfinished"/>
+        <translation>Plugins</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1781"/>
@@ -5710,7 +5712,7 @@ The directories containg your music must contain subdirectories for each artist 
         <location filename="../settings/SettingsWindow.cpp" line="177"/>
         <location filename="../settings/SettingsWindow.cpp" line="514"/>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>Musik</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1411"/>
@@ -7166,7 +7168,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1041"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"/>
+        <translation>Stereo Mode</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1062"/>
@@ -7626,102 +7628,102 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="25"/>
         <source>Chinese</source>
-        <translation type="unfinished"/>
+        <translation>Chinesisch</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="26"/>
         <source>Dutch</source>
-        <translation type="unfinished"/>
+        <translation>Niederländisch</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="27"/>
         <source>English</source>
-        <translation type="unfinished"/>
+        <translation>Englisch</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="28"/>
         <source>French</source>
-        <translation type="unfinished"/>
+        <translation>Französisch</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="29"/>
         <source>German</source>
-        <translation type="unfinished"/>
+        <translation>Deutsch</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="30"/>
         <source>Hebrew</source>
-        <translation type="unfinished"/>
+        <translation>Hebräisch</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="31"/>
         <source>Hungarian</source>
-        <translation type="unfinished"/>
+        <translation>Ungarisch</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="32"/>
         <source>Italian</source>
-        <translation type="unfinished"/>
+        <translation>Italienisch</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="33"/>
         <source>Japanese</source>
-        <translation type="unfinished"/>
+        <translation>Japanisch</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="34"/>
         <source>Norwegian</source>
-        <translation type="unfinished"/>
+        <translation>Norwegisch</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="35"/>
         <source>Polish</source>
-        <translation type="unfinished"/>
+        <translation>Polnisch</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="36"/>
         <source>Portuguese</source>
-        <translation type="unfinished"/>
+        <translation>Portugiesisch</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="37"/>
         <source>Russian</source>
-        <translation type="unfinished"/>
+        <translation>Russisch</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="38"/>
         <source>Spanish</source>
-        <translation type="unfinished"/>
+        <translation>Spanisch</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="39"/>
         <source>Swedish</source>
-        <translation type="unfinished"/>
+        <translation>Schwedisch</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="41"/>
         <source>The Audio DB</source>
-        <translation type="unfinished"/>
+        <translation>The Audio DB</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="42"/>
         <source>AllMusic</source>
-        <translation type="unfinished"/>
+        <translation>AllMusic</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="43"/>
         <source>Discogs</source>
-        <translation type="unfinished"/>
+        <translation>Discogs</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="45"/>
         <source>Language</source>
-        <translation type="unfinished"/>
+        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="47"/>
         <source>Prefer</source>
-        <translation type="unfinished"/>
+        <translation>Bevorzuge</translation>
     </message>
 </context>
 <context>
@@ -7805,32 +7807,32 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="17"/>
         <source>Kodi Synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Kodi Synchronisation</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
         <source>Please make sure you have setup your sources in Kodi and that the webserver is enabled (Kodi -&gt; Settings -&gt; Services -&gt; Webserver).</source>
-        <translation type="unfinished"/>
+        <translation>Achte bitte darauf, dass deine Quellen in Kodi eingerichtet sind und das Webserver in XBMC aktiviert ist (Einstellungen -&gt; Dienste -&gt; Webserver).</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="46"/>
         <source>This will tell Kodi to remove the changed movies, concerts or shows. Afterwards a Kodi library update is triggered and the removed items will be picked up again.</source>
-        <translation type="unfinished"/>
+        <translation>Hiermit werden geänderte Filme, Serien oder Konzerte aus der Kodi Bibliothek entfernt. Danach wird die Kodi Bibliothek aktualisiert und die entfernten Inhalte werden erneut hinzugefügt.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="56"/>
         <source>Remove non-existent items from Kodis database (Clean library)</source>
-        <translation type="unfinished"/>
+        <translation>Kodi Datenbank bereinigen</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
         <source>Kodi will remove not longer existing items from your database.</source>
-        <translation type="unfinished"/>
+        <translation>Kodi bereinigt deine Datenbank und löscht Filme, die nicht mehr vorhanden sind.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="77"/>
         <source>The fields last played and playcount will be retrieved from Kodi.</source>
-        <translation type="unfinished"/>
+        <translation>Die Anzahl der Wiedergaben und das Datum der letzten Wiedergabe werden von Kodi übertragen.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="108"/>
@@ -7851,12 +7853,12 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="141"/>
         <source>Please fill in your Kodi host and port.</source>
-        <translation type="unfinished"/>
+        <translation>Bitte trage deinen Kodi Host und Port ein.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="229"/>
         <source>Getting contents from Kodi</source>
-        <translation type="unfinished"/>
+        <translation>Hole Inhalte von Kodi</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="244"/>
@@ -7894,12 +7896,12 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="530"/>
         <source>Finished. Kodi is now loading your updated items.</source>
-        <translation type="unfinished"/>
+        <translation>Fertig. Kodi aktualisiert nun die Bibliothek.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="554"/>
         <source>Finished. Kodi is now cleaning your database.</source>
-        <translation type="unfinished"/>
+        <translation>Fertig. Kodi bereinigt jetzt deine Datenbank.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="595"/>
