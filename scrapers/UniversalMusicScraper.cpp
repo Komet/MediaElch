@@ -655,7 +655,7 @@ void UniversalMusicScraper::parseAndAssignTadbInfos(QString json, Album *album, 
     if (shouldLoad(MusicScraperInfos::Title, infos, album) && !sc.property("strAlbum").isNull() && !sc.property("strAlbum").toString().isEmpty())
         album->setTitle(sc.property("strAlbum").toString());
 
-    if (shouldLoad(MusicScraperInfos::Artist, infos, album) && !sc.property("strArtist").isNull())
+    if (shouldLoad(MusicScraperInfos::Artist, infos, album) && !sc.property("strArtist").isNull() && !sc.property("strArtist").toString().isEmpty())
         album->setArtist(sc.property("strArtist").toString());
 
     if (shouldLoad(MusicScraperInfos::Rating, infos, album) && !sc.property("intScore").isNull())
@@ -742,7 +742,7 @@ void UniversalMusicScraper::parseAndAssignAmInfos(QString html, Album *album, QL
         rx.setPattern("<h4>[\\n\\s]*Styles[\\n\\s]*</h4>[\\n\\s]*<div>(.*)</div>");
         if (rx.indexIn(html) != -1) {
             QString styles = rx.cap(1);
-            rx.setPattern("<a [^>]*>(.*)</a>");
+            rx.setPattern("<a [^>]*>([^<]*)</a>");
             int pos = 0;
             while ((pos = rx.indexIn(styles, pos)) != -1) {
                 album->addStyle(trim(rx.cap(1)));
@@ -783,15 +783,29 @@ void UniversalMusicScraper::parseAndAssignDiscogsInfos(QString html, Album *albu
     }
 
     if (shouldLoad(MusicScraperInfos::Genres, infos, album)) {
-        rx.setPattern("<div class=\"content\" itemprop=\"genre\">[\\n\\s]*<a href=\"[^\"]*\">(.*)</a>[\\n\\s]*</div>");
-        if (rx.indexIn(html) != -1)
-            album->addGenre(trim(rx.cap(1)));
+        rx.setPattern("<div class=\"content\" itemprop=\"genre\">[\\n\\s]*(.*)[\\n\\s]*</div>");
+        if (rx.indexIn(html) != -1) {
+            QString genres = rx.cap(1);
+            rx.setPattern("<a href=\"[^\"]*\">([^<]*)</a>");
+            int pos = 0;
+            while ((pos = rx.indexIn(genres, pos)) != -1) {
+                album->addGenre(trim(rx.cap(1)));
+                pos += rx.matchedLength();
+            }
+        }
     }
 
     if (shouldLoad(MusicScraperInfos::Styles, infos, album)) {
-        rx.setPattern("<div class=\"head\">Style:</div>[\\n\\s]*<div class=\"content\">[\\n\\s]*<a href=\"[^\"]*\">(.*)</a>[\\n\\s]*</div>");
-        if (rx.indexIn(html) != -1)
-            album->addStyle(trim(rx.cap(1)));
+        rx.setPattern("<div class=\"head\">Style:</div>[\\n\\s]*<div class=\"content\">[\\n\\s]*(.*)[\\n\\s]*</div>");
+        if (rx.indexIn(html) != -1) {
+            QString styles = rx.cap(1);
+            rx.setPattern("<a href=\"[^\"]*\">(.*)</a>");
+            int pos = 0;
+            while ((pos = rx.indexIn(styles, pos)) != -1) {
+                album->addStyle(trim(rx.cap(1)));
+                pos += rx.matchedLength();
+            }
+        }
     }
 
     if (shouldLoad(MusicScraperInfos::Year, infos, album)) {

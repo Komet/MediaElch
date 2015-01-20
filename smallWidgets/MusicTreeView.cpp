@@ -94,7 +94,7 @@ void MusicTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &optio
 #endif
         font.setBold(false);
         painter->setFont(font);
-        painter->drawText(albumsRect, tr("%n album(s)", "", index.data(MusicRoles::NumOfAlbums).toInt()), QTextOption(Qt::AlignVCenter));
+        painter->drawText(albumsRect, tr("%n albums", "", index.data(MusicRoles::NumOfAlbums).toInt()), QTextOption(Qt::AlignVCenter));
 
         QPoint lineStart(option.rect.x(), option.rect.y());
         QPoint lineEnd(option.rect.x()+option.rect.width()-1, option.rect.y());
