@@ -4074,7 +4074,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="348"/>
         <source>Discography</source>
-        <translation type="unfinished"/>
+        <translation>Discografie</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="370"/>
@@ -4084,12 +4084,12 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="396"/>
         <source>Scrape all albums of selected artists (and not only selected albums)</source>
-        <translation type="unfinished"/>
+        <translation>Scrape alle albums van de geselecteerde artiest (niet enkel de geselecteerde albums)</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="403"/>
         <source>Automatically save each artist and album after scraping</source>
-        <translation type="unfinished"/>
+        <translation>Sla elke artiest en album automatisch op na scrapen</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="450"/>
@@ -4136,7 +4136,8 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
         <location filename="../music/MusicSearchWidget.ui" line="59"/>
         <source>When using IMDB you can also use the IMDB id as search query.
 If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Indien je IMDB gebruikt kan je ook het IMDB Id als zoekterm gebruiken
+Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; voor. </translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="100"/>
@@ -4161,7 +4162,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="170"/>
         <source>Formed</source>
-        <translation type="unfinished"/>
+        <translation>Opgericht</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="180"/>
@@ -4171,7 +4172,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="190"/>
         <source>Disbanded</source>
-        <translation type="unfinished"/>
+        <translation>Gesplit</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="200"/>
@@ -4261,7 +4262,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="370"/>
         <source>Cover</source>
-        <translation type="unfinished"/>
+        <translation>Cover</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="380"/>
@@ -4361,7 +4362,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <location filename="../music/MusicWidgetAlbum.ui" line="364"/>
         <location filename="../music/MusicWidgetAlbum.ui" line="404"/>
         <source>Cover</source>
-        <translation type="unfinished"/>
+        <translation>Cover</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="386"/>
@@ -4456,7 +4457,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="214"/>
         <source>Formed</source>
-        <translation type="unfinished"/>
+        <translation>Opgericht</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="221"/>
@@ -4466,7 +4467,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="228"/>
         <source>Disbanded</source>
-        <translation type="unfinished"/>
+        <translation>Gesplit</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="235"/>
