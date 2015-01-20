@@ -207,7 +207,7 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="369"/>
         <source>Albums</source>
-        <translation type="unfinished"/>
+        <translation>Альбомы</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.cpp" line="17"/>
@@ -5704,7 +5704,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1411"/>
         <source>Automatically delete archives after extraction</source>
-        <translation type="unfinished"/>
+        <translation>Удалить архивы автоматически после извлечения</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1437"/>
@@ -6498,7 +6498,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../globals/TrailerDialog.ui" line="280"/>
         <source>0:00 / 0:00</source>
-        <translation type="unfinished"/>
+        <translation>0:00 / 0:00</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.ui" line="294"/>
@@ -6533,7 +6533,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="323"/>
         <source>The file %1 already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Файл %1 уже существует.</translation>
     </message>
     <message>
         <location filename="../globals/TrailerDialog.cpp" line="324"/>
@@ -7367,12 +7367,12 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="227"/>
         <source>Existing</source>
-        <translation type="unfinished"/>
+        <translation>Существует</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="234"/>
         <source>Missing</source>
-        <translation type="unfinished"/>
+        <translation>Не существует</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="244"/>
@@ -7561,7 +7561,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="102"/>
         <source>0:00 / 0:00</source>
-        <translation type="unfinished"/>
+        <translation>0:00 / 0:00</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.ui" line="129"/>
@@ -7591,7 +7591,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvTunesDialog.cpp" line="250"/>
         <source>The file %1 already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Файл %1 уже существует.</translation>
     </message>
     <message>
         <location filename="../tvShows/TvTunesDialog.cpp" line="251"/>
@@ -7717,7 +7717,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="69"/>
         <source>Cancel extraction</source>
-        <translation type="unfinished"/>
+        <translation>Отменить извлечение</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="89"/>
@@ -7742,7 +7742,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="50"/>
         <source>Extraction password</source>
-        <translation type="unfinished"/>
+        <translation>Пароль для извлечения</translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.cpp" line="50"/>
