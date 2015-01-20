@@ -4279,8 +4279,8 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <name>MusicTreeView</name>
     <message numerus="yes">
         <location filename="../smallWidgets/MusicTreeView.cpp" line="97"/>
-        <source>%n album(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform>%n Alben</numerusform></translation>
+        <source>%n albums</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
 <context>
