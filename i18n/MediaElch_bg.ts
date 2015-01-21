@@ -160,54 +160,54 @@
         <translation>Откриване на стрийм детайлите посредством &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="148"/>
+        <location filename="../main/AboutDialog.ui" line="151"/>
         <source>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</source>
         <translation>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; създадено от &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="198"/>
+        <location filename="../main/AboutDialog.ui" line="204"/>
         <source>Your Collection</source>
         <translation>Вашата колекция</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="207"/>
+        <location filename="../main/AboutDialog.ui" line="213"/>
         <source>Movies</source>
         <translation>Филми</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="214"/>
-        <location filename="../main/AboutDialog.ui" line="247"/>
-        <location filename="../main/AboutDialog.ui" line="280"/>
-        <location filename="../main/AboutDialog.ui" line="313"/>
-        <location filename="../main/AboutDialog.ui" line="346"/>
-        <location filename="../main/AboutDialog.ui" line="376"/>
+        <location filename="../main/AboutDialog.ui" line="220"/>
+        <location filename="../main/AboutDialog.ui" line="253"/>
+        <location filename="../main/AboutDialog.ui" line="286"/>
+        <location filename="../main/AboutDialog.ui" line="319"/>
+        <location filename="../main/AboutDialog.ui" line="352"/>
+        <location filename="../main/AboutDialog.ui" line="382"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="240"/>
+        <location filename="../main/AboutDialog.ui" line="246"/>
         <source>TV Shows</source>
         <translation>ТВ шоута</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="273"/>
+        <location filename="../main/AboutDialog.ui" line="279"/>
         <source>Episodes</source>
         <translation>Епизоди</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="306"/>
+        <location filename="../main/AboutDialog.ui" line="312"/>
         <source>Concerts</source>
         <translation>Концерти</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="339"/>
+        <location filename="../main/AboutDialog.ui" line="345"/>
         <source>Artists</source>
-        <translation type="unfinished"/>
+        <translation>Артисти</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="369"/>
+        <location filename="../main/AboutDialog.ui" line="375"/>
         <source>Albums</source>
-        <translation type="unfinished"/>
+        <translation>Албуми</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.cpp" line="17"/>
@@ -2523,7 +2523,7 @@
         <location filename="../main/MainWindow.ui" line="369"/>
         <location filename="../main/MainWindow.ui" line="385"/>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>Музика</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="426"/>
@@ -3921,7 +3921,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="24"/>
         <source>%n artist(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n артист(а)</numerusform><numerusform>%n артист(а)</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="24"/>
@@ -3931,7 +3931,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="69"/>
         <source>%n artists</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n артиста</numerusform><numerusform>%n артиста</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="69"/>
@@ -3989,7 +3989,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="133"/>
         <source>Biography</source>
-        <translation type="unfinished"/>
+        <translation>Биография</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="146"/>
@@ -4182,7 +4182,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="210"/>
         <source>Biography</source>
-        <translation type="unfinished"/>
+        <translation>Биография</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="220"/>
@@ -4477,7 +4477,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="256"/>
         <source>Biography</source>
-        <translation type="unfinished"/>
+        <translation>Биография</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="269"/>
@@ -5683,7 +5683,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1712"/>
         <source>Kodi</source>
-        <translation type="unfinished"/>
+        <translation>Kodi</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1756"/>
@@ -5703,7 +5703,7 @@ The directories containg your music must contain subdirectories for each artist 
         <location filename="../settings/SettingsWindow.cpp" line="177"/>
         <location filename="../settings/SettingsWindow.cpp" line="514"/>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>Музика</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1411"/>
@@ -7695,7 +7695,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="41"/>
         <source>The Audio DB</source>
-        <translation type="unfinished"/>
+        <translation>The Audio DB</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="42"/>
@@ -7799,7 +7799,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="17"/>
         <source>Kodi Synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Kodi синхронизация</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>

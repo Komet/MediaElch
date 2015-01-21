@@ -160,54 +160,54 @@
         <translation>Mediatietojen tunnistamiseen käytetään &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;a</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="148"/>
+        <location filename="../main/AboutDialog.ui" line="151"/>
         <source>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</source>
         <translation>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt;:n on toteuttanut &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="198"/>
+        <location filename="../main/AboutDialog.ui" line="204"/>
         <source>Your Collection</source>
         <translation>Kokoelmasi</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="207"/>
+        <location filename="../main/AboutDialog.ui" line="213"/>
         <source>Movies</source>
         <translation>Elokuvat</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="214"/>
-        <location filename="../main/AboutDialog.ui" line="247"/>
-        <location filename="../main/AboutDialog.ui" line="280"/>
-        <location filename="../main/AboutDialog.ui" line="313"/>
-        <location filename="../main/AboutDialog.ui" line="346"/>
-        <location filename="../main/AboutDialog.ui" line="376"/>
+        <location filename="../main/AboutDialog.ui" line="220"/>
+        <location filename="../main/AboutDialog.ui" line="253"/>
+        <location filename="../main/AboutDialog.ui" line="286"/>
+        <location filename="../main/AboutDialog.ui" line="319"/>
+        <location filename="../main/AboutDialog.ui" line="352"/>
+        <location filename="../main/AboutDialog.ui" line="382"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="240"/>
+        <location filename="../main/AboutDialog.ui" line="246"/>
         <source>TV Shows</source>
         <translation>TV-sarjat</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="273"/>
+        <location filename="../main/AboutDialog.ui" line="279"/>
         <source>Episodes</source>
         <translation>Jaksot</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="306"/>
+        <location filename="../main/AboutDialog.ui" line="312"/>
         <source>Concerts</source>
         <translation>Konsertit</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="339"/>
+        <location filename="../main/AboutDialog.ui" line="345"/>
         <source>Artists</source>
-        <translation type="unfinished"/>
+        <translation>Artistit</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="369"/>
+        <location filename="../main/AboutDialog.ui" line="375"/>
         <source>Albums</source>
-        <translation type="unfinished"/>
+        <translation>Albumit</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.cpp" line="17"/>
@@ -658,12 +658,12 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="663"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"/>
+        <translation>Stereotila</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="680"/>
         <source>Reload from File</source>
-        <translation>Lataa uudelleen tiedostosta</translation>
+        <translation>Päivitä tiedostosta</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="900"/>
@@ -2523,7 +2523,7 @@
         <location filename="../main/MainWindow.ui" line="369"/>
         <location filename="../main/MainWindow.ui" line="385"/>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>Musiikki</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="426"/>
@@ -2582,7 +2582,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.cpp" line="781"/>
         <source>Reload Music (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä musiikki (%1)</translation>
     </message>
 </context>
 <context>
@@ -3728,7 +3728,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="1020"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"/>
+        <translation>Stereotila</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1041"/>
@@ -3908,12 +3908,12 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicFileSearcher.cpp" line="32"/>
         <source>Searching for Music...</source>
-        <translation type="unfinished"/>
+        <translation>Etsitään musiikkia...</translation>
     </message>
     <message>
         <location filename="../music/MusicFileSearcher.cpp" line="95"/>
         <source>Loading Music...</source>
-        <translation type="unfinished"/>
+        <translation>Ladataan musiikkia...</translation>
     </message>
 </context>
 <context>
@@ -3921,7 +3921,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="24"/>
         <source>%n artist(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n artisti(a)</numerusform><numerusform>%n artisti(a)</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="24"/>
@@ -3931,17 +3931,17 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="69"/>
         <source>%n artists</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n artistia</numerusform><numerusform>%n artistia</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="69"/>
         <source>%n albums</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n albumia</numerusform><numerusform>%n albumia</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="71"/>
         <source>%1 of %n artists</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 / %n artistista</numerusform><numerusform>%1 / %n artistista</numerusform></translation>
     </message>
 </context>
 <context>
@@ -3959,7 +3959,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="55"/>
         <source>Born</source>
-        <translation type="unfinished"/>
+        <translation>Syntynyt</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="68"/>
@@ -3974,7 +3974,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="94"/>
         <source>Died</source>
-        <translation type="unfinished"/>
+        <translation>Kuollut</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="107"/>
@@ -3989,7 +3989,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="133"/>
         <source>Biography</source>
-        <translation type="unfinished"/>
+        <translation>Biografia</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="146"/>
@@ -3999,7 +3999,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="159"/>
         <source>Cover</source>
-        <translation type="unfinished"/>
+        <translation>Kansi</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="172"/>
@@ -4029,7 +4029,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="231"/>
         <source>Styles</source>
-        <translation type="unfinished"/>
+        <translation>Tyylit</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="244"/>
@@ -4044,7 +4044,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="270"/>
         <source>Release Date</source>
-        <translation type="unfinished"/>
+        <translation>Julkaisuaika</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="283"/>
@@ -4059,7 +4059,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="309"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Arvostelu</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="322"/>
@@ -4074,7 +4074,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="348"/>
         <source>Discography</source>
-        <translation type="unfinished"/>
+        <translation>Diskografia</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="370"/>
@@ -4157,7 +4157,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="160"/>
         <source>Born</source>
-        <translation type="unfinished"/>
+        <translation>Syntynyt</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="170"/>
@@ -4177,17 +4177,17 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="200"/>
         <source>Died</source>
-        <translation type="unfinished"/>
+        <translation>Kuollut</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="210"/>
         <source>Biography</source>
-        <translation type="unfinished"/>
+        <translation>Biografia</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="220"/>
         <source>Discography</source>
-        <translation type="unfinished"/>
+        <translation>Diskografia</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="230"/>
@@ -4202,7 +4202,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="250"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Arvostelu</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="260"/>
@@ -4217,7 +4217,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="280"/>
         <source>Release Date</source>
-        <translation type="unfinished"/>
+        <translation>Julkaisuaika</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="290"/>
@@ -4232,7 +4232,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="310"/>
         <source>Styles</source>
-        <translation type="unfinished"/>
+        <translation>Tyylit</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="320"/>
@@ -4262,7 +4262,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="370"/>
         <source>Cover</source>
-        <translation type="unfinished"/>
+        <translation>Kansi</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="380"/>
@@ -4280,7 +4280,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message numerus="yes">
         <location filename="../smallWidgets/MusicTreeView.cpp" line="97"/>
         <source>%n albums</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n albumia</numerusform><numerusform>%n albumia</numerusform></translation>
     </message>
 </context>
 <context>
@@ -4288,12 +4288,12 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicWidget.cpp" line="114"/>
         <source>Saving changed Artists and Albums</source>
-        <translation type="unfinished"/>
+        <translation>Tallennetaan muuttuneet artistit ja albumit</translation>
     </message>
     <message>
         <location filename="../music/MusicWidget.cpp" line="130"/>
         <source>All Artists and Albums Saved</source>
-        <translation type="unfinished"/>
+        <translation>Kaikki artistit ja albumit tallennettu</translation>
     </message>
 </context>
 <context>
@@ -4301,12 +4301,12 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="63"/>
         <source>Album has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Albumin nimi on muuttunut. Klikkaa peruaksesi muutokset.</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="96"/>
         <source>Album Name</source>
-        <translation type="unfinished"/>
+        <translation>Albumin nimi</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="138"/>
@@ -4346,12 +4346,12 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="228"/>
         <source>Release Date</source>
-        <translation type="unfinished"/>
+        <translation>Julkaisuaika</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="235"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Arvostelu</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="278"/>
@@ -4362,7 +4362,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
         <location filename="../music/MusicWidgetAlbum.ui" line="364"/>
         <location filename="../music/MusicWidgetAlbum.ui" line="404"/>
         <source>Cover</source>
-        <translation type="unfinished"/>
+        <translation>Kansi</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="386"/>
@@ -4399,17 +4399,17 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="49"/>
         <source>Styles</source>
-        <translation type="unfinished"/>
+        <translation>Tyylit</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="50"/>
         <source>Add Style</source>
-        <translation type="unfinished"/>
+        <translation>Lisää tyyli</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="167"/>
         <source>Saving Album...</source>
-        <translation type="unfinished"/>
+        <translation>Tallennetaan albumia...</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="173"/>
@@ -4427,7 +4427,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="63"/>
         <source>Artist has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Artisti on muuttunut. Klikkaa peruaksesi muutokset.</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="96"/>
@@ -4452,7 +4452,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="207"/>
         <source>Born</source>
-        <translation type="unfinished"/>
+        <translation>Syntynyt</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="214"/>
@@ -4472,12 +4472,12 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="235"/>
         <source>Died</source>
-        <translation type="unfinished"/>
+        <translation>Kuollut</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="256"/>
         <source>Biography</source>
-        <translation type="unfinished"/>
+        <translation>Biografia</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="269"/>
@@ -4487,7 +4487,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="310"/>
         <source>Discography</source>
-        <translation type="unfinished"/>
+        <translation>Diskografia</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="332"/>
@@ -4502,12 +4502,12 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="347"/>
         <source>Add Album</source>
-        <translation type="unfinished"/>
+        <translation>Lisää albumi</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="357"/>
         <source>Remove Album</source>
-        <translation type="unfinished"/>
+        <translation>Poista albumi</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="383"/>
@@ -4572,17 +4572,17 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="56"/>
         <source>Styles</source>
-        <translation type="unfinished"/>
+        <translation>Tyylit</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="57"/>
         <source>Add Style</source>
-        <translation type="unfinished"/>
+        <translation>Lisää tyyli</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="186"/>
         <source>Saving Artist...</source>
-        <translation type="unfinished"/>
+        <translation>Tallennetaan artistia...</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="192"/>
@@ -4597,7 +4597,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="504"/>
         <source>Unknown Album</source>
-        <translation type="unfinished"/>
+        <translation>Tuntematon albumi</translation>
     </message>
 </context>
 <context>
@@ -4625,7 +4625,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../main/Navbar.ui" line="134"/>
         <source>Synchronize to Kodi</source>
-        <translation type="unfinished"/>
+        <translation>Synkronoi Kodi:n kanssa</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="153"/>
@@ -4931,7 +4931,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="26"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
-        <translation type="unfinished"/>
+        <translation>Katso %1 saadaksesi ohjeita ja esimerkkejä nimeäjän käyttämiseen.</translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="41"/>
@@ -5160,32 +5160,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="562"/>
         <source>Resolution (1080p, 720p, ...)</source>
-        <translation type="unfinished"/>
+        <translation>Resoluutio (1080p, 720p, ...)</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="576"/>
         <source>File/directory is BluRay</source>
-        <translation type="unfinished"/>
+        <translation>Tiedosto/hakemisto on BluRay</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="589"/>
         <source>File/directory is DVD</source>
-        <translation type="unfinished"/>
+        <translation>Tiedosto/hakemisto on DVD</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="602"/>
         <source>File is 3D</source>
-        <translation type="unfinished"/>
+        <translation>Tiedosto on 3D</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="616"/>
         <source>Movie set name</source>
-        <translation type="unfinished"/>
+        <translation>Elokuvasetin nimi</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="628"/>
         <source>IMDB Id</source>
-        <translation type="unfinished"/>
+        <translation>IMDB id</translation>
     </message>
 </context>
 <context>
@@ -5391,7 +5391,9 @@ p, li { white-space: pre-wrap; }
         <source>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.
 The directories containg your music must contain subdirectories for each artist which contain directories of albums.</source>
-        <translation type="unfinished"/>
+        <translation>Lisää yksi tai useampi hakemisto, joka sisältää elokuvia, TV-sarjoja, konsertteja, musiikkia tai tiedostoja tuotavaksi.
+TV-sarjojen jaksojen tulee olla alihakemistoissa, jotka on nimetty sarjan mukaan.
+Musiikkia sisältävien hakemistojen tulee sisältää alihakemistot artisteille, joiden puolestaan tulee sisältää alihakemistot albumeille.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="256"/>
@@ -5602,42 +5604,42 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1076"/>
         <source>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"/>
+        <translation>Alla näet tiedostonimet, joita käytetään artistien ja albumien lataamiseen ja tallentamiseen. Voita muokata nimet haluamiksesi. Mikäli haluat käyttää useita tiedostoja, erottele ne pilkulla.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1091"/>
         <source>Artist Thumbnail</source>
-        <translation type="unfinished"/>
+        <translation>Artistin esikatselukuva</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1108"/>
         <source>Artist Fanart</source>
-        <translation type="unfinished"/>
+        <translation>Artistin fanitaide</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1125"/>
         <source>Artist Logo</source>
-        <translation type="unfinished"/>
+        <translation>Artistin logo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1142"/>
         <source>Album Thumbnail</source>
-        <translation type="unfinished"/>
+        <translation>Albumin esikatselukuva</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1159"/>
         <source>Album Disc Art</source>
-        <translation type="unfinished"/>
+        <translation>Albumin levytaide</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1176"/>
         <source>Download Extra Fanarts for Artists</source>
-        <translation type="unfinished"/>
+        <translation>Lataa lisäfanitaiteet artisteille</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1196"/>
         <source>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation type="unfinished"/>
+        <translation>Mikäli haluat käyttää synkronointitoimintoa, sinun tulee kytkeä WWW-palvelin käyttöön XBMC:n asetuksista (Asetukset -&gt; Palvelut -&gt; WWW-palvelin). Syötä palvelimen portti tähän (yleensä 80 tai 8080).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1232"/>
@@ -5682,7 +5684,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1712"/>
         <source>Kodi</source>
-        <translation type="unfinished"/>
+        <translation>Kodi</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1756"/>
@@ -5702,7 +5704,7 @@ The directories containg your music must contain subdirectories for each artist 
         <location filename="../settings/SettingsWindow.cpp" line="177"/>
         <location filename="../settings/SettingsWindow.cpp" line="514"/>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>Musiikki</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1411"/>
@@ -7159,7 +7161,7 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1041"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"/>
+        <translation>Stereotila</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1062"/>
@@ -7694,17 +7696,17 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="41"/>
         <source>The Audio DB</source>
-        <translation type="unfinished"/>
+        <translation>The Audio DB</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="42"/>
         <source>AllMusic</source>
-        <translation type="unfinished"/>
+        <translation>AllMusic</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="43"/>
         <source>Discogs</source>
-        <translation type="unfinished"/>
+        <translation>Discogs</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="45"/>
@@ -7798,32 +7800,32 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="17"/>
         <source>Kodi Synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Kodi-synkronointi</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
         <source>Please make sure you have setup your sources in Kodi and that the webserver is enabled (Kodi -&gt; Settings -&gt; Services -&gt; Webserver).</source>
-        <translation type="unfinished"/>
+        <translation>Varmista, että olet lisännyt lähteet Kodiin ja kytkenyt WWW-palvelimen käyttöön (Kodi -&gt; Asetukset -&gt; Palvelut -&gt; WWW-palvelin).</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="46"/>
         <source>This will tell Kodi to remove the changed movies, concerts or shows. Afterwards a Kodi library update is triggered and the removed items will be picked up again.</source>
-        <translation type="unfinished"/>
+        <translation>Tämä ohjaa Kodia poistamaan muuttuneet elokuvat, konsertit ja TV-sarjat. Lopuksi Kodin kirjasto päivitetään ja poistetut kohteet haetaan uudelleen.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="56"/>
         <source>Remove non-existent items from Kodis database (Clean library)</source>
-        <translation type="unfinished"/>
+        <translation>Poista Kodista kohteet, joita ei löydy (kirjaston puhdistus)</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
         <source>Kodi will remove not longer existing items from your database.</source>
-        <translation type="unfinished"/>
+        <translation>Kodi poistaa tietokannasta kohteet, joita ei enää ole.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="77"/>
         <source>The fields last played and playcount will be retrieved from Kodi.</source>
-        <translation type="unfinished"/>
+        <translation>Viimeksi toistettu ja toistokerrat kenttien tiedot haetaan Kodista.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="108"/>
@@ -7844,12 +7846,12 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="141"/>
         <source>Please fill in your Kodi host and port.</source>
-        <translation type="unfinished"/>
+        <translation>Täytä Kodin osoite ja portti.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="229"/>
         <source>Getting contents from Kodi</source>
-        <translation type="unfinished"/>
+        <translation>Haetaan Kodin sisältöä</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="244"/>
@@ -7887,12 +7889,12 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="530"/>
         <source>Finished. Kodi is now loading your updated items.</source>
-        <translation type="unfinished"/>
+        <translation>Valmis. Kodi lataa nyt päivitetyt kohteet.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="554"/>
         <source>Finished. Kodi is now cleaning your database.</source>
-        <translation type="unfinished"/>
+        <translation>Valmis. Kodi puhdistaa nyt tietokantasi.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="595"/>
