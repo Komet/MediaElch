@@ -44,9 +44,6 @@ QVariant MusicModel::data(const QModelIndex &index, int role) const
             font.setItalic(true);
         if (item->data(MusicRoles::Type).toInt() == TypeArtist) {
             font.setBold(true);
-#ifndef Q_OS_MAC
-            font.setPointSize(font.pointSize()-1);
-#endif
         } else {
 #ifdef Q_OS_MAC
             font.setPointSize(font.pointSize()-1);
