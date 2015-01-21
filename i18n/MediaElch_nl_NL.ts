@@ -160,52 +160,52 @@
         <translation>Voor het herkennen van Stream Details wordt &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt; gebruikt</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="148"/>
+        <location filename="../main/AboutDialog.ui" line="151"/>
         <source>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</source>
         <translation>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="198"/>
+        <location filename="../main/AboutDialog.ui" line="204"/>
         <source>Your Collection</source>
         <translation>Je Collectie</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="207"/>
+        <location filename="../main/AboutDialog.ui" line="213"/>
         <source>Movies</source>
         <translation>Films</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="214"/>
-        <location filename="../main/AboutDialog.ui" line="247"/>
-        <location filename="../main/AboutDialog.ui" line="280"/>
-        <location filename="../main/AboutDialog.ui" line="313"/>
-        <location filename="../main/AboutDialog.ui" line="346"/>
-        <location filename="../main/AboutDialog.ui" line="376"/>
+        <location filename="../main/AboutDialog.ui" line="220"/>
+        <location filename="../main/AboutDialog.ui" line="253"/>
+        <location filename="../main/AboutDialog.ui" line="286"/>
+        <location filename="../main/AboutDialog.ui" line="319"/>
+        <location filename="../main/AboutDialog.ui" line="352"/>
+        <location filename="../main/AboutDialog.ui" line="382"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="240"/>
+        <location filename="../main/AboutDialog.ui" line="246"/>
         <source>TV Shows</source>
         <translation>TV Programma&apos;s</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="273"/>
+        <location filename="../main/AboutDialog.ui" line="279"/>
         <source>Episodes</source>
         <translation>Afleveringen</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="306"/>
+        <location filename="../main/AboutDialog.ui" line="312"/>
         <source>Concerts</source>
         <translation>Concerten</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="339"/>
+        <location filename="../main/AboutDialog.ui" line="345"/>
         <source>Artists</source>
         <translation>Artiesten</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="369"/>
+        <location filename="../main/AboutDialog.ui" line="375"/>
         <source>Albums</source>
         <translation>Albums</translation>
     </message>
@@ -4137,7 +4137,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
         <source>When using IMDB you can also use the IMDB id as search query.
 If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;.</source>
         <translation>Indien je IMDB gebruikt kan je ook het IMDB Id als zoekterm gebruiken
-Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; voor. </translation>
+Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; voor.</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="100"/>
@@ -4187,7 +4187,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="220"/>
         <source>Discography</source>
-        <translation type="unfinished"/>
+        <translation>Discografie</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="230"/>
@@ -4202,7 +4202,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="250"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Recensie</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="260"/>
@@ -4217,7 +4217,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="280"/>
         <source>Release Date</source>
-        <translation type="unfinished"/>
+        <translation>Uitgave Datum</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="290"/>
@@ -4232,12 +4232,12 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="310"/>
         <source>Styles</source>
-        <translation type="unfinished"/>
+        <translation>Stijlen</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="320"/>
         <source>Moods</source>
-        <translation type="unfinished"/>
+        <translation>Stemmingen</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="330"/>
@@ -4288,12 +4288,12 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicWidget.cpp" line="114"/>
         <source>Saving changed Artists and Albums</source>
-        <translation type="unfinished"/>
+        <translation>Sla veranderde Artiest en Album op</translation>
     </message>
     <message>
         <location filename="../music/MusicWidget.cpp" line="130"/>
         <source>All Artists and Albums Saved</source>
-        <translation type="unfinished"/>
+        <translation>Alle Artiesten en Albums zijn opgeslagen</translation>
     </message>
 </context>
 <context>
@@ -4301,12 +4301,12 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="63"/>
         <source>Album has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Album is veranderd. Klik om veranderingen ongedaan te maken.</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="96"/>
         <source>Album Name</source>
-        <translation type="unfinished"/>
+        <translation>Album Naam</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="138"/>
@@ -4346,12 +4346,12 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="228"/>
         <source>Release Date</source>
-        <translation type="unfinished"/>
+        <translation>Uitgave Datum</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="235"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Recensie</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="278"/>
@@ -4389,27 +4389,27 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="44"/>
         <source>Moods</source>
-        <translation type="unfinished"/>
+        <translation>Stemmingen</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="45"/>
         <source>Add Mood</source>
-        <translation type="unfinished"/>
+        <translation>Voeg een Stemming toe</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="49"/>
         <source>Styles</source>
-        <translation type="unfinished"/>
+        <translation>Stijlen</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="50"/>
         <source>Add Style</source>
-        <translation type="unfinished"/>
+        <translation>Voeg een Stijl toe</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="167"/>
         <source>Saving Album...</source>
-        <translation type="unfinished"/>
+        <translation>Album Opslaan...</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="173"/>
@@ -4427,12 +4427,12 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="63"/>
         <source>Artist has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Artiest is veranderd. Klik om veranderingen ongedaan te maken.</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="96"/>
         <source>Artist Name</source>
-        <translation type="unfinished"/>
+        <translation>Artiest</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="138"/>
@@ -4462,7 +4462,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="221"/>
         <source>Years active</source>
-        <translation type="unfinished"/>
+        <translation>Jaren actief</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="228"/>
@@ -4487,7 +4487,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="310"/>
         <source>Discography</source>
-        <translation type="unfinished"/>
+        <translation>Discografie</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="332"/>
@@ -4502,12 +4502,12 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="347"/>
         <source>Add Album</source>
-        <translation type="unfinished"/>
+        <translation>Voeg Album toe</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="357"/>
         <source>Remove Album</source>
-        <translation type="unfinished"/>
+        <translation>Verwijder Album</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="383"/>
@@ -4562,27 +4562,27 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="51"/>
         <source>Moods</source>
-        <translation type="unfinished"/>
+        <translation>Stemmingen</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="52"/>
         <source>Add Mood</source>
-        <translation type="unfinished"/>
+        <translation>Voeg Stemming toe</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="56"/>
         <source>Styles</source>
-        <translation type="unfinished"/>
+        <translation>Stijlen</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="57"/>
         <source>Add Style</source>
-        <translation type="unfinished"/>
+        <translation>Voeg Stijl toe</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="186"/>
         <source>Saving Artist...</source>
-        <translation type="unfinished"/>
+        <translation>Artiest Opslaan...</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="192"/>
@@ -4597,7 +4597,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="504"/>
         <source>Unknown Album</source>
-        <translation type="unfinished"/>
+        <translation>Onbekend Album</translation>
     </message>
 </context>
 <context>
@@ -4625,7 +4625,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../main/Navbar.ui" line="134"/>
         <source>Synchronize to Kodi</source>
-        <translation type="unfinished"/>
+        <translation>Synchroniseren met Kodi</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="153"/>
@@ -4691,7 +4691,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../plugins/PluginManager.cpp" line="174"/>
         <source>Plugin %1 requires at least MediaElch version %2</source>
-        <translation type="unfinished"/>
+        <translation>Plugin %1 vereist op zijn minst MediaElch versie %2</translation>
     </message>
 </context>
 <context>
@@ -4719,27 +4719,27 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="49"/>
         <source>Plugin is being installed...</source>
-        <translation type="unfinished"/>
+        <translation>Plugin wordt geïnstalleerd...</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="56"/>
         <source>Plugin is being updated...</source>
-        <translation type="unfinished"/>
+        <translation>Plugin wordt geupdated...</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="64"/>
         <source>Plugin was installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Plugin was succesvol geïnstalleerd.</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="72"/>
         <source>Plugin was updated successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Plugin was succesvol geupdated.</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="80"/>
         <source>An error occured while installing this plugin.</source>
-        <translation type="unfinished"/>
+        <translation>Er heeft zich een fout voorgedaan tijdens het installeren van deze plugin.</translation>
     </message>
 </context>
 <context>
@@ -4758,7 +4758,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="67"/>
         <source>Installed</source>
-        <translation type="unfinished"/>
+        <translation>Geinstalleerd</translation>
     </message>
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="74"/>
@@ -4786,17 +4786,17 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../main/Update.cpp" line="48"/>
         <source>Don&apos;t check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Niet controleren op updates</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="349"/>
         <source>Don&apos;t show this hint again</source>
-        <translation type="unfinished"/>
+        <translation>Laat me deze tip niet opnieuw zien</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="539"/>
         <source>No Label</source>
-        <translation type="unfinished"/>
+        <translation>Geen Label</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="540"/>
@@ -4839,7 +4839,7 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
     <message>
         <location filename="../quazip/quazip/quazipfile.cpp" line="217"/>
         <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished"/>
+        <translation>ZIP/UNZIP API fout %1</translation>
     </message>
 </context>
 <context>
@@ -4911,7 +4911,11 @@ Indien je op een TMDB of OFDB id wil zoeken zet er dan het woord &quot;id&quot; 
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="171"/>
@@ -4931,7 +4935,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="26"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
-        <translation type="unfinished"/>
+        <translation>Bekijk %1 aub. voor hulp en voorbeelden ivm het gebruik van de hernoemer.</translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="41"/>
@@ -5024,7 +5028,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="328"/>
         <source>&lt;b&gt;Rename Banner&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Hernoem Banner&lt;/b&gt; &quot;%1&quot; naar &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="345"/>
@@ -5160,32 +5164,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="562"/>
         <source>Resolution (1080p, 720p, ...)</source>
-        <translation type="unfinished"/>
+        <translation>Resolutie (1080p, 720p, ...)</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="576"/>
         <source>File/directory is BluRay</source>
-        <translation type="unfinished"/>
+        <translation>Bestand/folder is BluRay</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="589"/>
         <source>File/directory is DVD</source>
-        <translation type="unfinished"/>
+        <translation>Bestand/folder is DVD</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="602"/>
         <source>File is 3D</source>
-        <translation type="unfinished"/>
+        <translation>Bestand is 3D</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="616"/>
         <source>Movie set name</source>
-        <translation type="unfinished"/>
+        <translation>Film reeks naam</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="628"/>
         <source>IMDB Id</source>
-        <translation type="unfinished"/>
+        <translation>IMDB Id</translation>
     </message>
 </context>
 <context>
@@ -5372,12 +5376,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWindow.ui" line="216"/>
         <source>Check for Updates on start</source>
-        <translation type="unfinished"/>
+        <translation>Controleer voor updates bij start</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1446"/>
         <source>Path to makemkvcon</source>
-        <translation type="unfinished"/>
+        <translation>Pad naar makemkvcon</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="276"/>
@@ -5391,17 +5395,19 @@ p, li { white-space: pre-wrap; }
         <source>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.
 The directories containg your music must contain subdirectories for each artist which contain directories of albums.</source>
-        <translation type="unfinished"/>
+        <translation>Voeg een of meer mappen met daarin uw films, tv-shows, concerten, muziek of bestanden om te importeren.
+TV Show Afleveringen moeten in submappen met de naam van de show.
+De folders die je muziek bevatten moeten submappen voor elke artiest die weer directories van albums bevatten.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="256"/>
         <source>Startup section</source>
-        <translation type="unfinished"/>
+        <translation>Opstart sectie</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="282"/>
         <source>Enable adult movie scrapers</source>
-        <translation type="unfinished"/>
+        <translation>Activeer de scrapers voor erotische films</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="353"/>
@@ -5416,12 +5422,12 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="389"/>
         <source>Item</source>
-        <translation type="unfinished"/>
+        <translation>Item</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="410"/>
         <source>Below you see the filenames which are used for loading and saving your movies. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"/>
+        <translation>Hier onder zie je de bestandsnamen die gebruikt worden voor het laden en opslaan van je films. Je kan ze bewerken zoals je wilt, als je meerdere bestanden wil gebruiken scheid ze dan met een komma.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="420"/>
@@ -5557,7 +5563,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="699"/>
         <source>Show nfo</source>
-        <translation type="unfinished"/>
+        <translation>Toon NFO</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="741"/>
@@ -5577,12 +5583,12 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="762"/>
         <source>Episode nfo</source>
-        <translation type="unfinished"/>
+        <translation>Aflevering NFO</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="769"/>
         <source>Episode thumbnail</source>
-        <translation type="unfinished"/>
+        <translation>Aflevering miniatuur</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="776"/>
@@ -5592,7 +5598,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="903"/>
         <source>Season Thumb</source>
-        <translation type="unfinished"/>
+        <translation>Seizoen Miniatuur</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="943"/>
@@ -5607,32 +5613,32 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1091"/>
         <source>Artist Thumbnail</source>
-        <translation type="unfinished"/>
+        <translation>Artiest Miniatuur</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1108"/>
         <source>Artist Fanart</source>
-        <translation type="unfinished"/>
+        <translation>Artiest Fanart</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1125"/>
         <source>Artist Logo</source>
-        <translation type="unfinished"/>
+        <translation>Artiest Logo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1142"/>
         <source>Album Thumbnail</source>
-        <translation type="unfinished"/>
+        <translation>Album Miniatuur</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1159"/>
         <source>Album Disc Art</source>
-        <translation type="unfinished"/>
+        <translation>Album Schijf Afbeelding</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1176"/>
         <source>Download Extra Fanarts for Artists</source>
-        <translation type="unfinished"/>
+        <translation>Download Extra Fanart voor Artiesten</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1196"/>
@@ -5642,12 +5648,12 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1232"/>
         <source>8080</source>
-        <translation type="unfinished"/>
+        <translation>8080</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1425"/>
         <source>Path to unrar</source>
-        <translation type="unfinished"/>
+        <translation>Pad naar unrar</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1489"/>
@@ -5672,17 +5678,17 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1536"/>
         <source>This plugin has no settings.</source>
-        <translation type="unfinished"/>
+        <translation>Deze plugin heeft geen instellingen</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1563"/>
         <source>This plugin is not installed.</source>
-        <translation type="unfinished"/>
+        <translation>Deze plugin is niet geïnstalleerd.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1712"/>
         <source>Kodi</source>
-        <translation type="unfinished"/>
+        <translation>Kodi</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1756"/>
@@ -5707,13 +5713,13 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1411"/>
         <source>Automatically delete archives after extraction</source>
-        <translation type="unfinished"/>
+        <translation>Verwijder archieven automatisch na het uitpakken</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1437"/>
         <location filename="../settings/SettingsWindow.ui" line="1458"/>
         <source>Choose</source>
-        <translation type="unfinished"/>
+        <translation>Kies</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1211"/>
@@ -5746,7 +5752,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1239"/>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Gebruiker</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1319"/>
@@ -5793,7 +5799,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1628"/>
         <source>toolBar</source>
-        <translation type="unfinished"/>
+        <translation>gereedschapsBalk</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1668"/>
@@ -5819,7 +5825,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1701"/>
         <source>Global</source>
-        <translation type="unfinished"/>
+        <translation>Globaal</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1723"/>
@@ -5839,7 +5845,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="514"/>
         <source>Downloads</source>
-        <translation type="unfinished"/>
+        <translation>Downloads</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="552"/>
@@ -5874,23 +5880,23 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="661"/>
         <source>Theme &quot;%1&quot; was successfully installed</source>
-        <translation type="unfinished"/>
+        <translation>Thema &quot;%1&quot; is succesvol geïnstalleerd</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="663"/>
         <location filename="../settings/SettingsWindow.cpp" line="671"/>
         <source>There was an error while processing the theme &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Er heeft zich een fout voorgedaan tijdens het verwerken van het &quot;%1&quot; thema</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="669"/>
         <source>Theme &quot;%1&quot; was successfully uninstalled</source>
-        <translation type="unfinished"/>
+        <translation>Thema &quot;%1&quot; is succesvol geïnstalleerd</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="681"/>
         <source>Don&apos;t use</source>
-        <translation type="unfinished"/>
+        <translation>Niet gebruiken</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="721"/>
@@ -5980,17 +5986,17 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="767"/>
         <source>Unsupported</source>
-        <translation type="unfinished"/>
+        <translation>Niet ondersteund</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="773"/>
         <source>Choose unrar</source>
-        <translation type="unfinished"/>
+        <translation>Kies unrar</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="780"/>
         <source>Choose makemkvcon</source>
-        <translation type="unfinished"/>
+        <translation>Kies makemkvcon</translation>
     </message>
 </context>
 <context>
@@ -6045,7 +6051,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../support/SupportDialog.ui" line="149"/>
         <source>Hide donate button</source>
-        <translation type="unfinished"/>
+        <translation>Verberg de doneer knop</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="172"/>
@@ -6635,17 +6641,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="57"/>
         <source>Show missing episodes</source>
-        <translation type="unfinished"/>
+        <translation>Show mist afleveringen</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="59"/>
         <source>Hide specials in missing episodes</source>
-        <translation type="unfinished"/>
+        <translation>Verberg specials bij de vermiste afleveringen</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="345"/>
         <source>Show update needed</source>
-        <translation type="unfinished"/>
+        <translation>Show synchronisatie vereist</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="346"/>
@@ -6898,7 +6904,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowUpdater.cpp" line="57"/>
         <source>Updating TV Shows</source>
-        <translation type="unfinished"/>
+        <translation>TV Shows aan het updaten</translation>
     </message>
 </context>
 <context>
@@ -7024,7 +7030,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="450"/>
         <source>Bookmark</source>
-        <translation type="unfinished"/>
+        <translation>Favoriet</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="470"/>
@@ -7178,7 +7184,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="147"/>
         <source>Episode missing</source>
-        <translation type="unfinished"/>
+        <translation>Aflevering ontbreekt</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.cpp" line="441"/>
@@ -7293,7 +7299,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="140"/>
         <source>Season missing</source>
-        <translation type="unfinished"/>
+        <translation>Seizoen ontbreekt</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.cpp" line="103"/>
@@ -7693,17 +7699,17 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="41"/>
         <source>The Audio DB</source>
-        <translation type="unfinished"/>
+        <translation>The Audio DB</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="42"/>
         <source>AllMusic</source>
-        <translation type="unfinished"/>
+        <translation>AllMusic</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="43"/>
         <source>Discogs</source>
-        <translation type="unfinished"/>
+        <translation>Discogs</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="45"/>
@@ -7713,7 +7719,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="47"/>
         <source>Prefer</source>
-        <translation type="unfinished"/>
+        <translation>Verkies</translation>
     </message>
 </context>
 <context>
@@ -7726,7 +7732,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="69"/>
         <source>Cancel extraction</source>
-        <translation type="unfinished"/>
+        <translation>Annuleer uitpakken </translation>
     </message>
     <message>
         <location filename="../downloads/UnpackButtons.ui" line="89"/>

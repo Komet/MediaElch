@@ -160,54 +160,54 @@
         <translation>Stream Detaljer deteksjon med &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="148"/>
+        <location filename="../main/AboutDialog.ui" line="151"/>
         <source>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</source>
         <translation>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="198"/>
+        <location filename="../main/AboutDialog.ui" line="204"/>
         <source>Your Collection</source>
         <translation>Din collection</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="207"/>
+        <location filename="../main/AboutDialog.ui" line="213"/>
         <source>Movies</source>
         <translation>Filmer</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="214"/>
-        <location filename="../main/AboutDialog.ui" line="247"/>
-        <location filename="../main/AboutDialog.ui" line="280"/>
-        <location filename="../main/AboutDialog.ui" line="313"/>
-        <location filename="../main/AboutDialog.ui" line="346"/>
-        <location filename="../main/AboutDialog.ui" line="376"/>
+        <location filename="../main/AboutDialog.ui" line="220"/>
+        <location filename="../main/AboutDialog.ui" line="253"/>
+        <location filename="../main/AboutDialog.ui" line="286"/>
+        <location filename="../main/AboutDialog.ui" line="319"/>
+        <location filename="../main/AboutDialog.ui" line="352"/>
+        <location filename="../main/AboutDialog.ui" line="382"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="240"/>
+        <location filename="../main/AboutDialog.ui" line="246"/>
         <source>TV Shows</source>
         <translation>TV-Serier</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="273"/>
+        <location filename="../main/AboutDialog.ui" line="279"/>
         <source>Episodes</source>
         <translation>Episoder</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="306"/>
+        <location filename="../main/AboutDialog.ui" line="312"/>
         <source>Concerts</source>
         <translation>Konserter</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="339"/>
+        <location filename="../main/AboutDialog.ui" line="345"/>
         <source>Artists</source>
-        <translation type="unfinished"/>
+        <translation>Kunstnere</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="369"/>
+        <location filename="../main/AboutDialog.ui" line="375"/>
         <source>Albums</source>
-        <translation type="unfinished"/>
+        <translation>Albumer</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.cpp" line="17"/>
@@ -251,7 +251,7 @@
     <message>
         <location filename="../movies/CertificationWidget.ui" line="181"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Fjern Film</translation>
     </message>
     <message>
         <location filename="../movies/CertificationWidget.ui" line="197"/>
@@ -331,7 +331,7 @@
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="321"/>
         <source>%n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform> %n konserter</numerusform><numerusform>%n konserter</numerusform></translation>
     </message>
     <message>
         <location filename="../concerts/ConcertFilesWidget.cpp" line="45"/>
@@ -366,7 +366,7 @@
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="323"/>
         <source>%1 of %n concerts</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 av %n koncertene</numerusform><numerusform>%1 av %n konsertene</numerusform></translation>
     </message>
 </context>
 <context>
@@ -581,7 +581,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="371"/>
         <source>Not watched</source>
-        <translation type="unfinished"/>
+        <translation>Ikke sett</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="393"/>
@@ -658,7 +658,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="663"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"/>
+        <translation>Stereo Modus</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="680"/>
@@ -801,7 +801,7 @@
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="186"/>
         <source>Import movie with MakeMKV</source>
-        <translation type="unfinished"/>
+        <translation>Importer filmen med MakeMKV</translation>
     </message>
     <message numerus="yes">
         <location filename="../downloads/DownloadsWidget.cpp" line="202"/>
@@ -853,12 +853,12 @@
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="496"/>
         <source>makemkvcon missing</source>
-        <translation type="unfinished"/>
+        <translation>makemkvcon mangler</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="497"/>
         <source>Please set the correct path to makemkvcon in MediaElchs settings.</source>
-        <translation type="unfinished"/>
+        <translation>Vennligst angi riktig bane til makemkvcon i MediaElchs innstillinger.</translation>
     </message>
 </context>
 <context>
@@ -1167,7 +1167,7 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="60"/>
         <source>Personal API key</source>
-        <translation type="unfinished"/>
+        <translation>Personlig API nøkkel</translation>
     </message>
 </context>
 <context>
@@ -1215,7 +1215,7 @@
         <location filename="../movies/FilesWidget.cpp" line="29"/>
         <location filename="../movies/FilesWidget.cpp" line="501"/>
         <source>%n movies</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n filmer</numerusform><numerusform>%n filmer</numerusform></translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="61"/>
@@ -1225,7 +1225,7 @@
     <message>
         <location filename="../movies/FilesWidget.cpp" line="71"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Etikett</translation>
     </message>
     <message>
         <location filename="../movies/FilesWidget.cpp" line="82"/>
@@ -1265,7 +1265,7 @@
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="503"/>
         <source>%1 of %n movies</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 av %n filmer</numerusform><numerusform>%1 of %n filmer</numerusform></translation>
     </message>
 </context>
 <context>
@@ -1294,12 +1294,12 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="310"/>
         <source>Label &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Etikett &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="311"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Etikett</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="378"/>
@@ -1707,7 +1707,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="621"/>
         <source>Movie has Rating</source>
-        <translation type="unfinished"/>
+        <translation>Filmen har vurdering</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="621"/>
@@ -1719,13 +1719,13 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="624"/>
         <source>Movie has no Rating</source>
-        <translation type="unfinished"/>
+        <translation>Filmen har ingen vurdering</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="624"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="625"/>
         <source>No Rating</source>
-        <translation type="unfinished"/>
+        <translation>Ingen vurdering</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="627"/>
@@ -1904,7 +1904,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="665"/>
         <source>Channels 2.0</source>
-        <translation type="unfinished"/>
+        <translation>Kanaler 2.0</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="666"/>
@@ -1926,42 +1926,42 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="667"/>
         <source>Channels 5.1</source>
-        <translation type="unfinished"/>
+        <translation>Kanaler 5.1</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="669"/>
         <source>Channels 7.1</source>
-        <translation type="unfinished"/>
+        <translation>Kanaler 7.1</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="672"/>
         <source>Audio Quality HD</source>
-        <translation type="unfinished"/>
+        <translation>Lydkvaliteten HD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="673"/>
         <source>HD Audio</source>
-        <translation type="unfinished"/>
+        <translation>HD Audio</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="674"/>
         <source>Audio Quality Normal</source>
-        <translation type="unfinished"/>
+        <translation>Lydkvaliteten normal</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="675"/>
         <source>Normal Audio</source>
-        <translation type="unfinished"/>
+        <translation>Normal Audio</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="676"/>
         <source>Audio Quality SD</source>
-        <translation type="unfinished"/>
+        <translation>Lydkvalitet SD</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="677"/>
         <source>SD Audio</source>
-        <translation type="unfinished"/>
+        <translation>SD Audio</translation>
     </message>
 </context>
 <context>
@@ -2000,7 +2000,7 @@
     <message>
         <location filename="../movies/GenreWidget.ui" line="180"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Fjern Filmen</translation>
     </message>
     <message>
         <location filename="../movies/GenreWidget.ui" line="196"/>
@@ -2523,7 +2523,7 @@
         <location filename="../main/MainWindow.ui" line="369"/>
         <location filename="../main/MainWindow.ui" line="385"/>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>Musikk</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="426"/>
@@ -2537,7 +2537,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.ui" line="483"/>
         <source>Plugins</source>
-        <translation type="unfinished"/>
+        <translation>Plugins</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.ui" line="927"/>
@@ -2557,7 +2557,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.cpp" line="739"/>
         <source>Reload (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Last (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="746"/>
@@ -2582,7 +2582,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.cpp" line="781"/>
         <source>Reload Music (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Last musikk (%1)</translation>
     </message>
 </context>
 <context>
@@ -2595,17 +2595,17 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="50"/>
         <source>Scan</source>
-        <translation type="unfinished"/>
+        <translation>Skanning</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="114"/>
         <source>Import Tracks</source>
-        <translation type="unfinished"/>
+        <translation>Importer tracks</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="162"/>
         <source>Backup Disc</source>
-        <translation type="unfinished"/>
+        <translation>Backup Disc</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="207"/>
@@ -2660,7 +2660,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="375"/>
         <source>&lt;partNo&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;partNo&gt;</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="382"/>
@@ -2685,7 +2685,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="429"/>
         <source>Import directory</source>
-        <translation type="unfinished"/>
+        <translation>Importer mappe</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.ui" line="473"/>
@@ -2700,12 +2700,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="191"/>
         <source>No tracks selected</source>
-        <translation type="unfinished"/>
+        <translation>Ingen spor er valgt</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="192"/>
         <source>Please select at least one track you want to import.</source>
-        <translation type="unfinished"/>
+        <translation>Velg minst ett spor du ønsker å importere.</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="227"/>
@@ -2730,12 +2730,12 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="358"/>
         <source>MakeMKV import finished</source>
-        <translation type="unfinished"/>
+        <translation>MakeMKV import ferdig</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="358"/>
         <source>Import with MakeMKV has finished</source>
-        <translation type="unfinished"/>
+        <translation>Import med MakeMKV er ferdig</translation>
     </message>
     <message>
         <location filename="../downloads/MakeMkvDialog.cpp" line="361"/>
@@ -3560,7 +3560,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../movies/MovieWidget.ui" line="372"/>
         <source>Not watched</source>
-        <translation type="unfinished"/>
+        <translation>Ikke sett</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="381"/>
@@ -3728,7 +3728,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../movies/MovieWidget.ui" line="1020"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"/>
+        <translation>Stereo Modus</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1041"/>
@@ -3908,12 +3908,12 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicFileSearcher.cpp" line="32"/>
         <source>Searching for Music...</source>
-        <translation type="unfinished"/>
+        <translation>Søke etter musikk ...</translation>
     </message>
     <message>
         <location filename="../music/MusicFileSearcher.cpp" line="95"/>
         <source>Loading Music...</source>
-        <translation type="unfinished"/>
+        <translation>Laster musikk...</translation>
     </message>
 </context>
 <context>
@@ -3921,27 +3921,27 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="24"/>
         <source>%n artist(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n artist(er)</numerusform><numerusform>%n artist(er)</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="24"/>
         <source>%n album(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n album(er)</numerusform><numerusform>%n album(er)</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="69"/>
         <source>%n artists</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n kunstnere</numerusform><numerusform>%n kunstnere</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="69"/>
         <source>%n albums</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n albumer</numerusform><numerusform>%n albumer</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="71"/>
         <source>%1 of %n artists</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 av %n kunstnere</numerusform><numerusform>%1 av %n kunstnere</numerusform></translation>
     </message>
 </context>
 <context>
@@ -3949,7 +3949,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="17"/>
         <source>Music Multi Scrape</source>
-        <translation type="unfinished"/>
+        <translation>Musikk multi skraper</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="46"/>
@@ -3959,7 +3959,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="55"/>
         <source>Born</source>
-        <translation type="unfinished"/>
+        <translation>Født</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="68"/>
@@ -3969,27 +3969,27 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="81"/>
         <source>Years Active</source>
-        <translation type="unfinished"/>
+        <translation>Aktive år</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="94"/>
         <source>Died</source>
-        <translation type="unfinished"/>
+        <translation>Døde</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="107"/>
         <source>Formed</source>
-        <translation type="unfinished"/>
+        <translation>Dannet</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="120"/>
         <source>Disbanded</source>
-        <translation type="unfinished"/>
+        <translation>Oppløst</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="133"/>
         <source>Biography</source>
-        <translation type="unfinished"/>
+        <translation>Biografi</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="146"/>
@@ -3999,7 +3999,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="159"/>
         <source>Cover</source>
-        <translation type="unfinished"/>
+        <translation>Deksel</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="172"/>
@@ -4024,12 +4024,12 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="218"/>
         <source>Moods</source>
-        <translation type="unfinished"/>
+        <translation>Stemninger</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="231"/>
         <source>Styles</source>
-        <translation type="unfinished"/>
+        <translation>Stiler</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="244"/>
@@ -4039,12 +4039,12 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="257"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Etikett</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="270"/>
         <source>Release Date</source>
-        <translation type="unfinished"/>
+        <translation>Utgivelsesdato</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="283"/>
@@ -4059,7 +4059,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="309"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Gjennomgang</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="322"/>
@@ -4074,7 +4074,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="348"/>
         <source>Discography</source>
-        <translation type="unfinished"/>
+        <translation>Diskografi</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="370"/>
@@ -4084,12 +4084,12 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="396"/>
         <source>Scrape all albums of selected artists (and not only selected albums)</source>
-        <translation type="unfinished"/>
+        <translation>Skrap alle albumer av utvalgte artister (og ikke bare utvalgte albumer)</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="403"/>
         <source>Automatically save each artist and album after scraping</source>
-        <translation type="unfinished"/>
+        <translation>Lagrer automatisk hver artist og album etter skraping</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="450"/>
@@ -4109,7 +4109,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message numerus="yes">
         <location filename="../music/MusicMultiScrapeDialog.cpp" line="200"/>
         <source>Scraping of %n items has finished.</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Skraping av %n elementer er ferdig.</numerusform><numerusform>Skraping av %n elementer er ferdig.</numerusform></translation>
     </message>
 </context>
 <context>
@@ -4157,37 +4157,37 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="160"/>
         <source>Born</source>
-        <translation type="unfinished"/>
+        <translation>Født</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="170"/>
         <source>Formed</source>
-        <translation type="unfinished"/>
+        <translation>Dannet</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="180"/>
         <source>Years Active</source>
-        <translation type="unfinished"/>
+        <translation>Aktive år</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="190"/>
         <source>Disbanded</source>
-        <translation type="unfinished"/>
+        <translation>Oppløst</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="200"/>
         <source>Died</source>
-        <translation type="unfinished"/>
+        <translation>Døde</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="210"/>
         <source>Biography</source>
-        <translation type="unfinished"/>
+        <translation>Biografi</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="220"/>
         <source>Discography</source>
-        <translation type="unfinished"/>
+        <translation>Diskografi</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="230"/>
@@ -4197,12 +4197,12 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="240"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Etikett</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="250"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Gjennomgang</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="260"/>
@@ -4217,7 +4217,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="280"/>
         <source>Release Date</source>
-        <translation type="unfinished"/>
+        <translation>Utgivelsesdato</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="290"/>
@@ -4232,12 +4232,12 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="310"/>
         <source>Styles</source>
-        <translation type="unfinished"/>
+        <translation>Stiler</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="320"/>
         <source>Moods</source>
-        <translation type="unfinished"/>
+        <translation>Stemninger</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="330"/>
@@ -4262,7 +4262,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="370"/>
         <source>Cover</source>
-        <translation type="unfinished"/>
+        <translation>Deksel</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="380"/>
@@ -4280,7 +4280,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message numerus="yes">
         <location filename="../smallWidgets/MusicTreeView.cpp" line="97"/>
         <source>%n albums</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform>%n albumer</numerusform></translation>
     </message>
 </context>
 <context>
@@ -4288,12 +4288,12 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicWidget.cpp" line="114"/>
         <source>Saving changed Artists and Albums</source>
-        <translation type="unfinished"/>
+        <translation>Lager endret kunstnere og albumer</translation>
     </message>
     <message>
         <location filename="../music/MusicWidget.cpp" line="130"/>
         <source>All Artists and Albums Saved</source>
-        <translation type="unfinished"/>
+        <translation>Alle kunstnere og albumer lagret</translation>
     </message>
 </context>
 <context>
@@ -4301,12 +4301,12 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="63"/>
         <source>Album has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Albumet har endret seg. Klikk for å gå tilbake endringer.</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="96"/>
         <source>Album Name</source>
-        <translation type="unfinished"/>
+        <translation>Album navn</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="138"/>
@@ -4331,7 +4331,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="207"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Etikett</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="214"/>
@@ -4346,12 +4346,12 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="228"/>
         <source>Release Date</source>
-        <translation type="unfinished"/>
+        <translation>Utgivelsesdato</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="235"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Gjennomgang</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="278"/>
@@ -4362,7 +4362,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
         <location filename="../music/MusicWidgetAlbum.ui" line="364"/>
         <location filename="../music/MusicWidgetAlbum.ui" line="404"/>
         <source>Cover</source>
-        <translation type="unfinished"/>
+        <translation>Deksel</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="386"/>
@@ -4389,27 +4389,27 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="44"/>
         <source>Moods</source>
-        <translation type="unfinished"/>
+        <translation>Stemninger</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="45"/>
         <source>Add Mood</source>
-        <translation type="unfinished"/>
+        <translation>Legge til stemningen</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="49"/>
         <source>Styles</source>
-        <translation type="unfinished"/>
+        <translation>Stiler</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="50"/>
         <source>Add Style</source>
-        <translation type="unfinished"/>
+        <translation>Legge til stil</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="167"/>
         <source>Saving Album...</source>
-        <translation type="unfinished"/>
+        <translation>Lagrer album...</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="173"/>
@@ -4427,12 +4427,12 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="63"/>
         <source>Artist has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Kunstner har endret seg. Klikk for å gå tilbake endringer.</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="96"/>
         <source>Artist Name</source>
-        <translation type="unfinished"/>
+        <translation>Kunstner navn</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="138"/>
@@ -4452,32 +4452,32 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="207"/>
         <source>Born</source>
-        <translation type="unfinished"/>
+        <translation>Født</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="214"/>
         <source>Formed</source>
-        <translation type="unfinished"/>
+        <translation>Dannet</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="221"/>
         <source>Years active</source>
-        <translation type="unfinished"/>
+        <translation>Aktive år</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="228"/>
         <source>Disbanded</source>
-        <translation type="unfinished"/>
+        <translation>Oppløst</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="235"/>
         <source>Died</source>
-        <translation type="unfinished"/>
+        <translation>Døde</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="256"/>
         <source>Biography</source>
-        <translation type="unfinished"/>
+        <translation>Biografi</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="269"/>
@@ -4487,7 +4487,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="310"/>
         <source>Discography</source>
-        <translation type="unfinished"/>
+        <translation>Diskografi</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="332"/>
@@ -4502,12 +4502,12 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="347"/>
         <source>Add Album</source>
-        <translation type="unfinished"/>
+        <translation>Legge til album</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="357"/>
         <source>Remove Album</source>
-        <translation type="unfinished"/>
+        <translation>Fjerne album</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="383"/>
@@ -4562,27 +4562,27 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="51"/>
         <source>Moods</source>
-        <translation type="unfinished"/>
+        <translation>Stemninger</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="52"/>
         <source>Add Mood</source>
-        <translation type="unfinished"/>
+        <translation>Legge til stemninger</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="56"/>
         <source>Styles</source>
-        <translation type="unfinished"/>
+        <translation>Stiler</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="57"/>
         <source>Add Style</source>
-        <translation type="unfinished"/>
+        <translation>Legge til stil</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="186"/>
         <source>Saving Artist...</source>
-        <translation type="unfinished"/>
+        <translation>Lagre kunstner...</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="192"/>
@@ -4597,7 +4597,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="504"/>
         <source>Unknown Album</source>
-        <translation type="unfinished"/>
+        <translation>Ukjent album</translation>
     </message>
 </context>
 <context>
@@ -4605,7 +4605,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../main/Navbar.ui" line="52"/>
         <source>Scrape</source>
-        <translation type="unfinished"/>
+        <translation>Skrape</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="74"/>
@@ -4625,12 +4625,12 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../main/Navbar.ui" line="134"/>
         <source>Synchronize to Kodi</source>
-        <translation type="unfinished"/>
+        <translation>Synkronisere til Kodi</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="153"/>
         <source>Export Database</source>
-        <translation>Eksporter Database</translation>
+        <translation>Eksporter biblioteket</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="172"/>
@@ -4655,7 +4655,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../main/Navbar.cpp" line="17"/>
         <source>Scrape (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Skrape (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="20"/>
@@ -4686,12 +4686,12 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../plugins/PluginManager.cpp" line="98"/>
         <source>Plugin updates available</source>
-        <translation type="unfinished"/>
+        <translation>Plugin oppdateringer tilgjengelig</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManager.cpp" line="174"/>
         <source>Plugin %1 requires at least MediaElch version %2</source>
-        <translation type="unfinished"/>
+        <translation>Plugin% 1 krever minst MediaElch versjon% 2</translation>
     </message>
 </context>
 <context>
@@ -4719,27 +4719,27 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="49"/>
         <source>Plugin is being installed...</source>
-        <translation type="unfinished"/>
+        <translation>Plugin blir installert ...</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="56"/>
         <source>Plugin is being updated...</source>
-        <translation type="unfinished"/>
+        <translation>Plugin oppdateres ...</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="64"/>
         <source>Plugin was installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Plugin ble installert.</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="72"/>
         <source>Plugin was updated successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Plugin ble oppdatert.</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="80"/>
         <source>An error occured while installing this plugin.</source>
-        <translation type="unfinished"/>
+        <translation>Det oppstod en feil under installasjon av denne plugin.</translation>
     </message>
 </context>
 <context>
@@ -4758,12 +4758,12 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="67"/>
         <source>Installed</source>
-        <translation type="unfinished"/>
+        <translation>Installert</translation>
     </message>
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="74"/>
         <source>Update available</source>
-        <translation type="unfinished"/>
+        <translation>Oppdatering tilgjengelig</translation>
     </message>
 </context>
 <context>
@@ -4796,42 +4796,42 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../globals/Helper.cpp" line="539"/>
         <source>No Label</source>
-        <translation type="unfinished"/>
+        <translation>Ingen etikett</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="540"/>
         <source>Red</source>
-        <translation type="unfinished"/>
+        <translation>Rød</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="541"/>
         <source>Orange</source>
-        <translation type="unfinished"/>
+        <translation>Orange</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="542"/>
         <source>Yellow</source>
-        <translation type="unfinished"/>
+        <translation>Gul</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="543"/>
         <source>Green</source>
-        <translation type="unfinished"/>
+        <translation>Grønn</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="544"/>
         <source>Blue</source>
-        <translation type="unfinished"/>
+        <translation>Blå</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="545"/>
         <source>Purple</source>
-        <translation type="unfinished"/>
+        <translation>Lilla</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="546"/>
         <source>Grey</source>
-        <translation type="unfinished"/>
+        <translation>Grå</translation>
     </message>
 </context>
 <context>
@@ -4839,7 +4839,7 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
     <message>
         <location filename="../quazip/quazip/quazipfile.cpp" line="217"/>
         <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished"/>
+        <translation>ZIP/UNZIP API feil %1</translation>
     </message>
 </context>
 <context>
@@ -4911,7 +4911,11 @@ Hvis du vil søke etter en TMDB eller OFDb id du prefikset med &quot;id&quot;.</
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="171"/>
@@ -4931,7 +4935,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="26"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
-        <translation type="unfinished"/>
+        <translation>Vennligst se% 1 for hjelp og eksempler på hvordan du bruker renamer.</translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="41"/>
@@ -4951,7 +4955,7 @@ p, li { white-space: pre-wrap; }
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="47"/>
         <source>%n Episode(s) will be renamed</source>
-        <translation><numerusform>%n Episode(r) endret navn</numerusform><numerusform>%n Episode(s) will be renamed</numerusform></translation>
+        <translation><numerusform>%n Episode(r) endret navn</numerusform><numerusform>%n Episode(r) får nytt navn</numerusform></translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="160"/>
@@ -5160,32 +5164,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="562"/>
         <source>Resolution (1080p, 720p, ...)</source>
-        <translation type="unfinished"/>
+        <translation>Oppløsning (1080p, 720p, ...)</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="576"/>
         <source>File/directory is BluRay</source>
-        <translation type="unfinished"/>
+        <translation>Filen/mappen er en BluRay</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="589"/>
         <source>File/directory is DVD</source>
-        <translation type="unfinished"/>
+        <translation>Filen/mappen er en DVD</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="602"/>
         <source>File is 3D</source>
-        <translation type="unfinished"/>
+        <translation>Filen er 3D</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="616"/>
         <source>Movie set name</source>
-        <translation type="unfinished"/>
+        <translation>Filmsetnavn</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="628"/>
         <source>IMDB Id</source>
-        <translation type="unfinished"/>
+        <translation>IMDB Id</translation>
     </message>
 </context>
 <context>
@@ -5233,7 +5237,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sets/SetsWidget.ui" line="191"/>
         <source>Remove Movie</source>
-        <translation type="unfinished"/>
+        <translation>Fjern Film</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="213"/>
@@ -5377,7 +5381,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1446"/>
         <source>Path to makemkvcon</source>
-        <translation type="unfinished"/>
+        <translation>veien til makemkvcon</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="276"/>
@@ -5391,12 +5395,14 @@ p, li { white-space: pre-wrap; }
         <source>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.
 The directories containg your music must contain subdirectories for each artist which contain directories of albums.</source>
-        <translation type="unfinished"/>
+        <translation>Legge til en eller flere kataloger som inneholder filmer, TV-programmer, konserter, musikk eller filer til import.
+TV-serien episoder må være i undermapper med navnet på show.
+Katalogene med musikken din må inneholde underkataloger for hver artist som inneholder kataloger av album.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="256"/>
         <source>Startup section</source>
-        <translation type="unfinished"/>
+        <translation>Oppstart seksjon</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="282"/>
@@ -5602,47 +5608,47 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1076"/>
         <source>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"/>
+        <translation>Nedenfor ser du filnavnene som brukes til lasting og lagring av artister og album. Du kan redigere dem som du vil, hvis du ønsker å bruke flere filer skille dem med komma.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1091"/>
         <source>Artist Thumbnail</source>
-        <translation type="unfinished"/>
+        <translation>Kunstner Thumbnail</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1108"/>
         <source>Artist Fanart</source>
-        <translation type="unfinished"/>
+        <translation>Kunstner Fanart</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1125"/>
         <source>Artist Logo</source>
-        <translation type="unfinished"/>
+        <translation>Kunstner Logo</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1142"/>
         <source>Album Thumbnail</source>
-        <translation type="unfinished"/>
+        <translation>Album Thumbnail</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1159"/>
         <source>Album Disc Art</source>
-        <translation type="unfinished"/>
+        <translation>Album Disc Art</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1176"/>
         <source>Download Extra Fanarts for Artists</source>
-        <translation type="unfinished"/>
+        <translation>Last ned ekstra fanarts for kunstnere</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1196"/>
         <source>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation type="unfinished"/>
+        <translation>Hvis du ønsker å bruke synkroniseringsfunksjonen må du aktivere webserveren innen Kodi (Innstillinger -&gt; Tjenester -&gt; Webserver). Skriv inn porten på webserver her (vanligvis 80 eller 8080).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1232"/>
         <source>8080</source>
-        <translation type="unfinished"/>
+        <translation>8080</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1425"/>
@@ -5667,22 +5673,22 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1516"/>
         <source>Installing and updating plugins through MediaElch is currently not supported under Linux. You need to add the ppa or compile plugins on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Installere og oppdatere plugins gjennom MediaElch støttes ikke under Linux. Du må legge til ppa eller kompilere plugins på egen hånd.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1536"/>
         <source>This plugin has no settings.</source>
-        <translation type="unfinished"/>
+        <translation>Denne plugin har ingen innstillinger.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1563"/>
         <source>This plugin is not installed.</source>
-        <translation type="unfinished"/>
+        <translation>Denne plugin er ikke installert.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1712"/>
         <source>Kodi</source>
-        <translation type="unfinished"/>
+        <translation>Kodi</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1756"/>
@@ -5694,7 +5700,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1770"/>
         <source>Plugins</source>
-        <translation type="unfinished"/>
+        <translation>Plugins</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1781"/>
@@ -5702,7 +5708,7 @@ The directories containg your music must contain subdirectories for each artist 
         <location filename="../settings/SettingsWindow.cpp" line="177"/>
         <location filename="../settings/SettingsWindow.cpp" line="514"/>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>Musikk</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1411"/>
@@ -5746,7 +5752,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1239"/>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Bruker</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1319"/>
@@ -5990,7 +5996,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="780"/>
         <source>Choose makemkvcon</source>
-        <translation type="unfinished"/>
+        <translation>Velg makemkvcon</translation>
     </message>
 </context>
 <context>
@@ -6023,7 +6029,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../support/SupportDialog.ui" line="74"/>
         <source>MediaElch makes use of various movie and tv show databases. These databases also need your help to keep their services up and running for free. If you don&apos;t want to donate you can also contribute information and missing artwork if possible.</source>
-        <translation>MediaElch gjør bruk av ulike film-og tv-show databaser. Disse databasene trenger din hjelp til å holde sine tjenester opp og kjører gratis. Hvis du ikke ønsker å donere kan derfor bidra med informasjon og manglende Artwork hvis det er mulig.</translation>
+        <translation>MediaElch gjør bruk av ulike film-og tv-serien bibliotekene. Disse bibliotekene trenger din hjelp til å holde sine tjenester opp og kjører gratis. Hvis du ikke ønsker å donere kan derfor bidra med informasjon og manglende Artwork hvis det er mulig.</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="84"/>
@@ -6045,7 +6051,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../support/SupportDialog.ui" line="149"/>
         <source>Hide donate button</source>
-        <translation type="unfinished"/>
+        <translation>Skjule doner-knappen</translation>
     </message>
     <message>
         <location filename="../support/SupportDialog.ui" line="172"/>
@@ -6589,13 +6595,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="514"/>
         <source>%n tv shows</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n tv-serier</numerusform><numerusform>%n tv-serier</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="514"/>
         <source>%n episodes</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n episoder</numerusform><numerusform>%n episoder</numerusform></translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="50"/>
@@ -6640,7 +6646,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="59"/>
         <source>Hide specials in missing episodes</source>
-        <translation type="unfinished"/>
+        <translation>Skjule tilbud i manglende episoder</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="345"/>
@@ -6657,7 +6663,7 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="516"/>
         <source>%1 of %n tv shows</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 av %n tv-serier</numerusform><numerusform>%1 av %n tv-serier</numerusform></translation>
     </message>
 </context>
 <context>
@@ -7159,7 +7165,7 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1041"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"/>
+        <translation>Stereo Modus</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1062"/>
@@ -7694,17 +7700,17 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="41"/>
         <source>The Audio DB</source>
-        <translation type="unfinished"/>
+        <translation>The Audio DB</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="42"/>
         <source>AllMusic</source>
-        <translation type="unfinished"/>
+        <translation>AllMusic</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="43"/>
         <source>Discogs</source>
-        <translation type="unfinished"/>
+        <translation>Discogs</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="45"/>
@@ -7714,7 +7720,7 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="47"/>
         <source>Prefer</source>
-        <translation type="unfinished"/>
+        <translation>Foretrekker</translation>
     </message>
 </context>
 <context>
@@ -7798,32 +7804,32 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="17"/>
         <source>Kodi Synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Kodi synkronisering</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
         <source>Please make sure you have setup your sources in Kodi and that the webserver is enabled (Kodi -&gt; Settings -&gt; Services -&gt; Webserver).</source>
-        <translation type="unfinished"/>
+        <translation>Vennligst sørg for at du har satt dine kilder i Kodi og at webserveren er aktivert (Kodi -&gt; Innstillinger -&gt; Tjenester -&gt; Webserver).</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="46"/>
         <source>This will tell Kodi to remove the changed movies, concerts or shows. Afterwards a Kodi library update is triggered and the removed items will be picked up again.</source>
-        <translation type="unfinished"/>
+        <translation>Dette vil fortelle Kodi å fjerne de endrede filmer, konserter eller show. Etterpå en Kodi bibliotek oppdatering utløses og de fjernede elementer vil bli plukket opp igjen.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="56"/>
         <source>Remove non-existent items from Kodis database (Clean library)</source>
-        <translation type="unfinished"/>
+        <translation>Fjern ikke-eksisterende elementer fra Kodis biblioteket (Rydd biblioteket)</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
         <source>Kodi will remove not longer existing items from your database.</source>
-        <translation type="unfinished"/>
+        <translation>Kodi vil fjerne ikke lenger eksisterende elementer fra biblioteket.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="77"/>
         <source>The fields last played and playcount will be retrieved from Kodi.</source>
-        <translation type="unfinished"/>
+        <translation>De feltene sist ble spilt og playcount vil bli hentet fra Kodi.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="108"/>
@@ -7844,12 +7850,12 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="141"/>
         <source>Please fill in your Kodi host and port.</source>
-        <translation type="unfinished"/>
+        <translation>Fyll inn din Kodi host og port.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="229"/>
         <source>Getting contents from Kodi</source>
-        <translation type="unfinished"/>
+        <translation>Får innholdet fra Kodi</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="244"/>
@@ -7857,27 +7863,27 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
         <location filename="../xbmc/XbmcSync.cpp" line="300"/>
         <location filename="../xbmc/XbmcSync.cpp" line="328"/>
         <source>Network error</source>
-        <translation type="unfinished"/>
+        <translation>nettverksfeil</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="414"/>
         <source>Removing movies from database</source>
-        <translation>Fjerne filmer fra database</translation>
+        <translation>Fjerne filmer fra biblioteket</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="433"/>
         <source>Removing concerts from database</source>
-        <translation>Fjerne konserter fra database</translation>
+        <translation>Fjerne konserter fra biblioteket</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="452"/>
         <source>Removing TV shows from database</source>
-        <translation>Fjerne TV-serier fra database</translation>
+        <translation>Fjerne TV-serier fra biblioteket</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="471"/>
         <source>Removing episodes from database</source>
-        <translation>Fjerne episoder fra database</translation>
+        <translation>Fjerne episoder fra biblioteket</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="510"/>
@@ -7887,12 +7893,12 @@ Etterpå vil MediaElch sjekke automatisk etter nye episoder ved oppstart.</trans
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="530"/>
         <source>Finished. Kodi is now loading your updated items.</source>
-        <translation type="unfinished"/>
+        <translation>Ferdig. Kodi laster nå dine oppdaterte elementer.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="554"/>
         <source>Finished. Kodi is now cleaning your database.</source>
-        <translation type="unfinished"/>
+        <translation>Ferdig. Kodi rudder nå biblioteket.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="595"/>

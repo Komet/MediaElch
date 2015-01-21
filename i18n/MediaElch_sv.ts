@@ -160,52 +160,52 @@
         <translation>&apos;Stream Details&apos;-upptäckning med &lt;a href=&quot;http://www.mediaarea.net&quot;&gt;Media Info&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="148"/>
+        <location filename="../main/AboutDialog.ui" line="151"/>
         <source>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; powered by &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</source>
         <translation>&lt;a href=&quot;http://www.mediaelch.de&quot;&gt;http://www.mediaelch.de&lt;/a&gt; underhålls av &lt;a href=&quot;http://www.kvibes.de&quot;&gt;k.vibes&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="198"/>
+        <location filename="../main/AboutDialog.ui" line="204"/>
         <source>Your Collection</source>
         <translation>Din Samling</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="207"/>
+        <location filename="../main/AboutDialog.ui" line="213"/>
         <source>Movies</source>
         <translation>Filmer</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="214"/>
-        <location filename="../main/AboutDialog.ui" line="247"/>
-        <location filename="../main/AboutDialog.ui" line="280"/>
-        <location filename="../main/AboutDialog.ui" line="313"/>
-        <location filename="../main/AboutDialog.ui" line="346"/>
-        <location filename="../main/AboutDialog.ui" line="376"/>
+        <location filename="../main/AboutDialog.ui" line="220"/>
+        <location filename="../main/AboutDialog.ui" line="253"/>
+        <location filename="../main/AboutDialog.ui" line="286"/>
+        <location filename="../main/AboutDialog.ui" line="319"/>
+        <location filename="../main/AboutDialog.ui" line="352"/>
+        <location filename="../main/AboutDialog.ui" line="382"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="240"/>
+        <location filename="../main/AboutDialog.ui" line="246"/>
         <source>TV Shows</source>
         <translation>TV-Serier</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="273"/>
+        <location filename="../main/AboutDialog.ui" line="279"/>
         <source>Episodes</source>
         <translation>Avsnitt</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="306"/>
+        <location filename="../main/AboutDialog.ui" line="312"/>
         <source>Concerts</source>
         <translation>Konserter</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="339"/>
+        <location filename="../main/AboutDialog.ui" line="345"/>
         <source>Artists</source>
         <translation>Artister</translation>
     </message>
     <message>
-        <location filename="../main/AboutDialog.ui" line="369"/>
+        <location filename="../main/AboutDialog.ui" line="375"/>
         <source>Albums</source>
         <translation>Album</translation>
     </message>
@@ -3921,7 +3921,7 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="24"/>
         <source>%n artist(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n artist</numerusform><numerusform>%n artist(er)</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="24"/>
@@ -3931,17 +3931,17 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="69"/>
         <source>%n artists</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n artist</numerusform><numerusform>%n artister</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="69"/>
         <source>%n albums</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n album</numerusform><numerusform>%n album</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../music/MusicFilesWidget.cpp" line="71"/>
         <source>%1 of %n artists</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%1 av %n artister</numerusform><numerusform>%1 av %n artister</numerusform></translation>
     </message>
 </context>
 <context>
@@ -4280,7 +4280,7 @@ Om du vill söka via ett TMDB eller OFDb id, så använd prefixet &quot;id&quot;
     <message numerus="yes">
         <location filename="../smallWidgets/MusicTreeView.cpp" line="97"/>
         <source>%n albums</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n album</numerusform><numerusform>%n album</numerusform></translation>
     </message>
 </context>
 <context>
@@ -7817,17 +7817,17 @@ MediaElch kommer sen att leta efter nya avsnitt automatiskt vid programstart.</t
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="56"/>
         <source>Remove non-existent items from Kodis database (Clean library)</source>
-        <translation type="unfinished"/>
+        <translation>Ta bort icke-existerande objekt ifrån Kodis databas (Rensa bibliotek)</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
         <source>Kodi will remove not longer existing items from your database.</source>
-        <translation type="unfinished"/>
+        <translation>Kodi kommer att ta bort icke existerande objekt ifrån din databas.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="77"/>
         <source>The fields last played and playcount will be retrieved from Kodi.</source>
-        <translation type="unfinished"/>
+        <translation>Fälten senast spelad och spelantal kommer att hämtas ifrån Kodi.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="108"/>
@@ -7848,12 +7848,12 @@ MediaElch kommer sen att leta efter nya avsnitt automatiskt vid programstart.</t
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="141"/>
         <source>Please fill in your Kodi host and port.</source>
-        <translation type="unfinished"/>
+        <translation>Fyll i host och port för Kodi.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="229"/>
         <source>Getting contents from Kodi</source>
-        <translation type="unfinished"/>
+        <translation>Hämtar innehåll ifrån Kodi</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="244"/>
@@ -7891,7 +7891,7 @@ MediaElch kommer sen att leta efter nya avsnitt automatiskt vid programstart.</t
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="530"/>
         <source>Finished. Kodi is now loading your updated items.</source>
-        <translation type="unfinished"/>
+        <translation>Slutfört. Kodi laddar nu dina uppdaterade objekt.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="554"/>
