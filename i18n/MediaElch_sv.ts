@@ -5395,7 +5395,9 @@ p, li { white-space: pre-wrap; }
         <source>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.
 The directories containg your music must contain subdirectories for each artist which contain directories of albums.</source>
-        <translation type="unfinished"/>
+        <translation>Lägg till en eller flera kataloger som innehåller dina filmer, serier, konserter, musik eller filer att importera.
+TV-avsnitt måste befinna sig i underkataloger under en katalog med seriens namn.
+Kataloger som med din musik måste ligga i underkataloger för varje artists som innehåller kataloger av album.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="256"/>
@@ -5606,7 +5608,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1076"/>
         <source>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"/>
+        <translation>Nedan ser du filnamnen som används för att ladda och spara dina artister och album. Du kan ändra dom som vi vill och om du skulle vilja använda flera filer så kan du separera dom med komma-tecken.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1091"/>
@@ -7896,7 +7898,7 @@ MediaElch kommer sen att leta efter nya avsnitt automatiskt vid programstart.</t
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="554"/>
         <source>Finished. Kodi is now cleaning your database.</source>
-        <translation type="unfinished"/>
+        <translation>Slutfört. Kodi rensar nu din databas.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="595"/>
