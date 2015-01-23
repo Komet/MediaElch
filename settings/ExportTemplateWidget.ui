@@ -94,7 +94,7 @@
     </spacer>
    </item>
    <item>
-    <widget class="StyledPushButton" name="btnInstall">
+    <widget class="QPushButton" name="btnInstall">
      <property name="text">
       <string>Install</string>
      </property>
@@ -102,13 +102,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>StyledPushButton</class>
-   <extends>QPushButton</extends>
-   <header>smallWidgets/StyledPushButton.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections>
   <connection>

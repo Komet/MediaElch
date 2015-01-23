@@ -7,6 +7,7 @@
 #include <QNetworkProxy>
 #include "data/ScraperInterface.h"
 #include "globals/Manager.h"
+#include "plugins/PluginManager.h"
 #include "renamer/Renamer.h"
 
 /**
@@ -59,6 +60,12 @@ Settings::Settings(QObject *parent) :
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertCdArt, "disc.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertClearArt, "clearart.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ConcertLogo, "logo.png", 0));
+
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::ArtistFanart, "fanart.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::ArtistLogo, "logo.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::ArtistThumb, "folder.jpg", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::AlbumCdArt, "disc.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::AlbumThumb, "folder.jpg", 0));
 }
 
 /**
@@ -181,6 +188,18 @@ void Settings::loadSettings()
     }
     settings()->endArray();
 
+    m_musicDirectories.clear();
+    int musicSize = settings()->beginReadArray("Directories/Music");
+    for (int i=0 ; i<musicSize ; ++i) {
+        settings()->setArrayIndex(i);
+        SettingsDir dir;
+        dir.path = QDir::toNativeSeparators(settings()->value("path").toString());
+        dir.separateFolders = settings()->value("sepFolders", false).toBool();
+        dir.autoReload = settings()->value("autoReload", false).toBool();
+        m_musicDirectories.append(dir);
+    }
+    settings()->endArray();
+
     m_excludeWords = settings()->value("excludeWords").toString();
     if (m_excludeWords.isEmpty())
         m_excludeWords = "ac3,dts,custom,dc,divx,divx5,dsr,dsrip,dutch,dvd,dvdrip,dvdscr,dvdscreener,screener,dvdivx,cam,fragment,fs,hdtv,hdrip,hdtvrip,internal,limited,"
@@ -193,6 +212,8 @@ void Settings::loadSettings()
     foreach (TvScraperInterface *scraper, Manager::instance()->tvScrapers())
         scraper->loadSettings(*settings());
     foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers())
+        scraper->loadSettings(*settings());
+    foreach (MusicScraperInterface *scraper, Manager::instance()->musicScrapers())
         scraper->loadSettings(*settings());
     foreach (ImageProviderInterface *scraper, Manager::instance()->imageProviders())
         scraper->loadSettings(*settings());
@@ -272,6 +293,10 @@ void Settings::loadSettings()
     m_multiScrapeSaveEach = settings()->value("Movies/MultiScrapeSaveEach", false).toBool();
 
     m_showMissingEpisodesHint = settings()->value("TvShows/ShowMissingEpisodesHint", true).toBool();
+
+    m_extraFanartsMusicArtists = settings()->value("Music/Artists/ExtraFanarts", 0).toInt();
+
+    PluginManager::instance()->loadSettings();
 }
 
 /**
@@ -349,6 +374,15 @@ void Settings::saveSettings()
     }
     settings()->endArray();
 
+    settings()->beginWriteArray("Directories/Music");
+    for (int i=0, n=m_musicDirectories.count() ; i<n ; ++i) {
+        settings()->setArrayIndex(i);
+        settings()->setValue("path", m_musicDirectories.at(i).path);
+        settings()->setValue("sepFolders", m_musicDirectories.at(i).separateFolders);
+        settings()->setValue("autoReload", m_musicDirectories.at(i).autoReload);
+    }
+    settings()->endArray();
+
     settings()->setValue("excludeWords", m_excludeWords);
 
     foreach (ScraperInterface *scraper, Manager::instance()->scrapers()) {
@@ -360,6 +394,10 @@ void Settings::saveSettings()
             scraper->saveSettings(*settings());
     }
     foreach (ConcertScraperInterface *scraper, Manager::instance()->concertScrapers()) {
+        if (scraper->hasSettings())
+            scraper->saveSettings(*settings());
+    }
+    foreach (MusicScraperInterface *scraper, Manager::instance()->musicScrapers()) {
         if (scraper->hasSettings())
             scraper->saveSettings(*settings());
     }
@@ -407,6 +445,10 @@ void Settings::saveSettings()
 
     settings()->setValue("Movies/MultiScrapeOnlyWithId", m_multiScrapeOnlyWithId);
     settings()->setValue("Movies/MultiScrapeSaveEach", m_multiScrapeSaveEach);
+
+    settings()->setValue("Music/Artists/ExtraFanarts", m_extraFanartsMusicArtists);
+
+    PluginManager::instance()->saveSettings();
 
     settings()->sync();
 
@@ -525,6 +567,11 @@ QList<SettingsDir> Settings::tvShowDirectories()
 QList<SettingsDir> Settings::concertDirectories()
 {
     return m_concertDirectories;
+}
+
+QList<SettingsDir> Settings::musicDirectories()
+{
+    return m_musicDirectories;
 }
 
 /**
@@ -781,6 +828,11 @@ void Settings::setConcertDirectories(QList<SettingsDir> dirs)
     m_concertDirectories = dirs;
 }
 
+void Settings::setMusicDirectories(QList<SettingsDir> dirs)
+{
+    m_musicDirectories = dirs;
+}
+
 /**
  * @brief Sets the exclude words
  * @param words Words to exclude from media names,
@@ -918,6 +970,8 @@ QList<int> Settings::scraperInfos(MainWidgets widget, QString scraperId)
         item = "Concerts";
     else if (widget == WidgetTvShows)
         item = "TvShows";
+    else if (widget == WidgetMusic)
+        item = "Music";
     QList<int> infos;
     foreach (const QString &info, settings()->value(QString("Scrapers/%1/%2").arg(item).arg(scraperId)).toString().split(","))
         infos << info.toInt();
@@ -937,6 +991,8 @@ void Settings::setScraperInfos(MainWidgets widget, QString scraperNo, QList<int>
         item = "Concerts";
     else if (widget == WidgetTvShows)
         item = "TvShows";
+    else if (widget == WidgetMusic)
+        item = "Music";
     QStringList infos;
     foreach (int info, items)
         infos << QString("%1").arg(info);
@@ -1272,9 +1328,64 @@ QString Settings::lastImagePath()
     return m_lastImagePath;
 }
 
+QStringList Settings::pluginDirs()
+{
+#if defined(PLUGIN_DIR_OVERRIDE)
+    #define str_(x) #x
+    #define str(x) str_(x)
+    return QStringList() << str(PLUGIN_DIR_OVERRIDE);
+#endif
+
+#if defined(Q_OS_MAC)
+    QStringList dirs = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+    if (dirs.isEmpty())
+        return QStringList();
+    QDir pluginDir(dirs.first());
+    if (!pluginDir.cd("plugins") && !pluginDir.mkdir("plugins"))
+        return QStringList();
+    pluginDir.cd("plugins");
+    return QStringList() << pluginDir.absolutePath();
+#elif defined(Q_OS_WIN)
+    QStringList dirs = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+    if (advanced()->portableMode())
+        dirs = QStringList() << applicationDir();
+    if (dirs.isEmpty())
+        return QStringList();
+    QDir pluginDir(dirs.first());
+    if (!pluginDir.cd("plugins") && !pluginDir.mkdir("plugins"))
+        return QStringList();
+    pluginDir.cd("plugins");
+    return QStringList() << pluginDir.absolutePath();
+#elif defined(Q_OS_UNIX)
+    QStringList dirs;
+    QStringList sDirs = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+    if (!sDirs.isEmpty()) {
+        QDir pluginDir(sDirs.first());
+        if (!pluginDir.cd("plugins"))
+            pluginDir.mkdir("plugins");
+        if (pluginDir.cd("plugins"))
+            dirs << pluginDir.absolutePath();
+    }
+    dirs << "/usr/lib/MediaElch" << "/usr/local/lib/MediaElch";
+    return dirs;
+#endif
+    return QStringList();
+}
+
 QPoint Settings::fixWindowPosition(QPoint p)
 {
     p.setX(qMax(0, p.x()));
     p.setY(qMax(0, p.y()));
     return p;
+}
+
+
+int Settings::extraFanartsMusicArtists() const
+{
+    return m_extraFanartsMusicArtists;
+}
+
+void Settings::setExtraFanartsMusicArtists(int extraFanartsMusicArtists)
+{
+    m_extraFanartsMusicArtists = extraFanartsMusicArtists;
 }

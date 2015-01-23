@@ -93,8 +93,8 @@ QVariant ConcertModel::data(const QModelIndex &index, int role) const
 
     Concert *concert = m_concerts[index.row()];
     if (index.column() == 0 && role == Qt::DisplayRole) {
-        return Helper::appendArticle(concert->name());
-    } else if (index.column() == 0 && role == Qt::ToolTipRole) {
+        return Helper::instance()->appendArticle(concert->name());
+    } else if (index.column() == 0 && (role == Qt::ToolTipRole || role == Qt::UserRole+4)) {
         if (concert->files().size() == 0)
             return QVariant();
         return concert->files().at(0);
@@ -178,11 +178,12 @@ QList<Concert*> ConcertModel::concerts()
  * @brief Checks if there are new concerts (concerts where infoLoaded is false)
  * @return True if there are new concerts
  */
-bool ConcertModel::hasNewConcerts()
+int ConcertModel::hasNewConcerts()
 {
+    int newConcerts = 0;
     foreach (Concert *concert, m_concerts) {
         if (!concert->controller()->infoLoaded())
-            return true;
+            newConcerts++;
     }
-    return false;
+    return newConcerts;
 }

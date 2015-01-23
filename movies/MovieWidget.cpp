@@ -162,6 +162,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->videoHeight, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
     connect(ui->videoWidth, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
     connect(ui->videoScantype, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->stereoMode, SIGNAL(currentIndexChanged(int)), this, SLOT(onStreamDetailsEdited()));
 
     QPainter p;
     QPixmap revert(":/img/arrow_circle_left.png");
@@ -172,8 +173,10 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->buttonRevert->setIcon(QIcon(revert));
     ui->buttonRevert->setVisible(false);
 
-    Helper::applyStyle(ui->groupBox_3);
-    Helper::applyEffect(ui->groupBox_3);
+    Helper::instance()->applyStyle(ui->artStackedWidget);
+    Helper::instance()->applyStyle(ui->tabWidget);
+    Helper::instance()->applyEffect(ui->groupBox_3);
+    Helper::instance()->fillStereoModeCombo(ui->stereoMode);
 }
 
 /**
@@ -315,8 +318,12 @@ void MovieWidget::clear()
     ui->videoWidth->clear();
     ui->videoWidth->blockSignals(blocked);
 
+    blocked = ui->stereoMode->blockSignals(true);
+    ui->stereoMode->setCurrentIndex(0);
+    ui->stereoMode->blockSignals(blocked);
+
     QPixmap pixmap(":/img/man.png");
-    Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
+    Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
     ui->actor->setPixmap(pixmap);
 
     ui->actorResolution->setText("");
@@ -607,6 +614,7 @@ void MovieWidget::updateMovieInfo()
     ui->videoHeight->setEnabled(m_movie->streamDetailsLoaded());
     ui->videoWidth->setEnabled(m_movie->streamDetailsLoaded());
     ui->videoScantype->setEnabled(m_movie->streamDetailsLoaded());
+    ui->stereoMode->setEnabled(m_movie->streamDetailsLoaded());
 
     updateImages(QList<int>() << ImageType::MoviePoster << ImageType::MovieBackdrop << ImageType::MovieLogo << ImageType::MovieCdArt << ImageType::MovieClearArt << ImageType::MovieBanner << ImageType::MovieThumb);
 
@@ -662,6 +670,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoDuration->blockSignals(true);
     ui->videoWidth->blockSignals(true);
     ui->videoHeight->blockSignals(true);
+    ui->streamDetails->blockSignals(true);
 
     if (reloadFromFile)
         m_movie->controller()->loadStreamDetailsFromFile();
@@ -672,6 +681,11 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoAspectRatio->setValue(QString(streamDetails->videoDetails().value("aspect")).replace(",", ".").toDouble());
     ui->videoCodec->setText(streamDetails->videoDetails().value("codec"));
     ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
+    ui->stereoMode->setCurrentIndex(0);
+    for (int i=0, n=ui->stereoMode->count() ; i<n ; ++i) {
+        if (ui->stereoMode->itemData(i).toString() == streamDetails->videoDetails().value("stereomode"))
+            ui->stereoMode->setCurrentIndex(i);
+    }
     QTime time(0, 0, 0, 0);
     time = time.addSecs(streamDetails->videoDetails().value("durationinseconds").toInt());
     ui->videoDuration->setTime(time);
@@ -742,6 +756,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoDuration->blockSignals(false);
     ui->videoWidth->blockSignals(false);
     ui->videoHeight->blockSignals(false);
+    ui->streamDetails->blockSignals(false);
 }
 
 /**
@@ -756,6 +771,7 @@ void MovieWidget::onReloadStreamDetails()
     ui->videoHeight->setEnabled(true);
     ui->videoWidth->setEnabled(true);
     ui->videoScantype->setEnabled(true);
+    ui->stereoMode->setEnabled(true);
 }
 
 void MovieWidget::onDownloadTrailer()
@@ -940,7 +956,7 @@ void MovieWidget::onActorChanged()
     if (ui->actors->currentRow() < 0 || ui->actors->currentRow() >= ui->actors->rowCount() ||
         ui->actors->currentColumn() < 0 || ui->actors->currentColumn() >= ui->actors->colorCount()) {
         QPixmap pixmap(":/img/man.png");
-        Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
+        Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
         ui->actor->setPixmap(pixmap);
         ui->actorResolution->setText("");
         return;
@@ -950,18 +966,18 @@ void MovieWidget::onActorChanged()
     if (!actor->image.isNull()) {
         QPixmap p = QPixmap::fromImage(QImage::fromData(actor->image));
         ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
-        p = p.scaled(QSize(120, 180) * Helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        Helper::setDevicePixelRatio(p, Helper::devicePixelRatio(this));
+        p = p.scaled(QSize(120, 180) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        Helper::instance()->setDevicePixelRatio(p, Helper::instance()->devicePixelRatio(this));
         ui->actor->setPixmap(p);
     } else if (!Manager::instance()->mediaCenterInterface()->actorImageName(m_movie, *actor).isEmpty()) {
         QPixmap p(Manager::instance()->mediaCenterInterface()->actorImageName(m_movie, *actor));
         ui->actorResolution->setText(QString("%1 x %2").arg(p.width()).arg(p.height()));
-        p = p.scaled(QSize(120, 180) * Helper::devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        Helper::setDevicePixelRatio(p, Helper::devicePixelRatio(this));
+        p = p.scaled(QSize(120, 180) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        Helper::instance()->setDevicePixelRatio(p, Helper::instance()->devicePixelRatio(this));
         ui->actor->setPixmap(p);
     } else {
         QPixmap pixmap(":/img/man.png");
-        Helper::setDevicePixelRatio(pixmap, Helper::devicePixelRatio(this));
+        Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
         ui->actor->setPixmap(pixmap);
         ui->actorResolution->setText("");
     }
@@ -977,7 +993,9 @@ void MovieWidget::onChangeActorImage()
         return;
     }
 
-    QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), QDir::homePath(), tr("Images (*.jpg *.jpeg)"));
+    static QString lastPath = QDir::homePath();
+
+    QString fileName = QFileDialog::getOpenFileName(parentWidget(), tr("Choose Image"), lastPath, tr("Images (*.jpg *.jpeg)"));
     if (!fileName.isNull()) {
         QFile file(fileName);
         if (file.open(QIODevice::ReadOnly)) {
@@ -987,6 +1005,8 @@ void MovieWidget::onChangeActorImage()
             onActorChanged();
             m_movie->setChanged(true);
             file.close();
+            QFileInfo fi(fileName);
+            lastPath = fi.absolutePath();
         }
     }
     ui->buttonRevert->setVisible(true);
@@ -1274,6 +1294,7 @@ void MovieWidget::onStreamDetailsEdited()
     details->setVideoDetail("height", ui->videoHeight->text());
     details->setVideoDetail("scantype", ui->videoScantype->text());
     details->setVideoDetail("durationinseconds", QString("%1").arg(-ui->videoDuration->time().secsTo(QTime(0, 0))));
+    details->setVideoDetail("stereomode", ui->stereoMode->currentData().toString());
 
     for (int i=0, n=m_streamDetailsAudio.count() ; i<n ; ++i) {
         details->setAudioDetail(i, "language", m_streamDetailsAudio[i][0]->text());

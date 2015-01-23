@@ -17,7 +17,8 @@
 
 #files {
 	color: #395265;
-}</string>
+}
+</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -46,7 +47,6 @@
       <string notr="true">QWidget {
 	background-color: #ffffff;
 	color: rgb(27, 105, 165);
-	border-bottom: 1px solid #f0f0f0;
 	border-bottom: 1px solid rgb(248, 155, 53);
 }</string>
      </property>
@@ -67,7 +67,6 @@
        <widget class="QLabel" name="statusLabel">
         <property name="font">
          <font>
-          <pointsize>13</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>

@@ -69,6 +69,7 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
     connect(ui->files->model(), SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(setAlphaListData()));
     connect(ui->files, SIGNAL(sigLeftEdge(bool)), this, SLOT(onLeftEdge(bool)));
+    connect(ui->files, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(playConcert(QModelIndex)));
 
     connect(m_alphaList, SIGNAL(sigAlphaClicked(QString)), this, SLOT(scrollToAlpha(QString)));
 
@@ -179,12 +180,7 @@ void ConcertFilesWidget::openFolder()
     if (concert->files().isEmpty())
         return;
     QFileInfo fi(concert->files().at(0));
-    QUrl url;
-    if (fi.absolutePath().startsWith("\\\\") || fi.absolutePath().startsWith("//"))
-        url.setUrl(QDir::toNativeSeparators(fi.absolutePath()));
-    else
-        url = QUrl::fromLocalFile(fi.absolutePath());
-    QDesktopServices::openUrl(url);
+    QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
 }
 /**
  * @brief Called when an item has selected
@@ -325,4 +321,14 @@ void ConcertFilesWidget::onViewUpdated()
         ui->statusLabel->setText(tr("%n concerts", "", concertCount));
     else
         ui->statusLabel->setText(tr("%1 of %n concerts", "", concertCount).arg(visibleCount));
+}
+
+void ConcertFilesWidget::playConcert(QModelIndex idx)
+{
+    if (!idx.isValid())
+        return;
+    QString fileName = m_concertProxyModel->data(idx, Qt::UserRole+4).toString();
+    if (fileName.isEmpty())
+        return;
+    QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
 }

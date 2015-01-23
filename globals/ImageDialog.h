@@ -10,12 +10,14 @@
 #include <QtNetwork/QNetworkReply>
 #include <QResizeEvent>
 
-#include "data/ImageProviderInterface.h"
 #include "data/Concert.h"
-#include "movies/Movie.h"
+#include "data/ImageProviderInterface.h"
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "globals/Globals.h"
+#include "movies/Movie.h"
+#include "music/Album.h"
+#include "music/Artist.h"
 #include "smallWidgets/ImageLabel.h"
 
 namespace Ui {
@@ -45,6 +47,8 @@ public:
     void setTvShow(TvShow *show);
     void setSeason(int season);
     void setTvShowEpisode(TvShowEpisode *episode);
+    void setArtist(Artist *artist);
+    void setAlbum(Album *album);
     void clear();
     void cancelDownloads();
 
@@ -109,6 +113,8 @@ private:
     int m_season;
     int m_episode;
     bool m_multiSelection;
+    Artist *m_artist;
+    Album *m_album;
 
     QNetworkAccessManager *qnam();
     void renderTable();

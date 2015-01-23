@@ -60,8 +60,6 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie)
     if (movie->runtime() > 0)
         xml.writeTextElement("runtime", QString("%1").arg(movie->runtime()));
     xml.writeTextElement("mpaa", movie->certification());
-    xml.writeTextElement("credits", movie->writer());
-    xml.writeTextElement("director", movie->director());
     xml.writeTextElement("playcount", QString("%1").arg(movie->playcount()));
     if (!movie->lastPlayed().isNull())
         xml.writeTextElement("lastplayed", movie->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
@@ -71,14 +69,24 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie)
     xml.writeTextElement("tmdbid", movie->tmdbId());
     xml.writeTextElement("set", movie->set());
     xml.writeTextElement("sorttitle", movie->sortTitle());
-    xml.writeTextElement("trailer", Helper::formatTrailerUrl(movie->trailer().toString()));
+    xml.writeTextElement("trailer", Helper::instance()->formatTrailerUrl(movie->trailer().toString()));
     xml.writeTextElement("watched", (movie->watched()) ? "true" : "false");
-    if (Settings::instance()->advanced()->useFirstStudioOnly() && !movie->studios().isEmpty())
-        xml.writeTextElement("studio", movie->studios().first());
-    else
-        xml.writeTextElement("studio", movie->studios().join(" / "));
-    xml.writeTextElement("genre", movie->genres().join(" / "));
-    xml.writeTextElement("country", movie->countries().join(" / "));
+
+    foreach (const QString &credit, movie->writer().split(","))
+        xml.writeTextElement("credits", credit.trimmed());
+
+    foreach (const QString &director, movie->director().split(","))
+        xml.writeTextElement("director", director.trimmed());
+
+    foreach (const QString &studio, movie->studios())
+        xml.writeTextElement("studio", studio);
+
+    foreach (const QString &genre, movie->genres())
+        xml.writeTextElement("genre", genre);
+
+    foreach (const QString &country, movie->countries())
+        xml.writeTextElement("country", country);
+
     foreach (const QString &tag, movie->tags())
         xml.writeTextElement("tag", tag);
     foreach (const Actor &actor, movie->actors()) {
@@ -342,10 +350,6 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
         movie->setRuntime(domDoc.elementsByTagName("runtime").at(0).toElement().text().toInt());
     if (!domDoc.elementsByTagName("mpaa").isEmpty())
         movie->setCertification(domDoc.elementsByTagName("mpaa").at(0).toElement().text());
-    if (!domDoc.elementsByTagName("credits").isEmpty())
-        movie->setWriter(domDoc.elementsByTagName("credits").at(0).toElement().text());
-    if (!domDoc.elementsByTagName("director").isEmpty())
-        movie->setDirector(domDoc.elementsByTagName("director").at(0).toElement().text());
     if (!domDoc.elementsByTagName("playcount").isEmpty())
         movie->setPlayCount(domDoc.elementsByTagName("playcount").at(0).toElement().text().toInt());
     if (!domDoc.elementsByTagName("lastplayed").isEmpty()) {
@@ -372,18 +376,35 @@ bool XbmcXml::loadMovie(Movie *movie, QString initialNfoContent)
         movie->setWatched(movie->playcount() > 0);
     }
 
+    QStringList writers;
+    for (int i=0, n=domDoc.elementsByTagName("credits").size() ; i<n ; i++) {
+        foreach (const QString &writer, domDoc.elementsByTagName("credits").at(i).toElement().text().split(",", QString::SkipEmptyParts))
+            writers.append(writer.trimmed());
+    }
+    movie->setWriter(writers.join(", "));
+
+    QStringList directors;
+    for (int i=0, n=domDoc.elementsByTagName("director").size() ; i<n ; i++) {
+        foreach (const QString &director, domDoc.elementsByTagName("director").at(i).toElement().text().split(",", QString::SkipEmptyParts))
+            directors.append(director.trimmed());
+    }
+    movie->setDirector(directors.join(", "));
+
     for (int i=0, n=domDoc.elementsByTagName("studio").size() ; i<n ; i++) {
-        foreach (const QString &studio, domDoc.elementsByTagName("studio").at(i).toElement().text().split(" / ", QString::SkipEmptyParts))
-            movie->addStudio(studio);
+        foreach (const QString &studio, domDoc.elementsByTagName("studio").at(i).toElement().text().split("/", QString::SkipEmptyParts))
+            movie->addStudio(studio.trimmed());
     }
+
     for (int i=0, n=domDoc.elementsByTagName("genre").size() ; i<n ; i++) {
-        foreach (const QString &genre, domDoc.elementsByTagName("genre").at(i).toElement().text().split(" / ", QString::SkipEmptyParts))
-            movie->addGenre(genre);
+        foreach (const QString &genre, domDoc.elementsByTagName("genre").at(i).toElement().text().split("/", QString::SkipEmptyParts))
+            movie->addGenre(genre.trimmed());
     }
+
     for (int i=0, n=domDoc.elementsByTagName("country").size() ; i<n ; i++) {
         foreach (const QString &country, domDoc.elementsByTagName("country").at(i).toElement().text().split(" / ", QString::SkipEmptyParts))
-            movie->addCountry(country);
+            movie->addCountry(country.trimmed());
     }
+
     for (int i=0, n=domDoc.elementsByTagName("tag").size() ; i<n ; i++)
         movie->addTag(domDoc.elementsByTagName("tag").at(i).toElement().text());
     for (int i=0, n=domDoc.elementsByTagName("actor").size() ; i<n ; i++) {
@@ -445,7 +466,7 @@ void XbmcXml::loadStreamDetails(StreamDetails* streamDetails, QDomElement elem)
 {
     if (!elem.elementsByTagName("video").isEmpty()) {
         QDomElement videoElem = elem.elementsByTagName("video").at(0).toElement();
-        QStringList details = (QStringList() << "codec" << "aspect" << "width" << "height" << "durationinseconds" << "scantype");
+        QStringList details = (QStringList() << "codec" << "aspect" << "width" << "height" << "durationinseconds" << "scantype" << "stereomode");
         foreach (const QString &detail, details) {
             if (!videoElem.elementsByTagName(detail).isEmpty())
                 streamDetails->setVideoDetail(detail, videoElem.elementsByTagName(detail).at(0).toElement().text());
@@ -580,7 +601,7 @@ void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert)
     xml.writeTextElement("mpaa", concert->certification());
     xml.writeTextElement("playcount", QString("%1").arg(concert->playcount()));
     xml.writeTextElement("lastplayed", concert->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
-    xml.writeTextElement("trailer", Helper::formatTrailerUrl(concert->trailer().toString()));
+    xml.writeTextElement("trailer", Helper::instance()->formatTrailerUrl(concert->trailer().toString()));
     xml.writeTextElement("watched", (concert->watched()) ? "true" : "false");
     xml.writeTextElement("genre", concert->genres().join(" / "));
     foreach (const QString &tag, concert->tags())
@@ -1193,11 +1214,11 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
 
     fi.setFile(episode->files().at(0));
     if (episode->thumbnailImageChanged() && !episode->thumbnailImage().isNull()) {
-        if (Helper::isBluRay(episode->files().at(0)) || Helper::isDvd(episode->files().at(0))) {
+        if (Helper::instance()->isBluRay(episode->files().at(0)) || Helper::instance()->isDvd(episode->files().at(0))) {
             QDir dir = fi.dir();
             dir.cdUp();
             saveFile(dir.absolutePath() + "/thumb.jpg", episode->thumbnailImage());
-        } else if (Helper::isDvd(episode->files().at(0), true)) {
+        } else if (Helper::instance()->isDvd(episode->files().at(0), true)) {
             saveFile(fi.dir().absolutePath() + "/thumb.jpg", episode->thumbnailImage());
         } else {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
@@ -1209,11 +1230,11 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
 
     fi.setFile(episode->files().at(0));
     if (episode->imagesToRemove().contains(ImageType::TvShowEpisodeThumb)) {
-        if (Helper::isBluRay(episode->files().at(0)) || Helper::isDvd(episode->files().at(0))) {
+        if (Helper::instance()->isBluRay(episode->files().at(0)) || Helper::instance()->isDvd(episode->files().at(0))) {
             QDir dir = fi.dir();
             dir.cdUp();
             QFile(dir.absolutePath() + "/thumb.jpg").remove();
-        } else if (Helper::isDvd(episode->files().at(0), true)) {
+        } else if (Helper::instance()->isDvd(episode->files().at(0), true)) {
             QFile(fi.dir().absolutePath() + "/thumb.jpg").remove();
         } else {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowEpisodeThumb)) {
@@ -1398,6 +1419,16 @@ QStringList XbmcXml::extraFanartNames(TvShow *show)
     if (show->dir().isEmpty())
         return QStringList();
     QDir dir(show->dir() + "/extrafanart");
+    QStringList files;
+    QStringList filters = QStringList() << "*.jpg" << "*.jpeg" << "*.JPEG" << "*.Jpeg" << "*.JPeg";
+    foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name))
+        files << QDir::toNativeSeparators(dir.path() + "/" + file);
+    return files;
+}
+
+QStringList XbmcXml::extraFanartNames(Artist *artist)
+{
+    QDir dir(artist->path() + "/extrafanart");
     QStringList files;
     QStringList filters = QStringList() << "*.jpg" << "*.jpeg" << "*.JPEG" << "*.Jpeg" << "*.JPeg";
     foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name))
@@ -1709,14 +1740,14 @@ QString XbmcXml::imageFileName(TvShowEpisode *episode, int type, QList<DataFile>
     QString fileName;
     QFileInfo fi(episode->files().at(0));
 
-    if (Helper::isBluRay(episode->files().at(0)) || Helper::isDvd(episode->files().at(0))) {
+    if (Helper::instance()->isBluRay(episode->files().at(0)) || Helper::instance()->isDvd(episode->files().at(0))) {
         QDir dir = fi.dir();
         dir.cdUp();
         fi.setFile(dir.absolutePath() + "/thumb.jpg");
         return fi.exists() ? fi.absoluteFilePath() : "";
     }
 
-    if (Helper::isDvd(episode->files().at(0), true)) {
+    if (Helper::instance()->isDvd(episode->files().at(0), true)) {
         fi.setFile(fi.dir().absolutePath() + "/thumb.jpg");
         return fi.exists() ? fi.absoluteFilePath() : "";
     }
@@ -1734,4 +1765,430 @@ QString XbmcXml::imageFileName(TvShowEpisode *episode, int type, QList<DataFile>
     }
 
     return fileName;
+}
+
+bool XbmcXml::loadArtist(Artist *artist, QString initialNfoContent)
+{
+    artist->clear();
+    artist->setHasChanged(false);
+
+    QString nfoContent;
+    if (initialNfoContent.isEmpty()) {
+        QString nfoFile = nfoFilePath(artist);
+        if (nfoFile.isEmpty())
+            return false;
+
+        QFile file(nfoFile);
+        if (!file.exists())
+            return false;
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            qWarning() << "File" << nfoFile << "could not be opened for reading";
+            return false;
+        }
+        nfoContent = QString::fromUtf8(file.readAll());
+        artist->setNfoContent(nfoContent);
+        file.close();
+    } else {
+        nfoContent = initialNfoContent;
+    }
+
+    QDomDocument domDoc;
+    domDoc.setContent(nfoContent);
+    if (!domDoc.elementsByTagName("mbid").isEmpty())
+        artist->setMbId(domDoc.elementsByTagName("mbid").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("allmusicid").isEmpty())
+        artist->setAllMusicId(domDoc.elementsByTagName("allmusicid").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("name").isEmpty())
+        artist->setName(domDoc.elementsByTagName("name").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("genre").isEmpty())
+        artist->setGenres(domDoc.elementsByTagName("genre").at(0).toElement().text().split(" / ", QString::SkipEmptyParts));
+    for (int i=0, n=domDoc.elementsByTagName("style").size() ; i<n ; i++)
+        artist->addStyle(domDoc.elementsByTagName("style").at(i).toElement().text());
+    for (int i=0, n=domDoc.elementsByTagName("mood").size() ; i<n ; i++)
+        artist->addMood(domDoc.elementsByTagName("mood").at(i).toElement().text());
+    if (!domDoc.elementsByTagName("yearsactive").isEmpty())
+        artist->setYearsActive(domDoc.elementsByTagName("yearsactive").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("formed").isEmpty())
+        artist->setFormed(domDoc.elementsByTagName("formed").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("biography").isEmpty())
+        artist->setBiography(domDoc.elementsByTagName("biography").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("born").isEmpty())
+        artist->setBorn(domDoc.elementsByTagName("born").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("died").isEmpty())
+        artist->setDied(domDoc.elementsByTagName("died").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("disbanded").isEmpty())
+        artist->setDisbanded(domDoc.elementsByTagName("disbanded").at(0).toElement().text());
+
+    for (int i=0, n=domDoc.elementsByTagName("thumb").size() ; i<n ; i++) {
+        QString parentTag = domDoc.elementsByTagName("thumb").at(i).parentNode().toElement().tagName();
+        if (parentTag == "artist") {
+            Poster p;
+            p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
+            if (!domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview").isEmpty())
+                p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
+            else
+                p.thumbUrl = p.originalUrl;
+            artist->addImage(ImageType::ArtistThumb, p);
+        } else if (parentTag == "fanart") {
+            Poster p;
+            p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
+            if (!domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview").isEmpty())
+                p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
+            else
+                p.thumbUrl = p.originalUrl;
+            artist->addImage(ImageType::ArtistFanart, p);
+        }
+    }
+
+    for (int i=0, n=domDoc.elementsByTagName("album").size() ; i<n ; i++) {
+        DiscographyAlbum a;
+        if (!domDoc.elementsByTagName("album").at(i).toElement().elementsByTagName("title").isEmpty())
+            a.title = domDoc.elementsByTagName("album").at(i).toElement().elementsByTagName("title").at(0).toElement().text();
+        if (!domDoc.elementsByTagName("album").at(i).toElement().elementsByTagName("year").isEmpty())
+            a.year = domDoc.elementsByTagName("album").at(i).toElement().elementsByTagName("year").at(0).toElement().text();
+        artist->addDiscographyAlbum(a);
+    }
+
+    artist->setHasChanged(false);
+
+    return true;
+}
+
+bool XbmcXml::loadAlbum(Album *album, QString initialNfoContent)
+{
+    album->clear();
+    album->setHasChanged(false);
+
+    QString nfoContent;
+    if (initialNfoContent.isEmpty()) {
+        QString nfoFile = nfoFilePath(album);
+        if (nfoFile.isEmpty())
+            return false;
+
+        QFile file(nfoFile);
+        if (!file.exists())
+            return false;
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            qWarning() << "File" << nfoFile << "could not be opened for reading";
+            return false;
+        }
+        nfoContent = QString::fromUtf8(file.readAll());
+        album->setNfoContent(nfoContent);
+        file.close();
+    } else {
+        nfoContent = initialNfoContent;
+    }
+
+    QDomDocument domDoc;
+    domDoc.setContent(nfoContent);
+
+    if (!domDoc.elementsByTagName("mbid").isEmpty())
+        album->setMbId(domDoc.elementsByTagName("mbid").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("allmusicid").isEmpty())
+        album->setAllMusicId(domDoc.elementsByTagName("allmusicid").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("title").isEmpty())
+        album->setTitle(domDoc.elementsByTagName("title").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("artist").isEmpty())
+        album->setArtist(domDoc.elementsByTagName("artist").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("genre").isEmpty())
+        album->setGenres(domDoc.elementsByTagName("genre").at(0).toElement().text().split(" / ", QString::SkipEmptyParts));
+    for (int i=0, n=domDoc.elementsByTagName("style").size() ; i<n ; i++)
+        album->addStyle(domDoc.elementsByTagName("style").at(i).toElement().text());
+    for (int i=0, n=domDoc.elementsByTagName("mood").size() ; i<n ; i++)
+        album->addMood(domDoc.elementsByTagName("mood").at(i).toElement().text());
+    if (!domDoc.elementsByTagName("review").isEmpty())
+        album->setReview(domDoc.elementsByTagName("review").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("label").isEmpty())
+        album->setLabel(domDoc.elementsByTagName("label").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("releasedate").isEmpty())
+        album->setReleaseDate(domDoc.elementsByTagName("releasedate").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("year").isEmpty())
+        album->setYear(domDoc.elementsByTagName("year").at(0).toElement().text().toInt());
+    if (!domDoc.elementsByTagName("rating").isEmpty())
+        album->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toFloat());
+    for (int i=0, n=domDoc.elementsByTagName("thumb").size() ; i<n ; i++) {
+        Poster p;
+        p.originalUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().text());
+        if (!domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview").isEmpty())
+            p.thumbUrl = QUrl(domDoc.elementsByTagName("thumb").at(i).toElement().attribute("preview"));
+        else
+            p.thumbUrl = p.originalUrl;
+        album->addImage(ImageType::AlbumThumb, p);
+    }
+
+    album->setHasChanged(false);
+
+    return true;
+}
+
+QString XbmcXml::imageFileName(Artist *artist, int type, QList<DataFile> dataFiles, bool constructName)
+{
+    int fileType;
+    switch (type) {
+    case ImageType::ArtistThumb:
+        fileType = DataFileType::ArtistThumb;
+        break;
+    case ImageType::ArtistFanart:
+        fileType = DataFileType::ArtistFanart;
+        break;
+    case ImageType::ArtistLogo:
+        fileType = DataFileType::ArtistLogo;
+        break;
+    default:
+        return "";
+    }
+
+    QString fileName;
+    if (artist->path().isEmpty())
+        return QString();
+
+    if (!constructName)
+        dataFiles = Settings::instance()->dataFiles(fileType);
+
+    foreach (DataFile dataFile, dataFiles) {
+        QString file = dataFile.saveFileName(QString());
+        QFileInfo pFi(artist->path() + "/" + file);
+        if (pFi.isFile() || constructName) {
+            fileName = artist->path() + "/" + file;
+            break;
+        }
+    }
+
+    return fileName;
+}
+
+QString XbmcXml::imageFileName(Album *album, int type, QList<DataFile> dataFiles, bool constructName)
+{
+    int fileType;
+    switch (type) {
+    case ImageType::AlbumThumb:
+        fileType = DataFileType::AlbumThumb;
+        break;
+    case ImageType::AlbumCdArt:
+        fileType = DataFileType::AlbumCdArt;
+        break;
+    default:
+        return "";
+    }
+
+    QString fileName;
+    if (album->path().isEmpty())
+        return QString();
+
+    if (!constructName)
+        dataFiles = Settings::instance()->dataFiles(fileType);
+
+    foreach (DataFile dataFile, dataFiles) {
+        QString file = dataFile.saveFileName(QString());
+        QFileInfo pFi(album->path() + "/" + file);
+        if (pFi.isFile() || constructName) {
+            fileName = album->path() + "/" + file;
+            break;
+        }
+    }
+
+    return fileName;
+}
+
+QString XbmcXml::nfoFilePath(Artist *artist)
+{
+    if (artist->path().isEmpty())
+        return QString();
+
+    return artist->path() + "/artist.nfo";
+}
+
+QString XbmcXml::nfoFilePath(Album *album)
+{
+    if (album->path().isEmpty())
+        return QString();
+
+    return album->path() + "/album.nfo";
+}
+
+bool XbmcXml::saveArtist(Artist *artist)
+{
+    QByteArray xmlContent;
+    QXmlStreamWriter xml(&xmlContent);
+    xml.setAutoFormatting(true);
+    xml.writeStartDocument("1.0", true);
+    writeArtistXml(xml, artist);
+    xml.writeEndDocument();
+
+    if (artist->path().isEmpty())
+        return false;
+
+    artist->setNfoContent(xmlContent);
+    Manager::instance()->database()->update(artist);
+
+    QString fileName = nfoFilePath(artist);
+    if (fileName.isEmpty())
+        return false;
+
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qWarning() << "File could not be openend";
+        return false;
+    }
+    file.write(xmlContent);
+    file.close();
+
+    foreach (const int &imageType, Artist::imageTypes()) {
+        int dataFileType = DataFile::dataFileTypeForImageType(imageType);
+
+        if (!artist->rawImage(imageType).isNull()) {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+                QString saveFileName = dataFile.saveFileName(QString());
+                saveFile(artist->path() + "/" + saveFileName, artist->rawImage(imageType));
+            }
+        }
+
+        if (artist->imagesToRemove().contains(imageType)) {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+                QString saveFileName = dataFile.saveFileName(QString());
+                if (!saveFileName.isEmpty())
+                    QFile(artist->path() + "/" + saveFileName).remove();
+            }
+        }
+    }
+
+    foreach (const QString &file, artist->extraFanartsToRemove())
+        QFile::remove(file);
+    QDir dir(artist->path() + "/extrafanart");
+    if (!dir.exists() && !artist->extraFanartImagesToAdd().isEmpty())
+        QDir(artist->path()).mkdir("extrafanart");
+    foreach (QByteArray img, artist->extraFanartImagesToAdd()) {
+        int num = 1;
+        while (QFileInfo(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num)).exists())
+            ++num;
+        saveFile(dir.absolutePath() + "/" + QString("fanart%1.jpg").arg(num), img);
+    }
+
+    return true;
+}
+
+bool XbmcXml::saveAlbum(Album *album)
+{
+    QByteArray xmlContent;
+    QXmlStreamWriter xml(&xmlContent);
+    xml.setAutoFormatting(true);
+    xml.writeStartDocument("1.0", true);
+    writeAlbumXml(xml, album);
+    xml.writeEndDocument();
+
+    if (album->path().isEmpty())
+        return false;
+
+    album->setNfoContent(xmlContent);
+    Manager::instance()->database()->update(album);
+
+    QString fileName = nfoFilePath(album);
+    if (fileName.isEmpty())
+        return false;
+
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qWarning() << "File could not be openend";
+        return false;
+    }
+    file.write(xmlContent);
+    file.close();
+
+    foreach (const int &imageType, Album::imageTypes()) {
+        int dataFileType = DataFile::dataFileTypeForImageType(imageType);
+
+        if (!album->rawImage(imageType).isNull()) {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+                QString saveFileName = dataFile.saveFileName(QString());
+                saveFile(album->path() + "/" + saveFileName, album->rawImage(imageType));
+            }
+        }
+
+        if (album->imagesToRemove().contains(imageType)) {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+                QString saveFileName = dataFile.saveFileName(QString());
+                if (!saveFileName.isEmpty())
+                    QFile(album->path() + "/" + saveFileName).remove();
+            }
+        }
+    }
+
+    return true;
+}
+
+void XbmcXml::writeArtistXml(QXmlStreamWriter &xml, Artist *artist)
+{
+    xml.writeStartElement("artist");
+    if (!artist->mbId().isEmpty())
+        xml.writeTextElement("mbid", artist->mbId());
+    if (!artist->allMusicId().isEmpty())
+        xml.writeTextElement("allmusicid", artist->allMusicId());
+    xml.writeTextElement("name", artist->name());
+    xml.writeTextElement("genre", artist->genres().join(" / "));
+    foreach (const QString &style, artist->styles())
+        xml.writeTextElement("style", style);
+    foreach (const QString &mood, artist->moods())
+        xml.writeTextElement("mood", mood);
+    xml.writeTextElement("yearsactive", artist->yearsActive());
+    xml.writeTextElement("formed", artist->formed());
+    xml.writeTextElement("biography", artist->biography());
+    xml.writeTextElement("born", artist->born());
+    xml.writeTextElement("died", artist->died());
+    xml.writeTextElement("disbanded", artist->disbanded());
+
+    foreach (const Poster &poster, artist->images(ImageType::ArtistThumb)) {
+        xml.writeStartElement("thumb");
+        xml.writeAttribute("preview", poster.thumbUrl.toString());
+        xml.writeCharacters(poster.originalUrl.toString());
+        xml.writeEndElement();
+    }
+    xml.writeStartElement("fanart");
+    foreach (const Poster &poster, artist->images(ImageType::ArtistFanart)) {
+        xml.writeStartElement("thumb");
+        xml.writeAttribute("preview", poster.thumbUrl.toString());
+        xml.writeCharacters(poster.originalUrl.toString());
+        xml.writeEndElement();
+    }
+    xml.writeEndElement();
+
+    foreach (const DiscographyAlbum &album, artist->discographyAlbums()) {
+        xml.writeStartElement("album");
+        xml.writeTextElement("title", album.title);
+        xml.writeTextElement("year", album.year);
+        xml.writeEndElement();
+    }
+
+    xml.writeEndElement();
+}
+
+void XbmcXml::writeAlbumXml(QXmlStreamWriter &xml, Album *album)
+{
+    xml.writeStartElement("album");
+    if (!album->mbId().isEmpty())
+        xml.writeTextElement("mbid", album->mbId());
+    if (!album->allMusicId().isEmpty())
+        xml.writeTextElement("allmusicid", album->allMusicId());
+    xml.writeTextElement("title", album->title());
+    xml.writeTextElement("artist", album->artist());
+    xml.writeTextElement("genre", album->genres().join(" / "));
+    foreach (const QString &style, album->styles())
+        xml.writeTextElement("style", style);
+    foreach (const QString &mood, album->moods())
+        xml.writeTextElement("mood", mood);
+    xml.writeTextElement("review", album->review());
+    xml.writeTextElement("label", album->label());
+    if (album->rating() > 0)
+        xml.writeTextElement("rating", QString("%1").arg(album->rating()));
+    xml.writeTextElement("releasedate", album->releaseDate());
+    if (album->year() > 0)
+        xml.writeTextElement("year", QString("%1").arg(album->year()));
+
+    foreach (const Poster &poster, album->images(ImageType::ArtistThumb)) {
+        xml.writeStartElement("thumb");
+        xml.writeAttribute("preview", poster.thumbUrl.toString());
+        xml.writeCharacters(poster.originalUrl.toString());
+        xml.writeEndElement();
+    }
+
+    xml.writeEndElement();
 }

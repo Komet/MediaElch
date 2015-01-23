@@ -100,6 +100,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     connect(ui->videoHeight, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
     connect(ui->videoWidth, SIGNAL(valueChanged(int)), this, SLOT(onStreamDetailsEdited()));
     connect(ui->videoScantype, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
+    connect(ui->stereoMode, SIGNAL(currentIndexChanged(int)), this, SLOT(onStreamDetailsEdited()));
     connect(ui->actors, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onActorEdited(QTableWidgetItem*)));
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
@@ -121,8 +122,10 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
 
     ui->missingLabel->setVisible(false);
 
-    Helper::applyStyle(ui->groupBox_3);
-    Helper::applyEffect(ui->groupBox_3);
+    Helper::instance()->applyStyle(ui->tabWidget);
+    Helper::instance()->applyStyle(ui->labelThumbnail);
+    Helper::instance()->applyEffect(ui->groupBox_3);
+    Helper::instance()->fillStereoModeCombo(ui->stereoMode);
 }
 
 /**
@@ -236,6 +239,10 @@ void TvShowWidgetEpisode::onClear()
     blocked = ui->videoWidth->blockSignals(true);
     ui->videoWidth->clear();
     ui->videoWidth->blockSignals(blocked);
+
+    blocked = ui->stereoMode->blockSignals(true);
+    ui->stereoMode->setCurrentIndex(0);
+    ui->stereoMode->blockSignals(blocked);
 
     blocked = ui->epBookmark->blockSignals(true);
     ui->epBookmark->setTime(QTime(0, 0, 0));
@@ -365,6 +372,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->videoHeight->setEnabled(m_episode->streamDetailsLoaded());
     ui->videoWidth->setEnabled(m_episode->streamDetailsLoaded());
     ui->videoScantype->setEnabled(m_episode->streamDetailsLoaded());
+    ui->stereoMode->setEnabled(m_episode->streamDetailsLoaded());
 
     if (!m_episode->thumbnailImage().isNull())
         ui->thumbnail->setImage(m_episode->thumbnailImage());
@@ -402,6 +410,7 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
     ui->videoDuration->blockSignals(true);
     ui->videoWidth->blockSignals(true);
     ui->videoHeight->blockSignals(true);
+    ui->streamDetails->blockSignals(true);
 
     if (reloadFromFile)
         m_episode->loadStreamDetailsFromFile();
@@ -412,6 +421,11 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
     ui->videoAspectRatio->setValue(QString(streamDetails->videoDetails().value("aspect")).replace(",", ".").toDouble());
     ui->videoCodec->setText(streamDetails->videoDetails().value("codec"));
     ui->videoScantype->setText(streamDetails->videoDetails().value("scantype"));
+    ui->stereoMode->setCurrentIndex(0);
+    for (int i=0, n=ui->stereoMode->count() ; i<n ; ++i) {
+        if (ui->stereoMode->itemData(i).toString() == streamDetails->videoDetails().value("stereomode"))
+            ui->stereoMode->setCurrentIndex(i);
+    }
     QTime time(0, 0, 0, 0);
     time = time.addSecs(streamDetails->videoDetails().value("durationinseconds").toInt());
     ui->videoDuration->setTime(time);
@@ -480,6 +494,7 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
     ui->videoDuration->blockSignals(false);
     ui->videoWidth->blockSignals(false);
     ui->videoHeight->blockSignals(false);
+    ui->streamDetails->blockSignals(false);
 }
 
 /**
@@ -494,6 +509,7 @@ void TvShowWidgetEpisode::onReloadStreamDetails()
     ui->videoHeight->setEnabled(true);
     ui->videoWidth->setEnabled(true);
     ui->videoScantype->setEnabled(true);
+    ui->stereoMode->setEnabled(true);
 }
 
 /**
@@ -891,6 +907,7 @@ void TvShowWidgetEpisode::onStreamDetailsEdited()
     details->setVideoDetail("height", ui->videoHeight->text());
     details->setVideoDetail("scantype", ui->videoScantype->text());
     details->setVideoDetail("durationinseconds", QString("%1").arg(-ui->videoDuration->time().secsTo(QTime(0, 0))));
+    details->setVideoDetail("stereomode", ui->stereoMode->currentData().toString());
 
     for (int i=0, n=m_streamDetailsAudio.count() ; i<n ; ++i) {
         details->setAudioDetail(i, "language", m_streamDetailsAudio[i][0]->text());

@@ -8,12 +8,17 @@ include(quazip/quazip/quazip.pri)
 
 QT       += core gui network script xml sql widgets multimedia multimediawidgets concurrent
 
-LIBS += -lmediainfo -lzen -lz
+LIBS += -lzen -lz -lmediainfo
+
+contains(DEFINES, PLUGINS){
+    LIBS += -lqca
+}
 
 unix:LIBS += -lcurl
 macx:LIBS += -framework Foundation
-
-DEFINES += UNICODE
+unix:!macx {
+    LIBS += -ldl
+}
 
 TARGET = MediaElch
 TEMPLATE = app
@@ -130,7 +135,6 @@ SOURCES += main.cpp\
     export/ExportTemplateLoader.cpp \
     export/ExportTemplate.cpp \
     settings/ExportTemplateWidget.cpp \
-    smallWidgets/StyledPushButton.cpp \
     export/ExportDialog.cpp \
     smallWidgets/MessageLabel.cpp \
     smallWidgets/SearchOverlay.cpp \
@@ -161,7 +165,30 @@ SOURCES += main.cpp\
     main/Navbar.cpp \
     smallWidgets/FilterWidget.cpp \
     downloads/MakeMkvDialog.cpp \
-    downloads/MakeMkvCon.cpp
+    downloads/MakeMkvCon.cpp \
+    plugins/PluginManager.cpp \
+    plugins/PluginsWidget.cpp \
+    plugins/PluginManagerDialog.cpp \
+    music/Artist.cpp \
+    music/Album.cpp \
+    music/MusicModel.cpp \
+    music/MusicModelItem.cpp \
+    music/MusicFileSearcher.cpp \
+    music/MusicWidget.cpp \
+    music/MusicFilesWidget.cpp \
+    music/ArtistController.cpp \
+    music/AlbumController.cpp \
+    music/MusicWidgetArtist.cpp \
+    music/MusicWidgetAlbum.cpp \
+    imageProviders/FanartTvMusic.cpp \
+    music/MusicSearch.cpp \
+    music/MusicSearchWidget.cpp \
+    main/MyIconFont.cpp \
+    music/MusicProxyModel.cpp \
+    smallWidgets/MusicTreeView.cpp \
+    scrapers/UniversalMusicScraper.cpp \
+    music/MusicMultiScrapeDialog.cpp \
+    renamer/RenamerPlaceholders.cpp
 
 macx {
     OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm
@@ -272,7 +299,6 @@ HEADERS  += main/MainWindow.h \
     export/ExportTemplateLoader.h \
     export/ExportTemplate.h \
     settings/ExportTemplateWidget.h \
-    smallWidgets/StyledPushButton.h \
     export/ExportDialog.h \
     smallWidgets/MessageLabel.h \
     smallWidgets/SearchOverlay.h \
@@ -303,7 +329,32 @@ HEADERS  += main/MainWindow.h \
     scrapers/AdultDvdEmpire.h \
     main/Navbar.h \
     downloads/MakeMkvDialog.h \
-    downloads/MakeMkvCon.h
+    downloads/MakeMkvCon.h \
+    plugins/PluginInterface.h \
+    plugins/PluginManager.h \
+    plugins/PluginsWidget.h \
+    plugins/PluginManagerDialog.h \
+    music/Artist.h \
+    music/Album.h \
+    music/MusicModel.h \
+    music/MusicModelItem.h \
+    music/MusicFileSearcher.h \
+    music/MusicWidget.h \
+    music/MusicFilesWidget.h \
+    music/ArtistController.h \
+    music/AlbumController.h \
+    music/MusicWidgetArtist.h \
+    music/MusicWidgetAlbum.h \
+    imageProviders/FanartTvMusic.h \
+    music/MusicSearch.h \
+    music/MusicSearchWidget.h \
+    data/MusicScraperInterface.h \
+    main/MyIconFont.h \
+    music/MusicProxyModel.h \
+    smallWidgets/MusicTreeView.h \
+    scrapers/UniversalMusicScraper.h \
+    music/MusicMultiScrapeDialog.h \
+    renamer/RenamerPlaceholders.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -351,7 +402,17 @@ FORMS    += main/MainWindow.ui \
     concerts/ConcertSearchWidget.ui \
     tvShows/TvShowSearchEpisode.ui \
     main/Navbar.ui \
-    downloads/MakeMkvDialog.ui
+    downloads/MakeMkvDialog.ui \
+    plugins/PluginsWidget.ui \
+    plugins/PluginManagerDialog.ui \
+    music/MusicWidget.ui \
+    music/MusicFilesWidget.ui \
+    music/MusicWidgetArtist.ui \
+    music/MusicWidgetAlbum.ui \
+    music/MusicSearch.ui \
+    music/MusicSearchWidget.ui \
+    music/MusicMultiScrapeDialog.ui \
+    renamer/RenamerPlaceholders.ui
 
 RESOURCES += \
     MediaElch.qrc \

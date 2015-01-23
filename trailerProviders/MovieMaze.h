@@ -1,9 +1,10 @@
 #ifndef MOVIEMAZE_H
 #define MOVIEMAZE_H
 
-#include <QObject>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QObject>
+#include <QPointer>
 #include <QStringList>
 #include "trailerProviders/TrailerProvider.h"
 
@@ -31,7 +32,7 @@ private slots:
 private:
     QNetworkAccessManager *m_qnam;
     QNetworkReply *m_searchReply;
-    QNetworkReply *m_loadReply;
+    QPointer<QNetworkReply> m_loadReply;
     QNetworkReply *m_previewLoadReply;
     QList<TrailerResult> m_currentTrailers;
     QStringList m_trailerSites;

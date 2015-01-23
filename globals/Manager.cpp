@@ -5,6 +5,7 @@
 #include <QSqlQuery>
 #include "globals/Globals.h"
 #include "imageProviders/FanartTv.h"
+#include "imageProviders/FanartTvMusic.h"
 #include "imageProviders/FanartTvMusicArtists.h"
 #include "imageProviders/MediaPassionImages.h"
 #include "imageProviders/TMDbImages.h"
@@ -18,6 +19,7 @@
 #include "scrapers/IMDB.h"
 #include "scrapers/MediaPassion.h"
 #include "scrapers/OFDb.h"
+#include "scrapers/UniversalMusicScraper.h"
 #include "scrapers/TheTvDb.h"
 #include "scrapers/TMDb.h"
 #include "scrapers/TMDbConcerts.h"
@@ -39,13 +41,16 @@ Manager::Manager(QObject *parent) :
     m_scrapers.append(new AdultDvdEmpire(parent));
     m_tvScrapers.append(new TheTvDb(this));
     m_concertScrapers.append(new TMDbConcerts(this));
+    m_musicScrapers.append(new UniversalMusicScraper(this));
     m_movieFileSearcher = new MovieFileSearcher(this);
     m_tvShowFileSearcher = new TvShowFileSearcher(this);
     m_concertFileSearcher = new ConcertFileSearcher(this);
+    m_musicFileSearcher = new MusicFileSearcher(this);
     m_movieModel = new MovieModel(this);
     m_tvShowModel = new TvShowModel(this);
     m_tvShowProxyModel = new TvShowProxyModel(this);
     m_concertModel = new ConcertModel(this);
+    m_musicModel = new MusicModel(this);
     m_database = new Database(this);
 
     m_mediaCenters.append(new XbmcXml(this));
@@ -53,6 +58,7 @@ Manager::Manager(QObject *parent) :
     m_mediaCentersConcert.append(new XbmcXml(this));
 
     m_imageProviders.append(new FanartTv(this));
+    m_imageProviders.append(new FanartTvMusic(this));
     m_imageProviders.append(new FanartTvMusicArtists(this));
     m_imageProviders.append(new MediaPassionImages(this));
     m_imageProviders.append(new TMDbImages(this));
@@ -62,6 +68,9 @@ Manager::Manager(QObject *parent) :
     m_trailerProviders.append(new HdTrailers(this));
 
     m_tvTunes = new TvTunes(this);
+
+    m_iconFont = new MyIconFont(this);
+    m_iconFont->initFontAwesome();
 }
 
 /**
@@ -138,6 +147,11 @@ ConcertFileSearcher *Manager::concertFileSearcher()
     return m_concertFileSearcher;
 }
 
+MusicFileSearcher *Manager::musicFileSearcher()
+{
+    return m_musicFileSearcher;
+}
+
 /**
  * @brief Returns a list of all movie scrapers
  * @return List of pointers of movie scrapers
@@ -175,6 +189,11 @@ QList<ConcertScraperInterface*> Manager::concertScrapers()
     return m_concertScrapers;
 }
 
+QList<MusicScraperInterface*> Manager::musicScrapers()
+{
+    return m_musicScrapers;
+}
+
 /**
  * @brief Returns an instance of the MovieModel
  * @return Instance of the MovieModel
@@ -200,6 +219,11 @@ TvShowModel *Manager::tvShowModel()
 ConcertModel *Manager::concertModel()
 {
     return m_concertModel;
+}
+
+MusicModel *Manager::musicModel()
+{
+    return m_musicModel;
 }
 
 /**
@@ -271,6 +295,16 @@ TvShowFilesWidget *Manager::tvShowFilesWidget()
     return m_tvShowFilesWidget;
 }
 
+void Manager::setMusicFilesWidget(MusicFilesWidget *widget)
+{
+    m_musicFilesWidget = widget;
+}
+
+MusicFilesWidget *Manager::musicFilesWidget()
+{
+    return m_musicFilesWidget;
+}
+
 FileScannerDialog *Manager::fileScannerDialog()
 {
     return m_fileScannerDialog;
@@ -301,4 +335,9 @@ QList<ScraperInterface*> Manager::constructNativeScrapers(QObject *parent)
     nativeScrapers.append(new OFDb(parent));
     nativeScrapers.append(new VideoBuster(parent));
     return nativeScrapers;
+}
+
+MyIconFont *Manager::iconFont()
+{
+    return m_iconFont;
 }

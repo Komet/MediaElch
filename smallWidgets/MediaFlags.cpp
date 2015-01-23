@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include <QPainter>
+#include "../globals/Helper.h"
 
 /**
  * @brief MediaFlags::MediaFlags
@@ -52,21 +53,9 @@ void MediaFlags::setStreamDetails(StreamDetails *streamDetails)
  */
 void MediaFlags::setupResolution(StreamDetails *streamDetails)
 {
-    QString heightFlag;
     int height = streamDetails->videoDetails().value("height").toInt();
     int width = streamDetails->videoDetails().value("width").toInt();
-    if (height >= 1072 || width >= 1912) {
-        heightFlag = "1080";
-    } else if (height >= 712 || width >= 1272) {
-        heightFlag = "720";
-    } else if (height >= 576) {
-        heightFlag = "576";
-    } else if (height >= 540) {
-        heightFlag = "540";
-    } else if (height >= 480) {
-        heightFlag = "480";
-    }
-
+    QString heightFlag = Helper::instance()->matchResolution(width, height);
     ui->mediaFlagResolution->setVisible(heightFlag != "");
     if (heightFlag != "")
         ui->mediaFlagResolution->setPixmap(colorIcon(":/media/resolution/" + heightFlag));
@@ -108,11 +97,13 @@ void MediaFlags::setupCodec(StreamDetails *streamDetails)
 void MediaFlags::setupAudio(StreamDetails *streamDetails)
 {
     bool visible = false;
-    QStringList availableCodecs = QStringList() << "dtshdma" << "dolbytruehd" << "dts" << "dolbydigital" << "flac" << "vorbis" << "mp3" << "mp2";
+    QStringList availableCodecs = QStringList() << "dtshdma" << "dtshdhra" << "dolbytruehd" << "dts" << "dolbydigital" << "flac" << "vorbis" << "mp3" << "mp2";
     if (streamDetails->audioDetails().count() > 0) {
         QString codec = streamDetails->audioDetails().at(0).value("codec").toLower();
-        if (codec == "dts-hd")
+        if (codec == "dtshd-ma" || codec == "dts-hd" || codec == "dtshd_ma")
             codec = "dtshdma";
+        if (codec == "dtshd-hra" || codec == "dtshd_hra")
+            codec = "dtshdhra";
         if (codec == "ac3")
             codec = "dolbydigital";
 

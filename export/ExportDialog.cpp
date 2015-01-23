@@ -220,6 +220,13 @@ void ExportDialog::replaceVars(QString &m, Movie *movie, QDir dir, bool subDir)
     m.replace("{{ MOVIE.LAST_PLAYED }}", movie->lastPlayed().isValid() ? movie->lastPlayed().toString("yyyy-MM-dd hh:mm") : "");
     m.replace("{{ MOVIE.DATE_ADDED }}", movie->dateAdded().isValid() ? movie->dateAdded().toString("yyyy-MM-dd hh:mm") : "");
     m.replace("{{ MOVIE.FILE_LAST_MODIFIED }}", movie->fileLastModified().isValid() ? movie->fileLastModified().toString("yyyy-MM-dd hh:mm") : "");
+    m.replace("{{ MOVIE.FILENAME }}", (!movie->files().isEmpty()) ? movie->files().first() : "");
+    if (!movie->files().isEmpty()) {
+        QFileInfo fi(movie->files().first());
+        m.replace("{{ MOVIE.DIR }}", fi.absolutePath());
+    } else {
+        m.replace("{{ MOVIE.DIR }}", "");
+    }
 
     replaceSingleBlock(m, "TAGS", "TAG.NAME", movie->tags());
     replaceSingleBlock(m, "GENRES", "GENRE.NAME", movie->genres());

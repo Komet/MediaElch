@@ -30,6 +30,10 @@ public:
     void setEpisodes(QList<TvShowEpisode*> episodes);
     void setRenameType(RenameType type);
 
+    static QString replace(QString &text, const QString &search, const QString &replace);
+    static QString replaceCondition(QString &text, const QString &condition, const QString &replace);
+    static QString replaceCondition(QString &text, const QString &condition, bool hasCondition);
+
 public slots:
     int exec();
     void reject();
@@ -66,7 +70,6 @@ private:
 
     bool rename(const QString &file, const QString &newName);
     bool rename(QDir &dir, QString newName);
-
 };
 
 #endif // RENAMER_H

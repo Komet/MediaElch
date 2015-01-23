@@ -7,6 +7,7 @@
 #include <QSize>
 
 #include "globals/Globals.h"
+#include "plugins/PluginManager.h"
 #include "settings/AdvancedSettings.h"
 #include "settings/DataFile.h"
 
@@ -38,6 +39,7 @@ public:
     QList<SettingsDir> tvShowDirectories();
     QList<SettingsDir> concertDirectories();
     QList<SettingsDir> downloadDirectories();
+    QList<SettingsDir> musicDirectories();
     QString unrar();
     QString makeMkvCon();
     bool deleteArchives();
@@ -100,6 +102,7 @@ public:
     void setTvShowDirectories(QList<SettingsDir> dirs);
     void setConcertDirectories(QList<SettingsDir> dirs);
     void setDownloadDirectories(QList<SettingsDir> dirs);
+    void setMusicDirectories(QList<SettingsDir> dirs);
     void setUnrar(QString unrar);
     void setMakeMkvCon(QString makeMkvCon);
     void setDeleteArchives(bool deleteArchives);
@@ -144,6 +147,10 @@ public:
     void setLastImagePath(QString path);
 
     static QString applicationDir();
+    QStringList pluginDirs();
+
+    int extraFanartsMusicArtists() const;
+    void setExtraFanartsMusicArtists(int extraFanartsMusicArtists);
 
 public slots:
     void saveSettings();
@@ -160,6 +167,7 @@ private:
     QList<SettingsDir> m_tvShowDirectories;
     QList<SettingsDir> m_concertDirectories;
     QList<SettingsDir> m_downloadDirectories;
+    QList<SettingsDir> m_musicDirectories;
     QString m_unrar;
     QString m_makeMkvCon;
     bool m_deleteArchives;
@@ -209,6 +217,7 @@ private:
     QString m_startupSection;
     bool m_donated;
     QString m_lastImagePath;
+    int m_extraFanartsMusicArtists;
 
     void setupProxy();
     QPoint fixWindowPosition(QPoint p);

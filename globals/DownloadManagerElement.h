@@ -3,6 +3,8 @@
 
 #include "globals/Globals.h"
 
+class Album;
+class Artist;
 class Concert;
 class Movie;
 class TvShow;
@@ -25,6 +27,8 @@ public:
     Movie *movie;
     TvShow *show;
     Concert *concert;
+    Album *album;
+    Artist *artist;
     int season;
     bool directDownload;
 };

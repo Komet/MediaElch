@@ -7,6 +7,8 @@
 #include "data/Concert.h"
 #include "movies/Movie.h"
 #include "data/TvShow.h"
+#include "music/Album.h"
+#include "music/Artist.h"
 
 class Database : public QObject
 {
@@ -45,6 +47,16 @@ public:
     void addEpisodeToShowList(TvShowEpisode *episode, int showsSettingsId, QString tvdbid);
     QList<TvShowEpisode*> showsEpisodes(TvShow *show);
 
+    void clearArtists(QString path = "");
+    void add(Artist *artist, QString path);
+    void update(Artist *artist);
+    QList<Artist*> artists(QString path);
+
+    void clearAlbums(QString path = "");
+    void add(Album *album, QString path);
+    void update(Album *album);
+    QList<Album*> albums(Artist *artist);
+
     void addImport(QString fileName, QString type, QString path);
     bool guessImport(QString fileName, QString &type, QString &path);
 
@@ -53,6 +65,7 @@ public:
 
 private:
     QSqlDatabase *m_db;
+    void updateDbVersion(int version);
 };
 
 #endif // DATABASE_H

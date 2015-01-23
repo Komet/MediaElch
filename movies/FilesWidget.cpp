@@ -69,11 +69,11 @@ FilesWidget::FilesWidget(QWidget *parent) :
     }
 
     QMenu *labelsMenu = new QMenu(tr("Label"), ui->files);
-    QMapIterator<int, QString> it(Helper::labels());
+    QMapIterator<int, QString> it(Helper::instance()->labels());
     while (it.hasNext()) {
         it.next();
         QAction *action = new QAction(it.value(), this);
-        action->setIcon(Helper::iconForLabel(it.key()));
+        action->setIcon(Helper::instance()->iconForLabel(it.key()));
         action->setProperty("color", it.key());
         connect(action, SIGNAL(triggered()), this, SLOT(onLabel()));
         labelsMenu->addAction(action);
@@ -114,6 +114,7 @@ FilesWidget::FilesWidget(QWidget *parent) :
     connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(itemActivated(QModelIndex, QModelIndex)));
     connect(ui->files->model(), SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(setAlphaListData()));
     connect(ui->files, SIGNAL(sigLeftEdge(bool)), this, SLOT(onLeftEdge(bool)));
+    connect(ui->files, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(playMovie(QModelIndex)));
 
     connect(m_alphaList, SIGNAL(sigAlphaClicked(QString)), this, SLOT(scrollToAlpha(QString)));
 
@@ -146,13 +147,13 @@ FilesWidget *FilesWidget::instance()
 
 void FilesWidget::resizeEvent(QResizeEvent *event)
 {
-    Q_UNUSED(event);
     int scrollBarWidth = 0;
     if (ui->files->verticalScrollBar()->isVisible())
         scrollBarWidth = ui->files->verticalScrollBar()->width();
     m_alphaList->setRightSpace(scrollBarWidth+5);
     m_alphaList->setBottomSpace(ui->widget->height()+10);
     m_alphaList->adjustSize();
+    QWidget::resizeEvent(event);
 }
 
 void FilesWidget::showContextMenu(QPoint point)
@@ -260,12 +261,7 @@ void FilesWidget::openFolder()
     if (movie->files().isEmpty())
         return;
     QFileInfo fi(movie->files().at(0));
-    QUrl url;
-    if (fi.absolutePath().startsWith("\\\\") || fi.absolutePath().startsWith("//"))
-        url.setUrl(QDir::toNativeSeparators(fi.absolutePath()));
-    else
-        url = QUrl::fromLocalFile(fi.absolutePath());
-    QDesktopServices::openUrl(url);
+    QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
 }
 
 /**
@@ -505,4 +501,14 @@ void FilesWidget::onViewUpdated()
         ui->statusLabel->setText(tr("%n movies", "", movieCount));
     else
         ui->statusLabel->setText(tr("%1 of %n movies", "", movieCount).arg(visibleCount));
+}
+
+void FilesWidget::playMovie(QModelIndex idx)
+{
+    if (!idx.isValid())
+        return;
+    QString fileName = m_movieProxyModel->data(idx, Qt::UserRole+7).toString();
+    if (fileName.isEmpty())
+        return;
+    QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
 }

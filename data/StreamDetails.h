@@ -23,13 +23,15 @@ public:
     bool hasAudioChannels(int channels);
     bool hasAudioQuality(QString quality);
 
-    QMap<QString, QString> videoDetails();
-    QList<QMap<QString, QString> > audioDetails();
-    QList<QMap<QString, QString> > subtitleDetails();
+    virtual QMap<QString, QString> videoDetails();
+    virtual QList<QMap<QString, QString> > audioDetails();
+    virtual QList<QMap<QString, QString> > subtitleDetails();
 
 private:
     QString videoFormat(QString format, QString version);
     QString audioFormat(const QString &codec, const QString &profile);
+    QString stereoFormat(const QString &format);
+    void loadWithLibrary();
 
     QStringList m_files;
     QMap<QString, QString> m_videoDetails;

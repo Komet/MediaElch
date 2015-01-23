@@ -101,6 +101,26 @@ void DownloadManager::startNextDownload()
             emit allDownloadsFinished(m_currentDownloadElement.concert);
     }
 
+    if (m_currentDownloadElement.artist) {
+        int numDownloadsLeft = 0;
+        for (int i=0, n=m_queue.size() ; i<n ; ++i) {
+            if (m_queue[i].artist == m_currentDownloadElement.artist)
+                numDownloadsLeft++;
+        }
+        if (numDownloadsLeft == 0)
+            emit allDownloadsFinished(m_currentDownloadElement.artist);
+    }
+
+    if (m_currentDownloadElement.album) {
+        int numDownloadsLeft = 0;
+        for (int i=0, n=m_queue.size() ; i<n ; ++i) {
+            if (m_queue[i].album == m_currentDownloadElement.album)
+                numDownloadsLeft++;
+        }
+        if (numDownloadsLeft == 0)
+            emit allDownloadsFinished(m_currentDownloadElement.album);
+    }
+
     if (m_queue.isEmpty()) {
         qDebug() << "All downloads finished";
         emit allDownloadsFinished();

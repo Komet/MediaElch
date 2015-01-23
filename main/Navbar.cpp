@@ -4,6 +4,7 @@
 #include <QGraphicsDropShadowEffect>
 #include <QPainter>
 #include "globals/Helper.h"
+#include "globals/Manager.h"
 #include "settings/Settings.h"
 
 Navbar::Navbar(QWidget *parent) :
@@ -51,18 +52,19 @@ Navbar::Navbar(QWidget *parent) :
     navbarColors << QColor(107, 183, 228, 255);
     navbarColors << QColor(206, 139, 188, 255);
 
-    QPainter p;
     int i=0;
-    foreach (QToolButton *button, ui->widget->findChildren<QToolButton*>()) {
-        QPixmap pixmap = button->icon().pixmap(64, 64);
-        p.begin(&pixmap);
-        p.setCompositionMode(QPainter::CompositionMode_SourceIn);
-        p.fillRect(pixmap.rect(), navbarColors.at(i++%navbarColors.count()));
-        p.end();
-        button->setIcon(QIcon(pixmap));
+    foreach (QToolButton *btn, ui->widget->findChildren<QToolButton*>()) {
+#ifdef Q_OS_WIN
+        btn->setIconSize(QSize(32, 32));
+#endif
+        btn->setIcon(Manager::instance()->iconFont()->icon(btn->property("iconName").toString(),
+                                                           navbarColors.at(i++%navbarColors.count()),
+                                                           btn->property("iconPainter").toString(),
+                                                           1.0
+                                                           ));
     }
 
-    if (Helper::devicePixelRatio(this) == 1) {
+    if (Helper::instance()->devicePixelRatio(this) == 1) {
         QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
         effect->setColor(QColor(0, 0, 0, 30));
         effect->setOffset(2);

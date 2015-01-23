@@ -10,6 +10,7 @@
 #include "data/ImageProviderInterface.h"
 #include "data/MediaCenterInterface.h"
 #include "data/MovieFileSearcher.h"
+#include "data/MusicScraperInterface.h"
 #include "data/ScraperInterface.h"
 #include "data/TvScraperInterface.h"
 #include "data/TvShowFileSearcher.h"
@@ -18,9 +19,13 @@
 #include "data/TvShowProxyModel.h"
 #include "imageProviders/FanartTv.h"
 #include "main/FileScannerDialog.h"
+#include "main/MyIconFont.h"
 #include "scrapers/TvTunes.h"
 #include "trailerProviders/TrailerProvider.h"
 #include "tvShows/TvShowFilesWidget.h"
+#include "music/MusicFileSearcher.h"
+#include "music/MusicModel.h"
+#include "music/MusicFilesWidget.h"
 
 /**
  * @brief The Manager class
@@ -39,6 +44,7 @@ public:
     ScraperInterface* scraper(const QString &identifier);
     QList<TvScraperInterface*> tvScrapers();
     QList<ConcertScraperInterface*> concertScrapers();
+    QList<MusicScraperInterface*> musicScrapers();
     QList<ImageProviderInterface*> imageProviders();
     QList<ImageProviderInterface*> imageProviders(int type);
     QList<TrailerProvider*> trailerProviders();
@@ -48,16 +54,21 @@ public:
     MovieFileSearcher* movieFileSearcher();
     TvShowFileSearcher* tvShowFileSearcher();
     ConcertFileSearcher* concertFileSearcher();
+    MusicFileSearcher* musicFileSearcher();
     Database* database();
     MovieModel* movieModel();
     TvShowModel* tvShowModel();
     TvShowProxyModel *tvShowProxyModel();
     ConcertModel* concertModel();
+    MusicModel* musicModel();
     FileScannerDialog *fileScannerDialog();
     FanartTv* fanartTv();
     TvShowFilesWidget *tvShowFilesWidget();
+    MusicFilesWidget *musicFilesWidget();
     TvTunes* tvTunes();
+    MyIconFont *iconFont();
     void setTvShowFilesWidget(TvShowFilesWidget *widget);
+    void setMusicFilesWidget(MusicFilesWidget *widget);
     void setFileScannerDialog(FileScannerDialog *dialog);
     static QList<ScraperInterface*> constructNativeScrapers(QObject *parent);
 
@@ -68,6 +79,7 @@ private:
     QList<ScraperInterface*> m_scrapers;
     QList<TvScraperInterface*> m_tvScrapers;
     QList<ConcertScraperInterface*> m_concertScrapers;
+    QList<MusicScraperInterface*> m_musicScrapers;
     QList<ImageProviderInterface*> m_imageProviders;
     QList<TrailerProvider*> m_trailerProviders;
     MovieFileSearcher* m_movieFileSearcher;
@@ -77,11 +89,15 @@ private:
     TvShowModel* m_tvShowModel;
     TvShowProxyModel* m_tvShowProxyModel;
     ConcertModel* m_concertModel;
+    MusicModel* m_musicModel;
     Settings *m_settings;
     Database *m_database;
     TvShowFilesWidget *m_tvShowFilesWidget;
+    MusicFilesWidget *m_musicFilesWidget;
     FileScannerDialog *m_fileScannerDialog;
     TvTunes *m_tvTunes;
+    MusicFileSearcher *m_musicFileSearcher;
+    MyIconFont *m_iconFont;
 };
 
 #endif // MANAGER_H

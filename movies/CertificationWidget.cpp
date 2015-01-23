@@ -45,7 +45,10 @@ CertificationWidget::CertificationWidget(QWidget *parent) :
     connect(ui->certifications, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(onCertificationNameChanged(QTableWidgetItem*)));
     connect(ui->movies, SIGNAL(itemDoubleClicked(QTableWidgetItem*)), this, SLOT(onJumpToMovie(QTableWidgetItem*)));
 
-    Helper::applyStyle(ui->groupBox);
+    Helper::instance()->applyStyle(ui->groupBox);
+    Helper::instance()->applyStyle(ui->certifications);
+    Helper::instance()->applyStyle(ui->label_2);
+    Helper::instance()->applyStyle(ui->label_3);
 }
 
 /**

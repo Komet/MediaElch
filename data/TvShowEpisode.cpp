@@ -128,9 +128,9 @@ bool TvShowEpisode::loadData(MediaCenterInterface *mediaCenterInterface, bool re
             QStringList filenameParts = files().at(0).split(QDir::separator());
             QString filename = filenameParts.last();
             if (filename.endsWith("VIDEO_TS.IFO", Qt::CaseInsensitive)) {
-                if (filenameParts.count() > 1 && Helper::isDvd(files().at(0)))
+                if (filenameParts.count() > 1 && Helper::instance()->isDvd(files().at(0)))
                     filename = filenameParts.at(filenameParts.count()-3);
-                else if (filenameParts.count() > 2 && Helper::isDvd(files().at(0), true))
+                else if (filenameParts.count() > 2 && Helper::instance()->isDvd(files().at(0), true))
                     filename = filenameParts.at(filenameParts.count()-2);
             } else if (filename.endsWith("index.bdmv", Qt::CaseInsensitive)) {
                 if (filenameParts.count() > 2)
@@ -956,9 +956,16 @@ void TvShowEpisode::removeActor(Actor *actor)
 
 bool TvShowEpisode::lessThan(TvShowEpisode *a, TvShowEpisode *b)
 {
-    QString aT = a->seasonString() + a->episodeString() + Helper::appendArticle(a->name());
-    QString bT = b->seasonString() + b->episodeString() + Helper::appendArticle(b->name());
-    return (QString::localeAwareCompare(aT, bT) < 0);
+    if (a->season() < b->season())
+        return true;
+    if (a->season() > b->season())
+        return false;
+    if (a->episode() < b->episode())
+        return true;
+    if (a->episode() > b->episode())
+        return false;
+
+    return (QString::localeAwareCompare(Helper::instance()->appendArticle(a->name()), Helper::instance()->appendArticle(b->name())) < 0);
 }
 
 /*** DEBUG ***/

@@ -95,8 +95,8 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
 
     if (index.column() == 0) {
         if (role == Qt::DisplayRole) {
-            return Helper::appendArticle(movie->name());
-        } else if (role == Qt::ToolTipRole) {
+            return Helper::instance()->appendArticle(movie->name());
+        } else if (role == Qt::ToolTipRole || role == Qt::UserRole+7) {
             if (movie->files().size() == 0)
                 return QVariant();
             return movie->files().at(0);
@@ -124,7 +124,7 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
             else if (movie->syncNeeded())
                 return m_syncIcon;
         } else if (role == Qt::BackgroundRole) {
-            return Helper::colorForLabel(movie->label());
+            return Helper::instance()->colorForLabel(movie->label());
         }
     } else if (role == Qt::DecorationRole) {
         QString icon;
@@ -226,14 +226,15 @@ QList<Movie*> MovieModel::movies()
  * @brief Checks if there are new movies (movies where infoLoaded is false)
  * @return True if there are new movies
  */
-bool MovieModel::hasNewMovies()
+int MovieModel::hasNewMovies()
 {
+    int newMovies = 0;
     foreach (Movie *movie, m_movies) {
         if (!movie->controller()->infoLoaded())
-            return true;
+            newMovies++;
     }
 
-    return false;
+    return newMovies;
 }
 
 int MovieModel::mediaStatusToColumn(MediaStatusColumns column)

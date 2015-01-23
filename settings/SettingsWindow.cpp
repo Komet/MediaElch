@@ -8,8 +8,10 @@
 #include "data/MovieFilesOrganizer.h"
 #include "data/Storage.h"
 #include "export/ExportTemplateLoader.h"
+#include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "notifications/NotificationBox.h"
+#include "plugins/PluginsWidget.h"
 #include "settings/DataFile.h"
 #include "settings/ExportTemplateWidget.h"
 
@@ -18,6 +20,10 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui(new Ui::SettingsWindow)
 {
     ui->setupUi(this);
+
+    m_pluginDialog = new PluginManagerDialog(this);
+    m_buttonActiveColor = QColor(70, 155, 198);
+    m_buttonColor = QColor(128, 129, 132);
 
 #ifdef Q_OS_MAC
     QFont smallFont = ui->labelGlobal->font();
@@ -37,10 +43,9 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->customScraperTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
     ui->customScraperTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    ui->actionGlobal->setIcon(ui->actionGlobal->property("iconActive").value<QIcon>());
     ui->stackedWidget->setCurrentIndex(0);
-    ui->stackedWidget->setAnimation(QEasingCurve::Linear);
-    ui->stackedWidget->setSpeed(200);
+    //ui->stackedWidget->setAnimation(QEasingCurve::Linear);
+    //ui->stackedWidget->setSpeed(200);
 
     m_settings = Settings::instance(this);
 
@@ -81,6 +86,16 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
             scraperCounter++;
         }
     }
+    foreach (MusicScraperInterface *scraper, Manager::instance()->musicScrapers()) {
+        if (scraper->hasSettings()) {
+            QLabel *name = new QLabel("<b>" + scraper->name() + "</b>");
+            name->setAlignment(Qt::AlignRight);
+            name->setStyleSheet("margin-top: 3px;");
+            ui->gridLayoutScrapers->addWidget(name, scraperCounter, 0);
+            ui->gridLayoutScrapers->addWidget(scraper->settingsWidget(), scraperCounter, 1);
+            scraperCounter++;
+        }
+    }
 
     foreach (ImageProviderInterface *scraper, Manager::instance()->imageProviders()) {
         if (scraper->hasSettings()) {
@@ -95,6 +110,8 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
 
     ui->comboMovieSetArtwork->setItemData(0, MovieSetArtworkSingleSetFolder);
     ui->comboMovieSetArtwork->setItemData(1, MovieSetArtworkSingleArtworkFolder);
+
+    Helper::instance()->removeFocusRect(ui->stackedWidget->widget(9));
 
     connect(ui->buttonAddDir, SIGNAL(clicked()), this, SLOT(chooseDirToAdd()));
     connect(ui->buttonRemoveDir, SIGNAL(clicked()), this, SLOT(removeDir()));
@@ -142,6 +159,11 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->concertLogo->setProperty("dataFileType", DataFileType::ConcertLogo);
     ui->concertClearArt->setProperty("dataFileType", DataFileType::ConcertClearArt);
     ui->concertDiscArt->setProperty("dataFileType", DataFileType::ConcertCdArt);
+    ui->artistFanart->setProperty("dataFileType", DataFileType::ArtistFanart);
+    ui->artistLogo->setProperty("dataFileType", DataFileType::ArtistLogo);
+    ui->artistThumb->setProperty("dataFileType", DataFileType::ArtistThumb);
+    ui->albumThumb->setProperty("dataFileType", DataFileType::AlbumThumb);
+    ui->albumDiscArt->setProperty("dataFileType", DataFileType::AlbumCdArt);
 
 #ifdef Q_OS_MAC
     ui->btnCancel->setVisible(false);
@@ -152,7 +174,44 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->comboStartupSection->addItem(tr("Movies"), "movies");
     ui->comboStartupSection->addItem(tr("TV Shows"), "tvshows");
     ui->comboStartupSection->addItem(tr("Concerts"), "concerts");
+    ui->comboStartupSection->addItem(tr("Music"), "music");
     ui->comboStartupSection->addItem(tr("Import"), "import");
+
+    QPainter p;
+    foreach (QAction *action, findChildren<QAction*>()) {
+        if (!action->property("page").isValid())
+            continue;
+        action->setIcon(Manager::instance()->iconFont()->icon(action->property("iconName").toString(), m_buttonColor));
+    }
+    ui->actionGlobal->setIcon(Manager::instance()->iconFont()->icon(ui->actionGlobal->property("iconName").toString(), m_buttonActiveColor));
+
+#ifndef PLUGINS
+    ui->actionPlugins->setVisible(false);
+#endif
+
+    connect(PluginManager::instance(), SIGNAL(sigPluginListUpdated(QList<PluginManager::Plugin>)), this, SLOT(onPluginListUpdated(QList<PluginManager::Plugin>)));
+    connect(ui->pluginList, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), this, SLOT(onPluginActivated(QListWidgetItem*)));
+    connect(ui->btnInstallPlugin, SIGNAL(clicked()), this, SLOT(onInstallPlugin()));
+    connect(ui->btnUninstallPlugin, SIGNAL(clicked()), this, SLOT(onUninstallPlugin()));
+    connect(ui->btnUpdatePlugin, SIGNAL(clicked()), this, SLOT(onUpdatePlugin()));
+    ui->btnUninstallPlugin->setVisible(false);
+    ui->btnUpdatePlugin->setVisible(false);
+    Helper::instance()->setButtonStyle(ui->btnInstallPlugin, Helper::ButtonSuccess);
+    Helper::instance()->setButtonStyle(ui->btnUninstallPlugin, Helper::ButtonDanger);
+    Helper::instance()->setButtonStyle(ui->btnUpdatePlugin, Helper::ButtonInfo);
+
+    m_pluginsInstallable = false;
+#if defined(Q_OS_MAC)
+    m_pluginsInstallable = true;
+    ui->pluginsLinux->setVisible(false);
+#elif defined(Q_OS_WIN)
+    m_pluginsInstallable = true;
+    ui->pluginsLinux->setVisible(false);
+#endif
+
+#if !defined(PLUGINS)
+    ui->actionPlugins->setVisible(false);
+#endif
 
     loadSettings();
 }
@@ -203,9 +262,10 @@ void SettingsWindow::onAction()
 {
     QAction *triggeredAction = static_cast<QAction*>(sender());
     foreach (QAction *action, ui->toolBar->actions())
-        action->setIcon(action->property("iconNormal").value<QIcon>());
-    triggeredAction->setIcon(triggeredAction->property("iconActive").value<QIcon>());
-    ui->stackedWidget->slideInIdx(triggeredAction->property("page").toInt());
+        action->setIcon(Manager::instance()->iconFont()->icon(action->property("iconName").toString(), m_buttonColor));
+    triggeredAction->setIcon(Manager::instance()->iconFont()->icon(triggeredAction->property("iconName").toString(), m_buttonActiveColor));
+    //ui->stackedWidget->slideInIdx(triggeredAction->property("page").toInt());
+    ui->stackedWidget->setCurrentIndex(triggeredAction->property("page").toInt());
 }
 
 void SettingsWindow::loadSettings()
@@ -253,6 +313,9 @@ void SettingsWindow::loadSettings()
     QList<SettingsDir> downloadDirectories = m_settings->downloadDirectories();
     for (int i=0, n=downloadDirectories.count() ; i<n ; ++i)
         addDir(downloadDirectories.at(i).path, false, false, DirTypeDownloads);
+    QList<SettingsDir> musicDirectories = m_settings->musicDirectories();
+    for (int i=0, n=musicDirectories.count() ; i<n ; ++i)
+        addDir(musicDirectories.at(i).path, musicDirectories.at(i).separateFolders, musicDirectories.at(i).autoReload, DirTypeMusic);
 
     dirListRowChanged(ui->dirs->currentRow());
 
@@ -313,6 +376,8 @@ void SettingsWindow::loadSettings()
     ui->chkDeleteArchives->setChecked(m_settings->deleteArchives());
     ui->unrarPath->setText(m_settings->unrar());
     ui->makemkvconPath->setText(m_settings->makeMkvCon());
+
+    ui->artistExtraFanarts->setValue(m_settings->extraFanartsMusicArtists());
 }
 
 void SettingsWindow::saveSettings()
@@ -359,6 +424,7 @@ void SettingsWindow::saveSettings()
     QList<SettingsDir> tvShowDirectories;
     QList<SettingsDir> concertDirectories;
     QList<SettingsDir> downloadDirectories;
+    QList<SettingsDir> musicDirectories;
     for (int row=0, n=ui->dirs->rowCount() ; row<n ; ++row) {
         SettingsDir dir;
         dir.path = ui->dirs->item(row, 1)->text();
@@ -372,11 +438,14 @@ void SettingsWindow::saveSettings()
             concertDirectories.append(dir);
         else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 3)
             downloadDirectories.append(dir);
+        else if (static_cast<QComboBox*>(ui->dirs->cellWidget(row, 0))->currentIndex() == 4)
+            musicDirectories.append(dir);
     }
     m_settings->setMovieDirectories(movieDirectories);
     m_settings->setTvShowDirectories(tvShowDirectories);
     m_settings->setConcertDirectories(concertDirectories);
     m_settings->setDownloadDirectories(downloadDirectories);
+    m_settings->setMusicDirectories(musicDirectories);
 
     // exclude words
     m_settings->setExcludeWords(ui->excludeWordsText->toPlainText());
@@ -400,11 +469,14 @@ void SettingsWindow::saveSettings()
     m_settings->setMakeMkvCon(ui->makemkvconPath->text());
     m_settings->setDeleteArchives(ui->chkDeleteArchives->isChecked());
 
+    m_settings->setExtraFanartsMusicArtists(ui->artistExtraFanarts->value());
+
     m_settings->saveSettings();
 
     Manager::instance()->movieFileSearcher()->setMovieDirectories(m_settings->movieDirectories());
     Manager::instance()->tvShowFileSearcher()->setMovieDirectories(m_settings->tvShowDirectories());
     Manager::instance()->concertFileSearcher()->setConcertDirectories(m_settings->concertDirectories());
+    Manager::instance()->musicFileSearcher()->setMusicDirectories(m_settings->musicDirectories());
     NotificationBox::instance()->showMessage(tr("Settings saved"));
 }
 
@@ -439,7 +511,7 @@ void SettingsWindow::addDir(QString dir, bool separateFolders, bool autoReload, 
             QComboBox *box = new QComboBox();
             box->setProperty("itemCheck", Storage::toVariant(box, itemCheck));
             box->setProperty("itemCheckReload", Storage::toVariant(box, itemCheckReload));
-            box->addItems(QStringList() << tr("Movies") << tr("TV Shows") << tr("Concerts") << tr("Downloads"));
+            box->addItems(QStringList() << tr("Movies") << tr("TV Shows") << tr("Concerts") << tr("Downloads") << tr("Music"));
             if (dirType == DirTypeMovies)
                 box->setCurrentIndex(0);
             else if (dirType == DirTypeTvShows)
@@ -448,6 +520,8 @@ void SettingsWindow::addDir(QString dir, bool separateFolders, bool autoReload, 
                 box->setCurrentIndex(2);
             else if (dirType == DirTypeDownloads)
                 box->setCurrentIndex(3);
+            else if (dirType == DirTypeMusic)
+                box->setCurrentIndex(4);
 
             ui->dirs->setCellWidget(row, 0, box);
             ui->dirs->setItem(row, 1, item);
@@ -734,6 +808,10 @@ void SettingsWindow::onDirTypeChanged(QComboBox *comboBox)
         itemCheck->setCheckState(Qt::Unchecked);
         itemCheckReload->setFlags(Qt::NoItemFlags);
         itemCheckReload->setCheckState(Qt::Unchecked);
+    } else if (box->currentIndex() == 4) {
+        itemCheck->setFlags(Qt::NoItemFlags);
+        itemCheck->setCheckState(Qt::Unchecked);
+        itemCheckReload->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
     }
 }
 
@@ -746,4 +824,91 @@ void SettingsWindow::onShowAdultScrapers()
             ui->gridLayoutScrapers->itemAtPosition(m_scraperRows.value(scraper), 1)->widget()->setVisible(show);
         }
     }
+}
+
+void SettingsWindow::onPluginListUpdated(QList<PluginManager::Plugin> plugins)
+{
+    int currentRow = ui->pluginList->currentRow();
+    if (currentRow < 0)
+        currentRow = 0;
+
+    ui->pluginList->blockSignals(true);
+    ui->pluginList->clear();
+    ui->pluginList->blockSignals(false);
+    for (int i=3, n=ui->pluginSettings->count() ; i<n ; ++i)
+        ui->pluginSettings->removeWidget(ui->pluginSettings->widget(i));
+    ui->btnUninstallPlugin->setVisible(false);
+    ui->btnUpdatePlugin->setVisible(false);
+
+    for (int i=0, n=plugins.count() ; i<n ; ++i) {
+        int page = 1;
+        if (plugins[i].installed) {
+            if (plugins[i].plugin->hasSettings())
+                page = ui->pluginSettings->addWidget(plugins[i].plugin->settingsWidget());
+            else
+                page = 1;
+        } else {
+            page = 2;
+        }
+        PluginsWidget *widget = new PluginsWidget(ui->pluginList);
+        widget->setPlugin(plugins[i]);
+
+        QListWidgetItem *item = new QListWidgetItem();
+        item->setSizeHint(widget->sizeHint());
+        item->setData(Qt::UserRole, page);
+        item->setData(Qt::UserRole+1, i);
+        ui->pluginList->addItem(item);
+        ui->pluginList->setItemWidget(item, widget);
+
+        if (i==currentRow)
+            ui->pluginList->setCurrentItem(item);
+    }
+
+    setPluginActionsEnabled(true);
+}
+
+void SettingsWindow::onPluginActivated(QListWidgetItem *item)
+{
+    ui->pluginSettings->setCurrentIndex(item->data(Qt::UserRole).toInt());
+    int index = item->data(Qt::UserRole+1).toInt();
+    if (index < 0 || index >= PluginManager::instance()->plugins().count())
+        return;
+
+    PluginManager::Plugin plugin = PluginManager::instance()->plugins().at(index);
+    ui->btnInstallPlugin->setVisible(m_pluginsInstallable && !plugin.installed);
+    ui->btnUninstallPlugin->setVisible(m_pluginsInstallable && plugin.installed);
+    ui->btnUpdatePlugin->setVisible(m_pluginsInstallable && plugin.updateAvailable);
+}
+
+void SettingsWindow::onInstallPlugin()
+{
+    int index = ui->pluginList->currentItem()->data(Qt::UserRole+1).toInt();
+    if (index < 0 || index >= PluginManager::instance()->plugins().count())
+        return;
+    m_pluginDialog->installPlugin(PluginManager::instance()->plugins().at(index));
+}
+
+void SettingsWindow::onUninstallPlugin()
+{
+    int index = ui->pluginList->currentItem()->data(Qt::UserRole+1).toInt();
+    if (index < 0 || index >= PluginManager::instance()->plugins().count())
+        return;
+    PluginManager::instance()->uninstallPlugin(PluginManager::instance()->plugins().at(index));
+}
+
+void SettingsWindow::onUpdatePlugin()
+{
+    int index = ui->pluginList->currentItem()->data(Qt::UserRole+1).toInt();
+    if (index < 0 || index >= PluginManager::instance()->plugins().count())
+        return;
+    m_pluginDialog->updatePlugin(PluginManager::instance()->plugins().at(index));
+}
+
+void SettingsWindow::setPluginActionsEnabled(const bool &enabled)
+{
+    ui->pluginList->setEnabled(enabled);
+    ui->pluginSettings->setEnabled(enabled);
+    ui->btnInstallPlugin->setEnabled(enabled);
+    ui->btnUninstallPlugin->setEnabled(enabled);
+    ui->btnUpdatePlugin->setEnabled(enabled);
 }

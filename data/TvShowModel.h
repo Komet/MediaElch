@@ -31,7 +31,7 @@ public:
     void clear();
     TvShowModelItem *getItem(const QModelIndex &index) const;
     QList<TvShow*> tvShows();
-    bool hasNewShowOrEpisode();
+    int hasNewShowOrEpisode();
     void removeShow(TvShow *show);
 
 private slots:

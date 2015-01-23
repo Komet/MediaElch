@@ -44,6 +44,13 @@ public:
     virtual void tvShowSeasonBackdrops(QString tvdbId, int season) = 0;
     virtual void tvShowSeasonThumbs(QString tvdbId, int season) = 0;
     virtual void tvShowThumbs(QString tvdbId) = 0;
+    virtual void artistFanarts(QString mbId) = 0;
+    virtual void artistLogos(QString mbId) = 0;
+    virtual void artistThumbs(QString mbId) = 0;
+    virtual void albumCdArts(QString mbId) = 0;
+    virtual void albumThumbs(QString mbId) = 0;
+    virtual void artistImages(Artist *artist, QString mbId, QList<int> types) = 0;
+    virtual void albumImages(Album *album, QString mbId, QList<int> types) = 0;
     virtual QList<int> provides() = 0;
     virtual bool hasSettings() = 0;
     virtual void loadSettings(QSettings &settings) = 0;
@@ -54,12 +61,16 @@ public slots:
     virtual void searchMovie(QString searchStr, int limit) = 0;
     virtual void searchConcert(QString searchStr, int limit) = 0;
     virtual void searchTvShow(QString searchStr, int limit) = 0;
+    virtual void searchArtist(QString searchStr, int limit) = 0;
+    virtual void searchAlbum(QString artistName, QString searchStr, int limit) = 0;
 signals:
     virtual void sigSearchDone(QList<ScraperSearchResult>) = 0;
     virtual void sigImagesLoaded(QList<Poster>) = 0;
     virtual void sigImagesLoaded(Movie *, QMap<int, QList<Poster> >) = 0;
     virtual void sigImagesLoaded(Concert *, QMap<int, QList<Poster> >) = 0;
     virtual void sigImagesLoaded(TvShow *, QMap<int, QList<Poster> >) = 0;
+    virtual void sigImagesLoaded(Artist *, QMap<int, QList<Poster> >) = 0;
+    virtual void sigImagesLoaded(Album *, QMap<int, QList<Poster> >) = 0;
 };
 
 Q_DECLARE_METATYPE(ImageProviderInterface*)

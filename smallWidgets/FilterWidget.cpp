@@ -37,7 +37,7 @@ FilterWidget::FilterWidget(QWidget *parent) :
     m_list->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_list->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    if (Helper::devicePixelRatio(m_list) == 1) {
+    if (Helper::instance()->devicePixelRatio(m_list) == 1) {
         QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
         effect->setBlurRadius(16);
         effect->setOffset(0);
@@ -189,7 +189,8 @@ void FilterWidget::addSelectedFilter()
             return;
         // no entry selected, add the title filter
         foreach (Filter *f, m_filters) {
-            if (f->info() == MovieFilters::Title || f->info() == ConcertFilters::Title || f->info() == TvShowFilters::Title) {
+            if (f->info() == MovieFilters::Title || f->info() == ConcertFilters::Title ||
+                    f->info() == TvShowFilters::Title || f->info() == MusicFilters::Title) {
                 filter = f;
                 break;
             }
@@ -250,6 +251,8 @@ void FilterWidget::setupFilters()
         setupTvShowFilters();
     else if (m_activeWidget == WidgetConcerts)
         setupConcertFilters();
+    else if (m_activeWidget == WidgetMusic)
+        setupMusicFilters();
 }
 
 /**
@@ -301,7 +304,7 @@ void FilterWidget::setupMovieFilters()
     qSort(sets.begin(), sets.end(), LocaleStringCompare());
 
     if (m_movieLabelFilters.isEmpty()) {
-        QMapIterator<int, QString> it(Helper::labels());
+        QMapIterator<int, QString> it(Helper::instance()->labels());
         while (it.hasNext()) {
             it.next();
             m_movieLabelFilters << new Filter(tr("Label \"%1\"").arg(it.value()), it.value(),
@@ -529,6 +532,11 @@ void FilterWidget::setupConcertFilters()
     m_filters = m_concertFilters;
 }
 
+void FilterWidget::setupMusicFilters()
+{
+    m_filters = m_musicFilters;
+}
+
 /**
  * @brief Initially sets up filters
  */
@@ -671,6 +679,8 @@ void FilterWidget::initFilters()
     m_tvShowFilters << new Filter(tr("Title"), "", QStringList(), TvShowFilters::Title, true);
 
     m_concertFilters << new Filter(tr("Title"), "", QStringList(), ConcertFilters::Title, true);
+
+    m_musicFilters << new Filter(tr("Title"), "", QStringList(), MusicFilters::Title, true);
 }
 
 /**
@@ -719,6 +729,8 @@ void FilterWidget::loadFilters(MainWidgets widget)
         if (m_tvShowFilters.contains(filter))
             continue;
         if (m_concertFilters.contains(filter))
+            continue;
+        if (m_musicFilters.contains(filter))
             continue;
         m_activeFilters.removeOne(filter);
     }

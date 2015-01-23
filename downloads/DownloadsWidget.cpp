@@ -29,7 +29,7 @@ DownloadsWidget::DownloadsWidget(QWidget *parent) :
     ui->tablePackages->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tablePackages->setColumnWidth(3, 200);
     ui->tableImports->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    ui->btnImportMakeMkv->setButtonStyle(StyledPushButton::StyleLightBlue);
+    Helper::instance()->setButtonStyle(ui->btnImportMakeMkv, Helper::ButtonInfo);
 
 #ifdef Q_OS_WIN32
     ui->tableImports->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
@@ -55,8 +55,8 @@ DownloadsWidget::DownloadsWidget(QWidget *parent) :
 
     scanDownloadFolders();
 
-    Helper::applyStyle(ui->tablePackages, true, false);
-    Helper::applyStyle(ui->tableImports, true, false);
+    Helper::instance()->applyStyle(ui->tablePackages, true, false);
+    Helper::instance()->applyStyle(ui->tableImports, true, false);
 }
 
 DownloadsWidget::~DownloadsWidget()
@@ -269,7 +269,7 @@ void DownloadsWidget::onExtractorError(QString baseName, QString msg)
 {
 #ifdef Q_OS_MAC
     if (MacNotificationHandler::instance()->hasUserNotificationCenterSupport())
-        Notificator::instance()->notify(Notificator::Warning, tr("Extraction failed"), tr("Exctraction of %1 has failed: %2").arg(baseName).arg(msg));
+        Notificator::instance()->notify(Notificator::Warning, tr("Extraction failed"), tr("Extraction of %1 has failed: %2").arg(baseName).arg(msg));
     else
         QMessageBox::warning(this, tr("Extraction failed"), tr("Extraction of %1 has failed: %2").arg(baseName).arg(msg));
 #else
@@ -485,9 +485,9 @@ void DownloadsWidget::onChangeImportDetail(int currentIndex, QComboBox *sender)
     actions->setExtraFiles(m_imports[baseName].extraFiles);
 }
 
-bool DownloadsWidget::hasNewItems()
+int DownloadsWidget::hasNewItems()
 {
-    return !m_imports.isEmpty() || !m_packages.isEmpty();
+    return m_imports.count() + m_packages.count();
 }
 
 void DownloadsWidget::onImportWithMakeMkv()

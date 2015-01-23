@@ -115,7 +115,7 @@ QList<TrailerResult> HdTrailers::parseTrailers(QString html)
         while ((pos2 = rx2.indexIn(rx.cap(2), pos2)) != -1) {
             pos2 += rx2.matchedLength();
             TrailerResult r;
-            r.trailerUrl = Helper::urlDecode(rx2.cap(1));
+            r.trailerUrl = Helper::instance()->urlDecode(rx2.cap(1));
             r.name = QString("%2, %1").arg(rx.cap(1)).arg(rx2.cap(2));
             results.append(r);
         }

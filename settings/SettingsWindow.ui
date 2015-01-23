@@ -23,7 +23,7 @@
    <string>Settings</string>
   </property>
   <property name="unifiedTitleAndToolBarOnMac">
-   <bool>true</bool>
+   <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
@@ -32,11 +32,14 @@
 }
 #scrapersScrollArea {
 	background-color: transparent;
+}
+#pluginSettings {
+	background-color: transparent;
 }</string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="SlidingStackedWidget" name="stackedWidget">
+     <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
        <number>0</number>
       </property>
@@ -45,8 +48,9 @@
         <item>
          <widget class="QLabel" name="labelGlobal">
           <property name="text">
-           <string>Add one or more directories containing your movies, TV Shows, concerts or files to import.
-TV Show Episodes have to be in subfolders with the name of the show.</string>
+           <string>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
+TV Show Episodes have to be in subfolders with the name of the show.
+The directories containg your music must contain subdirectories for each artist which contain directories of albums.</string>
           </property>
           <property name="wordWrap">
            <bool>true</bool>
@@ -305,8 +309,8 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>100</width>
-                 <height>30</height>
+                 <width>883</width>
+                 <height>418</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -1064,12 +1068,132 @@ TV Show Episodes have to be in subfolders with the name of the show.</string>
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="page_music">
+       <layout class="QVBoxLayout" name="verticalLayout_17" stretch="0,1">
+        <item>
+         <widget class="QLabel" name="label_60">
+          <property name="text">
+           <string>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QFormLayout" name="formLayout_9">
+          <property name="fieldGrowthPolicy">
+           <enum>QFormLayout::ExpandingFieldsGrow</enum>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_64">
+            <property name="text">
+             <string>Artist Thumbnail</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="artistThumb">
+            <property name="maximumSize">
+             <size>
+              <width>400</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_65">
+            <property name="text">
+             <string>Artist Fanart</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="artistFanart">
+            <property name="maximumSize">
+             <size>
+              <width>400</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_66">
+            <property name="text">
+             <string>Artist Logo</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="artistLogo">
+            <property name="maximumSize">
+             <size>
+              <width>400</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_67">
+            <property name="text">
+             <string>Album Thumbnail</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="albumThumb">
+            <property name="maximumSize">
+             <size>
+              <width>400</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_68">
+            <property name="text">
+             <string>Album Disc Art</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLineEdit" name="albumDiscArt">
+            <property name="maximumSize">
+             <size>
+              <width>400</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_63">
+            <property name="text">
+             <string>Download Extra Fanarts for Artists</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QSpinBox" name="artistExtraFanarts">
+            <property name="maximum">
+             <number>20</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
       <widget class="QWidget" name="page_xbmc">
        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1">
         <item>
          <widget class="QLabel" name="label_7">
           <property name="text">
-           <string>If you want to use the synchronization feature you need to enable the webserver within XBMC (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</string>
+           <string>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</string>
           </property>
           <property name="wordWrap">
            <bool>true</bool>
@@ -1341,6 +1465,129 @@ border: none;</string>
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="page_10">
+       <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="0,1">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_16">
+          <item>
+           <widget class="QListWidget" name="pluginList">
+            <property name="styleSheet">
+             <string notr="true">QListWidget {
+	selection-background-color: rgba(70, 155, 198, 70);
+}</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QPushButton" name="btnInstallPlugin">
+              <property name="text">
+               <string>Install</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnUpdatePlugin">
+              <property name="text">
+               <string>Update</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnUninstallPlugin">
+              <property name="text">
+               <string>Uninstall</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_14" stretch="0,0">
+          <item>
+           <widget class="QLabel" name="pluginsLinux">
+            <property name="text">
+             <string>Installing and updating plugins through MediaElch is currently not supported under Linux. You need to add the ppa or compile plugins on your own.</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QStackedWidget" name="pluginSettings">
+            <property name="currentIndex">
+             <number>2</number>
+            </property>
+            <widget class="QWidget" name="page_noPlugins">
+             <layout class="QHBoxLayout" name="horizontalLayout_7"/>
+            </widget>
+            <widget class="QWidget" name="page_noSettings">
+             <layout class="QHBoxLayout" name="horizontalLayout_8">
+              <item>
+               <widget class="QLabel" name="label_61">
+                <property name="text">
+                 <string>This plugin has no settings.</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="page_notInstalled">
+             <layout class="QVBoxLayout" name="verticalLayout_15">
+              <item>
+               <spacer name="verticalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_62">
+                <property name="text">
+                 <string>This plugin is not installed.</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_3">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
     <item>
@@ -1409,212 +1656,149 @@ border: none;</string>
    <addaction name="actionMovies"/>
    <addaction name="actionTV_Shows"/>
    <addaction name="actionConcerts"/>
+   <addaction name="actionMusic"/>
    <addaction name="actionXBMC"/>
    <addaction name="actionNetwork"/>
    <addaction name="actionExport"/>
    <addaction name="actionImport"/>
+   <addaction name="actionPlugins"/>
   </widget>
   <action name="actionMovies">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/movies.png</normaloff>:/settings/movies.png</iconset>
-   </property>
    <property name="text">
     <string>Movies</string>
-   </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/movies.png</normaloff>:/settings/movies.png</iconset>
-   </property>
-   <property name="iconActive" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/movies_active.png</normaloff>:/settings/movies_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>2</number>
    </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">film</string>
+   </property>
   </action>
   <action name="actionTV_Shows">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/tvshows.png</normaloff>:/settings/tvshows.png</iconset>
-   </property>
    <property name="text">
     <string>TV Shows</string>
-   </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/tvshows.png</normaloff>:/settings/tvshows.png</iconset>
-   </property>
-   <property name="iconActive" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/tvshows_active.png</normaloff>:/settings/tvshows_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>3</number>
    </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">monitor</string>
+   </property>
   </action>
   <action name="actionConcerts">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/concerts.png</normaloff>
-     <normalon>:/img/concerts_menuActive.png</normalon>:/settings/concerts.png</iconset>
-   </property>
    <property name="text">
     <string>Concerts</string>
-   </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/concerts.png</normaloff>:/settings/concerts.png</iconset>
-   </property>
-   <property name="iconActive" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/concerts_active.png</normaloff>:/settings/concerts_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>4</number>
    </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">micro</string>
+   </property>
   </action>
   <action name="actionGlobal">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/global.png</normaloff>:/settings/global.png</iconset>
-   </property>
    <property name="text">
     <string>Global</string>
-   </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/global.png</normaloff>:/settings/global.png</iconset>
-   </property>
-   <property name="iconActive" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/global_active.png</normaloff>:/settings/global_active.png</iconset>
    </property>
    <property name="page" stdset="0">
     <number>0</number>
    </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">tools</string>
+   </property>
   </action>
   <action name="actionXBMC">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/xbmc.png</normaloff>:/settings/xbmc.png</iconset>
-   </property>
    <property name="text">
-    <string>XBMC</string>
-   </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/xbmc.png</normaloff>:/settings/xbmc.png</iconset>
-   </property>
-   <property name="iconActive" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/xbmc_active.png</normaloff>:/settings/xbmc_active.png</iconset>
-   </property>
-   <property name="page" stdset="0">
-    <number>5</number>
-   </property>
-  </action>
-  <action name="actionNetwork">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/network.png</normaloff>:/settings/network.png</iconset>
-   </property>
-   <property name="text">
-    <string>Network</string>
-   </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/network.png</normaloff>:/settings/network.png</iconset>
-   </property>
-   <property name="iconActive" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/network_active.png</normaloff>:/settings/network_active.png</iconset>
+    <string>Kodi</string>
    </property>
    <property name="page" stdset="0">
     <number>6</number>
    </property>
-  </action>
-  <action name="actionScraper">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/scraper.png</normaloff>:/settings/scraper.png</iconset>
-   </property>
-   <property name="text">
-    <string>Scraper</string>
-   </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/scraper.png</normaloff>:/settings/scraper.png</iconset>
-   </property>
-   <property name="iconActive" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/scraper_active.png</normaloff>:/settings/scraper_active.png</iconset>
-   </property>
-   <property name="page" stdset="0">
-    <number>1</number>
+   <property name="iconName" stdset="0">
+    <string notr="true">network</string>
    </property>
   </action>
-  <action name="actionExport">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/export.png</normaloff>:/settings/export.png</iconset>
-   </property>
+  <action name="actionNetwork">
    <property name="text">
-    <string>Export</string>
-   </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/export.png</normaloff>:/settings/export.png</iconset>
-   </property>
-   <property name="iconActive" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/export_active.png</normaloff>:/settings/export_active.png</iconset>
+    <string>Network</string>
    </property>
    <property name="page" stdset="0">
     <number>7</number>
    </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">world</string>
+   </property>
+  </action>
+  <action name="actionScraper">
+   <property name="text">
+    <string>Scraper</string>
+   </property>
+   <property name="page" stdset="0">
+    <number>1</number>
+   </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">search</string>
+   </property>
+  </action>
+  <action name="actionExport">
+   <property name="text">
+    <string>Export</string>
+   </property>
+   <property name="page" stdset="0">
+    <number>8</number>
+   </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">cloud_upload</string>
+   </property>
   </action>
   <action name="actionImport">
-   <property name="icon">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/import.png</normaloff>:/settings/import.png</iconset>
-   </property>
    <property name="text">
     <string>Import</string>
    </property>
    <property name="toolTip">
     <string>Import</string>
    </property>
-   <property name="iconNormal" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/import.png</normaloff>:/settings/import.png</iconset>
+   <property name="page" stdset="0">
+    <number>9</number>
    </property>
-   <property name="iconActive" stdset="0">
-    <iconset resource="../MediaElch.qrc">
-     <normaloff>:/settings/import_active.png</normaloff>:/settings/import_active.png</iconset>
+   <property name="iconName" stdset="0">
+    <string notr="true">download</string>
+   </property>
+  </action>
+  <action name="actionPlugins">
+   <property name="text">
+    <string>Plugins</string>
    </property>
    <property name="page" stdset="0">
-    <number>8</number>
+    <number>10</number>
+   </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">box2</string>
+   </property>
+  </action>
+  <action name="actionMusic">
+   <property name="text">
+    <string>Music</string>
+   </property>
+   <property name="toolTip">
+    <string>Music</string>
+   </property>
+   <property name="page" stdset="0">
+    <number>5</number>
+   </property>
+   <property name="iconName" stdset="0">
+    <string notr="true">music</string>
    </property>
   </action>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>SlidingStackedWidget</class>
-   <extends>QStackedWidget</extends>
-   <header>smallWidgets/SlidingStackedWidget.h</header>
-   <container>1</container>
-  </customwidget>
   <customwidget>
    <class>MessageLabel</class>
    <extends>QLabel</extends>
    <header>smallWidgets/MessageLabel.h</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="../MediaElch.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>actionGlobal</sender>
@@ -1746,6 +1930,38 @@ border: none;</string>
   </connection>
   <connection>
    <sender>actionImport</sender>
+   <signal>triggered()</signal>
+   <receiver>SettingsWindow</receiver>
+   <slot>onAction()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>488</x>
+     <y>312</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionPlugins</sender>
+   <signal>triggered()</signal>
+   <receiver>SettingsWindow</receiver>
+   <slot>onAction()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>488</x>
+     <y>312</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionMusic</sender>
    <signal>triggered()</signal>
    <receiver>SettingsWindow</receiver>
    <slot>onAction()</slot>

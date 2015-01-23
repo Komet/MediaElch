@@ -2,55 +2,22 @@
     <qresource prefix="/">
         <file>img/spinner.gif</file>
         <file>img/film_reel.png</file>
-        <file>img/pattern.png</file>
         <file>img/pictures_alt.png</file>
-        <file>img/delete.png</file>
         <file>img/stop.png</file>
-        <file>img/reload.png</file>
         <file>img/magnifier.png</file>
         <file>img/pattern_dark.png</file>
-        <file>img/minus.png</file>
-        <file>img/plus.png</file>
         <file>img/save.png</file>
         <file>img/arrow_circle_right.png</file>
-        <file>img/warning1.png</file>
-        <file>img/gear.png</file>
         <file>img/info.png</file>
         <file>img/spanner.png</file>
-        <file>img/pattern2.png</file>
-        <file>img/folder_in.png</file>
-        <file>img/display_off.png</file>
-        <file>img/display_on.png</file>
-        <file>img/video.png</file>
-        <file>img/display_on_menu.png</file>
-        <file>img/display_on_menuActive.png</file>
-        <file>img/spanner_menu.png</file>
-        <file>img/spanner_menuActive.png</file>
-        <file>img/video_menu.png</file>
-        <file>img/video_menuActive.png</file>
         <file>img/storage.png</file>
         <file>img/zoom_in.png</file>
         <file>img/zoom_out.png</file>
-        <file>img/pictures_alt_small.png</file>
         <file>img/man.png</file>
-        <file>img/book_menu.png</file>
-        <file>img/book_menuActive.png</file>
-        <file>img/movieSets_menu.png</file>
-        <file>img/movieSets_menuActive.png</file>
-        <file>img/star_24.png</file>
         <file>img/arrow_circle_left.png</file>
-        <file>img/concerts_menu.png</file>
-        <file>img/concerts_menuActive.png</file>
-        <file>img/genre_menu.png</file>
-        <file>img/genre_menuActive.png</file>
-        <file>img/certification2_menu.png</file>
-        <file>img/certification2_menuActive.png</file>
         <file>img/btn_donate_LG.gif</file>
-        <file>img/star.png</file>
         <file>img/inbox.png</file>
         <file>img/MediaElch.png</file>
-        <file>img/xbmc.png</file>
-        <file>img/sync.png</file>
         <file>img/video_pause_64.png</file>
         <file>img/video_play_64.png</file>
         <file>img/checkmark_white_64.png</file>
@@ -62,11 +29,8 @@
         <file>img/folder_64.png</file>
         <file>img/pencil.png</file>
         <file>img/export.png</file>
-        <file>img/reload_white.png</file>
         <file>img/star_blue.png</file>
         <file>img/reload_orange.png</file>
-        <file>img/downloads_menu.png</file>
-        <file>img/downloads_menuActive.png</file>
         <file>img/lock_white.png</file>
         <file>img/stop_white.png</file>
         <file>img/trash_white.png</file>
@@ -82,6 +46,7 @@
         <file>img/plus_white.png</file>
         <file>img/disc_64.png</file>
         <file>img/inbox_64.png</file>
+        <file>fonts/Pe-icon-7-stroke.ttf</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>
@@ -116,6 +81,7 @@
         <file alias="codec/flv">mediaFlags/codec/flv.png</file>
         <file alias="codec/h264">mediaFlags/codec/h264.png</file>
         <file alias="codec/xvid">mediaFlags/codec/xvid.png</file>
+        <file alias="audio/dtshdhra">mediaFlags/audio/dtshdhra.png</file>
     </qresource>
     <qresource prefix="/mediaStatus">
         <file alias="actors/green">img/mediaStatus/actors_green.png</file>
@@ -143,27 +109,5 @@
         <file alias="logo/red">img/mediaStatus/logo_red.png</file>
         <file alias="thumb/green">img/mediaStatus/thumb_green.png</file>
         <file alias="thumb/red">img/mediaStatus/thumb_red.png</file>
-    </qresource>
-    <qresource prefix="/settings">
-        <file alias="export.png">img/settings/export.png</file>
-        <file alias="global.png">img/settings/global.png</file>
-        <file alias="movies.png">img/settings/movies.png</file>
-        <file alias="network.png">img/settings/network.png</file>
-        <file alias="scraper.png">img/settings/scraper.png</file>
-        <file alias="tvshows.png">img/settings/tvshows.png</file>
-        <file alias="xbmc.png">img/settings/xbmc.png</file>
-        <file alias="concerts.png">img/settings/concerts.png</file>
-        <file alias="concerts_active.png">img/settings/concerts_active.png</file>
-        <file alias="export_active.png">img/settings/export_active.png</file>
-        <file alias="global_active.png">img/settings/global_active.png</file>
-        <file alias="movies_active.png">img/settings/movies_active.png</file>
-        <file alias="network_active.png">img/settings/network_active.png</file>
-        <file alias="scraper_active.png">img/settings/scraper_active.png</file>
-        <file alias="tvshows_active.png">img/settings/tvshows_active.png</file>
-        <file alias="xbmc_active.png">img/settings/xbmc_active.png</file>
-        <file alias="downloads_active.png">img/settings/downloads_active.png</file>
-        <file alias="downloads.png">img/settings/downloads.png</file>
-        <file alias="import_active.png">img/settings/import_active.png</file>
-        <file alias="import.png">img/settings/import.png</file>
     </qresource>
 </RCC>

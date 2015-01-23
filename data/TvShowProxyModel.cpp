@@ -95,8 +95,17 @@ bool TvShowProxyModel::hasAcceptedChildren(int source_row, const QModelIndex &so
  */
 bool TvShowProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    int cmp = QString::localeAwareCompare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString());
-    return !(cmp < 0);
+    TvShowModel *model = static_cast<TvShowModel*>(sourceModel());
+    TvShowModelItem *leftItem = model->getItem(left);
+    TvShowModelItem *rightItem = model->getItem(right);
+
+    if (leftItem->type() == rightItem->type() && leftItem->type() == TypeSeason)
+        return leftItem->seasonNumber() > rightItem->seasonNumber();
+
+    if (leftItem->type() == rightItem->type() && leftItem->type() == TypeEpisode)
+        return leftItem->tvShowEpisode()->episode() > rightItem->tvShowEpisode()->episode();
+
+    return (QString::localeAwareCompare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString()) >= 0);
 }
 
 /**

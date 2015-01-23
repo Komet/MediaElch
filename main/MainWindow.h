@@ -4,12 +4,14 @@
 #include <QLabel>
 #include <QMainWindow>
 #include <QProgressBar>
+#include <QToolButton>
 #include "globals/Filter.h"
 #include "globals/Globals.h"
 #include "data/MovieFileSearcher.h"
 #include "export/ExportDialog.h"
 #include "main/AboutDialog.h"
 #include "main/FileScannerDialog.h"
+#include "plugins/PluginInterface.h"
 #include "renamer/Renamer.h"
 #include "settings/Settings.h"
 #include "settings/SettingsWindow.h"
@@ -43,14 +45,7 @@ private slots:
     void progressProgress(int current, int max, int id);
     void progressFinished(int id);
     void progressStarted(QString msg, int id);
-    void onMenu(MainWidgets widget);
-    void onMenuMovies();
-    void onMenuMovieSets();
-    void onMenuTvShows();
-    void onMenuConcerts();
-    void onMenuGenres();
-    void onMenuCertifications();
-    void onMenuDownloads();
+    void onMenu(QToolButton *button = 0);
     void onActionSearch();
     void onActionSave();
     void onActionSaveAll();
@@ -66,9 +61,9 @@ private slots:
     void onFilesRenamed(Renamer::RenameType type = Renamer::TypeAll);
     void onRenewModels();
     void onJumpToMovie(Movie *movie);
-    void setNewMarkForImports(bool hasItems);
-    void onNewVersion(QString version);
     void updateTvShows();
+    void onAddPlugin(PluginInterface *plugin);
+    void onRemovePlugin(PluginInterface *plugin);
 
 private:
     Ui::MainWindow *ui;
@@ -94,7 +89,11 @@ private:
     QMap<MainWidgets, QMap<MainActions, bool> > m_actions;
     QMap<MainWidgets, QIcon> m_icons;
     static MainWindow *m_instance;
+    QMap<int, PluginInterface*> m_plugins;
+    QColor m_buttonColor;
+    QColor m_buttonActiveColor;
     void setupToolbar();
+    void setIcons(QToolButton *button);
 };
 
 #endif // MAINWINDOW_H

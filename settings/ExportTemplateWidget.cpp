@@ -2,6 +2,7 @@
 #include "ui_ExportTemplateWidget.h"
 
 #include "export/ExportTemplateLoader.h"
+#include "globals/Helper.h"
 
 ExportTemplateWidget::ExportTemplateWidget(QWidget *parent) :
     QWidget(parent),
@@ -30,13 +31,13 @@ void ExportTemplateWidget::setExportTemplate(ExportTemplate *exportTemplate)
 
     if (exportTemplate->updateAvailable()) {
         ui->btnInstall->setText(tr("Update"));
-        ui->btnInstall->setButtonStyle(StyledPushButton::StyleYellow);
+        Helper::instance()->setButtonStyle(ui->btnInstall, Helper::ButtonWarning);
     } else if (exportTemplate->isInstalled()) {
         ui->btnInstall->setText(tr("Uninstall"));
-        ui->btnInstall->setButtonStyle(StyledPushButton::StyleRed);
+        Helper::instance()->setButtonStyle(ui->btnInstall, Helper::ButtonDanger);
     } else if (exportTemplate->isRemote()) {
         ui->btnInstall->setText(tr("Install"));
-        ui->btnInstall->setButtonStyle(StyledPushButton::StyleGreen);
+        Helper::instance()->setButtonStyle(ui->btnInstall, Helper::ButtonSuccess);
     }
 }
 

@@ -14,9 +14,6 @@ public:
 public slots:
     void checkForUpdate();
 
-signals:
-    void sigNewVersion(QString);
-
 private slots:
     void onCheckFinished();
 

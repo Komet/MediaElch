@@ -138,7 +138,7 @@ void XbmcSync::startSync()
     }
 
     if (Settings::instance()->xbmcHost().isEmpty() || Settings::instance()->xbmcPort() == 0) {
-        ui->status->setText(tr("Please fill in your XBMC host and port."));
+        ui->status->setText(tr("Please fill in your Kodi host and port."));
         return;
     }
 
@@ -226,7 +226,7 @@ void XbmcSync::startSync()
     if (m_moviesToSync.isEmpty() && m_concertsToSync.isEmpty() && m_tvShowsToSync.isEmpty() && m_episodesToSync.isEmpty()) {
         QTimer::singleShot(m_reloadTimeOut, this, SLOT(triggerReload()));
     } else {
-        ui->status->setText(tr("Getting contents from XBMC"));
+        ui->status->setText(tr("Getting contents from Kodi"));
         ui->buttonSync->setEnabled(false);
     }
 }
@@ -527,7 +527,7 @@ void XbmcSync::triggerReload()
 
 void XbmcSync::onScanFinished()
 {
-    ui->status->setText(tr("Finished. XBMC is now loading your updated items."));
+    ui->status->setText(tr("Finished. Kodi is now loading your updated items."));
     ui->buttonSync->setEnabled(true);
 }
 
@@ -551,7 +551,7 @@ void XbmcSync::triggerClean()
 
 void XbmcSync::onCleanFinished()
 {
-    ui->status->setText(tr("Finished. XBMC is now cleaning your database."));
+    ui->status->setText(tr("Finished. Kodi is now cleaning your database."));
     ui->buttonSync->setEnabled(true);
 }
 

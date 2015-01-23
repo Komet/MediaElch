@@ -53,7 +53,7 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
 
     TvShowModelItem *item = getItem(index);
     if (role == Qt::DisplayRole) {
-        return Helper::appendArticle(item->data(0).toString());
+        return Helper::instance()->appendArticle(item->data(0).toString());
     } else if (role == Qt::DecorationRole) {
         // new episodes or sync needed
         if (item->data(3).toBool())
@@ -106,6 +106,9 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
         return item->data(109);
     } else if (role == TvShowRoles::LogoPath) {
         return item->data(110);
+    } else if (role == TvShowRoles::FilePath && item->type() == TypeEpisode) {
+        if (!item->tvShowEpisode()->files().isEmpty())
+            return item->tvShowEpisode()->files().first();
     }
     return QVariant();
 }
@@ -261,17 +264,18 @@ QList<TvShow*> TvShowModel::tvShows()
  * @brief Checks if there are new shows or episodes (shows or episodes where infoLoaded is false)
  * @return True if there are new shows or episodes
  */
-bool TvShowModel::hasNewShowOrEpisode()
+int TvShowModel::hasNewShowOrEpisode()
 {
+    int newShows = 0;
     foreach (TvShow *show, tvShows()) {
         if (!show->infoLoaded())
-            return true;
+            newShows++;
         foreach (TvShowEpisode *episode, show->episodes()) {
             if (!episode->infoLoaded())
-                return true;
+                newShows++;
         }
     }
-    return false;
+    return newShows;
 }
 
 /**

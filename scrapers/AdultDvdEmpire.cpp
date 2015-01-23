@@ -55,7 +55,7 @@ QNetworkAccessManager *AdultDvdEmpire::qnam()
 void AdultDvdEmpire::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QUrl url(QString("http://www.adultdvdempire.com/allsearch/search?q=%1").arg(encodedSearch));
+    QUrl url(QString("http://www.adultdvdempire.com/dvd/search?q=%1").arg(encodedSearch));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
 }
@@ -97,7 +97,7 @@ QList<ScraperSearchResult> AdultDvdEmpire::parseSearch(QString html)
 void AdultDvdEmpire::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<int> infos)
 {
     movie->clear(infos);
-    QUrl url(QString("http://www.adultdvdempire.com/general/%1").arg(ids.values().first()));
+    QUrl url(QString("http://www.adultdvdempire.com/%1").arg(ids.values().first()));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
