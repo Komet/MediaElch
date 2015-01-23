@@ -4054,7 +4054,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="296"/>
         <source>Year</source>
-        <translation>VuosiVuosi</translation>
+        <translation>Vuosi</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="309"/>
@@ -4207,7 +4207,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="260"/>
         <source>Year</source>
-        <translation>VuosiVuosi</translation>
+        <translation>Vuosi</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="270"/>
@@ -4341,7 +4341,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="221"/>
         <source>Year</source>
-        <translation>VuosiVuosi</translation>
+        <translation>Vuosi</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="228"/>
@@ -4497,7 +4497,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="337"/>
         <source>Year</source>
-        <translation>VuosiVuosi</translation>
+        <translation>Vuosi</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="347"/>
@@ -5140,7 +5140,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="425"/>
         <source>Year</source>
-        <translation>VuosiVuosi</translation>
+        <translation>Vuosi</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="448"/>
