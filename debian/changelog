@@ -1,3 +1,41 @@
+mediaelch (2.2-1) trusty; urgency=low
+
+  * Fanart.tv: Add support for personal API keys
+  * Support for music libraries
+  * Detect 3D movies from streamdetails
+  * Export: Add movie filename and path
+  * Fanart.tv: Use API v3
+  * Save last used path when selecting actor images
+  * Renamer: Add more options
+  * Play movie/episode/concert on double click
+  * Fanart.tv: Add support for season posters
+  * NFO: Correctly save multiple entries
+  * Fanart.tv: Add support for tv show posters
+  * Rename XBMC to KODI
+  * Add icon for DTS-HD HR
+  * Use icon font for navbar items
+  * IMDB Scraper: Problems with html tags
+  * Open Movie Folder not working on smb shares
+  * TMDB: Sometimes no results are found
+  * MovieMaze Scraper broken
+  * List widgets are not resized when resizing main window
+  * Adult DVD Empire sometimes loads no data
+  * IMDB: Multiple directors and writers are not scraped
+  * OSX: Popup window positions are offset (Qt Bug)
+  * Several issues in set manager
+  * Stream details are not detected when filename contains special characters
+  * IMDB Scraper: Genres, Country, Actors sometimes not correctly scraped
+  * IMDB: Posters not scraped
+  * TV Shows ordered wrong when episode number >= 100
+  * IMDB: Just small actor images are scraped
+  * IMDB: Outline sometimes not scraped
+  * Renaming: TV Show directories are always renamed
+  * IMDB: Release date, director and writer not detected
+  * New marks stay visible after saving last new item
+  * MovieMaze: Scraper broken
+
+ -- Daniel Kabel <daniel.kabel@me.com>  Fri, 23 Jan 2015 14:42:26 +0100
+
 mediaelch (2.1.3-1) trusty; urgency=low
 
   * Update package for Trusty
