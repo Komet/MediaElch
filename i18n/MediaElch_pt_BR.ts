@@ -3984,7 +3984,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="120"/>
         <source>Disbanded</source>
-        <translation type="unfinished"/>
+        <translation>Debandou</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="133"/>
@@ -3999,7 +3999,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="159"/>
         <source>Cover</source>
-        <translation type="unfinished"/>
+        <translation>Capa</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="172"/>
@@ -4059,7 +4059,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="309"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Avaliação</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="322"/>
@@ -4084,12 +4084,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="396"/>
         <source>Scrape all albums of selected artists (and not only selected albums)</source>
-        <translation type="unfinished"/>
+        <translation>Escrapear todos os álbuns do artista selecionado (e não somente os álbuns selecionados)</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="403"/>
         <source>Automatically save each artist and album after scraping</source>
-        <translation type="unfinished"/>
+        <translation>Automaticamente salvar após escrapear artista e álbum</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="450"/>
@@ -4109,7 +4109,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message numerus="yes">
         <location filename="../music/MusicMultiScrapeDialog.cpp" line="200"/>
         <source>Scraping of %n items has finished.</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Busca de metados de %n itens foi finalizado.</numerusform><numerusform>Busca de metados de %n itens foi finalizado.</numerusform></translation>
     </message>
 </context>
 <context>
@@ -4172,7 +4172,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="190"/>
         <source>Disbanded</source>
-        <translation type="unfinished"/>
+        <translation>Debandou</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="200"/>
@@ -4202,7 +4202,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="250"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Avaliação</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="260"/>
@@ -4262,7 +4262,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="370"/>
         <source>Cover</source>
-        <translation type="unfinished"/>
+        <translation>Capa</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="380"/>
@@ -4288,12 +4288,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicWidget.cpp" line="114"/>
         <source>Saving changed Artists and Albums</source>
-        <translation type="unfinished"/>
+        <translation>Salvando alterações em Artistas e Álbuns</translation>
     </message>
     <message>
         <location filename="../music/MusicWidget.cpp" line="130"/>
         <source>All Artists and Albums Saved</source>
-        <translation type="unfinished"/>
+        <translation>Todos os Artistas e Álbuns Salvos</translation>
     </message>
 </context>
 <context>
@@ -4301,12 +4301,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="63"/>
         <source>Album has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Álbum foi alterando, Clique para reverter tais alterações.</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="96"/>
         <source>Album Name</source>
-        <translation type="unfinished"/>
+        <translation>Nome do Álbum</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="138"/>
@@ -4351,7 +4351,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="235"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Avaliação</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="278"/>
@@ -4362,7 +4362,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
         <location filename="../music/MusicWidgetAlbum.ui" line="364"/>
         <location filename="../music/MusicWidgetAlbum.ui" line="404"/>
         <source>Cover</source>
-        <translation type="unfinished"/>
+        <translation>Capa</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="386"/>
@@ -4427,7 +4427,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="63"/>
         <source>Artist has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Artista foi alterado. Clique para reverter tais alterações.</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="96"/>
@@ -4462,12 +4462,12 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="221"/>
         <source>Years active</source>
-        <translation type="unfinished"/>
+        <translation>Anos em atividade</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="228"/>
         <source>Disbanded</source>
-        <translation type="unfinished"/>
+        <translation>Debandou</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="235"/>
@@ -4911,7 +4911,11 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="171"/>
@@ -4931,7 +4935,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="26"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
-        <translation type="unfinished"/>
+        <translation>Por favor veja %1 para ajuda e exemplos de como usar o renomeador.</translation>
     </message>
     <message numerus="yes">
         <location filename="../renamer/Renamer.cpp" line="41"/>
@@ -5160,17 +5164,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="562"/>
         <source>Resolution (1080p, 720p, ...)</source>
-        <translation type="unfinished"/>
+        <translation>Resolução (1080p, 720p, ...)</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="576"/>
         <source>File/directory is BluRay</source>
-        <translation type="unfinished"/>
+        <translation>Arquivo/diretório é BluRay</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="589"/>
         <source>File/directory is DVD</source>
-        <translation type="unfinished"/>
+        <translation>Arquivo/diretório é DVD</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="602"/>
@@ -5180,12 +5184,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="616"/>
         <source>Movie set name</source>
-        <translation type="unfinished"/>
+        <translation>Nome da Coletânea do Filme</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="628"/>
         <source>IMDB Id</source>
-        <translation type="unfinished"/>
+        <translation>IMDB Id</translation>
     </message>
 </context>
 <context>
@@ -5391,7 +5395,9 @@ p, li { white-space: pre-wrap; }
         <source>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.
 The directories containg your music must contain subdirectories for each artist which contain directories of albums.</source>
-        <translation type="unfinished"/>
+        <translation>Adicione um ou mais diretórios contendo seus filmes, seriados, concertos, músicas ou arquivos por importar.
+Episódios de seriados devem estar localizados em subdiretórios com o nome do seriado.
+Os diretórios contendo suas músicas devem contem subdiretórios para cada artista com seus respectivos álbuns em subpastas.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="256"/>
@@ -5602,42 +5608,42 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1076"/>
         <source>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation type="unfinished"/>
+        <translation>Abaixo você vê os nomes de arquivos que são usados ​​para carregar e salvar seus artistas e álbuns. Você pode editá-los como quiser, se você quiser usar múltiplos arquivos use a vírgula para separá-los.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1091"/>
         <source>Artist Thumbnail</source>
-        <translation type="unfinished"/>
+        <translation>Miniatura do Artista</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1108"/>
         <source>Artist Fanart</source>
-        <translation type="unfinished"/>
+        <translation>Fanart do Artista</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1125"/>
         <source>Artist Logo</source>
-        <translation type="unfinished"/>
+        <translation>Logo do Artista</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1142"/>
         <source>Album Thumbnail</source>
-        <translation type="unfinished"/>
+        <translation>Miniatura do Álbum</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1159"/>
         <source>Album Disc Art</source>
-        <translation type="unfinished"/>
+        <translation>Arte de Disco do Álbum</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1176"/>
         <source>Download Extra Fanarts for Artists</source>
-        <translation type="unfinished"/>
+        <translation>Transferir Extrafanarts para Artistas</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1196"/>
         <source>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
-        <translation type="unfinished"/>
+        <translation>se você deseja usar o recurso de sincronização você deve antes ativer o webserver dentro do XBMC. (Ajustes -&gt;Rede -&gt;Webserver). Entre a porta do webserver aqui (usualmente 80 ou 8080).</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1232"/>
@@ -5682,7 +5688,7 @@ The directories containg your music must contain subdirectories for each artist 
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1712"/>
         <source>Kodi</source>
-        <translation type="unfinished"/>
+        <translation>Kodi</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1756"/>
@@ -7693,17 +7699,17 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="41"/>
         <source>The Audio DB</source>
-        <translation type="unfinished"/>
+        <translation>The Audio DB</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="42"/>
         <source>AllMusic</source>
-        <translation type="unfinished"/>
+        <translation>AllMusic</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="43"/>
         <source>Discogs</source>
-        <translation type="unfinished"/>
+        <translation>Discogs</translation>
     </message>
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="45"/>
@@ -7713,7 +7719,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../scrapers/UniversalMusicScraper.cpp" line="47"/>
         <source>Prefer</source>
-        <translation type="unfinished"/>
+        <translation>Preferir</translation>
     </message>
 </context>
 <context>
@@ -7797,32 +7803,32 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="17"/>
         <source>Kodi Synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Kodi Sincronização</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="26"/>
         <source>Please make sure you have setup your sources in Kodi and that the webserver is enabled (Kodi -&gt; Settings -&gt; Services -&gt; Webserver).</source>
-        <translation type="unfinished"/>
+        <translation>Por favor, certifique-se que você configurou suas fontes no Kodi e que seu webserver está habilitado (Kodi-&gt;Ajustes-&gt;Serviços-&gt;Webserver)</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="46"/>
         <source>This will tell Kodi to remove the changed movies, concerts or shows. Afterwards a Kodi library update is triggered and the removed items will be picked up again.</source>
-        <translation type="unfinished"/>
+        <translation>Isto dirá ao Kodi para remover filmes, concertos ou shows com alterações. Logo após o Kodi irá disparar uma atualização e os itens removidos serão coletados e reinseridos novamente.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="56"/>
         <source>Remove non-existent items from Kodis database (Clean library)</source>
-        <translation type="unfinished"/>
+        <translation>Remover itens não existentes da base de dados do Kodi (Limpar Coleção)</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="63"/>
         <source>Kodi will remove not longer existing items from your database.</source>
-        <translation type="unfinished"/>
+        <translation>Kodi irá remover itens não localizados de seu banco de dados.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="77"/>
         <source>The fields last played and playcount will be retrieved from Kodi.</source>
-        <translation type="unfinished"/>
+        <translation>Os campos última reprodução e contador de reprodução virão do Kodi.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.ui" line="108"/>
@@ -7843,12 +7849,12 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="141"/>
         <source>Please fill in your Kodi host and port.</source>
-        <translation type="unfinished"/>
+        <translation>Por favor preencha com seu Kodi host e porta.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="229"/>
         <source>Getting contents from Kodi</source>
-        <translation type="unfinished"/>
+        <translation>Obtendo conteúdos do Kodi</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="244"/>
@@ -7886,12 +7892,12 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="530"/>
         <source>Finished. Kodi is now loading your updated items.</source>
-        <translation type="unfinished"/>
+        <translation>Finalizado. Kodi está carregando agora seus itens atualizados.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="554"/>
         <source>Finished. Kodi is now cleaning your database.</source>
-        <translation type="unfinished"/>
+        <translation>Finalizado. Kodi está agora limpando seu banco de dados.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="595"/>
