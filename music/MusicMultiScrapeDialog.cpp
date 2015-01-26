@@ -198,6 +198,7 @@ void MusicMultiScrapeDialog::onScrapingFinished()
 {
     ui->itemCounter->setVisible(false);
     ui->itemName->setText(tr("Scraping of %n items has finished.", "", ui->progressAll->maximum()));
+    ui->progressItem->setValue(ui->progressItem->maximum());
     ui->progressAll->setValue(ui->progressAll->maximum());
     ui->btnCancel->setVisible(false);
     ui->btnClose->setVisible(true);
