@@ -789,5 +789,5 @@ QString Helper::matchResolution(int width, int height)
         return "540p";
     if (height >= 480)
         return "480p";
-    return "";
+    return "SD";
 }
