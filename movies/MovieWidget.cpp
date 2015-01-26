@@ -670,7 +670,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoDuration->blockSignals(true);
     ui->videoWidth->blockSignals(true);
     ui->videoHeight->blockSignals(true);
-    ui->streamDetails->blockSignals(true);
+    ui->stereoMode->blockSignals(true);
 
     if (reloadFromFile)
         m_movie->controller()->loadStreamDetailsFromFile();
@@ -759,7 +759,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoDuration->blockSignals(false);
     ui->videoWidth->blockSignals(false);
     ui->videoHeight->blockSignals(false);
-    ui->streamDetails->blockSignals(false);
+    ui->stereoMode->blockSignals(false);
 }
 
 /**
