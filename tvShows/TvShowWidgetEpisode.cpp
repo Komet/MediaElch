@@ -439,7 +439,7 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
     int audioTracks = streamDetails->audioDetails().count();
     for (int i=0 ; i<audioTracks ; ++i) {
         QLabel *label = new QLabel(tr("Track %1").arg(i+1));
-        ui->streamDetails->addWidget(label, 7+i, 0);
+        ui->streamDetails->addWidget(label, 8+i, 0);
         QLineEdit *edit1 = new QLineEdit(streamDetails->audioDetails().at(i).value("language"));
         QLineEdit *edit2 = new QLineEdit(streamDetails->audioDetails().at(i).value("codec"));
         QLineEdit *edit3 = new QLineEdit(streamDetails->audioDetails().at(i).value("channels"));
@@ -455,7 +455,7 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
         layout->addWidget(edit2);
         layout->addWidget(edit3);
         layout->addStretch(10);
-        ui->streamDetails->addLayout(layout, 7+i, 1);
+        ui->streamDetails->addLayout(layout, 8+i, 1);
         m_streamDetailsWidgets << label << edit1 << edit2 << edit3;
         m_streamDetailsAudio << (QList<QLineEdit*>() << edit1 << edit2 << edit3);
         connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
@@ -465,22 +465,22 @@ void TvShowWidgetEpisode::updateStreamDetails(bool reloadFromFile)
 
     if (!streamDetails->subtitleDetails().isEmpty()) {
         QLabel *label = new QLabel(tr("Subtitles"));
-        QFont font = label->font();
+        QFont font = ui->labelStreamDetailsAudio->font();
         font.setBold(true);
         label->setFont(font);
-        ui->streamDetails->addWidget(label, 7+audioTracks, 0);
+        ui->streamDetails->addWidget(label, 8+audioTracks, 0);
         m_streamDetailsWidgets << label;
 
         for (int i=0, n=streamDetails->subtitleDetails().count() ; i<n ; ++i) {
             QLabel *label = new QLabel(tr("Track %1").arg(i+1));
-            ui->streamDetails->addWidget(label, 8+audioTracks+i, 0);
+            ui->streamDetails->addWidget(label, 9+audioTracks+i, 0);
             QLineEdit *edit1 = new QLineEdit(streamDetails->subtitleDetails().at(i).value("language"));
             edit1->setToolTip(tr("Language"));
             edit1->setPlaceholderText(tr("Language"));
             QHBoxLayout *layout = new QHBoxLayout();
             layout->addWidget(edit1);
             layout->addStretch(10);
-            ui->streamDetails->addLayout(layout, 8+audioTracks+i, 1);
+            ui->streamDetails->addLayout(layout, 9+audioTracks+i, 1);
             m_streamDetailsWidgets << label << edit1;
             m_streamDetailsSubtitles << (QList<QLineEdit*>() << edit1);
             connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));

@@ -916,6 +916,12 @@
               </item>
               <item row="7" column="0">
                <widget class="QLabel" name="labelStreamDetailsAudio">
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Audio</string>
                 </property>
