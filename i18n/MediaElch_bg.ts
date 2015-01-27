@@ -3694,101 +3694,101 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>Вид сканиране</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1010"/>
-        <location filename="../movies/MovieWidget.cpp" line="710"/>
-        <location filename="../movies/MovieWidget.cpp" line="713"/>
+        <location filename="../movies/MovieWidget.ui" line="1016"/>
+        <location filename="../movies/MovieWidget.cpp" line="711"/>
+        <location filename="../movies/MovieWidget.cpp" line="714"/>
         <source>Codec</source>
         <translation>Кодек</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="978"/>
+        <location filename="../movies/MovieWidget.ui" line="984"/>
         <source>x</source>
         <translation>x</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="920"/>
+        <location filename="../movies/MovieWidget.ui" line="926"/>
         <source>Audio</source>
         <translation>Аудио</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="930"/>
+        <location filename="../movies/MovieWidget.ui" line="936"/>
         <source>Video</source>
         <translation>Видео</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="956"/>
+        <location filename="../movies/MovieWidget.ui" line="962"/>
         <source>Duration</source>
         <translation>Времетраене</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="949"/>
+        <location filename="../movies/MovieWidget.ui" line="955"/>
         <source>HH:mm:ss</source>
         <translation>чч:мм:сс</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1020"/>
+        <location filename="../movies/MovieWidget.ui" line="1026"/>
         <source>Stereo Mode</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1041"/>
+        <location filename="../movies/MovieWidget.ui" line="1047"/>
         <source>Reload from File</source>
         <translation>Обнови от файл</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1259"/>
-        <location filename="../movies/MovieWidget.ui" line="1299"/>
+        <location filename="../movies/MovieWidget.ui" line="1265"/>
+        <location filename="../movies/MovieWidget.ui" line="1305"/>
         <source>Poster</source>
         <translation>Постер</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1281"/>
-        <location filename="../movies/MovieWidget.ui" line="1331"/>
-        <location filename="../movies/MovieWidget.ui" line="1381"/>
-        <location filename="../movies/MovieWidget.ui" line="1457"/>
-        <location filename="../movies/MovieWidget.ui" line="1507"/>
-        <location filename="../movies/MovieWidget.ui" line="1557"/>
-        <location filename="../movies/MovieWidget.ui" line="1607"/>
+        <location filename="../movies/MovieWidget.ui" line="1287"/>
+        <location filename="../movies/MovieWidget.ui" line="1337"/>
+        <location filename="../movies/MovieWidget.ui" line="1387"/>
+        <location filename="../movies/MovieWidget.ui" line="1463"/>
+        <location filename="../movies/MovieWidget.ui" line="1513"/>
+        <location filename="../movies/MovieWidget.ui" line="1563"/>
+        <location filename="../movies/MovieWidget.ui" line="1613"/>
         <source>Click to Change</source>
         <translation>Кликни за промяна</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1309"/>
-        <location filename="../movies/MovieWidget.ui" line="1349"/>
+        <location filename="../movies/MovieWidget.ui" line="1315"/>
+        <location filename="../movies/MovieWidget.ui" line="1355"/>
         <source>Fanart</source>
         <translation>Фанарт</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1359"/>
-        <location filename="../movies/MovieWidget.ui" line="1396"/>
+        <location filename="../movies/MovieWidget.ui" line="1365"/>
+        <location filename="../movies/MovieWidget.ui" line="1402"/>
         <source>Thumb</source>
         <translation>Миниатюра</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1435"/>
-        <location filename="../movies/MovieWidget.ui" line="1475"/>
+        <location filename="../movies/MovieWidget.ui" line="1441"/>
+        <location filename="../movies/MovieWidget.ui" line="1481"/>
         <source>Logo</source>
         <translation>Лого</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1485"/>
-        <location filename="../movies/MovieWidget.ui" line="1525"/>
+        <location filename="../movies/MovieWidget.ui" line="1491"/>
+        <location filename="../movies/MovieWidget.ui" line="1531"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1535"/>
+        <location filename="../movies/MovieWidget.ui" line="1541"/>
         <source>Disc Art</source>
         <translation>Диск лейбъл</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1575"/>
+        <location filename="../movies/MovieWidget.ui" line="1581"/>
         <source>CD Art</source>
         <translation>CD лейбъл</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1585"/>
-        <location filename="../movies/MovieWidget.ui" line="1622"/>
+        <location filename="../movies/MovieWidget.ui" line="1591"/>
+        <location filename="../movies/MovieWidget.ui" line="1628"/>
         <source>Banner</source>
         <translation>Банер</translation>
     </message>
@@ -3839,66 +3839,66 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     </message>
     <message>
         <location filename="../movies/MovieWidget.cpp" line="703"/>
-        <location filename="../movies/MovieWidget.cpp" line="737"/>
+        <location filename="../movies/MovieWidget.cpp" line="739"/>
         <source>Track %1</source>
         <translation>Аудио запис %1</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="709"/>
-        <location filename="../movies/MovieWidget.cpp" line="712"/>
-        <location filename="../movies/MovieWidget.cpp" line="740"/>
-        <location filename="../movies/MovieWidget.cpp" line="741"/>
+        <location filename="../movies/MovieWidget.cpp" line="710"/>
+        <location filename="../movies/MovieWidget.cpp" line="713"/>
+        <location filename="../movies/MovieWidget.cpp" line="743"/>
+        <location filename="../movies/MovieWidget.cpp" line="744"/>
         <source>Language</source>
         <translation>Език</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="711"/>
-        <location filename="../movies/MovieWidget.cpp" line="714"/>
+        <location filename="../movies/MovieWidget.cpp" line="712"/>
+        <location filename="../movies/MovieWidget.cpp" line="715"/>
         <source>Channels</source>
         <translation>Канали</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="729"/>
+        <location filename="../movies/MovieWidget.cpp" line="730"/>
         <source>Subtitles</source>
         <translation>Субтитри</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="792"/>
+        <location filename="../movies/MovieWidget.cpp" line="795"/>
         <source>Saving movie...</source>
         <translation>Съхраняване на филма...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="800"/>
+        <location filename="../movies/MovieWidget.cpp" line="803"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; бе съхранен</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="820"/>
+        <location filename="../movies/MovieWidget.cpp" line="823"/>
         <source>Saving movies...</source>
         <translation>Съхраняване на филми...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="836"/>
+        <location filename="../movies/MovieWidget.cpp" line="839"/>
         <source>All Movies Saved</source>
         <translation>Всички филми са съхранени</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="858"/>
+        <location filename="../movies/MovieWidget.cpp" line="861"/>
         <source>Unknown Actor</source>
         <translation>Неизвестен актьор</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="859"/>
+        <location filename="../movies/MovieWidget.cpp" line="862"/>
         <source>Unknown Role</source>
         <translation>Неизвестна роля</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="998"/>
+        <location filename="../movies/MovieWidget.cpp" line="1001"/>
         <source>Choose Image</source>
         <translation>Изберете изображение</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="998"/>
+        <location filename="../movies/MovieWidget.cpp" line="1001"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Изображения (*.jpg *.jpeg)</translation>
     </message>
