@@ -64,7 +64,7 @@ Settings::Settings(QObject *parent) :
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ArtistFanart, "fanart.jpg", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ArtistLogo, "logo.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::ArtistThumb, "folder.jpg", 0));
-    m_initialDataFilesFrodo.append(DataFile(DataFileType::AlbumCdArt, "disc.png", 0));
+    m_initialDataFilesFrodo.append(DataFile(DataFileType::AlbumCdArt, "cdart.png", 0));
     m_initialDataFilesFrodo.append(DataFile(DataFileType::AlbumThumb, "folder.jpg", 0));
 }
 
