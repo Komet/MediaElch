@@ -55,11 +55,11 @@
         <file alias="aspect/1.85">mediaFlags/aspect/1.85.png</file>
         <file alias="aspect/2.35">mediaFlags/aspect/2.35.png</file>
         <file alias="aspect/2.39">mediaFlags/aspect/2.39.png</file>
-        <file alias="resolution/480">mediaFlags/resolution/480.png</file>
-        <file alias="resolution/540">mediaFlags/resolution/540.png</file>
-        <file alias="resolution/576">mediaFlags/resolution/576.png</file>
-        <file alias="resolution/720">mediaFlags/resolution/720.png</file>
-        <file alias="resolution/1080">mediaFlags/resolution/1080.png</file>
+        <file alias="resolution/480p">mediaFlags/resolution/480.png</file>
+        <file alias="resolution/540p">mediaFlags/resolution/540.png</file>
+        <file alias="resolution/576p">mediaFlags/resolution/576.png</file>
+        <file alias="resolution/720p">mediaFlags/resolution/720.png</file>
+        <file alias="resolution/1080p">mediaFlags/resolution/1080.png</file>
         <file alias="channels/2">mediaFlags/audio/2ch.png</file>
         <file alias="channels/5">mediaFlags/audio/5ch.png</file>
         <file alias="channels/6">mediaFlags/audio/6ch.png</file>
