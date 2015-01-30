@@ -202,12 +202,12 @@
     <message>
         <location filename="../main/AboutDialog.ui" line="345"/>
         <source>Artists</source>
-        <translation type="unfinished"/>
+        <translation>Umělci</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.ui" line="375"/>
         <source>Albums</source>
-        <translation type="unfinished"/>
+        <translation>Alba</translation>
     </message>
     <message>
         <location filename="../main/AboutDialog.cpp" line="17"/>
@@ -581,7 +581,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="371"/>
         <source>Not watched</source>
-        <translation type="unfinished"/>
+        <translation>Neshlédnuté</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="393"/>
@@ -658,7 +658,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="663"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"/>
+        <translation>Stereo</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="680"/>
@@ -791,7 +791,7 @@
         <location filename="../downloads/DownloadsWidget.ui" line="117"/>
         <location filename="../downloads/DownloadsWidget.ui" line="236"/>
         <source>Size</source>
-        <translation type="unfinished"/>
+        <translation>Velikost</translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="163"/>
@@ -801,13 +801,13 @@
     <message>
         <location filename="../downloads/DownloadsWidget.ui" line="186"/>
         <source>Import movie with MakeMKV</source>
-        <translation type="unfinished"/>
+        <translation>Import videa s MakeMKV</translation>
     </message>
     <message numerus="yes">
         <location filename="../downloads/DownloadsWidget.cpp" line="202"/>
         <location filename="../downloads/DownloadsWidget.cpp" line="330"/>
         <source>%n file(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n soubor</numerusform><numerusform>%n souborů</numerusform><numerusform>%n soubor(ů)</numerusform></translation>
     </message>
     <message>
         <location filename="../downloads/DownloadsWidget.cpp" line="272"/>
@@ -2213,12 +2213,12 @@
         <translation>Výchozí</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="545"/>
+        <location filename="../globals/ImageDialog.cpp" line="554"/>
         <source>Choose Image</source>
         <translation>Vyberte obrázek</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="545"/>
+        <location filename="../globals/ImageDialog.cpp" line="554"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>Obrázky (*.jpg *.jpeg *.png)</translation>
     </message>
@@ -4397,17 +4397,17 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="49"/>
         <source>Styles</source>
-        <translation type="unfinished"/>
+        <translation>Styly</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="50"/>
         <source>Add Style</source>
-        <translation type="unfinished"/>
+        <translation>Přidat styl</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="167"/>
         <source>Saving Album...</source>
-        <translation type="unfinished"/>
+        <translation>Ukládám album</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="173"/>
@@ -4425,12 +4425,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="63"/>
         <source>Artist has changed. Click to revert changes.</source>
-        <translation type="unfinished"/>
+        <translation>Umělec změněn. Klikni pro vrácení změn.</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="96"/>
         <source>Artist Name</source>
-        <translation type="unfinished"/>
+        <translation>Jméno umělce</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="138"/>
@@ -4450,17 +4450,17 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="207"/>
         <source>Born</source>
-        <translation type="unfinished"/>
+        <translation>Narození</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="214"/>
         <source>Formed</source>
-        <translation type="unfinished"/>
+        <translation>Založení</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="221"/>
         <source>Years active</source>
-        <translation type="unfinished"/>
+        <translation>Aktivní roky</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="228"/>
@@ -4470,12 +4470,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="235"/>
         <source>Died</source>
-        <translation type="unfinished"/>
+        <translation>Úmrtí</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="256"/>
         <source>Biography</source>
-        <translation type="unfinished"/>
+        <translation>Životopis</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="269"/>
@@ -4485,7 +4485,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="310"/>
         <source>Discography</source>
-        <translation type="unfinished"/>
+        <translation>Diskografie</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="332"/>
@@ -4500,12 +4500,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="347"/>
         <source>Add Album</source>
-        <translation type="unfinished"/>
+        <translation>Přidat album</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="357"/>
         <source>Remove Album</source>
-        <translation type="unfinished"/>
+        <translation>Odebrat Album</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="383"/>
@@ -4560,27 +4560,27 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="51"/>
         <source>Moods</source>
-        <translation type="unfinished"/>
+        <translation>Nálada</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="52"/>
         <source>Add Mood</source>
-        <translation type="unfinished"/>
+        <translation>Přidat náladu</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="56"/>
         <source>Styles</source>
-        <translation type="unfinished"/>
+        <translation>Styl</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="57"/>
         <source>Add Style</source>
-        <translation type="unfinished"/>
+        <translation>Přidat styl</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="186"/>
         <source>Saving Artist...</source>
-        <translation type="unfinished"/>
+        <translation>Ukládám umělce...</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="192"/>
@@ -4595,7 +4595,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetArtist.cpp" line="504"/>
         <source>Unknown Album</source>
-        <translation type="unfinished"/>
+        <translation>Neznámé album</translation>
     </message>
 </context>
 <context>
@@ -4603,7 +4603,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main/Navbar.ui" line="52"/>
         <source>Scrape</source>
-        <translation type="unfinished"/>
+        <translation>Scrape</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="74"/>
@@ -4623,12 +4623,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main/Navbar.ui" line="134"/>
         <source>Synchronize to Kodi</source>
-        <translation type="unfinished"/>
+        <translation>Synchronizovat s Kodi</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="153"/>
         <source>Export Database</source>
-        <translation type="unfinished"/>
+        <translation>Exportovat databázi</translation>
     </message>
     <message>
         <location filename="../main/Navbar.ui" line="172"/>
@@ -4653,7 +4653,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main/Navbar.cpp" line="17"/>
         <source>Scrape (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Scrape (%1)</translation>
     </message>
     <message>
         <location filename="../main/Navbar.cpp" line="20"/>
@@ -4684,12 +4684,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../plugins/PluginManager.cpp" line="98"/>
         <source>Plugin updates available</source>
-        <translation type="unfinished"/>
+        <translation>Jsou dostupné aktualizace Pluginů</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManager.cpp" line="174"/>
         <source>Plugin %1 requires at least MediaElch version %2</source>
-        <translation type="unfinished"/>
+        <translation>Plugin %1 požaduje MediaElch alespoň verze %2</translation>
     </message>
 </context>
 <context>

@@ -2213,12 +2213,12 @@
         <translation>Par défault</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="545"/>
+        <location filename="../globals/ImageDialog.cpp" line="554"/>
         <source>Choose Image</source>
         <translation>Choisir image</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="545"/>
+        <location filename="../globals/ImageDialog.cpp" line="554"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>Images (*.jpg *.jpeg *.png)</translation>
     </message>
