@@ -1014,7 +1014,7 @@
     <message>
         <location filename="../downloads/Extractor.cpp" line="38"/>
         <source>Unrar not found</source>
-        <translation type="unfinished"/>
+        <translation>Unrar nenalezen</translation>
     </message>
 </context>
 <context>
@@ -1142,7 +1142,7 @@
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="51"/>
         <source>3D</source>
-        <translation type="unfinished"/>
+        <translation>3D</translation>
     </message>
     <message>
         <location filename="../imageProviders/FanartTv.cpp" line="52"/>
@@ -3559,7 +3559,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="372"/>
         <source>Not watched</source>
-        <translation type="unfinished"/>
+        <translation>Neshlédnuté</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="381"/>
@@ -3727,7 +3727,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="1026"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"/>
+        <translation>Stereo</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1047"/>
@@ -3958,7 +3958,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="55"/>
         <source>Born</source>
-        <translation type="unfinished"/>
+        <translation>Narození</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="68"/>
@@ -3973,12 +3973,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="94"/>
         <source>Died</source>
-        <translation type="unfinished"/>
+        <translation>Úmrtí</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="107"/>
         <source>Formed</source>
-        <translation type="unfinished"/>
+        <translation>Založení</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="120"/>
@@ -3988,7 +3988,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="133"/>
         <source>Biography</source>
-        <translation type="unfinished"/>
+        <translation>Životopis</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="146"/>
@@ -4023,12 +4023,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="218"/>
         <source>Moods</source>
-        <translation type="unfinished"/>
+        <translation>Nálada</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="231"/>
         <source>Styles</source>
-        <translation type="unfinished"/>
+        <translation>Styly</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="244"/>
@@ -4073,7 +4073,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="348"/>
         <source>Discography</source>
-        <translation type="unfinished"/>
+        <translation>Diskografie</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="370"/>
@@ -4155,12 +4155,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="160"/>
         <source>Born</source>
-        <translation type="unfinished"/>
+        <translation>Narození</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="170"/>
         <source>Formed</source>
-        <translation type="unfinished"/>
+        <translation>Založení</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="180"/>
@@ -4175,17 +4175,17 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="200"/>
         <source>Died</source>
-        <translation type="unfinished"/>
+        <translation>Úmrtí</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="210"/>
         <source>Biography</source>
-        <translation type="unfinished"/>
+        <translation>Životopis</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="220"/>
         <source>Discography</source>
-        <translation type="unfinished"/>
+        <translation>Diskografie</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="230"/>
@@ -4230,12 +4230,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="310"/>
         <source>Styles</source>
-        <translation type="unfinished"/>
+        <translation>Styly</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="320"/>
         <source>Moods</source>
-        <translation type="unfinished"/>
+        <translation>Nálada</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="330"/>
@@ -4387,12 +4387,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="44"/>
         <source>Moods</source>
-        <translation type="unfinished"/>
+        <translation>Nálada</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="45"/>
         <source>Add Mood</source>
-        <translation type="unfinished"/>
+        <translation>Přidat náladu</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="49"/>
@@ -4717,27 +4717,27 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="49"/>
         <source>Plugin is being installed...</source>
-        <translation type="unfinished"/>
+        <translation>Plugin se instaluje...</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="56"/>
         <source>Plugin is being updated...</source>
-        <translation type="unfinished"/>
+        <translation>Plugin se aktualizuje...</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="64"/>
         <source>Plugin was installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Plugin byl úspěšně nainstalován.</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="72"/>
         <source>Plugin was updated successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Plugin byl úspěšně aktualizován.</translation>
     </message>
     <message>
         <location filename="../plugins/PluginManagerDialog.cpp" line="80"/>
         <source>An error occured while installing this plugin.</source>
-        <translation type="unfinished"/>
+        <translation>Vyskytla se chyba při instalaci tohoto pluginu</translation>
     </message>
 </context>
 <context>
@@ -4756,12 +4756,12 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="67"/>
         <source>Installed</source>
-        <translation type="unfinished"/>
+        <translation>Instalováno</translation>
     </message>
     <message>
         <location filename="../plugins/PluginsWidget.ui" line="74"/>
         <source>Update available</source>
-        <translation type="unfinished"/>
+        <translation>Dostupné akutalizace</translation>
     </message>
 </context>
 <context>
@@ -4784,52 +4784,52 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../main/Update.cpp" line="48"/>
         <source>Don&apos;t check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Nehlídat aktualizace</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="349"/>
         <source>Don&apos;t show this hint again</source>
-        <translation type="unfinished"/>
+        <translation>Již nezobrazovat</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="539"/>
         <source>No Label</source>
-        <translation type="unfinished"/>
+        <translation>Žádný štítek</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="540"/>
         <source>Red</source>
-        <translation type="unfinished"/>
+        <translation>Červený</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="541"/>
         <source>Orange</source>
-        <translation type="unfinished"/>
+        <translation>Oranžový</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="542"/>
         <source>Yellow</source>
-        <translation type="unfinished"/>
+        <translation>Žlutý</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="543"/>
         <source>Green</source>
-        <translation type="unfinished"/>
+        <translation>Zelený</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="544"/>
         <source>Blue</source>
-        <translation type="unfinished"/>
+        <translation>Modrý</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="545"/>
         <source>Purple</source>
-        <translation type="unfinished"/>
+        <translation>Fialový</translation>
     </message>
     <message>
         <location filename="../globals/Helper.cpp" line="546"/>
         <source>Grey</source>
-        <translation type="unfinished"/>
+        <translation>Šedý</translation>
     </message>
 </context>
 <context>
@@ -4837,7 +4837,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../quazip/quazip/quazipfile.cpp" line="217"/>
         <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished"/>
+        <translation>ZIP/UNZIP API chyba %1</translation>
     </message>
 </context>
 <context>
@@ -4909,7 +4909,11 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;.Helvetica Neue DeskInterface&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Lucida Grande&apos;;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.ui" line="171"/>
@@ -7156,7 +7160,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1041"/>
         <source>Stereo Mode</source>
-        <translation type="unfinished"/>
+        <translation>Stereo</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1062"/>
