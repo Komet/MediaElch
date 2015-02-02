@@ -1,3 +1,19 @@
+mediaelch (2.2.2-1) trusty; urgency=low
+
+  * UI: Music multi scrape progress bar doesn't stop
+  * Renamer: Conditional 3D tag not working
+  * StreamDetails UI: Audio label on wrong position
+  * Renamer: Resolution tag is empty for very low resolution files
+  * Default filename for music disc art should be cdart.png
+  * Resolution icon not visible
+  * Music: Deleted images show up again sometimes
+  * MediaPassion: Images are not loaded
+  * StreamDetails not loaded when filename contains special characters (Windows only)
+  * Music multiscrape: Artist thumb and logo are not loaded
+  * Show IDs in the GUI
+
+ -- Daniel Kabel <daniel.kabel@me.com>  Mon, 02 Feb 2015 20:41:49 +0100
+
 mediaelch (2.2.1-1) trusty; urgency=low
 
   * Media Passion: API URL changed
