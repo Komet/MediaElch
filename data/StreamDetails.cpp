@@ -95,7 +95,11 @@ void StreamDetails::loadWithLibrary()
     MI.Option(__T("Internet"), __T("no"));
     MI.Option(__T("Complete"), __T("1"));
 
+#ifdef Q_OS_WIN
+    MI.Open(m_files.first().toLatin1().data());
+#else
     MI.Open(m_files.first().toUtf8().data());
+#endif
 
     int duration = 0;
     double aspectRatio;
@@ -114,7 +118,11 @@ void StreamDetails::loadWithLibrary()
             MI_duration.Option(__T("Info_Version"), __T("0.7.70;MediaElch;2"));
             MI_duration.Option(__T("Internet"), __T("no"));
             MI_duration.Option(__T("Complete"), __T("1"));
+#ifdef Q_OS_WIN
+            MI_duration.Open(file.toLatin1().data());
+#else
             MI_duration.Open(file.toUtf8().data());
+#endif
             duration += qRound(QString(MI_duration.Get(Stream_General, 0, __T("Duration")).c_str()).toFloat()/1000);
         }
     } else {

@@ -137,6 +137,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     m_savingWidget->hide();
 
     // Connect GUI change events to movie object
+    connect(ui->imdbId, SIGNAL(textEdited(QString)), this, SLOT(onImdbIdChange(QString)));
     connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(onNameChange(QString)));
     connect(ui->originalName, SIGNAL(textEdited(QString)), this, SLOT(onOriginalNameChange(QString)));
     connect(ui->sortTitle, SIGNAL(textEdited(QString)), this, SLOT(onSortTitleChange(QString)));
@@ -238,6 +239,10 @@ void MovieWidget::clear()
     blocked = ui->files->blockSignals(true);
     ui->files->clear();
     ui->files->blockSignals(blocked);
+
+    blocked = ui->imdbId->blockSignals(true);
+    ui->imdbId->clear();
+    ui->imdbId->blockSignals(blocked);
 
     blocked = ui->name->blockSignals(true);
     ui->name->clear();
@@ -536,6 +541,7 @@ void MovieWidget::updateMovieInfo()
 
     ui->files->setText(m_movie->files().join(", "));
     ui->files->setToolTip(m_movie->files().join("\n"));
+    ui->imdbId->setText(m_movie->id());
     ui->name->setText(m_movie->name());
     ui->movieName->setText(m_movie->name());
     ui->originalName->setText(m_movie->originalName());
@@ -670,7 +676,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoDuration->blockSignals(true);
     ui->videoWidth->blockSignals(true);
     ui->videoHeight->blockSignals(true);
-    ui->streamDetails->blockSignals(true);
+    ui->stereoMode->blockSignals(true);
 
     if (reloadFromFile)
         m_movie->controller()->loadStreamDetailsFromFile();
@@ -701,7 +707,8 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     int audioTracks = streamDetails->audioDetails().count();
     for (int i=0 ; i<audioTracks ; ++i) {
         QLabel *label = new QLabel(tr("Track %1").arg(i+1));
-        ui->streamDetails->addWidget(label, 7+i, 0);
+        label->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
+        ui->streamDetails->addWidget(label, 8+i, 0);
         QLineEdit *edit1 = new QLineEdit(streamDetails->audioDetails().at(i).value("language"));
         QLineEdit *edit2 = new QLineEdit(streamDetails->audioDetails().at(i).value("codec"));
         QLineEdit *edit3 = new QLineEdit(streamDetails->audioDetails().at(i).value("channels"));
@@ -717,7 +724,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
         layout->addWidget(edit2);
         layout->addWidget(edit3);
         layout->addStretch(10);
-        ui->streamDetails->addLayout(layout, 7+i, 1);
+        ui->streamDetails->addLayout(layout, 8+i, 1);
         m_streamDetailsWidgets << label << edit1 << edit2 << edit3;
         m_streamDetailsAudio << (QList<QLineEdit*>() << edit1 << edit2 << edit3);
         connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
@@ -727,22 +734,24 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
 
     if (!streamDetails->subtitleDetails().isEmpty()) {
         QLabel *label = new QLabel(tr("Subtitles"));
-        QFont font = label->font();
-        font.setBold(true);
-        label->setFont(font);
-        ui->streamDetails->addWidget(label, 7+audioTracks, 0);
+        label->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
+        QFont f = ui->labelStreamDetailsAudio->font();
+        f.setBold(true);
+        label->setFont(f);
+        ui->streamDetails->addWidget(label, 8+audioTracks, 0);
         m_streamDetailsWidgets << label;
 
         for (int i=0, n=streamDetails->subtitleDetails().count() ; i<n ; ++i) {
             QLabel *label = new QLabel(tr("Track %1").arg(i+1));
-            ui->streamDetails->addWidget(label, 8+audioTracks+i, 0);
+            label->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
+            ui->streamDetails->addWidget(label, 9+audioTracks+i, 0);
             QLineEdit *edit1 = new QLineEdit(streamDetails->subtitleDetails().at(i).value("language"));
             edit1->setToolTip(tr("Language"));
             edit1->setPlaceholderText(tr("Language"));
             QHBoxLayout *layout = new QHBoxLayout();
             layout->addWidget(edit1);
             layout->addStretch(10);
-            ui->streamDetails->addLayout(layout, 8+audioTracks+i, 1);
+            ui->streamDetails->addLayout(layout, 9+audioTracks+i, 1);
             m_streamDetailsWidgets << label << edit1;
             m_streamDetailsSubtitles << (QList<QLineEdit*>() << edit1);
             connect(edit1, SIGNAL(textEdited(QString)), this, SLOT(onStreamDetailsEdited()));
@@ -756,7 +765,7 @@ void MovieWidget::updateStreamDetails(bool reloadFromFile)
     ui->videoDuration->blockSignals(false);
     ui->videoWidth->blockSignals(false);
     ui->videoHeight->blockSignals(false);
-    ui->streamDetails->blockSignals(false);
+    ui->stereoMode->blockSignals(false);
 }
 
 /**
@@ -1074,6 +1083,14 @@ void MovieWidget::onNameChange(QString text)
     if (!m_movie)
         return;
     m_movie->setName(text);
+    ui->buttonRevert->setVisible(true);
+}
+
+void MovieWidget::onImdbIdChange(QString text)
+{
+    if (!m_movie)
+        return;
+    m_movie->setId(text);
     ui->buttonRevert->setVisible(true);
 }
 

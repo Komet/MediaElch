@@ -223,6 +223,15 @@ void DownloadManager::downloadFinished()
     qDebug() << "Entered";
 
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
+    if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
+        reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+        reply->deleteLater();
+        m_currentReply = qnam()->get(QNetworkRequest(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
+        connect(m_currentReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
+        connect(m_currentReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(downloadProgress(qint64,qint64)));
+        return;
+    }
+
     m_downloading = false;
     m_retries = 0;
     QByteArray data;

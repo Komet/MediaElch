@@ -227,6 +227,7 @@ void Album::removeImage(int imageType)
 void Album::clearImages()
 {
     m_rawImages.clear();
+    m_imagesToRemove.clear();
 }
 
 void Album::clear()

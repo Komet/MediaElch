@@ -79,6 +79,7 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget *parent) :
     connect(ui->disbanded, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
     connect(ui->died, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
     connect(ui->biography, SIGNAL(textChanged()), this, SLOT(onBiographyChanged()));
+    connect(ui->musicBrainzId, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
 
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
@@ -146,6 +147,7 @@ void MusicWidgetArtist::onClear()
     clearContents(ui->yearsActive);
     clearContents(ui->disbanded);
     clearContents(ui->died);
+    clearContents(ui->musicBrainzId);
 
     bool blocked = ui->biography->blockSignals(true);
     ui->biography->clear();
@@ -229,6 +231,7 @@ void MusicWidgetArtist::updateArtistInfo()
     setContent(ui->yearsActive, m_artist->yearsActive());
     setContent(ui->disbanded, m_artist->disbanded());
     setContent(ui->died, m_artist->died());
+    setContent(ui->musicBrainzId, m_artist->mbId());
     ui->biography->blockSignals(true);
     ui->biography->setPlainText(m_artist->biography());
     ui->biography->blockSignals(false);
@@ -297,6 +300,8 @@ void MusicWidgetArtist::onItemChanged(QString text)
         m_artist->setDisbanded(text);
     else if (property == "died")
         m_artist->setDied(text);
+    else if (property == "mbid")
+        m_artist->setMbId(text);
 
     ui->buttonRevert->setVisible(true);
 }

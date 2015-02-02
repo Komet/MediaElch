@@ -586,6 +586,23 @@
               <item row="17" column="1">
                <widget class="QTextEdit" name="outline"/>
               </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="imdbId">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_13">
+                <property name="text">
+                 <string>IMDB ID</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </item>
            </layout>
@@ -916,6 +933,12 @@
               </item>
               <item row="7" column="0">
                <widget class="QLabel" name="labelStreamDetailsAudio">
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Audio</string>
                 </property>
@@ -1654,6 +1677,23 @@ QPushButton::hover {
  </widget>
  <customwidgets>
   <customwidget>
+   <class>TagCloud</class>
+   <extends>QWidget</extends>
+   <header>smallWidgets/TagCloud.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ImageGallery</class>
+   <extends>QWidget</extends>
+   <header>smallWidgets/ImageGallery.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ClosableImage</class>
+   <extends>QLabel</extends>
+   <header>smallWidgets/ClosableImage.h</header>
+  </customwidget>
+  <customwidget>
    <class>SlidingStackedWidget</class>
    <extends>QStackedWidget</extends>
    <header>smallWidgets/SlidingStackedWidget.h</header>
@@ -1676,26 +1716,9 @@ QPushButton::hover {
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>TagCloud</class>
-   <extends>QWidget</extends>
-   <header>smallWidgets/TagCloud.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>ImageGallery</class>
-   <extends>QWidget</extends>
-   <header>smallWidgets/ImageGallery.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>MySpinBox</class>
    <extends>QSpinBox</extends>
    <header>smallWidgets/MySpinBox.h</header>
-  </customwidget>
-  <customwidget>
-   <class>ClosableImage</class>
-   <extends>QLabel</extends>
-   <header>smallWidgets/ClosableImage.h</header>
   </customwidget>
   <customwidget>
    <class>MessageLabel</class>

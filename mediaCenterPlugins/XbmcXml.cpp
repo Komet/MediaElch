@@ -1794,8 +1794,8 @@ bool XbmcXml::loadArtist(Artist *artist, QString initialNfoContent)
 
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
-    if (!domDoc.elementsByTagName("mbid").isEmpty())
-        artist->setMbId(domDoc.elementsByTagName("mbid").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("musicBrainzArtistID").isEmpty())
+        artist->setMbId(domDoc.elementsByTagName("musicBrainzArtistID").at(0).toElement().text());
     if (!domDoc.elementsByTagName("allmusicid").isEmpty())
         artist->setAllMusicId(domDoc.elementsByTagName("allmusicid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("name").isEmpty())
@@ -1882,8 +1882,8 @@ bool XbmcXml::loadAlbum(Album *album, QString initialNfoContent)
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
 
-    if (!domDoc.elementsByTagName("mbid").isEmpty())
-        album->setMbId(domDoc.elementsByTagName("mbid").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("musicBrainzAlbumID").isEmpty())
+        album->setMbId(domDoc.elementsByTagName("musicBrainzAlbumID").at(0).toElement().text());
     if (!domDoc.elementsByTagName("allmusicid").isEmpty())
         album->setAllMusicId(domDoc.elementsByTagName("allmusicid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("title").isEmpty())
@@ -2036,18 +2036,18 @@ bool XbmcXml::saveArtist(Artist *artist)
     foreach (const int &imageType, Artist::imageTypes()) {
         int dataFileType = DataFile::dataFileTypeForImageType(imageType);
 
-        if (!artist->rawImage(imageType).isNull()) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
-                QString saveFileName = dataFile.saveFileName(QString());
-                saveFile(artist->path() + "/" + saveFileName, artist->rawImage(imageType));
-            }
-        }
-
         if (artist->imagesToRemove().contains(imageType)) {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(QString());
                 if (!saveFileName.isEmpty())
                     QFile(artist->path() + "/" + saveFileName).remove();
+            }
+        }
+
+        if (!artist->rawImage(imageType).isNull()) {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+                QString saveFileName = dataFile.saveFileName(QString());
+                saveFile(artist->path() + "/" + saveFileName, artist->rawImage(imageType));
             }
         }
     }
@@ -2097,18 +2097,18 @@ bool XbmcXml::saveAlbum(Album *album)
     foreach (const int &imageType, Album::imageTypes()) {
         int dataFileType = DataFile::dataFileTypeForImageType(imageType);
 
-        if (!album->rawImage(imageType).isNull()) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
-                QString saveFileName = dataFile.saveFileName(QString());
-                saveFile(album->path() + "/" + saveFileName, album->rawImage(imageType));
-            }
-        }
-
         if (album->imagesToRemove().contains(imageType)) {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(QString());
                 if (!saveFileName.isEmpty())
                     QFile(album->path() + "/" + saveFileName).remove();
+            }
+        }
+
+        if (!album->rawImage(imageType).isNull()) {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+                QString saveFileName = dataFile.saveFileName(QString());
+                saveFile(album->path() + "/" + saveFileName, album->rawImage(imageType));
             }
         }
     }
@@ -2120,7 +2120,7 @@ void XbmcXml::writeArtistXml(QXmlStreamWriter &xml, Artist *artist)
 {
     xml.writeStartElement("artist");
     if (!artist->mbId().isEmpty())
-        xml.writeTextElement("mbid", artist->mbId());
+        xml.writeTextElement("musicBrainzArtistID", artist->mbId());
     if (!artist->allMusicId().isEmpty())
         xml.writeTextElement("allmusicid", artist->allMusicId());
     xml.writeTextElement("name", artist->name());
@@ -2165,7 +2165,7 @@ void XbmcXml::writeAlbumXml(QXmlStreamWriter &xml, Album *album)
 {
     xml.writeStartElement("album");
     if (!album->mbId().isEmpty())
-        xml.writeTextElement("mbid", album->mbId());
+        xml.writeTextElement("musicBrainzAlbumID", album->mbId());
     if (!album->allMusicId().isEmpty())
         xml.writeTextElement("allmusicid", album->allMusicId());
     xml.writeTextElement("title", album->title());

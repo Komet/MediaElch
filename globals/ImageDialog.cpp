@@ -338,6 +338,15 @@ void ImageDialog::startNextDownload()
 void ImageDialog::downloadFinished()
 {
     qDebug() << "Entered";
+
+    if (m_currentDownloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302 ||
+        m_currentDownloadReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 301) {
+        m_currentDownloadReply->deleteLater();
+        m_currentDownloadReply = qnam()->get(QNetworkRequest(m_currentDownloadReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl()));
+        connect(m_currentDownloadReply, SIGNAL(finished()), this, SLOT(downloadFinished()));
+        return;
+    }
+
     if (m_currentDownloadReply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << m_currentDownloadReply->errorString();
         startNextDownload();
