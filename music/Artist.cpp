@@ -214,7 +214,9 @@ void Artist::removeImage(int imageType)
 void Artist::clearImages()
 {
     m_rawImages.clear();
+    m_imagesToRemove.clear();
     m_extraFanartImagesToAdd.clear();
+    m_extraFanartsToRemove.clear();
 }
 
 bool Artist::hasChanged() const

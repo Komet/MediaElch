@@ -104,6 +104,8 @@ void UniversalMusicScraper::onSearchArtistFinished()
 
 void UniversalMusicScraper::loadData(QString mbId, Artist *artist, QList<int> infos)
 {
+    // Otherwise deleted images are showing up again
+    infos.removeOne(MusicScraperInfos::ExtraFanarts);
     artist->clear(infos);
     artist->setMbId(mbId);
     artist->setAllMusicId("");

@@ -2036,18 +2036,18 @@ bool XbmcXml::saveArtist(Artist *artist)
     foreach (const int &imageType, Artist::imageTypes()) {
         int dataFileType = DataFile::dataFileTypeForImageType(imageType);
 
-        if (!artist->rawImage(imageType).isNull()) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
-                QString saveFileName = dataFile.saveFileName(QString());
-                saveFile(artist->path() + "/" + saveFileName, artist->rawImage(imageType));
-            }
-        }
-
         if (artist->imagesToRemove().contains(imageType)) {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(QString());
                 if (!saveFileName.isEmpty())
                     QFile(artist->path() + "/" + saveFileName).remove();
+            }
+        }
+
+        if (!artist->rawImage(imageType).isNull()) {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+                QString saveFileName = dataFile.saveFileName(QString());
+                saveFile(artist->path() + "/" + saveFileName, artist->rawImage(imageType));
             }
         }
     }
@@ -2097,18 +2097,18 @@ bool XbmcXml::saveAlbum(Album *album)
     foreach (const int &imageType, Album::imageTypes()) {
         int dataFileType = DataFile::dataFileTypeForImageType(imageType);
 
-        if (!album->rawImage(imageType).isNull()) {
-            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
-                QString saveFileName = dataFile.saveFileName(QString());
-                saveFile(album->path() + "/" + saveFileName, album->rawImage(imageType));
-            }
-        }
-
         if (album->imagesToRemove().contains(imageType)) {
             foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
                 QString saveFileName = dataFile.saveFileName(QString());
                 if (!saveFileName.isEmpty())
                     QFile(album->path() + "/" + saveFileName).remove();
+            }
+        }
+
+        if (!album->rawImage(imageType).isNull()) {
+            foreach (DataFile dataFile, Settings::instance()->dataFiles(dataFileType)) {
+                QString saveFileName = dataFile.saveFileName(QString());
+                saveFile(album->path() + "/" + saveFileName, album->rawImage(imageType));
             }
         }
     }
