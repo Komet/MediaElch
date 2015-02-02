@@ -2213,12 +2213,12 @@
         <translation>기본</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="545"/>
+        <location filename="../globals/ImageDialog.cpp" line="554"/>
         <source>Choose Image</source>
         <translation>이미지 선택</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="545"/>
+        <location filename="../globals/ImageDialog.cpp" line="554"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>이미지 (*.jpg *.jpeg *.png)</translation>
     </message>
