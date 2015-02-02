@@ -1794,8 +1794,8 @@ bool XbmcXml::loadArtist(Artist *artist, QString initialNfoContent)
 
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
-    if (!domDoc.elementsByTagName("mbid").isEmpty())
-        artist->setMbId(domDoc.elementsByTagName("mbid").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("musicBrainzArtistID").isEmpty())
+        artist->setMbId(domDoc.elementsByTagName("musicBrainzArtistID").at(0).toElement().text());
     if (!domDoc.elementsByTagName("allmusicid").isEmpty())
         artist->setAllMusicId(domDoc.elementsByTagName("allmusicid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("name").isEmpty())
@@ -1882,8 +1882,8 @@ bool XbmcXml::loadAlbum(Album *album, QString initialNfoContent)
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
 
-    if (!domDoc.elementsByTagName("mbid").isEmpty())
-        album->setMbId(domDoc.elementsByTagName("mbid").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("musicBrainzAlbumID").isEmpty())
+        album->setMbId(domDoc.elementsByTagName("musicBrainzAlbumID").at(0).toElement().text());
     if (!domDoc.elementsByTagName("allmusicid").isEmpty())
         album->setAllMusicId(domDoc.elementsByTagName("allmusicid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("title").isEmpty())
@@ -2120,7 +2120,7 @@ void XbmcXml::writeArtistXml(QXmlStreamWriter &xml, Artist *artist)
 {
     xml.writeStartElement("artist");
     if (!artist->mbId().isEmpty())
-        xml.writeTextElement("mbid", artist->mbId());
+        xml.writeTextElement("musicBrainzArtistID", artist->mbId());
     if (!artist->allMusicId().isEmpty())
         xml.writeTextElement("allmusicid", artist->allMusicId());
     xml.writeTextElement("name", artist->name());
@@ -2165,7 +2165,7 @@ void XbmcXml::writeAlbumXml(QXmlStreamWriter &xml, Album *album)
 {
     xml.writeStartElement("album");
     if (!album->mbId().isEmpty())
-        xml.writeTextElement("mbid", album->mbId());
+        xml.writeTextElement("musicBrainzAlbumID", album->mbId());
     if (!album->allMusicId().isEmpty())
         xml.writeTextElement("allmusicid", album->allMusicId());
     xml.writeTextElement("title", album->title());
