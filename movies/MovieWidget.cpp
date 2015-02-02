@@ -137,6 +137,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     m_savingWidget->hide();
 
     // Connect GUI change events to movie object
+    connect(ui->imdbId, SIGNAL(textEdited(QString)), this, SLOT(onImdbIdChange(QString)));
     connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(onNameChange(QString)));
     connect(ui->originalName, SIGNAL(textEdited(QString)), this, SLOT(onOriginalNameChange(QString)));
     connect(ui->sortTitle, SIGNAL(textEdited(QString)), this, SLOT(onSortTitleChange(QString)));
@@ -238,6 +239,10 @@ void MovieWidget::clear()
     blocked = ui->files->blockSignals(true);
     ui->files->clear();
     ui->files->blockSignals(blocked);
+
+    blocked = ui->imdbId->blockSignals(true);
+    ui->imdbId->clear();
+    ui->imdbId->blockSignals(blocked);
 
     blocked = ui->name->blockSignals(true);
     ui->name->clear();
@@ -536,6 +541,7 @@ void MovieWidget::updateMovieInfo()
 
     ui->files->setText(m_movie->files().join(", "));
     ui->files->setToolTip(m_movie->files().join("\n"));
+    ui->imdbId->setText(m_movie->id());
     ui->name->setText(m_movie->name());
     ui->movieName->setText(m_movie->name());
     ui->originalName->setText(m_movie->originalName());
@@ -1077,6 +1083,14 @@ void MovieWidget::onNameChange(QString text)
     if (!m_movie)
         return;
     m_movie->setName(text);
+    ui->buttonRevert->setVisible(true);
+}
+
+void MovieWidget::onImdbIdChange(QString text)
+{
+    if (!m_movie)
+        return;
+    m_movie->setId(text);
     ui->buttonRevert->setVisible(true);
 }
 

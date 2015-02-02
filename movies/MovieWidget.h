@@ -96,6 +96,7 @@ private slots:
     void onLastWatchedChange(QDateTime dateTime);
     void onOverviewChange();
     void onOutlineChange();
+    void onImdbIdChange(QString text);
 
     void onActorEdited(QTableWidgetItem *item);
     void onStreamDetailsEdited();
