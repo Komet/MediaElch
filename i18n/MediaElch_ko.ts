@@ -3617,177 +3617,182 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>개요</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="595"/>
+        <location filename="../movies/MovieWidget.ui" line="602"/>
+        <source>IMDB ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../movies/MovieWidget.ui" line="612"/>
         <source>Extended</source>
         <translation>추가정보</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="627"/>
+        <location filename="../movies/MovieWidget.ui" line="644"/>
         <source>Actors</source>
         <translation>배우</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="646"/>
+        <location filename="../movies/MovieWidget.ui" line="663"/>
         <source>Actor</source>
         <translation>배우</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="651"/>
+        <location filename="../movies/MovieWidget.ui" line="668"/>
         <source>Role</source>
         <translation>역할</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="666"/>
+        <location filename="../movies/MovieWidget.ui" line="683"/>
         <source>Remove Actor</source>
         <translation>배우 제거</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="696"/>
+        <location filename="../movies/MovieWidget.ui" line="713"/>
         <source>Add Actor</source>
         <translation>배우 추가</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="733"/>
+        <location filename="../movies/MovieWidget.ui" line="750"/>
         <source>Click to change</source>
         <translation>변경하려면 클릭</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="752"/>
-        <location filename="../movies/MovieWidget.ui" line="864"/>
+        <location filename="../movies/MovieWidget.ui" line="769"/>
+        <location filename="../movies/MovieWidget.ui" line="881"/>
         <source>Resolution</source>
         <translation>해상도</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="778"/>
+        <location filename="../movies/MovieWidget.ui" line="795"/>
         <source>Extra Fanarts</source>
         <translation>추가 팬아트</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="790"/>
+        <location filename="../movies/MovieWidget.ui" line="807"/>
         <source>Support for extra fanarts is only available when your movies are stored in separate folders. Check the settings if you&apos;ve stored your movies in separate folders already.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="810"/>
+        <location filename="../movies/MovieWidget.ui" line="827"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="833"/>
+        <location filename="../movies/MovieWidget.ui" line="850"/>
         <source>Add Images</source>
         <translation>이미지 추가</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="846"/>
+        <location filename="../movies/MovieWidget.ui" line="863"/>
         <source>Streamdetails</source>
         <translation>스트림정보</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="884"/>
+        <location filename="../movies/MovieWidget.ui" line="901"/>
         <source>Aspect Ratio</source>
         <translation>화면비</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="874"/>
+        <location filename="../movies/MovieWidget.ui" line="891"/>
         <source>Scantype</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1016"/>
-        <location filename="../movies/MovieWidget.cpp" line="711"/>
-        <location filename="../movies/MovieWidget.cpp" line="714"/>
+        <location filename="../movies/MovieWidget.ui" line="1033"/>
+        <location filename="../movies/MovieWidget.cpp" line="717"/>
+        <location filename="../movies/MovieWidget.cpp" line="720"/>
         <source>Codec</source>
         <translation>코덱</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="984"/>
+        <location filename="../movies/MovieWidget.ui" line="1001"/>
         <source>x</source>
         <translation>x</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="926"/>
+        <location filename="../movies/MovieWidget.ui" line="943"/>
         <source>Audio</source>
         <translation>오디오</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="936"/>
+        <location filename="../movies/MovieWidget.ui" line="953"/>
         <source>Video</source>
         <translation>비디오</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="962"/>
+        <location filename="../movies/MovieWidget.ui" line="979"/>
         <source>Duration</source>
         <translation>재생시간</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="955"/>
+        <location filename="../movies/MovieWidget.ui" line="972"/>
         <source>HH:mm:ss</source>
         <translation>HH:mm:ss</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1026"/>
+        <location filename="../movies/MovieWidget.ui" line="1043"/>
         <source>Stereo Mode</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1047"/>
+        <location filename="../movies/MovieWidget.ui" line="1064"/>
         <source>Reload from File</source>
         <translation>파일에서 다시 불러오기</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1265"/>
-        <location filename="../movies/MovieWidget.ui" line="1305"/>
+        <location filename="../movies/MovieWidget.ui" line="1282"/>
+        <location filename="../movies/MovieWidget.ui" line="1322"/>
         <source>Poster</source>
         <translation>포스터</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1287"/>
-        <location filename="../movies/MovieWidget.ui" line="1337"/>
-        <location filename="../movies/MovieWidget.ui" line="1387"/>
-        <location filename="../movies/MovieWidget.ui" line="1463"/>
-        <location filename="../movies/MovieWidget.ui" line="1513"/>
-        <location filename="../movies/MovieWidget.ui" line="1563"/>
-        <location filename="../movies/MovieWidget.ui" line="1613"/>
+        <location filename="../movies/MovieWidget.ui" line="1304"/>
+        <location filename="../movies/MovieWidget.ui" line="1354"/>
+        <location filename="../movies/MovieWidget.ui" line="1404"/>
+        <location filename="../movies/MovieWidget.ui" line="1480"/>
+        <location filename="../movies/MovieWidget.ui" line="1530"/>
+        <location filename="../movies/MovieWidget.ui" line="1580"/>
+        <location filename="../movies/MovieWidget.ui" line="1630"/>
         <source>Click to Change</source>
         <translation>변경하려면 클릭</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1315"/>
-        <location filename="../movies/MovieWidget.ui" line="1355"/>
+        <location filename="../movies/MovieWidget.ui" line="1332"/>
+        <location filename="../movies/MovieWidget.ui" line="1372"/>
         <source>Fanart</source>
         <translation>팬아트</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1365"/>
-        <location filename="../movies/MovieWidget.ui" line="1402"/>
+        <location filename="../movies/MovieWidget.ui" line="1382"/>
+        <location filename="../movies/MovieWidget.ui" line="1419"/>
         <source>Thumb</source>
         <translation>썸네일</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1441"/>
-        <location filename="../movies/MovieWidget.ui" line="1481"/>
+        <location filename="../movies/MovieWidget.ui" line="1458"/>
+        <location filename="../movies/MovieWidget.ui" line="1498"/>
         <source>Logo</source>
         <translation>로고</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1491"/>
-        <location filename="../movies/MovieWidget.ui" line="1531"/>
+        <location filename="../movies/MovieWidget.ui" line="1508"/>
+        <location filename="../movies/MovieWidget.ui" line="1548"/>
         <source>Clear Art</source>
         <translation>클리어 아트</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1541"/>
+        <location filename="../movies/MovieWidget.ui" line="1558"/>
         <source>Disc Art</source>
         <translation>디스크 아트</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1581"/>
+        <location filename="../movies/MovieWidget.ui" line="1598"/>
         <source>CD Art</source>
         <translation>CD 아트</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1591"/>
-        <location filename="../movies/MovieWidget.ui" line="1628"/>
+        <location filename="../movies/MovieWidget.ui" line="1608"/>
+        <location filename="../movies/MovieWidget.ui" line="1645"/>
         <source>Banner</source>
         <translation>배너</translation>
     </message>
@@ -3832,72 +3837,72 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>스튜디오 추가</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="471"/>
+        <location filename="../movies/MovieWidget.cpp" line="476"/>
         <source>Downloading images...</source>
         <translation>이미지 다운로드 중...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="703"/>
-        <location filename="../movies/MovieWidget.cpp" line="739"/>
+        <location filename="../movies/MovieWidget.cpp" line="709"/>
+        <location filename="../movies/MovieWidget.cpp" line="745"/>
         <source>Track %1</source>
         <translation>트랙 %1</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="710"/>
-        <location filename="../movies/MovieWidget.cpp" line="713"/>
-        <location filename="../movies/MovieWidget.cpp" line="743"/>
-        <location filename="../movies/MovieWidget.cpp" line="744"/>
+        <location filename="../movies/MovieWidget.cpp" line="716"/>
+        <location filename="../movies/MovieWidget.cpp" line="719"/>
+        <location filename="../movies/MovieWidget.cpp" line="749"/>
+        <location filename="../movies/MovieWidget.cpp" line="750"/>
         <source>Language</source>
         <translation>언어</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="712"/>
-        <location filename="../movies/MovieWidget.cpp" line="715"/>
+        <location filename="../movies/MovieWidget.cpp" line="718"/>
+        <location filename="../movies/MovieWidget.cpp" line="721"/>
         <source>Channels</source>
         <translation>채널</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="730"/>
+        <location filename="../movies/MovieWidget.cpp" line="736"/>
         <source>Subtitles</source>
         <translation>자막</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="795"/>
+        <location filename="../movies/MovieWidget.cpp" line="801"/>
         <source>Saving movie...</source>
         <translation>영화 저장 중...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="803"/>
+        <location filename="../movies/MovieWidget.cpp" line="809"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 저장됨</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="823"/>
+        <location filename="../movies/MovieWidget.cpp" line="829"/>
         <source>Saving movies...</source>
         <translation>영화 저장 중...</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="839"/>
+        <location filename="../movies/MovieWidget.cpp" line="845"/>
         <source>All Movies Saved</source>
         <translation>모든 영화 저장됨</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="861"/>
+        <location filename="../movies/MovieWidget.cpp" line="867"/>
         <source>Unknown Actor</source>
         <translation>알 수 없는 배우</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="862"/>
+        <location filename="../movies/MovieWidget.cpp" line="868"/>
         <source>Unknown Role</source>
         <translation>알 수 없는 역할</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1001"/>
+        <location filename="../movies/MovieWidget.cpp" line="1007"/>
         <source>Choose Image</source>
         <translation>이미지 선택</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.cpp" line="1001"/>
+        <location filename="../movies/MovieWidget.cpp" line="1007"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>이미지 (*.jpg *.jpeg)</translation>
     </message>
@@ -4006,102 +4011,102 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>로고</translation>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="182"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="185"/>
         <source>Extra Fanarts</source>
         <translation>추가 팬아트</translation>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="195"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="198"/>
         <source>Fanart</source>
         <translation>팬아트</translation>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="208"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="211"/>
         <source>Thumbnail</source>
         <translation>썸네일</translation>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="218"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="224"/>
         <source>Moods</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="231"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="237"/>
         <source>Styles</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="244"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="250"/>
         <source>Genres</source>
         <translation>장르</translation>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="257"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="263"/>
         <source>Label</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="270"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="276"/>
         <source>Release Date</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="283"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="289"/>
         <source>Rating</source>
         <translation>평점</translation>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="296"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="302"/>
         <source>Year</source>
         <translation>연도</translation>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="309"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="315"/>
         <source>Review</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="322"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="328"/>
         <source>Artist</source>
         <translation>아티스트</translation>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="335"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="341"/>
         <source>Title</source>
         <translation>제목</translation>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="348"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="354"/>
         <source>Discography</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="370"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="376"/>
         <source>(Un)Check all</source>
         <translation>모두 선택(해제)</translation>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="396"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="402"/>
         <source>Scrape all albums of selected artists (and not only selected albums)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="403"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="409"/>
         <source>Automatically save each artist and album after scraping</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="450"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="456"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="473"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="479"/>
         <source>Close</source>
         <translation>닫기</translation>
     </message>
     <message>
-        <location filename="../music/MusicMultiScrapeDialog.ui" line="486"/>
+        <location filename="../music/MusicMultiScrapeDialog.ui" line="492"/>
         <source>Start Scraping</source>
         <translation>자료 수집 시작</translation>
     </message>
@@ -4352,25 +4357,30 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.ui" line="278"/>
+        <location filename="../music/MusicWidgetAlbum.ui" line="275"/>
+        <source>MusicBrainz ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../music/MusicWidgetAlbum.ui" line="292"/>
         <source>Extended</source>
         <translation>추가정보</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.ui" line="364"/>
-        <location filename="../music/MusicWidgetAlbum.ui" line="404"/>
+        <location filename="../music/MusicWidgetAlbum.ui" line="378"/>
+        <location filename="../music/MusicWidgetAlbum.ui" line="418"/>
         <source>Cover</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.ui" line="386"/>
-        <location filename="../music/MusicWidgetAlbum.ui" line="452"/>
+        <location filename="../music/MusicWidgetAlbum.ui" line="400"/>
+        <location filename="../music/MusicWidgetAlbum.ui" line="466"/>
         <source>Click to Change</source>
         <translation>변경하려면 클릭</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.ui" line="430"/>
-        <location filename="../music/MusicWidgetAlbum.ui" line="470"/>
+        <location filename="../music/MusicWidgetAlbum.ui" line="444"/>
+        <location filename="../music/MusicWidgetAlbum.ui" line="484"/>
         <source>Disc Art</source>
         <translation>디스크 아트</translation>
     </message>
@@ -4405,17 +4415,17 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="167"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="169"/>
         <source>Saving Album...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="173"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="175"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 저장됨</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="429"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="434"/>
         <source>Downloading images...</source>
         <translation>이미지 다운로드 중...</translation>
     </message>
@@ -4478,72 +4488,77 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.ui" line="269"/>
+        <location filename="../music/MusicWidgetArtist.ui" line="266"/>
+        <source>MusicBrainz ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../music/MusicWidgetArtist.ui" line="283"/>
         <source>Extended</source>
         <translation>추가정보</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.ui" line="310"/>
+        <location filename="../music/MusicWidgetArtist.ui" line="324"/>
         <source>Discography</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.ui" line="332"/>
+        <location filename="../music/MusicWidgetArtist.ui" line="346"/>
         <source>Title</source>
         <translation>제목</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.ui" line="337"/>
+        <location filename="../music/MusicWidgetArtist.ui" line="351"/>
         <source>Year</source>
         <translation>연도</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.ui" line="347"/>
+        <location filename="../music/MusicWidgetArtist.ui" line="361"/>
         <source>Add Album</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.ui" line="357"/>
+        <location filename="../music/MusicWidgetArtist.ui" line="371"/>
         <source>Remove Album</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.ui" line="383"/>
+        <location filename="../music/MusicWidgetArtist.ui" line="397"/>
         <source>Extra Fanarts</source>
         <translation>추가 팬아트</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.ui" line="405"/>
+        <location filename="../music/MusicWidgetArtist.ui" line="419"/>
         <source>Hint: Closed images will be deleted on save.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.ui" line="428"/>
+        <location filename="../music/MusicWidgetArtist.ui" line="442"/>
         <source>Add Images</source>
         <translation>이미지 추가</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.ui" line="486"/>
-        <location filename="../music/MusicWidgetArtist.ui" line="526"/>
-        <location filename="../music/MusicWidgetArtist.ui" line="658"/>
+        <location filename="../music/MusicWidgetArtist.ui" line="500"/>
+        <location filename="../music/MusicWidgetArtist.ui" line="540"/>
+        <location filename="../music/MusicWidgetArtist.ui" line="672"/>
         <source>Thumb</source>
         <translation>썸네일</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.ui" line="508"/>
-        <location filename="../music/MusicWidgetArtist.ui" line="574"/>
-        <location filename="../music/MusicWidgetArtist.ui" line="640"/>
+        <location filename="../music/MusicWidgetArtist.ui" line="522"/>
+        <location filename="../music/MusicWidgetArtist.ui" line="588"/>
+        <location filename="../music/MusicWidgetArtist.ui" line="654"/>
         <source>Click to Change</source>
         <translation>변경하려면 클릭</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.ui" line="552"/>
-        <location filename="../music/MusicWidgetArtist.ui" line="592"/>
+        <location filename="../music/MusicWidgetArtist.ui" line="566"/>
+        <location filename="../music/MusicWidgetArtist.ui" line="606"/>
         <source>Fanart</source>
         <translation>팬아트</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.ui" line="618"/>
+        <location filename="../music/MusicWidgetArtist.ui" line="632"/>
         <source>Logo</source>
         <translation>로고</translation>
     </message>
@@ -4578,22 +4593,22 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="186"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="188"/>
         <source>Saving Artist...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="192"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="194"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 저장됨</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="441"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="446"/>
         <source>Downloading images...</source>
         <translation>이미지 다운로드 중...</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetArtist.cpp" line="504"/>
+        <location filename="../music/MusicWidgetArtist.cpp" line="509"/>
         <source>Unknown Album</source>
         <translation type="unfinished"/>
     </message>
