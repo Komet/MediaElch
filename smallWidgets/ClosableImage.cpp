@@ -65,8 +65,8 @@ void ClosableImage::mousePressEvent(QMouseEvent *ev)
         m_anim->setPropertyName("mySize");
         m_anim->setDuration(400);
         m_anim->start(QPropertyAnimation::DeleteWhenStopped);
-        connect(m_anim, SIGNAL(finished()), this, SLOT(closed()));
-        connect(m_anim, SIGNAL(finished()), this, SIGNAL(sigClose()), Qt::QueuedConnection);
+        connect(m_anim, SIGNAL(finished()), this, SIGNAL(sigClose()));
+        connect(m_anim, SIGNAL(finished()), this, SLOT(closed()), Qt::QueuedConnection);
     } else if ((!m_image.isNull() || !m_imagePath.isEmpty()) && m_showZoomAndResolution && zoomRect().contains(ev->pos())) {
         if (!m_image.isNull()) {
             ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(QImage::fromData(m_image)));
