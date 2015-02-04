@@ -3620,7 +3620,7 @@ Se quiser procurar um ID TMDB ou OFDb, por favor utilize o prefixo &quot;id&quot
     <message>
         <location filename="../movies/MovieWidget.ui" line="602"/>
         <source>IMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>ID IMDB</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="612"/>

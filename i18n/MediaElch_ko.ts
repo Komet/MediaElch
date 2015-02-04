@@ -3619,7 +3619,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="602"/>
         <source>IMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>IMDB ID</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="612"/>

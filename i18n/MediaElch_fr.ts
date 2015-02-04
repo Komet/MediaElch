@@ -3620,7 +3620,7 @@ Si vous voulez effectuer une recherche par un TMDB ou OFDb ID s&apos;il vous pla
     <message>
         <location filename="../movies/MovieWidget.ui" line="602"/>
         <source>IMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>ID IMDB</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="612"/>

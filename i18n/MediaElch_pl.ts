@@ -3620,7 +3620,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../movies/MovieWidget.ui" line="602"/>
         <source>IMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>Identyfikator IMDB</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="612"/>
@@ -4361,7 +4361,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="275"/>
         <source>MusicBrainz ID</source>
-        <translation type="unfinished"/>
+        <translation>Identyfikator MusicBrainz</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="292"/>
@@ -4492,7 +4492,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="266"/>
         <source>MusicBrainz ID</source>
-        <translation type="unfinished"/>
+        <translation>Identyfikator MusicBrainz</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="283"/>
@@ -7179,7 +7179,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1041"/>
         <source>Stereo Mode</source>
-        <translation>Tryb stereo</translation>
+        <translation>Tryb 3D</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetEpisode.ui" line="1062"/>
@@ -7907,12 +7907,12 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="530"/>
         <source>Finished. Kodi is now loading your updated items.</source>
-        <translation>Zakończone. Kodi wczytuje teraz zaktualizowane pozycje.</translation>
+        <translation>Ukończone. Kodi wczytuje teraz zaktualizowane pozycje.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="554"/>
         <source>Finished. Kodi is now cleaning your database.</source>
-        <translation>Zakończone. Kodi czyści teraz swoją bazę danych.</translation>
+        <translation>Ukończone. Kodi czyści teraz swoją bazę danych.</translation>
     </message>
     <message>
         <location filename="../xbmc/XbmcSync.cpp" line="595"/>
