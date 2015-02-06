@@ -4361,7 +4361,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="275"/>
         <source>MusicBrainz ID</source>
-        <translation type="unfinished"/>
+        <translation>MusicBrainz ID</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="292"/>
@@ -4492,7 +4492,7 @@ Se você deseja procurar pelo id TMDB ou id OFDb  por favor prefixe a busca com 
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="266"/>
         <source>MusicBrainz ID</source>
-        <translation type="unfinished"/>
+        <translation>MusicBrainz ID</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="283"/>
