@@ -28,7 +28,7 @@ public:
     QList<int> scraperSupports();
     QList<int> scraperNativelySupports();
     QWidget *settingsWidget();
-    static QList<ScraperSearchResult> parseSearch(QString json, int *nextPage);
+    static QList<ScraperSearchResult> parseSearch(QString json, int *nextPage, int page);
     static QString apiKey();
     bool isAdult();
 

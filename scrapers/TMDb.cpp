@@ -301,6 +301,7 @@ void TMDb::search(QString searchStr)
     }
     reply->setProperty("searchString", searchStr);
     reply->setProperty("results", Storage::toVariant(reply, QList<ScraperSearchResult>()));
+    reply->setProperty("page", 1);
     connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
 }
 
@@ -324,9 +325,10 @@ void TMDb::searchFinished()
     QString searchString = reply->property("searchString").toString();
     QString searchTitle = reply->property("searchTitle").toString();
     QString searchYear = reply->property("searchYear").toString();
+    int page = reply->property("page").toInt();
     QString msg = QString::fromUtf8(reply->readAll());
     int nextPage = -1;
-    results.append(parseSearch(msg, &nextPage));
+    results.append(parseSearch(msg, &nextPage, page));
     reply->deleteLater();
 
     if (nextPage == -1) {
@@ -341,6 +343,7 @@ void TMDb::searchFinished()
         QNetworkReply *reply = qnam()->get(request);
         reply->setProperty("searchString", searchString);
         reply->setProperty("results", Storage::toVariant(reply, results));
+        reply->setProperty("page", nextPage);
         connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
     }
 }
@@ -351,7 +354,7 @@ void TMDb::searchFinished()
  * @param nextPage This will hold the next page to get, -1 if there are no more pages
  * @return List of search results
  */
-QList<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage)
+QList<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage, int page)
 {
     qDebug() << "Entered";
     QList<ScraperSearchResult> results;
@@ -360,8 +363,8 @@ QList<ScraperSearchResult> TMDb::parseSearch(QString json, int *nextPage)
     sc = engine.evaluate("(" + QString(json) + ")");
 
     // only get the first 3 pages
-    if (sc.property("page").toInteger() < sc.property("total_pages").toInteger() && sc.property("page").toInteger() < 3)
-        *nextPage = sc.property("page").toInteger()+1;
+    if (page < sc.property("total_pages").toInteger() && page < 3)
+        *nextPage = page+1;
 
     if (sc.property("results").isArray() ) {
         QScriptValueIterator it(sc.property("results"));
