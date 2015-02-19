@@ -3615,7 +3615,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../movies/MovieWidget.ui" line="582"/>
         <source>Outline</source>
-        <translation>Zarys fabuły</translation>
+        <translation>Zarys</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="602"/>
@@ -5511,12 +5511,12 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="578"/>
         <source>Movie outline</source>
-        <translation>Zarys fabuły</translation>
+        <translation>Zarys</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="585"/>
         <source>Use plot when outline is not available</source>
-        <translation>Używaj fabuły, jeśli zarys fabuły jest niedostępny</translation>
+        <translation>Używaj fabuły, jeśli zarys jest niedostępny</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="592"/>
