@@ -462,7 +462,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="213"/>
         <source>Logo, Clear Art, CD Art</source>
-        <translation>Logo, Przezrocze, Grafika dysku</translation>
+        <translation>Logo, Przezrocze, Przezrocze dysku</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="216"/>
@@ -591,7 +591,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="419"/>
         <source>Extra Fanarts</source>
-        <translation>Tapety</translation>
+        <translation>Fototapety</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="441"/>
@@ -682,7 +682,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="947"/>
         <source>Fanart</source>
-        <translation>Tapeta</translation>
+        <translation>Fototapeta</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="1023"/>
@@ -697,7 +697,7 @@
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="1117"/>
         <source>CD Art</source>
-        <translation>Grafika dysku</translation>
+        <translation>Przezrocze dysku</translation>
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.cpp" line="72"/>
@@ -1430,25 +1430,25 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="555"/>
         <source>Movie has Extra Fanarts</source>
-        <translation>Film z dodatkowymi tapetami</translation>
+        <translation>Film z dodatkowymi fototapetami</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="555"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="556"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="559"/>
         <source>Extra Fanarts</source>
-        <translation>Tapety</translation>
+        <translation>Fototapety</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="558"/>
         <source>Movie has no Extra Fanarts</source>
-        <translation>Film bez dodatkowych tapet</translation>
+        <translation>Film bez dodatkowych fototapet</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="558"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="559"/>
         <source>No Extra Fanarts</source>
-        <translation>Brak dodatkowych tapet</translation>
+        <translation>Brak dodatkowych fototapet</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="561"/>
@@ -1466,7 +1466,7 @@
         <location filename="../smallWidgets/FilterWidget.cpp" line="562"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="565"/>
         <source>Fanart</source>
-        <translation>Tapeta</translation>
+        <translation>Fototapeta</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="564"/>
@@ -1482,7 +1482,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="565"/>
         <source>No Fanart</source>
-        <translation>Brak tapety</translation>
+        <translation>Brak fototapety</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="567"/>
@@ -1579,25 +1579,25 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="591"/>
         <source>Movie has CD Art</source>
-        <translation>Film z grafiką dysku</translation>
+        <translation>Film z przezroczem dysku</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="591"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="592"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="595"/>
         <source>CD Art</source>
-        <translation>Grafika dysku</translation>
+        <translation>Przezrocze dysku</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="594"/>
         <source>Movie has no CD Art</source>
-        <translation>Film bez grafiki dysku</translation>
+        <translation>Film bez przezrocza dysku</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="594"/>
         <location filename="../smallWidgets/FilterWidget.cpp" line="595"/>
         <source>No CD Art</source>
-        <translation>Brak grafiki dysku</translation>
+        <translation>Brak przezrocza dysku</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="597"/>
@@ -3085,12 +3085,12 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../data/MovieModel.cpp" line="290"/>
         <source>Extra Fanarts</source>
-        <translation>Tapety</translation>
+        <translation>Fototapety</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="292"/>
         <source>Fanart</source>
-        <translation>Tapeta</translation>
+        <translation>Fotoapeta</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="294"/>
@@ -3233,7 +3233,7 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="291"/>
         <source>CD Art</source>
-        <translation>Grafika dysku</translation>
+        <translation>Przezrocze dysku</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="281"/>
@@ -3441,7 +3441,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="281"/>
         <source>CD Art</source>
-        <translation>Grafika dysku</translation>
+        <translation>Przezrocze dysku</translation>
     </message>
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="288"/>
@@ -3666,12 +3666,12 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../movies/MovieWidget.ui" line="795"/>
         <source>Extra Fanarts</source>
-        <translation>Tapety</translation>
+        <translation>Fototapety</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="807"/>
         <source>Support for extra fanarts is only available when your movies are stored in separate folders. Check the settings if you&apos;ve stored your movies in separate folders already.</source>
-        <translation>Wsparcie dla dodatkowych tapet jest dostępne tylko wtedy, gdy filmy znajdują się w osobnych folderach. Zaznacz to ustawienie, jeśli już przechowujesz swoje filmy w osobnych folderach.</translation>
+        <translation>Wsparcie dla dodatkowych fototapet jest dostępne tylko wtedy, gdy filmy znajdują się w osobnych folderach. Zaznacz to ustawienie, jeśli już przechowujesz swoje filmy w osobnych folderach.</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="827"/>
@@ -3761,7 +3761,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
         <location filename="../movies/MovieWidget.ui" line="1332"/>
         <location filename="../movies/MovieWidget.ui" line="1372"/>
         <source>Fanart</source>
-        <translation>Tapeta</translation>
+        <translation>Fototapeta</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1382"/>
@@ -3784,12 +3784,12 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../movies/MovieWidget.ui" line="1558"/>
         <source>Disc Art</source>
-        <translation>Grafika dysku</translation>
+        <translation>Przezrocze dysku</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1598"/>
         <source>CD Art</source>
-        <translation>Grafika dysku</translation>
+        <translation>Przezrocze dysku</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1608"/>
@@ -3999,7 +3999,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="146"/>
         <source>CD Art</source>
-        <translation>Grafika dysku</translation>
+        <translation>Przezrocze dysku</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="159"/>
@@ -4014,12 +4014,12 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="185"/>
         <source>Extra Fanarts</source>
-        <translation>Tapety</translation>
+        <translation>Fototapety</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="198"/>
         <source>Fanart</source>
-        <translation>Tapeta</translation>
+        <translation>Fototapeta</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="211"/>
@@ -4252,12 +4252,12 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="340"/>
         <source>Fanart</source>
-        <translation>Tapeta</translation>
+        <translation>Fototapeta</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="350"/>
         <source>Extra Fanarts</source>
-        <translation>Tapety</translation>
+        <translation>Fototapety</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="360"/>
@@ -4272,7 +4272,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="380"/>
         <source>CD Art</source>
-        <translation>Grafika dysku</translation>
+        <translation>Przezrocze dysku</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="397"/>
@@ -4384,7 +4384,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
         <location filename="../music/MusicWidgetAlbum.ui" line="444"/>
         <location filename="../music/MusicWidgetAlbum.ui" line="484"/>
         <source>Disc Art</source>
-        <translation>Grafika dysku</translation>
+        <translation>Przezrocze dysku</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.cpp" line="39"/>
@@ -4527,7 +4527,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="397"/>
         <source>Extra Fanarts</source>
-        <translation>Tapety</translation>
+        <translation>Fototapety</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="419"/>
@@ -4557,7 +4557,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
         <location filename="../music/MusicWidgetArtist.ui" line="566"/>
         <location filename="../music/MusicWidgetArtist.ui" line="606"/>
         <source>Fanart</source>
-        <translation>Tapeta</translation>
+        <translation>Fototapeta</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="632"/>
@@ -5063,7 +5063,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="396"/>
         <source>&lt;b&gt;Rename CD Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation>&lt;b&gt;Zmiana nazwy grafiki dysku&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
+        <translation>&lt;b&gt;Zmiana nazwy przezrocza dysku&lt;/b&gt; z &quot;%1&quot; na &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="419"/>
@@ -5492,7 +5492,7 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
         <location filename="../settings/SettingsWindow.ui" line="1003"/>
         <location filename="../settings/SettingsWindow.cpp" line="759"/>
         <source>Disc Art</source>
-        <translation>Grafika dysku</translation>
+        <translation>Przezrocze dysku</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="537"/>
@@ -5547,7 +5547,7 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="630"/>
         <source>Movie Set Fanart Filname</source>
-        <translation>Nazwa pliku tapety serii filmowej</translation>
+        <translation>Nazwa pliku fototapety serii filmowej</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="637"/>
@@ -5583,7 +5583,7 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="741"/>
         <source>Character Art</source>
-        <translation>Grafika postaci</translation>
+        <translation>Przezrocze postaci</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="748"/>
@@ -5633,7 +5633,7 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1108"/>
         <source>Artist Fanart</source>
-        <translation>Tapeta wykonawcy</translation>
+        <translation>Fototapeta wykonawcy</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1125"/>
@@ -5648,12 +5648,12 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1159"/>
         <source>Album Disc Art</source>
-        <translation>Grafika albumu</translation>
+        <translation>Przezrocze dysku</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1176"/>
         <source>Download Extra Fanarts for Artists</source>
-        <translation>Pobieraj dodatkowe tapety wykonawcy</translation>
+        <translation>Pobieraj dodatkowe fototapety wykonawcy</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1196"/>
@@ -5956,7 +5956,7 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="739"/>
         <source>Fanart</source>
-        <translation>Tapeta</translation>
+        <translation>Fototapeta</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="741"/>
@@ -6768,7 +6768,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="230"/>
         <source>Fanart</source>
-        <translation>Tapeta</translation>
+        <translation>Fotoapeta</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="240"/>
@@ -6783,7 +6783,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="260"/>
         <source>Season Fanart</source>
-        <translation>Tapeta sezonu</translation>
+        <translation>Fototapeta sezonu</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="270"/>
@@ -7299,7 +7299,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="285"/>
         <source>Fanart</source>
-        <translation>Tapeta</translation>
+        <translation>Fototapeta</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="332"/>
@@ -7468,7 +7468,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="512"/>
         <source>Extra Fanarts</source>
-        <translation>Tapety</translation>
+        <translation>Fototapety</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="534"/>
@@ -7498,7 +7498,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="792"/>
         <source>Fanart</source>
-        <translation>Tapeta</translation>
+        <translation>Fototapeta</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="839"/>
@@ -7523,7 +7523,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1006"/>
         <source>Character Art</source>
-        <translation>Grafika postaci</translation>
+        <translation>Przezrocze postaci</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.cpp" line="76"/>
