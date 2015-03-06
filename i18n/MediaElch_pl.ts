@@ -3671,7 +3671,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../movies/MovieWidget.ui" line="807"/>
         <source>Support for extra fanarts is only available when your movies are stored in separate folders. Check the settings if you&apos;ve stored your movies in separate folders already.</source>
-        <translation>Wsparcie dla dodatkowych fototapet jest dostępne tylko wtedy, gdy filmy znajdują się w osobnych folderach. Zaznacz to ustawienie, jeśli już przechowujesz swoje filmy w osobnych folderach.</translation>
+        <translation>Wsparcie dla dodatkowych fototapet jest dostępne tylko wtedy, gdy filmy znajdują się w osobnych folderach. Zaznacz to ustawienie, jeśli przechowujesz swoje filmy w osobnych folderach.</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="827"/>
@@ -5442,7 +5442,7 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="410"/>
         <source>Below you see the filenames which are used for loading and saving your movies. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Poniżej widoczne są nazwy plików, które są używane podczas wczytywania i zapisywania filmów. Możesz je edytować według uznania, ponadto możesz używać wielu plików oddzielając je przecinkiem.</translation>
+        <translation>Poniżej widoczne są nazwy plików używane podczas wczytywania i zapisywania filmów. Możesz je edytować według uznania, ponadto możesz używać wielu plików oddzielając je przecinkiem.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="420"/>
@@ -5568,7 +5568,7 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="674"/>
         <source>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Poniżej widoczne są nazwy plików, które są używane podczas wczytywania i zapisywania seriali. Możesz je edytować według uznania, dodatkowo możesz używać wielu plików oddzielając je przecinkiem.</translation>
+        <translation>Poniżej widoczne są nazwy plików używane podczas wczytywania i zapisywania seriali. Możesz je edytować według uznania, dodatkowo możesz używać wielu plików oddzielając je przecinkiem.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="684"/>
@@ -5618,12 +5618,12 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="943"/>
         <source>Below you see the filenames which are used for loading and saving your concerts. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Poniżej widoczne są nazwy plików, które są używane podczas wczytywania i zapisywania koncertów. Możesz je edytować według uznania, ponadto możesz używać wielu plików oddzielając je przecinkiem.</translation>
+        <translation>Poniżej widoczne są nazwy plików używane podczas wczytywania i zapisywania koncertów. Możesz je edytować według uznania, ponadto możesz używać wielu plików oddzielając je przecinkiem.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1076"/>
         <source>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
-        <translation>Poniżej widoczne są nazwy plików, które są używane do wczytywania i zapisywania wykonawców i albumów. Możesz je modyfikować jeśli chcesz, a poszczególne nazwy, w przypadku kilku, rozdzielać przecinkiem.</translation>
+        <translation>Poniżej widoczne są nazwy plików używane do wczytywania i zapisywania wykonawców i albumów. Możesz je edytować według uznania, dodatkowo możesz używać wielu plików oddzielając je przecinkiem.</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="1091"/>
