@@ -4361,7 +4361,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="275"/>
         <source>MusicBrainz ID</source>
-        <translation type="unfinished"/>
+        <translation>MusicBrainz ID</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="292"/>
@@ -4492,7 +4492,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="266"/>
         <source>MusicBrainz ID</source>
-        <translation type="unfinished"/>
+        <translation>MusicBrainz ID</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="283"/>
