@@ -2562,27 +2562,27 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../main/MainWindow.cpp" line="746"/>
         <source>Reload all Movies (%1)</source>
-        <translation>Odśwież wszystkie filmy (%1)</translation>
+        <translation>Odśwież listę (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="751"/>
         <source>Reload all TV Shows (%1)</source>
-        <translation>Odśwież wszystkie seriale (%1)</translation>
+        <translation>Odśwież listę (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="761"/>
         <source>Reload all Concerts (%1)</source>
-        <translation>Odśwież wszystkie koncerty (%1)</translation>
+        <translation>Odśwież listę (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="777"/>
         <source>Reload all Downloads (%1)</source>
-        <translation>Odśwież wszystkie pobrania (%1)</translation>
+        <translation>Odśwież listę (%1)</translation>
     </message>
     <message>
         <location filename="../main/MainWindow.cpp" line="781"/>
         <source>Reload Music (%1)</source>
-        <translation>Odśwież muzykę  (%1)</translation>
+        <translation>Odśwież listę  (%1)</translation>
     </message>
 </context>
 <context>
@@ -4685,7 +4685,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../main/Navbar.cpp" line="27"/>
         <source>Reload all files (%1)</source>
-        <translation>Odśwież wszystko (%1)</translation>
+        <translation>Odśwież listę (%1)</translation>
     </message>
 </context>
 <context>
