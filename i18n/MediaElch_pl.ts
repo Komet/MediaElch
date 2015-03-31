@@ -5860,7 +5860,7 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="514"/>
         <source>Downloads</source>
-        <translation>Pobrania</translation>
+        <translation>Pobrane</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.cpp" line="552"/>
