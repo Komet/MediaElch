@@ -1904,7 +1904,7 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="665"/>
         <source>Channels 2.0</source>
-        <translation type="unfinished"/>
+        <translation>2.0 kanavaa</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="666"/>
@@ -1926,42 +1926,42 @@
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="667"/>
         <source>Channels 5.1</source>
-        <translation type="unfinished"/>
+        <translation>5.1 kanvaa</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="669"/>
         <source>Channels 7.1</source>
-        <translation type="unfinished"/>
+        <translation>7.1 kanavaa</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="672"/>
         <source>Audio Quality HD</source>
-        <translation type="unfinished"/>
+        <translation>HD-äänenlaatu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="673"/>
         <source>HD Audio</source>
-        <translation type="unfinished"/>
+        <translation>HD-ääni</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="674"/>
         <source>Audio Quality Normal</source>
-        <translation type="unfinished"/>
+        <translation>Normaali äänenlaatu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="675"/>
         <source>Normal Audio</source>
-        <translation type="unfinished"/>
+        <translation>Normaali ääni</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="676"/>
         <source>Audio Quality SD</source>
-        <translation type="unfinished"/>
+        <translation>SD-äänenlaatu</translation>
     </message>
     <message>
         <location filename="../smallWidgets/FilterWidget.cpp" line="677"/>
         <source>SD Audio</source>
-        <translation type="unfinished"/>
+        <translation>SD-ääni</translation>
     </message>
 </context>
 <context>
