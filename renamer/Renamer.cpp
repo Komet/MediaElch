@@ -257,6 +257,8 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                             else
                                 FilmFiles.append(newTrailerFileName);
                         }
+                        else
+                            FilmFiles.append(trailer.fileName());
                     }
 
                     QStringList filters;
@@ -277,6 +279,9 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                             FilmFiles.append(newSubName);
                     }
                 }
+                else
+                    FilmFiles.append(fi.fileName());
+
             }
 
             // Rename nfo
@@ -297,6 +302,8 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         else
                             FilmFiles.append(newNfoFileName);
                     }
+                    else
+                        FilmFiles.append(nfoFileName);
                 }
             }
 
@@ -318,6 +325,8 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         else
                             FilmFiles.append(newPosterFileName);
                     }
+                    else
+                        FilmFiles.append(posterFileName);
                 }
             }
 
@@ -339,6 +348,8 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         else
                             FilmFiles.append(newFanartFileName);
                     }
+                    else
+                        FilmFiles.append(fanartFileName);
                 }
             }
 
@@ -360,6 +371,8 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         else
                             FilmFiles.append(newBannerFileName);
                     }
+                    else
+                        FilmFiles.append(bannerFileName);
                 }
             }
 
@@ -381,6 +394,8 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         else
                             FilmFiles.append(newThumbFileName);
                     }
+                    else
+                        FilmFiles.append(thumbFileName);
                 }
             }
 
@@ -402,6 +417,8 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         else
                             FilmFiles.append(newLogoFileName);
                     }
+                    else
+                        FilmFiles.append(logoFileName);
                 }
             }
 
@@ -423,6 +440,8 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         else
                             FilmFiles.append(newClearArtFileName);
                     }
+                    else
+                        FilmFiles.append(clearArtFileName);
                 }
             }
 
@@ -444,6 +463,8 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         else
                             FilmFiles.append(newCdArtFileName);
                     }
+                    else
+                        FilmFiles.append(cdArtFileName);
                 }
             }
         }
@@ -487,11 +508,13 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
             }
             foreach (const QString &fileName, FilmFiles) {
                 QFileInfo fi(fileName);
-                ui->results->append(tr("<b>Move File</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(dir.dirName() + "/" + newFolderName + "/" + fi.fileName()));
-                if (!dryRun) {
-                    if (!rename(dir.absolutePath() + "/" +fileName, dir.absolutePath() + "/" + newFolderName + "/" + fi.fileName()))
-                        ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                if (dir.dirName() != newFolderName){
+                    ui->results->append(tr("<b>Move File</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(dir.dirName() + "/" + newFolderName + "/" + fi.fileName()));
+                    if (!dryRun) {
+                        if (!rename(dir.absolutePath() + "/" +fileName, dir.absolutePath() + "/" + newFolderName + "/" + fi.fileName()))
+                            ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
 
+                    }
                 }
             }
         }
