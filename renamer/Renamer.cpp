@@ -234,8 +234,10 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                 if (fi.fileName() != newFileName) {
                     ui->results->append(tr("<b>Rename File</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(newFileName));
                     if (!dryRun) {
-                        if (!rename(file, fi.canonicalPath() + "/" + newFileName))
+                        if (!rename(file, fi.canonicalPath() + "/" + newFileName)){
                             ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                            continue;
+                        }
                         else
                             FilmFiles.append(newFileName);
                     }
@@ -498,25 +500,38 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
             Renamer::replaceCondition(newFolderName, "3D", movie->streamDetails()->videoDetails().value("stereomode") != "");
             Renamer::replaceCondition(newFolderName, "movieset", movie->set());
             Helper::instance()->sanitizeFileName(newFolderName);
-            if (dir.dirName() != newFolderName)
-                ui->results->append(tr("<b>Create Directory</b> \"%2\" into \"%1\"").arg(dir.dirName()).arg(newFolderName));
-            if (!dryRun) {
-                if (!dir.mkdir(newFolderName)){
-                    ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
-                    return;
+            if (dir.dirName() != newFolderName){ //check if movie is not already on good folder
+                int i = 0 ;
+                while (dir.exists(newFolderName)){
+                    newFolderName = newFolderName + " " + QString::number(++i);
                 }
-            }
-            foreach (const QString &fileName, FilmFiles) {
-                QFileInfo fi(fileName);
-                if (dir.dirName() != newFolderName){
-                    ui->results->append(tr("<b>Move File</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(dir.dirName() + "/" + newFolderName + "/" + fi.fileName()));
-                    if (!dryRun) {
-                        if (!rename(dir.absolutePath() + "/" +fileName, dir.absolutePath() + "/" + newFolderName + "/" + fi.fileName()))
-                            ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
 
+                ui->results->append(tr("<b>Create Directory</b> \"%2\" into \"%1\"").arg(dir.dirName()).arg(newFolderName));
+
+                if (!dryRun) {
+                    if (!dir.mkdir(newFolderName)){
+                        ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>"+ tr("Failed") + "</b></span>");
+                        continue;
+                    }
+                }
+
+                foreach (const QString &fileName, FilmFiles) {
+                    QFileInfo fi(fileName);
+                    if (dir.dirName() != newFolderName){
+                        ui->results->append(tr("<b>Move File</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(dir.dirName() + "/" + newFolderName + "/" + fi.fileName()));
+                        if (!dryRun) {
+                            if (!rename(dir.absolutePath() + "/" +fileName, dir.absolutePath() + "/" + newFolderName + "/" + fi.fileName()))
+                                ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+
+                        }
                     }
                 }
             }
+/*            else {
+                ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>"+ tr("AlreadyGoodFolder") + "</b></span>");
+                continue;
+            }
+*/
         }
 
 
