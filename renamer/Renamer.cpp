@@ -201,6 +201,7 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
         QString logo = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieLogo);
         QString clearArt = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieClearArt);
         QString cdArt = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieCdArt);
+        QStringList FilmFiles;
 
         QDir chkDir(fi.canonicalPath());
         chkDir.cdUp();
@@ -233,9 +234,15 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                 if (fi.fileName() != newFileName) {
                     ui->results->append(tr("<b>Rename File</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(newFileName));
                     if (!dryRun) {
-                        if (!rename(file, fi.canonicalPath() + "/" + newFileName))
+                        if (!rename(file, fi.canonicalPath() + "/" + newFileName)){
                             ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                            continue;
+                        }
+                        else
+                            FilmFiles.append(newFileName);
                     }
+                    else
+                        FilmFiles.append(newFileName);
 
                     foreach (const QString &trailerFile, currentDir.entryList(QStringList() << fi.completeBaseName() + "-trailer.*", QDir::Files | QDir::NoDotAndDotDot)) {
                         QFileInfo trailer(fi.canonicalPath() + "/" + trailerFile);
@@ -246,8 +253,14 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                             if (!dryRun) {
                                 if (!rename(fi.canonicalPath() + "/" + trailerFile, fi.canonicalPath() + "/" + newTrailerFileName))
                                     ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                                else
+                                    FilmFiles.append(newTrailerFileName);
                             }
+                            else
+                                FilmFiles.append(newTrailerFileName);
                         }
+                        else
+                            FilmFiles.append(trailer.fileName());
                     }
 
                     QStringList filters;
@@ -261,9 +274,16 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         if (!dryRun) {
                             if (!rename(currentDir.canonicalPath() + "/" + subFileName, currentDir.canonicalPath() + "/" + newSubName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                            else
+                                FilmFiles.append(newSubName);
                         }
+                        else
+                            FilmFiles.append(newSubName);
                     }
                 }
+                else
+                    FilmFiles.append(fi.fileName());
+
             }
 
             // Rename nfo
@@ -278,8 +298,14 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         if (!dryRun) {
                             if (!rename(nfo, fiCanonicalPath + "/" + newNfoFileName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                            else
+                                FilmFiles.append(newNfoFileName);
                         }
+                        else
+                            FilmFiles.append(newNfoFileName);
                     }
+                    else
+                        FilmFiles.append(nfoFileName);
                 }
             }
 
@@ -295,8 +321,14 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         if (!dryRun) {
                             if (!rename(poster, fiCanonicalPath + "/" + newPosterFileName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                            else
+                                FilmFiles.append(newPosterFileName);
                         }
+                        else
+                            FilmFiles.append(newPosterFileName);
                     }
+                    else
+                        FilmFiles.append(posterFileName);
                 }
             }
 
@@ -312,8 +344,14 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         if (!dryRun) {
                             if (!rename(fanart, fiCanonicalPath + "/" + newFanartFileName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                            else
+                                FilmFiles.append(newFanartFileName);
                         }
+                        else
+                            FilmFiles.append(newFanartFileName);
                     }
+                    else
+                        FilmFiles.append(fanartFileName);
                 }
             }
 
@@ -329,8 +367,14 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         if (!dryRun) {
                             if (!rename(banner, fiCanonicalPath + "/" + newBannerFileName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                            else
+                                FilmFiles.append(newBannerFileName);
                         }
+                        else
+                            FilmFiles.append(newBannerFileName);
                     }
+                    else
+                        FilmFiles.append(bannerFileName);
                 }
             }
 
@@ -346,8 +390,14 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         if (!dryRun) {
                             if (!rename(thumb, fiCanonicalPath + "/" + newThumbFileName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                            else
+                                FilmFiles.append(newThumbFileName);
                         }
+                        else
+                            FilmFiles.append(newThumbFileName);
                     }
+                    else
+                        FilmFiles.append(thumbFileName);
                 }
             }
 
@@ -363,8 +413,14 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         if (!dryRun) {
                             if (!rename(logo, fiCanonicalPath + "/" + newLogoFileName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                            else
+                                FilmFiles.append(newLogoFileName);
                         }
+                        else
+                            FilmFiles.append(newLogoFileName);
                     }
+                    else
+                        FilmFiles.append(logoFileName);
                 }
             }
 
@@ -380,8 +436,14 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         if (!dryRun) {
                             if (!rename(clearArt, fiCanonicalPath + "/" + newClearArtFileName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                            else
+                                FilmFiles.append(newClearArtFileName);
                         }
+                        else
+                            FilmFiles.append(newClearArtFileName);
                     }
+                    else
+                        FilmFiles.append(clearArtFileName);
                 }
             }
 
@@ -397,12 +459,19 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         if (!dryRun) {
                             if (!rename(cdArt, fiCanonicalPath + "/" + newCdArtFileName))
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                            else
+                                FilmFiles.append(newCdArtFileName);
                         }
+                        else
+                            FilmFiles.append(newCdArtFileName);
                     }
+                    else
+                        FilmFiles.append(cdArtFileName);
                 }
             }
         }
 
+        //rename dir for already existe films dir
         if (renameDirectories && movie->inSeparateFolder()) {
             Renamer::replace(newFolderName, "title", movie->name());
             Renamer::replace(newFolderName, "originalTitle", movie->originalName());
@@ -418,6 +487,53 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
             if (dir.dirName() != newFolderName)
                 ui->results->append(tr("<b>Rename Directory</b> \"%1\" to \"%2\"").arg(dir.dirName()).arg(newFolderName));
         }
+        //create dir for new dir structure
+        else if (renameDirectories) {
+            Renamer::replace(newFolderName, "title", movie->name());
+            Renamer::replace(newFolderName, "originalTitle", movie->originalName());
+            Renamer::replace(newFolderName, "sortTitle", movie->sortTitle());
+            Renamer::replace(newFolderName, "year", movie->released().toString("yyyy"));
+            Renamer::replace(newFolderName, "resolution", Helper::instance()->matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
+                                                                                              movie->streamDetails()->videoDetails().value("height").toInt()));
+            Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
+            Renamer::replaceCondition(newFolderName, "dvd", isDvd);
+            Renamer::replaceCondition(newFolderName, "3D", movie->streamDetails()->videoDetails().value("stereomode") != "");
+            Renamer::replaceCondition(newFolderName, "movieset", movie->set());
+            Helper::instance()->sanitizeFileName(newFolderName);
+            if (dir.dirName() != newFolderName){ //check if movie is not already on good folder
+                int i = 0 ;
+                while (dir.exists(newFolderName)){
+                    newFolderName = newFolderName + " " + QString::number(++i);
+                }
+
+                ui->results->append(tr("<b>Create Directory</b> \"%2\" into \"%1\"").arg(dir.dirName()).arg(newFolderName));
+
+                if (!dryRun) {
+                    if (!dir.mkdir(newFolderName)){
+                        ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>"+ tr("Failed") + "</b></span>");
+                        continue;
+                    }
+                }
+
+                foreach (const QString &fileName, FilmFiles) {
+                    QFileInfo fi(fileName);
+                    if (dir.dirName() != newFolderName){
+                        ui->results->append(tr("<b>Move File</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(dir.dirName() + "/" + newFolderName + "/" + fi.fileName()));
+                        if (!dryRun) {
+                            if (!rename(dir.absolutePath() + "/" +fileName, dir.absolutePath() + "/" + newFolderName + "/" + fi.fileName()))
+                                ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+
+                        }
+                    }
+                }
+            }
+/*            else {
+                ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>"+ tr("AlreadyGoodFolder") + "</b></span>");
+                continue;
+            }
+*/
+        }
+
 
         if (!dryRun && dir.dirName() != newFolderName && renameDirectories && movie->inSeparateFolder()) {
             QDir parentDir(dir.path());
