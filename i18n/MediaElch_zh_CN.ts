@@ -4975,122 +4975,134 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="234"/>
-        <location filename="../renamer/Renamer.cpp" line="245"/>
-        <location filename="../renamer/Renamer.cpp" line="260"/>
-        <location filename="../renamer/Renamer.cpp" line="496"/>
-        <location filename="../renamer/Renamer.cpp" line="509"/>
-        <location filename="../renamer/Renamer.cpp" line="687"/>
-        <location filename="../renamer/Renamer.cpp" line="700"/>
+        <location filename="../renamer/Renamer.cpp" line="235"/>
+        <location filename="../renamer/Renamer.cpp" line="252"/>
+        <location filename="../renamer/Renamer.cpp" line="273"/>
+        <location filename="../renamer/Renamer.cpp" line="612"/>
+        <location filename="../renamer/Renamer.cpp" line="625"/>
+        <location filename="../renamer/Renamer.cpp" line="803"/>
+        <location filename="../renamer/Renamer.cpp" line="816"/>
         <source>&lt;b&gt;Rename File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="237"/>
-        <location filename="../renamer/Renamer.cpp" line="248"/>
-        <location filename="../renamer/Renamer.cpp" line="263"/>
-        <location filename="../renamer/Renamer.cpp" line="280"/>
-        <location filename="../renamer/Renamer.cpp" line="297"/>
-        <location filename="../renamer/Renamer.cpp" line="314"/>
-        <location filename="../renamer/Renamer.cpp" line="331"/>
-        <location filename="../renamer/Renamer.cpp" line="348"/>
-        <location filename="../renamer/Renamer.cpp" line="365"/>
-        <location filename="../renamer/Renamer.cpp" line="382"/>
-        <location filename="../renamer/Renamer.cpp" line="399"/>
-        <location filename="../renamer/Renamer.cpp" line="426"/>
-        <location filename="../renamer/Renamer.cpp" line="499"/>
-        <location filename="../renamer/Renamer.cpp" line="512"/>
-        <location filename="../renamer/Renamer.cpp" line="531"/>
-        <location filename="../renamer/Renamer.cpp" line="548"/>
-        <location filename="../renamer/Renamer.cpp" line="565"/>
-        <location filename="../renamer/Renamer.cpp" line="580"/>
-        <location filename="../renamer/Renamer.cpp" line="589"/>
-        <location filename="../renamer/Renamer.cpp" line="597"/>
-        <location filename="../renamer/Renamer.cpp" line="604"/>
-        <location filename="../renamer/Renamer.cpp" line="633"/>
-        <location filename="../renamer/Renamer.cpp" line="690"/>
-        <location filename="../renamer/Renamer.cpp" line="703"/>
+        <location filename="../renamer/Renamer.cpp" line="238"/>
+        <location filename="../renamer/Renamer.cpp" line="255"/>
+        <location filename="../renamer/Renamer.cpp" line="276"/>
+        <location filename="../renamer/Renamer.cpp" line="300"/>
+        <location filename="../renamer/Renamer.cpp" line="323"/>
+        <location filename="../renamer/Renamer.cpp" line="346"/>
+        <location filename="../renamer/Renamer.cpp" line="369"/>
+        <location filename="../renamer/Renamer.cpp" line="392"/>
+        <location filename="../renamer/Renamer.cpp" line="415"/>
+        <location filename="../renamer/Renamer.cpp" line="438"/>
+        <location filename="../renamer/Renamer.cpp" line="461"/>
+        <location filename="../renamer/Renamer.cpp" line="513"/>
+        <location filename="../renamer/Renamer.cpp" line="524"/>
+        <location filename="../renamer/Renamer.cpp" line="542"/>
+        <location filename="../renamer/Renamer.cpp" line="615"/>
+        <location filename="../renamer/Renamer.cpp" line="628"/>
+        <location filename="../renamer/Renamer.cpp" line="647"/>
+        <location filename="../renamer/Renamer.cpp" line="664"/>
+        <location filename="../renamer/Renamer.cpp" line="681"/>
+        <location filename="../renamer/Renamer.cpp" line="696"/>
+        <location filename="../renamer/Renamer.cpp" line="705"/>
+        <location filename="../renamer/Renamer.cpp" line="713"/>
         <location filename="../renamer/Renamer.cpp" line="720"/>
-        <location filename="../renamer/Renamer.cpp" line="737"/>
-        <location filename="../renamer/Renamer.cpp" line="754"/>
-        <location filename="../renamer/Renamer.cpp" line="780"/>
+        <location filename="../renamer/Renamer.cpp" line="749"/>
+        <location filename="../renamer/Renamer.cpp" line="806"/>
+        <location filename="../renamer/Renamer.cpp" line="819"/>
+        <location filename="../renamer/Renamer.cpp" line="836"/>
+        <location filename="../renamer/Renamer.cpp" line="853"/>
+        <location filename="../renamer/Renamer.cpp" line="870"/>
+        <location filename="../renamer/Renamer.cpp" line="896"/>
         <source>Failed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="277"/>
-        <location filename="../renamer/Renamer.cpp" line="528"/>
-        <location filename="../renamer/Renamer.cpp" line="717"/>
+        <location filename="../renamer/Renamer.cpp" line="297"/>
+        <location filename="../renamer/Renamer.cpp" line="644"/>
+        <location filename="../renamer/Renamer.cpp" line="833"/>
         <source>&lt;b&gt;Rename NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="294"/>
-        <location filename="../renamer/Renamer.cpp" line="734"/>
+        <location filename="../renamer/Renamer.cpp" line="320"/>
+        <location filename="../renamer/Renamer.cpp" line="850"/>
         <source>&lt;b&gt;Rename Poster&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="311"/>
-        <location filename="../renamer/Renamer.cpp" line="751"/>
+        <location filename="../renamer/Renamer.cpp" line="343"/>
+        <location filename="../renamer/Renamer.cpp" line="867"/>
         <source>&lt;b&gt;Rename Fanart&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="328"/>
+        <location filename="../renamer/Renamer.cpp" line="366"/>
         <source>&lt;b&gt;Rename Banner&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;重命名宽幅海报&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="345"/>
+        <location filename="../renamer/Renamer.cpp" line="389"/>
         <source>&lt;b&gt;Rename Thumb&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;重命名缩略图&lt;/b&gt; &quot;%1&quot; 改为 &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="362"/>
+        <location filename="../renamer/Renamer.cpp" line="412"/>
         <source>&lt;b&gt;Rename Logo&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;重命名Logo&lt;/b&gt; &quot;%1&quot; 改为 &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="379"/>
+        <location filename="../renamer/Renamer.cpp" line="435"/>
         <source>&lt;b&gt;Rename Clear Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;重命名剪贴画&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="396"/>
+        <location filename="../renamer/Renamer.cpp" line="458"/>
         <source>&lt;b&gt;Rename CD Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;重命名光盘封面&lt;/b&gt; &quot;%1&quot; 改为 &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="419"/>
-        <location filename="../renamer/Renamer.cpp" line="628"/>
-        <location filename="../renamer/Renamer.cpp" line="773"/>
+        <location filename="../renamer/Renamer.cpp" line="488"/>
+        <location filename="../renamer/Renamer.cpp" line="744"/>
+        <location filename="../renamer/Renamer.cpp" line="889"/>
         <source>&lt;b&gt;Rename Directory&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;重命名目录&lt;/b&gt; &quot;%1&quot; 改为 &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="545"/>
+        <location filename="../renamer/Renamer.cpp" line="509"/>
+        <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%2&quot; into &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.cpp" line="521"/>
+        <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.cpp" line="661"/>
         <source>&lt;b&gt;Rename Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;重命名缩略图&lt;/b&gt; &quot;%1&quot; 改为 &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="562"/>
+        <location filename="../renamer/Renamer.cpp" line="678"/>
         <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%1&quot;</source>
         <translation>&lt;b&gt;创建目录&lt;/b&gt; &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="577"/>
-        <location filename="../renamer/Renamer.cpp" line="586"/>
+        <location filename="../renamer/Renamer.cpp" line="693"/>
+        <location filename="../renamer/Renamer.cpp" line="702"/>
         <source>&lt;b&gt;Move Episode&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="594"/>
+        <location filename="../renamer/Renamer.cpp" line="710"/>
         <source>&lt;b&gt;Move NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="601"/>
+        <location filename="../renamer/Renamer.cpp" line="717"/>
         <source>&lt;b&gt;Move Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;电影缩略图&lt;/b&gt; &quot;%1&quot; 改为 &quot;%2&quot;</translation>
     </message>
