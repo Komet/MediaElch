@@ -1,8 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>img/spinner.gif</file>
-        <file>img/film_reel.png</file>
-        <file>img/pictures_alt.png</file>
         <file>img/stop.png</file>
         <file>img/magnifier.png</file>
         <file>img/pattern_dark.png</file>
@@ -47,6 +45,14 @@
         <file>img/disc_64.png</file>
         <file>img/inbox_64.png</file>
         <file>fonts/Pe-icon-7-stroke.ttf</file>
+        <file>img/placeholders/poster.png</file>
+        <file>img/placeholders/banner.png</file>
+        <file>img/placeholders/cd_art.png</file>
+        <file>img/placeholders/character_art.png</file>
+        <file>img/placeholders/clear_art.png</file>
+        <file>img/placeholders/fanart.png</file>
+        <file>img/placeholders/logo.png</file>
+        <file>img/placeholders/thumb.png</file>
     </qresource>
     <qresource prefix="/media">
         <file alias="aspect/1.33">mediaFlags/aspect/1.33.png</file>

@@ -525,7 +525,7 @@
               <string/>
              </property>
              <property name="pixmap">
-              <pixmap resource="../MediaElch.qrc">:/img/pictures_alt.png</pixmap>
+              <pixmap resource="../MediaElch.qrc">:/img/placeholders/thumb.png</pixmap>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -591,7 +591,7 @@
               <string/>
              </property>
              <property name="pixmap">
-              <pixmap resource="../MediaElch.qrc">:/img/pictures_alt.png</pixmap>
+              <pixmap resource="../MediaElch.qrc">:/img/placeholders/fanart.png</pixmap>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -657,7 +657,7 @@
               <string/>
              </property>
              <property name="pixmap">
-              <pixmap resource="../MediaElch.qrc">:/img/pictures_alt.png</pixmap>
+              <pixmap resource="../MediaElch.qrc">:/img/placeholders/logo.png</pixmap>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>

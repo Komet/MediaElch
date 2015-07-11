@@ -1160,7 +1160,7 @@ border-bottom: 1px solid rgba(255, 255, 255, 80)</string>
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../MediaElch.qrc">:/img/pictures_alt.png</pixmap>
+           <pixmap resource="../MediaElch.qrc">:/img/placeholders/thumb.png</pixmap>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -1198,6 +1198,11 @@ border-bottom: 1px solid rgba(255, 255, 255, 80)</string>
  </widget>
  <customwidgets>
   <customwidget>
+   <class>ClosableImage</class>
+   <extends>QLabel</extends>
+   <header>smallWidgets/ClosableImage.h</header>
+  </customwidget>
+  <customwidget>
    <class>MyLabel</class>
    <extends>QLabel</extends>
    <header>smallWidgets/MyLabel.h</header>
@@ -1207,11 +1212,6 @@ border-bottom: 1px solid rgba(255, 255, 255, 80)</string>
    <extends>QWidget</extends>
    <header>smallWidgets/MediaFlags.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>ClosableImage</class>
-   <extends>QLabel</extends>
-   <header>smallWidgets/ClosableImage.h</header>
   </customwidget>
  </customwidgets>
  <resources>

@@ -33,8 +33,8 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget *parent) :
     ui->labelCover->setFont(font);
     ui->labelDiscArt->setFont(font);
 
-    ui->cover->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->discArt->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->cover->setDefaultPixmap(QPixmap(":/img/placeholders/poster.png"));
+    ui->discArt->setDefaultPixmap(QPixmap(":/img/placeholders/cd_art.png"));
 
     ui->genreCloud->setText(tr("Genres"));
     ui->genreCloud->setPlaceholder(tr("Add Genre"));

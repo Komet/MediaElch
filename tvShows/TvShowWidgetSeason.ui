@@ -201,6 +201,9 @@ border-bottom: 1px solid rgba(255, 255, 255, 80)</string>
           <property name="text">
            <string/>
           </property>
+          <property name="pixmap">
+           <pixmap resource="../MediaElch.qrc">:/img/placeholders/thumb.png</pixmap>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -263,7 +266,7 @@ border-bottom: 1px solid rgba(255, 255, 255, 80)</string>
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../MediaElch.qrc">:/img/film_reel.png</pixmap>
+           <pixmap resource="../MediaElch.qrc">:/img/placeholders/poster.png</pixmap>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -310,7 +313,7 @@ border-bottom: 1px solid rgba(255, 255, 255, 80)</string>
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../MediaElch.qrc">:/img/pictures_alt.png</pixmap>
+           <pixmap resource="../MediaElch.qrc">:/img/placeholders/fanart.png</pixmap>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -355,6 +358,9 @@ border-bottom: 1px solid rgba(255, 255, 255, 80)</string>
           </property>
           <property name="text">
            <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap resource="../MediaElch.qrc">:/img/placeholders/banner.png</pixmap>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>

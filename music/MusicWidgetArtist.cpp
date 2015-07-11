@@ -34,9 +34,9 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget *parent) :
     ui->labelLogo->setFont(font);
     ui->labelThumb->setFont(font);
 
-    ui->logo->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->thumb->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->fanart->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->fanart->setDefaultPixmap(QPixmap(":/img/placeholders/fanart.png"));
+    ui->logo->setDefaultPixmap(QPixmap(":/img/placeholders/logo.png"));
+    ui->thumb->setDefaultPixmap(QPixmap(":/img/placeholders/thumb.png"));
 
     ui->discography->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->discography->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);

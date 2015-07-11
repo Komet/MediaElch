@@ -75,6 +75,14 @@ SetsWidget::SetsWidget(QWidget *parent) :
     connect(ui->sets, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showSetsContextMenu(QPoint)));
 
     clear();
+
+    QPixmap pixmap = QPixmap(":/img/placeholders/poster.png").scaled(QSize(160, 260) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
+    ui->poster->setPixmap(pixmap);
+
+    QPixmap pixmap2 = QPixmap(":/img/placeholders/fanart.png").scaled(QSize(160, 72) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    Helper::instance()->setDevicePixelRatio(pixmap2, Helper::instance()->devicePixelRatio(this));
+    ui->backdrop->setPixmap(pixmap2);
 }
 
 /**
@@ -227,7 +235,7 @@ void SetsWidget::loadSet(QString set)
         ui->buttonPreviewPoster->setEnabled(true);
         m_currentPoster = poster;
     } else {
-        QPixmap pixmap(":/img/film_reel.png");
+        QPixmap pixmap = QPixmap(":/img/placeholders/poster.png").scaled(QSize(120, 120) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
         Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
         ui->poster->setPixmap(pixmap);
         ui->buttonPreviewPoster->setEnabled(false);
@@ -251,7 +259,7 @@ void SetsWidget::loadSet(QString set)
         ui->buttonPreviewBackdrop->setEnabled(true);
         m_currentBackdrop = backdrop;
     } else {
-        QPixmap pixmap = QPixmap(":/img/pictures_alt.png").scaled(QSize(64, 64) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        QPixmap pixmap = QPixmap(":/img/placeholders/fanart.png").scaled(QSize(96, 96) * Helper::instance()->devicePixelRatio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation);
         Helper::instance()->setDevicePixelRatio(pixmap, Helper::instance()->devicePixelRatio(this));
         ui->backdrop->setPixmap(pixmap);
         ui->buttonPreviewBackdrop->setEnabled(false);

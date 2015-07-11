@@ -131,7 +131,9 @@ void ClosableImage::paintEvent(QPaintEvent *event)
     } else if (!m_imagePath.isEmpty()) {
         img = ImageCache::instance()->image(m_imagePath, (width()-9)*Helper::instance()->devicePixelRatio(this), 0, origWidth, origHeight);
     } else {
-        p.drawPixmap((width()-m_defaultPixmap.width() / Helper::instance()->devicePixelRatio(m_defaultPixmap))/2, (height()-m_defaultPixmap.height() / Helper::instance()->devicePixelRatio(m_defaultPixmap))/2, m_defaultPixmap);
+        int x = (width() - (m_defaultPixmap.width() / Helper::instance()->devicePixelRatio(m_defaultPixmap))) / 2;
+        int y = (height() - (m_defaultPixmap.height() / Helper::instance()->devicePixelRatio(m_defaultPixmap))) / 2;
+        p.drawPixmap(x, y, m_defaultPixmap);
         drawTitle(p);
         return;
     }
@@ -274,6 +276,9 @@ int ClosableImage::myFixedHeight() const
 void ClosableImage::setDefaultPixmap(QPixmap pixmap)
 {
     m_defaultPixmap = pixmap;
+    int w = (width() - 60) * Helper::instance()->devicePixelRatio(this);
+    int h = (height() - 40) * Helper::instance()->devicePixelRatio(this);
+    m_defaultPixmap = m_defaultPixmap.scaled(w, h, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     Helper::instance()->setDevicePixelRatio(m_defaultPixmap, Helper::instance()->devicePixelRatio(this));
 }
 
