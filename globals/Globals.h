@@ -417,6 +417,7 @@ enum MediaStatusColumns {
     MediaStatusId,
     MediaStatusStreamDetails,
     MediaStatusTrailer,
+    MediaStatusLocalTrailer,
     MediaStatusPoster,
     MediaStatusFanart,
     MediaStatusExtraArts,

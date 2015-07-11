@@ -133,7 +133,10 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
             icon = (movie->actors().isEmpty()) ? "actors/red" : "actors/green";
             break;
         case MediaStatusTrailer:
-            icon = (movie->trailer().isEmpty() && !movie->hasLocalTrailer()) ? "trailer/red" : "trailer/green";
+            icon = (movie->trailer().isEmpty()) ? "trailer/red" : "trailer/green";
+            break;
+        case MediaStatusLocalTrailer:
+            icon = (movie->hasLocalTrailer()) ? "trailer/green" : "trailer/red";
             break;
         case MediaStatusPoster:
             icon = (movie->hasImage(ImageType::MoviePoster)) ? "poster/green" : "poster/red";
@@ -164,8 +167,12 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const
             break;
         }
 
-        if (!icon.isEmpty())
-            return QIcon(":mediaStatus/" + icon);
+        if (!icon.isEmpty()) {
+            static QHash<QString, QIcon> icons;
+            if (!icons.contains(icon))
+                icons.insert(icon, QIcon(":mediaStatus/" + icon));
+            return icons.value(icon);
+        }
 
     } else if (role == Qt::ToolTipRole) {
         return MovieModel::mediaStatusToText(MovieModel::columnToMediaStatus(index.column()));
@@ -241,7 +248,7 @@ int MovieModel::mediaStatusToColumn(MediaStatusColumns column)
 {
     switch (column) {
     case MediaStatusActors:
-        return 8;
+        return 9;
         break;
     case MediaStatusExtraArts:
         return 5;
@@ -256,10 +263,13 @@ int MovieModel::mediaStatusToColumn(MediaStatusColumns column)
         return 2;
         break;
     case MediaStatusStreamDetails:
-        return 7;
+        return 8;
         break;
     case MediaStatusTrailer:
         return 6;
+        break;
+    case MediaStatusLocalTrailer:
+        return 7;
         break;
     case MediaStatusId:
         return 1;
@@ -296,6 +306,8 @@ QString MovieModel::mediaStatusToText(MediaStatusColumns column)
         return tr("Stream Details");
     case MediaStatusTrailer:
         return tr("Trailer");
+    case MediaStatusLocalTrailer:
+        return tr("Lokaler Trailer");
     case MediaStatusId:
         return tr("IMDB ID");
     default:
