@@ -479,16 +479,6 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
 
 void Helper::applyEffect(QWidget *parent)
 {
-    foreach (QLabel *label, parent->findChildren<QLabel*>()) {
-        if (label->property("dropShadow").toBool() && Helper::instance()->devicePixelRatio(label) == 1) {
-            QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(parent);
-            effect->setColor(QColor(0, 0, 0, 30));
-            effect->setOffset(4);
-            effect->setBlurRadius(8);
-            label->setGraphicsEffect(effect);
-        }
-    }
-
     foreach (QPushButton *button, parent->findChildren<QPushButton*>()) {
         if (button->property("dropShadow").toBool() && Helper::instance()->devicePixelRatio(button) == 1) {
             QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(parent);
