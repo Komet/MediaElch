@@ -471,9 +471,11 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
             }
         }
 
+        QString extension = (!movie->files().isEmpty()) ? QFileInfo(movie->files().first()).suffix() : "";
         //rename dir for already existe films dir
         if (renameDirectories && movie->inSeparateFolder()) {
             Renamer::replace(newFolderName, "title", movie->name());
+            Renamer::replace(newFolderName, "extension", extension);
             Renamer::replace(newFolderName, "originalTitle", movie->originalName());
             Renamer::replace(newFolderName, "sortTitle", movie->sortTitle());
             Renamer::replace(newFolderName, "year", movie->released().toString("yyyy"));
@@ -490,6 +492,7 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
         //create dir for new dir structure
         else if (renameDirectories) {
             Renamer::replace(newFolderName, "title", movie->name());
+            Renamer::replace(newFolderName, "extension", extension);
             Renamer::replace(newFolderName, "originalTitle", movie->originalName());
             Renamer::replace(newFolderName, "sortTitle", movie->sortTitle());
             Renamer::replace(newFolderName, "year", movie->released().toString("yyyy"));
@@ -527,11 +530,6 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                     }
                 }
             }
-/*            else {
-                ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>"+ tr("AlreadyGoodFolder") + "</b></span>");
-                continue;
-            }
-*/
         }
 
 
