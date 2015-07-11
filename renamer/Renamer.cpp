@@ -184,8 +184,13 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
         return;
 
     foreach (Movie *movie, movies) {
-        if (movie->files().isEmpty() || (movie->files().count() > 1 && filePatternMulti.isEmpty()) || movie->hasChanged())
+        if (movie->files().isEmpty() || (movie->files().count() > 1 && filePatternMulti.isEmpty()))
             continue;
+
+        if (movie->hasChanged()) {
+            ui->results->append(tr("<b>Movie</b> \"%1\" has been edited but is not saved").arg(movie->name()));
+            continue;
+        }
 
         qApp->processEvents();
         QFileInfo fi(movie->files().first());
@@ -555,8 +560,13 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
 
     foreach (TvShowEpisode *episode, episodes) {
         if (episode->files().isEmpty() || (episode->files().count() > 1 && filePatternMulti.isEmpty()) ||
-                episode->hasChanged() || episodesRenamed.contains(episode))
+                episodesRenamed.contains(episode))
             continue;
+
+        if (episode->hasChanged()) {
+            ui->results->append(tr("<b>Episde</b> \"%1\" has been edited but is not saved").arg(episode->name()));
+            continue;
+        }
 
         QList<TvShowEpisode*> multiEpisodes;
         foreach (TvShowEpisode *subEpisode, episode->tvShow()->episodes()) {
@@ -733,8 +743,10 @@ void Renamer::renameShows(QList<TvShow *> shows, const QString &directoryPattern
         return;
 
     foreach (TvShow *show, shows) {
-        if (show->hasChanged())
+        if (show->hasChanged()) {
+            ui->results->append(tr("<b>TV Show</b> \"%1\" has been edited but is not saved").arg(show->name()));
             continue;
+        }
 
         QDir dir(show->dir());
         QString newFolderName = directoryPattern;
@@ -761,8 +773,13 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
         return;
 
     foreach (Concert *concert, concerts) {
-        if (concert->files().isEmpty() || (concert->files().count() > 1 && filePatternMulti.isEmpty()) || concert->hasChanged())
+        if (concert->files().isEmpty() || (concert->files().count() > 1 && filePatternMulti.isEmpty()))
             continue;
+
+        if (concert->hasChanged()) {
+            ui->results->append(tr("<b>Concert</b> \"%1\" has been edited but is not saved").arg(concert->name()));
+            continue;
+        }
 
         qApp->processEvents();
         QFileInfo fi(concert->files().first());
