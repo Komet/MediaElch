@@ -492,6 +492,7 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
             Renamer::replaceCondition(newFolderName, "dvd", isDvd);
             Renamer::replaceCondition(newFolderName, "3D", movie->streamDetails()->videoDetails().value("stereomode") != "");
             Renamer::replaceCondition(newFolderName, "movieset", movie->set());
+            Renamer::replaceCondition(newFolderName, "imdbId", movie->id());
             Helper::instance()->sanitizeFileName(newFolderName);
             if (dir.dirName() != newFolderName)
                 ui->results->append(tr("<b>Rename Directory</b> \"%1\" to \"%2\"").arg(dir.dirName()).arg(newFolderName));
@@ -510,6 +511,7 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
             Renamer::replaceCondition(newFolderName, "dvd", isDvd);
             Renamer::replaceCondition(newFolderName, "3D", movie->streamDetails()->videoDetails().value("stereomode") != "");
             Renamer::replaceCondition(newFolderName, "movieset", movie->set());
+            Renamer::replaceCondition(newFolderName, "imdbId", movie->id());
             Helper::instance()->sanitizeFileName(newFolderName);
             if (dir.dirName() != newFolderName){ //check if movie is not already on good folder
                 int i = 0 ;

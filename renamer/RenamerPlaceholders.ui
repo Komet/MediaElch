@@ -541,7 +541,7 @@
         <item row="17" column="0">
          <widget class="QLabel" name="labelImdbId">
           <property name="text">
-           <string notr="true">{imdbId}...&lt;imdbid&gt;...{/imdbId}</string>
+           <string notr="true">{imdbId}...&lt;imdbId&gt;...{/imdbId}</string>
           </property>
           <property name="textFormat">
            <enum>Qt::PlainText</enum>
