@@ -24,7 +24,9 @@ VideoBuster::VideoBuster(QObject *parent)
                       << MovieScraperInfos::Tagline
                       << MovieScraperInfos::Overview
                       << MovieScraperInfos::Poster
-                      << MovieScraperInfos::Backdrop;
+                      << MovieScraperInfos::Backdrop
+                      << MovieScraperInfos::Tags
+                      << MovieScraperInfos::Director;
 }
 
 /**
@@ -114,13 +116,12 @@ QList<ScraperSearchResult> VideoBuster::parseSearch(QString html)
     qDebug() << "Entered";
     QList<ScraperSearchResult> results;
     int pos = 0;
-    QRegExp rx("<div class=\"name\">([^>]*)>([^<]*)</a>.*<a class=\"more\" href=\"([^\"]*)\">.*<label>Produktion</label>.*([0-9]+)</div>");
+    QRegExp rx("<div class=\"infos\"><a href=\"([^\"]*)\" class=\"title\">([^<]*)</a>");
     rx.setMinimal(true);
     while ((pos = rx.indexIn(html, pos)) != -1) {
         ScraperSearchResult result;
         result.name     = rx.cap(2);
-        result.id       = rx.cap(3);
-        result.released = QDate::fromString(rx.cap(4), "yyyy");
+        result.id       = rx.cap(1);
         results.append(result);
         pos += rx.matchedLength();
     }
@@ -139,6 +140,7 @@ void VideoBuster::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, Q
     movie->clear(infos);
 
     QUrl url(QString("https://www.videobuster.de%1").arg(ids.values().first()));
+    qDebug() << url;
     QNetworkReply *reply = this->qnam()->get(QNetworkRequest(url));
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
@@ -184,36 +186,37 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
     QTextDocument doc;
 
     // Title
-    rx.setPattern("class=\"name\">([^<]*)</h1>");
+    rx.setPattern("<h1 itemprop=\"name\">(.*)</h1>");
     if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1)
         movie->setName(rx.cap(1).trimmed());
 
     // Original Title
-    rx.setPattern("Originaltitel:</div>.*<div class=\"content\">([^<]*)</div>");
+    rx.setPattern("<label>Originaltitel</label><br><span itemprop=\"alternateName\">(.*)</span>");
     if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1)
         movie->setOriginalName(rx.cap(1).trimmed());
 
     // Year
-    rx.setPattern("Produktion:</div>.*<div class=\"content\">.*([0-9]*)</div>");
+    rx.setPattern("<span itemprop=\"copyrightYear\">([0-9]*)</span>");
     if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1)
         movie->setReleased(QDate::fromString(rx.cap(1).trimmed(), "yyyy"));
 
     // Country
     pos = 0;
-    rx.setPattern("Produktion:</div>.*<div class=\"content\">(.*)([0-9]+|</div>)");
+    rx.setPattern("<label>Produktion</label><br><a href=\"[^\"]*\">(.*)</a>");
     while (infos.contains(MovieScraperInfos::Countries) && (pos = rx.indexIn(html, pos)) != -1) {
         movie->addCountry(Helper::instance()->mapCountry(rx.cap(1).trimmed()));
         pos += rx.matchedLength();
     }
 
     // MPAA
-    rx.setPattern("FSK ab ([0-9]+) ");
+    rx.setPattern("Freigegeben ab ([0-9]+) Jahren");
     if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1)
         movie->setCertification(Helper::instance()->mapCertification("FSK " + rx.cap(1)));
 
     // Actors
     pos = 0;
-    rx.setPattern("class=\"actor_link\">([^<]*)</a>");
+
+    rx.setPattern("<span itemprop=\"actor\" itemscope itemtype=\"http://schema.org/Person\"><a href=\"[^\"]*\" itemprop=\"url\"><span itemprop=\"name\">(.*)</span></a></span>");
     while (infos.contains(MovieScraperInfos::Actors) && (pos = rx.indexIn(html, pos)) != -1) {
         Actor a;
         a.name = rx.cap(1).trimmed();
@@ -221,33 +224,71 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
         pos += rx.matchedLength();
     }
 
+    if (infos.contains(MovieScraperInfos::Director)) {
+        rx.setPattern("<p><label>Regie</label><br>(.*)</p>");
+        if (rx.indexIn(html) != -1) {
+            pos = 0;
+            QString contents = rx.cap(1);
+            QStringList directors;
+            rx.setPattern("<a href=\"/persondtl.php/[^\"]*\">(.*)</a>");
+            while ((pos = rx.indexIn(contents, pos)) != -1) {
+                directors.append(rx.cap(1).trimmed());
+                pos += rx.matchedLength();
+            }
+            movie->setDirector(directors.join(", "));
+        }
+    }
+
+    if (infos.contains(MovieScraperInfos::Tags)) {
+        rx.setPattern("<label>Schlagw&ouml;rter</label><br><span itemprop=\"keywords\">(.*)</span>");
+        if (rx.indexIn(html) != -1) {
+            pos = 0;
+            QString contents = rx.cap(1);
+            rx.setPattern("<a href=\"/titlesearch.php[^\"]*\">(.*)</a>");
+            while ((pos = rx.indexIn(contents, pos)) != -1) {
+                movie->addTag(rx.cap(1).trimmed());
+                pos += rx.matchedLength();
+            }
+        }
+    }
+
     // Studio
-    rx.setPattern("Studio:</div>.*<div class=\"content\">([^<]*)</div>");
+    rx.setPattern("<label>Studio</label><br><span itemprop=\"publisher\" itemscope itemtype=\"http://schema.org/Organization\">.*<span itemprop=\"name\">(.*)</span></a></span>");
     if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1)
         movie->addStudio(Helper::instance()->mapStudio(rx.cap(1).trimmed()));
 
     // Runtime
-    rx.setPattern("Laufzeit ca. ([0-9]*) Minuten");
+    rx.setPattern("ca. ([0-9]*) Minuten");
     if (infos.contains(MovieScraperInfos::Runtime) && rx.indexIn(html) != -1)
         movie->setRuntime(rx.cap(1).trimmed().toInt());
 
     // Rating
-    rx.setPattern("Gesamtwertung: ([0-9.]+) Sterne  bei ([0-9]*) Stimmen");
-    if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1)
-        movie->setRating(rx.cap(1).trimmed().toFloat());
+    if (infos.contains(MovieScraperInfos::Rating)) {
+        rx.setPattern("<span itemprop=\"ratingCount\">([0-9]*)</span>");
+        if (rx.indexIn(html) != -1)
+            movie->setVotes(rx.cap(1).trimmed().toInt());
+        rx.setPattern("<span itemprop=\"ratingValue\">(.*)</span>");
+        if (rx.indexIn(html) != -1)
+            movie->setRating(rx.cap(1).trimmed().replace(".", "").replace(",", ".").toFloat());
+    }
 
     // Genres
-    rx.setPattern("<a href='/genrelist.php/.*>([^<]*)</a>");
-    if (infos.contains(MovieScraperInfos::Genres) && rx.indexIn(html) != -1)
-        movie->addGenre(Helper::instance()->mapGenre(rx.cap(1).trimmed()));
+    if (infos.contains(MovieScraperInfos::Genres)) {
+        pos = 0;
+        rx.setPattern("<a href=\"/genrelist\\.php/.*\">(.*)</a>");
+        while ((pos = rx.indexIn(html, pos)) != -1) {
+            movie->addGenre(Helper::instance()->mapGenre(rx.cap(1).trimmed()));
+            pos += rx.matchedLength();
+        }
+    }
 
     // Tagline
-    rx.setPattern("class=\"long_name\">([^<]*)</p>");
+    rx.setPattern("<p class=\"long_name\" itemprop=\"alternativeHeadline\">(.*)</p>");
     if (infos.contains(MovieScraperInfos::Tagline) && rx.indexIn(html) != -1)
         movie->setTagline(rx.cap(1).trimmed());
 
     // Overview
-    rx.setPattern("<div class=\"txt movie_description\">(.*)(<br />|</div>)");
+    rx.setPattern("<p itemprop=\"description\">(.*)</p>");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
         doc.setHtml(rx.cap(1).trimmed());
         movie->setOverview(doc.toPlainText());
@@ -256,59 +297,39 @@ void VideoBuster::parseAndAssignInfos(QString html, Movie *movie, QList<int> inf
     }
 
     // Posters
-    pos = 0;
-    rx.setPattern("src=\"(https://gfx.videobuster.de/archive/resized)/w124/([^\"]*)\"");
-    while (infos.contains(MovieScraperInfos::Poster) && (pos = rx.indexIn(html, pos)) != -1) {
-        Poster p;
-        p.thumbUrl = rx.cap(1) + "/h550/" + rx.cap(2);
-        p.originalUrl = rx.cap(1) + "/w700/" + rx.cap(2);
-        movie->addPoster(p);
-        pos += rx.matchedLength();
+    if (infos.contains(MovieScraperInfos::Poster)) {
+        rx.setPattern("<h3>Poster</h3><ul class=\"gallery_box  posters\">(.*)</ul>");
+        if (rx.indexIn(html) != -1) {
+            QString contents = rx.cap(1);
+            pos = 0;
+            rx.setPattern("<a href=\"https://gfx.videobuster.de/archive/([^\"]*)\" data-title=\"[^\"]*\" rel=\"gallery_posters\" target=\"_blank\" class=\"image\">");
+            while ((pos = rx.indexIn(contents, pos)) != -1) {
+                Poster p;
+                p.thumbUrl = "https://gfx.videobuster.de/archive/" + rx.cap(1);
+                p.originalUrl = "https://gfx.videobuster.de/archive/" + rx.cap(1);
+                movie->addPoster(p);
+                pos += rx.matchedLength();
+            }
+        }
     }
 
     // Backdrops
-    rx.setPattern("<a href=\"/titledtl.php/([^\\?]*)\\?tab=gallery&content_type_idnr=1");
-    if (infos.contains(MovieScraperInfos::Backdrop) && rx.indexIn(html) != -1) {
-        QUrl backdropUrl(QString("https://www.videobuster.de/titledtl.php/%1?tab=gallery&content_type_idnr=1").arg(rx.cap(1)));
-        QNetworkReply *reply = qnam()->get(QNetworkRequest(backdropUrl));
-        reply->setProperty("storage", Storage::toVariant(reply, movie));
-        reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-        connect(reply, SIGNAL(finished()), this, SLOT(backdropFinished()));
-    } else {
-        movie->controller()->scraperLoadDone(this);
-    }
-}
-
-/**
- * @brief Called when backdrops are loaded
- */
-void VideoBuster::backdropFinished()
-{
-    QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    Movie *movie = reply->property("storage").value<Storage*>()->movie();
-    QList<int> infos = reply->property("infosToLoad").value<Storage*>()->infosToLoad();
-    reply->deleteLater();
-    if (!movie)
-        return;
-
-    if (reply->error() == QNetworkReply::NoError ) {
-        QString msg = reply->readAll();
-        QRegExp rx("href=\"https://gfx.videobuster.de/archive/resized/([^\"]*)\"(.*)([^<]*)<img (.*) src=\"https://gfx.videobuster.de/archive/resized/c110/([^\"]*)\"");
-        rx.setMinimal(true);
-        int pos = 0;
-        while ((pos = rx.indexIn(msg, pos)) != -1) {
-            pos += rx.matchedLength();
-            if (rx.cap(2).contains("titledtl_cover_pictures")) {
-                continue;
+    if (infos.contains(MovieScraperInfos::Backdrop)) {
+        rx.setPattern("<h3>Szenenbilder</h3><ul class=\"gallery_box  pictures\">(.*)</ul>");
+        if (rx.indexIn(html) != -1) {
+            QString contents = rx.cap(1);
+            pos = 0;
+            rx.setPattern("<a href=\"https://gfx.videobuster.de/archive/([^\"]*)\" data-title=\"[^\"]*\" rel=\"gallery_pictures\" target=\"_blank\" class=\"image\">");
+            while ((pos = rx.indexIn(contents, pos)) != -1) {
+                Poster p;
+                p.thumbUrl = "https://gfx.videobuster.de/archive/" + rx.cap(1);
+                p.originalUrl = "https://gfx.videobuster.de/archive/" + rx.cap(1);
+                movie->addBackdrop(p);
+                pos += rx.matchedLength();
             }
-            Poster p;
-            p.thumbUrl = QUrl(QString("https://gfx.videobuster.de/archive/resized/w700/%1").arg(rx.cap(5)));
-            p.originalUrl = QUrl(QString("https://gfx.videobuster.de/archive/resized/%1").arg(rx.cap(1)));
-            movie->addBackdrop(p);
         }
-    } else {
-        qWarning() << "Network Error" << reply->errorString();
     }
+
     movie->controller()->scraperLoadDone(this);
 }
 
