@@ -61,8 +61,9 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     ui->cdArt->setImageType(ImageType::ConcertCdArt);
     ui->clearArt->setImageType(ImageType::ConcertClearArt);
     foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage*>()) {
-        connect(image, SIGNAL(clicked()), this, SLOT(onChooseImage()));
-        connect(image, SIGNAL(sigClose()), this, SLOT(onDeleteImage()));
+        connect(image, &ClosableImage::clicked, this, &ConcertWidget::onChooseImage);
+        connect(image, &ClosableImage::sigClose, this, &ConcertWidget::onDeleteImage);
+        connect(image, &ClosableImage::sigImageDropped, this, &ConcertWidget::onImageDropped);
     }
 
     connect(ui->name, SIGNAL(textChanged(QString)), this, SLOT(concertNameChanged(QString)));
@@ -98,6 +99,7 @@ ConcertWidget::ConcertWidget(QWidget *parent) :
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
     connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddExtraFanart()));
+    connect(ui->fanarts, &ImageGallery::sigImageDropped, this, &ConcertWidget::onExtraFanartDropped);
 
     // Connect GUI change events to concert object
     connect(ui->name, SIGNAL(textEdited(QString)), this, SLOT(onNameChange(QString)));
@@ -940,6 +942,16 @@ void ConcertWidget::onAddExtraFanart()
     }
 }
 
+void ConcertWidget::onExtraFanartDropped(QUrl imageUrl)
+{
+    if (!m_concert)
+        return;
+    ui->fanarts->setLoading(true);
+    emit setActionSaveEnabled(false, WidgetConcerts);
+    m_concert->controller()->loadImages(ImageType::ConcertExtraFanart, QList<QUrl>() << imageUrl);
+    ui->buttonRevert->setVisible(true);
+}
+
 void ConcertWidget::onChooseImage()
 {
     if (m_concert == 0)
@@ -978,5 +990,14 @@ void ConcertWidget::onDeleteImage()
 
     m_concert->removeImage(image->imageType());
     updateImages(QList<int>() << image->imageType());
+    ui->buttonRevert->setVisible(true);
+}
+
+void ConcertWidget::onImageDropped(int imageType, QUrl imageUrl)
+{
+    if (!m_concert)
+        return;
+    emit setActionSaveEnabled(false, WidgetConcerts);
+    m_concert->controller()->loadImage(imageType, imageUrl);
     ui->buttonRevert->setVisible(true);
 }

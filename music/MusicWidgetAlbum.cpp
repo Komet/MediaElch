@@ -54,8 +54,9 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget *parent) :
     ui->cover->setImageType(ImageType::AlbumThumb);
     ui->discArt->setImageType(ImageType::AlbumCdArt);
     foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage*>()) {
-        connect(image, SIGNAL(clicked()), this, SLOT(onChooseImage()));
-        connect(image, SIGNAL(sigClose()), this, SLOT(onDeleteImage()));
+        connect(image, &ClosableImage::clicked, this, &MusicWidgetAlbum::onChooseImage);
+        connect(image, &ClosableImage::sigClose, this, &MusicWidgetAlbum::onDeleteImage);
+        connect(image, &ClosableImage::sigImageDropped, this, &MusicWidgetAlbum::onImageDropped);
     }
 
     connect(ui->title, SIGNAL(textChanged(QString)), ui->albumName, SLOT(setText(QString)));
@@ -369,7 +370,7 @@ void MusicWidgetAlbum::onChooseImage()
     ImageDialog::instance()->exec(image->imageType());
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetMovies);
+        emit sigSetActionSaveEnabled(false, WidgetMusic);
         m_album->controller()->loadImage(image->imageType(), ImageDialog::instance()->imageUrl());
         ui->buttonRevert->setVisible(true);
     }
@@ -386,6 +387,15 @@ void MusicWidgetAlbum::onDeleteImage()
 
     m_album->removeImage(image->imageType());
     updateImage(image->imageType(), image);
+    ui->buttonRevert->setVisible(true);
+}
+
+void MusicWidgetAlbum::onImageDropped(int imageType, QUrl imageUrl)
+{
+    if (!m_album)
+        return;
+    emit sigSetActionSaveEnabled(false, WidgetMusic);
+    m_album->controller()->loadImage(imageType, imageUrl);
     ui->buttonRevert->setVisible(true);
 }
 

@@ -107,8 +107,9 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->thumb->setImageType(ImageType::MovieThumb);
     ui->clearArt->setImageType(ImageType::MovieClearArt);
     foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage*>()) {
-        connect(image, SIGNAL(clicked()), this, SLOT(onChooseImage()));
-        connect(image, SIGNAL(sigClose()), this, SLOT(onDeleteImage()));
+        connect(image, &ClosableImage::clicked, this, &MovieWidget::onChooseImage);
+        connect(image, &ClosableImage::sigClose, this, &MovieWidget::onDeleteImage);
+        connect(image, &ClosableImage::sigImageDropped, this, &MovieWidget::onImageDropped);
     }
 
     connect(ui->name, SIGNAL(textChanged(QString)), this, SLOT(movieNameChanged(QString)));
@@ -125,6 +126,7 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
     connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddExtraFanart()));
+    connect(ui->fanarts, &ImageGallery::sigImageDropped, this, &MovieWidget::onExtraFanartDropped);
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -1361,6 +1363,16 @@ void MovieWidget::onAddExtraFanart()
     }
 }
 
+void MovieWidget::onExtraFanartDropped(QUrl imageUrl)
+{
+    if (!m_movie)
+        return;
+    ui->fanarts->setLoading(true);
+    emit setActionSaveEnabled(false, WidgetMovies);
+    m_movie->controller()->loadImages(ImageType::MovieExtraFanart, QList<QUrl>() << imageUrl);
+    ui->buttonRevert->setVisible(true);
+}
+
 void MovieWidget::onInsertYoutubeLink()
 {
     if (Settings::instance()->useYoutubePluginUrls())
@@ -1397,6 +1409,15 @@ void MovieWidget::onChooseImage()
         m_movie->controller()->loadImage(image->imageType(), ImageDialog::instance()->imageUrl());
         ui->buttonRevert->setVisible(true);
     }
+}
+
+void MovieWidget::onImageDropped(int imageType, QUrl imageUrl)
+{
+    if (!m_movie)
+        return;
+    emit setActionSaveEnabled(false, WidgetMovies);
+    m_movie->controller()->loadImage(imageType, imageUrl);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onDeleteImage()

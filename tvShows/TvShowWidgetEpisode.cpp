@@ -67,8 +67,6 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     connect(ui->buttonRemoveDirector, SIGNAL(clicked()), this, SLOT(onRemoveDirector()));
     connect(ui->buttonAddWriter, SIGNAL(clicked()), this, SLOT(onAddWriter()));
     connect(ui->buttonRemoveWriter, SIGNAL(clicked()), this, SLOT(onRemoveWriter()));
-    connect(ui->thumbnail, SIGNAL(clicked()), this, SLOT(onChooseThumbnail()));
-    connect(ui->thumbnail, SIGNAL(sigClose()), this, SLOT(onDeleteThumbnail()));
     connect(m_posterDownloadManager, SIGNAL(downloadFinished(DownloadManagerElement)), this, SLOT(onPosterDownloadFinished(DownloadManagerElement)));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
     connect(ui->buttonReloadStreamDetails, SIGNAL(clicked()), this, SLOT(onReloadStreamDetails()));
@@ -76,6 +74,9 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     connect(ui->buttonRemoveActor, SIGNAL(clicked()), this, SLOT(onRemoveActor()));
     connect(ui->actors, SIGNAL(itemSelectionChanged()), this, SLOT(onActorChanged()));
     connect(ui->actor, SIGNAL(clicked()), this, SLOT(onChangeActorImage()));
+    connect(ui->thumbnail, &ClosableImage::clicked, this, &TvShowWidgetEpisode::onChooseThumbnail);
+    connect(ui->thumbnail, &ClosableImage::sigClose, this, &TvShowWidgetEpisode::onDeleteThumbnail);
+    connect(ui->thumbnail, &ClosableImage::sigImageDropped, this, &TvShowWidgetEpisode::onImageDropped);
 
     onClear();
 
@@ -639,6 +640,23 @@ void TvShowWidgetEpisode::onChooseThumbnail()
         ui->thumbnail->setLoading(true);
         ui->buttonRevert->setVisible(true);
     }
+}
+
+void TvShowWidgetEpisode::onImageDropped(int imageType, QUrl imageUrl)
+{
+    Q_UNUSED(imageType);
+
+    if (!m_episode)
+        return;
+    emit sigSetActionSaveEnabled(false, WidgetTvShows);
+    DownloadManagerElement d;
+    d.imageType = ImageType::TvShowEpisodeThumb;
+    d.url = imageUrl;
+    d.episode = m_episode;
+    d.directDownload = true;
+    m_posterDownloadManager->addDownload(d);
+    ui->thumbnail->setLoading(true);
+    ui->buttonRevert->setVisible(true);
 }
 
 /**

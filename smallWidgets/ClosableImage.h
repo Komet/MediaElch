@@ -43,11 +43,15 @@ public:
 signals:
     void sigClose();
     void clicked();
+    void sigImageDropped(int, QUrl);
 
 protected:
     void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *ev);
     void mouseMoveEvent(QMouseEvent *ev);
+    void dragEnterEvent(QDragEnterEvent *event);
+    void dragMoveEvent(QDragMoveEvent *event);
+    void dropEvent(QDropEvent *event);
 
 private slots:
     void closed();

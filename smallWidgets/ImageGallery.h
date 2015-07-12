@@ -23,6 +23,7 @@ public:
 signals:
     void sigRemoveImage(QByteArray);
     void sigRemoveImage(QString);
+    void sigImageDropped(QUrl);
 
 protected:
     void resizeEvent(QResizeEvent *event);
@@ -37,6 +38,9 @@ private slots:
     void onButtonBottom();
     void onVerticalScrollBarRangeChanged(int min, int max);
     void onHorizontalScrollBarRangeChanged(int min, int max);
+    void dragEnterEvent(QDragEnterEvent *event);
+    void dragMoveEvent(QDragMoveEvent *event);
+    void dropEvent(QDropEvent *event);
 
 private:
     QLabel *m_loadingLabel;

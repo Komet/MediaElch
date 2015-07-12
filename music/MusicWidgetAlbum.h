@@ -43,6 +43,7 @@ private slots:
     void onRemoveCloudItem(QString text);
     void onChooseImage();
     void onDeleteImage();
+    void onImageDropped(int imageType, QUrl imageUrl);
     void onInfoLoadDone(Album *album);
     void onLoadDone(Album *album);
     void onDownloadProgress(Album *album, int current, int maximum);

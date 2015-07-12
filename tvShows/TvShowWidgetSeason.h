@@ -37,6 +37,7 @@ signals:
 private slots:
     void onChooseImage();
     void onDeleteImage();
+    void onImageDropped(int imageType, QUrl imageUrl);
 
     void onRevertChanges();
     void onDownloadFinished(DownloadManagerElement elem);

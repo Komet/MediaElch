@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QFile>
 #include <QMessageBox>
+#include <QMimeData>
 #include <QPainter>
 #include <QPropertyAnimation>
 #include <QStyleOption>
@@ -45,6 +46,8 @@ ClosableImage::ClosableImage(QWidget *parent) :
     p.fillRect(m_zoomIn.rect(), QColor(0, 0, 0, 150));
     p.end();
     m_zoomIn = m_zoomIn.scaledToWidth(16 * Helper::instance()->devicePixelRatio(this), Qt::SmoothTransformation);
+
+    setAcceptDrops(true);
 }
 
 void ClosableImage::mousePressEvent(QMouseEvent *ev)
@@ -377,4 +380,45 @@ void ClosableImage::setImageType(const int &type)
 int ClosableImage::imageType() const
 {
     return m_imageType;
+}
+
+void ClosableImage::dragMoveEvent(QDragMoveEvent *event)
+{
+    const QMimeData *mimeData = event->mimeData();
+    QUrl url = mimeData->urls().at(0);
+    QStringList filters = QStringList() << ".jpg" <<".jpeg" << ".png";
+    foreach (const QString &filter, filters) {
+        if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
+            event->acceptProposedAction();
+            return;
+        }
+    }
+}
+
+void ClosableImage::dragEnterEvent(QDragEnterEvent *event)
+{
+    const QMimeData *mimeData = event->mimeData();
+    QUrl url = mimeData->urls().at(0);
+    QStringList filters = QStringList() << ".jpg" <<".jpeg" << ".png";
+    foreach (const QString &filter, filters) {
+        if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
+            event->acceptProposedAction();
+            return;
+        }
+    }
+}
+
+void ClosableImage::dropEvent(QDropEvent *event)
+{
+    const QMimeData *mimeData = event->mimeData();
+    if (mimeData->hasUrls() && !mimeData->urls().isEmpty()) {
+        QUrl url = mimeData->urls().at(0);
+        QStringList filters = QStringList() << ".jpg" <<".jpeg" << ".png";
+        foreach (const QString &filter, filters) {
+            if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
+                emit sigImageDropped(m_imageType, url);
+                return;
+            }
+        }
+    }
 }
