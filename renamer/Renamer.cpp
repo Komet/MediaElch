@@ -575,7 +575,7 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
             continue;
 
         if (episode->hasChanged()) {
-            ui->results->append(tr("<b>Episde</b> \"%1\" has been edited but is not saved").arg(episode->name()));
+            ui->results->append(tr("<b>Episode</b> \"%1\" has been edited but is not saved").arg(episode->name()));
             continue;
         }
 
