@@ -230,6 +230,9 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                 Renamer::replace(newFileName, "year", movie->released().toString("yyyy"));
                 Renamer::replace(newFileName, "extension", fi.suffix());
                 Renamer::replace(newFileName, "partNo", QString::number(++partNo));
+                Renamer::replace(newFileName, "videoCodec", movie->streamDetails()->videoCodec());
+                Renamer::replace(newFileName, "audioCodec", movie->streamDetails()->audioCodec());
+                Renamer::replace(newFileName, "channels", QString::number(movie->streamDetails()->audioChannels()));
                 Renamer::replace(newFileName, "resolution", Helper::instance()->matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
                                                                                                 movie->streamDetails()->videoDetails().value("height").toInt(),
                                                                                                 movie->streamDetails()->videoDetails().value("scantype")));
@@ -485,6 +488,9 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
             Renamer::replace(newFolderName, "originalTitle", movie->originalName());
             Renamer::replace(newFolderName, "sortTitle", movie->sortTitle());
             Renamer::replace(newFolderName, "year", movie->released().toString("yyyy"));
+            Renamer::replace(newFolderName, "videoCodec", movie->streamDetails()->videoCodec());
+            Renamer::replace(newFolderName, "audioCodec", movie->streamDetails()->audioCodec());
+            Renamer::replace(newFolderName, "channels", QString::number(movie->streamDetails()->audioChannels()));
             Renamer::replace(newFolderName, "resolution", Helper::instance()->matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
                                                                                               movie->streamDetails()->videoDetails().value("height").toInt(),
                                                                                               movie->streamDetails()->videoDetails().value("scantype")));
@@ -504,6 +510,9 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
             Renamer::replace(newFolderName, "originalTitle", movie->originalName());
             Renamer::replace(newFolderName, "sortTitle", movie->sortTitle());
             Renamer::replace(newFolderName, "year", movie->released().toString("yyyy"));
+            Renamer::replace(newFolderName, "videoCodec", movie->streamDetails()->videoCodec());
+            Renamer::replace(newFolderName, "audioCodec", movie->streamDetails()->audioCodec());
+            Renamer::replace(newFolderName, "channels", QString::number(movie->streamDetails()->audioChannels()));
             Renamer::replace(newFolderName, "resolution", Helper::instance()->matchResolution(movie->streamDetails()->videoDetails().value("width").toInt(),
                                                                                               movie->streamDetails()->videoDetails().value("height").toInt(),
                                                                                               movie->streamDetails()->videoDetails().value("scantype")));
@@ -606,6 +615,9 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
                 Renamer::replace(newFileName, "extension", fi.suffix());
                 Renamer::replace(newFileName, "season", episode->seasonString());
                 Renamer::replace(newFileName, "partNo", QString::number(++partNo));
+                Renamer::replace(newFileName, "videoCodec", episode->streamDetails()->videoCodec());
+                Renamer::replace(newFileName, "audioCodec", episode->streamDetails()->audioCodec());
+                Renamer::replace(newFileName, "channels", QString::number(episode->streamDetails()->audioChannels()));
                 Renamer::replace(newFileName, "resolution", Helper::instance()->matchResolution(episode->streamDetails()->videoDetails().value("width").toInt(),
                                                                                                 episode->streamDetails()->videoDetails().value("height").toInt(),
                                                                                                 episode->streamDetails()->videoDetails().value("scantype")));
@@ -816,6 +828,9 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
                 Renamer::replace(newFileName, "year", concert->released().toString("yyyy"));
                 Renamer::replace(newFileName, "extension", fi.suffix());
                 Renamer::replace(newFileName, "partNo", QString::number(++partNo));
+                Renamer::replace(newFileName, "videoCodec", concert->streamDetails()->videoCodec());
+                Renamer::replace(newFileName, "audioCodec", concert->streamDetails()->audioCodec());
+                Renamer::replace(newFileName, "channels", QString::number(concert->streamDetails()->audioChannels()));
                 Renamer::replace(newFileName, "resolution", Helper::instance()->matchResolution(concert->streamDetails()->videoDetails().value("width").toInt(),
                                                                                                 concert->streamDetails()->videoDetails().value("height").toInt(),
                                                                                                 concert->streamDetails()->videoDetails().value("scantype")));
@@ -904,6 +919,9 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
             Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
             Renamer::replaceCondition(newFolderName, "dvd", isDvd);
             Renamer::replaceCondition(newFolderName, "3D", concert->streamDetails()->videoDetails().value("stereomode") != "");
+            Renamer::replace(newFolderName, "videoCodec", concert->streamDetails()->videoCodec());
+            Renamer::replace(newFolderName, "audioCodec", concert->streamDetails()->audioCodec());
+            Renamer::replace(newFolderName, "channels", QString::number(concert->streamDetails()->audioChannels()));
             Renamer::replace(newFolderName, "resolution", Helper::instance()->matchResolution(concert->streamDetails()->videoDetails().value("width").toInt(),
                                                                                               concert->streamDetails()->videoDetails().value("height").toInt(),
                                                                                               concert->streamDetails()->videoDetails().value("scantype")));

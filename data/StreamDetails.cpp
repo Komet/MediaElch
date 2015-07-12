@@ -319,3 +319,42 @@ bool StreamDetails::hasAudioQuality(QString quality)
 {
     return m_availableQualities.contains(quality);
 }
+
+int StreamDetails::audioChannels()
+{
+    int channels = 0;
+    foreach (int c, m_availableChannels) {
+        if (c > channels)
+            channels = c;
+    }
+    return channels;
+}
+
+QString StreamDetails::audioCodec()
+{
+    QString hdCodec;
+    QString normalCodec;
+    QString sdCodec;
+    for (int i=0, n=m_audioDetails.count() ; i<n ; ++i) {
+        QString codec = m_audioDetails.at(i).value("codec");
+        if (m_hdAudioCodecs.contains(codec))
+            hdCodec = codec;
+        if (m_normalAudioCodecs.contains(codec))
+            normalCodec = codec;
+        if (m_sdAudioCodecs.contains(codec))
+            sdCodec = codec;
+    }
+
+    if (!hdCodec.isEmpty())
+        return hdCodec;
+    if (!normalCodec.isEmpty())
+        return normalCodec;
+    if (!sdCodec.isEmpty())
+        return sdCodec;
+    return "";
+}
+
+QString StreamDetails::videoCodec()
+{
+    return m_videoDetails.value("codec");
+}

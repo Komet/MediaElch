@@ -22,6 +22,9 @@ public:
     void clear();
     bool hasAudioChannels(int channels);
     bool hasAudioQuality(QString quality);
+    int audioChannels();
+    QString audioCodec();
+    QString videoCodec();
 
     virtual QMap<QString, QString> videoDetails();
     virtual QList<QMap<QString, QString> > audioDetails();
