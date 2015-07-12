@@ -302,12 +302,12 @@
         <translation>Sélectionner une autre image</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="345"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="350"/>
         <source>Really delete image?</source>
         <translation>Vraiment supprimer l&apos;image ?</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="346"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="351"/>
         <source>Are you sure you want to delete this image?</source>
         <translation>Êtes-vous sûr de vouloir supprimer cette image ?</translation>
     </message>
@@ -625,8 +625,8 @@
     </message>
     <message>
         <location filename="../concerts/ConcertWidget.ui" line="485"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="550"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="553"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="551"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="554"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -720,37 +720,37 @@
         <translation>Ajouter Tag</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="543"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="577"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="544"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="578"/>
         <source>Track %1</source>
         <translation>Piste %1</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="549"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="552"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="580"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="550"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="553"/>
         <location filename="../concerts/ConcertWidget.cpp" line="581"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="582"/>
         <source>Language</source>
         <translation>Langue</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="551"/>
-        <location filename="../concerts/ConcertWidget.cpp" line="554"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="552"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="555"/>
         <source>Channels</source>
         <translation>Canaux</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="569"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="570"/>
         <source>Subtitles</source>
         <translation>Sous-titres</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="630"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="631"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Sauvegardé</translation>
     </message>
     <message>
-        <location filename="../concerts/ConcertWidget.cpp" line="653"/>
+        <location filename="../concerts/ConcertWidget.cpp" line="654"/>
         <source>All Concerts Saved</source>
         <translation>Tous les concerts sont sauvegardés</translation>
     </message>
@@ -2377,44 +2377,44 @@
         <translation>S&apos;il vous plaît entrer tous les modèles de dénomination</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="430"/>
-        <location filename="../downloads/ImportDialog.cpp" line="503"/>
+        <location filename="../downloads/ImportDialog.cpp" line="431"/>
+        <location filename="../downloads/ImportDialog.cpp" line="507"/>
         <source>Creating destination directory failed</source>
         <translation>La création du répertoire de destination échoué</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="431"/>
-        <location filename="../downloads/ImportDialog.cpp" line="504"/>
+        <location filename="../downloads/ImportDialog.cpp" line="432"/>
+        <location filename="../downloads/ImportDialog.cpp" line="508"/>
         <source>The destination directory %1 could not be created</source>
         <translation>Le répertoire de destination %1 n&apos;a pas pu être créé</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="453"/>
+        <location filename="../downloads/ImportDialog.cpp" line="455"/>
         <source>Importing movie...</source>
         <translation>Importation film ...</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="485"/>
+        <location filename="../downloads/ImportDialog.cpp" line="488"/>
         <source>Importing episode...</source>
         <translation>Importation épisode ...</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="524"/>
+        <location filename="../downloads/ImportDialog.cpp" line="529"/>
         <source>Importing concert...</source>
         <translation>Importation concert ...</translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="633"/>
+        <location filename="../downloads/ImportDialog.cpp" line="638"/>
         <source>Import finished</source>
         <translation>Importation terminée</translation>
     </message>
     <message numerus="yes">
-        <location filename="../downloads/ImportDialog.cpp" line="633"/>
+        <location filename="../downloads/ImportDialog.cpp" line="638"/>
         <source>Import of %n file(s) has finished</source>
         <translation><numerusform>Importation de %n fichier est terminé</numerusform><numerusform>Importation de %n fichiers est terminé</numerusform></translation>
     </message>
     <message>
-        <location filename="../downloads/ImportDialog.cpp" line="636"/>
+        <location filename="../downloads/ImportDialog.cpp" line="641"/>
         <source>Import has finished</source>
         <translation>Importation terminée</translation>
     </message>
@@ -3073,42 +3073,47 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../data/MovieModel.cpp" line="286"/>
+        <location filename="../data/MovieModel.cpp" line="296"/>
         <source>Actors</source>
         <translation>Acteurs</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="288"/>
+        <location filename="../data/MovieModel.cpp" line="298"/>
         <source>Extra Arts</source>
         <translation>Extra Arts</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="290"/>
+        <location filename="../data/MovieModel.cpp" line="300"/>
         <source>Extra Fanarts</source>
         <translation>Extra Fanarts</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="292"/>
+        <location filename="../data/MovieModel.cpp" line="302"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="294"/>
+        <location filename="../data/MovieModel.cpp" line="304"/>
         <source>Poster</source>
         <translation>Affiche</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="296"/>
+        <location filename="../data/MovieModel.cpp" line="306"/>
         <source>Stream Details</source>
         <translation>Détails flux</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="298"/>
+        <location filename="../data/MovieModel.cpp" line="308"/>
         <source>Trailer</source>
         <translation>Bande-annonce</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="300"/>
+        <location filename="../data/MovieModel.cpp" line="310"/>
+        <source>Lokaler Trailer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../data/MovieModel.cpp" line="312"/>
         <source>IMDB ID</source>
         <translation>ID IMDB</translation>
     </message>
@@ -3751,10 +3756,10 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
         <location filename="../movies/MovieWidget.ui" line="1304"/>
         <location filename="../movies/MovieWidget.ui" line="1354"/>
         <location filename="../movies/MovieWidget.ui" line="1404"/>
-        <location filename="../movies/MovieWidget.ui" line="1480"/>
-        <location filename="../movies/MovieWidget.ui" line="1530"/>
-        <location filename="../movies/MovieWidget.ui" line="1580"/>
-        <location filename="../movies/MovieWidget.ui" line="1630"/>
+        <location filename="../movies/MovieWidget.ui" line="1483"/>
+        <location filename="../movies/MovieWidget.ui" line="1533"/>
+        <location filename="../movies/MovieWidget.ui" line="1583"/>
+        <location filename="../movies/MovieWidget.ui" line="1633"/>
         <source>Click to Change</source>
         <translation>Cliquer pour Changer</translation>
     </message>
@@ -3766,35 +3771,35 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="1382"/>
-        <location filename="../movies/MovieWidget.ui" line="1419"/>
+        <location filename="../movies/MovieWidget.ui" line="1422"/>
         <source>Thumb</source>
         <translation>Vignette</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1458"/>
-        <location filename="../movies/MovieWidget.ui" line="1498"/>
+        <location filename="../movies/MovieWidget.ui" line="1461"/>
+        <location filename="../movies/MovieWidget.ui" line="1501"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1508"/>
-        <location filename="../movies/MovieWidget.ui" line="1548"/>
+        <location filename="../movies/MovieWidget.ui" line="1511"/>
+        <location filename="../movies/MovieWidget.ui" line="1551"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1558"/>
+        <location filename="../movies/MovieWidget.ui" line="1561"/>
         <source>Disc Art</source>
         <translation>Disc Art</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1598"/>
+        <location filename="../movies/MovieWidget.ui" line="1601"/>
         <source>CD Art</source>
         <translation>CD Art</translation>
     </message>
     <message>
-        <location filename="../movies/MovieWidget.ui" line="1608"/>
-        <location filename="../movies/MovieWidget.ui" line="1645"/>
+        <location filename="../movies/MovieWidget.ui" line="1611"/>
+        <location filename="../movies/MovieWidget.ui" line="1651"/>
         <source>Banner</source>
         <translation>Bannière</translation>
     </message>
@@ -4795,7 +4800,7 @@ Si vous voulez effectuer une recherche par un TMDB ou OFDb ID s&apos;il vous pla
         <translation>Le fichier journal %1 n&apos;a pas pu être ouvert en écriture.</translation>
     </message>
     <message>
-        <location filename="../smallWidgets/ClosableImage.cpp" line="348"/>
+        <location filename="../smallWidgets/ClosableImage.cpp" line="353"/>
         <source>Do not ask again</source>
         <translation>Ne pas demander à nouveau</translation>
     </message>
@@ -4810,42 +4815,42 @@ Si vous voulez effectuer une recherche par un TMDB ou OFDb ID s&apos;il vous pla
         <translation>Ne plus afficher cette astuce</translation>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="539"/>
+        <location filename="../globals/Helper.cpp" line="529"/>
         <source>No Label</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="540"/>
+        <location filename="../globals/Helper.cpp" line="530"/>
         <source>Red</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="541"/>
+        <location filename="../globals/Helper.cpp" line="531"/>
         <source>Orange</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="542"/>
+        <location filename="../globals/Helper.cpp" line="532"/>
         <source>Yellow</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="543"/>
+        <location filename="../globals/Helper.cpp" line="533"/>
         <source>Green</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="544"/>
+        <location filename="../globals/Helper.cpp" line="534"/>
         <source>Blue</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="545"/>
+        <location filename="../globals/Helper.cpp" line="535"/>
         <source>Purple</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../globals/Helper.cpp" line="546"/>
+        <location filename="../globals/Helper.cpp" line="536"/>
         <source>Grey</source>
         <translation type="unfinished"/>
     </message>
@@ -4976,136 +4981,156 @@ p, li { white-space: pre-wrap; }
         <translation>Terminer</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="235"/>
-        <location filename="../renamer/Renamer.cpp" line="252"/>
-        <location filename="../renamer/Renamer.cpp" line="273"/>
-        <location filename="../renamer/Renamer.cpp" line="612"/>
-        <location filename="../renamer/Renamer.cpp" line="625"/>
-        <location filename="../renamer/Renamer.cpp" line="803"/>
-        <location filename="../renamer/Renamer.cpp" line="816"/>
+        <location filename="../renamer/Renamer.cpp" line="191"/>
+        <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.cpp" line="241"/>
+        <location filename="../renamer/Renamer.cpp" line="258"/>
+        <location filename="../renamer/Renamer.cpp" line="279"/>
+        <location filename="../renamer/Renamer.cpp" line="626"/>
+        <location filename="../renamer/Renamer.cpp" line="639"/>
+        <location filename="../renamer/Renamer.cpp" line="825"/>
+        <location filename="../renamer/Renamer.cpp" line="838"/>
         <source>&lt;b&gt;Rename File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomme le fichier&lt;/b&gt; &quot;%1&quot; en &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="238"/>
-        <location filename="../renamer/Renamer.cpp" line="255"/>
-        <location filename="../renamer/Renamer.cpp" line="276"/>
-        <location filename="../renamer/Renamer.cpp" line="300"/>
-        <location filename="../renamer/Renamer.cpp" line="323"/>
-        <location filename="../renamer/Renamer.cpp" line="346"/>
-        <location filename="../renamer/Renamer.cpp" line="369"/>
-        <location filename="../renamer/Renamer.cpp" line="392"/>
-        <location filename="../renamer/Renamer.cpp" line="415"/>
-        <location filename="../renamer/Renamer.cpp" line="438"/>
-        <location filename="../renamer/Renamer.cpp" line="461"/>
-        <location filename="../renamer/Renamer.cpp" line="513"/>
-        <location filename="../renamer/Renamer.cpp" line="524"/>
-        <location filename="../renamer/Renamer.cpp" line="542"/>
-        <location filename="../renamer/Renamer.cpp" line="615"/>
-        <location filename="../renamer/Renamer.cpp" line="628"/>
-        <location filename="../renamer/Renamer.cpp" line="647"/>
-        <location filename="../renamer/Renamer.cpp" line="664"/>
-        <location filename="../renamer/Renamer.cpp" line="681"/>
-        <location filename="../renamer/Renamer.cpp" line="696"/>
-        <location filename="../renamer/Renamer.cpp" line="705"/>
-        <location filename="../renamer/Renamer.cpp" line="713"/>
-        <location filename="../renamer/Renamer.cpp" line="720"/>
-        <location filename="../renamer/Renamer.cpp" line="749"/>
-        <location filename="../renamer/Renamer.cpp" line="806"/>
-        <location filename="../renamer/Renamer.cpp" line="819"/>
-        <location filename="../renamer/Renamer.cpp" line="836"/>
-        <location filename="../renamer/Renamer.cpp" line="853"/>
-        <location filename="../renamer/Renamer.cpp" line="870"/>
-        <location filename="../renamer/Renamer.cpp" line="896"/>
+        <location filename="../renamer/Renamer.cpp" line="244"/>
+        <location filename="../renamer/Renamer.cpp" line="261"/>
+        <location filename="../renamer/Renamer.cpp" line="282"/>
+        <location filename="../renamer/Renamer.cpp" line="306"/>
+        <location filename="../renamer/Renamer.cpp" line="329"/>
+        <location filename="../renamer/Renamer.cpp" line="352"/>
+        <location filename="../renamer/Renamer.cpp" line="375"/>
+        <location filename="../renamer/Renamer.cpp" line="398"/>
+        <location filename="../renamer/Renamer.cpp" line="421"/>
+        <location filename="../renamer/Renamer.cpp" line="444"/>
+        <location filename="../renamer/Renamer.cpp" line="467"/>
+        <location filename="../renamer/Renamer.cpp" line="526"/>
+        <location filename="../renamer/Renamer.cpp" line="537"/>
+        <location filename="../renamer/Renamer.cpp" line="550"/>
+        <location filename="../renamer/Renamer.cpp" line="629"/>
+        <location filename="../renamer/Renamer.cpp" line="642"/>
+        <location filename="../renamer/Renamer.cpp" line="661"/>
+        <location filename="../renamer/Renamer.cpp" line="678"/>
+        <location filename="../renamer/Renamer.cpp" line="695"/>
+        <location filename="../renamer/Renamer.cpp" line="710"/>
+        <location filename="../renamer/Renamer.cpp" line="719"/>
+        <location filename="../renamer/Renamer.cpp" line="727"/>
+        <location filename="../renamer/Renamer.cpp" line="734"/>
+        <location filename="../renamer/Renamer.cpp" line="765"/>
+        <location filename="../renamer/Renamer.cpp" line="828"/>
+        <location filename="../renamer/Renamer.cpp" line="841"/>
+        <location filename="../renamer/Renamer.cpp" line="858"/>
+        <location filename="../renamer/Renamer.cpp" line="875"/>
+        <location filename="../renamer/Renamer.cpp" line="892"/>
+        <location filename="../renamer/Renamer.cpp" line="919"/>
         <source>Failed</source>
         <translation>Échec</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="297"/>
-        <location filename="../renamer/Renamer.cpp" line="644"/>
-        <location filename="../renamer/Renamer.cpp" line="833"/>
+        <location filename="../renamer/Renamer.cpp" line="303"/>
+        <location filename="../renamer/Renamer.cpp" line="658"/>
+        <location filename="../renamer/Renamer.cpp" line="855"/>
         <source>&lt;b&gt;Rename NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renommer le NFO&lt;/b&gt; &quot;%1&quot; en &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="320"/>
-        <location filename="../renamer/Renamer.cpp" line="850"/>
+        <location filename="../renamer/Renamer.cpp" line="326"/>
+        <location filename="../renamer/Renamer.cpp" line="872"/>
         <source>&lt;b&gt;Rename Poster&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomme l&apos;Affiche&lt;/b&gt; &quot;%1&quot; en &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="343"/>
-        <location filename="../renamer/Renamer.cpp" line="867"/>
+        <location filename="../renamer/Renamer.cpp" line="349"/>
+        <location filename="../renamer/Renamer.cpp" line="889"/>
         <source>&lt;b&gt;Rename Fanart&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomme le Fanart&lt;/b&gt; &quot;%1&quot; en &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="366"/>
+        <location filename="../renamer/Renamer.cpp" line="372"/>
         <source>&lt;b&gt;Rename Banner&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomme bannière&lt;/b&gt; &quot;%1&quot; en &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="389"/>
+        <location filename="../renamer/Renamer.cpp" line="395"/>
         <source>&lt;b&gt;Rename Thumb&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomme vignette&lt;/b&gt; &quot;%1&quot; en &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="412"/>
+        <location filename="../renamer/Renamer.cpp" line="418"/>
         <source>&lt;b&gt;Rename Logo&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomme logo&lt;/b&gt; &quot;%1&quot; en &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="435"/>
+        <location filename="../renamer/Renamer.cpp" line="441"/>
         <source>&lt;b&gt;Rename Clear Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomme Clear Art&lt;/b&gt; &quot;%1&quot; en &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="458"/>
+        <location filename="../renamer/Renamer.cpp" line="464"/>
         <source>&lt;b&gt;Rename CD Art&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomme CD Art&lt;/b&gt; &quot;%1&quot; en &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="488"/>
-        <location filename="../renamer/Renamer.cpp" line="744"/>
-        <location filename="../renamer/Renamer.cpp" line="889"/>
+        <location filename="../renamer/Renamer.cpp" line="498"/>
+        <location filename="../renamer/Renamer.cpp" line="760"/>
+        <location filename="../renamer/Renamer.cpp" line="912"/>
         <source>&lt;b&gt;Rename Directory&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomme le répertoire&lt;/b&gt; &quot;%1&quot; en &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="509"/>
+        <location filename="../renamer/Renamer.cpp" line="522"/>
         <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%2&quot; into &quot;%1&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="521"/>
+        <location filename="../renamer/Renamer.cpp" line="534"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="661"/>
+        <location filename="../renamer/Renamer.cpp" line="569"/>
+        <source>&lt;b&gt;Episde&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.cpp" line="675"/>
         <source>&lt;b&gt;Rename Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Renomme les Vignettes&lt;/b&gt; &quot;%1&quot; en &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="678"/>
+        <location filename="../renamer/Renamer.cpp" line="692"/>
         <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%1&quot;</source>
         <translation>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="693"/>
-        <location filename="../renamer/Renamer.cpp" line="702"/>
+        <location filename="../renamer/Renamer.cpp" line="707"/>
+        <location filename="../renamer/Renamer.cpp" line="716"/>
         <source>&lt;b&gt;Move Episode&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Déplace Épisode&lt;/b&gt; &quot;%1&quot; vers &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="710"/>
+        <location filename="../renamer/Renamer.cpp" line="724"/>
         <source>&lt;b&gt;Move NFO&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Déplace NFO&lt;/b&gt; &quot;%1&quot; vers &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../renamer/Renamer.cpp" line="717"/>
+        <location filename="../renamer/Renamer.cpp" line="731"/>
         <source>&lt;b&gt;Move Thumbnail&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Déplace Vignettes&lt;/b&gt; &quot;%1&quot; vers &quot;%2&quot;</translation>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.cpp" line="749"/>
+        <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../renamer/Renamer.cpp" line="782"/>
+        <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -5276,15 +5301,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="259"/>
-        <location filename="../sets/SetsWidget.ui" line="339"/>
+        <location filename="../sets/SetsWidget.ui" line="342"/>
         <source>Full preview</source>
         <translation>Aperçu complet</translation>
     </message>
     <message>
         <location filename="../sets/SetsWidget.ui" line="278"/>
         <location filename="../sets/SetsWidget.ui" line="281"/>
-        <location filename="../sets/SetsWidget.ui" line="358"/>
         <location filename="../sets/SetsWidget.ui" line="361"/>
+        <location filename="../sets/SetsWidget.ui" line="364"/>
         <source>Resolution</source>
         <translation>Résolution</translation>
     </message>
@@ -5304,12 +5329,12 @@ p, li { white-space: pre-wrap; }
         <translation>Supprimer saga Film</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="436"/>
+        <location filename="../sets/SetsWidget.cpp" line="444"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</translation>
     </message>
     <message>
-        <location filename="../sets/SetsWidget.cpp" line="462"/>
+        <location filename="../sets/SetsWidget.cpp" line="470"/>
         <source>New Movie Set</source>
         <translation>Nouvelle saga Film</translation>
     </message>
@@ -7293,29 +7318,29 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
         <translation>Vignette</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="238"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="241"/>
         <source>Poster</source>
         <translation>Affiche</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetSeason.ui" line="199"/>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="260"/>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="307"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="263"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="310"/>
         <source>Click to Change</source>
         <translation>Cliquer pour changer</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="285"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="288"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="332"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="335"/>
         <source>Banner</source>
         <translation>Bannière</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetSeason.ui" line="354"/>
+        <location filename="../tvShows/TvShowWidgetSeason.ui" line="357"/>
         <source>Click to change</source>
         <translation>Cliquer pour changer</translation>
     </message>
@@ -7464,7 +7489,7 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
     </message>
     <message>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="444"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1075"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1078"/>
         <source>Click to change</source>
         <translation>Cliquer pour changer</translation>
     </message>
@@ -7497,9 +7522,9 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="767"/>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="814"/>
         <location filename="../tvShows/TvShowWidgetTvShow.ui" line="861"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="934"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="981"/>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1028"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="937"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="984"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1031"/>
         <source>Click to Change</source>
         <translation>Cliquer pour Changer</translation>
     </message>
@@ -7514,22 +7539,22 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
         <translation>Vignette</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1053"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1056"/>
         <source>Banner</source>
         <translation>Bannière</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="912"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="915"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="959"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="962"/>
         <source>Clear Art</source>
         <translation>Clear Art</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1006"/>
+        <location filename="../tvShows/TvShowWidgetTvShow.ui" line="1009"/>
         <source>Character Art</source>
         <translation>Character Art</translation>
     </message>
