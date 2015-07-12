@@ -76,6 +76,10 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->thumb->setDefaultPixmap(QPixmap(":/img/placeholders/thumb.png"));
     ui->banner->setDefaultPixmap(QPixmap(":/img/placeholders/banner.png"));
 
+    ui->buttonDownloadTrailer->setIcon(Manager::instance()->iconFont()->icon("download", QColor(150, 150, 150), "", -1, 1.0));
+    ui->buttonYoutubeDummy->setIcon(Manager::instance()->iconFont()->icon("pen", QColor(150, 150, 150), "", -1, 1.0));
+    ui->buttonPlayLocalTrailer->setIcon(Manager::instance()->iconFont()->icon("play", QColor(150, 150, 150), "", -1, 1.0));
+
     ui->genreCloud->setText(tr("Genres"));
     ui->genreCloud->setPlaceholder(tr("Add Genre"));
     connect(ui->genreCloud, SIGNAL(activated(QString)), this, SLOT(addGenre(QString)));
@@ -120,8 +124,10 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->actor, SIGNAL(clicked()), this, SLOT(onChangeActorImage()));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
     connect(ui->buttonReloadStreamDetails, SIGNAL(clicked()), this, SLOT(onReloadStreamDetails()));
-    connect(ui->buttonDownloadTrailer, SIGNAL(clicked()), this, SLOT(onDownloadTrailer()));
-    connect(ui->buttonYoutubeDummy, SIGNAL(clicked()), this, SLOT(onInsertYoutubeLink()));
+
+    connect(ui->buttonDownloadTrailer, &QToolButton::clicked, this, &MovieWidget::onDownloadTrailer);
+    connect(ui->buttonYoutubeDummy, &QToolButton::clicked, this, &MovieWidget::onInsertYoutubeLink);
+    connect(ui->buttonPlayLocalTrailer, &QToolButton::clicked, this, &MovieWidget::onPlayLocalTrailer);
 
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
@@ -791,6 +797,14 @@ void MovieWidget::onDownloadTrailer()
         return;
     TrailerDialog::instance()->exec(m_movie);
     ui->localTrailer->setVisible(m_movie->hasLocalTrailer());
+}
+
+void MovieWidget::onPlayLocalTrailer()
+{
+    if (!m_movie && !m_movie->hasLocalTrailer())
+        return;
+
+    QDesktopServices::openUrl(QUrl::fromLocalFile(m_movie->localTrailerFileName()));
 }
 
 /**

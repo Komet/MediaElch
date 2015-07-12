@@ -4,17 +4,12 @@
         <file>img/stop.png</file>
         <file>img/magnifier.png</file>
         <file>img/pattern_dark.png</file>
-        <file>img/save.png</file>
         <file>img/arrow_circle_right.png</file>
-        <file>img/info.png</file>
-        <file>img/spanner.png</file>
-        <file>img/storage.png</file>
         <file>img/zoom_in.png</file>
         <file>img/zoom_out.png</file>
         <file>img/man.png</file>
         <file>img/arrow_circle_left.png</file>
         <file>img/btn_donate_LG.gif</file>
-        <file>img/inbox.png</file>
         <file>img/MediaElch.png</file>
         <file>img/video_pause_64.png</file>
         <file>img/video_play_64.png</file>
@@ -25,8 +20,6 @@
         <file>img/imgButtonBottom.png</file>
         <file>img/imgButtonTop.png</file>
         <file>img/folder_64.png</file>
-        <file>img/pencil.png</file>
-        <file>img/export.png</file>
         <file>img/star_blue.png</file>
         <file>img/reload_orange.png</file>
         <file>img/lock_white.png</file>
@@ -37,7 +30,6 @@
         <file>img/ui_select.png</file>
         <file>img/ui_check.png</file>
         <file>img/ui_uncheck.png</file>
-        <file>img/scrape2.png</file>
         <file>img/money_64.png</file>
         <file>img/arrow_circle_right_white.png</file>
         <file>img/minus_white.png</file>

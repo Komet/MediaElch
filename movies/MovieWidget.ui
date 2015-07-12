@@ -392,6 +392,12 @@
                 </item>
                 <item>
                  <widget class="QToolButton" name="buttonYoutubeDummy">
+                  <property name="minimumSize">
+                   <size>
+                    <width>22</width>
+                    <height>22</height>
+                   </size>
+                  </property>
                   <property name="cursor">
                    <cursorShape>PointingHandCursor</cursorShape>
                   </property>
@@ -406,14 +412,16 @@
                   <property name="text">
                    <string/>
                   </property>
-                  <property name="icon">
-                   <iconset resource="../MediaElch.qrc">
-                    <normaloff>:/img/pencil.png</normaloff>:/img/pencil.png</iconset>
-                  </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QToolButton" name="buttonDownloadTrailer">
+                  <property name="minimumSize">
+                   <size>
+                    <width>22</width>
+                    <height>22</height>
+                   </size>
+                  </property>
                   <property name="cursor">
                    <cursorShape>PointingHandCursor</cursorShape>
                   </property>
@@ -425,9 +433,29 @@
 	border: none;
 }</string>
                   </property>
-                  <property name="icon">
-                   <iconset resource="../MediaElch.qrc">
-                    <normaloff>:/img/inbox.png</normaloff>:/img/inbox.png</iconset>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="buttonPlayLocalTrailer">
+                  <property name="minimumSize">
+                   <size>
+                    <width>22</width>
+                    <height>22</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Play local trailer</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QToolButton {
+	border: none;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string notr="true"/>
                   </property>
                  </widget>
                 </item>
@@ -1683,15 +1711,15 @@ QPushButton::hover {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TagCloud</class>
-   <extends>QWidget</extends>
-   <header>smallWidgets/TagCloud.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>ImageGallery</class>
    <extends>QWidget</extends>
    <header>smallWidgets/ImageGallery.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TagCloud</class>
+   <extends>QWidget</extends>
+   <header>smallWidgets/TagCloud.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

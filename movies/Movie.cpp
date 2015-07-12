@@ -1255,6 +1255,21 @@ bool Movie::hasLocalTrailer() const
     return !dir.entryList(QStringList() << trailerFilter).isEmpty();
 }
 
+QString Movie::localTrailerFileName() const
+{
+    if (files().count() == 0)
+        return QString();
+    QFileInfo fi(files().first());
+    QString trailerFilter = QString("%1-trailer*").arg(fi.completeBaseName());
+    QDir dir(fi.canonicalPath());
+
+    QStringList contents = dir.entryList(QStringList() << trailerFilter);
+    if (contents.isEmpty())
+        return QString();
+
+    return dir.absolutePath() + "/" + contents.first();
+}
+
 void Movie::addExtraFanart(QByteArray fanart)
 {
     m_extraFanartImagesToAdd.append(fanart);

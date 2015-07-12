@@ -106,6 +106,7 @@ private slots:
     void updateStreamDetails(bool reloadFromFile = false);
     void onDownloadTrailer();
     void onInsertYoutubeLink();
+    void onPlayLocalTrailer();
 
     void onRemoveExtraFanart(const QString &file);
     void onRemoveExtraFanart(const QByteArray &image);

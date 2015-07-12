@@ -237,6 +237,12 @@
               </item>
               <item>
                <widget class="QToolButton" name="btnDownloadTune">
+                <property name="minimumSize">
+                 <size>
+                  <width>22</width>
+                  <height>22</height>
+                 </size>
+                </property>
                 <property name="cursor">
                  <cursorShape>PointingHandCursor</cursorShape>
                 </property>
@@ -250,10 +256,6 @@
                 </property>
                 <property name="text">
                  <string/>
-                </property>
-                <property name="icon">
-                 <iconset resource="../MediaElch.qrc">
-                  <normaloff>:/img/inbox.png</normaloff>:/img/inbox.png</iconset>
                 </property>
                </widget>
               </item>
@@ -1123,15 +1125,15 @@ QPushButton::hover {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TagCloud</class>
-   <extends>QWidget</extends>
-   <header>smallWidgets/TagCloud.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>ImageGallery</class>
    <extends>QWidget</extends>
    <header>smallWidgets/ImageGallery.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TagCloud</class>
+   <extends>QWidget</extends>
+   <header>smallWidgets/TagCloud.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>642</width>
-    <height>486</height>
+    <height>547</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -637,7 +637,7 @@
         <item row="13" column="0">
          <widget class="QLabel" name="labelVideoCodec">
           <property name="text">
-           <string>&lt;videoCodec&gt;</string>
+           <string notr="true">&lt;videoCodec&gt;</string>
           </property>
           <property name="itemTypes" stdset="0">
            <stringlist>
@@ -651,7 +651,7 @@
         <item row="14" column="0">
          <widget class="QLabel" name="labelAudioCodec">
           <property name="text">
-           <string>&lt;audioCodec&gt;</string>
+           <string notr="true">&lt;audioCodec&gt;</string>
           </property>
           <property name="itemTypes" stdset="0">
            <stringlist>
@@ -665,7 +665,7 @@
         <item row="15" column="0">
          <widget class="QLabel" name="labelChannels">
           <property name="text">
-           <string>&lt;channels&gt;</string>
+           <string notr="true">&lt;channels&gt;</string>
           </property>
           <property name="itemTypes" stdset="0">
            <stringlist>

@@ -73,6 +73,8 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->badgeTuneExisting->setBadgeType(Badge::LabelSuccess);
     ui->badgeTuneMissing->setBadgeType(Badge::LabelWarning);
 
+    ui->btnDownloadTune->setIcon(Manager::instance()->iconFont()->icon("download", QColor(150, 150, 150), "", -1, 1.0));
+
     ui->genreCloud->setText(tr("Genres"));
     ui->genreCloud->setPlaceholder(tr("Add Genre"));
     connect(ui->genreCloud, SIGNAL(activated(QString)), this, SLOT(onAddGenre(QString)));
