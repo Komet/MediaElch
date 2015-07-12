@@ -68,7 +68,8 @@ QString UniversalMusicScraper::identifier()
 
 void UniversalMusicScraper::searchArtist(QString searchStr)
 {
-    QUrl url(QString("http://www.musicbrainz.org/ws/2/artist/?query=artist:%1").arg(QString(QUrl::toPercentEncoding(searchStr))));
+    QUrl url(QString("http://www.musicbrainz.org/ws/2/artist/?query=artist:\"%1\"").arg(QString(QUrl::toPercentEncoding(searchStr))));
+    qDebug() << url;
     QNetworkRequest request(url);
     QNetworkReply *reply = qnam()->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchArtistFinished()));
@@ -239,9 +240,9 @@ void UniversalMusicScraper::processDownloadElement(DownloadElement elem, Artist 
 
 void UniversalMusicScraper::searchAlbum(QString artistName, QString searchStr)
 {
-    QString searchQuery = "release:" + QString(QUrl::toPercentEncoding(searchStr));
+    QString searchQuery = "release:\"" + QString(QUrl::toPercentEncoding(searchStr)) + "\"";
     if (!artistName.isEmpty())
-        searchQuery += "%20AND%20artist:" + QString(QUrl::toPercentEncoding(artistName));
+        searchQuery += "%20AND%20artist:\"" + QString(QUrl::toPercentEncoding(artistName)) + "\"";
     QUrl url(QString("http://www.musicbrainz.org/ws/2/release/?query=%1").arg(searchQuery));
     QNetworkRequest request(url);
     QNetworkReply *reply = qnam()->get(request);
