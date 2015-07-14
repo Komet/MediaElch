@@ -3585,7 +3585,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../movies/MovieWidget.ui" line="450"/>
         <source>Play local trailer</source>
-        <translation type="unfinished"/>
+        <translation>Odtwórz lokalny zwiastun</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="465"/>
@@ -5102,7 +5102,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="578"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Odcinek&lt;/b&gt; &quot;%1&quot; został zmieniony, ale zmiany nie zostały zapisane.</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="687"/>
@@ -5256,7 +5256,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../renamer/RenamerPlaceholders.ui" line="699"/>
         <location filename="../renamer/RenamerPlaceholders.ui" line="713"/>
         <source>movie</source>
-        <translation type="unfinished"/>
+        <translation>film</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="643"/>
@@ -5266,7 +5266,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../renamer/RenamerPlaceholders.ui" line="699"/>
         <location filename="../renamer/RenamerPlaceholders.ui" line="713"/>
         <source>tvshow</source>
-        <translation type="unfinished"/>
+        <translation>serial</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="643"/>
@@ -5276,22 +5276,22 @@ p, li { white-space: pre-wrap; }
         <location filename="../renamer/RenamerPlaceholders.ui" line="699"/>
         <location filename="../renamer/RenamerPlaceholders.ui" line="713"/>
         <source>concert</source>
-        <translation type="unfinished"/>
+        <translation>koncert</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="682"/>
         <source>Video Codec</source>
-        <translation type="unfinished"/>
+        <translation>Kodek wideo</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="696"/>
         <source>Audio Codec</source>
-        <translation type="unfinished"/>
+        <translation>Kodek dźwięku</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="710"/>
         <source>Number of audio channels</source>
-        <translation type="unfinished"/>
+        <translation>Liczba kanałów</translation>
     </message>
 </context>
 <context>

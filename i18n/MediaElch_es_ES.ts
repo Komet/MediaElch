@@ -3110,7 +3110,7 @@ Operación cancelada.</translation>
     <message>
         <location filename="../data/MovieModel.cpp" line="310"/>
         <source>Lokaler Trailer</source>
-        <translation type="unfinished"/>
+        <translation>Trailer local</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="312"/>
@@ -3585,7 +3585,7 @@ i desea buscar por un TMDB o OFDb Identificador favor, añadiendo al principio &
     <message>
         <location filename="../movies/MovieWidget.ui" line="450"/>
         <source>Play local trailer</source>
-        <translation type="unfinished"/>
+        <translation>Reproducir trailer local</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="465"/>
@@ -4991,7 +4991,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="191"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Película&lt;/b&gt; &quot;%1&quot; ha sido editada pero no guardada</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="244"/>
@@ -5092,17 +5092,20 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="531"/>
         <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%2&quot; into &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Carperta creada&lt;/b&gt; &quot;%2&quot; en &quot;%1&quot;
+</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="543"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Archivo movido&lt;/b&gt; &quot;%1&quot; a &quot;%2&quot;
+</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="578"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Episodio&lt;/b&gt; &quot;%1&quot; ha sido editado pero no salvado
+</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="687"/>
@@ -5133,12 +5136,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="761"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Serie&lt;/b&gt; &quot;%1&quot; haa sido editada pero no salvada
+</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="794"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Concierto&lt;/b&gt; &quot;%1&quot; ha sido editado pero no salvado</translation>
     </message>
 </context>
 <context>
@@ -5256,7 +5260,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../renamer/RenamerPlaceholders.ui" line="699"/>
         <location filename="../renamer/RenamerPlaceholders.ui" line="713"/>
         <source>movie</source>
-        <translation type="unfinished"/>
+        <translation>pelicula</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="643"/>
@@ -5266,7 +5270,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../renamer/RenamerPlaceholders.ui" line="699"/>
         <location filename="../renamer/RenamerPlaceholders.ui" line="713"/>
         <source>tvshow</source>
-        <translation type="unfinished"/>
+        <translation>serie</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="643"/>
@@ -5276,22 +5280,22 @@ p, li { white-space: pre-wrap; }
         <location filename="../renamer/RenamerPlaceholders.ui" line="699"/>
         <location filename="../renamer/RenamerPlaceholders.ui" line="713"/>
         <source>concert</source>
-        <translation type="unfinished"/>
+        <translation>concierto</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="682"/>
         <source>Video Codec</source>
-        <translation type="unfinished"/>
+        <translation>Codec de video</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="696"/>
         <source>Audio Codec</source>
-        <translation type="unfinished"/>
+        <translation>Codec de audio</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="710"/>
         <source>Number of audio channels</source>
-        <translation type="unfinished"/>
+        <translation>Número de canales de audio</translation>
     </message>
 </context>
 <context>
