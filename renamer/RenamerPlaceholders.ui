@@ -640,7 +640,7 @@
            <string notr="true">&lt;videoCodec&gt;</string>
           </property>
           <property name="itemTypes" stdset="0">
-           <stringlist>
+           <stringlist notr="true">
             <string>movie</string>
             <string>tvshow</string>
             <string>concert</string>
@@ -654,7 +654,7 @@
            <string notr="true">&lt;audioCodec&gt;</string>
           </property>
           <property name="itemTypes" stdset="0">
-           <stringlist>
+           <stringlist notr="true">
             <string>movie</string>
             <string>tvshow</string>
             <string>concert</string>
@@ -668,7 +668,7 @@
            <string notr="true">&lt;channels&gt;</string>
           </property>
           <property name="itemTypes" stdset="0">
-           <stringlist>
+           <stringlist notr="true">
             <string>movie</string>
             <string>tvshow</string>
             <string>concert</string>
@@ -682,7 +682,7 @@
            <string>Video Codec</string>
           </property>
           <property name="itemTypes" stdset="0">
-           <stringlist>
+           <stringlist notr="true">
             <string>movie</string>
             <string>tvshow</string>
             <string>concert</string>
@@ -696,7 +696,7 @@
            <string>Audio Codec</string>
           </property>
           <property name="itemTypes" stdset="0">
-           <stringlist>
+           <stringlist notr="true">
             <string>movie</string>
             <string>tvshow</string>
             <string>concert</string>
@@ -710,7 +710,7 @@
            <string>Number of audio channels</string>
           </property>
           <property name="itemTypes" stdset="0">
-           <stringlist>
+           <stringlist notr="true">
             <string>movie</string>
             <string>tvshow</string>
             <string>concert</string>
