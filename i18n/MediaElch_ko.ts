@@ -3109,7 +3109,7 @@ Main menu entry (tooltip)</extracomment>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="310"/>
-        <source>Lokaler Trailer</source>
+        <source>Local Trailer</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -5240,36 +5240,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="628"/>
         <source>IMDB Id</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="643"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="657"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="671"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="685"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="699"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="713"/>
-        <source>movie</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="643"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="657"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="671"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="685"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="699"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="713"/>
-        <source>tvshow</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="643"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="657"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="671"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="685"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="699"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="713"/>
-        <source>concert</source>
         <translation type="unfinished"/>
     </message>
     <message>

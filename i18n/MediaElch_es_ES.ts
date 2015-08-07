@@ -3109,8 +3109,8 @@ Operación cancelada.</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="310"/>
-        <source>Lokaler Trailer</source>
-        <translation>Trailer local</translation>
+        <source>Local Trailer</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="312"/>
@@ -5251,36 +5251,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../renamer/RenamerPlaceholders.ui" line="628"/>
         <source>IMDB Id</source>
         <translation>Id IMDB</translation>
-    </message>
-    <message>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="643"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="657"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="671"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="685"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="699"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="713"/>
-        <source>movie</source>
-        <translation>pelicula</translation>
-    </message>
-    <message>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="643"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="657"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="671"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="685"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="699"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="713"/>
-        <source>tvshow</source>
-        <translation>serie</translation>
-    </message>
-    <message>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="643"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="657"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="671"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="685"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="699"/>
-        <location filename="../renamer/RenamerPlaceholders.ui" line="713"/>
-        <source>concert</source>
-        <translation>concierto</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="682"/>
