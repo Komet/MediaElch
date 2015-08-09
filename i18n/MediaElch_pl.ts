@@ -3110,7 +3110,7 @@ Operacja anulowana.</translation>
     <message>
         <location filename="../data/MovieModel.cpp" line="310"/>
         <source>Local Trailer</source>
-        <translation type="unfinished"/>
+        <translation>Lokalny zwiastun</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="312"/>
