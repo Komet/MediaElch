@@ -309,6 +309,7 @@ MusicModelItem *Artist::modelItem() const
 void Artist::setModelItem(MusicModelItem *modelItem)
 {
     m_modelItem = modelItem;
+    emit modelItemChanged();
 }
 
 QString Artist::nfoContent() const

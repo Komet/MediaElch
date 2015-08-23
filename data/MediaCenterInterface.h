@@ -63,6 +63,8 @@ public:
     virtual QString imageFileName(TvShow *show, int type, int season = -2, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString imageFileName(Artist *artist, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
     virtual QString imageFileName(Album *album, int type, QList<DataFile> dataFiles = QList<DataFile>(), bool constructName = false) = 0;
+
+    virtual void loadBooklets(Album *album) = 0;
 };
 
 #endif // MEDIACENTERINTERFACE_H

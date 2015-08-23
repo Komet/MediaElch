@@ -10,6 +10,7 @@ AdvancedSettings::AdvancedSettings(QObject *parent) :
     QObject(parent)
 {
     m_portableMode = false;
+    m_bookletCut = 2;
     loadSettings();
 }
 
@@ -21,6 +22,7 @@ void AdvancedSettings::reset()
 {
     m_debugLog = false;
     m_forceCache = false;
+    m_bookletCut = 2;
     m_logFile = "";
     m_sortTokens = QStringList() << "Der" << "Die" << "Das" << "The" << "Le" << "La" << "Les" << "Un" << "Une" << "Des";
     m_genreMappings.clear();
@@ -91,6 +93,8 @@ void AdvancedSettings::loadSettings()
             loadCountryMappings(xml);
         else if (xml.name() == "portableMode")
             m_portableMode = (xml.readElementText() == "true");
+        else if (xml.name() == "bookletCut")
+            m_bookletCut = xml.readElementText().toInt();
         else
             xml.skipCurrentElement();
     }
@@ -326,4 +330,9 @@ bool AdvancedSettings::portableMode() const
 #else
     return false;
 #endif
+}
+
+int AdvancedSettings::bookletCut() const
+{
+    return m_bookletCut;
 }

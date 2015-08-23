@@ -152,6 +152,7 @@ int ImageDialog::exec(int type)
         ui->imageProvider->setItemData(row, false, Qt::UserRole+1);
     }
     ui->imageProvider->blockSignals(false);
+    updateSourceLink();
 
     ui->searchTerm->setLoading(false);
 
@@ -659,6 +660,7 @@ void ImageDialog::onProviderChanged(int index)
     if (index < 0 || index >= ui->imageProvider->count())
         return;
 
+    updateSourceLink();
     if (ui->imageProvider->itemData(index, Qt::UserRole+1).toBool()) {
         // this is the default provider
         ui->stackedWidget->setCurrentIndex(1);
@@ -668,6 +670,23 @@ void ImageDialog::onProviderChanged(int index)
     } else {
         ui->searchTerm->setFocus();
         onSearch();
+    }
+}
+
+void ImageDialog::updateSourceLink()
+{
+    int index = ui->imageProvider->currentIndex();
+    if (index < 0 || index >= ui->imageProvider->count())
+        return;
+
+    if (ui->imageProvider->itemData(index, Qt::UserRole+1).toBool()) {
+        ui->imageSource->setVisible(false);
+        ui->noResultsLabel->setText(tr("No images found"));
+    } else {
+        ImageProviderInterface *p = ui->imageProvider->itemData(ui->imageProvider->currentIndex(), Qt::UserRole).value<ImageProviderInterface*>();
+        ui->imageSource->setText(tr("Images provided by <a href=\"%1\">%1</a>").arg(p->siteUrl().toString()));
+        ui->imageSource->setVisible(true);
+        ui->noResultsLabel->setText(tr("No images found") + "<br />" + tr("Contribute by uploading images to <a href=\"%1\">%1</a>").arg(p->siteUrl().toString()));
     }
 }
 
@@ -723,7 +742,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
     if (!initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && m_currentProvider->identifier() == "images.mediapassion" && !mediaPassionId.isEmpty()) {
         ui->searchTerm->setLoading(false);
         loadImagesFromProvider(mediaPassionId);
-    } else if (m_currentProvider->identifier() != "images.mediapassion" && !initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && !id.isEmpty()) {
+    } else if (m_currentProvider->identifier() != "images.mediapassion" && !initialSearchTerm.isEmpty() && searchTerm == initialSearchTerm && !id.isEmpty() && m_currentProvider->identifier() != "images.coverlib") {
         // search term was not changed and we have an id
         // -> trigger loading of images and show image widget
         ui->searchTerm->setLoading(false);
@@ -767,11 +786,13 @@ void ImageDialog::onSearchFinished(QList<ScraperSearchResult> results)
     }
 
     // if there is only one result, take it
-    if (ui->results->rowCount() == 1) {
+    if (ui->results->rowCount() == 1)
         onResultClicked(ui->results->item(0, 0));
-    } else {
+    else if (ui->results->rowCount() == 0)
+        ui->stackedWidget->setCurrentIndex(2);
+    else
         ui->stackedWidget->setCurrentIndex(0);
-    }
+
 }
 
 /**
@@ -848,6 +869,8 @@ void ImageDialog::loadImagesFromProvider(QString id)
             m_currentProvider->albumCdArts(id);
         else if (m_type == ImageType::AlbumThumb)
             m_currentProvider->albumThumbs(id);
+        else if (m_type == ImageType::AlbumBooklet)
+            m_currentProvider->albumBooklets(id);
     }
 }
 

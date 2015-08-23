@@ -30,6 +30,11 @@ QString TheTvDbImages::name()
     return QString("The TV DB");
 }
 
+QUrl TheTvDbImages::siteUrl()
+{
+    return QUrl("http://www.thetvdb.com");
+}
+
 QString TheTvDbImages::identifier()
 {
     return QString("images.thetvdb");
@@ -458,4 +463,9 @@ void TheTvDbImages::albumImages(Album *album, QString mbId, QList<int> types)
     Q_UNUSED(album);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
+}
+
+void TheTvDbImages::albumBooklets(QString mbId)
+{
+    Q_UNUSED(mbId);
 }

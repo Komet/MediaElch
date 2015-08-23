@@ -76,6 +76,7 @@ private slots:
     void onResultClicked(QTableWidgetItem *item);
     void onProviderImagesLoaded(QList<Poster> images);
     void onImageClosed(const QString &url);
+    void updateSourceLink();
 
 private:
     Ui::ImageDialog *ui;

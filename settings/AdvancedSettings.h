@@ -30,6 +30,7 @@ public:
     bool useFirstStudioOnly() const;
     bool forceCache() const;
     bool portableMode() const;
+    int bookletCut() const;
 
 private:
     bool m_debugLog;
@@ -47,6 +48,7 @@ private:
     QHash<QString, QString> m_countryMappings;
     bool m_forceCache;
     bool m_portableMode;
+    int m_bookletCut;
 
     void loadSettings();
     void reset();

@@ -15,6 +15,7 @@ class FanartTvMusic : public ImageProviderInterface
 public:
     explicit FanartTvMusic(QObject *parent = 0);
     QString name();
+    QUrl siteUrl();
     QString identifier();
     void movieImages(Movie *movie, QString tmdbId, QList<int> types);
     void moviePosters(QString tmdbId);
@@ -50,6 +51,7 @@ public:
     void albumThumbs(QString mbId);
     void artistImages(Artist *artist, QString mbId, QList<int> types);
     void albumImages(Album *album, QString mbId, QList<int> types);
+    void albumBooklets(QString mbId);
     QList<int> provides();
     bool hasSettings();
     void loadSettings(QSettings &settings);

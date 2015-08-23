@@ -31,6 +31,11 @@ QString FanartTvMusicArtists::name()
     return QString("Fanart.tv Music Artists");
 }
 
+QUrl FanartTvMusicArtists::siteUrl()
+{
+    return QUrl("https://fanart.tv");
+}
+
 QString FanartTvMusicArtists::identifier()
 {
     return QString("images.fanarttv-music");
@@ -401,4 +406,9 @@ void FanartTvMusicArtists::albumImages(Album *album, QString mbId, QList<int> ty
     Q_UNUSED(album);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
+}
+
+void FanartTvMusicArtists::albumBooklets(QString mbId)
+{
+    Q_UNUSED(mbId);
 }

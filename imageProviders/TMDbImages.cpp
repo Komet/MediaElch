@@ -31,6 +31,11 @@ QString TMDbImages::name()
     return QString("The Movie DB");
 }
 
+QUrl TMDbImages::siteUrl()
+{
+    return QUrl("https://www.themoviedb.org");
+}
+
 QString TMDbImages::identifier()
 {
     return QString("images.tmdb");
@@ -430,4 +435,9 @@ void TMDbImages::albumImages(Album *album, QString mbId, QList<int> types)
     Q_UNUSED(album);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
+}
+
+void TMDbImages::albumBooklets(QString mbId)
+{
+    Q_UNUSED(mbId);
 }

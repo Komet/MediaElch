@@ -50,6 +50,9 @@ private slots:
     void onLoadingImages(Album *album, QList<int> imageTypes);
     void onLoadImagesStarted(Album *album);
     void onSetImage(Album *album, int type, QByteArray data);
+    void onBookletModelChanged();
+    void onAddBooklet();
+    void onBookletsDropped(QList<QUrl> urls);
 
 private:
     Ui::MusicWidgetAlbum *ui;

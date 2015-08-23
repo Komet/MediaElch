@@ -10,6 +10,7 @@
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "image/Image.h"
 #include "settings/Settings.h"
 
 /**
@@ -2113,6 +2114,32 @@ bool XbmcXml::saveAlbum(Album *album)
         }
     }
 
+    if (album->bookletModel()->hasChanged()) {
+        QDir dir(album->path() + "/booklet");
+        if (!dir.exists())
+            QDir(album->path()).mkdir("booklet");
+
+        // @todo: get filename from settings
+        foreach (Image *image, album->bookletModel()->images()) {
+            if (image->deletion() && !image->fileName().isEmpty())
+                QFile::remove(image->fileName());
+            else if (!image->deletion())
+                image->load();
+        }
+        int bookletNum = 1;
+        foreach (Image *image, album->bookletModel()->images()) {
+            if (!image->deletion()) {
+                QString fileName = album->path() + "/booklet/booklet" + QString("%1").arg(bookletNum, 2, 10, QChar('0'))  + ".jpg";
+                QFile file(fileName);
+                if (file.open(QIODevice::WriteOnly)) {
+                    file.write(image->rawData());
+                    file.close();
+                }
+                bookletNum++;
+            }
+        }
+    }
+
     return true;
 }
 
@@ -2191,4 +2218,20 @@ void XbmcXml::writeAlbumXml(QXmlStreamWriter &xml, Album *album)
     }
 
     xml.writeEndElement();
+}
+
+void XbmcXml::loadBooklets(Album *album)
+{
+    // @todo: get filename from settings
+    if (!album->bookletModel()->images().isEmpty())
+        return;
+
+    QDir dir(album->path() + "/booklet");
+    QStringList filters = QStringList() << "*.jpg" << "*.jpeg" << "*.JPEG" << "*.Jpeg" << "*.JPeg";
+    foreach (const QString &file, dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot, QDir::Name)) {
+        Image *img = new Image;
+        img->setFileName(QDir::toNativeSeparators(dir.path() + "/" + file));
+        album->bookletModel()->addImage(img);
+    }
+    album->bookletModel()->setHasChanged(false);
 }

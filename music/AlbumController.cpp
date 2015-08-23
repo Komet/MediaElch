@@ -53,6 +53,7 @@ bool AlbumController::saveData(MediaCenterInterface *mediaCenterInterface)
         m_infoLoaded = saved;
     m_album->setHasChanged(false);
     m_album->clearImages();
+    m_album->bookletModel()->clear();
     if (saved)
         emit sigSaved(m_album);
     return saved;
@@ -88,6 +89,22 @@ void AlbumController::loadImage(int type, QUrl url)
     m_downloadManager->addDownload(d);
 }
 
+void AlbumController::loadImages(int type, QList<QUrl> urls)
+{
+    bool started = false;
+    foreach (const QUrl &url, urls) {
+        DownloadManagerElement d;
+        d.album = m_album;
+        d.imageType = type;
+        d.url = url;
+        if (!started) {
+            emit sigLoadingImages(m_album, QList<int>() << type);
+            started = true;
+        }
+        m_downloadManager->addDownload(d);
+    }
+}
+
 void AlbumController::onAllDownloadsFinished()
 {
     m_downloadsInProgress = false;
@@ -101,7 +118,11 @@ void AlbumController::onDownloadFinished(DownloadManagerElement elem)
     m_downloadsLeft--;
     emit sigDownloadProgress(m_album, m_downloadsLeft, m_downloadsSize);
 
-    if (!elem.data.isEmpty()) {
+    if (!elem.data.isEmpty() && elem.imageType == ImageType::AlbumBooklet) {
+        Image *image = new Image;
+        image->setRawData(elem.data);
+        m_album->bookletModel()->addImage(image);
+    } else if (!elem.data.isEmpty()) {
         ImageCache::instance()->invalidateImages(Manager::instance()->mediaCenterInterface()->imageFileName(m_album, elem.imageType));
         m_album->setRawImage(elem.imageType, elem.data);
     }

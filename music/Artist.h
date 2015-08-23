@@ -12,6 +12,7 @@ class MusicModelItem;
 class Artist : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(MusicModelItem* modelItem READ modelItem NOTIFY modelItemChanged)
 public:
     explicit Artist(QString path, QObject *parent = 0);
     ~Artist();
@@ -112,6 +113,7 @@ public:
 
 signals:
     void sigChanged(Artist*);
+    void modelItemChanged();
 
 private:
     QString m_path;

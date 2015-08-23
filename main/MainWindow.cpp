@@ -51,6 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setMinimumHeight(500);
 
     MainWindow::m_instance = this;
+    qApp->setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
 
     qDebug() << "MediaElch version" << QApplication::applicationVersion() << "starting up";
 

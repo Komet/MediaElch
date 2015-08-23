@@ -23,7 +23,7 @@ public:
     MusicModelItem *appendChild(Album *album);
     MusicModelItem *parent();
     bool removeChildren(int position, int count);
-    int childNumber() const;
+    Q_INVOKABLE int childNumber() const;
     void setArtist(Artist *artist);
     void setAlbum(Album *album);
     Artist *artist();

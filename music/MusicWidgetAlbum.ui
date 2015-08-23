@@ -328,6 +328,64 @@
           </item>
          </layout>
         </widget>
+        <widget class="QWidget" name="tab_3">
+         <attribute name="title">
+          <string>Booklet</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,0">
+          <property name="leftMargin">
+           <number>12</number>
+          </property>
+          <property name="rightMargin">
+           <number>12</number>
+          </property>
+          <item>
+           <widget class="ImageWidget" name="bookletWidget" native="true"/>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,0,0">
+            <item>
+             <widget class="QLabel" name="label_16">
+              <property name="font">
+               <font>
+                <family>Helvetica Neue</family>
+               </font>
+              </property>
+              <property name="text">
+               <string>Hint: Closed images will be deleted on save.</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnAddExtraFanart">
+              <property name="text">
+               <string>Add Images</string>
+              </property>
+              <property name="dropShadow" stdset="0">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
        </widget>
       </item>
       <item>
@@ -522,6 +580,12 @@
    <class>ClosableImage</class>
    <extends>QLabel</extends>
    <header>smallWidgets/ClosableImage.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ImageWidget</class>
+   <extends>QWidget</extends>
+   <header>image/ImageWidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
