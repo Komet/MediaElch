@@ -2154,56 +2154,57 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="85"/>
+        <location filename="../globals/ImageDialog.ui" line="107"/>
         <source>Movie</source>
         <translation>电影</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="133"/>
-        <location filename="../globals/ImageDialog.ui" line="138"/>
-        <location filename="../globals/ImageDialog.ui" line="143"/>
-        <location filename="../globals/ImageDialog.ui" line="148"/>
-        <location filename="../globals/ImageDialog.ui" line="153"/>
+        <location filename="../globals/ImageDialog.ui" line="164"/>
+        <location filename="../globals/ImageDialog.ui" line="169"/>
+        <location filename="../globals/ImageDialog.ui" line="174"/>
+        <location filename="../globals/ImageDialog.ui" line="179"/>
+        <location filename="../globals/ImageDialog.ui" line="184"/>
         <source>Neue Spalte</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="165"/>
+        <location filename="../globals/ImageDialog.cpp" line="684"/>
+        <location filename="../globals/ImageDialog.cpp" line="689"/>
         <source>No images found</source>
         <translation>未能找到有关图片</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="210"/>
+        <location filename="../globals/ImageDialog.ui" line="237"/>
         <source>Zoom out</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="240"/>
+        <location filename="../globals/ImageDialog.ui" line="267"/>
         <source>Preview size</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="268"/>
+        <location filename="../globals/ImageDialog.ui" line="295"/>
         <source>Zoom in</source>
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="293"/>
+        <location filename="../globals/ImageDialog.ui" line="320"/>
         <source>Loading...</source>
         <translation>正在加载...</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="316"/>
+        <location filename="../globals/ImageDialog.ui" line="343"/>
         <source>Choose Local Image</source>
         <translation>选择本地图像</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="329"/>
+        <location filename="../globals/ImageDialog.ui" line="356"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.ui" line="336"/>
+        <location filename="../globals/ImageDialog.ui" line="363"/>
         <source>Accept Images</source>
         <translation type="unfinished"/>
     </message>
@@ -2213,14 +2214,24 @@
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="554"/>
+        <location filename="../globals/ImageDialog.cpp" line="555"/>
         <source>Choose Image</source>
         <translation>选择图像</translation>
     </message>
     <message>
-        <location filename="../globals/ImageDialog.cpp" line="554"/>
+        <location filename="../globals/ImageDialog.cpp" line="555"/>
         <source>Images (*.jpg *.jpeg *.png)</source>
         <translation>图像 (*.jpg *.jpeg *.png)</translation>
+    </message>
+    <message>
+        <location filename="../globals/ImageDialog.cpp" line="687"/>
+        <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../globals/ImageDialog.cpp" line="689"/>
+        <source>Contribute by uploading images to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2247,6 +2258,14 @@
         <location filename="../globals/ImagePreviewDialog.ui" line="82"/>
         <source>Close</source>
         <translation>关闭</translation>
+    </message>
+</context>
+<context>
+    <name>ImageWidget</name>
+    <message>
+        <location filename="../image/ImageWidget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2555,32 +2574,32 @@ Main menu entry (tooltip)</extracomment>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="739"/>
+        <location filename="../main/MainWindow.cpp" line="740"/>
         <source>Reload (%1)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="746"/>
+        <location filename="../main/MainWindow.cpp" line="747"/>
         <source>Reload all Movies (%1)</source>
         <translation>重新加载所有电影 (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="751"/>
+        <location filename="../main/MainWindow.cpp" line="752"/>
         <source>Reload all TV Shows (%1)</source>
         <translation>重新加载所有电视剧 (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="761"/>
+        <location filename="../main/MainWindow.cpp" line="762"/>
         <source>Reload all Concerts (%1)</source>
         <translation>重新加载所有音乐会 (%1)</translation>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="777"/>
+        <location filename="../main/MainWindow.cpp" line="778"/>
         <source>Reload all Downloads (%1)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../main/MainWindow.cpp" line="781"/>
+        <location filename="../main/MainWindow.cpp" line="782"/>
         <source>Reload Music (%1)</source>
         <translation type="unfinished"/>
     </message>
@@ -4379,20 +4398,35 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>其他</translation>
     </message>
     <message>
+        <location filename="../music/MusicWidgetAlbum.ui" line="333"/>
+        <source>Booklet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../music/MusicWidgetAlbum.ui" line="355"/>
+        <source>Hint: Closed images will be deleted on save.</source>
+        <translation>注意：如果关闭图像，保存时将删除该图像。</translation>
+    </message>
+    <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="378"/>
-        <location filename="../music/MusicWidgetAlbum.ui" line="418"/>
+        <source>Add Images</source>
+        <translation>添加图像</translation>
+    </message>
+    <message>
+        <location filename="../music/MusicWidgetAlbum.ui" line="436"/>
+        <location filename="../music/MusicWidgetAlbum.ui" line="476"/>
         <source>Cover</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.ui" line="400"/>
-        <location filename="../music/MusicWidgetAlbum.ui" line="466"/>
+        <location filename="../music/MusicWidgetAlbum.ui" line="458"/>
+        <location filename="../music/MusicWidgetAlbum.ui" line="524"/>
         <source>Click to Change</source>
         <translation>点击修改</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.ui" line="444"/>
-        <location filename="../music/MusicWidgetAlbum.ui" line="484"/>
+        <location filename="../music/MusicWidgetAlbum.ui" line="502"/>
+        <location filename="../music/MusicWidgetAlbum.ui" line="542"/>
         <source>Disc Art</source>
         <translation>光盘封面</translation>
     </message>
@@ -4427,17 +4461,17 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="170"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="175"/>
         <source>Saving Album...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="176"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="181"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; 已保存</translation>
     </message>
     <message>
-        <location filename="../music/MusicWidgetAlbum.cpp" line="444"/>
+        <location filename="../music/MusicWidgetAlbum.cpp" line="457"/>
         <source>Downloading images...</source>
         <translation type="unfinished"/>
     </message>
@@ -5361,545 +5395,545 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SettingsWindow</name>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="23"/>
+        <location filename="../settings/SettingsWindow.ui" line="20"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="85"/>
+        <location filename="../settings/SettingsWindow.ui" line="82"/>
         <source>Type</source>
         <translation>类别</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="90"/>
+        <location filename="../settings/SettingsWindow.ui" line="87"/>
         <source>Path</source>
         <translation>路径</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="95"/>
+        <location filename="../settings/SettingsWindow.ui" line="92"/>
         <source>Sep. folders</source>
         <translation>子文件夹单独存放</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="98"/>
+        <location filename="../settings/SettingsWindow.ui" line="95"/>
         <source>Items are in separate folders</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="103"/>
+        <location filename="../settings/SettingsWindow.ui" line="100"/>
         <source>Reload On Start</source>
         <translation>启动时重新载入</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="106"/>
+        <location filename="../settings/SettingsWindow.ui" line="103"/>
         <source>Automatically reload contents on start</source>
         <translation>启动时自动重新加载资料库</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="116"/>
+        <location filename="../settings/SettingsWindow.ui" line="113"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="123"/>
+        <location filename="../settings/SettingsWindow.ui" line="120"/>
         <source>Remove</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="130"/>
+        <location filename="../settings/SettingsWindow.ui" line="127"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sort movies into separate directories&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>把电影文件归类输出到独立文件夹</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="133"/>
+        <location filename="../settings/SettingsWindow.ui" line="130"/>
         <source>Organize</source>
         <translation>文件重组</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="160"/>
+        <location filename="../settings/SettingsWindow.ui" line="157"/>
         <source>Store trailer URLs in YouTube Plugin format</source>
         <translation>按 YouTube 插件格式存储预告片地址</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="174"/>
+        <location filename="../settings/SettingsWindow.ui" line="171"/>
         <source>Automatically load and save stream details from files</source>
         <translation>自动加载并保存视频压制编码信息</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="188"/>
+        <location filename="../settings/SettingsWindow.ui" line="185"/>
         <source>Ignore articles when sorting (&quot;The&quot;)</source>
         <translation>排序时忽略冠词 (&quot;The&quot;)</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="202"/>
+        <location filename="../settings/SettingsWindow.ui" line="199"/>
         <source>Download actor images</source>
         <translation>下载演员照片</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="230"/>
-        <location filename="../settings/SettingsWindow.ui" line="249"/>
+        <location filename="../settings/SettingsWindow.ui" line="227"/>
+        <location filename="../settings/SettingsWindow.ui" line="246"/>
         <source>Words to exclude from media names (seperated by commas and non case-sensitive)</source>
         <translation>文件名检查时忽略的关键词 （以逗号分隔）</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="216"/>
+        <location filename="../settings/SettingsWindow.ui" line="213"/>
         <source>Check for Updates on start</source>
         <translation>启动时刷新</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1446"/>
+        <location filename="../settings/SettingsWindow.ui" line="1443"/>
         <source>Path to makemkvcon</source>
         <translation>makemkvcon 路径</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="276"/>
-        <location filename="../settings/SettingsWindow.ui" line="394"/>
-        <location filename="../settings/SettingsWindow.ui" line="1734"/>
+        <location filename="../settings/SettingsWindow.ui" line="273"/>
+        <location filename="../settings/SettingsWindow.ui" line="391"/>
+        <location filename="../settings/SettingsWindow.ui" line="1731"/>
         <source>Scraper</source>
         <translation>刮削器</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="51"/>
+        <location filename="../settings/SettingsWindow.ui" line="48"/>
         <source>Add one or more directories containing your movies, TV Shows, concerts, music or files to import.
 TV Show Episodes have to be in subfolders with the name of the show.
 The directories containg your music must contain subdirectories for each artist which contain directories of albums.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="256"/>
+        <location filename="../settings/SettingsWindow.ui" line="253"/>
         <source>Startup section</source>
         <translation>启动界面</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="282"/>
+        <location filename="../settings/SettingsWindow.ui" line="279"/>
         <source>Enable adult movie scrapers</source>
         <translation>启用成人电影刮削器</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="353"/>
+        <location filename="../settings/SettingsWindow.ui" line="350"/>
         <source>Custom Movie Scraper</source>
         <translation>自定义电影刮削器</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="359"/>
+        <location filename="../settings/SettingsWindow.ui" line="356"/>
         <source>Combine multiple scrapers to your custom scraper. If you select other scrapers than IMDB, The Movie DB and Fanart.tv multiple searches may be necessary as only these three share an id.</source>
         <translation>把多个刮削器的功能整合为您的自定义刮削器。如果您选择IMDB、The Movie DB 和 Fanart.tv 以外的刮削器，可能需要多次搜索，因为它们三个共享一个id。</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="389"/>
+        <location filename="../settings/SettingsWindow.ui" line="386"/>
         <source>Item</source>
         <translation>刮削项目</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="410"/>
+        <location filename="../settings/SettingsWindow.ui" line="407"/>
         <source>Below you see the filenames which are used for loading and saving your movies. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
         <translation>下面的文件名将会用于载入或保存您的电影资料。您可以随意编辑，如果用于多文件命名，可用逗号分隔。</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="420"/>
-        <location filename="../settings/SettingsWindow.ui" line="953"/>
+        <location filename="../settings/SettingsWindow.ui" line="417"/>
+        <location filename="../settings/SettingsWindow.ui" line="950"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension.</source>
         <translation>占位符 &lt;baseFileName&gt; 表示没有扩展名的文件名。</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="435"/>
-        <location filename="../settings/SettingsWindow.ui" line="968"/>
+        <location filename="../settings/SettingsWindow.ui" line="432"/>
+        <location filename="../settings/SettingsWindow.ui" line="965"/>
         <source>Nfo</source>
         <translation>Nfo</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="442"/>
-        <location filename="../settings/SettingsWindow.ui" line="706"/>
-        <location filename="../settings/SettingsWindow.ui" line="975"/>
+        <location filename="../settings/SettingsWindow.ui" line="439"/>
+        <location filename="../settings/SettingsWindow.ui" line="703"/>
+        <location filename="../settings/SettingsWindow.ui" line="972"/>
         <location filename="../settings/SettingsWindow.cpp" line="737"/>
         <source>Poster</source>
         <translation>海报</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="449"/>
-        <location filename="../settings/SettingsWindow.ui" line="713"/>
-        <location filename="../settings/SettingsWindow.ui" line="982"/>
+        <location filename="../settings/SettingsWindow.ui" line="446"/>
+        <location filename="../settings/SettingsWindow.ui" line="710"/>
+        <location filename="../settings/SettingsWindow.ui" line="979"/>
         <source>Backdrop</source>
         <translation>剧照</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="456"/>
-        <location filename="../settings/SettingsWindow.ui" line="727"/>
-        <location filename="../settings/SettingsWindow.ui" line="989"/>
+        <location filename="../settings/SettingsWindow.ui" line="453"/>
+        <location filename="../settings/SettingsWindow.ui" line="724"/>
+        <location filename="../settings/SettingsWindow.ui" line="986"/>
         <location filename="../settings/SettingsWindow.cpp" line="757"/>
         <source>Logo</source>
         <translation>Logo</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="463"/>
-        <location filename="../settings/SettingsWindow.ui" line="734"/>
-        <location filename="../settings/SettingsWindow.ui" line="996"/>
+        <location filename="../settings/SettingsWindow.ui" line="460"/>
+        <location filename="../settings/SettingsWindow.ui" line="731"/>
+        <location filename="../settings/SettingsWindow.ui" line="993"/>
         <location filename="../settings/SettingsWindow.cpp" line="761"/>
         <source>Clear Art</source>
         <translation>剪贴画</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="470"/>
-        <location filename="../settings/SettingsWindow.ui" line="1003"/>
+        <location filename="../settings/SettingsWindow.ui" line="467"/>
+        <location filename="../settings/SettingsWindow.ui" line="1000"/>
         <location filename="../settings/SettingsWindow.cpp" line="759"/>
         <source>Disc Art</source>
         <translation>光盘封面</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="537"/>
-        <location filename="../settings/SettingsWindow.ui" line="720"/>
+        <location filename="../settings/SettingsWindow.ui" line="534"/>
+        <location filename="../settings/SettingsWindow.ui" line="717"/>
         <location filename="../settings/SettingsWindow.cpp" line="763"/>
         <source>Banner</source>
         <translation>宽幅海报</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="544"/>
-        <location filename="../settings/SettingsWindow.ui" line="910"/>
+        <location filename="../settings/SettingsWindow.ui" line="541"/>
+        <location filename="../settings/SettingsWindow.ui" line="907"/>
         <location filename="../settings/SettingsWindow.cpp" line="765"/>
         <source>Thumb</source>
         <translation>缩略图</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="578"/>
+        <location filename="../settings/SettingsWindow.ui" line="575"/>
         <source>Movie outline</source>
         <translation>电影剧情简介</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="585"/>
+        <location filename="../settings/SettingsWindow.ui" line="582"/>
         <source>Use plot when outline is not available</source>
         <translation>当未刮削到剧情简介时，用剧情简介填充</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="592"/>
+        <location filename="../settings/SettingsWindow.ui" line="589"/>
         <source>Movie Set Artwork</source>
         <translation>系列电影艺术图片</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="600"/>
+        <location filename="../settings/SettingsWindow.ui" line="597"/>
         <source>Artwork next to movies</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="605"/>
+        <location filename="../settings/SettingsWindow.ui" line="602"/>
         <source>Separate artwork directory</source>
         <translation>艺术图片独立存储目录</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="613"/>
+        <location filename="../settings/SettingsWindow.ui" line="610"/>
         <source>Movie Set Poster Filename</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <location filename="../settings/SettingsWindow.ui" line="617"/>
         <location filename="../settings/SettingsWindow.ui" line="620"/>
-        <location filename="../settings/SettingsWindow.ui" line="623"/>
         <source>folder.jpg</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="630"/>
+        <location filename="../settings/SettingsWindow.ui" line="627"/>
         <source>Movie Set Fanart Filname</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <location filename="../settings/SettingsWindow.ui" line="634"/>
         <location filename="../settings/SettingsWindow.ui" line="637"/>
-        <location filename="../settings/SettingsWindow.ui" line="640"/>
         <source>fanart.jpg</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="647"/>
+        <location filename="../settings/SettingsWindow.ui" line="644"/>
         <source>Artwork directory</source>
         <translation>艺术图片目录</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="659"/>
+        <location filename="../settings/SettingsWindow.ui" line="656"/>
         <source>Choose directory</source>
         <translation>选择目录</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="674"/>
+        <location filename="../settings/SettingsWindow.ui" line="671"/>
         <source>Below you see the filenames which are used for loading and saving your tv shows. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
         <translation>下面的文件名将会用于载入或保存您的电视剧资料。您可以随意编辑，如果用于多文件命名，可用逗号分隔。</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="684"/>
+        <location filename="../settings/SettingsWindow.ui" line="681"/>
         <source>You can use the placeholder &lt;baseFileName&gt; which is the filename without extension and for season posters &lt;seasonNumber&gt; which is the season number.</source>
         <translation>占位符 &lt;baseFileName&gt; 表示没有扩展名的文件名。播出季海报占位符&lt;seasonNumber&gt; 表示播出季的序列号。</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="699"/>
+        <location filename="../settings/SettingsWindow.ui" line="696"/>
         <source>Show nfo</source>
         <translation>电视剧 nfo</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="741"/>
+        <location filename="../settings/SettingsWindow.ui" line="738"/>
         <source>Character Art</source>
         <translation>演员图片</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="748"/>
+        <location filename="../settings/SettingsWindow.ui" line="745"/>
         <source>Season Poster</source>
         <translation>播出季海报</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="755"/>
+        <location filename="../settings/SettingsWindow.ui" line="752"/>
         <source>Season Backdrop</source>
         <translation>播出季壁纸</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="762"/>
+        <location filename="../settings/SettingsWindow.ui" line="759"/>
         <source>Episode nfo</source>
         <translation>分集 nfo</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="769"/>
+        <location filename="../settings/SettingsWindow.ui" line="766"/>
         <source>Episode thumbnail</source>
         <translation>分集缩略图</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="776"/>
+        <location filename="../settings/SettingsWindow.ui" line="773"/>
         <source>Season Banner</source>
         <translation>播出季宽幅海报</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="903"/>
+        <location filename="../settings/SettingsWindow.ui" line="900"/>
         <source>Season Thumb</source>
         <translation>播出季缩略图</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="943"/>
+        <location filename="../settings/SettingsWindow.ui" line="940"/>
         <source>Below you see the filenames which are used for loading and saving your concerts. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
         <translation>下面的文件名将会用于载入或保存您的MTV资料。您可以随意编辑，如果用于多文件命名，可用逗号分隔。</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1076"/>
+        <location filename="../settings/SettingsWindow.ui" line="1073"/>
         <source>Below you see the filenames which are used for loading and saving your artists and albums. You can edit them as you like, if you want to use multiple files separate them by comma.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1091"/>
+        <location filename="../settings/SettingsWindow.ui" line="1088"/>
         <source>Artist Thumbnail</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1108"/>
+        <location filename="../settings/SettingsWindow.ui" line="1105"/>
         <source>Artist Fanart</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1125"/>
+        <location filename="../settings/SettingsWindow.ui" line="1122"/>
         <source>Artist Logo</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1142"/>
+        <location filename="../settings/SettingsWindow.ui" line="1139"/>
         <source>Album Thumbnail</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1159"/>
+        <location filename="../settings/SettingsWindow.ui" line="1156"/>
         <source>Album Disc Art</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1176"/>
+        <location filename="../settings/SettingsWindow.ui" line="1173"/>
         <source>Download Extra Fanarts for Artists</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1196"/>
+        <location filename="../settings/SettingsWindow.ui" line="1193"/>
         <source>If you want to use the synchronization feature you need to enable the webserver within Kodi (Settings -&gt; Services -&gt; Webserver). Enter the port of the webserver here (usually 80 or 8080).</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1232"/>
+        <location filename="../settings/SettingsWindow.ui" line="1229"/>
         <source>8080</source>
         <translation>8080</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1425"/>
+        <location filename="../settings/SettingsWindow.ui" line="1422"/>
         <source>Path to unrar</source>
         <translation>解压路径</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1489"/>
+        <location filename="../settings/SettingsWindow.ui" line="1486"/>
         <source>Install</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1496"/>
+        <location filename="../settings/SettingsWindow.ui" line="1493"/>
         <source>Update</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1503"/>
+        <location filename="../settings/SettingsWindow.ui" line="1500"/>
         <source>Uninstall</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1516"/>
+        <location filename="../settings/SettingsWindow.ui" line="1513"/>
         <source>Installing and updating plugins through MediaElch is currently not supported under Linux. You need to add the ppa or compile plugins on your own.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1536"/>
+        <location filename="../settings/SettingsWindow.ui" line="1533"/>
         <source>This plugin has no settings.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1563"/>
+        <location filename="../settings/SettingsWindow.ui" line="1560"/>
         <source>This plugin is not installed.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1712"/>
+        <location filename="../settings/SettingsWindow.ui" line="1709"/>
         <source>Kodi</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <location filename="../settings/SettingsWindow.ui" line="1753"/>
         <location filename="../settings/SettingsWindow.ui" line="1756"/>
-        <location filename="../settings/SettingsWindow.ui" line="1759"/>
         <location filename="../settings/SettingsWindow.cpp" line="178"/>
         <source>Import</source>
         <translation>导入</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1770"/>
+        <location filename="../settings/SettingsWindow.ui" line="1767"/>
         <source>Plugins</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <location filename="../settings/SettingsWindow.ui" line="1778"/>
         <location filename="../settings/SettingsWindow.ui" line="1781"/>
-        <location filename="../settings/SettingsWindow.ui" line="1784"/>
         <location filename="../settings/SettingsWindow.cpp" line="177"/>
         <location filename="../settings/SettingsWindow.cpp" line="514"/>
         <source>Music</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1411"/>
+        <location filename="../settings/SettingsWindow.ui" line="1408"/>
         <source>Automatically delete archives after extraction</source>
         <translation>解压后自动删除文档</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1437"/>
-        <location filename="../settings/SettingsWindow.ui" line="1458"/>
+        <location filename="../settings/SettingsWindow.ui" line="1434"/>
+        <location filename="../settings/SettingsWindow.ui" line="1455"/>
         <source>Choose</source>
         <translation>浏览</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1211"/>
-        <location filename="../settings/SettingsWindow.ui" line="1271"/>
+        <location filename="../settings/SettingsWindow.ui" line="1208"/>
+        <location filename="../settings/SettingsWindow.ui" line="1268"/>
         <source>Host</source>
         <translation>主机地址</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1218"/>
+        <location filename="../settings/SettingsWindow.ui" line="1215"/>
         <source>127.0.0.1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1225"/>
-        <location filename="../settings/SettingsWindow.ui" line="1278"/>
+        <location filename="../settings/SettingsWindow.ui" line="1222"/>
+        <location filename="../settings/SettingsWindow.ui" line="1275"/>
         <source>Port</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1285"/>
+        <location filename="../settings/SettingsWindow.ui" line="1282"/>
         <source>Username</source>
         <translation>用户名</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1246"/>
-        <location filename="../settings/SettingsWindow.ui" line="1292"/>
+        <location filename="../settings/SettingsWindow.ui" line="1243"/>
+        <location filename="../settings/SettingsWindow.ui" line="1289"/>
         <source>Password</source>
         <translation>密码</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1239"/>
+        <location filename="../settings/SettingsWindow.ui" line="1236"/>
         <source>User</source>
         <translation>用户名</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1319"/>
+        <location filename="../settings/SettingsWindow.ui" line="1316"/>
         <source>Enable Proxy</source>
         <translation>启用代理服务器</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1326"/>
+        <location filename="../settings/SettingsWindow.ui" line="1323"/>
         <source>Type</source>
         <comment>Proxy Type</comment>
         <translation>类别</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1334"/>
+        <location filename="../settings/SettingsWindow.ui" line="1331"/>
         <source>HTTP</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1339"/>
+        <location filename="../settings/SettingsWindow.ui" line="1336"/>
         <source>SOCKS 5</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1366"/>
+        <location filename="../settings/SettingsWindow.ui" line="1363"/>
         <source>Message</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1397"/>
+        <location filename="../settings/SettingsWindow.ui" line="1394"/>
         <source>Theme</source>
         <translation>模板</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1611"/>
+        <location filename="../settings/SettingsWindow.ui" line="1608"/>
         <location filename="../settings/SettingsWindow.cpp" line="565"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1618"/>
+        <location filename="../settings/SettingsWindow.ui" line="1615"/>
         <source>Save Settings</source>
         <translation>保存设置</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1628"/>
+        <location filename="../settings/SettingsWindow.ui" line="1625"/>
         <source>toolBar</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1668"/>
+        <location filename="../settings/SettingsWindow.ui" line="1665"/>
         <location filename="../settings/SettingsWindow.cpp" line="174"/>
         <location filename="../settings/SettingsWindow.cpp" line="514"/>
         <source>Movies</source>
         <translation>电影</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1679"/>
+        <location filename="../settings/SettingsWindow.ui" line="1676"/>
         <location filename="../settings/SettingsWindow.cpp" line="175"/>
         <location filename="../settings/SettingsWindow.cpp" line="514"/>
         <source>TV Shows</source>
         <translation>电视剧</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1690"/>
+        <location filename="../settings/SettingsWindow.ui" line="1687"/>
         <location filename="../settings/SettingsWindow.cpp" line="176"/>
         <location filename="../settings/SettingsWindow.cpp" line="514"/>
         <source>Concerts</source>
         <translation>音乐会</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1701"/>
+        <location filename="../settings/SettingsWindow.ui" line="1698"/>
         <source>Global</source>
         <translation>常规</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1723"/>
+        <location filename="../settings/SettingsWindow.ui" line="1720"/>
         <source>Network</source>
         <translation>网络设置</translation>
     </message>
     <message>
-        <location filename="../settings/SettingsWindow.ui" line="1745"/>
+        <location filename="../settings/SettingsWindow.ui" line="1742"/>
         <source>Export</source>
         <translation>导出</translation>
     </message>
