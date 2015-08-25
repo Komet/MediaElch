@@ -2265,7 +2265,7 @@
     <message>
         <location filename="../image/ImageWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulaire</translation>
     </message>
 </context>
 <context>
@@ -4406,12 +4406,12 @@ Si vous voulez effectuer une recherche par un TMDB ou OFDb ID s&apos;il vous pla
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="355"/>
         <source>Hint: Closed images will be deleted on save.</source>
-        <translation type="unfinished"/>
+        <translation>Astuce : Les images fermées seront effacées lors de la sauvegarde.</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="378"/>
         <source>Add Images</source>
-        <translation type="unfinished"/>
+        <translation>Ajouter Images</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="436"/>
