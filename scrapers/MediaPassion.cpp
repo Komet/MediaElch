@@ -17,7 +17,7 @@ MediaPassion::MediaPassion(QObject *parent)
 {
     setParent(parent);
 
-    m_baseUrl = "http://kodi-passion.fr/scraper/API/1";
+    m_baseUrl = "http://scraper.media-passion.fr/API/1";
 
     m_widget = new QWidget(MainWindow::instance());
 
