@@ -472,7 +472,7 @@
     <message>
         <location filename="../concerts/ConcertSearchWidget.ui" line="230"/>
         <source>(Un)Check all</source>
-        <translation>Za(Od)znacz wszystko</translation>
+        <translation>(Od)Zaznacz wszystko</translation>
     </message>
 </context>
 <context>
@@ -3480,7 +3480,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../movies/MovieSearchWidget.ui" line="309"/>
         <source>(Un)Check all</source>
-        <translation>Za(Od)znacz wszystko</translation>
+        <translation>(Od)Zaznacz wszystko</translation>
     </message>
 </context>
 <context>
@@ -4113,7 +4113,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="376"/>
         <source>(Un)Check all</source>
-        <translation>Za(Od)znacz wszystko</translation>
+        <translation>(Od)Zaznacz wszystko</translation>
     </message>
     <message>
         <location filename="../music/MusicMultiScrapeDialog.ui" line="402"/>
@@ -4306,7 +4306,7 @@ Jeśli chcesz wyszukać przy pomocy identyfikatora TMBD lub OFDB poprzedź go pr
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="397"/>
         <source>(Un)Check all</source>
-        <translation>Za(Od)znacz wszystko</translation>
+        <translation>(Od)Zaznacz wszystko</translation>
     </message>
 </context>
 <context>
@@ -6899,7 +6899,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="317"/>
         <source>(Un)Check all</source>
-        <translation>Za(Od)znacz wszystko</translation>
+        <translation>(Od)Zaznacz wszystko</translation>
     </message>
     <message>
         <location filename="../tvShows/TvShowSearch.ui" line="348"/>
@@ -7002,7 +7002,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
     <message>
         <location filename="../tvShows/TvShowSearchEpisode.ui" line="206"/>
         <source>(Un)Check all</source>
-        <translation>Za(Od)znacz wszystko</translation>
+        <translation>(Od)Zaznacz wszystko</translation>
     </message>
 </context>
 <context>
