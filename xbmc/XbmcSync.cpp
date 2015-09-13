@@ -280,7 +280,7 @@ void XbmcSync::onConcertListFinished()
             foreach (QVariant var, it.value().toList()) {
                 if (var.toMap().value("musicvideoid").toInt() == 0)
                     continue;
-                m_xbmcMovies.insert(var.toMap().value("musicvideoid").toInt(), parseXbmcDataFromMap(var.toMap()));
+                m_xbmcConcerts.insert(var.toMap().value("musicvideoid").toInt(), parseXbmcDataFromMap(var.toMap()));
             }
         }
     }
@@ -308,7 +308,7 @@ void XbmcSync::onTvShowListFinished()
             foreach (QVariant var, it.value().toList()) {
                 if (var.toMap().value("tvshowid").toInt() == 0)
                     continue;
-                m_xbmcMovies.insert(var.toMap().value("tvshowid").toInt(), parseXbmcDataFromMap(var.toMap()));
+                m_xbmcShows.insert(var.toMap().value("tvshowid").toInt(), parseXbmcDataFromMap(var.toMap()));
             }
         }
     }
@@ -336,7 +336,7 @@ void XbmcSync::onEpisodeListFinished()
             foreach (QVariant var, it.value().toList()) {
                 if (var.toMap().value("episodeid").toInt() == 0)
                     continue;
-                m_xbmcMovies.insert(var.toMap().value("episodeid").toInt(), parseXbmcDataFromMap(var.toMap()));
+                m_xbmcEpisodes.insert(var.toMap().value("episodeid").toInt(), parseXbmcDataFromMap(var.toMap()));
             }
         }
     }
@@ -565,6 +565,8 @@ void XbmcSync::updateWatched()
             movie->setPlayCount(m_xbmcMovies.value(id).playCount);
             movie->setLastPlayed(m_xbmcMovies.value(id).lastPlayed);
             movie->blockSignals(false);
+        } else {
+            qDebug() << "Movie not found" << movie->name();
         }
         movie->setSyncNeeded(false);
     }
@@ -577,6 +579,8 @@ void XbmcSync::updateWatched()
             concert->setPlayCount(m_xbmcConcerts.value(id).playCount);
             concert->setLastPlayed(m_xbmcConcerts.value(id).lastPlayed);
             concert->blockSignals(false);
+        } else {
+            qDebug() << "Concert not found" << concert->name();
         }
         concert->setSyncNeeded(false);
     }
@@ -588,6 +592,8 @@ void XbmcSync::updateWatched()
             episode->setPlayCount(m_xbmcEpisodes.value(id).playCount);
             episode->setLastPlayed(m_xbmcEpisodes.value(id).lastPlayed);
             episode->blockSignals(false);
+        } else {
+            qDebug() << "Episode not found" << episode->name();
         }
         episode->setSyncNeeded(false);
     }
