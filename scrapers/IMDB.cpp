@@ -185,7 +185,7 @@ void IMDB::onLoadFinished()
     if (!movie)
         return;
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, movie, infos);
         QString posterUrl = parsePosters(msg);
@@ -199,6 +199,7 @@ void IMDB::onLoadFinished()
         }
     } else {
         qWarning() << "Network Error (load)" << reply->errorString();
+        movie->controller()->scraperLoadDone(this);
     }
 }
 
