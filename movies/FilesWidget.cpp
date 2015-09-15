@@ -182,8 +182,11 @@ void FilesWidget::multiScrape()
 void FilesWidget::markAsWatched()
 {
     m_contextMenu->close();
-    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
-        int row = index.model()->data(index, Qt::UserRole).toInt();
+
+    QList<int> rows;
+    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0))
+        rows << index.model()->data(index, Qt::UserRole).toInt();
+    foreach (int row, rows) {
         Movie *movie = Manager::instance()->movieModel()->movie(row);
         movie->setWatched(true);
         if (movie->playcount() < 1)
@@ -198,8 +201,10 @@ void FilesWidget::markAsWatched()
 void FilesWidget::markAsUnwatched()
 {
     m_contextMenu->close();
-    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
-        int row = index.model()->data(index, Qt::UserRole).toInt();
+    QList<int> rows;
+    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0))
+        rows << index.model()->data(index, Qt::UserRole).toInt();
+    foreach (int row, rows) {
         Movie *movie = Manager::instance()->movieModel()->movie(row);
         if (movie->watched())
             movie->setWatched(false);
@@ -234,7 +239,10 @@ void FilesWidget::loadStreamDetails()
 void FilesWidget::markForSync()
 {
     m_contextMenu->close();
-    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
+    QList<QModelIndex> indexes;
+    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0))
+        indexes << index;
+    foreach (const QModelIndex &index, indexes) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Movie *movie = Manager::instance()->movieModel()->movie(row);
         movie->setSyncNeeded(true);
@@ -245,7 +253,10 @@ void FilesWidget::markForSync()
 void FilesWidget::unmarkForSync()
 {
     m_contextMenu->close();
-    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0)) {
+    QList<QModelIndex> indexes;
+    foreach (const QModelIndex &index, ui->files->selectionModel()->selectedRows(0))
+        indexes << index;
+    foreach (const QModelIndex &index, indexes) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Movie *movie = Manager::instance()->movieModel()->movie(row);
         movie->setSyncNeeded(false);
