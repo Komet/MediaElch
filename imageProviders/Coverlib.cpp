@@ -146,7 +146,6 @@ QList<Poster> Coverlib::parseData(QString html, int type)
     rx.setPattern("<div class=\"thumbnail\">[^<]*<a href=\"([^\"]*)\" class=\"gallerytwo-item\"><img .* src=\"([^\"]*)\" .*></a>[^<]*<div class=\"caption\">[^<]*<h3 class=\"elementTyp\">(.*)</h3>");
     int pos = 0;
     while ((pos = rx.indexIn(html, pos)) != -1) {
-        qDebug() << "FOUND MATCH!";
         pos += rx.matchedLength();
         if (type == ImageType::AlbumCdArt && rx.cap(3).trimmed() != "CD")
             continue;
