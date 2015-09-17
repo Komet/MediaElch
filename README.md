@@ -2,7 +2,7 @@ MediaElch
 =========
 
 MediaElch is a MediaManager for Kodi. Information about Movies, TV Shows, Concerts and Music are stored as nfo files. Fanarts are downloaded automatically from fanart.tv.
-MediaElch is compatible with Kodi up to v14 Helix. Using the nfo generator, MediaElch can be used with other MediaCenters as well.
+MediaElch is compatible with Kodi up to v15 Isengard. Using the nfo generator, MediaElch can be used with other MediaCenters as well.
 
 Supported scrapers
 ------------------

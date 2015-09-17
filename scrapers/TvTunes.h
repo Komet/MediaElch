@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QNetworkAccessManager>
+#include <QQueue>
 #include "globals/Globals.h"
 
 class TvTunes : public QObject
@@ -17,10 +18,15 @@ signals:
 
 private slots:
     void onSearchFinished();
+    void onDownloadUrlFinished();
 
 private:
     QNetworkAccessManager m_qnam;
+    QList<ScraperSearchResult> m_results;
+    QQueue<ScraperSearchResult> m_queue;
+    QString m_searchStr;
     QList<ScraperSearchResult> parseSearch(QString html);
+    void getNextDownloadUrl(QString searchStr = "");
 };
 
 #endif // TVTUNES_H
