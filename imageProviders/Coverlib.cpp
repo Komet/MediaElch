@@ -143,15 +143,16 @@ QList<Poster> Coverlib::parseData(QString html, int type)
     QList<Poster> posters;
     QRegExp rx;
     rx.setMinimal(true);
-    rx.setPattern("<div class=\"thumbnail\">[^<]*<div>[^<]*<a href=\"([^\"]*)\" class=\"gallerytwo-item\"><img .* src=\"([^\"]*)\" .*></a>[^<]*</div>[^<]*<div class=\"caption\">[^<]*<h3 class=\"elementTyp\">(.*)</h3>");
+    rx.setPattern("<div class=\"thumbnail\">[^<]*<a href=\"([^\"]*)\" class=\"gallerytwo-item\"><img .* src=\"([^\"]*)\" .*></a>[^<]*<div class=\"caption\">[^<]*<h3 class=\"elementTyp\">(.*)</h3>");
     int pos = 0;
     while ((pos = rx.indexIn(html, pos)) != -1) {
+        qDebug() << "FOUND MATCH!";
         pos += rx.matchedLength();
-        if (type == ImageType::AlbumCdArt && rx.cap(3) != "CD")
+        if (type == ImageType::AlbumCdArt && rx.cap(3).trimmed() != "CD")
             continue;
-        if (type == ImageType::AlbumThumb && rx.cap(3) != "Front")
+        if (type == ImageType::AlbumThumb && rx.cap(3).trimmed() != "Front")
             continue;
-        if (type == ImageType::AlbumBooklet && !rx.cap(3).startsWith("Booklet"))
+        if (type == ImageType::AlbumBooklet && !rx.cap(3).trimmed().startsWith("Booklet"))
             continue;
 
         Poster p;
