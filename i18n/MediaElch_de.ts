@@ -1213,7 +1213,7 @@
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="29"/>
-        <location filename="../movies/FilesWidget.cpp" line="501"/>
+        <location filename="../movies/FilesWidget.cpp" line="512"/>
         <source>%n movies</source>
         <translation><numerusform>Ein Film</numerusform><numerusform>%n Filme</numerusform></translation>
     </message>
@@ -1263,7 +1263,7 @@
         <translation>Filmverzeichnis öffnen</translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/FilesWidget.cpp" line="503"/>
+        <location filename="../movies/FilesWidget.cpp" line="514"/>
         <source>%1 of %n movies</source>
         <translation><numerusform>%1 von einem Film</numerusform><numerusform>%1 von %n Filmen</numerusform></translation>
     </message>
@@ -8003,7 +8003,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
         <translation>Fertig. Kodi bereinigt jetzt deine Datenbank.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="595"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="601"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Fertig. Die Anzahl der Wiedergaben und das Datum der letzten Wiedergabe wurden aktualisiert.</translation>
     </message>

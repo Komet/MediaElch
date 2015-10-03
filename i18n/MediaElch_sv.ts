@@ -1213,7 +1213,7 @@
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="29"/>
-        <location filename="../movies/FilesWidget.cpp" line="501"/>
+        <location filename="../movies/FilesWidget.cpp" line="512"/>
         <source>%n movies</source>
         <translation><numerusform>%n film</numerusform><numerusform>%n filmer</numerusform></translation>
     </message>
@@ -1263,7 +1263,7 @@
         <translation>Öppna mapp för Film</translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/FilesWidget.cpp" line="503"/>
+        <location filename="../movies/FilesWidget.cpp" line="514"/>
         <source>%1 of %n movies</source>
         <translation><numerusform>%1 av %n film</numerusform><numerusform>%1 av %n filmer</numerusform></translation>
     </message>
@@ -8007,7 +8007,7 @@ MediaElch kommer sen att leta efter nya avsnitt automatiskt vid programstart.</t
         <translation>Slutfört. Kodi rensar nu din databas.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="595"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="601"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Slutförd. Objekten &apos;antal spelade&apos; och &apos;senast spelad&apos; har nu uppdaterats.</translation>
     </message>

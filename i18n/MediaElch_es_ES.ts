@@ -1213,7 +1213,7 @@
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="29"/>
-        <location filename="../movies/FilesWidget.cpp" line="501"/>
+        <location filename="../movies/FilesWidget.cpp" line="512"/>
         <source>%n movies</source>
         <translation><numerusform>%n películas</numerusform><numerusform>%n películas</numerusform></translation>
     </message>
@@ -1263,7 +1263,7 @@
         <translation>Abrir carpeta de películas</translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/FilesWidget.cpp" line="503"/>
+        <location filename="../movies/FilesWidget.cpp" line="514"/>
         <source>%1 of %n movies</source>
         <translation><numerusform>%1 of %n películas</numerusform><numerusform>%1 of %n películas</numerusform></translation>
     </message>
@@ -8011,7 +8011,7 @@ Después MediaElch comprueba automáticamente si hay nuevos episodios en el arra
         <translation>Terminado. Kod está limpiando la base de datos.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="595"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="601"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Terminado. Tus artículos veces visto y la fecha de última vez reproducido han sido actualizados.</translation>
     </message>
