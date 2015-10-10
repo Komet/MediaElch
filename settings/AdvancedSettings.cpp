@@ -31,6 +31,7 @@ void AdvancedSettings::reset()
     m_certificationMappings.clear();
     m_studioMappings.clear();
     m_countryMappings.clear();
+    m_writeThumbUrlsToNfo = false;
 
     m_movieFilters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
                    << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm" << "*.rmvb" << "*.img" << "*.wmv"
@@ -93,6 +94,8 @@ void AdvancedSettings::loadSettings()
             loadCountryMappings(xml);
         else if (xml.name() == "portableMode")
             m_portableMode = (xml.readElementText() == "true");
+        else if (xml.name() == "writeThumbUrlsToNfo")
+            m_writeThumbUrlsToNfo = (xml.readElementText() == "true");
         else if (xml.name() == "bookletCut")
             m_bookletCut = xml.readElementText().toInt();
         else
@@ -114,6 +117,8 @@ void AdvancedSettings::loadSettings()
     qDebug() << "    certificationMappings " << m_certificationMappings;
     qDebug() << "    studioMappings        " << m_studioMappings;
     qDebug() << "    countryMappings       " << m_countryMappings;
+    qDebug() << "    writeThumbUrlsToNfo   " << m_writeThumbUrlsToNfo;
+    qDebug() << "    bookletCut            " << m_bookletCut;
 }
 
 void AdvancedSettings::loadLog(QXmlStreamReader &xml)
@@ -335,4 +340,9 @@ bool AdvancedSettings::portableMode() const
 int AdvancedSettings::bookletCut() const
 {
     return m_bookletCut;
+}
+
+bool AdvancedSettings::writeThumbUrlsToNfo() const
+{
+    return m_writeThumbUrlsToNfo;
 }

@@ -31,6 +31,7 @@ public:
     bool forceCache() const;
     bool portableMode() const;
     int bookletCut() const;
+    bool writeThumbUrlsToNfo() const;
 
 private:
     bool m_debugLog;
@@ -49,6 +50,7 @@ private:
     bool m_forceCache;
     bool m_portableMode;
     int m_bookletCut;
+    bool m_writeThumbUrlsToNfo;
 
     void loadSettings();
     void reset();

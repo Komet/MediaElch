@@ -94,24 +94,27 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie)
         xml.writeStartElement("actor");
         xml.writeTextElement("name", actor.name);
         xml.writeTextElement("role", actor.role);
-        if (!actor.thumb.isEmpty())
+        if (!actor.thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo())
             xml.writeTextElement("thumb", actor.thumb);
         xml.writeEndElement();
     }
-    foreach (const Poster &poster, movie->posters()) {
-        xml.writeStartElement("thumb");
-        xml.writeAttribute("preview", poster.thumbUrl.toString());
-        xml.writeCharacters(poster.originalUrl.toString());
+
+    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+        foreach (const Poster &poster, movie->posters()) {
+            xml.writeStartElement("thumb");
+            xml.writeAttribute("preview", poster.thumbUrl.toString());
+            xml.writeCharacters(poster.originalUrl.toString());
+            xml.writeEndElement();
+        }
+        xml.writeStartElement("fanart");
+        foreach (const Poster &poster, movie->backdrops()) {
+            xml.writeStartElement("thumb");
+            xml.writeAttribute("preview", poster.thumbUrl.toString());
+            xml.writeCharacters(poster.originalUrl.toString());
+            xml.writeEndElement();
+        }
         xml.writeEndElement();
     }
-    xml.writeStartElement("fanart");
-    foreach (const Poster &poster, movie->backdrops()) {
-        xml.writeStartElement("thumb");
-        xml.writeAttribute("preview", poster.thumbUrl.toString());
-        xml.writeCharacters(poster.originalUrl.toString());
-        xml.writeEndElement();
-    }
-    xml.writeEndElement();
 
     writeStreamDetails(xml, movie->streamDetails());
 
@@ -607,20 +610,23 @@ void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert)
     xml.writeTextElement("genre", concert->genres().join(" / "));
     foreach (const QString &tag, concert->tags())
         xml.writeTextElement("tag", tag);
-    foreach (const Poster &poster, concert->posters()) {
-        xml.writeStartElement("thumb");
-        xml.writeAttribute("preview", poster.thumbUrl.toString());
-        xml.writeCharacters(poster.originalUrl.toString());
+
+    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+        foreach (const Poster &poster, concert->posters()) {
+            xml.writeStartElement("thumb");
+            xml.writeAttribute("preview", poster.thumbUrl.toString());
+            xml.writeCharacters(poster.originalUrl.toString());
+            xml.writeEndElement();
+        }
+        xml.writeStartElement("fanart");
+        foreach (const Poster &poster, concert->backdrops()) {
+            xml.writeStartElement("thumb");
+            xml.writeAttribute("preview", poster.thumbUrl.toString());
+            xml.writeCharacters(poster.originalUrl.toString());
+            xml.writeEndElement();
+        }
         xml.writeEndElement();
     }
-    xml.writeStartElement("fanart");
-    foreach (const Poster &poster, concert->backdrops()) {
-        xml.writeStartElement("thumb");
-        xml.writeAttribute("preview", poster.thumbUrl.toString());
-        xml.writeCharacters(poster.originalUrl.toString());
-        xml.writeEndElement();
-    }
-    xml.writeEndElement();
 
     writeStreamDetails(xml, concert->streamDetails());
 
@@ -1303,38 +1309,40 @@ void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show)
         xml.writeStartElement("actor");
         xml.writeTextElement("name", actor.name);
         xml.writeTextElement("role", actor.role);
-        if (!actor.thumb.isEmpty())
+        if (!actor.thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo())
             xml.writeTextElement("thumb", actor.thumb);
         xml.writeEndElement();
     }
 
-    foreach (const Poster &poster, show->posters()) {
-        xml.writeStartElement("thumb");
-        xml.writeCharacters(poster.originalUrl.toString());
-        xml.writeEndElement();
-        xml.writeStartElement("thumb");
-        xml.writeAttribute("type", "season");
-        xml.writeAttribute("season", "-1");
-        xml.writeCharacters(poster.originalUrl.toString());
-        xml.writeEndElement();
-    }
-
-    xml.writeStartElement("fanart");
-    foreach (const Poster &poster, show->backdrops()) {
-        xml.writeStartElement("thumb");
-        xml.writeAttribute("preview", poster.thumbUrl.toString());
-        xml.writeCharacters(poster.originalUrl.toString());
-        xml.writeEndElement();
-    }
-    xml.writeEndElement();
-
-    foreach (int season, show->seasons()) {
-        foreach (const Poster &poster, show->seasonPosters(season)) {
+    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+        foreach (const Poster &poster, show->posters()) {
             xml.writeStartElement("thumb");
-            xml.writeAttribute("type", "season");
-            xml.writeAttribute("season", QString("%1").arg(season));
             xml.writeCharacters(poster.originalUrl.toString());
             xml.writeEndElement();
+            xml.writeStartElement("thumb");
+            xml.writeAttribute("type", "season");
+            xml.writeAttribute("season", "-1");
+            xml.writeCharacters(poster.originalUrl.toString());
+            xml.writeEndElement();
+        }
+
+        xml.writeStartElement("fanart");
+        foreach (const Poster &poster, show->backdrops()) {
+            xml.writeStartElement("thumb");
+            xml.writeAttribute("preview", poster.thumbUrl.toString());
+            xml.writeCharacters(poster.originalUrl.toString());
+            xml.writeEndElement();
+        }
+        xml.writeEndElement();
+
+        foreach (int season, show->seasons()) {
+            foreach (const Poster &poster, show->seasonPosters(season)) {
+                xml.writeStartElement("thumb");
+                xml.writeAttribute("type", "season");
+                xml.writeAttribute("season", QString("%1").arg(season));
+                xml.writeCharacters(poster.originalUrl.toString());
+                xml.writeEndElement();
+            }
         }
     }
 
@@ -1379,7 +1387,7 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
         xml.writeStartElement("actor");
         xml.writeTextElement("name", actor.name);
         xml.writeTextElement("role", actor.role);
-        if (!actor.thumb.isEmpty())
+        if (!actor.thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo())
             xml.writeTextElement("thumb", actor.thumb);
         xml.writeEndElement();
     }
@@ -2163,20 +2171,22 @@ void XbmcXml::writeArtistXml(QXmlStreamWriter &xml, Artist *artist)
     xml.writeTextElement("died", artist->died());
     xml.writeTextElement("disbanded", artist->disbanded());
 
-    foreach (const Poster &poster, artist->images(ImageType::ArtistThumb)) {
-        xml.writeStartElement("thumb");
-        xml.writeAttribute("preview", poster.thumbUrl.toString());
-        xml.writeCharacters(poster.originalUrl.toString());
+    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+        foreach (const Poster &poster, artist->images(ImageType::ArtistThumb)) {
+            xml.writeStartElement("thumb");
+            xml.writeAttribute("preview", poster.thumbUrl.toString());
+            xml.writeCharacters(poster.originalUrl.toString());
+            xml.writeEndElement();
+        }
+        xml.writeStartElement("fanart");
+        foreach (const Poster &poster, artist->images(ImageType::ArtistFanart)) {
+            xml.writeStartElement("thumb");
+            xml.writeAttribute("preview", poster.thumbUrl.toString());
+            xml.writeCharacters(poster.originalUrl.toString());
+            xml.writeEndElement();
+        }
         xml.writeEndElement();
     }
-    xml.writeStartElement("fanart");
-    foreach (const Poster &poster, artist->images(ImageType::ArtistFanart)) {
-        xml.writeStartElement("thumb");
-        xml.writeAttribute("preview", poster.thumbUrl.toString());
-        xml.writeCharacters(poster.originalUrl.toString());
-        xml.writeEndElement();
-    }
-    xml.writeEndElement();
 
     foreach (const DiscographyAlbum &album, artist->discographyAlbums()) {
         xml.writeStartElement("album");
@@ -2210,11 +2220,13 @@ void XbmcXml::writeAlbumXml(QXmlStreamWriter &xml, Album *album)
     if (album->year() > 0)
         xml.writeTextElement("year", QString("%1").arg(album->year()));
 
-    foreach (const Poster &poster, album->images(ImageType::ArtistThumb)) {
-        xml.writeStartElement("thumb");
-        xml.writeAttribute("preview", poster.thumbUrl.toString());
-        xml.writeCharacters(poster.originalUrl.toString());
-        xml.writeEndElement();
+    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+        foreach (const Poster &poster, album->images(ImageType::ArtistThumb)) {
+            xml.writeStartElement("thumb");
+            xml.writeAttribute("preview", poster.thumbUrl.toString());
+            xml.writeCharacters(poster.originalUrl.toString());
+            xml.writeEndElement();
+        }
     }
 
     xml.writeEndElement();
