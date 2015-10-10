@@ -95,10 +95,19 @@ void StreamDetails::loadWithLibrary()
     MI.Option(__T("Internet"), __T("no"));
     MI.Option(__T("Complete"), __T("1"));
 
+    QString fileName = m_files.first();
+    if (m_files.count() == 1 && m_files.first().endsWith("index.bdmv")) {
+        QFileInfo fi(fileName);
+        QDir dir(fi.absolutePath() + "/STREAM");
+        QStringList files = dir.entryList(QStringList() << "*.m2ts", QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
+        if (!files.isEmpty())
+            fileName = dir.absolutePath() + "/" + files.first();
+    }
+
 #ifdef Q_OS_WIN
-    MI.Open(m_files.first().toLatin1().data());
+    MI.Open(fileName.toLatin1().data());
 #else
-    MI.Open(m_files.first().toUtf8().data());
+    MI.Open(fileName.toUtf8().data());
 #endif
 
     int duration = 0;
