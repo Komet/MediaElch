@@ -155,8 +155,8 @@ QList<Poster> Coverlib::parseData(QString html, int type)
             continue;
 
         Poster p;
-        p.thumbUrl = "http://coverlib.com" + rx.cap(2);
-        p.originalUrl = "http://coverlib.com" + rx.cap(1);
+        p.thumbUrl = !rx.cap(2).startsWith("http") ? "http://coverlib.com" + rx.cap(2) : rx.cap(2);
+        p.originalUrl = !rx.cap(1).startsWith("http") ? "http://coverlib.com" + rx.cap(1) : rx.cap(1);
         p.hint = rx.cap(3);
         posters.append(p);
     }

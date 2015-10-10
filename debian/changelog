@@ -1,3 +1,9 @@
+mediaelch (2.3.1-1) vivid; urgency=low
+
+  * Bugfix on Coverlib.com scraper
+
+ -- Daniel Kabel <daniel.kabel@me.com>  Sat, 10 Oct 2015 21:59:2 +0100
+
 mediaelch (2.3.0.2-1) vivid; urgency=low
 
   * Music: Coverlib.com scraper
