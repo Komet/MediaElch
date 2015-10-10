@@ -1,4 +1,4 @@
-mediaelch (2.3-1) utopic; urgency=low
+mediaelch (2.3.0.1-1) utopic; urgency=low
 
   * Music: Coverlib.com scraper
   * Music: Support for booklets
@@ -27,7 +27,7 @@ mediaelch (2.3-1) utopic; urgency=low
   * Adult DVD Empire scraper broken
   * Renamer: Scantype (progressive/interlaced) not respected
 
- -- Daniel Kabel <daniel.kabel@me.com>  Sat, 10 Oct 2015 19:44:44 +0100
+ -- Daniel Kabel <daniel.kabel@me.com>  Sat, 10 Oct 2015 19:54:26 +0100
 
 mediaelch (2.2.2-1) trusty; urgency=low
 
