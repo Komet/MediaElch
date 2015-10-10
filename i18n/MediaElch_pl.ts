@@ -1213,7 +1213,7 @@
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="29"/>
-        <location filename="../movies/FilesWidget.cpp" line="501"/>
+        <location filename="../movies/FilesWidget.cpp" line="512"/>
         <source>%n movies</source>
         <translation><numerusform>%n film</numerusform><numerusform>%n filmów</numerusform><numerusform>%n filmów</numerusform></translation>
     </message>
@@ -1263,7 +1263,7 @@
         <translation>Otwórz folder filmu</translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/FilesWidget.cpp" line="503"/>
+        <location filename="../movies/FilesWidget.cpp" line="514"/>
         <source>%1 of %n movies</source>
         <translation><numerusform>%1 z %n filmów</numerusform><numerusform>%1 z %n filmów</numerusform><numerusform>%1 z %n filmów</numerusform></translation>
     </message>
@@ -8006,7 +8006,7 @@ Po aktualizacji MediaElch będzie automatycznie sprawdzać obecność nowych odc
         <translation>Zakończono. Kodi czyści teraz swoją bazę danych.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="595"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="601"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Zakończone. Liczba odtworzeń i data ostatniego odtwarzania wybranych pozycji zostały zaktualizowane.</translation>
     </message>

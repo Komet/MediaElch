@@ -1213,7 +1213,7 @@
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="29"/>
-        <location filename="../movies/FilesWidget.cpp" line="501"/>
+        <location filename="../movies/FilesWidget.cpp" line="512"/>
         <source>%n movies</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
@@ -1263,7 +1263,7 @@
         <translation>Ouvrir le dossier Film</translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/FilesWidget.cpp" line="503"/>
+        <location filename="../movies/FilesWidget.cpp" line="514"/>
         <source>%1 of %n movies</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
@@ -8002,7 +8002,7 @@ Ensuite MediaElch vérifiera automatiquement les nouveaux épisodes au démarrag
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="595"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="601"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Terminer. Vos éléments les compteurs de lecture et la dernière date de lecture ont été mise à jour.</translation>
     </message>

@@ -1213,7 +1213,7 @@
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="29"/>
-        <location filename="../movies/FilesWidget.cpp" line="501"/>
+        <location filename="../movies/FilesWidget.cpp" line="512"/>
         <source>%n movies</source>
         <translation><numerusform>%n filme</numerusform><numerusform>%n filmes</numerusform></translation>
     </message>
@@ -1263,7 +1263,7 @@
         <translation>Abrir Pasta do Filme</translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/FilesWidget.cpp" line="503"/>
+        <location filename="../movies/FilesWidget.cpp" line="514"/>
         <source>%1 of %n movies</source>
         <translation><numerusform>%1 de %n filme</numerusform><numerusform>%1 de %n filmes</numerusform></translation>
     </message>
@@ -8001,7 +8001,7 @@ Após isso, o MediaElch verificará automaticamente novos episódios ao iniciar.
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="595"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="601"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Concluído. A &quot;contagem de reproduções&quot; e &quot;última reprodução&quot; dos seus itens foram actualizadas.</translation>
     </message>

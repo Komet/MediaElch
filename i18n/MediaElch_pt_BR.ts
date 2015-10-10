@@ -1213,7 +1213,7 @@
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="29"/>
-        <location filename="../movies/FilesWidget.cpp" line="501"/>
+        <location filename="../movies/FilesWidget.cpp" line="512"/>
         <source>%n movies</source>
         <translation><numerusform>%n filmes</numerusform><numerusform>%n filmes</numerusform></translation>
     </message>
@@ -1263,7 +1263,7 @@
         <translation>Abrir Pasta de Filmes</translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/FilesWidget.cpp" line="503"/>
+        <location filename="../movies/FilesWidget.cpp" line="514"/>
         <source>%1 of %n movies</source>
         <translation><numerusform>%1 de %n filmes</numerusform><numerusform>%1 de %n filmes</numerusform></translation>
     </message>
@@ -8006,7 +8006,7 @@ Posteriormente MediaElch vai verificar automaticamente pelos novos episódios na
         <translation>Finalizado. Kodi está agora limpando seu banco de dados.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="595"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="601"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Finalizado. Contador de Reproduzido e data da última reprodução de seus itens foram atualizados.</translation>
     </message>

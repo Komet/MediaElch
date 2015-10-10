@@ -1213,7 +1213,7 @@
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="29"/>
-        <location filename="../movies/FilesWidget.cpp" line="501"/>
+        <location filename="../movies/FilesWidget.cpp" line="512"/>
         <source>%n movies</source>
         <translation><numerusform>%n филм</numerusform><numerusform>%n филма</numerusform></translation>
     </message>
@@ -1263,7 +1263,7 @@
         <translation>Отвори папката с филми</translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/FilesWidget.cpp" line="503"/>
+        <location filename="../movies/FilesWidget.cpp" line="514"/>
         <source>%1 of %n movies</source>
         <translation><numerusform>%1 от %n филм</numerusform><numerusform>%1 от %n филма</numerusform></translation>
     </message>
@@ -8002,7 +8002,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="595"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="601"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Готово. Вашите елементи за количеството гледания и за последната дата на гледане бяха актуализирани.</translation>
     </message>

@@ -1213,7 +1213,7 @@
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="29"/>
-        <location filename="../movies/FilesWidget.cpp" line="501"/>
+        <location filename="../movies/FilesWidget.cpp" line="512"/>
         <source>%n movies</source>
         <translation><numerusform>Ein Film</numerusform><numerusform>%n Filme</numerusform></translation>
     </message>
@@ -1263,7 +1263,7 @@
         <translation>Filmverzeichnis öffnen</translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/FilesWidget.cpp" line="503"/>
+        <location filename="../movies/FilesWidget.cpp" line="514"/>
         <source>%1 of %n movies</source>
         <translation><numerusform>%1 von einem Film</numerusform><numerusform>%1 von %n Filmen</numerusform></translation>
     </message>
@@ -2226,12 +2226,12 @@
     <message>
         <location filename="../globals/ImageDialog.cpp" line="687"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Bilder bereitgestellt von &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="689"/>
         <source>Contribute by uploading images to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Unterstütze &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt; durch das Hochladen von Bildern</translation>
     </message>
 </context>
 <context>
@@ -3129,7 +3129,7 @@ Operation abgebrochen.</translation>
     <message>
         <location filename="../data/MovieModel.cpp" line="310"/>
         <source>Local Trailer</source>
-        <translation type="unfinished"/>
+        <translation>Lokaler Trailer</translation>
     </message>
     <message>
         <location filename="../data/MovieModel.cpp" line="312"/>
@@ -3287,7 +3287,7 @@ Operation abgebrochen.</translation>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="373"/>
         <source>Update only movies with IMDB Id/TheMovieDb Id</source>
-        <translation>Nur Filme mit IMDB ID/TheMovieDb ID aktualisieren</translation>
+        <translation>Nur Filme mit IMDB ID/The Movie DB ID aktualisieren</translation>
     </message>
     <message>
         <location filename="../movies/MovieMultiScrapeDialog.ui" line="388"/>
@@ -4390,7 +4390,7 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="275"/>
         <source>MusicBrainz ID</source>
-        <translation type="unfinished"/>
+        <translation>MusicBrainz ID</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="292"/>
@@ -4400,7 +4400,7 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="333"/>
         <source>Booklet</source>
-        <translation type="unfinished"/>
+        <translation>Booklet</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="355"/>
@@ -4536,7 +4536,7 @@ Wenn du bei TMDB oder OFDb nach einer ID suchen möchtest, stelle bitte &quot;id
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="266"/>
         <source>MusicBrainz ID</source>
-        <translation type="unfinished"/>
+        <translation>MusicBrainz ID</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="283"/>
@@ -8003,7 +8003,7 @@ Danach wird MediaElch bei jedem Start automatisch nach neuen Episoden suchen.</t
         <translation>Fertig. Kodi bereinigt jetzt deine Datenbank.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="595"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="601"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Fertig. Die Anzahl der Wiedergaben und das Datum der letzten Wiedergabe wurden aktualisiert.</translation>
     </message>

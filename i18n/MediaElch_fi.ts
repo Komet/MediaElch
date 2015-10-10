@@ -1213,7 +1213,7 @@
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="29"/>
-        <location filename="../movies/FilesWidget.cpp" line="501"/>
+        <location filename="../movies/FilesWidget.cpp" line="512"/>
         <source>%n movies</source>
         <translation><numerusform>%n elokuva</numerusform><numerusform>%n elokuvaa</numerusform></translation>
     </message>
@@ -1263,7 +1263,7 @@
         <translation>Avaa elokuvahakemisto</translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/FilesWidget.cpp" line="503"/>
+        <location filename="../movies/FilesWidget.cpp" line="514"/>
         <source>%1 of %n movies</source>
         <translation><numerusform>%1 / %n elokuvasta</numerusform><numerusform>%1 / %n elokuvasta</numerusform></translation>
     </message>
@@ -8007,7 +8007,7 @@ Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen
         <translation>Valmis. Kodi puhdistaa nyt tietokantasi.</translation>
     </message>
     <message>
-        <location filename="../xbmc/XbmcSync.cpp" line="595"/>
+        <location filename="../xbmc/XbmcSync.cpp" line="601"/>
         <source>Finished. Your items play count and last played date have been updated.</source>
         <translation>Valmis. Kohteiden toistokerrat ja viimeksi toistettu -tieto on päivitetty.</translation>
     </message>
