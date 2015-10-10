@@ -23,6 +23,11 @@ QString MediaPassionImages::name()
     return QString("Media Passion");
 }
 
+QUrl MediaPassionImages::siteUrl()
+{
+    return QUrl("http://kodi-passion.fr");
+}
+
 QString MediaPassionImages::identifier()
 {
     return QString("images.mediapassion");
@@ -319,4 +324,9 @@ void MediaPassionImages::albumImages(Album *album, QString mbId, QList<int> type
     Q_UNUSED(album);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
+}
+
+void MediaPassionImages::albumBooklets(QString mbId)
+{
+    Q_UNUSED(mbId);
 }

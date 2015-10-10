@@ -32,6 +32,7 @@ public:
     void abortDownloads();
 
     void loadImage(int type, QUrl url);
+    void loadImages(int type, QList<QUrl> urls);
     void scraperLoadDone(MusicScraperInterface *scraper);
 
 signals:

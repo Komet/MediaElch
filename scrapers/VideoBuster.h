@@ -34,7 +34,6 @@ signals:
 private slots:
     void searchFinished();
     void loadFinished();
-    void backdropFinished();
 
 private:
     QNetworkAccessManager m_qnam;

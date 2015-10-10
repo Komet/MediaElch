@@ -6,7 +6,7 @@
 
 include(quazip/quazip/quazip.pri)
 
-QT       += core gui network script xml sql widgets multimedia multimediawidgets concurrent
+QT       += core gui network script xml sql widgets multimedia multimediawidgets concurrent qml quick quickwidgets
 
 LIBS += -lzen -lz -lmediainfo
 
@@ -188,7 +188,13 @@ SOURCES += main.cpp\
     smallWidgets/MusicTreeView.cpp \
     scrapers/UniversalMusicScraper.cpp \
     music/MusicMultiScrapeDialog.cpp \
-    renamer/RenamerPlaceholders.cpp
+    renamer/RenamerPlaceholders.cpp \
+    image/Image.cpp \
+    image/ImageModel.cpp \
+    image/ImageProxyModel.cpp \
+    qml/AlbumImageProvider.cpp \
+    image/ImageWidget.cpp \
+    imageProviders/Coverlib.cpp
 
 macx {
     OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm
@@ -354,7 +360,13 @@ HEADERS  += main/MainWindow.h \
     smallWidgets/MusicTreeView.h \
     scrapers/UniversalMusicScraper.h \
     music/MusicMultiScrapeDialog.h \
-    renamer/RenamerPlaceholders.h
+    renamer/RenamerPlaceholders.h \
+    image/Image.h \
+    image/ImageModel.h \
+    image/ImageProxyModel.h \
+    qml/AlbumImageProvider.h \
+    image/ImageWidget.h \
+    imageProviders/Coverlib.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -412,11 +424,13 @@ FORMS    += main/MainWindow.ui \
     music/MusicSearch.ui \
     music/MusicSearchWidget.ui \
     music/MusicMultiScrapeDialog.ui \
-    renamer/RenamerPlaceholders.ui
+    renamer/RenamerPlaceholders.ui \
+    image/ImageWidget.ui
 
 RESOURCES += \
     MediaElch.qrc \
-    i18n.qrc
+    i18n.qrc \
+    ui.qrc
 
 TRANSLATIONS += \
     i18n/MediaElch_en.ts \

@@ -42,6 +42,7 @@ private slots:
     void onRemoveCloudItem(QString text);
     void onChooseImage();
     void onDeleteImage();
+    void onImageDropped(int imageType, QUrl imageUrl);
     void onInfoLoadDone(Artist *artist);
     void onLoadDone(Artist *artist);
     void onDownloadProgress(Artist *artist, int current, int maximum);
@@ -51,6 +52,7 @@ private slots:
     void onRemoveExtraFanart(const QString &file);
     void onRemoveExtraFanart(const QByteArray &image);
     void onAddExtraFanart();
+    void onExtraFanartDropped(QUrl imageUrl);
     void onAddAlbum();
     void onRemoveAlbum();
     void onAlbumEdited(QTableWidgetItem *item);

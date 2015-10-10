@@ -335,6 +335,9 @@ bool MyIconFont::initFontAwesome( )
     m.insert("star", icon_star);
     m.insert("plus", icon_plus);
     m.insert("close", icon_close);
+    m.insert("play", icon_play);
+    m.insert("note", icon_note);
+    m.insert("pen", icon_pen);
 
     return true;
 }

@@ -1,0 +1,13 @@
+deploy_daily:
+  type: deploy
+  script:
+  - deployMediaElchDaily.sh
+  only:
+  - master
+
+deploy_release:
+  type: deploy
+  script:
+  - deployMediaElch.sh
+  only:
+  - tags

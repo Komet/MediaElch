@@ -54,13 +54,13 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->labelBanner->setFont(font);
     ui->labelThumb->setFont(font);
 
-    ui->poster->setDefaultPixmap(QPixmap(":/img/film_reel.png"));
-    ui->backdrop->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->banner->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->logo->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->clearArt->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->characterArt->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->thumb->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->poster->setDefaultPixmap(QPixmap(":/img/placeholders/poster.png"));
+    ui->backdrop->setDefaultPixmap(QPixmap(":/img/placeholders/fanart.png"));
+    ui->logo->setDefaultPixmap(QPixmap(":/img/placeholders/logo.png"));
+    ui->clearArt->setDefaultPixmap(QPixmap(":/img/placeholders/clear_art.png"));
+    ui->banner->setDefaultPixmap(QPixmap(":/img/placeholders/banner.png"));
+    ui->characterArt->setDefaultPixmap(QPixmap(":/img/placeholders/character_art.png"));
+    ui->thumb->setDefaultPixmap(QPixmap(":/img/placeholders/thumb.png"));
 
     font = ui->actorResolution->font();
     #ifdef Q_OS_WIN32
@@ -72,6 +72,8 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
 
     ui->badgeTuneExisting->setBadgeType(Badge::LabelSuccess);
     ui->badgeTuneMissing->setBadgeType(Badge::LabelWarning);
+
+    ui->btnDownloadTune->setIcon(Manager::instance()->iconFont()->icon("download", QColor(150, 150, 150), "", -1, 1.0));
 
     ui->genreCloud->setText(tr("Genres"));
     ui->genreCloud->setPlaceholder(tr("Add Genre"));
@@ -99,8 +101,9 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     ui->thumb->setImageType(ImageType::TvShowThumb);
     ui->clearArt->setImageType(ImageType::TvShowClearArt);
     foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage*>()) {
-        connect(image, SIGNAL(clicked()), this, SLOT(onChooseImage()));
-        connect(image, SIGNAL(sigClose()), this, SLOT(onDeleteImage()));
+        connect(image, &ClosableImage::clicked, this, &TvShowWidgetTvShow::onChooseImage);
+        connect(image, &ClosableImage::sigClose, this, &TvShowWidgetTvShow::onDeleteImage);
+        connect(image, &ClosableImage::sigImageDropped, this, &TvShowWidgetTvShow::onImageDropped);
     }
 
     QPixmap pixmap(":/img/man.png");
@@ -120,6 +123,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
     connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddExtraFanart()));
+    connect(ui->fanarts, &ImageGallery::sigImageDropped, this, &TvShowWidgetTvShow::onExtraFanartDropped);
 
     onClear();
 
@@ -967,6 +971,19 @@ void TvShowWidgetTvShow::onAddExtraFanart()
     }
 }
 
+void TvShowWidgetTvShow::onExtraFanartDropped(QUrl imageUrl)
+{
+    if (!m_show)
+        return;
+    emit sigSetActionSaveEnabled(false, WidgetTvShows);
+    DownloadManagerElement d;
+    d.imageType = ImageType::TvShowExtraFanart;
+    d.url = imageUrl;
+    d.show = m_show;
+    m_posterDownloadManager->addDownload(d);
+    ui->buttonRevert->setVisible(true);
+}
+
 void TvShowWidgetTvShow::onDownloadTune()
 {
     TvTunesDialog::instance()->setTvShow(m_show);
@@ -1029,5 +1046,23 @@ void TvShowWidgetTvShow::onDeleteImage()
 
     m_show->removeImage(image->imageType());
     updateImages(QList<int>() << image->imageType());
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetTvShow::onImageDropped(int imageType, QUrl imageUrl)
+{
+    if (!m_show)
+        return;
+    ClosableImage *image = static_cast<ClosableImage*>(QObject::sender());
+    if (!image)
+        return;
+
+    emit sigSetActionSaveEnabled(false, WidgetTvShows);
+    DownloadManagerElement d;
+    d.imageType = imageType;
+    d.url = imageUrl;
+    d.show = m_show;
+    m_posterDownloadManager->addDownload(d);
+    image->setLoading(true);
     ui->buttonRevert->setVisible(true);
 }

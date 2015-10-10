@@ -43,12 +43,16 @@ private slots:
     void onRemoveCloudItem(QString text);
     void onChooseImage();
     void onDeleteImage();
+    void onImageDropped(int imageType, QUrl imageUrl);
     void onInfoLoadDone(Album *album);
     void onLoadDone(Album *album);
     void onDownloadProgress(Album *album, int current, int maximum);
     void onLoadingImages(Album *album, QList<int> imageTypes);
     void onLoadImagesStarted(Album *album);
     void onSetImage(Album *album, int type, QByteArray data);
+    void onBookletModelChanged();
+    void onAddBooklet();
+    void onBookletsDropped(QList<QUrl> urls);
 
 private:
     Ui::MusicWidgetAlbum *ui;

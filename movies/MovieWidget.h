@@ -56,6 +56,8 @@ private slots:
     void onLoadingImages(Movie *movie, QList<int> imageTypes);
     void onDownloadProgress(Movie *movie, int current, int maximum);
     void onSetImage(Movie *movie, int type, QByteArray data);
+    void onImageDropped(int imageType, QUrl imageUrl);
+    void onExtraFanartDropped(QUrl imageUrl);
 
     void onChooseImage();
     void onDeleteImage();
@@ -104,6 +106,7 @@ private slots:
     void updateStreamDetails(bool reloadFromFile = false);
     void onDownloadTrailer();
     void onInsertYoutubeLink();
+    void onPlayLocalTrailer();
 
     void onRemoveExtraFanart(const QString &file);
     void onRemoveExtraFanart(const QByteArray &image);

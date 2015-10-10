@@ -54,6 +54,7 @@ private slots:
 
     void onChooseImage();
     void onDeleteImage();
+    void onImageDropped(int imageType, QUrl imageUrl);
 
     void concertNameChanged(QString text);
     void addGenre(QString genre);
@@ -85,6 +86,7 @@ private slots:
     void onRemoveExtraFanart(const QString &file);
     void onRemoveExtraFanart(const QByteArray &image);
     void onAddExtraFanart();
+    void onExtraFanartDropped(QUrl imageUrl);
 
     void updateImage(const int &imageType, ClosableImage *image);
 

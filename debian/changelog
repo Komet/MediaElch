@@ -1,3 +1,34 @@
+mediaelch (2.3-1) trusty; urgency=low
+
+  * Music: Coverlib.com scraper
+  * Music: Support for booklets
+  * Improve UI on retina displays
+  * Drop images directly to image elements
+  * Renamer: Options for video/audio codec and number of audio channels
+  * Renamer: Support IMDB id on directory renaming
+  * Renamer: Show warning when item has been edited
+  * Renamer: Support extension also in directory names
+  * MediaPassion: API URL changed
+  * Improve IMDB outline scraping
+  * Detect stream details from BluRay structures
+  * Advanced Settings: Option to disable saving of thumbs in nfo
+  * Media Status Columns: Add local trailers
+  * Play trailer on click
+  * TMDB: Show results even if TMDB API delivers wrong page count
+  * Music: Added extra fanarts can not be removed
+  * Music: Artists and albums with special characters fail to scrape
+  * Trailer download sometimes not working
+  * IMDB: Possible hang on multiscrape
+  * Multiselection on movies when using filters leads to wrong selection
+  * TvTunes scraper broken
+  * Synchronization: Updating play count on episodes and concerts failed
+  * OSX: Settings window not closable in fullscreen
+  * VideoBuster scraper broken
+  * Adult DVD Empire scraper broken
+  * Renamer: Scantype (progressive/interlaced) not respected
+
+ -- Daniel Kabel <daniel.kabel@me.com>  Sat, 10 Oct 2015 19:12:25 +0100
+
 mediaelch (2.2.2-1) trusty; urgency=low
 
   * UI: Music multi scrape progress bar doesn't stop

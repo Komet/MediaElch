@@ -54,7 +54,7 @@ public:
     virtual void setButtonStyle(QPushButton *button, Helper::ButtonStyle style);
     virtual void fillStereoModeCombo(QComboBox *box);
     virtual QMap<QString, QString> stereoModes();
-    virtual QString matchResolution(int width, int height);
+    virtual QString matchResolution(int width, int height, const QString &scanType);
 };
 
 #endif // HELPER_H

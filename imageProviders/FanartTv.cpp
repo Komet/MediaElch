@@ -86,6 +86,11 @@ QString FanartTv::name()
     return QString("Fanart.tv");
 }
 
+QUrl FanartTv::siteUrl()
+{
+    return QUrl("https://fanart.tv");
+}
+
 QString FanartTv::identifier()
 {
     return QString("images.fanarttv");
@@ -810,4 +815,9 @@ void FanartTv::albumImages(Album *album, QString mbId, QList<int> types)
     Q_UNUSED(album);
     Q_UNUSED(mbId);
     Q_UNUSED(types);
+}
+
+void FanartTv::albumBooklets(QString mbId)
+{
+    Q_UNUSED(mbId);
 }

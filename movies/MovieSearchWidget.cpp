@@ -96,6 +96,7 @@ void MovieSearchWidget::search(QString searchString, QString id, QString tmdbId)
 {
     setupScrapers();
     m_searchString = searchString.replace(".", " ");
+
     m_id = id;
     m_tmdbId = tmdbId;
     ui->comboScraper->setEnabled(true);

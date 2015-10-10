@@ -34,9 +34,6 @@ private slots:
 private:
     QNetworkAccessManager m_qnam;
     QList<int> m_scraperSupports;
-    QString m_language;
-    QWidget *m_widget;
-    QComboBox *m_box;
 
     QNetworkAccessManager *qnam();
     QList<ScraperSearchResult> parseSearch(QString html);

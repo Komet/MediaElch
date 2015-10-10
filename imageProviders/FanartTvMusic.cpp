@@ -24,6 +24,11 @@ QString FanartTvMusic::name()
     return QString("Fanart.tv Music");
 }
 
+QUrl FanartTvMusic::siteUrl()
+{
+    return QUrl("https://fanart.tv");
+}
+
 QString FanartTvMusic::identifier()
 {
     return QString("images.fanarttv-music_lib");
@@ -503,4 +508,9 @@ void FanartTvMusic::onLoadAllArtistDataFinished()
             posters.insert(type, parseData(msg, type));
     }
     emit sigImagesLoaded(artist, posters);
+}
+
+void FanartTvMusic::albumBooklets(QString mbId)
+{
+    Q_UNUSED(mbId);
 }

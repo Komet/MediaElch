@@ -37,10 +37,10 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
     ui->labelPoster->setFont(font);
     ui->labelThumb->setFont(font);
 
-    ui->poster->setDefaultPixmap(QPixmap(":/img/film_reel.png"));
-    ui->backdrop->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->banner->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->thumb->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->poster->setDefaultPixmap(QPixmap(":/img/placeholders/poster.png"));
+    ui->backdrop->setDefaultPixmap(QPixmap(":/img/placeholders/fanart.png"));
+    ui->banner->setDefaultPixmap(QPixmap(":/img/placeholders/banner.png"));
+    ui->thumb->setDefaultPixmap(QPixmap(":/img/placeholders/thumb.png"));
 
     m_downloadManager = new DownloadManager(this);
 
@@ -68,8 +68,9 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget *parent) :
     ui->banner->setImageType(ImageType::TvShowSeasonBanner);
     ui->thumb->setImageType(ImageType::TvShowSeasonThumb);
     foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage*>()) {
-        connect(image, SIGNAL(clicked()), this, SLOT(onChooseImage()));
-        connect(image, SIGNAL(sigClose()), this, SLOT(onDeleteImage()));
+        connect(image, &ClosableImage::clicked, this, &TvShowWidgetSeason::onChooseImage);
+        connect(image, &ClosableImage::sigClose, this, &TvShowWidgetSeason::onDeleteImage);
+        connect(image, &ClosableImage::sigImageDropped, this, &TvShowWidgetSeason::onImageDropped);
     }
 
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
@@ -240,4 +241,22 @@ void TvShowWidgetSeason::onDeleteImage()
 
     m_show->removeImage(image->imageType(), m_season);
     updateImages(QList<int>() << image->imageType());
+}
+
+void TvShowWidgetSeason::onImageDropped(int imageType, QUrl imageUrl)
+{
+    if (!m_show)
+        return;
+    ClosableImage *image = static_cast<ClosableImage*>(QObject::sender());
+    if (!image)
+        return;
+
+    emit sigSetActionSaveEnabled(false, WidgetTvShows);
+    DownloadManagerElement d;
+    d.imageType = imageType;
+    d.url = imageUrl;
+    d.season = m_season;
+    d.show = m_show;
+    m_downloadManager->addDownload(d);
+    image->setLoading(true);
 }

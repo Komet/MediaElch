@@ -83,6 +83,7 @@ public:
     virtual QDateTime dateAdded() const;
 
     bool hasChanged() const;
+    QString localTrailerFileName() const;
 
     void setFiles(QStringList files);
     void setName(QString name);

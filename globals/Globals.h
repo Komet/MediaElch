@@ -209,6 +209,7 @@ namespace ImageType {
     const int AlbumThumb           = 35;
     const int AlbumCdArt           = 36;
     const int ArtistExtraFanart    = 37;
+    const int AlbumBooklet         = 38;
 }
 
 namespace MovieScraperInfos {
@@ -417,6 +418,7 @@ enum MediaStatusColumns {
     MediaStatusId,
     MediaStatusStreamDetails,
     MediaStatusTrailer,
+    MediaStatusLocalTrailer,
     MediaStatusPoster,
     MediaStatusFanart,
     MediaStatusExtraArts,

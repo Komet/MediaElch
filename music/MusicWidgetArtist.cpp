@@ -34,9 +34,9 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget *parent) :
     ui->labelLogo->setFont(font);
     ui->labelThumb->setFont(font);
 
-    ui->logo->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->thumb->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->fanart->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->fanart->setDefaultPixmap(QPixmap(":/img/placeholders/fanart.png"));
+    ui->logo->setDefaultPixmap(QPixmap(":/img/placeholders/logo.png"));
+    ui->thumb->setDefaultPixmap(QPixmap(":/img/placeholders/thumb.png"));
 
     ui->discography->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->discography->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -62,8 +62,9 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget *parent) :
     ui->fanart->setImageType(ImageType::ArtistFanart);
     ui->thumb->setImageType(ImageType::ArtistThumb);
     foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage*>()) {
-        connect(image, SIGNAL(clicked()), this, SLOT(onChooseImage()));
-        connect(image, SIGNAL(sigClose()), this, SLOT(onDeleteImage()));
+        connect(image, &ClosableImage::clicked, this, &MusicWidgetArtist::onChooseImage);
+        connect(image, &ClosableImage::sigClose, this, &MusicWidgetArtist::onDeleteImage);
+        connect(image, &ClosableImage::sigImageDropped, this, &MusicWidgetArtist::onImageDropped);
     }
 
     connect(ui->name, SIGNAL(textChanged(QString)), ui->artistName, SLOT(setText(QString)));
@@ -84,6 +85,7 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget *parent) :
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
     connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddExtraFanart()));
+    connect(ui->fanarts, &ImageGallery::sigImageDropped, this, &MusicWidgetArtist::onExtraFanartDropped);
 
     connect(ui->btnAddAlbum, SIGNAL(clicked()), this, SLOT(onAddAlbum()));
     connect(ui->btnRemoveAlbum, SIGNAL(clicked()), this, SLOT(onRemoveAlbum()));
@@ -377,7 +379,7 @@ void MusicWidgetArtist::onChooseImage()
     ImageDialog::instance()->exec(image->imageType());
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetMovies);
+        emit sigSetActionSaveEnabled(false, WidgetMusic);
         m_artist->controller()->loadImage(image->imageType(), ImageDialog::instance()->imageUrl());
         ui->buttonRevert->setVisible(true);
     }
@@ -394,6 +396,15 @@ void MusicWidgetArtist::onDeleteImage()
 
     m_artist->removeImage(image->imageType());
     updateImage(image->imageType(), image);
+    ui->buttonRevert->setVisible(true);
+}
+
+void MusicWidgetArtist::onImageDropped(int imageType, QUrl imageUrl)
+{
+    if (!m_artist)
+        return;
+    emit sigSetActionSaveEnabled(false, WidgetMusic);
+    m_artist->controller()->loadImage(imageType, imageUrl);
     ui->buttonRevert->setVisible(true);
 }
 
@@ -498,6 +509,16 @@ void MusicWidgetArtist::onAddExtraFanart()
         m_artist->controller()->loadImages(ImageType::ArtistExtraFanart, ImageDialog::instance()->imageUrls());
         ui->buttonRevert->setVisible(true);
     }
+}
+
+void MusicWidgetArtist::onExtraFanartDropped(QUrl imageUrl)
+{
+    if (!m_artist)
+        return;
+    ui->fanarts->setLoading(true);
+    emit sigSetActionSaveEnabled(false, WidgetMusic);
+    m_artist->controller()->loadImages(ImageType::ArtistExtraFanart, QList<QUrl>() << imageUrl);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MusicWidgetArtist::onAddAlbum()

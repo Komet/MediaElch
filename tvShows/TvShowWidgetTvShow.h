@@ -54,6 +54,7 @@ private slots:
 
     void onChooseImage();
     void onDeleteImage();
+    void onImageDropped(int imageType, QUrl imageUrl);
 
     void onPosterDownloadFinished(DownloadManagerElement elem);
     void onDownloadsFinished(TvShow *show);
@@ -78,6 +79,7 @@ private slots:
     void onRemoveExtraFanart(const QString &file);
     void onRemoveExtraFanart(const QByteArray &image);
     void onAddExtraFanart();
+    void onExtraFanartDropped(QUrl imageUrl);
 
 private:
     Ui::TvShowWidgetTvShow *ui;

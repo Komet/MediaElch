@@ -6,6 +6,8 @@
 #include "MusicModelItem.h"
 #include "Artist.h"
 #include "AlbumController.h"
+#include "image/ImageModel.h"
+#include "image/ImageProxyModel.h"
 
 class AlbumController;
 class Artist;
@@ -14,6 +16,11 @@ class MusicModelItem;
 class Album : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(ImageModel* bookletModel READ bookletModel CONSTANT)
+    Q_PROPERTY(ImageProxyModel* bookletProxyModel READ bookletProxyModel CONSTANT)
+    Q_PROPERTY(Artist* artistObj READ artistObj NOTIFY artistObjChanged)
+    Q_PROPERTY(MusicModelItem* modelItem READ modelItem NOTIFY modelItemChanged)
+
 public:
     explicit Album(QString path, QObject *parent = 0);
     ~Album();
@@ -97,8 +104,15 @@ public:
     QString allMusicId() const;
     void setAllMusicId(const QString &allMusicId);
 
+    ImageModel *bookletModel() const;
+    ImageProxyModel *bookletProxyModel() const;
+
+    void loadBooklets(MediaCenterInterface *mediaCenterInterface);
+
 signals:
     void sigChanged(Album*);
+    void artistObjChanged();
+    void modelItemChanged();
 
 private:
     QString m_path;
@@ -123,6 +137,8 @@ private:
     AlbumController *m_controller;
     QString m_mbId;
     QString m_allMusicId;
+    ImageModel *m_bookletModel;
+    ImageProxyModel *m_bookletProxyModel;
 };
 
 #endif // ALBUM_H

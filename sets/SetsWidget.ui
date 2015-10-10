@@ -238,7 +238,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../MediaElch.qrc">:/img/film_reel.png</pixmap>
+               <pixmap resource="../MediaElch.qrc">:/img/placeholders/poster.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -318,7 +318,10 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../MediaElch.qrc">:/img/pictures_alt.png</pixmap>
+               <pixmap resource="../MediaElch.qrc">:/img/placeholders/fanart.png</pixmap>
+              </property>
+              <property name="scaledContents">
+               <bool>false</bool>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>

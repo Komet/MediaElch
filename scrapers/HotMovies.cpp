@@ -10,38 +10,6 @@
 HotMovies::HotMovies(QObject *parent)
 {
     setParent(parent);
-    m_language = "en";
-
-    m_widget = new QWidget(MainWindow::instance());
-    m_box = new QComboBox(m_widget);
-    m_box->addItem(tr("Bulgarian"), "bg");
-    m_box->addItem(tr("Chinese"), "zh");
-    m_box->addItem(tr("Czech"), "cs");
-    m_box->addItem(tr("Danish"), "da");
-    m_box->addItem(tr("Dutch"), "nl");
-    m_box->addItem(tr("English"), "en");
-    m_box->addItem(tr("Finnish"), "fi");
-    m_box->addItem(tr("French"), "fr");
-    m_box->addItem(tr("German"), "de");
-    m_box->addItem(tr("Greek"), "el");
-    m_box->addItem(tr("Hebrew"), "he");
-    m_box->addItem(tr("Hungarian"), "hu");
-    m_box->addItem(tr("Italian"), "it");
-    m_box->addItem(tr("Japanese"), "ja");
-    m_box->addItem(tr("Norwegian"), "no");
-    m_box->addItem(tr("Polish"), "pl");
-    m_box->addItem(tr("Portuguese"), "pt");
-    m_box->addItem(tr("Russian"), "ru");
-    m_box->addItem(tr("Spanish"), "es");
-    m_box->addItem(tr("Swedish"), "sv");
-
-    QGridLayout *layout = new QGridLayout(m_widget);
-    layout->addWidget(new QLabel(tr("Language")), 0, 0);
-    layout->addWidget(m_box, 0, 1);
-    layout->setColumnStretch(2, 1);
-    layout->setContentsMargins(12, 0, 12, 12);
-    m_widget->setLayout(layout);
-
     m_scraperSupports << MovieScraperInfos::Title
                       << MovieScraperInfos::Rating
                       << MovieScraperInfos::Released
@@ -88,14 +56,7 @@ QNetworkAccessManager *HotMovies::qnam()
 void HotMovies::search(QString searchStr)
 {
     QString encodedSearch = QUrl::toPercentEncoding(searchStr);
-    QUrl url;
-    if (m_language != "en")
-        url.setUrl(QString("http://www.hotmovies.com/%1/search.php?words=%2&search_in=video_title&num_per_page=30")
-                   .arg(m_language)
-                   .arg(encodedSearch));
-    else
-        url.setUrl(QString("http://www.hotmovies.com/search.php?words=%2&search_in=video_title&num_per_page=30")
-                   .arg(encodedSearch));
+    QUrl url(QString("http://www.hotmovies.com/search.php?words=%1&search_in=video_title&num_per_page=30").arg(encodedSearch));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
 }
@@ -120,12 +81,12 @@ QList<ScraperSearchResult> HotMovies::parseSearch(QString html)
     QList<ScraperSearchResult> results;
     int offset = 0;
 
-    QRegExp rx("<tr>.*<td colspan=\"2\">.*<h3 class=\"title\">.*<a href=\"(.*)\" title=\".*\" >(.*)</a>");
+    QRegExp rx("<tr>.*<td colspan=\"2\" class=\"td_title\">.*<h3 class=\"title\">.*<a href=\"(.*)\" title=\".*\">(.*)</a>");
     rx.setMinimal(true);
     while ((offset = rx.indexIn(html, offset)) != -1) {
         ScraperSearchResult result;
         result.id = rx.cap(1);
-        result.name = rx.cap(2);
+        result.name = rx.cap(2).trimmed();
         results << result;
         offset += rx.matchedLength();
     }
@@ -167,11 +128,13 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
     if (infos.contains(MovieScraperInfos::Title) && rx.indexIn(html) != -1)
         movie->setName(rx.cap(1));
 
-    rx.setPattern("<span itemprop=\"name\">.*</span>.*</h1><hr/>.*<div class=\"rating\"><a href=\".*\" rel=\"nofollow\" title=\".*\"><img src=\"http://imgcover-[0-9].hotmovies.com/vodimages/images/stars-([0-9]+-[0-9]+).png\" border=\"0\" /></a><br/><span class=\"rating_number \">([0-9]+) .*</span></div>.*</div>.*<div class=\"video_info\">");
-    if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1) {
-        movie->setRating(rx.cap(1).replace("-", ".").toFloat()*2);
-        movie->setVotes(rx.cap(2).toInt());
-    }
+    rx.setPattern("<meta itemprop=\"ratingValue\" content=\"(.*)\">");
+    if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1)
+        movie->setRating(rx.cap(1).toFloat());
+
+    rx.setPattern("<span class=\"rating_number \" itemprop=\"ratingCount\">(\\d+) Rating");
+    if (infos.contains(MovieScraperInfos::Rating) && rx.indexIn(html) != -1)
+        movie->setVotes(rx.cap(1).toInt());
 
     rx.setPattern("<span itemprop=\"copyrightYear\">([0-9]{4})</span>");
     if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1)
@@ -186,14 +149,14 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
             movie->setRuntime(runtime.at(0).toInt());
     }
 
-    rx.setPattern("var descfullcontent = \"([^\"]*)\"");
+    rx.setPattern("<div class=\"video_description\" itemprop=\"description\">(.*)</div>");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
-        movie->setOverview(QString::fromUtf8(QByteArray::fromPercentEncoding(rx.cap(1).toUtf8())));
+        movie->setOverview(rx.cap(1).trimmed());
         if (Settings::instance()->usePlotForOutline())
-            movie->setOutline(QString::fromUtf8(QByteArray::fromPercentEncoding(rx.cap(1).toUtf8())));
+            movie->setOutline(rx.cap(1).trimmed());
     }
 
-    rx.setPattern("<img alt=\"[^\"]*\" id=\"cover\" src=\"([^\"]*)\"");
+    rx.setPattern("<img itemprop=\"image\" alt=\"[^\"]*\" id=\"cover\" src=\"([^\"]*)\"");
     if (infos.contains(MovieScraperInfos::Poster) && rx.indexIn(html) != -1) {
         Poster p;
         p.thumbUrl = rx.cap(1);
@@ -204,18 +167,21 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
     if (infos.contains(MovieScraperInfos::Actors)) {
         rx.setPattern("key=\"([^\"]*)\"/> <img src=\"http://imgcover-[0-9]+.hotmovies.com/vodimages/images/spacer.gif\" class=\"lg_star_image\" /> </span><a href=\"[^\"]*\".*"
                       "title=\"[^\"]*\" rel=\"tag\" itemprop=\"actor\" itemscope itemtype=\"http://schema.org/Person\"><span itemprop=\"name\">(.*)</span></a>");
+
+        rx.setPattern("<div class=\"star_wrapper\" key=\"(.*)\"><a href=\".*\" .* title=\".*\" rel=\"tag\" itemprop=\"url\"><span itemprop=\"name\">(.*)</span></a></div>");
         int offset = 0;
         while ((offset = rx.indexIn(html, offset)) != -1) {
             offset += rx.matchedLength();
             Actor a;
             a.name = rx.cap(2);
-            a.thumb = rx.cap(1);
+            if (!rx.cap(1).endsWith("missing_f.gif") && !!rx.cap(1).endsWith("missing_m.gif"))
+                a.thumb = rx.cap(1);
             movie->addActor(a);
         }
     }
 
     if (infos.contains(MovieScraperInfos::Genres)) {
-        rx.setPattern("\">[^>]*[\\s]+->[\\s]([^>]*)</a>");
+        rx.setPattern("<span itemprop=\"genre\">.* -> (.*)</span>");
         int offset = 0;
         while ((offset = rx.indexIn(html, offset)) != -1) {
             offset += rx.matchedLength();
@@ -223,11 +189,11 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
         }
     }
 
-    rx.setPattern("<a href=\".*\" title=\".*\" itemprop=\"productionCompany\" itemscope itemtype=\"http://schema.org/Organization\"><span itemprop=\"name\">(.*)</span></a>");
+    rx.setPattern("<strong>Studio:</strong> <a itemprop=\"url\" href=\"[^\"]*\"[\\s\\n]*title=\"[^\"]*\"><span itemprop=\"name\">(.*)</span></a>");
     if (infos.contains(MovieScraperInfos::Studios) && rx.indexIn(html) != -1)
         movie->addStudio(rx.cap(1));
 
-    rx.setPattern("itemprop=\"director\" itemscope itemtype=\"http://schema.org/Person\"><span itemprop=\"name\">(.*)</span>");
+    rx.setPattern("<span itemprop=\"director\" itemscope itemtype=\"http://schema.org/Person\"><a itemprop=\"url\" href=\"[^\"]*\"[\\s\\n]*title=\"[^\"]*\" rel=\"tag\"><span itemprop=\"name\">(.*)</span></a>");
     if (infos.contains(MovieScraperInfos::Director) && rx.indexIn(html) != -1)
         movie->setDirector(rx.cap(1));
 
@@ -238,25 +204,20 @@ void HotMovies::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos
 
 bool HotMovies::hasSettings()
 {
-    return true;
+    return false;
 }
 
 void HotMovies::loadSettings(QSettings &settings)
 {
-    m_language = settings.value("Scrapers/HotMovies/Language", "en").toString();
-    for (int i=0, n=m_box->count() ; i<n ; ++i) {
-        if (m_box->itemData(i).toString() == m_language)
-            m_box->setCurrentIndex(i);
-    }
+    Q_UNUSED(settings);
 }
 
 void HotMovies::saveSettings(QSettings &settings)
 {
-    m_language = m_box->itemData(m_box->currentIndex()).toString();
-    settings.setValue("Scrapers/HotMovies/Language", m_language);
+    Q_UNUSED(settings);
 }
 
 QWidget *HotMovies::settingsWidget()
 {
-    return m_widget;
+    return 0;
 }

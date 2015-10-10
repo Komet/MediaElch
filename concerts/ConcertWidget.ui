@@ -878,7 +878,7 @@ QPushButton::hover {
            </size>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="page">
            <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -925,7 +925,7 @@ QPushButton::hover {
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../MediaElch.qrc">:/img/film_reel.png</pixmap>
+               <pixmap resource="../MediaElch.qrc">:/img/placeholders/poster.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -972,7 +972,7 @@ QPushButton::hover {
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../MediaElch.qrc">:/img/pictures_alt.png</pixmap>
+               <pixmap resource="../MediaElch.qrc">:/img/placeholders/fanart.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -1048,7 +1048,7 @@ QPushButton::hover {
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../MediaElch.qrc">:/img/pictures_alt.png</pixmap>
+               <pixmap resource="../MediaElch.qrc">:/img/placeholders/logo.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -1095,7 +1095,7 @@ QPushButton::hover {
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../MediaElch.qrc">:/img/pictures_alt.png</pixmap>
+               <pixmap resource="../MediaElch.qrc">:/img/placeholders/clear_art.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -1142,7 +1142,7 @@ QPushButton::hover {
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../MediaElch.qrc">:/img/pictures_alt.png</pixmap>
+               <pixmap resource="../MediaElch.qrc">:/img/placeholders/cd_art.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -1184,23 +1184,6 @@ QPushButton::hover {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>SlidingStackedWidget</class>
-   <extends>QStackedWidget</extends>
-   <header>smallWidgets/SlidingStackedWidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Badge</class>
-   <extends>QLabel</extends>
-   <header>smallWidgets/Badge.h</header>
-  </customwidget>
-  <customwidget>
-   <class>MediaFlags</class>
-   <extends>QWidget</extends>
-   <header>smallWidgets/MediaFlags.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>TagCloud</class>
    <extends>QWidget</extends>
    <header>smallWidgets/TagCloud.h</header>
@@ -1216,6 +1199,23 @@ QPushButton::hover {
    <class>ClosableImage</class>
    <extends>QLabel</extends>
    <header>smallWidgets/ClosableImage.h</header>
+  </customwidget>
+  <customwidget>
+   <class>SlidingStackedWidget</class>
+   <extends>QStackedWidget</extends>
+   <header>smallWidgets/SlidingStackedWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Badge</class>
+   <extends>QLabel</extends>
+   <header>smallWidgets/Badge.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MediaFlags</class>
+   <extends>QWidget</extends>
+   <header>smallWidgets/MediaFlags.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>

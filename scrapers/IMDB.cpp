@@ -185,7 +185,7 @@ void IMDB::onLoadFinished()
     if (!movie)
         return;
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, movie, infos);
         QString posterUrl = parsePosters(msg);
@@ -199,6 +199,7 @@ void IMDB::onLoadFinished()
         }
     } else {
         qWarning() << "Network Error (load)" << reply->errorString();
+        movie->controller()->scraperLoadDone(this);
     }
 }
 
@@ -303,8 +304,11 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
         movie->setRuntime(rx.cap(1).toInt());
 
     rx.setPattern("<p itemprop=\"description\">(.*)</p>");
-    if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1)
-        movie->setOutline(rx.cap(1).remove(QRegExp("<[^>]*>")).trimmed());
+    if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {
+        QString outline = rx.cap(1).remove(QRegExp("<[^>]*>"));
+        outline = outline.remove("See full summary&nbsp;&raquo;").trimmed();
+        movie->setOutline(outline);
+    }
 
     rx.setPattern("<div class=\"inline canwrap\" itemprop=\"description\">(.*)</div>");
     if (infos.contains(MovieScraperInfos::Overview) && rx.indexIn(html) != -1) {

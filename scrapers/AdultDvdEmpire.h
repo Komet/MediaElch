@@ -29,7 +29,6 @@ signals:
 private slots:
     void onSearchFinished();
     void onLoadFinished();
-    void onLoadScenesFinished();
 
 private:
     QNetworkAccessManager m_qnam;
@@ -38,7 +37,6 @@ private:
     QNetworkAccessManager *qnam();
     QList<ScraperSearchResult> parseSearch(QString html);
     void parseAndAssignInfos(QString html, Movie *movie, QList<int> infos);
-    void parseAndAssignScenes(QString html, Movie *movie);
 };
 
 #endif // ADULTDVDEMPIRE_H

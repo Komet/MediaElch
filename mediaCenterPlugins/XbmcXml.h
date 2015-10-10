@@ -67,6 +67,8 @@ public:
     static void writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episode);
     static void writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDetails);
 
+    void loadBooklets(Album *album);
+
 private:
     void writeMovieXml(QXmlStreamWriter &xml, Movie *movie);
     void writeConcertXml(QXmlStreamWriter &xml, Concert *concert);

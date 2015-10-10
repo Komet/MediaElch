@@ -33,8 +33,8 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget *parent) :
     ui->labelCover->setFont(font);
     ui->labelDiscArt->setFont(font);
 
-    ui->cover->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->discArt->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->cover->setDefaultPixmap(QPixmap(":/img/placeholders/poster.png"));
+    ui->discArt->setDefaultPixmap(QPixmap(":/img/placeholders/cd_art.png"));
 
     ui->genreCloud->setText(tr("Genres"));
     ui->genreCloud->setPlaceholder(tr("Add Genre"));
@@ -54,12 +54,15 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget *parent) :
     ui->cover->setImageType(ImageType::AlbumThumb);
     ui->discArt->setImageType(ImageType::AlbumCdArt);
     foreach (ClosableImage *image, ui->groupBox_3->findChildren<ClosableImage*>()) {
-        connect(image, SIGNAL(clicked()), this, SLOT(onChooseImage()));
-        connect(image, SIGNAL(sigClose()), this, SLOT(onDeleteImage()));
+        connect(image, &ClosableImage::clicked, this, &MusicWidgetAlbum::onChooseImage);
+        connect(image, &ClosableImage::sigClose, this, &MusicWidgetAlbum::onDeleteImage);
+        connect(image, &ClosableImage::sigImageDropped, this, &MusicWidgetAlbum::onImageDropped);
     }
+    connect(ui->bookletWidget, &ImageWidget::sigImageDropped, this, &MusicWidgetAlbum::onBookletsDropped);
 
     connect(ui->title, SIGNAL(textChanged(QString)), ui->albumName, SLOT(setText(QString)));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
+    connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddBooklet()));
 
     onSetEnabled(false);
     onClear();
@@ -103,6 +106,7 @@ void MusicWidgetAlbum::setAlbum(Album *album)
     connect(m_album->controller(), SIGNAL(sigLoadingImages(Album*,QList<int>)), this, SLOT(onLoadingImages(Album*,QList<int>)), Qt::UniqueConnection);
     connect(m_album->controller(), SIGNAL(sigLoadImagesStarted(Album*)), this, SLOT(onLoadImagesStarted(Album*)), Qt::UniqueConnection);
     connect(m_album->controller(), SIGNAL(sigImage(Album*,int,QByteArray)), this, SLOT(onSetImage(Album*,int,QByteArray)), Qt::UniqueConnection);
+    connect(m_album->bookletModel(), SIGNAL(hasChangedChanged()), this, SLOT(onBookletModelChanged()), Qt::UniqueConnection);
 
     onSetEnabled(!album->controller()->downloadsInProgress());
 }
@@ -145,6 +149,8 @@ void MusicWidgetAlbum::onClear()
     ui->moodCloud->clear();
     ui->cover->clear();
     ui->discArt->clear();
+
+    ui->bookletWidget->setAlbum(0);
 
     ui->buttonRevert->setVisible(false);
 }
@@ -245,6 +251,9 @@ void MusicWidgetAlbum::updateAlbumInfo()
     ui->genreCloud->setTags(genres, m_album->genres());
     ui->styleCloud->setTags(styles, m_album->styles());
     ui->moodCloud->setTags(moods, m_album->moods());
+
+    m_album->loadBooklets(Manager::instance()->mediaCenterInterface());
+    ui->bookletWidget->setAlbum(m_album);
 }
 
 void MusicWidgetAlbum::updateImage(int imageType, ClosableImage *image)
@@ -312,6 +321,7 @@ void MusicWidgetAlbum::onRevertChanges()
         return;
 
     m_album->clearImages();
+    m_album->bookletModel()->clear();
     m_album->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
     updateAlbumInfo();
 }
@@ -369,7 +379,7 @@ void MusicWidgetAlbum::onChooseImage()
     ImageDialog::instance()->exec(image->imageType());
 
     if (ImageDialog::instance()->result() == QDialog::Accepted) {
-        emit sigSetActionSaveEnabled(false, WidgetMovies);
+        emit sigSetActionSaveEnabled(false, WidgetMusic);
         m_album->controller()->loadImage(image->imageType(), ImageDialog::instance()->imageUrl());
         ui->buttonRevert->setVisible(true);
     }
@@ -386,6 +396,15 @@ void MusicWidgetAlbum::onDeleteImage()
 
     m_album->removeImage(image->imageType());
     updateImage(image->imageType(), image);
+    ui->buttonRevert->setVisible(true);
+}
+
+void MusicWidgetAlbum::onImageDropped(int imageType, QUrl imageUrl)
+{
+    if (!m_album)
+        return;
+    emit sigSetActionSaveEnabled(false, WidgetMusic);
+    m_album->controller()->loadImage(imageType, imageUrl);
     ui->buttonRevert->setVisible(true);
 }
 
@@ -406,6 +425,7 @@ void MusicWidgetAlbum::onLoadDone(Album *album)
     if (m_album != album)
         return;
 
+    ui->bookletWidget->setLoading(false);
     onSetEnabled(true);
 }
 
@@ -426,6 +446,9 @@ void MusicWidgetAlbum::onLoadingImages(Album *album, QList<int> imageTypes)
         }
     }
 
+    if (imageTypes.contains(ImageType::AlbumBooklet))
+        ui->bookletWidget->setLoading(true);
+
     ui->groupBox_3->update();
 }
 
@@ -445,4 +468,41 @@ void MusicWidgetAlbum::onSetImage(Album *album, int type, QByteArray data)
             image->setImage(data);
         }
     }
+}
+
+void MusicWidgetAlbum::onBookletModelChanged()
+{
+    ImageModel *model = static_cast<ImageModel*>(sender());
+    if (!model)
+        return;
+    if (m_album != static_cast<Album*>(model->parent()))
+        return;
+    if (model->hasChanged())
+        ui->buttonRevert->setVisible(true);
+}
+
+void MusicWidgetAlbum::onAddBooklet()
+{
+    if (!m_album)
+        return;
+
+    ImageDialog::instance()->setImageType(ImageType::AlbumBooklet);
+    ImageDialog::instance()->clear();
+    ImageDialog::instance()->setMultiSelection(true);
+    ImageDialog::instance()->setAlbum(m_album);
+    ImageDialog::instance()->setDownloads(QList<Poster>());
+    ImageDialog::instance()->exec(ImageType::AlbumBooklet);
+
+    if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
+        ui->bookletWidget->setLoading(true);
+        emit sigSetActionSaveEnabled(false, WidgetMusic);
+        m_album->controller()->loadImages(ImageType::AlbumBooklet, ImageDialog::instance()->imageUrls());
+        ui->buttonRevert->setVisible(true);
+    }
+}
+
+void MusicWidgetAlbum::onBookletsDropped(QList<QUrl> urls)
+{
+    ui->bookletWidget->setLoading(true);
+    m_album->controller()->loadImages(ImageType::AlbumBooklet, urls);
 }

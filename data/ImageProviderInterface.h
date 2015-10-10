@@ -49,6 +49,7 @@ public:
     virtual void artistThumbs(QString mbId) = 0;
     virtual void albumCdArts(QString mbId) = 0;
     virtual void albumThumbs(QString mbId) = 0;
+    virtual void albumBooklets(QString mbId) = 0;
     virtual void artistImages(Artist *artist, QString mbId, QList<int> types) = 0;
     virtual void albumImages(Album *album, QString mbId, QList<int> types) = 0;
     virtual QList<int> provides() = 0;
@@ -56,6 +57,7 @@ public:
     virtual void loadSettings(QSettings &settings) = 0;
     virtual void saveSettings(QSettings &settings) = 0;
     virtual QWidget *settingsWidget() = 0;
+    virtual QUrl siteUrl() = 0;
 
 public slots:
     virtual void searchMovie(QString searchStr, int limit) = 0;

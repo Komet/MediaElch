@@ -1,6 +1,7 @@
 #include "ImageGallery.h"
 
 #include <QDebug>
+#include <QMimeData>
 #include <QMovie>
 #include <QPropertyAnimation>
 #include <QScrollArea>
@@ -73,6 +74,8 @@ ImageGallery::ImageGallery(QWidget *parent) :
     connect(m_buttonRight, SIGNAL(clicked()), this, SLOT(onButtonRight()));
     connect(m_buttonTop, SIGNAL(clicked()), this, SLOT(onButtonTop()));
     connect(m_buttonBottom, SIGNAL(clicked()), this, SLOT(onButtonBottom()));
+
+    setAcceptDrops(true);
 }
 
 void ImageGallery::resizeEvent(QResizeEvent *event)
@@ -290,4 +293,45 @@ void ImageGallery::onVerticalScrollBarRangeChanged(int min, int max)
 {
     m_buttonTop->setVisible(min != max);
     m_buttonBottom->setVisible(min != max);
+}
+
+void ImageGallery::dragMoveEvent(QDragMoveEvent *event)
+{
+    const QMimeData *mimeData = event->mimeData();
+    QUrl url = mimeData->urls().at(0);
+    QStringList filters = QStringList() << ".jpg" <<".jpeg" << ".png";
+    foreach (const QString &filter, filters) {
+        if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
+            event->acceptProposedAction();
+            return;
+        }
+    }
+}
+
+void ImageGallery::dragEnterEvent(QDragEnterEvent *event)
+{
+    const QMimeData *mimeData = event->mimeData();
+    QUrl url = mimeData->urls().at(0);
+    QStringList filters = QStringList() << ".jpg" <<".jpeg" << ".png";
+    foreach (const QString &filter, filters) {
+        if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
+            event->acceptProposedAction();
+            return;
+        }
+    }
+}
+
+void ImageGallery::dropEvent(QDropEvent *event)
+{
+    const QMimeData *mimeData = event->mimeData();
+    if (mimeData->hasUrls() && !mimeData->urls().isEmpty()) {
+        QUrl url = mimeData->urls().at(0);
+        QStringList filters = QStringList() << ".jpg" <<".jpeg" << ".png";
+        foreach (const QString &filter, filters) {
+            if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
+                emit sigImageDropped(url);
+                return;
+            }
+        }
+    }
 }

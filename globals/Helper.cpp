@@ -479,16 +479,6 @@ void Helper::applyStyle(QWidget *widget, bool removeFocusRect, bool isTable)
 
 void Helper::applyEffect(QWidget *parent)
 {
-    foreach (QLabel *label, parent->findChildren<QLabel*>()) {
-        if (label->property("dropShadow").toBool() && Helper::instance()->devicePixelRatio(label) == 1) {
-            QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(parent);
-            effect->setColor(QColor(0, 0, 0, 30));
-            effect->setOffset(4);
-            effect->setBlurRadius(8);
-            label->setGraphicsEffect(effect);
-        }
-    }
-
     foreach (QPushButton *button, parent->findChildren<QPushButton*>()) {
         if (button->property("dropShadow").toBool() && Helper::instance()->devicePixelRatio(button) == 1) {
             QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(parent);
@@ -777,17 +767,25 @@ QMap<QString, QString> Helper::stereoModes()
     return modes;
 }
 
-QString Helper::matchResolution(int width, int height)
+QString Helper::matchResolution(int width, int height, const QString &scanType)
 {
+    QString res;
     if (height >= 1072 || width >= 1912)
-        return "1080p";
-    if (height >= 712 || width >= 1272)
-        return "720p";
-    if (height >= 576)
-        return "576p";
-    if (height >= 540)
-        return "540p";
-    if (height >= 480)
-        return "480p";
-    return "SD";
+        res = "1080";
+    else if (height >= 712 || width >= 1272)
+        res = "720";
+    else if (height >= 576)
+        res = "576";
+    else if (height >= 540)
+        res = "540";
+    else if (height >= 480)
+        res = "480";
+    else
+        return "SD";
+
+    if (scanType.toLower() == "progressive")
+        return res + "p";
+    if (scanType.toLower() == "interlaced")
+        return res + "i";
+    return res;
 }

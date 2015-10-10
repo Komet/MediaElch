@@ -10,6 +10,9 @@ Album::Album(QString path, QObject *parent) : QObject(parent)
     m_databaseId = -1;
     m_artistObj = 0;
     m_path = path;
+    m_bookletModel = new ImageModel(this);
+    m_bookletProxyModel = new ImageProxyModel(this);
+    m_bookletProxyModel->setSourceModel(m_bookletModel);
 }
 
 Album::~Album()
@@ -292,6 +295,7 @@ MusicModelItem *Album::modelItem() const
 void Album::setModelItem(MusicModelItem *item)
 {
     m_modelItem = item;
+    emit modelItemChanged();
 }
 
 QString Album::nfoContent() const
@@ -337,6 +341,7 @@ Artist *Album::artistObj() const
 void Album::setArtistObj(Artist *artistObj)
 {
     m_artistObj = artistObj;
+    emit artistObjChanged();
 }
 
 AlbumController *Album::controller() const
@@ -367,4 +372,21 @@ QString Album::allMusicId() const
 void Album::setAllMusicId(const QString &allMusicId)
 {
     m_allMusicId = allMusicId;
+}
+
+ImageModel *Album::bookletModel() const
+{
+    return m_bookletModel;
+}
+
+ImageProxyModel *Album::bookletProxyModel() const
+{
+    return m_bookletProxyModel;
+}
+
+void Album::loadBooklets(MediaCenterInterface *mediaCenterInterface)
+{
+    m_bookletProxyModel->blockSignals(true);
+    mediaCenterInterface->loadBooklets(this);
+    m_bookletProxyModel->blockSignals(false);
 }

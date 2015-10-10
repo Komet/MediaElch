@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QFile>
 #include <QMessageBox>
+#include <QMimeData>
 #include <QPainter>
 #include <QPropertyAnimation>
 #include <QStyleOption>
@@ -45,6 +46,8 @@ ClosableImage::ClosableImage(QWidget *parent) :
     p.fillRect(m_zoomIn.rect(), QColor(0, 0, 0, 150));
     p.end();
     m_zoomIn = m_zoomIn.scaledToWidth(16 * Helper::instance()->devicePixelRatio(this), Qt::SmoothTransformation);
+
+    setAcceptDrops(true);
 }
 
 void ClosableImage::mousePressEvent(QMouseEvent *ev)
@@ -65,8 +68,8 @@ void ClosableImage::mousePressEvent(QMouseEvent *ev)
         m_anim->setPropertyName("mySize");
         m_anim->setDuration(400);
         m_anim->start(QPropertyAnimation::DeleteWhenStopped);
-        connect(m_anim, SIGNAL(finished()), this, SLOT(closed()));
-        connect(m_anim, SIGNAL(finished()), this, SIGNAL(sigClose()), Qt::QueuedConnection);
+        connect(m_anim, SIGNAL(finished()), this, SIGNAL(sigClose()));
+        connect(m_anim, SIGNAL(finished()), this, SLOT(closed()), Qt::QueuedConnection);
     } else if ((!m_image.isNull() || !m_imagePath.isEmpty()) && m_showZoomAndResolution && zoomRect().contains(ev->pos())) {
         if (!m_image.isNull()) {
             ImagePreviewDialog::instance()->setImage(QPixmap::fromImage(QImage::fromData(m_image)));
@@ -131,7 +134,9 @@ void ClosableImage::paintEvent(QPaintEvent *event)
     } else if (!m_imagePath.isEmpty()) {
         img = ImageCache::instance()->image(m_imagePath, (width()-9)*Helper::instance()->devicePixelRatio(this), 0, origWidth, origHeight);
     } else {
-        p.drawPixmap((width()-m_defaultPixmap.width() / Helper::instance()->devicePixelRatio(m_defaultPixmap))/2, (height()-m_defaultPixmap.height() / Helper::instance()->devicePixelRatio(m_defaultPixmap))/2, m_defaultPixmap);
+        int x = (width() - (m_defaultPixmap.width() / Helper::instance()->devicePixelRatio(m_defaultPixmap))) / 2;
+        int y = (height() - (m_defaultPixmap.height() / Helper::instance()->devicePixelRatio(m_defaultPixmap))) / 2;
+        p.drawPixmap(x, y, m_defaultPixmap);
         drawTitle(p);
         return;
     }
@@ -274,6 +279,9 @@ int ClosableImage::myFixedHeight() const
 void ClosableImage::setDefaultPixmap(QPixmap pixmap)
 {
     m_defaultPixmap = pixmap;
+    int w = (width() - 60) * Helper::instance()->devicePixelRatio(this);
+    int h = (height() - 40) * Helper::instance()->devicePixelRatio(this);
+    m_defaultPixmap = m_defaultPixmap.scaled(w, h, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     Helper::instance()->setDevicePixelRatio(m_defaultPixmap, Helper::instance()->devicePixelRatio(this));
 }
 
@@ -372,4 +380,45 @@ void ClosableImage::setImageType(const int &type)
 int ClosableImage::imageType() const
 {
     return m_imageType;
+}
+
+void ClosableImage::dragMoveEvent(QDragMoveEvent *event)
+{
+    const QMimeData *mimeData = event->mimeData();
+    QUrl url = mimeData->urls().at(0);
+    QStringList filters = QStringList() << ".jpg" <<".jpeg" << ".png";
+    foreach (const QString &filter, filters) {
+        if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
+            event->acceptProposedAction();
+            return;
+        }
+    }
+}
+
+void ClosableImage::dragEnterEvent(QDragEnterEvent *event)
+{
+    const QMimeData *mimeData = event->mimeData();
+    QUrl url = mimeData->urls().at(0);
+    QStringList filters = QStringList() << ".jpg" <<".jpeg" << ".png";
+    foreach (const QString &filter, filters) {
+        if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
+            event->acceptProposedAction();
+            return;
+        }
+    }
+}
+
+void ClosableImage::dropEvent(QDropEvent *event)
+{
+    const QMimeData *mimeData = event->mimeData();
+    if (mimeData->hasUrls() && !mimeData->urls().isEmpty()) {
+        QUrl url = mimeData->urls().at(0);
+        QStringList filters = QStringList() << ".jpg" <<".jpeg" << ".png";
+        foreach (const QString &filter, filters) {
+            if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
+                emit sigImageDropped(m_imageType, url);
+                return;
+            }
+        }
+    }
 }

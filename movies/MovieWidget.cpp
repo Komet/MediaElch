@@ -68,13 +68,17 @@ MovieWidget::MovieWidget(QWidget *parent) :
 
     m_movie = 0;
 
-    ui->poster->setDefaultPixmap(QPixmap(":/img/film_reel.png"));
-    ui->backdrop->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->logo->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->clearArt->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->cdArt->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->thumb->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    ui->banner->setDefaultPixmap(QPixmap(":/img/pictures_alt.png").scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->poster->setDefaultPixmap(QPixmap(":/img/placeholders/poster.png"));
+    ui->backdrop->setDefaultPixmap(QPixmap(":/img/placeholders/fanart.png"));
+    ui->logo->setDefaultPixmap(QPixmap(":/img/placeholders/logo.png"));
+    ui->clearArt->setDefaultPixmap(QPixmap(":/img/placeholders/clear_art.png"));
+    ui->cdArt->setDefaultPixmap(QPixmap(":/img/placeholders/cd_art.png"));
+    ui->thumb->setDefaultPixmap(QPixmap(":/img/placeholders/thumb.png"));
+    ui->banner->setDefaultPixmap(QPixmap(":/img/placeholders/banner.png"));
+
+    ui->buttonDownloadTrailer->setIcon(Manager::instance()->iconFont()->icon("download", QColor(150, 150, 150), "", -1, 1.0));
+    ui->buttonYoutubeDummy->setIcon(Manager::instance()->iconFont()->icon("pen", QColor(150, 150, 150), "", -1, 1.0));
+    ui->buttonPlayLocalTrailer->setIcon(Manager::instance()->iconFont()->icon("play", QColor(150, 150, 150), "", -1, 1.0));
 
     ui->genreCloud->setText(tr("Genres"));
     ui->genreCloud->setPlaceholder(tr("Add Genre"));
@@ -107,8 +111,9 @@ MovieWidget::MovieWidget(QWidget *parent) :
     ui->thumb->setImageType(ImageType::MovieThumb);
     ui->clearArt->setImageType(ImageType::MovieClearArt);
     foreach (ClosableImage *image, ui->artStackedWidget->findChildren<ClosableImage*>()) {
-        connect(image, SIGNAL(clicked()), this, SLOT(onChooseImage()));
-        connect(image, SIGNAL(sigClose()), this, SLOT(onDeleteImage()));
+        connect(image, &ClosableImage::clicked, this, &MovieWidget::onChooseImage);
+        connect(image, &ClosableImage::sigClose, this, &MovieWidget::onDeleteImage);
+        connect(image, &ClosableImage::sigImageDropped, this, &MovieWidget::onImageDropped);
     }
 
     connect(ui->name, SIGNAL(textChanged(QString)), this, SLOT(movieNameChanged(QString)));
@@ -119,12 +124,15 @@ MovieWidget::MovieWidget(QWidget *parent) :
     connect(ui->actor, SIGNAL(clicked()), this, SLOT(onChangeActorImage()));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
     connect(ui->buttonReloadStreamDetails, SIGNAL(clicked()), this, SLOT(onReloadStreamDetails()));
-    connect(ui->buttonDownloadTrailer, SIGNAL(clicked()), this, SLOT(onDownloadTrailer()));
-    connect(ui->buttonYoutubeDummy, SIGNAL(clicked()), this, SLOT(onInsertYoutubeLink()));
+
+    connect(ui->buttonDownloadTrailer, &QToolButton::clicked, this, &MovieWidget::onDownloadTrailer);
+    connect(ui->buttonYoutubeDummy, &QToolButton::clicked, this, &MovieWidget::onInsertYoutubeLink);
+    connect(ui->buttonPlayLocalTrailer, &QToolButton::clicked, this, &MovieWidget::onPlayLocalTrailer);
 
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QByteArray)), this, SLOT(onRemoveExtraFanart(QByteArray)));
     connect(ui->fanarts, SIGNAL(sigRemoveImage(QString)), this, SLOT(onRemoveExtraFanart(QString)));
     connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddExtraFanart()));
+    connect(ui->fanarts, &ImageGallery::sigImageDropped, this, &MovieWidget::onExtraFanartDropped);
 
     m_loadingMovie = new QMovie(":/img/spinner.gif");
     m_loadingMovie->start();
@@ -791,6 +799,14 @@ void MovieWidget::onDownloadTrailer()
     ui->localTrailer->setVisible(m_movie->hasLocalTrailer());
 }
 
+void MovieWidget::onPlayLocalTrailer()
+{
+    if (!m_movie && !m_movie->hasLocalTrailer())
+        return;
+
+    QDesktopServices::openUrl(QUrl::fromLocalFile(m_movie->localTrailerFileName()));
+}
+
 /**
  * @brief Saves movie information
  */
@@ -1361,6 +1377,16 @@ void MovieWidget::onAddExtraFanart()
     }
 }
 
+void MovieWidget::onExtraFanartDropped(QUrl imageUrl)
+{
+    if (!m_movie)
+        return;
+    ui->fanarts->setLoading(true);
+    emit setActionSaveEnabled(false, WidgetMovies);
+    m_movie->controller()->loadImages(ImageType::MovieExtraFanart, QList<QUrl>() << imageUrl);
+    ui->buttonRevert->setVisible(true);
+}
+
 void MovieWidget::onInsertYoutubeLink()
 {
     if (Settings::instance()->useYoutubePluginUrls())
@@ -1397,6 +1423,15 @@ void MovieWidget::onChooseImage()
         m_movie->controller()->loadImage(image->imageType(), ImageDialog::instance()->imageUrl());
         ui->buttonRevert->setVisible(true);
     }
+}
+
+void MovieWidget::onImageDropped(int imageType, QUrl imageUrl)
+{
+    if (!m_movie)
+        return;
+    emit setActionSaveEnabled(false, WidgetMovies);
+    m_movie->controller()->loadImage(imageType, imageUrl);
+    ui->buttonRevert->setVisible(true);
 }
 
 void MovieWidget::onDeleteImage()
