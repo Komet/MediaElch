@@ -1,4 +1,4 @@
-mediaelch (2.3.0.1-1) utopic; urgency=low
+mediaelch (2.3.0.2-1) vivid; urgency=low
 
   * Music: Coverlib.com scraper
   * Music: Support for booklets
