@@ -95,11 +95,7 @@ void MovieSearchWidget::setupScrapers()
 void MovieSearchWidget::search(QString searchString, QString id, QString tmdbId)
 {
     setupScrapers();
-    m_searchString = searchString.replace(".", "");
-    foreach (QString searchFilter, Settings::instance()->excludeWords().split(",")){
-        m_searchString.replace(searchFilter, "");
-    }
-
+    m_searchString = searchString.replace(".", " ");
 
     m_id = id;
     m_tmdbId = tmdbId;
