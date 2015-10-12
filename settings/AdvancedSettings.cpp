@@ -31,7 +31,7 @@ void AdvancedSettings::reset()
     m_certificationMappings.clear();
     m_studioMappings.clear();
     m_countryMappings.clear();
-    m_writeThumbUrlsToNfo = false;
+    m_writeThumbUrlsToNfo = true;
 
     m_movieFilters << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg" << "*.mp4" << "*.m2ts" << "*.disc" << "*.m4v" << "*.strm"
                    << "*.dat" << "*.flv" << "*.vob" << "*.ts" << "*.iso" << "*.ogg" << "*.ogm" << "*.rmvb" << "*.img" << "*.wmv"

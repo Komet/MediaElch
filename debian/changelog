@@ -1,3 +1,9 @@
+mediaelch (2.3.2-1) vivid; urgency=low
+
+  * Write urls to nfos by default
+
+ -- Daniel Kabel <info@kvibes.de>  Mon, 12 Oct 2015 20:22:31 +0100
+
 mediaelch (2.3.1.1-1) vivid; urgency=low
 
   * Fixed package name in debian control file
