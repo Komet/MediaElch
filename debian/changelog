@@ -1,3 +1,9 @@
+mediaelch (2.3.2.1-1) vivid; urgency=low
+
+  * Fixed dependencies for wily
+
+ -- Daniel Kabel <info@kvibes.de>  Thu, 15 Oct 2015 10:16:06 +0100
+
 mediaelch (2.3.2-1) vivid; urgency=low
 
   * Write urls to nfos by default
