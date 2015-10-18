@@ -175,9 +175,11 @@ void ConcertFilesWidget::unmarkForSync()
 void ConcertFilesWidget::openFolder()
 {
     m_contextMenu->close();
+    if (!ui->files->currentIndex().isValid())
+        return;
     int row = ui->files->currentIndex().data(Qt::UserRole).toInt();
     Concert *concert = Manager::instance()->concertModel()->concert(row);
-    if (concert->files().isEmpty())
+    if (!concert || concert->files().isEmpty())
         return;
     QFileInfo fi(concert->files().at(0));
     QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));

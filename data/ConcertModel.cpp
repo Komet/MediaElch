@@ -51,6 +51,8 @@ void ConcertModel::update()
  */
 Concert *ConcertModel::concert(int row)
 {
+    if (row < 0 || row >= m_concerts.count())
+        return 0;
     return m_concerts.at(row);
 }
 

@@ -267,9 +267,11 @@ void FilesWidget::unmarkForSync()
 void FilesWidget::openFolder()
 {
     m_contextMenu->close();
+    if (!ui->files->currentIndex().isValid())
+        return;
     int row = ui->files->currentIndex().data(Qt::UserRole).toInt();
     Movie *movie = Manager::instance()->movieModel()->movie(row);
-    if (movie->files().isEmpty())
+    if (!movie || movie->files().isEmpty())
         return;
     QFileInfo fi(movie->files().at(0));
     QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));

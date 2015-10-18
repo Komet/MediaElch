@@ -308,8 +308,12 @@ void TvShowFilesWidget::unmarkForSync()
 void TvShowFilesWidget::openFolder()
 {
     m_contextMenu->close();
+    if (!ui->files->currentIndex().isValid())
+        return;
     QModelIndex index = m_tvShowProxyModel->mapToSource(ui->files->currentIndex());
     TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
+    if (!item)
+        return;
     QString dir;
     if (item->type() == TypeTvShow) {
         dir = item->tvShow()->dir();
