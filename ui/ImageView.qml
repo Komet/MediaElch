@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import QtQml.Models 2.1
-import QtQuick.Controls 1.4
+import QtQuick.Controls 1.3
 
 Item {
     id: root
