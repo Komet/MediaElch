@@ -329,7 +329,7 @@
     <name>ConcertFilesWidget</name>
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="321"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="323"/>
         <source>%n concerts</source>
         <translation><numerusform>%n konsertti</numerusform><numerusform>%n konserttia</numerusform></translation>
     </message>
@@ -364,7 +364,7 @@
         <translation>Avaa konserttihakemisto</translation>
     </message>
     <message numerus="yes">
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="323"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="325"/>
         <source>%1 of %n concerts</source>
         <translation><numerusform>%1 / %n konsertista</numerusform><numerusform>%1 / %n konsertista</numerusform></translation>
     </message>
@@ -1213,7 +1213,7 @@
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="29"/>
-        <location filename="../movies/FilesWidget.cpp" line="512"/>
+        <location filename="../movies/FilesWidget.cpp" line="514"/>
         <source>%n movies</source>
         <translation><numerusform>%n elokuva</numerusform><numerusform>%n elokuvaa</numerusform></translation>
     </message>
@@ -1263,7 +1263,7 @@
         <translation>Avaa elokuvahakemisto</translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/FilesWidget.cpp" line="514"/>
+        <location filename="../movies/FilesWidget.cpp" line="516"/>
         <source>%1 of %n movies</source>
         <translation><numerusform>%1 / %n elokuvasta</numerusform><numerusform>%1 / %n elokuvasta</numerusform></translation>
     </message>
@@ -2034,114 +2034,6 @@
     </message>
 </context>
 <context>
-    <name>HotMovies</name>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="17"/>
-        <source>Bulgarian</source>
-        <translation>Bulgaria</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="18"/>
-        <source>Chinese</source>
-        <translation>Kiina</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="19"/>
-        <source>Czech</source>
-        <translation>Tšekki</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="20"/>
-        <source>Danish</source>
-        <translation>Tanska</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="21"/>
-        <source>Dutch</source>
-        <translation>Hollanti</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="22"/>
-        <source>English</source>
-        <translation>Englanti</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="23"/>
-        <source>Finnish</source>
-        <translation>Suomi</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="24"/>
-        <source>French</source>
-        <translation>Ranska</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="25"/>
-        <source>German</source>
-        <translation>Saksa</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="26"/>
-        <source>Greek</source>
-        <translation>Kreikka</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="27"/>
-        <source>Hebrew</source>
-        <translation>Heprea</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="28"/>
-        <source>Hungarian</source>
-        <translation>Unkari</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="29"/>
-        <source>Italian</source>
-        <translation>Italia</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="30"/>
-        <source>Japanese</source>
-        <translation>Japani</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="31"/>
-        <source>Norwegian</source>
-        <translation>Norja</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="32"/>
-        <source>Polish</source>
-        <translation>Puola</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="33"/>
-        <source>Portuguese</source>
-        <translation>Portugali</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="34"/>
-        <source>Russian</source>
-        <translation>Venäjä</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="35"/>
-        <source>Spanish</source>
-        <translation>Espanja</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="36"/>
-        <source>Swedish</source>
-        <translation>Ruotsi</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="39"/>
-        <source>Language</source>
-        <translation>Kieli</translation>
-    </message>
-</context>
-<context>
     <name>ImageDialog</name>
     <message>
         <location filename="../globals/ImageDialog.ui" line="17"/>
@@ -2226,12 +2118,12 @@
     <message>
         <location filename="../globals/ImageDialog.cpp" line="687"/>
         <source>Images provided by &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Kuvat tarjoaa &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../globals/ImageDialog.cpp" line="689"/>
         <source>Contribute by uploading images to &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Osallistu lataamalla kuvia palveluun &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -3092,47 +2984,47 @@ Toiminto peruutettu.</translation>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../data/MovieModel.cpp" line="296"/>
+        <location filename="../data/MovieModel.cpp" line="298"/>
         <source>Actors</source>
         <translation>Näyttelijät</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="298"/>
+        <location filename="../data/MovieModel.cpp" line="300"/>
         <source>Extra Arts</source>
         <translation>Lisätaiteet</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="300"/>
+        <location filename="../data/MovieModel.cpp" line="302"/>
         <source>Extra Fanarts</source>
         <translation>Lisäfanitaide</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="302"/>
+        <location filename="../data/MovieModel.cpp" line="304"/>
         <source>Fanart</source>
         <translation>Fanitaide</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="304"/>
+        <location filename="../data/MovieModel.cpp" line="306"/>
         <source>Poster</source>
         <translation>Juliste</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="306"/>
+        <location filename="../data/MovieModel.cpp" line="308"/>
         <source>Stream Details</source>
         <translation>Mediatiedot</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="308"/>
+        <location filename="../data/MovieModel.cpp" line="310"/>
         <source>Trailer</source>
         <translation>Traileri</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="310"/>
+        <location filename="../data/MovieModel.cpp" line="312"/>
         <source>Local Trailer</source>
-        <translation type="unfinished"/>
+        <translation>Paikallinen traileri</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="312"/>
+        <location filename="../data/MovieModel.cpp" line="314"/>
         <source>IMDB ID</source>
         <translation>IMDB ID</translation>
     </message>
@@ -3604,7 +3496,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../movies/MovieWidget.ui" line="450"/>
         <source>Play local trailer</source>
-        <translation type="unfinished"/>
+        <translation>Toista paikallinen traileri</translation>
     </message>
     <message>
         <location filename="../movies/MovieWidget.ui" line="465"/>
@@ -4211,7 +4103,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="200"/>
         <source>Died</source>
-        <translation>Kuollut</translation>
+        <translation>Lopettanut</translation>
     </message>
     <message>
         <location filename="../music/MusicSearchWidget.ui" line="210"/>
@@ -4400,7 +4292,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="333"/>
         <source>Booklet</source>
-        <translation type="unfinished"/>
+        <translation>Kansivihko</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetAlbum.ui" line="355"/>
@@ -4526,7 +4418,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="235"/>
         <source>Died</source>
-        <translation>Kuollut</translation>
+        <translation>Lopettanut</translation>
     </message>
     <message>
         <location filename="../music/MusicWidgetArtist.ui" line="256"/>
@@ -4848,7 +4740,7 @@ Jos haluat hakea TMDB:n tai OFDb:n ID:n perusteella, käytä etuliitettä &quot;
         <translation>Älä tarkista päivityksiä</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="349"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="353"/>
         <source>Don&apos;t show this hint again</source>
         <translation>Älä näytä tätä vihjettä uudelleen</translation>
     </message>
@@ -5025,7 +4917,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="191"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Elokuvaa&lt;/b&gt; &quot;%1&quot; on muokattu, mutta muutoksia ei ole tallennettu</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="244"/>
@@ -5126,17 +5018,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="531"/>
         <source>&lt;b&gt;Create Directory&lt;/b&gt; &quot;%2&quot; into &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Luo hakemisto&lt;/b&gt; &quot;%2&quot; -&gt; &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="543"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Siirrä tiedosto&lt;/b&gt; &quot;%1&quot; -&gt; &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="578"/>
         <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Jaksoa&lt;/b&gt; &quot;%1&quot; on muokattu, mutta muutoksia ei ole tallennettu</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="687"/>
@@ -5167,12 +5059,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/Renamer.cpp" line="761"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;TV-sarjaa&lt;/b&gt; &quot;%1&quot; on muokattu, mutta muutoksia ei ole tallennettu</translation>
     </message>
     <message>
         <location filename="../renamer/Renamer.cpp" line="794"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; has been edited but is not saved</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Konserttia&lt;/b&gt; &quot;%1&quot; on muokattu, mutta muutoksia ei ole tallennettu</translation>
     </message>
 </context>
 <context>
@@ -5285,17 +5177,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="682"/>
         <source>Video Codec</source>
-        <translation type="unfinished"/>
+        <translation>Videokoodekki</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="696"/>
         <source>Audio Codec</source>
-        <translation type="unfinished"/>
+        <translation>Äänikoodekki</translation>
     </message>
     <message>
         <location filename="../renamer/RenamerPlaceholders.ui" line="710"/>
         <source>Number of audio channels</source>
-        <translation type="unfinished"/>
+        <translation>Äänikanavien määrä</translation>
     </message>
 </context>
 <context>
@@ -6699,13 +6591,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="514"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
         <source>%n tv shows</source>
         <translation><numerusform>%n tv-sarja</numerusform><numerusform>%n tv-sarjaa</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="514"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
         <source>%n episodes</source>
         <translation><numerusform>%n jakso</numerusform><numerusform>%n jaksoa</numerusform></translation>
     </message>
@@ -6755,19 +6647,19 @@ p, li { white-space: pre-wrap; }
         <translation>Piilota erikoisjaksot puuttuvista jaksoista</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="345"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="349"/>
         <source>Show update needed</source>
         <translation>Näytä vaadittavat päivitykset</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="346"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="350"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation>Sarja täytyy päivittää kerran, jotta puuttuvat jaksot voidaan näyttää.
 Tämän jälkeen MediaElch tarkistaa uudet jaksot automaattisesti käynnistyksen yhteydessä.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="516"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="520"/>
         <source>%1 of %n tv shows</source>
         <translation><numerusform>%1 / %n tv-sarjasta</numerusform><numerusform>%1 / %n tv-sarjasta</numerusform></translation>
     </message>

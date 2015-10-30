@@ -329,7 +329,7 @@
     <name>ConcertFilesWidget</name>
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="321"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="323"/>
         <source>%n concerts</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
@@ -364,7 +364,7 @@
         <translation>Apri la cartella del concerto</translation>
     </message>
     <message numerus="yes">
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="323"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="325"/>
         <source>%1 of %n concerts</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
@@ -1213,7 +1213,7 @@
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="29"/>
-        <location filename="../movies/FilesWidget.cpp" line="512"/>
+        <location filename="../movies/FilesWidget.cpp" line="514"/>
         <source>%n movies</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
@@ -1263,7 +1263,7 @@
         <translation>Apri Cartella del Film</translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/FilesWidget.cpp" line="514"/>
+        <location filename="../movies/FilesWidget.cpp" line="516"/>
         <source>%1 of %n movies</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
@@ -2031,114 +2031,6 @@
         <location filename="../movies/GenreWidget.cpp" line="296"/>
         <source>All Movies Saved</source>
         <translation>Tutti i Films salvati</translation>
-    </message>
-</context>
-<context>
-    <name>HotMovies</name>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="17"/>
-        <source>Bulgarian</source>
-        <translation>Bulgaro</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="18"/>
-        <source>Chinese</source>
-        <translation>Cinese</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="19"/>
-        <source>Czech</source>
-        <translation>Ceco</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="20"/>
-        <source>Danish</source>
-        <translation>Danese</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="21"/>
-        <source>Dutch</source>
-        <translation>Olandese</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="22"/>
-        <source>English</source>
-        <translation>Inglese</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="23"/>
-        <source>Finnish</source>
-        <translation>Finlandese</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="24"/>
-        <source>French</source>
-        <translation>Francese</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="25"/>
-        <source>German</source>
-        <translation>Tedesco</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="26"/>
-        <source>Greek</source>
-        <translation>Greco</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="27"/>
-        <source>Hebrew</source>
-        <translation>Ebraico</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="28"/>
-        <source>Hungarian</source>
-        <translation>Ungherese</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="29"/>
-        <source>Italian</source>
-        <translation>Italiano</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="30"/>
-        <source>Japanese</source>
-        <translation>Giapponese</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="31"/>
-        <source>Norwegian</source>
-        <translation>Norvegese</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="32"/>
-        <source>Polish</source>
-        <translation>Polacco</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="33"/>
-        <source>Portuguese</source>
-        <translation>Portoghese</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="34"/>
-        <source>Russian</source>
-        <translation>Russo</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="35"/>
-        <source>Spanish</source>
-        <translation>Spagnolo</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="36"/>
-        <source>Swedish</source>
-        <translation>Svedese</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="39"/>
-        <source>Language</source>
-        <translation>Lingua</translation>
     </message>
 </context>
 <context>
@@ -3092,47 +2984,47 @@ Operazione cancellata</translation>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../data/MovieModel.cpp" line="296"/>
+        <location filename="../data/MovieModel.cpp" line="298"/>
         <source>Actors</source>
         <translation>Attori</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="298"/>
+        <location filename="../data/MovieModel.cpp" line="300"/>
         <source>Extra Arts</source>
         <translation>Extra Arts</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="300"/>
+        <location filename="../data/MovieModel.cpp" line="302"/>
         <source>Extra Fanarts</source>
         <translation>Fanats Extra</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="302"/>
+        <location filename="../data/MovieModel.cpp" line="304"/>
         <source>Fanart</source>
         <translation>Fanart</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="304"/>
+        <location filename="../data/MovieModel.cpp" line="306"/>
         <source>Poster</source>
         <translation>Poster</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="306"/>
+        <location filename="../data/MovieModel.cpp" line="308"/>
         <source>Stream Details</source>
         <translation>Dettagli Stream</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="308"/>
+        <location filename="../data/MovieModel.cpp" line="310"/>
         <source>Trailer</source>
         <translation>Trailer</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="310"/>
+        <location filename="../data/MovieModel.cpp" line="312"/>
         <source>Local Trailer</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="312"/>
+        <location filename="../data/MovieModel.cpp" line="314"/>
         <source>IMDB ID</source>
         <translation>IMDB ID</translation>
     </message>
@@ -4846,7 +4738,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="349"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="353"/>
         <source>Don&apos;t show this hint again</source>
         <translation type="unfinished"/>
     </message>
@@ -6685,13 +6577,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="514"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
         <source>%n tv shows</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="514"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
         <source>%n episodes</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
@@ -6741,18 +6633,18 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="345"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="349"/>
         <source>Show update needed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="346"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="350"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation type="unfinished"/>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="516"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="520"/>
         <source>%1 of %n tv shows</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>

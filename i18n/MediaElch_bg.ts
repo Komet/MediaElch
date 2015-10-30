@@ -329,7 +329,7 @@
     <name>ConcertFilesWidget</name>
     <message numerus="yes">
         <location filename="../concerts/ConcertFilesWidget.cpp" line="26"/>
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="321"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="323"/>
         <source>%n concerts</source>
         <translation><numerusform>%n концерт</numerusform><numerusform>%n концерта</numerusform></translation>
     </message>
@@ -364,7 +364,7 @@
         <translation>Отвори папката с концерти</translation>
     </message>
     <message numerus="yes">
-        <location filename="../concerts/ConcertFilesWidget.cpp" line="323"/>
+        <location filename="../concerts/ConcertFilesWidget.cpp" line="325"/>
         <source>%1 of %n concerts</source>
         <translation><numerusform>%1 от %n концерт</numerusform><numerusform>%1 от %n  концерта</numerusform></translation>
     </message>
@@ -1213,7 +1213,7 @@
     </message>
     <message numerus="yes">
         <location filename="../movies/FilesWidget.cpp" line="29"/>
-        <location filename="../movies/FilesWidget.cpp" line="512"/>
+        <location filename="../movies/FilesWidget.cpp" line="514"/>
         <source>%n movies</source>
         <translation><numerusform>%n филм</numerusform><numerusform>%n филма</numerusform></translation>
     </message>
@@ -1263,7 +1263,7 @@
         <translation>Отвори папката с филми</translation>
     </message>
     <message numerus="yes">
-        <location filename="../movies/FilesWidget.cpp" line="514"/>
+        <location filename="../movies/FilesWidget.cpp" line="516"/>
         <source>%1 of %n movies</source>
         <translation><numerusform>%1 от %n филм</numerusform><numerusform>%1 от %n филма</numerusform></translation>
     </message>
@@ -2031,114 +2031,6 @@
         <location filename="../movies/GenreWidget.cpp" line="296"/>
         <source>All Movies Saved</source>
         <translation>Всички филми са съхранени</translation>
-    </message>
-</context>
-<context>
-    <name>HotMovies</name>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="17"/>
-        <source>Bulgarian</source>
-        <translation>Български</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="18"/>
-        <source>Chinese</source>
-        <translation>Китайски</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="19"/>
-        <source>Czech</source>
-        <translation>Чешки</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="20"/>
-        <source>Danish</source>
-        <translation>Датски</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="21"/>
-        <source>Dutch</source>
-        <translation>Нидерландски</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="22"/>
-        <source>English</source>
-        <translation>Английски</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="23"/>
-        <source>Finnish</source>
-        <translation>Фински</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="24"/>
-        <source>French</source>
-        <translation>Френски</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="25"/>
-        <source>German</source>
-        <translation>Немски</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="26"/>
-        <source>Greek</source>
-        <translation>Гръцки</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="27"/>
-        <source>Hebrew</source>
-        <translation>Иврит</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="28"/>
-        <source>Hungarian</source>
-        <translation>Унгарски</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="29"/>
-        <source>Italian</source>
-        <translation>Италиански</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="30"/>
-        <source>Japanese</source>
-        <translation>Японски</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="31"/>
-        <source>Norwegian</source>
-        <translation>Норвежки</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="32"/>
-        <source>Polish</source>
-        <translation>Полски</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="33"/>
-        <source>Portuguese</source>
-        <translation>Португалски</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="34"/>
-        <source>Russian</source>
-        <translation>Руски</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="35"/>
-        <source>Spanish</source>
-        <translation>Испански</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="36"/>
-        <source>Swedish</source>
-        <translation>Шведски</translation>
-    </message>
-    <message>
-        <location filename="../scrapers/HotMovies.cpp" line="39"/>
-        <source>Language</source>
-        <translation>Език</translation>
     </message>
 </context>
 <context>
@@ -3092,47 +2984,47 @@ Main menu entry (tooltip)</extracomment>
 <context>
     <name>MovieModel</name>
     <message>
-        <location filename="../data/MovieModel.cpp" line="296"/>
+        <location filename="../data/MovieModel.cpp" line="298"/>
         <source>Actors</source>
         <translation>Актьори</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="298"/>
+        <location filename="../data/MovieModel.cpp" line="300"/>
         <source>Extra Arts</source>
         <translation>Допълнителни изображения</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="300"/>
+        <location filename="../data/MovieModel.cpp" line="302"/>
         <source>Extra Fanarts</source>
         <translation>Допълнителни фанарти</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="302"/>
+        <location filename="../data/MovieModel.cpp" line="304"/>
         <source>Fanart</source>
         <translation>Фанарт</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="304"/>
+        <location filename="../data/MovieModel.cpp" line="306"/>
         <source>Poster</source>
         <translation>Постер</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="306"/>
+        <location filename="../data/MovieModel.cpp" line="308"/>
         <source>Stream Details</source>
         <translation>Стрийм детайли</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="308"/>
+        <location filename="../data/MovieModel.cpp" line="310"/>
         <source>Trailer</source>
         <translation>Трейлър</translation>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="310"/>
+        <location filename="../data/MovieModel.cpp" line="312"/>
         <source>Local Trailer</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../data/MovieModel.cpp" line="312"/>
+        <location filename="../data/MovieModel.cpp" line="314"/>
         <source>IMDB ID</source>
         <translation>IMDB ID</translation>
     </message>
@@ -4848,7 +4740,7 @@ If you want to search by an TMDB or OFDb id please prefix it with &quot;id&quot;
         <translation>Не проверявай за актуализации</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="349"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="353"/>
         <source>Don&apos;t show this hint again</source>
         <translation>Не показвай отново тази подсказка</translation>
     </message>
@@ -6694,13 +6586,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="514"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
         <source>%n tv shows</source>
         <translation><numerusform>%n тв шоу</numerusform><numerusform>%n тв шоута</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../tvShows/TvShowFilesWidget.cpp" line="26"/>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="514"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="518"/>
         <source>%n episodes</source>
         <translation><numerusform>%n епизод</numerusform><numerusform>%n епизода</numerusform></translation>
     </message>
@@ -6750,19 +6642,19 @@ p, li { white-space: pre-wrap; }
         <translation>Скрий специалните епизоди от липсващи епизоди</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="345"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="349"/>
         <source>Show update needed</source>
         <translation>Покажи необходимите актуализации</translation>
     </message>
     <message>
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="346"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="350"/>
         <source>You need to update the show once to show missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
         <translation>Трябва да обновите веднъж шоуто, за да се покажат, липсващите епизоди.
 След това MediaElch автоматично ще проверява за нови епизоди при стартиране.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tvShows/TvShowFilesWidget.cpp" line="516"/>
+        <location filename="../tvShows/TvShowFilesWidget.cpp" line="520"/>
         <source>%1 of %n tv shows</source>
         <translation><numerusform>%1 от %n тв шоу</numerusform><numerusform>%1 от %n тв шоута</numerusform></translation>
     </message>
