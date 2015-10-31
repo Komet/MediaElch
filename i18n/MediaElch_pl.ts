@@ -5405,7 +5405,7 @@ Odcinki seriali powinny znajdować się w podfolderach o nazwie takiej jak tytu�
     <message>
         <location filename="../settings/SettingsWindow.ui" line="279"/>
         <source>Enable adult movie scrapers</source>
-        <translation>Używaj dostawcy informacji filmów dla dorosłych</translation>
+        <translation>Aktywuj dostawców informacji o filmach dla dorosłych</translation>
     </message>
     <message>
         <location filename="../settings/SettingsWindow.ui" line="350"/>
