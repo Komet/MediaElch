@@ -40,85 +40,105 @@ bool XbmcXml::hasFeature(int feature)
     return true;
 }
 
-/**
- * @brief Writes movie elements to an xml stream
- * @param xml XML stream
- * @param movie Movie to save
- */
-void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie)
+QByteArray XbmcXml::getMovieXml(Movie *movie)
 {
-    qDebug() << "Entered, movie=" << movie->name();
-    xml.writeStartElement("movie");
-    xml.writeTextElement("title", movie->name());
-    xml.writeTextElement("originaltitle", movie->originalName());
-    xml.writeTextElement("rating", QString("%1").arg(movie->rating()));
-    xml.writeTextElement("votes", QString::number(movie->votes()));
-    xml.writeTextElement("top250", QString::number(movie->top250()));
-    xml.writeTextElement("year", movie->released().toString("yyyy"));
-    xml.writeTextElement("plot", movie->overview());
-    xml.writeTextElement("outline", movie->outline());
-    xml.writeTextElement("tagline", movie->tagline());
-    if (movie->runtime() > 0)
-        xml.writeTextElement("runtime", QString("%1").arg(movie->runtime()));
-    xml.writeTextElement("mpaa", movie->certification());
-    xml.writeTextElement("playcount", QString("%1").arg(movie->playcount()));
-    if (!movie->lastPlayed().isNull())
-        xml.writeTextElement("lastplayed", movie->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
-    if (!movie->dateAdded().isNull())
-        xml.writeTextElement("dateadded", movie->dateAdded().toString("yyyy-MM-dd HH:mm:ss"));
-    xml.writeTextElement("id", movie->id());
-    xml.writeTextElement("tmdbid", movie->tmdbId());
-    xml.writeTextElement("set", movie->set());
-    xml.writeTextElement("sorttitle", movie->sortTitle());
-    xml.writeTextElement("trailer", Helper::instance()->formatTrailerUrl(movie->trailer().toString()));
-    xml.writeTextElement("watched", (movie->watched()) ? "true" : "false");
-
-    foreach (const QString &credit, movie->writer().split(","))
-        xml.writeTextElement("credits", credit.trimmed());
-
-    foreach (const QString &director, movie->director().split(","))
-        xml.writeTextElement("director", director.trimmed());
-
-    foreach (const QString &studio, movie->studios())
-        xml.writeTextElement("studio", studio);
-
-    foreach (const QString &genre, movie->genres())
-        xml.writeTextElement("genre", genre);
-
-    foreach (const QString &country, movie->countries())
-        xml.writeTextElement("country", country);
-
-    foreach (const QString &tag, movie->tags())
-        xml.writeTextElement("tag", tag);
-    foreach (const Actor &actor, movie->actors()) {
-        xml.writeStartElement("actor");
-        xml.writeTextElement("name", actor.name);
-        xml.writeTextElement("role", actor.role);
-        if (!actor.thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo())
-            xml.writeTextElement("thumb", actor.thumb);
-        xml.writeEndElement();
+    QDomDocument doc;
+    doc.setContent(movie->nfoContent());
+    if (movie->nfoContent().isEmpty()) {
+        QDomNode node = doc.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"");
+        doc.insertBefore(node, doc.firstChild());
+        doc.appendChild(doc.createElement("movie"));
     }
+
+    QDomElement movieElem = doc.elementsByTagName("movie").at(0).toElement();
+
+    setTextValue(doc, "title", movie->name());
+    setTextValue(doc, "originaltitle", movie->originalName());
+    setTextValue(doc, "rating", QString("%1").arg(movie->rating()));
+    setTextValue(doc, "votes", QString::number(movie->votes()));
+    setTextValue(doc, "top250", QString::number(movie->top250()));
+    setTextValue(doc, "year", movie->released().toString("yyyy"));
+    setTextValue(doc, "plot", movie->overview());
+    setTextValue(doc, "outline", movie->outline());
+    setTextValue(doc, "tagline", movie->tagline());
+    if (movie->runtime() > 0)
+        setTextValue(doc, "runtime", QString("%1").arg(movie->runtime()));
+    else
+        removeChildNodes(doc, "runtime");
+    setTextValue(doc, "mpaa", movie->certification());
+    setTextValue(doc, "playcount", QString("%1").arg(movie->playcount()));
+    if (!movie->lastPlayed().isNull())
+        setTextValue(doc, "lastplayed", movie->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
+    else
+        removeChildNodes(doc, "lastplayed");
+    if (!movie->dateAdded().isNull())
+        setTextValue(doc, "dateadded", movie->dateAdded().toString("yyyy-MM-dd HH:mm:ss"));
+    else
+        removeChildNodes(doc, "dateadded");
+    setTextValue(doc, "id", movie->id());
+    setTextValue(doc, "tmdbid", movie->tmdbId());
+    setTextValue(doc, "set", movie->set());
+    setTextValue(doc, "sorttitle", movie->sortTitle());
+    setTextValue(doc, "trailer", Helper::instance()->formatTrailerUrl(movie->trailer().toString()));
+    setTextValue(doc, "watched", (movie->watched()) ? "true" : "false");
+
+    QStringList writers;
+    foreach (const QString &credit, movie->writer().split(","))
+        writers << credit.trimmed();
+    setListValue(doc, "credits", writers);
+
+    QStringList directors;
+    foreach (const QString &director, movie->director().split(","))
+        directors << director.trimmed();
+    setListValue(doc, "director", directors);
+
+    setListValue(doc, "studio", movie->studios());
+    setListValue(doc, "genre", movie->genres());
+    setListValue(doc, "country", movie->countries());
+    setListValue(doc, "tag", movie->tags());
 
     if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+        removeChildNodes(doc, "thumb");
+        removeChildNodes(doc, "fanart");
+
         foreach (const Poster &poster, movie->posters()) {
-            xml.writeStartElement("thumb");
-            xml.writeAttribute("preview", poster.thumbUrl.toString());
-            xml.writeCharacters(poster.originalUrl.toString());
-            xml.writeEndElement();
+            QDomElement elem = doc.createElement("thumb");
+            elem.setAttribute("preview", poster.thumbUrl.toString());
+            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
+            appendXmlNode(doc, elem);
         }
-        xml.writeStartElement("fanart");
+
+        QDomElement fanartElem = doc.createElement("fanart");
         foreach (const Poster &poster, movie->backdrops()) {
-            xml.writeStartElement("thumb");
-            xml.writeAttribute("preview", poster.thumbUrl.toString());
-            xml.writeCharacters(poster.originalUrl.toString());
-            xml.writeEndElement();
+            QDomElement elem = doc.createElement("thumb");
+            elem.setAttribute("preview", poster.thumbUrl.toString());
+            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
+            fanartElem.appendChild(elem);
         }
-        xml.writeEndElement();
+        appendXmlNode(doc, fanartElem);
     }
 
-    writeStreamDetails(xml, movie->streamDetails());
+    removeChildNodes(doc, "actor");
 
-    xml.writeEndElement();
+    foreach (const Actor &actor, movie->actors()) {
+        QDomElement elem = doc.createElement("actor");
+        QDomElement elemName = doc.createElement("name");
+        QDomElement elemRole = doc.createElement("role");
+        elemName.appendChild(doc.createTextNode(actor.name));
+        elemRole.appendChild(doc.createTextNode(actor.role));
+        elem.appendChild(elemName);
+        elem.appendChild(elemRole);
+        if (!actor.thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+            QDomElement elemThumb = doc.createElement("thumb");
+            elemThumb.appendChild(doc.createTextNode(actor.thumb));
+            elem.appendChild(elemThumb);
+        }
+        appendXmlNode(doc, elem);
+    }
+
+    writeStreamDetails(doc, movie->streamDetails());
+
+    return doc.toByteArray(4);
 }
 
 /**
@@ -130,12 +150,7 @@ void XbmcXml::writeMovieXml(QXmlStreamWriter &xml, Movie *movie)
 bool XbmcXml::saveMovie(Movie *movie)
 {
     qDebug() << "Entered, movie=" << movie->name();
-    QByteArray xmlContent;
-    QXmlStreamWriter xml(&xmlContent);
-    xml.setAutoFormatting(true);
-    xml.writeStartDocument("1.0", true);
-    writeMovieXml(xml, movie);
-    xml.writeEndDocument();
+    QByteArray xmlContent = getMovieXml(movie);
 
     if (movie->files().size() == 0) {
         qWarning() << "Movie has no files";
@@ -561,6 +576,74 @@ void XbmcXml::writeStreamDetails(QXmlStreamWriter &xml, StreamDetails *streamDet
     xml.writeEndElement();
 }
 
+void XbmcXml::writeStreamDetails(QDomDocument &doc, StreamDetails *streamDetails)
+{
+    if (streamDetails->videoDetails().isEmpty() && streamDetails->audioDetails().isEmpty() && streamDetails->subtitleDetails().isEmpty())
+        return;
+
+    removeChildNodes(doc, "fileinfo");
+    QDomElement elemFi = doc.createElement("fileinfo");
+    QDomElement elemSd = doc.createElement("streamdetails");
+
+    QDomElement elemVideo = doc.createElement("video");
+    QMapIterator<QString, QString> itVideo(streamDetails->videoDetails());
+    while (itVideo.hasNext()) {
+        itVideo.next();
+        if (itVideo.key() == "width" && itVideo.value().toInt() == 0)
+            continue;
+        if (itVideo.key() == "height" && itVideo.value().toInt() == 0)
+            continue;
+        if (itVideo.key() == "durationinseconds" && itVideo.value().toInt() == 0)
+            continue;
+        if (itVideo.value() == "")
+            continue;
+
+        QString value = itVideo.value();
+
+        if (itVideo.key() == "aspect")
+            value = value.replace(",", ".");
+
+        QDomElement elem = doc.createElement(itVideo.key());
+        elem.appendChild(doc.createTextNode(value));
+        elemVideo.appendChild(elem);
+    }
+    elemSd.appendChild(elemVideo);
+
+    for (int i=0, n=streamDetails->audioDetails().count() ; i<n ; ++i) {
+        QDomElement elemAudio = doc.createElement("audio");
+        QMapIterator<QString, QString> itAudio(streamDetails->audioDetails().at(i));
+        while (itAudio.hasNext()) {
+            itAudio.next();
+            if (itAudio.value() == "")
+                continue;
+
+            QDomElement elem = doc.createElement(itAudio.key());
+            elem.appendChild(doc.createTextNode(itAudio.value()));
+            elemAudio.appendChild(elem);
+        }
+        elemSd.appendChild(elemAudio);
+    }
+
+    for (int i=0, n=streamDetails->subtitleDetails().count() ; i<n ; ++i) {
+        QDomElement elemSubtitle = doc.createElement("subtitle");
+        QMapIterator<QString, QString> itSubtitle(streamDetails->subtitleDetails().at(i));
+        while (itSubtitle.hasNext()) {
+            itSubtitle.next();
+            if (itSubtitle.value() == "")
+                continue;
+
+            QDomElement elem = doc.createElement(itSubtitle.key());
+            elem.appendChild(doc.createTextNode(itSubtitle.value()));
+            elemSubtitle.appendChild(elem);
+        }
+        elemSd.appendChild(elemSubtitle);
+    }
+
+
+    elemFi.appendChild(elemSd);
+    appendXmlNode(doc, elemFi);
+}
+
 /**
  * @brief Get the path to the actor image
  * @param movie
@@ -581,56 +664,62 @@ QString XbmcXml::actorImageName(Movie *movie, Actor actor)
     return QString();
 }
 
-/**
- * @brief Writes concert elements to an xml stream
- * @param xml XML stream
- * @param concert Concert to save
- */
-void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert)
+QByteArray XbmcXml::getConcertXml(Concert *concert)
 {
-    qDebug() << "Entered, concert=" << concert->name();
-    xml.writeStartElement("musicvideo");
-    xml.writeTextElement("title", concert->name());
-    xml.writeTextElement("artist", concert->artist());
-    xml.writeTextElement("album", concert->album());
-    xml.writeTextElement("id", concert->id());
-    xml.writeTextElement("tmdbid", concert->tmdbId());
-    xml.writeTextElement("rating", QString("%1").arg(concert->rating()));
-    xml.writeTextElement("year", concert->released().toString("yyyy"));
-    xml.writeTextElement("plot", concert->overview());
-    xml.writeTextElement("outline", concert->overview());
-    xml.writeTextElement("tagline", concert->tagline());
-    if (concert->runtime() > 0)
-        xml.writeTextElement("runtime", QString("%1").arg(concert->runtime()));
-    xml.writeTextElement("mpaa", concert->certification());
-    xml.writeTextElement("playcount", QString("%1").arg(concert->playcount()));
-    xml.writeTextElement("lastplayed", concert->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
-    xml.writeTextElement("trailer", Helper::instance()->formatTrailerUrl(concert->trailer().toString()));
-    xml.writeTextElement("watched", (concert->watched()) ? "true" : "false");
-    xml.writeTextElement("genre", concert->genres().join(" / "));
-    foreach (const QString &tag, concert->tags())
-        xml.writeTextElement("tag", tag);
-
-    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-        foreach (const Poster &poster, concert->posters()) {
-            xml.writeStartElement("thumb");
-            xml.writeAttribute("preview", poster.thumbUrl.toString());
-            xml.writeCharacters(poster.originalUrl.toString());
-            xml.writeEndElement();
-        }
-        xml.writeStartElement("fanart");
-        foreach (const Poster &poster, concert->backdrops()) {
-            xml.writeStartElement("thumb");
-            xml.writeAttribute("preview", poster.thumbUrl.toString());
-            xml.writeCharacters(poster.originalUrl.toString());
-            xml.writeEndElement();
-        }
-        xml.writeEndElement();
+    QDomDocument doc;
+    doc.setContent(concert->nfoContent());
+    if (concert->nfoContent().isEmpty()) {
+        QDomNode node = doc.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"");
+        doc.insertBefore(node, doc.firstChild());
+        doc.appendChild(doc.createElement("musicvideo"));
     }
 
-    writeStreamDetails(xml, concert->streamDetails());
+    QDomElement concertElem = doc.elementsByTagName("musicvideo").at(0).toElement();
 
-    xml.writeEndElement();
+    setTextValue(doc, "title", concert->name());
+    setTextValue(doc, "artist", concert->artist());
+    setTextValue(doc, "album", concert->album());
+    setTextValue(doc, "id", concert->id());
+    setTextValue(doc, "tmdbid", concert->tmdbId());
+    setTextValue(doc, "rating", QString("%1").arg(concert->rating()));
+    setTextValue(doc, "year", concert->released().toString("yyyy"));
+    setTextValue(doc, "plot", concert->overview());
+    setTextValue(doc, "outline", concert->overview());
+    setTextValue(doc, "tagline", concert->tagline());
+    if (concert->runtime() > 0)
+        setTextValue(doc, "runtime", QString("%1").arg(concert->runtime()));
+    setTextValue(doc, "mpaa", concert->certification());
+    setTextValue(doc, "playcount", QString("%1").arg(concert->playcount()));
+    setTextValue(doc, "lastplayed", concert->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
+    setTextValue(doc, "trailer", Helper::instance()->formatTrailerUrl(concert->trailer().toString()));
+    setTextValue(doc, "watched", (concert->watched()) ? "true" : "false");
+    setTextValue(doc, "genre", concert->genres().join(" / "));
+    setListValue(doc, "tag", concert->tags());
+
+    if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+        removeChildNodes(doc, "thumb");
+        removeChildNodes(doc, "fanart");
+
+        foreach (const Poster &poster, concert->posters()) {
+            QDomElement elem = doc.createElement("thumb");
+            elem.setAttribute("preview", poster.thumbUrl.toString());
+            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
+            appendXmlNode(doc, elem);
+        }
+
+        QDomElement fanartElem = doc.createElement("fanart");
+        foreach (const Poster &poster, concert->backdrops()) {
+            QDomElement elem = doc.createElement("thumb");
+            elem.setAttribute("preview", poster.thumbUrl.toString());
+            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
+            fanartElem.appendChild(elem);
+        }
+        appendXmlNode(doc, fanartElem);
+    }
+
+    writeStreamDetails(doc, concert->streamDetails());
+
+    return doc.toByteArray(4);
 }
 
 /**
@@ -642,12 +731,7 @@ void XbmcXml::writeConcertXml(QXmlStreamWriter &xml, Concert *concert)
 bool XbmcXml::saveConcert(Concert *concert)
 {
     qDebug() << "Entered, concert=" << concert->name();
-    QByteArray xmlContent;
-    QXmlStreamWriter xml(&xmlContent);
-    xml.setAutoFormatting(true);
-    xml.writeStartDocument("1.0", true);
-    writeConcertXml(xml, concert);
-    xml.writeEndDocument();
+    QByteArray xmlContent = getConcertXml(concert);
 
     if (concert->files().size() == 0) {
         qWarning() << "Concert has no files";
@@ -1083,12 +1167,7 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoConten
  */
 bool XbmcXml::saveTvShow(TvShow *show)
 {
-    QByteArray xmlContent;
-    QXmlStreamWriter xml(&xmlContent);
-    xml.setAutoFormatting(true);
-    xml.writeStartDocument("1.0", true);
-    writeTvShowXml(xml, show);
-    xml.writeEndDocument();
+    QByteArray xmlContent = getTvShowXml(show);
 
     if (show->dir().isEmpty())
         return false;
@@ -1265,88 +1344,117 @@ bool XbmcXml::saveTvShowEpisode(TvShowEpisode *episode)
     return true;
 }
 
-/**
- * @brief Writes tv show elements to an xml stream
- * @param xml XML stream
- * @param show Tv show to save
- */
-void XbmcXml::writeTvShowXml(QXmlStreamWriter &xml, TvShow *show)
+QByteArray XbmcXml::getTvShowXml(TvShow *show)
 {
-    qDebug() << "Entered, show=" << show->name();
-    xml.writeStartElement("tvshow");
-    xml.writeTextElement("title", show->name());
-    xml.writeTextElement("showtitle", show->showTitle());
-    if (!show->sortTitle().isEmpty()) {
-        xml.writeStartElement("sorttitle");
-        xml.writeAttribute("clear", "true");
-        xml.writeCharacters(show->sortTitle());
-        xml.writeEndElement();
+    QDomDocument doc;
+    doc.setContent(show->nfoContent());
+    if (show->nfoContent().isEmpty()) {
+        QDomNode node = doc.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"");
+        doc.insertBefore(node, doc.firstChild());
+        doc.appendChild(doc.createElement("tvshow"));
     }
-    xml.writeTextElement("rating", QString("%1").arg(show->rating()));
-    xml.writeTextElement("episode", QString("%1").arg(show->episodes().count()));
-    xml.writeTextElement("plot", show->overview());
-    xml.writeTextElement("outline", show->overview());
-    xml.writeTextElement("mpaa", QString("%1").arg(show->certification()));
-    xml.writeTextElement("premiered", show->firstAired().toString("yyyy-MM-dd"));
-    xml.writeTextElement("studio", show->network());
-    xml.writeTextElement("tvdbid", show->tvdbId());
-    xml.writeTextElement("id", show->id());
-    xml.writeTextElement("imdbId", show->imdbId());
+
+    QDomElement showElem = doc.elementsByTagName("tvshow").at(0).toElement();
+
+    setTextValue(doc, "title", show->name());
+    setTextValue(doc, "showtitle", show->showTitle());
+    if (!show->sortTitle().isEmpty()) {
+        QDomElement elem = setTextValue(doc, "sorttitle", show->sortTitle());
+        elem.setAttribute("clear", "true");
+    } else {
+        removeChildNodes(doc, "sorttitle");
+    }
+    setTextValue(doc, "rating", QString("%1").arg(show->rating()));
+    setTextValue(doc, "episode", QString("%1").arg(show->episodes().count()));
+    setTextValue(doc, "plot", show->overview());
+    setTextValue(doc, "outline", show->overview());
+    setTextValue(doc, "mpaa", QString("%1").arg(show->certification()));
+    setTextValue(doc, "premiered", show->firstAired().toString("yyyy-MM-dd"));
+    setTextValue(doc, "studio", show->network());
+    setTextValue(doc, "tvdbid", show->tvdbId());
+    setTextValue(doc, "id", show->id());
+    setTextValue(doc, "imdbId", show->imdbId());
     if (show->runtime() > 0)
-        xml.writeTextElement("runtime", QString("%1").arg(show->runtime()));
+        setTextValue(doc, "runtime", QString("%1").arg(show->runtime()));
+    else if (!showElem.elementsByTagName("runtime").isEmpty())
+        showElem.removeChild(showElem.elementsByTagName("runtime").at(0));
 
     if (!show->episodeGuideUrl().isEmpty()) {
-        xml.writeStartElement("episodeguide");
-        xml.writeTextElement("url", show->episodeGuideUrl());
-        xml.writeEndElement();
+        QDomNodeList childNodes = showElem.childNodes();
+        for (int i=0, n=childNodes.count() ; i<n ; ++i) {
+            if (childNodes.at(i).nodeName() == "episodeguide") {
+                showElem.removeChild(childNodes.at(i));
+                break;
+            }
+        }
+        QDomElement elem = doc.createElement("episodeguide");
+        QDomElement elemUrl = doc.createElement("url");
+        elemUrl.appendChild(doc.createTextNode(show->episodeGuideUrl()));
+        elem.appendChild(elemUrl);
+        appendXmlNode(doc, elem);
+    } else {
+        removeChildNodes(doc, "episodeguide");
     }
 
-    xml.writeTextElement("genre", show->genres().join(" / "));
-    foreach (const QString &tag, show->tags())
-        xml.writeTextElement("tag", tag);
+    setTextValue(doc, "genre", show->genres().join(" / "));
+    setListValue(doc, "tag", show->tags());
+
+    removeChildNodes(doc, "actor");
 
     foreach (const Actor &actor, show->actors()) {
-        xml.writeStartElement("actor");
-        xml.writeTextElement("name", actor.name);
-        xml.writeTextElement("role", actor.role);
-        if (!actor.thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo())
-            xml.writeTextElement("thumb", actor.thumb);
-        xml.writeEndElement();
+        QDomElement elem = doc.createElement("actor");
+        QDomElement elemName = doc.createElement("name");
+        QDomElement elemRole = doc.createElement("role");
+        elemName.appendChild(doc.createTextNode(actor.name));
+        elemRole.appendChild(doc.createTextNode(actor.role));
+        elem.appendChild(elemName);
+        elem.appendChild(elemRole);
+        if (!actor.thumb.isEmpty() && Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+            QDomElement elemThumb = doc.createElement("thumb");
+            elemThumb.appendChild(doc.createTextNode(actor.thumb));
+            elem.appendChild(elemThumb);
+        }
+        appendXmlNode(doc, elem);
     }
 
     if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+        removeChildNodes(doc, "thumb");
+        removeChildNodes(doc, "fanart");
+
         foreach (const Poster &poster, show->posters()) {
-            xml.writeStartElement("thumb");
-            xml.writeCharacters(poster.originalUrl.toString());
-            xml.writeEndElement();
-            xml.writeStartElement("thumb");
-            xml.writeAttribute("type", "season");
-            xml.writeAttribute("season", "-1");
-            xml.writeCharacters(poster.originalUrl.toString());
-            xml.writeEndElement();
+            QDomElement elem = doc.createElement("thumb");
+            elem.setAttribute("preview", poster.thumbUrl.toString());
+            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
+            appendXmlNode(doc, elem);
+
+            QDomElement elemSeason = doc.createElement("thumb");
+            elemSeason.setAttribute("type", "season");
+            elemSeason.setAttribute("season", "-1");
+            elemSeason.appendChild(doc.createTextNode(poster.originalUrl.toString()));
+            appendXmlNode(doc, elemSeason);
         }
 
-        xml.writeStartElement("fanart");
+        QDomElement fanartElem = doc.createElement("fanart");
         foreach (const Poster &poster, show->backdrops()) {
-            xml.writeStartElement("thumb");
-            xml.writeAttribute("preview", poster.thumbUrl.toString());
-            xml.writeCharacters(poster.originalUrl.toString());
-            xml.writeEndElement();
+            QDomElement elem = doc.createElement("thumb");
+            elem.setAttribute("preview", poster.thumbUrl.toString());
+            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
+            fanartElem.appendChild(elem);
         }
-        xml.writeEndElement();
+        appendXmlNode(doc, fanartElem);
 
         foreach (int season, show->seasons()) {
             foreach (const Poster &poster, show->seasonPosters(season)) {
-                xml.writeStartElement("thumb");
-                xml.writeAttribute("type", "season");
-                xml.writeAttribute("season", QString("%1").arg(season));
-                xml.writeCharacters(poster.originalUrl.toString());
-                xml.writeEndElement();
+                QDomElement elemSeason = doc.createElement("thumb");
+                elemSeason.setAttribute("type", "season");
+                elemSeason.setAttribute("season", QString("%1").arg(season));
+                elemSeason.appendChild(doc.createTextNode(poster.originalUrl.toString()));
+                appendXmlNode(doc, elemSeason);
             }
         }
     }
 
-    xml.writeEndElement();
+    return doc.toByteArray(4);
 }
 
 /**
@@ -1891,8 +1999,8 @@ bool XbmcXml::loadAlbum(Album *album, QString initialNfoContent)
     QDomDocument domDoc;
     domDoc.setContent(nfoContent);
 
-    if (!domDoc.elementsByTagName("musicBrainzAlbumID").isEmpty())
-        album->setMbId(domDoc.elementsByTagName("musicBrainzAlbumID").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("musicBrainzReleaseGroupID").isEmpty())
+        album->setMbId(domDoc.elementsByTagName("musicBrainzReleaseGroupID").at(0).toElement().text());
     if (!domDoc.elementsByTagName("allmusicid").isEmpty())
         album->setAllMusicId(domDoc.elementsByTagName("allmusicid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("title").isEmpty())
@@ -2017,12 +2125,7 @@ QString XbmcXml::nfoFilePath(Album *album)
 
 bool XbmcXml::saveArtist(Artist *artist)
 {
-    QByteArray xmlContent;
-    QXmlStreamWriter xml(&xmlContent);
-    xml.setAutoFormatting(true);
-    xml.writeStartDocument("1.0", true);
-    writeArtistXml(xml, artist);
-    xml.writeEndDocument();
+    QByteArray xmlContent = getArtistXml(artist);
 
     if (artist->path().isEmpty())
         return false;
@@ -2078,12 +2181,7 @@ bool XbmcXml::saveArtist(Artist *artist)
 
 bool XbmcXml::saveAlbum(Album *album)
 {
-    QByteArray xmlContent;
-    QXmlStreamWriter xml(&xmlContent);
-    xml.setAutoFormatting(true);
-    xml.writeStartDocument("1.0", true);
-    writeAlbumXml(xml, album);
-    xml.writeEndDocument();
+    QByteArray xmlContent = getAlbumXml(album);
 
     if (album->path().isEmpty())
         return false;
@@ -2151,85 +2249,216 @@ bool XbmcXml::saveAlbum(Album *album)
     return true;
 }
 
-void XbmcXml::writeArtistXml(QXmlStreamWriter &xml, Artist *artist)
+QByteArray XbmcXml::getArtistXml(Artist *artist)
 {
-    xml.writeStartElement("artist");
+    QDomDocument doc;
+    doc.setContent(artist->nfoContent());
+    if (artist->nfoContent().isEmpty()) {
+        QDomNode node = doc.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"");
+        doc.insertBefore(node, doc.firstChild());
+        doc.appendChild(doc.createElement("artist"));
+    }
+
+    QDomElement artistElem = doc.elementsByTagName("artist").at(0).toElement();
+
     if (!artist->mbId().isEmpty())
-        xml.writeTextElement("musicBrainzArtistID", artist->mbId());
+        setTextValue(doc, "musicBrainzArtistID", artist->mbId());
+    else
+        removeChildNodes(doc, "musicBrainzArtistID");
     if (!artist->allMusicId().isEmpty())
-        xml.writeTextElement("allmusicid", artist->allMusicId());
-    xml.writeTextElement("name", artist->name());
-    xml.writeTextElement("genre", artist->genres().join(" / "));
-    foreach (const QString &style, artist->styles())
-        xml.writeTextElement("style", style);
-    foreach (const QString &mood, artist->moods())
-        xml.writeTextElement("mood", mood);
-    xml.writeTextElement("yearsactive", artist->yearsActive());
-    xml.writeTextElement("formed", artist->formed());
-    xml.writeTextElement("biography", artist->biography());
-    xml.writeTextElement("born", artist->born());
-    xml.writeTextElement("died", artist->died());
-    xml.writeTextElement("disbanded", artist->disbanded());
+        setTextValue(doc, "allmusicid", artist->allMusicId());
+    else
+        removeChildNodes(doc, "allmusicid");
+    setTextValue(doc, "name", artist->name());
+    setTextValue(doc, "genre", artist->genres().join(" / "));
+    setListValue(doc, "style", artist->styles());
+    setListValue(doc, "mood", artist->moods());
+    setTextValue(doc, "yearsactive", artist->yearsActive());
+    setTextValue(doc, "formed", artist->formed());
+    setTextValue(doc, "biography", artist->biography());
+    setTextValue(doc, "born", artist->born());
+    setTextValue(doc, "died", artist->died());
+    setTextValue(doc, "disbanded", artist->disbanded());
 
     if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
+        removeChildNodes(doc, "thumb");
+        removeChildNodes(doc, "fanart");
+
         foreach (const Poster &poster, artist->images(ImageType::ArtistThumb)) {
-            xml.writeStartElement("thumb");
-            xml.writeAttribute("preview", poster.thumbUrl.toString());
-            xml.writeCharacters(poster.originalUrl.toString());
-            xml.writeEndElement();
+            QDomElement elem = doc.createElement("thumb");
+            elem.setAttribute("preview", poster.thumbUrl.toString());
+            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
+            appendXmlNode(doc, elem);
         }
-        xml.writeStartElement("fanart");
+
+        QDomElement fanartElem = doc.createElement("fanart");
         foreach (const Poster &poster, artist->images(ImageType::ArtistFanart)) {
-            xml.writeStartElement("thumb");
-            xml.writeAttribute("preview", poster.thumbUrl.toString());
-            xml.writeCharacters(poster.originalUrl.toString());
-            xml.writeEndElement();
+            QDomElement elem = doc.createElement("thumb");
+            elem.setAttribute("preview", poster.thumbUrl.toString());
+            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
+            fanartElem.appendChild(elem);
         }
-        xml.writeEndElement();
+        appendXmlNode(doc, fanartElem);
+    }
+
+    QList<QDomNode> albumNodes;
+    QDomNodeList childNodes = artistElem.childNodes();
+    for (int i=0, n=childNodes.count() ; i<n ; ++i) {
+        if (childNodes.at(i).nodeName() == "album")
+            albumNodes.append(childNodes.at(i));
     }
 
     foreach (const DiscographyAlbum &album, artist->discographyAlbums()) {
-        xml.writeStartElement("album");
-        xml.writeTextElement("title", album.title);
-        xml.writeTextElement("year", album.year);
-        xml.writeEndElement();
+        bool nodeFound = false;
+        foreach (QDomNode node, albumNodes) {
+            if (!node.toElement().elementsByTagName("title").isEmpty() && node.toElement().elementsByTagName("title").at(0).toElement().text() == album.title) {
+                albumNodes.removeOne(node);
+                if (!node.toElement().elementsByTagName("year").isEmpty()) {
+                    if (!node.toElement().elementsByTagName("year").at(0).firstChild().isText()) {
+                        QDomText t = doc.createTextNode(album.year);
+                        node.toElement().elementsByTagName("year").at(0).appendChild(t);
+                    } else {
+                        node.toElement().elementsByTagName("year").at(0).firstChild().setNodeValue(album.year);
+                    }
+                } else {
+                    QDomElement elem = doc.createElement("year");
+                    elem.appendChild(doc.createTextNode(album.year));
+                    node.appendChild(elem);
+                }
+                nodeFound = true;
+                break;
+            }
+        }
+        if (!nodeFound) {
+            QDomElement elem = doc.createElement("album");
+            QDomElement elemTitle = doc.createElement("title");
+            QDomElement elemYear = doc.createElement("year");
+            elemTitle.appendChild(doc.createTextNode(album.title));
+            elemYear.appendChild(doc.createTextNode(album.year));
+            elem.appendChild(elemTitle);
+            elem.appendChild(elemYear);
+            appendXmlNode(doc, elem);
+        }
     }
+    foreach (QDomNode node, albumNodes)
+        artistElem.removeChild(node);
 
-    xml.writeEndElement();
+    return doc.toByteArray(4);
 }
 
-void XbmcXml::writeAlbumXml(QXmlStreamWriter &xml, Album *album)
+QByteArray XbmcXml::getAlbumXml(Album *album)
 {
-    xml.writeStartElement("album");
+    QDomDocument doc;
+    doc.setContent(album->nfoContent());
+    if (album->nfoContent().isEmpty()) {
+        QDomNode node = doc.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"");
+        doc.insertBefore(node, doc.firstChild());
+        doc.appendChild(doc.createElement("album"));
+    }
+
+    QDomElement albumElem = doc.elementsByTagName("album").at(0).toElement();
+
     if (!album->mbId().isEmpty())
-        xml.writeTextElement("musicBrainzAlbumID", album->mbId());
+        setTextValue(doc, "musicBrainzReleaseGroupID", album->mbId());
+    else
+        removeChildNodes(doc, "musicBrainzReleaseGroupID");
     if (!album->allMusicId().isEmpty())
-        xml.writeTextElement("allmusicid", album->allMusicId());
-    xml.writeTextElement("title", album->title());
-    xml.writeTextElement("artist", album->artist());
-    xml.writeTextElement("genre", album->genres().join(" / "));
-    foreach (const QString &style, album->styles())
-        xml.writeTextElement("style", style);
-    foreach (const QString &mood, album->moods())
-        xml.writeTextElement("mood", mood);
-    xml.writeTextElement("review", album->review());
-    xml.writeTextElement("label", album->label());
+        setTextValue(doc, "allmusicid", album->allMusicId());
+    else
+        removeChildNodes(doc, "allmusicid");
+    setTextValue(doc, "title", album->title());
+    setTextValue(doc, "artist", album->artist());
+    setTextValue(doc, "genre", album->genres().join(" / "));
+    setListValue(doc, "style", album->styles());
+    setListValue(doc, "mood", album->moods());
+    setTextValue(doc, "review", album->review());
+    setTextValue(doc, "label", album->label());
+    setTextValue(doc, "releasedate", album->releaseDate());
     if (album->rating() > 0)
-        xml.writeTextElement("rating", QString("%1").arg(album->rating()));
-    xml.writeTextElement("releasedate", album->releaseDate());
+        setTextValue(doc, "rating", QString("%1").arg(album->rating()));
+    else
+        removeChildNodes(doc, "rating");
     if (album->year() > 0)
-        xml.writeTextElement("year", QString("%1").arg(album->year()));
+        setTextValue(doc, "year", QString("%1").arg(album->year()));
+    else
+        removeChildNodes(doc, "year");
 
     if (Settings::instance()->advanced()->writeThumbUrlsToNfo()) {
-        foreach (const Poster &poster, album->images(ImageType::ArtistThumb)) {
-            xml.writeStartElement("thumb");
-            xml.writeAttribute("preview", poster.thumbUrl.toString());
-            xml.writeCharacters(poster.originalUrl.toString());
-            xml.writeEndElement();
+        removeChildNodes(doc, "thumb");
+
+        foreach (const Poster &poster, album->images(ImageType::AlbumThumb)) {
+            QDomElement elem = doc.createElement("thumb");
+            elem.setAttribute("preview", poster.thumbUrl.toString());
+            elem.appendChild(doc.createTextNode(poster.originalUrl.toString()));
+            appendXmlNode(doc, elem);
         }
     }
 
-    xml.writeEndElement();
+    return doc.toByteArray(4);
+}
+
+QDomElement XbmcXml::setTextValue(QDomDocument &doc, const QString &name, const QString &value)
+{
+    if (!doc.elementsByTagName(name).isEmpty()) {
+        if (!doc.elementsByTagName(name).at(0).firstChild().isText()) {
+            QDomText t = doc.createTextNode(value);
+            doc.elementsByTagName(name).at(0).appendChild(t);
+            return doc.elementsByTagName(name).at(0).toElement();
+        } else {
+            doc.elementsByTagName(name).at(0).firstChild().setNodeValue(value);
+            return doc.elementsByTagName(name).at(0).toElement();
+        }
+    } else {
+        return addTextValue(doc, name, value);
+    }
+}
+
+void XbmcXml::setListValue(QDomDocument &doc, const QString &name, const QStringList &values)
+{
+    QDomNode rootNode = doc.firstChild();
+    if (rootNode.nodeName() == "xml")
+        rootNode = rootNode.nextSibling();
+    QDomNodeList childNodes = rootNode.childNodes();
+    QList<QDomNode> nodesToRemove;
+    for (int i=0, n=childNodes.count() ; i<n ; ++i) {
+        if (childNodes.at(i).nodeName() == name)
+            nodesToRemove.append(childNodes.at(i));
+    }
+    foreach (QDomNode node, nodesToRemove)
+        rootNode.removeChild(node);
+    foreach (const QString &style, values)
+        addTextValue(doc, name, style);
+}
+
+QDomElement XbmcXml::addTextValue(QDomDocument &doc, const QString &name, const QString &value)
+{
+    QDomElement elem = doc.createElement(name);
+    elem.appendChild(doc.createTextNode(value));
+    appendXmlNode(doc, elem);
+    return elem;
+}
+
+void XbmcXml::appendXmlNode(QDomDocument &doc, QDomNode &node)
+{
+    QDomNode rootNode = doc.firstChild();
+    if (rootNode.nodeName() == "xml")
+        rootNode = rootNode.nextSibling();
+    rootNode.appendChild(node);
+}
+
+void XbmcXml::removeChildNodes(QDomDocument &doc, const QString &name)
+{
+    QDomNode rootNode = doc.firstChild();
+    if (rootNode.nodeName() == "xml")
+        rootNode = rootNode.nextSibling();
+    QDomNodeList childNodes = rootNode.childNodes();
+    QList<QDomNode> nodesToRemove;
+    for (int i=0, n=childNodes.count() ; i<n ; ++i) {
+        if (childNodes.at(i).nodeName() == name)
+            nodesToRemove.append(childNodes.at(i));
+    }
+    foreach (QDomNode node, nodesToRemove)
+        rootNode.removeChild(node);
 }
 
 void XbmcXml::loadBooklets(Album *album)
