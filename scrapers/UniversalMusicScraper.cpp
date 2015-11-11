@@ -240,7 +240,29 @@ void UniversalMusicScraper::processDownloadElement(DownloadElement elem, Artist 
 
 void UniversalMusicScraper::searchAlbum(QString artistName, QString searchStr)
 {
-    QString searchQuery = "release:\"" + QString(QUrl::toPercentEncoding(searchStr)) + "\"";
+    QString year;
+    QString cleanSearchStr = searchStr;
+    QRegExp rx("^(.*)([0-9]{4})\\)?$");
+    rx.setMinimal(true);
+    if (rx.exactMatch(searchStr)) {
+        year = rx.cap(2);
+        cleanSearchStr = rx.cap(1);
+    }
+    rx.setPattern("^\\(?([0-9]{4})\\)?(.*)$");
+    if (rx.exactMatch(searchStr)) {
+        year = rx.cap(1);
+        cleanSearchStr = rx.cap(2);
+    }
+    cleanSearchStr.replace("(", "");
+    cleanSearchStr.replace(")", "");
+    cleanSearchStr.replace("[", "");
+    cleanSearchStr.replace("]", "");
+    cleanSearchStr.replace("-", "");
+    cleanSearchStr = cleanSearchStr.trimmed();
+    if (cleanSearchStr.isEmpty())
+        cleanSearchStr = searchStr;
+
+    QString searchQuery = "release:\"" + QString(QUrl::toPercentEncoding(cleanSearchStr)) + "\"";
     if (!artistName.isEmpty())
         searchQuery += "%20AND%20artist:\"" + QString(QUrl::toPercentEncoding(artistName)) + "\"";
     QUrl url(QString("http://www.musicbrainz.org/ws/2/release/?query=%1").arg(searchQuery));
