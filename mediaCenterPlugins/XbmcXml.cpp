@@ -2000,7 +2000,9 @@ bool XbmcXml::loadAlbum(Album *album, QString initialNfoContent)
     domDoc.setContent(nfoContent);
 
     if (!domDoc.elementsByTagName("musicBrainzReleaseGroupID").isEmpty())
-        album->setMbId(domDoc.elementsByTagName("musicBrainzReleaseGroupID").at(0).toElement().text());
+        album->setMbReleaseGroupId(domDoc.elementsByTagName("musicBrainzReleaseGroupID").at(0).toElement().text());
+    if (!domDoc.elementsByTagName("musicBrainzAlbumID").isEmpty())
+        album->setMbAlbumId(domDoc.elementsByTagName("musicBrainzAlbumID").at(0).toElement().text());
     if (!domDoc.elementsByTagName("allmusicid").isEmpty())
         album->setAllMusicId(domDoc.elementsByTagName("allmusicid").at(0).toElement().text());
     if (!domDoc.elementsByTagName("title").isEmpty())
@@ -2358,10 +2360,14 @@ QByteArray XbmcXml::getAlbumXml(Album *album)
 
     QDomElement albumElem = doc.elementsByTagName("album").at(0).toElement();
 
-    if (!album->mbId().isEmpty())
-        setTextValue(doc, "musicBrainzReleaseGroupID", album->mbId());
+    if (!album->mbReleaseGroupId().isEmpty())
+        setTextValue(doc, "musicBrainzReleaseGroupID", album->mbReleaseGroupId());
     else
         removeChildNodes(doc, "musicBrainzReleaseGroupID");
+    if (!album->mbAlbumId().isEmpty())
+        setTextValue(doc, "musicBrainzAlbumID", album->mbAlbumId());
+    else
+        removeChildNodes(doc, "musicBrainzAlbumID");
     if (!album->allMusicId().isEmpty())
         setTextValue(doc, "allmusicid", album->allMusicId());
     else

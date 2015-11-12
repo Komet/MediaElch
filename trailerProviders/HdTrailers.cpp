@@ -68,7 +68,7 @@ void HdTrailers::searchMovie(QString searchStr)
 
 void HdTrailers::onSearchFinished()
 {
-    if (m_searchReply->error() == QNetworkReply::NoError ) {
+    if (m_searchReply->error() == QNetworkReply::NoError) {
         QString msg = m_searchReply->readAll();
 
         int pos = 0;
@@ -93,7 +93,7 @@ void HdTrailers::loadMovieTrailers(QString id)
 void HdTrailers::onLoadFinished()
 {
     QList<TrailerResult> trailers;
-    if (m_loadReply->error() == QNetworkReply::NoError ) {
+    if (m_loadReply->error() == QNetworkReply::NoError) {
         QString msg = m_loadReply->readAll();
         trailers = parseTrailers(msg);
     }

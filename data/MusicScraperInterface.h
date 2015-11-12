@@ -19,7 +19,7 @@ public:
     virtual void searchAlbum(QString artistName, QString searchStr) = 0;
     virtual void searchArtist(QString searchStr) = 0;
     virtual void loadData(QString id, Artist *artist, QList<int> infos) = 0;
-    virtual void loadData(QString id, Album *album, QList<int> infos) = 0;
+    virtual void loadData(QString id, QString id2, Album *album, QList<int> infos) = 0;
     virtual bool hasSettings() = 0;
     virtual void loadSettings(QSettings &settings) = 0;
     virtual void saveSettings(QSettings &settings) = 0;

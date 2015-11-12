@@ -11,6 +11,7 @@
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "globals/NetworkReplyWatcher.h"
 #include "main/MainWindow.h"
 
 /**
@@ -169,6 +170,7 @@ void TMDbConcerts::setup()
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
     QNetworkReply *reply = qnam()->get(request);
+    new NetworkReplyWatcher(this, reply);
     connect(reply, SIGNAL(finished()), this, SLOT(setupFinished()));
 }
 
@@ -179,7 +181,7 @@ void TMDbConcerts::setup()
 void TMDbConcerts::setupFinished()
 {
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
-    if (reply->error() != QNetworkReply::NoError ) {
+    if (reply->error() != QNetworkReply::NoError) {
         reply->deleteLater();
         return;
     }
@@ -213,6 +215,7 @@ void TMDbConcerts::search(QString searchStr)
     QNetworkRequest request(url);
     request.setRawHeader("Accept", "application/json");
     QNetworkReply *reply = qnam()->get(request);
+    new NetworkReplyWatcher(this, reply);
     reply->setProperty("searchString", searchStr);
     reply->setProperty("results", Storage::toVariant(reply, QList<ScraperSearchResult>()));
     connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
@@ -228,7 +231,7 @@ void TMDbConcerts::searchFinished()
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     QList<ScraperSearchResult> results = reply->property("results").value<Storage*>()->results();
 
-    if (reply->error() != QNetworkReply::NoError ) {
+    if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
         reply->deleteLater();
         emit searchDone(results);
@@ -248,6 +251,7 @@ void TMDbConcerts::searchFinished()
         QNetworkRequest request(url);
         request.setRawHeader("Accept", "application/json");
         QNetworkReply *reply = qnam()->get(request);
+        new NetworkReplyWatcher(this, reply);
         reply->setProperty("searchString", searchString);
         reply->setProperty("results", Storage::toVariant(reply, results));
         connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
@@ -328,6 +332,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
     url.setUrl(QString("http://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3").arg(id).arg(m_apiKey).arg(m_language));
     request.setUrl(url);
     QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+    new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, concert));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, SIGNAL(finished()), this, SLOT(loadFinished()));
@@ -338,6 +343,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
         url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/trailers?api_key=%2").arg(id).arg(m_apiKey));
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+        new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, concert));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, SIGNAL(finished()), this, SLOT(loadTrailersFinished()));
@@ -349,6 +355,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
         url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/images?api_key=%2").arg(id).arg(m_apiKey));
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+        new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, concert));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, SIGNAL(finished()), this, SLOT(loadImagesFinished()));
@@ -360,6 +367,7 @@ void TMDbConcerts::loadData(QString id, Concert *concert, QList<int> infos)
         url.setUrl(QString("http://api.themoviedb.org/3/movie/%1/releases?api_key=%2").arg(id).arg(m_apiKey));
         request.setUrl(url);
         QNetworkReply *reply = qnam()->get(QNetworkRequest(request));
+        new NetworkReplyWatcher(this, reply);
         reply->setProperty("storage", Storage::toVariant(reply, concert));
         reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
         connect(reply, SIGNAL(finished()), this, SLOT(loadReleasesFinished()));
@@ -380,7 +388,7 @@ void TMDbConcerts::loadFinished()
     if (!concert)
         return;
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, concert, infos);
     } else {
@@ -402,7 +410,7 @@ void TMDbConcerts::loadTrailersFinished()
     if (!concert)
         return;
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, concert, infos);
     } else {
@@ -424,7 +432,7 @@ void TMDbConcerts::loadImagesFinished()
     if (!concert)
         return;
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, concert, infos);
     } else {
@@ -446,7 +454,7 @@ void TMDbConcerts::loadReleasesFinished()
     if (!concert)
         return;
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, concert, infos);
     } else {

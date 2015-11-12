@@ -131,7 +131,7 @@ void FanartTvMusic::onSearchArtistFinished()
     QList<ScraperSearchResult> results;
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QDomDocument domDoc;
         domDoc.setContent(msg);
@@ -159,7 +159,7 @@ void FanartTvMusic::onSearchAlbumFinished()
     QList<ScraperSearchResult> results;
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QDomDocument domDoc;
         domDoc.setContent(msg);
@@ -198,7 +198,7 @@ void FanartTvMusic::onLoadArtistFinished()
     int info = reply->property("infoToLoad").toInt();
     reply->deleteLater();
     QList<Poster> posters;
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         posters = parseData(msg, info);
     }
@@ -211,7 +211,7 @@ void FanartTvMusic::onLoadAlbumFinished()
     int info = reply->property("infoToLoad").toInt();
     reply->deleteLater();
     QList<Poster> posters;
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         posters = parseData(msg, info);
     }
@@ -488,7 +488,7 @@ void FanartTvMusic::onLoadAllAlbumDataFinished()
     Album *album = reply->property("storage").value<Storage*>()->album();
     reply->deleteLater();
     QMap<int, QList<Poster> > posters;
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         foreach (int type, reply->property("infosToLoad").value<Storage*>()->infosToLoad())
             posters.insert(type, parseData(msg, type));
@@ -502,7 +502,7 @@ void FanartTvMusic::onLoadAllArtistDataFinished()
     Artist *artist = reply->property("storage").value<Storage*>()->artist();
     reply->deleteLater();
     QMap<int, QList<Poster> > posters;
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         foreach (int type, reply->property("infosToLoad").value<Storage*>()->infosToLoad())
             posters.insert(type, parseData(msg, type));

@@ -5,6 +5,7 @@
 #include <QWidget>
 #include "data/Storage.h"
 #include "globals/Helper.h"
+#include "globals/NetworkReplyWatcher.h"
 #include "settings/Settings.h"
 
 IMDB::IMDB(QObject *parent)
@@ -85,10 +86,12 @@ void IMDB::search(QString searchStr)
     if (rx.exactMatch(searchStr)) {
         QUrl url = QUrl(QString("http://www.imdb.com/title/%1/").arg(searchStr).toUtf8());
         QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+        new NetworkReplyWatcher(this, reply);
         connect(reply, SIGNAL(finished()), this, SLOT(onSearchIdFinished()));
     } else {
         QUrl url = QUrl::fromEncoded(QString("http://www.imdb.com/find?s=tt&ttype=ft&ref_=fn_ft&q=%1").arg(encodedSearch).toUtf8());
         QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+        new NetworkReplyWatcher(this, reply);
         connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
     }
 }
@@ -97,7 +100,7 @@ void IMDB::onSearchFinished()
 {
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     QList<ScraperSearchResult> results;
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         results = parseSearch(msg);
     } else {
@@ -171,6 +174,7 @@ void IMDB::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<in
     QNetworkRequest request = QNetworkRequest(url);
     request.setRawHeader("Accept-Language", "en;q=0.8");
     QNetworkReply *reply = qnam()->get(request);
+    new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
@@ -191,6 +195,7 @@ void IMDB::onLoadFinished()
         QString posterUrl = parsePosters(msg);
         if (infos.contains(MovieScraperInfos::Poster) && !posterUrl.isEmpty()) {
             QNetworkReply *reply = qnam()->get(QNetworkRequest(posterUrl));
+            new NetworkReplyWatcher(this, reply);
             reply->setProperty("storage", Storage::toVariant(reply, movie));
             reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
             connect(reply, SIGNAL(finished()), this, SLOT(onPosterLoadFinished()));
@@ -212,7 +217,7 @@ void IMDB::onPosterLoadFinished()
     if (!movie)
         return;
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignPoster(msg, movie, infos);
     } else {

@@ -26,7 +26,7 @@ void MovieMaze::onSearchFinished()
 {
     QList<ScraperSearchResult> results;
 
-    if (m_searchReply->error() == QNetworkReply::NoError ) {
+    if (m_searchReply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromLatin1(m_searchReply->readAll());
         m_searchReply->deleteLater();
 
@@ -71,7 +71,7 @@ void MovieMaze::onLoadFinished()
         return;
     }
 
-    if (m_loadReply->error() == QNetworkReply::NoError ) {
+    if (m_loadReply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(m_loadReply->readAll());
         m_currentTrailers.append(parseTrailers(msg));
         int pos=0;
@@ -96,7 +96,7 @@ void MovieMaze::onLoadFinished()
 
 void MovieMaze::onSubLoadFinished()
 {
-    if (m_loadReply->error() == QNetworkReply::NoError ) {
+    if (m_loadReply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromLatin1(m_loadReply->readAll());
         m_currentTrailers.append(parseTrailers(msg));
     }
@@ -159,7 +159,7 @@ void MovieMaze::loadPreviewImages()
 
 void MovieMaze::onLoadPreviewImageFinished()
 {
-    if (m_previewLoadReply->error() == QNetworkReply::NoError ) {
+    if (m_previewLoadReply->error() == QNetworkReply::NoError) {
         QImage img;
         img.loadFromData(m_previewLoadReply->readAll());
         m_currentTrailers[m_currentPreviewLoad].previewImage = img;

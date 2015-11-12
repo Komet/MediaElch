@@ -84,7 +84,8 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget *parent) :
     connect(ui->year, SIGNAL(valueChanged(int)), this, SLOT(onYearChanged(int)));
     connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChanged(double)));
     connect(ui->review, SIGNAL(textChanged()), this, SLOT(onReviewChanged()));
-    connect(ui->musicBrainzId, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
+    connect(ui->musicBrainzAlbumId, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
+    connect(ui->musicBrainzReleaseGroupId, SIGNAL(textEdited(QString)), this, SLOT(onItemChanged(QString)));
 
     QPainter p;
     QPixmap revert(":/img/arrow_circle_left.png");
@@ -143,7 +144,8 @@ void MusicWidgetAlbum::onClear()
     clearContents(ui->artist);
     clearContents(ui->label);
     clearContents(ui->releaseDate);
-    clearContents(ui->musicBrainzId);
+    clearContents(ui->musicBrainzAlbumId);
+    clearContents(ui->musicBrainzReleaseGroupId);
     bool blocked = ui->review->blockSignals(true);
     ui->review->clear();
     ui->review->blockSignals(blocked);
@@ -206,6 +208,7 @@ void MusicWidgetAlbum::onStartScraperSearch()
     if (MusicSearch::instance()->result() == QDialog::Accepted) {
         onSetEnabled(false);
         m_album->controller()->loadData(MusicSearch::instance()->scraperId(),
+                                        MusicSearch::instance()->scraperId2(),
                                         Manager::instance()->musicScrapers().at(MusicSearch::instance()->scraperNo()),
                                         MusicSearch::instance()->infosToLoad());
     } else {
@@ -227,7 +230,8 @@ void MusicWidgetAlbum::updateAlbumInfo()
     setContent(ui->artist, m_album->artist());
     setContent(ui->label, m_album->label());
     setContent(ui->releaseDate, m_album->releaseDate());
-    setContent(ui->musicBrainzId, m_album->mbId());
+    setContent(ui->musicBrainzAlbumId, m_album->mbAlbumId());
+    setContent(ui->musicBrainzReleaseGroupId, m_album->mbReleaseGroupId());
     ui->review->blockSignals(true);
     ui->review->setPlainText(m_album->review());
     ui->review->blockSignals(false);
@@ -297,8 +301,10 @@ void MusicWidgetAlbum::onItemChanged(QString text)
         m_album->setLabel(text);
     else if (property == "releaseDate")
         m_album->setReleaseDate(text);
-    else if (property == "mbid")
-        m_album->setMbId(text);
+    else if (property == "mbAlbumId")
+        m_album->setMbAlbumId(text);
+    else if (property == "mbReleaseGroupId")
+        m_album->setMbReleaseGroupId(text);
 
     ui->buttonRevert->setVisible(true);
 }

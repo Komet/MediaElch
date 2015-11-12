@@ -336,7 +336,7 @@ void FanartTv::onLoadMovieDataFinished()
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
     QList<Poster> posters;
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         posters = parseMovieData(msg, reply->property("infoToLoad").toInt());
     }
@@ -353,7 +353,7 @@ void FanartTv::onLoadAllMovieDataFinished()
     Movie *movie = reply->property("storage").value<Storage*>()->movie();
     reply->deleteLater();
     QMap<int, QList<Poster> > posters;
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         foreach (int type, reply->property("infosToLoad").value<Storage*>()->infosToLoad())
             posters.insert(type, parseMovieData(msg, type));
@@ -371,7 +371,7 @@ void FanartTv::onLoadAllConcertDataFinished()
     Concert *concert = reply->property("storage").value<Storage*>()->concert();
     reply->deleteLater();
     QMap<int, QList<Poster> > posters;
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         foreach (int type, reply->property("infosToLoad").value<Storage*>()->infosToLoad())
             posters.insert(type, parseMovieData(msg, type));
@@ -514,7 +514,7 @@ void FanartTv::onLoadTvShowDataFinished()
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
     QList<Poster> posters;
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         posters = parseTvShowData(msg, reply->property("infoToLoad").toInt(), reply->property("season").toInt());
     }
@@ -531,7 +531,7 @@ void FanartTv::onLoadAllTvShowDataFinished()
     TvShow *show = reply->property("storage").value<Storage*>()->show();
     reply->deleteLater();
     QMap<int, QList<Poster> > posters;
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         foreach (int type, reply->property("infosToLoad").value<Storage*>()->infosToLoad())
             posters.insert(type, parseTvShowData(msg, type));

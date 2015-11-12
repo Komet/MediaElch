@@ -109,6 +109,7 @@ Q_DECLARE_METATYPE(DiscographyAlbum*)
  */
 struct ScraperSearchResult {
     QString id;
+    QString id2;
     QString name;
     QDate released;
 };

@@ -11,6 +11,7 @@
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "globals/NetworkReplyWatcher.h"
 #include "main/MainWindow.h"
 #include "mediaCenterPlugins/XbmcXml.h"
 #include "settings/Settings.h"
@@ -140,6 +141,7 @@ void TheTvDb::setMirrors()
 {
     QUrl url(QString("http://www.thetvdb.com/api/%1/mirrors.xml").arg(m_apiKey));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    new NetworkReplyWatcher(this, reply);
     connect(reply, SIGNAL(finished()), this, SLOT(onMirrorsReady()));
 }
 
@@ -154,7 +156,7 @@ void TheTvDb::onMirrorsReady()
     m_bannerMirrors.clear();
     m_zipMirrors.clear();
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QDomDocument domDoc;
         domDoc.setContent(msg);
@@ -194,6 +196,7 @@ void TheTvDb::search(QString searchStr)
     else
         url.setUrl(QString("http://www.thetvdb.com/api/GetSeries.php?language=%1&seriesname=%2").arg(m_language).arg(searchStr));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    new NetworkReplyWatcher(this, reply);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
 }
 
@@ -206,7 +209,7 @@ void TheTvDb::onSearchFinished()
 {
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     QList<ScraperSearchResult> results;
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         results = parseSearch(msg);
     } else {
@@ -263,6 +266,7 @@ void TheTvDb::loadTvShowData(QString id, TvShow *show, TvShowUpdateType updateTy
     QUrl url(QString("%1/api/%2/series/%3/all/%4.xml").arg(mirror).arg(m_apiKey).arg(id).arg(m_language));
     show->setEpisodeGuideUrl(QString("%1/api/%2/series/%3/all/%4.zip").arg(mirror).arg(m_apiKey).arg(id).arg(m_language));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, show));
     reply->setProperty("updateType", updateType);
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infosToLoad));
@@ -285,7 +289,7 @@ void TheTvDb::onLoadFinished()
     if (!show)
         return;
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, show, updateType, infos);
     } else {
@@ -316,7 +320,7 @@ void TheTvDb::onActorsFinished()
     if (!show)
         return;
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         if (show->infosToLoad().contains(TvShowScraperInfos::Actors) &&
                 (updateType == UpdateShow || updateType == UpdateShowAndAllEpisodes || updateType == UpdateShowAndNewEpisodes))
@@ -348,7 +352,7 @@ void TheTvDb::onBannersFinished()
     if (!show)
         return;
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignBanners(msg, show, updateType, infos);
     } else {
@@ -623,6 +627,7 @@ void TheTvDb::loadTvShowEpisodeData(QString id, TvShowEpisode *episode, QList<in
     QString mirror = m_xmlMirrors.at(qrand()%m_xmlMirrors.count());
     QUrl url(QString("%1/api/%2/series/%3/all/%4.xml").arg(mirror).arg(m_apiKey).arg(id).arg(m_language));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, episode));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infosToLoad));
     connect(reply, SIGNAL(finished()), this, SLOT(onEpisodeLoadFinished()));
@@ -641,7 +646,7 @@ void TheTvDb::onEpisodeLoadFinished()
     if (!episode)
         return;
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QDomDocument domDoc;
         domDoc.setContent(msg);

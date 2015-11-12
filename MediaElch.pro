@@ -194,7 +194,8 @@ SOURCES += main.cpp\
     image/ImageProxyModel.cpp \
     qml/AlbumImageProvider.cpp \
     image/ImageWidget.cpp \
-    imageProviders/Coverlib.cpp
+    imageProviders/Coverlib.cpp \
+    globals/NetworkReplyWatcher.cpp
 
 macx {
     OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm
@@ -366,7 +367,8 @@ HEADERS  += main/MainWindow.h \
     image/ImageProxyModel.h \
     qml/AlbumImageProvider.h \
     image/ImageWidget.h \
-    imageProviders/Coverlib.h
+    imageProviders/Coverlib.h \
+    globals/NetworkReplyWatcher.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

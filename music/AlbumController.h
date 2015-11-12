@@ -20,7 +20,7 @@ public:
 
     bool saveData(MediaCenterInterface *mediaCenterInterface);
     bool loadData(MediaCenterInterface *mediaCenterInterface, bool force = false, bool reloadFromNfo = true);
-    void loadData(QString id, MusicScraperInterface *scraperInterface, QList<int> infos);
+    void loadData(QString id, QString id2, MusicScraperInterface *scraperInterface, QList<int> infos);
 
     bool infoLoaded() const;
     void setInfoLoaded(bool infoLoaded);

@@ -6,6 +6,7 @@
 #include "data/Storage.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
+#include "globals/NetworkReplyWatcher.h"
 #include "settings/Settings.h"
 
 /**
@@ -110,6 +111,7 @@ void OFDb::search(QString searchStr)
     else
         url.setUrl(QString("http://www.ofdbgw.org/search/%1").arg(encodedSearch).toUtf8());
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    new NetworkReplyWatcher(this, reply);
     reply->setProperty("searchString", searchStr);
     reply->setProperty("notFoundCounter", 0);
     connect(reply, SIGNAL(finished()), this, SLOT(searchFinished()));
@@ -150,7 +152,7 @@ void OFDb::searchFinished()
     }
 
     QList<ScraperSearchResult> results;
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         results = parseSearch(msg, searchStr);
     } else {
@@ -211,6 +213,7 @@ void OFDb::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<in
 
     QUrl url(QString("http://ofdbgw.org/movie/%1").arg(ids.values().first()));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("ofdbId", ids.values().first());
     reply->setProperty("notFoundCounter", 0);
@@ -259,7 +262,7 @@ void OFDb::loadFinished()
     }
 
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, movie, infos);
     } else {

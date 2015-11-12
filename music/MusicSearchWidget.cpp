@@ -98,6 +98,7 @@ void MusicSearchWidget::showResults(QList<ScraperSearchResult> results)
             name.append(QString(" (%1)").arg(result.released.toString("yyyy")));
         QTableWidgetItem *item = new QTableWidgetItem(name);
         item->setData(Qt::UserRole, result.id);
+        item->setData(Qt::UserRole+1, result.id2);
         int row = ui->results->rowCount();
         ui->results->insertRow(row);
         ui->results->setItem(row, 0, item);
@@ -107,6 +108,7 @@ void MusicSearchWidget::showResults(QList<ScraperSearchResult> results)
 void MusicSearchWidget::resultClicked(QTableWidgetItem *item)
 {
     m_scraperId = item->data(Qt::UserRole).toString();
+    m_scraperId2 = item->data(Qt::UserRole+1).toString();
     emit sigResultClicked();
 }
 
@@ -143,6 +145,11 @@ int MusicSearchWidget::scraperNo()
 QString MusicSearchWidget::scraperId()
 {
     return m_scraperId;
+}
+
+QString MusicSearchWidget::scraperId2()
+{
+    return m_scraperId2;
 }
 
 QList<int> MusicSearchWidget::infosToLoad()

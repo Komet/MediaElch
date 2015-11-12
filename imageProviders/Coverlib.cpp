@@ -75,7 +75,7 @@ void Coverlib::onSearchAlbumFinished()
     QList<ScraperSearchResult> results;
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QRegExp rx;
         rx.setMinimal(true);
@@ -131,7 +131,7 @@ void Coverlib::onLoadAlbumFinished()
     int info = reply->property("infoToLoad").toInt();
     reply->deleteLater();
     QList<Poster> posters;
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString html = QString::fromUtf8(reply->readAll());
         posters = parseData(html, info);
     }

@@ -4,6 +4,7 @@
 #include <QGridLayout>
 #include <QRegExp>
 #include "data/Storage.h"
+#include "globals/NetworkReplyWatcher.h"
 #include "main/MainWindow.h"
 
 AEBN::AEBN(QObject *parent)
@@ -94,6 +95,7 @@ void AEBN::search(QString searchStr)
              .arg(m_language)
              .arg(encodedSearch));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    new NetworkReplyWatcher(this, reply);
     connect(reply, SIGNAL(finished()), this, SLOT(onSearchFinished()));
 }
 
@@ -102,7 +104,7 @@ void AEBN::onSearchFinished()
     QNetworkReply *reply = static_cast<QNetworkReply*>(QObject::sender());
     reply->deleteLater();
 
-    if (reply->error() != QNetworkReply::NoError ) {
+    if (reply->error() != QNetworkReply::NoError) {
         qWarning() << "Network Error" << reply->errorString();
         emit searchDone(QList<ScraperSearchResult>());
         return;
@@ -135,6 +137,7 @@ void AEBN::loadData(QMap<ScraperInterface*, QString> ids, Movie *movie, QList<in
 
     QUrl url(QString("http://straight.theater.aebn.net/dispatcher/movieDetail?movieId=%1&locale=%2&theaterId=822&genreId=101").arg(ids.values().first()).arg(m_language));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
     connect(reply, SIGNAL(finished()), this, SLOT(onLoadFinished()));
@@ -146,7 +149,7 @@ void AEBN::onLoadFinished()
     Movie *movie = reply->property("storage").value<Storage*>()->movie();
     reply->deleteLater();
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         QStringList actorIds;
         parseAndAssignInfos(msg, movie, reply->property("infosToLoad").value<Storage*>()->infosToLoad(), actorIds);
@@ -281,6 +284,7 @@ void AEBN::downloadActors(Movie *movie, QStringList actorIds)
     QString id = actorIds.takeFirst();
     QUrl url(QString("http://straight.theater.aebn.net/dispatcher/starDetail?locale=%2&starId=%1&theaterId=822&genreId=101").arg(id).arg(m_language));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
+    new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, movie));
     reply->setProperty("actorIds", actorIds);
     reply->setProperty("actorId", id);
@@ -295,7 +299,7 @@ void AEBN::onActorLoadFinished()
     QString actorId = reply->property("actorId").toString();
     reply->deleteLater();
 
-    if (reply->error() == QNetworkReply::NoError ) {
+    if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignActor(msg, movie, actorId);
     } else {

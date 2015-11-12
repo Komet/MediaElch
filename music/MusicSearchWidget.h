@@ -22,6 +22,7 @@ public slots:
     void search(QString searchString);
     int scraperNo();
     QString scraperId();
+    QString scraperId2();
     QList<int> infosToLoad();
     void setType(const QString &type);
     void setArtistName(const QString &artistName);
@@ -40,6 +41,7 @@ private:
     Ui::MusicSearchWidget *ui;
     int m_scraperNo;
     QString m_scraperId;
+    QString m_scraperId2;
     QList<int> m_infosToLoad;
     QString m_type;
     QString m_artistName;

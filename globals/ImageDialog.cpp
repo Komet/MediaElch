@@ -730,7 +730,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
         id = m_tvShowEpisode->tvShow()->tvdbId();
     } else if (m_itemType == ItemAlbum) {
         initialSearchTerm = m_album->title();
-        id = m_album->mbId();
+        id = m_album->mbReleaseGroupId();
     } else if (m_itemType == ItemArtist) {
         initialSearchTerm = m_artist->name();
         id = m_artist->mbId();
