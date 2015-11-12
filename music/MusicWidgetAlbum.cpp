@@ -1,6 +1,7 @@
 #include "MusicWidgetAlbum.h"
 #include "ui_MusicWidgetAlbum.h"
 
+#include <QGLFormat>
 #include <QPainter>
 #include "../globals/Globals.h"
 #include "../globals/Helper.h"
@@ -58,11 +59,20 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget *parent) :
         connect(image, &ClosableImage::sigClose, this, &MusicWidgetAlbum::onDeleteImage);
         connect(image, &ClosableImage::sigImageDropped, this, &MusicWidgetAlbum::onImageDropped);
     }
-    connect(ui->bookletWidget, &ImageWidget::sigImageDropped, this, &MusicWidgetAlbum::onBookletsDropped);
+
+    m_bookletWidget = 0;
+
+    if (QGLFormat::openGLVersionFlags() & QGLFormat::OpenGL_Version_1_5) {
+        m_bookletWidget = new ImageWidget(this);
+        ui->verticalLayout_2->insertWidget(0, m_bookletWidget, 1);
+        connect(m_bookletWidget, &ImageWidget::sigImageDropped, this, &MusicWidgetAlbum::onBookletsDropped);
+        connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddBooklet()));
+    } else {
+        ui->tabWidget->removeTab(2);
+    }
 
     connect(ui->title, SIGNAL(textChanged(QString)), ui->albumName, SLOT(setText(QString)));
     connect(ui->buttonRevert, SIGNAL(clicked()), this, SLOT(onRevertChanges()));
-    connect(ui->btnAddExtraFanart, SIGNAL(clicked()), this, SLOT(onAddBooklet()));
 
     onSetEnabled(false);
     onClear();
@@ -150,7 +160,8 @@ void MusicWidgetAlbum::onClear()
     ui->cover->clear();
     ui->discArt->clear();
 
-    ui->bookletWidget->setAlbum(0);
+    if (m_bookletWidget)
+        m_bookletWidget->setAlbum(0);
 
     ui->buttonRevert->setVisible(false);
 }
@@ -253,7 +264,8 @@ void MusicWidgetAlbum::updateAlbumInfo()
     ui->moodCloud->setTags(moods, m_album->moods());
 
     m_album->loadBooklets(Manager::instance()->mediaCenterInterface());
-    ui->bookletWidget->setAlbum(m_album);
+    if (m_bookletWidget)
+        m_bookletWidget->setAlbum(m_album);
 }
 
 void MusicWidgetAlbum::updateImage(int imageType, ClosableImage *image)
@@ -425,7 +437,8 @@ void MusicWidgetAlbum::onLoadDone(Album *album)
     if (m_album != album)
         return;
 
-    ui->bookletWidget->setLoading(false);
+    if (m_bookletWidget)
+        m_bookletWidget->setLoading(false);
     onSetEnabled(true);
 }
 
@@ -446,8 +459,8 @@ void MusicWidgetAlbum::onLoadingImages(Album *album, QList<int> imageTypes)
         }
     }
 
-    if (imageTypes.contains(ImageType::AlbumBooklet))
-        ui->bookletWidget->setLoading(true);
+    if (m_bookletWidget && imageTypes.contains(ImageType::AlbumBooklet))
+        m_bookletWidget->setLoading(true);
 
     ui->groupBox_3->update();
 }
@@ -494,7 +507,8 @@ void MusicWidgetAlbum::onAddBooklet()
     ImageDialog::instance()->exec(ImageType::AlbumBooklet);
 
     if (ImageDialog::instance()->result() == QDialog::Accepted && !ImageDialog::instance()->imageUrls().isEmpty()) {
-        ui->bookletWidget->setLoading(true);
+        if (m_bookletWidget)
+            m_bookletWidget->setLoading(true);
         emit sigSetActionSaveEnabled(false, WidgetMusic);
         m_album->controller()->loadImages(ImageType::AlbumBooklet, ImageDialog::instance()->imageUrls());
         ui->buttonRevert->setVisible(true);
@@ -503,6 +517,7 @@ void MusicWidgetAlbum::onAddBooklet()
 
 void MusicWidgetAlbum::onBookletsDropped(QList<QUrl> urls)
 {
-    ui->bookletWidget->setLoading(true);
+    if (m_bookletWidget)
+        m_bookletWidget->setLoading(true);
     m_album->controller()->loadImages(ImageType::AlbumBooklet, urls);
 }

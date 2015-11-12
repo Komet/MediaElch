@@ -332,16 +332,13 @@
          <attribute name="title">
           <string>Booklet</string>
          </attribute>
-         <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,0">
+         <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0">
           <property name="leftMargin">
            <number>12</number>
           </property>
           <property name="rightMargin">
            <number>12</number>
           </property>
-          <item>
-           <widget class="ImageWidget" name="bookletWidget" native="true"/>
-          </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,0,0">
             <item>
@@ -580,12 +577,6 @@
    <class>ClosableImage</class>
    <extends>QLabel</extends>
    <header>smallWidgets/ClosableImage.h</header>
-  </customwidget>
-  <customwidget>
-   <class>ImageWidget</class>
-   <extends>QWidget</extends>
-   <header>image/ImageWidget.h</header>
-   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>

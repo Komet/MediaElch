@@ -6,6 +6,7 @@
 #include <QWidget>
 #include "../smallWidgets/ClosableImage.h"
 #include "../music/Album.h"
+#include "../image/ImageWidget.h"
 
 namespace Ui {
 class MusicWidgetAlbum;
@@ -57,6 +58,7 @@ private slots:
 private:
     Ui::MusicWidgetAlbum *ui;
     QPointer<Album> m_album;
+    ImageWidget *m_bookletWidget;
 
     void updateAlbumInfo();
     void clearContents(QLineEdit *widget);
