@@ -1,6 +1,7 @@
 #ifndef MUSICFILESWIDGET_H
 #define MUSICFILESWIDGET_H
 
+#include <QMenu>
 #include <QModelIndex>
 #include <QWidget>
 
@@ -36,11 +37,14 @@ signals:
 private slots:
     void onItemSelected(QModelIndex index);
     void updateStatusLabel();
+    void onOpenFolder();
+    void showContextMenu(QPoint point);
 
 private:
     Ui::MusicFilesWidget *ui;
     static MusicFilesWidget *m_instance;
     MusicProxyModel *m_proxyModel;
+    QMenu *m_contextMenu;
 };
 
 #endif // MUSICFILESWIDGET_H

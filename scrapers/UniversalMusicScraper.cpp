@@ -70,7 +70,6 @@ QString UniversalMusicScraper::identifier()
 void UniversalMusicScraper::searchArtist(QString searchStr)
 {
     QUrl url(QString("http://www.musicbrainz.org/ws/2/artist/?query=artist:\"%1\"").arg(QString(QUrl::toPercentEncoding(searchStr))));
-    qDebug() << url;
     QNetworkRequest request(url);
     QNetworkReply *reply = qnam()->get(request);
     new NetworkReplyWatcher(this, reply);
