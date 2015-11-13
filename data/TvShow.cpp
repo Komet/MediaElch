@@ -1278,6 +1278,11 @@ QList<int> TvShow::seasonImageTypes()
                         << ImageType::TvShowSeasonPoster << ImageType::TvShowSeasonThumb;
 }
 
+void TvShow::setDir(const QString &dir)
+{
+    m_dir = dir;
+}
+
 bool TvShow::hasImage(int type)
 {
     return m_hasImage.value(type, false);

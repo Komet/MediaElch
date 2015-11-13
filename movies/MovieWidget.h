@@ -38,6 +38,7 @@ public slots:
     void setEnabledTrue(Movie *movie = 0);
     void setDisabledTrue();
     void setBigWindow(bool bigWindow);
+    void updateMovieInfo();
 
 protected:
     void resizeEvent(QResizeEvent *event);
@@ -123,7 +124,6 @@ private:
     QList< QList<QLineEdit*> > m_streamDetailsAudio;
     QList< QList<QLineEdit*> > m_streamDetailsSubtitles;
     QLabel *m_backgroundLabel;
-    void updateMovieInfo();
     void updateImages(QList<int> images);
 };
 

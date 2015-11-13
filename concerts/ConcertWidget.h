@@ -36,6 +36,7 @@ public slots:
     void setEnabledTrue(Concert *concert = 0);
     void setDisabledTrue();
     void setBigWindow(bool bigWindow);
+    void updateConcertInfo();
 
 protected:
     void resizeEvent(QResizeEvent *event);
@@ -98,7 +99,6 @@ private:
     QList<QWidget*> m_streamDetailsWidgets;
     QList< QList<QLineEdit*> > m_streamDetailsAudio;
     QList< QList<QLineEdit*> > m_streamDetailsSubtitles;
-    void updateConcertInfo();
     void updateImages(QList<int> images);
 };
 

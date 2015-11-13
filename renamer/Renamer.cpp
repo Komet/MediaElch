@@ -35,6 +35,7 @@ Renamer::~Renamer()
 int Renamer::exec()
 {
     m_filesRenamed = false;
+    m_renameErrorOccured = false;
 
     switch (m_renameType) {
     case TypeMovies:
@@ -97,6 +98,11 @@ void Renamer::reject()
 void Renamer::onRenamed()
 {
     emit sigFilesRenamed(m_renameType);
+}
+
+bool Renamer::renameErrorOccured() const
+{
+    return m_renameErrorOccured;
 }
 
 void Renamer::setMovies(QList<Movie *> movies)
@@ -207,6 +213,14 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
         QString clearArt = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieClearArt);
         QString cdArt = Manager::instance()->mediaCenterInterface()->imageFileName(movie, ImageType::MovieCdArt);
         QStringList FilmFiles;
+        QStringList newMovieFiles;
+        QString parentDirName;
+        bool errorOccured = false;
+
+        foreach (const QString &file, movie->files()) {
+            QFileInfo fi(file);
+            newMovieFiles.append(fi.fileName());
+        }
 
         QDir chkDir(fi.canonicalPath());
         chkDir.cdUp();
@@ -214,10 +228,13 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
         bool isBluRay = Helper::instance()->isBluRay(chkDir.path());
         bool isDvd = Helper::instance()->isDvd(chkDir.path());
 
-        if (isBluRay || isDvd)
+        if (isBluRay || isDvd) {
+            parentDirName = dir.dirName();
             dir.cdUp();
+        }
 
         if (!isBluRay && !isDvd && renameFiles) {
+            newMovieFiles.clear();
             int partNo = 0;
             foreach (const QString &file, movie->files()) {
                 newFileName = (movie->files().count() == 1) ? filePattern : filePatternMulti;
@@ -245,13 +262,15 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                     if (!dryRun) {
                         if (!rename(file, fi.canonicalPath() + "/" + newFileName)){
                             ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                            errorOccured = true;
                             continue;
-                        }
-                        else
+                        } else {
                             FilmFiles.append(newFileName);
-                    }
-                    else
+                            newMovieFiles.append(newFileName);
+                        }
+                    } else {
                         FilmFiles.append(newFileName);
+                    }
 
                     foreach (const QString &trailerFile, currentDir.entryList(QStringList() << fi.completeBaseName() + "-trailer.*", QDir::Files | QDir::NoDotAndDotDot)) {
                         QFileInfo trailer(fi.canonicalPath() + "/" + trailerFile);
@@ -289,9 +308,10 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                         else
                             FilmFiles.append(newSubName);
                     }
-                }
-                else
+                } else {
                     FilmFiles.append(fi.fileName());
+                    newMovieFiles.append(fi.fileName());
+                }
 
             }
 
@@ -480,6 +500,7 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
             }
         }
 
+        QString newMovieFolder = dir.path();
         QString extension = (!movie->files().isEmpty()) ? QFileInfo(movie->files().first()).suffix() : "";
         //rename dir for already existe films dir
         if (renameDirectories && movie->inSeparateFolder()) {
@@ -522,6 +543,7 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
             Renamer::replaceCondition(newFolderName, "movieset", movie->set());
             Renamer::replaceCondition(newFolderName, "imdbId", movie->id());
             Helper::instance()->sanitizeFileName(newFolderName);
+
             if (dir.dirName() != newFolderName){ //check if movie is not already on good folder
                 int i = 0 ;
                 while (dir.exists(newFolderName)){
@@ -533,7 +555,10 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
                 if (!dryRun) {
                     if (!dir.mkdir(newFolderName)){
                         ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>"+ tr("Failed") + "</b></span>");
+                        errorOccured = true;
                         continue;
+                    } else {
+                        newMovieFolder = dir.path() + "/" + newFolderName;
                     }
                 }
 
@@ -555,8 +580,28 @@ void Renamer::renameMovies(QList<Movie*> movies, const QString &filePattern, con
         if (!dryRun && dir.dirName() != newFolderName && renameDirectories && movie->inSeparateFolder()) {
             QDir parentDir(dir.path());
             parentDir.cdUp();
-            if (!rename(dir, parentDir.path() + "/" + newFolderName))
+            if (!rename(dir, parentDir.path() + "/" + newFolderName)) {
                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                errorOccured = true;
+            } else {
+                newMovieFolder = parentDir.path() + "/" + newFolderName;
+            }
+        }
+
+        if (errorOccured)
+            m_renameErrorOccured = true;
+
+        if (!errorOccured && !dryRun) {
+            QStringList files;
+            foreach (const QString &file, newMovieFiles) {
+                QString f = newMovieFolder;
+                if (isBluRay || isDvd)
+                    f += "/" + parentDirName;
+                f += "/" + file;
+                files << f;
+            }
+            movie->setFiles(files);
+            Manager::instance()->database()->update(movie);
         }
     }
 }
@@ -597,12 +642,19 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
         QString newNfoFileName = nfo;
         QString thumbnail = Manager::instance()->mediaCenterInterface()->imageFileName(episode, ImageType::TvShowEpisodeThumb);
         QString newThumbnailFileName = thumbnail;
+        QStringList newEpisodeFiles;
+        foreach (const QString &file, episode->files()) {
+            QFileInfo fi(file);
+            newEpisodeFiles << fi.fileName();
+        }
+
 
         if (!isBluRay && !isDvd && !isDvdWithoutSub && renameFiles) {
             qApp->processEvents();
             QString newFileName;
             episodeFiles.clear();
 
+            newEpisodeFiles.clear();
             int partNo = 0;
             foreach (const QString &file, episode->files()) {
                 newFileName = (episode->files().count() == 1) ? filePattern : filePatternMulti;
@@ -637,8 +689,12 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
                 if (fi.fileName() != newFileName) {
                     ui->results->append(tr("<b>Rename File</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(newFileName));
                     if (!dryRun) {
-                        if (!rename(file, fi.canonicalPath() + "/" + newFileName))
+                        if (!rename(file, fi.canonicalPath() + "/" + newFileName)) {
                             ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                            m_renameErrorOccured = true;
+                        } else {
+                            newEpisodeFiles << newFileName;
+                        }
                     }
 
                     QStringList filters;
@@ -650,11 +706,14 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
                         QString newSubName = newBaseName + subSuffix;
                         ui->results->append(tr("<b>Rename File</b> \"%1\" to \"%2\"").arg(subFileName).arg(newSubName));
                         if (!dryRun) {
-                            if (!rename(currentDir.canonicalPath() + "/" + subFileName, currentDir.canonicalPath() + "/" + newSubName))
+                            if (!rename(currentDir.canonicalPath() + "/" + subFileName, currentDir.canonicalPath() + "/" + newSubName)) {
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                                m_renameErrorOccured = true;
+                            }
                         }
                     }
-
+                } else {
+                    newEpisodeFiles << fi.fileName();
                 }
                 episodeFiles << fi.canonicalPath() + "/" + newFileName;
             }
@@ -694,6 +753,14 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
             }
         }
 
+        if (!dryRun) {
+            QStringList files;
+            foreach (const QString &file, newEpisodeFiles)
+                files << fi.path() + "/" + file;
+            episode->setFiles(files);
+            Manager::instance()->database()->update(episode);
+        }
+
         if (useSeasonDirectories) {
             QDir showDir(episode->tvShow()->dir());
             QString seasonDirName = seasonPattern;
@@ -718,18 +785,37 @@ void Renamer::renameEpisodes(QList<TvShowEpisode *> episodes, const QString &fil
                 if (parentDir != seasonDir) {
                     ui->results->append(tr("<b>Move Episode</b> \"%1\" to \"%2\"").arg(dir.dirName()).arg(seasonDirName));
                     if (!dryRun) {
-                        if (!rename(dir, seasonDir.absolutePath() + "/" + dir.dirName()))
+                        if (!rename(dir, seasonDir.absolutePath() + "/" + dir.dirName())) {
                             ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                            m_renameErrorOccured = true;
+                        } else {
+                            newEpisodeFiles.clear();
+                            QString oldDir = dir.path();
+                            QString newDir = seasonDir.absolutePath() + "/" + dir.dirName();
+                            foreach (const QString &file, episode->files())
+                                newEpisodeFiles << newDir + file.mid(oldDir.length());
+                            episode->setFiles(newEpisodeFiles);
+                            Manager::instance()->database()->update(episode);
+                        }
                     }
                 }
             } else if (fi.dir() != seasonDir) {
-                foreach (const QString &fileName, episodeFiles) {
+                newEpisodeFiles.clear();
+                foreach (const QString &fileName, episode->files()) {
                     QFileInfo fi(fileName);
                     ui->results->append(tr("<b>Move Episode</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(seasonDirName));
                     if (!dryRun) {
-                        if (!rename(fileName, seasonDir.path() + "/" + fi.fileName()))
+                        if (!rename(fileName, seasonDir.path() + "/" + fi.fileName())) {
                             ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                            m_renameErrorOccured = true;
+                        } else {
+                            newEpisodeFiles << seasonDir.path() + "/" + fi.fileName();
+                        }
                     }
+                }
+                if (!dryRun) {
+                    episode->setFiles(newEpisodeFiles);
+                    Manager::instance()->database()->update(episode);
                 }
 
                 if (!newNfoFileName.isEmpty() && !nfo.isEmpty()) {
@@ -773,8 +859,22 @@ void Renamer::renameShows(QList<TvShow *> shows, const QString &directoryPattern
             QDir parentDir(dir.path());
             parentDir.cdUp();
             if (!dryRun) {
-                if (!rename(dir, parentDir.path() + "/" + newFolderName))
+                if (!rename(dir, parentDir.path() + "/" + newFolderName)) {
                     ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                    m_renameErrorOccured = true;
+                } else {
+                    QString newShowDir = parentDir.path() + "/" + newFolderName;
+                    QString oldShowDir = show->dir();
+                    show->setDir(newShowDir);
+                    Manager::instance()->database()->update(show);
+                    foreach (TvShowEpisode *episode, show->episodes()) {
+                        QStringList files;
+                        foreach (const QString &file, episode->files())
+                            files << newShowDir + file.mid(oldShowDir.length());
+                        episode->setFiles(files);
+                        Manager::instance()->database()->update(episode);
+                    }
+                }
             }
         }
     }
@@ -804,6 +904,15 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
         QString nfo = Manager::instance()->mediaCenterInterface()->nfoFilePath(concert);
         QString poster = Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertPoster);
         QString fanart = Manager::instance()->mediaCenterInterface()->imageFileName(concert, ImageType::ConcertBackdrop);
+        QStringList newConcertFiles;
+        QString parentDirName;
+
+        bool errorOccured = false;
+
+        foreach (const QString &file, concert->files()) {
+            QFileInfo fi(file);
+            newConcertFiles.append(fi.fileName());
+        }
 
         QDir chkDir(fi.canonicalPath());
         chkDir.cdUp();
@@ -811,10 +920,13 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
         bool isBluRay = Helper::instance()->isBluRay(chkDir.path());
         bool isDvd = Helper::instance()->isDvd(chkDir.path());
 
-        if (isBluRay || isDvd)
+        if (isBluRay || isDvd) {
+            parentDirName = dir.dirName();
             dir.cdUp();
+        }
 
         if (!isBluRay && !isDvd && renameFiles) {
+            newConcertFiles.clear();
             int partNo = 0;
             foreach (const QString &file, concert->files()) {
                 newFileName = (concert->files().count() == 1) ? filePattern : filePatternMulti;
@@ -839,8 +951,13 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
                 if (fi.fileName() != newFileName) {
                     ui->results->append(tr("<b>Rename File</b> \"%1\" to \"%2\"").arg(fi.fileName()).arg(newFileName));
                     if (!dryRun) {
-                        if (!rename(file, fi.canonicalPath() + "/" + newFileName))
+                        if (!rename(file, fi.canonicalPath() + "/" + newFileName)) {
                             ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                            errorOccured = true;
+                            continue;
+                        } else {
+                            newConcertFiles.append(newFileName);
+                        }
                     }
 
                     QStringList filters;
@@ -856,6 +973,8 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
                                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
                         }
                     }
+                } else {
+                    newConcertFiles.append(fi.fileName());
                 }
             }
 
@@ -930,11 +1049,32 @@ void Renamer::renameConcerts(QList<Concert*> concerts, const QString &filePatter
                 ui->results->append(tr("<b>Rename Directory</b> \"%1\" to \"%2\"").arg(dir.dirName()).arg(newFolderName));
         }
 
+        QString newConcertFolder = dir.path();
         if (!dryRun && dir.dirName() != newFolderName && renameDirectories && concert->inSeparateFolder()) {
             QDir parentDir(dir.path());
             parentDir.cdUp();
-            if (!rename(dir, parentDir.path() + "/" + newFolderName))
+            if (!rename(dir, parentDir.path() + "/" + newFolderName)) {
                 ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") + "</b></span>");
+                errorOccured = true;
+            } else {
+                newConcertFolder = parentDir.path() + "/" + newFolderName;
+            }
+        }
+
+        if (errorOccured)
+            m_renameErrorOccured = true;
+
+        if (!errorOccured && !dryRun) {
+            QStringList files;
+            foreach (const QString &file, newConcertFiles) {
+                QString f = newConcertFolder;
+                if (isBluRay || isDvd)
+                    f += "/" + parentDirName;
+                f += "/" + file;
+                files << f;
+            }
+            concert->setFiles(files);
+            Manager::instance()->database()->update(concert);
         }
     }
 }

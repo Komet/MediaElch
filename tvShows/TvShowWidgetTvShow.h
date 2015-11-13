@@ -24,6 +24,7 @@ public:
     explicit TvShowWidgetTvShow(QWidget *parent = 0);
     ~TvShowWidgetTvShow();
     void setTvShow(TvShow *show);
+    void updateTvShowInfo();
 
 public slots:
     void onSetEnabled(bool enabled);
@@ -87,7 +88,6 @@ private:
     QLabel *m_savingWidget;
     QMovie *m_loadingMovie;
     DownloadManager *m_posterDownloadManager;
-    void updateTvShowInfo();
     void updateImages(QList<int> images);
 };
 

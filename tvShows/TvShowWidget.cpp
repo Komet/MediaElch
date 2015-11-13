@@ -194,3 +194,13 @@ void TvShowWidget::onStartScraperSearch()
     else if (ui->stackedWidget->currentIndex() == 1)
         QTimer::singleShot(0, ui->episodeWidget, SLOT(onStartScraperSearch()));
 }
+
+void TvShowWidget::updateInfo()
+{
+    if (ui->stackedWidget->currentIndex() == 0)
+        ui->tvShowWidget->updateTvShowInfo();
+    else if (ui->stackedWidget->currentIndex() == 1)
+        ui->episodeWidget->updateEpisodeInfo();
+    else if (ui->stackedWidget->currentIndex() == 2)
+        ui->seasonWidget->updateSeasonInfo();
+}

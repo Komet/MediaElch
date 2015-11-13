@@ -158,6 +158,8 @@ public:
     static QList<int> imageTypes();
     static QList<int> seasonImageTypes();
 
+    void setDir(const QString &dir);
+
 signals:
     void sigLoaded(TvShow*);
     void sigChanged(TvShow*);

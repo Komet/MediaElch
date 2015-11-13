@@ -21,6 +21,7 @@ public:
     explicit TvShowWidgetSeason(QWidget *parent = 0);
     ~TvShowWidgetSeason();
     void setSeason(TvShow *show, int season);
+    void updateSeasonInfo();
 
 public slots:
     void onClear();

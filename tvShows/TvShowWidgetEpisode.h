@@ -23,6 +23,7 @@ public:
     explicit TvShowWidgetEpisode(QWidget *parent = 0);
     ~TvShowWidgetEpisode();
     void setEpisode(TvShowEpisode *episode);
+    void updateEpisodeInfo();
 
 public slots:
     void onSetEnabled(bool enabled);
@@ -85,7 +86,6 @@ private:
     QList< QList<QLineEdit*> > m_streamDetailsAudio;
     QList< QList<QLineEdit*> > m_streamDetailsSubtitles;
 
-    void updateEpisodeInfo();
 };
 
 #endif // TVSHOWWIDGETEPISODE_H

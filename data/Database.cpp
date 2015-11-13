@@ -321,6 +321,16 @@ void Database::update(Movie *movie)
     query.bindValue(":content", movie->nfoContent().isEmpty() ? "" : movie->nfoContent());
     query.bindValue(":idMovie", movie->databaseId());
     query.exec();
+
+    query.prepare("DELETE FROM movieFiles WHERE idMovie=:idMovie");
+    query.bindValue(":idMovie", movie->databaseId());
+    query.exec();
+    foreach (const QString &file, movie->files()) {
+        query.prepare("INSERT INTO movieFiles(idMovie, file) VALUES(:idMovie, :file)");
+        query.bindValue(":idMovie", movie->databaseId());
+        query.bindValue(":file", file.toUtf8());
+        query.exec();
+    }
 }
 
 QList<Movie*> Database::movies(QString path)
@@ -414,6 +424,16 @@ void Database::update(Concert *concert)
     query.bindValue(":content", concert->nfoContent().isEmpty() ? "" : concert->nfoContent());
     query.bindValue(":id", concert->databaseId());
     query.exec();
+
+    query.prepare("DELETE FROM concertFiles WHERE idConcert=:idConcert");
+    query.bindValue(":idConcert", concert->databaseId());
+    query.exec();
+    foreach (const QString &file, concert->files()) {
+        query.prepare("INSERT INTO concertFiles(idConcert, file) VALUES(:idConcert, :file)");
+        query.bindValue(":idConcert", concert->databaseId());
+        query.bindValue(":file", file.toUtf8());
+        query.exec();
+    }
 }
 
 QList<Concert*> Database::concerts(QString path)
@@ -541,8 +561,9 @@ void Database::add(TvShowEpisode *episode, QString path, int idShow)
 void Database::update(TvShow *show)
 {
     QSqlQuery query(db());
-    query.prepare("UPDATE shows SET content=:content WHERE idShow=:id");
+    query.prepare("UPDATE shows SET content=:content, dir=:dir WHERE idShow=:id");
     query.bindValue(":content", show->nfoContent().isEmpty() ? "" : show->nfoContent());
+    query.bindValue(":dir", show->dir().toUtf8());
     query.bindValue(":id", show->databaseId());
     query.exec();
 
@@ -563,6 +584,17 @@ void Database::update(TvShowEpisode *episode)
     query.bindValue(":content", episode->nfoContent().isEmpty() ? "" : episode->nfoContent());
     query.bindValue(":id", episode->databaseId());
     query.exec();
+
+    query.prepare("DELETE FROM episodeFiles WHERE idEpisode=:idEpisode");
+    query.bindValue(":idEpisode", episode->databaseId());
+    query.exec();
+
+    foreach (const QString &file, episode->files()) {
+        query.prepare("INSERT INTO episodeFiles(idEpisode, file) VALUES(:idEpisode, :file)");
+        query.bindValue(":idEpisode", episode->databaseId());
+        query.bindValue(":file", file.toUtf8());
+        query.exec();
+    }
 }
 
 QList<TvShow*> Database::shows(QString path)

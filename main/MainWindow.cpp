@@ -614,16 +614,25 @@ void MainWindow::onXbmcSyncFinished()
 
 void MainWindow::onFilesRenamed(Renamer::RenameType type)
 {
-    m_fileScannerDialog->setForceReload(true);
-    if (type == Renamer::TypeMovies)
-        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeMovies);
-    else if (type == Renamer::TypeConcerts)
-        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeConcerts);
-    else if (type == Renamer::TypeTvShows)
-        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeTvShows);
-    else if (type == Renamer::TypeAll)
-        m_fileScannerDialog->setReloadType(FileScannerDialog::TypeAll);
-    m_fileScannerDialog->exec();
+    if (m_renamer->renameErrorOccured()) {
+        m_fileScannerDialog->setForceReload(true);
+        if (type == Renamer::TypeMovies)
+            m_fileScannerDialog->setReloadType(FileScannerDialog::TypeMovies);
+        else if (type == Renamer::TypeConcerts)
+            m_fileScannerDialog->setReloadType(FileScannerDialog::TypeConcerts);
+        else if (type == Renamer::TypeTvShows)
+            m_fileScannerDialog->setReloadType(FileScannerDialog::TypeTvShows);
+        else if (type == Renamer::TypeAll)
+            m_fileScannerDialog->setReloadType(FileScannerDialog::TypeAll);
+        m_fileScannerDialog->exec();
+    } else {
+        if (type == Renamer::TypeMovies)
+            ui->movieWidget->updateMovieInfo();
+        else if (type == Renamer::TypeConcerts)
+            ui->concertWidget->updateConcertInfo();
+        else if (type == Renamer::TypeTvShows)
+            ui->tvShowWidget->updateInfo();
+    }
 }
 
 void MainWindow::onRenewModels()
