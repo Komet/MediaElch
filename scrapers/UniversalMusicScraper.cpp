@@ -340,7 +340,7 @@ void UniversalMusicScraper::loadData(QString mbAlbumId, QString mbReleaseGroupId
     album->setMbAlbumId(mbAlbumId);
     album->setMbReleaseGroupId(mbReleaseGroupId);
     album->setAllMusicId("");
-    QUrl url(QString("http://www.musicbrainz.org/ws/2/release/%1?inc=url-rels").arg(mbAlbumId));
+    QUrl url(QString("http://www.musicbrainz.org/ws/2/release/%1?inc=url-rels+labels+artist-credits").arg(mbAlbumId));
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, album));
@@ -360,6 +360,7 @@ void UniversalMusicScraper::onAlbumRelsFinished()
     QString discogsUrl;
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
+        parseAndAssignMusicbrainzInfos(msg, album, infos);
         QDomDocument domDoc;
         domDoc.setContent(msg);
         for (int i=0, n=domDoc.elementsByTagName("relation").count() ; i<n ; ++i) {
@@ -690,6 +691,56 @@ void UniversalMusicScraper::parseAndAssignDiscogsInfos(QString html, Artist *art
     }
 }
 
+void UniversalMusicScraper::parseAndAssignMusicbrainzInfos(QString xml, Album *album, QList<int> infos)
+{
+    QDomDocument domDoc;
+    domDoc.setContent(xml);
+
+    if (shouldLoad(MusicScraperInfos::Title, infos, album) && !domDoc.elementsByTagName("title").isEmpty())
+        album->setTitle(domDoc.elementsByTagName("title").at(0).toElement().text());
+
+    if (shouldLoad(MusicScraperInfos::Artist, infos, album) && !domDoc.elementsByTagName("artist-credit").isEmpty()) {
+        QString artist;
+        QString joinPhrase;
+        QDomNodeList artistList = domDoc.elementsByTagName("artist-credit").at(0).toElement().elementsByTagName("name-credit");
+        for (int i=0, n=artistList.count() ; i<n ; ++i) {
+            QDomElement artistElem = artistList.at(i).toElement();
+            joinPhrase = artistElem.attribute("joinphrase");
+            if (artistElem.elementsByTagName("artist").isEmpty())
+                continue;
+            if (artistElem.elementsByTagName("artist").at(0).toElement().elementsByTagName("name").isEmpty())
+                continue;
+
+            if (!artist.isEmpty())
+                artist.append(joinPhrase.isEmpty() ? ", " : joinPhrase);
+            artist.append(artistElem.elementsByTagName("artist").at(0).toElement().elementsByTagName("name").at(0).toElement().text());
+        }
+        if (!artist.isEmpty())
+            album->setArtist(artist);
+    }
+
+    if (shouldLoad(MusicScraperInfos::Label, infos, album) && !domDoc.elementsByTagName("label-info-list").isEmpty()) {
+        QStringList labels;
+        QDomNodeList labelList = domDoc.elementsByTagName("label-info-list").at(0).toElement().elementsByTagName("label-info");
+        for (int i=0, n=labelList.count() ; i<n ; ++i) {
+            QDomElement labelElem = labelList.at(i).toElement();
+            if (labelElem.elementsByTagName("label").isEmpty())
+                continue;
+            if (labelElem.elementsByTagName("label").at(0).toElement().elementsByTagName("name").isEmpty())
+                continue;
+            labels << labelElem.elementsByTagName("label").at(0).toElement().elementsByTagName("name").at(0).toElement().text();
+        }
+        if (!labels.isEmpty())
+            album->setLabel(labels.join(", "));
+    }
+
+    if (shouldLoad(MusicScraperInfos::ReleaseDate, infos, album) && !domDoc.elementsByTagName("release-event-list").isEmpty()) {
+        QDomNodeList releaseList = domDoc.elementsByTagName("release-event-list").at(0).toElement().elementsByTagName("release-event");
+        if (!releaseList.isEmpty() && !releaseList.at(0).toElement().elementsByTagName("date").isEmpty())
+            album->setReleaseDate(releaseList.at(0).toElement().elementsByTagName("date").at(0).toElement().text());
+    }
+}
+
 void UniversalMusicScraper::parseAndAssignTadbInfos(QString json, Album *album, QList<int> infos)
 {
     QScriptValue sc;
@@ -922,7 +973,8 @@ QList<int> UniversalMusicScraper::scraperSupports()
                         << MusicScraperInfos::ReleaseDate
                         << MusicScraperInfos::Year
                         << MusicScraperInfos::ExtraFanarts
-                        << MusicScraperInfos::Discography;
+                        << MusicScraperInfos::Discography
+                        << MusicScraperInfos::Label;
 }
 
 QWidget *UniversalMusicScraper::settingsWidget()

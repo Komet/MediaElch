@@ -66,6 +66,7 @@ private:
     bool infosLeft(QList<int> infos, Album *album);
     void appendDownloadElement(Artist *artist, QString source, QString type, QUrl url);
     void appendDownloadElement(Album *album, QString source, QString type, QUrl url);
+    void parseAndAssignMusicbrainzInfos(QString xml, Album *album, QList<int> infos);
     void parseAndAssignTadbInfos(QString json, Artist *artist, QList<int> infos);
     void parseAndAssignTadbInfos(QString json, Album *album, QList<int> infos);
     void parseAndAssignTadbDiscography(QString json, Artist *artist, QList<int> infos);

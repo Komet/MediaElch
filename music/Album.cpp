@@ -256,6 +256,8 @@ void Album::clear(QList<int> infos)
 {
     if (infos.contains(MusicScraperInfos::Artist))
         m_artist.clear();
+    if (infos.contains(MusicScraperInfos::Title))
+        m_title.clear();
     if (infos.contains(MusicScraperInfos::Genres))
         m_genres.clear();
     if (infos.contains(MusicScraperInfos::Styles))
