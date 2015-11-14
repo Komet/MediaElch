@@ -1,6 +1,7 @@
 #ifndef MUSICSEARCHWIDGET_H
 #define MUSICSEARCHWIDGET_H
 
+#include <QSignalMapper>
 #include <QTableWidgetItem>
 #include <QWidget>
 #include "data/ScraperInterface.h"
@@ -34,6 +35,7 @@ private slots:
     void search();
     void showResults(QList<ScraperSearchResult> results);
     void resultClicked(QTableWidgetItem *item);
+    void resultClicked(int row);
     void chkToggled();
     void chkAllToggled(bool toggled);
 
@@ -45,6 +47,7 @@ private:
     QList<int> m_infosToLoad;
     QString m_type;
     QString m_artistName;
+    QSignalMapper *m_signalMapper;
 
     void clear();
     void setChkBoxesEnabled(QList<int> scraperSupports);

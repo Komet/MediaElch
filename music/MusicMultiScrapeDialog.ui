@@ -25,9 +25,9 @@
     <widget class="QGroupBox" name="groupBox">
      <property name="styleSheet">
       <string notr="true">QGroupBox {
-	border: 1px solid rgba(0, 0, 0, 100);
-	border-radius: 5px;
-	background-color: rgba(255, 255, 255, 200);
+    border-radius: 0px;
+    border-top: 5px solid #5BC0DE; 
+    background-color: #F4F8FA;
 }</string>
      </property>
      <property name="title">
