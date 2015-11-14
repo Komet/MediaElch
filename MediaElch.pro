@@ -195,7 +195,8 @@ SOURCES += main.cpp\
     qml/AlbumImageProvider.cpp \
     image/ImageWidget.cpp \
     imageProviders/Coverlib.cpp \
-    globals/NetworkReplyWatcher.cpp
+    globals/NetworkReplyWatcher.cpp \
+    smallWidgets/TvShowTreeView.cpp
 
 macx {
     OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm
@@ -368,7 +369,8 @@ HEADERS  += main/MainWindow.h \
     qml/AlbumImageProvider.h \
     image/ImageWidget.h \
     imageProviders/Coverlib.h \
-    globals/NetworkReplyWatcher.h
+    globals/NetworkReplyWatcher.h \
+    smallWidgets/TvShowTreeView.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \

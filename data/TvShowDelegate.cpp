@@ -25,7 +25,7 @@ TvShowDelegate::TvShowDelegate(QObject *parent) :
  */
 void TvShowDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    if (index.model()->data(index, TvShowRoles::Type).toInt() == TypeTvShow ) {
+    if (index.model()->data(index, TvShowRoles::Type).toInt() == TypeTvShow) {
         ItemWidgetShow *widget = new ItemWidgetShow();
         widget->setTitle(index.data(Qt::DisplayRole).toString());
         widget->setFixedHeight(m_showItemHeight);

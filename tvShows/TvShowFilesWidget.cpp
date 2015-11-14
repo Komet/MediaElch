@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include "globals/Manager.h"
 #include "data/TvShowModelItem.h"
+#include "data/TvShowDelegate.h"
 #include "smallWidgets/LoadingStreamDetails.h"
 #include "tvShows/TvShowUpdater.h"
 
@@ -25,11 +26,6 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
 
     ui->statusLabel->setText(tr("%n tv shows", "", 0) + ", " + tr("%n episodes", "", 0));
 
-#ifdef Q_OS_MAC
-    QFont font = ui->files->font();
-    font.setPointSize(font.pointSize()-2);
-    ui->files->setFont(font);
-#endif
 #ifdef Q_OS_WIN32
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
 #endif
@@ -37,15 +33,19 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     m_lastTvShow = 0;
     m_lastEpisode = 0;
     m_lastSeason = -1;
-    m_tvShowDelegate = new TvShowDelegate(this);
     m_tvShowProxyModel = Manager::instance()->tvShowProxyModel();
     m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
     m_tvShowProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     m_tvShowProxyModel->setDynamicSortFilter(true);
     ui->files->setModel(m_tvShowProxyModel);
-    ui->files->setItemDelegate(m_tvShowDelegate);
     ui->files->sortByColumn(0);
     ui->files->setAttribute(Qt::WA_MacShowFocusRect, false);
+    ui->files->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+    ui->files->setIconSize(QSize(12, 12));
+
+#ifdef Q_OS_WIN
+    ui->files->setAnimated(false);
+#endif
 
     QAction *actionScanForEpisodes = new QAction(tr("Search for new episodes"), this);
     QAction *actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
@@ -84,8 +84,7 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     connect(m_actionShowMissingEpisodes, SIGNAL(triggered()), this, SLOT(showMissingEpisodes()));
     connect(m_actionHideSpecialsInMissingEpisodes, SIGNAL(triggered()), this, SLOT(hideSpecialsInMissingEpisodes()));
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
-    connect(ui->files, SIGNAL(clicked(QModelIndex)), this, SLOT(onItemClicked(QModelIndex)), Qt::QueuedConnection);
-    connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)), Qt::QueuedConnection);
+    connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemSelected(QModelIndex)), Qt::QueuedConnection);
     connect(ui->files, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(playEpisode(QModelIndex)));
     Manager::instance()->setTvShowFilesWidget(this);
 
@@ -403,28 +402,27 @@ void TvShowFilesWidget::setFilter(QList<Filter *> filters, QString text)
  */
 void TvShowFilesWidget::renewModel(bool force)
 {
-    qDebug() << "Entered";
+    qDebug() << "Renewing model" << force;
     if (force) {
-        disconnect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)));
+        disconnect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemSelected(QModelIndex)));
         m_tvShowProxyModel->setSourceModel(0);
         m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
         ui->files->setModel(0);
         ui->files->setModel(m_tvShowProxyModel);
-        connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemActivated(QModelIndex,QModelIndex)), Qt::QueuedConnection);
+        ui->files->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+        connect(ui->files->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(onItemSelected(QModelIndex)), Qt::QueuedConnection);
+
+        for (int row=0, n=ui->files->model()->rowCount() ; row<n ; ++row) {
+            QModelIndex showIndex = ui->files->model()->index(row, 0);
+            for (int seasonRow=0, x=ui->files->model()->rowCount(showIndex) ; seasonRow<x ; ++seasonRow) {
+                QModelIndex seasonIndex = ui->files->model()->index(seasonRow, 0, showIndex);
+                ui->files->setFirstColumnSpanned(seasonRow, showIndex, true);
+                for (int episodeRow=0, y=ui->files->model()->rowCount(seasonIndex) ; episodeRow<y ; ++episodeRow)
+                    ui->files->setFirstColumnSpanned(episodeRow, seasonIndex, true);
+            }
+        }
     }
     onViewUpdated();
-}
-
-/**
- * @brief Collapses or expands items
- * @param index
- */
-void TvShowFilesWidget::onItemClicked(QModelIndex index)
-{
-    if (ui->files->isExpanded(index))
-        ui->files->collapse(index);
-    else
-        ui->files->expand(index);
 }
 
 /**
@@ -432,10 +430,9 @@ void TvShowFilesWidget::onItemClicked(QModelIndex index)
  * @param index
  * @param previous
  */
-void TvShowFilesWidget::onItemActivated(QModelIndex index, QModelIndex previous)
+void TvShowFilesWidget::onItemSelected(QModelIndex index)
 {
     qDebug() << "Entered";
-    Q_UNUSED(previous);
 
     if (!index.isValid()) {
         qDebug() << "Invalid index";

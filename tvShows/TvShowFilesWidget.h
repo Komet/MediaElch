@@ -9,7 +9,6 @@
 #include "data/TvShow.h"
 #include "data/TvShowEpisode.h"
 #include "data/TvShowProxyModel.h"
-#include "data/TvShowDelegate.h"
 #include "globals/Filter.h"
 
 namespace Ui {
@@ -42,8 +41,7 @@ signals:
     void sigNothingSelected();
 
 private slots:
-    void onItemActivated(QModelIndex index, QModelIndex previous);
-    void onItemClicked(QModelIndex index);
+    void onItemSelected(QModelIndex index);
     void showContextMenu(QPoint point);
     void scanForEpisodes();
     void markAsWatched();
@@ -60,7 +58,6 @@ private slots:
 private:
     Ui::TvShowFilesWidget *ui;
     TvShowProxyModel *m_tvShowProxyModel;
-    TvShowDelegate *m_tvShowDelegate;
     static TvShowFilesWidget *m_instance;
     QMenu *m_contextMenu;
     TvShow *m_lastTvShow;

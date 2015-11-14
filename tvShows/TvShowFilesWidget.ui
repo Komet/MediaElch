@@ -81,7 +81,7 @@
     </widget>
    </item>
    <item>
-    <widget class="MyTreeView" name="files">
+    <widget class="TvShowTreeView" name="files">
      <property name="minimumSize">
       <size>
        <width>200</width>
@@ -93,26 +93,19 @@
      </property>
      <property name="styleSheet">
       <string notr="true">QTreeView {
-    selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
+	selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
     alternate-background-color: #f9f9f9;
-    selection-color: #ffffff;
-}
-
-QTreeView::item:selected {
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4185b6, stop:1 #1b6aa5);
+	selection-color: #ffffff;
 }</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
      </property>
      <property name="horizontalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOff</enum>
      </property>
-     <property name="autoScroll">
-      <bool>false</bool>
-     </property>
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>
-     </property>
-     <property name="tabKeyNavigation">
-      <bool>true</bool>
      </property>
      <property name="alternatingRowColors">
       <bool>true</bool>
@@ -120,22 +113,19 @@ QTreeView::item:selected {
      <property name="selectionMode">
       <enum>QAbstractItemView::ExtendedSelection</enum>
      </property>
-     <property name="indentation">
-      <number>10</number>
-     </property>
-     <property name="rootIsDecorated">
-      <bool>false</bool>
-     </property>
-     <property name="sortingEnabled">
-      <bool>true</bool>
-     </property>
      <property name="animated">
       <bool>true</bool>
      </property>
      <property name="expandsOnDoubleClick">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <attribute name="headerVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="headerDefaultSectionSize">
+      <number>16</number>
+     </attribute>
+     <attribute name="headerStretchLastSection">
       <bool>false</bool>
      </attribute>
     </widget>
@@ -144,9 +134,9 @@ QTreeView::item:selected {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MyTreeView</class>
+   <class>TvShowTreeView</class>
    <extends>QTreeView</extends>
-   <header>smallWidgets/MyTreeView.h</header>
+   <header>smallWidgets/TvShowTreeView.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -49,7 +49,9 @@ enum MyIconFontName {
     icon_close = 0xe680,
     icon_play = 0xe624,
     icon_note = 0xe62c,
-    icon_pen = 0xe628
+    icon_pen = 0xe628,
+    icon_attention = 0xe67b,
+    icon_airplay = 0xe67f,
 };
 
 
