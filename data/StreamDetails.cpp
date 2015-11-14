@@ -171,7 +171,9 @@ void StreamDetails::loadWithLibrary()
         QString lang = QString(MI.Get(Stream_Audio, i, __T("Language/String3")).c_str()).toLower();
         QString audioCodec = audioFormat(QString(MI.Get(Stream_Audio, i, __T("Codec")).c_str()),
                                          QString(MI.Get(Stream_Audio, i, __T("Format_Profile")).c_str()));
-        QString channels = QString(MI.Get(Stream_Audio, i, __T("Channels")).c_str());
+        QString channels = QString(MI.Get(Stream_Audio, i, __T("Channel(s)")).c_str());
+        if (!QString(MI.Get(Stream_Audio, i, __T("Channel(s)_Original")).c_str()).isEmpty())
+            channels = QString(MI.Get(Stream_Audio, i, __T("Channel(s)_Original")).c_str());
         QRegExp rx("^(\\d*)\\D*");
         if (rx.indexIn(QString("%1").arg(channels), 0) != -1)
             channels = rx.cap(1);
