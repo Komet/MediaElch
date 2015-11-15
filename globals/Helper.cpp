@@ -6,6 +6,7 @@
 #include <QDateTimeEdit>
 #include <QDir>
 #include <QDoubleSpinBox>
+#include <QFile>
 #include <QGraphicsDropShadowEffect>
 #include <QLabel>
 #include <QLineEdit>
@@ -788,4 +789,15 @@ QString Helper::matchResolution(int width, int height, const QString &scanType)
     if (scanType.toLower() == "interlaced")
         return res + "i";
     return res;
+}
+
+QImage Helper::getImage(QString path)
+{
+    QImage img;
+    QFile file(path);
+    if (file.open(QIODevice::ReadOnly)) {
+        img = QImage::fromData(file.readAll());
+        file.close();
+    }
+    return img;
 }
