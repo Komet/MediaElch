@@ -161,7 +161,7 @@ void TvShowTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &opti
             int drawSize = qRound(iconRect.width() * 1.0);
             painter->setPen(isSelected ? QColor(255, 255, 255) : QColor(248, 148, 6));
             painter->setFont(Manager::instance()->iconFont()->font(drawSize));
-            painter->drawText(iconRect, QString(QChar(icon_airplay)), QTextOption(Qt::AlignCenter|Qt::AlignVCenter));
+            painter->drawText(iconRect, QString(QChar(icon_refresh_cloud)), QTextOption(Qt::AlignCenter|Qt::AlignVCenter));
 #endif
             itemIndent += 20;
         }
@@ -181,7 +181,9 @@ void TvShowTreeView::drawRow(QPainter *painter, const QStyleOptionViewItem &opti
         }
 
         QRect itemRect(option.rect.x()+itemIndent, option.rect.y(), option.rect.width()-itemIndent, option.rect.height()-1);
-        painter->setFont(index.data(Qt::FontRole).value<QFont>());
+        QFont font = index.data(Qt::FontRole).value<QFont>();
+        qDebug() << font.pointSize();
+        painter->setFont(font);
         painter->setPen(index.data(isSelected ? TvShowRoles::SelectionForeground : Qt::ForegroundRole).value<QColor>());
         painter->drawText(itemRect, index.data().toString(), QTextOption(Qt::AlignVCenter));
 

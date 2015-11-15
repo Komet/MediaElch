@@ -46,6 +46,8 @@ QVariant MusicModel::data(const QModelIndex &index, int role) const
             font.setBold(true);
         } else {
 #ifdef Q_OS_MAC
+            font.setPointSize(font.pointSize()-2);
+#else
             font.setPointSize(font.pointSize()-1);
 #endif
         }
@@ -54,7 +56,7 @@ QVariant MusicModel::data(const QModelIndex &index, int role) const
 #ifdef Q_OS_WIN
         return QSize(0, (item->data(MusicRoles::Type) == TypeArtist) ? 22 : 22);
 #else
-        return QSize(0, (item->data(MusicRoles::Type) == TypeArtist) ? 44 : 28);
+        return QSize(0, (item->data(MusicRoles::Type) == TypeArtist) ? 44 : 22);
 #endif
     } else if (role == MusicRoles::NumOfAlbums) {
         if (item->data(MusicRoles::Type) == TypeArtist)

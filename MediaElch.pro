@@ -67,7 +67,6 @@ SOURCES += main.cpp\
     data/TvShowProxyModel.cpp \
     data/TvShowModelItem.cpp \
     data/TvShowEpisode.cpp \
-    data/TvShowDelegate.cpp \
     tvShows/TvShowWidget.cpp \
     tvShows/TvShowWidgetEpisode.cpp \
     tvShows/TvShowWidgetTvShow.cpp \
@@ -138,7 +137,6 @@ SOURCES += main.cpp\
     export/ExportDialog.cpp \
     smallWidgets/MessageLabel.cpp \
     smallWidgets/SearchOverlay.cpp \
-    tvShows/ItemWidgetShow.cpp \
     scrapers/CustomMovieScraper.cpp \
     scrapers/MediaPassion.cpp \
     imageProviders/MediaPassionImages.cpp \
@@ -234,7 +232,6 @@ HEADERS  += main/MainWindow.h \
     data/TvShowProxyModel.h \
     data/TvShowModelItem.h \
     data/TvShowEpisode.h \
-    data/TvShowDelegate.h \
     tvShows/TvShowWidget.h \
     tvShows/TvShowWidgetEpisode.h \
     tvShows/TvShowWidgetTvShow.h \
@@ -310,7 +307,6 @@ HEADERS  += main/MainWindow.h \
     export/ExportDialog.h \
     smallWidgets/MessageLabel.h \
     smallWidgets/SearchOverlay.h \
-    tvShows/ItemWidgetShow.h \
     scrapers/CustomMovieScraper.h \
     scrapers/MediaPassion.h \
     imageProviders/MediaPassionImages.h \

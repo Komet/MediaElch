@@ -130,16 +130,19 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
         QFont font;
         if (item->data(2).toBool())
             font.setItalic(true);
-        if (item->type() == TypeTvShow || item->type() == TypeSeason) {
+        if (item->type() == TypeTvShow || item->type() == TypeSeason)
             font.setBold(true);
-        } else {
+
+        if (item->type() == TypeSeason || item->type() == TypeEpisode) {
 #ifdef Q_OS_MAC
+            font.setPointSize(font.pointSize()-2);
+#else
             font.setPointSize(font.pointSize()-1);
 #endif
         }
         return font;
     } else if (role == Qt::SizeHintRole) {
-        return QSize(0, (item->type() == TypeTvShow) ? 44 : (item->type() == TypeSeason) ? 32 : 28);
+        return QSize(0, (item->type() == TypeTvShow) ? 44 : (item->type() == TypeSeason) ? 26 : 22);
     } else if (role == TvShowRoles::Type) {
         return item->type();
     } else if (role == TvShowRoles::EpisodeCount && item->type() == TypeTvShow) {

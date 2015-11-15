@@ -338,6 +338,10 @@ bool MyIconFont::initFontAwesome( )
     m.insert("play", icon_play);
     m.insert("note", icon_note);
     m.insert("pen", icon_pen);
+    m.insert("attention", icon_attention);
+    m.insert("airplay", icon_airplay);
+    m.insert("refresh_cloud", icon_refresh_cloud);
+    m.insert("repeat", icon_repeat);
 
     return true;
 }
@@ -421,15 +425,21 @@ QIcon MyIconFont::icon(const QString& name, const QVariantMap& options)
     return icon( painter, optionMap );
 }
 
-QIcon MyIconFont::icon(const QString &name, const QColor &color, const QString &painterName, int markerNum, float scaleFactor)
+QIcon MyIconFont::icon(const QString &name, const QColor &color, const QColor &selectionColor, const QString &painterName, int markerNum, float scaleFactor)
 {
     QVariantMap options;
     options.insert("color", color);
     options.insert("painter-name", painterName);
     options.insert("scale-factor", scaleFactor);
+    options.insert("color-selected", selectionColor);
     if (markerNum != 0)
         options.insert("marker-text", QString::number(markerNum));
     return icon(name, options);
+}
+
+QIcon MyIconFont::icon(const QString &name, const QColor &color, const QString &painterName, int markerNum, float scaleFactor)
+{
+    return icon(name, color, QColor(10, 10, 10), painterName, markerNum, scaleFactor);
 }
 
 /// Create a dynamic icon by simlpy supplying a painter object

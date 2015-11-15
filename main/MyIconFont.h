@@ -52,6 +52,8 @@ enum MyIconFontName {
     icon_pen = 0xe628,
     icon_attention = 0xe67b,
     icon_airplay = 0xe67f,
+    icon_refresh_cloud = 0xe61d,
+    icon_repeat = 0xe61b
 };
 
 
@@ -81,7 +83,8 @@ public:
 
     QIcon icon( int character, const QVariantMap& options = QVariantMap() );
     QIcon icon( const QString& name, const QVariantMap& options = QVariantMap() );
-    QIcon icon(const QString& name, const QColor &color = QColor(), const QString &painterName = QString(), int markerNum = -1, float scaleFactor = 0.9);
+    QIcon icon(const QString& name, const QColor &color, const QString &painterName = QString(), int markerNum = -1, float scaleFactor = 0.9);
+    QIcon icon(const QString& name, const QColor &color, const QColor &selectionColor, const QString &painterName = QString(), int markerNum = -1, float scaleFactor = 0.9);
     QIcon icon(MyIconFontIconPainter* painter, const QVariantMap& optionMap = QVariantMap() );
 
     void give( const QString& name, MyIconFontIconPainter* painter );

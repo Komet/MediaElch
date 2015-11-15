@@ -41,6 +41,11 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget *parent) :
     m_concertProxyModel->setDynamicSortFilter(true);
     ui->files->setModel(m_concertProxyModel);
     ui->files->sortByColumn(0);
+#ifdef Q_OS_WIN
+    ui->files->setIconSize(QSize(12, 12));
+#else
+    ui->files->setIconSize(QSize(16, 16));
+#endif
 
     QAction *actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
     QAction *actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);

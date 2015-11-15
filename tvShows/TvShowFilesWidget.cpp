@@ -7,7 +7,6 @@
 #include <QMessageBox>
 #include "globals/Manager.h"
 #include "data/TvShowModelItem.h"
-#include "data/TvShowDelegate.h"
 #include "smallWidgets/LoadingStreamDetails.h"
 #include "tvShows/TvShowUpdater.h"
 
