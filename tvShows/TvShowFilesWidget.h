@@ -27,18 +27,20 @@ public:
     ~TvShowFilesWidget();
     void setFilter(QList<Filter*> filters, QString text);
     static TvShowFilesWidget *instance();
-    QList<TvShowEpisode*> selectedEpisodes();
+    QList<TvShowEpisode*> selectedEpisodes(bool includeFromSeasonOrShow = true);
     QList<TvShow*> selectedShows();
 
 public slots:
     void renewModel(bool force = false);
     void emitLastSelection();
+    void multiScrape();
 
 signals:
     void sigEpisodeSelected(TvShowEpisode *episode);
     void sigTvShowSelected(TvShow *show);
     void sigSeasonSelected(TvShow *show, int season);
     void sigNothingSelected();
+    void sigStartSearch();
 
 private slots:
     void onItemSelected(QModelIndex index);

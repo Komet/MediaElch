@@ -194,7 +194,8 @@ SOURCES += main.cpp\
     image/ImageWidget.cpp \
     imageProviders/Coverlib.cpp \
     globals/NetworkReplyWatcher.cpp \
-    smallWidgets/TvShowTreeView.cpp
+    smallWidgets/TvShowTreeView.cpp \
+    tvShows/TvShowMultiScrapeDialog.cpp
 
 macx {
     OBJECTIVE_SOURCES += notifications/MacNotificationHandler.mm
@@ -366,7 +367,8 @@ HEADERS  += main/MainWindow.h \
     image/ImageWidget.h \
     imageProviders/Coverlib.h \
     globals/NetworkReplyWatcher.h \
-    smallWidgets/TvShowTreeView.h
+    smallWidgets/TvShowTreeView.h \
+    tvShows/TvShowMultiScrapeDialog.h
 
 FORMS    += main/MainWindow.ui \
     movies/MovieSearch.ui \
@@ -425,7 +427,8 @@ FORMS    += main/MainWindow.ui \
     music/MusicSearchWidget.ui \
     music/MusicMultiScrapeDialog.ui \
     renamer/RenamerPlaceholders.ui \
-    image/ImageWidget.ui
+    image/ImageWidget.ui \
+    tvShows/TvShowMultiScrapeDialog.ui
 
 RESOURCES += \
     MediaElch.qrc \

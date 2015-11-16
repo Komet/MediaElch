@@ -56,8 +56,6 @@ TvShowSearch::TvShowSearch(QWidget *parent) :
     }
 
     connect(ui->chkUnCheckAll, SIGNAL(clicked()), this, SLOT(onChkAllToggled()));
-
-    ui->chkDvdOrder->setChecked(Settings::instance()->tvShowDvdOrder());
 }
 
 /**
@@ -98,6 +96,9 @@ int TvShowSearch::exec(QString searchString, QString id)
         ui->searchString->setText("id" + id);
     else
         ui->searchString->setText(searchString.replace(".", " "));
+
+    ui->chkDvdOrder->setChecked(Settings::instance()->tvShowDvdOrder());
+
     onChkToggled();
     onSearch();
     return QDialog::exec();

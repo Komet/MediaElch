@@ -35,6 +35,7 @@ signals:
     void downloadsLeft(int);
     void downloadsLeft(int, DownloadManagerElement);
     void downloadFinished(DownloadManagerElement);
+    void sigElemDownloaded(DownloadManagerElement);
     void allDownloadsFinished();
     void allDownloadsFinished(Movie*);
     void allDownloadsFinished(TvShow*);

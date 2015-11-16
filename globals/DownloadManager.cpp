@@ -248,6 +248,7 @@ void DownloadManager::downloadFinished()
         m_currentDownloadElement.episode->setThumbnailImage(data);
     else
         emit downloadFinished(m_currentDownloadElement);
+    emit sigElemDownloaded(m_currentDownloadElement);
     startNextDownload();
 }
 

@@ -8,6 +8,7 @@
 #include "globals/Manager.h"
 #include "data/TvShowModelItem.h"
 #include "smallWidgets/LoadingStreamDetails.h"
+#include "tvShows/TvShowMultiScrapeDialog.h"
 #include "tvShows/TvShowUpdater.h"
 
 TvShowFilesWidget *TvShowFilesWidget::m_instance;
@@ -46,6 +47,7 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     ui->files->setAnimated(false);
 #endif
 
+    QAction *actionMultiScrape = new QAction(tr("Load Information"), this);
     QAction *actionScanForEpisodes = new QAction(tr("Search for new episodes"), this);
     QAction *actionMarkAsWatched = new QAction(tr("Mark as watched"), this);
     QAction *actionMarkAsUnwatched = new QAction(tr("Mark as unwatched"), this);
@@ -58,6 +60,8 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     m_actionHideSpecialsInMissingEpisodes = new QAction(tr("Hide specials in missing episodes"), this);
     m_actionHideSpecialsInMissingEpisodes->setCheckable(true);
     m_contextMenu = new QMenu(ui->files);
+    m_contextMenu->addAction(actionMultiScrape);
+    m_contextMenu->addSeparator();
     m_contextMenu->addAction(actionScanForEpisodes);
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(actionMarkAsWatched);
@@ -73,6 +77,7 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     m_contextMenu->addAction(m_actionShowMissingEpisodes);
     m_contextMenu->addAction(m_actionHideSpecialsInMissingEpisodes);
 
+    connect(actionMultiScrape, SIGNAL(triggered()), this, SLOT(multiScrape()));
     connect(actionScanForEpisodes, SIGNAL(triggered()), this, SLOT(scanForEpisodes()));
     connect(actionMarkAsWatched, SIGNAL(triggered()), this, SLOT(markAsWatched()));
     connect(actionMarkAsUnwatched, SIGNAL(triggered()), this, SLOT(markAsUnwatched()));
@@ -466,7 +471,7 @@ void TvShowFilesWidget::emitLastSelection()
         emit sigEpisodeSelected(m_lastEpisode);
 }
 
-QList<TvShowEpisode*> TvShowFilesWidget::selectedEpisodes()
+QList<TvShowEpisode*> TvShowFilesWidget::selectedEpisodes(bool includeFromSeasonOrShow)
 {
     QList<TvShowEpisode*> episodes;
     foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
@@ -474,14 +479,14 @@ QList<TvShowEpisode*> TvShowFilesWidget::selectedEpisodes()
         TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
         if (item->type() == TypeEpisode && !item->tvShowEpisode()->isDummy()) {
             episodes.append(item->tvShowEpisode());
-        } else if (item->type() == TypeSeason) {
+        } else if (item->type() == TypeSeason && includeFromSeasonOrShow) {
             foreach (TvShowEpisode *episode, item->tvShow()->episodes()) {
                 if (episode->isDummy())
                     continue;
                 if (!episodes.contains(episode) && episode->season() == item->season().toInt())
                     episodes.append(episode);
             }
-        } else if (item->type() == TypeTvShow) {
+        } else if (item->type() == TypeTvShow && includeFromSeasonOrShow) {
             foreach (TvShowEpisode *episode, item->tvShow()->episodes()) {
                 if (episode->isDummy())
                     continue;
@@ -529,4 +534,27 @@ void TvShowFilesWidget::playEpisode(QModelIndex idx)
     if (fileName.isEmpty())
         return;
     QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
+}
+
+void TvShowFilesWidget::multiScrape()
+{
+    m_contextMenu->close();
+
+    QList<TvShow*> shows = selectedShows();
+    QList<TvShowEpisode*> episodes = selectedEpisodes(false);
+
+    qDebug() << "Selected" << shows.count() << "shows and" << episodes.count() << "episodes";
+    if (shows.isEmpty() && episodes.isEmpty())
+        return;
+
+    if (shows.count() + episodes.count() == 1) {
+        emit sigStartSearch();
+        return;
+    }
+
+    TvShowMultiScrapeDialog::instance()->setShows(shows);
+    TvShowMultiScrapeDialog::instance()->setEpisodes(episodes);
+    int result = TvShowMultiScrapeDialog::instance()->exec();
+    if (result == QDialog::Accepted)
+        emitLastSelection();
 }

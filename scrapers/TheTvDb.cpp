@@ -292,6 +292,10 @@ void TheTvDb::onLoadFinished()
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
         parseAndAssignInfos(msg, show, updateType, infos);
+        CacheElement c;
+        c.data = msg;
+        c.date = QDateTime::currentDateTime();
+        m_cache.insert(reply->url(), c);
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
@@ -626,6 +630,16 @@ void TheTvDb::loadTvShowEpisodeData(QString id, TvShowEpisode *episode, QList<in
     episode->clear(infosToLoad);
     QString mirror = m_xmlMirrors.at(qrand()%m_xmlMirrors.count());
     QUrl url(QString("%1/api/%2/series/%3/all/%4.xml").arg(mirror).arg(m_apiKey).arg(id).arg(m_language));
+
+    if (m_cache.contains(url)) {
+        if (m_cache.value(url).date >= QDateTime::currentDateTime().addSecs(-180)) {
+            qDebug() << url << "in cache since" << m_cache.value(url).date;
+            parseEpisodeXml(m_cache.value(url).data, episode, infosToLoad);
+            episode->scraperLoadDone();
+            return;
+        }
+    }
+
     QNetworkReply *reply = qnam()->get(QNetworkRequest(url));
     new NetworkReplyWatcher(this, reply);
     reply->setProperty("storage", Storage::toVariant(reply, episode));
@@ -648,49 +662,58 @@ void TheTvDb::onEpisodeLoadFinished()
 
     if (reply->error() == QNetworkReply::NoError) {
         QString msg = QString::fromUtf8(reply->readAll());
-        QDomDocument domDoc;
-        domDoc.setContent(msg);
-        QDomElement dvdElem;
-        QDomElement airedElem;
-        for (int i=0, n=domDoc.elementsByTagName("Episode").count() ; i<n ; ++i) {
-            QDomElement elem = domDoc.elementsByTagName("Episode").at(i).toElement();
-            if (!elem.elementsByTagName("SeasonNumber").isEmpty() && !elem.elementsByTagName("EpisodeNumber").isEmpty()) {
-                int seasonNumber = elem.elementsByTagName("SeasonNumber").at(0).toElement().text().toInt();
-                int episodeNumber = elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt();
-                if (episode->season() == seasonNumber && episode->episode() == episodeNumber)
-                    airedElem = elem;
-            }
-            if (!elem.elementsByTagName("DVD_season").isEmpty() &&
-                    !elem.elementsByTagName("DVD_season").at(0).toElement().text().isEmpty() &&
-                    !elem.elementsByTagName("DVD_episodenumber").isEmpty() &&
-                    !elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text().isEmpty()) {
-                QRegExp rx("^(\\d*)\\D*");
-                int seasonNumber = -1;
-                int episodeNumber = -1;
-                QString seasonText = elem.elementsByTagName("DVD_season").at(0).toElement().text();
-                QString episodeText = elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text();
-                if (rx.indexIn(QString("%1").arg(seasonText), 0) != -1)
-                    seasonNumber = rx.cap(1).toInt();
-                if (rx.indexIn(QString("%1").arg(episodeText), 0) != -1)
-                    episodeNumber = rx.cap(1).toInt();
-                if (episode->season() == seasonNumber && episode->episode() == episodeNumber)
-                    dvdElem = elem;
-            }
-            if (!dvdElem.isNull() && !airedElem.isNull())
-                break;
-        }
-
-        qDebug() << "DVD ORDER" << Settings::instance()->tvShowDvdOrder();
-
-        if (Settings::instance()->tvShowDvdOrder() && !dvdElem.isNull()) {
-            episode->clear(infos);
-            parseAndAssignSingleEpisodeInfos(dvdElem, episode, infos);
-        } else if (!airedElem.isNull()) {
-            episode->clear(infos);
-            parseAndAssignSingleEpisodeInfos(airedElem, episode, infos);
-        }
+        CacheElement c;
+        c.data = msg;
+        c.date = QDateTime::currentDateTime();
+        m_cache.insert(reply->url(), c);
+        parseEpisodeXml(msg, episode, infos);
     } else {
         qWarning() << "Network Error" << reply->errorString();
     }
     episode->scraperLoadDone();
+}
+
+void TheTvDb::parseEpisodeXml(QString msg, TvShowEpisode *episode, QList<int> infos)
+{
+    QDomDocument domDoc;
+    domDoc.setContent(msg);
+    QDomElement dvdElem;
+    QDomElement airedElem;
+    for (int i=0, n=domDoc.elementsByTagName("Episode").count() ; i<n ; ++i) {
+        QDomElement elem = domDoc.elementsByTagName("Episode").at(i).toElement();
+        if (!elem.elementsByTagName("SeasonNumber").isEmpty() && !elem.elementsByTagName("EpisodeNumber").isEmpty()) {
+            int seasonNumber = elem.elementsByTagName("SeasonNumber").at(0).toElement().text().toInt();
+            int episodeNumber = elem.elementsByTagName("EpisodeNumber").at(0).toElement().text().toInt();
+            if (episode->season() == seasonNumber && episode->episode() == episodeNumber)
+                airedElem = elem;
+        }
+        if (!elem.elementsByTagName("DVD_season").isEmpty() &&
+                !elem.elementsByTagName("DVD_season").at(0).toElement().text().isEmpty() &&
+                !elem.elementsByTagName("DVD_episodenumber").isEmpty() &&
+                !elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text().isEmpty()) {
+            QRegExp rx("^(\\d*)\\D*");
+            int seasonNumber = -1;
+            int episodeNumber = -1;
+            QString seasonText = elem.elementsByTagName("DVD_season").at(0).toElement().text();
+            QString episodeText = elem.elementsByTagName("DVD_episodenumber").at(0).toElement().text();
+            if (rx.indexIn(QString("%1").arg(seasonText), 0) != -1)
+                seasonNumber = rx.cap(1).toInt();
+            if (rx.indexIn(QString("%1").arg(episodeText), 0) != -1)
+                episodeNumber = rx.cap(1).toInt();
+            if (episode->season() == seasonNumber && episode->episode() == episodeNumber)
+                dvdElem = elem;
+        }
+        if (!dvdElem.isNull() && !airedElem.isNull())
+            break;
+    }
+
+    qDebug() << "DVD ORDER" << Settings::instance()->tvShowDvdOrder();
+
+    if (Settings::instance()->tvShowDvdOrder() && !dvdElem.isNull()) {
+        episode->clear(infos);
+        parseAndAssignSingleEpisodeInfos(dvdElem, episode, infos);
+    } else if (!airedElem.isNull()) {
+        episode->clear(infos);
+        parseAndAssignSingleEpisodeInfos(airedElem, episode, infos);
+    }
 }

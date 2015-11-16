@@ -43,6 +43,11 @@ private slots:
     void onBannersFinished();
 
 private:
+    struct CacheElement {
+        QDateTime date;
+        QString data;
+    };
+
     QString m_apiKey;
     QString m_language;
     QNetworkAccessManager m_qnam;
@@ -57,8 +62,10 @@ private:
     void parseAndAssignActors(QString xml, TvShow *show);
     void parseAndAssignBanners(QString xml, TvShow *show, TvShowUpdateType updateType, QList<int> infosToLoad);
     void parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *episode, QList<int> infosToLoad);
+    void parseEpisodeXml(QString msg, TvShowEpisode *episode, QList<int> infos);
     QComboBox *m_box;
     QWidget *m_widget;
+    QMap<QUrl, CacheElement> m_cache;
 };
 
 #endif // THETVDB_H
