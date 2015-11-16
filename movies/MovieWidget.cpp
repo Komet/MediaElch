@@ -20,6 +20,7 @@
 #include "globals/TrailerDialog.h"
 #include "notifications/NotificationBox.h"
 #include "main/MainWindow.h"
+#include "movies/FilesWidget.h"
 #include "movies/MovieSearch.h"
 
 /**
@@ -814,15 +815,42 @@ void MovieWidget::saveInformation()
 {
     qDebug() << "Entered";
     setDisabledTrue();
-    int id = NotificationBox::instance()->showMessage(tr("Saving movie..."));
+
+    QList<Movie*> movies = FilesWidget::instance()->selectedMovies();
+    if (movies.isEmpty())
+        movies.append(m_movie);
+
     m_savingWidget->show();
-    m_movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
-    m_movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
-    updateMovieInfo();
+    if (movies.count() > 0) {
+        int counter = 0;
+        int moviesToSave = movies.count();
+
+        NotificationBox::instance()->showProgressBar(tr("Saving movies..."), Constants::MovieWidgetProgressMessageId);
+        NotificationBox::instance()->progressBarProgress(0, moviesToSave, Constants::MovieWidgetProgressMessageId);
+        qApp->processEvents();
+        foreach (Movie *movie, movies) {
+            counter++;
+            if (movie->hasChanged()) {
+                NotificationBox::instance()->progressBarProgress(counter, moviesToSave, Constants::MovieWidgetProgressMessageId);
+                qApp->processEvents();
+                movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
+                movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
+                if (m_movie == movie)
+                    updateMovieInfo();
+            }
+        }
+        NotificationBox::instance()->hideProgressBar(Constants::MovieWidgetProgressMessageId);
+        NotificationBox::instance()->showMessage(tr("Movies Saved"));
+    } else {
+        int id = NotificationBox::instance()->showMessage(tr("Saving movie..."));
+        m_movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
+        m_movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
+        updateMovieInfo();
+        NotificationBox::instance()->removeMessage(id);
+        NotificationBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_movie->name()));
+    }
     setEnabledTrue();
     m_savingWidget->hide();
-    NotificationBox::instance()->removeMessage(id);
-    NotificationBox::instance()->showMessage(tr("<b>\"%1\"</b> Saved").arg(m_movie->name()));
     ui->buttonRevert->setVisible(false);
 }
 

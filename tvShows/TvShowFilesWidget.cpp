@@ -510,6 +510,18 @@ QList<TvShow*> TvShowFilesWidget::selectedShows()
     return shows;
 }
 
+QList<TvShow*> TvShowFilesWidget::selectedSeasons()
+{
+    QList<TvShow*> shows;
+    foreach (const QModelIndex &mIndex, ui->files->selectionModel()->selectedRows(0)) {
+        QModelIndex index = m_tvShowProxyModel->mapToSource(mIndex);
+        TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
+        if (item->type() == TypeSeason && !shows.contains(item->tvShow()))
+            shows.append(item->tvShow());
+    }
+    return shows;
+}
+
 void TvShowFilesWidget::onViewUpdated()
 {
     if (m_tvShowProxyModel->filterRegExp().pattern().isEmpty() || m_tvShowProxyModel->filterRegExp().pattern() == "**") {

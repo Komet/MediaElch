@@ -29,6 +29,7 @@ public:
     static TvShowFilesWidget *instance();
     QList<TvShowEpisode*> selectedEpisodes(bool includeFromSeasonOrShow = true);
     QList<TvShow*> selectedShows();
+    QList<TvShow*> selectedSeasons();
 
 public slots:
     void renewModel(bool force = false);
