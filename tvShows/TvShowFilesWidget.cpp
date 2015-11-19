@@ -37,8 +37,8 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     m_tvShowProxyModel->setSourceModel(Manager::instance()->tvShowModel());
     m_tvShowProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     m_tvShowProxyModel->setDynamicSortFilter(true);
+    m_tvShowProxyModel->sort(0, Qt::AscendingOrder);
     ui->files->setModel(m_tvShowProxyModel);
-    ui->files->sortByColumn(0);
     ui->files->setAttribute(Qt::WA_MacShowFocusRect, false);
     ui->files->header()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->files->setIconSize(QSize(12, 12));
@@ -532,6 +532,7 @@ void TvShowFilesWidget::onViewUpdated()
     } else {
         ui->statusLabel->setText(tr("%1 of %n tv shows", "", Manager::instance()->tvShowModel()->tvShows().count()).arg(m_tvShowProxyModel->rowCount()));
     }
+    m_tvShowProxyModel->invalidate();
 }
 
 void TvShowFilesWidget::playEpisode(QModelIndex idx)

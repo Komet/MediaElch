@@ -100,12 +100,21 @@ bool TvShowProxyModel::lessThan(const QModelIndex &left, const QModelIndex &righ
     TvShowModelItem *rightItem = model->getItem(right);
 
     if (leftItem->type() == rightItem->type() && leftItem->type() == TypeSeason)
-        return leftItem->seasonNumber() > rightItem->seasonNumber();
+        return leftItem->seasonNumber() < rightItem->seasonNumber();
 
     if (leftItem->type() == rightItem->type() && leftItem->type() == TypeEpisode)
-        return leftItem->tvShowEpisode()->episode() > rightItem->tvShowEpisode()->episode();
+        return leftItem->tvShowEpisode()->episode() < rightItem->tvShowEpisode()->episode();
 
-    return (QString::localeAwareCompare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString()) >= 0);
+    if (leftItem->type() == rightItem->type() && leftItem->type() == TypeTvShow) {
+        bool leftNew = !leftItem->tvShow()->infoLoaded() || leftItem->tvShow()->hasNewEpisodes();
+        bool rightNew = !rightItem->tvShow()->infoLoaded() || rightItem->tvShow()->hasNewEpisodes();
+        if (leftNew && !rightNew)
+            return true;
+        if (!leftNew && rightNew)
+            return false;
+    }
+
+    return (QString::localeAwareCompare(sourceModel()->data(left).toString(), sourceModel()->data(right).toString()) < 0);
 }
 
 /**
