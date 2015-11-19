@@ -71,6 +71,8 @@ private slots:
     void onSortTitleChange(QString text);
     void onCertificationChange(QString text);
     void onRatingChange(double value);
+    void onVotesChange(int value);
+    void onTop250Change(int value);
     void onFirstAiredChange(QDate date);
     void onStudioChange(QString studio);
     void onOverviewChange();
@@ -81,6 +83,8 @@ private slots:
     void onRemoveExtraFanart(const QByteArray &image);
     void onAddExtraFanart();
     void onExtraFanartDropped(QUrl imageUrl);
+
+    void onShowScraperProgress(TvShow *show, int current, int max);
 
 private:
     Ui::TvShowWidgetTvShow *ui;

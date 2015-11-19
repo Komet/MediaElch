@@ -25,6 +25,7 @@ public:
     void reposition(QSize size);
     virtual int showMessage(QString message, NotificationBox::NotificationType type = NotificationInfo, int timeout = 5000);
     void showProgressBar(QString message, int id, bool unique = false);
+    int addProgressBar(QString message);
     void hideProgressBar(int id);
     void progressBarProgress(int current, int max, int id);
     int maxValue(int id);

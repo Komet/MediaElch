@@ -32,6 +32,7 @@ public:
     explicit Storage(QObject *parent, QTableWidgetItem *item);
     explicit Storage(QObject *parent, PluginInterface *pluginInterface);
     explicit Storage(QObject *parent, PluginManager::Plugin plugin);
+    explicit Storage(QObject *parent, QList<TvShowEpisode*> episodes);
     Movie *movie();
     Concert *concert();
     TvShow *show();
@@ -45,6 +46,7 @@ public:
     QTableWidgetItem *tableWidgetItem();
     PluginInterface *pluginInterface();
     PluginManager::Plugin plugin();
+    QList<TvShowEpisode*> episodes();
     static QVariant toVariant(QObject *parent, Movie *movie);
     static QVariant toVariant(QObject *parent, Concert *concert);
     static QVariant toVariant(QObject *parent, TvShow *show);
@@ -58,6 +60,7 @@ public:
     static QVariant toVariant(QObject *parent, QTableWidgetItem *item);
     static QVariant toVariant(QObject *parent, PluginInterface *pluginInterface);
     static QVariant toVariant(QObject *parent, PluginManager::Plugin plugin);
+    static QVariant toVariant(QObject *parent, QList<TvShowEpisode*> episodes);
 
 private:
     QPointer<Movie> m_movie;
@@ -73,6 +76,7 @@ private:
     QTableWidgetItem *m_tableWidgetItem;
     PluginInterface *m_pluginInterface;
     PluginManager::Plugin m_plugin;
+    QList<TvShowEpisode*> m_episodes;
 };
 
 Q_DECLARE_METATYPE(Storage*)

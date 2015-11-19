@@ -136,8 +136,6 @@ QVariant TvShowModel::data(const QModelIndex &index, int role) const
         if (item->type() == TypeSeason || item->type() == TypeEpisode) {
 #ifdef Q_OS_MAC
             font.setPointSize(font.pointSize()-2);
-#else
-            font.setPointSize(font.pointSize()-1);
 #endif
         }
         return font;

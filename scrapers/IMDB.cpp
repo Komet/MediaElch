@@ -296,11 +296,50 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
         }
     }
 
-    rx.setPattern("<a href=\"[^\"]*\"(.*)title=\"See all release dates\" >[^<]*<meta itemprop=\"datePublished\" content=\"([^\"]*)\" />");
-    if (infos.contains(MovieScraperInfos::Released) && rx.indexIn(html) != -1)
-        movie->setReleased(QDate::fromString(rx.cap(2), "yyyy-MM-dd"));
+    if (infos.contains(MovieScraperInfos::Released)) {
+        rx.setPattern("<a href=\"[^\"]*\"(.*)title=\"See all release dates\" >[^<]*<meta itemprop=\"datePublished\" content=\"([^\"]*)\" />");
+        if (rx.indexIn(html) != -1) {
+            movie->setReleased(QDate::fromString(rx.cap(2), "yyyy-MM-dd"));
+        } else {
+            rx.setPattern("<h4 class=\"inline\">Release Date:</h4> ([0-9]+) ([A-z]*) ([0-9]{4})");
+            if (rx.indexIn(html) != -1) {
+                int day = rx.cap(1).trimmed().toInt();
+                int month = -1;
+                QString monthName = rx.cap(2).trimmed();
+                int year = rx.cap(3).trimmed().toInt();
+                if (monthName.contains("January", Qt::CaseInsensitive))
+                    month = 1;
+                else if (monthName.contains("February", Qt::CaseInsensitive))
+                    month = 2;
+                else if (monthName.contains("March", Qt::CaseInsensitive))
+                    month = 3;
+                else if (monthName.contains("April", Qt::CaseInsensitive))
+                    month = 4;
+                else if (monthName.contains("May", Qt::CaseInsensitive))
+                    month = 5;
+                else if (monthName.contains("June", Qt::CaseInsensitive))
+                    month = 6;
+                else if (monthName.contains("July", Qt::CaseInsensitive))
+                    month = 7;
+                else if (monthName.contains("August", Qt::CaseInsensitive))
+                    month = 8;
+                else if (monthName.contains("September", Qt::CaseInsensitive))
+                    month = 9;
+                else if (monthName.contains("October", Qt::CaseInsensitive))
+                    month = 10;
+                else if (monthName.contains("November", Qt::CaseInsensitive))
+                    month = 11;
+                else if (monthName.contains("December", Qt::CaseInsensitive))
+                    month = 12;
 
-    rx.setPattern("itemprop=\"contentRating\" content=\"([^\"]*)\"></span>");
+                if (day != 0 && month != -1 && year != 0)
+                    movie->setReleased(QDate(year, month, day));
+            }
+        }
+    }
+
+
+    rx.setPattern("<meta itemprop=\"contentRating\" content=\"([^\"]*)\">");
     if (infos.contains(MovieScraperInfos::Certification) && rx.indexIn(html) != -1)
         movie->setCertification(Helper::instance()->mapCertification(rx.cap(1)));
 
@@ -392,16 +431,12 @@ void IMDB::parseAndAssignInfos(QString html, Movie *movie, QList<int> infos)
             rxImg.setMinimal(true);
             if (rxImg.indexIn(actor) != -1) {
                 QString img = rxImg.cap(1);
-                QRegExp aRx1("http://ia.media-imdb.com/images/(.*)/(.*)._V(.*)_S(.*)([0-9]*)_CR[0-9]*,[0-9]*,[0-9]*,[0-9]*_.jpg");
-                QRegExp aRx2("http://ia.media-imdb.com/images/(.*)/(.*)._V(.*)_S(.*)([0-9]*)_CR[0-9]*,[0-9]*,[0-9]*,[0-9]*_(.*)_.jpg");
+                QRegExp aRx1("http://ia.media-imdb.com/images/(.*)/(.*)._V(.*).jpg");
                 aRx1.setMinimal(true);
-                aRx2.setMinimal(true);
                 if (aRx1.indexIn(img) != -1)
-                    a.thumb = "http://ia.media-imdb.com/images/" + aRx1.cap(1) + "/" + aRx1.cap(2) + "._V" + aRx1.cap(3) + "_SY317_CR0,0_.jpg";
-                else if (aRx2.indexIn(img) != -1)
-                    a.thumb = "http://ia.media-imdb.com/images/" + aRx2.cap(1) + "/" + aRx2.cap(2) + "._V" + aRx2.cap(3) + "_SY317_CR0,0_" + aRx2.cap(4) + "_.jpg";
+                    a.thumb = "http://ia.media-imdb.com/images/" + aRx1.cap(1) + "/" + aRx1.cap(2) + ".jpg";
                 else
-                    a.thumb = rx.cap(1);
+                    a.thumb = rxImg.cap(1);
             }
 
             movie->addActor(a);

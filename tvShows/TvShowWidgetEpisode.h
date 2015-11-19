@@ -57,6 +57,8 @@ private slots:
     void onDisplaySeasonChange(int value);
     void onDisplayEpisodeChange(int value);
     void onRatingChange(double value);
+    void onVotesChange(int value);
+    void onTop250Change(int value);
     void onCertificationChange(QString text);
     void onFirstAiredChange(QDate date);
     void onPlayCountChange(int value);

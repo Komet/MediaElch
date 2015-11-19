@@ -280,6 +280,14 @@ void Settings::loadSettings()
     }
     settings()->endArray();
 
+    m_customTvScraper.clear();
+    int customTvScraperSize = settings()->beginReadArray("CustomTvScraper");
+    for (int i=0 ; i<customTvScraperSize ; ++i) {
+        settings()->setArrayIndex(i);
+        m_customTvScraper.insert(settings()->value("Info").toInt(), settings()->value("Scraper").toString());
+    }
+    settings()->endArray();
+
     // Downloads
     m_unrar = settings()->value("Downloads/Unrar").toString();
     m_makeMkvCon = settings()->value("Downloads/MakeMkvCon").toString();
@@ -433,6 +441,17 @@ void Settings::saveSettings()
         settings()->setArrayIndex(i++);
         settings()->setValue("Info", it.key());
         settings()->setValue("Scraper", it.value());
+    }
+    settings()->endArray();
+
+    i=0;
+    settings()->beginWriteArray("CustomTvScraper");
+    QMapIterator<int, QString> itTv(m_customTvScraper);
+    while (itTv.hasNext()) {
+        itTv.next();
+        settings()->setArrayIndex(i++);
+        settings()->setValue("Info", itTv.key());
+        settings()->setValue("Scraper", itTv.value());
     }
     settings()->endArray();
 
@@ -1130,6 +1149,16 @@ QMap<int, QString> Settings::customMovieScraper() const
 void Settings::setCustomMovieScraper(QMap<int, QString> customMovieScraper)
 {
     m_customMovieScraper = customMovieScraper;
+}
+
+QMap<int, QString> Settings::customTvScraper() const
+{
+    return m_customTvScraper;
+}
+
+void Settings::setCustomTvScraper(QMap<int, QString> customTvScraper)
+{
+    m_customTvScraper = customTvScraper;
 }
 
 int Settings::currentMovieScraper() const

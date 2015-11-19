@@ -132,6 +132,8 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     connect(ui->sortTitle, SIGNAL(textEdited(QString)), this, SLOT(onSortTitleChange(QString)));
     connect(ui->certification, SIGNAL(editTextChanged(QString)), this, SLOT(onCertificationChange(QString)));
     connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
+    connect(ui->votes, SIGNAL(valueChanged(int)), this, SLOT(onVotesChange(int)));
+    connect(ui->top250, SIGNAL(valueChanged(int)), this, SLOT(onTop250Change(int)));
     connect(ui->firstAired, SIGNAL(dateChanged(QDate)), this, SLOT(onFirstAiredChange(QDate)));
     connect(ui->studio, SIGNAL(textEdited(QString)), this, SLOT(onStudioChange(QString)));
     connect(ui->overview, SIGNAL(textChanged()), this, SLOT(onOverviewChange()));
@@ -139,6 +141,8 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget *parent) :
     connect(ui->runtime, SIGNAL(valueChanged(int)), this, SLOT(onRuntimeChange(int)));
 
     onSetEnabled(false);
+
+    connect(static_cast<TheTvDb*>(Manager::instance()->tvScrapers().at(0)), SIGNAL(sigLoadProgress(TvShow*,int,int)), this, SLOT(onShowScraperProgress(TvShow*,int,int)));
 
     QPainter p;
     QPixmap revert(":/img/arrow_circle_left.png");
@@ -200,6 +204,14 @@ void TvShowWidgetTvShow::onClear()
     blocked = ui->rating->blockSignals(true);
     ui->rating->clear();
     ui->rating->blockSignals(blocked);
+
+    blocked = ui->votes->blockSignals(true);
+    ui->votes->clear();
+    ui->votes->blockSignals(blocked);
+
+    blocked = ui->top250->blockSignals(true);
+    ui->top250->clear();
+    ui->top250->blockSignals(blocked);
 
     blocked = ui->firstAired->blockSignals(true);
     ui->firstAired->setDate(QDate::currentDate());
@@ -278,6 +290,8 @@ void TvShowWidgetTvShow::updateTvShowInfo()
 
     ui->certification->blockSignals(true);
     ui->rating->blockSignals(true);
+    ui->votes->blockSignals(true);
+    ui->top250->blockSignals(true);
     ui->firstAired->blockSignals(true);
     ui->overview->blockSignals(true);
     ui->runtime->blockSignals(true);
@@ -288,6 +302,8 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->name->setText(m_show->name());
     ui->sortTitle->setText(m_show->sortTitle());
     ui->rating->setValue(m_show->rating());
+    ui->votes->setValue(m_show->votes());
+    ui->top250->setValue(m_show->top250());
     ui->firstAired->setDate(m_show->firstAired());
     ui->studio->setText(m_show->network());
     ui->overview->setPlainText(m_show->overview());
@@ -326,6 +342,8 @@ void TvShowWidgetTvShow::updateTvShowInfo()
 
     ui->certification->blockSignals(false);
     ui->rating->blockSignals(false);
+    ui->votes->blockSignals(false);
+    ui->top250->blockSignals(false);
     ui->firstAired->blockSignals(false);
     ui->overview->blockSignals(false);
     ui->runtime->blockSignals(false);
@@ -399,6 +417,8 @@ void TvShowWidgetTvShow::onStartScraperSearch()
     TvShowSearch::instance()->setSearchType(TypeTvShow);
     TvShowSearch::instance()->exec(m_show->name(), m_show->tvdbId());
     if (TvShowSearch::instance()->result() == QDialog::Accepted) {
+        int id = NotificationBox::instance()->addProgressBar(tr("Please wait while your tv show is scraped"));
+        m_show->setProperty("progressBarId", id);
         onSetEnabled(false);
         m_show->loadData(TvShowSearch::instance()->scraperId(), Manager::instance()->tvScrapers().at(0), TvShowSearch::instance()->updateType(), TvShowSearch::instance()->infosToLoad());
         connect(m_show, SIGNAL(sigLoaded(TvShow*)), this, SLOT(onInfoLoadDone(TvShow*)), Qt::UniqueConnection);
@@ -427,6 +447,7 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow *show)
         QMap<int, QList<Poster> > map;
         onLoadDone(show, map);
     }
+    NotificationBox::instance()->hideProgressBar(show->property("progressBarId").toInt());
 }
 
 /**
@@ -1065,4 +1086,28 @@ void TvShowWidgetTvShow::onImageDropped(int imageType, QUrl imageUrl)
     m_posterDownloadManager->addDownload(d);
     image->setLoading(true);
     ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetTvShow::onVotesChange(int value)
+{
+    if (!m_show)
+        return;
+    m_show->setVotes(value);
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetTvShow::onTop250Change(int value)
+{
+    if (!m_show)
+        return;
+    m_show->setTop250(value);
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetTvShow::onShowScraperProgress(TvShow *show, int current, int max)
+{
+    if (!show->property("progressBarId").isValid())
+        return;
+    int id = show->property("progressBarId").toInt();
+    NotificationBox::instance()->progressBarProgress(current, max, id);
 }

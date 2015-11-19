@@ -161,13 +161,6 @@
               </property>
              </widget>
             </item>
-            <item row="3" column="1">
-             <widget class="QDoubleSpinBox" name="rating">
-              <property name="buttonSymbols">
-               <enum>QAbstractSpinBox::NoButtons</enum>
-              </property>
-             </widget>
-            </item>
             <item row="4" column="0">
              <widget class="QLabel" name="label_8">
               <property name="text">
@@ -300,6 +293,83 @@
             </item>
             <item row="2" column="1">
              <widget class="QLineEdit" name="sortTitle"/>
+            </item>
+            <item row="3" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <widget class="QDoubleSpinBox" name="rating">
+                <property name="buttonSymbols">
+                 <enum>QAbstractSpinBox::NoButtons</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_5">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>15</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_12">
+                <property name="text">
+                 <string>Votes</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="MySpinBox" name="votes">
+                <property name="buttonSymbols">
+                 <enum>QAbstractSpinBox::NoButtons</enum>
+                </property>
+                <property name="maximum">
+                 <number>9999999</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>15</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_11">
+                <property name="text">
+                 <string>Top 250</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="MySpinBox" name="top250">
+                <property name="buttonSymbols">
+                 <enum>QAbstractSpinBox::NoButtons</enum>
+                </property>
+                <property name="maximum">
+                 <number>9999999</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
            </layout>
           </item>
@@ -1156,6 +1226,11 @@ QPushButton::hover {
    <class>MyLabel</class>
    <extends>QLabel</extends>
    <header>smallWidgets/MyLabel.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MySpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>smallWidgets/MySpinBox.h</header>
   </customwidget>
  </customwidgets>
  <resources>

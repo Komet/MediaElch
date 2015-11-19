@@ -21,6 +21,7 @@ public:
     QList<int> scraperNativelySupports();
     QWidget *settingsWidget();
     bool isAdult();
+    void parseAndAssignInfos(QString html, Movie *movie, QList<int> infos);
 
 signals:
     void searchDone(QList<ScraperSearchResult>);
@@ -34,7 +35,6 @@ private slots:
 private:
     QNetworkAccessManager *qnam();
     QList<ScraperSearchResult> parseSearch(QString html);
-    void parseAndAssignInfos(QString html, Movie *movie, QList<int> infos);
     void parseAndAssignPoster(QString html, Movie *movie, QList<int> infos);
     QString parsePosters(QString html);
 

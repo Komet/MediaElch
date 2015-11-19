@@ -49,6 +49,8 @@ public:
     virtual QString name() const;
     virtual QString completeEpisodeName() const;
     virtual qreal rating() const;
+    virtual int votes() const;
+    virtual int top250() const;
     virtual int season() const;
     virtual int episode() const;
     virtual int displaySeason() const;
@@ -85,6 +87,8 @@ public:
     void setName(QString name);
     void setShowTitle(QString showTitle);
     void setRating(qreal rating);
+    void setVotes(int votes);
+    void setTop250(int top250);
     void setSeason(int season);
     void setEpisode(int episode);
     void setDisplaySeason(int season);
@@ -143,6 +147,8 @@ private:
     QString m_name;
     QString m_showTitle;
     qreal m_rating;
+    int m_votes;
+    int m_top250;
     int m_season;
     int m_episode;
     int m_displaySeason;

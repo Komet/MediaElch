@@ -980,6 +980,10 @@ bool XbmcXml::loadTvShow(TvShow *show, QString initialNfoContent)
         show->setShowTitle(domDoc.elementsByTagName("showtitle").at(0).toElement().text());
     if (!domDoc.elementsByTagName("rating").isEmpty())
         show->setRating(domDoc.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toFloat());
+    if (!domDoc.elementsByTagName("votes").isEmpty())
+        show->setVotes(domDoc.elementsByTagName("votes").at(0).toElement().text().replace(",", "").replace(".", "").toInt());
+    if (!domDoc.elementsByTagName("top250").isEmpty())
+        show->setTop250(domDoc.elementsByTagName("top250").at(0).toElement().text().toInt());
     if (!domDoc.elementsByTagName("plot").isEmpty())
         show->setOverview(domDoc.elementsByTagName("plot").at(0).toElement().text());
     if (!domDoc.elementsByTagName("mpaa").isEmpty())
@@ -1117,6 +1121,10 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoConten
         episode->setDisplayEpisode(episodeDetails.elementsByTagName("displayepisode").at(0).toElement().text().toInt());
     if (!episodeDetails.elementsByTagName("rating").isEmpty())
         episode->setRating(episodeDetails.elementsByTagName("rating").at(0).toElement().text().replace(",", ".").toFloat());
+    if (!domDoc.elementsByTagName("votes").isEmpty())
+        episode->setVotes(domDoc.elementsByTagName("votes").at(0).toElement().text().replace(",", "").replace(".", "").toInt());
+    if (!domDoc.elementsByTagName("top250").isEmpty())
+        episode->setTop250(domDoc.elementsByTagName("top250").at(0).toElement().text().toInt());
     if (!episodeDetails.elementsByTagName("plot").isEmpty())
         episode->setOverview(episodeDetails.elementsByTagName("plot").at(0).toElement().text());
     if (!episodeDetails.elementsByTagName("mpaa").isEmpty())
@@ -1365,6 +1373,8 @@ QByteArray XbmcXml::getTvShowXml(TvShow *show)
         removeChildNodes(doc, "sorttitle");
     }
     setTextValue(doc, "rating", QString("%1").arg(show->rating()));
+    setTextValue(doc, "votes", QString::number(show->votes()));
+    setTextValue(doc, "top250", QString::number(show->top250()));
     setTextValue(doc, "episode", QString("%1").arg(show->episodes().count()));
     setTextValue(doc, "plot", show->overview());
     setTextValue(doc, "outline", show->overview());
@@ -1373,7 +1383,7 @@ QByteArray XbmcXml::getTvShowXml(TvShow *show)
     setTextValue(doc, "studio", show->network());
     setTextValue(doc, "tvdbid", show->tvdbId());
     setTextValue(doc, "id", show->id());
-    setTextValue(doc, "imdbId", show->imdbId());
+    setTextValue(doc, "imdbid", show->imdbId());
     if (show->runtime() > 0)
         setTextValue(doc, "runtime", QString("%1").arg(show->runtime()));
     else if (!showElem.elementsByTagName("runtime").isEmpty())
@@ -1469,6 +1479,8 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
     xml.writeTextElement("title", episode->name());
     xml.writeTextElement("showtitle", episode->showTitle());
     xml.writeTextElement("rating", QString("%1").arg(episode->rating()));
+    xml.writeTextElement("votes", QString("%1").arg(episode->votes()));
+    xml.writeTextElement("top250", QString("%1").arg(episode->top250()));
     xml.writeTextElement("season", QString("%1").arg(episode->season()));
     xml.writeTextElement("episode", QString("%1").arg(episode->episode()));
     if (episode->displaySeason() > -1)

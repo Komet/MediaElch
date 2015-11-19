@@ -78,6 +78,12 @@ Storage::Storage(QObject *parent, PluginManager::Plugin plugin) :
     m_plugin = plugin;
 }
 
+Storage::Storage(QObject *parent, QList<TvShowEpisode *> episodes) :
+    QObject(parent)
+{
+    m_episodes = episodes;
+}
+
 Movie *Storage::movie()
 {
     if (m_movie)
@@ -147,6 +153,11 @@ PluginInterface *Storage::pluginInterface()
 PluginManager::Plugin Storage::plugin()
 {
     return m_plugin;
+}
+
+QList<TvShowEpisode*> Storage::episodes()
+{
+    return m_episodes;
 }
 
 QVariant Storage::toVariant(QObject *parent, Movie *movie)
@@ -248,6 +259,14 @@ QVariant Storage::toVariant(QObject *parent, PluginInterface *plugin)
 QVariant Storage::toVariant(QObject *parent, PluginManager::Plugin plugin)
 {
     Storage *storage = new Storage(parent, plugin);
+    QVariant var;
+    var.setValue(storage);
+    return var;
+}
+
+QVariant Storage::toVariant(QObject *parent, QList<TvShowEpisode*> episodes)
+{
+    Storage *storage = new Storage(parent, episodes);
     QVariant var;
     var.setValue(storage);
     return var;

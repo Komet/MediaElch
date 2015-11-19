@@ -273,7 +273,7 @@ void TvShowSearch::onComboIndexChanged()
         ui->chkRuntime->setEnabled(true);
     } else {
         ui->chkGenres->setEnabled(false);
-        ui->chkActors->setEnabled(false);
+        ui->chkActors->setEnabled(true);
         ui->chkSeasonPoster->setEnabled(false);
         ui->chkSeasonBackdrop->setEnabled(false);
         ui->chkSeasonBanner->setEnabled(false);

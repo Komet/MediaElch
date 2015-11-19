@@ -72,6 +72,7 @@ public:
     bool tvShowDvdOrder() const;
     bool dontShowDeleteImageConfirm() const;
     QMap<int, QString> customMovieScraper() const;
+    QMap<int, QString> customTvScraper() const;
     int currentMovieScraper() const;
     bool keepDownloadSource() const;
     bool checkForUpdates() const;
@@ -135,6 +136,7 @@ public:
     void setTvShowDvdOrder(bool order);
     void setDontShowDeleteImageConfirm(bool show);
     void setCustomMovieScraper(QMap<int, QString> customMovieScraper);
+    void setCustomTvScraper(QMap<int, QString> customTvScraper);
     void setCurrentMovieScraper(int current);
     void setKeepDownloadSource(bool keep);
     void setCheckForUpdates(bool check);
@@ -207,6 +209,7 @@ private:
     bool m_tvShowDvdOrder;
     bool m_dontShowDeleteImageConfirm;
     QMap<int, QString> m_customMovieScraper;
+    QMap<int, QString> m_customTvScraper;
     int m_currentMovieScraper;
     bool m_keepDownloadSource;
     bool m_checkForUpdates;

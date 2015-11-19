@@ -88,6 +88,8 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget *parent) :
     connect(ui->displaySeason, SIGNAL(valueChanged(int)), this, SLOT(onDisplaySeasonChange(int)));
     connect(ui->displayEpisode, SIGNAL(valueChanged(int)), this, SLOT(onDisplayEpisodeChange(int)));
     connect(ui->rating, SIGNAL(valueChanged(double)), this, SLOT(onRatingChange(double)));
+    connect(ui->votes, SIGNAL(valueChanged(int)), this, SLOT(onVotesChange(int)));
+    connect(ui->top250, SIGNAL(valueChanged(int)), this, SLOT(onTop250Change(int)));
     connect(ui->certification, SIGNAL(editTextChanged(QString)), this, SLOT(onCertificationChange(QString)));
     connect(ui->firstAired, SIGNAL(dateChanged(QDate)), this, SLOT(onFirstAiredChange(QDate)));
     connect(ui->epBookmark, SIGNAL(timeChanged(QTime)), this, SLOT(onEpBookmarkChange(QTime)));
@@ -192,6 +194,14 @@ void TvShowWidgetEpisode::onClear()
     blocked = ui->rating->blockSignals(true);
     ui->rating->clear();
     ui->rating->blockSignals(blocked);
+
+    blocked = ui->votes->blockSignals(true);
+    ui->votes->clear();
+    ui->votes->blockSignals(blocked);
+
+    blocked = ui->top250->blockSignals(true);
+    ui->top250->clear();
+    ui->top250->blockSignals(blocked);
 
     blocked = ui->firstAired->blockSignals(true);
     ui->firstAired->setDate(QDate::currentDate());
@@ -302,6 +312,8 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->displaySeason->blockSignals(true);
     ui->displayEpisode->blockSignals(true);
     ui->rating->blockSignals(true);
+    ui->votes->blockSignals(true);
+    ui->top250->blockSignals(true);
     ui->certification->blockSignals(true);
     ui->firstAired->blockSignals(true);
     ui->playCount->blockSignals(true);
@@ -320,6 +332,8 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->displaySeason->setValue(m_episode->displaySeason());
     ui->displayEpisode->setValue(m_episode->displayEpisode());
     ui->rating->setValue(m_episode->rating());
+    ui->votes->setValue(m_episode->votes());
+    ui->top250->setValue(m_episode->top250());
     ui->firstAired->setDate(m_episode->firstAired());
     ui->playCount->setValue(m_episode->playCount());
     ui->lastPlayed->setDateTime(m_episode->lastPlayed());
@@ -385,6 +399,8 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->displaySeason->blockSignals(false);
     ui->displayEpisode->blockSignals(false);
     ui->rating->blockSignals(false);
+    ui->votes->blockSignals(false);
+    ui->top250->blockSignals(false);
     ui->certification->blockSignals(false);
     ui->firstAired->blockSignals(false);
     ui->playCount->blockSignals(false);
@@ -566,8 +582,8 @@ void TvShowWidgetEpisode::onStartScraperSearch()
     TvShowSearch::instance()->exec(m_episode->showTitle(), m_episode->tvShow()->tvdbId());
     if (TvShowSearch::instance()->result() == QDialog::Accepted) {
         onSetEnabled(false);
-        m_episode->loadData(TvShowSearch::instance()->scraperId(), Manager::instance()->tvScrapers().at(0), TvShowSearch::instance()->infosToLoad());
         connect(m_episode, SIGNAL(sigLoaded()), this, SLOT(onLoadDone()), Qt::UniqueConnection);
+        m_episode->loadData(TvShowSearch::instance()->scraperId(), Manager::instance()->tvScrapers().at(0), TvShowSearch::instance()->infosToLoad());
     } else {
         emit sigSetActionSearchEnabled(true, WidgetTvShows);
         emit sigSetActionSaveEnabled(true, WidgetTvShows);
@@ -1030,5 +1046,21 @@ void TvShowWidgetEpisode::onChangeActorImage()
         }
         ui->buttonRevert->setVisible(true);
     }
+}
+
+void TvShowWidgetEpisode::onVotesChange(int value)
+{
+    if (!m_episode)
+        return;
+    m_episode->setVotes(value);
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetEpisode::onTop250Change(int value)
+{
+    if (!m_episode)
+        return;
+    m_episode->setTop250(value);
+    ui->buttonRevert->setVisible(true);
 }
 

@@ -34,6 +34,8 @@ public:
     virtual QString showTitle() const;
     virtual QString dir() const;
     virtual qreal rating() const;
+    virtual int votes() const;
+    virtual int top250() const;
     virtual QDate firstAired() const;
     virtual QStringList genres() const;
     virtual QStringList tags() const;
@@ -83,6 +85,8 @@ public:
     void setName(QString name);
     void setShowTitle(QString title);
     void setRating(qreal rating);
+    void setVotes(int votes);
+    void setTop250(int top250);
     void setFirstAired(QDate aired);
     void setGenres(QStringList genres);
     void addGenre(QString genre);
@@ -171,6 +175,8 @@ private:
     QString m_showTitle;
     QString m_sortTitle;
     qreal m_rating;
+    int m_votes;
+    int m_top250;
     QDate m_firstAired;
     int m_runtime;
     QStringList m_genres;
