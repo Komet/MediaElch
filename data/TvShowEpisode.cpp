@@ -973,6 +973,17 @@ bool TvShowEpisode::lessThan(TvShowEpisode *a, TvShowEpisode *b)
     return (QString::localeAwareCompare(Helper::instance()->appendArticle(a->name()), Helper::instance()->appendArticle(b->name())) < 0);
 }
 
+QString TvShowEpisode::imdbId() const
+{
+    return m_imdbId;
+}
+
+void TvShowEpisode::setImdbId(const QString &imdbId)
+{
+    m_imdbId = imdbId;
+    setChanged(true);
+}
+
 int TvShowEpisode::votes() const
 {
     return m_votes;

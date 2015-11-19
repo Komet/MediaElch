@@ -631,6 +631,8 @@ void TheTvDb::parseAndAssignBanners(QString xml, TvShow *show, TvShowUpdateType 
  */
 void TheTvDb::parseAndAssignSingleEpisodeInfos(QDomElement elem, TvShowEpisode *episode, QList<int> infosToLoad)
 {
+    if (!elem.elementsByTagName("IMDB_ID").isEmpty())
+        episode->setImdbId(elem.elementsByTagName("IMDB_ID").at(0).toElement().text());
     if (infosToLoad.contains(TvShowScraperInfos::Director) && !elem.elementsByTagName("Director").isEmpty())
         episode->setDirectors(elem.elementsByTagName("Director").at(0).toElement().text().split("|", QString::SkipEmptyParts));
     if (infosToLoad.contains(TvShowScraperInfos::Title) && !elem.elementsByTagName("EpisodeName").isEmpty())
@@ -728,21 +730,20 @@ bool TheTvDb::processEpisodeData(QString msg, TvShowEpisode *episode, QList<int>
         qDebug() << "Now loading IMDB entry for" << episode->tvShow()->imdbId() << "season" << airedSeason << "episode" << airedEpisode;
         QUrl url = QUrl(QString("http://www.imdb.com/title/%1/episodes?season=%2").arg(episode->tvShow()->imdbId()).arg(airedSeason));
 
-        if (m_cache.contains(url)) {
-            if (m_cache.value(url).date >= QDateTime::currentDateTime().addSecs(-180)) {
-                QString imdbId = getImdbIdForEpisode(m_cache.value(url).data, airedEpisode);
-                if (!imdbId.isEmpty()) {
-                    qDebug() << "Now loading IMDB entry for" << imdbId;
-                    QUrl url = QUrl(QString("http://www.imdb.com/title/%1/").arg(imdbId));
-                    QNetworkRequest request = QNetworkRequest(url);
-                    request.setRawHeader("Accept-Language", "en;q=0.8");
-                    QNetworkReply *reply = qnam()->get(request);
-                    new NetworkReplyWatcher(this, reply);
-                    reply->setProperty("storage", Storage::toVariant(reply, episode));
-                    reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
-                    connect(reply, SIGNAL(finished()), this, SLOT(onImdbEpisodeFinished()));
-                    return true;
-                }
+        if (!episode->imdbId().isEmpty() || (m_cache.contains(url) && m_cache.value(url).date >= QDateTime::currentDateTime().addSecs(-180))) {
+            QString imdbId = !episode->imdbId().isEmpty() ? episode->imdbId() : getImdbIdForEpisode(m_cache.value(url).data, airedEpisode);
+            if (!imdbId.isEmpty()) {
+                if (episode->imdbId().isEmpty())
+                    episode->setImdbId(imdbId);
+                QUrl url = QUrl(QString("http://www.imdb.com/title/%1/").arg(imdbId));
+                QNetworkRequest request = QNetworkRequest(url);
+                request.setRawHeader("Accept-Language", "en;q=0.8");
+                QNetworkReply *reply = qnam()->get(request);
+                new NetworkReplyWatcher(this, reply);
+                reply->setProperty("storage", Storage::toVariant(reply, episode));
+                reply->setProperty("infosToLoad", Storage::toVariant(reply, infos));
+                connect(reply, SIGNAL(finished()), this, SLOT(onImdbEpisodeFinished()));
+                return true;
             }
         }
 
@@ -893,6 +894,22 @@ void TheTvDb::loadEpisodes(TvShow *show, QList<TvShowEpisode*> episodes, QList<i
 
     emit sigLoadProgress(show, show->property("episodesToLoad").toInt() - episodes.count(), show->property("episodesToLoad").toInt());
     TvShowEpisode *episode = episodes.takeFirst();
+
+    if (!episode->imdbId().isEmpty()) {
+        QUrl url = QUrl(QString("http://www.imdb.com/title/%1/").arg(episode->imdbId()));
+        QNetworkRequest request = QNetworkRequest(url);
+        request.setRawHeader("Accept-Language", "en;q=0.8");
+        QNetworkReply *reply = qnam()->get(request);
+        new NetworkReplyWatcher(this, reply);
+        reply->setProperty("storage", Storage::toVariant(reply, episode));
+        reply->setProperty("show", Storage::toVariant(reply, show));
+        reply->setProperty("episodes", Storage::toVariant(reply, episodes));
+        reply->setProperty("infosToLoad", Storage::toVariant(reply, infosToLoad));
+        connect(reply, SIGNAL(finished()), this, SLOT(onEpisodesImdbEpisodeFinished()));
+        return;
+    }
+
+
     QUrl url = QUrl(QString("http://www.imdb.com/title/%1/episodes?season=%2").arg(episode->tvShow()->imdbId()).arg(episode->property("airedSeason").toInt()));
     if (m_cache.contains(url)) {
         if (m_cache.value(url).date >= QDateTime::currentDateTime().addSecs(-180)) {
@@ -1056,6 +1073,8 @@ void TheTvDb::onImdbSeasonFinished()
         m_cache.insert(reply->url(), c);
         QString imdbId = getImdbIdForEpisode(msg, episodeNumber);
         if (!imdbId.isEmpty()) {
+            if (episode->imdbId().isEmpty())
+                episode->setImdbId(imdbId);
             qDebug() << "Now loading IMDB entry for" << imdbId;
             QUrl url = QUrl(QString("http://www.imdb.com/title/%1/").arg(imdbId));
             QNetworkRequest request = QNetworkRequest(url);

@@ -1107,9 +1107,11 @@ bool XbmcXml::loadTvShowEpisode(TvShowEpisode *episode, QString initialNfoConten
         episodeDetails = episodeDetailsList.at(0).toElement();
     }
 
-    if (!episodeDetails.elementsByTagName("title").isEmpty() )
+    if (!episodeDetails.elementsByTagName("imdbid").isEmpty())
+        episode->setImdbId(episodeDetails.elementsByTagName("imdbid").at(0).toElement().text());
+    if (!episodeDetails.elementsByTagName("title").isEmpty())
         episode->setName(episodeDetails.elementsByTagName("title").at(0).toElement().text());
-    if (!episodeDetails.elementsByTagName("showtitle").isEmpty() )
+    if (!episodeDetails.elementsByTagName("showtitle").isEmpty())
         episode->setShowTitle(episodeDetails.elementsByTagName("showtitle").at(0).toElement().text());
     if (!episodeDetails.elementsByTagName("season").isEmpty())
         episode->setSeason(episodeDetails.elementsByTagName("season").at(0).toElement().text().toInt());
@@ -1476,6 +1478,7 @@ void XbmcXml::writeTvShowEpisodeXml(QXmlStreamWriter &xml, TvShowEpisode *episod
 {
     qDebug() << "Entered, episode=" << episode->name();
     xml.writeStartElement("episodedetails");
+    xml.writeTextElement("imdbid", episode->imdbId());
     xml.writeTextElement("title", episode->name());
     xml.writeTextElement("showtitle", episode->showTitle());
     xml.writeTextElement("rating", QString("%1").arg(episode->rating()));

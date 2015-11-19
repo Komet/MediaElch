@@ -137,6 +137,9 @@ public:
 
     static bool lessThan(TvShowEpisode *a, TvShowEpisode *b);
 
+    QString imdbId() const;
+    void setImdbId(const QString &imdbId);
+
 signals:
     void sigLoaded();
     void sigChanged(TvShowEpisode*);
@@ -147,6 +150,7 @@ private:
     QString m_name;
     QString m_showTitle;
     qreal m_rating;
+    QString m_imdbId;
     int m_votes;
     int m_top250;
     int m_season;
