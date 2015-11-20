@@ -2437,7 +2437,7 @@ QDomElement XbmcXml::setTextValue(QDomDocument &doc, const QString &name, const 
 void XbmcXml::setListValue(QDomDocument &doc, const QString &name, const QStringList &values)
 {
     QDomNode rootNode = doc.firstChild();
-    if (rootNode.nodeName() == "xml")
+    while ((rootNode.nodeName() == "xml" || rootNode.isComment()) && !rootNode.isNull())
         rootNode = rootNode.nextSibling();
     QDomNodeList childNodes = rootNode.childNodes();
     QList<QDomNode> nodesToRemove;
@@ -2462,7 +2462,7 @@ QDomElement XbmcXml::addTextValue(QDomDocument &doc, const QString &name, const 
 void XbmcXml::appendXmlNode(QDomDocument &doc, QDomNode &node)
 {
     QDomNode rootNode = doc.firstChild();
-    if (rootNode.nodeName() == "xml")
+    while ((rootNode.nodeName() == "xml" || rootNode.isComment()) && !rootNode.isNull())
         rootNode = rootNode.nextSibling();
     rootNode.appendChild(node);
 }
@@ -2470,7 +2470,7 @@ void XbmcXml::appendXmlNode(QDomDocument &doc, QDomNode &node)
 void XbmcXml::removeChildNodes(QDomDocument &doc, const QString &name)
 {
     QDomNode rootNode = doc.firstChild();
-    if (rootNode.nodeName() == "xml")
+    while ((rootNode.nodeName() == "xml" || rootNode.isComment()) && !rootNode.isNull())
         rootNode = rootNode.nextSibling();
     QDomNodeList childNodes = rootNode.childNodes();
     QList<QDomNode> nodesToRemove;
