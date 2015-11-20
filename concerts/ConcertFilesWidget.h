@@ -54,6 +54,7 @@ private slots:
     void markForSync();
     void unmarkForSync();
     void openFolder();
+    void openNfo();
     void scrollToAlpha(QString alpha);
     void onLeftEdge(bool isEdge);
     void onViewUpdated();

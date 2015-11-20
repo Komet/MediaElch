@@ -53,6 +53,7 @@ private slots:
     void markForSync();
     void unmarkForSync();
     void openFolder();
+    void openNfo();
     void showMissingEpisodes();
     void hideSpecialsInMissingEpisodes();
     void onViewUpdated();

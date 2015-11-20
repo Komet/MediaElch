@@ -38,6 +38,7 @@ private slots:
     void onItemSelected(QModelIndex index);
     void updateStatusLabel();
     void onOpenFolder();
+    void onOpenNfo();
     void showContextMenu(QPoint point);
 
 private:

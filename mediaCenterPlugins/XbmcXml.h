@@ -61,6 +61,7 @@ public:
     QString nfoFilePath(Movie *movie);
     QString nfoFilePath(Concert *concert);
     QString nfoFilePath(TvShowEpisode *episode);
+    QString nfoFilePath(TvShow *show);
     QString nfoFilePath(Artist *artist);
     QString nfoFilePath(Album *album);
 

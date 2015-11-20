@@ -287,6 +287,25 @@ QString XbmcXml::nfoFilePath(TvShowEpisode *episode)
     return nfoFile;
 }
 
+QString XbmcXml::nfoFilePath(TvShow *show)
+{
+    QString nfoFile;
+    if (show->dir().isEmpty()) {
+        qWarning() << "Show dir is empty";
+        return nfoFile;
+    }
+
+    foreach (DataFile dataFile, Settings::instance()->dataFiles(DataFileType::TvShowNfo)) {
+        QFile file(show->dir() + "/" + dataFile.saveFileName(""));
+        if (file.exists()) {
+            nfoFile = file.fileName();
+            break;
+        }
+    }
+
+    return nfoFile;
+}
+
 /**
  * @brief Tries to find an nfo file for the concert
  * @param concert Concert

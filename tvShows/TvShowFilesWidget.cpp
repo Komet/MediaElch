@@ -55,6 +55,7 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     QAction *actionMarkForSync = new QAction(tr("Add to Synchronization Queue"), this);
     QAction *actionUnmarkForSync = new QAction(tr("Remove from Synchronization Queue"), this);
     QAction *actionOpenFolder = new QAction(tr("Open TV Show Folder"), this);
+    QAction *actionOpenNfo = new QAction(tr("Open NFO File"), this);
     m_actionShowMissingEpisodes = new QAction(tr("Show missing episodes"), this);
     m_actionShowMissingEpisodes->setCheckable(true);
     m_actionHideSpecialsInMissingEpisodes = new QAction(tr("Hide specials in missing episodes"), this);
@@ -73,6 +74,7 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     m_contextMenu->addAction(actionUnmarkForSync);
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(actionOpenFolder);
+    m_contextMenu->addAction(actionOpenNfo);
     m_contextMenu->addSeparator();
     m_contextMenu->addAction(m_actionShowMissingEpisodes);
     m_contextMenu->addAction(m_actionHideSpecialsInMissingEpisodes);
@@ -85,6 +87,7 @@ TvShowFilesWidget::TvShowFilesWidget(QWidget *parent) :
     connect(actionMarkForSync, SIGNAL(triggered()), this, SLOT(markForSync()));
     connect(actionUnmarkForSync, SIGNAL(triggered()), this, SLOT(unmarkForSync()));
     connect(actionOpenFolder, SIGNAL(triggered()), this, SLOT(openFolder()));
+    connect(actionOpenNfo, SIGNAL(triggered()), this, SLOT(openNfo()));
     connect(m_actionShowMissingEpisodes, SIGNAL(triggered()), this, SLOT(showMissingEpisodes()));
     connect(m_actionHideSpecialsInMissingEpisodes, SIGNAL(triggered()), this, SLOT(hideSpecialsInMissingEpisodes()));
     connect(ui->files, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
@@ -331,6 +334,28 @@ void TvShowFilesWidget::openFolder()
         return;
 
     QDesktopServices::openUrl(QUrl::fromLocalFile(dir));
+}
+
+void TvShowFilesWidget::openNfo()
+{
+    m_contextMenu->close();
+    if (!ui->files->currentIndex().isValid())
+        return;
+    QModelIndex index = m_tvShowProxyModel->mapToSource(ui->files->currentIndex());
+    TvShowModelItem *item = Manager::instance()->tvShowModel()->getItem(index);
+    if (!item)
+        return;
+    QString file;
+    if (item->type() == TypeTvShow) {
+        file = Manager::instance()->mediaCenterInterface()->nfoFilePath(item->tvShow());
+    } else if (item->type() == TypeEpisode && !item->tvShowEpisode()->files().isEmpty() && !item->tvShowEpisode()->isDummy()) {
+        file = Manager::instance()->mediaCenterInterface()->nfoFilePath(item->tvShowEpisode());
+    }
+
+    if (file.isEmpty())
+        return;
+
+    QDesktopServices::openUrl(QUrl::fromLocalFile(file));
 }
 
 void TvShowFilesWidget::showMissingEpisodes()
